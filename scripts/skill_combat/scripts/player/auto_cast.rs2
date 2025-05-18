@@ -50,3 +50,11 @@ if (testbit(%attackstyle_magic, 0) = ^true & %attackstyle_magic = 3 & %autocast_
     return(true);
 }
 return(false);
+
+[proc,player_autocast_reset]
+%attackstyle_magic = 0;
+%autocast_spell = null;
+
+[proc,.player_autocast_reset]
+.%attackstyle_magic = 0;
+.%autocast_spell = null;
