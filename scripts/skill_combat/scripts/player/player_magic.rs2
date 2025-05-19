@@ -10,7 +10,7 @@ if (~npc_is_attackable = false) { // test: wormbrain's special mes shows before 
 def_dbrow $spell_data = ~get_spell_data(%autocast_spell);
 if (~check_spell_requirements($spell_data) = false) {
     if (%autocast_spell = db_getfield($spell_data, magic_spell_table:spell, 0)) { // matches osrs behavior
-        %attackstyle_magic = 0;
+        ~player_autocast_reset;
     }
     return;
 }
@@ -98,7 +98,7 @@ if (map_clock < %action_delay) {
 }
 if (~check_spell_requirements($spell_data) = false) {
     if (%autocast_spell = db_getfield($spell_data, magic_spell_table:spell, 0)) { // matches osrs behavior
-        %attackstyle_magic = 0;
+        ~player_autocast_reset;
     }
     return(false);
 }

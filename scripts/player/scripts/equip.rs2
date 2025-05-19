@@ -28,11 +28,11 @@ if (p_finduid(uid) = true) {
         mes("gnomeball pitch");
         return;
     }
+    def_obj $previous = inv_getobj(worn, ^wearpos_rhand);
     if (~try_equip($slot) = false) {
         mes("You don't have enough free space to do that.");
         return;
     }
-    def_obj $previous = inv_getobj(worn, ^wearpos_rhand);
     // todo: this needs a better home...
     if (%tutorial_progress < ^tutorial_complete) {
      if (%tutorial_progress = ^combat_instructor_unequipping_items) {
