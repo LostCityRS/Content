@@ -113,20 +113,23 @@ if($ingredient = struct_param($mixture_struct, ingredient)) {
 mes("You add the <lowercase(oc_name($ingredient))> into the <struct_param($mixture_struct, productmessage)> mixture.");
 
 
-[label,make_ugthanki_kebab](int $last)
+[label,make_ugthanki_kebab](int $kebab_slot)
 if (map_members = ^false) {
     mes("You can only make that on a members' server.");
     return;
 }
-def_obj $kebab_mix = inv_getobj(inv, $last);
-//delete ingredient
-inv_del(inv, $kebab_mix, 1);
+inv_del(inv, inv_getobj(inv, $kebab_slot), 1);
 inv_del(inv, pitta_bread, 1);
-//add kebab
+inv_add(inv, bowl_empty, 1); // bowl first
+
+mes("You put the mixture into the pitta bread."); // osrs
+
+if (stat_random(cooking, 118, 492) = false) { // ash: "46% at level 1, 193% at level 99"
+    mes("You make an ugthanki kebab.");
+    inv_add(inv, ugthanki_kebab_bad, 1);
+    return;
+}
 inv_add(inv, ugthanki_kebab, 1);
-inv_add(inv, bowl_empty, 1);
-//display message
 mes("You make a delicious ugthanki kebab.");
-// gives 120 xp each, the case in rsc too. https://web.archive.org/web/20040905213850/http ://www.runehq.com/CookingSkillGuide.php
-//stat_advance(crafting, 400);
+// gives 120 xp each, the case in rsc too. https://web.archive.org/web/20040905213850/http://www.runehq.com/CookingSkillGuide.php
 stat_advance(cooking, 1200);
