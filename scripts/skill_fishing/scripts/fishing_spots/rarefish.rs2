@@ -109,7 +109,7 @@ if (%action_delay < map_clock) {
     p_opnpc(5);
 } else if (%action_delay = map_clock) { 
     if (stat(fishing) >= 50) {
-        ~fish_roll(raw_swordfish, raw_tuna, harpoon, null);
+        ~fish_roll(raw_tuna, raw_swordfish, harpoon, null);
     } else {
         ~fish_roll(raw_tuna, null, harpoon, null);
     }
@@ -140,7 +140,7 @@ if (%action_delay < map_clock) {
     %action_delay = calc(map_clock + 5);
 } else if (%action_delay = map_clock) {
     if (stat(fishing) >= 50) {
-        ~fish_roll(raw_swordfish, raw_tuna, harpoon, null);
+        ~fish_roll(raw_tuna, raw_swordfish, harpoon, null);
     } else {
         ~fish_roll(raw_tuna, null, harpoon, null);
     }
