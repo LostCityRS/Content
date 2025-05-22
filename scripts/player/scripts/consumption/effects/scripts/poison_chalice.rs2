@@ -6,7 +6,7 @@ mes("You drink the strange green liquid.");
 def_int $hitpoints = stat(hitpoints);
 def_int $random = random(128);
 if ($random < 40 & $hitpoints < stat_base(hitpoints)) { // 40/128 chance, doesnt activate if health is full
-    mes("It heals some health");
+    mes("It heals some health.");
     stat_heal(hitpoints, 6, 0);
 } else if ($random < 72) { // 32/128 chance
     mes("You feel a little strange.");
