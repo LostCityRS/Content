@@ -26,7 +26,7 @@ if (~mage_arena_in_progress = true) {
 ~chatplayer("<p,neutral>Hello, Kolodion.");
 ~chatnpc("<p,shifty>Hey there, how are you? Are you enjoying the|bloodshed?");
 ~chatplayer("<p,neutral>It's not bad; I've seen worse.");
-def_int $choice = ~p_choice3("I think I've had enough for now.", 1, "How can I use my new spells outside of the arena?", 2);
+def_int $choice = ~p_choice2("I think I've had enough for now.", 1, "How can I use my new spells outside of the arena?", 2);
 if ($choice = 1) {
     ~chatplayer("<p,bored>I think I've had enough for now.");
     ~chatnpc("<p,neutral>A shame. You're a good battle mage. I hope to see you|soon.");
