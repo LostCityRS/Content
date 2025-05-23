@@ -48,13 +48,12 @@ if (inv_freespace(inv) = 0 & inv_total(inv, feather) > 1) {
 if (%action_delay < map_clock) {
     %action_delay = calc(map_clock + 4);
 } else if (%action_delay = map_clock) {
+    anim(human_fish_onspot, 0);
     if (stat(fishing) >= 30) {
         ~fish_roll_loc(raw_trout, raw_salmon, feather);
     } else {
         ~fish_roll_loc(raw_trout, null, feather);
     }
-    anim(human_fish_onspot, 0);
-    p_oploc(3);
 }
 p_oploc(3);
 
