@@ -13,8 +13,7 @@ if (p_finduid(uid) = true) {
         return;
     }
     %macro_whirlpool_counter = 0;
-    if_close;
-    p_stopaction;
     sound_synth(watersplash, 0, 0);
     inv_del(inv, $fishing_equipment, 1);
+    anim(null, 0); // https://youtu.be/ji4qvtcLKpI?list=PLn23LiLYLb1am4weMQzkWn5m9b3m9fXv9&t=112
 }
