@@ -140,11 +140,11 @@ if (inv_freespace(inv) = 0 & inv_total(inv, fishing_bait) > 1) {
 if (%action_delay < map_clock) {
     %action_delay = calc(map_clock + 4);
 } else if (%action_delay = map_clock) {
+    anim(human_fish_onspot, 0);
     ~fish_roll(raw_pike, null, fishing_rod, fishing_bait);
     if (random(5) = 0) { // 1/5 chance to recast https://x.com/JagexAsh/status/1585958606364868608
         p_opnpc(3);
         return;
     }
-    anim(human_fish_onspot, 0);
 }
 p_opnpc(5);
