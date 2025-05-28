@@ -47,8 +47,8 @@ if (%action_delay < map_clock) {
     mes("You attempt to catch a Lobster.");
     p_opnpc(4);
 } else if (%action_delay = map_clock) { 
-    ~fish_roll(raw_lobster, null, lobster_pot, null);
     anim(human_lobster, 0);
+    ~fish_roll(raw_lobster, null, lobster_pot, null);
 }
 if (afk_event = ^true & npc_param(is_whirlpool) = ^false) {
     @macro_event_fishing(lobster_pot);
@@ -75,8 +75,8 @@ if (inv_freespace(inv) < 1) {
 if (%action_delay < map_clock) {
     %action_delay = calc(map_clock + 5);
 } else if (%action_delay = map_clock) {
-    ~fish_roll(raw_lobster, null, lobster_pot, null);
     anim(human_lobster, 0);
+    ~fish_roll(raw_lobster, null, lobster_pot, null);
 }
 p_opnpc(4);
 
@@ -108,12 +108,12 @@ if (%action_delay < map_clock) {
     sound_synth(fishing_cast, 0, 0);
     p_opnpc(5);
 } else if (%action_delay = map_clock) { 
+    anim(human_harpoon, 0);
     if (stat(fishing) >= 50) {
-        ~fish_roll(raw_swordfish, raw_tuna, harpoon, null);
+        ~fish_roll(raw_tuna, raw_swordfish, harpoon, null);
     } else {
         ~fish_roll(raw_tuna, null, harpoon, null);
     }
-    anim(human_harpoon, 0);
 }
 if (afk_event = ^true & npc_param(is_whirlpool) = ^false) {
     @macro_event_fishing(harpoon);
@@ -139,11 +139,11 @@ if (inv_freespace(inv) < 1) {
 if (%action_delay < map_clock) {
     %action_delay = calc(map_clock + 5);
 } else if (%action_delay = map_clock) {
+    anim(human_harpoon, 0);
     if (stat(fishing) >= 50) {
-        ~fish_roll(raw_swordfish, raw_tuna, harpoon, null);
+        ~fish_roll(raw_tuna, raw_swordfish, harpoon, null);
     } else {
         ~fish_roll(raw_tuna, null, harpoon, null);
     }
-    anim(human_harpoon, 0);
 }
 p_opnpc(5);

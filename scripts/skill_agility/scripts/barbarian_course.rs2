@@ -94,7 +94,9 @@ p_delay(0);
 stat_advance(agility, 200);
 ~update_barbarian_varp(4);
 
-[oploc1,barbarian_crumblingwall] 
+[oploc1,barbarian_crumblingwall] @climb_barbarian_crumblingwall;
+
+[label,climb_barbarian_crumblingwall]
 if(coordx(coord) > coordx(loc_coord)) {
     mes("You cannot climb that from this side.");
     return;

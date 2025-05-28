@@ -68,7 +68,7 @@ if (struct_param($struct, ingredient_secondary) ! null) {
 
 if ($bar = iron_bar) {
     // if player is wearing ring of forging
-    if (inv_total(worn, ring_of_forging) > 0) {
+    if (inv_total(worn, ring_of_forging) > 0 & map_members = ^true) {
         ~lose_charge_ring_of_forging;
     } else if (randominc(1) = 1) { // else assume 50% chance of success
         mes("The ore is too impure and you fail to refine it.");

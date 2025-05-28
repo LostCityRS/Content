@@ -37,7 +37,7 @@ if ($random < 32) {
 [proc,randomjewel]()(namedobj, int)
 def_int $random = 0;
 
-if (inv_total(worn, ring_of_wealth) > 0) {
+if (inv_total(worn, ring_of_wealth) > 0 & map_members = ^true) {
     $random = random(65);
 } else {
     $random = random(128);

@@ -80,6 +80,11 @@ if (stat(fletching) < 5) {
     ~mesbox("You need a Fletching level of 5 to do that.");
     return;
 }
+if(inv_total(inv, feather) < 4) {
+    mes("You need at least 4 matching feathers to make an ogre arrow.");
+    return;
+}
+
 def_int $feather_count = divide(min(inv_total(inv, feather), 24), 4);
 def_int $shaft_count = min(inv_total(inv, ogre_arrow_shaft), 6);
 def_int $arrow_count = min($feather_count, $shaft_count);

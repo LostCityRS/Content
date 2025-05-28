@@ -3,24 +3,11 @@ if (map_members = ^false) {
     mes(^mes_members_feature);
     return;
 }
-if(loc_coord ! 0_45_52_55_27) {
-    // these walls are reused in the barb course for some reason (not the wall you climb)
-    // todo: figure out what would happen if you interact with those ones
-    return;
-}
 if(stat(agility) < 5) {
     mes("You need an Agility level of 5 to climb this.");
     return;
 }
-def_int $dir = ^exact_east; 
-def_coord $end = movecoord(loc_coord, 1, 0, 0);
-if(coordx(coord) > coordx(loc_coord)) {
-    $dir = ^exact_west;
-    $end = movecoord(loc_coord, -1, 0, 0);
-}
-p_delay(0);
-~agility_exactmove(human_walk_crumbledwall, 30, 2, coord, $end, 30, 100, $dir, true);
-stat_advance(agility, 5);
+@climb_barbarian_crumblingwall;
 
 [oploc1,loc_2298]
 if(stat(agility) < 5) {

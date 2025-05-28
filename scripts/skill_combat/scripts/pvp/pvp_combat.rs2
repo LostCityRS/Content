@@ -166,7 +166,7 @@ if ($damage < 0) {
 
 // needs to be a queue
 [queue,pvp_damage](int $damage)
-if (inv_getobj(worn, ^wearpos_ring) = ring_of_recoil & .finduid(%pk_predator1) = true & $damage > 0 & stat(hitpoints) > 0) {
+if (inv_getobj(worn, ^wearpos_ring) = ring_of_recoil & map_members = ^true & .finduid(%pk_predator1) = true & $damage > 0 & stat(hitpoints) > 0) {
     // https://oldschool.runescape.wiki/w/Update:Clue_Scroll_Step_Counter
     // - "Recoil damage will now always target the entity that caused the initial damage, rather than the most recent entity to deal damage."
     // Having it here instead of the opplayer2 trigger will allow this bug to occur

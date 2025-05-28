@@ -23,9 +23,9 @@ jobs:
         repository: LostCityRS/Engine-TS
         path: engine
 
-    - uses: actions/setup-node@v4
+    - uses: oven-sh/setup-bun@v2
       with:
-        node-version: '22.x'
+        bun-version: latest
 
     - uses: actions/setup-java@v4
       with:
@@ -33,8 +33,8 @@ jobs:
         java-version: '17'
 
     - working-directory: engine
-      run: npm i
+      run: bun install
 
     - name: Pack
       working-directory: engine
-      run: npm run build
+      run: bun run build

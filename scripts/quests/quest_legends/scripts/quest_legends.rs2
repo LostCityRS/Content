@@ -38,28 +38,26 @@
 
 [oploc2,legends_table]
 mes("You start searching the table...");
-if (inv_total(inv, scrawled_note2) < 0) {
+if (inv_total(inv, scrawled_note2) = 0) {
     // no delay
     ~objbox(scrawled_note2, "You find a scrap of paper with what looks like nonsense written on it.", 250, 0, 0);
     inv_add(inv, scrawled_note2, 1);
-}
-else {
-    mes("You cannot find anything else in here.");
-}
+    return;
+} 
+mes("You cannot find anything else in here.");
 
 [oploc1,legends_crate]
 ~mesbox("It looks like a rickety old crate, perhaps placed in this recess to hide it from prying eyes.");
 
 [oploc2,legends_crate]
 mes("You search the crate.");
-if (inv_total(inv, scrawled_note1) < 0) {
+if (inv_total(inv, scrawled_note1) = 0) {
     p_delay(0);
     ~objbox(scrawled_note1, "After some time you find a scrumpled up piece of paper. It looks like rubbish.", 250, 0, 0);
     inv_add(inv, scrawled_note1, 1);
+    return;
 }
-else {
-    mes("You can't find anything else here.");
-}
+mes("You can't find anything else here.");
 
 [oploc2,legends_bed]
 // no delay
@@ -68,10 +66,9 @@ if (inv_total(inv, scrawled_note3) = 0) {
     // mes instead of mesbox here
     mes("You find a scrap of paper with spidery writing on it.");;
     inv_add(inv, scrawled_note3, 1);
+    return;
 }
-else {
-    mes("You cannot find anything else in here.");
-}
+mes("You cannot find anything else in here.");
 
 [oploc1,legends_desk]
 mes("It's a very old rickety desk made of bamboo.");
