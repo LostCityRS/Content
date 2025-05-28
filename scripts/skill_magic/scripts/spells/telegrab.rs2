@@ -67,7 +67,6 @@ p_delay(2);
 if (obj_count < 1) {
     mes("Too late - it's gone!");
 } else {
-    wealth_log(^wealth_gained, calc(obj_count * oc_cost(obj_type)), "Telegrabbed <oc_debugname(obj_type)> x<tostring(obj_count)>");
     obj_takeitem(inv);
 }
 p_delay(1);
