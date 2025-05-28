@@ -367,11 +367,10 @@ while ($i < inv_size(worn)) {
         | ($wearpos2 ! null & ($wearpos2 = $worn_wearpos1 | $wearpos2 = $worn_wearpos2 | $wearpos2 = $worn_wearpos3))
         | ($wearpos3 ! null & ($wearpos3 = $worn_wearpos1 | $wearpos3 = $worn_wearpos2 | $wearpos3 = $worn_wearpos3))) {
             if (oc_stackable($worn_obj) = true) {
-                if (inv_itemspace(inv, $worn_obj, $worn_num, inv_size(inv)) = false) { // return false if the stackable item actually fits (prevents overflow)
-                    return(false);
-                }
-                if (inv_total(inv, $worn_obj) < 0) { // if stackable item isnt in inv, then takes up a space
+                if (inv_total(inv, $worn_obj) < 1) { // if stackable item isnt in inv, then takes up a space
                     $conflicts = add($conflicts, 1);
+                } else if (inv_itemspace(inv, $worn_obj, $worn_num, inv_size(inv)) = false) { // check for overflow, we should only do this if the worn item is in the inv
+                    return(false);
                 }
             } else {
                 $conflicts = add($conflicts, 1);
@@ -380,6 +379,7 @@ while ($i < inv_size(worn)) {
     }
     $i = add($i, 1);
 }
+mes("conflicts: <tostring($conflicts)>, freespace: <tostring(inv_freespace(inv))>");
 if ($conflicts > add(inv_freespace(inv), 1)) { // add 1 to freespace to account for equipping obj
     return(false);
 }

@@ -7,24 +7,27 @@ def_int $total = calc(inv_totalcat(inv, $obj_cat) + inv_totalcat(bank, $obj_cat)
 return($total);
 
 [proc,inv_slotspace](inv $from_inv, inv $to_inv, enum $slots)(boolean)
-def_int $i = 0;
 def_int $space_needed = 0;
+def_int $i = 0;
+def_int $size = inv_size($from_inv);
 while ($i < enum_getoutputcount($slots)) {
-    def_int $slot = enum(int, int, $slots, $i);
-    def_obj $obj = inv_getobj($from_inv, $slot);
+    def_obj $obj = inv_getobj($from_inv, enum(int, int, $slots, $i));
+    def_int $obj_num  = inv_getnum($from_inv, enum(int, int, $slots, $i));
     if ($obj ! null) {
-        if (inv_itemspace($to_inv, $obj, inv_getnum($from_inv, $slot), inv_size($to_inv)) = true) {
-            if (oc_stackable($obj) = false | (oc_stackable($obj) = true & inv_total($to_inv, $obj) < 1)) {
+        if (oc_stackable($obj) = true) {
+            if (inv_total($to_inv, $obj) < 1) {
                 $space_needed = add($space_needed, 1);
+            } else if (inv_itemspace($to_inv, $obj, $obj_num, $size) = false) {
+                return(false);
             }
         } else {
-            return(false);
-        }
-        if (inv_freespace($to_inv) < $space_needed) {
-            return(false);
+            $space_needed = add($space_needed, 1);
         }
     }
     $i = add($i, 1);
+}
+if ($space_needed > inv_freespace($to_inv)) {
+    return(false);
 }
 return(true);
 
