@@ -379,7 +379,6 @@ while ($i < inv_size(worn)) {
     }
     $i = add($i, 1);
 }
-mes("conflicts: <tostring($conflicts)>, freespace: <tostring(inv_freespace(inv))>");
 if ($conflicts > add(inv_freespace(inv), 1)) { // add 1 to freespace to account for equipping obj
     return(false);
 }
