@@ -6,7 +6,7 @@ if (~in_duel_arena(coord) = true) {
 clearqueue(duel_finish);
 queue(duel_finish, 0);
 
-if (.finduid(%duelpartner) = true) {
+if (%duelstatus = ^duelstatus_lost & .finduid(%duelpartner) = true) {
     session_log(^log_moderator, "Lost a duel against <.name>");
     .if_close;
     .%duelstatus = ^duelstatus_victory;
