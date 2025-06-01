@@ -143,24 +143,44 @@ val=9,0_43_51_41_19
 inputtype=int
 outputtype=coord
 val=0,0_44_46_6_25
-val=1,0_44_46_20_27
-val=2,0_44_46_18_30
-val=3,0_44_46_19_30
+val=1,0_44_46_18_30
+val=2,0_44_46_19_30
+val=3,0_44_46_20_27
 val=4,0_44_46_25_27
 val=5,0_44_46_34_32
-val=6,0_44_46_44_32
-val=7,0_44_46_44_28
-val=8,0_44_46_49_28
+val=6,0_44_46_41_29
+val=7,0_44_46_44_32
+val=8,0_44_46_46_28
 val=9,0_44_46_53_33
 
-//These 3 coordinates are the NPC spawn points.
-//The water boundary has been changed a few times between 2005 and 2008, with some of these fishing spots was being accessible and others not.
-//npc can never move to these 3 coordinates on the osrs/rs3 side..
+//These 2 points are visible in the old picture from 2005.
+//and these are not exist in osrs/rs3 because the water boundary has changed at the beginning of 2006?
+//2857,2973,0   0_44_46_41_29
+//2862,2972,0   0_44_46_46_28
+
+//osrs Shilo village movement coordinates
+//2822,2969,0   0_44_46_6_25
+//2834,2974,0   0_44_46_18_30
+//2835,2974,0   0_44_46_19_30
+//2836,2971,0   0_44_46_20_27
+//2841,2971,0   0_44_46_25_27
+//2859,2976,0   0_44_46_34_32
+//2860,2972,0   0_44_46_44_28   (this coordinate didn't exist in 2004?? guess.)
+//2860,2976,0   0_44_46_44_32
+//2865,2972,0   0_44_46_49_28   (this coordinate didn't exist in 2004?? guess.)
+//2889,2977,0   0_44_46_53_33   (not exist rs3 after karamja graphical update..)
+
+//These 3 are osrs/rs3 fishing spot npc spawn points.
+//Fishing spots cannot move to these points.
 //2855,2974,0   0_44_46_39_30  
 //2856,2974,0   0_44_46_40_30  // video here https://www.youtube.com/watch?v=IPnjFPAdyTM
 //2855,2977,0   0_44_46_39_33
-//--
-//2869,2977,0   0_44_46_53_33 (not exist rs3 after karamja graphical update..)
+
+//These 3 are possibly the original fishing spots npc spawn points before the water boundary changes in 2005.
+//Fishing spots cannot move to these points.
+//2854,2973,0   0_44_46_38_29
+//2855,2973,0   0_44_46_39_29
+//2855,2977,0   0_44_46_39_33
 
 // lure/bait fishing
 [fishing_movement_entrana1_enum]
