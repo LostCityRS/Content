@@ -20,3 +20,23 @@ if_settext(scroll:com_10, "Zone Time: @bla@<tostring(map_lastzone)>ms @yel@World
 if_settext(scroll:com_11, "Client-In Time: @bla@<tostring(map_lastclientin)>ms @yel@Client-Out Time: @bla@<tostring(map_lastclientout)>ms");
 if_settext(scroll:com_12, "----");
 if_settext(scroll:com_13, "Zones: @bla@<tostring(zonecount)> @yel@Locs: @bla@<tostring(loccount)> @yel@ Objs: @bla@<tostring(objcount)>");
+
+[debugproc,lag]
+if (p_finduid(uid) = false) {
+    return;
+}
+def_coord $target = 0_29_75_32_32;
+p_teleport($target);
+def_int $x = 0;
+def_int $z = 0;
+while ($x < 32) {
+    while ($z < 32) {
+        loc_add(movecoord($target, sub($x, 16), 0, sub($z, 16)), macro_ironrock1, 0, centrepiece_straight, 1000);
+        $z = add($z, 1);
+    }
+
+    $x = add($x, 1);
+    $z = 0;
+}
+p_delay(0);
+p_teleport(movecoord($target, 0, 3, 0));
