@@ -96,9 +96,3 @@ anim(human_reachforladder, 0);
 p_delay(0);
 mes("You crawl out of the pit.");
 p_teleport(0_38_151_45_13);
-
-[debugproc,testmaze]
-if(p_finduid(uid) = true) ~setupassgrilltrap;
-
-[debugproc,getmaze]
-if(p_finduid(uid) = true) mes("<tostring(getbit_range(%upass_map_mechanisms, 22, 31))>");

@@ -1,13 +1,3 @@
-[debugproc,cat]
-if_close;
-if (p_finduid(uid) = true) {
-    def_int $hunger = getbit_range(%cat_growth, 0, 4);
-    def_int $attent = getbit_range(%cat_growth, 5, 10);
-    def_int $growth = getbit_range(%cat_growth, 11, 19);
-    def_int $vermin = getbit_range(%cat_growth, 20, 26);
-    mes("Hunger: <tostring($hunger)> || Attent: <tostring($attent)> || Growth: <tostring($growth)> || Vermin: <tostring($vermin)>"); 
-}
-
 [ai_timer,_petcat]
 if (finduid(%npc_attacking_uid) = true) {
     if (coordy(coord) ! coordy(npc_coord) | npc_range(coord) > 15) {

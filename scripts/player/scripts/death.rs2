@@ -190,9 +190,3 @@ if($is_worn = true) {
 } else {
     inv_moveitem(inv,deathkeep,$priciest_item,1);
 }
-
-[debugproc,death]
-~damage_self(999);
-
-[debugproc,damage]
-queue(damage_player, 0, 100);

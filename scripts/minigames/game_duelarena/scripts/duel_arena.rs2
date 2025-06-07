@@ -1,33 +1,3 @@
-[debugproc,dueloffer]
-def_int $i = 0;
-def_int $null = 0;
-while ($i < inv_size(dueloffer)) {
-    if (inv_getobj(dueloffer, $i) ! null) {
-        mes("<tostring($i)>: <oc_debugname(inv_getobj(dueloffer, $i))>");
-    } else {
-        $null = add($null, 1);
-    }
-    $i = add($i, 1);
-}
-if ($null = inv_size(dueloffer)) {
-    mes("dueloffer is empty");
-}
-
-[debugproc,duelwinnings]
-def_int $i = 0;
-def_int $null = 0;
-while ($i < inv_size(duelwinnings)) {
-    if (inv_getobj(duelwinnings, $i) ! null) {
-        mes("<tostring($i)>: <oc_debugname(inv_getobj(duelwinnings, $i))>");
-    } else {
-        $null = add($null, 1);
-    }
-    $i = add($i, 1);
-}
-if ($null = inv_size(duelwinnings)) {
-    mes("stakeinv is empty");
-}
-
 [opplayer1,_]
 if (.busy = true) {
     mes("<.displayname> is busy at the moment."); // https://youtu.be/YkJQDvB14-U?t=26

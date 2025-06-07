@@ -27,11 +27,3 @@ p_telejump($destination);
 
 def_string $arrival_mes = "The ship arrives at <$place_name>.";
 ~mesbox($arrival_mes);
-
-[debugproc,test_sail](int $var)
-if(p_finduid(uid) = false) return;
-%boat_takeoff = $var;
-
-// todo: should com_0 be set to "You sail to <$place_name>."?
-if_openmain(ship_journey);
-midi_jingle(^sailing_journey_jingle, ^sailing_journey_jingle_millis);

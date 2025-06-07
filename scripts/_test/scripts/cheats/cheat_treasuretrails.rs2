@@ -152,3 +152,53 @@ if (p_finduid(uid) = true) {
             return;
     }
 }
+[debugproc,coordclues]
+if (p_finduid(uid) = true) {
+    def_int $choice = ~p_choice2_header("Yes", 0, "No", 1, "Spawn coord clues? (this WILL clear Inv)");
+    switch_int ($choice) {
+        case 0 :
+            inv_clear(inv);
+            inv_add(inv, trail_clue_medium_sextant001, 1);//0_49_50_24_51
+            inv_add(inv, trail_clue_medium_sextant002, 1);//0_41_48_55_38
+            inv_add(inv, trail_clue_medium_sextant003, 1);//0_42_50_9_7
+            inv_add(inv, trail_clue_medium_sextant004, 1);//0_37_52_15_42
+            inv_add(inv, trail_clue_medium_sextant005, 1);//0_38_49_47_22
+            inv_add(inv, trail_clue_medium_sextant006, 1);//0_39_54_16_11
+            inv_add(inv, trail_clue_medium_sextant007, 1);//0_41_50_19_52
+            inv_add(inv, trail_clue_medium_sextant008, 1);//0_44_51_32_32
+            inv_add(inv, trail_clue_medium_sextant009, 1);//0_44_47_33_25
+            inv_add(inv, trail_clue_medium_sextant010, 1);//0_46_49_63_8
+            inv_add(inv, trail_clue_medium_sextant011, 1);//0_45_53_40_11
+            inv_add(inv, trail_clue_medium_sextant012, 1);//0_50_49_17_41
+            inv_add(inv, trail_clue_medium_sextant013, 1);//0_49_52_43_16
+            inv_add(inv, trail_clue_hard_sextant001, 1);//0_47_60_50_44
+            inv_add(inv, trail_clue_hard_sextant002, 1);//0_46_61_43_59
+            inv_add(inv, trail_clue_hard_sextant003, 1);//0_49_61_23_55
+            inv_add(inv, trail_clue_hard_sextant004, 1);//0_49_61_53_59
+            inv_add(inv, trail_clue_hard_sextant005, 1);//0_51_60_26_49
+            inv_add(inv, trail_clue_hard_sextant006, 1);//0_49_59_4_28
+            inv_add(inv, trail_clue_hard_sextant007, 1);//0_46_59_2_43
+            inv_add(inv, trail_clue_hard_sextant008, 1);//0_47_60_5_6
+            inv_add(inv, trail_clue_hard_sextant009, 1);//0_47_61_31_56
+            inv_add(inv, trail_clue_hard_sextant010, 1);//0_50_59_44_16
+            inv_add(inv, trail_clue_hard_sextant011, 1);//0_49_57_32_29
+            inv_add(inv, trail_clue_hard_sextant012, 1);//0_47_57_47_48
+            inv_add(inv, trail_clue_hard_sextant013, 1);//0_51_58_47_57
+        case 1 :
+            return;
+    }
+}
+
+[debugproc,tc]
+if(p_finduid(uid) = true) {
+    @output_sextant_coords;
+}
+
+[debugproc,testpuz]
+if(p_finduid(uid) = false){
+    return;
+}
+inv_clear(trail_puzzleinv);
+~init_trail_puzzle;
+inv_transmit(trail_puzzleinv, trail_puzzle:com_4);
+if_openmain(trail_puzzle);

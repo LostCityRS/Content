@@ -35,11 +35,3 @@ if ($random < 1) { // 1/32
 } else { // 1/32
     mes("The kebab didn't seem to do a lot.");
 }
-
-[debugproc,godbab]
-mes("Wow, that was an amazing kebab! You feel really invigorated.");
-stat_boost(attack, 2, 0);
-stat_boost(strength, 2, 0);
-stat_boost(defence, 2, 0);
-// heal 24% + 7
-stat_heal(hitpoints, 7, 24);

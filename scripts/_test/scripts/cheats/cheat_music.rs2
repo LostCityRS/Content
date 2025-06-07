@@ -1,0 +1,23 @@
+[debugproc,lockalltracks]
+if (p_finduid(uid) = true) {
+    %music1 = 0;
+    %music2 = 0;
+    %music3 = 0;
+    %music4 = 0;
+    %music5 = 0;
+    %music6 = 0;
+} else {
+    @please_finish;
+}
+
+[debugproc,unlockalltracks]
+if (p_finduid(uid) = true) {
+    %music1 = 0xFFFFFFFF;
+    %music2 = 0xFFFFFFFF;
+    %music3 = 0xFFFFFFFF;
+    %music4 = 0xFFFFFFFF;
+    %music5 = 0xFFFFFFFF;
+    %music6 = 0xFFFFFFFF;
+} else {
+    @please_finish;
+}

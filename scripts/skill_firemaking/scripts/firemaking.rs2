@@ -132,12 +132,6 @@ if (~inzone_coord_pair_table(bank_zones, coord) = true) { // zone based checks u
 }
 return(true);
 
-
-[debugproc,pt]
-if (p_finduid(uid) = true) {
-    p_teleport(movecoord(coord, 1, 0, 0));
-}
-
 [proc,push_player](coord $origin_coord)
 anim(null, 0);
 if (~in_duel_arena($origin_coord) = true) {

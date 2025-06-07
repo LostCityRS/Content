@@ -254,9 +254,3 @@ if (($style = ^melee_style | $style = ^stab_style | $style = ^slash_style | $sty
 if (($style = ^ranged_style) & .%prayer_protectfrommissiles = ^true) return (true);
 if (($style = ^magic_style) & .%prayer_protectfrommagic = ^true) return (true);
 else return (false);
-
-[debugproc,pcs]
-if (p_finduid(uid) = false) {
-    return;
-}
-~player_combat_stat;

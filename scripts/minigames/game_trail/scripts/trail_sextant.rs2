@@ -170,8 +170,3 @@ mes("<tostring(abs($degrees_z))> degrees, <tostring(abs($mins_z))> minutes <$dir
 mes("<tostring(abs($degrees_x))> degrees, <tostring(abs($mins_x))> minutes <$dir_x>");
 
 ~mesbox("<tostring(abs($degrees_z))> degrees, <tostring(abs($mins_z))> minutes <$dir_z>|<tostring(abs($degrees_x))> degrees, <tostring(abs($mins_x))> minutes <$dir_x>");
-
-[debugproc,tc]
-if(p_finduid(uid) = true) {
-    @output_sextant_coords;
-}

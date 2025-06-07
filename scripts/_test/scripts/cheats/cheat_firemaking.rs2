@@ -42,3 +42,8 @@ if (p_finduid(uid) = true) {
     inv_add(inv, tinderbox, 1);
     inv_add(inv, logs, 20);
 }
+
+[debugproc,pt]
+if (p_finduid(uid) = true) {
+    p_teleport(movecoord(coord, 1, 0, 0));
+}

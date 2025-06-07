@@ -1,10 +1,10 @@
-[debugproc,1hp]
-if_close;
-if (p_finduid(uid) = true) {
-    stat_sub(hitpoints, calc(stat(hitpoints) - 1), 0);
-} else {
-    @please_finish;
-}
+[debugproc,godbab]
+mes("Wow, that was an amazing kebab! You feel really invigorated.");
+stat_boost(attack, 2, 0);
+stat_boost(strength, 2, 0);
+stat_boost(defence, 2, 0);
+// heal 24% + 7
+stat_heal(hitpoints, 7, 24);
 
 [debugproc,foodbank]
 if_close;

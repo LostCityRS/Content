@@ -1,116 +1,84 @@
-[debugproc,home]
+[debugproc,home]//Lumby
 if_close;
-if (p_finduid(uid) = true) {
-    ~player_teleport_normal(0_50_50_22_22);
-} else {
-    @please_finish;    
-}
+if (p_finduid(uid) = false) { @please_finish; return; }
+~player_teleport_normal(0_50_50_22_22);
 
 [debugproc,varrock]
 if_close;
-if (p_finduid(uid) = true) {
-    ~player_teleport_normal(0_50_53_13_31);
-} else {
-    @please_finish;    
-}
+if (p_finduid(uid) = false) { @please_finish; return; }
+~player_teleport_normal(0_50_53_13_31);
 
 [debugproc,falador]
 if_close;
-if (p_finduid(uid) = true) {
-    ~player_teleport_normal(0_46_52_21_51);
-} else {
-    @please_finish;    
-}
+if (p_finduid(uid) = false) { @please_finish; return; }
+~player_teleport_normal(0_46_52_21_51);
 
 [debugproc,draynor]
 if_close;
-if (p_finduid(uid) = true) {
-    ~player_teleport_normal(0_48_50_8_50);
-} else {
-    @please_finish;    
-}
+if (p_finduid(uid) = false) { @please_finish; return; }
+~player_teleport_normal(0_48_50_8_50);
 
 [debugproc,portsarim]
 if_close;
-if (p_finduid(uid) = true) {
-    ~player_teleport_normal(0_47_50_19_25);
-} else {
-    @please_finish;    
-}
+if (p_finduid(uid) = false) { @please_finish; return; }
+~player_teleport_normal(0_47_50_19_25);
 
 [debugproc,rimmington]
 if_close;
-if (p_finduid(uid) = true) {
-    ~player_teleport_normal(0_46_50_12_10);
-} else {
-    @please_finish;    
-}
+if (p_finduid(uid) = false) { @please_finish; return; }
+~player_teleport_normal(0_46_50_12_10);
 
 [debugproc,alkharid]
 if_close;
-if (p_finduid(uid) = true) {
-    ~player_teleport_normal(0_51_49_28_47);
-} else {
-    @please_finish;    
-}
+if (p_finduid(uid) = false) { @please_finish; return; }
+~player_teleport_normal(0_51_49_28_47);
 
 [debugproc,seers]
 if_close;
-if (p_finduid(uid) = true) {
-    ~player_teleport_normal(0_42_54_44_29);
-} else {
-    @please_finish;    
-}
+if (p_finduid(uid) = false) { @please_finish; return; }
+~player_teleport_normal(0_42_54_44_29);
 
 [debugproc,giants]
 if_close;
-if (p_finduid(uid) = true) {
-    ~player_teleport_normal(0_48_153_38_38);
-} else {
-    @please_finish;    
-}
+if (p_finduid(uid) = false) { @please_finish; return; }
+~player_teleport_normal(0_48_153_38_38);
 
 [debugproc,entrana]
 if_close;
-if (p_finduid(uid) = true) {
-    ~player_teleport_normal(0_44_52_11_16);
-} else {
-    @please_finish;    
-}
+if (p_finduid(uid) = false) { @please_finish; return; }
+~player_teleport_normal(0_44_52_11_16);
 
 [debugproc,brimhaven]
 if_close;
-if (p_finduid(uid) = true) {
-    ~player_teleport_normal(0_43_49_50_41);
-} else {
-    @please_finish;    
-}
+if (p_finduid(uid) = false) { @please_finish; return; }
+~player_teleport_normal(0_43_49_50_41);
 
 [debugproc,ardy]
 if_close;
-if (p_finduid(uid) = true) {
-    ~player_teleport_normal(0_41_51_39_38);
-} else {
-    @please_finish;
-}
+if (p_finduid(uid) = false) { @please_finish; return; }
+~player_teleport_normal(0_41_51_39_38);
 
 [debugproc,kbd]
 if_close;
-if (p_finduid(uid) = true) {
-    p_teleport(0_47_160_60_16);
-} else {
-    @please_finish;
-}
+if (p_finduid(uid) = false) { @please_finish; return; }
+p_teleport(0_47_160_60_16);
 
 [debugproc,elvarg]
 if_close;
-if (p_finduid(uid) = true) {
-    p_teleport(0_44_150_30_36);
-} else {
-    @please_finish;
-}
+if (p_finduid(uid) = false) { @please_finish; return; }
+p_teleport(0_44_150_30_36);
 
-[debugproc,greenland]
+[debugproc,greenland]//Green area north of Gnome Stronghold
 if_close;
 if (p_finduid(uid) = false) { @please_finish; return; }
 p_telejump(0_37_55_60_47);
+
+[debugproc,gb]//Gnomeball
+if_close;
+if (p_finduid(uid) = false) { @please_finish; return; }
+p_telejump(0_37_54_14_32);
+
+[debugproc,ma]//Mage Arena
+if_close;
+if (p_finduid(uid) = false) { @please_finish; return; }
+p_teleport(0_48_61_20_30);

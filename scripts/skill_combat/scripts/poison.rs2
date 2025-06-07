@@ -21,14 +21,8 @@ else if(%poison < 0){
     %poison = calc(%poison + 1);
     return;
 }
-
 queue(poison_damage,0,calc((%poison + 4)/5));
-
 %poison = calc(%poison - 1);
-
-[debugproc,poison](int $severity)
-if_close;
-queue(poison_player,0,$severity);
 
 [queue,poison_damage](int $damage)
 if_close;

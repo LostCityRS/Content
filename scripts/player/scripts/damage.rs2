@@ -1,6 +1,3 @@
-[debugproc,hit](int $amount)
-queue(damage_player, 0, $amount);
-
 [proc,damage_self](int $amount)
 if (stat(hitpoints) = 0) {
     ~player_die;

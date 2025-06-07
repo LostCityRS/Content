@@ -264,18 +264,6 @@ npc_tele(movecoord(npc_coord, -1, 0, 0));
 p_delay(2);
 cam_reset;
 
-[debugproc,c3a]
-if(p_finduid(uid) = false) {
-    return;
-}
-@arena_release_scorp;
-
-[debugproc,c4a]
-if(p_finduid(uid) = false) {
-    return;
-}
-@arena_release_bouncer;
-
 [queue,arena_quest_complete]
 %arena_progress = calc(%arena_progress + 2); // 14 if you're on 12 or 15 on if you're on 13 
 inv_add(inv, coins, 1000);

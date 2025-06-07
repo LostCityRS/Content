@@ -138,8 +138,3 @@ if (~inzone_coord_pair_table(gnomeball_zones, coord) = true) {
         }
     }
 }
-
-[debugproc,gb]
-if (p_finduid(uid) = true) {
-    p_telejump(0_37_54_14_32);
-}
