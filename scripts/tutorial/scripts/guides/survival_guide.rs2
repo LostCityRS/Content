@@ -1,34 +1,34 @@
-[opnpc1,survival_expert]
+[opnpc1,newbie_survival_instructor]
 switch_int(%tutorial_progress) {
-    case ^runescape_guide_interacted_with_door : @survival_guide_start;
-    case ^survival_guide_open_inventory : @survival_guide_look_at_menu;
-    case ^survival_guide_cut_tree, ^survival_guide_build_fire : @survival_guide_fire;
-    case ^survival_guide_open_skill_menu : @survival_guide_look_at_menu;
-    case ^survival_guide_opened_skill_menu : @survival_guide_fishing;
-    case ^survival_guide_fish_shrimps,
-        ^survival_guide_cook_shrimps,
-        ^survival_guide_burnt_shrimps : @survival_guide_fishing_after_burning;
-    case default : @survival_guide_recap;
+    case ^newbie_basics_instructor_interacted_with_door : @newbie_survival_instructor_start;
+    case ^newbie_survival_instructor_open_inventory : @newbie_survival_instructor_look_at_menu;
+    case ^newbie_survival_instructor_cut_tree, ^newbie_survival_instructor_build_fire : @newbie_survival_instructor_fire;
+    case ^newbie_survival_instructor_open_skill_menu : @newbie_survival_instructor_look_at_menu;
+    case ^newbie_survival_instructor_opened_skill_menu : @newbie_survival_instructor_fishing;
+    case ^newbie_survival_instructor_fish_shrimps,
+        ^newbie_survival_instructor_cook_shrimps,
+        ^newbie_survival_instructor_burnt_shrimps : @newbie_survival_instructor_fishing_after_burning;
+    case default : @newbie_survival_instructor_recap;
 }
 
-[label,survival_guide_start]
+[label,newbie_survival_instructor_start]
 ~chatnpc("<p,neutral>Hello there newcomer. My name is Brynna. My job is|to teach you a few survival tips and tricks. First off|we're going to start with the most basic survival skill of|all; making a fire.");
 ~doubleobjbox(tinderbox, bronze_axe, "The Survival Guide gives you a |@blu@Tinderbox@bla@ |and a |@blu@Bronze Hatchet!", 200);
-%tutorial_progress = ^survival_guide_open_inventory;
+%tutorial_progress = ^newbie_survival_instructor_open_inventory;
 ~tutorial_step_view_inventory;
 
-[label,survival_guide_look_at_menu]
+[label,newbie_survival_instructor_look_at_menu]
 ~chatnpc("<p,neutral>Hello again. You should take a look at that menu before we continue.");
 
-[label,survival_guide_fire]
+[label,newbie_survival_instructor_fire]
 ~chatnpc("<p,neutral>Next up you need to make a fire. First, you'll need to cut down a tree to get some logs.");
-~survival_guide_replace_items;
+~newbie_survival_instructor_replace_items;
 
 // basing these obj boxes off this from 2005
 // https://web.archive.org/web/20051215201825im_/http://runevillage.com/images/rsTutorial8.gif
 // https://web.archive.org/web/20051215201825im_/http://runevillage.com/images/rsTutorial10.gif
 // Looks like the exclamation points don't switch back to black.
-[proc,survival_guide_replace_items]
+[proc,newbie_survival_instructor_replace_items]
 if (~tutorial_has_obj_on_person(bronze_axe) = false & inv_total(inv, tinderbox) < 1) {
     inv_add(inv, bronze_axe, 1);
     inv_add(inv, tinderbox, 1);
@@ -41,13 +41,13 @@ if (~tutorial_has_obj_on_person(bronze_axe) = false & inv_total(inv, tinderbox) 
     ~objbox(tinderbox, "The Survival Guide gives you a |@blu@Tinderbox!", 250, 0, 0);
 }
 
-if (%tutorial_progress > ^survival_guide_open_skill_menu & inv_total(inv, net) < 1) {
+if (%tutorial_progress > ^newbie_survival_instructor_open_skill_menu & inv_total(inv, net) < 1) {
     inv_add(inv, net, 1);
     ~objbox(net, "The Survival Guide gives you a |@blu@Net!", 250, 0, divide(^objbox_height, 2));
 }
 
 // Used later for OSRS so we'll leave it.
-[proc,survival_guide_replace_items_no_objboxes]
+[proc,newbie_survival_instructor_replace_items_no_objboxes]
 if (~tutorial_has_obj_on_person(bronze_axe) = false & inv_freespace(inv) > 0) {
     inv_add(inv, bronze_axe, 1);
 }
@@ -60,28 +60,28 @@ if (inv_total(inv, net) < 1 & inv_freespace(inv) > 0) {
     inv_add(inv, net, 1);
 }
 
-[label,survival_guide_fishing]
+[label,newbie_survival_instructor_fishing]
 ~chatnpc("<p,neutral>There's nothing like a good fire to warm the bones.|Next thing is getting food in our bellies. We'll need|something to cook. There are shrimp in the pond there.|So let's catch and cook some.");
-if (npc_findexact(0_48_48_29_20, tut_fishing_spot) = true) {
+if (npc_findexact(0_48_48_29_20, 0_48_48_newbiefishing) = true) {
     hint_npc(npc_uid);
 }
 inv_add(inv, net, 1);
-%tutorial_progress = ^survival_guide_fish_shrimps;
+%tutorial_progress = ^newbie_survival_instructor_fish_shrimps;
 ~tutorial_step_catch_shrimp;
 ~objbox(net, "The Survival Guide gives you a |@blu@Net!", 250, 0, divide(^objbox_height, 2));
-~survival_guide_replace_items;
+~newbie_survival_instructor_replace_items;
 
 // https://youtu.be/TSx2-jjPeIs?t=31
-[label,survival_guide_fishing_after_burning]
-~survival_guide_replace_items;
+[label,newbie_survival_instructor_fishing_after_burning]
+~newbie_survival_instructor_replace_items;
 ~chatnpc("<p,neutral>Hello again. Next thing is getting food in our bellies. We'll need something to cook. There are shrimp in the pond there. So let's catch and cook some.");
 
-[label,survival_guide_recap]
+[label,newbie_survival_instructor_recap]
 ~chatnpc("<p,neutral>Hello again.");
-~survival_guide_replace_items;
-~survival_guide_recap_response(~p_choice5_header("Woodcutting.", 1, "Firemaking.", 2, "Fishing.", 3, "Cooking.", 4, "My stats.", 5, "What would you like to hear more about?"));
+~newbie_survival_instructor_replace_items;
+~newbie_survival_instructor_recap_response(~p_choice5_header("Woodcutting.", 1, "Firemaking.", 2, "Fishing.", 3, "Cooking.", 4, "My stats.", 5, "What would you like to hear more about?"));
 
-[proc,survival_guide_recap_response](int $choice)
+[proc,newbie_survival_instructor_recap_response](int $choice)
 switch_int ($choice) {
     case 1 :
         ~survival_recap_woodcutting;
@@ -102,11 +102,11 @@ switch_int ($choice) {
 
 [proc,survival_recap_questions](int $choice)
 switch_int($choice) {
-    case 1 : ~survival_guide_recap_response(~p_choice5_header("Firemaking.", 2, "Fishing.", 3, "Cooking.", 4, "My stats.", 5, "Nothing, thanks.", 6, "What would you like to hear more about?"));
-    case 2 : ~survival_guide_recap_response(~p_choice5_header("Woodcutting", 1, "Fishing.", 3, "Cooking.", 4, "My stats.", 5, "Nothing, thanks.", 6, "What would you like to hear more about?"));
-    case 3 : ~survival_guide_recap_response(~p_choice5_header("Woodcutting", 1, "Firemaking.", 2, "Cooking.", 4, "My stats.", 5, "Nothing, thanks.", 6, "What would you like to hear more about?"));
-    case 4 : ~survival_guide_recap_response(~p_choice5_header("Woodcutting.", 1, "Firemaking.", 2, "Cooking.", 4, "My stats.", 5, "Nothing, thanks.", 6, "What would you like to hear more about?"));
-    case 5 : ~survival_guide_recap_response(~p_choice5_header("Woodcutting.", 1, "Firemaking.", 2, "Fishing.", 3, "Cooking.", 4, "Nothing, thanks.", 6, "What would you like to hear more about?"));
+    case 1 : ~newbie_survival_instructor_recap_response(~p_choice5_header("Firemaking.", 2, "Fishing.", 3, "Cooking.", 4, "My stats.", 5, "Nothing, thanks.", 6, "What would you like to hear more about?"));
+    case 2 : ~newbie_survival_instructor_recap_response(~p_choice5_header("Woodcutting", 1, "Fishing.", 3, "Cooking.", 4, "My stats.", 5, "Nothing, thanks.", 6, "What would you like to hear more about?"));
+    case 3 : ~newbie_survival_instructor_recap_response(~p_choice5_header("Woodcutting", 1, "Firemaking.", 2, "Cooking.", 4, "My stats.", 5, "Nothing, thanks.", 6, "What would you like to hear more about?"));
+    case 4 : ~newbie_survival_instructor_recap_response(~p_choice5_header("Woodcutting.", 1, "Firemaking.", 2, "Cooking.", 4, "My stats.", 5, "Nothing, thanks.", 6, "What would you like to hear more about?"));
+    case 5 : ~newbie_survival_instructor_recap_response(~p_choice5_header("Woodcutting.", 1, "Firemaking.", 2, "Fishing.", 3, "Cooking.", 4, "Nothing, thanks.", 6, "What would you like to hear more about?"));
 }
 
 [proc,survival_recap_skills]
@@ -142,8 +142,8 @@ switch_int($choice) {
 ~chatnpc("<p,neutral>Yes, the most basic of survival techniques. Most simple meals can be cooked on a fire by right clicking on the food, selecting use, then left clicking on the fire.");
 ~chatnpc("<p,neutral>Eating food will restore a little health. The harder something is to cook, the more it will heal you. Somewhere around here is a chef who will tell you more about food and cooking it.");
 
-[proc,set_hint_icon_survival_guide]
-if (npc_find(0_48_48_31_23, survival_expert, 10, 0) = true) {
+[proc,set_hint_icon_newbie_survival_instructor]
+if (npc_find(0_48_48_31_23, newbie_survival_instructor, 10, 0) = true) {
     hint_npc(npc_uid);
 }
 

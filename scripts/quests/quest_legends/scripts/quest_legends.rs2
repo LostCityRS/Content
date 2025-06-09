@@ -263,7 +263,7 @@ if (~player_in_fire_octagram = true) {
 }
 ~mesbox("You see a white clad figure in the midst of the flames...");
 ~mesbox("You see the white robed figure inside the flaming octagram gesturing to you.");
-if (npc_find(coord, ungadulu, 10, 0) = true) {
+if (npc_find(coord, ungadulu_good, 10, 0) = true) {
     @ungadulu_no_closer;
 } else { // killed or possessed
     mes("The shaman isn't interested in you at the moment.");
@@ -500,7 +500,7 @@ p_teleport(0_43_145_58_34);
 p_delay(2);
 ~damage_self(8);
 
-[oploc1,_legends_boulder]
+[oploc1,_boulder_legends]
 def_obj $pickaxe = ~pickaxe_checker;
 if ($pickaxe = null) {
     // osrs
@@ -509,14 +509,14 @@ if ($pickaxe = null) {
     // this triggers if you are south of the first boulder, or interacting with either of the latter
     // two boulders from either side
     if(coordz(coord) < coordz(loc_coord) | loc_type = legends_boulder_2 | loc_type = legends_boulder_3) {
-        @legends_boulder_stuck;
+        @boulder_legends_stuck;
     }
     return;
 }
 if (stat(mining) < 52) {
     mes("You need a Mining level of 52 to mine your way through this rock.");
     if(coordz(coord) < coordz(loc_coord) | loc_type = legends_boulder_2 | loc_type = legends_boulder_3) {
-        @legends_boulder_stuck;
+        @boulder_legends_stuck;
     }
     return;
 }
@@ -551,7 +551,7 @@ else {
     stat_sub(mining, 1, 0);
 }
 
-[label,legends_boulder_stuck]
+[label,boulder_legends_stuck]
 // osrs wording
 ~mesbox("You seem to be stuck! You may be able to climb out, but it looks pretty dangerous. Would you like to try?");
 // rsc:

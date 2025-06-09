@@ -1,4 +1,4 @@
-[opnpc1,butler_jones]
+[opnpc1,butler_jones_hazeel_cultist]
 switch_int(%hazeelcult_progress) {
     case ^hazeelcult_complete :
         if(%hazeelcult_side = ^hazeelcult_goodside) {
@@ -63,14 +63,14 @@ switch_int(%hazeelcult_progress) {
     case ^hazeelcult_poured_poison :
         ~chatplayer("<p,neutral>Hello there.");
         ~chatnpc("<p,neutral>Hello friend. I heard about your handiwork. Quite amusing really. I'm sure Hazeel will be pleased anyway; Keep up the good work!");
-    case ^hazeelcult_clivet_decision : @butler_jones_howlong;
+    case ^hazeelcult_clivet_decision : @butler_jones_hazeel_cultist_howlong;
     case ^hazeelcult_started :
         ~chatplayer("<p,quiz>Hello. What is this building?");
         ~chatnpc("<p,neutral>This is the home of Sir Ceril Carnillean of the noble Carnillean family. You're welcome to look around, but I'm afraid I'll have to keep an eye on you.");
         ~chatnpc("<p,neutral>Recently we've been having a real problem with thieves and strange cultists coming out of the forest for some reason.");
         ~chatplayer("<p,neutral>That's a shame.");
         ~chatnpc("<p,neutral>Yes, well, these things are bound to happen when you're as wealthy as the Carnilleans.");
-        @multi3("Have you any more info on the Carnilleans?", butler_jones_info, "How long have you worked here?", butler_jones_howlong, "Ok then, take care.", butler_jones_takecare);
+        @multi3("Have you any more info on the Carnilleans?", butler_jones_hazeel_cultist_info, "How long have you worked here?", butler_jones_hazeel_cultist_howlong, "Ok then, take care.", butler_jones_hazeel_cultist_takecare);
     case ^hazeelcult_not_started, ^hazeelcult_spoken_clivet :
         ~chatplayer("<p,neutral>Hello there.");
         ~chatnpc("<p,neutral>Hello. How are you today?");
@@ -78,14 +78,14 @@ switch_int(%hazeelcult_progress) {
         ~chatnpc("<p,neutral>Fine and dandy.");
 }
 
-[label,butler_jones_info]
+[label,butler_jones_hazeel_cultist_info]
 ~chatplayer("<p,quiz>Have you any more info on the Carnilleans?");
 ~chatnpc("<p,neutral>There's a lot I could tell you about the Carnillean family history. However, I'm afraid if I did speak about such matters I would be at risk of losing my job.");
 
-[label,butler_jones_howlong]
+[label,butler_jones_hazeel_cultist_howlong]
 ~chatplayer("<p,quiz>How long have you worked here?");
 ~chatnpc("<p,neutral>Long enough to know the Carnilleans are not as innocent or noble as they seem.");
 
-[label,butler_jones_takecare]
+[label,butler_jones_hazeel_cultist_takecare]
 ~chatplayer("<p,neutral>Ok then, take care.");
 ~chatnpc("<p,neutral>You too.");

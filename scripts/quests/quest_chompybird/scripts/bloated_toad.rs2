@@ -24,7 +24,7 @@ mes("You release the toad and see it hop off into the distance.");
 
 [proc,release_toad]
 def_coord $release_coord = map_findsquare(coord, 0, 1, ^map_findsquare_lineofwalk);
-npc_add(map_findsquare(coord, 1, 1, ^map_findsquare_lineofwalk), swamp_toad, 10);
+npc_add(map_findsquare(coord, 1, 1, ^map_findsquare_lineofwalk), toad, 10);
 npc_walk(movecoord(npc_coord, calc(10 * (coordx($release_coord) - coordx(npc_coord))), 0, calc(10 * (coordz($release_coord) - coordz(npc_coord)))));
 switch_int(random(3)) {
     case 0 : npc_say("Croak!");

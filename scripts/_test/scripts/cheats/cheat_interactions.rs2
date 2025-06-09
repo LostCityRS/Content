@@ -206,7 +206,7 @@ p_delay(12);
 
 [proc,npc_modes_in_action]
 mes("Test 18 (manual): Npc Modes in action.");
-npc_add(movecoord(coord, 0, 0, 1), civilian_blonde, 30);
+npc_add(movecoord(coord, 0, 0, 1), wantcat1, 30);
 npc_setmode(none);
 npc_walk(npc_coord);
 p_opnpc(1);

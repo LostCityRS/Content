@@ -114,7 +114,7 @@ if(coordx(coord) > coordx(loc_coord) | coordz(coord) < coordz(loc_coord)) {
             ~forcemove(movecoord(coord, -2, 0, 2));
             if (%arena_progress = ^arena_sent_jail) @arena_release_scorp;
             else if (%arena_progress = ^arena_defeated_scorpion) @arena_release_bouncer;
-        case ^arena_defeated_ogre : @general_khazard_arena_welldone;
+        case ^arena_defeated_ogre : @general_khazard_welldone;
         case ^arena_given_khali_brew, ^arena_entered_ogre_fight :
             // chatnpc_specific on RS3
             ~chatnpc_specific(nc_name(jeremy_servil), jeremy_servil, "<p,sad>Please don't go, you must help us. We'll never survive in here alone.");
@@ -186,8 +186,8 @@ $x, $z = ~door_open($angle, loc_shape);
 loc_change(inviswall, 3);
 loc_add(movecoord($loc_coord, $x, 0, $z), loc_1532, modulo(add($angle, 1), 4), $shape, 3);
 ~forcemove(movecoord(coord, -2, 0, 2));
-if (%arena_progress = ^arena_defeated_ogre & npc_find(coord, general_khazard_arena, 8, 0) = true) {
-    @general_khazard_arena_welldone;
+if (%arena_progress = ^arena_defeated_ogre & npc_find(coord, general_khazard, 8, 0) = true) {
+    @general_khazard_welldone;
 } 
 
 [label,arena_release_scorp]

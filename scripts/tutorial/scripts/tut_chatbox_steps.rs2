@@ -1,5 +1,5 @@
 [proc,tutorial_step_getting_started]
-~set_hint_runescape_guide;
+~set_hint_newbie_basics_instructor;
 // https://web.archive.org/web/20060328131241im_/http://www.runescape.com/lang/en/aff/runescape/img/screenshots/shots/free_chardesign.jpg
 ~tutorialstep("Getting started", "To start the tutorial use your left mouse-button to click|on the 'RuneScape Guide' in this room. He is indicated|by a flashing yellow arrow above his head. If you can't|see him, use your keyboard's arrow keys to rotate the view.");
 
@@ -19,7 +19,7 @@ hint_coord(^hint_west, 0_48_48_26_35, 128);
 
 [proc,tutorial_step_moving_around]
 ~tutorialstep("Moving around", "Follow the path to find the next instructor. Clicking on the|ground will walk you to that point. Talk to the survival expert by|the pond to continue the tutorial. Remember you can rotate|the view by pressing the arrow keys.");
-~set_hint_icon_survival_guide;
+~set_hint_icon_newbie_survival_instructor;
 
 [proc,tutorial_step_view_inventory]
 hint_stop();
@@ -48,7 +48,7 @@ tut_flash(^tab_skills);
 
 [proc,tutorial_step_view_stats]
 ~tutorialstep("These are your stats.", "Here you will see how good your skills are. As you move your|mouse over any of the icons in this panel, you can see the exact amount of experience you have and how much is needed to get to the next level. Speak to Bryanna to continue.");
-~set_hint_icon_survival_guide;
+~set_hint_icon_newbie_survival_instructor;
 
 [proc,tutorial_step_catch_shrimp]
 ~tutorialstep("Catch some Shrimp.", "Click on the fishing spot, indicated by the flashing arrow.|Remember you can check your inventory by clicking the|backpack icon.");
@@ -71,7 +71,7 @@ hint_coord(^hint_east, 0_48_48_6_12, 150);
 ~tutorialstep("Find your next instructor.", "Follow the path until you get to the door with the yellow arrow|above it. Click on the door to open it. Notice the mini-map in|the top right, this shows a top down view of the area around|you. This can also be used for navigation.");
 
 [proc,tutorial_step_talk_to_chef]
-~set_hint_icon_master_chef;
+~set_hint_icon_newbie_cook_instructor;
 ~tutorialstep("Find your next instructor.", "Talk to the chef indicated. He will teach you the more advanced|aspects of cooking such as combining ingredients. He will also|teach you about your music player menu as well.");
 
 [proc,tutorial_step_make_dough]
@@ -116,12 +116,12 @@ if (p_finduid(uid) = true) {
 %run = %run;
 ~tutorialstep("Running.", "In this menu you will see many options from waving to walking.|At the top of the panel there are two buttons. One is walk the|other one is run. Click on the run button.");
 
-[proc,tutorial_step_enter_quest_guide_house]
+[proc,tutorial_step_enter_newbie_quest_instructor_house]
 hint_coord(^hint_south, 0_48_48_14_54, 150);
 ~tutorialstep("Run to the next guide.", "Now that you have run turned on follow the path, until you|come to the end. You may notice that your energy left goes|down. If this reaches zero you'll stop running. Click on the door|to pass through it.");
 
-[proc,tutorial_step_talk_to_quest_guide]
-~set_hint_icon_quest_guide;
+[proc,tutorial_step_talk_to_newbie_quest_instructor]
+~set_hint_icon_newbie_quest_instructor;
 ~tutorialstep("", "Talk with the Quest Guide Instructor.||He'll tell you all about quests.");
 
 [proc,tutorial_step_open_quest_journal]
@@ -132,49 +132,49 @@ if_settab(questlist, ^tab_quest_journal);
 ~tutorialstep("", "Open the Quest journal.||Click on the flashing icon next to your inventory.");
 
 [proc,tutorial_step_quest_journal]
-~set_hint_icon_quest_guide;
+~set_hint_icon_newbie_quest_instructor;
 ~tutorialstep("", "Your Quest journal.|This is your quest journal, a list of all the quests in the game.|Talk to the instructor again for an explanation.");
 
 [proc,tutorial_step_enter_mine]
 hint_coord(^hint_center, 0_48_48_16_47, 0);
 ~tutorialstep("", "Moving on.|It's time to enter some caves. Click on the ladder to go down to|the next area.");
 
-[proc,tutorial_step_talk_to_mining_instructor]
-~set_hint_icon_mining_instructor;
+[proc,tutorial_step_talk_to_newbie_mining_instructor]
+~set_hint_icon_newbie_mining_instructor;
 ~tutorialstep("Mining and smithing.", "Next let's get you a weapon, or more to the point, you can|make your first weapon yourself. Don't panic, the mining|instructor will help you. Talk to him and he'll tell you all about it.");
 
 [proc,tutorial_please_wait_prospecting]
 ~tutorialstep("Please wait...", "|Your character is now attempting to prospect the rock. This should take only a few seconds.");
 
 [proc,tutorial_step_prospect_rocks]
-if (%tutorial_progress = ^mining_instructor_begin_prospecting) {
+if (%tutorial_progress = ^newbie_mining_instructor_begin_prospecting) {
     ~tutorialstep("Prospecting", "To prospect a mineable rock just right click it and select the|prospect rock option. This will tell you the type of ore you can|mine from it. Try it now on one of the rocks indicated.");
     ~tut_hint_icon_rocks;
     return;
 }
 
-if (%tutorial_progress = ^mining_instructor_prospected_copper_first) {
+if (%tutorial_progress = ^newbie_mining_instructor_prospected_copper_first) {
     ~tutorialstep("It's copper.", "|So you know there's copper in the brown rocks, try prospecting|the grey ones next.");
     ~tut_hint_icon_rocks;
     return;
 }
 
-if (%tutorial_progress = ^mining_instructor_prospected_tin_first) {
+if (%tutorial_progress = ^newbie_mining_instructor_prospected_tin_first) {
     ~tutorialstep("It's tin.", "|So you know there's tin in the grey rocks, try prospecting|the brown ones next.");
     ~tut_hint_icon_rocks;
     return;
 }
 
-if (%tutorial_progress = ^mining_instructor_prospected_tin_second) {
+if (%tutorial_progress = ^newbie_mining_instructor_prospected_tin_second) {
     hint_stop();
-    ~set_hint_icon_mining_instructor;
+    ~set_hint_icon_newbie_mining_instructor;
     ~tutorialstep("It's tin.", "Talk to the mining instructor to find out about these types of|ore and how you can mine them. He'll give you the needed tools|too.");
     return;
 }
 
-if (%tutorial_progress = ^mining_instructor_prospected_copper_second) {
+if (%tutorial_progress = ^newbie_mining_instructor_prospected_copper_second) {
     hint_stop();
-    ~set_hint_icon_mining_instructor;
+    ~set_hint_icon_newbie_mining_instructor;
     ~tutorialstep("It's copper.", "Talk to the mining instructor to find out about these types of|ore and how you can mine them. He'll give you the needed tools|too.");
     return;
 }
@@ -184,15 +184,15 @@ if (%tutorial_progress = ^mining_instructor_prospected_copper_second) {
 
 [proc,tutorial_step_mining]
 ~tut_hint_icon_rocks;
-if (%tutorial_progress = ^mining_instructor_mining_start) {
+if (%tutorial_progress = ^newbie_mining_instructor_mining_start) {
     ~tutorialstep("Mining.", "It's quite simple really, all you need to do is right click on the rock and select mine. You can only mine when you have a pickaxe. So give it a try, first mine one tin ore.");
 }
 
-if (%tutorial_progress = ^mining_instructor_minted_copper_first) {
+if (%tutorial_progress = ^newbie_mining_instructor_minted_copper_first) {
     ~tutorialstep("Mining.", "Now you have some copper ore you just need some tin ore, then you'll have all you need to create a bronze bar. As you did|before right click on the tin rock and select 'mine'.");
 }
 
-if (%tutorial_progress = ^mining_instructor_mined_tin_first) {
+if (%tutorial_progress = ^newbie_mining_instructor_mined_tin_first) {
     ~tutorialstep("Mining.", "Now you have some tin ore you just need some copper ore, then you'll have all you need to create a bronze bar. As you did|before right click on the copper rock and select 'mine'.");
 }
 
@@ -202,7 +202,7 @@ hint_coord(^hint_center, 0_48_148_7_24, 150);
 
 [proc,tutorial_step_bronze_bar]
 hint_stop();
-~set_hint_icon_mining_instructor;
+~set_hint_icon_newbie_mining_instructor;
 ~tutorialstep("You've made a bronze bar!", "|Speak to Dezzick and he'll show you how to make it into a weapon.");
 
 [proc,tutorial_step_smithing_a_dagger]
@@ -210,14 +210,14 @@ hint_stop();
 hint_coord(^hint_center, 0_48_148_11_27, 100);
 ~tutorialstep("Smithing a dagger.", "To smith you'll need a hammer like the one you were given by Dezzick, access to an anvil like the one with the arrow over it|and enough metal bars to make what you are trying to smith.|To start the process use the bar on one of the anvils.");
 
-[proc,tutorial_step_mining_instructor_finished]
+[proc,tutorial_step_newbie_mining_instructor_finished]
 hint_stop();
 hint_coord(^hint_east, 0_48_148_22_30, 125);
 ~tutorialstep("You've finished this area.", "So let's move on. Go through the gates shown by the arrow. Remember you may need to move the camera to see your surroundings. Speak to the guide for a recap at any time.");
 
 [proc,tutorial_step_combat]
 hint_stop();
-~set_hint_icon_combat_instructor;
+~set_hint_icon_newbie_combat_instructor;
 ~tutorialstep("Combat.", "In this area you will find out about combat,|both melee and ranged.|Speak to the guide and he'll tell you all about it.");
 
 [proc,tutorial_step_wielding_weapons]
@@ -232,7 +232,7 @@ tut_flash(^tab_wornitems);
 ~tutorialstep("This is your worn inventory.", "From here you can see what items you have equipped. Let's|get one of those slots filled, go back to your inventory and |right click your dagger, select wield from the menu.");
 
 [proc,tutorial_step_dagger_equipped]
-~set_hint_icon_combat_instructor;
+~set_hint_icon_newbie_combat_instructor;
 ~tutorialstep("You're now holding your dagger.", "If you check your worn inventory you will see it in your right hand. Clothes, armour, weapons and many other items are equipped like this. You can unequip items by clicking on the |worn inventory. Now go and speak to Vannaka to continue.");
 
 [proc,tutorial_step_unequipping_items]
@@ -257,7 +257,7 @@ hint_stop();
 ~tutorialstep("Sit back and watch.", "While you are fighting you will see a bar over your head. The|bar shows how much health you have left. Your opponent will have one too. You will continue to attack the rat unti it's dead|or you do something else.");
 
 [proc,tutorial_step_first_kill_melee]
-~set_hint_icon_combat_instructor;
+~set_hint_icon_newbie_combat_instructor;
 ~tutorialstep("Well done, you've made your first kill!", "|Pass through the gate and talk to Vannaka, he will give you your next task.");
 
 [proc,tutorial_step_rat_ranging]
@@ -276,16 +276,16 @@ hint_coord(^hint_center, 0_48_48_50_52, 125);
 hint_coord(^hint_east, 0_48_48_52_52, 150);
 ~tutorialstep("This is your bank box.", "You can store stuff here for safe keeping. If you die,|anything in your bank will be saved. To deposit something right|click it and select store. Once you've had a good look close the|window and move on through the door indicated.");
 
-[proc,tutorial_step_financial_advisor]
-~set_hint_icon_financial_advisor;
+[proc,tutorial_step_newbie_account_instructor]
+~set_hint_icon_newbie_account_instructor;
 ~tutorialstep("Financial advice.", "|The guide here will tell you all about making cash. Just click on him to hear what he's going to say.");
 
-[proc,tutorial_financial_advisor_continue_through_door]
+[proc,tutorial_newbie_account_instructor_continue_through_door]
 hint_coord(^hint_east, 0_48_48_57_52, 150);
 ~tutorialstep("", "|Continue through the next door.");
 
 [proc,tutorial_to_the_chapel]
-~set_hint_icon_brother_brace;
+~set_hint_icon_brother_noob;
 ~tutorialstep("", "Follow the path to the chapel and enter it.|Once inside talk to the monk. He'll tell you all about prayer.");
 
 [proc,tutorial_your_prayer_menu]
@@ -295,7 +295,7 @@ if_settab(prayer, ^tab_prayer);
 ~tutorialstep("", "Your prayer menu.||Click on the flashing icon to open the prayer menu.");
 
 [proc,tutorial_your_prayer_menu_post_click]
-~set_hint_icon_brother_brace;
+~set_hint_icon_brother_noob;
 ~tutorialstep("", "Your prayer menu.||Talk with Brother Brace and he'll tell you about prayers.");
 
 [proc,tutorial_friends_tab]
@@ -310,7 +310,7 @@ if_settab(ignore, ^tab_ignore);
 ~tutorialstep("This is your friends list.", "|This will be explained by Brother Brace shortly, but first click|on the other flashing icon next to the friends list one.");
 
 [proc,tutorial_your_ignore_list]
-~set_hint_icon_brother_brace;
+~set_hint_icon_brother_noob;
 ~tutorialstep("This is your ignore list.", "The two lists; friends and ignore, can be very helpful for|keeping track of when your friends are online or for blocking messages from people you simply don't like. Speak with|Brother Brace and he will tell you more.");
 
 [proc,tutorial_your_final_instructor]
@@ -318,7 +318,7 @@ hint_coord(^hint_north, 0_48_48_50_30, 125);
 ~tutorialstep("", "Your final instructor!|You're almost finished on tutorial island. Pass through the|door to find the path leading to your last instructor.");
 
 [proc,tutorial_your_final_instructor_2]
-~set_hint_icon_magic_instructor;
+~set_hint_icon_newbie_magic_instructor;
 ~tutorialstep("Your final instructor!", "Just follow the path to the wizards house, where you will be shown how to cast spells. Just talk with the mage indicated to find out more.");
 
 [proc,tutorial_open_your_final_menu]
@@ -336,5 +336,5 @@ if_settab(magic, ^tab_magic);
 ~tutorialstep("Cast Wind Strike at a chicken.", "That's it, you cast a spell! Sadly it didn't have any effect this time, but the more you practice, the better you'll get. Repeat this process until you successfully cast the spell. Click the Wind Strike icon again and then select one of the chickens.");
 
 [proc,tutorial_cast_wind_strike_success]
-~set_hint_icon_magic_instructor;
+~set_hint_icon_newbie_magic_instructor;
 ~tutorialstep("You have almost completed the tutorial!", "|All you need to do now is move on to the mainland. Just speak with Terrova and he'll teleport you to Lumbridge Castle.");

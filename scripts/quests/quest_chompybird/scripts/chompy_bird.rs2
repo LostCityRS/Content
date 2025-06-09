@@ -46,7 +46,7 @@ if (p_finduid(%quest_chompybird_baiter) = true) {
     }
 }
 
-[opnpc4,chompy_bird_corpse]
+[opnpc4,chompybird_dead]
 mes("You start plucking the chompy bird.");
 anim(human_pickupfloor, 0);
 p_delay(1);
@@ -174,7 +174,7 @@ if(npc_findhero = ^true) { // happens before npc_death
 gosub(npc_death);
 
 // todo confirm duration
-npc_add(npc_coord, chompy_bird_corpse, 100);
+npc_add(npc_coord, chompybird_dead, 100);
 
 [queue,chompybird_kill]
 if (%chompybird_progress = ^chompybird_rantz_gave_player_bow) {

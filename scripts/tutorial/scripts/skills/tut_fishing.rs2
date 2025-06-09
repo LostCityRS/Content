@@ -1,5 +1,5 @@
-[opnpcu,tut_fishing_spot] @tutorial_fishing;
-[opnpc1,tut_fishing_spot] @tutorial_fishing;
+[opnpcu,0_48_48_newbiefishing] @tutorial_fishing;
+[opnpc1,0_48_48_newbiefishing] @tutorial_fishing;
 
 [label,tutorial_fishing]
 if (inv_total(inv, net) < 1) {
@@ -27,9 +27,9 @@ p_delay(1);
 anim(null, 0);
 inv_add(inv, newbieraw_shrimp, 1);
 ~tutorial_give_xp(fishing, 100);
-if (%tutorial_progress = ^survival_guide_fish_shrimps) {
+if (%tutorial_progress = ^newbie_survival_instructor_fish_shrimps) {
     hint_stop();
-    %tutorial_progress = ^survival_guide_cook_shrimps;
+    %tutorial_progress = ^newbie_survival_instructor_cook_shrimps;
     ~tutorial_step_cook_shrimp;
 } else {
     ~set_tutorial_progress;

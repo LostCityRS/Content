@@ -113,7 +113,7 @@ if (~player_autocast_enabled = false & ~inzone_coord_pair_table(mage_arena, coor
     return(false);
 }
 
-if(npc_type = general_khazard_arena & %arena_progress < ^arena_freed_servils) {
+if(npc_type = general_khazard & %arena_progress < ^arena_freed_servils) {
     mes("I don't have time. I'm here to rescue Sir Servil and Jeremy.");
     return (false);
 }
@@ -136,7 +136,7 @@ if(npc_type = gorad & (~obj_gettotal(ogretooth) > 0 | getbit_range(%itwatchtower
     return(false);
 }
 
-if(npc_type = mercenary_captain) {
+if(npc_type = desertminingcaptain) {
     return (~mercenary_capt_attack(false));
 } 
 
@@ -184,7 +184,7 @@ if (npc_category = battle_mage & %magearena < ^mage_arena_complete) {
     mes("You are not ready to fight the battle mages.");
     return(false);
 }
-if(npc_type = general_khazard_arena & %arena_progress < ^arena_freed_servils) {
+if(npc_type = general_khazard & %arena_progress < ^arena_freed_servils) {
     mes("I don't have time. I'm here to rescue Sir Servil and Jeremy.");
     return (false);
 }
@@ -199,7 +199,7 @@ if(npc_type = gorad & (~obj_gettotal(ogretooth) > 0 | getbit_range(%itwatchtower
     }
     return(false);
 }
-if(npc_type = mercenary_captain) {
+if(npc_type = desertminingcaptain) {
     return (~mercenary_capt_attack(true));
 } 
 if(npc_type = ikov_firewarrior) { // can't attack with magic
@@ -214,7 +214,7 @@ if (npc_category = kolodion & enum(int, npc, mage_arena_bosses, %magearena) ! np
     if (enum(npc, int, mage_arena_stages, npc_type) < %magearena) {
         mes("You have already killed Kolodion in his <enum(int, string, mage_arena_boss_names, sub(%magearena, 1))> form.");
     }
-    if (npc_type = kolodion_arachnid_form | npc_type = kolodion_demon_form) {
+    if (npc_type = kolspider | npc_type = koldemon) {
         mes("You must now defeat him as <~add_article(enum(int, string, mage_arena_boss_names, %magearena))>.");
     } else {
         mes("You must currently fight Kolodion in his <enum(int, string, mage_arena_boss_names, %magearena)> form.");

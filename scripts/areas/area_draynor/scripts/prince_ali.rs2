@@ -1,4 +1,4 @@
-[opnpc1,prince_ali]
+[opnpc1,prince_ali_prison]
 if(%prince_progress = ^prince_tied_keli) {
     @prince_rescue;
 }
@@ -24,7 +24,7 @@ if(inv_total(inv, princeskey) >= 1 & inv_total(inv, blondwig) >= 1 & inv_total(i
 } 
 
 
-[opnpcu,prince_ali]
+[opnpcu,prince_ali_prison]
 if(%prince_progress = ^prince_tied_keli & (last_useitem = pink_skirt | last_useitem = blondwig | last_useitem = skinpaste)) {
     @prince_rescue;
 }

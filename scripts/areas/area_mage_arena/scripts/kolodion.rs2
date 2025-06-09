@@ -1,4 +1,4 @@
-[opnpc1,kolodion]
+[opnpc1,arenamage1]
 if (%magearena < ^mage_arena_started) {
     ~chatplayer("<p,neutral>Hello there. What is this place?");
     // https://web.archive.org/web/20050306051554/http://runevillage.com/rs2specialMageArena.php
@@ -10,16 +10,16 @@ if (%magearena < ^mage_arena_started) {
         return;
     }
     ~chatnpc("<p,shifty>I am the great Kolodion, master of battle magic, and|this is my battle arena. Top wizards travel from all over|RuneScape to fight here.");
-    @multi3("Can I fight here?", kolodion_can_i_fight_here, "What's the point of that?", kolodion_whats_the_point, "That's barbaric!", kolodion_barbaric);
+    @multi3("Can I fight here?", arenamage1_can_i_fight_here, "What's the point of that?", arenamage1_whats_the_point, "That's barbaric!", arenamage1_barbaric);
 }
 if (~mage_arena_in_progress = true) {
-    @kolodion_return;
+    @arenamage1_return;
 } else if (%magearena = ^mage_arena_started) {
-    @kolodion_lets_fight;
+    @arenamage1_lets_fight;
 } else if (%magearena = ^mage_arena_complete) {
     ~chatplayer("<p,neutral>Hello, Kolodion.");
     ~chatnpc("<p,shifty>Hello, young mage. You're a tough one.");
-    @kolodion_what_now;
+    @arenamage1_what_now;
 }
 
 // default
@@ -56,38 +56,38 @@ if ($choice = 1) {
     return;
 }
 
-[label,kolodion_can_i_fight_here]
+[label,arenamage1_can_i_fight_here]
 ~chatplayer("<p,quiz>Can I fight here?");
 ~chatnpc("<p,shifty>My arena is open to any high level wizard, but this is|no game. Many wizards fall in this arena, never to rise|again. The strongest mages have been destroyed.");
 ~chatnpc("<p,quiz>If you're sure you want in?");
-@multi2("Yes indeedy.", kolodion_yes_indeedy, "No I don't.", kolodion_no_i_dont);
+@multi2("Yes indeedy.", arenamage1_yes_indeedy, "No I don't.", arenamage1_no_i_dont);
 
 
-[label,kolodion_whats_the_point]
+[label,arenamage1_whats_the_point]
 ~chatplayer("<p,quiz>What's the point of that?");
 ~chatnpc("<p,neutral>We learn how to use our magic to its fullest and how|to channel the forces of the cosmos into our world...");
 ~chatnpc("<p,happy>But mainly, I just like blasting people into dust.");
-@multi2("Can I fight here?", kolodion_can_i_fight_here, "That's barbaric!", kolodion_barbaric);
+@multi2("Can I fight here?", arenamage1_can_i_fight_here, "That's barbaric!", arenamage1_barbaric);
 
 
-[label,kolodion_barbaric]
+[label,arenamage1_barbaric]
 ~chatplayer("<p,shock>That's barbaric!");
 ~chatnpc("<p,happy>Nope, it's magic. But I know what you mean. So do|you want to join us?");
-@multi2("Yes indeedy.", kolodion_yes_indeedy, "No I don't.", kolodion_no_i_dont);
+@multi2("Yes indeedy.", arenamage1_yes_indeedy, "No I don't.", arenamage1_no_i_dont);
 
 
-[label,kolodion_yes_indeedy]
+[label,arenamage1_yes_indeedy]
 ~chatplayer("<p,happy>Yes indeedy.");
 ~chatnpc("<p,happy>Good, good, you have a healthy sense of competition.");
 ~chatnpc("<p,neutral>Remember traveller, in my arena hand to hand combat|is useless. Your strength will diminish as you enter the|arena, but the spells you can learn are amongst the most powerful in RuneScape.");
 ~chatnpc("<p,neutral>Before I can accept you in, we must duel.|You may not take armour or weapons into the arena."); // second sentence is rsc
-@multi2("Ok, let's fight.", kolodion_lets_fight, "No thanks.", exit);
+@multi2("Ok, let's fight.", arenamage1_lets_fight, "No thanks.", exit);
 
-[label,kolodion_no_i_dont]
+[label,arenamage1_no_i_dont]
 ~chatplayer("<p,angry>No I don't.");
 ~chatnpc("<p,neutral>Your loss.");
 
-[label,kolodion_lets_fight]
+[label,arenamage1_lets_fight]
 ~chatplayer("<p,happy>Okay, let's fight.");
 ~chatnpc("<p,neutral>I must first check that you are up to scratch.");
 if (~can_enter_mage_arena = false) {
@@ -98,9 +98,9 @@ if (~can_enter_mage_arena = false) {
 ~chatnpc("<p,neutral>Not just any magician can enter, only the most|powerful, the most feared. Before you can use the|power of this arena, you must prove yourself against|me.");
 %magearena = 1;
 
-@kolodion_teleport;
+@arenamage1_teleport;
 
-[label,kolodion_return]
+[label,arenamage1_return]
 ~chatplayer("<p,happy>Hi.");
 ~chatnpc("<p,neutral>You return, young conjurer. You obviously have a|taste for the dark side of magic.");
 if (~can_enter_mage_arena = false) {
@@ -109,15 +109,15 @@ if (~can_enter_mage_arena = false) {
 }
 // https://youtu.be/gxLEK64MAU8?list=PLn23LiLYLb1Y4vxMPWXM-CVEvOUfuAP_o&t=16
 
-@kolodion_teleport;
+@arenamage1_teleport;
 
-[label,kolodion_what_now]
+[label,arenamage1_what_now]
 ~chatplayer("<p,quiz>What now?");
 ~chatnpc("<p,shifty>Step into the magic pool. It will take you to a chamber.|There, you must decide which god you will represent in|the arena.");
 ~chatplayer("<p,happy>Thanks, Kolodion.");
 ~chatnpc("<p,happy>That's what I'm here for.");
 
-[label,kolodion_teleport]
+[label,arenamage1_teleport]
 // for some reason you can move for 1 tick during this
 if_close;
 def_int $delay = max(sub(npc_range(coord), 1), 0);
@@ -195,8 +195,8 @@ switch_int (%magearena) {
 
 // demon is middle tile
 
-[ai_opplayer2,kolodion]
+[ai_opplayer2,arenamage1]
 npc_setmode(playerfaceclose);
 
-[ai_queue4,kolodion]
+[ai_queue4,arenamage1]
 npc_anim(human_trans_casting, last_int);

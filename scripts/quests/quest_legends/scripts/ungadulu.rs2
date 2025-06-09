@@ -1,9 +1,9 @@
-[opnpc1,ungadulu] @ungadulu_start;
-[opnpc2,ungadulu] @attack_ungadulu;
-[apnpc2,ungadulu] @attack_ungadulu;
+[opnpc1,ungadulu_good] @ungadulu_start;
+[opnpc2,ungadulu_good] @attack_ungadulu;
+[apnpc2,ungadulu_good] @attack_ungadulu;
 // opnpc1 here is NIH
-[opnpc2,ungadulu_possessed] @attack_ungadulu;
-[apnpc2,ungadulu_possessed] @attack_ungadulu;
+[opnpc2,ungadulu_bad] @attack_ungadulu;
+[apnpc2,ungadulu_bad] @attack_ungadulu;
 
 [label,ungadulu_start]
 if (%legends_progress < ^legends_defeated_nezikchened_fire) @ungadulu_run;
@@ -14,7 +14,7 @@ else if (%legends_progress >= ^legends_defeated_nezikchened_fire) @ungadulu_afte
 ~mesbox("The Shaman seems to be fighting an inner battle.");
 ~chatnpc("<p,neutral>Go... go now...!");
 ~mesbox("The Shaman seems to change in front of your eyes...");
-npc_changetype(ungadulu_possessed, 100); // 100t
+npc_changetype(ungadulu_bad, 100); // 100t
 ~chatnpc("<p,neutral>Welcome Vacu, to eternal...");
 if_close;
 mes("The Shaman starts an incantation...");
@@ -25,7 +25,7 @@ mes("You feel very weak...");
 p_delay(1);
 mes("The Shaman seems to get stronger!");
 p_delay(1);
-npc_changetype(ungadulu, 100);
+npc_changetype(ungadulu_good, 100);
 mes("The Shaman seems to return to normal...");
 ~chatnpc("<p,neutral>Run, run away... Run like the leopard Bwana!");
 // seems to be set after the dialogue is complete?
@@ -76,7 +76,7 @@ if (%legends_progress < ^legends_spoke_ungadulu) {
 [label,ungadulu_extinguish]
 ~chatplayer("<p,neutral>How can I extinguish the flames?");
 ~chatnpc("<p,shock>Please don't try to extinguish...");
-npc_changetype(ungadulu_possessed, 2);
+npc_changetype(ungadulu_bad, 2);
 // https://media.discordapp.net/attachments/936714977685958678/1195794230690447400/419624878_10161030270160560_5504501485089454437_n.jpg?ex=67d321a9&is=67d1d029&hm=d5f81563fa219807006db3cbfd21c1c7e2fc5f3fcfcf1144482e22ddbc928114&=&format=webp&width=1126&height=845
 ~chatnpc("<p,angry>Yes, douse the flames with water,|pure water...|foo...");
 // double space intentional
@@ -89,10 +89,10 @@ npc_changetype(ungadulu_possessed, 2);
 [label,ungadulu_where]
 ~chatplayer("<p,neutral>Where do I get pure water from?");
 ~chatnpc("<p,shock>Please, leave now...");
-npc_changetype(ungadulu_possessed, 2);
+npc_changetype(ungadulu_bad, 2);
 ~chatnpc("<p,angry>...from the above lands... hurry and release me...");
 ~chatnpc("<p,shock>Leave here, please, go... now...");
-npc_changetype(ungadulu_possessed, 2);
+npc_changetype(ungadulu_bad, 2);
 ~chatnpc("<p,evillaugh>Hurry, Vacu, the heat kills me... ha ha ha");
 %legends_bits = setbit(%legends_bits, ^legends_ungadulu_called_vacu);
 ~mesbox("The Shaman throws himself down on the floor and starts convulsing.");
@@ -100,7 +100,7 @@ npc_changetype(ungadulu_possessed, 2);
 [label,ungadulu_who]
 ~chatplayer("<p,neutral>Who are you?");
 ~chatnpc("<p,sad>I am Ungadulu, trapped here many years now... Leave these caves and save yourself...");
-npc_changetype(ungadulu_possessed, 2);
+npc_changetype(ungadulu_bad, 2);
 ~chatnpc("<p,angry>Wait... get pure water from the pool... above lands...");
 %legends_bits = setbit(%legends_bits, ^legends_asked_ungadulu_where);
 %legends_bits = setbit(%legends_bits, ^legends_asked_ungadulu_who);
@@ -356,7 +356,7 @@ else {
     npc_setmode(playerface);
     mes("The shaman casts a spell!");
     if(%legends_progress < ^legends_defeated_nezikchened_fire) {
-        npc_changetype(ungadulu_possessed, 20); // osrs
+        npc_changetype(ungadulu_bad, 20); // osrs
         npc_say("Ha ha ha ha! Die, Vacu!");
     } else {
         npc_say("Huh, that's no way to treat a shaman.");
@@ -388,7 +388,7 @@ else {
     ~chatnpc("<p,evillaugh>Ha, ha ha Vacu... Come for me again and you'll taste more of my power!");
 }
 
-[opnpcu,ungadulu]
+[opnpcu,ungadulu_good]
 if(%legends_progress >= ^legends_returned_to_radimus) {  // confirmed this stage on OSRS
     mes("You have no further business with Ungadulu.");
     return;
@@ -447,7 +447,7 @@ if (last_useitem = book_of_binding) {
     ~displaymessage(^dm_default);
 }
 
-[ai_queue10,ungadulu]
+[ai_queue10,ungadulu_good]
 npc_anim(human_death_backwards, 0); // seems like the last frame of this seq is broken...
 npc_setmode(none);
 npc_walk(npc_coord);

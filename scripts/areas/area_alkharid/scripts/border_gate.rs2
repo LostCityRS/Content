@@ -1,7 +1,7 @@
-[ai_timer,border_guard_lumby] @guard_scout_toll_fence;
-[ai_timer,border_guard_alkharid] @guard_scout_toll_fence;
-[opnpc1,border_guard_lumby] @talk_to_border_guard(null);
-[opnpc1,border_guard_alkharid] @talk_to_border_guard(null);
+[ai_timer,borderguard1] @guard_scout_toll_fence;
+[ai_timer,borderguard2] @guard_scout_toll_fence;
+[opnpc1,borderguard1] @talk_to_border_guard(null);
+[opnpc1,borderguard2] @talk_to_border_guard(null);
 [oploc1,border_gate_toll_left] @find_and_talk_to_border_guard;
 [oploc1,border_gate_toll_right] @find_and_talk_to_border_guard;
 
@@ -9,11 +9,11 @@
 // then starts dialogue with them
 [label,find_and_talk_to_border_guard]
 if (coordx(coord) < coordx(loc_coord)) { // in lumby
-    if (npc_find(coord, border_guard_lumby, 1, 0) = true) {
+    if (npc_find(coord, borderguard1, 1, 0) = true) {
         @talk_to_border_guard(loc_coord);
     }
 } else { // in al kharid
-    if (npc_find(coord, border_guard_alkharid, 1, 0) = true) {
+    if (npc_find(coord, borderguard2, 1, 0) = true) {
         @talk_to_border_guard(loc_coord);
     }
 }

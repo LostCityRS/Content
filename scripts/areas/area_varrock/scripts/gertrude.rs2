@@ -124,12 +124,12 @@ if($option = 1) {
 if (inv_totalcat(inv, kitten) = 0 | inv_totalcat(bank, kitten) = 0 | inv_totalcat(inv, cat) = 0 | inv_totalcat(bank, cat) = 0 | npc_finduid(%follower_uid) = false | %follower_obj ! null & oc_category(%follower_obj) ! kitten | %follower_obj ! null & oc_category(%follower_obj) ! cat) {
     def_npc $cat;
     switch_int (random(6)) {
-        case 0 : $cat = follower_kitten_greyblack;
-        case 1 : $cat = follower_kitten_white;
-        case 2 : $cat = follower_kitten_brown;
-        case 3 : $cat = follower_kitten_black;
-        case 4 : $cat = follower_kitten_greybrown;
-        case 5 : $cat = follower_kitten_greyblue;
+        case 0 : $cat = kittenpet1;
+        case 1 : $cat = kittenpet_light;
+        case 2 : $cat = kittenpet_brown;
+        case 3 : $cat = kittenpet_black;
+        case 4 : $cat = kittenpet_browngrey;
+        case 5 : $cat = kittenpet_bluegrey;
     }
     %cat_growth = 0;
     ~cat_spawn($cat);

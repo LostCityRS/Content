@@ -23,7 +23,7 @@ if (last_useitem ! raw_chompy) {
 }
 
 if (%chompybird_progress < ^chompybird_told_to_cook_chompy) {
-    if(npc_find(coord, chompybird_rantz, 10, 0) = true) { // range from osrs
+    if(npc_find(coord, rantz, 10, 0) = true) { // range from osrs
         if(%chompybird_progress = ^chompybird_player_killed_chompy) {
             ~chatnpc("<p,quiz>Hey, what' you's doin?");
             @rantz_show_chompy;
@@ -43,7 +43,7 @@ if (%chompybird_progress = ^chompybird_chompy_cooked) {
     if(inv_total(inv, cooked_s_chompy) = 0) {
         @cook_chompy_quest;
     }
-    if (npc_find(loc_coord, chompybird_rantz, 10, 0) = true) {
+    if (npc_find(loc_coord, rantz, 10, 0) = true) {
         @hand_chompy_to_rantz;
     }
     return;

@@ -1,17 +1,17 @@
-[opnpcu,civilian_blonde] @civilian_give_runes;
+[opnpcu,wantcat1] @civilian_give_runes;
 
-[opnpcu,civilian_brown] @civilian_give_runes;
+[opnpcu,wantcat2] @civilian_give_runes;
 
-[opnpcu,civilian_bald] @civilian_give_runes;
+[opnpcu,wantcat3] @civilian_give_runes;
 
-[opnpc1,civilian_blonde]
+[opnpc1,wantcat1]
 ~chatplayer("<p,happy>Hello there.");
 ~chatnpc("<p,neutral>Oh hello, I'm sorry, I'm a bit worn out.");
 ~chatplayer("<p,neutral>Busy day?");
 ~chatnpc("<p,neutral>Oh, It's those mice! They're everywhere! What I really need is a cat. But they're hard to come by nowadays.");
 @civilian_talk_about_cats;
 
-[opnpc1,civilian_brown]
+[opnpc1,wantcat2]
 ~chatplayer("<p,happy>Hi there.");
 ~chatnpc("<p,happy>Good day to you traveller.");
 ~chatplayer("<p,neutral>What are you up to?");
@@ -20,7 +20,7 @@
 ~chatnpc("<p,neutral>Yes, but what can you do? It's not like there's many cats around here!");
 @civilian_talk_about_cats;
 
-[opnpc1,civilian_bald]
+[opnpc1,wantcat3]
 ~chatplayer("<p,happy>Hello there.");
 ~chatnpc("<p,neutral>I'm a bit busy to talk right now, sorry.");
 ~chatplayer("<p,neutral>Why? What are you doing?");

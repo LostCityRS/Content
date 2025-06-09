@@ -1,4 +1,4 @@
-[opnpc1,nilhoof]
+[opnpc1,upassdwarf1] //nilhoof
 switch_int(%upass_progress) {
     case ^upass_entered_main_area :
         ~chatnpc("<p,shock>Back away! Back away! ....Wait. ...You're human!");
@@ -12,20 +12,20 @@ switch_int(%upass_progress) {
         ~chatnpc("<p,neutral>She lives on the platforms above, we dare not go there. Here, take some food to aid your journey.");
         if_close;
         // todo: should this be nilhoof or niloof?
-        mes("<nc_name(nilhoof)> gives you some food...");
+        mes("<nc_name(upassdwarf1)> gives you some food...");
         inv_add(inv, meat_pie, 2);
         inv_add(inv, meat_pizza, 1);
         p_delay(2); // 3 ticks
         %upass_progress = ^upass_spoken_nilhoof;
-        ~chatplayer("<p,happy>Thanks <nc_name(nilhoof)>, take care.");
+        ~chatplayer("<p,happy>Thanks <nc_name(upassdwarf1)>, take care.");
     case ^upass_spoken_nilhoof :
-        ~chatplayer("<p,happy>Hello <nc_name(nilhoof)>.");
+        ~chatplayer("<p,happy>Hello <nc_name(upassdwarf1)>.");
         ~chatnpc("<p,happy>So you still live, not many survive down here.");
         ~chatplayer("<p,neutral>As I can see.");
         ~chatnpc("<p,neutral>Don't stay too long traveller. Iban's calls will soon penetrate your delicate human mind.");
         ~chatnpc("<p,neutral>You'll also become one of his minions... You must go above and find the witch Kardia. She holds the secret to Iban's destruction.");
     case ^upass_found_doll :
-        ~chatplayer("<p,happy><nc_name(nilhoof)>, I found the Witch's house.");
+        ~chatplayer("<p,happy><nc_name(upassdwarf1)>, I found the Witch's house.");
         ~chatnpc("<p,neutral>And...?");
         if(inv_total(inv, ibandoll) > 0) {
             ~chatplayer("<p,neutral>I found a strange doll.");
@@ -41,7 +41,7 @@ switch_int(%upass_progress) {
             inv_add(inv, old_journal, 1);
         }
     case ^upass_confronted_iban :
-        ~chatplayer("<p,happy>Hi <nc_name(nilhoof)>.");
+        ~chatplayer("<p,happy>Hi <nc_name(upassdwarf1)>.");
         ~chatnpc("<p,happy>Traveller, thank the stars you're still around! ...I thought your time had come.");
         ~chatplayer("<p,happy>I've still a few years in me yet.");
         if(inv_total(inv, ibandoll) = 0) {
@@ -49,15 +49,15 @@ switch_int(%upass_progress) {
             ~chatplayer("<p,neutral>The doll?");
             ~chatnpc("<p,neutral>I found it while slaying some of the soulless. Here you go.");
             inv_add(inv, ibandoll, 1);
-            mes("<nc_name(nilhoof)> gives you the doll of Iban"); // no period
+            mes("<nc_name(upassdwarf1)> gives you the doll of Iban"); // no period
         }
         if(inv_total(inv, old_journal) = 0) {
             ~chatnpc("<p,neutral>I also found this old journal. I don't know if it's of any importance.");
-            ~chatplayer("<p,happy>That's great <nc_name(nilhoof)>.");
+            ~chatplayer("<p,happy>That's great <nc_name(upassdwarf1)>.");
             inv_add(inv, old_journal, 1);
             ~chatplayer("<p,neutral>It's about time I dealt with Iban.");
             ~chatnpc("<p,neutral>Good luck to you, you'll need it. May the strength of the Elders be with you...");
-            ~chatplayer("<p,neutral>Take care <nc_name(nilhoof)>.");
+            ~chatplayer("<p,neutral>Take care <nc_name(upassdwarf1)>.");
         }
     case ^upass_defeated_iban, ^upass_complete : mes("The Dwarf seems to be busy...");
 }

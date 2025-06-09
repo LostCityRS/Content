@@ -1,4 +1,4 @@
-[opnpc1,claus_the_chef]
+[opnpc1,claus_carnillean]
 switch_int(%hazeelcult_progress) {
     case ^hazeelcult_complete :
         ~chatplayer("<p,neutral>Hiya.");
@@ -55,4 +55,4 @@ if(last_useitem = poison) {
     }
     return;
 }
-~chatnpc_specific(nc_name(claus_the_chef), claus_the_chef, "<p,angry>Oi! I don't want people messing around with my range!");
+~chatnpc_specific(nc_name(claus_carnillean), claus_carnillean, "<p,angry>Oi! I don't want people messing around with my range!");

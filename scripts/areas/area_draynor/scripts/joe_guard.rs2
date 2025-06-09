@@ -1,4 +1,4 @@
-[opnpc1,joe_guard]
+[opnpc1,joe]
 switch_int (%prince_progress) {
     case ^prince_prep_finished : @joe_distract;
     case ^prince_guard_drunk, ^prince_tied_keli : @joe_drunk;
@@ -6,7 +6,7 @@ switch_int (%prince_progress) {
     case default : @joe_prequest;
 }
 
-[opnpcu,joe_guard]
+[opnpcu,joe]
 if(last_useitem = beer) {
     if(%prince_progress = ^prince_prep_finished) {
         @joe_beer;

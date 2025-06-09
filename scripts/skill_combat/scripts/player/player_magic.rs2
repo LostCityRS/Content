@@ -39,19 +39,19 @@ if (%tutorial_progress < ^tutorial_complete) {
 [apnpct,magic:earth_wave] ~pvm_default_spell(^earth_wave);
 [apnpct,magic:fire_wave] ~pvm_default_spell(^fire_wave);
 [apnpct,magic:curse] 
-if (npc_type = ungadulu) {
+if (npc_type = ungadulu_good) {
    ~legends_spell_usage(^curse);
 } else {
    ~pvm_default_spell(^curse);
 }
 [apnpct,magic:weaken]
-if (npc_type = ungadulu) {
+if (npc_type = ungadulu_good) {
    ~legends_spell_usage(^weaken);
 } else {
    ~pvm_default_spell(^weaken);
 }
 [apnpct,magic:confuse]
-if (npc_type = ungadulu) {
+if (npc_type = ungadulu_good) {
    ~legends_spell_usage(^confuse);
 } else {
    ~pvm_default_spell(^confuse);

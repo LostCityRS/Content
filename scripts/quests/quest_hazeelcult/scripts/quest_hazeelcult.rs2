@@ -15,7 +15,7 @@ if(loc_coord ! 0_40_151_7_15) {
     return;
 }
 //if(%hazeelcult_progress = ^hazeelcult_not_started) {
-//    ~chatnpc_specific(nc_name(clivet), clivet, angry, "Hey! I don't remember saying you could use that raft!");
+//    ~chatnpc_specific(nc_name(clivet_hazeel_cultist), clivet_hazeel_cultist, angry, "Hey! I don't remember saying you could use that raft!");
 //    return;
 //}
 def_int $valves_value = ~count_correct_valves;
@@ -85,10 +85,10 @@ mes("You can hear there is a hollow behind this wall."); // from rs3
 if(%hazeelcult_progress = ^hazeelcult_given_armour_or_scroll & %hazeelcult_side = ^hazeelcult_goodside) {
     ~mesbox("You search the cupboard thoroughly. You find a bottle of poison and a mysterious amulet. You pass your discovery on to Ceril.");
     ~chatplayer("<p,angry>Ceril!");
-    if (npc_find(coord, ceril_carnillean, 6, 0) = false) { 
+    if (npc_find(coord, sir_ceril_carnillean, 6, 0) = false) { 
         return;
     }
-    if (.npc_find(coord, butler_jones, 6, 0) = false) {
+    if (.npc_find(coord, butler_jones_hazeel_cultist, 6, 0) = false) {
         return;
     }
     ~chatnpc("<p,angry>What do you want now you scoundrel?");
@@ -110,7 +110,7 @@ if(%hazeelcult_progress = ^hazeelcult_given_armour_or_scroll & %hazeelcult_side 
     ~mesbox("A Guard rushes into the house.");
     ~chatnpc("<p,angry>Take him away. Attempted murder and burglary.");
     ~.chatnpc("<p,angry>Don't think this is the last you have heard of me Ceril. You and your family will pay dearly for this. GLORY TO HAZEEL! ALL PRAISE ZAMORAK!");
-    ~chatnpc_specific(nc_name(carnillean_guard), carnillean_guard, "<p,neutral>Now now. Come along quietly. There'll be no revenge where YOU'RE going - Port Sarim Jail.");
+    ~chatnpc_specific(nc_name(guard_carnillean), guard_carnillean, "<p,neutral>Now now. Come along quietly. There'll be no revenge where YOU'RE going - Port Sarim Jail.");
     .npc_del;
     ~chatnpc("<p,sad>It looks like I am indebted to you sirrah!");
     ~chatplayer("<p,neutral>No problem. We all make mistakes.");

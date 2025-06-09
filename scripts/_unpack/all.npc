@@ -221,7 +221,7 @@ category=citizen
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3113
 
-[farmer]
+[farmer1]
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op3=Pickpocket
@@ -388,8 +388,8 @@ param=attack_anim,human_crossbow
 param=proj_launch,crossbowbolt_launch
 param=proj_travel,crossbowbolt_travel
 // param=defend_sound,
-// osrs defend_sound blade4
 category=guard
+// osrs defend_sound blade4
 // osrs version havent rangeattack sound.
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3270
@@ -2345,7 +2345,7 @@ param=damagetype,^stab_style
 param=attack_anim,unicorn_attack
 param=defend_anim,unicorn_block
 param=death_anim,unicorn_death
-param=attack_sound,horse_hit
+param=attack_sound,cow_attack
 param=defend_sound,horse_hit
 param=retreat,6
 category=unicorn
@@ -2653,6 +2653,7 @@ param=attack_sound,wolf_attack2
 param=defend_sound,wolf_hit
 huntmode=cowardly
 huntrange=1
+//TODO sounds are guesses need confirm..
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_114
 
@@ -3228,6 +3229,8 @@ param=attack_anim,dwarf_attack
 param=defend_anim,dwarf_block
 param=death_anim,dwarf_death
 param=attack_sound,baxe_crush
+// param=defend_sound,
+// param=death_sound,
 // osrs stats and Vislvl match 1:1
 // TODO SOUNDS
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_290
@@ -3271,6 +3274,7 @@ param=defend_anim,dwarf_block
 param=death_anim,dwarf_death
 param=attack_sound,baxe_crush
 // param=defend_sound,
+// param=death_sound,
 huntmode=cowardly
 huntrange=1
 // Osrs sounds warhammer_crush, dwarf_hit, dwarf_death
@@ -3307,6 +3311,8 @@ param=attack_anim,dwarf_attack
 param=defend_anim,dwarf_block
 param=death_anim,dwarf_death
 param=attack_sound,baxe_crush
+// param=defend_sound,
+// param=death_sound,
 // osrs sounds warhammer_crush, dwarf_hit, dwarf_death
 // osrs stats and Vislvl match 1:1
 // TODO SOUNDS
@@ -3341,6 +3347,8 @@ param=attack_anim,dwarf_attack
 param=defend_anim,dwarf_block
 param=death_anim,dwarf_death
 param=attack_sound,baxe_crush
+// param=defend_sound,
+// param=death_sound,
 // params stats is competely guess. the npc data no longer exists in the cache.. mostly taken other dwarves.
 
 [hobgoblin_unarmed]
@@ -4815,7 +4823,8 @@ param=attack_anim,human_sword_stab
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_stab
 // only spawns in wilderness, might be cowardly
-huntmode=aggressive_melee
+huntmode=cowardly
+//huntmode=aggressive_melee
 huntrange=3
 members=yes
 // osrs stats and Vislvl match 1:1
@@ -5185,7 +5194,7 @@ model3=model_2965_npc
 head1=model_10_npc_head
 // TODO respawnrate
 wanderrange=0
-maxrange=1
+maxrange=2
 hitpoints=80
 attack=80
 strength=80
@@ -5199,7 +5208,7 @@ param=defend_sound,ghost_hit
 param=death_sound,ghost_death
 param=death_drop,null
 param=undead,^true
-// TODO monster examine spell
+// osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3518
 
 [thief_blanket]
@@ -5875,7 +5884,7 @@ huntrange=4
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc
 // this variation have old stats npc_13010
 
-[cow_3]
+[cow3]
 size=2
 walkanim=cow_walk
 readyanim=cow_ready
@@ -5912,7 +5921,7 @@ category=cow
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2793
 
-[zamorak_wizard]
+[trail_hard]
 name=Zamorak Wizard
 desc=A servant of Zamorak.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
@@ -5946,14 +5955,14 @@ hitpoints=80
 attack=24
 strength=24
 defence=24
-param=damagetype,^crush_style
 magic=80
 timer=20
+param=damagetype,^crush_style
 param=magicdefence,3
 // Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2954
 
-[poison_spider_observatory]
+[dungeonspider]
 walkanim=giantspider_walk
 readyanim=giantspider_ready
 name=Poison spider
@@ -5984,5 +5993,6 @@ param=death_drop,null
 // Tested this npc in osrs, doesnt seem to poison? Seems like the chests have a chance to poison
 huntmode=cowardly
 huntrange=1
-// TODO monster examine spell
+// osrs sounds big_spider_attack, big_spider_hit, big_spider_death
+// Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5373

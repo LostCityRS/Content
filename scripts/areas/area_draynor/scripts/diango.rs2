@@ -1,7 +1,7 @@
-[opnpc1,diango]
+[opnpc1,aprilfoolshorsesalesman]
 ~chatnpc("<p,happy>Howdy there partner!|Want to see my toy horseys?");
 @multi2(
-    "Toy horseys?", diango_option1,
+    "Toy horseys?", aprilfoolshorsesalesman_option1,
     "I'm fine, thanks.", exit
 );
 
@@ -11,7 +11,7 @@
 [opheld1,horsey_black] @toy_horsey_say(human_playhorsey_black);
 [opheld1,horsey_grey] @toy_horsey_say(human_playhorsey_grey);
 
-[label,diango_option1]
+[label,aprilfoolshorsesalesman_option1]
 // todo: this should probably branch into a little conversation before opening the shop
 // spinning plates -> that's right. there's a funny story behind them, their shipment was held up by thieves.
 // this type of anecdote but for toy horseys ^

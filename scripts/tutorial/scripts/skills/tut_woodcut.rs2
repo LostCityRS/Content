@@ -15,7 +15,7 @@ if (last_useitem = bronze_axe) {
 }
 
 [label,tut_woodcutting]
-if (%tutorial_progress < ^survival_guide_cut_tree) {
+if (%tutorial_progress < ^newbie_survival_instructor_cut_tree) {
     ~mesbox("You cannot cut down this tree yet.|You must progress further in the tutorial.");
     return;
 }
@@ -26,7 +26,7 @@ if (inv_freespace(inv) = 0) {
     return;
 }
 
-if (%tutorial_progress > ^survival_guide_complete) {
+if (%tutorial_progress > ^newbie_survival_instructor_complete) {
     ~mesbox("Perhaps you've done enough woodcutting now.");
     return;
 }
@@ -81,14 +81,14 @@ loc_change($next_stage, $respawnrate);
 anim(null, $respawnrate);
 
 ~tutorial_give_xp(woodcutting, 250);
-if (%tutorial_progress = ^survival_guide_cut_tree) {
+if (%tutorial_progress = ^newbie_survival_instructor_cut_tree) {
     @tut_advance_woodcutting;
 } else {
     @give_logs;
 }
 
 [label,tut_advance_woodcutting]
-%tutorial_progress = ^survival_guide_build_fire;
+%tutorial_progress = ^newbie_survival_instructor_build_fire;
 hint_stop();
 inv_add(inv, newbielogs, 1);
 ~tutorial_step_build_fire;
@@ -100,7 +100,7 @@ inv_add(inv, newbielogs, 1);
 ~objbox(newbielogs, "You get some logs.", 250, 0, 0);
 
 [oploc1,newbieoaktree]
-if (%tutorial_progress < ^survival_guide_cut_tree) {
+if (%tutorial_progress < ^newbie_survival_instructor_cut_tree) {
     ~mesbox("You cannot cut down this tree yet.|You must progress further in the tutorial.");
     return;
 } else {

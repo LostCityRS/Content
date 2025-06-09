@@ -1,4 +1,4 @@
-[opnpc1,fadli]
+[opnpc1,duel_fadli]
 ~chatplayer("<p,neutral>Hi.");
 ~chatnpc("<p,neutral>What?");
 
@@ -35,10 +35,10 @@ switch_int ($option) {
     ~openshop_activenpc;
 }
 
-[opnpc3,fadli]
+[opnpc3,duel_fadli]
 @openbank;
 
-[opnpc4,fadli]
+[opnpc4,duel_fadli]
 if (map_members = ^false) {
     mes(^mes_members_store_owner);
     return;

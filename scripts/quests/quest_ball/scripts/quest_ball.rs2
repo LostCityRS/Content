@@ -79,10 +79,10 @@ loc_change(loc_2868, 500);
 
 [label,ball_cheese](string $pref)
 inv_del(inv, cheese, 1);
-if (npc_find(coord, ball_mouse, 5, 0) = true) {
+if (npc_find(coord, witchrat, 5, 0) = true) {
     npc_del;
 }
-npc_add(^ball_mouse_coord, ball_mouse, 50);
+npc_add(^witchrat_coord, witchrat, 50);
 ~mesbox("A mouse runs out of <$pref> hole.");
 
 // todo: figure out what oploc1 interaction on this loc and opnpc1 on the mouse is supposed to do here
@@ -99,7 +99,7 @@ if(inzone(0_45_54_21_10, 0_45_54_23_11, coord) = true) {
 inv_dropslot(inv, coord, last_slot, ^lootdrop_duration);
 sound_synth(put_down, 0, 0);
 
-[opnpcu,ball_mouse]
+[opnpcu,witchrat]
 if(last_useitem = magnet) {
     if(%ball_progress >= ^ball_unlocked_mousedoor) {
         mes("You have already unlocked this door.");
@@ -152,7 +152,7 @@ if(last_useitem = witches_shedkey) {
                 npc_del;
             }
         }
-        npc_add(^ball_experiment_spawn_coord, witches_experiment_p1, 500);
+        npc_add(^ball_experiment_spawn_coord, shapeshifterglob, 500);
     }
     ~open_and_close_door2(loc_1532, $entering, door_open);
     return;
@@ -192,7 +192,7 @@ while (npc_huntnext = true) {
         return;
     }
 }
-npc_add(^ball_experiment_spawn_coord, witches_experiment_p1, 500);
+npc_add(^ball_experiment_spawn_coord, shapeshifterglob, 500);
 mes("A shapeshifter appears, and knocks you back from the ball!");
 
 [queue,ball_quest_complete]

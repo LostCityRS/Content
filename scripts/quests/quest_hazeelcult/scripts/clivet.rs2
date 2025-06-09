@@ -1,4 +1,4 @@
-[opnpc1,clivet]
+[opnpc1,clivet_hazeel_cultist]
 switch_int(%hazeelcult_progress) {
     case ^hazeelcult_not_started :
         ~chatplayer("<p,neutral>Hello there.");
@@ -16,11 +16,11 @@ switch_int(%hazeelcult_progress) {
         ~chatnpc("<p,neutral>Is he now? Is he REALLY? There is a lot more to the Carnilleans than meets the eye you fool...");
         ~chatnpc("<p,angry>And none of it is honourable.");
         %hazeelcult_progress = ^hazeelcult_spoken_clivet;
-        @multi2("What do you mean?", clivet_what_do_you_mean, "I've heard enough of your rubbish.", clivet_rubbish);
+        @multi2("What do you mean?", clivet_hazeel_cultist_what_do_you_mean, "I've heard enough of your rubbish.", clivet_hazeel_cultist_rubbish);
     case ^hazeelcult_spoken_clivet :
         ~chatplayer("<p,neutral>Hello.");
         ~chatnpc("<p,neutral>So. You've returned. Now do you want to know the truth about the 'honourable' Carnilleans?");
-        @multi2("What do you mean?", clivet_what_do_you_mean, "I've heard enough of your rubbish.", clivet_rubbish);  
+        @multi2("What do you mean?", clivet_hazeel_cultist_what_do_you_mean, "I've heard enough of your rubbish.", clivet_hazeel_cultist_rubbish);  
     case ^hazeelcult_clivet_decision :
         ~chatplayer("<p,neutral>Hello there.");
         if(%hazeelcult_side = ^hazeelcult_goodside) {
@@ -86,7 +86,7 @@ switch_int(%hazeelcult_progress) {
         }
 }
 
-[label,clivet_what_do_you_mean]
+[label,clivet_hazeel_cultist_what_do_you_mean]
 ~chatplayer("<p,quiz>What do you mean?");
 ~chatnpc("<p,neutral>The Carnillean home does not belong to them. The builder of the house was Lord Hazeel, one of the Mahjarrat followers of Zamorak. Many years ago there was a civil war");
 ~chatnpc("<p,neutral>in this land, and the hateful Saradominists declared war upon all Zamorakians who lived here. Lord Hazeel nobly would not repent his beliefs, and the Carnilleans harrassed");
@@ -100,7 +100,7 @@ switch_int(%hazeelcult_progress) {
 switch_int(~p_choice2("You're crazy, I'd never help you.", 1, "So what would I have to do?", 2)) {
     case 1 :
         ~chatplayer("<p,angry>You're crazy, I'd never help you.");
-        @clivet_fool;
+        @clivet_hazeel_cultist_fool;
     case 2 :
         ~chatplayer("<p,quiz>So what would I have to do?");
         ~chatnpc("<p,neutral>You must prove your loyalty to our cause. Killing one of the Carnillean household should be sufficient proof of your dedication to resurrecting our master Lord Hazeel.");
@@ -108,7 +108,7 @@ switch_int(~p_choice2("You're crazy, I'd never help you.", 1, "So what would I h
         switch_int(~p_choice2("No. I won't do it.", 1, "Ok, count me in.", 2)) {
             case 1 :
                 ~chatplayer("<p,angry>No. I won't do it.");
-                @clivet_fool;
+                @clivet_hazeel_cultist_fool;
             case 2 :
                 ~chatplayer("<p,neutral>Ok, count me in.");
                 ~chatnpc("<p,neutral>Excellent. It takes a rare character to see through the cursed Carnillean lies. I can tell you are a <text_gender("man", "lady")> of exactly the right character to join the followers of Hazeel.");
@@ -119,12 +119,12 @@ switch_int(~p_choice2("You're crazy, I'd never help you.", 1, "So what would I h
         }
 }
 
-[label,clivet_rubbish]
+[label,clivet_hazeel_cultist_rubbish]
 // https://youtu.be/R5MdMtqvxaM?si=J64ldVsZ-1de4-26&t=117
 ~chatplayer("<p,angry>I've heard enough of your rubbish!");
 ~chatnpc("<p,angry>Then leave, fool!");
 
-[label,clivet_fool]
+[label,clivet_hazeel_cultist_fool]
 ~chatnpc("<p,neutral>Then you are a fool. Go back to your small minded mundane little life; you will never know the glories you could have tasted as one of us!");
 ~mesbox("The man jumps onto the raft and pushes off down into the sewer system.");
 %hazeelcult_side = ^hazeelcult_goodside;

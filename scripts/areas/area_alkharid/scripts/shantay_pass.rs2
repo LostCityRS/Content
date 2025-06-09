@@ -5,7 +5,7 @@
 ~chatnpc("<p,neutral>Go talk to Shantay. I'm on duty and I don't have time to talk to the likes of you!");
 ~mesbox("The guard seems quite bad tempered, probably from having to wear heavy armour in this intense heat.");
 
-[opnpc1,shantay_pass_guard]
+[opnpc1,shantay_guard_still]
 ~chatnpc("<p,neutral>Hello there! What can I do for you?");
 def_int $choice = ~p_choice2("I'd like to go into the desert please.", 1, "Nothing thanks.", 2);
 if ($choice = 2) {
@@ -72,7 +72,7 @@ if (coordz(coord) <= coordz(loc_coord)) {
     ~clear_desertheat_timer;
     return;
 }
-if (npc_find(coord, shantay_pass_guard, 5, 0) = false) {
+if (npc_find(coord, shantay_guard_still, 5, 0) = false) {
     return;
 }
 if (inv_total(inv, shantay_pass) < 1) {

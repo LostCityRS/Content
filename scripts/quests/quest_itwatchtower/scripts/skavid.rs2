@@ -1,5 +1,5 @@
 // none of these chatheads move... but if they get fixed later these mesanims match osrs
-[opnpc1,skavid_ar]
+[opnpc1,skavidtalker2]
 if(testbit(%itwatchtower_bits, ^itwatchtower_learned_ar) = ^true) {
     ~chatnpc("<p,bored>Ar cur!");
     if(%itwatchtower_progress >= ^itwatchtower_complete) mes("You have already learned the skavid language.");
@@ -12,7 +12,7 @@ if(testbit(%itwatchtower_bits, ^itwatchtower_learning_skavid) = ^false) {
 }
 @skavid_comm;
 
-[opnpc1,skavid_ig]
+[opnpc1,skavidtalker1]
 if(testbit(%itwatchtower_bits, ^itwatchtower_learned_ig) = ^true) {
     ~chatnpc("<p,bored>Bidith ig!");
     if(%itwatchtower_progress >= ^itwatchtower_complete) mes("You have already learned the skavid language.");
@@ -25,7 +25,7 @@ if(testbit(%itwatchtower_bits, ^itwatchtower_learning_skavid) = ^false) {
 }
 @skavid_comm;
 
-[opnpc1,skavid_cur]
+[opnpc1,skavidtalker3]
 if(testbit(%itwatchtower_bits, ^itwatchtower_learned_cur) = ^true) {
     ~chatnpc("<p,bored>Cur tanath!");
     if(%itwatchtower_progress >= ^itwatchtower_complete) mes("You have already learned the skavid language.");
@@ -38,7 +38,7 @@ if(testbit(%itwatchtower_bits, ^itwatchtower_learning_skavid) = ^false) {
 }
 @skavid_comm;
 
-[opnpc1,skavid_nod]
+[opnpc1,skavidtalker4]
 if(testbit(%itwatchtower_bits, ^itwatchtower_learned_nod) = ^true) {
     ~chatnpc("<p,bored>Gor nod!");
     if(%itwatchtower_progress >= ^itwatchtower_complete) mes("You have already learned the skavid language.");
@@ -57,7 +57,7 @@ mes("The skavid is trying to communicate...");
 
 [label,skavid_saycur]
 ~chatplayer("<p,neutral>Cur.");
-if(npc_type = skavid_cur) {
+if(npc_type = skavidtalker3) {
     %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_learned_cur);
     mes("It seems the skavid understood you.");
     ~chatnpc("<p,happy>Cur,|cur tanath!");
@@ -67,7 +67,7 @@ if(npc_type = skavid_cur) {
 
 [label,skavid_sayar]
 ~chatplayer("<p,neutral>Ar.");
-if(npc_type = skavid_ar) {
+if(npc_type = skavidtalker2) {
     %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_learned_ar);
     mes("It seems the skavid understood you.");
     ~chatnpc("<p,happy>Ar,|Ar cur!");
@@ -77,7 +77,7 @@ if(npc_type = skavid_ar) {
 
 [label,skavid_sayig]
 ~chatplayer("<p,neutral>Ig.");
-if(npc_type = skavid_ig) {
+if(npc_type = skavidtalker1) {
     %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_learned_ig);
     mes("It seems the skavid understood you.");
     ~chatnpc("<p,happy>Ig!|Bidith ig!");
@@ -87,7 +87,7 @@ if(npc_type = skavid_ig) {
 
 [label,skavid_saynod]
 ~chatplayer("<p,neutral>Nod.");
-if(npc_type = skavid_nod) {
+if(npc_type = skavidtalker4) {
     %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_learned_nod);
     mes("It seems the skavid understood you.");
     ~chatnpc("<p,happy>Nod,|Gor nod!");

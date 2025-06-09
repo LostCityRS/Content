@@ -266,16 +266,16 @@ if(%itwatchtower_progress >= ^itwatchtower_complete) {
 [oploc1,loc_2797]
 ~climb_ladder(1_39_48_53_40, true);
 
-[oploc1,loc_2786] @open_gutanoth_gate(^left, ogre_guard_east);
-[oploc1,loc_2787] @open_gutanoth_gate(^right, ogre_guard_east);
-[oploc1,loc_2788] @open_gutanoth_gate(^left, ogre_guard_west);
-[oploc1,loc_2789] @open_gutanoth_gate(^right, ogre_guard_west);
+[oploc1,loc_2786] @open_gutanoth_gate(^left, ogre_guard1);
+[oploc1,loc_2787] @open_gutanoth_gate(^right, ogre_guard1);
+[oploc1,loc_2788] @open_gutanoth_gate(^left, ogre_guard2);
+[oploc1,loc_2789] @open_gutanoth_gate(^right, ogre_guard2);
 
 [label,open_gutanoth_gate](int $side, npc $guard)
-if(($guard = ogre_guard_east & %gutanoth_gold < ^gutanoth_found_gold) |  ($guard = ogre_guard_west & %itwatchtower_progress < 4)) {
+if(($guard = ogre_guard1 & %gutanoth_gold < ^gutanoth_found_gold) |  ($guard = ogre_guard2 & %itwatchtower_progress < 4)) {
     if(npc_find(coord, $guard, 6, 2) = true) {
-        if(npc_type = ogre_guard_east) @ogre_guard_east_dialogue;
-        else @ogre_guard_west_dialogue;
+        if(npc_type = ogre_guard1) @ogre_guard1_dialogue;
+        else @ogre_guard2_dialogue;
     }
     return;
 }
@@ -315,7 +315,7 @@ if(npc_find(coord, enclave_guard, 5, 0) = true) {
 
 [oploc1,loc_2832]
 if(getbit_range(%itwatchtower_bits, ^itwatchtower_market_lower, ^itwatchtower_market_upper) < 2) {
-    if(npc_find(coord, ogre_guard_battlements, 7, 0) = true) @ogre_guard_battlements_dialogue;
+    if(npc_find(coord, ogre_guard3, 7, 0) = true) @ogre_guard3_dialogue;
     return;
 }
 def_int $dir = ^exact_east; 
@@ -390,7 +390,7 @@ if(stat(agility) < 25) {
     mes("You need an Agility level of 25 to attempt this jump."); // OSRS
     return;
 }
-if(npc_find(coord, ogre_guard_broken_bridge, 8, 0) = true) {
+if(npc_find(coord, ogre_guard4, 8, 0) = true) {
     ~chatnpc("<p,neutral>Oi! Little thing, if you want to cross here,|you can pay me first - 20 gold pieces!");
     ~chatplayer("<p,quiz>20 gold pieces to jump off a bridge!!?");
     ~chatnpc("<p,happy>That's what I said, like it or lump it.");

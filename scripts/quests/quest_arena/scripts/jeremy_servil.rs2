@@ -35,7 +35,7 @@ switch_int(%arena_progress) {
     case ^arena_defeated_bouncer : // guessed mesanims
         ~chatplayer("<p,quiz>What does Khazard want with us now?");
         ~chatnpc("<p,neutral>I don't know, but he won't be happy that you've killed his so called pet.");
-        @general_khazard_arena_agreement;
+        @general_khazard_agreement;
     case ^arena_sent_jail, ^arena_defeated_scorpion :
         // https://youtu.be/etS0gMlcxx8?si=xx4Hvgt28HsL6JCi&t=344
         ~chatplayer("<p,angry>Don't worry, I'll get us out of here.");
@@ -46,7 +46,7 @@ switch_int(%arena_progress) {
         // todo: check mesanim
         ~chatplayer("<p,neutral>Come on Jeremy, we have to get out of here.");
         ~chatnpc("<p,happy>Thank you for saving my father.");
-        @general_khazard_arena_welldone;
+        @general_khazard_welldone;
     case ^arena_entered_ogre_fight :
         ~chatplayer("<p,quiz>Jeremy, where's your father?");
         ~chatnpc("<p,shock>Quick, help him! That beast will kill him. He's too old to fight.");

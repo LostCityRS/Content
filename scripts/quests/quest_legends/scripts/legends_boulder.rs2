@@ -1,4 +1,4 @@
-[opnpc1,legends_boulder]
+[opnpc1,boulder_legends]
 npc_huntall(coord, 5, 0);
 while (npc_huntnext = true) {
     if (npc_type = nezikchened & %aggressive_npc = npc_uid) {
@@ -75,5 +75,5 @@ if (last_useitem = goldbowlbless_empty) {
     ~objbox(vial_water, "You put some water in your vial. The water doesn't bubble and sparkle as much as it did in the pool.", 250, 0, divide(^objbox_height, 2));
 }
 
-[ai_queue10,legends_boulder]
+[ai_queue10,boulder_legends]
 npc_walk(%npc_start_coord);

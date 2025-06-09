@@ -7,7 +7,7 @@ if(testbit(%upass_map_mechanisms, ^upass_dropped_cat) = ^true) {
     return;
 }
 mes("You reach to open the door...");
-if(npc_find(coord, kardia, 8, 0) = true) {
+if(npc_find(coord, cavewitch, 8, 0) = true) {
     // https://youtu.be/ZxF473zUZfQ?si=K3-NPTigxVgD9V9I&t=2016, no chathead
     ~chatnpc("<p,angry>Get away... Far away from here!");
     ~damage_self(calc(((stat(hitpoints) * 25) / 100) + 1));
@@ -17,7 +17,7 @@ if(npc_find(coord, kardia, 8, 0) = true) {
 mes("You knock on the door...");
 p_delay(2);
 if(inv_total(inv, cavewitchcat) > 0 & testbit(%upass_map_mechanisms, ^upass_dropped_cat) = ^false) {
-    @upass_drop_witches_cat;
+    @upass_drop_cavewitchcat;
 }
 mes("There is no reply.");
 p_delay(2);
@@ -31,15 +31,15 @@ if(last_useitem = cavewitchcat) {
         ~mesbox("The witch is busy playing with her other cat...");
         return;
     }
-    @upass_drop_witches_cat;
+    @upass_drop_cavewitchcat;
 }
 ~displaymessage(^dm_default);
 
 [oploc1,upass_witchwindow]
 mes("Inside you see a witch, she appears to be looking for something.");
-if(npc_find(coord, kardia, 8, 0) = true) npc_say("Here kitty, kitty!");
+if(npc_find(coord, cavewitch, 8, 0) = true) npc_say("Here kitty, kitty!");
 
-[opnpc1,witches_cat]
+[opnpc1,cavewitchcat]
 if(%upass_progress < ^upass_spoken_nilhoof) {
     mes("It's not very nice to squeeze a cat into a satchel.");
     mes("...if you don't need to.");
@@ -66,7 +66,7 @@ anim(human_pickupfloor, 0);
 mes("The cat runs off and hides.");
 p_delay(2);
 
-[label,upass_drop_witches_cat]
+[label,upass_drop_cavewitchcat]
 mes("... You place the cat by the door.");
 anim(human_pickupfloor, 0);
 p_delay(2);
@@ -84,11 +84,11 @@ sound_synth(chest_open, 0, 0);
 p_delay(0);
 // Temp note: dur does not need updated ?? @indio I assume
 loc_change(cavewitchchestopen, 20);
-@search_kardia_chest;
+@search_cavewitch_chest;
 
-[oploc1,cavewitchchestopen] @search_kardia_chest;
+[oploc1,cavewitchchestopen] @search_cavewitch_chest;
 
-[label,search_kardia_chest]
+[label,search_cavewitch_chest]
 ~mesbox("You search the chest...");
 if_close;
 p_delay(2); // 3t
@@ -112,5 +112,5 @@ if(%upass_progress >= ^upass_found_doll) {
     inv_add(inv, 3dosestatrestore, 1);
 }
 
-[opnpc1,kardia]
+[opnpc1,cavewitch]
 mes("Kardia doesn't seem interested in talking.");

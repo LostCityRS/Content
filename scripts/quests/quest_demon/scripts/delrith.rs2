@@ -6,7 +6,7 @@ if (finduid(%npc_aggressive_player) = false) {
     npc_statheal(hitpoints, 0, 100);
     return;
 }
-npc_changetype(weakened_delrith, 100); // lasts 100 ticks in osrs
+npc_changetype(delrith_weakened, 100); // lasts 100 ticks in osrs
 npc_setmode(none);
 npc_walk(npc_coord);
 
@@ -36,7 +36,7 @@ if ($option = 1) {
 
 [label,demon_slayer_wrong_incantation]
 ~mesbox("As you chant, Delrith is sucked towards the vortex....");
-if (npc_find(coord, weakened_delrith, 8, 0) = true) {
+if (npc_find(coord, delrith_weakened, 8, 0) = true) {
     // On restore Delrith does not keep attacking you in 2004
     // https://www.youtube.com/watch?v=rjQprrDDUfE
     npc_changetype_keepall(delrith, ^max_32bit_int);
@@ -49,7 +49,7 @@ if (npc_find(coord, weakened_delrith, 8, 0) = true) {
 // https://www.youtube.com/watch?v=w7uLKC_rYfc
 ~mesbox("As you chant, Delrith is sucked towards the vortex...|Back to the dark dimension from which he came...");
 if_close;
-if (npc_find(coord, weakened_delrith, 8, 0) = true) {
+if (npc_find(coord, delrith_weakened, 8, 0) = true) {
     gosub(npc_death);
 }
 queue(demon_slayer_complete, 1);

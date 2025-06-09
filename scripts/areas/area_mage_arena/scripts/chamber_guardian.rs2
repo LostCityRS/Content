@@ -1,10 +1,10 @@
-[opnpc1,chamber_guardian]
+[opnpc1,magearena_guardian]
 if (%magearena <= ^mage_arena_complete) {
-    @chamber_guardian_pray_at_statues;
+    @magearena_guardian_pray_at_statues;
 } else if (%magearena = ^mage_arena_prayed_at_statue) {
     def_namedobj $staff = ~god_staff_checker;
     if ($staff = null) {
-        @chamber_guardian_pray_at_statues;
+        @magearena_guardian_pray_at_statues;
     }
     // after praying at the statue:
     ~chatplayer("<p,neutral>Hi.");
@@ -33,7 +33,7 @@ if ($choice = 1) {
     ~chatplayer("<p,happy>Good stuff.");
 }
 
-[label,chamber_guardian_pray_at_statues]
+[label,magearena_guardian_pray_at_statues]
 ~chatplayer("<p,happy>Hello my friend, Kolodion sent me down.");
 ~chatnpc("<p,angry>Sssshhh... the gods are talking. I can hear their|whispers.");
 ~chatnpc("<p,quiz>Can you hear them adventurer, they're calling you.");
@@ -41,7 +41,7 @@ if ($choice = 1) {
 ~chatnpc("<p,shifty>Go chant at the statue of the god you most wish to|represent in this world, you will be rewarded.");
 ~chatnpc("<p,shifty>Once you are done, come back to me. I shall supply|you with a mage staff ready for battle.");
 
-[opnpc3,chamber_guardian]
+[opnpc3,magearena_guardian]
 if (%magearena < ^mage_arena_staff_given) {
     mes("The guardian is deep in concentration.");
     return;

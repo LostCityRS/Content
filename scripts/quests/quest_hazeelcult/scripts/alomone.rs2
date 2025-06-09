@@ -1,4 +1,4 @@
-[opnpc1,alomone]
+[opnpc1,alomone_hazeel_cultist]
 switch_int(%hazeelcult_progress) {
     case ^hazeelcult_clivet_decision :
         if(%hazeelcult_side = ^hazeelcult_goodside) {
@@ -97,22 +97,22 @@ if(npc_finduid($npc) = true) {
 }
 queue(hazeelcult_quest_complete, 0);
 
-[ai_queue3,alomone]
+[ai_queue3,alomone_hazeel_cultist]
 gosub(npc_death);
 if(npc_findhero = ^true) {
     if_close;
     if(p_finduid(uid) = true) { // get protected access, if not then queue
-        @defeat_alomone;
+        @defeat_alomone_hazeel_cultist;
     }
-    queue(queue_defeat_alomone, 0, npc_uid); //strongqueue probably
+    queue(queue_defeat_alomone_hazeel_cultist, 0, npc_uid); //strongqueue probably
 }
 
-[queue,queue_defeat_alomone](npc_uid $npc)
+[queue,queue_defeat_alomone_hazeel_cultist](npc_uid $npc)
 if (npc_finduid($npc) = true) {
-    @defeat_alomone;
+    @defeat_alomone_hazeel_cultist;
 }
 
-[label,defeat_alomone]
+[label,defeat_alomone_hazeel_cultist]
 if(%hazeelcult_side = ^hazeelcult_goodside & (%hazeelcult_progress >= ^hazeelcult_clivet_decision & %hazeelcult_progress < ^hazeelcult_given_armour_or_scroll)) {
     if(~obj_gettotal(carnillean_armour) = 0) {
         if(%hazeelcult_progress < ^hazeelcult_finished_side_task) {

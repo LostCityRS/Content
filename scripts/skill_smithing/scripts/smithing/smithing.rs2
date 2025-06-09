@@ -33,12 +33,12 @@
 [oplocu,anvil]
 if (%tutorial_progress < ^tutorial_complete) {
     // This happens with any item, not just bars.
-    if (%tutorial_progress < ^mining_instructor_before_smelt_bronze_bar) {
+    if (%tutorial_progress < ^newbie_mining_instructor_before_smelt_bronze_bar) {
         ~mesbox("This is an anvil used for smithing.|You'll lean how to use it soon.");
         return;
     }
 
-    if (%tutorial_progress < ^mining_instructor_smith_a_dagger) {
+    if (%tutorial_progress < ^newbie_mining_instructor_smith_a_dagger) {
         ~mesbox("You need a hammer to work the metal with.|Talk to the mining instructor to get one");
         return;
     }

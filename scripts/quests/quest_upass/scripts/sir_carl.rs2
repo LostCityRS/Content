@@ -1,4 +1,4 @@
-[ai_queue3,sir_carl]
+[ai_queue3,upass_paladin2]
 gosub(npc_death);
 if (npc_findhero = ^false) {
     return;
@@ -9,7 +9,7 @@ if(inv_total(inv, paladinbadge2) = 0) {
 }
 ~paladin_drops;
 
-[opnpc1,sir_carl]
+[opnpc1,upass_paladin2]
 if(%upass_progress >= ^upass_entered_main_area) {
     @upass_paladin_after_killed;
 }

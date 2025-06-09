@@ -1,9 +1,9 @@
-[opnpc1,captain_siad]
+[opnpc1,capt_siad]
 mes("The captain looks up from his work as you address him.");
 p_delay(2);
-@captain_siad_dialogue;
+@capt_siad_dialogue;
 
-[label,captain_siad_dialogue]
+[label,capt_siad_dialogue]
 if(~obj_gettotal(thcaptplans) > 0) {
     ~chatnpc("<p,angry>I don't have time to talk to you.|Move along please!");
     return;

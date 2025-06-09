@@ -262,13 +262,13 @@ if (last_useitem = bucket_milk) {
     ~displaymessage(^dm_default);
 }
 
-[ai_timer,kitten_crate]
+[ai_timer,kittens_mew]
 npc_settimer(calc(5 + random(20)));
 if (random(5) = 0) {
     npc_say("Mew!");
 }
 
-[opnpc1,kitten_crate]
+[opnpc1,kittens_mew]
 mes("You search the crate.");
 p_delay(4);
 if (npc_coord = %fluffs_crate & %fluffs_progress = ^fluffs_gave_sardine & inv_total(inv, gertrudekittens) = 0 & inv_total(bank, gertrudekittens) = 0) {

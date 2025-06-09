@@ -39,7 +39,7 @@ session_log(^log_moderator, "Random event spawned: <nc_debugname(npc_type)>");
 switch_int ($event) {
     case ^macro_swarm : ~macro_swarm_spawn;
     case ^macro_triffidseed : ~macro_event_triffid_spawn;
-    case ^macro_event_drunken_dwarf : ~macro_event_drunken_dwarf_spawn;
+    case ^macro_dwarf : ~macro_dwarf_spawn;
     case ^macro_geni : ~macro_geni_spawn;
     case ^macro_mysterious_old_man : ~macro_mysterious_old_man_spawn;
 }

@@ -22,7 +22,7 @@
     npc_anim(chompy_toad_inflate, 30);
 }
 
-[opnpcu,swamp_toad]
+[opnpcu,toad]
 switch_obj(last_useitem) {
     case empty_ogre_bellows :
 
@@ -51,7 +51,7 @@ switch_obj(last_useitem) {
         if (inv_total(inv, bloated_toad) >= 3) {
             mes("One of your bloated toads manages to escape.");
 
-            npc_add(map_findsquare(coord, 1, 1, ^map_findsquare_lineofwalk), swamp_toad, 100);
+            npc_add(map_findsquare(coord, 1, 1, ^map_findsquare_lineofwalk), toad, 100);
             npc_say("Ribbitt!");
             inv_del(inv, bloated_toad, 1);
 

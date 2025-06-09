@@ -1,4 +1,4 @@
-[opnpc1,iban_disciple]
+[opnpc1,ibanmonk]
 ~chatplayer("<p,happy>Hi.");
 if(inv_total(worn, zamrobebottom) > 0 & inv_total(worn, zamrobetop) > 0) { 
     // question marks here are all correct 
@@ -20,7 +20,7 @@ if(inv_total(worn, zamrobebottom) > 0 & inv_total(worn, zamrobetop) > 0) {
 ~chatnpc("<p,angry>An impostor... Die, scum!");
 ~npc_retaliate(0);
 
-[ai_queue3,iban_disciple]
+[ai_queue3,ibanmonk]
 gosub(npc_death);
 if (npc_findhero = ^false) {
     return;

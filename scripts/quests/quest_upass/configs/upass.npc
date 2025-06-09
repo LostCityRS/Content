@@ -1,4 +1,4 @@
-[koftik_ardougne]
+[caveguide1]
 vislevel=hide
 name=Koftik
 desc=The cave guide.
@@ -16,7 +16,7 @@ model8=model_326_idk
 head1=model_48_npc_head
 head2=model_81_idk_head
 
-[koftik_2]
+[caveguide2]
 vislevel=hide
 name=Koftik
 desc=The cave guide.
@@ -34,7 +34,7 @@ model8=model_326_idk
 head1=model_48_npc_head
 head2=model_81_idk_head
 
-[koftik_3]
+[caveguide3]
 vislevel=hide
 name=Koftik
 desc=The cave guide.
@@ -53,7 +53,7 @@ head1=model_48_npc_head
 head2=model_81_idk_head
 wanderrange=2
 
-[koftik_4]
+[caveguide4]
 vislevel=hide
 name=Koftik
 desc=The cave guide.
@@ -71,7 +71,7 @@ model8=model_326_idk
 head1=model_48_npc_head
 head2=model_81_idk_head
 
-[koftik_5]
+[caveguide5]
 vislevel=hide
 name=Koftik
 desc=The cave guide.
@@ -123,7 +123,7 @@ huntrange=1
 // wander and maxrange data taken rs3.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4533
 
-[blessed_giant_rat]
+[blessed_giantrat]
 size=2
 walkanim=giantrat_walk
 readyanim=giantrat_ready
@@ -154,7 +154,7 @@ huntmode=cowardly
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4534
 
-[slave1_upass]
+[cave_slave1]
 vislevel=hide
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
@@ -176,7 +176,7 @@ model6=model_181_idk
 model7=model_176_idk
 head1=model_63_idk_head
 
-[slave2_upass]
+[cave_slave2]
 vislevel=hide
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
@@ -198,7 +198,7 @@ model6=model_181_idk
 model7=model_176_idk
 head1=model_52_idk_head
 
-[slave3_upass]
+[cave_slave3]
 vislevel=hide
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
@@ -220,7 +220,7 @@ model6=model_181_idk
 model7=model_176_idk
 head1=model_49_idk_head
 
-[slave4_upass]
+[cave_slave4]
 vislevel=hide
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
@@ -242,7 +242,7 @@ model6=model_181_idk
 model7=model_176_idk
 head1=model_47_npc_head
 
-[slave5_upass]
+[cave_slave5]
 vislevel=hide
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
@@ -266,7 +266,7 @@ model6=model_181_idk
 model7=model_176_idk
 head1=model_45_idk_head
 
-[slave6_upass]
+[cave_slave6]
 vislevel=hide
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
@@ -288,7 +288,7 @@ model6=model_181_idk
 model7=model_176_idk
 head1=model_48_npc_head
 
-[slave7_upass]
+[cave_slave7]
 vislevel=hide
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
@@ -340,7 +340,7 @@ defence=1
 param=damagetype,^stab_style
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_9209
 
-[sir_jerro]
+[upass_paladin1]
 name=Sir Jerro
 desc=A mighty looking warrior.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
@@ -388,7 +388,7 @@ param=defend_sound,blade3
 // This npc's stats and animations and sounds are probably identical to a normal paladin. This still needs to be confirmed..
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8987
 
-[sir_carl]
+[upass_paladin2]
 name=Sir Carl
 desc=A mighty looking warrior.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
@@ -434,7 +434,7 @@ param=defend_sound,blade3
 // This npc's stats and animations and sounds are probably identical to a normal paladin. This still needs to be confirmed..
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8988
 
-[sir_harry]
+[upass_paladin3]
 name=Sir Harry
 desc=A mighty looking warrior.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
@@ -480,7 +480,7 @@ param=defend_sound,blade3
 // This npc's stats and animations and sounds are probably identical to a normal paladin. This still needs to be confirmed..
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8989
 
-[half_souless]
+[soulman]
 size=2
 name=Half-Souless
 desc=A creature empty of emotion.
@@ -507,7 +507,7 @@ model7=model_176_idk
 wanderrange=0
 moverestrict=nomove
 
-[kardia]
+[cavewitch]
 vislevel=hide
 name=Kardia
 desc=A dark and evil crone.
@@ -536,7 +536,7 @@ model9=model_534_obj_wear
 model10=model_377_obj_wear
 param=death_sound,female_death
 
-[witches_cat]
+[cavewitchcat]
 vislevel=hide
 name=Witches cat
 desc=Curiosity is yet to kill this one...
@@ -553,7 +553,7 @@ model2=model_3006_obj
 respawnrate=100
 param=death_anim,cat_death
 
-[nilhoof]
+[upassdwarf1]
 vislevel=hide
 walkanim=dwarf_walk
 readyanim=dwarf_ready
@@ -578,7 +578,7 @@ model6=model_2990_npc
 head1=model_0_npc_head
 param=death_anim,dwarf_death
 
-[klank]
+[upassdwarf2]
 vislevel=hide
 walkanim=dwarf_walk
 readyanim=dwarf_ready
@@ -600,7 +600,7 @@ model5=model_2985_npc
 head1=model_1_npc_head
 param=death_anim,dwarf_death
 
-[kamen]
+[upassdwarf3]
 vislevel=hide
 walkanim=dwarf_walk
 readyanim=dwarf_ready
@@ -750,7 +750,7 @@ huntmode=cowardly
 // TODO monster examine spell
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8996
 
-[iban_disciple]
+[ibanmonk]
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 name=Iban disciple
@@ -783,7 +783,7 @@ param=damagetype,^crush_style
 // TODO monster examine spell
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8997
 
-[lord_iban]
+[iban]
 vislevel=hide
 size=2
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
@@ -821,7 +821,7 @@ defence=77
 timer=10
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8998
 
-[spider_upass]
+[upass_little_spider]
 walkanim=spider_walk
 name=Spider
 desc=Incey wincey.
@@ -852,7 +852,7 @@ param=death_drop,null
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4561
 
-[bat_upass]
+[non_combat_bat]
 name=Giant bat
 desc=Annoying flappy thing.
 size=2

@@ -1,4 +1,4 @@
-[kitten_crate]
+[kittens_mew]
 vislevel=hide
 name=Crate
 desc=Can I hear kittens?
@@ -39,7 +39,7 @@ model1=model_3010_npc
 model2=model_3006_obj
 param=death_anim,cat_death
 
-[follower_kitten_greyblack]
+[kittenpet1]
 vislevel=hide
 name=Kitten
 desc=A friendly little pet.
@@ -57,10 +57,10 @@ param=death_anim,cat_death
 category=petcat
 timer=1
 param=pet_item_id,kittenobject
-param=cat_next_id,follower_cat_greyblack
+param=cat_next_id,growncat
 blockwalk=none
 
-[follower_kitten_white]
+[kittenpet_light]
 vislevel=hide
 name=Kitten
 desc=A friendly little pet.
@@ -84,10 +84,10 @@ param=death_anim,cat_death
 category=petcat
 timer=1
 param=pet_item_id,kittenobject_light
-param=cat_next_id,follower_cat_white
+param=cat_next_id,growncat_light
 blockwalk=none
 
-[follower_kitten_brown]
+[kittenpet_brown]
 vislevel=hide
 name=Kitten
 desc=A friendly little pet.
@@ -111,10 +111,10 @@ param=death_anim,cat_death
 category=petcat
 timer=1
 param=pet_item_id,kittenobject_brown
-param=cat_next_id,follower_cat_brown
+param=cat_next_id,growncat_brown
 blockwalk=none
 
-[follower_kitten_black]
+[kittenpet_black]
 vislevel=hide
 name=Kitten
 desc=A friendly little pet.
@@ -138,10 +138,10 @@ param=death_anim,cat_death
 category=petcat
 timer=1
 param=pet_item_id,kittenobject_black
-param=cat_next_id,follower_cat_black
+param=cat_next_id,growncat_black
 blockwalk=none
 
-[follower_kitten_greybrown]
+[kittenpet_browngrey]
 vislevel=hide
 name=Kitten
 desc=A friendly little pet.
@@ -163,10 +163,10 @@ param=death_anim,cat_death
 category=petcat
 timer=1
 param=pet_item_id,kittenobject_browngrey
-param=cat_next_id,follower_cat_greybrown
+param=cat_next_id,growncat_browngrey
 blockwalk=none
 
-[follower_kitten_greyblue]
+[kittenpet_bluegrey]
 vislevel=hide
 name=Kitten
 desc=A friendly little pet.
@@ -188,10 +188,10 @@ param=death_anim,cat_death
 category=petcat
 timer=1
 param=pet_item_id,kittenobject_bluegrey
-param=cat_next_id,follower_cat_greyblue
+param=cat_next_id,growncat_bluegrey
 blockwalk=none
 
-[follower_cat_greyblack]
+[growncat]
 vislevel=hide
 name=Cat
 desc=A fully grown feline.
@@ -209,10 +209,10 @@ param=death_anim,cat_death
 category=petcat
 timer=1
 param=pet_item_id,growncatobject
-param=cat_next_id,follower_overgrown_greyblack
+param=cat_next_id,overgrowncat
 blockwalk=none
 
-[follower_cat_white]
+[growncat_light]
 vislevel=hide
 name=Cat
 desc=A fully grown feline.
@@ -236,10 +236,10 @@ param=death_anim,cat_death
 category=petcat
 timer=1
 param=pet_item_id,growncatobject_light
-param=cat_next_id,follower_overgrown_white
+param=cat_next_id,overgrowncat_light
 blockwalk=none
 
-[follower_cat_brown]
+[growncat_brown]
 vislevel=hide
 name=Cat
 desc=A fully grown feline.
@@ -263,10 +263,10 @@ param=death_anim,cat_death
 category=petcat
 timer=1
 param=pet_item_id,growncatobject_brown
-param=cat_next_id,follower_overgrown_brown
+param=cat_next_id,overgrowncat_brown
 blockwalk=none
 
-[follower_cat_black]
+[growncat_black]
 vislevel=hide
 name=Cat
 desc=A fully grown feline.
@@ -290,10 +290,10 @@ param=death_anim,cat_death
 category=petcat
 timer=1
 param=pet_item_id,growncatobject_black
-param=cat_next_id,follower_overgrown_black
+param=cat_next_id,overgrowncat_black
 blockwalk=none
 
-[follower_cat_greybrown]
+[growncat_browngrey]
 vislevel=hide
 name=Cat
 desc=A fully grown feline.
@@ -315,10 +315,10 @@ param=death_anim,cat_death
 category=petcat
 timer=1
 param=pet_item_id,growncatobject_browngrey
-param=cat_next_id,follower_overgrown_greybrown
+param=cat_next_id,overgrowncat_browngrey
 blockwalk=none
 
-[follower_cat_greyblue]
+[growncat_bluegrey]
 vislevel=hide
 name=Cat
 desc=A fully grown feline.
@@ -340,10 +340,10 @@ param=death_anim,cat_death
 category=petcat
 timer=1
 param=pet_item_id,growncatobject_bluegrey
-param=cat_next_id,follower_overgrown_greyblue
+param=cat_next_id,overgrowncat_bluegrey
 blockwalk=none
 
-[follower_overgrown_greyblack]
+[overgrowncat]
 vislevel=hide
 name=Overgrown cat
 desc=A friendly not-so little pet.
@@ -363,7 +363,7 @@ timer=1
 param=pet_item_id,overgrowncatobject
 blockwalk=none
 
-[follower_overgrown_white]
+[overgrowncat_light]
 vislevel=hide
 name=Overgrown cat
 desc=A friendly not-so little pet.
@@ -389,7 +389,7 @@ timer=1
 param=pet_item_id,overgrowncatobject_light
 blockwalk=none
 
-[follower_overgrown_brown]
+[overgrowncat_brown]
 vislevel=hide
 name=Overgrown cat
 desc=A friendly not-so little pet.
@@ -415,7 +415,7 @@ timer=1
 param=pet_item_id,overgrowncatobject_brown
 blockwalk=none
 
-[follower_overgrown_black]
+[overgrowncat_black]
 vislevel=hide
 name=Overgrown cat
 desc=A friendly not-so little pet.
@@ -441,7 +441,7 @@ timer=1
 param=pet_item_id,overgrowncatobject_black
 blockwalk=none
 
-[follower_overgrown_greybrown]
+[overgrowncat_browngrey]
 vislevel=hide
 name=Overgrown cat
 desc=A friendly not-so little pet.
@@ -465,7 +465,7 @@ timer=1
 param=pet_item_id,overgrowncatobject_browngrey
 blockwalk=none
 
-[follower_overgrown_greyblue]
+[overgrowncat_bluegrey]
 vislevel=hide
 name=Overgrown cat
 desc=A friendly not-so little pet.

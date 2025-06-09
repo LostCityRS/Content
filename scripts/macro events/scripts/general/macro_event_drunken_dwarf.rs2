@@ -1,4 +1,4 @@
-[proc,macro_event_drunken_dwarf_spawn] // greet player
+[proc,macro_dwarf_spawn] // greet player
 // no smoke puff: https://youtu.be/R9eKmC7oLy0?t=122
 sound_synth(dwarf_whistle, 0, 0);
 npc_anim(dwarf_drunkwave, 20);
@@ -6,7 +6,7 @@ npc_say("'Ello der <displayname>! *hic*");
 %npc_macro_event_target = uid;
 npc_setmode(playerfollow);
 
-[ai_timer,macro_event_drunken_dwarf]
+[ai_timer,macro_dwarf]
 if (%npc_int = ^drunken_dwarf_angry) {
     if (~macro_event_lost_hostile = true) {
         // https://youtu.be/PhAjUCWSoOI?list=PLn23LiLYLb1bQ7Hwp77KoNBjKvpZQTfJT&t=79
@@ -48,16 +48,16 @@ if (finduid(%npc_macro_event_target) = true) {
     %npc_int = add(%npc_int, 1);
 }
 
-[ai_queue5,macro_event_drunken_dwarf] // despawn
+[ai_queue5,macro_dwarf] // despawn
 npc_say("Aww, me is all alone.");
 npc_delay(2); // osrs
 npc_del;
 
-[ai_queue6,macro_event_drunken_dwarf] // say good bye
+[ai_queue6,macro_dwarf] // say good bye
 // Doesnt say goodbye :( https://youtu.be/R9eKmC7oLy0?t=122
 npc_del;
 
-[opnpc1,macro_event_drunken_dwarf]
+[opnpc1,macro_dwarf]
 if (uid ! %npc_macro_event_target) {
     ~chatnpc("<p,drunk>You're not my matey!"); // osrs
     return;
@@ -78,7 +78,7 @@ npc_settimer(0);
 
 // https://youtu.be/8wJZmDwcBKs?t=108
 // doesnt check for death!
-[ai_opplayer2,macro_event_drunken_dwarf]
+[ai_opplayer2,macro_dwarf]
 if (%npc_action_delay > map_clock) return;
 if (~npc_check_notcombat = false) {
     npc_setmode(null);

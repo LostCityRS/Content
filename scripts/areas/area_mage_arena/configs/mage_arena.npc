@@ -1,4 +1,4 @@
-[gundai]
+[magearena_banker]
 vislevel=hide
 name=Gundai
 desc=He must get lonely out here.
@@ -21,7 +21,7 @@ head1=model_53_idk_head
 head2=model_85_idk_head
 head3=model_78_npc_head
 
-[lundail]
+[magearena_runeshop]
 vislevel=hide
 name=Lundail
 desc=He sells rune stones.
@@ -44,7 +44,7 @@ param=shop_buy_multiplier,600
 param=shop_delta,30
 param=shop_title,Lundail's Arena-side Rune Shop.
 
-[chamber_guardian]
+[magearena_guardian]
 vislevel=hide
 name=Chamber guardian
 desc=He hasn't seen much sun lately.
@@ -76,7 +76,7 @@ param=shop_buy_multiplier,0
 param=shop_delta,20
 param=shop_title,Mage Arena Staffs.
 
-[kolodion]
+[arenamage1]
 vislevel=hide
 name=Kolodion
 desc=He runs the mage arena.
@@ -109,7 +109,7 @@ head2=model_82_idk_head
 head3=model_68_obj_wear
 wanderrange=1
 
-[kolodion_defeated]
+[arenamage2]
 vislevel=hide
 name=Kolodion
 desc=He runs the mage arena.
@@ -142,7 +142,7 @@ head3=model_68_obj_wear
 wanderrange=0
 moverestrict=nomove
 
-[kolodion_human_form]
+[kolhuman]
 vislevel=hide
 name=Kolodion
 desc=He runs the mage arena.
@@ -187,7 +187,7 @@ category=kolodion
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1605
 // TODO monster examine spell
 
-[kolodion_ogre_form]
+[kologre]
 vislevel=hide
 name=Kolodion
 desc=He's a shape shifter.
@@ -230,7 +230,7 @@ category=kolodion
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1606
 // TODO monster examine spell
 
-[kolodion_arachnid_form]
+[kolspider]
 vislevel=hide
 name=Kolodion
 desc=He's a shape shifter.
@@ -265,7 +265,7 @@ category=kolodion
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1607
 // TODO monster examine spell
 
-[kolodion_ethereal_form]
+[kolethereal]
 vislevel=hide
 name=Kolodion
 desc=He's a shape shifter.
@@ -311,7 +311,7 @@ category=kolodion
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1608
 // TODO monster examine spell
 
-[kolodion_demon_form]
+[koldemon]
 size=3
 walkanim=demon_walk
 readyanim=demon_ready
@@ -350,7 +350,7 @@ category=kolodion
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1609
 // TODO monster examine spell
 
-[battle_mage_zamorak]
+[zamorak_mage]
 name=Battle mage
 desc=He kills in the name of Zamorak.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
@@ -395,7 +395,7 @@ category=battle_mage
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1610
 
-[battle_mage_saradomin]
+[saradomin_mage]
 name=Battle mage
 desc=He kills in the name of Saradomin.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
@@ -436,7 +436,7 @@ category=battle_mage
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1611
 
-[battle_mage_guthix]
+[guthix_mage]
 name=Battle mage
 desc=He kills in the name of Guthix.
 walkanim=midget_walk

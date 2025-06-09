@@ -1,12 +1,12 @@
-[opnpc1,tut_banker] @tut_banker;
-[apnpc1,tut_banker]
+[opnpc1,noobbanker] @noobbanker;
+[apnpc1,noobbanker]
 if (npc_range(coord) > 2) {
     p_aprange(2);
     return;
 }
-@tut_banker;
+@noobbanker;
 
-[label,tut_banker]
+[label,noobbanker]
 ~chatnpc("<p,quiz>Good day, would you like to access your bank account?");
 @multi2(
     "Yes.", tut_open_bank,

@@ -18,7 +18,7 @@ if (p_finduid(uid) = true) {
     }
     // might be rework behaviour, hard to confirm
     if(inzone(0_51_147_0_0, 0_51_147_19_63, coord) = true) {
-        if(npc_find(coord, mercenary_2, 4, 2) = true | npc_find(coord, mercenary_1, 4, 2) = true) {
+        if(npc_find(coord, desertminingmercenary2, 4, 2) = true | npc_find(coord, desertminingmercenary1, 4, 2) = true) {
             ~npc_retaliate(0);
             ~desertcamp_guard_search;
         }
@@ -35,11 +35,11 @@ if (p_finduid(uid) = true) {
     }
     // todo: this needs a better home...
     if (%tutorial_progress < ^tutorial_complete) {
-     if (%tutorial_progress = ^combat_instructor_unequipping_items) {
+     if (%tutorial_progress = ^newbie_combat_instructor_unequipping_items) {
             def_obj $shield = inv_getobj(worn, ^wearpos_lhand);
 
             if ($previous = bronze_sword & $shield = wooden_shield) {
-                %tutorial_progress = ^combat_instructor_open_combat_interface;
+                %tutorial_progress = ^newbie_combat_instructor_open_combat_interface;
                 ~set_tutorial_progress;
             }
         }

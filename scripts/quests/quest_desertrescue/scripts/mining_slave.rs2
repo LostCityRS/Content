@@ -1,14 +1,14 @@
-[opnpc1,female_slave] @standard_camp_slave;
+[opnpc1,mining_slave_female] @standard_camp_slave;
 
 [label,standard_camp_slave]
 npc_say("Can't you see I'm busy?");
 mes("This person doesn't want to talk to you.");
-if((npc_find(coord, mercenary_1, 5, 0) = true | npc_find(coord, mercenary_2, 5, 0) = true) & ~wearing_slave_robes = false) {
+if((npc_find(coord, desertminingmercenary1, 5, 0) = true | npc_find(coord, desertminingmercenary2, 5, 0) = true) & ~wearing_slave_robes = false) {
     p_delay(1);
     @mining_camp_caught;
 }
 
-[opnpc1,male_slave]
+[opnpc1,mining_slave_male]
 if(inzone(0_51_147_0_0, 0_51_147_63_63, coord) = true) {
     @standard_camp_slave;
 }
@@ -17,66 +17,66 @@ if(%desertrescue_progress >= ^desertrescue_traded_clothes) {
     // this only checks worn
     if(inv_total(worn, slave_shirt) = 0 | inv_total(worn, slave_robe) = 0 | inv_total(worn, slave_boots) = 0) {
         ~chatnpc("<p,neutral>Oh bother, I was caught by the guards again... Listen, if you can get me some Desert Clothes, I'll trade you for my slaves clothes again.. Do you want to trade?");
-        @multi2("Yes, I'll trade.", male_slave_trade, "No thanks...", male_slave_notrade);
+        @multi2("Yes, I'll trade.", mining_slave_male_trade, "No thanks...", mining_slave_male_notrade);
     } else {
         ~chatnpc("<p,neutral>Not much to do here but mine all day long.");
     }
 } else if(%desertrescue_progress = ^desertrescue_freed_slave) {
     ~chatnpc("<p,neutral>Do you have the Desert Clothes yet?");
-    @multi2("Yes, I'll trade.", male_slave_trade, "No thanks...", male_slave_notrade);
+    @multi2("Yes, I'll trade.", mining_slave_male_trade, "No thanks...", mining_slave_male_notrade);
 } else if(%desertrescue_progress = ^desertrescue_spoken_slave) {
     ~chatnpc("<p,quiz>Hello again, do you want to try and unlock my chains? I'd really appreciate it!");
-    @multi2_header("Yeah, okay, let's give it a go.", male_slave_unlock, "I need to do some other things first.", male_slave_otherthing, "Unlock Prisoner's Chains?");
+    @multi2_header("Yeah, okay, let's give it a go.", mining_slave_male_unlock, "I need to do some other things first.", mining_slave_male_otherthing, "Unlock Prisoner's Chains?");
 } else {
     ~chatnpc("<p,neutral>You look like a new 'recruit'. How long have you been here?");
-    @multi2("I've just arrived.", male_slave_arrived, "Oh, I've been here ages.", male_slave_ages);
+    @multi2("I've just arrived.", mining_slave_male_arrived, "Oh, I've been here ages.", mining_slave_male_ages);
 }
 
-[label,male_slave_ages]
+[label,mining_slave_male_ages]
 ~chatplayer("<p,neutral>Oh, I've been here ages.");
 ~chatnpc("<p,quiz>That's funny, I haven't seen you around here before. You're clothes look too clean for you to have been here ages.");
-@multi2("Okay, you caught me out.", male_slave_caught, "The guards allow me to clean my clothes.", male_slave_guards);
+@multi2("Okay, you caught me out.", mining_slave_male_caught, "The guards allow me to clean my clothes.", mining_slave_male_guards);
 
-[label,male_slave_caught]
+[label,mining_slave_male_caught]
 ~chatplayer("<p,neutral>Okay, you caught me out.");
 ~chatnpc("<p,happy>Ah ha! I knew it! A new recruit then? It's a shame that I won't be around long enough to get to know you. I'm making a break for it today.");
 ~chatnpc("<p,happy>I have a plan to get out of here! It's amazing in its sophistication.");
-@multi2("What are those big wooden doors in the corner of the compound?", male_slave_wooddoor, "Oh yes, that sounds interesting.", male_slave_interesting);
+@multi2("What are those big wooden doors in the corner of the compound?", mining_slave_male_wooddoor, "Oh yes, that sounds interesting.", mining_slave_male_interesting);
 
-[label,male_slave_arrived]
+[label,mining_slave_male_arrived]
 ~chatplayer("<p,neutral>I've just arrived.");
 ~chatnpc("<p,happy>Yeah, it looks like it as well. It's a shame that I won't be around long enough to get to know you. I'm making a break for it today. I have a plan to get out of here! It's amazing in its sophistication.");
-@multi2("What are those big wooden doors in the corner of the compound?", male_slave_wooddoor, "Oh yes, that sounds interesting.", male_slave_interesting);
+@multi2("What are those big wooden doors in the corner of the compound?", mining_slave_male_wooddoor, "Oh yes, that sounds interesting.", mining_slave_male_interesting);
 
-[label,male_slave_wooddoor]
+[label,mining_slave_male_wooddoor]
 ~chatplayer("<p,quiz>What are those big wooden doors in the corner of the compound?");
 ~chatnpc("<p,confused>They lead to an underground mine, but you really don't want to go down there.");
 ~chatnpc("<p,confused>I've only seen slaves and guards go down there, I never see the slaves come back up. At least up here you have a nice view and a bit of sun. @dbl@-- The slave @dbl@smiles at you and goes back to his work. --");
 
-[label,male_slave_guards]
+[label,mining_slave_male_guards]
 ~chatplayer("<p,neutral>The guards allow me to clean my clothes.");
 ~chatnpc("<p,angry>Oh, a special relationship with the guards heh? How very nice of them. Maybe you could persuade them to let me out of here?");
 
-[label,male_slave_interesting]
+[label,mining_slave_male_interesting]
 ~chatplayer("<p,neutral>Oh yes, that sounds interesting.");
 ~chatnpc("<p,happy>Yes, it is actually. I have all the details figured out except for one.");
-@multi2("What's that then?", male_slave_what, "Oh, that's a shame...", male_slave_shame);
+@multi2("What's that then?", mining_slave_male_what, "Oh, that's a shame...", mining_slave_male_shame);
 
-[label,male_slave_what]
+[label,mining_slave_male_what]
 ~chatplayer("<p,neutral>What's that then?");
 ~chatnpc("<p,neutral>@dbl@-- The slave rattles the chains on his arms loudly. -- These bracelets, I can't seem to get them off. If I could get them off, I'd be able to climb my way out of here.");
-@multi2("I can try to undo them for you.", male_slave_undo, "That's ridiculous, you're talking rubbish.", male_slave_rubbish);
+@multi2("I can try to undo them for you.", mining_slave_male_undo, "That's ridiculous, you're talking rubbish.", mining_slave_male_rubbish);
 
-[label,male_slave_rubbish]
+[label,mining_slave_male_rubbish]
 ~chatplayer("<p,neutral>That's ridiculous, you're talking rubbish.");
 ~chatnpc("<p,happy>No, it's true, I can make a break for it If I can just get these bracelets off.");
-@multi2("Good luck!", male_slave_luck, "I can try to undo them for you.", male_slave_undo);
+@multi2("Good luck!", mining_slave_male_luck, "I can try to undo them for you.", mining_slave_male_undo);
 
-[label,male_slave_luck]
+[label,mining_slave_male_luck]
 ~chatplayer("<p,neutral>Good luck!");
 ~chatnpc("<p,neutral>Thanks... same to you.");
 
-[label,male_slave_undo]
+[label,mining_slave_male_undo]
 ~chatplayer("<p,neutral>I can try to undo them for you.");
 %desertrescue_progress = ^desertrescue_spoken_slave;
 ~chatnpc("<p,confused>Really, that would be great... @dbl@-- The slave looks at you @dbl@strangely. -- @bla@Hang on a minute... I suppose you want something for doing this?");
@@ -93,19 +93,19 @@ switch_int(~p_choice2("It's funny you should say that...", 1, "That sounds awful
         ~chatplayer("<p,quiz>I can dress like a slave and gain access to the mine area to scout it out.");
         ~chatnpc("<p,neutral>You're either incredibly brave or incredibly stupid. But what would I wear if you take my clothes? Get me some nice desert clothes and I'll think about it?");
         ~chatnpc("<p,quiz>Do you still want to try and undo the locks for me?");
-        @multi2("Yeah, okay, let's give it a go.", male_slave_unlock, "I need to do some other things first.", male_slave_otherthing);
+        @multi2("Yeah, okay, let's give it a go.", mining_slave_male_unlock, "I need to do some other things first.", mining_slave_male_otherthing);
     case 2 : // todo - recheck mesanims here
         ~chatplayer("<p,neutral>That sounds awful.");
         ~chatnpc("<p,neutral>Yeah, bunch of no hopers, tried to rob me blind. But I guess that's what you get when you deal with convicts.");
 }
 
-[label,male_slave_unlock]
+[label,mining_slave_male_unlock]
 // https://youtu.be/Q1sqb_d2HGc?si=fy8Ow9JhA5rIiDhS&t=114
 ~chatplayer("<p,neutral>Yeah, okay, let's give it a go.");
 ~chatnpc("<p,neutral>Great!");
-@male_slave_picklock;
+@mining_slave_male_picklock;
 
-[label,male_slave_picklock]
+[label,mining_slave_male_picklock]
 ~mesbox("You use some nearby bits of wood and wire to try and pick the lock.");
 def_int $fail = random(3);
 def_int $attempts = getbit_range(%desertrescue_map_mechanisms, ^desertrescue_lock_attempts1, ^desertrescue_lock_attempts2); // OSRS has this mechanic stored as varb in varp 907, might be rework exclusive?
@@ -116,7 +116,7 @@ if($fail = 0) {
     mes("You fail!");
     ~mesbox("You didn't manage to pick the lock this time, would you like another go?");
     switch_int(~p_choice2("Yeah I'll give it another go.", 1, "I'll try something different instead.", 2)) {
-        case 1 : @male_slave_picklock;
+        case 1 : @mining_slave_male_picklock;
         case 2 :
             mes("You decide to try something else.");
             ~chatnpc("<p,confused>Are you givin' in already?");
@@ -126,7 +126,7 @@ if($fail = 0) {
 } else if ($fail = 1) {
     %desertrescue_map_mechanisms = setbit_range_toint(%desertrescue_map_mechanisms, add($attempts, 1), ^desertrescue_lock_attempts1, ^desertrescue_lock_attempts2);
     mes("You fail!");
-    if(.npc_find(coord, mercenary_1, 10, 0) = true | .npc_find(coord, mercenary_2, 10, 0) = true) {
+    if(.npc_find(coord, desertminingmercenary1, 10, 0) = true | .npc_find(coord, desertminingmercenary2, 10, 0) = true) {
         if_close;
         mes("A nearby guard spots you!");
         p_delay(3);
@@ -140,10 +140,10 @@ if($fail = 0) {
     %desertrescue_progress = ^desertrescue_freed_slave;
     ~mesbox("You hear a satisfying 'click' as you tumble the lock mechanism.");
     ~chatnpc("<p,neutral>Great! You did it! Do you want to trade clothes now?");
-    @multi2("Yes, I'll trade.", male_slave_trade, "No thanks...", male_slave_notrade);
+    @multi2("Yes, I'll trade.", mining_slave_male_trade, "No thanks...", mining_slave_male_notrade);
 }
 
-[label,male_slave_trade]
+[label,mining_slave_male_trade]
 ~chatplayer("<p,neutral>Yes, I'll trade.");
 if((inv_total(inv, desert_shirt) = 0 & inv_total(worn, desert_shirt) = 0) & (inv_total(inv, desert_robe) = 0 & inv_total(worn, desert_robe) = 0) & (inv_total(inv, desert_boots) = 0 & inv_total(worn, desert_boots) = 0)) {
     ~chatnpc("<p,neutral>I need a desert robe, a desert shirt and desert boots if you want these clothes off me.");
@@ -207,20 +207,20 @@ if(inv_total(worn, desert_boots) > 0 & $traded_boots = false) {
     inv_setslot(worn, ^wearpos_feet, slave_boots, 1);
 }
 ~update_bas;
-npc_changetype_keepall(escaping_slave, 200); // 200t in osrs
+npc_changetype_keepall(escaped_slave, 200); // 200t in osrs
 //npc_delay(9); // can't interact for 10t?
-~chatnpc_specific(nc_name(escaping_slave), escaping_slave, "<p,neutral>Right, I'm off! Good luck!");
+~chatnpc_specific(nc_name(escaped_slave), escaped_slave, "<p,neutral>Right, I'm off! Good luck!");
 ~chatplayer("<p,neutral>Yeah, good luck to you too!");
 
-[label,male_slave_notrade]
+[label,mining_slave_male_notrade]
 ~chatplayer("<p,neutral>No thanks...");
 ~chatnpc("<p,neutral>Okay, fair enough, let me know if you change your mind though.");
 
-[label,male_slave_otherthing]
+[label,mining_slave_male_otherthing]
 ~chatplayer("<p,neutral>I need to do some other things first.");
 ~chatnpc("<p,neutral>Okay, fair enough. Let me know when you want to give it another go.");
 
-[label,male_slave_shame]
+[label,mining_slave_male_shame]
 ~chatplayer("<p,neutral>Oh, that's a shame...");
 ~chatplayer("<p,neutral>Still, 'worse things happen at sea right?'");
 ~chatnpc("<p,confused>You've obviously never worked as a slave");
@@ -229,13 +229,13 @@ npc_changetype_keepall(escaping_slave, 200); // 200t in osrs
 ~chatplayer("<p,neutral>Well I suppose I'd better be getting on my way now...");
 ~chatnpc("<p,idle>@dbl@-- The slave nods in agreement and goes back to@dbl@work.");
 
-[opnpc1,escaping_slave]
+[opnpc1,escaped_slave]
 if(%desertrescue_progress >= ^desertrescue_traded_clothes) {
     // this only checks worn
     if(inv_total(worn, slave_shirt) = 0 | inv_total(worn, slave_robe) = 0 | inv_total(worn, slave_boots) = 0) {
-        npc_changetype_keepall(male_slave, ^max_32bit_int);
+        npc_changetype_keepall(mining_slave_male, ^max_32bit_int);
         ~chatnpc("<p,neutral>Oh bother, I was caught by the guards again... Listen, if you can get me some Desert Clothes, I'll trade you for my slaves clothes again.. Do you want to trade?");
-        @multi2("Yes, I'll trade.", male_slave_trade, "No thanks...", male_slave_notrade);
+        @multi2("Yes, I'll trade.", mining_slave_male_trade, "No thanks...", mining_slave_male_notrade);
     } else {
         ~chatnpc("<p,neutral>Not much to do here but mine all day long.");
     }
@@ -243,7 +243,7 @@ if(%desertrescue_progress >= ^desertrescue_traded_clothes) {
     ~chatnpc("<p,neutral>Not much to do here but mine all day long."); // need to confirm idk
 }
 
-[opnpc1,rowdy_slave]
+[opnpc1,slave_rowdy]
 switch_int(random(5)) {
     case 0 : npc_say("Hey, you're in for a good beating!");
     case 1 : npc_say("I'm gonna teach you some respect!");
@@ -253,7 +253,7 @@ switch_int(random(5)) {
 }
 ~npc_retaliate(0);
 
-[ai_queue3,rowdy_slave]
+[ai_queue3,slave_rowdy]
 if (finduid(%npc_aggressive_player) = true) { 
     if(inv_total(inv, slave_shirt) = 0) {
         obj_add(npc_coord, slave_shirt, 1, ^lootdrop_duration);
