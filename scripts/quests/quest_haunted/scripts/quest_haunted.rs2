@@ -189,7 +189,7 @@ if((loc_type = 1to2 & (testbit(%haunted_lever, 0) = ^false & testbit(%haunted_le
     | (loc_type = 5to6 & testbit(%haunted_lever, 3) = ^true)
     | (loc_type = 8to9 & (testbit(%haunted_lever, 4) = ^false & testbit(%haunted_lever, 5) = ^true))
     | (loc_type = 2to5 & (testbit(%haunted_lever, 0) = ^false & testbit(%haunted_lever, 1) = ^false & testbit(%haunted_lever, 2) = ^true & testbit(%haunted_lever, 3) = ^true & testbit(%haunted_lever, 4) = ^false & testbit(%haunted_lever, 5) = ^true))
-    | (loc_type = loc_143 & (testbit(%haunted_lever, 1) = ^false & testbit(%haunted_lever, 3) = ^true & testbit(%haunted_lever, 5) = ^false))
+    | (loc_type = 3to6 & (testbit(%haunted_lever, 1) = ^false & testbit(%haunted_lever, 3) = ^true & testbit(%haunted_lever, 5) = ^false))
     | (loc_type = loc_144 & (testbit(%haunted_lever, 0) = ^true & testbit(%haunted_lever, 1) = ^true & testbit(%haunted_lever, 2) = ^false & testbit(%haunted_lever, 3) = ^false & testbit(%haunted_lever, 4) = ^false & testbit(%haunted_lever, 5) = ^false))
     | (loc_type = loc_145 & ((testbit(%haunted_lever, 2) = ^false & testbit(%haunted_lever, 3) = ^true) | (testbit(%haunted_lever, 0) = ^false & testbit(%haunted_lever, 1) = ^false & testbit(%haunted_lever, 2) = ^true & testbit(%haunted_lever, 3) = ^true & testbit(%haunted_lever, 4) = ^false & testbit(%haunted_lever, 5) = ^true)))) {
     ~open_and_close_door2(loc_1535, ~check_axis(coord, loc_coord, loc_angle), door_open);
