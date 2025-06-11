@@ -117,7 +117,7 @@ if(coordx(coord) < coordx(loc_coord)) {
 mes("You've found a secret door!");
 @manor_bookcase_door(loc_param(end_coord));
 
-[oploc1,loc_160]
+[oploc1,hauntedleverup]
 p_delay(0);
 facesquare(movecoord(coord, 1, 0, 0));
 mes("The lever opens the secret door!");
