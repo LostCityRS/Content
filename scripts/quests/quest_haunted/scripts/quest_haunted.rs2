@@ -63,7 +63,7 @@ mes("You go through the door.");
 sound_synth(locked, 0, 0);
 ~open_and_close_door2(loc_1532, ~check_axis(coord, loc_coord, loc_angle), door_open);
 
-[oploc1,loc_153]
+[oploc1,hauntedfountain]
 anim(human_pickpocket, 0);
 sound_synth(fish_swim, 0, 0);
 p_delay(0);
@@ -96,7 +96,7 @@ inv_del(inv, poison, 1);
 inv_add(inv, poisoned_fish_food, 1);
 mes("You poison the fish food.");
 
-[oplocu,loc_153]
+[oplocu,hauntedfountain]
 if(last_useitem ! poisoned_fish_food) { 
     ~displaymessage(^dm_default);
     return;
