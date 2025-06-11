@@ -138,7 +138,7 @@ p_delay(0);
 // than the bookcases, this is a small workaround
 loc_findallzone(movecoord(coord, 0, 0, -1));
 while (loc_findnext = true) {
-    if(loc_type = loc_155) {
+    if(loc_type = hauntedbookcasel) {
         // Temp note: dur updated
         loc_change(inviswall, 3);
         loc_add(movecoord(loc_coord, 0, 0, -1), loc_157, loc_angle, loc_shape, 3);
