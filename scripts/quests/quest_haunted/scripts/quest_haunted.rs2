@@ -141,11 +141,11 @@ while (loc_findnext = true) {
     if(loc_type = hauntedbookcasel) {
         // Temp note: dur updated
         loc_change(inviswall, 3);
-        loc_add(movecoord(loc_coord, 0, 0, -1), loc_157, loc_angle, loc_shape, 3);
+        loc_add(movecoord(loc_coord, 0, 0, -1), hauntedbookcaseopen, loc_angle, loc_shape, 3);
     } else if(loc_type = hauntedbookcaser) {
         // Temp note: dur updated
         loc_change(inviswall, 3);
-        loc_add(movecoord(loc_coord, 0, 0, 1), loc_157, loc_angle, loc_shape, 3);
+        loc_add(movecoord(loc_coord, 0, 0, 1), hauntedbookcaseopen, loc_angle, loc_shape, 3);
         sound_synth(coffin_open, 0, 0);
     }
 }
