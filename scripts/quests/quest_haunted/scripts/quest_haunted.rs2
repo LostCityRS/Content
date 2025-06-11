@@ -28,10 +28,10 @@ while(loc_findnext = true) {
 }
 sound_synth(door_open, 0, 0);
 
-[oploc1,loc_152]
+[oploc1,hauntedcompostheap]
 ~mesbox("I'm not looking through that with my hands!");
 
-[oplocu,loc_152]
+[oplocu,hauntedcompostheap]
 if(last_useitem ! spade) {
     ~displaymessage(^dm_default);
     return;
