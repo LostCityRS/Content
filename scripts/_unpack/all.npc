@@ -257,11 +257,10 @@ param=attack_anim,human_farmersfork_stab
 param=defend_anim,human_farmersfork_def
 param=attack_sound,staff_stab
 // osrs attack_sound farmersfork_stab
-// runescape classic wander range is 15.
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3114
 
-[thief]
+[thief1]
 name=Thief
 desc=Known for his lightfingered qualities.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
@@ -335,7 +334,7 @@ param=damagetype,^stab_style
 param=attack_anim,human_sword_stab
 param=defend_anim,human_sword_def
 param=attack_sound,stabsword_stab
-// param=defend_sound,
+// param=defend_sound, TODO
 // osrs defend_sound blade4
 category=guard
 // osrs att seq_386 and defend seq_387
@@ -384,14 +383,12 @@ param=magicdefence,-4
 param=rangedefence,15
 param=damagetype,^ranged_style
 param=attack_anim,human_crossbow
-//param=rangeattack_sound,crossbow
+// param=rangeattack_sound,crossbow
 param=proj_launch,crossbowbolt_launch
 param=proj_travel,crossbowbolt_travel
-// param=defend_sound,
 category=guard
-// osrs defend_sound blade4
-// osrs version havent rangeattack sound.
 // osrs stats and Vislvl match 1:1
+// This npc havent any attack sound.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3270
 
 [tramp]
@@ -463,20 +460,21 @@ attack=6
 strength=6
 defence=2
 param=attackrate,5
+// attackbonus is guess. TODO Try get real values
 param=attackbonus,8
 param=strengthbonus,7
 param=stabdefence,12
 param=slashdefence,15
 param=crushdefence,13
 param=magicdefence,3
-// param=rangedefence,
+// rangedefence is guess. TODO Try get real values
+param=rangedefence,6
 param=damagetype,^slash_style
 param=attack_anim,human_axe_hack
 param=defend_anim,human_axe_def
 param=attack_sound,baxe_slash
 category=barbarian
 // animations and taken Gunthor the Brave
-// attack bonus is guess taken from gunthor the brave
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3256
 
 [wizard]
@@ -509,8 +507,8 @@ attack=8
 strength=8
 defence=5
 magic=10
-param=damagetype,^crush_style
 param=magicdefence,3
+param=damagetype,^crush_style
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3257
 
@@ -702,7 +700,7 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_blunt_block
 param=attack_sound,hacksword_slash
-// param=defend_sound,brassclash
+param=defend_sound,brassclash
 // Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3295
 
@@ -745,8 +743,6 @@ param=damagetype,^slash_style
 param=attack_anim,human_axe_hack
 param=defend_anim,human_axe_def
 param=attack_sound,baxe_slash
-// osrs side wc guild forester 
-// osrs defend seq_398 and wander is 4 maxranges is 6.
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3296
 
@@ -793,7 +789,8 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,stabsword_slash
-// param=defend_sound,blade5
+// param=defend_sound, TODO
+// osrs defend_sound blade5
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3297
 
@@ -867,7 +864,6 @@ param=rangedefence,-21
 param=damagetype,^crush_style
 param=defend_sound,female_hit
 param=death_sound,female_death
-// TODO: check dialogues category=citizen
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3299
 
@@ -914,7 +910,8 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,stabsword_slash
-// param=defend_sound,blade5
+// param=defend_sound, TODO
+// osrs defend_sound blade5
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3300
 
 [yanille_watchman]
@@ -947,7 +944,7 @@ param=crushdefence,19
 param=magicdefence,-4
 param=rangedefence,16
 param=damagetype,^crush_style
-// param=defend_sound,
+// param=defend_sound, TODO
 // osrs defend_sound blade3_mail
 // Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5420
@@ -988,7 +985,7 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_slash
-// param=defend_sound,
+// param=defend_sound, TODO
 // osrs defend_sound blade3_mail
 // Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5421
@@ -1063,8 +1060,8 @@ param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
 param=defend_anim,human_blunt_block
 param=attack_sound,baxe_slash
-category=shipyardworker
 // osrs attack_sound warhammer_crush
+category=shipyardworker
 // Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5729
 
@@ -1113,6 +1110,8 @@ walkanim=sheep_walk
 readyanim=sheep_ready
 model1=model_2928_npc
 timer=1
+param=attack_anim,sheep_attack
+param=defend_anim,sheep_block
 param=death_anim,sheep_death
 
 [sheepunsheered]
@@ -1123,6 +1122,8 @@ walkanim=sheep_walk
 readyanim=sheep_ready
 model1=model_2929_npc
 timer=1
+param=attack_anim,sheep_attack
+param=defend_anim,sheep_block
 param=death_anim,sheep_death
 
 [duck]
@@ -1403,6 +1404,7 @@ param=death_drop,babydragon_bones
 huntmode=cowardly
 huntrange=2
 // Stats match osrs version but our version Vislvl is different.
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_241
 
 [red_dragon]
 size=4
@@ -1439,6 +1441,7 @@ param=death_drop,dragon_bones
 huntmode=cowardly
 huntrange=4
 // Stats match osrs version but our version Vislvl is different.
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_249
 
 [black_dragon]
 size=4
@@ -1476,6 +1479,7 @@ param=death_drop,dragon_bones
 huntmode=cowardly
 huntrange=4
 // Stats match osrs version but our version Vislvl is different.
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_252
 
 [blue_dragon]
 size=4
@@ -1512,6 +1516,7 @@ param=death_drop,dragon_bones
 huntmode=cowardly
 huntrange=4
 // Stats match osrs version but our version Vislvl is different.
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_265
 
 [dryhad]
 name=Dryad
@@ -1653,6 +1658,7 @@ param=defend_sound,insect_hit
 param=death_sound,insect_death
 param=death_drop,null
 // osrs stats and Vislvl match 1:1
+// osrs sounds small_spider_attack, small_spider_hit, small_spider_death
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3019
 
 [jungle_spider]
@@ -1795,6 +1801,15 @@ readyanim=lizardman_ready
 op2=Attack
 vislevel=22
 model1=model_2888_npc
+// wanderrange=
+// maxrange=
+// respawnrate=
+// hitpoints=
+// attack=
+// strength=
+// defence=
+// magic=
+// ranged=
 param=attack_anim,lizardman_attack
 param=defend_anim,lizardman_block
 param=death_anim,lizardman_death
@@ -1813,6 +1828,15 @@ readyanim=mummy_ready
 op2=attack
 vislevel=47
 model1=model_2925_npc
+// wanderrange=
+// maxrange=
+// respawnrate=
+// hitpoints=
+// attack=
+// strength=
+// defence=
+// magic=
+// ranged=
 param=attack_anim,mummy_attack
 param=defend_anim,mummy_block
 param=death_anim,mummy_death
@@ -1836,13 +1860,13 @@ attack=13
 strength=16
 defence=14
 param=attackrate,5
-// param=attackbonus,
+// param=attackbonus, TODO
 param=strengthbonus,5
 param=stabdefence,12
 param=slashdefence,14
 param=crushdefence,13
 param=magicdefence,5
-// param=rangedefence,
+// param=rangedefence, TODO
 param=damagetype,^crush_style
 param=attack_anim,orc_attack
 param=defend_anim,orc_block
@@ -1864,8 +1888,8 @@ readyanim=troll_ready
 op2=Attack
 vislevel=69
 model1=model_2930_npc
-// wanderrange=
-// maxrange=
+// wanderrange= TODO
+// maxrange= TODO
 hitpoints=90
 attack=40
 strength=75
@@ -2132,10 +2156,10 @@ param=damagetype,^slash_style
 param=attack_anim,demon_attack
 param=defend_anim,demon_block
 param=death_anim,demon_death
-param=demonbane_vulnerable,yes
 param=attack_sound,demon_attack
 param=defend_sound,demon_hit
 param=death_sound,demon_death
+param=demonbane_vulnerable,yes
 param=death_drop,ashes
 huntmode=cowardly
 huntrange=2
@@ -2165,11 +2189,11 @@ param=magicdefence,-10
 param=damagetype,^slash_style
 param=attack_anim,demon_attack
 param=defend_anim,demon_block
-param=death_anim,demon_death
+param=death_anim,demon_death_greater
+param=attack_sound,black_demon_attack
+param=defend_sound,black_demon_hit
+param=death_sound,black_demon_death
 param=demonbane_vulnerable,yes
-param=attack_sound,demon_attack
-param=defend_sound,demon_hit
-param=death_sound,demon_death
 param=death_drop,ashes
 huntmode=cowardly
 huntrange=3
@@ -2203,10 +2227,10 @@ param=damagetype,^slash_style
 param=attack_anim,demon_attack
 param=defend_anim,demon_block
 param=death_anim,demon_death
+param=attack_sound,demon_attack
+param=defend_sound,demon_hit
+param=death_sound,demon_death
 param=demonbane_vulnerable,yes
-param=attack_sound,black_demon_attack
-param=defend_sound,black_demon_hit
-param=death_sound,black_demon_death
 param=death_drop,ashes
 category=black_demon
 huntmode=cowardly
@@ -2628,6 +2652,7 @@ readyanim=dog_ready
 vislevel=hide
 model1=model_2935_npc
 param=death_anim,dog_death
+param=death_sound,wolf_death
 
 [guarddog]
 name=Guard dog
@@ -2649,11 +2674,12 @@ param=damagetype,^crush_style
 param=attack_anim,dog_attack
 param=defend_anim,dog_block
 param=death_anim,dog_death
-param=attack_sound,wolf_attack2
+param=attack_sound,wolf_attack
 param=defend_sound,wolf_hit
+param=death_sound,wolf_death
 huntmode=cowardly
 huntrange=1
-//TODO sounds are guesses need confirm..
+// TODO sounds are guess need confirm.
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_114
 
@@ -2917,6 +2943,7 @@ param=death_drop,null
 huntmode=cowardly
 huntrange=2
 // osrs stats and Vislvl match 1:1
+// osrs sounds scorpion_attack, scorpion_hit, scorpion_death
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3024
 
 [poison_scorpion]
@@ -2951,6 +2978,7 @@ param=poison_severity,15
 huntmode=cowardly
 huntrange=2
 // osrs stats and Vislvl match 1:1
+// osrs sounds scorpion_attack, scorpion_hit, scorpion_death
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3025
 
 [smallscorpion]
@@ -2981,6 +3009,7 @@ param=death_drop,null
 huntmode=cowardly
 huntrange=1
 // Stats match osrs version but our version Vislvl is different.
+// osrs sounds scorpion_attack, scorpion_hit, scorpion_death
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3026
 
 [firegiant]
@@ -3229,10 +3258,11 @@ param=attack_anim,dwarf_attack
 param=defend_anim,dwarf_block
 param=death_anim,dwarf_death
 param=attack_sound,baxe_crush
-// param=defend_sound,
-// param=death_sound,
+// param=defend_sound, TODO
+// param=death_sound, TODO
+// osrs sounds dwarf_hit, dwarf_death
 // osrs stats and Vislvl match 1:1
-// TODO SOUNDS
+// TODO Try to find out what sounds dwarf used as defend and death sounds in 2004-2005.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_290
 
 [dwarf_chaos]
@@ -3273,13 +3303,13 @@ param=attack_anim,dwarf_attack
 param=defend_anim,dwarf_block
 param=death_anim,dwarf_death
 param=attack_sound,baxe_crush
-// param=defend_sound,
-// param=death_sound,
+// param=defend_sound, TODO
+// param=death_sound, TODO
+// osrs sounds warhammer_crush, dwarf_hit, dwarf_death
 huntmode=cowardly
 huntrange=1
-// Osrs sounds warhammer_crush, dwarf_hit, dwarf_death
 // osrs stats and Vislvl match 1:1
-// TODO SOUNDS
+// TODO Try to find out what sounds dwarf used as defend and death sounds in 2004-2005.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_291
 
 [dwarf_mountain]
@@ -3311,11 +3341,11 @@ param=attack_anim,dwarf_attack
 param=defend_anim,dwarf_block
 param=death_anim,dwarf_death
 param=attack_sound,baxe_crush
-// param=defend_sound,
-// param=death_sound,
+// param=defend_sound, TODO
+// param=death_sound, TODO
 // osrs sounds warhammer_crush, dwarf_hit, dwarf_death
 // osrs stats and Vislvl match 1:1
-// TODO SOUNDS
+// TODO Try to find out what sounds dwarf used as defend and death sounds in 2004-2005.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_292
 
 [dwarf_mountain2]
@@ -3347,9 +3377,10 @@ param=attack_anim,dwarf_attack
 param=defend_anim,dwarf_block
 param=death_anim,dwarf_death
 param=attack_sound,baxe_crush
-// param=defend_sound,
-// param=death_sound,
-// params stats is competely guess. the npc data no longer exists in the cache.. mostly taken other dwarves.
+// param=defend_sound, TODO
+// param=death_sound, TODO
+// TODO Try to find out what sounds dwarf used as defend and death sounds in 2004-2005.
+// params, stats, animations, sounds is competely guess. the npc data no longer exists in the cache.. mostly taken other dwarves.
 
 [hobgoblin_unarmed]
 walkanim=hobgoblin_walk
@@ -3455,11 +3486,11 @@ param=attack_anim,human_axe_chop
 param=defend_anim,human_axe_def
 param=death_anim,human_transdeath
 param=attack_sound,mace_crush
-// param=defend_sound,blade5
+// param=defend_sound, TODO
+// osrs sounds warhammer_crush, blade5
 huntmode=cowardly
 huntrange=5
 // hunt - https://www.youtube.com/watch?v=T2ztjZEch5Y&t=153s
-// osrs sound attack warhammer_crush
 // Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2840
 
@@ -3707,10 +3738,11 @@ param=damagetype,^stab_style
 param=attack_anim,unicorn_attack
 param=defend_anim,unicorn_block
 param=death_anim,unicorn_death
-param=attack_sound,horse_hit
+param=attack_sound,cow_attack
 param=defend_sound,horse_hit
 huntmode=cowardly
 huntrange=2
+// param=retreat, TODO
 category=unicorn
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2849
@@ -3801,12 +3833,13 @@ param=damagetype,^crush_style
 param=attack_anim,souless_attack
 param=defend_anim,souless_block
 param=death_anim,souless_death
-// TODO param=attack_sound,
-// TODO param=defend_sound,
-// TODO param=death_sound,
+param=attack_sound,zombie_attack
+param=defend_sound,zombie_hit
+param=death_sound,zombie_death
 param=retreat,9
 huntmode=cowardly
 huntrange=1
+// osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_508
 
 [wolfpack_leader_whiter]
@@ -3910,6 +3943,7 @@ param=death_drop,null
 huntmode=cowardly
 huntrange=2
 // osrs stats and Vislvl match 1:1
+// osrs sounds scorpion_attack, scorpion_hit, scorpion_death
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3027
 
 [icewarrior_queen]
@@ -4251,8 +4285,8 @@ attack=17
 strength=17
 defence=14
 magic=22
-param=damagetype,^crush_style
 param=magicdefence,3
+param=damagetype,^crush_style
 huntmode=ranged
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_510
@@ -4317,8 +4351,8 @@ attack=5
 strength=2
 defence=5
 magic=6
-param=damagetype,^crush_style
 param=magicdefence,3
+param=damagetype,^crush_style
 huntmode=ranged
 huntrange=3
 // osrs stats and Vislvl match 1:1
@@ -4785,6 +4819,8 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_slash
+param=defend_sound,female_hit
+param=death_sound,female_death
 category=pirate
 // Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_524
@@ -4824,7 +4860,6 @@ param=defend_anim,human_sword_def
 param=attack_sound,hacksword_stab
 // only spawns in wilderness, might be cowardly
 huntmode=cowardly
-//huntmode=aggressive_melee
 huntrange=3
 members=yes
 // osrs stats and Vislvl match 1:1
@@ -5422,18 +5457,19 @@ attack=63
 defence=63
 strength=63
 param=attackrate,5
-// param=attackbonus,
+// param=attackbonus, TODO
 param=strengthbonus,10
 param=stabdefence,60
 param=slashdefence,50
 param=crushdefence,42
-// param=rangedefence,
+// param=rangedefence, TODO
 param=damagetype,^crush_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_slash
-param=defend_sound,blade3
-// seqs and sounds param is guess
+// param=defend_sound, TODO
+// osrs defend_sound blade3
+// all are guess information taken from the paladin.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1144
 
 [mguild_dwarf1]
@@ -5634,8 +5670,10 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,stabsword_slash
-param=defend_sound,animated_hit
-param=death_sound,animated_death
+param=defend_sound,brassclash
+param=death_sound,swordclash2
+// osrs sounds brassclash, swordclash2
+// original sounds?? animated_hit, animated_death
 param=death_drop,null
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5043
@@ -5838,9 +5876,10 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,stabsword_slash
-// param=defend_sound,
+// param=defend_sound, TODO
 // osrs defend_sound big_bar_mail
 // osrs stats and Vislvl match 1:1
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4926
 
 [green_dragon]
 size=4
@@ -5881,8 +5920,8 @@ huntrange=4
 // stats match osrs 1:1 but defence stats don't.
 // but the defense stats matches according to this site 1:1
 // http://web.archive.org/web/20190722072117/https://oldschool.runescape.wiki/w/Green_dragon
-// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc
-// this variation have old stats npc_13010
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_260
+// and this variation have old stats npc_13010
 
 [cow3]
 size=2
@@ -5956,9 +5995,9 @@ attack=24
 strength=24
 defence=24
 magic=80
-timer=20
-param=damagetype,^crush_style
 param=magicdefence,3
+param=damagetype,^crush_style
+timer=20
 // Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2954
 
@@ -5993,6 +6032,6 @@ param=death_drop,null
 // Tested this npc in osrs, doesnt seem to poison? Seems like the chests have a chance to poison
 huntmode=cowardly
 huntrange=1
-// osrs sounds big_spider_attack, big_spider_hit, big_spider_death
 // Stats match osrs version but our version Vislvl is different.
+// osrs sounds big_spider_attack, big_spider_hit, big_spider_death
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5373

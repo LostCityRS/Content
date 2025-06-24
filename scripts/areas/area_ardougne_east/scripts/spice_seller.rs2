@@ -1,4 +1,4 @@
-[opnpc1,spice_seller]
+[opnpc1,spice_merchant]
 if (getqueue(stolen_from_stall_spice) > 0) {
     @stall_owner_alert_guards;
 }
@@ -12,7 +12,7 @@ if($option = 1) {
     ~chatplayer("<p,neutral>No thanks.");
 }
 
-[opnpc3,spice_seller]
+[opnpc3,spice_merchant]
 if (getqueue(stolen_from_stall_spice) > 0) {
     @stall_owner_alert_guards;
 }

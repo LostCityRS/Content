@@ -120,7 +120,7 @@ param=death_drop,null
 huntmode=cowardly
 huntrange=1
 // Stats match osrs version but our version Vislvl is different.
-// wander and maxrange data taken rs3.
+// wander and maxrange data taken rs3. // osrs wanderrange 6 maxrange 8
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4533
 
 [blessed_giantrat]
@@ -383,9 +383,9 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_slash
-param=defend_sound,blade3
-// TODO monster examine spell
-// This npc's stats and animations and sounds are probably identical to a normal paladin. This still needs to be confirmed..
+// param=defend_sound, TODO
+// osrs defend_sound blade4
+// Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8987
 
 [upass_paladin2]
@@ -429,9 +429,9 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_slash
-param=defend_sound,blade3
-// TODO monster examine spell
-// This npc's stats and animations and sounds are probably identical to a normal paladin. This still needs to be confirmed..
+// param=defend_sound, TODO
+// osrs defend_sound blade4
+// Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8988
 
 [upass_paladin3]
@@ -475,9 +475,9 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_slash
-param=defend_sound,blade3
-// TODO monster examine spell
-// This npc's stats and animations and sounds are probably identical to a normal paladin. This still needs to be confirmed..
+// param=defend_sound, TODO
+// osrs defend_sound blade4
+// Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8989
 
 [soulman]
@@ -654,7 +654,8 @@ param=death_sound,insect_death
 param=death_drop,null
 huntrange=5
 huntmode=cowardly
-// TODO monster examine spell
+// Stats match osrs version but our version Vislvl is different.
+// osrs sounds kilrag_attack, kilrag_hit, kilrag-death
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8993
 
 [othainian]
@@ -668,6 +669,8 @@ resizeh=110
 resizev=110
 vislevel=91
 model1=model_2942_npc
+wanderrange=7
+maxrange=9
 respawnrate=60
 hitpoints=87
 attack=76
@@ -677,15 +680,15 @@ param=magicdefence,-10
 param=damagetype,^slash_style
 param=attack_anim,demon_attack
 param=defend_anim,demon_block
-param=death_anim,demon_death
+param=death_anim,demon_death_greater
+param=attack_sound,black_demon_attack
+param=defend_sound,black_demon_hit
+param=death_sound,black_demon_death
 param=demonbane_vulnerable,yes
-param=attack_sound,demon_attack
-param=defend_sound,demon_hit
-param=death_sound,demon_death
 param=death_drop,ashes
 huntrange=3
 huntmode=cowardly
-// TODO monster examine spell
+// osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8994
 
 [doomion]
@@ -699,6 +702,8 @@ resizeh=110
 resizev=110
 vislevel=91
 model1=model_2942_npc
+wanderrange=7
+maxrange=9
 respawnrate=60
 hitpoints=87
 attack=76
@@ -708,15 +713,15 @@ param=magicdefence,-10
 param=damagetype,^slash_style
 param=attack_anim,demon_attack
 param=defend_anim,demon_block
-param=death_anim,demon_death
+param=death_anim,demon_death_greater
+param=attack_sound,black_demon_attack
+param=defend_sound,black_demon_hit
+param=death_sound,black_demon_death
 param=demonbane_vulnerable,yes
-param=attack_sound,demon_attack
-param=defend_sound,demon_hit
-param=death_sound,demon_death
 param=death_drop,ashes
 huntrange=3
 huntmode=cowardly
-// TODO monster examine spell
+// osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8995
 
 [holthion]
@@ -730,6 +735,8 @@ resizeh=110
 resizev=110
 vislevel=91
 model1=model_2942_npc
+wanderrange=7
+maxrange=9
 respawnrate=60
 hitpoints=87
 attack=76
@@ -739,15 +746,15 @@ param=magicdefence,-10
 param=damagetype,^slash_style
 param=attack_anim,demon_attack
 param=defend_anim,demon_block
-param=death_anim,demon_death
+param=death_anim,demon_death_greater
+param=attack_sound,black_demon_attack
+param=defend_sound,black_demon_hit
+param=death_sound,black_demon_death
 param=demonbane_vulnerable,yes
-param=attack_sound,demon_attack
-param=defend_sound,demon_hit
-param=death_sound,demon_death
 param=death_drop,ashes
 huntrange=3
 huntmode=cowardly
-// TODO monster examine spell
+// osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8996
 
 [ibanmonk]
@@ -780,7 +787,7 @@ attack=8
 strength=8
 defence=12
 param=damagetype,^crush_style
-// TODO monster examine spell
+// osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8997
 
 [iban]
@@ -850,6 +857,7 @@ param=defend_sound,insect_hit
 param=death_sound,insect_death
 param=death_drop,null
 // osrs stats and Vislvl match 1:1
+// osrs sounds small_spider_attack, small_spider_hit, small_spider_death
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4561
 
 [non_combat_bat]

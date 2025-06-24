@@ -182,11 +182,10 @@ param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
 param=defend_anim,human_blunt_block
 param=attack_sound,mace_crush
-// param=defend_sound,
+// param=defend_sound, TODO
 category=guard
-// osrs attack_sound warhammer_crush
-// osrs defend_sound blade2_mail
 // osrs stats and Vislvl match 1:1
+// osrs sound warhammer_crush, blade2_mail
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5418
 
 [brother_kojo]
@@ -393,7 +392,7 @@ param=shop_title,Ardougne Gem Stall.
 wanderrange=0
 moverestrict=nomove
 
-[baker]
+[baker_merchant]
 vislevel=hide
 name=Baker
 desc=So where are the butcher and the candlestick maker?
@@ -427,7 +426,7 @@ param=shop_delta,20
 param=shop_title,Ardougne Baker's Stall.
 wanderrange=2
 
-[spice_seller]
+[spice_merchant]
 vislevel=hide
 name=Spice seller
 desc=Has a very exotic aroma about him.
@@ -465,7 +464,7 @@ param=shop_delta,20
 param=shop_title,Ardougne Spice Stall.
 wanderrange=2
 
-[fur_trader]
+[fur_merchant]
 vislevel=hide
 name=Fur trader
 desc=Knows how to keep warm in the winter.

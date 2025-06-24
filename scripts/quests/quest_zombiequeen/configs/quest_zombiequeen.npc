@@ -38,9 +38,11 @@ model1=model_2962_npc
 model2=model_2964_npc
 model3=model_2965_npc
 head1=model_27_npc_head
-param=undead,^true
+wanderrange=0
+moverestrict=nomove
 param=death_anim,ghost_death
 param=death_sound,ghost_death
+param=undead,^true
 
 [zqskeleton_unarmed]
 name=Undead One
@@ -225,10 +227,11 @@ model1=model_2960_npc
 model2=model_2963_npc
 model3=model_2965_npc
 head1=model_113_idk_head
-param=undead,^true
+wanderrange=3
 param=damagetype,^slash_style
 param=death_anim,ghost_death
 param=death_sound,ghost_death
+param=undead,^true
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5352
 
 [zq_mainzombie1]
@@ -304,7 +307,7 @@ param=defend_sound,zombie_hit
 param=death_sound,zombie_death
 param=undead,^true
 param=death_drop,null
-// osrs attack sound stabsword_slash after graphics update
+// osrs attack_sound stabsword_slash after graphics update
 // Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5354
 

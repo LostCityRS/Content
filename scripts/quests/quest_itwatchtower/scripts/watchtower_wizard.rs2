@@ -127,7 +127,7 @@ switch_int(%itwatchtower_progress) {
         switch_int(~p_choice2("I have lost the relic you gave me.", 1, "I will find my way in, no problem.", 2)) {
             case 1 :
                 ~chatplayer("<p,sad>I have lost the relic you gave me.");
-                if(inv_total(inv, ogrerelic) > 0) { // did bank and freesapce checks exist originally? classic doesn't have them
+                if(inv_total(inv, ogrerelic) > 0) { // did bank and freespace checks exist originally? classic doesn't have them
                     ~chatnpc("<p,angry>Have you gone mad? I can see you have it with you!");
                     return;
                 }

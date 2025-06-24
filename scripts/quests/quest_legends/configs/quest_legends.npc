@@ -143,9 +143,10 @@ param=damagetype,^crush_style
 param=attack_anim,human_staff_pummel
 param=defend_anim,human_staff_block
 param=attack_sound,staff_hit
-// osrs attack sound staff_double
+// osrs attack_sound staff_double
 // TODO: check respawn time.
 // osrs stats and Vislvl match 1:1
+// stats taken here https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_
 
 [ungadulu_bad]
 name=Ungadulu
@@ -192,7 +193,7 @@ param=damagetype,^crush_style
 param=attack_anim,human_staff_pummel
 param=defend_anim,human_staff_block
 param=attack_sound,staff_hit
-// osrs attack sound staff_double
+// osrs attack_sound staff_double
 // stats taken here https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3958
 // Stats match osrs version but our version Vislvl is different.
 
@@ -240,6 +241,7 @@ param=attack_anim,human_spear_spike
 param=defend_anim,human_spear_def
 param=attack_sound,staff_stab
 // Stats match osrs version but our version Vislvl is different.
+// stats taken here https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_
 
 [nezikchened]
 name=Nezikchened
@@ -256,6 +258,8 @@ recol2d=1057
 recol3s=0
 recol3d=16417
 model1=model_2942_npc
+maxrange=41
+attackrange=10
 hitpoints=150
 attack=165
 strength=168
@@ -268,15 +272,14 @@ param=attack_anim,demon_attack
 param=defend_anim,demon_block
 param=death_anim,demon_death
 param=demonbane_vulnerable,yes
-param=attack_sound,black_demon_attack
-param=defend_sound,black_demon_hit
-param=death_sound,black_demon_death
+param=attack_sound,demon_attack
+param=defend_sound,demon_hit
+param=death_sound,demon_death
 param=death_drop,null
 huntmode=nezikchened
 huntrange=5
-maxrange=41
-attackrange=10
 // osrs stats and Vislvl match 1:1
+// stats taken here https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3962
 
 [viyeldi]
 name=Viyeldi
@@ -312,7 +315,7 @@ param=damagetype,^crush_style
 param=attack_anim,human_staff_pummel
 param=defend_anim,human_staff_block
 param=attack_sound,staff_hit
-// osrs attack sound staff_double ??
+// osrs attack_sound staff_double ??
 // defend animation https://discord.com/channels/953326730632904844/1126857544523063367/1300620868782788709
 
 [san_tojalon]
@@ -362,6 +365,7 @@ param=death_drop,null
 huntmode=aggressive_melee
 huntrange=1
 // Stats match osrs version but our version Vislvl is different.
+// stats taken here https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3964
 
 [irvig_senay]
 name=Irvig Senay
@@ -409,6 +413,7 @@ param=death_drop,null
 huntmode=aggressive_melee
 huntrange=1
 // osrs stats and Vislvl match 1:1
+// stats taken here https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3965
 
 [ranalph_devere]
 name=Ranalph Devere
@@ -457,6 +462,7 @@ param=death_drop,null
 huntmode=aggressive_melee
 huntrange=1
 // Stats match osrs version but our version Vislvl is different.
+// stats taken here https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3966
 
 [boulder_legends]
 name=Boulder

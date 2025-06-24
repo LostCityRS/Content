@@ -247,7 +247,9 @@ model8=model_246_idk
 model9=model_184_npc
 head1=model_63_idk_head
 wanderrange=2
-attackrange=5
+maxrange=4
+attackrange=6
+blockwalk=all
 hitpoints=59
 attack=78
 strength=78
@@ -259,9 +261,10 @@ param=slashdefence,37
 param=crushdefence,35
 param=magicdefence,-7
 param=rangedefence,35
+param=damagetype,^crush_style
+param=defend_anim,null
 param=attack_sound,giant_attack
 param=defend_sound,giant_hit
 param=death_sound,giant_death
-// TODO monster examine spell
+// Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3448
-// Vislvl not match with osrs
