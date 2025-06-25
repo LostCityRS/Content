@@ -17,6 +17,9 @@ if ($attackrange <= 1 | $distance > $attackrange) {
 @pvp_combat_start;
 
 [label,pvp_combat_start]
+if (~sa_enabled = true) {
+    @pvp_special_attack;
+}
 if (%damagetype = ^ranged_style) {
     @pvp_ranged_attack;
 }
