@@ -80,6 +80,9 @@ if (~duel_arena_flower_power_check = true) {
 [if_button,duel_select_type:obstacles]
 ~toggle_duel_setting(^obstacles);
 
+[if_button,duel_select_type:no_specs]
+~toggle_duel_setting(^no_specs);
+
 
 [proc,toggle_duel_setting](int $setting)
 %duel_settings = togglebit(%duel_settings, $setting);
@@ -257,6 +260,17 @@ if (testbit(%duel_settings, ^no_magic) = ^true) {
 if (testbit(%duel_settings, ^flower_power) = ^true) {
     mes("This is a 'flower power' duel. You can only use flowers."); // guess based off of 2006 vid
     // 2006: "This is a 'fun weapon' duel. You can only use flowers or a rubber|chicken."
+    return(false);
+}
+return(true);
+
+[proc,duel_arena_spec_check]()(boolean)
+if (~in_duel_arena(coord) = false) {
+    return(true);
+}
+if (testbit(%duel_settings, ^no_specs) = ^true) {
+    mes("Use of special attacks has been turned off for this duel."); // https://youtu.be/YkJQDvB14-U?t=327
+    %sa_enabled = ^false;
     return(false);
 }
 return(true);

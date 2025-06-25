@@ -1,0 +1,20 @@
+[label,pvp_special_attack]
+if (%action_delay > map_clock) {
+    p_opplayer(2);
+    return;
+}
+if (stat(hitpoints) = 0) {
+    return;
+}
+if (.%death = ^true) {
+    p_stopaction;
+    return;
+}
+if (~sa_enough_energy = false) {
+    return;
+}
+if (~duel_arena_spec_check = false) {
+    return;
+}
+switch_obj(inv_getobj(worn, ^wearpos_rhand)) {
+}

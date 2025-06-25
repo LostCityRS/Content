@@ -55,6 +55,9 @@ if (%sa_enabled = ^false) {
 if (~sa_enough_energy = false) {
     return;
 }
+if (~duel_arena_spec_check = false) {
+    return;
+}
 @toggle_sa;
 [if_button,combat_crossbow:specbar] @toggle_sa;
 [if_button,combat_bow:specbar] @toggle_sa;
