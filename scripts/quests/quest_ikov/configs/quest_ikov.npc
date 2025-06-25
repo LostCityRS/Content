@@ -41,10 +41,9 @@ param=rangedefence,4
 param=damagetype,^stab_style
 param=attack_anim,human_sword_stab
 param=defend_anim,human_sword_def
-param=attack_sound,hacksword_stab
-// I used Thug npc sound and animation data with this npc
-// TODO monster examine spell
-// if these stats are correct then they match 1:1 with Vislvl
+param=attack_sound,stabsword_stab
+// animations is guess.
+// osrs stats and Vislvl match 1:1
 // https://oldschool.runescape.wiki/w/Lucien#Attackable_(disguised)
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_13607
 
@@ -108,6 +107,7 @@ model10=model_523_npc
 model11=model_3330_obj_wear
 head1=model_52_idk_head
 head2=model_82_idk_head
+blockwalk=all
 respawnrate=100
 hitpoints=50
 attack=37
@@ -161,6 +161,7 @@ model8=model_482_npc
 model9=model_518_obj_wear
 model10=model_523_npc
 head1=model_113_idk_head
+blockwalk=all
 respawnrate=100
 hitpoints=40
 attack=37
@@ -179,8 +180,8 @@ param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,stabsword_slash
 param=defend_sound,steel2
-param=death_sound,female_death
 category=guardian_of_armadyl
+// this npc havent female_death sound...
 // Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3446
 
