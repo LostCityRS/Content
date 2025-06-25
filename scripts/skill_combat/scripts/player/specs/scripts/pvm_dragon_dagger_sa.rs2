@@ -1,11 +1,4 @@
 [label,pvm_dragon_dagger_sa]
-def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
-~set_sa_vars(oc_param($weapon, sa_energy));
-
-p_opnpc(2);
-
-%action_delay = add(map_clock, oc_param($weapon, attackrate));
-
 spotanim_pl(spotanim_252, 96, 0);
 anim(seq_1062, 0);
 sound_synth(puncture, 0, 0);

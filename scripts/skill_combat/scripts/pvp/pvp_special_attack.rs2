@@ -16,6 +16,18 @@ if (~sa_enough_energy = false) {
 if (~duel_arena_spec_check = false) {
     return;
 }
+if (~duel_arena_melee_check = false) {
+    return;
+}
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+~set_sa_vars(oc_param($weapon, sa_energy));
+
+p_opplayer(2);
+~set_pk_vars;
+
+%action_delay = add(map_clock, oc_param($weapon, attackrate));
 switch_obj(inv_getobj(worn, ^wearpos_rhand)) {
     case dragon_dagger, dragon_dagger_p : @pvp_dragon_dagger_sa;
+    case dragon_longsword : @pvp_dragon_longsword_sa;
+    case dragon_mace : @pvp_dragon_mace_sa;
 }

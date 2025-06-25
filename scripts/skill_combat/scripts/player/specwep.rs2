@@ -51,18 +51,59 @@ if (%sa_enabled = ^false) {
 
 [if_button,combat_blunt:specbar] @toggle_sa;
 [if_button,combat_axe:specbar]
-// order is guessed
-if (~sa_enough_energy = false) {
-    return;
-}
+// order is guessed (based off OSRS)
 if (~duel_arena_spec_check = false) {
     return;
 }
+if (~sa_enough_energy = false) {
+    return;
+}
+if(inv_getobj(worn, ^wearpos_rhand) = dragon_battleaxe) {
+    if(p_finduid(uid) = true) { // strongqueued in osrs, assuming its like settings stuff and doesnt queue
+        %sa_energy = sub(%sa_energy, 1000);
+        say("Raarrrrrgggggghhhhhhh!");
+        anim(seq_1056, 0);
+        spotanim_pl(spotanim_246, 0, 0);
+        def_int $drained_attack = calc(stat(attack) / 10);
+        def_int $drained_defence = calc(stat(defence) / 10);
+        def_int $drained_ranged = calc(stat(ranged) / 10);
+        def_int $drained_magic = calc(stat(magic) / 10);
+        def_int $sum = calc($drained_attack + $drained_defence + $drained_ranged + $drained_magic);
+        sound_synth(rampage, 0, 0);
+        stat_drain(attack, $drained_attack, 0);
+        stat_drain(defence, $drained_defence, 0);
+        stat_drain(ranged, $drained_ranged, 0);
+        stat_drain(magic, $drained_magic, 0);
+        stat_boost(strength, calc(10 + ($sum / 4)), 0);
+    }
+    return;
+}
 @toggle_sa;
+
 [if_button,combat_crossbow:specbar] @toggle_sa;
 [if_button,combat_bow:specbar] @toggle_sa;
 [if_button,combat_stabsword:specbar] @toggle_sa;
-[if_button,combat_hacksword:specbar] @toggle_sa;
+
+[if_button,combat_hacksword:specbar] 
+if (~duel_arena_spec_check = false) {
+    return;
+}
+if (~sa_enough_energy = false) {
+    return;
+}
+if(inv_getobj(worn, ^wearpos_rhand) = excalibur) {
+    if(p_finduid(uid) = true) { // strongqueued in osrs, assuming its like settings stuff and doesnt queue
+        %sa_energy = sub(%sa_energy, 1000);
+        say("For Camelot!");
+        anim(seq_1057, 0);
+        spotanim_pl(spotanim_247, 0, 0);
+        sound_synth(sanctuary, 0, 0);
+        stat_boost(defence, 8, 0);
+    }
+    return;
+}
+@toggle_sa;
+
 [if_button,combat_spiked:specbar] @toggle_sa;
 [if_button,combat_thrown:specbar] @toggle_sa;
 [if_button,combat_spear:specbar] @toggle_sa;
