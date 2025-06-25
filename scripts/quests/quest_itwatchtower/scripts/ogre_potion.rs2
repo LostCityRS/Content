@@ -15,8 +15,9 @@ if(last_useitem = vial_water | last_useitem = guamvial) {
         return;
     }
     @ogrepotion_add_jangerberries(last_useitem);
+} else {
+  ~attempt_brew_potion(last_useslot, last_slot);
 }
-~displaymessage(^dm_default);
 
 [opheldu,jangervial]
 if(last_useitem ! guam_leaf & last_useitem ! ground_bat_bones) {

@@ -57,7 +57,7 @@ if (%mcannon_progress < ^mcannon_complete) {
 }
 // test: after deleting the cannon with a loc. This message still persists, Meaning they dont loc_find for it!
 if (%mcannon_coord ! null) { 
-    mes("You cannon construct more than one Cannon at a time."); // osrs
+    mes("You cannot construct more than one Cannon at a time."); // osrs
     mes("If you have lost your Cannon, go and see the Dwarf Cannon engineer."); // osrs
     return;
 }

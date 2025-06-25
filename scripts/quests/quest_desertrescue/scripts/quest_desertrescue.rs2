@@ -821,7 +821,7 @@ if(inv_total(inv, thanainabarrel) > 0) {
     ~chatnpc_specific("Ana (in a Barrel)", anabarrel, "<p,idle>There isn't enough space for both you and this barrel in the cart.");
     return;
 }
-if(random(3) = 0) {
+if(stat_random(agility, 100, 250) = true) {
     mes("You fail to fit yourself into the cart in time before it starts it's journey.");
     mes("You fall and hurt yourself.");
     ~damage_self(2);

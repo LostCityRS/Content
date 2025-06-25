@@ -107,13 +107,25 @@ switch_int(~p_choice2("It's funny you should say that...", 1, "That sounds awful
 
 [label,mining_slave_male_picklock]
 ~mesbox("You use some nearby bits of wood and wire to try and pick the lock.");
-def_int $fail = random(3);
 def_int $attempts = getbit_range(%desertrescue_map_mechanisms, ^desertrescue_lock_attempts1, ^desertrescue_lock_attempts2); // OSRS has this mechanic stored as varb in varp 907, might be rework exclusive?
-if($attempts = 2) $fail = add($fail, 2);
-// you can get caught by guards first time in osrs, in rsc (at least openrsc) its always on 2nd attempt
-if($fail = 0) {
+if(stat_random(thieving, 111, 250) = false) {
     %desertrescue_map_mechanisms = setbit_range_toint(%desertrescue_map_mechanisms, add($attempts, 1), ^desertrescue_lock_attempts1, ^desertrescue_lock_attempts2);
     mes("You fail!");
+    // you can get caught by guards first time in osrs, in rsc (at least openrsc) its always on 2nd attempt
+    if ($attempts >= 2) {
+        if(.npc_find(coord, desertminingmercenary1, 10, 0) = true | .npc_find(coord, desertminingmercenary2, 10, 0) = true) {
+            if_close;
+            %desertrescue_map_mechanisms = setbit_range_toint(%desertrescue_map_mechanisms, 0, ^desertrescue_lock_attempts1, ^desertrescue_lock_attempts2);
+            mes("A nearby guard spots you!");
+            p_delay(3);
+            npc_say("Oh oh!");
+            .npc_say("Oi, what are you two doing?");
+            mes("Slave: Oh oh!");
+            mes("Guard: Oi, what are you two doing?");
+            ~desertcamp_guard_search;
+            return;
+        }
+    }
     ~mesbox("You didn't manage to pick the lock this time, would you like another go?");
     switch_int(~p_choice2("Yeah I'll give it another go.", 1, "I'll try something different instead.", 2)) {
         case 1 : @mining_slave_male_picklock;
@@ -122,19 +134,6 @@ if($fail = 0) {
             ~chatnpc("<p,confused>Are you givin' in already?");
             ~chatplayer("<p,quiz>I just want to try something else.");
             ~chatnpc("<p,bored>Okay, if you want to try again, let me know.");
-    }
-} else if ($fail = 1) {
-    %desertrescue_map_mechanisms = setbit_range_toint(%desertrescue_map_mechanisms, add($attempts, 1), ^desertrescue_lock_attempts1, ^desertrescue_lock_attempts2);
-    mes("You fail!");
-    if(.npc_find(coord, desertminingmercenary1, 10, 0) = true | .npc_find(coord, desertminingmercenary2, 10, 0) = true) {
-        if_close;
-        mes("A nearby guard spots you!");
-        p_delay(3);
-        npc_say("Oh oh!");
-        .npc_say("Oi, what are you two doing?");
-        mes("Slave: Oh oh!");
-        mes("Guard: Oi, what are you two doing?");
-        ~desertcamp_guard_search;
     }
 } else {
     %desertrescue_progress = ^desertrescue_freed_slave;
@@ -147,25 +146,18 @@ if($fail = 0) {
 ~chatplayer("<p,neutral>Yes, I'll trade.");
 if((inv_total(inv, desert_shirt) = 0 & inv_total(worn, desert_shirt) = 0) & (inv_total(inv, desert_robe) = 0 & inv_total(worn, desert_robe) = 0) & (inv_total(inv, desert_boots) = 0 & inv_total(worn, desert_boots) = 0)) {
     ~chatnpc("<p,neutral>I need a desert robe, a desert shirt and desert boots if you want these clothes off me.");
-    return;
 } else if((inv_total(inv, desert_shirt) = 0 & inv_total(worn, desert_shirt) = 0) & (inv_total(inv, desert_robe) = 0 & inv_total(worn, desert_robe) = 0)) {
     ~chatnpc("<p,neutral>I need a desert robe and a desert shirt if you want these clothes off me.");
-    return;
 } else if((inv_total(inv, desert_shirt) = 0 & inv_total(worn, desert_shirt) = 0) & (inv_total(inv, desert_boots) = 0 & inv_total(worn, desert_boots) = 0)) {
     ~chatnpc("<p,neutral>I need a desert shirt and desert boots if you want these clothes off me.");
-    return;
 } else if((inv_total(inv, desert_robe) = 0 & inv_total(worn, desert_robe) = 0) & (inv_total(inv, desert_boots) = 0 & inv_total(worn, desert_boots) = 0)) {
     ~chatnpc("<p,neutral>I need a desert robe and desert boots if you want these clothes off me.");
-    return;
 } else if(inv_total(inv, desert_shirt) = 0 & inv_total(worn, desert_shirt) = 0) {
     ~chatnpc("<p,neutral>I need a desert shirt if you want these clothes off me.");
-    return;
 } else if(inv_total(inv, desert_robe) = 0 & inv_total(worn, desert_robe) = 0) {
     ~chatnpc("<p,neutral>I need a desert robe if you want these clothes off me.");
-    return;
 } else if(inv_total(inv, desert_boots) = 0 & inv_total(worn, desert_boots) = 0) {
     ~chatnpc("<p,neutral>I need desert boots if you want these clothes off me.");
-    return;
 }
 
 // based off this the gear swapping did exist originally https://web.archive.org/web/20060908030728/http://www.runeweb.net/index.php?page=rs2-quest-touristtrap

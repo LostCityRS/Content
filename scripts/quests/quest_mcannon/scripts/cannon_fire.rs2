@@ -4,7 +4,6 @@
 // but at https://youtu.be/WWyNTsMXjTE?t=219 the cannon does
 
 // i think this is because picking up the cannon doesnt reset the timer.
-settimer(cannon_rotate, 1, modulo(add($dir, 1), 8));
 if (%mcannon_coord = null | loc_find(%mcannon_coord, dwarf_multicannon1) = false) {
     return;
 }
@@ -12,6 +11,8 @@ def_coord $center = movecoord(loc_coord, 1, 0, 1);
 def_coord $close_range = movecoord($center, 0, 0, 3);
 def_coord $medium_range = movecoord($center, 0, 0, 7);
 def_coord $long_range = movecoord($center, 0, 0, 14);
+def_seq $seq = mcannon_ne_turn;
+def_boolean $fired = false;
 // start north, going clockwise
 if ($dir = 0) {
     // automatically starts spinning: https://youtu.be/TeQXQDaawO0?t=234
@@ -25,68 +26,76 @@ if ($dir = 0) {
     $close_range = movecoord($center, 0, 0, 3);
     $medium_range = movecoord($center, 0, 0, 7);
     $long_range = movecoord($center, 0, 0, 14);
-    loc_anim(mcannon_ne_turn);
+    $seq = mcannon_ne_turn;
 } else if ($dir = 1) {
     $close_range = movecoord($center, 2, 0, 2);
     $medium_range = movecoord($center, 5, 0, 5);
     $long_range = movecoord($center, 12, 0, 12);
-    loc_anim(mcannon_e_turn);
+    $seq = mcannon_e_turn;
 } else if ($dir = 2) {
     $close_range = movecoord($center, 3, 0, 0);
     $medium_range = movecoord($center, 7, 0, 0);
     $long_range = movecoord($center, 14, 0, 0);
-    loc_anim(mcannon_se_turn);
+    $seq = mcannon_se_turn;
 } else if ($dir = 3) {
     $close_range = movecoord($center, 2, 0, -2);
     $medium_range = movecoord($center, 5, 0, -5);
     $long_range = movecoord($center, 12, 0, -12);
-    loc_anim(mcannon_s_turn);
+    $seq = mcannon_s_turn;
 } else if ($dir = 4) {
     $close_range = movecoord($center, 0, 0, -3);
     $medium_range = movecoord($center, 0, 0, -7);
     $long_range = movecoord($center, 0, 0, -14);
-    loc_anim(mcannon_sw_turn);
+    $seq = mcannon_sw_turn;
 } else if ($dir = 5) {
     $close_range = movecoord($center, -2, 0, -2);
     $medium_range = movecoord($center, -5, 0, -5);
     $long_range = movecoord($center, -12, 0, -12);
-    loc_anim(mcannon_w_turn);
+    $seq = mcannon_w_turn;
 } else if ($dir = 6) {
     $close_range = movecoord($center, -3, 0, 0);
     $medium_range = movecoord($center, -7, 0, 0);
     $long_range = movecoord($center, -14, 0, 0);
-    loc_anim(mcannon_nw_turn);
+    $seq = mcannon_nw_turn;
 } else if ($dir = 7) {
     $close_range = movecoord($center, -2, 0, 2);
     $medium_range = movecoord($center, -5, 0, 5);
     $long_range = movecoord($center, -12, 0, 12);
-    loc_anim(mcannon_n_turn);
+    $seq = mcannon_n_turn;
 }
 
 // Check close range
 if (npc_hunt($close_range, 1, 1) = true) {
     if (lineofsight($center, npc_coord) = true) {
-        jump(cannon_fire);
+        $fired = true;
+        gosub(cannon_fire);
     }
 }
 
 // Check med range
-if (npc_hunt($medium_range, 2, 1) = true) {
+if ($fired = false & npc_hunt($medium_range, 2, 1) = true) {
     if (lineofsight($center, npc_coord) = true) {
-        jump(cannon_fire);
+        $fired = true;
+        gosub(cannon_fire);
     }
 }
 
 // Check long range
-if (npc_hunt($long_range, 5, 1) = true) {
+if ($fired = false & npc_hunt($long_range, 5, 1) = true) {
     if (lineofsight($center, npc_coord) = true) {
-        jump(cannon_fire);
+        $fired = true;
+        gosub(cannon_fire);
     }
 }
+loc_anim($seq);
+if(gettimer(cannon_rotate) > 0) settimer(cannon_rotate, 1, modulo(add($dir, 1), 8));
 
-
-[label,cannon_fire]
+[proc,cannon_fire]
 if (%mcannon_ammo < 1) {
+    return;
+}
+if(npc_type = ikov_firewarrior) { // separate from attackable check
+    ~chatnpc("<p,angry>Your puny weapons do nothing against me human! Come back when you can give me a real fight!");
     return;
 }
 if (~npc_is_attackable = false) {
@@ -112,12 +121,12 @@ if (~player_npc_hit_roll(%damagetype) = true) {
 npc_queue(2, $damage, divide($duration, 30)); // ai_queue2 takes uncapped damage (avoids npcs from tick healing)
 
 if (npc_type = king_dragon) {
-    @kbd_destroy_cannon;
+    ~kbd_destroy_cannon;
 }
 // https://web.archive.org/web/20040821134749/http://www.runescapecommunity.com/index.php?showtopic=159464&amp
 // "I would add in that if you take it to the King Black Dragon it explodes and cannot be used."
 // https://youtu.be/-wgfwyeRSmA?t=117
-[label,kbd_destroy_cannon]
+[proc,kbd_destroy_cannon]
 if (random(4) = 0 & %mcannon_coord ! null) { // guess
 // (coord $coord, coord $coord2, spotanim $spotanim, int $startheight, int $endheight, int $delay, int $angle, int $length, int $offset, int $step)(int)
     def_int $duration = ~coord_projectile(npc_coord, %mcannon_coord, firebreath_travel, 92, 31, 51, 16, -5, 64, 10);

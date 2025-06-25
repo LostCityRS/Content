@@ -38,8 +38,8 @@
 
 [oploc2,legends_table]
 mes("You start searching the table...");
-if (inv_total(inv, scrawled_note2) = 0) {
-    // no delay
+p_delay(1);
+if (inv_total(inv, scrawled_note2) = 0 & %legends_progress < ^legends_complete) {
     ~objbox(scrawled_note2, "You find a scrap of paper with what looks like nonsense written on it.", 250, 0, 0);
     inv_add(inv, scrawled_note2, 1);
     return;
@@ -51,8 +51,8 @@ mes("You cannot find anything else in here.");
 
 [oploc2,legends_crate]
 mes("You search the crate.");
-if (inv_total(inv, scrawled_note1) = 0) {
-    p_delay(0);
+p_delay(1);
+if (inv_total(inv, scrawled_note1) = 0 & %legends_progress < ^legends_complete) {
     ~objbox(scrawled_note1, "After some time you find a scrumpled up piece of paper. It looks like rubbish.", 250, 0, 0);
     inv_add(inv, scrawled_note1, 1);
     return;
@@ -60,9 +60,9 @@ if (inv_total(inv, scrawled_note1) = 0) {
 mes("You can't find anything else here.");
 
 [oploc2,legends_bed]
-// no delay
 mes("You search the flea infested rags...");
-if (inv_total(inv, scrawled_note3) = 0) {
+p_delay(1);
+if (inv_total(inv, scrawled_note3) = 0 & %legends_progress < ^legends_complete) {
     // mes instead of mesbox here
     mes("You find a scrap of paper with spidery writing on it.");;
     inv_add(inv, scrawled_note3, 1);
@@ -76,14 +76,13 @@ mes("It's a very old rickety desk made of bamboo.");
 [oploc2,legends_desk]
 // rs3
 mes("You give the desk a good search.");
-p_delay(2);
-if (inv_total(inv,shamans_tome) = 0) {
+p_delay(1);
+if (inv_total(inv,shamans_tome) = 0 & %legends_progress < ^legends_complete) {
     inv_add(inv, shamans_tome, 1);
     ~mesbox("You find an interesting tome. It looks heavy and very unique.");
+    return;
 }
-else {
-    mes("You find nothing else of interest here.");
-}
+mes("You find nothing else of interest here.");
 
 [oploc1,legends_bookcase]
 ~mesbox("This bamboo book shelf doesn't house many books, it doesn't look as if the Shaman has much opportunity to read at the moment in any case.");
