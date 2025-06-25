@@ -1,0 +1,18 @@
+[label,player_special_attack]
+if (~npc_is_attackable() = false) {
+    return;
+}
+if (%action_delay > map_clock) {
+    p_opnpc(2); // it is guaranteed here that we are already within op distance
+    return;
+}
+if (npc_stat(hitpoints) = 0) {
+    p_stopaction;
+    return; // this means the npc is not avail to fight i.e dead
+}
+if (~sa_enough_energy = false) {
+    return;
+}
+switch_obj(inv_getobj(worn, ^wearpos_rhand)) {
+    case dragon_dagger, dragon_dagger_p : @pvm_dragon_dagger_sa;
+}

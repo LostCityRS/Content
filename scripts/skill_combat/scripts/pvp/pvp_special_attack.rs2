@@ -17,4 +17,5 @@ if (~duel_arena_spec_check = false) {
     return;
 }
 switch_obj(inv_getobj(worn, ^wearpos_rhand)) {
+    case dragon_dagger, dragon_dagger_p : @pvp_dragon_dagger_sa;
 }
