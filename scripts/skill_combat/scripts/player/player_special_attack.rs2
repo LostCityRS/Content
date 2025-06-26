@@ -14,11 +14,11 @@ if (~sa_enough_energy = false) {
     return;
 }
 def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
-~set_sa_vars(oc_param($weapon, sa_energy));
-p_opnpc(2);
 %action_delay = add(map_clock, oc_param($weapon, attackrate));
+p_opnpc(2);
 switch_obj($weapon) {
     case dragon_dagger, dragon_dagger_p : @pvm_dragon_dagger_sa;
     case dragon_longsword : @pvm_dragon_longsword_sa;
     case dragon_mace : @pvm_dragon_mace_sa;
+    // case magic_shortbow : @pvm_magic_shortbow_sa;
 }

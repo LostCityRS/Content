@@ -1,4 +1,5 @@
 [label,pvm_dragon_mace_sa]
+~set_sa_vars(oc_param(inv_getobj(worn, ^wearpos_rhand), sa_energy));
 def_int $damage = 0;
 def_int $maxhit = scale(150, 100, %com_maxhit);
 def_int $damage_capped = 0;
@@ -13,9 +14,9 @@ if (randominc($attack_roll) > randominc($defence_roll)) {
     ~give_combat_experience(%damagestyle, $damage_capped, %npc_combat_xp_multiplier);
     npc_heropoints($damage_capped);
 }
-anim(seq_1060, 0);
+anim(sp_attack_shatter_spotanim, 0);
 sound_synth(shatter, 0, 0);
-spotanim_pl(spotanim_251, 96, 0);
+spotanim_pl(sp_attack_shatter_spotanim, 96, 0);
 ~npc_retaliate(0);
 npc_queue(2, $damage, 0);
 npc_anim(npc_param(defend_anim), 20); 

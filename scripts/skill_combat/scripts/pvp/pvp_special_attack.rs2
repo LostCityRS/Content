@@ -1,13 +1,13 @@
 [label,pvp_special_attack]
-if (%action_delay > map_clock) {
-    p_opplayer(2);
+if (.%death = ^true) {
+    p_stopaction;
     return;
 }
 if (stat(hitpoints) = 0) {
     return;
 }
-if (.%death = ^true) {
-    p_stopaction;
+if (%action_delay > map_clock) {
+    p_opplayer(2);
     return;
 }
 if (~sa_enough_energy = false) {
@@ -16,17 +16,22 @@ if (~sa_enough_energy = false) {
 if (~duel_arena_spec_check = false) {
     return;
 }
-if (~duel_arena_melee_check = false) {
-    return;
+if (%damagetype = ^ranged_style) {
+    if (~duel_arena_ranged_check = false) {
+        return;
+    }
+} else {
+    if (~duel_arena_melee_check = false) {
+        return;
+    }
 }
 def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
-~set_sa_vars(oc_param($weapon, sa_energy));
-
-p_opplayer(2);
-~set_pk_vars;
-
+// weps like shortbow are always their default attackrate (regardless of style)
+// - https://youtu.be/hAsKD72uJEE?si=BU4yzV9lxb_7uQKg&t=188
 %action_delay = add(map_clock, oc_param($weapon, attackrate));
-switch_obj(inv_getobj(worn, ^wearpos_rhand)) {
+p_opplayer(2);
+
+switch_obj($weapon) {
     case dragon_dagger, dragon_dagger_p : @pvp_dragon_dagger_sa;
     case dragon_longsword : @pvp_dragon_longsword_sa;
     case dragon_mace : @pvp_dragon_mace_sa;

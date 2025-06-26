@@ -1,4 +1,6 @@
 [label,pvp_dragon_longsword_sa]
+~set_sa_vars(oc_param(inv_getobj(worn, ^wearpos_rhand), sa_energy));
+~set_pk_vars;
 def_int $damage = 0;
 def_int $maxhit = scale(125, 100, %com_maxhit);
 def_int $attack_roll = ~player_attack_roll_specific(%damagetype); 
@@ -11,9 +13,9 @@ if (randominc($attack_roll) > randominc($defence_roll)) {
     ~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
     both_heropoints($damage);
 }
-anim(seq_1058, 0);
+anim(cleave, 0);
 sound_synth(cleave, 0, 0);
-spotanim_pl(spotanim_248, 96, 0);
+spotanim_pl(sp_attack_cleave_spotanim, 96, 0);
 .anim(.%com_defendanim, 20);
 .sound_synth(cleave, 0, 0);
 .queue(pvp_retaliate, 0, uid);

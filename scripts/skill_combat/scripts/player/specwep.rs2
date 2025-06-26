@@ -62,8 +62,8 @@ if(inv_getobj(worn, ^wearpos_rhand) = dragon_battleaxe) {
     if(p_finduid(uid) = true) { // strongqueued in osrs, assuming its like settings stuff and doesnt queue
         %sa_energy = sub(%sa_energy, 1000);
         say("Raarrrrrgggggghhhhhhh!");
-        anim(seq_1056, 0);
-        spotanim_pl(spotanim_246, 0, 0);
+        anim(rampage, 0);
+        spotanim_pl(sp_attackglow_red, 0, 0);
         def_int $drained_attack = calc(stat(attack) / 10);
         def_int $drained_defence = calc(stat(defence) / 10);
         def_int $drained_ranged = calc(stat(ranged) / 10);
@@ -95,8 +95,8 @@ if(inv_getobj(worn, ^wearpos_rhand) = excalibur) {
     if(p_finduid(uid) = true) { // strongqueued in osrs, assuming its like settings stuff and doesnt queue
         %sa_energy = sub(%sa_energy, 1000);
         say("For Camelot!");
-        anim(seq_1057, 0);
-        spotanim_pl(spotanim_247, 0, 0);
+        anim(sanctuary, 0);
+        spotanim_pl(sp_attackglow_blue, 0, 0);
         sound_synth(sanctuary, 0, 0);
         stat_boost(defence, 8, 0);
     }
