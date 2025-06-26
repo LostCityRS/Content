@@ -12,6 +12,14 @@ if (%action_delay > map_clock) {
 }
 // this can be either the quiver or rhand.
 def_obj $rhand = inv_getobj(worn, ^wearpos_rhand);
+if ($rhand = null) {
+    %action_delay = add(map_clock, 4);
+} else {
+    %action_delay = add(map_clock, oc_param($rhand, attackrate));
+}
+if (%damagestyle = ^style_ranged_rapid) {
+    %action_delay = sub(%action_delay, 1);
+}
 def_obj $ammo = ~player_ranged_check_ammo($rhand);
 if ($ammo = null) {
     p_stopaction;
@@ -34,6 +42,12 @@ if (~pvp_hit_roll(%damagetype) = true) {
     ~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
     both_heropoints($damage);
 }
+
+def_int $poison_severity = oc_param($ammo, poison_severity);
+if ($damage > 0 & $poison_severity > 0 & random(4) = 0) { // 1/4 chance to poison
+    .queue(poison_player, 0, $poison_severity);
+}
+
 def_int $delay = ~pvp_ranged_use_weapon($rhand, $ammo);
 anim(%com_attackanim, 0);
 sound_synth(%com_attacksound, 0, 0);
@@ -45,19 +59,6 @@ sound_synth(%com_attacksound, 0, 0);
 .anim(.%com_defendanim, $delay);
 // .sound_synth(.%com_defendsound, 0, 20);
 // sound_synth(.%com_defendsound, 0, 20);
-
-if ($rhand = null) {
-    %action_delay = add(map_clock, 4);
-} else {
-    %action_delay = add(map_clock, oc_param($rhand, attackrate));
-    def_int $poison_severity = oc_param($ammo, poison_severity);
-    if ($damage > 0 & $poison_severity > 0 & random(4) = 0) { // 1/4 chance to poison
-        .queue(poison_player, 0, $poison_severity);
-    }
-}
-if (%damagestyle = ^style_ranged_rapid) {
-    %action_delay = sub(%action_delay, 1);
-}
 
 ~ranged_dropammo_pvp($ammo, 5, sub(divide($delay, 30), 2));
 
