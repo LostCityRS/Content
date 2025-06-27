@@ -80,9 +80,9 @@ return($delay);
 
 [proc,ranged_delammo_pvp](obj $ammo, int $count)
 if (~in_duel_arena(coord) = true) {
-    inv_moveitem(worn, duelarrows, $ammo, 1); // give rangers their arrows back from duels
+    inv_moveitem(worn, duelarrows, $ammo, $count); // give rangers their arrows back from duels
 } else {
-    inv_del(worn, $ammo, 1);
+    inv_del(worn, $ammo, $count);
 }
 
 [proc,ranged_dropammo_pvp](obj $ammo, int $chance, int $delay)
