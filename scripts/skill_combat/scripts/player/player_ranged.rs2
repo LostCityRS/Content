@@ -136,7 +136,9 @@ inv_del(worn, $ammo, $count);
 
 [proc,ranged_dropammo_npc](obj $ammo, int $chance, int $delay)
 if (random($chance) ! 0 | $chance = ^true) {
-    world_delay($delay);
+    if ($delay >= 0) {
+        world_delay($delay);
+    }
     if (map_blocked(npc_coord) = false) {
         obj_add(npc_coord, enum(obj, namedobj, ranged_ammo, $ammo), 1, ^lootdrop_duration);
     }
