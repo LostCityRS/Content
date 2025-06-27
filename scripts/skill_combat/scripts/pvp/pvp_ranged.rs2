@@ -64,11 +64,7 @@ if (%damagestyle = ^style_ranged_rapid) {
 
 [proc,pvp_ranged_use_weapon](obj $rhand, obj $ammo)(int)
 spotanim_pl(oc_param($ammo, proj_launch), 96, 0);
-if (~in_duel_arena(coord) = true) {
-    inv_moveitem(worn, duelarrows, $ammo, 1); // give rangers their arrows back from duels
-} else {
-    inv_del(worn, $ammo, 1);
-}
+~ranged_delammo_pvp($ammo, 1);
 def_int $delay = 30;
 switch_category(oc_category($rhand)) {
     case weapon_bow, weapon_crossbow :
@@ -81,6 +77,13 @@ switch_category(oc_category($rhand)) {
         $delay = ~player_projectile(coord, .coord, .uid, oc_param($ammo, proj_travel), 40, 36, 32, 15, 0, 11, 5);
 }
 return($delay);
+
+[proc,ranged_delammo_pvp](obj $ammo, int $count)
+if (~in_duel_arena(coord) = true) {
+    inv_moveitem(worn, duelarrows, $ammo, 1); // give rangers their arrows back from duels
+} else {
+    inv_del(worn, $ammo, 1);
+}
 
 [proc,ranged_dropammo_pvp](obj $ammo, int $chance, int $delay)
 if (~in_duel_arena(coord) = true) {
