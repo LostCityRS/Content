@@ -72,12 +72,7 @@ npc_anim(npc_param(defend_anim), sub($delay, 30)); // delay npc this tick
 if (npc_param(defend_sound) ! null) {
     sound_synth(npc_param(defend_sound), 0, sub($delay, 30)); // delay 1 client tick for the hit queue
 }
-
-if ($ammo = holy_water) {
-    ~ranged_dropammo_npc($ammo, ^true, sub(divide($delay, 30), 2)); // 100% chance to drop ammo
-    return;
-}
-~ranged_dropammo_npc($ammo, 5, sub(divide($delay, 30), 2));
+~ranged_dropammo_npc($ammo, sub(divide($delay, 30), 2));
 
 [proc,player_ranged_check_ammo](obj $rhand)(obj)
 def_category $weapon_cat = oc_category($rhand);
@@ -117,29 +112,22 @@ switch_category(oc_category($rhand)) {
 [proc,ranged_shoot_npc](obj $ammo)(int)
 if($ammo = ogre_arrow) spotanim_pl(oc_param($ammo, proj_launch), 50, 0);
 else spotanim_pl(oc_param($ammo, proj_launch), 96, 0);
-~ranged_delammo_npc($ammo, 1);
 return(~npc_projectile(coord, npc_uid, oc_param($ammo, proj_travel), 40, 36, 41, 15, 5, 11, 5));
 
 [proc,ranged_throw_npc](obj $ammo)(int)
 spotanim_pl(oc_param($ammo, proj_launch), 96, 0);
-~ranged_delammo_npc($ammo, 1);
-if (inv_total(worn, $ammo) = 0) {
+if (inv_total(worn, $ammo) = 1) {
     mes("That was your last one!");
     p_stopaction;
     ~update_all(inv_getobj(worn, ^wearpos_rhand));
 }
 return(~npc_projectile(coord, npc_uid, oc_param($ammo, proj_travel), 40, 36, 32, 15, 0, 11, 5));
 
-// centralizes logic for the future just incase
-[proc,ranged_delammo_npc](obj $ammo, int $count)
-inv_del(worn, $ammo, $count);
-
-[proc,ranged_dropammo_npc](obj $ammo, int $chance, int $delay)
-if (random($chance) ! 0 | $chance = ^true) {
-    if ($delay >= 0) {
-        world_delay($delay);
-    }
+[proc,ranged_dropammo_npc](obj $ammo, int $delay)
+if (random(^dropammo_chance) ! 0 | $ammo = holy_water) {
     if (map_blocked(npc_coord) = false) {
-        obj_add(npc_coord, enum(obj, namedobj, ranged_ammo, $ammo), 1, ^lootdrop_duration);
+        inv_dropitem_delayed(inv, npc_coord, $ammo, 1, ^lootdrop_duration, $delay);
+        return;
     }
 }
+inv_del(worn, $ammo, 1);

@@ -48,6 +48,7 @@ if ($damage > 0 & $poison_severity > 0 & random(4) = 0) { // 1/4 chance to poiso
 }
 
 def_int $delay = ~pvp_ranged_use_weapon($rhand, $ammo);
+~ranged_dropammo_pvp($ammo, calc($delay / 30));
 anim(%com_attackanim, 0);
 sound_synth(%com_attacksound, 0, 0);
 .sound_synth(%com_attacksound, 0, 0);
@@ -59,18 +60,15 @@ sound_synth(%com_attacksound, 0, 0);
 // .sound_synth(.%com_defendsound, 0, 20);
 // sound_synth(.%com_defendsound, 0, 20);
 
-~ranged_dropammo_pvp($ammo, 5, sub(divide($delay, 30), 2));
-
 
 [proc,pvp_ranged_use_weapon](obj $rhand, obj $ammo)(int)
 spotanim_pl(oc_param($ammo, proj_launch), 96, 0);
-~ranged_delammo_pvp($ammo, 1);
 def_int $delay = 30;
 switch_category(oc_category($rhand)) {
     case weapon_bow, weapon_crossbow :
         $delay = ~player_projectile(coord, .coord, .uid, oc_param($ammo, proj_travel), 40, 36, 32, 15, 0, 11, 5);
     case weapon_thrown, weapon_javelin :
-        if (inv_total(worn, $ammo) = 0) {
+        if (inv_total(worn, $ammo) = 1) {
             mes("That was your last one!");
             ~update_all($rhand);
         }
@@ -78,25 +76,14 @@ switch_category(oc_category($rhand)) {
 }
 return($delay);
 
-[proc,ranged_delammo_pvp](obj $ammo, int $count)
-if (~in_duel_arena(coord) = true) {
-    inv_moveitem(worn, duelarrows, $ammo, $count); // give rangers their arrows back from duels
-} else {
-    inv_del(worn, $ammo, $count);
-}
-
-[proc,ranged_dropammo_pvp](obj $ammo, int $chance, int $delay)
-if (~in_duel_arena(coord) = true) {
-    if (random($chance) = 0) {
-        inv_del(duelarrows, $ammo, 1);
-    }
-    return;
-}
-if (random($chance) ! 0) {
-    if ($delay >= 0) {
-        world_delay($delay);
-    }
-    if (map_blocked(.coord) = false) {
-        obj_add(.coord, enum(obj, namedobj, ranged_ammo, $ammo), 1, ^lootdrop_duration);
+[proc,ranged_dropammo_pvp](obj $ammo, int $delay)
+if (random(^dropammo_chance) ! 0) {
+    if (~in_duel_arena(coord) = true) {
+        inv_moveitem(worn, duelarrows, $ammo, 1);
+        return;
+    } else if (map_blocked(.coord) = false) {
+        inv_dropitem_delayed(worn, .coord, $ammo, 1, ^lootdrop_duration, max($delay, 0));
+        return;
     }
 }
+inv_del(worn, $ammo, 1);
