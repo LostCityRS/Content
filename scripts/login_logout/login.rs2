@@ -49,16 +49,9 @@ if(inzone(movecoord(^grandtree_jail_coord, 0, 0, -2), movecoord(^grandtree_jail_
     ~grandtree_spawn_charlie;
 }
 
-if (%tutorial_progress < ^tutorial_complete) {
-     if (~in_tutorial_island(coord) = false & %tutorial_progress < ^tutorial_complete) {
-        // Checking if you're off tutorial island but it's not complete
-        ~update_bas;
-        @tutorial_complete;
-    } else {
-        // Starting tutorial regularly
-        ~update_bas;
-        @start_tutorial;
-    }
+if (%tutorial_progress < ^tutorial_complete & ~in_tutorial_island(coord) = true) {
+    ~update_bas;
+    @start_tutorial;
 }
 ~initalltabs;
 ~update_all(inv_getobj(worn, ^wearpos_rhand));
