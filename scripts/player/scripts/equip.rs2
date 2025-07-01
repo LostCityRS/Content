@@ -78,7 +78,7 @@ if (p_finduid(uid) = true) {
         sound_synth(shield_appear, 0, 0);
     }
     if (oc_param($obj, specwep) = ^true) {
-        %sa_enabled = ^false;
+        %sa_attack = ^false;
     }
     inv_moveitem(worn, inv, $obj, sub($count, $overflow));
     ~update_all($obj);
@@ -97,7 +97,7 @@ if (p_finduid(uid) = true) {
         return;
     }
     if (oc_param($obj, specwep) = ^true) {
-        %sa_enabled = ^false;
+        %sa_attack = ^false;
     }
     inv_moveitem(worn, inv, $obj, sub($count, $overflow));
     ~update_all($obj);
@@ -115,7 +115,7 @@ if (.p_finduid(.uid) = true) {
         return;
     }
     if (oc_param($obj, specwep) = ^true) {
-        .%sa_enabled = ^false;
+        .%sa_attack = ^false;
     }
     .inv_moveitem(worn, inv, $obj, sub($count, $overflow));
     ~.update_all($obj);
@@ -406,7 +406,7 @@ while ($i < inv_size(worn)) {
     def_int $worn_num = inv_getnum(worn, $i);
     if ($worn_obj ! null & ~wearpos_conflicts($equip_obj, $worn_obj) = true) {
         if (oc_param($worn_obj, specwep) = ^true) {
-            %sa_enabled = ^false;
+            %sa_attack = ^false;
         }
         if ($worn_obj ! $equip_obj) { // skip the obj we just equipped
             inv_moveitem(worn, inv, $worn_obj, $worn_num);

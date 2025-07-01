@@ -270,7 +270,7 @@ if (~in_duel_arena(coord) = false) {
 }
 if (testbit(%duel_settings, ^no_specs) = ^true) {
     mes("Use of special attacks has been turned off for this duel."); // https://youtu.be/YkJQDvB14-U?t=327
-    %sa_enabled = ^false;
+    %sa_attack = ^false;
     return(false);
 }
 return(true);
