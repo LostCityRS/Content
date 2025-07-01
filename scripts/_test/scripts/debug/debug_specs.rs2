@@ -1,0 +1,19 @@
+[debugproc,specweps]
+inv_clear(inv);
+inv_add(inv, dragon_dagger, 1);
+inv_add(inv, dragon_dagger_p, 1);
+inv_add(inv, dragon_longsword, 1);
+inv_add(inv, dragon_mace, 1);
+inv_add(inv, dragon_spear, 1);
+inv_add(inv, dragon_spear_p, 1);
+inv_add(inv, magic_longbow, 1);
+inv_add(inv, magic_shortbow, 1);
+inv_add(inv, rune_arrow, 1000);
+inv_add(inv, rune_thrownaxe, 1000);
+
+
+[debugproc,sa]
+if (p_finduid(uid) = false) {
+    return;
+}
+%sa_energy = 1000;
