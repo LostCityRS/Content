@@ -15,6 +15,7 @@ if (inv_getnum(worn, ^wearpos_quiver) < 2) { // requires two shots
 }
 
 ~set_sa_vars(oc_param($rhand, sa_energy));
+~set_pk_vars;
 
 anim(%com_attackanim, 0);
 sound_synth(powershot, 0, 0);
