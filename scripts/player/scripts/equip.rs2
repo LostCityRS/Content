@@ -383,7 +383,7 @@ while ($i < inv_size(worn)) {
     def_obj $worn_obj = inv_getobj(worn, $i);
     def_int $worn_num = inv_getnum(worn, $i);
     if ($worn_obj ! null & $worn_obj ! $equip_obj) { // skip the obj we just equipped
-        if (~wearpos_conflicts($equip_obj, $worn_obj)) = true {
+        if (~wearpos_conflicts($equip_obj, $worn_obj) = true) {
             inv_moveitem(worn, inv, $worn_obj, $worn_num);
         }
     }
