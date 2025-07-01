@@ -6,13 +6,6 @@ if ($ammo = null) {
     ~update_all($rhand);
     return;
 }
-if (inv_getnum(worn, ^wearpos_quiver) < 2) { // requires two shots
-    // message_game	type=gamemessage, message="There isn't enough ammo left in your quiver."
-    mes("There isn't enough ammo left in your quiver.");
-    p_stopaction;
-    ~update_all($rhand);
-    return;
-}
 
 ~set_sa_vars(oc_param($rhand, sa_energy));
 
