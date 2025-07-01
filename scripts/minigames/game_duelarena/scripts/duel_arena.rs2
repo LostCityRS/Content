@@ -29,14 +29,12 @@ if (.%duelpartner = uid & %duelstatus = ^duelstatus_received) {
     %duel_settings = 0;
     if_settext(duel_select_type:status, "");
     if_settext(duel_select_type:otherplayer, "Dueling with: <.displayname>");
-    inv_clear(dueloffer);
     inv_transmit(dueloffer, duel_select_type:inv);
     invother_transmit(.uid, dueloffer, duel_select_type:otherinv);
     inv_transmit(inv, duel_side:inv);
 
     .if_settext(duel_select_type:status, "");
     .if_settext(duel_select_type:otherplayer, "Dueling with: <displayname>");
-    .inv_clear(dueloffer);
     .inv_transmit(dueloffer, duel_select_type:inv);
     .invother_transmit(uid, dueloffer, duel_select_type:otherinv);
     .inv_transmit(inv, duel_side:inv);

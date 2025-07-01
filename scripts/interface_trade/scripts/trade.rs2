@@ -52,14 +52,12 @@ if (.%tradepartner = uid & %tradestatus = ^tradestatus_received) {
     }
     if_settext(trademain:status, "");
     if_settext(trademain:otherplayer, "Trading With: <.displayname>");
-    inv_clear(tradeoffer);
     inv_transmit(tradeoffer, trademain:inv);
     invother_transmit(.uid, tradeoffer, trademain:otherinv);
     inv_transmit(inv, tradeside:inv);
 
     .if_settext(trademain:status, "");
     .if_settext(trademain:otherplayer, "Trading With: <displayname>");
-    .inv_clear(tradeoffer);
     .inv_transmit(tradeoffer, trademain:inv);
     .invother_transmit(uid, tradeoffer, trademain:otherinv);
     .inv_transmit(inv, tradeside:inv);
