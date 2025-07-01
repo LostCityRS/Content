@@ -47,10 +47,8 @@ if (randominc($attackroll) > randominc($defenceroll)) {
 
 def_int $poison_severity = oc_param($ammo, poison_severity);
 if ($damage > 0 & $poison_severity > 0 & random(4) = 0) { // 1/4 chance to poison
-    // poison npc
     .queue(poison_player, 0, $poison_severity);
 }
 .queue(pvp_retaliate, divide($delay, 30), uid);
 ~.pvp_damage(divide($delay, 30), $damage);
-// player does anim in old vids: https://youtu.be/4uVvAwcJd9M?t=49
 .anim(.%com_defendanim, $delay);

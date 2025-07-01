@@ -87,3 +87,15 @@ if (random(^dropammo_chance) ! 0) {
     }
 }
 inv_del(worn, $ammo, 1);
+
+[proc,ranged_dropammo_pvp_specific](obj $ammo, coord $coord, int $delay)
+if (random(^dropammo_chance) ! 0) {
+    if (~in_duel_arena(coord) = true) {
+        inv_moveitem(worn, duelarrows, $ammo, 1);
+        return;
+    } else if (map_blocked($coord) = false) {
+        inv_dropitem_delayed(worn, $coord, $ammo, 1, ^lootdrop_duration, max($delay, 0));
+        return;
+    }
+}
+inv_del(worn, $ammo, 1);
