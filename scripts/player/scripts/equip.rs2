@@ -351,21 +351,13 @@ return(true);
 
 // proc to check if you have enough space to unequip conflicting items with $equip_obj
 [proc,unequip_conflicts_space](obj $equip_obj)(boolean)
-def_int $wearpos1 = oc_wearpos($equip_obj);
-def_int $wearpos2 = oc_wearpos2($equip_obj);
-def_int $wearpos3 = oc_wearpos3($equip_obj);
 def_int $conflicts = 0;
 def_int $i = 0;
 while ($i < inv_size(worn)) {
     def_obj $worn_obj = inv_getobj(worn, $i);
     def_int $worn_num = inv_getnum(worn, $i);
     if ($worn_obj ! null) {
-        def_int $worn_wearpos1 = oc_wearpos($worn_obj);
-        def_int $worn_wearpos2 = oc_wearpos2($worn_obj);
-        def_int $worn_wearpos3 = oc_wearpos3($worn_obj);
-        if (($wearpos1 ! null & ($wearpos1 = $worn_wearpos1 | $wearpos1 = $worn_wearpos2 | $wearpos1 = $worn_wearpos3))
-        | ($wearpos2 ! null & ($wearpos2 = $worn_wearpos1 | $wearpos2 = $worn_wearpos2 | $wearpos2 = $worn_wearpos3))
-        | ($wearpos3 ! null & ($wearpos3 = $worn_wearpos1 | $wearpos3 = $worn_wearpos2 | $wearpos3 = $worn_wearpos3))) {
+        if (~wearpos_conflicts($equip_obj, $worn_obj) = true) {
             if (oc_stackable($worn_obj) = true) {
                 if (inv_total(inv, $worn_obj) < 1) { // if stackable item isnt in inv, then takes up a space
                     $conflicts = add($conflicts, 1);
@@ -386,20 +378,12 @@ return(true);
 
 // proc to unequip conflicting items with $equip_obj
 [proc,unequip_conflicts](obj $equip_obj)
-def_int $wearpos1 = oc_wearpos($equip_obj);
-def_int $wearpos2 = oc_wearpos2($equip_obj);
-def_int $wearpos3 = oc_wearpos3($equip_obj);
 def_int $i = 0;
 while ($i < inv_size(worn)) {
     def_obj $worn_obj = inv_getobj(worn, $i);
     def_int $worn_num = inv_getnum(worn, $i);
     if ($worn_obj ! null & $worn_obj ! $equip_obj) { // skip the obj we just equipped
-        def_int $worn_wearpos1 = oc_wearpos($worn_obj);
-        def_int $worn_wearpos2 = oc_wearpos2($worn_obj);
-        def_int $worn_wearpos3 = oc_wearpos3($worn_obj);
-        if (($wearpos1 ! null & ($wearpos1 = $worn_wearpos1 | $wearpos1 = $worn_wearpos2 | $wearpos1 = $worn_wearpos3))
-        | ($wearpos2 ! null & ($wearpos2 = $worn_wearpos1 | $wearpos2 = $worn_wearpos2 | $wearpos2 = $worn_wearpos3))
-        | ($wearpos3 ! null & ($wearpos3 = $worn_wearpos1 | $wearpos3 = $worn_wearpos2 | $wearpos3 = $worn_wearpos3))) {
+        if (~wearpos_conflicts($equip_obj, $worn_obj)) = true {
             inv_moveitem(worn, inv, $worn_obj, $worn_num);
         }
     }
@@ -420,3 +404,19 @@ if(inv_total(inv, ikov_bootsoflightnessworn) > 0) {
     inv_del(inv, ikov_bootsoflightnessworn, $count); // should use inv_changeslot probably
     inv_add(inv, ikov_bootsoflightness, $count);
 }
+
+// checks if two weapons have the same wearpos
+[proc,wearpos_conflicts](obj $equip_obj, obj $worn_obj)(boolean)
+def_int $wearpos1 = oc_wearpos($equip_obj);
+def_int $wearpos2 = oc_wearpos2($equip_obj);
+def_int $wearpos3 = oc_wearpos3($equip_obj);
+def_int $worn_wearpos1 = oc_wearpos($worn_obj);
+def_int $worn_wearpos2 = oc_wearpos2($worn_obj);
+def_int $worn_wearpos3 = oc_wearpos3($worn_obj);
+
+if (($wearpos1 ! null & ($wearpos1 = $worn_wearpos1 | $wearpos1 = $worn_wearpos2 | $wearpos1 = $worn_wearpos3))
+| ($wearpos2 ! null & ($wearpos2 = $worn_wearpos1 | $wearpos2 = $worn_wearpos2 | $wearpos2 = $worn_wearpos3))
+| ($wearpos3 ! null & ($wearpos3 = $worn_wearpos1 | $wearpos3 = $worn_wearpos2 | $wearpos3 = $worn_wearpos3))) {
+    return(true);
+}
+return(false);
