@@ -8,10 +8,6 @@ return(false);
 if (%sa_energy < oc_param(inv_getobj(worn, ^wearpos_rhand), sa_energy)) {
     mes("You don't have enough power left.");
     %sa_attack = ^false;
-    // If players attempt to use a special attack with insufficient energy then they'll find that instead 
-    // of a special attack failing and no attack occurring, a regular attack will instead be performed.
-    // - https://oldschool.runescape.wiki/w/Update:PvM_QoL_updates_%26_Wilderness_Rejuvenation_improvements
-    p_stopaction; // based on the way ive implemented specs, this is necessary to produce the behavior above.
     return(false);
 }
 return(true);

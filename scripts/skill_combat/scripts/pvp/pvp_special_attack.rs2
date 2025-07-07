@@ -11,6 +11,10 @@ if (%action_delay > map_clock) {
     return;
 }
 if (~sa_enough_energy = false) {
+    // If players attempt to use a special attack with insufficient energy then they'll find that instead 
+    // of a special attack failing and no attack occurring, a regular attack will instead be performed.
+    // - https://oldschool.runescape.wiki/w/Update:PvM_QoL_updates_%26_Wilderness_Rejuvenation_improvements
+    // p_stopaction; // based on the way ive implemented specs, this is necessary to produce the behavior above.
     return;
 }
 if (~duel_arena_spec_check = false) {
