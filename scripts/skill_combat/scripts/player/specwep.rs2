@@ -54,9 +54,10 @@ if (~duel_arena_spec_check = false) {
 if (~sa_enough_energy = false) {
     return;
 }
-if(inv_getobj(worn, ^wearpos_rhand) = dragon_battleaxe) {
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+if($weapon = dragon_battleaxe) {
     if(p_finduid(uid) = true) { // strongqueued in osrs, assuming its like settings stuff and doesnt queue
-        %sa_energy = sub(%sa_energy, 1000);
+        ~set_sa_vars(oc_param($weapon, sa_energy));
         say("Raarrrrrgggggghhhhhhh!");
         anim(rampage, 0);
         spotanim_pl(sp_attackglow_red, 0, 0);
@@ -87,9 +88,10 @@ if (~duel_arena_spec_check = false) {
 if (~sa_enough_energy = false) {
     return;
 }
-if(inv_getobj(worn, ^wearpos_rhand) = excalibur) {
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+if($weapon = excalibur) {
     if(p_finduid(uid) = true) { // strongqueued in osrs, assuming its like settings stuff and doesnt queue
-        %sa_energy = sub(%sa_energy, 1000);
+        ~set_sa_vars(oc_param($weapon, sa_energy));
         say("For Camelot!");
         anim(sanctuary, 0);
         spotanim_pl(sp_attackglow_blue, 0, 0);
