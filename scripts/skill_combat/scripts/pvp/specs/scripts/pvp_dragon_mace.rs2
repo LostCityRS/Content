@@ -13,7 +13,7 @@ if (randominc($attack_roll) > randominc($defence_roll)) {
     ~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
     both_heropoints($damage);
 }
-anim(sp_attack_shatter_spotanim, 0);
+anim(shatter, 0);
 sound_synth(shatter, 0, 0);
 spotanim_pl(sp_attack_shatter_spotanim, 96, 0);
 .anim(.%com_defendanim, 20);
