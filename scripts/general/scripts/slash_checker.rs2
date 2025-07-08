@@ -9,9 +9,6 @@ if (inv_getobj(worn, ^wearpos_rhand) ! null) {
 
 // Post June 14th 2023: https://oldschool.runescape.wiki/w/Update:Ruinous_Powers_Beta_v2
 // Prior to this, weapon was required to be equipped to slash (noted webs, assumed any instance fo this.)
-if (inv_total(inv, knife) > 0) {
-    return (knife);
-}
 
 // Nothing functional found, return null.
 return (null);
