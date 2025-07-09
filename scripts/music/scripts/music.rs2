@@ -11,6 +11,8 @@ if ($var = 1) {
     return(%music5);
 } else if ($var = 6) {
     return(%music6);
+} else if ($var = 7) {
+    return(%musicmulti_7);
 }
 return(null);
 
@@ -27,6 +29,8 @@ if ($var = 1) {
     %music5 = setbit(%music5, $bit);
 } else if ($var = 6) {
     %music6 = setbit(%music6, $bit);
+} else if ($var = 7) {
+    %musicmulti_7 = setbit(%musicmulti_7, $bit);
 }
 
 [proc,music_playbybutton](component $playbutton)
