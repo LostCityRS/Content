@@ -3,18 +3,21 @@
 // https://youtu.be/dpOJn0HyTx4?t=52
 // https://youtu.be/jdcT9ogpMwE?t=104 underground
 // all on the same z axis
-
-// remove wildy warning if logged in at wildy border https://youtu.be/hiUfg8MsKMo
-[proc,wilderness_warning_login]
-if (inzone(0_45_54_48_56, 0_52_54_63_63, coord) = true | inzone(0_48_154_56_56, 0_48_154_63_63, coord) = true) {
-    %wilderness = ^true;
-}
-
 [queue,wilderness_warning]
+// so there seems to be a check to see if you're south of the wildy warning zone.
+// Videos of people logging in on *north* of the zone yields no wildy warning:
+// - https://youtu.be/0OceTxHT0X0
+// - https://youtu.be/hiUfg8MsKMo
+// Whereas videos of people logging in *south* of the zone yields a wildy warning:
+// - https://youtu.be/rvljzSEQXLQ?t=278
+// - https://youtu.be/0OceTxHT0X0
+def_int $coordz = coordz(coord);
 if (%wilderness = ^false) {
     %wilderness = ^true;
-    p_stopaction;
-    if_openmain(wilderness_warning);
+    if (($coordz < add(^wilderness_warning_z, 4) & $coordz >= ^wilderness_warning_z) | ($coordz < add(^wilderness_warning_underground_z, 4) & $coordz >= ^wilderness_warning_underground_z)) {
+        p_stopaction;
+        if_openmain(wilderness_warning);
+    }
 }
 
 [zone,0_45_54_48_56] queue(wilderness_warning, 0);
