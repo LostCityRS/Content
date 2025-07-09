@@ -11,6 +11,7 @@ if ($ammo = null) {
 ~set_pk_vars;
 
 anim(%com_attackanim, 0);
+spotanim_pl(sp_attack_glow_arrow_launch, 96, 0);
 sound_synth(powershot, 0, 0);
 .sound_synth(powershot, 0, 0);
 def_int $duration = ~player_projectile(coord, .coord, .uid, sp_attack_glow_arrow_travel, 40, 36, 41, 15, 5, 11, 5);
