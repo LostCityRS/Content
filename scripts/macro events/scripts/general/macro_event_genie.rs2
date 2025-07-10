@@ -30,11 +30,7 @@ if (finduid(%npc_macro_event_target) = true) {
         npc_say("No one ignores me!");
         npc_anim(human_castteleport, 0);
         %macro_event = ^no_macro_event;
-        if (random(2) = 0 & inv_freespace(inv) < inv_size(inv)) { // 50% chance to teleport or scatter inv. Only scatter if they actually have items
-            queue(macro_event_fail_scatter_inv, 0);
-        } else {
-            queue(macro_event_fail_teleport, 0);
-        }
+        queue(macro_event_fail_teleport, 0);
         npc_delay(0);
         npc_del;
         return;

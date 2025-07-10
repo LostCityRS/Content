@@ -36,7 +36,6 @@ if (finduid(%npc_macro_event_target) = true) {
         %macro_event = ^no_macro_event;
         // https://youtu.be/Ai89wqupYqA?t=45
         queue(macro_event_fail_teleport, 0);
-        queue(macro_event_fail_note_inv, 0);
         npc_delay(0);
         npc_del;
         return;
