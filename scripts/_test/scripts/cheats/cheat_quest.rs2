@@ -158,6 +158,7 @@ if (p_finduid(uid) = true) {
                     queue(itwatchtower_quest_complete, 0);
                 case 50 : queue(waterfall_quest_complete, 0);
                 case 51 : queue(ball_quest_complete, 0);
+                case 52 : queue(elemental_workshop_quest_complete, 0);
                 case default : mes("Quest not found.");
             }
         } else if ($choice3 = 1) {
@@ -266,6 +267,7 @@ if (p_finduid(uid) = true) {
                     %waterfall_golrie_and_puzzle = 0;
                     %waterfall_progress = 0;
                 case 51 : %ball_progress = 0;
+                case 52 : %elemental_workshop_bits = 0;
                 case default : mes("Quest not found.");
             }
             ~update_questlist;
@@ -368,6 +370,7 @@ if ($arrav_choice = 0) {
     %phoenixgang_progress = ^phoenixgang_joined;
     %blackarmgang_progress = 0;
 }
+queue(elemental_workshop_quest_complete, 0);
 
 ~update_questlist;
 mes("All quests have been completed.");
@@ -461,6 +464,7 @@ return;
 %waterfall_golrie_and_puzzle = 0;
 %waterfall_progress = 0;
 %ball_progress = 0;
+%elemental_workshop_bits = 0;
 ~update_questlist;
 mes("All quests have been reset.");
 return;
