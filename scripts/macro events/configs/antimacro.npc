@@ -137,7 +137,7 @@ timer=20
 strength=10
 // attack and hp is completely guessed
 attack=50
-hitpoints=25
+hitpoints=255
 // these ranges are based off https://www.youtube.com/watch?v=ohRbhtCRL2c&list=PLn23LiLYLb1bhaCSJgRd1zQet3DFcY0yG&index=4
 wanderrange=3
 maxrange=3
@@ -1453,13 +1453,13 @@ head1=model_4_npc_head
 head2=model_6_npc_head
 // https://youtu.be/Ww-PkAr4vt4?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT
 wanderrange=50
-maxrange=50
+maxrange=52
 timer=10
+// https://youtu.be/azxoPxBRe3c
+hitpoints=255
 attack=50
 strength=1
 param=attack_anim,dwarf_stone_launch
-param=defend_anim,dwarf_block
-param=death_anim,dwarf_death
 param=attackrate,4
 param=attack_sound,thrown
 // stats are completely guessed
