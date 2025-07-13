@@ -25,6 +25,13 @@ if (~deserves_pk_skull = true) {
 .%lastcombat_pvp = map_clock;
 .%aggressive_npc = null; // prevents npc's from attacking your opponent after you attack them.
 
+.if_close;
+if (.p_finduid(.uid) = false) {
+    .queue(preventlogout_combat, 0);
+    return;
+}
+.p_preventlogout("You can't log out until 10 seconds after the end of combat.", 16);
+
 // requires active_player
 [proc,pk_skull](int $duration)
 ~headicon_add(^headicon_skull);

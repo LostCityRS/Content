@@ -23,3 +23,6 @@ if (p_finduid(uid) = true) {
 
     p_logout;
 }
+
+[queue,preventlogout_combat]
+p_preventlogout("You can't log out until 10 seconds after the end of combat.", 16);

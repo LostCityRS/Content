@@ -309,7 +309,6 @@ if (inv_getobj(worn, ^wearpos_ring) = ring_of_recoil & map_members = ^true & npc
     npc_queue(2, $recoil_damage, 0);
     ~ring_of_recoil_lose_charge($recoil_damage);
 }
-p_preventlogout("You can't log out until 10 seconds after the end of combat.", 16);
 ~damage_self($damage);
 
 [proc,npc_retaliate](int $queue_delay)
@@ -326,6 +325,13 @@ if(.%npc_lastcombat < map_clock) .%npc_lastcombat = map_clock;
 %lastcombat = map_clock;
 %npc_attacking_uid = uid;
 %aggressive_npc = npc_uid;
+
+if_close;
+if (p_finduid(uid) = false) {
+    queue(preventlogout_combat, 0);
+    return;
+}
+p_preventlogout("You can't log out until 10 seconds after the end of combat.", 16);
 
 [proc,npc_check_notcombat]()(boolean)
 if (map_multiway(npc_coord) = false) { // checks npc coord ALWAYS!
