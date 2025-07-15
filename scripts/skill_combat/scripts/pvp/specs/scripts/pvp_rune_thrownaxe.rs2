@@ -1,10 +1,5 @@
 [label,pvp_rune_thrownaxe_sa]
 def_obj $rhand = inv_getobj(worn, ^wearpos_rhand);
-if (inv_total(worn, $rhand) = 1) {
-    mes("That was your last one!");
-    p_stopaction;
-    ~update_all($rhand);
-}
 anim(chainhit, 0);
 spotanim_pl(sp_attack_chainhit_launch_spotanim, 96, 0);
 
@@ -12,38 +7,38 @@ def_coord $origin = .coord;
 def_player_uid $target1 = .uid;
 def_int $duration = ~pvp_rune_thrownaxe_hit(coord, $target1, 32);
 if ($duration = null) { // this shouldnt ever be reached
-    ~ranged_dropammo_pvp($rhand, divide($duration, 30));
+    ~pvp_thrownaxe_drop_sa($rhand, $origin, $duration);
     return;
 }
 def_coord $target1_coord = .coord;
 def_player_uid $target2 = ~pvp_rune_thrownaxe_hunt($origin, $target1, null, null, null);
 $duration = ~pvp_rune_thrownaxe_hit($target1_coord, $target2, $duration);
 if ($duration = null) { // spec is over
-    ~ranged_dropammo_pvp_specific($rhand, $target1_coord, divide($duration, 30));
+    ~pvp_thrownaxe_drop_sa($rhand, $target1_coord, $duration);
     return;
 }
 def_coord $target2_coord = .coord;
 def_player_uid $target3 = ~pvp_rune_thrownaxe_hunt($origin, $target1, $target2, null, null);
 $duration = ~pvp_rune_thrownaxe_hit($target2_coord, $target3, $duration);
 if ($duration = null) { // spec is over
-    ~ranged_dropammo_pvp_specific($rhand, $target2_coord, divide($duration, 30));
+    ~pvp_thrownaxe_drop_sa($rhand, $target2_coord, $duration);
     return;
 }
 def_coord $target3_coord = .coord;
 def_player_uid $target4 = ~pvp_rune_thrownaxe_hunt($origin, $target1, $target2, $target3, null);
 $duration = ~pvp_rune_thrownaxe_hit($target3_coord, $target4, $duration);
 if ($duration = null) { // spec is over
-    ~ranged_dropammo_pvp_specific($rhand, $target3_coord, divide($duration, 30));
+    ~pvp_thrownaxe_drop_sa($rhand, $target3_coord, $duration);
     return;
 }
 def_coord $target4_coord = .coord;
 def_player_uid $target5 = ~pvp_rune_thrownaxe_hunt($origin, $target1, $target2, $target3, $target4);
 $duration = ~pvp_rune_thrownaxe_hit($target4_coord, $target5, $duration);
 if ($duration = null) { // spec is over
-    ~ranged_dropammo_pvp_specific($rhand, $target4_coord, divide($duration, 30));
+    ~pvp_thrownaxe_drop_sa($rhand, $target4_coord, $duration);
     return;
 }
-~ranged_dropammo_pvp($rhand, divide($duration, 30));
+~pvp_thrownaxe_drop_sa($rhand, $origin, $duration);
 
 [proc,pvp_rune_thrownaxe_hunt](coord $origin, player_uid $target1, player_uid $target2, player_uid $target3, player_uid $target4)(player_uid)
 huntall($origin, 3, ^vis_lineofsight);
@@ -55,7 +50,7 @@ while (.huntnext = true) {
         // - result: no chain
         // test: player in multi, 1st target in multi, 2nd target in singles
         // - result: no chain
-        // conclusion: it checks multi for coord() and next target npc_coord()
+        // conclusion: it checks multi for coord() and next target $origin()
         if (map_multiway(coord) = true & map_multiway(.coord) = true) {
             return(.uid);
         }
@@ -110,3 +105,11 @@ if ($hit = false) {
     return(null);
 }
 return($duration);
+
+[proc,pvp_thrownaxe_drop_sa](obj $rhand, coord $target_coord, int $duration)
+~ranged_dropammo_pvp_specific($rhand, $target_coord, divide($duration, 30));
+if (inv_total(worn, $rhand) = 0) {
+    mes("That was your last one!");
+    p_stopaction;
+    ~update_all($rhand);
+}
