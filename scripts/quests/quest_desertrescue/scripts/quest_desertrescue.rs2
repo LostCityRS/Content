@@ -299,7 +299,7 @@ if(inv_total(inv, metal_key) = 0) {
     inv_add(inv, metal_key, 1);
     $found = true;
 }
-if(%desertrescue_progress = ^desertrescue_escaped & inv_total(inv, thgoodminekey) = 0) {
+if(%desertrescue_progress >= ^desertrescue_escaped & inv_total(inv, thgoodminekey) = 0) {
     ~objbox(thgoodminekey, "You find the key to the main gate.", 250, 0, 0);
     inv_add(inv, thgoodminekey, 1);
     $found = true;
