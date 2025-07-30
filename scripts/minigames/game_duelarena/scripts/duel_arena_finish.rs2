@@ -1,5 +1,7 @@
 [queue,player_death_duel]
-%duelstatus = ^duelstatus_lost;
+if (%duelstatus < ^duelstatus_lost) { // in a duel
+    %duelstatus = ^duelstatus_lost;
+}
 if (~in_duel_arena(coord) = true) {
     ~player_death;
 }
