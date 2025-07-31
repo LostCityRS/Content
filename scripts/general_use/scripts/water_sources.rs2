@@ -5,6 +5,7 @@ switch_obj (last_useitem)
     case clay : @make_softclay(bowl_water);
     case bucket_empty, jug_empty : @water_fill(last_useslot, last_slot);
     case potato, cooked_meat, cooked_chicken : @make_incomplete_stew(last_useslot);
+    case water_skin3, water_skin2, water_skin1, water_skin0 : @water_fill(last_useslot, last_slot);
     case default : ~displaymessage(^dm_default);
 };
 
@@ -15,6 +16,7 @@ switch_obj (last_useitem)
     case pot_flour : @dough_interface(last_item);
     case clay : @make_softclay(bucket_water);
     case jug_empty, bowl_empty : @water_fill(last_useslot, last_slot);
+    case water_skin3, water_skin2, water_skin1, water_skin0 : @water_fill(last_useslot, last_slot);
     case default : ~displaymessage(^dm_default);
 };
 
@@ -25,6 +27,7 @@ switch_obj (last_useitem)
     case pot_flour : @dough_interface(last_item);
     case clay : @make_softclay(jug_water);
     case bucket_empty, bowl_empty : @water_fill(last_useslot, last_slot);
+    case water_skin3, water_skin2, water_skin1, water_skin0 : @water_fill(last_useslot, last_slot);
     case default : ~displaymessage(^dm_default);
 };
 
