@@ -164,7 +164,6 @@ if (random(2) = 0) {
 // Ogre arrow launch spotanim is higher than other arrows by default, so we compensate for that here
 [proc,player_use_ogre_bow](obj $ammo)(int)
 spotanim_pl(oc_param($ammo, proj_launch), 50, 0);
-inv_del(worn, $ammo, 1);
 return(~npc_projectile(coord, npc_uid, oc_param($ammo, proj_travel), 40, 36, 41, 15, 5, 11, 5));
 
 [ai_queue3,chompy_bird]
