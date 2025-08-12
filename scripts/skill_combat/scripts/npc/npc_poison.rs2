@@ -4,6 +4,9 @@
 // damage npc
 %npc_poison = sub(%npc_poison, 1);
 if (%npc_poison > 0) {
+    if (npc_stat(hitpoints) = 0) { // already dead
+        return;
+    }
     npc_damage(^hitmark_poison, divide(add(%npc_poison, 4), 5));
     // They died
     if (npc_stat(hitpoints) = 0){
