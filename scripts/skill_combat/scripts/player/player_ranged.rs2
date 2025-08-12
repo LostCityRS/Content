@@ -125,7 +125,7 @@ if($ammo = holy_water) {
     ~ranged_dropammo_holywater(npc_coord, $delay);
     return;
 }
-if (random(^dropammo_chance) ! 0 | $ammo = holy_water) {
+if (random(^dropammo_chance) ! 0) {
     if (map_blocked(npc_coord) = false) {
         inv_dropitem_delayed(worn, npc_coord, $ammo, 1, ^lootdrop_duration, $delay);
         return;
@@ -138,9 +138,7 @@ if (~in_duel_arena(coord) = true) {
     return;
 }
 inv_del(worn, holy_water, 1);
-if ($delay >= 0) {
-    world_delay($delay);
-}
-if (map_blocked($coord) = false) {
-    obj_add($coord, smashed_glass, 1, ^lootdrop_duration);
+if (inv_freespace(worn) > 0) {
+    inv_add(worn, smashed_glass, 1);
+    inv_dropitem_delayed(worn, $coord, smashed_glass, 1, ^lootdrop_duration, $delay);
 }
