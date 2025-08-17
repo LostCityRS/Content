@@ -183,7 +183,7 @@ model7=model_286_obj_wear
 head1=model_48_npc_head
 head2=model_83_idk_head
 wanderrange=3
-// TODO: maxrange= 
+maxrange=7
 respawnrate=100
 hitpoints=25
 attack=10
@@ -195,10 +195,9 @@ param=crushdefence,8
 param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
-// TODO: param=attack_sound,
+param=attack_sound,stabsword_slash
 // https://www.youtube.com/watch?v=ZYPB823IyRk&t=395s
 // https://www.youtube.com/watch?v=Tm1r7zi4oUY
-// TODO monster examine spell
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_12093
 
 [hazeel]
@@ -274,8 +273,8 @@ param=crushdefence,8
 param=attack_anim,human_stafforb_pummel
 param=defend_anim,human_stafforb_block
 param=attack_sound,staff_hit
-// TODO get real animation ids and sound osrs
-// TODO monster examine spell
+// The npc in question is no longer killable after the release of the Secrets of the North quest.
+// sounds are guess and The animations are taken from the video.
 // https://www.youtube.com/watch?v=R5MdMtqvxaM&t=418s
 
 [hazeel_cultist]
@@ -316,5 +315,5 @@ param=attack_anim,human_staff_pummel
 param=defend_anim,human_staff_block
 param=attack_sound,staff_hit
 // TODO try to get information about the wanderrange/maxrange
-// TODO monster examine spell
+// The npc in question is no longer killable after the release of the Secrets of the North quest.
 // https://www.youtube.com/watch?v=tYXi3dBooB4

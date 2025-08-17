@@ -789,8 +789,7 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,stabsword_slash
-// param=defend_sound, TODO
-// osrs defend_sound blade5
+param=defend_sound,blade5
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3297
 
@@ -910,8 +909,7 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,stabsword_slash
-// param=defend_sound, TODO
-// osrs defend_sound blade5
+param=defend_sound,blade5
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3300
 
 [yanille_watchman]
@@ -3486,8 +3484,8 @@ param=attack_anim,human_axe_chop
 param=defend_anim,human_axe_def
 param=death_anim,human_transdeath
 param=attack_sound,mace_crush
-// param=defend_sound, TODO
-// osrs sounds warhammer_crush, blade5
+param=defend_sound,blade5
+// osrs sounds warhammer_crush
 huntmode=cowardly
 huntrange=5
 // hunt - https://www.youtube.com/watch?v=T2ztjZEch5Y&t=153s
@@ -5672,10 +5670,9 @@ param=defend_anim,human_sword_def
 param=attack_sound,stabsword_slash
 param=defend_sound,brassclash
 param=death_sound,swordclash2
-// osrs sounds brassclash, swordclash2
-// original sounds?? animated_hit, animated_death
 param=death_drop,null
 // osrs stats and Vislvl match 1:1
+// original sounds?? animated_hit, animated_death
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5043
 
 [captain_shanks]
@@ -6029,9 +6026,9 @@ param=attack_sound,insect_attack
 param=defend_sound,insect_hit
 param=death_sound,insect_death
 param=death_drop,null
-// Tested this npc in osrs, doesnt seem to poison? Seems like the chests have a chance to poison
 huntmode=cowardly
 huntrange=1
 // Stats match osrs version but our version Vislvl is different.
 // osrs sounds big_spider_attack, big_spider_hit, big_spider_death
+// Tested this npc in osrs, doesnt seem to poison? Seems like the chests have a chance to poison
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5373
