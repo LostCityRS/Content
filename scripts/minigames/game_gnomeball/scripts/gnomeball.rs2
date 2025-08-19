@@ -8,10 +8,10 @@ if (%gnomeball_progress = ^gnomeball_game_started) {
     }
     if ($ball_worn > 0) {
         inv_del(worn, ball_gnomeball_game, $ball_worn);
-        ~update_all(null);
     }
     ~gnomeball_reset;
 }
+~update_all(null);
 
 [oploc1,gnomeball_gate]
 def_obj $rhand = inv_getobj(worn, ^wearpos_rhand);
