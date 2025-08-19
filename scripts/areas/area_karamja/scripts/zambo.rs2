@@ -1,0 +1,37 @@
+[opnpc1,zambo]
+~chatnpc("<p,quiz>Hey, are you wanting to try some of my fine wines and spirits? All brewed locally on Karamja island.");
+
+def_int $option;
+if(testbit(%barcrawl_progress, ^karamjaspirits_index) = ^false & inv_total(inv, barcrawl_card) > 0) {
+    $option = ~p_choice3("Yes please.", 1, "No, thank you.", 2, "I'm doing Alfred Grimhand's barcrawl.", 3);
+} else {
+    $option = ~p_choice2("Yes please.", 1, "No, thank you.", 2);
+}
+switch_int ($option) {
+    case 1 : p_opnpc(3);
+    case 2 : ~chatplayer("<p,neutral>No, thank you.");
+    case 3 : @karamjaspirits_barcrawl;
+}
+
+[opnpcu,zambo]
+if(testbit(%barcrawl_progress, ^karamjaspirits_index) = ^false & last_useitem = barcrawl_card) {
+    @karamjaspirits_barcrawl;
+}
+
+[label,karamjaspirits_barcrawl]
+~chatplayer("<p,neutral>I'm doing Alfred Grimhand's barcrawl.");
+~chatnpc("<p,neutral>Ah, you'll be wanting some Ape Bite Liqueur then. It's got a lovely banana taste, and it'll only cost you 7 coins.");
+if(inv_total(inv, coins) < 7) {
+    ~chatplayer("<p,sad>I don't have 7 coins right now.");
+    return;
+}
+if_close;
+inv_del(inv, coins, 7);
+mes("You buy some Ape Bite Liqueur.");
+p_delay(2);
+mes("You swirl it around and swallow it.");
+p_delay(2);
+mes("Zambo signs your card.");
+p_delay(2);
+%barcrawl_progress = setbit(%barcrawl_progress, ^karamjaspirits_index);
+~chatplayer("<p,confused>Mmmmm, dat was luverly...");

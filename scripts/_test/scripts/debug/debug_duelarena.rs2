@@ -1,0 +1,46 @@
+[debugproc,cr]
+cam_reset;
+
+[debugproc,c]
+// NORTH EAST
+cam_moveto(movecoord(0_52_50_32_41, 6, 0, 2), 1980, 0, 100);
+cam_lookat(movecoord(0_52_50_32_41, 0, 0, -1), 1155, 0, 100);
+// NORTH WEST
+// cam_moveto(movecoord(0_52_50_2_60, -6, 0, 2), 1980, 0, 100);
+// cam_lookat(movecoord(0_52_50_2_60, 0, 0, -1), 1155, 0, 100);
+// SOUTH EAST
+// cam_moveto(movecoord(0_52_50_31_43, 6, 0, -2), 1980, 0, 100);
+// cam_lookat(movecoord(0_52_50_31_43, 0, 0, 1), 1155, 0, 100);
+// SOUTH WEST
+// cam_moveto(movecoord(0_52_50_33_4, -6, 0, -2), 1980, 0, 100);
+// cam_lookat(movecoord(0_52_50_33_4, 0, 0, 1), 1155, 0, 100);
+
+[debugproc,dueloffer]
+def_int $i = 0;
+def_int $null = 0;
+while ($i < inv_size(dueloffer)) {
+    if (inv_getobj(dueloffer, $i) ! null) {
+        mes("<tostring($i)>: <oc_debugname(inv_getobj(dueloffer, $i))>");
+    } else {
+        $null = add($null, 1);
+    }
+    $i = add($i, 1);
+}
+if ($null = inv_size(dueloffer)) {
+    mes("dueloffer is empty");
+}
+
+[debugproc,duelwinnings]
+def_int $i = 0;
+def_int $null = 0;
+while ($i < inv_size(duelwinnings)) {
+    if (inv_getobj(duelwinnings, $i) ! null) {
+        mes("<tostring($i)>: <oc_debugname(inv_getobj(duelwinnings, $i))>");
+    } else {
+        $null = add($null, 1);
+    }
+    $i = add($i, 1);
+}
+if ($null = inv_size(duelwinnings)) {
+    mes("stakeinv is empty");
+}

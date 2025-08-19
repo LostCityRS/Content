@@ -1,0 +1,59 @@
+[opheldu,studs]
+switch_obj (last_useitem)
+{
+    case leather_chaps :
+        if (map_members = ^false) {
+            mes(^mes_members_feature);
+            return;
+        }
+        @craft_studded(studded_chaps);
+    case leather_body :
+        if (map_members = ^false) {
+            mes(^mes_members_feature);
+            return;
+        }
+        @craft_studded(studded_body);
+    case default : ~displaymessage(^dm_default);
+};
+
+[opheldu,leather_chaps]
+if (last_useitem = studs) {
+    if (map_members = ^false) {
+        mes(^mes_members_feature);
+        return;
+    }
+    @craft_studded(studded_chaps);
+}
+~displaymessage(^dm_default);
+
+[opheldu,leather_body]
+if (last_useitem = studs) {
+    if (map_members = ^false) {
+        mes(^mes_members_feature);
+        return;
+    }
+    @craft_studded(studded_body);
+}
+~displaymessage(^dm_default);
+
+
+[label,craft_studded](obj $studded_obj)
+def_struct $struct = oc_param($studded_obj, crafting_studded_struct);
+
+// check if player has level req
+if (stat(crafting) < struct_param($struct, levelrequired)) {
+    mes(struct_param($struct, levelfailure));
+    return;
+}
+
+// delete items
+inv_del(inv, struct_param($struct, ingredient), 1);
+inv_del(inv, studs, 1);
+
+// add item
+inv_add(inv, struct_param($struct, product), 1);
+
+stat_advance(crafting, struct_param($struct, productexp));
+
+// display game message
+mes(struct_param($struct, productmessage));

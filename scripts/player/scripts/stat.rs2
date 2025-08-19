@@ -1,0 +1,133 @@
+[proc,stat_name](stat $stat)(string)
+return(enum(stat, string, stat_names, $stat));
+
+[proc,stat_members](stat $stat)(int)
+return(enum(stat, int, stat_members, $stat));
+
+[proc,npc_stat_name](npc_stat $stat)(string)
+switch_npc_stat($stat) {
+    case attack : return("Attack");
+    case strength : return("Strength");
+    case ranged : return("Ranged");
+    case magic : return("Magic");
+    case defence : return("Defence");
+    case hitpoints : return("Hitpoints");
+    case default : return("Stat");
+}
+
+[proc,convert_stat_to_npc_stat](stat $stat)(npc_stat)
+switch_stat($stat) {
+    case attack : return(attack);
+    case strength : return(strength);
+    case ranged : return(ranged);
+    case magic : return(magic);
+    case defence : return(defence);
+    case hitpoints : return(hitpoints);
+}
+error("Invalid stat: <~stat_name($stat)>");
+
+// handles restoring a players stat towards the base level
+[timer,stat_regen]
+def_int $i = 1;
+while ($i <= enum_getoutputcount(stats)) {
+    def_stat $stat = enum(int, stat, stats, $i);
+    def_int $base_level = stat_base($stat);
+    def_int $level = stat($stat);
+    // prayer doesnt regen, or deplete when too high
+    if ($base_level > $level & $stat ! prayer & $stat ! hitpoints) {
+        // level is lower than base so add to it
+        stat_add($stat, 1, 0);
+    }
+
+    $i = calc($i + 1);
+}
+
+[timer,stat_boost_restore]
+def_int $i = 1;
+while ($i <= enum_getoutputcount(stats)) {
+    def_stat $stat = enum(int, stat, stats, $i);
+    def_int $base_level = stat_base($stat);
+    def_int $level = stat($stat);
+    if ($base_level < $level & $stat ! prayer & $stat ! hitpoints) {
+        stat_sub($stat, 1, 0);
+    }
+
+    $i = calc($i + 1);
+}
+
+//hp is on a seperate timer, because of rapid heal and rapid restore
+[timer,health_regen]
+stat_heal(hitpoints, 1, 0);
+
+[proc,stat_reset](stat $stat)
+def_int $d = sub(stat($stat), stat_base($stat));
+
+if ($d > 0) {
+    stat_sub($stat, abs($d), 0);
+} else if ($d < 0) {
+    stat_add($stat, abs($d), 0);
+}
+
+[proc,stat_reset_all]
+def_int $i = 1;
+while ($i <= enum_getoutputcount(stats)) {
+    ~stat_reset(enum(int, stat, stats, $i));
+    $i = calc($i + 1);
+}
+
+[proc,.stat_reset](stat $stat)
+def_int $d = sub(.stat($stat), .stat_base($stat));
+
+if ($d > 0) {
+    .stat_sub($stat, abs($d), 0);
+} else if ($d < 0) {
+    .stat_add($stat, abs($d), 0);
+}
+
+[proc,.stat_reset_all]
+def_int $i = 1;
+while ($i <= enum_getoutputcount(stats)) {
+    ~.stat_reset(enum(int, stat, stats, $i));
+    $i = calc($i + 1);
+}
+
+[proc,stat_reset_boosts]
+def_int $i = 1;
+while ($i <= enum_getoutputcount(stats)) {
+    def_stat $stat = enum(int, stat, stats, $i);
+    if (stat($stat) > stat_base($stat)) {
+        ~stat_reset($stat);
+    }
+    $i = calc($i + 1);
+}
+
+[proc,.stat_reset_boosts]
+def_int $i = 1;
+while ($i <= enum_getoutputcount(stats)) {
+    def_stat $stat = enum(int, stat, stats, $i);
+    if (.stat($stat) > .stat_base($stat)) {
+        ~.stat_reset($stat);
+    }
+    $i = calc($i + 1);
+}
+
+[proc,random_stat]()(stat)
+if (map_members = ^true) {
+    return(enum(int, stat, stats, add(random(enum_getoutputcount(stats)), 1)));
+} else {
+    return(enum(int, stat, stats_free, add(random(enum_getoutputcount(stats_free)), 1)));
+}
+
+[proc,stat_boost_login]
+if (map_members = ^true) {
+    return;
+}
+def_int $i = 1;
+while ($i <= enum_getoutputcount(stats)) {
+    def_stat $stat = enum(int, stat, stats, $i);
+    // in 2006, every stat except prayer, smithing, and mining reset on login if boosted (same as current osrs)
+    if (stat($stat) > stat_base($stat) & $stat ! prayer & $stat ! smithing & $stat ! mining) {
+        ~stat_reset($stat);
+    }
+    $i = calc($i + 1);
+}

@@ -1,0 +1,125 @@
+[bolt]
+stackable=yes
+cost=3
+name=Bolt
+desc=Good if you have a crossbow!
+model=model_2664_obj
+2dxof=-6
+2dyof=145
+2dzoom=580
+2dyan=104
+2dxan=232
+iop2=Wield
+wearpos=quiver
+weight=18g
+category=bolts
+param=rangebonus,10
+param=levelrequire,1
+param=proj_launch,crossbowbolt_launch
+param=proj_travel,crossbowbolt_travel
+param=weapon_poisoned,poison_bolt
+param=weapon_poisoned_message,You poison some bolts.
+
+[poison_bolt]
+stackable=yes
+cost=3
+members=yes
+name=Bolt(p)
+desc=Vicious poisoned bolts.
+model=model_2664_obj
+recol1s=14798
+recol1d=14881
+2dxof=-6
+2dyof=145
+2dzoom=580
+2dyan=104
+2dxan=232
+iop2=Wield
+wearpos=quiver
+weight=18g
+category=bolts
+param=rangebonus,10
+param=levelrequire,1
+param=proj_launch,crossbowbolt_launch
+param=proj_travel,crossbowbolt_travel
+param=poison_severity,20
+
+//RANGED STRENGTH FOR UNUSUAL BOLTS:
+//The ranged strength stats for non-standard bolts before the 2006 crossbow rework are not known precisely.
+//Modern bolts all give a +18/+9 bonus over the previous tier / half-tier, and there is some evidence that this schema pre-exists the rework
+//For example, karil's bolt racks (2005) at +55 - i.e. exactly 2.5 tiers above basic bolts at +10. Likewise, the non-standard introduction of blurite in 2006 to fill in a 'missing' tier between bronze and iron.
+//Strength values have therefore been set according to this +9/+18 schema, matching fansite comparisons @ https://web.archive.org/web/20041204070450/https://www.lunagang.nl/
+//CONFIRM if evidence surfaces - should be nontheless be accurate +/- one max hit
+
+//LEVEL REQUIREMENTS presumably did not exist. osrs/post-crossbow-update puts them at 26
+
+[opal_bolt]
+stackable=yes
+cost=60
+members=yes
+name=Opal bolt
+desc=Great if you have a crossbow!
+model=model_2664_obj
+recol1s=14798
+recol1d=29587
+recol2s=15855
+recol2d=29587
+2dxof=-6
+2dyof=145
+2dzoom=580
+2dyan=104
+2dxan=232
+iop2=Wield
+wearpos=quiver
+weight=18g
+category=bolts
+param=rangebonus,28
+param=levelrequire,1
+param=proj_launch,crossbowbolt_launch
+param=proj_travel,crossbowbolt_travel
+
+[pearl_bolt]
+stackable=yes
+cost=110
+members=yes
+name=Pearl bolt
+desc=Great if you have a crossbow!
+model=model_2664_obj
+recol1s=14798
+recol1d=32767
+recol2s=15855
+recol2d=32767
+2dxof=-6
+2dyof=145
+2dzoom=580
+2dyan=104
+2dxan=232
+iop2=Wield
+wearpos=quiver
+weight=18g
+category=bolts
+param=rangebonus,19
+param=levelrequire,1
+param=proj_launch,crossbowbolt_launch
+param=proj_travel,crossbowbolt_travel
+
+[barbed_bolt]
+stackable=yes
+cost=200
+members=yes
+name=Barbed bolt
+desc=Great if you have a crossbow!
+model=model_2453_obj
+2dxof=-6
+2dyof=145
+2dzoom=580
+2dyan=104
+2dxan=232
+iop2=Wield
+wearpos=quiver
+weight=18g
+category=bolts
+param=rangebonus,46
+param=levelrequire,1
+param=proj_launch,crossbowbolt_launch
+param=proj_travel,crossbowbolt_travel

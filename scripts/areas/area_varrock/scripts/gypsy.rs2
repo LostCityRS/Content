@@ -1,0 +1,288 @@
+[opnpc1,aris]
+if (%demon_progress = ^demon_not_started) {
+    @demon_slayer_not_started_aris;
+} else if (%demon_progress = ^demon_talked_aris) {
+    ~chatnpc("<p,neutral>How goes the quest?");
+    ~chatplayer("<p,happy>I'm still working on it.");
+    ~chatnpc("<p,happy>Well if you need any advice I'm always here, young one.");
+    def_int $option = ~p_choice4("What is the magical incantation?", 1, "Where can I find Silverlight?", 2, "Well I'd better press on with it.", 3, "Stop calling me that!", 4);
+
+    if ($option = 1) {
+        @demon_slayer_aris_incantation;
+    } else if ($option = 2) {
+        @demon_slayer_aris_silverlight;
+    } else if ($option = 3) {
+        @demon_slayer_aris_press_on_with_it;
+    } else if ($option = 4) {
+        @demon_slayer_aris_stop_calling_me_that;
+    }
+} else if (%demon_progress < ^demon_silverlight) {
+
+    ~chatnpc("<p,neutral>How goes the quest?");
+    ~chatplayer("<p,happy>I have found Sir Prysin. Unfortunately, I haven't got the sword yet. He made it complicated for me!");
+    ~chatnpc("<p,neutral>Ok, hurry, we haven't much time.");
+
+    def_int $option = ~p_choice2("What is the magical incantation?", 1, "Well I'd better press on with it.", 2);
+    if ($option = 1) {
+        @demon_slayer_aris_incantation;
+    } else {
+        @demon_slayer_aris_press_on_with_it;
+    }
+} else  if(%demon_progress = ^demon_silverlight){
+        ~chatnpc("<p,neutral>How goes the quest?");
+        ~chatplayer("<p,happy>I have the sword now.|I just need to kill the demon, I think.");
+        ~chatnpc("<p,happy>Yep, that's right.");
+        // RSC doesn't give these options bus OSRS does. Might as well be nice
+        def_int $option = ~p_choice3("What is the magical incantation?", 1, "Well I'd better press on with it.", 2, "Where can I find the demon?", 3);
+        if ($option = 1) {
+            @demon_slayer_aris_incantation;
+        } else if ($option = 2) {
+            @demon_slayer_aris_press_on_with_it;
+        }else {
+            ~chatplayer("<p,quiz>Where can I find the demon?");
+            ~chatnpc("<p,neutral>Just head south and you should find the stone circle just outside the city gate.");
+        }
+} else if (%demon_progress = ^demon_complete) {
+    ~chatnpc("<p,neutral>Greetings young one.");
+    ~chatnpc("<p,happy>You're a hero now. That was a good bit of demonslaying.");
+    def_int $option = ~p_choice3("How do you know I killed it?", 1, "Thanks.", 2, "Stop calling me that!", 3);
+
+    if ($option = 1) {
+        ~chatplayer("<p,confused>How do you know I killed it?");
+        ~chatnpc("<p,neutral>You forget. I'm good at knowing things.");
+    } else if ($option = 2) {
+        ~chatplayer("<p,neutral>Thanks.");
+    } else {
+        @demon_slayer_aris_stop_calling_me_that;
+    }
+}
+
+[label,demon_slayer_aris_press_on_with_it]
+~chatplayer("<p,quiz>Well I'd better press on with it.");
+~chatnpc("<p,happy>See you anon.");
+
+[label,demon_slayer_aris_stop_calling_me_that]
+    ~chatplayer("<p,angry>Stop calling me that!");
+    ~chatnpc("<p,laugh>In the scheme of things you are very young.");
+    def_int $option = ~p_choice2("Ok, but how old are you?", 1, "Oh, if its in the scheme of things that's ok.", 2);
+
+    if ($option = 1) {
+        ~chatplayer("<p,neutral>Ok, but how old are you?");
+        @demon_slayer_aris_how_old_are_you;
+    } else if ($option = 2) {
+        ~chatplayer("<p,confused>Oh, if its in the scheme of things that's ok.");
+        ~chatnpc("<p,laugh>You show wisdom for one so young.");
+    }
+
+[label,demon_slayer_not_started_aris]
+~chatnpc("<p,neutral>Hello young one. Cross my palm with silver and the future will be revealed to you.");
+def_int $option = ~p_choice3("Ok, here you go.", 1, "Who are you calling young one?!", 2, "No, I don't believe in that stuff.", 3);
+
+if ($option = 1) {
+    @demon_slayer_aris_quest_start;
+} else if ($option = 2) {
+    ~chatplayer("<p,angry>Who are you calling young one?!");
+    ~chatnpc("<p,quiz>You have been on this world a relatively short time, at least compared to me. So do you want your fortune told or not?");
+
+    $option = ~p_choice3("Yes, please.", 1, "No, I don't believe in that stuff.", 2, "Ooh, how old are you then?", 3);
+    if ($option = 1) {
+        ~chatplayer("<p,quiz>Yes, please.");
+        ~chatnpc("<p,neutral>Cross my palm with silver then.");
+        @demon_slayer_aris_money_for_fortune;
+    } else if ($option = 2) {
+        @demon_slayer_aris_dont_believe;
+    } else if ($option = 3) {
+        ~chatplayer("<p,neutral>Ooh, how old are you then?");
+        @demon_slayer_aris_how_old_are_you;
+    }
+} else if ($option = 3) {
+    @demon_slayer_aris_dont_believe;
+}
+
+[label,demon_slayer_aris_how_old_are_you]
+if (%demon_progress = ^demon_not_started){
+    @demon_slayer_aris_how_old_are_you_pre_quest;
+}
+else{
+    @demon_slayer_aris_how_old_are_you_post_quest;
+}
+
+[label,demon_slayer_aris_how_old_are_you_pre_quest]
+~chatnpc("<p,quiz>Older than you imagine.");
+def_int $option = ~p_choice3("Believe me, I have a good imagination.", 1, "How do you know how old I think you are?", 2, "Oh, pretty old then.", 3);
+if ($option = 1) {
+    ~chatplayer("<p,quiz>Believe me, I have a good imagination.");
+    ~chatnpc("<p,quiz>You seem like just the sort of person who would want their fortune told then.");
+    $option = ~p_choice2("No, I don't believe in that stuff.", 1, "Yes, please.", 2);
+
+    if ($option = 1) {
+        @demon_slayer_aris_dont_believe;
+    } else if ($option = 2){
+        ~chatnpc("<p,neutral>Cross my palm with silver then.");
+        @demon_slayer_aris_money_for_fortune;
+    }
+} else if ($option = 2) {
+    ~chatplayer("<p,neutral>How do you know how old I think you are?");
+    ~chatnpc("<p,neutral>I have the power to know. Just as I have the power to foresee the future.");
+    $option = ~p_choice3("Ok, what am I thinking now?", 1, "Ok, but how old are you?", 2, "Go on then, what's my future?", 3);
+
+    if ($option = 1) {
+        ~chatplayer("<p,neutral>Ok, what am I thinking now?");
+        ~chatnpc("<p,neutral>You are thinking that I'll never guess what you are thinking.");
+    } else if ($option = 2) {
+        ~chatplayer("<p,neutral>Ok, but how old are you?");
+        @demon_slayer_aris_age_riddle;
+    } else if ($option = 3) {
+        ~chatplayer("<p,neutral>Go on then, what's my future?");
+        ~chatnpc("<p,neutral>Hello young one. Cross my palm with silver and the future will be revealed to you.");
+        @demon_slayer_aris_money_for_fortune;
+    }
+} else if ($option = 3) {
+    ~chatplayer("<p,laugh>Oh, pretty old then.");
+    ~chatnpc("<p,angry>Yes I'm old! Don't rub it in.");
+}
+
+[label,demon_slayer_aris_how_old_are_you_post_quest]
+~chatnpc("<p,neutral>Count the number of legs of the chairs in the blue moon inn");
+~chatnpc("<p,neutral>And multiply that number by seven.");
+~chatplayer("<p,neutral>Errr yeah whatever.");
+
+[label,demon_slayer_aris_money_for_fortune]
+def_int $option = ~p_choice2("Ok, here you go.", 1, "Oh you want me to pay. No thanks.", 2);
+if ($option = 1) {
+    @demon_slayer_aris_quest_start;
+} else if ($option = 2) {
+    ~chatplayer("<p,sad>Oh you want me to pay. No thanks.");
+    ~chatnpc("<p,angry>Go away then.");
+}
+
+[label,demon_slayer_aris_quest_start]
+~chatplayer("<p,quiz>Ok, here you go.");
+
+if (inv_total(inv, coins) = 0) {
+    ~chatplayer("<p,sad>Oh dear. I don't have any money.");
+} else if (inv_total(inv, coins) > 0) {
+    inv_del(inv, coins, 1);
+    ~chatnpc("<p,happy>Come closer, and listen carefully to what the future holds for you, as I peer into the swirling mists of the crystal ball.");
+    ~chatnpc("<p,neutral>I can see images forming. I can see you.");
+    ~chatnpc("<p,confused>You are holding a very impressive looking sword. I'm sure I recognise that sword...");
+    ~chatnpc("<p,confused>There is a big dark shadow appearing now.");
+    ~chatnpc("<p,scared>Aaargh!");
+    def_int $option = ~p_choice3("Very interesting. What does that Aaargh bit mean?", 1, "Are you alright?", 2, "Aaargh?", 3);
+
+    if ($option = 1) {
+        ~chatplayer("<p,confused>Very interesting. What does that Aaargh bit mean?");
+    } else if ($option = 2) {
+        ~chatplayer("<p,confused>Are you alright?");
+    } else if ($option = 3) {
+        ~chatplayer("<p,confused>Aaargh?");
+    }
+    ~chatnpc("<p,scared>It's Delrith! Delrith is coming!");
+    def_int $who_is_delrith = ~p_choice2("Who's Delrith?", 1, "Get a grip!", 2);
+
+    if ($who_is_delrith = 1) {
+        ~chatplayer("<p,confused>Who's Delrith?");
+        @demon_slayer_aris_who_is_delrith;
+    } else if ($who_is_delrith = 2) {
+        ~chatplayer("<p,angry>Get a grip!");
+        ~chatnpc("<p,sad>Sorry. I didn't expect to see Delrith... I had to break away quickly in case he detected me.");
+        @demon_slayer_aris_who_is_delrith;
+    }
+}
+
+[label,demon_slayer_aris_who_is_delrith]
+~chatnpc("<p,sad>Delrith...");
+~chatnpc("<p,neutral>Delrith is a powerful demon.");
+~chatnpc("<p,scared>Oh! I really hope he didn't see me looking at him through my crystal ball!");
+~chatnpc("<p,sad>He tried to destroy this city 150 years ago. He was stopped just in time by the great hero Wally.");
+~chatnpc("<p,sad>Using his magic sword Silverlight, Wally managed to trap the demon in the stone circle just south of this city.");
+~chatnpc("<p,shock>Ye gods! Silverlight was the sword you were holding in my vision! You are the one destined to stop the demon this time.");
+def_int $option = ~p_choice3("How am I meant to fight a demon who can destroy cities?", 1, "Okay, where is he? I'll kill him for you!", 2, "Wally doesn't sound like a very heroic name.", 3);
+
+if ($option = 1) {
+    @demon_slayer_aris_destroy_cities;
+} else if ($option = 2) {
+    @demon_slayer_aris_kill_him_for_you;
+} else if ($option = 3) {
+    @demon_slayer_aris_wally;
+}
+
+[label,demon_slayer_aris_wally]
+~chatplayer("<p,happy>Wally doesn't sound a very heroic name.");
+~chatnpc("<p,neutral>Yes I know. Maybe that is why history doesn't remember him. However he was a very great hero.");
+~chatnpc("<p,neutral>Who knows how much pain and suffering Delrith would have brought forth without Wally to stop him!");
+~chatnpc("<p,neutral>It looks like you are going to need to perform similar heroics.");
+def_int $option = ~p_choice2("How am I meant to fight a demon who can destroy cities?", 1, "Okay, where is he? I'll kill him for you!", 2);
+
+if ($option = 1) {
+    @demon_slayer_aris_destroy_cities;
+} else if ($option = 2) {
+    @demon_slayer_aris_kill_him_for_you;
+}
+
+[label,demon_slayer_aris_destroy_cities]
+~chatplayer("<p,scared>How am I meant to fight a demon who can destroy cities?!");
+~chatnpc("<p,scared>I admit it won't be easy.");
+@demon_slayer_aris_destroy_delrith;
+
+[label,demon_slayer_aris_kill_him_for_you]
+~chatplayer("<p,happy>Okay, where is he? I'll kill him for you!");
+~chatnpc("<p,scared>Well you can't just go and fight, he can't be harmed by ordinary weapons.");
+@demon_slayer_aris_destroy_delrith;
+
+[label,demon_slayer_aris_destroy_delrith]
+~chatnpc("<p,neutral>Wally managed to arrive at the stone circle just as Delrith was summoned by a cult of chaos druids...");
+~chatnpc("<p,happy>By reciting the correct magical incantation, and thrusting Silverlight into Delrith while he was newly summoned, Wally was able to imprison Delrith in the stone block in the centre of the circle.");
+~chatnpc("<p,sad>Delrith will come forth from the stone circle again.");
+~chatnpc("<p,sad>I would imagine an evil sorcerer is already starting on the rituals to summon Delrith as we speak.");
+%demon_progress = ^demon_talked_aris;
+~send_quest_progress(questlist:demon, %demon_progress, ^demon_complete);
+@demon_slayer_aris_more_info;
+
+[label,demon_slayer_aris_more_info]
+def_int $option = ~p_choice2("What is the magical incantation?", 1, "Where can I find Silverlight?", 2);
+
+if ($option = 1) {
+    @demon_slayer_aris_incantation;
+} else if ($option = 2) {
+    @demon_slayer_aris_silverlight;
+}
+
+[label,demon_slayer_aris_incantation]
+~chatplayer("<p,neutral>What is the magical incantation?");
+~chatnpc("<p,neutral>Oh yes, let me think a second...");
+// This was not randomized with RSC, but might've been after the demon slayer rework in 2006.
+//https://web.archive.org/web/20041115013147/http://runescape.salmoneus.net/quests/DemonSlayer.html
+~chatnpc("<p,happy>Alright, I think I've got it now, it goes.... Carlem... Aber... Camerinthum... Purchai... Gabindo. Have you got that?");
+~chatplayer("<p,happy>I think so, yes.");
+def_int $option = ~p_choice2("Okay, thanks. I'll do my best to stop the demon.", 1, "Where can I find Silverlight?", 2);
+
+if ($option = 1) {
+    @demon_slayer_aris_ill_do_my_best;
+} else if ($option = 2) {
+    @demon_slayer_aris_silverlight;
+}
+
+[label,demon_slayer_aris_ill_do_my_best]
+~chatplayer("<p,neutral>Okay, thanks. I'll do my best to stop the demon.");
+~chatnpc("<p,happy>Good luck, and may Guthix be with you!");
+
+[label,demon_slayer_aris_silverlight]
+~chatplayer("<p,neutral>Where can I find Silverlight?");
+~chatnpc("<p,neutral>Silverlight has been passed down through Wally's descendants. I believe it is currently in the care of one of the King's knights called Sir Prysin.");
+~chatnpc("<p,happy>He shouldn't be too hard to find. He lives in the royal palace in this city. Tell him Gypsy Aris sent you.");
+def_int $option = ~p_choice2("Okay, thanks. I'll do my best to stop the demon.", 1, "What is the magical incantation?", 2);
+
+if ($option = 1) {
+    @demon_slayer_aris_ill_do_my_best;
+} else if ($option = 2) {
+    @demon_slayer_aris_incantation;
+}
+
+[label,demon_slayer_aris_age_riddle]
+~chatnpc("<p,quiz>Count the number of legs of the chairs in the blue moon inn and multiply that number by seven.");
+~chatplayer("<p,confused>Errr yeah whatever.");
+
+[label,demon_slayer_aris_dont_believe]
+~chatplayer("<p,neutral>No, I don't believe in that stuff.");
+~chatnpc("<p,confused>Ok suit yourself.");

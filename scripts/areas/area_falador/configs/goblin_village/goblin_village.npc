@@ -1,0 +1,115 @@
+[general_bentnoze]
+vislevel=hide
+name=General Bentnoze
+desc=An ugly green creature.
+walkanim=goblin_walk
+readyanim=goblin_ready
+op1=Talk-to
+recol1s=10240
+recol1d=17441
+recol2s=15855
+recol2d=17441
+recol3s=11744
+recol3d=11616
+model1=model_2952_npc
+model2=model_2953_npc
+model3=model_2955_npc
+model4=model_2956_npc
+head1=model_145_npc_head
+wanderrange=3
+param=death_anim,goblin_death
+param=death_sound,goblin_death
+
+[general_wartface]
+vislevel=hide
+name=General Wartface
+desc=An ugly green creature.
+walkanim=goblin_walk
+readyanim=goblin_ready
+op1=Talk-to
+recol1s=10240
+recol1d=672
+recol2s=15855
+recol2d=672
+model1=model_2951_npc
+model2=model_2953_npc
+model3=model_2955_npc
+model4=model_2956_npc
+head1=model_144_npc_head
+wanderrange=3
+param=death_anim,goblin_death
+param=death_sound,goblin_death
+
+[goblin_greenarmour]
+name=Goblin
+desc=An ugly green creature.
+walkanim=goblin_walk
+readyanim=goblin_ready
+op2=Attack
+op1=Talk-to
+vislevel=5
+recol1s=10240
+recol1d=672
+model1=model_2951_npc
+model2=model_2953_npc
+model3=model_2955_npc
+model4=model_2956_npc
+model5=model_2957_npc
+head1=model_142_npc_head
+wanderrange=15
+maxrange=17
+respawnrate=70
+hitpoints=12
+attack=3
+defence=4
+param=attackrate,6
+param=attackbonus,12
+param=strengthbonus,12
+param=damagetype,^stab_style
+param=attack_anim,goblin_attack_armed
+param=defend_anim,goblin_block
+param=death_anim,goblin_death
+param=attack_sound,goblin_attack
+param=defend_sound,goblin_hit
+param=death_sound,goblin_death
+// https://oldschool.runescape.wiki/w/Goblin_(historical)#Green_(original)
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_677
+// osrs ver damage type is crush.
+// osrs stats and Vislvl match 1:1
+
+[goblin_redarmour]
+name=Goblin
+desc=An ugly green creature.
+walkanim=goblin_walk
+readyanim=goblin_ready
+op2=Attack
+op1=Talk-to
+vislevel=5
+recol1s=10240
+recol1d=17441
+model1=model_2951_npc
+model2=model_2953_npc
+model3=model_2955_npc
+model4=model_2956_npc
+model5=model_2957_npc
+head1=model_144_npc_head
+wanderrange=15
+maxrange=17
+respawnrate=70
+hitpoints=12
+attack=3
+defence=4
+param=attackrate,6
+param=attackbonus,12
+param=strengthbonus,12
+param=damagetype,^stab_style
+param=attack_anim,goblin_attack_armed
+param=defend_anim,goblin_block
+param=death_anim,goblin_death
+param=attack_sound,goblin_attack
+param=defend_sound,goblin_hit
+param=death_sound,goblin_death
+// https://oldschool.runescape.wiki/w/Goblin_(historical)#Green_(original)
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_678
+// osrs ver damage type is crush.
+// osrs stats and Vislvl match 1:1

@@ -1,0 +1,76 @@
+[ai_queue3,imp]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+// Default drop from config.
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+def_int $random = random(128);
+
+if ($random < 5) {
+    obj_add(npc_coord, black_bead, 1, ^lootdrop_duration);
+} else if ($random < 10) {
+    obj_add(npc_coord, red_bead, 1, ^lootdrop_duration);
+} else if ($random < 15) {
+    obj_add(npc_coord, white_bead, 1, ^lootdrop_duration);
+} else if ($random < 20) {
+    obj_add(npc_coord, yellow_bead, 1, ^lootdrop_duration);
+} else if ($random < 28) {
+    obj_add(npc_coord, bolt, 1, ^lootdrop_duration);
+} else if ($random < 36) {
+    obj_add(npc_coord, bluewizhat, 1, ^lootdrop_duration);
+} else if ($random < 41) {
+    obj_add(npc_coord, egg, 1, ^lootdrop_duration);
+} else if ($random < 46) {
+    obj_add(npc_coord, raw_chicken, 1, ^lootdrop_duration);
+} else if ($random < 50) {
+    obj_add(npc_coord, burnt_bread, 1, ^lootdrop_duration);
+} else if ($random < 54) {
+    obj_add(npc_coord, burnt_meat, 1, ^lootdrop_duration);
+} else if ($random < 56) {
+    obj_add(npc_coord, cabbage, 1, ^lootdrop_duration);
+} else if ($random < 58) {
+    obj_add(npc_coord, bread_dough, 1, ^lootdrop_duration);
+} else if ($random < 59) {
+    obj_add(npc_coord, bread, 1, ^lootdrop_duration);
+} else if ($random < 60) {
+    obj_add(npc_coord, cooked_meat, 1, ^lootdrop_duration);
+} else if ($random < 68) {
+    obj_add(npc_coord, hammer, 1, ^lootdrop_duration);
+} else if ($random < 73) {
+    obj_add(npc_coord, tinderbox, 1, ^lootdrop_duration);
+} else if ($random < 77) {
+    obj_add(npc_coord, shears, 1, ^lootdrop_duration);
+} else if ($random < 81) {
+    obj_add(npc_coord, bucket_empty, 1, ^lootdrop_duration);
+} else if ($random < 83) {
+    obj_add(npc_coord, bucket_water, 1, ^lootdrop_duration);
+} else if ($random < 85) {
+    obj_add(npc_coord, jug_empty, 1, ^lootdrop_duration);
+} else if ($random < 87) {
+    obj_add(npc_coord, jug_water, 1, ^lootdrop_duration);
+} else if ($random < 89) {
+    obj_add(npc_coord, pot_empty, 1, ^lootdrop_duration);
+} else if ($random < 91) {
+    obj_add(npc_coord, pot_flour, 1, ^lootdrop_duration);
+} else if ($random < 99) {
+    obj_add(npc_coord, ball_of_wool, 1, ^lootdrop_duration);
+} else if ($random < 106) {
+    obj_add(npc_coord, mind_talisman, 1, ^lootdrop_duration);
+} else if ($random < 112) {
+    obj_add(npc_coord, ashes, 1, ^lootdrop_duration);
+} else if ($random < 116) {
+    obj_add(npc_coord, clay, 1, ^lootdrop_duration);
+} else if ($random < 120) {
+    obj_add(npc_coord, cadavaberries, 1, ^lootdrop_duration);
+} else if ($random < 123) {
+    obj_add(npc_coord, grain, 1, ^lootdrop_duration);
+} else if ($random < 125) {
+    obj_add(npc_coord, chefshat, 1, ^lootdrop_duration);
+} else if ($random < 127) {
+    obj_add(npc_coord, flier, 1, ^lootdrop_duration);
+} else if ($random < 128) {
+    obj_add(npc_coord, acne_potion, 1, ^lootdrop_duration);
+}

@@ -1,0 +1,66 @@
+[queue,poison_player](int $severity)
+if (map_members = ^false) {
+    // nothing poisons in f2p
+    return;
+}
+
+if (%poison > -1) { 
+    if (%poison = 0) {
+        mes("You have been poisoned!");
+    }
+    ~set_poison_timer;
+    %poison = max(%poison, $severity);
+}
+
+[timer,poison]
+if (%poison = 0) {
+    cleartimer(poison);
+    return;
+}
+else if(%poison < 0){
+    %poison = calc(%poison + 1);
+    return;
+}
+queue(poison_damage,0,calc((%poison + 4)/5));
+%poison = calc(%poison - 1);
+
+[queue,poison_damage](int $damage)
+if_close;
+def_synth $sound;
+def_int $rand;
+// not sure if this damage is supposed to be queued or not
+damage(uid, ^hitmark_poison, $damage);
+if (gender() = 0) {
+    $rand = random(3);
+    switch_int($rand) {
+        case 0 : $sound = human_hit2;
+        case 1 : $sound = human_hit3;
+        case 2 : $sound = human_hit4;
+        case default : $sound = human_hit2;
+    }
+} else {
+    $rand = random(2);
+    switch_int($rand) {
+        case 0 : $sound = female_hit;
+        case 1 : $sound = female_hit2;
+        case default : $sound = female_hit;
+    }
+}
+sound_synth($sound, 0, 20);
+
+if (stat(hitpoints) = 0) {
+    ~player_die;
+}
+
+
+[proc,clear_poison]
+%poison = 0;
+cleartimer(poison);
+
+[proc,set_poison_login]
+~set_poison_timer;
+
+[proc,set_poison_timer]
+if(gettimer(poison) < 1){
+    settimer(poison, 30);
+}

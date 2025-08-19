@@ -1,0 +1,70 @@
+[opnpc1,foresters_bartender]
+~chatnpc("<p,happy>Good morning, what would you like?");
+if(testbit(%barcrawl_progress, ^forestersarms_index) = ^false & inv_total(inv, barcrawl_card) > 0) {
+    @multi4("What do you have?", foresters_bartender_what_have, "Beer please.", foresters_bartender_beer, "I'm doing Alfred Grimhand's Barcrawl.", forestersarms_barcrawl, "I don't really want anything thanks.", foresters_bartender_thanks);
+} else {
+    @multi3("What do you have?", foresters_bartender_what_have, "Beer please.", foresters_bartender_beer, "I don't really want anything thanks.", foresters_bartender_thanks);
+}
+
+[opnpcu,foresters_bartender]
+if(testbit(%barcrawl_progress, ^forestersarms_index) = ^false & last_useitem = barcrawl_card) {
+    @forestersarms_barcrawl;
+}
+
+[label,foresters_bartender_what_have]
+~chatplayer("<p,quiz>What do you have?");
+~chatnpc("<p,happy>Well we have beer, or if you want some food, we have our home made stew and meat pies.");
+@multi4("Beer please.", foresters_bartender_beer, "I'll try the meat pie.", foresters_bartender_meat_pie, "Could I have some stew please?", foresters_bartender_stew, "I don't really want anything thanks.", foresters_bartender_thanks);
+
+[label,foresters_bartender_beer]
+~chatplayer("<p,happy>Beer please.");
+~chatnpc("<p,happy>One beer coming up. Ok, that'll be two coins.");
+@foresters_bartender_transaction(beer, 2);
+
+[label,foresters_bartender_stew]
+~chatplayer("<p,quiz>Could I have some stew please?");
+~chatnpc("<p,happy>A bowl of stew, that'll be 20 coins please.");
+@foresters_bartender_transaction(stew, 20);
+
+[label,foresters_bartender_meat_pie]
+~chatplayer("<p,happy>I'll try the meat pie.");
+~chatnpc("<p,happy>Ok, that'll be 16 coins.");
+@foresters_bartender_transaction(meat_pie, 16);
+
+[label,foresters_bartender_transaction](namedobj $food_name, int $price)
+if(inv_freespace(inv) = 0) {
+    ~chatplayer("<p,sad>Oh dear. I don't seem to have enough space to carry it.");
+    return;
+} else if(inv_total(inv, coins) < $price) {
+    ~chatplayer("<p,sad>Oh dear. I don't seem to have enough money.");
+    return;
+} else {
+    inv_del(inv, coins, $price);
+    inv_add(inv, $food_name, 1);
+}
+
+[label,foresters_bartender_thanks]
+~chatplayer("<p,neutral>I don't really want anything thanks.");
+
+[label,forestersarms_barcrawl]
+~chatplayer("<p,happy>I'm doing Alfred Grimhand's Barcrawl.");
+~chatnpc("<p,neutral>Oh you're a barbarian then.|Now which of these barrels contained the Liverbane Ale?|That'll be 18 coins please.");
+if(inv_total(inv, coins) < 18) {
+    ~chatplayer("<p,sad>Sorry, I don't have 18 coins.");
+    return;
+}
+if_close;
+inv_del(inv, coins, 18);
+mes("The bartender gives you a glass of Liverbane Ale.");
+p_delay(2);
+mes("You gulp it down.");
+p_delay(3);
+stat_sub(attack, 5, 5);
+stat_sub(defence, 5, 5);
+stat_sub(woodcutting, 5, 5);
+stat_sub(fletching, 5, 5);
+stat_sub(firemaking, 5, 5);
+mes("The room seems to be swaying.");
+p_delay(2);
+%barcrawl_progress = setbit(%barcrawl_progress, ^forestersarms_index);
+mes("The bartender scrawls his signature on your card.");

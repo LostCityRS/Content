@@ -1,0 +1,96 @@
+[queue,player_death_duel]
+if (%duelstatus < ^duelstatus_lost) { // in a duel
+    %duelstatus = ^duelstatus_lost;
+}
+if (~in_duel_arena(coord) = true) {
+    ~player_death;
+}
+clearqueue(duel_finish);
+queue(duel_finish, 0);
+
+if (%duelstatus = ^duelstatus_lost & .finduid(%duelpartner) = true) {
+    session_log(^log_moderator, "Lost a duel against <.name>");
+    .if_close;
+    .%duelstatus = ^duelstatus_victory;
+    both_moveinv(dueloffer, duelwinnings);
+    .clearqueue(duel_finish);
+    .queue(duel_finish, 0);
+}
+// ur able to get double mes if opponent kills u with knives: https://youtu.be/KRDZJKa1whI?list=PLn23LiLYLb1bQ7Hwp77KoNBjKvpZQTfJT&t=12
+midi_jingle(^death_jingle_2, ^death_jingle_2_millis);
+// https://storage.googleapis.com/tannerdino/images/6543.jpg
+// https://youtu.be/gWmwSYxzUfo
+mes("Oh dear you are dead!");
+
+
+[queue,duel_finish]
+if (.finduid(%duelpartner) = true) {
+    if (%duelstatus = ^duelstatus_victory) {
+        if_settext(duel_win:com_91, "You are victorious!");
+        mes("Well done! You have defeated <.displayname>!");
+        session_log(^log_moderator, "Won a duel against <.name>");
+        midi_jingle(^duel_win_2_jingle, ^duel_win_2_jingle_millis);
+        ~duel_reset_all;
+        ~duel_spoils;
+        return;
+    } else if (%duelstatus = ^duelstatus_opponent_resigned) {
+        if_settext(duel_win:com_91, "You are victorious! Your opponent resigned!"); // 2006
+        mes("Well done! <.displayname> resigned!"); // 2006
+        session_log(^log_moderator, "Won a duel by forfeit against <.name>");
+        midi_jingle(^duel_win_2_jingle, ^duel_win_2_jingle_millis);
+        ~duel_reset_all;
+        ~duel_spoils;
+        return;
+    }
+}
+if (%duelstatus = ^duelstatus_lost) {
+    ~duel_reset_all;
+}
+
+[proc,duel_spoils]
+midi_jingle(^duel_win_2_jingle, ^duel_win_2_jingle_millis);
+~duel_adjust_scoreboard(displayname, ~player_combat_level, .displayname, ~.player_combat_level);
+if_settext(duel_win:displayname, .displayname);
+if_settext(duel_win:combat_level, tostring(~.player_combat_level));
+
+~moveallinv(dueloffer, inv);
+inv_transmit(duelwinnings, duel_win:spoils);
+
+if_openmain(duel_win);
+
+[proc,duel_reset_all]
+// get arrows back
+def_int $i = 0;
+while ($i < inv_size(duelarrows)) {
+    if (inv_getobj(duelarrows, $i) ! null) {
+        inv_movefromslot(duelarrows, inv, $i);
+    }
+    $i = calc($i + 1);
+}
+
+buildappearance(worn);
+~prayer_deactivate_all;
+
+p_telejump(~map_findsquare_inzone(0_52_51_27_3, 0_52_51_51_15)); // https://youtu.be/QggKGBAl_X8?t=111
+anim(null, 0);
+p_stopaction;
+
+~stat_reset_all;
+healenergy(10000);
+~combat_clearqueue;
+clearqueue(player_death_default);
+~clear_pk_skull;
+~clear_poison;
+~update_all(inv_getobj(worn, ^wearpos_rhand));
+hint_stop;
+~sa_reset;
+%duelstatus = ^duelstatus_reset;
+%duelpartner = null;
+
+[if_close,duel_win]
+if (~moveallinv_itemspace(duelwinnings, inv) = false) {
+    inv_dropall(duelwinnings, coord, ^lootdrop_duration);
+    return;
+}
+~moveallinv(duelwinnings, inv);
+inv_stoptransmit(duel_win:spoils);

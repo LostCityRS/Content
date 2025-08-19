@@ -1,0 +1,106 @@
+[oplocu,loc_2409]
+switch_obj(last_useitem) {
+    case bronze_axe, iron_axe, steel_axe, black_axe, mithril_axe, adamant_axe, rune_axe :
+        p_oploc(1); // gets delayed by a tick >:(
+    case raw_herring, herring :
+        mes("This is not the mightiest tree in the forest.");
+        return;
+    case default : ~displaymessage(^dm_default);
+};
+
+[oploc1,loc_2409]
+if (map_members = ^false) {
+    mes(^mes_members_do_that);
+    return;
+}
+def_namedobj $axe = ~woodcutting_axe_checker(true);
+if ($axe = null) {
+    return;
+}
+def_coord $shamus_spawnpoint = 0_49_50_3_11;
+if (npc_find($shamus_spawnpoint, zanarisleprechaun, 15, 0) = true) {
+    ~chatnpc_specific("Shamus", zanarisleprechaun, "<p,angry>Hey! Yer big elephant! Don't go choppin' down me house, now!");
+    return;
+}
+npc_add($shamus_spawnpoint, zanarisleprechaun, 100);
+npc_walk(movecoord(npc_coord, 10, 0, 0));
+
+[oploc1,loc_1292]
+if(%zanaris_progress < ^zanaris_spoken_shamus) {
+    ~mesbox("The tree seems to have a ominous aura to it.|You do not feel like chopping it down.");
+    return;
+}
+def_namedobj $axe = ~woodcutting_axe_checker(true);
+if ($axe = null) {
+    return;
+}
+if(stat(woodcutting) < 36) {
+    mes("You are not a high enough Woodcutting level to chop down this tree.");
+    mes("You need a Woodcutting level of 36.");
+    return;
+}
+if(%zanaris_progress = ^zanaris_spoken_shamus) {
+    def_coord $spawn = 0_44_152_44_9;
+    if(npc_find($spawn, tree_spirit, 6, 0) = false) { // based off testing, edges will spawn another spirit
+        npc_add($spawn, tree_spirit, 1000);
+    }
+    npc_say("You must defeat me before touching the tree!");
+    if (calc(%npc_lastcombat + 8) > map_clock) { // Do nothing if the spirit is already fighting
+        return;
+    }
+    // Set in combat and queue to attack, as soon as the spirit spawns it is in combat with the summoning player
+    // so idt this is a huntmode?
+    ~npc_retaliate(0);
+    return;
+}
+if(inv_freespace(inv) = 0) {
+    mes("You don't have space to take a branch.");
+    return;
+}
+// https://youtu.be/ycZSArj7FPE?si=1xWhMae0wYMdxJxx&t=440, osrs changed it to delay -> give branch, used to be the opposite
+anim(struct_param(oc_param($axe, woodcutting_struct), skill_anim), 0);
+sound_synth(woodchop_4,0,10);
+mes("You cut a branch from the Dramen tree.");
+if(%zanaris_progress = ^zanaris_spirit_defeated) { // probably for quest journal
+    %zanaris_progress = ^zanaris_tree_chopped;
+}
+inv_add(inv, dramen_branch, 1);
+p_delay(1);
+anim(null, 0);
+
+[opheldu,dramen_branch]
+if(last_useitem = knife) {
+    @cut_dramenstaff;
+}
+~displaymessage(^dm_default);
+
+[label,cut_dramenstaff]
+if(stat(crafting) < 31) {
+    mes("You need at least level 31 Crafting to make this into a staff.");
+    return;
+}
+mes("You carve the branch into a staff.");
+if(%zanaris_progress = ^zanaris_tree_chopped) {
+    %zanaris_progress = ^zanaris_staff_made;
+}
+inv_del(inv, dramen_branch, 1);
+inv_add(inv, dramen_staff, 1);
+
+[oploc1,loc_2406]
+def_boolean $entering = ~check_axis(coord, loc_coord, loc_angle);
+~open_and_close_door2(loc_1532, $entering, door_open);
+if($entering = false) {
+    if(inv_total(worn, dramen_staff) > 0 & map_members = ^true) {
+        mes("The world starts to shimmer..."); // not sure what seq/spotanim would've been played here, just going to assume it was like a normal tele
+        if(%zanaris_progress = ^zanaris_staff_made) {
+            queue(zanaris_quest_complete, 0);
+        }
+        p_delay(1);
+        ~player_teleport_normal(0_50_149_20_56);
+    }
+}
+
+[queue,zanaris_quest_complete]
+%zanaris_progress = ^zanaris_complete;
+session_log(^log_adventure, "Quest complete: Lost City");
+~send_quest_complete(questlist:zanaris, coins, 250, ^zanaris_questpoints, "You have completed the\\nLost City of Zanaris Quest!");

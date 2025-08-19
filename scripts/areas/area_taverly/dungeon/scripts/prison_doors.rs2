@@ -1,0 +1,26 @@
+[label,taverley_dungeon_open_doors](int $side)
+def_coord $southern_position = 0_45_153_7_37;
+def_coord $northern_position = 0_45_153_7_40;
+def_boolean $inside = ~check_axis(coord, loc_coord, loc_angle);
+if($inside = false) { 
+    if(.loc_find($northern_position, loc_818) = true) {
+        .loc_del(500);
+        mes("Suddenly the suit of armour comes to life!");
+        npc_add($northern_position, suit_of_armour, 500);
+        ~npc_retaliate(0);
+        return;
+    }
+    if(.loc_find($southern_position, loc_818) = true) {
+        .loc_del(500);
+        mes("Suddenly the suit of armour comes to life!");
+        npc_add($southern_position, suit_of_armour, 500);
+        ~npc_retaliate(0);
+        return;
+    }
+    ~open_and_close_double_door2($inside, $side, grate_open); // iron_door_open 
+    return;
+}
+~open_and_close_double_door2($inside, $side, grate_open);
+
+[oploc1,loc_2143] @taverley_dungeon_open_doors(^right);
+[oploc1,loc_2144] @taverley_dungeon_open_doors(^left);

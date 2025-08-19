@@ -1,0 +1,9 @@
+[label,beer_barrel_beatdown]
+mes("The barbarians probably don't like people messing with their barrels.");
+npc_huntall(coord, 10, ^vis_lineofsight);
+while (npc_huntnext = true) {
+    if (npc_category = barbarian & npc_getmode ! opplayer2) {
+        npc_say("Oi - that's ours!");
+        npc_setmode(opplayer2);
+    }
+}

@@ -1,0 +1,34 @@
+[ai_timer,nora_t_hagg]
+huntall(npc_coord, 3, 0);
+// loop until we find a player, only 1 player at a time though
+while (huntnext = true) {
+// the witch can still get los if you're on the edge of a hedge, this wouldn't match osrs behaviour!
+def_int $dz = calc(coordz(coord) - coordz(npc_coord));
+if(lineofsight(npc_coord, coord) = true & (($dz > 0 & loc_find(movecoord(coord, 0, 0, -1), loc_1116) = false & loc_find(movecoord(coord, 0, 0, -1), loc_1117) = false) |
+    ($dz < 0 & loc_find(movecoord(coord, 0, 0, 1), loc_1116) = false))) {
+        if_close;
+        if (p_finduid(uid) = false) {
+            return;
+        }
+        p_stopaction;
+        npc_settimer(0); // stop timer until the action is complete
+        npc_setmode(playerface);
+        npc_say("Stop! Thief!");
+        p_delay(1);
+        npc_say("Klarata... Sepptento... Valkan!");
+        spotanim_npc(curse_casting, 92, 0);
+        sound_synth(curse_all, 0, 0);
+        spotanim_pl(curse_impact, 124, 100);
+        ~player_projectile(npc_coord, coord, uid, curse_travel, 31, 31, 61, 16, 39, 128, 0);
+        p_delay(3);
+        if(%ball_progress = ^ball_unlocked_mousedoor) {
+            %ball_progress = ^ball_started;
+        }
+        inv_del(inv, witches_shedkey, ^max_32bit_int);
+        inv_del(inv, ball , ^max_32bit_int);
+        p_teleport(0_45_54_49_0);
+        npc_settimer(1);
+        npc_setmode(patrol);
+        return;
+    }
+}

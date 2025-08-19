@@ -1,0 +1,204 @@
+[debugproc,giveclues] @debug_clues;
+
+[label,debug_clues]
+if_close;
+if (p_finduid(uid) = true) {
+    def_int $choice = ~p_choice4_header("Easy", 0, "Medium", 1, "Hard", 2, "Cancel", 3, "Select Clue Tier");
+    switch_int ($choice) {
+        case 0 : @debug_clues_easy;
+        case 1 : @debug_clues_medium;
+        case 2 : @debug_clues_hard;
+        case 3 : return;
+    }
+}
+
+[label,debug_clues_easy]
+if (p_finduid(uid) = true) {
+    def_int $choice = ~p_choice3_header("Easy set 1", 0, "Easy set 2", 1, "Cancel.", 2, "Select Set (this WILL clear Inv)");
+    switch_int ($choice) {
+        case 0 :
+            inv_clear(inv);
+            inv_add(inv, trail_clue_easy_map001, 1);
+            inv_add(inv, trail_clue_easy_map002, 1);
+            inv_add(inv, trail_clue_easy_map003, 1);
+            inv_add(inv, trail_clue_easy_vague001, 1);
+            inv_add(inv, trail_clue_easy_vague002, 1);
+            inv_add(inv, trail_clue_easy_vague003, 1);
+            inv_add(inv, trail_clue_easy_vague004, 1);
+            inv_add(inv, trail_clue_easy_vague005, 1);
+            inv_add(inv, trail_clue_easy_simple001, 1);
+            inv_add(inv, trail_clue_easy_simple002, 1);
+            inv_add(inv, trail_clue_easy_simple003, 1);
+            inv_add(inv, trail_clue_easy_simple004, 1);
+            inv_add(inv, trail_clue_easy_simple005, 1);
+            inv_add(inv, trail_clue_easy_simple006, 1);
+            inv_add(inv, trail_clue_easy_simple007, 1);
+            inv_add(inv, trail_clue_easy_simple008, 1);
+            inv_add(inv, trail_clue_easy_simple009, 1);
+            inv_add(inv, trail_clue_easy_simple010, 1);
+            inv_add(inv, trail_clue_easy_simple011, 1);
+            inv_add(inv, trail_clue_easy_simple012, 1);
+        case 1 :
+            inv_clear(inv);
+            inv_add(inv, trail_clue_easy_simple013, 1);
+            inv_add(inv, trail_clue_easy_simple014, 1);
+            inv_add(inv, trail_clue_easy_simple015, 1);
+            inv_add(inv, trail_clue_easy_simple016, 1);
+            inv_add(inv, trail_clue_easy_simple017, 1);
+            inv_add(inv, trail_clue_easy_simple018, 1);
+            inv_add(inv, trail_clue_easy_simple019, 1);
+            inv_add(inv, trail_clue_easy_simple020, 1);
+            inv_add(inv, trail_clue_easy_simple021, 1);
+            inv_add(inv, trail_clue_easy_simple022, 1);
+            inv_add(inv, trail_clue_easy_simple023, 1);
+            inv_add(inv, trail_clue_easy_simple024, 1);
+            inv_add(inv, trail_clue_easy_simple025, 1);
+            inv_add(inv, trail_clue_easy_simple026, 1);
+            inv_add(inv, trail_clue_easy_simple027, 1);
+            inv_add(inv, trail_clue_easy_simple028, 1);
+            inv_add(inv, trail_clue_easy_simple029, 1);
+            inv_add(inv, trail_clue_easy_simple030, 1);
+            inv_add(inv, trail_clue_easy_simple031, 1);
+        case 2 :
+            return;
+    }
+}
+
+[label,debug_clues_medium]
+if (p_finduid(uid) = true) {
+    def_int $choice = ~p_choice3_header("Medium set 1", 0, "Medium set 2", 1, "Cancel.", 2, "Select Set (this WILL clear Inv)");
+    switch_int ($choice) {
+        case 0 :
+            inv_clear(inv);
+            inv_add(inv, trail_clue_medium_map001, 1);
+            inv_add(inv, trail_clue_medium_map002, 1);
+            inv_add(inv, trail_clue_medium_sextant001, 1);
+            inv_add(inv, trail_clue_medium_sextant002, 1);
+            inv_add(inv, trail_clue_medium_sextant003, 1);
+            inv_add(inv, trail_clue_medium_sextant004, 1);
+            inv_add(inv, trail_clue_medium_sextant005, 1);
+            inv_add(inv, trail_clue_medium_sextant006, 1);
+            inv_add(inv, trail_clue_medium_sextant007, 1);
+            inv_add(inv, trail_clue_medium_sextant008, 1);
+            inv_add(inv, trail_clue_medium_sextant009, 1);
+            inv_add(inv, trail_clue_medium_sextant010, 1);
+            inv_add(inv, trail_clue_medium_sextant011, 1);
+            inv_add(inv, trail_clue_medium_sextant012, 1);
+            inv_add(inv, trail_clue_medium_sextant013, 1);
+        case 1 :
+            inv_clear(inv);
+            inv_add(inv, trail_clue_medium_riddle001, 1);
+            inv_add(inv, trail_clue_medium_riddle002, 1);
+            inv_add(inv, trail_clue_medium_riddle003, 1);
+            inv_add(inv, trail_clue_medium_riddle004, 1);
+            inv_add(inv, trail_clue_medium_riddle005, 1);
+            inv_add(inv, trail_clue_medium_anagram001, 1);
+            inv_add(inv, trail_clue_medium_anagram002, 1);
+            inv_add(inv, trail_clue_medium_anagram003, 1);
+            inv_add(inv, trail_clue_medium_anagram004, 1);
+            inv_add(inv, trail_clue_medium_anagram005, 1);
+            inv_add(inv, trail_clue_medium_anagram006, 1);
+            inv_add(inv, trail_clue_medium_anagram007, 1);
+            inv_add(inv, trail_clue_medium_anagram008, 1);
+            inv_add(inv, trail_clue_medium_anagram009, 1);
+            inv_add(inv, trail_clue_medium_anagram010, 1);
+            inv_add(inv, trail_clue_medium_anagram011, 1);
+            inv_add(inv, trail_clue_medium_anagram012, 1);
+        case 2 :
+            return;
+    }
+}
+
+[label,debug_clues_hard]
+if (p_finduid(uid) = true) {
+    def_int $choice = ~p_choice3_header("Hard set 1", 0, "Hard set 2", 1, "Cancel.", 2, "Select Set (this WILL clear Inv)");
+    switch_int ($choice) {
+        case 0 :
+            inv_clear(inv);
+            inv_add(inv, trail_clue_hard_map001, 1);
+            inv_add(inv, trail_clue_hard_sextant001, 1);
+            inv_add(inv, trail_clue_hard_sextant002, 1);
+            inv_add(inv, trail_clue_hard_sextant003, 1);
+            inv_add(inv, trail_clue_hard_sextant004, 1);
+            inv_add(inv, trail_clue_hard_sextant005, 1);
+            inv_add(inv, trail_clue_hard_sextant006, 1);
+            inv_add(inv, trail_clue_hard_sextant007, 1);
+            inv_add(inv, trail_clue_hard_sextant008, 1);
+            inv_add(inv, trail_clue_hard_sextant009, 1);
+            inv_add(inv, trail_clue_hard_sextant010, 1);
+            inv_add(inv, trail_clue_hard_sextant011, 1);
+            inv_add(inv, trail_clue_hard_sextant012, 1);
+            inv_add(inv, trail_clue_hard_sextant013, 1);
+        case 1 :
+            inv_clear(inv);
+            inv_add(inv, trail_clue_hard_riddle001, 1);
+            inv_add(inv, trail_clue_hard_riddle002, 1);
+            inv_add(inv, trail_clue_hard_riddle003, 1);
+            inv_add(inv, trail_clue_hard_riddle004, 1);
+            inv_add(inv, trail_clue_hard_riddle005, 1);
+            inv_add(inv, trail_clue_hard_riddle006, 1);
+            inv_add(inv, trail_clue_hard_riddle007, 1);
+            inv_add(inv, trail_clue_hard_riddle008, 1);
+            inv_add(inv, trail_clue_hard_riddle009, 1);
+            inv_add(inv, trail_clue_hard_riddle010, 1);
+            inv_add(inv, trail_clue_hard_riddle011, 1);
+            inv_add(inv, trail_clue_hard_riddle012, 1);
+            inv_add(inv, trail_clue_hard_riddle013, 1);
+            inv_add(inv, trail_clue_hard_riddle014, 1);
+            inv_add(inv, trail_clue_hard_riddle015, 1);
+            inv_add(inv, trail_clue_hard_riddle016, 1);
+            inv_add(inv, trail_clue_hard_riddle017, 1);
+        case 2 :
+            return;
+    }
+}
+[debugproc,coordclues]
+if (p_finduid(uid) = true) {
+    def_int $choice = ~p_choice2_header("Yes", 0, "No", 1, "Spawn coord clues? (this WILL clear Inv)");
+    switch_int ($choice) {
+        case 0 :
+            inv_clear(inv);
+            inv_add(inv, trail_clue_medium_sextant001, 1);//0_49_50_24_51
+            inv_add(inv, trail_clue_medium_sextant002, 1);//0_41_48_55_38
+            inv_add(inv, trail_clue_medium_sextant003, 1);//0_42_50_9_7
+            inv_add(inv, trail_clue_medium_sextant004, 1);//0_37_52_15_42
+            inv_add(inv, trail_clue_medium_sextant005, 1);//0_38_49_47_22
+            inv_add(inv, trail_clue_medium_sextant006, 1);//0_39_54_16_11
+            inv_add(inv, trail_clue_medium_sextant007, 1);//0_41_50_19_52
+            inv_add(inv, trail_clue_medium_sextant008, 1);//0_44_51_32_32
+            inv_add(inv, trail_clue_medium_sextant009, 1);//0_44_47_33_25
+            inv_add(inv, trail_clue_medium_sextant010, 1);//0_46_49_63_8
+            inv_add(inv, trail_clue_medium_sextant011, 1);//0_45_53_40_11
+            inv_add(inv, trail_clue_medium_sextant012, 1);//0_50_49_17_41
+            inv_add(inv, trail_clue_medium_sextant013, 1);//0_49_52_43_16
+            inv_add(inv, trail_clue_hard_sextant001, 1);//0_47_60_50_44
+            inv_add(inv, trail_clue_hard_sextant002, 1);//0_46_61_43_59
+            inv_add(inv, trail_clue_hard_sextant003, 1);//0_49_61_23_55
+            inv_add(inv, trail_clue_hard_sextant004, 1);//0_49_61_53_59
+            inv_add(inv, trail_clue_hard_sextant005, 1);//0_51_60_26_49
+            inv_add(inv, trail_clue_hard_sextant006, 1);//0_49_59_4_28
+            inv_add(inv, trail_clue_hard_sextant007, 1);//0_46_59_2_43
+            inv_add(inv, trail_clue_hard_sextant008, 1);//0_47_60_5_6
+            inv_add(inv, trail_clue_hard_sextant009, 1);//0_47_61_31_56
+            inv_add(inv, trail_clue_hard_sextant010, 1);//0_50_59_44_16
+            inv_add(inv, trail_clue_hard_sextant011, 1);//0_49_57_32_29
+            inv_add(inv, trail_clue_hard_sextant012, 1);//0_47_57_47_48
+            inv_add(inv, trail_clue_hard_sextant013, 1);//0_51_58_47_57
+        case 1 :
+            return;
+    }
+}
+
+[debugproc,tc]
+if(p_finduid(uid) = true) {
+    @output_sextant_coords;
+}
+
+[debugproc,testpuz]
+if(p_finduid(uid) = false){
+    return;
+}
+inv_clear(trail_puzzleinv);
+~init_trail_puzzle;
+inv_transmit(trail_puzzleinv, trail_puzzle:com_3);
+if_openmain(trail_puzzle);

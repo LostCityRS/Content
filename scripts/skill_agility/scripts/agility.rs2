@@ -1,0 +1,159 @@
+// Delay and 'climb' to a coord, similar to ladders. 
+// Generally used for net obstacles
+[proc,agility_climb_up](int $xp, coord $coord)
+anim(human_reachforladder, 0);
+p_delay(0);
+stat_advance(agility, $xp);
+p_telejump($coord);
+
+// force walk to a specific location, this isn't the 
+// same as an exactmove 
+[proc,agility_force_move](int $xp, seq $walk_seq, coord $dest)
+~set_walkbas($walk_seq);
+def_int $change_x = calc(coordx($dest) - coordx(coord));
+def_int $change_z = calc(coordz($dest) - coordz(coord));
+~agility_walk($change_x, $change_z, true);
+stat_advance(agility, $xp);
+
+[proc,agility_walk](int $change_x, int $change_z, boolean $reset_bas)
+if($change_x = 0 & $change_z = 0) {
+    if($reset_bas = true) ~update_bas;
+    return;
+}
+def_int $move_x = 0;
+def_int $move_z = 0;
+if ($change_x >= 1) {
+    $move_x = 1;
+} else if ($change_x <= -1) {
+    $move_x = -1;
+}
+if ($change_z >= 1) {
+    $move_z = 1;
+} else if ($change_z <= -1) {
+    $move_z = -1;
+}
+// Perform movement and re-calc
+def_coord $movement_coord = movecoord(coord, $move_x, 0, $move_z);
+p_teleport(movecoord(coord, $move_x, 0, $move_z));
+$change_x = calc($change_x - $move_x);
+$change_z = calc($change_z - $move_z);
+p_stopaction;
+p_delay(0);
+// recursive call
+~agility_walk($change_x, $change_z, $reset_bas);
+
+// "clipped" teleport walk that OSRS seems to use, probably since p_walk isn't reliable
+// and you wont want players visibly clipping much!
+[proc,clipped_telewalk](int $change_x, int $change_z)
+if($change_x = 0 & $change_z = 0) {
+    return;
+}
+def_int $move_x = 0;
+def_int $move_z = 0;
+if ($change_x >= 1) {
+    $move_x = 1;
+} else if ($change_x <= -1) {
+    $move_x = -1;
+}
+if ($change_z >= 1) {
+    $move_z = 1;
+} else if ($change_z <= -1) {
+    $move_z = -1;
+}
+// if diagonal isn't blocked but adj's are blocked, this will prevent a diagonal movement
+if (map_blocked(movecoord(coord, 0, 0, $move_z)) = true) { // z block
+    $move_z = 0;
+}
+if (map_blocked(movecoord(coord, $move_x, 0, 0)) = true) { // x block
+    $move_x = 0;
+}
+if (map_blocked(movecoord(coord, $move_x, 0, $move_z)) = true) { // diagonal blocked, convert to horiz/vert movement
+    if (map_blocked(movecoord(coord, $move_x, 0, 0)) = false) { // try vert
+        $move_z = 0;
+    } else if (map_blocked(movecoord(coord, 0, 0, $move_z)) = false) { // try horiz
+        $move_x = 0;
+    } else {
+        $move_x = 0;
+        $move_z = 0;
+    }
+}
+if($move_x = 0 & $move_z = 0) { // no possible movement
+    return;
+}
+// Perform movement and re-calc
+def_coord $movement_coord = movecoord(coord, $move_x, 0, $move_z);
+p_teleport(movecoord(coord, $move_x, 0, $move_z));
+$change_x = calc($change_x - $move_x);
+$change_z = calc($change_z - $move_z);
+p_stopaction;
+p_delay(0);
+// recursive call
+~clipped_telewalk($change_x, $change_z);
+
+// Proc for combining all general parts of an exactmove used in the agility skill (animation, delay, locmerge)
+[proc,agility_exactmove](seq $anim, int $anim_delay, int $movement_delay, coord $start_coord, coord $end_coord, int $start_cycle, int $end_cycle, int $direction, boolean $merge_with_loc)
+anim($anim, $anim_delay);
+if($merge_with_loc = true) {
+    p_locmerge($start_cycle, $end_cycle, $start_coord, $end_coord); 
+}
+p_exactmove($start_coord, $end_coord, $start_cycle, $end_cycle, $direction);
+p_delay($movement_delay);
+
+// Standard delayed fail used in agility
+[proc,agility_delay_fail](coord $fall_face, coord $fail_coord, int $damage, string $message)
+anim(human_walk_logbalance_stumble, 0);
+facesquare($fall_face);
+p_delay(1);
+p_telejump($fail_coord);
+damage(uid, 1, $damage);
+if (gender() = 0) {
+    sound_synth(human_hit2, 0, 20);
+} else {
+    sound_synth(female_hit2, 0, 20);
+}
+mes($message);
+p_delay(0);
+if (stat(hitpoints) = 0){
+    ~player_die;
+    return;
+}
+~ring_of_life_check;
+
+// Forces the player to walk to a certain coord. Basically p_teleport but doesnt telejump from a distance.
+// doesnt respect clipping
+[proc,forcemove](coord $dest_coord)
+def_int $change_x = calc(coordx($dest_coord) - coordx(coord));
+def_int $change_z = calc(coordz($dest_coord) - coordz(coord));
+~agility_walk($change_x, $change_z, false);
+
+// does a delayed walk to a certain coord using p_teleport (we can't use p_walk for this)
+[proc,forcewalk](coord $dest_coord)(int)
+def_int $change_x = calc(coordx($dest_coord) - coordx(coord));
+def_int $change_z = calc(coordz($dest_coord) - coordz(coord));
+~clipped_telewalk($change_x, $change_z);
+
+// forces the player to delayed "walk" to a certain coord, used for agility obstacle setups
+[proc,forcewalk2](coord $dest_coord)
+p_delay(0);
+~forcewalk($dest_coord);
+
+// Instant fail, not used as often
+[proc,agility_instant_fail](coord $fail_coord, int $damage, string $message)
+p_telejump($fail_coord);
+~damage_self($damage);
+mes($message);
+
+[proc,set_walkbas](seq $walk_seq)
+~bas_set($walk_seq, $walk_seq, $walk_seq, $walk_seq, $walk_seq, $walk_seq, null);
+
+[proc,set_readywalk_bas](seq $ready_seq, seq $walk_seq)
+~bas_set($ready_seq, $walk_seq, $walk_seq, $walk_seq, $walk_seq, $walk_seq, null);
+
+[proc,set_readywalkturn_bas](seq $ready_seq, seq $turn_seq, seq $walk_seq)
+~bas_set($ready_seq, $turn_seq, $walk_seq, $walk_seq, $walk_seq, $walk_seq, null);
+
+// Finds an identical loc on the $merge_pos coord to switch active_loc to
+[proc,change_merged_loc](coord $merge_pos)
+if (loc_find($merge_pos, loc_type) = true) {
+    return;
+}

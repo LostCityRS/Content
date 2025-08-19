@@ -1,0 +1,60 @@
+[ai_queue1,bearded_dark_wizard] ~npc_default_retaliate_ap;
+[ai_queue1,young_dark_wizard] ~npc_default_retaliate_ap;
+
+[ai_applayer2,bearded_dark_wizard] ~dark_wizard_earth_attack;
+[ai_opplayer2,bearded_dark_wizard] ~dark_wizard_earth_attack;
+[ai_applayer2,young_dark_wizard] ~dark_wizard_water_attack;
+[ai_opplayer2,young_dark_wizard] ~dark_wizard_water_attack;
+
+[proc,dark_wizard_earth_attack]
+if (%npc_action_delay > map_clock) {
+    npc_setmode(applayer2);
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+
+npc_setmode(applayer2);
+
+if (busy = true & %demon_progress = 29)  { // in osrs dark wizards wont attack if player is busy and ready to fight delrith
+    // dark wizards will still try to hunt you
+    return;
+}
+
+if (stat_base(strength) <= stat(strength) & random(2) = 0) { // guessed
+    ~npc_cast_spell(^weaken, 4);
+} else {
+    ~npc_cast_spell(^earth_strike, 4);
+}
+
+
+[proc,dark_wizard_water_attack]
+if (%npc_action_delay > map_clock) {
+    npc_setmode(applayer2);
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+
+if (busy = true & %demon_progress = 29)  {
+    return;
+}
+
+if (stat_base(attack) <= stat(attack) & random(2) = 0) { // guessed
+    ~npc_cast_spell(^confuse, 4);
+} else {
+    ~npc_cast_spell(^water_strike, 4);
+}
+
+npc_setmode(applayer2);
+

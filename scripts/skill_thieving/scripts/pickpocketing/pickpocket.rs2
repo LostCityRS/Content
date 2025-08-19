@@ -1,0 +1,130 @@
+[opnpc3,man] // Man
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,man2] // Man
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,man3] // Man
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,woman] // Woman
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,woman2] // Woman
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,woman3] // Woman
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,farmer1] // Farmer
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,guard1] // Guard
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,guard2] // Guard
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,warrior_woman] // Warrior woman
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,al_kharid_man] // Man (Al-Kharid)
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,al_kharid_warrior] // Al-Kharid warrior
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,paladin] // Paladin
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,hero] // Hero
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,knight_of_ardougne] // Knight of Ardougne
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,ardougnian_male1] // Man
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,ardougnian_female1] // Woman
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,knight_of_ardougne2] // Knight of Ardougne
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,ardougne_guard] // Guard
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,yanille_watchman] // Watchman
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,gnome] // Gnome
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,browclothedgnome] // Gnome
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,darkskinned_gnome] // Gnome
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,gnomechildgreen] // Gnome child
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,gnomechildblue] // Gnome child
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,gnomechild] // Gnome child
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,gnomefemale] // Gnome woman
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,gnomefemale_dskinned] // Gnome woman
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,rogue] // Rogue
+@attempt_pick_pocket(npc_type);
+
+[label,attempt_pick_pocket](npc $npc)
+if (map_members = ^false) {
+    mes(^mes_members_thieving);
+    return;
+}
+
+db_find(pickpocket:npc, $npc);
+def_dbrow $data = db_findnext;
+if ($data = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
+
+if (afk_event = ^true) {
+    @macro_randomthieving;
+}
+
+def_string $pocket = db_getfield($data, pickpocket:pocket, 0);
+def_int $current_level = stat(thieving);
+def_int $thieving_level = db_getfield($data, pickpocket:level, 0);
+if ($current_level < $thieving_level) {
+    ~mesbox("You need level <tostring($thieving_level)> thieving to pick the <$pocket>.");
+    return;
+}
+
+if (add(%lastcombat, 8) > map_clock) {
+    mes("You can't pickpocket during combat.");
+    return;
+}
+
+if(%stunned > map_clock) {
+    return;
+}
+
+if (%action_delay > map_clock) {
+    p_opnpc(3);
+    return;
+}
+
+// inv full check happens on the engine level for pick pocketing.
+// https://oldschool.runescape.wiki/w/Update:Halloween_2016, when check was added for preventing attacking when an npc is being pickpocketed
+
+~pick_pocket($data);

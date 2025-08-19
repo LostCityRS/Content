@@ -1,0 +1,21 @@
+[loc_2054]
+name=Door
+desc=It's a door.
+model=model_loc_3
+active=yes
+op1=Open
+retex1s=wall
+retex1d=door
+recol2s=6342
+recol2d=11458
+category=door_open_and_close
+param=next_loc_stage,loc_2055
+
+[loc_2055]
+model=model_loc_3
+retex1s=wall
+retex1d=door
+recol2s=6342
+recol2d=11458
+category=door_open_and_close
+param=next_loc_stage,loc_2054

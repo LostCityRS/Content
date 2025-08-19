@@ -1,0 +1,30 @@
+[label,hunt_dig]
+if (%hunt_progress ! 3) {
+    mes("It seems a shame to dig up these nice flowers for no reason.");
+    return;
+}
+
+if (npc_find(coord, wyson, 10, 0) = true) {
+    @wyson_attack;
+}
+
+p_arrivedelay;
+anim(human_dig, 0);
+mes("You dig a hole in the ground...");
+
+p_delay(4);
+queue(hunt_quest_complete, 0);
+
+[queue,hunt_quest_complete]
+mes("and find a little bag of treasure.");
+inv_add(inv, coins, 450);
+inv_add(inv, gold_ring, 1);
+inv_add(inv, emerald, 1);
+%hunt_progress = 4;
+session_log(^log_adventure, "Quest complete: Pirate's Treasure");
+// https://web.archive.org/web/20080325101204/http://www.global-rs.com/quests/piratestreasure/
+~send_quest_complete(questlist:hunt, emerald, 250, ^hunt_questpoints, "You have completed the\\nPirate's Treasure Quest!");
+
+[label,wyson_attack]
+npc_say("Hey, leave off my flowers!");
+npc_setmode(opplayer2);

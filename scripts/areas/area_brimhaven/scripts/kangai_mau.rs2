@@ -1,0 +1,71 @@
+[opnpc1,kangai_mau]
+switch_int (%totem_progress) {
+    case ^totem_not_started : @kangai_mau_prequest;
+    case ^totem_started, ^totem_crate_marked, ^totem_crate_delivered, ^totem_teleported : @kangai_mau_totem_back;
+    case ^totem_complete :
+        ~chatnpc("<p,neutral>Many greetings esteemed thief.");
+        ~chatplayer("<p,neutral>Hey.");
+}
+
+[label,kangai_mau_prequest]
+~chatnpc("<p,neutral>Hello. I Kangai Mau of the Rantuki tribe.");
+def_int $option = ~p_choice3("And what are you doing in Brimhaven?", 1, "I'm in search of adventure!", 2, "Who are the Rantuki tribe?", 3);
+if($option = 1) {
+    @kangai_mau_brimhaven;
+} else if($option = 2) {
+    ~chatplayer("<p,happy>I'm in search of adventure!");
+    ~chatnpc("<p,neutral>Adventure is something I may be able to give.");
+    @kangai_mau_mission;
+} else if($option = 3) {
+    ~chatplayer("<p,quiz>Who are the Rantuki tribe?");
+    ~chatnpc("<p,angry>A proud and noble tribe of Karamja. But now we are few, as men come from across sea, steal our land, and settle on our hunting grounds.");
+    @kangai_mau_brimhaven;
+}
+
+[label,kangai_mau_brimhaven] 
+// OSRS cut out a lot of suboption dialogue from here on to get straight to the quest...
+// https://www.youtube.com/watch?v=JrsT--Rr0Kk& this video covers them!
+~chatplayer("<p,quiz>And what are you doing in Brimhaven?");
+~chatnpc("<p,happy>I looking for someone brave|to go on important mission for me.|Someone skilled in thievery and sneaking about.|I am told I can find such people in Brimhaven.");
+def_int $option = ~p_choice2("Tell me of this mission.", 1, "Yep, I have heard there are many of that type here.", 2);
+if($option = 1) {
+    ~chatplayer("<p,neutral>Tell me of this mission.");
+    @kangai_mau_mission;
+} else if($option = 2) {
+    ~chatplayer("<p,neutral>Yep, I have heard there are many of that type here.");
+    ~chatnpc("<p,sad>Let's hope I find some help soon.");
+}
+
+[label,kangai_mau_mission]
+~chatnpc("<p,happy>I need someone to go on a mission|to the city of Ardougne.|There you will find the house of Lord Handelmort.|In his house he has our tribal totem.");
+~chatnpc("<p,neutral>We need it back.");
+@multi3("Ok, I will get it back.", kangai_mau_start_totem, "Why does he have it?", kangai_mau_why, "How can I find Handelmort's house?", kangai_mau_house);
+
+[label,kangai_mau_start_totem]
+%totem_progress = ^totem_started;
+~send_quest_progress(questlist:totem, %totem_progress, ^totem_complete);
+~chatplayer("<p,neutral>Ok, I will get it back.");
+~chatnpc("<p,neutral>Best of luck with that adventurer.");
+
+[label,kangai_mau_why]
+~chatplayer("<p,quiz>Why does he have it?");
+~chatnpc("<p,happy>Lord Handelmort is an Ardougnese explorer which means he think he have the right to come to my tribal home, steal our stuff and put in his private museum.");
+@multi2("Ok, I will get it back.", kangai_mau_start_totem, "How can I find Handelmort's house?", kangai_mau_house);
+
+[label,kangai_mau_house]
+~chatplayer("<p,neutral>How can I find Handelmort's house? Ardougne IS a big place...");
+~chatnpc("<p,neutral>I don't know Ardougne. You tell me.");
+@multi2("Ok, I will get it back.", kangai_mau_start_totem, "Why does he have it?", kangai_mau_why);
+
+[label,kangai_mau_totem_back]
+~chatnpc("<p,neutral>Have you got our totem back?");
+if(inv_total(inv, tribal_totem) > 0 & %totem_progress = 4) { // shouldn't be able to get totem without progress = 4 anyways
+    ~chatplayer("<p,neutral>Yes I have.");
+    ~chatnpc("<p,happy>You have??? Many thanks brave adventurer! Here, have some freshly cooked Karamjan fish, caught specially by my tribe.");
+    ~mesbox("You hand over the Tribal Totem.");
+    inv_del(inv, tribal_totem, 1);
+    queue(totem_quest_complete, 0);
+    return;
+}
+~chatplayer("<p,sad>No, it's not that easy.");
+~chatnpc("<p,angry>Bah, you no good.");

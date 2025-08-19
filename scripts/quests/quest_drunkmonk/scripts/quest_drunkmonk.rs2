@@ -1,0 +1,89 @@
+[timer,blanket_ladder]
+if(distance(^blanket_ladder_coord, coord) <= 2 & ~drunkmonk_ladder_active = false) {
+    mes("A ladder mysteriously appears.");
+    // Temp note: dur does not need updated
+    loc_add(^blanket_ladder_coord, loc_1765, 1, centrepiece_straight, 200);
+}
+
+[proc,drunkmonk_ladder_active]()(boolean)
+if(loc_find(^blanket_ladder_coord, loc_1765) = true) {
+    return(true);
+}
+return(false);
+
+[label,drunkmonk_party]
+if_close;
+npc_setmode(playerface);
+~monk_dance("Party!", 0);
+~spawn_drunkmonk_balloons;
+~spawn_drunkmonk_balloons;
+~player_monkdance("Woop!", -1);
+~spawn_drunkmonk_balloons;
+~spawn_drunkmonk_balloons;
+~spawn_drunkmonk_balloons;
+~monk_dance("Let's boogie!", 2);
+~player_monkdance("Oh baby!", 2);
+if(.npc_find(coord, monk_ardougne, 5, 1) = true) { // this will refind on each attempt: https://youtu.be/dU6r-_242kk?si=lnwo34gbW9_pX1dv&t=140
+    ~.monk_dance("GO!", -1);
+}
+p_delay(2);
+~monk_dance("Get down!", 2);
+~player_monkdance("Feel the rhythm!", 2);
+if(.npc_find(coord, monk_ardougne, 5, 1) = true) {
+    ~.monk_dance("Dance!", -1);
+}
+p_delay(2);
+~monk_dance("Oh my!", 2);
+~player_monkdance("Watch me go!", 2);
+if(.npc_find(coord, monk_ardougne, 5, 1) = true) {
+    ~.monk_dance("You go!", -1);
+}
+p_delay(2);
+queue(drunkmonk_complete, 0);
+
+[proc,monk_dance](string $text, int $delay)
+npc_anim(emote_dance, 0);
+npc_say($text);
+if($delay >= 0) {
+    p_delay($delay);
+}
+
+[proc,.monk_dance](string $text, int $delay)
+.npc_anim(emote_dance, 0);
+.npc_say($text);
+if($delay >= 0) {
+    p_delay($delay);
+}
+
+[proc,player_monkdance](string $text, int $delay)
+anim(emote_dance, 0);
+say($text);
+if($delay >= 0) {
+    p_delay($delay);
+}
+
+[proc,spawn_drunkmonk_balloons]
+def_int $count = 0;
+while($count < ^balloons_per_drop) {
+    def_coord $balloon_coord = ~drunkmonk_balloon_coord;
+    if(map_blocked($balloon_coord) = false & map_indoors($balloon_coord) = true & map_locaddunsafe($balloon_coord) = false) {
+        // Temp note: dur does not need updated
+        loc_add($balloon_coord, ~random_balloon, random(4), centrepiece_straight, 200);
+    }
+    $count = calc($count + 1);
+}
+p_delay(0);
+
+[proc,drunkmonk_balloon_coord]()(coord)
+if(random(3) > 0) {
+    return (movecoord(0_40_50_43_7, random(8), 0, random(5)));
+} else {
+    return (movecoord(0_40_50_45_12, random(3), 0, random(7)));
+}
+
+[queue,drunkmonk_complete]
+%drunkmonk_progress = ^drunkmonk_complete;
+session_log(^log_adventure, "Quest complete: Monk's Friend");
+~send_quest_complete(questlist:drunkmonk, lawrune, 250, ^drunkmonk_questpoints, "You have completed the\\nMonk's Friend Quest!");
+inv_add(inv, lawrune, 8);
+stat_advance(woodcutting, 20000);

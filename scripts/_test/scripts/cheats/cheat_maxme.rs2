@@ -1,0 +1,28 @@
+// official name
+[debugproc,maxme]
+if_close;
+if (p_finduid(uid) = true) {
+    def_int $max_xp = 130344310;
+    stat_advance(attack, $max_xp);
+    stat_advance(defence, $max_xp);
+    stat_advance(strength, $max_xp);
+    stat_advance(hitpoints, $max_xp);
+    stat_advance(ranged, $max_xp);
+    stat_advance(prayer, $max_xp);
+    stat_advance(magic, $max_xp);
+    stat_advance(cooking, $max_xp);
+    stat_advance(woodcutting, $max_xp);
+    stat_advance(fletching, $max_xp);
+    stat_advance(fishing, $max_xp);
+    stat_advance(firemaking, $max_xp);
+    stat_advance(crafting, $max_xp);
+    stat_advance(smithing, $max_xp);
+    stat_advance(mining, $max_xp);
+    stat_advance(herblore, $max_xp);
+    stat_advance(agility, $max_xp);
+    stat_advance(thieving, $max_xp);
+    stat_advance(runecraft, $max_xp);
+    mes("You're maxed.");
+} else {
+    @please_finish;
+}

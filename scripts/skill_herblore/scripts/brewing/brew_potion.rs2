@@ -1,0 +1,164 @@
+[opheldu,vial_water]
+if(last_useitem = jangerberries) {
+    if(%itwatchtower_progress < ^itwatchtower_learned_potion) {
+        ~chatplayer("<p,confused>Hmm, perhaps I shouldn't mix these together. It might have unpredictable results...");
+        return;
+    }
+    @ogrepotion_add_jangerberries(vial_water);
+}
+if(last_useitem = ground_bat_bones) {
+  @ogrepotion_add_bat_bones(vial_water);
+}
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,guamvial]
+if(last_useitem = jangerberries) {
+    if(%itwatchtower_progress < ^itwatchtower_learned_potion) {
+        ~chatplayer("<p,confused>Hmm, perhaps I shouldn't mix these together. It might have unpredictable results...");
+        return;
+    }
+    @ogrepotion_add_jangerberries(guamvial);
+}
+if(last_useitem = ground_bat_bones) {
+  @ogrepotion_add_bat_bones(guamvial);
+}
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,marrentillvial]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,tarrominvial]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,harralandervial]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,ranarrvial]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,iritvial]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,avantoevial]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,kwuarmvial]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,cadantinevial]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,lantadymevial]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,dwarfweedvial]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,torstolvial]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,eye_of_newt]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,red_spiders_eggs]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,limpwurt_root]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,unicorn_horn_dust]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,white_berries]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,dragon_scale_dust]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,wine_of_zamorak]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[proc,attempt_brew_potion](int $use_slot, int $last_slot)(boolean)
+// Find the struct of the potion being made (if valid item combo)
+def_struct $struct = ~get_brew_struct(inv_getobj(inv, $last_slot), inv_getobj(inv, $use_slot));
+if ($struct = null) {
+    ~displaymessage(^dm_default);
+    return(false);
+}
+
+if (map_members = ^false) {
+    mes(^mes_members_herblore);
+    return(false);
+}
+
+if($struct = ardrigal_mixture & %legends_progress < ^legends_talk_gujuo_pool) {
+    mes("You're not really sure what you would make out of this.");
+    return(false);
+}
+// If the player current level is below the required level.
+def_int $current_level = stat(herblore);
+def_int $herb_level = struct_param($struct, brew_potion_level);
+if ($current_level < $herb_level) {
+    if($struct = blamish_oil) {
+        ~mesbox("You need level 25 Herblore to make this potion.");
+        return(false);
+    }
+    // https://youtu.be/VthR9A85TQU?t=159
+    ~mesbox("You need a Herblore level of at least <tostring($herb_level)> to make this potion.");
+    return(false);
+}
+
+// Brew the potion
+def_namedobj $mixture = struct_param($struct, brew_potion_mixture);
+def_string $message = struct_param($struct, brew_potion_message);
+def_namedobj $ingredient = struct_param($struct, brew_potion_ingredient);
+def_namedobj $solvent = struct_param($struct, brew_potion_solvent);
+def_int $experience = struct_param($struct, brew_potion_exp);
+if ($mixture = null) {
+    ~displaymessage(^dm_default);
+    return(false);
+}
+~brew_potion($struct, $ingredient, $solvent, $message, $mixture, $experience);
+return(true);
+
+[proc,get_brew_struct](obj $used_on, obj $used_with)(struct)
+// Figure out which item is the additive/secondary item
+def_obj $secondary = $used_with;
+def_struct $struct = oc_param($secondary, brew_potion_struct);
+if ($struct = null) {
+    $secondary = $used_on;
+    $struct = oc_param($secondary, brew_potion_struct);
+}
+// Neither item has potion struct(s) defined
+if ($struct = null) {
+    return(null);
+}
+// Check if trying to make the first possible potion
+if (~is_valid_brewing_pair($used_on, $used_with, $struct) = true) {
+    return($struct);
+}
+// Check if trying to make the second possible potion (if any)
+$struct = oc_param($secondary, brew_potion_struct_secondary);
+if (~is_valid_brewing_pair($used_on, $used_with, $struct) = true) {
+    return($struct);
+}
+// Check if trying to make the third possible potion (if any)
+$struct = oc_param($secondary, brew_potion_struct_tertiary);
+if (~is_valid_brewing_pair($used_on, $used_with, $struct) = true) {
+    return($struct);
+}
+return(null);
+
+[proc,is_valid_brewing_pair](obj $used_on, obj $used_with, struct $struct)(boolean)
+if ($struct = null) {
+    return(false);
+}
+def_namedobj $ingredient = struct_param($struct, brew_potion_ingredient);
+def_namedobj $solvent = struct_param($struct, brew_potion_solvent);
+if ($used_on = $ingredient & $used_with = $solvent) {
+    return(true);
+}
+if ($used_on = $solvent & $used_with = $ingredient) {
+    return(true);
+}
+return(false);

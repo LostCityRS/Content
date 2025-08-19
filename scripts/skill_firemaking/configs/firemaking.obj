@@ -1,0 +1,190 @@
+[tinderbox]
+name=Tinderbox
+desc=Useful for lighting a fire.
+model=model_2348_obj
+recol1s=32767
+recol1d=21140
+manwear=model_488_obj_wear,0
+womanwear=model_488_obj_wear,0
+2dxof=1
+2dyof=-10
+2dzoom=660
+2dyan=1968
+2dxan=196
+weight=35g
+
+[ashes]
+name=Ashes
+desc=A heap of ashes.
+cost=2
+model=model_2742_obj
+recol1s=21140
+recol1d=28539
+2dxof=-6
+2dzoom=1210
+2dyan=1892
+2dxan=264
+weight=2oz
+
+[torch_lit]
+cost=4
+name=Torch
+desc=A lit home-made torch.
+model=model_2671_obj
+2dyof=-6
+2dzoom=1310
+2dyan=1660
+2dxan=124
+weight=500g
+members=yes
+category=light_source_lit
+
+[torch_unlit]
+cost=4
+name=Torch
+desc=An unlit home-made torch.
+model=model_2554_obj
+2dzoom=1660
+2dyan=312
+2dxan=1632
+weight=500g
+members=yes
+category=light_source_unlit
+param=product,torch_lit
+
+[unlitarrow]
+name=Unlit arrows
+desc=Unlit arrows.
+members=yes
+cost=10
+stackable=yes
+model=model_2702_obj
+iop2=Wield
+wearpos=quiver
+weight=16g
+count1=unlitarrow_2,2
+count2=unlitarrow_3,3
+count3=unlitarrow_4,4
+count4=unlitarrow_5,5
+2dzoom=1580
+2dyan=1832
+2dxan=336
+category=arrows
+param=rangebonus,7
+param=levelrequire,1
+param=proj_launch,unlit_arrow_launch
+param=proj_travel,unlit_arrow_travel
+param=next_obj_stage,litarrow
+param=unlit_arrow,^true
+tradeable=no
+
+// rename: cert_unlitarrow
+[obj_599]
+tradeable=no
+
+[logs]
+name=Logs
+desc=A number of wooden logs.
+cost=4
+model=model_2800_obj
+weight=2kg
+2dxof=3
+2dyof=66
+2dzoom=670
+2dyan=120
+2dxan=280
+op4=Light
+category=category_22
+param=levelrequire,1
+param=productexp,400
+
+[magic_logs]
+name=Magic logs
+desc=Logs made from magical wood.
+members=yes
+cost=320
+model=model_2800_obj
+recol1s=15617
+recol1d=15651
+2dxof=3
+2dyof=66
+2dzoom=670
+2dyan=120
+2dxan=280
+op4=Light
+weight=2kg
+category=category_22
+param=levelrequire,75
+param=productexp,3038
+
+[yew_logs]
+name=Yew logs
+desc=Logs cut from a yew tree.
+cost=160
+model=model_2800_obj
+recol1s=15617
+recol1d=15717
+2dxof=3
+2dyof=66
+2dzoom=670
+2dyan=120
+2dxan=280
+op4=Light
+weight=2kg
+category=category_22
+param=levelrequire,60
+param=productexp,2025
+
+[maple_logs]
+name=Maple logs
+desc=Logs cut from a maple tree.
+cost=80
+model=model_2800_obj
+recol1s=15617
+recol1d=14560
+2dxof=3
+2dyof=66
+2dzoom=670
+2dyan=120
+2dxan=280
+op4=Light
+weight=2kg
+category=category_22
+param=levelrequire,45
+param=productexp,1350
+
+[willow_logs]
+name=Willow logs
+desc=Logs cut from a willow tree.
+cost=40
+model=model_2800_obj
+recol1s=15617
+recol1d=16643
+2dxof=3
+2dyof=66
+2dzoom=670
+2dyan=120
+2dxan=280
+op4=Light
+weight=2kg
+category=category_22
+param=levelrequire,30
+param=productexp,900
+
+[oak_logs]
+name=Oak logs
+desc=Logs cut from an oak tree.
+cost=20
+model=model_2800_obj
+recol1s=15617
+recol1d=14659
+2dxof=3
+2dyof=66
+2dzoom=670
+2dyan=120
+2dxan=280
+op4=Light
+weight=2kg
+category=category_22
+param=levelrequire,15
+param=productexp,600

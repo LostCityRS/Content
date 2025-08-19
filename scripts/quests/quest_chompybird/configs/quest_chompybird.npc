@@ -1,0 +1,120 @@
+[rantz]
+vislevel=hide
+name=Rantz
+desc=A large dim looking humanoid.
+size=2
+walkanim=ogre_walk
+readyanim=ogre_ready
+op1=Talk
+model1=model_2878_npc
+model2=model_3442_npc
+head1=model_141_npc_head
+wanderrange=2
+timer=1
+param=damagetype,^crush_style
+param=death_anim,ogre_death
+param=death_sound,giant_death
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1470
+
+[fycie]
+vislevel=hide
+name=Fycie
+desc=This must be Rantz's daughter.
+walkanim=ogre_walk
+readyanim=ogre_ready
+op1=Talk
+resizeh=128
+resizev=90
+recol1s=7362
+recol1d=15718
+recol2s=27448
+recol2d=16897
+model1=model_2878_npc
+model2=model_3441_npc
+head1=model_3444_npc_head
+wanderrange=3
+param=damagetype,^crush_style
+param=death_anim,ogre_death
+param=death_sound,giant_death
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1471
+
+[bugs]
+vislevel=hide
+name=Bugs
+desc=This must be Rantz's son.
+walkanim=ogre_walk
+readyanim=ogre_ready
+op1=Talk
+resizeh=128
+resizev=90
+recol1s=7362
+recol1d=15718
+recol2s=27448
+recol2d=9376
+model1=model_2878_npc
+model2=model_3441_npc
+head1=model_3444_npc_head
+wanderrange=3
+param=damagetype,^crush_style
+param=death_anim,ogre_death
+param=death_sound,giant_death
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1472
+
+[toad]
+vislevel=hide
+name=Swamp toad
+desc=A green skinned croaker, loves the swamp.
+readyanim=chompy_toad_ready
+walkanim=chompy_toad_walk
+model1=model_3447_obj
+
+[bloated_toad]
+vislevel=hide
+name=Bloated Toad
+desc=A green skinned croaker.
+readyanim=bloated_toad_stay
+walkanim=bloated_toad_stay
+model1=model_3447_obj
+wanderrange=0
+moverestrict=nomove
+
+[chompy_bird]
+name=Chompy bird
+desc=A large boisterous bird, a delicacy for ogres.
+walkanim=pog_terror_bird_walk
+readyanim=pog_terror_bird_ready
+resizeh=180
+resizev=180
+op5=Attack
+vislevel=6
+model1=model_3445_obj
+wanderrange=3
+hitpoints=10
+attack=5
+strength=5
+defence=3
+param=attack_anim,chompy_attack
+param=defend_anim,pog_terror_bird_defend
+param=death_anim,pog_terror_bird_ready_extra
+param=attack_sound,chompy_bird_attack
+param=defend_sound,chompy_bird_hit
+param=death_sound,chompy_bird_death
+// Hunt range is a guess
+// If removed, chompy won't hunt for toads during quest
+huntrange=2
+// osrs stats and Vislvl match 1:1
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1475
+
+[chompybird_dead]
+vislevel=hide
+name=Chompy bird
+desc=A once boisterous bird, closer to being an ogre delicacy.
+walkanim=pog_terror_bird_attack
+readyanim=pog_terror_bird_attack
+op4=Pluck
+resizeh=180
+resizev=180
+model1=model_3445_obj
+defaultmode=none
+wanderrange=0
+moverestrict=nomove

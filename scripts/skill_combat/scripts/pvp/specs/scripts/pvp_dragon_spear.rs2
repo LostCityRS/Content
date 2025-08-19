@@ -1,0 +1,74 @@
+[label,pvp_dragon_spear_sa]
+p_stopaction;
+~set_sa_vars(oc_param(inv_getobj(worn, ^wearpos_rhand), sa_energy));
+~set_pk_vars;
+spotanim_pl(sp_attack_shove_spotanim, 96, 0);
+anim(shove, 0);
+sound_synth(shove, 0, 0);
+.sound_synth(shove, 0, 0);
+
+def_int $dir = ~coord_direction(coord, .coord);
+.if_close;
+if (.p_finduid(.uid) = false) {
+    switch_int ($dir) {
+        case ^exact_west : .queue(pvp_dragon_spear_push_west, 0);
+        case ^exact_east : .queue(pvp_dragon_spear_push_east, 0);
+        case ^exact_north : .queue(pvp_dragon_spear_push_north, 0);
+        case ^exact_south : .queue(pvp_dragon_spear_push_south, 0);
+    }
+    return;
+}
+.p_stopaction;
+def_coord $end_coord = ~dragon_spear_push($dir, .coord);
+if ($end_coord ! .coord) {
+    .p_teleport($end_coord);
+}
+
+.spotanim_pl(stunned_shove, 96, 0);
+.anim(%com_defendanim, 0);
+.queue(pvp_retaliate, 0, uid);
+.p_delay(4);
+
+[queue,pvp_dragon_spear_push_west]
+p_stopaction;
+def_coord $end_coord = ~dragon_spear_push(^exact_west, coord);
+if ($end_coord ! coord) {
+    p_teleport($end_coord);
+}
+spotanim_pl(stunned_shove, 96, 0);
+anim(%com_defendanim, 0);
+queue(pvp_retaliate, 0, %pk_predator1);
+p_delay(4);
+
+[queue,pvp_dragon_spear_push_east]
+p_stopaction;
+def_coord $end_coord = ~dragon_spear_push(^exact_east, coord);
+if ($end_coord ! coord) {
+    p_teleport($end_coord);
+}
+spotanim_pl(stunned_shove, 96, 0);
+anim(%com_defendanim, 0);
+queue(pvp_retaliate, 0, %pk_predator1);
+p_delay(4);
+
+[queue,pvp_dragon_spear_push_north]
+p_stopaction;
+def_coord $end_coord = ~dragon_spear_push(^exact_north, coord);
+if ($end_coord ! coord) {
+    p_teleport($end_coord);
+}
+spotanim_pl(stunned_shove, 96, 0);
+anim(%com_defendanim, 0);
+queue(pvp_retaliate, 0, %pk_predator1);
+p_delay(4);
+
+[queue,pvp_dragon_spear_push_south]
+p_stopaction;
+def_coord $end_coord = ~dragon_spear_push(^exact_south, coord);
+if ($end_coord ! coord) {
+    p_teleport($end_coord);
+}
+spotanim_pl(stunned_shove, 96, 0);
+anim(%com_defendanim, 0);
+queue(pvp_retaliate, 0, %pk_predator1);
+p_delay(4);

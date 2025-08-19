@@ -1,0 +1,166 @@
+[opheld1,_trail_puzzle] @trail_open_puzzle;
+
+[label,trail_open_puzzle]
+if(inv_freespace(trail_puzzleinv) > 1) {
+    inv_clear(trail_puzzleinv); // prob shouldn't ever need this
+    ~init_trail_puzzle;
+}
+inv_transmit(trail_puzzleinv, trail_puzzle:com_3);
+if_openmain(trail_puzzle);
+
+[proc,init_trail_puzzle]
+inv_setslot(trail_puzzleinv, 0, trail_slidingpuzzleb01, 1);
+inv_setslot(trail_puzzleinv, 1, trail_slidingpuzzleb02, 1);
+inv_setslot(trail_puzzleinv, 2, trail_slidingpuzzleb03, 1);
+inv_setslot(trail_puzzleinv, 3, trail_slidingpuzzleb04, 1);
+inv_setslot(trail_puzzleinv, 4, trail_slidingpuzzleb05, 1);
+inv_setslot(trail_puzzleinv, 5, trail_slidingpuzzleb06, 1);
+inv_setslot(trail_puzzleinv, 6, trail_slidingpuzzleb07, 1);
+inv_setslot(trail_puzzleinv, 7, trail_slidingpuzzleb08, 1);
+inv_setslot(trail_puzzleinv, 8, trail_slidingpuzzleb09, 1);
+inv_setslot(trail_puzzleinv, 9, trail_slidingpuzzleb10, 1);
+inv_setslot(trail_puzzleinv, 10, trail_slidingpuzzleb11, 1);
+inv_setslot(trail_puzzleinv, 11, trail_slidingpuzzleb12, 1);
+inv_setslot(trail_puzzleinv, 12, trail_slidingpuzzleb13, 1);
+inv_setslot(trail_puzzleinv, 13, trail_slidingpuzzleb14, 1);
+inv_setslot(trail_puzzleinv, 14, trail_slidingpuzzleb15, 1);
+inv_setslot(trail_puzzleinv, 15, trail_slidingpuzzleb16, 1);
+inv_setslot(trail_puzzleinv, 16, trail_slidingpuzzleb17, 1);
+inv_setslot(trail_puzzleinv, 17, trail_slidingpuzzleb18, 1);
+inv_setslot(trail_puzzleinv, 18, trail_slidingpuzzleb19, 1);
+inv_setslot(trail_puzzleinv, 19, trail_slidingpuzzleb20, 1);
+inv_setslot(trail_puzzleinv, 20, trail_slidingpuzzleb21, 1);
+inv_setslot(trail_puzzleinv, 21, trail_slidingpuzzleb22, 1); 
+inv_setslot(trail_puzzleinv, 22, trail_slidingpuzzleb23, 1);
+inv_setslot(trail_puzzleinv, 23, trail_slidingpuzzleb24, 1);
+
+~shuffle_trail_puzzle;
+
+// This achieves randomization by essentially simulating 101 moves using the adj slot to each piece starting from the bottom right
+// (since the puzzle is init'd in a completed state: https://x.com/JagexAsh/status/1301202083845201921)
+[proc,shuffle_trail_puzzle]
+def_int $moves = 101;
+def_int $current_idx = 24;
+while($moves > 0) {
+    // horizontal
+    def_int $next_idx = ~random_puzzle_slot($current_idx);
+    if($next_idx ! -1) {
+        inv_movetoslot(trail_puzzleinv, trail_puzzleinv, $next_idx, $current_idx);
+    }
+    $moves = calc($moves - 1);
+    $current_idx = $next_idx;
+}
+
+[proc,random_puzzle_slot](int $slot)(int)
+def_int $left_slot = -1;
+def_int $right_slot = -1;
+def_int $down_slot = -1;
+def_int $up_slot = -1;
+def_int $adj_slots = 0;
+if (modulo($slot, 5) ! 0) {
+    $left_slot = calc($slot - 1);
+    $adj_slots = calc($adj_slots + 1);
+}
+if (modulo($slot, 5) ! 4) {
+    $right_slot = calc($slot + 1);
+    $adj_slots = calc($adj_slots + 1);
+}
+
+// vertical
+if($slot >= 5) {
+    $up_slot = calc($slot - 5);
+    $adj_slots = calc($adj_slots + 1);
+}
+if($slot <= 19) {
+    $down_slot = calc($slot + 5);
+    $adj_slots = calc($adj_slots + 1);
+} 
+
+// Randomly select one of the available adjacent slots
+if ($adj_slots > 0) {
+    def_int $random_index = random($adj_slots);
+    if ($left_slot ! -1) {
+        if ($random_index = 0) {
+            return ($left_slot);
+        }
+    } 
+
+    if ($right_slot ! -1) {
+        if ($random_index = 0 & $left_slot = -1) {
+            return ($right_slot);
+        } else if ($random_index = 1) {
+            return ($right_slot);
+        }
+    } 
+
+    if ($up_slot ! -1) {
+        if ($random_index <= 1 & $right_slot = -1) {
+            return ($up_slot);
+        } else if ($random_index = 2) {
+            return ($up_slot);
+        }
+    }
+
+    if ($down_slot ! -1) {
+        if ($random_index <= 2 & $up_slot = -1) {
+            return ($down_slot);
+        } else if ($random_index = 3) {
+            return ($down_slot);
+        }
+    }
+}
+return ($down_slot);
+
+[proc,trail_puzzle_complete]()(boolean)
+if (inv_getobj(trail_puzzleinv, 0) = trail_slidingpuzzleb01 &
+        inv_getobj(trail_puzzleinv, 1) = trail_slidingpuzzleb02 &
+        inv_getobj(trail_puzzleinv, 2) = trail_slidingpuzzleb03 &
+        inv_getobj(trail_puzzleinv, 3) = trail_slidingpuzzleb04 &
+        inv_getobj(trail_puzzleinv, 4) = trail_slidingpuzzleb05 &
+        inv_getobj(trail_puzzleinv, 5) = trail_slidingpuzzleb06 &
+        inv_getobj(trail_puzzleinv, 6) = trail_slidingpuzzleb07 &
+        inv_getobj(trail_puzzleinv, 7) = trail_slidingpuzzleb08 &
+        inv_getobj(trail_puzzleinv, 8) = trail_slidingpuzzleb09 &
+        inv_getobj(trail_puzzleinv, 9) = trail_slidingpuzzleb10 &
+        inv_getobj(trail_puzzleinv, 10) = trail_slidingpuzzleb11 &
+        inv_getobj(trail_puzzleinv, 11) = trail_slidingpuzzleb12 &
+        inv_getobj(trail_puzzleinv, 12) = trail_slidingpuzzleb13 &
+        inv_getobj(trail_puzzleinv, 13) = trail_slidingpuzzleb14 &
+        inv_getobj(trail_puzzleinv, 14) = trail_slidingpuzzleb15 &
+        inv_getobj(trail_puzzleinv, 15) = trail_slidingpuzzleb16 &
+        inv_getobj(trail_puzzleinv, 16) = trail_slidingpuzzleb17 &
+        inv_getobj(trail_puzzleinv, 17) = trail_slidingpuzzleb18 &
+        inv_getobj(trail_puzzleinv, 18) = trail_slidingpuzzleb19 &
+        inv_getobj(trail_puzzleinv, 19) = trail_slidingpuzzleb20 &
+        inv_getobj(trail_puzzleinv, 20) = trail_slidingpuzzleb21 &
+        inv_getobj(trail_puzzleinv, 21) = trail_slidingpuzzleb22 &
+        inv_getobj(trail_puzzleinv, 22) = trail_slidingpuzzleb23 &
+        inv_getobj(trail_puzzleinv, 23) = trail_slidingpuzzleb24) {
+    return (true);
+}
+return (false);
+
+[opheld5,_trail_puzzle_piece]
+def_int $slot = last_slot;
+def_int $open_slot = -1;
+    
+// horizontal
+if (modulo($slot, 5) ! 0) {
+    if (inv_getobj(trail_puzzleinv, calc($slot - 1)) = null) $open_slot = calc($slot - 1);
+}
+if (modulo($slot, 5) ! 4) {
+    if (inv_getobj(trail_puzzleinv, calc($slot + 1)) = null) $open_slot = calc($slot + 1);
+}
+
+// vertical
+if($slot >= 5) {
+    if (inv_getobj(trail_puzzleinv, calc($slot - 5)) = null) $open_slot = calc($slot - 5);
+}
+if($slot <= 19) {
+    if (inv_getobj(trail_puzzleinv, calc($slot + 5)) = null) $open_slot = calc($slot + 5);
+} 
+
+if($open_slot ! -1) {
+    sound_synth(slide_puzzle, 0, 0);
+    inv_movetoslot(trail_puzzleinv, trail_puzzleinv, $slot, $open_slot);
+}

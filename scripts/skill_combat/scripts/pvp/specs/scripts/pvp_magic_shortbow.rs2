@@ -1,0 +1,55 @@
+[label,pvp_magic_shortbow_sa]
+def_obj $rhand = inv_getobj(worn, ^wearpos_rhand);
+def_obj $ammo = ~player_ranged_check_ammo($rhand); 
+if ($ammo = null) {
+    p_stopaction;
+    ~update_all($rhand);
+    return;
+}
+if (inv_getnum(worn, ^wearpos_quiver) < 2) { // requires two shots
+    // message_game	type=gamemessage, message="There isn't enough ammo left in your quiver."
+    mes("There isn't enough ammo left in your quiver.");
+    p_stopaction;
+    ~update_all($rhand);
+    return;
+}
+
+~set_sa_vars(oc_param($rhand, sa_energy));
+~set_pk_vars;
+
+anim(snapshot, 0);
+spotanim_pl(sp_attack_snapshot_spotanim, 96, 0);
+sound_synth(snapshot, 0, 0);
+.sound_synth(snapshot, 0, 0);
+def_int $duration = ~player_projectile(coord, .coord, .uid, sp_attack_glow_arrow_travel, 40, 36, 20, 15, 10, 11, 3);
+def_int $duration2 = ~player_projectile(coord, .coord, .uid, sp_attack_glow_arrow_travel, 40, 36, 50, 15, 0, 11, 3);
+~ranged_dropammo_pvp($ammo, calc($duration / 30));
+~ranged_dropammo_pvp($ammo, calc($duration2 / 30));
+~pvp_magic_shortbow_spec_hit($ammo, $duration);
+~pvp_magic_shortbow_spec_hit($ammo, $duration2);
+
+[proc,pvp_magic_shortbow_spec_hit](obj $ammo, int $delay)
+if (stat(hitpoints) = 0) { // inferred from dragon dagger
+    return;
+}
+def_int $damage = 0;
+def_int $combat_stat = ~combat_stat(add(stat(ranged), 10), oc_param($ammo, rangebonus)); // + 10 ranged levels
+def_int $maxhit = ~combat_maxhit($combat_stat);
+def_int $attackroll = scale(10, 7, ~player_attack_roll_specific(%damagetype)); // 43% bonus accuracy
+def_int $defenceroll = ~player_defence_roll_specific(%damagetype);
+if (randominc($attackroll) > randominc($defenceroll)) {
+    if (~.check_protect_prayer(^ranged_style) = true) {
+        $maxhit = scale(6, 10, $maxhit); // reduction of 40%
+    }
+    $damage = min(randominc($maxhit), .stat(hitpoints));
+    ~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
+    both_heropoints($damage);
+}
+
+def_int $poison_severity = oc_param($ammo, poison_severity);
+if ($damage > 0 & $poison_severity > 0 & random(4) = 0) { // 1/4 chance to poison
+    .queue(poison_player, 0, $poison_severity);
+}
+.queue(pvp_retaliate, divide($delay, 30), uid);
+~.pvp_damage(divide($delay, 30), $damage);
+.anim(.%com_defendanim, $delay);

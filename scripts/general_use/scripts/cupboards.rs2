@@ -1,0 +1,79 @@
+[oploc1,_cupboard_closed] @open_cupboard(~cupboards_use_message);
+[oploc1,_cupboard_opened] @search_cupboard;
+[oploc2,_cupboard_opened] @close_cupboard(~cupboards_use_message);
+
+// fight arena
+[oploc2,loc_370] @search_cupboard;
+[oploc3,loc_370] @close_cupboard(false);
+
+// ranging guild
+// this cupboard is not accessible
+[oploc2,loc_371] @search_cupboard;
+[oploc3,loc_371] @close_cupboard(false);
+
+// sorcerers tower
+[oploc2,loc_372] @search_cupboard;
+[oploc3,loc_372] @close_cupboard(false);
+
+[label,search_cupboard]
+//mes(~coord_tostring(loc_coord));
+switch_coord (loc_coord) {
+    case 2_46_52_40_8 : // falador castle sir vyvin room
+        if(%squire_progress >= 5) {
+                // Vyvin will stop you (if he can!) from searching the cupboard after this point of the quest
+                // regardless of whether you have the portrait or not, but also not before it
+                if(~vyvin_distracted = false) {
+                    return;
+                } else if(inv_total(inv, knights_portrait) = 0 & inv_total(bank, knights_portrait) = 0) {
+                    ~mesbox("You find a small portrait in here which you take.");
+                    inv_add(inv, knights_portrait, 1);
+                    return;
+                }
+            }
+            ~mesbox("There is just a load of junk in here.");
+    case 1_48_51_24_4 : @cupboard_take_garlic; // draynor morgans house level 1
+    case 0_40_52_14_6 : @elena_search_cupboard; // alrenas house for plague city
+    case 0_52_52_26_4 : @exam_centre_cupboard_jar; // exam centre specimen jar cupboard
+    case 0_42_53_10_12, 0_40_49_29_46, 0_41_53_36_34 : mes("You search the cupboard but find nothing."); // sorcerers tower, fight arena, ranging guild
+    case default : mes("The cupboard is empty.");
+}
+
+[label,open_cupboard](boolean $message)
+p_arrivedelay;
+anim(human_openchest,0);
+sound_synth(cupboard_open, 0, 0);
+p_delay(0);
+// Temp note: dur does not need updated
+loc_change(loc_param(cupboard_other), 300);
+if ($message = true) {
+    mes("You open the cupboard.");
+}
+
+[label,close_cupboard](boolean $message)
+p_arrivedelay;
+anim(human_closechest, 0);
+sound_synth(cupboard_close, 0, 0);
+p_delay(0);
+// Temp note: dur does not need updated
+loc_change(loc_param(cupboard_other), 300);
+if ($message = true) {
+    mes("You close the cupboard.");
+}
+
+[proc,cupboards_use_message]()(boolean)
+switch_loc (loc_type) {
+    case loc_2612, loc_2613, loc_2524, loc_2525, legends_radimus_cupboard_closed : return(true);
+    case default : return(false);
+}
+
+[label,cupboard_take_garlic]
+if (inv_itemspace(inv, garlic, 1, inv_size(inv)) = true) {
+    if (inv_total(inv, garlic) = 0) {
+        mes("The cupboard contains garlic. You take a clove.");
+    } else {
+        mes("You take a clove of garlic.");
+    }
+    inv_add(inv, garlic, 1);
+} else {
+    ~mesbox("The cupboard contains garlic, but you don't|have room to hold it at the moment.");
+}

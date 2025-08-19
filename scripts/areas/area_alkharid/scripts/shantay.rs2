@@ -1,0 +1,140 @@
+[opnpc1,shantay]
+//guess based on osrs. Averaged about 100 talks between each drop.
+if(random(100) = 0) {
+    mes("Something drops out of Shantay's pocket onto the floor.");
+    mes("It looks like a piece of paper.");
+    obj_add(npc_coord, thkebabinstructs, 1, ^lootdrop_duration);
+}
+if (%shantay_jail_progress = ^not_talked_to_shantay) {
+    ~chatnpc("<p,neutral>Hello effendi, I am Shantay.");
+    ~chatnpc("<p,neutral>I see you're new. Please read the billboard poster|before going into the desert. It'll give yer details on the|dangers you can face.");
+    %shantay_jail_progress = ^talked_to_shantay;
+} else {
+    ~chatnpc("<p,neutral>Hello again friend. Please read the billboard poster|before going into the desert. It'll give yer details on the|dangers you can face.");
+}
+@multi4("What is this place?", shantay_what_is_this_place, "Can I see what you have to sell please?", shantay_can_i_see_what_you_have_to_sell_please, "I must be going.", shantay_i_must_be_going, "I want to buy a shantay pass for 5 gold coins.", shantay_buy_shantay_pass);
+
+[opnpc3,shantay]
+if (map_members = ^false) {
+    mes(^mes_members_store_owner); // guess
+    return;
+}
+~openshop_activenpc;
+
+[label,shantay_what_is_this_place]
+if (%shantay_jail_progress = ^put_in_shantay_jail) {
+    %shantay_jail_progress = ^talked_to_shantay;
+    ~chatnpc("<p,neutral>You should be in jail! Well, no doubt the authorities in|Port Sarim know what they're doing. But if you get|into any more trouble, you'll be stuck back in jail.");
+    return;
+}
+~chatplayer("<p,neutral>What is this place?");
+~chatnpc("<p,neutral>This is the pass of Shantay. I guard this area with my|men. I am responsible for keeping this pass open and|repaired.");
+~chatnpc("<p,neutral>My men and I prevent outlaws from getting out of the|desert. And we stop the inexperienced from a dry death|in the sands. Which would you say you were?");
+
+def_int $choice = ~p_choice3("I am definitely an outlaw, prepare to die!", 1, "I am a little inexperienced.", 2, "Er, neither, I'm an adventurer.", 3);
+if ($choice = 1) {
+    ~chatplayer("<p,neutral>I am definitely an outlaw, prepare to die!");
+    ~chatnpc("<p,neutral>Ha, very funny.....");
+    ~chatnpc("<p,neutral>Guards arrest <text_gender("him", "her")>!");
+    if_close;
+    mes("The guards arrest you and place you in the jail.");
+    p_delay(2);
+    %shantay_jail_progress = ^put_in_shantay_jail;
+    p_telejump(0_51_48_32_52);
+    ~chatnpc("<p,neutral>You'll have to stay in there until you pay the fine of|five gold pieces. Do you want to pay now?");
+    @multi2("Yes, okay.", shantay_yes_okay_ill_pay_the_fine, "No thanks, you're not having my money.", shantay_no_thanks_youre_not_having_my_money);
+}
+if ($choice = 2) {
+    ~chatplayer("<p,neutral>I am a little inexperienced.");
+    ~chatnpc("<p,neutral>Can I recommend that you purchase a full waterskin|and a knife! These items will no doubt save your life. A|waterskin will keep water from evaporating in the desert.");
+    ~chatnpc("<p,neutral>And a keen woodsman with a knife can extract the juice|from a cactus. Before you go into the desert, it's|advisable to wear desert clothes. It's very hot in the|desert and you'll surely cook if you wear armour.");
+    ~chatnpc("<p,neutral>To keep the pass bandit free, we charge a small toll of|five gold pieces. You can buy a desert pass from me,|just ask me to open the shop. You can also use our|free banking services by clicking on the chest.");
+}
+if ($choice = 3) {
+    ~chatplayer("<p,neutral>Er, neither, I'm an adventurer.");
+    ~chatnpc("<p,neutral>Great, I have just the thing for the desert adventurer.|I sell desert clothes which will keep you cool in the heat|of the desert. I also sell waterskins so that you won't|die in the desert.");
+    ~chatnpc("<p,neutral>A waterskin and a knife help you survive from the juice|of a cactus. Use the chest to store your items, we'll take|them to the bank. It's hot in the desert, you'll bake in|all that armour.");
+    ~chatnpc("<p,neutral>To keep the pass open we ask for 5 gold pieces. And|we give you a Shantay Pass, just ask to see what I sell|to buy one.");
+}
+@multi3("Can I see what you have to sell please?", shantay_can_i_see_what_you_have_to_sell_please, "I must be going.", shantay_i_must_be_going, "Why do I have to pay to go into the desert?", shantay_pay_for_desert);
+
+[label,shantay_pay_for_desert]
+~chatplayer("<p,neutral>Why do I have to pay to go into the desert?");
+if_close;
+mes("Shantay opens his arms wide as if to embrace you.");
+p_delay(3);
+
+~chatnpc("<p,neutral>Effendi, you insult me! I am not interested in making|a profit from you! I merely seek to cover my expenses|in keeping this pass open.");
+~chatnpc("<p,neutral>There is repair work to carry out and also the men's|wages to consider. For the paltry sum of 5 Gold pieces,|I think we offer a great service.");
+@multi2("Can I see what you have to sell please?", shantay_can_i_see_what_you_have_to_sell_please, "I must be going.", shantay_i_must_be_going);
+
+
+[label,shantay_ill_pay_the_fine]
+~chatplayer("<p,neutral>I'll pay the fine.");
+// comma is NOT a typo, its from osrs
+// Message(type = DIALOG, text = "Shantay|Okay then..., you'll need access to your bank.")
+~chatnpc("<p,neutral>Okay then..., you'll need access to your bank.");
+@openbank;
+
+[label,shantay_no_thanks_youre_not_having_my_money]
+~chatplayer("<p,neutral>No thanks, you're not having my money.");
+// https://storage.googleapis.com/tannerdino/images/rstransport13.gif
+~chatnpc("<p,neutral>You have a choice.|You can either pay five gold pieces or...|You can be transported to a maximum security prison|in Port Sarim.");
+~chatnpc("<p,neutral>Will you pay the five gold pieces?");
+def_int $choice = ~p_choice2("Yes, okay.", 1, "No, do your worst!", 2);
+if ($choice = 1) {
+    @shantay_ill_pay_the_fine;
+}
+~chatnpc("<p,neutral>You are to be transported to a maximum security|prison in Port Sarim. I hope you've learnt an important|lesson from this.");
+@shantay_send_player_to_port_sarim;
+
+[label,shantay_yes_okay_ill_pay_the_fine]
+~chatplayer("<p,neutral>Yes, okay.");
+~chatnpc("<p,neutral>Good, I see that you have come to your senses.");
+if (inv_total(inv, coins) < 5) {
+    ~chatnpc("<p,neutral>You don't have that kind of cash on you I see.");
+    if (inv_total(bank, coins) >= 5) {
+        ~chatnpc("<p,neutral>But perhaps you have some in your bank? Or would you prefer the maximum security prison in Port Sarim.");
+        ~chatnpc("<p,neutral>Which is it going to be?");
+        @multi2("I'll pay the fine.", shantay_ill_pay_the_fine, "No thanks, you're not having my money.", shantay_no_thanks_youre_not_having_my_money);
+    }
+    @shantay_send_player_to_port_sarim;
+}
+inv_del(inv, coins, 5);
+%shantay_jail_progress = ^paid_shantay_jail_fine;
+mes("You hand over five gold pieces to Shantay.");
+~chatnpc("<p,neutral>Great Effendi, now please try to keep the peace.");
+mes("Shantay unlocks the door to the cell.");
+
+
+[label,shantay_send_player_to_port_sarim]
+mes("You find yourself in a prison.");
+p_telejump(0_47_49_9_46);
+facesquare(movecoord(coord, -1, 0, 0));
+
+[label,shantay_can_i_see_what_you_have_to_sell_please]
+~chatplayer("<p,neutral>Can I see what you have to sell please?");
+~chatnpc("<p,neutral>Absolutely Effendi!");
+if (map_members = ^false) {
+    mes(^mes_members_store_owner); // guess
+    return;
+}
+~openshop_activenpc;
+
+[label,shantay_i_must_be_going]
+~chatplayer("<p,neutral>I must be going.");
+~chatnpc("<p,neutral>So long...");
+
+[label,shantay_buy_shantay_pass]
+if (map_members = ^false) {
+    ~chatnpc("<p,neutral>Sorry effendi, I can't offer this service right now.");
+    return;
+}
+~chatplayer("<p,neutral>I want to buy a shantay pass for 5 gold coins.");
+if (inv_total(inv, coins) < 5) {
+    ~chatnpc("<p,neutral>Sorry friend, the Shantay Pass is 5 gold coins. You|don't seem to have enough money!");
+    return;
+}
+inv_add(inv, shantay_pass, 1);
+inv_del(inv, coins, 5);
+~objbox(shantay_pass, "You purchase a Shantay Pass.", 250, 0, divide(^objbox_height, 2));

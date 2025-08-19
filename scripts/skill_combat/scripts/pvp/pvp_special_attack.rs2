@@ -1,0 +1,46 @@
+[label,pvp_special_attack]
+if (.%death = ^true) {
+    p_stopaction;
+    return;
+}
+if (stat(hitpoints) = 0) {
+    return;
+}
+if (%action_delay > map_clock) {
+    p_opplayer(2);
+    return;
+}
+if (~sa_enough_energy = false) {
+    // If players attempt to use a special attack with insufficient energy then they'll find that instead 
+    // of a special attack failing and no attack occurring, a regular attack will instead be performed.
+    // - https://oldschool.runescape.wiki/w/Update:PvM_QoL_updates_%26_Wilderness_Rejuvenation_improvements
+    // p_stopaction; // based on the way ive implemented specs, this is necessary to produce the behavior above.
+    return;
+}
+if (~duel_arena_spec_check = false) {
+    return;
+}
+if (%damagetype = ^ranged_style) {
+    if (~duel_arena_ranged_check = false) {
+        return;
+    }
+} else {
+    if (~duel_arena_melee_check = false) {
+        return;
+    }
+}
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+// weps like shortbow are always their default attackrate (regardless of style)
+// - https://youtu.be/hAsKD72uJEE?si=BU4yzV9lxb_7uQKg&t=188
+%action_delay = add(map_clock, oc_param($weapon, attackrate));
+p_opplayer(2);
+
+switch_obj($weapon) {
+    case dragon_dagger, dragon_dagger_p : @pvp_dragon_dagger_sa;
+    case dragon_longsword : @pvp_dragon_longsword_sa;
+    case dragon_mace : @pvp_dragon_mace_sa;
+    case magic_shortbow : @pvp_magic_shortbow_sa;
+    case magic_longbow : @pvp_magic_longbow_sa;
+    case rune_thrownaxe : @pvp_rune_thrownaxe_sa;
+    case dragon_spear, dragon_spear_p : @pvp_dragon_spear_sa;
+}

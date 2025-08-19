@@ -1,0 +1,19 @@
+[opnpc1,fur_merchant]
+if (getqueue(stolen_from_stall_fur) > 0) {
+    @stall_owner_alert_guards;
+}
+~chatnpc("<p,happy>Would you like to trade in fur?");
+
+def_int $option = ~p_choice2("Yes please.", 1, "No thanks.", 2);
+
+if($option = 1) {
+    ~openshop_activenpc;
+} else if($option = 2) {
+    ~chatplayer("<p,neutral>No thanks.");
+}
+
+[opnpc3,fur_merchant]
+if (getqueue(stolen_from_stall_fur) > 0) {
+    @stall_owner_alert_guards;
+}
+~openshop_activenpc;

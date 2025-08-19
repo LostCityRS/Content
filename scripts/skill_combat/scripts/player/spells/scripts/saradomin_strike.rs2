@@ -1,0 +1,34 @@
+[opnpct,magic:saradomin_strike] ~pvm_saradomin_strike;
+[apnpct,magic:saradomin_strike] ~pvm_saradomin_strike;
+
+[proc,pvm_saradomin_strike]
+def_dbrow $spell_data = ~get_spell_data(^saradomin_strike);
+if (~pvm_combat_spell_checks($spell_data) = false) {
+    return;
+}
+if (%saradomin_strike_casts < ^mage_arena_spell_finished & ~inzone_coord_pair_table(mage_arena, coord) = false) {
+    // https://youtu.be/TrxuRyogdEo?list=PLn23LiLYLb1Y4vxMPWXM-CVEvOUfuAP_o&t=60
+    mes("You are not yet experienced enough to use this spell outside the");
+    mes("Mage Arena.");
+    return;
+}
+~pvm_spell_cast($spell_data);
+
+if (~player_npc_hit_roll(^magic_style) = true) {
+    def_int $maxhit = ~magic_spell_maxhit($spell_data);
+    if (inv_total(worn, saradomin_cape) > 0 & inv_total(worn, saradomin_staff) > 0) {
+        if (%charge_god_spell > 0) {
+            $maxhit = scale(3, 2, $maxhit);
+        }
+    }
+    ~pvm_spell_success($spell_data, $maxhit, 64);
+} else {
+    ~pvm_spell_fail($spell_data, 64);
+}
+if (%saradomin_strike_casts = ^mage_arena_spell_last_cast) {
+    mes("You can now cast Saradomin Strike outside the Arena.");
+    %saradomin_strike_casts = ^mage_arena_spell_finished;
+    ~mesbox("Congratulations. Your ability to summon a Saradomin Strike has|improved. You may now use this spell outside of the Arena."); // osrs
+} else if (%saradomin_strike_casts < ^mage_arena_spell_last_cast) {
+    %saradomin_strike_casts = add(%saradomin_strike_casts, 1);
+}

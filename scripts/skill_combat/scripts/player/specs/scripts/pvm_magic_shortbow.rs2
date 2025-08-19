@@ -1,0 +1,60 @@
+[label,pvm_magic_shortbow_sa]
+def_obj $rhand = inv_getobj(worn, ^wearpos_rhand);
+def_obj $ammo = ~player_ranged_check_ammo($rhand); 
+if ($ammo = null) {
+    p_stopaction;
+    ~update_all($rhand);
+    return;
+}
+if (inv_getnum(worn, ^wearpos_quiver) < 2) { // requires two shots
+    // message_game	type=gamemessage, message="There isn't enough ammo left in your quiver."
+    mes("There isn't enough ammo left in your quiver.");
+    p_stopaction;
+    ~update_all($rhand);
+    return;
+}
+
+~set_sa_vars(oc_param($rhand, sa_energy));
+
+anim(snapshot, 0);
+spotanim_pl(sp_attack_snapshot_spotanim, 96, 0);
+sound_synth(snapshot, 0, 0);
+def_int $duration = ~npc_projectile(coord, npc_uid, sp_attack_glow_arrow_travel, 40, 36, 20, 15, 3, 11, 3);
+def_int $duration2 = ~npc_projectile(coord, npc_uid, sp_attack_glow_arrow_travel, 40, 36, 50, 15, 3, 11, 3);
+
+~ranged_dropammo_npc($ammo, divide($duration, 30));
+~ranged_dropammo_npc($ammo, divide($duration2, 30));
+
+~pvm_magic_shortbow_spec_hit($ammo, $duration);
+~pvm_magic_shortbow_spec_hit($ammo, $duration2);
+
+[proc,pvm_magic_shortbow_spec_hit](obj $ammo, int $delay)
+if (stat(hitpoints) = 0) { // inferred from dragon dagger
+    return;
+}
+def_int $damage = 0;
+def_int $combat_stat = ~combat_stat(add(stat(ranged), 10), oc_param($ammo, rangebonus)); // + 10 ranged levels
+def_int $maxhit = ~combat_maxhit($combat_stat);
+def_int $attackroll = scale(10, 7, ~player_attack_roll_specific(%damagetype)); // 43% bonus accuracy
+def_int $defenceroll = ~npc_defence_roll_specific(^ranged_style);
+if (randominc($attackroll) > randominc($defenceroll)) {
+    if (npc_type = count_draynor & inv_total(inv, garlic) > 0) {
+        $maxhit = add($maxhit, 1);
+    }
+    $damage = randominc(min($maxhit, npc_param(max_dealt)));
+    def_int $damage_capped = min($damage, npc_stat(hitpoints));
+    ~give_combat_experience(%damagestyle, $damage_capped, %npc_combat_xp_multiplier);
+    npc_heropoints($damage_capped);
+}
+
+def_int $poison_severity = oc_param($ammo, poison_severity);
+if ($damage > 0 & $poison_severity > 0 & random(4) = 0) { // 1/4 chance to poison
+    // poison npc
+    ~npc_poison_start($poison_severity);
+}
+~npc_retaliate(add(divide($delay, 30), 1));
+npc_queue(2, $damage, add(divide($delay, 30), 1));
+// No npc anim in osrs?
+if (npc_param(defend_sound) ! null) {
+    sound_synth(npc_param(defend_sound), 0, $delay); // delay 1 client tick for the hit queue
+}

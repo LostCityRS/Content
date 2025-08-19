@@ -1,0 +1,48 @@
+[delrith]
+size=2
+name=Delrith
+desc=A freshly summoned demon.
+walkanim=demon_walk
+readyanim=demon_ready
+op2=Attack
+vislevel=27
+model1=model_2943_npc
+wanderrange=2
+maxrange=4
+// TODO respawnrate?
+hitpoints=7
+attack=32
+strength=25
+defence=27
+param=damagetype,^crush_style
+param=attack_anim,demon_attack
+param=defend_anim,demon_block
+param=death_anim,demon_death
+param=attack_sound,black_demon_attack
+param=defend_sound,black_demon_hit
+param=death_sound,black_demon_death
+param=demonbane_vulnerable,yes
+param=death_drop,ashes
+timer=100
+// osrs stats and Vislvl match 1:1
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5079
+
+[delrith_weakened]
+size=2
+name=Weakened Delrith
+desc=The demon doesn't look so strong now.
+resizeh=100
+resizev=100
+readyanim=demon_portal
+hasalpha=yes
+vislevel=1
+recol1s=11264
+recol1d=11460
+model1=model_2943_npc
+model2=model_3019_npc
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
+timer=100
+param=death_anim,demon_portalend
+param=death_sound,black_demon_death

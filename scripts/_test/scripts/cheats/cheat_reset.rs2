@@ -1,0 +1,31 @@
+[debugproc,reset]
+if_close;
+if (p_finduid(uid) = true) {
+    def_int $choice = ~p_choice2_header("Yes.", 1, "No.", 2, "Reset account?");
+    if ($choice = 2) {
+        return;
+    }
+
+    ~mesbox("Use '::minme' to reset your stats after you log back in.");
+
+    inv_clear(bank);
+    inv_clear(inv);
+    inv_clear(worn);
+
+    p_teleport(0_48_48_22_35);
+
+    ~reset_all_quests;
+    %thieving_stall_timer = 0;
+    %cat_growth = 0;
+    %follower_obj = null;
+    %follower_uid = null;
+    %handelmort_traps_disabled = 0;
+    %thread_used = 0;
+    %magearena = 0;
+    %bunny_ears_unlocked = 0;
+    %scythe_unlocked = 0;
+
+    p_logout;
+} else {
+    @please_finish;
+}

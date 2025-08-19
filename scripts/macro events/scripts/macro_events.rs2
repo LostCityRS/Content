@@ -1,0 +1,204 @@
+// timer is initiated on login, in scripts\player\scripts\global.rs2
+[timer,general_macro_events]
+// make sure this is before afk_event is called, to retain the 'queueing' behavior for random event spawning
+if (~macro_event_allowed = false) { 
+    return;
+}
+if (afk_event = ^true) {
+    // random events arent restricted in wildy? https://youtu.be/uPKaH7yg4To?t=421
+    // Not restricted in banks: https://youtu.be/1Rz9Eg4ZHhA
+    ~macro_event_general_spawn(~macro_event_set_random);
+}
+
+
+// this is called during:
+// - alching. Confirmed: https://youtu.be/2nqpZoHUjSc?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT
+// - teleporting. Confirmed: https://youtu.be/ZtnrEwb0n48?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT&t=51
+// (probably every spell)
+// - cooking. Confirmed: https://youtu.be/Brq99Bdl0aI?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT&t=198
+// - cooking on a range: https://youtu.be/Tix1wbx3YCc?t=343
+// - using flax wheel. Confirmed: https://youtu.be/sW48OR1I86M (early osrs)
+// - using anvil? Cant find a video, not implemented.
+// - fletching? Cant find a video, not implemented.
+// - flax picking? Cant find a video, but it is implemented.
+// - smithing at furnace. Confirmed? https://youtu.be/a6NobmSGBYw
+// - crafting at furnace. Confirmed: https://youtu.be/7pS6s5rvvEY
+[proc,macro_event_general_spawn](int $event)
+if (~macro_event_allowed = false) { 
+    return;
+}
+def_coord $event_coord = map_findsquare(coord, 1, 1, ^map_findsquare_lineofwalk);
+if ($event_coord = null) {
+    return;
+}
+%macro_event = $event;
+def_npc $event_npc = ~macro_event_npc($event);
+npc_add($event_coord, $event_npc, 1000);
+%macro_event_uid = npc_uid;
+session_log(^log_moderator, "Random event spawned: <nc_debugname(npc_type)>");
+switch_int ($event) {
+    case ^macro_swarm : ~macro_swarm_spawn;
+    case ^macro_triffidseed : ~macro_event_triffid_spawn;
+    case ^macro_dwarf : ~macro_dwarf_spawn;
+    case ^macro_geni : ~macro_geni_spawn;
+    case ^macro_mysterious_old_man : ~macro_mysterious_old_man_spawn;
+}
+
+[proc,macro_event_area](coord $coord)(boolean)
+if (~in_duel_arena($coord) = true) {
+    return(false);
+}
+if (~inzone_coord_pair_table(gnomeball_zones, coord) = true) {
+    return(false);
+}
+if (~inzone_coord_pair_table(trawler_game_zones, $coord) = true | ~inzone_coord_pair_table(trawler_wreck_zones, $coord) = true) { // allowed on boat in pre-game https://youtu.be/7-gUR40Nr8M
+    return(false);
+}
+if (~in_tutorial_island($coord) = true) {
+    return(false);
+}
+return(true);
+
+[proc,macro_event_allowed]()(boolean)
+if (~macro_event_area(coord) = false) {
+    return(false);
+}
+// if this var isnt reset on npc delete, then youll never get a random event: https://youtu.be/vRlOfkCCGkw
+if (%macro_event > 0) {
+    return(false);
+}
+return(true);
+
+// called when the player logs in
+[queue,macro_event_login]
+def_int $macro_event = %macro_event;
+%macro_event = 0;
+if (nc_param(~macro_event_npc($macro_event), follow_player_on_logout) = ^true) {
+    ~macro_event_general_spawn($macro_event);
+}
+
+[proc,macro_event_logout]
+if (npc_finduid(%macro_event_uid) = true) {
+    %npc_macro_event_target = null;
+}
+
+[proc,macro_event_npc](int $event)(npc)
+def_npc $event_npc;
+if (map_members = ^true) {
+    $event_npc = enum(int, npc, general_macro_events_members, $event);
+} else {
+    $event_npc = enum(int, npc, general_macro_events_free, $event);
+}
+return($event_npc);
+
+[proc,macro_event_set_random]()(int)
+if (map_members = ^true) {
+    return(~random_range(1, enum_getoutputcount(general_macro_events_members)));
+} else {
+    return(~random_range(1, enum_getoutputcount(general_macro_events_free)));
+}
+
+// used for skilling random events
+[proc,macro_event_general_count]()(int)
+if (map_members = ^true) {
+    return(enum_getoutputcount(general_macro_events_members));
+}
+return(enum_getoutputcount(general_macro_events_free));
+
+// teleports the player to a random location, using the coords in configs/macro_events_teleports.enum
+[queue,macro_event_fail_teleport]
+session_log(^log_adventure, "Failed random event and got teleported");
+def_coord $teleport_coord;
+if (map_members = ^true) {
+    $teleport_coord = enum(int, coord, macro_event_fail_teleports_members, random(enum_getoutputcount(macro_event_fail_teleports_members)));
+} else {
+    $teleport_coord = enum(int, coord, macro_event_fail_teleports_free, random(enum_getoutputcount(macro_event_fail_teleports_free)));
+}
+// https://youtu.be/MS7ADB-hh18
+// doesnt if_close
+%macro_event = ^no_macro_event;
+p_delay(1);
+// https://youtu.be/g5k3XuXxyYQ?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT&t=37
+spotanim_map(smokepuff, coord, 124, 0);
+sound_synth(smokepuff2, 0, 0);
+//--
+~p_telejump_safe($teleport_coord); // todo: Confirm this
+
+// called when the npc needs to be poofed away
+[proc,macro_event_disappear]
+if (npc_findhero = ^true) {
+    sound_synth(smokepuff2, 0, 0);
+}
+spotanim_map(smokepuff, npc_coord, 124, 0);
+npc_del;
+
+[proc,macro_event_lost]()(boolean)
+if (finduid(%npc_macro_event_target) = true) {
+    if (%macro_event_uid ! npc_uid) {
+        return(true);
+    }
+    if (~macro_event_area(coord) = false) {
+        return(true);
+    }
+    // https://youtu.be/vRlOfkCCGkw?t=87
+    if (coordy(coord) ! coordy(npc_coord) | npc_range(coord) > 15) {
+        npc_tele(map_findsquare(coord, 1, 1, ^map_findsquare_lineofwalk));
+        spotanim_map(smokepuff, npc_coord, 124, 0);
+        sound_synth(smokepuff, 0, 0);
+    }
+    npc_setmode(playerfollow);
+    return(false);
+}
+return(true);
+
+[proc,macro_event_lost_hostile]()(boolean)
+if (finduid(%npc_macro_event_target) = true) {
+    if (npc_getmode = wander & (npc_range(coord) > 3 | coordy(npc_coord) ! coordy(coord))) { // seems like distance of 3? https://www.youtube.com/watch?v=GoRX3cp58eo&list=PLn23LiLYLb1am4weMQzkWn5m9b3m9fXv9&t=38s
+        return(true);
+    }
+    return(false);
+}
+return(true);
+// based off https://web.archive.org/web/20060814111255/http://www.zybez.net/misc.php?id=11
+[proc,macro_event_combat_level]()(int)
+def_int $combat_level = ~player_combat_level;
+if ($combat_level < 11) {
+    return(^macro_event_cmb_14);
+}
+if ($combat_level < 21) {
+    return(^macro_event_cmb_29);
+}
+if ($combat_level < 41) {
+    return(^macro_event_cmb_49);
+}
+if ($combat_level < 61) {
+    return(^macro_event_cmb_79);
+}
+if ($combat_level < 91) {
+    return(^macro_event_cmb_120);
+}
+
+return(^macro_event_cmb_159);
+
+// for 2x2 npcs
+[proc,macro_event_coord_2x2]()(coord)
+def_int $i = 0;
+def_coord $sw;
+def_coord $nw;
+def_coord $se;
+def_coord $ne;
+// basically prevent the npc from spawning into anything it shouldnt. and so it doesnt spawn ontop of player
+while ($i < 50) {
+    $sw = movecoord(coord, ~random_range(-2, 2), 0, ~random_range(-2, 2));
+    $nw = movecoord($sw, 1, 0, 0);
+    $se = movecoord($sw, 0, 0, 1);
+    $ne = movecoord($sw, 1, 0, 1);
+    if (map_blocked($sw) = false & map_blocked($nw) = false & map_blocked($se) = false & map_blocked($ne) = false
+        & $sw ! coord & $se ! coord & $nw ! coord & $ne ! coord
+        & lineofwalk($sw, coord) = true
+        ){
+        return($sw);
+    }
+    $i = calc($i + 1);
+}
+return(null);

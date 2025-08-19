@@ -1,0 +1,79 @@
+[opnpc1,newbie_cook_instructor]
+switch_int(%tutorial_progress) {
+    case ^newbie_cook_instructor_start : @newbie_cook_instructor_start;
+    case ^newbie_cook_instructor_make_dough : @newbie_cook_instructor_after_start;
+    case ^newbie_cook_instructor_mixed_dough : @newbie_cook_instructor_after_start;
+    case default : @newbie_cook_instructor_recap;
+}
+
+[label,newbie_cook_instructor_start]
+// https://web.archive.org/web/20051215201825im_/http://runevillage.com/images/rsTutorial13.gif older line breaks
+~chatnpc("<p,neutral>Ah... welcome newcomer. I am Lev, the chef.| It is here I will teach you how to |cook food truly fit for a king.");
+~chatplayer("<p,neutral>I already know how to cook.|Brynna taught me just now.");
+~chatnpc("<p,laugh>HA HA HA HA HA HA! You call THAT cooking?|Some shrimp on an open log fire? Oh no no no... I am|going to teach you the fine art of cooking bread.");
+~chatnpc("<p,neutral>And no fine meal is complete without good music so|we'll cover that while you're here too.");
+%tutorial_progress = ^newbie_cook_instructor_make_dough;
+~set_tutorial_progress;
+~newbie_cook_instructor_give_ingredients;
+
+[label,newbie_cook_instructor_after_start]
+~chatnpc("<p,neutral>Time for you to learn the fine art of cooking bread.");
+~newbie_cook_instructor_give_ingredients;
+
+[proc,newbie_cook_instructor_give_ingredients]
+// Probably added in a later OSRS update
+//if (inv_freespace(inv) = 0 & %tutorial_progress < ^newbie_cook_instructor_baked_bread) {
+//    ~mesbox("You need some ingredients for this section of the tutorial but you don't have enough inventory room. You'll need to drop something. To do so, right-click on an item you don't want and select drop. Once you've done that speak to the Cooking Guide again.");
+//    return;
+//}
+
+//if (inv_total(inv, tutorial_pot_of_flour) < 1 & inv_total(inv, bucket_water) < 1) {
+//    inv_add(inv, tutorial_pot_of_flour, 1);
+//    ~objbox(tutorial_pot_of_flour, "The Cooking Guide gives you some flour. He would have given you some water as well but you didn't have room for it. To get some drop something and talk to the |Cooking Guide again.", 250, 0, divide(^objbox_height, 2));
+//    return;
+//}
+
+if (inv_total(inv, newbie_pot_flour) < 1 & inv_total(inv, bucket_water) < 1) {
+    inv_add(inv, newbie_pot_flour, 1);
+    inv_add(inv, bucket_water, 1);
+    ~doubleobjbox(bucket_water, newbie_pot_flour, "The Cooking Guide gives you a |@blu@Bucket of Water@bla@ |and a|@blu@Pot of Flour!", 200);
+} else if (inv_total(inv, newbie_pot_flour) < 1 & inv_total(inv, bucket_water) > 0) {
+    inv_add(inv, newbie_pot_flour, 1);
+    ~objbox(newbie_pot_flour, "The Cooking Guide gives you a |@blu@Pot of Flour.", 250, 0, divide(^objbox_height, 2));
+} else if (inv_total(inv, bucket_water) < 1 & inv_total(inv, newbie_pot_flour) > 0) {
+    inv_add(inv, bucket_water, 1);
+    ~objbox(bucket_water, "The Cooking Guide gives you a|@blu@Bucket of Water.", 250, 0, divide(^objbox_height, 2));
+}
+
+[label,newbie_cook_instructor_recap]
+~chatnpc("<p,quiz>Hello again.");
+~newbie_cook_instructor_give_ingredients;
+~newbie_cook_instructor_recap_options;
+
+[proc,newbie_cook_instructor_recap_options]
+if (%tutorial_progress < ^newbie_cook_instructor_opened_music_tab) {
+    ~newbie_cook_instructor_recap_response(~p_choice3_header("Making dough.", 1, "Range cooking.", 2, "Nothing, thanks.", 4, "What would you like to hear more about?"));
+} else {
+    ~newbie_cook_instructor_recap_response(~p_choice4_header("Making dough.", 1, "Range cooking.", 2, "Music.", 3, "Nothing, thanks.", 4, "What would you like to hear more about?"));
+}
+
+[proc,newbie_cook_instructor_recap_response](int $option)
+switch_int($option) {
+    case 1 :
+        ~chatplayer("<p,neutral>Tell me about making dough again.");
+        ~chatnpc("<p,neutral>It's quite simple: just use a pot of flour on a bucket of water, or vice versa, and you'll make dough. You can also refill your bucket at the sink.");
+        ~newbie_cook_instructor_recap_options;
+    case 2 :
+        ~chatplayer("<p,neutral>Tell me about range cooking again.");
+        ~chatnpc("<p,neutral>The range is the only place you can cook a lot of the more complex foods in RuneScape. To cook on a range, right click the item you would like to cook, select 'use' then left click the range.");
+        ~newbie_cook_instructor_recap_options;
+    case 3 :
+        ~chatplayer("<p,neutral>Tell me about music again.");
+        ~chatnpc("<p,neutral>Ah yes. The music was created by the great bard Ian. As you explore the world and complete quests you will unlock more of the tunes in your music player. Simply click on a tune in the music menu to listen to it.");
+        ~newbie_cook_instructor_recap_options;
+}
+
+[proc,set_hint_icon_newbie_cook_instructor]
+if (npc_find(0_48_48_4_11, newbie_cook_instructor, 10, 0) = true) {
+    hint_npc(npc_uid);
+}

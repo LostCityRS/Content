@@ -1,0 +1,46 @@
+// https://web.archive.org/web/20061105052142/http://runevillage.com/whatis2.php
+
+[proc,findsomethingnice] // mod lenny says this was the subroutine name
+// rates are completely guessed
+def_int $random = random(4);
+if (map_members = ^true) {
+    $random = random(11);
+}
+switch_int ($random) {
+    case 0 :
+        inv_add(inv, leather_gloves, 1);
+        ~objbox(leather_gloves, "You've found some gloves!", 250, 0, 0); // https://imgur.com/ivawRMt
+    case 1 :
+        inv_add(inv, leather_boots, 1);
+        ~objbox(leather_boots, "You've found some boots!", 250, 0, ^objbox_height); // guess
+    case 2 :
+        inv_add(inv, pot_empty,  1);
+        ~objbox(pot_empty, "You've found a pot.", 250, 0, ^objbox_height); // guess
+    case 3 :
+        // https://web.archive.org/web/20061026043451/http://www.global-rs.com/atlas/city/falador/
+        // "This is a house with a range, which we learned before, is better for cooking on then fires, 
+        // and two treasure chests upstairs which may contain a few spare gp or gloves or boots."
+        inv_add(inv, coins, add(random(10), 1));
+        ~objbox(coins, "You've found some spare coins!", 250, 0, 0);
+    case 4 :
+        inv_add(inv, digsitearrow, 1);
+        ~objbox(digsitearrow, "You've found a broken arrow.", 250, ^objbox_width, 0); // guess
+    case 5 :
+        inv_add(inv, digsitestaff,  1);
+        ~objbox(digsitestaff, "You've found a broken staff.", 250, 0, 0); // guess
+    case 6 :
+        inv_add(inv, digsitesword,  1);
+        ~objbox(digsitesword, "You've found a rusty sword.", 250, 0, 0); // guess
+    case 7 :
+        inv_add(inv, digsitearmour1, 1);
+        ~objbox(digsitearmour1, "You've found some damaged armour.", 250, 0, 0);
+    case 8 :
+        inv_add(inv, digsiteglass, 1);
+        ~objbox(digsiteglass, "You've found some broken glass.", 250, 0, 0);
+    case 9 :
+        inv_add(inv, old_boot, 1);
+        ~objbox(old_boot, "You've found an old boot.", 250, 0, divide(^objbox_height, 2));
+    case 10 :
+        inv_add(inv, digsitebuttons, 1);
+        ~objbox(digsitebuttons, "You've found some buttons.", 250, 0, 0);
+}

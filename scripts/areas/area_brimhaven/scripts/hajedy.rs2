@@ -1,0 +1,57 @@
+[oploc1,loc_2230] ~mesbox("A sturdy travelling cart built for long trips through jungle areas."); // rsc
+
+[oploc2,loc_2230]
+~mesbox("This looks like a sturdy travelling cart.|A nearby man walks over to you."); // rsc
+if(npc_find(coord, brimhavencartdriver, 7, 0) = true) {
+    @brimhavencartdriver_dialogue;
+}
+
+[opnpc1,brimhavencartdriver]
+if(inv_total(inv, trail_clue_medium_anagram005) > 0) {
+    // https://youtube.com/watch?v=1jHmIS9FGSY
+    ~chatnpc("<p,neutral>Well done.");
+    ~progress_clue_medium(trail_clue_medium_anagram005, "Hajedy has given you another clue scroll!");
+    return;
+}
+// https://youtu.be/q7wrja-4s4A?si=rjWL42YDxEM1p2KW&t=286
+if(%zombiequeen_progress < ^zombiequeen_complete) {
+    ~chatnpc("<p,sad>We used to run cart trips down to Shilo Village in south Karamja. Since the troubles we had we've had to stop them though, too many people got killed.");
+    return;
+}
+~chatplayer("<p,neutral>Hello!");
+~chatnpc("<p,neutral>Hello Bwana!");
+@brimhavencartdriver_dialogue;
+
+[label,brimhavencartdriver_dialogue]
+if(%zombiequeen_progress < ^zombiequeen_complete) {
+    ~chatnpc("<p,sad>We used to run cart trips down to Shilo Village in south Karamja. Since the troubles we had we've had to stop them though, too many people got killed.");
+    return;
+}
+def_int $amount = ~calc_shilocart_cost();
+~chatnpc("<p,neutral>I am offering a cart ride to Shilo Village|if you're interested?|It will cost <tostring($amount)> gold coins. Is that Ok?");
+switch_int(~p_choice2("Yes please, I'd like to go to Shilo Village.", 1, "No thanks.", 2)) {
+    case 1 :
+            ~chatplayer("<p,neutral>Yes please, I'd like to go to Shilo Village.");
+            if(inv_total(inv, coins) < $amount) {
+                ~chatnpc("<p,neutral>Sorry, but it looks as if you don't have enough money. Come and see me when you have enough for the ride.");
+                return;
+            }
+            ~chatnpc("<p,neutral>Great! Just hop into the cart then and we'll go!");
+            ~mesbox("You hop into the cart and the driver urges the horses on.|You take a taxing journey through the jungle to Shilo Village.");
+            inv_del(inv, coins, $amount);
+            ~mesbox("You pay the fare and hand <tostring($amount)> gold coins to Hajedy.");
+            p_teleport(0_44_46_18_7);
+            ~mesbox("You feel tired from the journey, but at least|you didn't have to walk all that distance.");
+        case 2 :
+            ~chatplayer("<p,neutral>No thanks.");
+            ~chatnpc("<p,neutral>Ok Bwana, let me know if you change your mind.");
+}
+
+[proc,calc_shilocart_cost]()(int)
+def_int $cost = calc((inv_total(inv, coins) * 5) / 100);
+if($cost < 10) {
+    $cost = 10;
+} else if($cost > 200) {
+    $cost = 200;
+}
+return ($cost);

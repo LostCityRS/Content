@@ -1,0 +1,41 @@
+name: Verify Content
+
+on:
+  pull_request:
+  push:
+    paths:
+    - '.github/workflows/content.yml'
+    - '**'
+  workflow_dispatch:
+
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        path: content
+
+    - uses: actions/checkout@v4
+      with:
+        repository: LostCityRS/Engine-TS
+        ref: 244
+        path: engine
+
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
+
+    - uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - working-directory: engine
+      run: bun install
+
+    - name: Pack
+      working-directory: engine
+      run: bun run build

@@ -1,0 +1,207 @@
+[proc,pick_pocket](dbrow $data)
+def_string $pocket = db_getfield($data, pickpocket:pocket, 0);
+// https://www.youtube.com/watch?v=O2n9Hc719YE
+mes("You attempt to pick the <$pocket>.");
+p_delay(0);
+
+if(npc_stat(hitpoints) = 0) {
+    // https://youtu.be/L9dyUj1fiko?si=mK8K0u8o9_d1EVSd&t=70
+    mes("Too late, they're dead.");
+    return;
+}
+if (~check_if_success_pick_pocket($data) = false) {
+    def_int $stun_ticks = db_getfield($data, pickpocket:stun_ticks, 0);
+    def_int $stun_damage = db_getfield($data, pickpocket:stun_damage, 0);
+    ~fail_pick_pocket($stun_damage, $stun_ticks, $pocket);
+    return;
+}
+
+def_int $experience = db_getfield($data, pickpocket:experience, 0);
+~pick_pocket_check_for_reward($data);
+anim(human_pickpocket, 0);
+stat_advance(thieving, $experience);
+sound_synth(pick, 0, 0);
+mes("You pick the <$pocket>.");
+
+[proc,check_if_success_pick_pocket](dbrow $data)(boolean)
+return(stat_random(thieving, db_getfield($data, pickpocket:success_chance, 0)));
+
+[proc,fail_pick_pocket](int $damage, int $stun_ticks, string $pocket)
+npc_say("What do you think you're doing?");
+mes("You fail to pick the <$pocket>.");
+npc_setmode(playerface);
+p_delay(0);
+// Birds above head.
+spotanim_pl(stunned_thieving, 124, 0);
+anim(%com_defendanim, 0);
+npc_anim(npc_param(attack_anim), 0);
+if (npc_param(attack_sound) ! null) {
+    sound_synth(npc_param(attack_sound), 0, 0);
+}
+sound_synth(stunned, 0, 0);
+p_delay(0);
+// todo Update this when combat is actually coded.
+~damage_self($damage);
+npc_setmode(null);
+
+mes("You've been stunned!");
+%action_delay = calc(map_clock + $stun_ticks);
+%stunned = calc(map_clock + $stun_ticks);
+walktrigger(stunned);
+
+[proc,steal_from_stall](dbrow $data, coord $loc_coord, int $loc_angle, locshape $loc_shape)
+// if guard sees (for first time), stop player from stealing.
+// guards proioritize over sellers
+if (~stealing_check_for_guard($data) = true) {
+    return;
+} else if (~stealing_check_for_owner($data) = true) {
+   return;
+}
+def_int $experience = db_getfield($data, stealing:experience, 0);
+// osrs is 2x respawn speed, since they removed the scale by playercount
+def_int $respawn_ticks = ~scale_by_playercount(db_getfield($data, stealing:respawn_ticks, 0));
+anim(human_pickuptable, 0);
+sound_synth(pick, 0, 0);
+// p_delay here was added with this update: https://oldschool.runescape.wiki/w/Update:Special_Attacks
+p_delay(0); 
+switch_loc (loc_type) {
+    case bakers_stall_stealing : 
+        longqueue(stolen_from_stall_baker, ^baker_stall_timer, ^discard);
+        %thieving_stall_timer = setbit(%thieving_stall_timer, ^baker_stall_index);
+    case tea_stall_stealing : 
+        longqueue(stolen_from_stall_tea, ^tea_stall_timer, ^discard);
+        %thieving_stall_timer = setbit(%thieving_stall_timer, ^tea_stall_index);
+    case silk_stall_stealing : 
+        longqueue(stolen_from_stall_silk, ^silk_stall_timer, ^discard);
+        %thieving_stall_timer = setbit(%thieving_stall_timer, ^silk_stall_index);
+    case fur_stall_stealing : 
+        longqueue(stolen_from_stall_fur, ^fur_stall_timer, ^discard); 
+        %thieving_stall_timer = setbit(%thieving_stall_timer, ^fur_stall_index);
+    case silver_stall_stealing : 
+        longqueue(stolen_from_stall_silver, ^silver_stall_timer, ^discard);
+        %thieving_stall_timer = setbit(%thieving_stall_timer, ^silver_stall_index);
+    case spice_stall_stealing : 
+        longqueue(stolen_from_stall_spice, ^spice_stall_timer, ^discard);
+        %thieving_stall_timer = setbit(%thieving_stall_timer, ^spice_stall_index);
+    case gem_stall_stealing : 
+        longqueue(stolen_from_stall_gem, ^gem_stall_timer, ^discard);
+        %thieving_stall_timer = setbit(%thieving_stall_timer, ^gem_stall_index);
+}
+~stealing_check_for_reward($data);
+stat_advance(thieving, $experience);
+// Temp note: dur does not need updated
+loc_change(market_stall, $respawn_ticks);
+
+[label,activate_trapped_chest]
+p_arrivedelay;
+if (map_members = ^false) {
+    mes(^mes_members_thieving);
+    return;
+}
+
+mes("You have activated a trap on the chest.");
+anim(human_lockedchest, 0);
+sound_synth(lever, 0, 0);
+p_delay(0);
+// https://oldschool.runescape.wiki/w/Chest_(nature_runes) - damage formula.
+def_int $hitpoints = multiply(stat(hitpoints), 12);
+def_int $damage = calc($hitpoints / 100);
+$damage = calc($damage + 3);
+~damage_self($damage);
+
+[proc,disarm_trapped_chest](dbrow $data, loc $loc, coord $loc_coord, int $loc_angle, locshape $loc_shape)
+// https://www.youtube.com/watch?v=5SxYEdRdiPU
+mes("You find a trap on the chest, "); // extra space matches OSRS
+p_delay(1);
+mes("You disable the trap.");
+sound_synth(locked, 0, 0);
+p_delay(1);
+mes("You open the chest.");
+sound_synth(chest_open, 0, 0);
+p_delay(1);
+mes("You find treasure inside!");
+anim(human_openchest, 0);
+~trapped_chest_check_for_reward($data);
+def_int $experience = db_getfield($data, trapped_chest:experience, 0);
+stat_advance(thieving, $experience);
+def_int $respawn_ticks = ~scale_by_playercount(db_getfield($data, trapped_chest:respawn_ticks, 0));
+loc_change(loc_2574, 4); //opened chest
+p_delay(2);
+if (db_getfieldcount($data, trapped_chest:tele_coord) > 0) {
+    mes("Suddenly a second magical trap triggers.");
+    sound_synth(lever, 0, 0);
+    p_teleport(db_getfield($data, trapped_chest:tele_coord, 0));
+}
+loc_change(loc_2572, $respawn_ticks); //looted chest
+
+
+[proc,pick_pocket_check_for_reward](dbrow $data)
+def_int $count = calc(db_getfieldcount($data, pickpocket:loot) - 1);
+def_int $reward_rarity_denominator = 128;
+while ($count >= 0) {
+    def_namedobj $reward;
+    def_int $reward_quantity_min;
+    def_int $reward_quantity_max;
+    def_int $reward_rarity_numerator;
+    $reward, $reward_quantity_min, $reward_quantity_max, $reward_rarity_numerator = db_getfield($data, pickpocket:loot, $count);
+
+    def_int $roll = random($reward_rarity_denominator);
+    $reward_rarity_denominator = sub($reward_rarity_denominator, $reward_rarity_numerator);
+    if ($roll >= $reward_rarity_denominator) {
+        def_int $quantity_roll = ~random_range($reward_quantity_min, $reward_quantity_max);
+        // Pickpocketing can reward more than 1.
+        inv_add(inv, $reward, $quantity_roll);
+    }
+
+    $count = calc($count - 1);
+}
+
+[proc,stealing_check_for_reward](dbrow $data)
+def_int $length = db_getfieldcount($data, stealing:loot);
+def_int $count = calc($length - 1);
+def_int $reward_rarity_denominator = db_getfield($data, stealing:loot_total, 0);
+
+while ($count >= 0) {
+    def_namedobj $reward;
+    def_int $min;
+    def_int $max;
+    def_int $reward_rarity_numerator;
+    def_string $reward_message;
+
+    $reward, $min, $max, $reward_rarity_numerator, $reward_message = db_getfield($data, stealing:loot, $count);
+    def_int $reward_count = ~random_range($min, $max);
+    def_int $rand = random($reward_rarity_denominator);
+    $reward_rarity_denominator = sub($reward_rarity_denominator, $reward_rarity_numerator);
+    if ($rand >= $reward_rarity_denominator) {
+        // https://youtu.be/ZyiWFTAt_1o?t=2
+        // extra sound is only from bread? (osrs)
+        if ($reward = bread) {
+            sound_synth(pick, 0, 0);
+        }
+        inv_add(inv, $reward, $reward_count);
+        mes("You steal <$reward_message>.");
+        return;
+    }
+    $count = calc($count - 1);
+}
+
+[proc,trapped_chest_check_for_reward](dbrow $data)
+def_int $count = calc(db_getfieldcount($data, trapped_chest:loot) - 1);
+def_int $reward_rarity_denominator = 128;
+while ($count >= 0) {
+    def_namedobj $reward;
+    def_int $reward_quantity_min;
+    def_int $reward_quantity_max;
+    def_int $reward_rarity_numerator;
+    $reward, $reward_quantity_min, $reward_quantity_max, $reward_rarity_numerator = db_getfield($data, trapped_chest:loot, $count);
+
+    def_int $roll = random($reward_rarity_denominator);
+    $reward_rarity_denominator = sub($reward_rarity_denominator, $reward_rarity_numerator);
+    if ($roll >= $reward_rarity_denominator) {
+        def_int $quantity_roll = ~random_range($reward_quantity_min, $reward_quantity_max);
+        // Trapped chests can reward more than 1.
+        inv_add(inv, $reward, $quantity_roll);
+    }
+
+    $count = calc($count - 1);
+}

@@ -1,0 +1,43 @@
+[opnpc1,generalshopkeeper1] @generalshop_help; //Lumbridge
+[opnpc1,generalassistant1] @generalshop_help; //Lumbridge
+[opnpc1,generalshopkeeper2] @generalshop_help; //Varrock
+[opnpc1,generalassistant2] @generalshop_help; //Varrock
+[opnpc1,generalshopkeeper4] @generalshop_help; //Falador
+[opnpc1,generalassistant4] @generalshop_help; //Falador
+[opnpc1,generalshopkeeper5] @generalshop_help; //Edgeville
+[opnpc1,generalassistant5] @generalshop_help; //Edgeville
+[opnpc1,generalshopkeeper3] @generalshop_help; //Al-Kharid
+[opnpc1,generalassistant3] @generalshop_help; //Al-Kharid
+[opnpc1,generalshopkeeper6] @generalshop_help; //Rimmington
+[opnpc1,generalassistant6] @generalshop_help; //Rimmington
+[opnpc1,generalshopkeeper7] @generalshop_help; //Karamja
+[opnpc1,generalassistant7] @generalshop_help; //Karamja
+[opnpc1,khazard_shopkeeper] @generalshop_help_neutral; //Port Khazard
+[opnpc1,dwarven_shopkeeper] @generalshop_help_neutral; //Dwarven mine
+[opnpc1,generalshopkeeper8] @generalshop_help; //Zanaris
+[opnpc1,generalassistant8] @generalshop_help; //Zanaris
+
+// In osrs, most generic general shops (shopkeeper w/assistant) use this dialogue, directly opening the shop on the first dialogue option. 
+// This is probably an OSRS change as the khazard shop uses the same dialogue as classic (although the khazard shop has different mesanims)
+// meaning most generalshops probably call the same label whereas khazard calls a seperate one
+[label,generalshop_help]
+~chatnpc("<p,happy>Can I help you at all?");
+def_int $option = ~p_choice2("Yes please. What are you selling?", 1, "No thanks.", 2);
+if($option = 1) {
+    ~chatplayer("<p,quiz>Yes please. What are you selling?");
+    ~chatnpc("<p,happy>Take a look.");
+    ~openshop_activenpc;
+} else if($option = 2) {
+    ~chatplayer("<p,neutral>No thanks.");
+}
+
+[label,generalshop_help_neutral]
+~chatnpc("<p,neutral>Can I help you at all?");
+def_int $option = ~p_choice2("Yes please. What are you selling?", 1, "No thanks.", 2);
+if($option = 1) {
+    ~chatplayer("<p,quiz>Yes please. What are you selling?");
+    ~chatnpc("<p,neutral>Take a look.");
+    ~openshop_activenpc;
+} else if($option = 2) {
+    ~chatplayer("<p,neutral>No thanks.");
+}

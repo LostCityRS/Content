@@ -1,0 +1,33 @@
+[opnpc1,fairy_banker] @talk_to_banker;
+[opnpc1,shilobanker] @talk_to_banker;
+
+[apnpc1,_bank_teller]
+if (npc_range(coord) > 2) {
+    p_aprange(2);
+    return;
+}
+@talk_to_banker;
+
+[label,talk_to_banker]
+// todo: Confirm this for 2004.
+~chatnpcrange("<p,quiz>Good day, how may I help you?");
+
+def_int $option = ~p_choice2("I'd like to access my bank account, please.", 1, "What is this place?", 2);
+switch_int ($option) {
+    case 1 :
+        ~chatplayer("<p,quiz>I'd like to access my bank account, please.");
+        @openbank;
+    case 2 :
+        ~chatplayer("<p,neutral>What is this place?");
+        ~chatnpcrange("<p,happy>This is a branch of the Bank of RuneScape. We have branches in many towns.");
+        $option = ~p_choice2("And what do you do?", 1, "Didn't you used to be called the Bank of Varrock?", 2);
+        switch_int ($option) {
+            case 1 :
+                ~chatplayer("<p,quiz>And what do you do?");
+                ~chatnpcrange("<p,happy>We will look after your items and money for you. Leave your valuables with us if you want to keep them safe.");
+            case 2 :
+                ~chatplayer("<p,quiz>Didn't you used to be called the Bank of Varrock?");
+                ~chatnpcrange("<p,neutral>Yes we did, but people kept on coming into our branches outside of Varrock and telling us that our signs were wrong. They acted as if we didn't know what town we were in or something.");
+
+        }
+}

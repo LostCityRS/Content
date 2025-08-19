@@ -1,0 +1,31 @@
+[if_button,prayer:prayer_clarity]
+if_close;
+if (p_finduid(uid) = true) {
+    @activate_prayer_clarity;
+}
+%prayer_clarity = %prayer_clarity; // resync varp
+
+[label,activate_prayer_clarity]
+p_clearpendingaction; // https://youtu.be/j-Z-43CzpZQ?t=120, https://youtu.be/NT74s7nJwAo?t=21, https://www.youtube.com/watch?v=fcRgR_4ZbdA
+def_dbrow $data = ~get_prayer_data(^prayer_clarity);
+if ($data = null) {
+    return;
+}
+if (%prayer_clarity = ^true) {
+    %prayer_clarity = ^false;
+    ~prayer_deactivate(^prayer_clarity);
+    return;
+}
+if (~prayer_checks($data) = false) {
+    %prayer_clarity = ^false;
+    return;
+}
+def_int $levelreq = db_getfield($data, prayers:level, 0);
+if (stat_base(prayer) < $levelreq){
+    %prayer_clarity = ^false;
+    sound_synth(prayer_off, 0, 0);
+    ~mesbox("You need a @dbl@Prayer level of <tostring($levelreq)> to use <db_getfield($data, prayers:name, 0)>.");
+    return;
+}
+%prayer_clarity = ^true;
+~prayer_activate($data);

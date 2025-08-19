@@ -1,0 +1,25 @@
+[opnpc1,noobbanker] @noobbanker;
+[apnpc1,noobbanker]
+if (npc_range(coord) > 2) {
+    p_aprange(2);
+    return;
+}
+@noobbanker;
+
+[label,noobbanker]
+~chatnpc("<p,quiz>Good day, would you like to access your bank account?");
+@multi2(
+    "Yes.", tut_open_bank,
+    "No thanks.", banker_no_thanks
+);
+
+[label,tut_open_bank]
+if (%tutorial_progress = ^tutorial_open_banking) {
+    %tutorial_progress = ^tutorial_opened_bank;
+    inv_add(bank, coins, 25);
+    ~set_tutorial_progress;
+}
+@openbank;
+
+[label,banker_no_thanks]
+~chatplayer("<p,neutral>No thanks.");

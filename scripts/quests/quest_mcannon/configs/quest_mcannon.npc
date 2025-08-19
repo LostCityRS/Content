@@ -1,0 +1,107 @@
+[mcannonguard]
+walkanim=dwarf_walk
+readyanim=dwarf_ready
+name=Dwarf
+desc=A Dwarf guard.
+op1=Talk-to
+op2=Attack
+vislevel=10
+recol1s=15426
+recol1d=8354
+model1=model_2970_npc
+model2=model_2981_npc
+model3=model_2979_npc
+model4=model_2983_npc
+model5=model_2985_npc
+model6=model_2990_npc
+model7=model_2986_npc
+model8=model_2991_npc
+head1=model_0_npc_head
+head2=model_6_npc_head
+wanderrange=5
+maxrange=12
+hitpoints=16
+attack=8
+strength=6
+defence=9
+param=attackbonus,5
+param=strengthbonus,7
+param=stabdefence,3
+param=slashdefence,4
+param=crushdefence,4
+param=magicdefence,2
+param=rangedefence,3
+param=damagetype,^stab_style
+param=attack_anim,dwarf_attack
+param=defend_anim,dwarf_block
+param=death_anim,dwarf_death
+param=attack_sound,gnome_hit
+param=defend_sound,brassclash2
+param=death_sound,gnome_death
+// osrs side this npc use somereason gnome sound datas (notice but npc is graphical updated)
+// OSRS Monster examine spell mentioned Immune to cannons.
+// osrs stats and Vislvl match 1:1
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5185
+
+[dwarfchildtw1]
+vislevel=hide
+resizev=70
+resizeh=70
+walkanim=dwarf_walk
+readyanim=dwarf_ready
+name=Dwarf youngster
+desc=A young Dwarf lad.
+op1=Talk-to
+recol1s=15426
+recol1d=8354
+model1=model_2976_npc
+model2=model_2981_npc
+model3=model_2979_npc
+model4=model_2983_npc
+model5=model_2985_npc
+head1=model_5_npc_head
+param=death_anim,dwarf_death
+hitpoints=6
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5190
+
+[lawgof2]
+vislevel=hide
+walkanim=dwarf_walk
+readyanim=dwarf_ready
+name=Dwarf Commander
+desc=He guards the mines.
+op1=Talk-to
+recol1s=15426
+recol1d=8354
+model1=model_2970_npc
+model2=model_2981_npc
+model3=model_2979_npc
+model4=model_2983_npc
+model5=model_2985_npc
+head1=model_0_npc_head
+param=death_anim,dwarf_death
+hitpoints=16
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5191
+
+[nulodion]
+vislevel=hide
+walkanim=dwarf_walk
+readyanim=dwarf_ready
+name=Nulodion
+desc=The Dwarven armoury engineer.
+op1=Talk-to
+op3=Trade
+recol1s=15426
+recol1d=8354
+model1=model_2970_npc
+model2=model_2981_npc
+model3=model_2979_npc
+model4=model_2983_npc
+model5=model_2985_npc
+head1=model_0_npc_head
+param=death_anim,dwarf_death
+param=owned_shop,mcannonshop
+param=shop_sell_multiplier,1070
+param=shop_buy_multiplier,400
+param=shop_delta,10
+param=shop_title,Multi cannon parts for sale:

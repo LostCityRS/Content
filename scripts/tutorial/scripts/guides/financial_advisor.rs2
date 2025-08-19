@@ -1,0 +1,44 @@
+[opnpc1,newbie_account_instructor]
+if (%tutorial_progress = ^tutorial_opened_newbie_account_instructor_door) {
+    @newbie_account_instructor_incomplete;
+} else {
+    @newbie_account_instructor_recap_questions;
+}
+
+[label,newbie_account_instructor_incomplete]
+~chatplayer("<p,quiz>Hello... Who are you?");
+~chatnpc("<p,neutral>I'm a financial advisor. |I'm here to tell people how to make money.");
+~chatplayer("<p,quiz>OK... How can I make money then?");
+~chatnpc("<p,neutral>...how can you make money. Quite.");
+~chatnpc("<p,neutral>Well there are three basic ways of making money here; Combat, Quests and Trading. I will talk you through each of them very quickly.");
+~chatnpc("<p,neutral>Let's start with combat, as it is probably still fresh in your mind. Many enemies, both human and monster will drop items when they die.");
+~chatnpc("<p,neutral>Now, the next way to earn money quickly is by quests. Many people on RuneScape have things they need doing, which they will reward you for.");
+~chatnpc("<p,neutral>By getting a high level in skills such as cooking, mining, smithing or fishing, you can create your own items and sell them for pure profit.");
+~chatnpc("<p,neutral>Well that about covers it. Come back if you'd like to go over this again.");
+if (%tutorial_progress = ^tutorial_opened_newbie_account_instructor_door) {
+    %tutorial_progress = ^newbie_account_instructor_talked_to;
+    ~set_tutorial_progress;
+}
+
+[label,newbie_account_instructor_recap_questions]
+// Header of Would you like to hear about making money again
+@multi2_header(
+    "Yes!", newbie_account_instructor_recap,
+    "No thanks.", newbie_account_instructor_no_thanks,
+    "Would you like to hear about making money again?"
+);
+
+[label,newbie_account_instructor_recap]
+~chatnpc("<p,neutral>Okay, making money. Quite.");
+~chatnpc("<p,happy>Well there are three basic ways of making money here; Combat, Quests and Trading. I will talk you through each of them very quickly.");
+~chatnpc("<p,happy>Let's start with combat, as it is probably still fresh in your mind. Many enemies, both human and monster will drop items when they die.");
+~chatnpc("<p,happy>Now, the next way to earn money quickly is by quests. Many people on RuneScape have things they need doing, which they will reward you for.");
+~chatnpc("<p,happy>By getting a high level in skills such as cooking, mining, smithing or fishing, you can create your own items and sell them for pure profit.");
+~chatnpc("<p,happy>Well that about covers it. Come back if you'd like to go over this again.");
+
+[label,newbie_account_instructor_no_thanks]
+
+[proc,set_hint_icon_newbie_account_instructor]
+if (npc_find(0_48_48_56_52, newbie_account_instructor, 5, 0) = true) {
+    hint_npc(npc_uid);
+}

@@ -1,0 +1,11 @@
+[label,ignite_light_source](obj $unlit_source)
+def_namedobj $product = oc_param($unlit_source, product);
+if($product = torch_lit & inzone(0_43_51_8_7, 1_43_51_52_63, coord) = true) {
+    mes("Your tinderbox is damp from the sea crossing. It won't light here.");
+    return;
+}
+inv_del(inv, $unlit_source, 1);
+inv_add(inv, $product, 1);
+if($product ! lit_black_candle & $product ! lit_candle) {
+    mes("You light the <lowercase(oc_name($product))>.");
+}

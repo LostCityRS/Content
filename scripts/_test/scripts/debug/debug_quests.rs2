@@ -1,0 +1,315 @@
+[debugproc,setup_sheep_herder]
+if_close;
+if (p_finduid(uid) = true) {
+    inv_add(inv, coins, 5000);
+    ~player_teleport_normal(0_40_51_55_37);
+} else {
+    @please_finish;
+}
+
+[debugproc,setup_waterfall_quest]
+if_close;
+if (p_finduid(uid) = true) {
+    inv_add(inv, airrune, 6);
+    inv_add(inv, firerune, 6);
+    inv_add(inv, earthrune, 6);
+    inv_add(inv, rope, 1);
+    stat_advance(hitpoints, calc(50000 * 10));
+    ~player_teleport_normal(0_39_54_30_40);
+} else {
+    @please_finish;
+}
+
+[debugproc,setup_druidic_ritual]
+if_close;
+if (p_finduid(uid) = true) {
+    ~player_teleport_normal(0_45_54_44_27);
+    inv_add(inv, raw_chicken, 1);
+    inv_add(inv, raw_beef, 1);
+    inv_add(inv, raw_rat_meat, 1);
+    inv_add(inv, raw_bear_meat, 1);
+} else {
+    @please_finish;
+}
+
+[debugproc,setup_witches_house]
+if_close;
+if (p_finduid(uid) = true) {
+    ~player_teleport_normal(0_45_53_50_60);
+    inv_add(inv, cheese, 2);
+    inv_add(inv, leather_gloves, 1);
+} else {
+    @please_finish;
+}
+
+[debugproc,setup_dwarf_cannon]
+if_close;
+if (p_finduid(uid) = true) {
+    ~player_teleport_normal(0_40_54_12_7);
+    stat_advance(agility, calc(10000 * 10));
+    stat_advance(magic, calc(100000 * 10));
+    inv_add(inv, airrune, 50);
+    inv_add(inv, lawrune, 20);
+    inv_add(inv, waterrune, 20);
+} else {
+    @please_finish;
+}
+
+[debugproc,setup_temple_of_ikov]
+if_close;
+if (p_finduid(uid) = true) {
+    ~player_teleport_normal(0_40_51_18_56);
+    stat_advance(ranged, calc(100000 * 10));
+    stat_advance(thieving, calc(100000 * 10));
+    inv_add(bank, knife, 5);
+    inv_add(bank, limpwurt_root, 50);
+    inv_add(bank, unlit_candle, 5);
+    inv_add(bank, tinderbox, 5);
+    inv_add(bank, rune_arrow, 500);
+    mes("Please check your ::~bank");
+} else {
+    @please_finish;
+}
+
+//underground pass debug
+[debugproc,testmaze]
+if(p_finduid(uid) = true) ~setupassgrilltrap;
+
+[debugproc,getmaze]
+if(p_finduid(uid) = true) mes("<tostring(getbit_range(%upass_map_mechanisms, 22, 31))>");
+
+//Hero's Quest
+[debugproc,gang]
+if_close;
+if (p_finduid(uid) = true) {
+    switch_int(~p_choice4("Join Phoenix", 1, "Join Blackarm", 2, "Tele Phoenix", 3, "Tele Blackarm", 4)) {
+        case 1 :
+            %phoenixgang_progress = ^phoenixgang_complete;
+            %blackarmgang_progress = ^blackarmgang_not_started;
+            mes("Joined Phoneix gang");
+        case 2 :
+            %phoenixgang_progress = ^phoenixgang_not_started;
+            %blackarmgang_progress = ^blackarmgang_complete;
+            mes("Joined Blackarm gang");
+        case 3 :
+            p_telejump(0_50_152_46_54);
+        case 4 :
+            p_telejump(0_49_52_49_58);
+    }
+} else {
+    @please_finish;
+}
+
+[debugproc,hero]
+if_close;
+if (p_finduid(uid) = true) {
+  switch_int(~p_choice4_header("Start Heros Quest", 1, "Teleports", 2, "Get Items", 3, "Complete Heros Quest", 4, "Hero progress: <tostring(%hero_progress)>")) {
+    case 1 :
+      switch_int(~p_choice2_header("Phoenix", 1, "Blackarm", 2, "Choose a gang")) {
+        case 1 :
+          %blackarmgang_progress = ^blackarmgang_not_started;
+          %phoenixgang_progress = ^phoenixgang_complete;
+        case 2 :
+          %blackarmgang_progress = ^blackarmgang_complete;
+          %phoenixgang_progress = ^phoenixgang_not_started;
+          inv_add(inv, black_platebody, 1);
+          inv_add(inv, black_platelegs, 1);
+          inv_add(inv, black_full_helm, 1);
+      }
+      inv_add(inv, harralandervial, 1);
+      inv_add(inv, fishing_rod, 1);
+      inv_add(inv, ice_gloves, 1);
+      inv_add(inv, fishing_bait, 1);
+      inv_add(inv, tinderbox, 1);
+      inv_add(inv, logs, 1);
+      %questpoints = 55;
+      %hero_progress = 0;
+      ~send_quest_progress(questlist:hero, %hero_progress, ^hero_complete);
+      %dragon_progress = ^dragon_complete;
+      %zanaris_progress = ^zanaris_complete;
+      %arthur_progress = ^arthur_complete;
+      p_telejump(0_45_54_24_53);
+      mes("Use ::hero further to teleport to quest locations or get required items.");
+    case 2 :
+      def_int $choice = -1;
+      def_int $gang_teles;
+      if (%phoenixgang_progress >= ^phoenixgang_complete) {
+        $gang_teles = -3;
+      } else {
+        $gang_teles = -2;
+      }
+      while ($choice < 0) {
+        switch_int($choice) {
+          case -1 :
+            $choice = ~p_choice5_header("Hero Guild", 1, "Firebird", 2, "Gerrant (oily fishing rod)", 3, "Lava Eels", 4, "Next.", $gang_teles, "Teleports Page 1");
+          case -2 :
+            $choice = ~p_choice4_header("Blackarm Gang HQ", 5, "Brimhaven HQ", 8, "Brimhaven Mansion", 9, "Prev.", -1, "Teleports Page 2");
+          case -3 :
+            $choice = ~p_choice3_header("Phoenix Gang HQ", 6, "Brimhaven Restaurant", 7, "Prev.", -1, "Teleports Page 2");
+        }
+      }
+      switch_int($choice) {
+        case 1 : p_telejump(0_45_54_24_53);
+        case 2 : p_telejump(0_44_52_28_55);
+        case 3 : p_telejump(0_47_50_5_25);
+        case 4 : p_telejump(0_45_152_12_40);
+        case 5 : p_telejump(0_49_52_49_58);
+        case 6 : p_telejump(0_50_152_46_54);
+        case 7 : p_telejump(0_43_49_41_51);
+        case 8 : p_telejump(0_43_49_58_34);
+        case 9 : p_telejump(0_43_49_21_51);
+      }
+    case 3 :
+      switch_int(~p_choice3_header("Black armor", 1, "Oily fishing rod stuff", 2, "Ice gloves", 3, "Choose item set")) {
+        case 1 :
+          inv_add(inv, black_platebody, 1);
+          inv_add(inv, black_platelegs, 1);
+          inv_add(inv, black_full_helm, 1);
+        case 2 :
+          inv_add(inv, harralandervial, 1);
+          inv_add(inv, fishing_rod, 1);
+          inv_add(inv, fishing_bait, 1);
+          inv_add(inv, tinderbox, 1);
+          inv_add(inv, logs, 1);
+        case 3 :
+          inv_add(inv, ice_gloves, 1);
+      }
+    case 4 :
+      queue(hero_quest_complete, 0);
+  }
+} else {
+  @please_finish;
+}
+
+// Legend's Quest
+[debugproc,lf]// legends fire
+if (p_finduid(uid) = true) {
+    p_telejump(0_43_145_32_51);
+}
+
+[debugproc,lgem]// legends gem puzzle
+if (p_finduid(uid) = true) {
+    p_telejump(0_43_145_12_16);
+}
+
+[debugproc,lb]// legends beach
+if (p_finduid(uid) = true) {
+    p_telejump(0_43_45_26_11);
+}
+
+[debugproc,lg]// legends guild
+if (p_finduid(uid) = true) {
+    p_telejump(0_42_52_40_38);
+}
+
+[debugproc,lw]// legends water
+if (p_finduid(uid) = true) {
+    p_telejump(0_44_45_23_36);
+}
+
+[debugproc,jf]// jungle forester
+if (p_finduid(uid) = true) {
+    p_telejump(^legends_gujuo_guide_coord);
+}
+
+[debugproc,lv]// viyeldi
+if (p_finduid(uid) = true) {
+    p_telejump(0_37_73_9_40);
+}
+
+// Fight Arena
+[debugproc,c3a]
+if(p_finduid(uid) = false) {
+    return;
+}
+@arena_release_scorp;
+
+[debugproc,c4a]
+if(p_finduid(uid) = false) {
+    return;
+}
+@arena_release_bouncer;
+
+// Dragon Slayer
+[debugproc,dragslay]
+mes("Progress: <tostring(%dragon_progress)>.");
+mes("Planks: <tostring(%dragon_planks)>.");
+mes("Ned Hired: <tostring(%dragon_ned_hired)>.");
+mes("Oracle: <tostring(%dragon_oracle)>.");
+mes("Goblin: <tostring(%dragon_goblin)>.");
+mes("Shield: <tostring(%dragon_shield)>.");
+mes("Wall: <tostring(%dragon_wall)>.");
+
+[debugproc,dragslaystart]
+if_close;
+if (p_finduid(uid) = true) {
+    p_telejump(0_49_52_55_36);
+    %questpoints = 32;
+    %dragon_progress = 0;
+    %dragon_ned_hired = 0;
+    %dragon_oracle = 0;
+    %dragon_wall = 0;
+    %dragon_shield = 0;
+    %dragon_goblin = 0;
+    %dragon_planks = 0;
+} else {
+    @please_finish;
+}
+
+[debugproc,dragslaybank]
+if_close;
+if (p_finduid(uid) = true) {
+    def_int $choice = ~p_choice2_header("Yes.", 1, "No.", 2, "This clears your bank. Continue?");
+    if ($choice = 2) {
+        return;
+    }
+
+    inv_clear(bank);
+
+    // give gp
+    inv_add(bank, coins, 1000000);
+
+    // give runes
+    inv_add(bank, airrune, 10000);
+    inv_add(bank, firerune, 10000);
+    inv_add(bank, waterrune, 10000);
+    inv_add(bank, earthrune, 10000);
+    inv_add(bank, lawrune, 10000);
+
+    // give food
+    inv_add(bank, lobster, 10000);
+    inv_add(bank, 3dose1strength, 10000);
+
+    // give armor
+    inv_add(bank, rune_scimitar, 10000);
+    inv_add(bank, rune_full_helm, 10000);
+    inv_add(bank, rune_chainbody, 10000);
+    inv_add(bank, rune_platelegs, 10000);
+    inv_add(bank, rune_kiteshield, 10000);
+    inv_add(bank, black_cape, 10000);
+    inv_add(bank, amulet_of_strength, 10000);
+    inv_add(bank, dragon_vambraces, 10000);
+    inv_add(bank, leather_boots, 10000);
+
+    // give quest items
+    inv_add(bank, wizards_mind_bomb, 10000);
+    inv_add(bank, bowl_unfired, 10000);
+    inv_add(bank, lobster_pot, 10000);
+    inv_add(bank, silk, 10000);
+    inv_add(bank, woodplank, 10000);
+    inv_add(bank, nails, 10000);
+    inv_add(bank, hammer, 10000);
+} else {
+    @please_finish;
+}
+
+// Monks Friend
+[debugproc,setup_monks_friend]
+if_close;
+if (p_finduid(uid) = true) {
+  inv_add(inv, jug_water, 1);
+  inv_add(inv, logs, 1);
+  ~player_teleport_normal(0_40_50_46_22);
+} else {
+  @please_finish;
+}

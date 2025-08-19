@@ -1,0 +1,29 @@
+[oploc1,loc_298]
+mes("You search the hay bales...");
+@search_haybale();
+
+[oploc1,loc_299]
+mes("You search the hay bales...");
+@search_haybale();
+
+[oploc1,loc_300]
+mes("You search the haystack...");
+@search_haybale();
+
+[oploc1,loc_304]
+mes("You search the hay bale...");
+@search_haybale();
+
+[label,search_haybale]()
+anim(human_pickupfloor, 0);
+p_delay(2);
+def_int $rand = random(100);
+if ($rand < 2) {
+    queue(damage_player, 0, 1);
+    ~chatplayer("<p,angry>Ow! There's something sharp in there!");
+} else if ($rand < 12) {
+    inv_add(inv, needle, 1);
+    ~chatplayer("<p,happy>Wow! A needle!|Now what are the chances of finding that?");
+} else {
+    mes("You find nothing of interest.");
+}

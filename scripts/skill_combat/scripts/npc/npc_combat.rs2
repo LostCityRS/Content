@@ -1,0 +1,347 @@
+[ai_queue1,_] gosub(npc_default_retaliate);
+[ai_queue2,_] ~npc_default_damage(last_int);
+[ai_queue3,_] gosub(npc_default_death);
+[ai_opplayer2,_] gosub(npc_default_attack);
+
+// a default melee retaliate script.
+[proc,npc_default_retaliate]
+if (finduid(%npc_aggressive_player) = false | ~npc_retal_ready = false) {
+    return;
+}
+%npc_action_delay = add(map_clock, divide(npc_param(attackrate), 2)); // flinch
+%npc_attacking_uid = %npc_aggressive_player;
+if (npc_stat(hitpoints) <= npc_param(retreat)) {
+    npc_setmode(playerescape);
+} else {
+    npc_setmode(opplayer2);
+    if (npc_inrange = false) {
+        npc_setmode(playerescape);
+    }
+}
+
+// mostly used for ranged and magic npc's
+[proc,npc_default_retaliate_ap]
+if (finduid(%npc_aggressive_player) = false | ~npc_retal_ready = false) {
+    return;
+}
+%npc_action_delay = add(map_clock, divide(npc_param(attackrate), 2));
+%npc_attacking_uid = %npc_aggressive_player;
+// default to ap
+if (npc_stat(hitpoints) <= npc_param(retreat)) {
+    npc_setmode(playerescape);
+} else {
+    npc_setmode(applayer2);
+    if (npc_inrange = false) {
+        npc_setmode(playerescape);
+    }
+}
+
+
+// a default melee attack script.
+[proc,npc_default_attack]
+if (%death = ^true) {
+    npc_setmode(null);
+    return;
+}
+if (%npc_action_delay > map_clock) return;
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) { // Doesnt change mode! Keeps trying!
+    return;
+}
+anim(%com_defendanim, 0);
+npc_anim(npc_param(attack_anim), 0);
+if (npc_param(attack_sound) ! null) {
+    sound_synth(npc_param(attack_sound), 0, 0);
+}
+~npc_meleeattack;
+
+// a default damage script.
+[proc,npc_default_damage](int $damage)
+// if the npc is already dead
+if (npc_stat(hitpoints) = 0) {
+    return;
+}
+// damage the npc
+if ($damage = 0) {
+    npc_damage(^hitmark_block, 0);
+} else {
+    npc_damage(^hitmark_damage, $damage);
+}
+if (npc_stat(hitpoints) > 0) {
+    return;
+}
+// if the npc died from this damage
+npc_queue(3, 0, 0);
+
+// a default death script.
+[proc,npc_default_death]
+gosub(npc_death);
+def_namedobj $drop = npc_param(death_drop);
+if ($drop ! null & npc_findhero = ^true) {
+    obj_add(npc_coord, $drop, 1, ^lootdrop_duration);
+}
+
+[proc,npc_player_hit_roll](int $damagetype)(boolean)
+def_int $attack_roll = ~npc_attack_roll_specific($damagetype);
+def_int $defence_roll = ~player_defence_roll_specific($damagetype);
+//mes("Clock: <tostring(map_clock)>, Player A: <tostring($attack_roll)>, NPC D: <tostring($defence_roll)>, Player Max: <tostring(%com_maxhit)>");
+if (randominc($attack_roll) > randominc($defence_roll)) {
+    return(true);
+}
+return(false);
+
+// allows any npc with op2 defined to be attacked
+[proc,npc_is_attackable]()(boolean)
+// https://web.archive.org/web/20060828222012/http://www.trillionareguild.com/runescape/dragon.php at the very end of the guide
+// it says "You have no reason to do that.", so its prob this osrs message.
+// every guide says you have to kill wormbrain, and monster db's say he drops bones. so theres no
+// beating up message most likely.
+if (npc_type = wormbrain & (~quest_dragon_getting_map_parts = false | inv_total(inv, mappart2) > 0 | %dragon_goblin ! ^quest_dragon_knows_about_goblin)) {
+    mes("The goblin is already in prison. You have no reason to attack him.");
+    // if (%dragon_progress < 3) {
+    //     mes("The goblin is already in prison. You have no reason to attack him.");
+    // } else {
+    //     mes("You have already taken Wormbrain's map piece. There is no use in beating him up"); //osrs
+    //     mes("further.");
+    // }
+    return (false);
+}
+if (npc_category = battle_mage & %magearena < ^mage_arena_complete) {
+    mes("You are not ready to fight the battle mages.");
+    return(false);
+}
+
+if (~player_autocast_enabled = false & ~inzone_coord_pair_table(mage_arena, coord) = true) {
+    mes("Kolodion allows only magical combat within the arena."); // taken from pvp
+    return(false);
+}
+
+if(npc_type = general_khazard & %arena_progress < ^arena_freed_servils) {
+    mes("I don't have time. I'm here to rescue Sir Servil and Jeremy.");
+    return (false);
+}
+
+if (npc_type = grip) {
+    return(~grip_attack);
+}
+
+if(npc_type = ikov_lucien2) {
+    return (~lucien_attack);
+} 
+
+if(npc_type = gorad & (~obj_gettotal(ogretooth) > 0 | getbit_range(%itwatchtower_bits, ^itwatchtower_spoken_grew, ^itwatchtower_helped_grew) ! 1)) {
+    if(%itwatchtower_progress = ^itwatchtower_complete) return (true);
+    if(getbit_range(%itwatchtower_bits, ^itwatchtower_spoken_grew, ^itwatchtower_helped_grew) < 1) {
+        mes("You don't need to fight him now.");
+    } else {
+        mes("You have already got his tooth.");
+    }
+    return(false);
+}
+
+if(npc_type = desertminingcaptain) {
+    return (~mercenary_capt_attack(false));
+} 
+
+if(npc_type = ikov_firewarrior & (inv_total(worn, ice_arrow) = 0 | %damagetype ! ^ranged_style)) {
+    ~chatnpc("<p,angry>Your puny weapons do nothing against me human! Come back when you can give me a real fight!");
+    return (false);
+}
+
+if (npc_type = delrith) {
+    if (%demon_progress >= ^demon_complete) {
+        mes("You've already done that quest.");
+        return(false);
+    }
+    if (inv_getobj(worn, 3) ! silverlight) {
+        if (inv_total(inv, silverlight) > 0) {
+            mes("Maybe I'd better wield silverlight first.");
+            return(false);
+        }
+        mes("I'd rather not. He looks scary");
+        return(false);
+    }
+}
+if (npc_type = count_draynor) {
+    if (%vampire_progress = ^vampire_complete) {
+        mes("You've done enough vampire slaying.");
+        return(false);
+    }
+}
+
+if (npc_hasop(2) = true) {
+    return (true);
+}
+return (false);
+
+// this proc is used for magic
+[proc,npc_is_attackable_opt]()(boolean)
+if (npc_type = wormbrain & (~quest_dragon_getting_map_parts = false | inv_total(inv, mappart2) > 0 | %dragon_goblin ! ^quest_dragon_knows_about_goblin)) {
+    mes("The goblin is already in prison. You have no reason to attack him.");
+    return (false);
+}
+if (npc_type = grip) {
+    return(~grip_attack);
+}
+if (npc_category = battle_mage & %magearena < ^mage_arena_complete) {
+    mes("You are not ready to fight the battle mages.");
+    return(false);
+}
+if(npc_type = general_khazard & %arena_progress < ^arena_freed_servils) {
+    mes("I don't have time. I'm here to rescue Sir Servil and Jeremy.");
+    return (false);
+}
+if(npc_type = ikov_lucien2) {
+    return (~lucien_attack);
+}
+if(npc_type = gorad & (~obj_gettotal(ogretooth) > 0 | getbit_range(%itwatchtower_bits, ^itwatchtower_spoken_grew, ^itwatchtower_helped_grew) ! 1)) {
+    if(getbit_range(%itwatchtower_bits, ^itwatchtower_spoken_grew, ^itwatchtower_helped_grew) ! 1 | %itwatchtower_progress >= ^itwatchtower_complete) {
+        mes("You don't need to fight him now.");
+    } else {
+        mes("You have already got his tooth.");
+    }
+    return(false);
+}
+if(npc_type = desertminingcaptain) {
+    return (~mercenary_capt_attack(true));
+} 
+if(npc_type = ikov_firewarrior) { // can't attack with magic
+    ~chatnpc("<p,angry>Your puny weapons do nothing against me human! Come back when you can give me a real fight!");
+    return (false);
+}
+if (npc_category = kolodion & enum(int, npc, mage_arena_bosses, %magearena) ! npc_type) {
+    if (%magearena > ^mage_arena_complete) {
+        mes("You have already proven yourself against Kolodion.");
+        return(false);
+    }
+    if (enum(npc, int, mage_arena_stages, npc_type) < %magearena) {
+        mes("You have already killed Kolodion in his <enum(int, string, mage_arena_boss_names, sub(%magearena, 1))> form.");
+    }
+    if (npc_type = kolspider | npc_type = koldemon) {
+        mes("You must now defeat him as <~add_article(enum(int, string, mage_arena_boss_names, %magearena))>.");
+    } else {
+        mes("You must currently fight Kolodion in his <enum(int, string, mage_arena_boss_names, %magearena)> form.");
+    }
+    return(false);
+}
+if (npc_type = chompy_bird) {
+    mes("Magic simply won't affect this beast!");
+    return(false);
+}
+if (%vampire_progress = ^vampire_complete & npc_type = count_draynor) {
+    mes("You've done enough vampire slaying.");
+    return(false);
+}
+if (npc_type = delrith) {
+    if (%demon_progress >= ^demon_complete) {
+        mes("You've already done that quest.");
+        return(false);
+    }
+    if (inv_getobj(worn, 3) ! silverlight) {
+        if (inv_total(inv, silverlight) > 0) {
+            mes("Maybe I'd better wield silverlight first.");
+            return(false);
+        }
+        mes("I'd rather not. He looks scary");
+        return(false);
+    }
+}
+if (npc_type = count_draynor) {
+    if (%vampire_progress = ^vampire_complete) {
+        mes("You've done enough vampire slaying.");
+        return(false);
+    }
+}
+if (npc_hasop(2) = true) {
+    return (true);
+}
+mes("You can't attack this npc.");
+return (false);
+
+
+[proc,npc_retal_ready]()(boolean)
+if ((add(%npc_action_delay, 8) < map_clock) | (npc_getmode ! applayer2 & npc_getmode ! opplayer2 & npc_getmode ! playerescape)) {
+    return (true);
+}
+return (false);
+
+// returns the defence roll for an attacking style.
+[proc,npc_defence_roll_specific](int $damagetype)(int)
+def_npc_stat $stat = defence;
+if ($damagetype = ^magic_style) {
+    $stat = magic;
+}
+def_int $defencebonus = ~npc_combat_defencebonus($damagetype);
+def_int $effective_defence = ~combat_effective_stat(npc_stat($stat), 100); // no prayerbonus
+$effective_defence = add($effective_defence, 9); // 'style bonus' of 1
+def_int $defence_roll = ~combat_stat($effective_defence, $defencebonus);
+return($defence_roll);
+
+[proc,npc_attack_roll_specific](int $damagetype)(int)
+switch_int ($damagetype) {
+    case ^stab_style, ^slash_style, ^crush_style : return(~npc_melee_attack_roll);
+    case ^ranged_style : return(~npc_ranged_attack_roll);
+    case ^magic_style : return(~npc_magic_attack_roll);
+}
+return(0);
+
+// get the npc bonus depending on the attacking style
+[proc,npc_combat_defencebonus](int $style)(int)
+switch_int ($style) {
+    case ^stab_style : return(npc_param(stabdefence));
+    case ^slash_style : return(npc_param(slashdefence));
+    case ^crush_style : return(npc_param(crushdefence));
+    case ^ranged_style : return(npc_param(rangedefence));
+    case ^magic_style : return(npc_param(magicdefence));
+}
+error("style of <tostring($style)> not defined in switch for npc_combat_defencebonus");
+
+//  this should be strong queued. Some damage is queued, some isnt
+[queue,combat_damage_player](int $damage)
+if (inv_getobj(worn, ^wearpos_ring) = ring_of_recoil & map_members = ^true & npc_finduid(%aggressive_npc) = true & npc_hasop(2) = true & %npc_attacking_uid = uid & $damage > 0 & stat(hitpoints) > 0) {
+    // https://oldschool.runescape.wiki/w/Update:Clue_Scroll_Step_Counter
+    // - "Recoil damage will now always target the entity that caused the initial damage, rather than the most recent entity to deal damage."
+    def_int $recoil_damage = add(scale(10, 100, $damage), 1);
+    $recoil_damage = min($recoil_damage, npc_stat(hitpoints));
+    npc_queue(2, $recoil_damage, 0);
+    ~ring_of_recoil_lose_charge($recoil_damage);
+}
+p_preventlogout("You can't log out until 10 seconds after the end of combat.", 16);
+~damage_self($damage);
+
+[proc,npc_retaliate](int $queue_delay)
+npc_queue(1, 0, $queue_delay);
+%npc_aggressive_player = uid;
+if(%npc_lastcombat < map_clock) %npc_lastcombat = map_clock;
+
+[proc,.npc_retaliate](int $queue_delay)
+.npc_queue(1, 0, $queue_delay);
+.%npc_aggressive_player = uid;
+if(.%npc_lastcombat < map_clock) .%npc_lastcombat = map_clock;
+
+[proc,npc_set_attack_vars]
+%lastcombat = map_clock;
+%npc_attacking_uid = uid;
+%aggressive_npc = npc_uid;
+
+[proc,npc_check_notcombat]()(boolean)
+if (map_multiway(npc_coord) = false) { // checks npc coord ALWAYS!
+    if (add(%lastcombat_pvp, 8) > map_clock) {
+        return(false);
+    }
+    if (add(%lastcombat, 8) > map_clock & %aggressive_npc ! null & %aggressive_npc ! npc_uid) {
+        return(false);
+    }
+}
+return(true);
+
+[proc,npc_check_notcombat_self]()(boolean)
+if (map_multiway(npc_coord) = false) {
+    if (add(%npc_lastcombat, 8) > map_clock & %npc_aggressive_player ! null & %npc_aggressive_player ! uid) {
+        return(false);
+    }
+}
+return(true);

@@ -1,0 +1,18 @@
+[debugproc,dgc]
+obj_add(coord, zamorak_cape, 1, 100);
+obj_add(coord, zamorak_cape, 1, 100);
+
+[debugproc,test_sail](int $var)
+if(p_finduid(uid) = false) return;
+%boat_takeoff = $var;
+// todo: should com_0 be set to "You sail to <$place_name>."?
+if_openmain(ship_journey);
+midi_jingle(^sailing_journey_jingle, ^sailing_journey_jingle_millis);
+
+[debugproc,objbox](obj $obj)
+if (p_finduid(uid) = true) {
+    ~objbox($obj, "You've found <~add_article(oc_name($obj))>!", 250, ^objbox_width, 0);
+}
+
+[debugproc,members]
+mes("Your membership status is: <tostring(playermember)>");

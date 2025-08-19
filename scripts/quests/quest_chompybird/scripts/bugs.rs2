@@ -1,0 +1,72 @@
+[opnpc1,bugs]
+switch_int(%chompybird_progress) {
+    case ^chompybird_not_started :
+        ~chatnpc("<p,neutral>You's better talk to Dad, him chasey sneaky da chompy.");
+    case ^chompybird_started :
+        if (inv_total(inv, chisel) > 0 & inv_total(inv, knife) > 0) {
+            ~chatnpc("<p,neutral>You's better talk to Dad, him chasey sneaky da chompy.");
+            return;
+        }
+        if (testbit(%chompybird_kills, ^chompybird_varbit_bought_scratchers) = ^true) {
+            ~chatnpc("<p,neutral>I's sorry creature, I don't got no more scratchers! But I got lots of bright pretties! Hope you's get da stabbers for Dad soonly!");
+            return;
+        }
+
+        ~chatnpc("<p,neutral>Hey you Creature, Dad says you's is gonna get da stabbers!");
+        ~chatplayer("<p,happy>That's right... I'm making some 'stabbers' for Rantz.");
+        ~chatnpc("<p,neutral>Dat's great...Dad want's to hunt da chompy... Da chompy is our bestest yumms! Yous needies da scratchers for makin' dem huh? I's wants some bright pretties for em!");
+
+        ~doubleobjbox(chisel, knife, "Bugs shows you a chisel and a knife.", 200);
+
+        ~chatplayer("<p,neutral>How many 'bright pretties' do you want?");
+        ~chatnpc("<p,neutral>Bugs wants lots of bright pretties, this many!|@blu@~ Bugs quickly opens and closes his hands in front ~|@blu@~ of you to indicate a number of bright pretties. ~|@blu@~ It looks like he wants 10 gold coins.~");
+
+        switch_int(~p_choice2("Ok, I'll give you 10 bright pretties.", 1, "Er, sorry, I can't give you that many...", 2)) {
+            case 1 :
+                ~chatplayer("<p,sad>Ok, I'll give you 10 bright pretties.");
+
+                if (inv_total(inv, coins) < 10) {
+                    ~chatnpc("<p,sad>You's not got da bright pretties... I wants da bright pretties..you not get no scratchers wid'out da bright pretties.");
+                    return;
+                }
+
+                // No inv space check - OSRS drops the feathers on the floor
+                ~doubleobjbox(chisel, coins, "You offer the 10 coins for the tools.", 200);
+
+                inv_del(inv, coins, 10);
+                inv_add(inv, chisel, 1);
+                inv_add(inv, knife, 1);
+                ~chatnpc("<p,happy>Ok, dat's a good 'un, I got da bright pretties and you got da scratchers!");
+            case 2 :
+                ~chatplayer("<p,neutral>Er, sorry, I can't give you that many...");
+                ~chatnpc("<p,angry>Well, you not have da scratchers den!");
+        }
+
+    case ^chompybird_kids_play_with_toad, ^chompybird_removed_rock_from_chest :
+        ~chatplayer("<p,neutral>Rantz said that you play with the 'fatsy toadies', what are they?");
+        ~chatnpc("<p,neutral>Oh we sometimes use da blower on da toadies but Dad don't let us get in da locked box no more. He, he, it was good fun making da toadies fat on da swamp gas.");
+
+    case ^chompybird_shown_toad :
+        ~chatnpc("<p,neutral>You's better talk to Dad, he might have something for you to do.");
+
+    case ^chompybird_told_to_cook_chompy :
+        def_int $flavour = getbit_range(%chompybird_kills, ^chompybird_varbit_bugs_flavour_start, ^chompybird_varbit_bugs_flavour_end);
+
+        if ($flavour = 0) {
+            $flavour = calc(random(1) + 1);
+            %chompybird_kills = setbit_range_toint(%chompybird_kills, $flavour, ^chompybird_varbit_bugs_flavour_start, ^chompybird_varbit_bugs_flavour_end);
+        }
+
+        def_string $chompy_flavour = "equa leaves";
+        if ($flavour = 2) {
+            $chompy_flavour = "cabbage";
+        }
+
+        ~chatnpc("<p,neutal>Dad say's you's making da chompy for us! Slurp! Me's|has to have <$chompy_flavour> wiv mine! Chompy is our|favourite yummms!");
+
+    case ^chompybird_complete :
+        ~chatnpc("<p,neutral>Thanks for da chompy, it was deloverly!");
+
+    case default :
+        ~chatnpc("<p,neutral>Have you talked to Dad, he might have something for you to do.");
+}

@@ -1,0 +1,66 @@
+// Pickable Potatoes
+[oploc2,loc_312]
+p_arrivedelay;
+if(inv_freespace(inv) = 0) {
+    mes("You don't have room for this potato.");
+    p_teleport(loc_coord);
+    p_delay(0);
+} else {
+    ~pickup_loc_floor(loc_coord, potato, 50, true);
+    mes("You pick a potato.");
+}
+
+// Pickable Wheat
+[oploc2,loc_313]
+p_arrivedelay;
+if(inv_freespace(inv) = 0) {
+    mes("You can't carry any more grain.");
+    p_teleport(loc_coord);
+    p_delay(0);
+} else {
+    ~pickup_loc_floor(loc_coord, grain, 20, true);
+    mes("You pick some grain.");
+}
+
+// Pickable Onion
+[oploc2,onion]
+p_arrivedelay;
+if(inv_freespace(inv) = 0) {
+    mes("You don't have room for this onion.");
+    p_teleport(loc_coord);
+    p_delay(0);
+} else {
+    ~pickup_loc_floor(loc_coord, onion, 50, true);
+    mes("You pick an onion.");
+}
+
+// Pickable Cabbage
+[oploc2,cabbage]
+p_arrivedelay;
+if(inv_freespace(inv) = 0) {
+    mes("You don't have room for this cabbage.");
+    p_teleport(loc_coord);
+    p_delay(0);
+} else {
+    ~pickup_loc_floor(loc_coord, cabbage, 70, false);
+    mes("You pick a cabbage.");
+}
+
+// Pickable flax
+// Could only pick one flax at a time until this update: https://oldschool.runescape.wiki/w/Update:Santa,_Flax_and_Castlewars
+[oploc2,flax_ground]
+if(inv_freespace(inv) = 0) {
+    mes("You can't carry any more flax.");
+} else {
+    // macro event
+    if (afk_event = ^true) {
+        ~macro_event_general_spawn(~macro_event_set_random);
+        return;
+    }
+    anim(human_pickupfloor, 0);
+    p_delay(0);
+    sound_synth(pick, 0, 0);
+    mes("You pick some flax.");
+    inv_add(inv, flax, 1);
+    loc_del(25); // 10t after update
+}

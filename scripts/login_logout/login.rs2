@@ -1,0 +1,88 @@
+[login,_]
+mes("Welcome to RuneScape.");
+cam_reset;
+
+%music_mode = 1; // set to auto on login
+if (%game_brightness = 0) {
+    // sane defaults for game controls
+    %game_brightness = 2;
+    %music_volume = 2;
+    %sound_volume = 2;
+}
+
+// register the soft timer that handles replenishing stats
+settimer(stat_regen, 100);
+settimer(stat_boost_restore, 100);
+// same for health
+settimer(health_regen, 100);
+// random event timer
+settimer(general_macro_events, 500);
+// chest macro gas 
+~check_chest_macro_gas;
+// for logout out during a general macro event, they respawn when you log back in
+// queue: 
+// - https://youtu.be/T0ulsgorBkY?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT
+// - https://youtu.be/HwGAzcmvF9k?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT
+// npc spawns only after interface is closed
+queue(macro_event_login, 0);
+// so pk skulls persist after logging back in
+~set_pk_skull_login;
+// so antifire persists after logging back in
+~set_antifire_login;
+// if player is in a duel, they are removed from the duel
+~duel_arena_login;
+// if player is in a gnomeball game, they login outside of the arena
+~gnomeball_login;
+// if player is on a trawler ship, they login at port sarim
+~trawler_login;
+// logging out when posioned would continue to poison you after logging back in in 2006
+// https://forum.tip.it/topic/76167-poison-effect-on-f2p/
+~set_poison_login;
+// update weight-reduction equipment (in the case where you switch from f2p <-> p2p)
+~update_weight_equipment;
+~ferment_wines_login;
+~thieving_stall_timers_login;
+~stat_boost_login; // f2p boost reset
+~sa_login; // start timer if low sa energy
+
+if(inzone(movecoord(^grandtree_jail_coord, 0, 0, -2), movecoord(^grandtree_jail_coord, 3, 0, 2), coord) = true) {
+    ~grandtree_spawn_charlie;
+}
+
+if (%tutorial_progress < ^tutorial_complete & ~in_tutorial_island(coord) = true) {
+    ~update_bas;
+    @start_tutorial;
+}
+~initalltabs;
+~update_all(inv_getobj(worn, ^wearpos_rhand));
+cam_reset;
+queue(follower_login, 0);
+if (map_production = true) {
+    last_login_info;
+}
+
+[proc,initalltabs]
+~update_weapon_category(inv_getobj(worn, ^wearpos_rhand));
+if_settab(stats, ^tab_skills);
+if_settab(questlist, ^tab_quest_journal);
+~update_questlist;
+
+inv_transmit(inv, inventory:inv);
+if_settab(inventory, ^tab_inventory);
+
+inv_transmit(worn, wornitems:wear);
+if_settab(wornitems, ^tab_wornitems);
+
+if_settab(prayer, ^tab_prayer);
+if_settab(magic, ^tab_magic);
+if_settab(friends, ^tab_friends);
+if_settab(ignore, ^tab_ignore);
+if_settab(logout, ^tab_logout);
+if_settab(controls, ^tab_player_controls);
+if (lowmemory = true) {
+    if_settab(options_ld, ^tab_game_options);
+    if_settab(music_ld, ^tab_musicplayer);
+} else {
+    if_settab(options, ^tab_game_options);
+    if_settab(music, ^tab_musicplayer);
+}

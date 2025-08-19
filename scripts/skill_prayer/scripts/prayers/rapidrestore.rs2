@@ -1,0 +1,36 @@
+[if_button,prayer:prayer_rapidrestore]
+if_close;
+if (p_finduid(uid) = true) {
+    @activate_prayer_rapidrestore;
+}
+%prayer_rapidrestore = %prayer_rapidrestore;
+
+
+[label,activate_prayer_rapidrestore]
+p_clearpendingaction;
+def_dbrow $data = ~get_prayer_data(^prayer_rapidrestore);
+if ($data = null) {
+    return;
+}
+if (%prayer_rapidrestore = ^true) {
+    %prayer_rapidrestore = ^false;
+    ~prayer_deactivate(^prayer_rapidrestore);
+    cleartimer(stat_regen);
+    settimer(stat_regen, 100);
+    return;
+}
+if (~prayer_checks($data) = false) {
+    %prayer_rapidrestore = ^false;
+    return;
+}
+def_int $levelreq = db_getfield($data, prayers:level, 0);
+if (stat_base(prayer) < $levelreq){
+    %prayer_rapidrestore = ^false;
+    sound_synth(prayer_off, 0, 0);
+    ~mesbox("You need a @dbl@Prayer level of <tostring($levelreq)> to use <db_getfield($data, prayers:name, 0)>.");
+    return;
+}
+%prayer_rapidrestore = ^true;
+~prayer_activate($data);
+cleartimer(stat_regen);
+settimer(stat_regen, 50);

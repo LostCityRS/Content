@@ -1,0 +1,117 @@
+[drogo]
+vislevel=hide
+name=Drogo dwarf
+desc=He runs a mining store.
+walkanim=dwarf_walk
+readyanim=dwarf_ready
+op1=Talk-to
+op3=Trade
+recol1s=15426
+recol1d=8354
+model1=model_2970_npc
+model2=model_2981_npc
+model3=model_2979_npc
+model4=model_2983_npc
+model5=model_2985_npc
+model6=model_2990_npc
+head1=model_0_npc_head
+category=shop_keeper
+param=owned_shop,miningstore
+param=shop_sell_multiplier,1000
+param=shop_buy_multiplier,700
+param=shop_delta,20
+param=shop_title,Drogo's Mining Emporium.
+wanderrange=13
+param=damagetype,^stab_style
+param=death_anim,dwarf_death
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5895
+
+[dwarven_shopkeeper]
+vislevel=hide
+name=Dwarf
+desc=I wonder if he wants to buy my junk?
+walkanim=dwarf_walk
+readyanim=dwarf_ready
+op1=Talk-to
+op3=Trade
+recol1s=14801
+recol1d=24075
+recol2s=15785
+recol2d=15426
+recol3s=15855
+recol3d=6476
+model1=model_2971_npc
+model2=model_2981_npc
+model3=model_2979_npc
+model4=model_2983_npc
+model5=model_2985_npc
+model6=model_2990_npc
+head1=model_1_npc_head
+category=shop_keeper
+param=owned_shop,generaldwarf
+param=shop_sell_multiplier,1300
+param=shop_buy_multiplier,300
+param=shop_delta,30
+param=shop_title,Dwarven shopping store
+wanderrange=13
+param=damagetype,^stab_style
+param=death_anim,dwarf_death
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_ 5904
+
+[nurmof]
+vislevel=hide
+name=Nurmof
+desc=He runs a pickaxe store.
+walkanim=dwarf_walk
+readyanim=dwarf_ready
+op1=Talk-to
+op3=Trade
+recol1s=15855
+recol1d=24075
+recol2s=15426
+recol2d=234
+recol3s=15785
+recol3d=234
+recol4s=8456
+recol4d=32767
+model1=model_2970_npc
+model2=model_2983_npc
+model3=model_2979_npc
+model4=model_2981_npc
+model5=model_2985_npc
+head1=model_0_npc_head
+category=shop_keeper
+param=owned_shop,pickaxeshop
+param=shop_sell_multiplier,1000
+param=shop_buy_multiplier,600
+param=shop_delta,20
+param=shop_title,Nurmof's Pickaxe Shop.
+wanderrange=13
+param=damagetype,^stab_style
+param=death_anim,dwarf_death
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_8686
+
+[boot_the_dwarf]
+vislevel=hide
+walkanim=dwarf_walk
+readyanim=dwarf_ready
+name=Boot
+desc=A short angry guy.
+op1=Talk-to
+model1=model_2971_npc
+model2=model_2981_npc
+model3=model_2979_npc
+model4=model_2983_npc
+model5=model_2985_npc
+model6=model_2990_npc
+head1=model_1_npc_head
+hitpoints=16
+attack=8
+strength=8
+defence=7
+param=attackrate,5
+// param=attackbonus=
+param=strengthbonus,5
+param=damagetype,^stab_style
+param=death_anim,dwarf_death
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4985

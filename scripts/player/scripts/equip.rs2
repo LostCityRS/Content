@@ -1,0 +1,449 @@
+[opheld2,_] ~equip(last_slot);
+
+[inv_button1,wornitems:wear]
+if_close;
+if (p_finduid(uid) = true) {
+    p_clearpendingaction;
+    ~unequip(last_slot);
+}
+
+[proc,equip](int $slot)
+if (p_finduid(uid) = true) {
+    def_obj $obj = inv_getobj(inv, $slot);
+    if (~duel_arena_equip_check($obj) = false) {
+        return;
+    }
+    if (~duel_arena_flower_power_equip_check($obj) = false) {
+        return;
+    }
+    // might be rework behaviour, hard to confirm
+    if(inzone(0_51_147_0_0, 0_51_147_19_63, coord) = true) {
+        if(npc_find(coord, desertminingmercenary2, 4, 2) = true | npc_find(coord, desertminingmercenary1, 4, 2) = true) {
+            ~npc_retaliate(0);
+            ~desertcamp_guard_search;
+        }
+    }
+    if ((oc_wearpos($obj) = ^wearpos_rhand | oc_wearpos($obj) = ^wearpos_lhand) & ~inzone_coord_pair_table(gnomeball_zones, coord) = true) {
+        mes("You feel it would be cheating to hold anything other than a gnomeball on the");
+        mes("gnomeball pitch");
+        return;
+    }
+    def_obj $previous = inv_getobj(worn, ^wearpos_rhand);
+    if (~try_equip($slot) = false) {
+        mes("You don't have enough free space to do that.");
+        return;
+    }
+    // todo: this needs a better home...
+    if (%tutorial_progress < ^tutorial_complete) {
+     if (%tutorial_progress = ^newbie_combat_instructor_unequipping_items) {
+            def_obj $shield = inv_getobj(worn, ^wearpos_lhand);
+
+            if ($previous = bronze_sword & $shield = wooden_shield) {
+                %tutorial_progress = ^newbie_combat_instructor_open_combat_interface;
+                ~set_tutorial_progress;
+            }
+        }
+    }
+
+    if($obj = elemental_shield) {
+        inv_delslot(worn, ^wearpos_lhand);
+        buildappearance(worn);
+        spotanim_pl(elemental_shield_equip, 92, 0);
+        sound_synth(shield_appear, 0, 0);
+        p_delay(0);
+        inv_setslot(worn, ^wearpos_lhand, elemental_shield, 1);
+    } else if($obj = ibanstaff) {
+        // https://youtu.be/n_ip_vEDbCA?si=0uESoOC98Fvl7HqS&t=2333
+        mes("You equip the staff of Iban.");
+    }
+
+    ~update_all($previous);
+}
+
+[proc,unequip](int $slot)
+if (p_finduid(uid) = true) {
+    def_obj $obj = inv_getobj(worn, $slot);
+    if (~duel_arena_flower_power_unequip_check($slot) = false) {
+        return;
+    }
+    if ($obj = ball_gnomeball_game & ~inzone_coord_pair_table(gnomeball_zones, coord) = true) {
+        mes("You feel it would be cheating to put the ball in your pack whilst on the pitch.");
+        return;
+    }
+    def_int $count = inv_getnum(worn, $slot);
+    def_int $overflow = inv_itemspace2(inv, $obj, $count, inv_size(inv));
+    if ($overflow >= $count) {
+        mes("You don't have enough free space to do that.");
+        return;
+    }
+    if($obj = elemental_shield) {
+        sound_synth(shield_appear, 0, 0);
+    }
+    if (oc_param($obj, specwep) = ^true) {
+        %sa_attack = ^false;
+    }
+    inv_moveitem(worn, inv, $obj, sub($count, $overflow));
+    ~update_all($obj);
+}
+
+// used for duel arena, no weapon/no armour
+[proc,try_unequip](int $slot)
+if (p_finduid(uid) = true) {
+    def_obj $obj = inv_getobj(worn, $slot);
+    if ($obj = null) {
+        return;
+    }
+    def_int $count = inv_getnum(worn, $slot);
+    def_int $overflow = inv_itemspace2(inv, $obj, $count, inv_size(inv));
+    if ($overflow >= $count) {
+        return;
+    }
+    if (oc_param($obj, specwep) = ^true) {
+        %sa_attack = ^false;
+    }
+    inv_moveitem(worn, inv, $obj, sub($count, $overflow));
+    ~update_all($obj);
+}
+
+[proc,.try_unequip](int $slot)
+if (.p_finduid(.uid) = true) {
+    def_obj $obj = .inv_getobj(worn, $slot);
+    if ($obj = null) {
+        return;
+    }
+    def_int $count = .inv_getnum(worn, $slot);
+    def_int $overflow = .inv_itemspace2(inv, $obj, $count, .inv_size(inv));
+    if ($overflow >= $count) {
+        return;
+    }
+    if (oc_param($obj, specwep) = ^true) {
+        .%sa_attack = ^false;
+    }
+    .inv_moveitem(worn, inv, $obj, sub($count, $overflow));
+    ~.update_all($obj);
+}
+
+[proc,update_bonuses]
+def_int $stabattack;
+def_int $slashattack;
+def_int $crushattack;
+def_int $magicattack;
+def_int $rangeattack;
+def_int $stabdefence;
+def_int $slashdefence;
+def_int $crushdefence;
+def_int $magicdefence;
+def_int $rangedefence;
+def_int $strengthbonus;
+def_int $prayerbonus;
+def_int $rangebonus;
+
+$stabattack,
+$slashattack,
+$crushattack,
+$magicattack,
+$rangeattack,
+$stabdefence,
+$slashdefence,
+$crushdefence,
+$magicdefence,
+$rangedefence,
+$strengthbonus,
+$prayerbonus,
+$rangebonus = ~equip_get_bonuses;
+
+%prayer_drain_resistance = add(60, multiply($prayerbonus, 2));
+
+~update_bonus_text(wornitems:stabattack, "Stab", $stabattack);
+~update_bonus_text(wornitems:slashattack, "Slash", $slashattack);
+~update_bonus_text(wornitems:crushattack, "Crush", $crushattack);
+~update_bonus_text(wornitems:magicattack, "Magic", $magicattack);
+~update_bonus_text(wornitems:rangeattack, "Range", $rangeattack);
+~update_bonus_text(wornitems:stabdefence, "Stab", $stabdefence);
+~update_bonus_text(wornitems:slashdefence, "Slash", $slashdefence);
+~update_bonus_text(wornitems:crushdefence, "Crush", $crushdefence);
+~update_bonus_text(wornitems:magicdefence, "Magic", $magicdefence);
+~update_bonus_text(wornitems:rangedefence, "Range", $rangedefence);
+~update_bonus_text(wornitems:strengthbonus, "Strength", $strengthbonus);
+~update_bonus_text(wornitems:prayerbonus, "Prayer", $prayerbonus);
+
+[proc,.update_bonuses]
+def_int $stabattack;
+def_int $slashattack;
+def_int $crushattack;
+def_int $magicattack;
+def_int $rangeattack;
+def_int $stabdefence;
+def_int $slashdefence;
+def_int $crushdefence;
+def_int $magicdefence;
+def_int $rangedefence;
+def_int $strengthbonus;
+def_int $prayerbonus;
+def_int $rangebonus;
+
+$stabattack,
+$slashattack,
+$crushattack,
+$magicattack,
+$rangeattack,
+$stabdefence,
+$slashdefence,
+$crushdefence,
+$magicdefence,
+$rangedefence,
+$strengthbonus,
+$prayerbonus,
+$rangebonus = ~.equip_get_bonuses;
+
+.%prayer_drain_resistance = add(60, multiply($prayerbonus, 2));
+
+~.update_bonus_text(wornitems:stabattack, "Stab", $stabattack);
+~.update_bonus_text(wornitems:slashattack, "Slash", $slashattack);
+~.update_bonus_text(wornitems:crushattack, "Crush", $crushattack);
+~.update_bonus_text(wornitems:magicattack, "Magic", $magicattack);
+~.update_bonus_text(wornitems:rangeattack, "Range", $rangeattack);
+~.update_bonus_text(wornitems:stabdefence, "Stab", $stabdefence);
+~.update_bonus_text(wornitems:slashdefence, "Slash", $slashdefence);
+~.update_bonus_text(wornitems:crushdefence, "Crush", $crushdefence);
+~.update_bonus_text(wornitems:magicdefence, "Magic", $magicdefence);
+~.update_bonus_text(wornitems:rangedefence, "Range", $rangedefence);
+~.update_bonus_text(wornitems:strengthbonus, "Strength", $strengthbonus);
+~.update_bonus_text(wornitems:prayerbonus, "Prayer", $prayerbonus);
+
+[proc,equip_get_bonuses]()(int, int, int, int, int, int, int, int, int, int, int, int, int)
+def_int $stabattack = 0;
+def_int $slashattack = 0;
+def_int $crushattack = 0;
+def_int $magicattack = 0;
+def_int $rangeattack = 0;
+def_int $stabdefence = 0;
+def_int $slashdefence = 0;
+def_int $crushdefence = 0;
+def_int $magicdefence = 0;
+def_int $rangedefence = 0;
+def_int $strengthbonus = 0;
+def_int $prayerbonus = 0;
+def_int $rangebonus = 0;
+
+def_int $size = inv_size(worn);
+def_int $i = 0;
+while ($i < $size) {
+    def_obj $obj = inv_getobj(worn, $i);
+    if ($obj ! null) {
+        if ($i ! ^wearpos_quiver
+            | inv_getobj(worn, ^wearpos_rhand) = null
+            | (oc_category($obj) = arrows & oc_category(inv_getobj(worn, ^wearpos_rhand)) = weapon_bow)
+            | (oc_category($obj) = bolts & oc_category(inv_getobj(worn, ^wearpos_rhand)) = weapon_crossbow)) {
+            $rangebonus = calc($rangebonus + oc_param($obj, rangebonus));
+        }
+        $stabattack = calc($stabattack + oc_param($obj, stabattack));
+        $slashattack = calc($slashattack + oc_param($obj, slashattack));
+        $crushattack = calc($crushattack + oc_param($obj, crushattack));
+        $magicattack = calc($magicattack + oc_param($obj, magicattack));
+        $rangeattack = calc($rangeattack + oc_param($obj, rangeattack));
+        $stabdefence = calc($stabdefence + oc_param($obj, stabdefence));
+        $slashdefence = calc($slashdefence + oc_param($obj, slashdefence));
+        $crushdefence = calc($crushdefence + oc_param($obj, crushdefence));
+        $magicdefence = calc($magicdefence + oc_param($obj, magicdefence));
+        $rangedefence = calc($rangedefence + oc_param($obj, rangedefence));
+        $strengthbonus = calc($strengthbonus + oc_param($obj, strengthbonus));
+        $prayerbonus = calc($prayerbonus + oc_param($obj, prayerbonus));
+    }
+    $i = calc($i + 1);
+}
+return($stabattack, $slashattack, $crushattack, $magicattack, $rangeattack, $stabdefence, $slashdefence, $crushdefence, $magicdefence, $rangedefence, $strengthbonus, $prayerbonus, $rangebonus);
+
+[proc,.equip_get_bonuses]()(int, int, int, int, int, int, int, int, int, int, int, int, int)
+def_int $stabattack = 0;
+def_int $slashattack = 0;
+def_int $crushattack = 0;
+def_int $magicattack = 0;
+def_int $rangeattack = 0;
+def_int $stabdefence = 0;
+def_int $slashdefence = 0;
+def_int $crushdefence = 0;
+def_int $magicdefence = 0;
+def_int $rangedefence = 0;
+def_int $strengthbonus = 0;
+def_int $prayerbonus = 0;
+def_int $rangebonus = 0;
+
+def_int $size = .inv_size(worn);
+def_int $i = 0;
+while ($i < $size) {
+    def_obj $obj = .inv_getobj(worn, $i);
+    if ($obj ! null) {
+        if ($i ! ^wearpos_quiver
+            | .inv_getobj(worn, ^wearpos_rhand) = null
+            | (oc_category($obj) = arrows & oc_category(.inv_getobj(worn, ^wearpos_rhand)) = weapon_bow)
+            | (oc_category($obj) = bolts & oc_category(.inv_getobj(worn, ^wearpos_rhand)) = weapon_crossbow)) {
+            $rangebonus = calc($rangebonus + oc_param($obj, rangebonus));
+        }
+        $stabattack = calc($stabattack + oc_param($obj, stabattack));
+        $slashattack = calc($slashattack + oc_param($obj, slashattack));
+        $crushattack = calc($crushattack + oc_param($obj, crushattack));
+        $magicattack = calc($magicattack + oc_param($obj, magicattack));
+        $rangeattack = calc($rangeattack + oc_param($obj, rangeattack));
+        $stabdefence = calc($stabdefence + oc_param($obj, stabdefence));
+        $slashdefence = calc($slashdefence + oc_param($obj, slashdefence));
+        $crushdefence = calc($crushdefence + oc_param($obj, crushdefence));
+        $magicdefence = calc($magicdefence + oc_param($obj, magicdefence));
+        $rangedefence = calc($rangedefence + oc_param($obj, rangedefence));
+        $strengthbonus = calc($strengthbonus + oc_param($obj, strengthbonus));
+        $prayerbonus = calc($prayerbonus + oc_param($obj, prayerbonus));
+    }
+    $i = calc($i + 1);
+}
+return($stabattack, $slashattack, $crushattack, $magicattack, $rangeattack, $stabdefence, $slashdefence, $crushdefence, $magicdefence, $rangedefence, $strengthbonus, $prayerbonus, $rangebonus);
+
+
+[proc,update_bonus_text](component $com, string $name, int $bonus)
+def_string $sign = "+";
+if ($bonus < 0) {
+    $sign = "";
+}
+if_settext($com, "<$name>: <$sign><tostring($bonus)>");
+
+[proc,.update_bonus_text](component $com, string $name, int $bonus)
+def_string $sign = "+";
+if ($bonus < 0) {
+    $sign = "";
+}
+.if_settext($com, "<$name>: <$sign><tostring($bonus)>");
+
+[proc,update_weight]
+
+// requirements before i forget
+// =================================================================================
+// WHEN I equip an item
+// WHILE I AM wearing an item that my equipping item slot goes to
+// THEN I should see the item I equip go to the correct slot in the worn inv
+// AND I should see the item that is unequipped go to the same slot I clicked in my inv
+// ALSO I should see any additional items that get unequipped go to the next available slot in my inv
+// =================================================================================
+// WHEN I equip a shield
+// WHILE I AM wearing a 2h weapon in the right hand
+// THEN I should unequip the 2h weapon and equip the shield
+// AND the opposite way of this scenario
+// =================================================================================
+// WHEN I equip a stackable obj
+// WHILE I am wearing a stackable obj that my equipping item slot goes to
+// AND the equipping stackable obj is the same obj that I am wearing
+// THEN I should equip as many of the stackable obj that I can to the stack limit
+// ALSO if the equipping stackable obj is not the same obj that I am wearing
+// AND I have enough space in my inv to unequip the stackable obj from my worn inv (does not exceed stack limit by combining worn + inv)
+// THEN I should unequip the stackable obj from my worn and equip the stackable obj from my inv
+// =================================================================================
+
+[proc,.update_weight]
+
+[proc,try_equip](int $inv_slot)(boolean)
+def_obj $equip_obj = inv_getobj(inv, $inv_slot);
+if ($equip_obj = null) {
+    return(false);
+}
+def_int $worn_slot = oc_wearpos($equip_obj);
+if ($worn_slot = null) {
+    return(false);
+}
+
+// if the item is stackable and we have the item already in our worn inv, add to the stack!
+if (oc_stackable($equip_obj) = true & inv_total(worn, $equip_obj) > 0) {
+    def_int $equip_obj_num = inv_getnum(inv, $inv_slot);
+    def_int $overflow = inv_itemspace2(worn, $equip_obj, $equip_obj_num, inv_size(worn));
+    if ($overflow >= $equip_obj_num) {
+        return(false);
+    }
+    inv_moveitem(inv, worn, $equip_obj, sub($equip_obj_num, $overflow)); // equip stackable item!
+    return(true); // early return because if the worn item already exists in the inv, theres no conflicts *surely*
+}
+
+if (~unequip_conflicts_space($equip_obj) = false) { // check if enough space
+    return(false);
+}
+
+inv_movetoslot(inv, worn, $inv_slot, $worn_slot); // equip item! this performs a swap
+if (inv_getobj(inv, $inv_slot) ! null) {
+    // presumably, they added this as an easy way for stackable objs to stack in the inv (instead of directly swapping)
+    // seems like in late 2006 they removed this line of code and it produced this bug: https://youtu.be/EYXp7GMFWEw, https://youtu.be/DwzDt3yw6k4
+    inv_movefromslot(inv, inv, $inv_slot); // moves item to the first available slot in the inv...
+}
+~unequip_conflicts($equip_obj);
+
+return(true);
+
+// proc to check if you have enough space to unequip conflicting items with $equip_obj
+[proc,unequip_conflicts_space](obj $equip_obj)(boolean)
+def_int $conflicts = 0;
+def_int $i = 0;
+while ($i < inv_size(worn)) {
+    def_obj $worn_obj = inv_getobj(worn, $i);
+    def_int $worn_num = inv_getnum(worn, $i);
+    if ($worn_obj ! null) {
+        if (~wearpos_conflicts($equip_obj, $worn_obj) = true) {
+            if (oc_stackable($worn_obj) = true) {
+                if (inv_total(inv, $worn_obj) < 1) { // if stackable item isnt in inv, then takes up a space
+                    $conflicts = add($conflicts, 1);
+                } else if (inv_itemspace(inv, $worn_obj, $worn_num, inv_size(inv)) = false) { // check for overflow, we should only do this if the worn item is in the inv
+                    return(false);
+                }
+            } else {
+                $conflicts = add($conflicts, 1);
+            }
+        }
+    }
+    $i = add($i, 1);
+}
+if ($conflicts > add(inv_freespace(inv), 1)) { // add 1 to freespace to account for equipping obj
+    return(false);
+}
+return(true);
+
+// proc to unequip conflicting items with $equip_obj
+[proc,unequip_conflicts](obj $equip_obj)
+def_int $i = 0;
+while ($i < inv_size(worn)) {
+    def_obj $worn_obj = inv_getobj(worn, $i);
+    def_int $worn_num = inv_getnum(worn, $i);
+    if ($worn_obj ! null & ~wearpos_conflicts($equip_obj, $worn_obj) = true) {
+        if (oc_param($worn_obj, specwep) = ^true) {
+            %sa_attack = ^false;
+        }
+        if ($worn_obj ! $equip_obj) { // skip the obj we just equipped
+            inv_moveitem(worn, inv, $worn_obj, $worn_num);
+        }
+    }
+    $i = add($i, 1);
+}
+
+[proc,update_weight_equipment] // can change to use categories and param when more weight reduction equipment exists
+if(inv_total(worn, ikov_bootsoflightness) > 0 & map_members = ^true) { // convert inv boots to worn boots if in p2p
+    inv_del(worn, ikov_bootsoflightness, 1);
+    inv_setslot(worn, ^wearpos_feet, ikov_bootsoflightnessworn, 1);
+} else if(inv_total(worn, ikov_bootsoflightnessworn) > 0 & map_members = ^false) { // convert worn boots to inv boots (in worn inv) if in f2p 
+    inv_del(worn, ikov_bootsoflightnessworn, 1);
+    inv_setslot(worn, ^wearpos_feet, ikov_bootsoflightness, 1);
+}
+
+if(inv_total(inv, ikov_bootsoflightnessworn) > 0) {
+    def_int $count = inv_total(inv, ikov_bootsoflightnessworn); // shouldnt ever be above 1?
+    inv_del(inv, ikov_bootsoflightnessworn, $count); // should use inv_changeslot probably
+    inv_add(inv, ikov_bootsoflightness, $count);
+}
+
+// checks if two weapons have the same wearpos
+[proc,wearpos_conflicts](obj $equip_obj, obj $worn_obj)(boolean)
+def_int $wearpos1 = oc_wearpos($equip_obj);
+def_int $wearpos2 = oc_wearpos2($equip_obj);
+def_int $wearpos3 = oc_wearpos3($equip_obj);
+def_int $worn_wearpos1 = oc_wearpos($worn_obj);
+def_int $worn_wearpos2 = oc_wearpos2($worn_obj);
+def_int $worn_wearpos3 = oc_wearpos3($worn_obj);
+
+if (($wearpos1 ! null & ($wearpos1 = $worn_wearpos1 | $wearpos1 = $worn_wearpos2 | $wearpos1 = $worn_wearpos3))
+| ($wearpos2 ! null & ($wearpos2 = $worn_wearpos1 | $wearpos2 = $worn_wearpos2 | $wearpos2 = $worn_wearpos3))
+| ($wearpos3 ! null & ($wearpos3 = $worn_wearpos1 | $wearpos3 = $worn_wearpos2 | $wearpos3 = $worn_wearpos3))) {
+    return(true);
+}
+return(false);

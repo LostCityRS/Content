@@ -1,0 +1,73 @@
+[opobjt,magic:telekinetic_grab] @magic_spell_telegrab;
+[apobjt,magic:telekinetic_grab] @magic_spell_telegrab;
+
+// todo: telegrabbing
+[label,magic_spell_telegrab]
+// look for spell in db
+def_dbrow $spell_data = ~get_spell_data(^telekinetic_grab);
+if (~check_spell_requirements($spell_data) = false) {
+    return;
+}
+if (afk_event = ^true) {
+    ~macro_event_general_spawn(~macro_event_set_random);
+    return;
+}
+// display tea
+if (obj_type = display_tea) {
+    ~chatnpc_specific(nc_name(tea_seller), tea_seller, "<p,angry>Hey! Put that back! Those are for display only!");
+    return;
+}
+if(oc_category(obj_type) = trail_puzzle & (inv_totalcat(inv, trail_puzzle) > 0 | inv_totalcat(bank, trail_puzzle) > 0)) {
+    mes("You already have a puzzle box."); // OSRS
+    return;
+}
+if(oc_category(obj_type) = trail_challenge & (inv_totalcat(inv, trail_challenge) > 0 | inv_totalcat(bank, trail_challenge) > 0)) {
+    mes("You already have a challenge scroll."); // OSRS
+    return;
+}
+if((oc_category(obj_type) = trail_clue_easy | oc_category(obj_type) = trail_clue_medium | oc_category(obj_type) = trail_clue_hard |
+    oc_category(obj_type) = trail_casket_easy | oc_category(obj_type) = trail_casket_medium | oc_category(obj_type) = trail_casket_hard) & ~trail_hasclue_all = true) {
+    mes("You already have a clue scroll."); // OSRS
+    return;
+}
+// These use a different mes compared to obj's with the telegrab_disabled param (maybe make a 2nd param)
+if(obj_type = holy_grail | obj_type = ghost_skull | obj_type = ice_arrow | obj_type = ball | (oc_category(obj_type) = cog)
+    | obj_type = caveorb1 | obj_type = caveorb2 | obj_type = caveorb3 | obj_type = caveorb4 | obj_type = fire_feather | obj_type = grip_keys | obj_type = bunnyears | obj_type = scythe | obj_type = viyeldihat) {
+    mes("I can't use Telekinetic Grab on this object.");
+    return;
+}
+if(oc_param(obj_type, telegrab_disabled) = true) {
+    mes("You can't cast this spell on that object.");
+    return;
+}
+if(obj_coord = ^legends_opal_coord | obj_coord = ^legends_jade_coord | obj_coord = ^legends_topaz_coord | obj_coord = ^legends_sapphire_coord |
+    obj_coord = ^legends_diamond_coord | obj_coord = ^legends_ruby_coord | obj_coord = ^legends_emerald_coord) {
+    mes("The spell fizzles and dies for some unknown reason.");
+    return;
+}
+// no idea if this goes here but in osrs it def goes after the clue scroll check - telegrabbing clue with full inv gives clue message
+if (~pickup_obj_check_for_space(obj_type, obj_count) = false) {
+    return;
+}
+// start anim, sound, and spotanim
+anim(human_casttelegrab, 0);
+sound_synth(telegrab_all, 0, 0);
+spotanim_pl(telegrab_casting, 92, 0);
+
+// delete runes
+~delete_spell_runes($spell_data);
+// delay character for 4 ticks, give item, delay character for 3 ticks
+// play mapanim
+def_int $duration = ~coord_projectile(coord, obj_coord, telegrab_travel, 35, 0, 48, 16, -2, 64, 10);
+spotanim_map(telegrab_impact, obj_coord, 0, $duration);
+p_stopaction;
+// mes("<tostring(map_clock)>: You start telegrabbing.");
+p_delay(2);
+~give_spell_xp($spell_data);
+if (obj_count < 1) {
+    mes("Too late - it's gone!");
+} else {
+    obj_takeitem(inv);
+}
+p_delay(1);
+// mes("<tostring(map_clock)>: You finish telegrabbing.");

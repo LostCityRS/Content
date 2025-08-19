@@ -1,0 +1,174 @@
+[oploc1,_rc_exit_portal]
+def_dbrow $data = ~get_runecraft_data(loc_param(rune_type));
+if ($data = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
+sound_synth(teleport_all, 0, 0);
+mes("You step through the portal...");
+p_telejump(map_findsquare(db_getfield($data, runecraft_table:exit_coord, random(db_getfieldcount($data, runecraft_table:exit_coord)))));
+
+[oplocu,_rc_altar]
+switch_obj(last_useitem) {
+    case blankrune : @runecraft_runes;
+    case default : ~displaymessage(^dm_default);
+}
+
+[oploc1,_rc_altar] @runecraft_runes;
+
+[oplocu,_rc_ruins]
+if (oc_category(last_useitem) = talismans) {
+    @teleport_to_ruins;
+} else {
+    ~displaymessage(^dm_default);
+}
+
+
+[label,teleport_to_ruins]
+def_dbrow $data = ~get_runecraft_data(loc_param(rune_type));
+if ($data = null | db_getfield($data, runecraft_table:talisman, 0) ! last_useitem) {
+    ~displaymessage(^dm_default);
+    return;
+}
+if (db_getfield($data, runecraft_table:members, 0) = ^true) {
+    if (map_members = ^false) {
+        mes(^mes_members_do_that); // guess
+        return;
+    }
+}
+anim(human_pickupfloor, 0);
+sound_synth(teleport_all, 0, 0);
+mes("You hold the <oc_name(last_useitem)> towards the mysterious ruins.");
+mes("You feel a powerful force take hold of you...");
+p_delay(1);
+p_telejump(map_findsquare(db_getfield($data, runecraft_table:enter_coord, random(db_getfieldcount($data, runecraft_table:enter_coord)))));
+
+
+[label,runecraft_runes]
+def_dbrow $data = ~get_runecraft_data(loc_param(rune_type));
+if ($data = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
+def_int $levelreq = db_getfield($data, runecraft_table:level, 0);
+def_namedobj $rune = db_getfield($data, runecraft_table:rune, 0);
+if (oc_members($rune) = true) {
+    if (map_members = ^false) {
+        mes(^mes_members_do_that); // guess
+        return;
+    }
+}
+def_int $level = stat(runecraft);
+if ($level < $levelreq) {
+    ~mesbox("You need a Runecrafting level of at least <tostring($levelreq)> to craft <oc_name($rune)>.");
+    return;
+}
+
+def_int $total_ess = inv_total(inv, blankrune);
+if ($total_ess = 0) {
+    // osrs has rune essences. But when mining rune ess in this version it says rune stones
+    // so this is just a guess
+    ~mesbox("You do not have any rune stones to bind.");
+    return;
+}
+
+anim(human_runecraft, 0);
+spotanim_pl(runecrafting, 96, 0);
+
+def_int $rune_count_per_ess = 1;
+if (db_getfieldcount($data, runecraft_table:multiplier) > 0) {
+    $rune_count_per_ess = calc($level / db_getfield($data, runecraft_table:multiplier, 0) + 1);
+}
+def_int $craft_count = calc($total_ess * $rune_count_per_ess);
+
+if(sub(^max_32bit_int, inv_total(inv, $rune)) < $craft_count) {
+    mes("You do not have enough inventory space to craft your essence into <lowercase(oc_name($rune))>s."); // osrs
+    return;
+}
+
+// if $craft_count uses free_space as the value, it may not round exactly to $rune_count_per_ess
+$total_ess = calc($craft_count / $rune_count_per_ess);
+
+inv_del(inv, blankrune, $total_ess);
+stat_advance(runecraft, calc($total_ess * db_getfield($data, runecraft_table:experience, 0)));
+// later revs they just use oc_name($rune), i think after 2007 or so
+mes("You bind the temple's power into <db_getfield($data, runecraft_table:name, 0)> Runes.");
+inv_add(inv, $rune, calc($total_ess * $rune_count_per_ess));
+p_delay(3);
+
+
+[opheld4,_talismans]
+def_obj $last_item = last_item;
+def_dbrow $data = ~get_runecraft_data(oc_param($last_item, rune_type));
+if ($data = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
+// if they're already in the temple
+if ($last_item = db_getfield($data, runecraft_table:talisman, 0)) {
+    if (~inmap(map_findsquare(db_getfield($data, runecraft_table:enter_coord, 0)), coord) = true) {
+        mes("You are standing in the <db_getfield($data, runecraft_table:name, 0)> temple.");
+        return;
+    }
+    if (coordz(coord) > 4800) {
+        mes("The talisman doesn't seem to work here...");
+        return;
+    }
+    ~talisman_locate_coord(db_getfield($data, runecraft_table:altar_coord, 0), coord);
+}
+
+[opheld4,cosmic_talisman]
+def_obj $last_item = last_item;
+def_dbrow $data = ~get_runecraft_data(oc_param($last_item, rune_type));
+if ($data = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
+// if they're already in the temple
+if ($last_item = db_getfield($data, runecraft_table:talisman, 0)) {
+    if (~inmap(map_findsquare(db_getfield($data, runecraft_table:enter_coord, 0)), coord) = true) {
+        mes("You are standing in the <db_getfield($data, runecraft_table:name, 0)> temple.");
+        return;
+    }
+    // if in shack
+    if(inzone(^shack_nw, ^shack_se, coord) = true) {
+        mes("You can feel the power flowing through the talisman.");
+        mes("There must be something special about this place.");
+        return;
+    }
+    if (inzone(^zanaris_nw, ^zanaris_se, coord) = true) {
+        ~talisman_locate_coord(db_getfield($data, runecraft_table:altar_coord, 0), coord);
+        return;
+    }
+    if (coordz(coord) > 4800) {
+        mes("The talisman doesn't seem to work here...");
+        return;
+    }
+    ~talisman_locate_coord(^shack_center, coord);
+}
+
+[proc,talisman_locate_coord](coord $altar_coord, coord $player_coord)
+def_int $delta_x = calc(coordx($altar_coord) - coordx($player_coord));
+def_int $delta_z = calc(coordz($altar_coord) - coordz($player_coord));
+if ($delta_x < 0 & $delta_z > 0) {
+    mes("The talisman pulls towards the north-west.");
+} else if ($delta_x < 0 & $delta_z < 0) {
+    mes("The talisman pulls towards the south-west.");
+} else if ($delta_x > 0 & $delta_z > 0) {
+    mes("The talisman pulls towards the north-east.");
+} else if ($delta_x > 0 & $delta_z < 0) {
+    mes("The talisman pulls towards the south-east.");
+} else if ($delta_x > 0) {
+    mes("The talisman pulls towards the east.");
+} else if ($delta_x < 0) {
+    mes("The talisman pulls towards the west.");
+} else if ($delta_z < 0) {
+    mes("The talisman pulls towards the south.");
+} else if ($delta_z > 0) {
+    mes("The talisman pulls towards the north.");
+}
+
+[proc,get_runecraft_data](int $rune_type)(dbrow)
+db_find(runecraft_table:type, $rune_type);
+def_dbrow $data = db_findnext;
+return ($data);

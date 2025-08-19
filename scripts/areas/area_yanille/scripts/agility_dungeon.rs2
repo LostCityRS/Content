@@ -1,0 +1,129 @@
+[oploc1,loc_2290]
+if(stat(agility) < 49) {
+    ~mesbox("You need 49 agility to squeeze through the pipe.");
+    return;
+}
+def_int $mod = -1;
+def_coord $end_pipe_coord = 0_40_148_13_34;
+def_coord $start = 0_40_148_18_34;
+def_int $dir = ^exact_west;
+if(loc_coord = $end_pipe_coord) {
+    $mod = 1;
+    $dir = ^exact_east;
+    $end_pipe_coord = 0_40_148_16_34;
+    $start = 0_40_148_12_34;
+}
+~forcewalk2($start);
+if(%yanille_obstacle_pipe_used >= map_clock) {
+    mes("The pipe is being used"); // todo: confirm, using the same as gnome course
+    return;
+}
+%yanille_obstacle_pipe_used = calc(map_clock + 4);
+~agility_exactmove(human_doublepipesqueeze, 30, 3, coord, movecoord(coord, calc(3 * $mod), 0, 0), 30, 126, $dir, true);
+p_delay(0);
+~change_merged_loc($end_pipe_coord);
+~agility_exactmove(human_doublepipesqueeze, 30, 3, 0_40_148_15_34, movecoord(0_40_148_15_34, calc(3 * $mod), 0, 0), 30, 126, $dir, true);
+p_delay(0);
+stat_advance(agility, 75);
+
+[oploc1,loc_2303]
+// this runs the first 2 tiles when using the north side, but walks the entire thing 
+// on the south side, 
+if(stat(agility) < 40) {
+    ~mesbox("You need an Agility level of 40 to cross the ledge.");
+    return;
+}
+def_int $dz = 4;
+def_seq $walk_seq = human_walk_sidestepl;
+def_seq $start_seq = human_into_sidestepl;
+def_seq $end_seq = human_outof_sidestepl;
+def_coord $start = 0_40_148_20_40;
+if(coordz(loc_coord) > 9518) {
+    $walk_seq = human_walk_sidestep;
+    $start_seq = human_into_sidestep;
+    $end_seq = human_outof_sidestep;
+    $start = 0_40_148_20_48;
+    $dz = -4;
+}
+if(coord ! $start) {
+    // do nothing if the player isn't on the start tile
+    return;
+}
+// check if ledge is being used, not sure why this needs a check
+// with no loc_anim/locmerge, maybe more obstacles used to have these checks? 
+if(%yanille_ledge_used >= map_clock) {
+    mes("The ledge is being used");
+    return;
+}
+%yanille_ledge_used = calc(map_clock + 5);
+// mes("<tostring(%yanille_ledge_used)>, <tostring(map_clock)>");
+anim($start_seq, 0);
+p_delay(0);
+mes("You put your foot on the ledge and try to edge across...");
+~agility_force_move(0, $walk_seq, movecoord(coord, 0, 0, $dz));
+if(stat_random(agility, 65, 355) = false) {
+    ~agility_delay_fail(movecoord(coord, -2, 0, 0), 0_40_149_18_44, calc((stat(hitpoints) * 20) / 100), "You slip and fall to the pit below.");
+    return;
+}
+%yanille_ledge_used = calc(map_clock + 4);
+~agility_force_move(225, $walk_seq, movecoord(coord, 0, 0, $dz));
+anim($end_seq, 0);
+mes("You skillfully edge across the gap.");
+
+[oploc1,loc_2317]
+if(stat(agility) < 67) {
+    ~mesbox("You need an Agility level of 67 to climb this pile of rubble.");
+    return;
+}
+mes("You climb up the pile of rubble...");
+~agility_climb_up(55, 0_40_148_55_34);
+
+[oploc1,loc_2318]
+mes("You climb down the pile of rubble...");
+p_telejump(0_40_149_56_35);
+
+[oploc1,loc_377]
+sound_synth(locked, 0, 0);
+mes("The chest is locked.");
+
+[oplocu,loc_377]
+// https://youtu.be/A4crb0CaneU?si=ty3obEvZ9cIxbJ4F&t=278, typos are all intentional
+if(last_useitem = sinister_key) {
+    mes("you unlock the chest with your key...");
+    p_delay(3);
+    mes("A foul gas seeps from the chest");
+    sound_synth(gas_hiss, 0, 0);
+    if(%poison < 0) {
+        mes("Luckily your poison antidote saves you from harm.");
+    } else {
+        queue(poison_player, 0, 27);
+    }
+    mes("You find a lot of herbs in the chest...");
+    inv_del(inv, sinister_key, 1);
+    inv_add(inv, unidentified_harralander, 2);
+    inv_add(inv, unidentified_ranarr, 3);
+    inv_add(inv, unidentified_irit, 1);
+    inv_add(inv, unidentified_avantoe, 1);
+    inv_add(inv, unidentified_kwuarm, 1);
+    inv_add(inv, unidentified_torstol, 1);
+    // Temp note: dur updated
+    loc_change(chestopen_inactive, 5);
+    return;
+}
+~displaymessage(^dm_default);
+
+[oploc1,loc_412]
+if (stat(prayer) >= stat_base(prayer)) {
+    mes("You already have full prayer points.");
+} else {
+    // no seq
+    mes("You recharge your prayer points.");
+    sound_synth(prayer_recharge, 0, 0);
+    stat_add(prayer, calc(stat_base(prayer) - stat(prayer)), 0);
+}
+p_delay(3);
+mes("Suddenly a trap door opens beneath you...");
+p_teleport(0_40_149_28_37);
+sound_synth(door_open, 0, 0);
+~damage_self(calc(((stat_base(hitpoints) * 15) / 100) + 1));
+

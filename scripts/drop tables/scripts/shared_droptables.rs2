@@ -1,0 +1,147 @@
+// Name leaked
+[proc,randomherb]()(namedobj, int)
+
+if(map_members = ^false) {
+    return (coins, 10);
+}
+
+def_int $random = 0;
+
+$random = random(128);
+
+if ($random < 32) {
+    return (unidentified_guam, 1);
+} else if ($random < 56) {
+    return (unidentified_marrentill, 1);
+} else if ($random < 74) {
+    return (unidentified_tarromin, 1);
+} else if ($random < 88) {
+    return (unidentified_harralander, 1);
+} else if ($random < 99) {
+    return (unidentified_ranarr, 1);
+} else if ($random < 107) {
+    return (unidentified_irit, 1);
+} else if ($random < 113) {
+    return (unidentified_avantoe, 1);
+} else if ($random < 118) {
+    return (unidentified_kwuarm, 1);
+} else if ($random < 122) {
+    return (unidentified_cadantine, 1);
+} else if ($random < 125) {
+    return (unidentified_lantadyme, 1);
+} else if ($random < 128) {
+    return (unidentified_dwarf_weed, 1);
+}
+
+// Name leaked
+[proc,randomjewel]()(namedobj, int)
+def_int $random = 0;
+
+if (inv_total(worn, ring_of_wealth) > 0 & map_members = ^true) {
+    $random = random(65);
+} else {
+    $random = random(128);
+}
+
+if ($random < 32) {
+    return (uncut_sapphire, 1);
+} else if ($random < 48) {
+    return (uncut_emerald, 1);
+} else if ($random < 56) {
+    return (uncut_ruby, 1); 
+} else if ($random < 58) {
+    return (uncut_diamond, 1);
+} else if ($random < 59) {
+    if (map_members = ^true) {
+        return (rune_javelin, 5);
+    }
+} else if ($random < 60) {
+    if (map_members = ^true) {
+        return (keyhalf1, 1);
+    }
+} else if ($random < 61) {
+    if (map_members = ^true) {
+        return (keyhalf2, 1);
+    }
+} else if ($random < 65) {
+    if (map_members = ^true) {
+        if ($random < 62 & %legends_progress = ^legends_complete) {
+            return (~megararetable);
+        }
+        if (coordz(coord) > 6400) {
+            return (chaos_talisman, 1);
+        } else {
+            return (nature_talisman, 1);
+        }
+    }
+}
+
+// Name leaked
+[proc,ultrarare_getitem]()(namedobj, int)
+def_int $random = 0;
+$random = random(128);
+
+if ($random < 3) {
+    return (naturerune, 67);
+} else if ($random < 5) {
+    return (adamant_javelin, 20);
+} else if ($random < 7) {
+    return (deathrune, 45);
+} else if ($random < 9) {
+    return (lawrune, 45);
+} else if ($random < 11) {
+    return (rune_arrow, 42);
+} else if ($random < 13) {
+    return (steel_arrow, 150);
+} else if ($random < 16) {
+    return (rune_2h_sword, 1);
+} else if ($random < 19) {
+    return (rune_battleaxe, 1);
+} else if ($random < 21) {
+    return (rune_sq_shield, 1);
+} else if ($random < 22) {
+    return (dragon_med_helm, 1);
+} else if ($random < 23) {
+    return (rune_kiteshield, 1);
+} else if ($random < 44) {
+    return (coins, 3000);
+} else if ($random < 64) {
+    return (keyhalf1, 1);
+} else if ($random < 84) {
+    return (keyhalf2, 1);
+} else if ($random < 89) {
+    return (runite_bar, 1);
+} else if ($random < 91) {
+    return (dragonstone, 1);
+} else if ($random < 93) {
+    return (cert_silver_ore, 100);
+} else if ($random < 113) {
+    return (~randomjewel);
+} else if ($random < 128) {
+    return (~megararetable);
+}
+
+// Name unconfirmed
+[proc,megararetable]()(namedobj, int)
+def_int $random = random(128);
+def_namedobj $drop = null;
+if ($random < 8) { $drop = rune_spear; }
+else if ($random < 12) { $drop = dragonshield_a; }
+else if ($random < 15) { $drop = dragon_spear; }
+if ($drop ! null) {
+    session_log(^log_adventure, "Defeated a <npc_name> and received a <oc_name($drop)>!");
+    return ($drop, 1);
+}
+
+[proc,randomjunk]()(namedobj, int) // guess
+switch_int (random(8)) {
+    case 0 : return(digsitearrow, 1);
+    case 1 : return(digsiteglass, 1);
+    case 2 : return(digsitestaff, 1);
+    case 3 : return(digsitebuttons, 1);
+    case 4 : return(digsitearmour1, 1);
+    case 5 : return(old_boot, 1);
+    case 6 : return(pot_empty, 1);
+    case 7 : return(digsitesword, 1);
+    case default : return(pot_empty, 1);
+}

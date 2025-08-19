@@ -1,0 +1,110 @@
+[proc,sa_enabled]()(boolean)
+if (%sa_attack = ^true & oc_param(inv_getobj(worn, ^wearpos_rhand), specwep) = ^true & map_members = ^true) {
+    return(true);
+}
+return(false);
+
+[proc,sa_enough_energy]()(boolean)
+if (%sa_energy < oc_param(inv_getobj(worn, ^wearpos_rhand), sa_energy)) {
+    mes("You don't have enough power left.");
+    %sa_attack = ^false;
+    return(false);
+}
+return(true);
+
+[proc,set_sa_vars](int $energy_used)
+if (%sa_energy = ^sa_max_energy) {
+    settimer(sa_regen, ^sa_regen_interval);
+}
+%sa_energy = max(sub(%sa_energy, $energy_used), 0);
+%sa_attack = ^false;
+
+[proc,sa_reset]
+%sa_energy = ^sa_max_energy;
+cleartimer(sa_regen);
+
+[proc,sa_login]
+if (%sa_energy < ^sa_max_energy) {
+    settimer(sa_regen, ^sa_regen_interval);
+}
+
+// Special attack energy now restores while interfaces such as the bank are open.
+// - https://oldschool.runescape.wiki/w/Update:Easter_%26_Slayer_Updates
+[timer,sa_regen]
+%sa_energy = min(add(%sa_energy, ^sa_regen_amount), ^sa_max_energy);
+if (%sa_energy = ^sa_max_energy) {
+    cleartimer(sa_regen);
+}
+
+
+// todo: queue if cannot access? or should sa_enabled be unprotected?
+[label,toggle_sa]
+if (%sa_attack = ^false) {
+    %sa_attack = ^true;
+} else {
+    %sa_attack = ^false;
+}
+
+[if_button,combat_blunt:specbar] @toggle_sa;
+[if_button,combat_axe:specbar]
+// order is guessed (based off OSRS)
+if (~duel_arena_spec_check = false) {
+    return;
+}
+if (~sa_enough_energy = false) {
+    return;
+}
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+if($weapon = dragon_battleaxe) {
+    if(p_finduid(uid) = true) { // strongqueued in osrs, assuming its like settings stuff and doesnt queue
+        ~set_sa_vars(oc_param($weapon, sa_energy));
+        say("Raarrrrrgggggghhhhhhh!");
+        anim(rampage, 0);
+        spotanim_pl(sp_attackglow_red, 0, 0);
+        def_int $drained_attack = calc(stat(attack) / 10);
+        def_int $drained_defence = calc(stat(defence) / 10);
+        def_int $drained_ranged = calc(stat(ranged) / 10);
+        def_int $drained_magic = calc(stat(magic) / 10);
+        def_int $sum = calc($drained_attack + $drained_defence + $drained_ranged + $drained_magic);
+        sound_synth(rampage, 0, 0);
+        stat_drain(attack, $drained_attack, 0);
+        stat_drain(defence, $drained_defence, 0);
+        stat_drain(ranged, $drained_ranged, 0);
+        stat_drain(magic, $drained_magic, 0);
+        stat_boost(strength, calc(10 + ($sum / 4)), 0);
+    }
+    return;
+}
+@toggle_sa;
+
+[if_button,combat_crossbow:specbar] @toggle_sa;
+[if_button,combat_bow:specbar] @toggle_sa;
+[if_button,combat_stabsword:specbar] @toggle_sa;
+
+[if_button,combat_hacksword:specbar] 
+if (~duel_arena_spec_check = false) {
+    return;
+}
+if (~sa_enough_energy = false) {
+    return;
+}
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+if($weapon = excalibur) {
+    if(p_finduid(uid) = true) { // strongqueued in osrs, assuming its like settings stuff and doesnt queue
+        ~set_sa_vars(oc_param($weapon, sa_energy));
+        say("For Camelot!");
+        anim(sanctuary, 0);
+        spotanim_pl(sp_attackglow_blue, 0, 0);
+        sound_synth(sanctuary, 0, 0);
+        stat_boost(defence, 8, 0);
+    }
+    return;
+}
+@toggle_sa;
+
+[if_button,combat_spiked:specbar] @toggle_sa;
+[if_button,combat_thrown:specbar] @toggle_sa;
+[if_button,combat_spear:specbar] @toggle_sa;
+[if_button,combat_heavysword:specbar] @toggle_sa;
+[if_button,combat_pickaxe:specbar] @toggle_sa;
+[if_button,combat_unarmed:specbar] @toggle_sa;

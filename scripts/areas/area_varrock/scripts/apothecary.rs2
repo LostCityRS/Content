@@ -1,0 +1,82 @@
+[opnpc1,apothecary]
+if(%romeojuliet_progress = ^romeojuliet_spoken_father) {
+    @apothecary_lawrence_sent;
+} else if(%romeojuliet_progress = ^romeojuliet_spoken_apothecary) {
+    @apothecary_make_cadaver;
+} else {
+    // referncing https://www.youtube.com/watch?v=-tUhc9naLbo for start and str potion option
+    @apothecary_standard;
+}
+
+[label,apothecary_standard]
+~chatnpc("<p,neutral>I am the Apothecary.");
+~chatnpc("<p,neutral>I have potions to brew.|Do you need anything specific?");
+switch_int(~p_choice3("Can you make a strength potion?", 1, "Do you know any potion to make hair fall out?", 2, "Have you got any good potions to give away?", 3)) {
+    case 1 :
+        ~chatplayer("<p,neutral>Can you make a strength potion?");
+        if(inv_total(inv, limpwurt_root) > 0 & inv_total(inv, red_spiders_eggs) > 0 & inv_total(inv, coins) > 4) {
+            ~chatplayer("<p,happy>I have the root and spiders eggs needed to make it.");
+            ~chatnpc("<p,neutral>Well give me them and 5 gold and I'll make you your potion.");
+
+            def_int $option = ~p_choice2("Yes ok.", 1, "No thanks.", 2);
+            if($option = 1) {
+                ~chatplayer("<p,happy>Yes ok.");
+                ~mesbox("You give a limpwurt root, some red spider|eggs and 5 coins to the Apothecary.|The Apothecary brews up a potion.");
+                inv_del(inv, red_spiders_eggs, 1);
+                inv_del(inv, limpwurt_root, 1);
+                inv_del(inv, coins, 5);
+                inv_add(inv, strength4, 1);
+                ~mesbox("The Apothecary gives you a strength potion.");
+            } else if($option = 2) {
+                ~chatplayer("<p,neutral>No thanks.");
+            }
+        } else {
+            ~chatnpc("<p,happy>Yes. But the ingredients are a little hard to find.|If you ever get them I will make it for you, for a cost.");
+            ~chatplayer("<p,quiz>So what are the ingredients?");
+            ~chatnpc("<p,neutral>You'll need to find to find the eggs of the deadly red spider and a limpwurt root.");
+            ~chatnpc("<p,neutral>Oh and you'll have to pay me 5 coins.");
+            ~chatplayer("<p,happy>Ok, I'll look out for them.");
+        }
+    case 2 :
+        ~chatplayer("<p,happy>Do you know a potion to make hair fall out?");
+        ~chatnpc("<p,happy>I do indeed. I gave it to my mother.|That's why I now live alone.");
+    case 3 :
+        ~chatplayer("<p,happy>Have you got any good potions to give away?");
+        if(random(2) = 0) {
+            if(inv_total(inv, acne_potion) > 0) {
+                ~chatnpc("<p,happy>Only that spot cream. Hope you enjoy it.");
+                return;
+            }
+            inv_add(inv, acne_potion, 1);
+            ~chatnpc("<p,neutral>Ok then. Try this potion.");
+        } else {
+            ~chatnpc("<p,sad>Sorry, charity is not my strong point.");
+        }
+}
+
+[label,apothecary_make_cadaver]
+if(inv_total(inv, cadava) > 0) {
+    @apothecary_standard;
+}
+if(inv_total(inv, cadavaberries) > 0) {
+    ~chatnpc("<p,happy>Well done. You have the berries.");
+    ~mesbox("You hand over the berries,|which the Apothecary shakes up in|a vial of strange liquid.");
+    ~chatnpc("<p,happy>Here is what you need.");
+    inv_del(inv, cadavaberries, 1);
+    inv_add(inv, cadava, 1);
+    ~mesbox("The Apothecary gives you a Cadaver potion.");
+} else {
+    ~chatnpc("<p,neutral>Keep searching for the berries.|They are needed for the potion.");
+}
+
+[label,apothecary_lawrence_sent]
+~chatplayer("<p,neutral>Apothecary. Father Lawrence sent me.");
+~chatplayer("<p,neutral>I need a Cadaver potion to help Romeo and Juliet.");
+~chatnpc("<p,neutral>Cadaver potion. It's pretty nasty. And hard to make.");
+~chatnpc("<p,neutral>Wing of rat, tail of frog.|Ear of snake and horn of dog.");
+// https://web.archive.org/web/*/http://runeweb.net/images/site/guides/rs2/quests/romeojuliet/6.jpg
+// old screenshot says cadava berries but the item is spelt cadaver in this version?
+~chatnpc("<p,neutral>I have all of that, but I need some Cadaver berries.");
+~chatnpc("<p,neutral>You will have to find them while I get the rest ready.");
+~chatnpc("<p,neutral>Bring them here when you have them.|But be careful. They are nasty.");
+%romeojuliet_progress = ^romeojuliet_spoken_apothecary;

@@ -1,0 +1,35 @@
+[debugproc,npc](npc $npc)
+if ($npc = null) {
+    @debugusage("::npc (name)", "::npc man2", "::npc king_dragon");
+    return;
+}
+
+npc_add(coord, $npc, 500);
+
+[debugproc,npc_hasop](npc $npc, int $op)
+if ($npc = null) {
+    @debugusage("::npc_hasop (name) (op)", "::npc_hasop man2 1", "::npc_hasop king_dragon 2");
+    return;
+}
+
+if (npc_find(coord, $npc, 5, 0) = true) {
+    if (npc_hasop($op) = true) {
+        mes("NPC has op");
+    } else {
+        mes("NPC does not have op");
+    }
+} else {
+    mes("No NPC found");
+}
+
+[debugproc,npc_anim](npc $npc, seq $seq)
+if ($npc = null | $seq = null) {
+    @debugusage("::npc_anim (name) (op)", "::npc_anim chompy_bird pog_terror_bird_walk", "");
+    return;
+}
+
+if (npc_find(coord, $npc, 5, 0) = true) {
+    npc_anim($seq, 0);
+} else {
+    mes("No NPC found");
+}

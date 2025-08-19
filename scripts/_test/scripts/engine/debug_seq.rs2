@@ -1,0 +1,15 @@
+[debugproc,seq](seq $seq)
+if ($seq = null) {
+    @debugusage("::seq (name)", "::seq human_castteleport", "");
+    return;
+}
+
+anim($seq, 0);
+
+[debugproc,anim](seq $seq)
+if ($seq = null) {
+    @debugusage("::anim (name)", "::anim human_castteleport", "");
+    return;
+}
+
+anim($seq, 0);

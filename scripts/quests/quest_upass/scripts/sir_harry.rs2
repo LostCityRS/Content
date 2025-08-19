@@ -1,0 +1,17 @@
+[ai_queue3,upass_paladin3]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+// no quest stage check, no bank check (RS3)
+if(inv_total(inv, paladinbadge3) = 0) {
+    obj_add(npc_coord, paladinbadge3, 1, ^lootdrop_duration);
+}
+~paladin_drops;
+
+[opnpc1,upass_paladin3]
+if(%upass_progress >= ^upass_entered_main_area) {
+    @upass_paladin_after_killed;
+}
+~chatplayer("<p,neutral>Good day.");
+~chatnpc("<p,neutral>Watch your back, the undead are about here...");

@@ -1,0 +1,34 @@
+[opplayert,magic:claws_of_guthix] ~pvp_claws_of_guthix;
+[applayert,magic:claws_of_guthix] ~pvp_claws_of_guthix;
+
+[proc,pvp_claws_of_guthix]
+// look for spell in db
+def_dbrow $spell_data = ~get_spell_data(^claws_of_guthix);
+if (~pvp_combat_spell_checks($spell_data) = false) {
+    return;
+}
+if (%claws_of_guthix_casts < ^mage_arena_spell_finished & ~inzone_coord_pair_table(mage_arena, coord) = false) {
+    // https://youtu.be/TrxuRyogdEo?list=PLn23LiLYLb1Y4vxMPWXM-CVEvOUfuAP_o&t=60
+    mes("You are not yet experienced enough to use this spell outside the");
+    mes("Mage Arena.");
+    return;
+}
+
+~set_pk_vars;
+~pvp_spell_cast($spell_data);
+// spell hit
+if (~pvp_hit_roll(^magic_style) = true) {
+    def_int $maxhit = ~magic_spell_maxhit($spell_data);
+    if (inv_total(worn, guthix_cape) > 0 & inv_total(worn, guthix_staff) > 0) {
+        if (.stat(defence) = .stat_base(defence)) { // https://oldschool.runescape.wiki/w/Update:Contact!
+            .stat_drain(defence, 1, 5);
+            .mes("You feel weakened.");
+        }
+        if (%charge_god_spell > 0) {
+            $maxhit = scale(3, 2, $maxhit);
+        }
+    }
+    ~pvp_spell_success($spell_data, $maxhit, 64);
+} else {
+    ~pvp_spell_fail($spell_data, 64);
+}

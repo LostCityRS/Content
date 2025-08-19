@@ -1,0 +1,66 @@
+[opnpc2,_battle_mage]
+if (~inzone_coord_pair_table(mage_arena, coord) = true) {
+    // Lotta forums posts where people are confused whether 
+    // or not they can use auto cast. Some people say you can,
+    // some people say you cant. I assume you could autocast,
+    // but only if you cast a manual spell first (and have autocast on).
+    // Some guides say you cant click on npc's with autocast.
+    if (%magearena < ^mage_arena_complete) {
+        mes("You are not ready to fight the battle mages."); // for some reason this message appears before the singles combat messages, if you're not casting spells
+        return;
+    }
+}
+@player_combat_start;
+
+[apnpc2,_battle_mage]
+if (~inzone_coord_pair_table(mage_arena, coord) = true) {
+    if (%magearena < ^mage_arena_complete) {
+        mes("You are not ready to fight the battle mages."); // for some reason this message appears before the singles combat messages, if you're not casting spells
+        return;
+    }
+}
+@player_combat_start_ap;
+
+[ai_queue1,zamorak_mage] ~npc_default_retaliate_ap;
+[ai_queue1,saradomin_mage] ~npc_default_retaliate_ap;
+[ai_queue1,guthix_mage] ~npc_default_retaliate_ap;
+
+[ai_applayer2,saradomin_mage] @saradomin_mage_attack;
+[ai_applayer2,guthix_mage] @guthix_mage_attack;
+[ai_applayer2,zamorak_mage] @zamorak_mage_attack;
+
+[ai_opplayer2,saradomin_mage] @saradomin_mage_attack;
+[ai_opplayer2,guthix_mage] @guthix_mage_attack;
+[ai_opplayer2,zamorak_mage] @zamorak_mage_attack;
+
+[label,saradomin_mage_attack]
+// this video shows a random chance https://youtu.be/sJflCm4c-ns?list=PLn23LiLYLb1Y4vxMPWXM-CVEvOUfuAP_o&t=130
+// the zamorak battle mage says 'Hail Zamorak!' 12 times in ~150 ticks. Im guessing a 1/10 chance
+if (random(10) = 0 & inv_total(worn, saradomin_staff) > 0 & inv_total(worn, saradomin_cape) > 0 & %npc_aggressive_player ! uid) {
+    npc_say("Hail Saradomin!");
+    return;
+}
+~npc_cast_spell(^saradomin_strike, 5);
+if (~npc_check_notcombat = true & ~npc_check_notcombat_self = true) {
+    npc_say("Feel the wrath of Saradomin.");
+}
+
+[label,guthix_mage_attack]
+if (random(10) = 0 & inv_total(worn, guthix_staff) > 0 & inv_total(worn, guthix_cape) > 0 & %npc_aggressive_player ! uid) {
+    npc_say("Hail Guthix!");
+    return;
+}
+~npc_cast_spell(^claws_of_guthix, 5);
+if (~npc_check_notcombat = true & ~npc_check_notcombat_self = true) {
+    npc_say("Feel the wrath of Guthix.");
+}
+
+[label,zamorak_mage_attack]
+if (random(10) = 0 & inv_total(worn, zamorak_staff) > 0 & inv_total(worn, zamorak_cape) > 0 & %npc_aggressive_player ! uid) {
+    npc_say("Hail Zamorak!");
+    return;
+}
+~npc_cast_spell(^flames_of_zamorak, 5);
+if (~npc_check_notcombat = true & ~npc_check_notcombat_self = true) {
+    npc_say("Feel the wrath of Zamorak.");
+}

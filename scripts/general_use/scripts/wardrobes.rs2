@@ -1,0 +1,44 @@
+[oploc1,loc_388]
+p_arrivedelay;
+anim(human_openbigcupboard, 0);
+p_delay(0);
+// todo - Sound
+
+// 1/21 of spooky wardrobe, https://archive.is/FPJBA
+if (random(21) = 0) {
+    // Temp note: dur does not need updated
+    loc_change(loc_390, 500);
+} else {
+    // Temp note: dur does not need updated
+    loc_change(loc_389, 500);
+}
+
+[oploc2,loc_389]
+p_arrivedelay;
+if (random(^findsomethingnice_chance) = 0 & ~in_tutorial_island(coord) = false) { // complete guess
+    mes("You search the wardrobe..."); // guess
+    p_delay(2);
+    ~findsomethingnice;
+    return;
+}
+mes("The wardrobe is empty.");
+
+[oploc3,loc_389]
+p_arrivedelay;
+anim(human_closechest, 0);
+p_delay(0);
+// todo - Sound
+// Temp note: dur does not need updated
+loc_change(loc_388, 500);
+
+[oploc2,loc_390]
+p_arrivedelay;
+mes("Eek! There's a skeleton in there.");
+
+[oploc3,loc_390]
+p_arrivedelay;
+anim(human_closechest, 0);
+p_delay(0);
+// todo - Sound
+// Temp note: dur does not need updated
+loc_change(loc_388, 500);

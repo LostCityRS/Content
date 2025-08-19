@@ -1,0 +1,44 @@
+[proc,damage_self](int $amount)
+if (stat(hitpoints) = 0) {
+    ~player_die;
+    return;
+}
+if_close;
+if ($amount > 0) {
+    damage(uid, 1, $amount);
+    ~human_hit_sound;
+} else {
+    damage(uid, 0, 0);
+}
+
+if (stat(hitpoints) = 0){
+    ~player_die;
+    return;
+}
+
+~ring_of_life_check;
+
+[queue,damage_player](int $amount)
+~damage_self($amount);
+
+[proc,human_hit_sound]
+def_int $rand;
+def_synth $sound;
+if (gender() = 0) {
+        $rand = random(3);
+        switch_int($rand) {
+            case 0 : $sound = human_hit2;
+            case 1 : $sound = human_hit3;
+            case 2 : $sound = human_hit4;
+            case default : $sound = human_hit2;
+        }
+    } else {
+        $rand = random(2);
+        switch_int($rand) {
+            case 0 : $sound = female_hit;
+            case 1 : $sound = female_hit2;
+            case default : $sound = female_hit;
+        }
+    }
+sound_synth($sound, 0, 20);
+

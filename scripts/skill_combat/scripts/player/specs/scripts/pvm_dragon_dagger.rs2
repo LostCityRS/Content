@@ -1,0 +1,36 @@
+[label,pvm_dragon_dagger_sa]
+~set_sa_vars(oc_param(inv_getobj(worn, ^wearpos_rhand), sa_energy));
+spotanim_pl(sp_attack_puncture_spotanim, 96, 0);
+anim(puncture, 0);
+sound_synth(puncture, 0, 0);
+npc_anim(npc_param(defend_anim), 20); 
+
+~pvm_dragon_dagger_spec_hit;
+p_delay(0);
+~pvm_dragon_dagger_spec_hit;
+
+[proc,pvm_dragon_dagger_spec_hit]
+if (npc_stat(hitpoints) = 0) {
+    return;
+}
+def_int $damage = 0;
+def_int $maxhit = scale(115, 100, %com_maxhit); // 15% bonus damage
+def_int $attackroll = scale(115, 100, ~player_attack_roll_specific(%damagetype)); // 15% bonus accuracy
+def_int $defenceroll = ~npc_defence_roll_specific(^slash_style);
+if (randominc($attackroll) > randominc($defenceroll)) {
+    if (npc_type = count_draynor & inv_total(inv, garlic) > 0) {
+        $maxhit = add($maxhit, 1);
+    }
+    $damage = randominc(min($maxhit, npc_param(max_dealt)));
+    def_int $damage_capped = min($damage, npc_stat(hitpoints));
+    ~give_combat_experience(%damagestyle, $damage_capped, %npc_combat_xp_multiplier);
+    npc_heropoints($damage_capped);
+}
+
+def_int $poison_severity = oc_param(inv_getobj(worn, ^wearpos_rhand), poison_severity);
+if ($damage > 0 & $poison_severity > 0 & random(4) = 0) { // 1/4 chance to poison
+    // poison npc
+    ~npc_poison_start($poison_severity);
+}
+~npc_retaliate(0);
+npc_queue(2, $damage, 0);

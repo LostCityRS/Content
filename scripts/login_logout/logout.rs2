@@ -1,0 +1,25 @@
+// TODO: Change compiler to remove return value
+[logout,_]()(boolean)
+~set_pk_skull_logout;
+~set_antifire_logout; // TODO: should be timer
+~follower_logout;
+~rashiliyia_door_logout;
+~duel_arena_logout;
+~macro_event_logout;
+return(true);
+
+[if_button,logout:try_logout]
+if_close;
+if (p_finduid(uid) = true) {
+    if (~in_duel_arena(coord) = true) {
+        mes("You can't log out during a duel."); //https://youtu.be/xLE8au7T50Q?t=227
+        return;
+    }
+
+    if (~inzone_coord_pair_table(gnomeball_zones, coord) = true) {
+        mes("You can't log out on a gnomeball pitch."); // osrs
+        return;
+    }
+
+    p_logout;
+}

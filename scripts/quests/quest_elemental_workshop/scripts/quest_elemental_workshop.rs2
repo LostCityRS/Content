@@ -1,0 +1,281 @@
+[oploc1,elemental_workshop_bookcase]
+if(inv_total(inv, elemental_workshop_shield_book) > 0) {
+    mes("You search the bookcase but find nothing of interest.");
+    return;
+}
+// https://web.archive.org/web/20041214093302im_/http://img.photobucket.com/albums/v289/MrFlibble/ScreenHunter_037.bmp
+mes("You find a book titled 'The elemental shield'.");
+if(inv_freespace(inv) = 0) {
+    mes("However, you don't have enough room to take it.");
+    return;
+}
+inv_add(inv, elemental_workshop_shield_book, 1);
+
+[oploc1,elemental_workshop_oddwall_l] @push_elemental_workshop_wall(^left);
+[oploc1,elemental_workshop_oddwall_r] @push_elemental_workshop_wall(^right);
+
+[oplocu,elemental_workshop_oddwall_l] @use_elemental_workshop_wall(^left);
+[oplocu,elemental_workshop_oddwall_r] @use_elemental_workshop_wall(^right);
+
+[label,push_elemental_workshop_wall](int $side)
+if(~check_axis_locactive(coord) = false) {
+    ~open_and_close_double_door2(~check_axis_locactive(coord), $side, coffin_open);
+    return;
+}
+sound_synth(locked, 0, 0);
+mes("You see a small hole in the wall but no way to open it.");
+
+[label,use_elemental_workshop_wall](int $side)
+if(last_useitem = elemental_workshop_key) {
+    ~open_and_close_double_door2(~check_axis_locactive(coord), $side, coffin_open);
+    return;
+}
+sound_synth(locked, 0, 0);
+mes("You can't unlock the door with that.");
+
+[oploc1,elemental_workshop_spiralstairstop]
+p_teleport(0_42_154_28_32);
+// https://youtu.be/3_KOiy-ZK4c?si=FYslHGEOo-ZF5cTB&t=82
+if(testbit(%elemental_workshop_bits, ^elemental_workshop_entered) = ^false) {
+    %elemental_workshop_bits = setbit(%elemental_workshop_bits, ^elemental_workshop_entered);
+}
+
+[oploc1,elemental_workshop_spiralstairs]
+p_teleport(0_42_54_21_41);
+
+[oploc1,elemental_workshop_box_1]
+if(inv_total(inv, elemental_workshop_lava_bowl) = 0) {
+    inv_add(inv, elemental_workshop_lava_bowl, 1);
+    mes("You find a stone bowl.");
+    return;
+}
+@elemental_workshop_box_empty;
+
+[oploc1,elemental_workshop_box_2]
+if(inv_total(inv, needle) > 0 | testbit(%elemental_workshop_bits, ^elemental_workshop_needle_found) = ^true) {
+    @elemental_workshop_box_empty;
+}
+inv_add(inv, needle, 1);
+mes("You find a needle.");
+%elemental_workshop_bits = setbit(%elemental_workshop_bits, ^elemental_workshop_leather_found);
+
+[oploc1,elemental_workshop_box_4]
+if(inv_total(inv, leather) > 0 | testbit(%elemental_workshop_bits, ^elemental_workshop_leather_found) = ^true) {
+    @elemental_workshop_box_empty;
+}
+inv_add(inv, leather, 1);
+mes("You find some leather.");
+%elemental_workshop_bits = setbit(%elemental_workshop_bits, ^elemental_workshop_leather_found);
+
+[oploc1,elemental_workshop_box_3] @elemental_workshop_box_empty;
+[oploc1,elemental_workshop_box_5] @elemental_workshop_box_empty;
+[oploc1,elemental_workshop_box_6] @elemental_workshop_box_empty;
+[oploc1,elemental_workshop_box_7] @elemental_workshop_box_empty;
+[oploc1,elemental_workshop_box_8] @elemental_workshop_box_empty;
+
+[label,elemental_workshop_box_empty]
+mes("It's empty.");
+
+[oploc1,elemental_workshop_valve_1]
+if(testbit(%elemental_workshop_bits, ^elemental_workshop_water_flowing) = ^true) {
+    mes("Now that the water wheel is running, the valve seems locked off.");
+    return;
+}
+mes("You turn the handle.");
+if(testbit(%elemental_workshop_bits, ^elemental_workshop_water_controls_left) = ^false) { // cant toggle this side if left side is on
+    %elemental_workshop_bits = togglebit(%elemental_workshop_bits, ^elemental_workshop_water_controls_right);
+}
+if(testbit(%elemental_workshop_bits, ^elemental_workshop_water_flowing) = ^true) {
+    sound_synth(squeaky_valve_gush, 0, 0);
+} else {
+    sound_synth(squeaky_valve, 0, 0);
+}
+
+[oploc1,elemental_workshop_valve_2]
+if(testbit(%elemental_workshop_bits, ^elemental_workshop_water_flowing) = ^true) {
+    mes("Now that the water wheel is running, the valve seems locked off.");
+    return;
+}
+mes("You turn the handle.");
+%elemental_workshop_bits = togglebit(%elemental_workshop_bits, ^elemental_workshop_water_controls_left);
+if(testbit(%elemental_workshop_bits, ^elemental_workshop_water_flowing) = ^true) {
+    sound_synth(squeaky_valve_gush, 0, 0);
+} else {
+    sound_synth(squeaky_valve, 0, 0);
+}
+
+[oploc1,elemental_workshop_water_lever]
+mes("You pull the lever.");
+loc_change(elemental_workshop_lever_pulled, 3);
+if(testbit(%elemental_workshop_bits, ^elemental_workshop_water_flowing) = ^true) {
+    %elemental_workshop_bits = clearbit(%elemental_workshop_bits, ^elemental_workshop_water_flowing);
+    if(testbit(%elemental_workshop_bits, ^elemental_workshop_air_blowing) = ^true) %elemental_workshop_bits = clearbit(%elemental_workshop_bits, ^elemental_workshop_air_blowing);
+    mes("You hear the sound of a water wheel coming to a standstill.");
+    sound_synth(water_wheel_stop, 0, 0);
+    return;
+}
+if(getbit_range(%elemental_workshop_bits, ^elemental_workshop_water_controls_left, ^elemental_workshop_water_controls_right) = 3) {
+    %elemental_workshop_bits = setbit(%elemental_workshop_bits, ^elemental_workshop_water_flowing);
+    mes("You hear the sound of a water wheel starting up.");
+    if(loc_find(0_42_154_31_51, elemental_wheel) = true) {
+        loc_anim(elemental_wheel_spin);
+        loc_add(0_42_154_34_51, loc_2016, 2, centrepiece_straight, 4);
+        loc_add(0_42_154_30_51, loc_2018, 0, centrepiece_straight, 4);
+    }
+    sound_synth(water_wheel_start, 0, 0);
+    return;
+}
+sound_synth(sluice_gate, 0, 0);
+%elemental_workshop_bits = clearbit_range(%elemental_workshop_bits, ^elemental_workshop_water_controls_left, ^elemental_workshop_water_controls_right);
+mes("You hear the sound of the flow gates resetting.");
+
+[oploc1,elemental_workshop_air_lever]
+mes("You pull the lever.");
+loc_change(elemental_workshop_lever_pulled, 3);
+sound_synth(lever, 0, 0);
+if(testbit(%elemental_workshop_bits, ^elemental_workshop_air_blowing) = ^true) {
+    %elemental_workshop_bits = clearbit(%elemental_workshop_bits, ^elemental_workshop_air_blowing);
+    mes("The bellows stop pumping air.");
+    return;
+}
+if(getbit_range(%elemental_workshop_bits, ^elemental_workshop_water_flowing, ^elemental_workshop_bellows_repaired) = 3) {
+    %elemental_workshop_bits = setbit(%elemental_workshop_bits, ^elemental_workshop_air_blowing);
+    if(loc_find(0_42_154_46_26, elemental_workshop_bellows_l) = true) loc_anim(elemental_bellow_pump);
+    if(loc_find(0_42_154_48_26, elemental_workshop_bellows_r) = true) loc_anim(elemental_bellow_pump_reverse);
+    mes("The bellows pump air down the pipe.");
+    return;
+}
+mes("Nothing happens; the lever resets itself.");
+
+[oplocu,elemental_workshop_trough]
+if(last_useitem = elemental_workshop_lava_bowl) {
+    inv_del(inv, elemental_workshop_lava_bowl, 1);
+    inv_add(inv, elemental_workshop_lava_bowl_full, 1);
+    mes("You fill the bowl with hot lava.");
+    sound_synth(lava_bowl_fill, 0, 0);
+    return;
+}
+if(last_useitem = elemental_workshop_lava_bowl_full) {
+    mes("The bowl is already full of lava.");
+    return;
+}
+~displaymessage(^dm_default);
+
+[oploc1,elemental_workshop_bellows_l] @elemental_workshop_fix_bellows;
+[oploc1,elemental_workshop_bellows_r] @elemental_workshop_fix_bellows;
+
+[label,elemental_workshop_fix_bellows]
+if(testbit(%elemental_workshop_bits, ^elemental_workshop_bellows_repaired) = ^true) {
+    mes("The bellows already look fixed to you.");
+    return;
+}
+if(stat(crafting) < 20) {
+    mes("You need a Crafting level of 20 to fix this.");
+    return;
+}
+if(inv_total(inv, needle) = 0 | inv_total(inv, leather) = 0 | inv_total(inv, thread) = 0) {
+    mes("You need a piece of leather, some thread and a needle to fix this.");
+    return;
+}
+mes("You stitch the leather over the hole in the bellows.");
+%elemental_workshop_bits = setbit(%elemental_workshop_bits, ^elemental_workshop_bellows_repaired);
+inv_del(inv, thread, 1);
+inv_del(inv, leather, 1);
+
+[oploc1,elemental_workshop_rock]
+if(stat(mining) < 20) {
+    mes("You need a Mining level of at least 20 to mine elemental ore.");
+    return;
+}
+def_obj $pickaxe = ~pickaxe_checker;
+if ($pickaxe = null) {
+    ~mesbox("You do not have a pickaxe which you have the Mining level to use.");
+    return;
+}
+npc_huntall(coord, 5, 0);
+while (npc_huntnext = true) {
+    if (npc_type = earth_elemental_rock_version & %aggressive_npc = npc_uid) {
+        return;
+    }
+}
+// https://youtu.be/3_KOiy-ZK4c?si=zQRMQfSuG55co48y&t=312 1t delay before spawning when he arrives, no delay when clicking again in op dist
+p_arrivedelay;
+npc_add(coord, earth_elemental_rock_version, 500);
+npc_say("Grr... Ge'roff my rock!");
+~npc_retaliate(0);
+p_delay(1);
+
+[oplocu,elemental_workshop_furnace]
+def_obj $last_useitem = last_useitem;
+if($last_useitem = elemental_workshop_lava_bowl_full) {
+    mes("You empty the lava in the furnace.");
+    inv_del(inv, elemental_workshop_lava_bowl_full, 1);
+    inv_add(inv, elemental_workshop_lava_bowl, 1);
+    p_delay(4);
+    if(testbit(%elemental_workshop_bits, ^elemental_workshop_furnace_lit) = ^true) {
+        mes("The lava makes little difference to the furnace's searing heat.");
+        return;
+    }
+    mes("The furnace bursts in to life.");
+    %elemental_workshop_bits = setbit(%elemental_workshop_bits, ^elemental_workshop_furnace_lit);
+}
+if(testbit(%elemental_workshop_bits, ^elemental_workshop_furnace_lit) = ^false) {
+    mes("The furnace is cold and useless for anything.");
+    return;
+}
+if($last_useitem = elemental_workshop_ore) {
+    if(testbit(%elemental_workshop_bits, ^elemental_workshop_air_blowing) = ^false) {
+        mes("The furnace needs to be hotter to be of any use.");
+        return;
+    }
+    if(inv_total(inv, coal) < 4) {
+        mes("You need four heaps of coal to smelt elemental ore.");
+        return;
+    }
+    mes("You place the elemental ore and four heaps of coal into the furnace.");
+    inv_del(inv, elemental_workshop_ore, 1);
+    inv_del(inv, coal, 4);
+    anim(human_furnace, 0);
+    p_delay(3);
+    stat_advance(smithing, 80);
+    inv_add(inv, elemental_workshop_bar, 1);
+    mes("You retrieve a bar of elemental metal.");
+    mes("The furnace is so hot it will destroy almost anything put in it."); // todo: does this mean anything functionally?
+}
+
+[oplocu,elemental_workshop_workbench]
+if(last_useitem = elemental_workshop_bar) {
+    if(inv_total(inv, hammer) = 0) {
+        ~mesbox("You need a hammer to work the metal with.");
+        return;
+    }
+    if(stat(smithing) < 20) {
+        ~mesbox("You need a Smithing level of at least 20 to work elemental bars.");
+        return;
+    }
+    if(inv_total(inv, elemental_workshop_shield_book) = 0) {
+        ~mesbox("This workbench is too complicated. You need instructions to follow.");
+        return;
+    }
+    // https://youtu.be/3_KOiy-ZK4c?si=iMaWOSMTw2ZrjG4r&t=429
+    mes("You make an Elemental Shield.");
+    inv_del(inv, elemental_workshop_bar, 1);
+    anim(human_cooking, 0);
+    p_delay(3);
+    inv_add(inv, elemental_shield, 1);
+    stat_advance(smithing, 200);
+    if(testbit(%elemental_workshop_bits, ^elemental_workshop_complete) = ^false) queue(elemental_workshop_quest_complete, 0);
+}
+else if (oc_category(last_useitem) = category_151) ~objbox(last_useitem, "The workbench is not made to work this type of metal.", 250, 0, 0);
+else ~displaymessage(^dm_default);
+
+[queue,elemental_workshop_quest_complete]
+%elemental_workshop_bits = setbit(%elemental_workshop_bits, ^elemental_workshop_complete);
+stat_advance(crafting, 50000);
+stat_advance(smithing, 50000);
+session_log(^log_adventure, "Quest complete: Elemental Workshop");
+// todo: find image for proof on sizing
+~send_quest_complete(questlist:elemental_workshop, elemental_shield, 250, ^elemental_workshop_questpoints, "You have completed the\\nElemental Workshop Quest!");
+
+[debugproc,tew]
+queue(elemental_workshop_quest_complete, 0);

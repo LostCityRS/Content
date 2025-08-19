@@ -1,0 +1,91 @@
+[opnpc1,redbeard_frank]
+// https://storage.googleapis.com/tannerdino/images/RedbeardFrank.jpg
+~chatnpc("<p,laugh>Arrrh Matey!");
+
+if (%hunt_progress = 1) {
+    @redboard_progress;
+} else if (%hunt_progress = 2 & inv_total(inv, chest_key) = 0) {
+    ~chatplayer("<p,sad>I seem to have lost my chest key...");
+    ~chatnpc("<p,neutral>Arr, silly you. Fortunately I took the precaution to have another one made.");
+
+    ~objbox(chest_key, "Frank hands you a chest key", 250, 0, divide(^objbox_height, 2));
+    inv_add(inv, chest_key, 1);
+
+    @redbeard_options;
+} else {
+    @redbeard_options;
+}
+[label,redbeard_options]
+if (%hunt_progress = 0) {
+    @multi3("I'm in search of treasure.", redbeard_treasure, "Arr!", redbeard_arr, "Do you have anything for trade?", redbeard_trade);
+} else {
+    @multi2("Arr!", redbeard_arr, "Do you have anything for trade?", redbeard_trade);
+}
+
+[label,redboard_progress]
+~chatnpc("<p,quiz>Have ye brought some rum for yer ol' mate Frank?");
+
+if (inv_total(inv, karamja_rum) >= 1) {
+    ~chatplayer("<p,happy>Yes, I've got some.");
+    @redbeard_hand_rum;
+    return;
+}
+
+~chatplayer("<p,sad>No, not yet.");
+
+[label,redbeard_hand_rum]
+~chatnpc("<p,shifty>Now a deal's a deal, I'll tell ye about the treasure. I used to serve under a pirate captain called One-Eyed Hector.");
+~chatnpc("<p,shifty>Hector were very successful and became very rich. But about a year ago we were boarded by the Customs and Excise Agents.");
+~chatnpc("<p,sad>Hector were killed along with many of the crew, I were one of the few to escape and I escaped with this.");
+
+%hunt_progress = 2;
+
+inv_del(inv, karamja_rum, 1);
+inv_add(inv, chest_key, 1);
+
+~objbox(chest_key, "Frank happily takes the rum... ... and hands you a key.", 250, 0, 0);
+~chatnpc("<p,shifty>This be Hector's key. I believe it opens his chest in his old room in the Blue Moon Inn in Varrock.");
+~chatnpc("<p,neutral>With any luck his treasure will be in there.");
+
+def_int $option = ~p_choice2("Ok thanks, I'll go and get it.", 1, "So why didn't you ever get it?", 2);
+if ($option = 1) {
+    ~chatplayer("<p,happy>Ok thanks, I'll go and get it.");
+} else if ($option = 2) {
+    ~chatplayer("<p,quiz>So why didn't you ever get it?");
+    ~chatnpc("<p,sad>I'm not allowed in the Blue Moon Inn. Apparently I'm a drunken trouble maker.");
+}
+
+
+[label,redbeard_treasure]
+~chatplayer("<p,shifty>I'm in search of treasure.");
+~chatnpc("<p,shifty>Arr, treasure you be after eh? Well I might be able to tell you where to find some... For a price...");
+~chatplayer("<p,quiz>What sort of price?");
+~chatnpc("<p,neutral>Well for example if you can get me a bottle of rum... Not just any rum mind...");
+~chatnpc("<p,happy>I'd like some rum made on Karamja Island. There's no rum like Karamja Rum!");
+
+%hunt_progress = 1;
+~send_quest_progress(questlist:hunt, %hunt_progress, ^hunt_complete);
+
+[label,redbeard_arr]
+~chatplayer("<p,laugh>Arr!");
+~chatnpc("<p,laugh>Arr!");
+@redbeard_options;
+
+[label,redbeard_trade]
+~chatplayer("<p,quiz>Do you have anything for trade?");
+~chatnpc("<p,neutral>Nothin' at the moment, but then again the Customs Agents are on the warpath right now.");
+
+[opnpcu,redbeard_frank]
+if (last_useitem ! karamja_rum) {
+    ~displaymessage(^dm_default);
+    return;
+}
+
+// I'm unsure what happens if you attempt this when progress = 0,
+// but it shouldn't be possible anyway.
+if (%hunt_progress = 1) {
+    ~chatplayer("<p,happy>Frank, I have some Karamja Rum.");
+    @redbeard_hand_rum;
+} else {
+    ~chatnpc("<p,happy>Thanks fer the thought, but I still have to finish this bottle.");
+}

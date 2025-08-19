@@ -1,0 +1,93 @@
+[opnpc2,trail_hard]
+if (%npc_aggressive_player ! uid) {
+    mes("It's not after you...");
+    return;
+}
+@player_combat_start;
+
+[apnpc2,trail_hard] 
+if (%npc_aggressive_player ! uid) {
+    mes("It's not after you...");
+    return;
+}
+@player_combat_start_ap;
+
+[ai_applayer2,trail_hard]
+npc_setmode(opplayer2);
+~npc_cast_spell(^flames_of_zamorak, 4);
+
+[ai_opplayer2,trail_hard]
+~npc_cast_spell(^flames_of_zamorak, 4);
+
+[ai_timer,trail_hard]
+if(finduid(%npc_aggressive_player) = false) {
+    npc_del;
+    return;
+}
+if(distance(coord, npc_coord) > 17) { // not 100% sure on this, think it's the same as the black demon in grandtree
+    npc_del;
+}
+
+[ai_queue3,trail_hard]
+if (npc_findhero = ^true) {
+    queue(queue_defeat_trail_hard, 0);
+}
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+def_int $random = random(128);
+
+if ($random < 4) {
+    obj_add(npc_coord, zamrobebottom, 1, ^lootdrop_duration);
+} else if ($random < 7) {
+    obj_add(npc_coord, zamrobetop, 1, ^lootdrop_duration);
+} else if ($random < 10) {
+    obj_add(npc_coord, water_battlestaff, 1, ^lootdrop_duration);
+} else if ($random < 13) {
+    obj_add(npc_coord, earth_battlestaff, 1, ^lootdrop_duration);
+} else if ($random < 15) {
+    obj_add(npc_coord, air_battlestaff, 1, ^lootdrop_duration);
+} else if ($random < 16) {
+    obj_add(npc_coord, fire_battlestaff, 1, ^lootdrop_duration);
+} else if ($random < 28) {
+    obj_add(npc_coord, bloodrune, 12, ^lootdrop_duration);
+} else if ($random < 35) {
+    obj_add(npc_coord, naturerune, 7, ^lootdrop_duration);
+} else if ($random < 41) {
+    obj_add(npc_coord, deathrune, 45, ^lootdrop_duration);
+} else if ($random < 45) {
+    obj_add(npc_coord, earthrune, 86, ^lootdrop_duration);
+} else if ($random < 48) {
+    obj_add(npc_coord, airrune, 60, ^lootdrop_duration);
+} else if ($random < 51) {
+    obj_add(npc_coord, waterrune, 42, ^lootdrop_duration);
+} else if ($random < 54) {
+    obj_add(npc_coord, earthrune, 79, ^lootdrop_duration);
+} else if ($random < 57) {
+    obj_add(npc_coord, firerune, 51, ^lootdrop_duration);
+} else if ($random < 59) {
+    obj_add(npc_coord, airrune, 189, ^lootdrop_duration);
+} else if ($random < 61) {
+    obj_add(npc_coord, waterrune, 126, ^lootdrop_duration);
+} else if ($random < 63) {
+    obj_add(npc_coord, earthrune, 107, ^lootdrop_duration);
+} else if ($random < 65) {
+    obj_add(npc_coord, firerune, 180, ^lootdrop_duration);
+} else if ($random < 66) {
+    obj_add(npc_coord, cosmicrune, 25, ^lootdrop_duration);
+} else if ($random < 67) {
+    obj_add(npc_coord, lawrune, 9, ^lootdrop_duration);
+} else if ($random < 92) {
+    obj_add(npc_coord, coins, 89, ^lootdrop_duration);
+} else if ($random < 109) {
+    obj_add(npc_coord, coins, 77, ^lootdrop_duration);
+} else if ($random < 112) {
+    obj_add(npc_coord, coins, 240, ^lootdrop_duration);
+}
+
+[queue,queue_defeat_trail_hard] 
+%trail_clue = setbit(%trail_clue, 4);

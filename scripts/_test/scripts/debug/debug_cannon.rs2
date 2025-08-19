@@ -1,0 +1,58 @@
+[debugproc,mc]
+if (%mcannon_coord ! null) {
+    mes(tostring(coordx(%mcannon_coord)));
+}
+mes(tostring(%mcannon_stage));
+
+[debugproc,givemc]
+inv_add(inv, twpart1, 1);
+inv_add(inv, twpart2, 1);
+inv_add(inv, twpart3, 1);
+inv_add(inv, twpart4, 1);
+inv_add(inv, mcannonball, 1000);
+
+[debugproc,completemc]
+queue(mcannon_complete, 0);
+
+[debugproc,mctele]
+if (p_finduid(uid) = true) {
+    p_teleport(0_47_53_8_61);
+}
+
+[debugproc,hasmc]
+if (p_finduid(uid) = false) {
+    return;
+}
+if (%mcannon_coord = null | loc_find(%mcannon_coord, dwarf_multicannon1) = true) {
+    ~chatnpc_specific("Nulodion", nulodion, "<p,sad>Oh dear, I'm only allowed to replace cannons|that were stolen in action.|I'm sorry but you'll have to buy a new set.");
+    return;
+}
+if (%mcannon_coord ! null) {
+    if (loc_find(%mcannon_coord, multicannon_base) = true) {
+        ~chatnpc_specific("Nulodion", nulodion, "<p,confused>Hmmm. I think you'll find the base still happily parked on the spot where you put it."); // osrs
+        ~chatplayer("<p,confused>Oh, is it still there? I thought I'd lost it.");
+        ~chatnpc_specific("Nulodion", nulodion, "<p,laugh>Ha ha ha, what a muddle-headed numpty you are!");
+        ~chatplayer("<p,angry>...");
+        return;
+    } else if (loc_find(%mcannon_coord, multicannon_stand) = true) {
+        ~chatnpc_specific("Nulodion", nulodion, "<p,confused>Hmmm. I think you'll find the base and stand still happily parked on the spot where you put them."); // osrs
+        ~chatplayer("<p,confused>Oh, is it still there? I thought I'd lost it.");
+        ~chatnpc_specific("Nulodion", nulodion, "<p,laugh>Ha ha ha, what a muddle-headed numpty you are!");
+        ~chatplayer("<p,angry>...");
+        return;
+    } else if (loc_find(%mcannon_coord, multicannon_barrels) = true) {
+        ~chatnpc_specific("Nulodion", nulodion, "<p,confused>Hmmm. I think you'll find most of the cannon still happily parked on the spot where you put it."); // osrs
+        ~chatplayer("<p,confused>Oh, is it still there? I thought I'd lost it.");
+        ~chatnpc_specific("Nulodion", nulodion, "<p,laugh>Ha ha ha, what a muddle-headed numpty you are!");
+        ~chatplayer("<p,angry>...");
+        return;
+    }
+}
+
+[debugproc,atele]
+if (p_finduid(uid) = true) {
+    p_teleport(0_41_51_31_33);
+}
+
+[debugproc,cannon_hit](int $multiplier, int $damage)
+mes(tostring(scale($multiplier, 1000, scale(200, 100, $damage))));

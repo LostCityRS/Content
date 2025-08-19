@@ -1,0 +1,118 @@
+// ************************* TRIGGERS **************************
+// normal food
+[opheld1,_category_5] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld1,_category_58] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld1,_category_59] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld1,_category_86] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld1,rottenapples] ~displaymessage(^dm_default);
+[opheld1,_category_120] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld1,_category_131] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld1,pineapple]
+mes("You cant eat it whole; maybe you should cut it up.");
+[opheld1,_alcoholic_drinks] @player_consume_item(consume_effect_stat, 2, 3);
+
+// Kebabs
+[opheld1,kebab] @player_consume_item(consume_effect_kebab, 2, 3);
+[opheld1,ugthanki_kebab_bad] @player_consume_item(consume_effect_ugthanki_kebab_bad, 2, 3);
+[opheld1,ugthanki_kebab] @player_consume_item(consume_effect_stat_say, 2, 3);
+
+// stews
+[opheld1,curry] @player_consume_item(consume_effect_stat2, 2, 3);
+[opheld1,stew] @player_consume_item(consume_effect_stat2, 2, 3);
+
+// gnome foods
+// these are combo eatable in osrs
+[opheld1,_gnome_crunchies] @player_consume_item(consume_effect_stat, null, null);
+[opheld1,_gnome_unf_odd_crunchies] @player_consume_item(consume_effect_stat, null, null);
+[opheld1,_gnome_batta] @player_consume_item(consume_effect_stat, null, null);
+[opheld1,_gnome_unf_odd_batta] @player_consume_item(consume_effect_stat, null, null);
+[opheld1,_gnome_bowl] @player_consume_item(consume_effect_stat, null, null);
+[opheld1,_gnome_unf_odd_bowl] @player_consume_item(consume_effect_stat, null, null);
+[opheld1,_gnome_premade_and_toadlegs_kingworm] @player_consume_item(consume_effect_stat, null, null);
+
+// cocktails
+// these work like normal food in osrs
+[opheld1,_gnome_cocktail]
+switch_obj(last_item) { 
+    case premade_fruit_blast, fruit_blast, pineapple_punch, pineapple_punch : @player_consume_item(consume_effect_stat, 2, 3);
+    case default : @player_consume_item(consume_effect_stat2, 2, 3);
+}
+[opheld1,_gnome_unf_odd_cocktail]
+switch_obj(last_item) {
+    case spoilt_cocktail, spoilt_cocktail_fruity, spoilt_cocktail_creamy, spoilt_cocktail_slice :
+        inv_delslot(inv, last_slot);
+        inv_add(inv, oc_param(last_item, next_obj_stage), 1);
+        mes("You empty the cocktail.");
+    case default : @player_consume_item(consume_effect_stat, 2, 3); // unfinished cocktails
+}
+[opheld3,_gnome_unf_odd_cocktail] @player_consume_item(consume_effect_stat2, 2, 3); // odd cocktails
+
+// pies
+[opheld1,_category_129]
+def_int $eat_delay = 0;
+if (oc_param(last_item, next_obj_stage) = piedish) {
+    $eat_delay = 1;
+}
+@player_consume_item(consume_effect_stat2, $eat_delay, 3);
+
+// cakes
+[opheld1,_category_130]
+def_int $eat_delay = 1;
+if (oc_param(last_item, next_obj_stage) = null) {
+    $eat_delay = 2;
+}
+@player_consume_item(consume_effect_stat2, $eat_delay, 3);
+
+// pizzas
+[opheld1,_category_132]
+def_int $eat_delay = 0;
+if (oc_param(last_item, next_obj_stage) = null) {
+    $eat_delay = 1;
+}
+@player_consume_item(consume_effect_stat2, $eat_delay, 3); // uses consume_effect_stat2: https://oldschool.runescape.wiki/w/Update:Zoom_%26_The_Herb_Sack
+
+// potions
+[opheld1,jangerberries]@player_consume_item(consume_effect_stat, 2, 3);
+[opheld1,poison_chalice]@player_consume_item(consume_effect_poison_chalice, null, null);
+[opheld1,cup_of_tea]@player_consume_item(consume_effect_stat_say, 2, 3);
+[opheld1,_category_69]
+switch_obj(last_item) {
+    // anti dragon
+    case 1dose1antidragon, 2dose1antidragon, 3dose1antidragon, 4dose1antidragon :
+        @player_consume_item(consume_effect_antidragon, null, null);
+    // anti posions
+    case 1doseantipoison, 2doseantipoison, 3doseantipoison, 4doseantipoison :
+        @player_consume_item(consume_effect_antipoison, null, null);
+    case 1dose2antipoison, 2dose2antipoison, 3dose2antipoison, 4dose2antipoison :
+        @player_consume_item(consume_effect_super_antipoison, null, null);
+    case default : @player_consume_item(consume_effect_stat, null, null);
+}
+[opheld1,macro_triffidfruit]@player_consume_item(consume_effect_strange_fruit, 2, 3);
+// ************************* TRIGGERS **************************
+
+// all normal foods use %eat_delay
+[label,player_consume_item](label $consume_effect, int $eat_delay, int $skill_delay)
+def_obj $obj = inv_getobj(inv, last_slot);
+
+if (~duel_arena_consume_check($obj) = false) {
+    return;
+}
+
+if ($eat_delay ! null) {
+    if (%eat_delay >= map_clock) {
+        return;
+    }
+    %eat_delay = calc(map_clock + $eat_delay);
+}
+
+if ($skill_delay ! null) {
+    %action_delay = calc(%action_delay + $skill_delay);
+}
+
+// consume effect
+jump($consume_effect);
+
+// vials dont even use this yet. Pies and odd cocktails have an empty option with their own scuffed messages
+[label,player_empty_item]
+inv_setslot(inv, last_slot, oc_param(last_item, next_obj_stage), 1);
+mes("You empty the <oc_name(oc_param(last_item, next_obj_stage))>.");

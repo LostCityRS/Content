@@ -1,0 +1,56 @@
+[opheldt,magic:enchant_lvl1]@magic_spell_enchant(^enchant_lvl1, last_slot);
+[opheldt,magic:enchant_lvl2]@magic_spell_enchant(^enchant_lvl2, last_slot);
+[opheldt,magic:enchant_lvl3]@magic_spell_enchant(^enchant_lvl3, last_slot);
+[opheldt,magic:enchant_lvl4]@magic_spell_enchant(^enchant_lvl4, last_slot);
+[opheldt,magic:enchant_lvl5]@magic_spell_enchant(^enchant_lvl5, last_slot);
+
+[label,magic_spell_enchant](int $spell, int $slot)
+def_obj $initial_obj = inv_getobj(inv, $slot);
+// if player has casted a spell recently then return
+if (inv_total(inv, $initial_obj) < 1) {
+    return;
+}
+// look for spell in db
+def_dbrow $spell_data = ~get_spell_data($spell);
+if (~check_spell_requirements($spell_data) = false) {
+    return;
+}
+def_namedobj $final_obj;
+def_seq $anim;
+def_spotanim $spotanim;
+def_synth $sound;
+$final_obj, $anim, $spotanim, $sound = ~magic_spell_search_convertobj($spell_data, $initial_obj);
+// if you cant enchant the item, display this message
+if ($final_obj = null) {
+    // this checks if initial_obj has a specific message with the current spell
+    ~magic_spell_specificobj_reqmessage($spell_data, $initial_obj); 
+    mes(db_getfield($spell_data, magic_spell_table:additional_reqmessage, 0));
+    return;
+}
+// if they use a spell on a valid obj, but its p2p check it here
+// --
+// i know this isnt how jagex does it, since ring of forging is f2p in osrs but unenchantable in f2p.
+// They likely have another label for enchanting rings
+if (oc_members($final_obj) = true & map_members = ^false) {
+    // not sure what the members message is
+    mes("You can only make that on a members' server.");
+    return;
+}
+// enchanting always sets slot instead of deleting
+inv_setslot(inv, $slot, $final_obj, 1);
+~delete_spell_runes($spell_data);
+~give_spell_xp($spell_data);
+
+anim($anim, 0);
+spotanim_pl($spotanim, 92, 0);
+sound_synth($sound, 0, 0);
+if ($initial_obj = strung_dragonstone_amulet) {
+    mes("You successfully enchant the dragonstone amulet.");
+} else {
+    mes("You successfully enchant the <lowercase(oc_name($initial_obj))>.");
+}
+p_delay(1);
+if (afk_event = ^true) {
+    ~macro_event_general_spawn(~macro_event_set_random);
+    return;
+}

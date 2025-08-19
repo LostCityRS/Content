@@ -1,0 +1,66 @@
+[opnpc1,father_urhney]
+~chatnpc("<p,angry>Go away! I'm meditating!");
+if (%priest_progress = ^priest_started) {
+    @multi3("Well, that's friendly.", father_urhney_well_thats_friendly, "Father Aereck sent me to talk to you.", father_urhney_priest_father_aereck_sent_me, "I've come to repossess your house.", father_urhney_repossess_house);
+} else if (%priest_progress >= ^priest_spoken_urhney & ~obj_gettotal(amulet_of_ghostspeak) = 0) {
+    @multi3("Well, that's friendly.", father_urhney_well_thats_friendly, "I've lost the amulet.", father_urhney_priest_lost_amulet, "I've come to repossess your house.", father_urhney_repossess_house);
+} else {
+    @multi2("Well, that's friendly.", father_urhney_well_thats_friendly, "I've come to repossess your house.", father_urhney_repossess_house);
+}
+
+[label,father_urhney_well_thats_friendly]
+~chatplayer("<p,neutral>Well, that's friendly.");
+~chatnpc("<p,angry>I SAID go AWAY.");
+~chatplayer("<p,neutral>Okay, okay...");
+
+[label,father_urhney_repossess_house]
+~chatplayer("<p,neutral>I've come to repossess your house.");
+~chatnpc("<p,shock>Under what grounds???");
+def_int $option = ~p_choice2("Repeated failure on mortgage payments.", 1, "I don't know, I just wanted this house.", 2);
+if ($option = 1) {
+    ~chatplayer("<p,neutral>Repeated failure on mortgage payments.");
+    ~chatnpc("<p,angry>What?");
+    ~chatnpc("<p,angry>But... I don't have a mortgage!|I built this house myself!");
+    ~chatplayer("<p,neutral>Sorry. I must have got the wrong address.|All the houses look the same around here.");
+} else if ($option = 2) {
+    ~chatplayer("<p,sad>I don't know. I just wanted this house...");
+    ~chatnpc("<p,angry>Oh... go away and stop wasting my time!");
+}
+
+[label,father_urhney_priest_father_aereck_sent_me]
+~chatplayer("<p,neutral>Father Aereck sent me to talk to you.");
+~chatnpc("<p,angry>I suppose I'd better talk to you then.|What problems has he got himself into this time?");
+def_int $option = ~p_choice2("He's got a ghost haunting his graveyard.", 1,"You mean he gets himself into lots of problems?", 2);
+if ($option = 1) {
+    @father_urhney_priest_hes_got_a_ghost;
+} else if ($option = 2) {
+    ~chatplayer("<p,quiz>You mean he gets himself into lots of problems?");
+    ~chatnpc("<p,neutral>Yeah. For example, when we were trainee priests|he kept on getting stuck up bell ropes.");
+    ~chatnpc("<p,angry>Anyway. I don't have time for chitchat.|What's his problem THIS time?");
+    @father_urhney_priest_hes_got_a_ghost;
+}
+
+[label,father_urhney_priest_hes_got_a_ghost]
+~chatplayer("<p,neutral>He's got a ghost haunting his graveyard.");
+~chatnpc("<p,angry>Oh, the silly fool.");
+~chatnpc("<p,angry>I leave town for just five months,|and ALREADY he can't manage.");
+~chatnpc("<p,sad>(sigh)");
+~chatnpc("<p,angry>Well, I can't go back and exorcise it.|I vowed not to leave this place.|Until I had done a full two years of prayer and meditation.");
+~chatnpc("<p,neutral>Tell you what I can do though;|take this amulet.");
+%priest_progress = ^priest_spoken_urhney;
+inv_add(inv, amulet_of_ghostspeak, 1);
+~mesbox("Father Urhney hands you an amulet.");
+~chatnpc("<p,neutral>It is an Amulet of Ghostspeak.");
+~chatnpc("<p,neutral>So called, because when you wear it you can speak to ghosts. A lot of ghosts are doomed to be ghosts because they have left some important task uncompleted.");
+// https://youtu.be/QX-ieoyDXh4?t=212
+~chatnpc("<p,neutral>Maybe if you know what this task is, you can get rid of|the ghost. I'm not making any guarantees mind you,|but it is the best I can do right now.");
+~chatplayer("<p,neutral>Thank you. I'll give it a try!");
+
+[label,father_urhney_priest_lost_amulet]
+~chatplayer("<p,happy>I've lost the amulet.");
+~mesbox("Father Urhney sighs.");
+~chatnpc("<p,angry>How careless can you get?|Those things aren't easy to come by you know!|It's a good job I've got a spare.");
+inv_add(inv, amulet_of_ghostspeak, 1);
+~mesbox("Father Urhney hands you an amulet.");
+~chatnpc("<p,angry>Be more careful this time.");
+~chatplayer("<p,neutral>Okay, I'll try to be.");

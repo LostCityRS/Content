@@ -1,0 +1,69 @@
+[debugproc,poison](int $severity)
+if_close;
+queue(poison_player,0,$severity);
+
+[debugproc,1pray]
+stat_sub(prayer, calc(stat_base(prayer) - 1), 0);
+
+[debugproc,1hp]
+if_close;
+if (p_finduid(uid) = true) {
+    stat_sub(hitpoints, calc(stat(hitpoints) - 1), 0);
+} else {
+    @please_finish;
+}
+
+[debugproc,pcs]
+if (p_finduid(uid) = false) {
+    return;
+}
+~player_combat_stat;
+
+[debugproc,hit](int $amount)
+queue(damage_player, 0, $amount);
+
+[debugproc,death]
+~damage_self(999);
+
+[debugproc,damage]
+queue(damage_player, 0, 100);
+
+[debugproc,wildy]
+mes("Wilderness level: <tostring(~wilderness_level(coord))>");
+
+[debugproc,cat]
+if_close;
+if (p_finduid(uid) = true) {
+    def_int $hunger = getbit_range(%cat_growth, 0, 4);
+    def_int $attent = getbit_range(%cat_growth, 5, 10);
+    def_int $growth = getbit_range(%cat_growth, 11, 19);
+    def_int $vermin = getbit_range(%cat_growth, 20, 26);
+    mes("Hunger: <tostring($hunger)> || Attent: <tostring($attent)> || Growth: <tostring($growth)> || Vermin: <tostring($vermin)>"); 
+}
+
+[debugproc,energy]
+if_close;
+if (p_finduid(uid) = true) {
+    healenergy(10000); // 100=1%, 1000=10%, 10000=100%
+    p_run(^player_run_on);
+    mes("Run energy restored");
+} else {
+    @please_finish;
+}
+
+[debugproc,addxp](stat $stat, int $amount)
+if ($stat = null | $amount < 1) {
+    @debugusage("::addxp (stat) (amount)", "::addxp attack 500", "");
+    return;
+}
+if_close;
+if (p_finduid(uid) = false) { @please_finish; return; }
+stat_advance($stat, calc($amount * 10));
+
+[debugproc,godbab]
+mes("Wow, that was an amazing kebab! You feel really invigorated.");
+stat_boost(attack, 2, 0);
+stat_boost(strength, 2, 0);
+stat_boost(defence, 2, 0);
+// heal 24% + 7
+stat_heal(hitpoints, 7, 24);

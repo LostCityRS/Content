@@ -1,0 +1,53 @@
+[ai_queue5,murphy]
+if (~playercount_coord_pair_table(trawler_game_zones) > 0 | ~playercount_coord_pair_table(trawler_lobby_zones) < 1) {
+    return;
+}
+
+huntall(^trawler_lobby_center_under, 8, 0);
+while (huntnext = true) {
+    if (~inzone_coord_pair_table(trawler_lobby_zones, coord) = true) {
+        if_close;
+        queue(trawler_start, 0);
+    }
+}
+huntall(^trawler_lobby_center, 8, 0);
+while (huntnext = true) {
+    if (~inzone_coord_pair_table(trawler_lobby_zones, coord) = true) {
+        if_close;
+        queue(trawler_start, 0);
+    }
+}
+
+~trawler_reset;
+
+if (npc_find(^trawler_start_center_under, murphy_normal, 5, 0) = true) {
+    npc_queue(5, 0, 33); // 21 ticks from ship journey... After journey is over, trawler starts after 17 ticks (10s)
+}
+if (npc_find(^trawler_flood_center_under, murphy_halfsunk, 5, 0) = true) {
+    npc_queue(5, 0, 33); // 21 ticks from ship journey... After journey is over, trawler starts after 17 ticks (10s)
+}
+
+[queue,trawler_start]
+if (~inzone_coord_pair_table(trawler_lobby_zones, coord) = false) {
+    return;
+}
+inv_clear(trawler_rewardinv);
+p_teleport(map_findsquare(^trawler_start_center_under, 0, 4, ^map_findsquare_lineofwalk));
+%boat_takeoff = 11;
+%trawler = ^trawler_sailed;
+if_openmain(ship_journey);
+midi_jingle(^sailing_journey_jingle, ^sailing_journey_jingle_millis);
+
+p_delay(20);
+if_close;
+if_openmain(trawler_help);
+// CamShake(type = 4, shakeIntensity = 0, movementIntensity = 20, speed = 4)
+// CamShake(type = 1, shakeIntensity = 0, movementIntensity = 20, speed = 5)
+cam_shake(4, 0, 20, 4);
+cam_shake(1, 0, 20, 5);
+
+[ai_queue5,murphy_normal]
+npc_settimer(5);
+
+[ai_queue5,murphy_halfsunk]
+npc_settimer(5);

@@ -1,0 +1,51 @@
+[oploc1,rantzogrecaveentrance]
+mes("You walk through the cave entrance into a dimly lit cave.");
+p_teleport(0_41_146_23_35);
+
+[oploc1,rantzogrecaveexitr]
+p_teleport(0_41_46_6_53);
+
+[oploc1,rantzogrecaveexitl]
+mes("You walk back out of the darkness of the cave into daylight.");
+p_teleport(0_41_46_6_53);
+
+[oplocu,swamp_bubbles_a]
+@use_bellows_on_swamp_bubbles;
+
+[oplocu,swamp_bubbles_b]
+@use_bellows_on_swamp_bubbles;
+
+[label,use_bellows_on_swamp_bubbles]
+switch_obj(last_useitem) {
+    case empty_ogre_bellows :
+        ~ogre_bellows_suck(empty_ogre_bellows);
+    case filled_ogre_bellow1 :
+        ~ogre_bellows_suck(filled_ogre_bellow1);
+    case filled_ogre_bellow2 :
+        ~ogre_bellows_suck(filled_ogre_bellow2);
+    case filled_ogre_bellow3 : 
+        mes("These bellows are already full of swamp gas!");
+    case default :
+        mes("Nothing interesting happens.");
+}
+
+[proc,ogre_bellows_suck](obj $bellows)
+anim(human_chompybird_ogrebellows, 0);
+sound_synth(ogre_bellows_suck, 0, 0);
+p_delay(1);
+
+mes("You collect some gas from the swamp.");
+inv_del(inv, $bellows, 1);
+inv_add(inv, filled_ogre_bellow3, 1);
+
+
+[queue,quest_chompybird_complete]
+// https://x.com/JagexAsh/status/1820722879937343844, 294 is probably cleared entirely after quest
+%chompybird_progress = ^chompybird_complete;
+%chompybird_kills = 0;
+stat_advance(fletching, 2620);
+stat_advance(cooking, 14700);
+stat_advance(ranged, 7350);
+// todo is ogre bow given separately here?
+session_log(^log_adventure, "Quest complete: Big Chompy Bird Hunting");
+~send_quest_complete(questlist:chompybird, ogre_bow, 250, ^chompybird_questpoints, "You have completed the 'Chompy Bird' Quest!");

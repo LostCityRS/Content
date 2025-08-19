@@ -1,0 +1,148 @@
+[opnpc1,king_bolren]
+if(inv_total(inv, trail_clue_medium_anagram011) > 0) {
+    ~chatnpc("<p,happy>Congratulations, human!");
+    ~progress_clue_medium(trail_clue_medium_anagram011, "The king has given you another clue scroll!");
+    return;
+}
+switch_int(%tree_progress) {
+    case ^tree_not_started :
+        ~chatplayer("<p,neutral>Hello.");
+        ~chatnpc("<p,happy>Well hello stranger.|My name's Bolren, I'm the king of the tree gnomes.");
+        ~chatnpc("<p,shock>I'm surprised you made it in,|maybe I made the maze too easy.");
+        ~chatplayer("<p,neutral>Maybe.");
+        ~chatnpc("<p,sad>I'm afraid I have more serious concerns at the moment. Very serious.");
+        switch_int(~p_choice2("I'll leave you to it then.", 1, "Can I help at all?", 2)) {
+            case 1 :
+                ~chatplayer("<p,bored>I'll leave you to it then.");
+                ~chatnpc("<p,neutral>Ok, take care.");
+            case 2 :
+                ~chatplayer("<p,quiz>Can I help at all?");
+                ~chatnpc("<p,happy>I'm glad you asked.");
+                ~chatnpc("<p,sad>The truth is my people are in grave danger. We have always been protected by the Spirit Tree. No creature of dark can harm us while its three orbs are in place.");
+                ~chatnpc("<p,sad>We are not a violent race, but we fight when we must. Many gnomes have fallen battling the dark forces of Khazard to the North.");
+                ~chatnpc("<p,sad>We became desperate,|so we took one orb of protection to the battlefield.|It was a foolish move.");
+                ~chatnpc("<p,sad>Khazard troops seized the orb.|Now we are completely defenceless.");
+                ~chatplayer("<p,quiz>How can I help?");
+                ~chatnpc("<p,neutral>You would be a huge benefit on the battlefield.|If you would go there and try to retrieve the|orb, my people and I will be forever grateful.");
+                switch_int(~p_choice2("I would be glad to help.", 1, "I'm sorry but I won't be involved.", 2)) {
+                    case 1 :
+                        ~chatplayer("<p,neutral>I would be glad to help.");
+                        %tree_progress = ^tree_started;
+                        ~send_quest_progress(questlist:tree, %tree_progress, ^tree_complete);
+                        ~chatnpc("<p,neutral>Thank you. The battlefield is to the north of the maze. Commander Montai will inform you of their current situation.");
+                        ~chatnpc("<p,sad>That is if he's still alive.");
+                        ~chatnpc("<p,neutral>My assistant shall guide you out. Good luck friend, try your best to return the orb.");
+                        @elkoy_leavemaze_initial;
+                    case 2 :
+                        ~chatplayer("<p,neutral>I'm sorry but I won't be involved.");
+                        ~chatnpc("<p,neutral>Ok then, travel safe.");
+                }
+        }
+    case ^tree_started :
+        ~chatplayer("<p,neutral>Hello Bolren.");
+        ~chatnpc("<p,neutral>Hello traveller, we must retrieve the orb.|It's being held by Khazard troops north of here.");
+        ~chatplayer("<p,neutral>Ok, I'll try my best.");
+    case ^tree_spoken_montai, ^tree_given_logs_montai, ^tree_finding_trackers, ^tree_ballista_fired :
+        ~chatplayer("<p,neutral>Hello Bolren.");
+        ~chatnpc("<p,neutral>The orb is being held at the battlefield north of the maze.");
+    case ^tree_retrieved_orb :
+        if(inv_total(inv, orb_of_protection) = 0) {
+            ~chatplayer("<p,neutral>Hello Bolren.");
+            ~chatnpc("<p,quiz>Do you have the orb?");   
+            ~chatplayer("<p,sad>No, I'm afraid not.");
+            ~chatnpc("<p,sad>Please, we must have the orb if we are to survive.");   
+            return;
+        }
+        ~chatplayer("<p,happy>I have the orb.");
+        ~chatnpc("<p,sad>Oh my... The misery, the horror!");
+        ~chatplayer("<p,quiz>King Bolren, are you OK?");
+        ~chatnpc("<p,sad>Thank you traveller, but it's too late. We're all doomed.");
+        ~chatplayer("<p,quiz>What happened?");
+        ~chatnpc("<p,sad>They came in the night.|I don't know how many, but enough.");
+        ~chatplayer("<p,quiz>Who?");
+        ~chatnpc("<p,sad>Khazard troops.|They slaughtered anyone who got in their way.|Women, children, my wife.");
+        ~chatplayer("<p,sad>I'm sorry.");
+        ~chatnpc("<p,sad>They took the other orbs,|now we are defenceless.");
+        ~chatplayer("<p,quiz>Where did they take them?");
+        ~chatnpc("<p,sad>They headed north of the stronghold.|A warlord carries the orbs.");
+        switch_int(~p_choice2("I will find the warlord and bring back the orbs.", 1, "I'm sorry but I can't help.", 2)) {
+            case 1 :
+                ~chatplayer("<p,neutral>I will find the warlord and bring back the orbs.");
+                ~chatnpc("<p,neutral>You are brave,|but this task will be tough even for you.|I wish you the best of luck.|Once again you are our only hope.");
+                %tree_progress = ^tree_returned_first_orb;
+                inv_del(inv, orb_of_protection, 1);
+                ~chatnpc("<p,neutral>I will safeguard this orb|and pray for your safe return.|My assistant will guide you out.");
+                @elkoy_leavemaze_second;
+            case 2 :
+                ~chatplayer("<p,neutral>I'm sorry but I can't help.");
+                ~chatnpc("<p,sad>I understand, this isn't your battle.");
+        }
+    case ^tree_returned_first_orb :
+        ~chatplayer("<p,neutral>Hello Bolren.");
+        ~chatnpc("<p,sad>The orbs are gone,|taken north of the battlefield by a Khazard warlord.|We're all doomed.");  
+    case ^tree_defeated_warlord :
+        ~chatplayer("<p,neutral>Bolren, I have returned.");
+        ~chatnpc("<p,shock>You made it back! Do you have the orbs?");
+        if(inv_total(inv, orbs_of_protection)= 0) {
+            ~chatplayer("<p,neutral>No, I'm afraid not.");
+            ~chatnpc("<p,sad>Please, we must have the orbs if we are to survive.");
+            return;
+        }
+        ~chatplayer("<p,happy>I have them here.");
+        ~chatnpc("<p,happy>Hooray, you're amazing. I didn't think it was possible but you've saved us.");
+        ~chatnpc("<p,happy>Once the orbs are replaced we will be safe once more. We must begin the ceremony immediately.");
+        ~chatplayer("<p,quiz>What does the ceremony involve?");
+        ~chatnpc("<p,neutral>The spirit tree has looked over us for centuries. Now we must pay our respects.");
+        // no varbits yet (this is in the same range as the tracker stuff added in ~2005, so assuming this just works differently)
+        // going to queue the quest finish instead here
+        inv_del(inv, orbs_of_protection, 1);
+        p_stopaction;
+        queue(tree_quest_complete, 0);
+        ~mesbox("The gnomes begin to chant. Meanwhile, King Bolren holds the orbs of protection out in front of him.");
+        if_close;
+        p_walk(0_39_49_46_34);
+        npc_walk(0_39_49_46_33);
+        npc_setmode(none); // no mode because we don't want bolren to start moving
+        facesquare(movecoord(coord, 8, 0, 0));
+        npc_facesquare(movecoord(coord, 8, 0, 0));
+        ~gnome_chant(0_39_49_45_32, 0_39_49_46_31, "Su tana.");
+        ~gnome_chant(0_39_49_46_36, 0_39_49_45_35, "En tania.");
+        ~gnome_chant(0_39_49_45_32, 0_39_49_46_31, "Su tana.");
+        ~gnome_chant(0_39_49_46_36, 0_39_49_45_35, "En tania.");
+        if(npc_find(coord, king_bolren, 4, 0) = false) { 
+            return; // should never happen, just switching active npc
+        }
+        npc_anim(midget_cast_globes, 20);
+        spotanim_npc(gnome_globes, 20, 124);
+        p_delay(6); 
+        ~mesbox("The orbs of protection come to rest gently in the branches of the ancient spirit tree.");
+        ~chatnpc("<p,happy>Now at last my people are safe once more.|We can live in peace again.");
+        ~chatplayer("<p,happy>I'm pleased I could help.");
+        ~chatnpc("<p,neutral>You are modest brave traveller.");
+        ~chatnpc("<p,happy>Please, for your efforts take this amulet. It's made from the same sacred stone as the orbs of protection. It will help keep you safe on your journeys.");
+        ~chatplayer("<p,happy>Thank you King Bolren.");
+        ~chatnpc("<p,happy>The tree has many other powers, some of which I cannot reveal. As a friend of the gnome people, I can now allow you to use the tree's magic to teleport to other trees grown from related seeds.");
+    case ^tree_complete :
+        ~chatplayer("<p,neutral>Hello again, Bolren.");
+        ~chatnpc("<p,happy>Hello there. It's good to see you again.");
+        // dialogue was changed on OSRS recently, guessing mesanims here
+        if(~obj_gettotal(gnome_amulet) = 0) {
+            ~chatplayer("<p,sad>I've lost my amulet.");
+            ~chatnpc("<p,neutral>Oh dear. Here, take another. We truly are indebted to you.");
+            inv_add(inv, gnome_amulet, 1); // not sure if there was a space check originally, guessing no cause no proof otherwise
+        }
+}
+
+[proc,gnome_chant](coord $coord1, coord $coord2, string $message)
+if (npc_findexact($coord1, chantergnome) = true) {
+    npc_facesquare(movecoord(coord, 2, 0, 0));
+    npc_say($message);
+    npc_anim(midget_chanting, 0);
+}
+
+if (npc_findexact($coord2, chantergnome) = true) {
+    npc_facesquare(movecoord(coord, 2, 0, 0));
+    npc_say($message);
+    npc_anim(midget_chanting, 0);
+}
+p_delay(1);

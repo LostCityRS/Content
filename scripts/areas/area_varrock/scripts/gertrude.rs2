@@ -1,0 +1,138 @@
+//most linebreaks in the quest are guessed (added for 2004 flair) based off rsc dialogue breaks
+[opnpc1,gertrude]
+switch_int (%fluffs_progress) {
+    case ^fluffs_not_started :
+        ~chatplayer("<p,happy>Hello, are you okay?");
+        ~chatnpc("<p,angry>Do I look ok?|Those kids drive me crazy.");
+        ~chatnpc("<p,sad>I'm sorry. It's just that I've lost her.");
+        ~chatplayer("<p,confused>Lost who?");
+        ~chatnpc("<p,sad>Fluffs, poor Fluffs.|She never hurt anyone.");
+        ~chatplayer("<p,confused>Who's Fluffs?");
+        ~chatnpc("<p,sad>My beloved feline friend Fluffs.|She's been purring by my side for almost a decade.|Please, could you go search for her|while I look over the kids?");
+        @fluffs_start;
+    case ^fluffs_started :
+        ~chatplayer("<p,happy>Hello Gertrude.");
+        ~chatnpc("<p,confused>Have you seen my poor Fluffs?");
+        ~chatplayer("<p,sad>I'm afraid not.");
+        ~chatnpc("<p,neutral>What about Shilop?");
+        ~chatplayer("<p,confused>No sign of him either.");
+        ~chatnpc("<p,confused>Hmmm...strange,|he should be at the market.");
+    case ^fluffs_paid_boy :
+        ~chatplayer("<p,happy>Hello Gertrude.");
+        ~chatnpc("<p,neutral>Hello again, did you manage to find Shilop?|I can't keep an eye on him for the life of me.");
+        ~chatplayer("<p,happy>He does seem quite a handful.");
+        ~chatnpc("<p,neutral>You have no idea!|Did he help at all?");
+        ~chatplayer("<p,neutral>I think so,|I'm just going to look now.");
+        ~chatnpc("<p,happy>Thanks again, adventurer.");
+    case ^fluffs_gave_milk :
+        ~chatplayer("<p,happy>Hello again.");
+        ~chatnpc("<p,neutral>Hello. How's it going?|Any luck?");
+        ~chatplayer("<p,happy>Yes, I've found Fluffs!");
+        ~chatnpc("<p,happy>Well well, you are clever!|Did you bring her back?");
+        ~chatplayer("<p,confused>Well, that's the thing, she refuses to leave.");
+        ~chatnpc("<p,sad>Oh dear, oh dear! Maybe she's just hungry.|She loves doogle sardines but I'm all out.");
+        ~chatplayer("<p,confused>Doogle sardines?");
+        ~chatnpc("<p,neutral>Yes, raw sardines seasoned with doogle leaves.|Unfortunately I've used all my doogle leaves,|but you may find some in the woods out back.");
+    case ^fluffs_gave_sardine :
+        ~chatplayer("<p,happy>Hi!");
+        ~chatnpc("<p,neutral>Hey traveller, did Fluffs eat the sardines?");
+        ~chatplayer("<p,happy>Yeah, she loved them, but she still won't leave.");
+        ~chatnpc("<p,confused>Well that is strange, there must be a reason.");
+    case ^fluffs_rescued :
+        ~chatplayer("<p,neutral>Hello Gertrude.|Fluffs ran off with her kitten.");
+        ~chatnpc("<p,happy>You're back! Thank you! Thank you!|Fluffs just came back!|I think she was just upset|as she couldn't find her kitten."); //imgur.com/lAhzO4q
+        ~mesbox("Gertrude gives you a hug.");
+        ~chatnpc("<p,happy>If you hadn't found her kitten|it would have died out there!");
+        ~chatplayer("<p,happy>That's okay, I like to do my bit.");
+        ~chatnpc("<p,happy>I don't know how to thank you.|I have no real material possessions.|I do have kittens!|I can only really look after one.");
+        ~chatplayer("<p,neutral>Well, if it needs a home.");
+        ~chatnpc("<p,happy>I would sell it to my cousin in West Ardougne.|I hear there's a rat epidemic there.|But it's too far.");
+        ~chatnpc("<p,happy>Here you go, look after her and thank you again!");
+        ~mesbox("Gertrude gives you a kitten.");
+        if_close;
+        %fluffs_progress = ^fluffs_complete;
+        ~gertrude_give_cat;
+        p_delay(3);
+        mes("... and some food!");
+        inv_add(inv, chocolate_cake, 1);
+        inv_add(inv, stew, 1);
+        p_delay(3);
+        queue(fluffs_complete, 0);
+    case ^fluffs_complete :
+        if (getbit_range(%cat_growth, 20, 26) = 100 & inv_total(inv, felinemedal) = 0) {
+            ~chatplayer("<p,happy>Hello again Gertrude!");
+            ~chatnpc("<p,neutral>Well, hello adventurer! How are you?");
+            ~chatplayer("<p,happy>My cat has caught 100 rats!");
+            ~chatnpc("<p,neutral>Well well! You are good with cats!");
+            if(inv_freespace(inv) = 0) {
+                ~chatnpc("<p,neutral>Free up a little space so I can give you a present."); //104433
+                return;
+            }
+            ~chatnpc("<p,neutral>Here, I have a little present for you...");
+            inv_add(inv, felinemedal, 1);
+            ~objbox(felinemedal, "Gertrude gives you a small medal.", 250, 0, divide(^objbox_height, 2));
+            ~chatplayer("<p,neutral>Hey thanks Gertrude.");
+            return;
+        } //this is guessed off RSC. assuming her post-quest dialogue was changed later on.
+        if(inv_totalcat(inv, kitten) > 0 | inv_totalcat(bank, kitten) > 0 | inv_totalcat(inv, cat) > 0 | inv_totalcat(bank, cat) > 0 | %follower_obj ! null & oc_category(%follower_obj) = kitten | %follower_obj ! null & oc_category(%follower_obj) = cat | %follower_obj ! null & oc_category(%follower_obj) = overgrown) {
+            ~chatplayer("<p,neutral>Hello again Gertrude.");
+            ~chatnpc("<p,neutral>Well hello adventurer, how are you?");
+            ~chatplayer("<p,neutral>Pretty good, thanks. Yourself?");
+            ~chatnpc("<p,neutral>Same old, running after Shilop most of the time.");
+            ~chatplayer("<p,neutral>Nevermind, I'm sure he'll calm down with age.");
+        } else {
+            ~chatplayer("<p,happy>Do you have any more kittens?");
+            ~chatnpc("<p,happy>Indeed I have.|They are 100 coins each, do you want one?");
+            if (inv_total(inv, coins) < 100) {
+                ~chatplayer("<p,neutral>Oops, looks like I'm a bit short.|I'll have to come back later.");
+                return;
+            } 
+            def_int $option = ~p_choice2("Yes please.", 1, "No thanks.", 2);
+            switch_int ($option) {
+                case 1 :
+                    ~chatplayer("<p,happy>Yes please.");
+                    ~chatnpc("<p,happy>Okay then, here you go.");
+                    ~chatplayer("<p,happy>Thanks.");
+                    inv_del(inv, coins, 100);
+                    ~gertrude_give_cat;
+                    ~mesbox("Gertrude gives you another kitten.");
+                case 2 :
+                    ~chatplayer("<p,neutral>No thanks, I've paid that boy enough already.");
+            }
+        }
+}
+
+[label,fluffs_start]
+def_int $option = ~p_choice3("Well, I suppose I could.", 1, "What's in it for me?", 2, "Sorry, I'm too busy to play pet rescue.", 3);
+if($option = 1) {
+    ~chatplayer("<p,neutral>Well, I suppose I could.");
+    %fluffs_progress = ^fluffs_started;
+    ~send_quest_progress(questlist:fluffs, %fluffs_progress, ^fluffs_complete);
+    ~chatnpc("<p,happy>Really? Thank you so much!|I really have no idea where she could be!");
+    ~chatnpc("<p,neutral>I think my sons, Shilop and Wilough, saw the cat last.|They'll be out in the market place.");
+    ~chatplayer("<p,happy>Alright then, I'll see what I can do.");
+} else if($option = 2) {
+    ~chatplayer("<p,confused>What's in it for me?");
+    ~chatnpc("<p,sad>I'm sorry, I'm too poor to pay you anything.|The best I could offer is a warm meal.|So, can you help?");
+    @fluffs_start;
+} else if($option = 3) {
+    ~chatplayer("<p,bored>Sorry, I'm too busy to play pet rescue.");
+    ~chatnpc("<p,sad>Well, okay then. I'll have to find someone else.");
+}
+
+[proc,gertrude_give_cat]
+if (inv_totalcat(inv, kitten) = 0 | inv_totalcat(bank, kitten) = 0 | inv_totalcat(inv, cat) = 0 | inv_totalcat(bank, cat) = 0 | npc_finduid(%follower_uid) = false | %follower_obj ! null & oc_category(%follower_obj) ! kitten | %follower_obj ! null & oc_category(%follower_obj) ! cat) {
+    def_npc $cat;
+    switch_int (random(6)) {
+        case 0 : $cat = kittenpet1;
+        case 1 : $cat = kittenpet_light;
+        case 2 : $cat = kittenpet_brown;
+        case 3 : $cat = kittenpet_black;
+        case 4 : $cat = kittenpet_browngrey;
+        case 5 : $cat = kittenpet_bluegrey;
+    }
+    %cat_growth = 0;
+    ~cat_spawn($cat);
+    p_delay(1);
+    npc_say("Meeow!");
+}

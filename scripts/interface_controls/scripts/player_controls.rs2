@@ -1,0 +1,74 @@
+// side interfaces are treated as modals for now. They will eventually be treated as overlays.
+// since they're modals right now, they're protected by default.
+
+// auto retaliate
+[if_button,controls:com_2]
+if_close; // closes interfaces in osrs
+if (p_finduid(uid) = true) {
+    p_stopaction; // https://oldschool.runescape.wiki/w/Update:Slayer_Cave_%26_High_Risk_Worlds
+    %auto_retaliate = ^player_auto_retaliate_on;
+    return;
+}
+%auto_retaliate = %auto_retaliate; // resync varp
+
+[if_button,controls:com_3]
+if_close; // might be strongqueued in osrs
+if (p_finduid(uid) = true) {
+    p_stopaction; // https://oldschool.runescape.wiki/w/Update:Slayer_Cave_%26_High_Risk_Worlds
+    %auto_retaliate = ^player_auto_retaliate_off;
+    return;
+}
+%auto_retaliate = %auto_retaliate; // resync varp
+
+
+// Player run
+[if_button,controls:com_4] 
+if_close;
+if (p_finduid(uid) = true) {
+    p_clearpendingaction; // https://youtu.be/XhJ0tjJ9J60?t=62
+    p_run(^player_run_off);
+    return;
+}
+%run = %run; // resync varp
+
+[if_button,controls:com_5]
+if_close;
+if (p_finduid(uid) = true) {
+    p_clearpendingaction;
+    if (runenergy < 100) {
+        p_run(^player_run_off);
+        return;
+    }
+    if (%tutorial_progress = ^tutorial_open_player_controls) {
+        %tutorial_progress = ^tutorial_has_toggled_on_run;
+        ~set_tutorial_progress;
+    }
+    p_run(^player_run_on);
+    return;
+}
+%run = %run; // resync varp
+
+
+// emotes
+[if_button,controls:com_13] @controls_emote(emote_cry);
+[if_button,controls:com_14] @controls_emote(emote_think);
+[if_button,controls:com_15] @controls_emote(emote_wave);
+[if_button,controls:com_16] @controls_emote(emote_bow);
+[if_button,controls:com_17] @controls_emote(emote_angry);
+[if_button,controls:com_18] @controls_emote(emote_dance);
+[if_button,controls:com_19] @controls_emote(emote_beckon);
+[if_button,controls:com_20] @controls_emote(emote_yes);
+[if_button,controls:com_21] @controls_emote(emote_no);
+[if_button,controls:com_22] @controls_emote(emote_laugh);
+[if_button,controls:com_23] @controls_emote(emote_cheer);
+[if_button,controls:com_24] @controls_emote(emote_clap);
+
+[label,controls_emote](seq $anim)
+if_close;
+if (p_finduid(uid) = false) {
+    // mes("You're already doing an emote!");
+    return;
+}
+p_stopaction;
+anim($anim, 20);
+// p_delay(~seqlength20ms($anim));

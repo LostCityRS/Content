@@ -1,0 +1,156 @@
+[oploc2,tea_stall_stealing] // Tea stall
+@attempt_steal_from_stall(loc_type, loc_coord, loc_angle, loc_shape);
+
+[oploc2,silk_stall_stealing] // Silk stall
+@attempt_steal_from_stall(loc_type, loc_coord, loc_angle, loc_shape);
+
+[oploc2,bakers_stall_stealing] // Baker's stall
+@attempt_steal_from_stall(loc_type, loc_coord, loc_angle, loc_shape);
+
+[oploc2,gem_stall_stealing] // Gem stall
+@attempt_steal_from_stall(loc_type, loc_coord, loc_angle, loc_shape);
+
+[oploc2,fur_stall_stealing] // Fur stall
+@attempt_steal_from_stall(loc_type, loc_coord, loc_angle, loc_shape);
+
+[oploc2,spice_stall_stealing] // Spice stall
+@attempt_steal_from_stall(loc_type, loc_coord, loc_angle, loc_shape);
+
+[oploc2,silver_stall_stealing] // Silver stall
+@attempt_steal_from_stall(loc_type, loc_coord, loc_angle, loc_shape);
+
+[label,attempt_steal_from_stall](loc $loc, coord $loc_coord, int $loc_angle, locshape $loc_shape)
+p_arrivedelay;
+
+db_find(stealing:loc, $loc);
+def_dbrow $data = db_findnext;
+if ($data = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
+// probably goes before mems check based on this bug:
+// 'There was a bug in free worlds where if the player tried to steal from a stall 
+// (such as the tea stall) in south-east Varrock, a watchman would appear. 
+// He would attack and the player could fight him. 
+// He would not drop any member items on free to play worlds.'
+// - https://oldschool.runescape.wiki/w/Watchman_(random_event)
+if (afk_event = ^true) {
+    @macro_randomthieving;
+}
+
+if (map_members = ^false) {
+    mes(^mes_members_thieving);
+    return;
+}
+// if player is in combat, prevent stealing
+if (add(%lastcombat, 10) > map_clock) {
+    mes("You can't steal from the market stall during combat!");
+    return;
+}
+
+def_string $stall = db_getfield($data, stealing:stall, 0);
+
+if (db_getfieldcount($data, stealing:stall) > 1) {
+    def_string $stall_message = db_getfield($data, stealing:stall, 1);
+    // This message will still show even if you do not meet the level requirement.
+    mes("You attempt to steal <$stall_message> from the <$stall>.");
+}
+
+def_int $current_level = stat(thieving);
+def_int $thieving_level = db_getfield($data, stealing:level, 0);
+if ($current_level < $thieving_level) {
+    ~mesbox("You need to be level <tostring($thieving_level)> to steal from the <$stall>.");
+    return;
+}
+
+def_int $free_space = inv_freespace(inv);
+if ($free_space = 0) {
+    ~mesbox("Your inventory is too full to hold any more.");
+    return;
+}
+
+~steal_from_stall($data, $loc_coord, $loc_angle, $loc_shape);
+
+[proc,stealing_check_for_guard](dbrow $data)(boolean)
+def_int $npc_count = db_getfieldcount($data, stealing:guard);
+def_npc $npc1 = db_getfield($data, stealing:guard, min(0, $npc_count));
+def_npc $npc2 = db_getfield($data, stealing:guard, min(1, $npc_count));
+def_npc $npc3 = db_getfield($data, stealing:guard, min(2, $npc_count));
+def_npc $npc4 = db_getfield($data, stealing:guard, min(3, $npc_count));
+def_npc $npc5 = db_getfield($data, stealing:guard, min(4, $npc_count));
+
+npc_huntall(coord, 5, 0);
+while (npc_huntnext = true) {
+    if ((npc_type = $npc1 | npc_type = $npc2 | npc_type = $npc3 | npc_type = $npc4 | npc_type = $npc5)
+        & npc_getmode ! opplayer2 & lineofsight(npc_coord, coord) = true) {
+        npc_say("Hey! Get your hands off there!");
+        ~npc_retaliate(0);
+        return(true);
+    }
+}
+
+[proc,stealing_check_for_owner](dbrow $data)(boolean)
+def_npc $owner = db_getfield($data, stealing:owner, 0);
+if (npc_find(coord, $owner, 5, 0) = true & lineofsight(npc_coord, coord) = true) {
+    npc_say("Hey! Get your hands off there!");
+    return(true);
+}
+
+[label,stall_owner_alert_guards]
+npc_say("You're the one who stole something from me!");
+p_delay(1);
+npc_say("Guards guards!");
+
+npc_huntall(npc_coord, 5, 0);
+while (npc_huntnext = true) {
+    if ((npc_type = ardougne_guard | npc_type = knight_of_ardougne | npc_type = knight_of_ardougne2 | npc_type = paladin | npc_type = hero)
+        & npc_getmode ! opplayer2 & lineofsight(npc_coord, coord) = true) {
+        ~npc_retaliate(0);
+    }
+}
+
+[proc,thieving_stall_timers_login]
+if (testbit(%thieving_stall_timer, ^baker_stall_index) = ^true) {
+    longqueue(stolen_from_stall_baker, ^baker_stall_timer, ^discard);
+}
+if (testbit(%thieving_stall_timer, ^tea_stall_index) = ^true) {
+    longqueue(stolen_from_stall_tea, ^tea_stall_timer, ^discard);
+}
+if (testbit(%thieving_stall_timer, ^silk_stall_index) = ^true) {
+    longqueue(stolen_from_stall_silk, ^silk_stall_timer, ^discard);
+}
+if (testbit(%thieving_stall_timer, ^fur_stall_index) = ^true) {
+    longqueue(stolen_from_stall_fur, ^fur_stall_timer, ^discard); 
+}
+if (testbit(%thieving_stall_timer, ^silver_stall_index) = ^true) {
+    longqueue(stolen_from_stall_silver, ^silver_stall_timer, ^discard);
+}
+if (testbit(%thieving_stall_timer, ^spice_stall_index) = ^true) {
+    longqueue(stolen_from_stall_spice, ^spice_stall_timer, ^discard);
+}
+if (testbit(%thieving_stall_timer, ^gem_stall_index) = ^true) {
+    longqueue(stolen_from_stall_gem, ^gem_stall_timer, ^discard);
+}
+
+// these are longqueues in osrs - they affect movement when p_delay'd
+
+[queue,stolen_from_stall_baker]
+%thieving_stall_timer = clearbit(%thieving_stall_timer, ^baker_stall_index);
+
+[queue,stolen_from_stall_tea]
+%thieving_stall_timer = clearbit(%thieving_stall_timer, ^tea_stall_index);
+
+[queue,stolen_from_stall_silk]
+%thieving_stall_timer = clearbit(%thieving_stall_timer, ^silk_stall_index);
+
+[queue,stolen_from_stall_fur]
+%thieving_stall_timer = clearbit(%thieving_stall_timer, ^fur_stall_index);
+
+[queue,stolen_from_stall_silver]
+%thieving_stall_timer = clearbit(%thieving_stall_timer, ^silver_stall_index);
+
+[queue,stolen_from_stall_spice]
+%thieving_stall_timer = clearbit(%thieving_stall_timer, ^spice_stall_index);
+
+[queue,stolen_from_stall_gem]
+%thieving_stall_timer = clearbit(%thieving_stall_timer, ^gem_stall_index);

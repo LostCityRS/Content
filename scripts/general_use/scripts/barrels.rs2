@@ -1,0 +1,22 @@
+[oplocu,loc_364]
+if (last_useitem ! beer_glass) {
+    ~displaymessage(^dm_default);
+    return;
+}
+
+switch_coord(loc_coord) {
+    case 0_48_53_9_44 : @beer_barrel_beatdown;
+    case 0_48_53_5_53 : @beer_barrel_beatdown;
+    case 0_48_53_4_53 : @beer_barrel_beatdown;
+
+    case default : @fill_beer_glass;
+}
+
+[oplocu,loc_885]
+mes("I don't think I can get free beer here."); // any obj, think it might only be this loc specifcially (no 886 to check on osrs, other pumps dont work)
+
+[label,fill_beer_glass]
+anim(human_pickupfloor, 0);
+mes("You fill the glass with beer.");
+sound_synth(tap_fill, 0, 0);
+inv_setslot(inv, last_useslot, beer, 1);

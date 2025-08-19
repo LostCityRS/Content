@@ -1,0 +1,139 @@
+//--- Dyes
+[opheldu,reddye]
+switch_obj (last_useitem) 
+{
+    case bluedye : @craft_dyes(purpledye);
+    case yellowdye : @craft_dyes(orangedye);
+    case black_cape, blue_cape, yellow_cape, green_cape, purple_cape, orange_cape : @craft_capes(last_useitem, reddye);
+    case default : ~displaymessage(^dm_default);
+};
+
+[opheldu,bluedye]
+switch_obj (last_useitem) 
+{
+    case reddye : @craft_dyes(purpledye);
+    case yellowdye : @craft_dyes(greendye);
+    case black_cape, red_cape, yellow_cape, green_cape, purple_cape, orange_cape : @craft_capes(last_useitem, bluedye);
+    case goblin_armour : ~dye_goblin_mail_armour(bluedye, goblin_armour_darkblue, "blue");
+    case default : ~displaymessage(^dm_default);
+};
+
+[opheldu,yellowdye]
+switch_obj (last_useitem) 
+{
+    case reddye : @craft_dyes(orangedye);
+    case bluedye : @craft_dyes(greendye);
+    case black_cape, red_cape, blue_cape, green_cape, purple_cape, orange_cape : @craft_capes(last_useitem, yellowdye);
+    case plainwig : @make_blonde_wig;
+    case default : ~displaymessage(^dm_default);
+};
+
+[opheldu,greendye]
+switch_obj (last_useitem) 
+{
+    case black_cape, red_cape, blue_cape, yellow_cape, purple_cape, orange_cape : @craft_capes(last_useitem, greendye);
+    case default : ~displaymessage(^dm_default);
+};
+
+[opheldu,purpledye]
+switch_obj (last_useitem) 
+{
+    case black_cape, red_cape, blue_cape, yellow_cape, green_cape, orange_cape : @craft_capes(last_useitem, purpledye);
+    case default : ~displaymessage(^dm_default);
+};
+
+[opheldu,orangedye]
+switch_obj (last_useitem) 
+{
+    case black_cape, red_cape, blue_cape, yellow_cape, green_cape, purple_cape : @craft_capes(last_useitem, orangedye);
+    case goblin_armour : ~dye_goblin_mail_armour(orangedye, goblin_armour_orange, "orange");
+    case default : ~displaymessage(^dm_default);
+};
+//----------------------
+
+
+//--- Capes
+[opheldu,black_cape]
+switch_obj (last_useitem) 
+{
+    case reddye, bluedye, yellowdye, greendye, purpledye, orangedye : @craft_capes(black_cape, last_useitem);
+    case default : ~displaymessage(^dm_default);
+};
+
+[opheldu,red_cape]
+switch_obj (last_useitem) 
+{
+    case bluedye, yellowdye, greendye, purpledye, orangedye : @craft_capes(red_cape, last_useitem);
+    case default : ~displaymessage(^dm_default);
+};
+
+[opheldu,blue_cape]
+switch_obj (last_useitem) 
+{
+    case reddye, yellowdye, greendye, purpledye, orangedye : @craft_capes(blue_cape, last_useitem);
+    case default : ~displaymessage(^dm_default);
+};
+
+[opheldu,yellow_cape]
+switch_obj (last_useitem) 
+{
+    case reddye, bluedye, greendye, purpledye, orangedye : @craft_capes(yellow_cape, last_useitem);
+    case default : ~displaymessage(^dm_default);
+};
+
+[opheldu,green_cape]
+switch_obj (last_useitem) 
+{
+    case reddye, bluedye, yellowdye, purpledye, orangedye : @craft_capes(green_cape, last_useitem);
+    case default : ~displaymessage(^dm_default);
+};
+
+[opheldu,purple_cape]
+switch_obj (last_useitem) 
+{
+
+    case reddye, bluedye, yellowdye, greendye, orangedye : @craft_capes(purple_cape, last_useitem);
+    case default : ~displaymessage(^dm_default);
+};
+[opheldu,orange_cape]
+switch_obj (last_useitem) 
+{
+
+    case reddye, bluedye, yellowdye, greendye, purpledye : @craft_capes(orange_cape, last_useitem);
+    case default : ~displaymessage(^dm_default);
+};
+//----------------------
+
+
+
+[label,craft_capes](obj $cape, obj $dye)
+def_struct $dye_struct = oc_param($dye, crafting_capes_struct);
+def_struct $cape_struct = oc_param($cape, crafting_capes_struct);
+
+// delete the ingredients - did we really need to call struct to get the objects we came here with?
+inv_del(inv, $dye, 1);
+inv_del(inv, $cape, 1);
+
+// add the cape
+inv_add(inv, struct_param($dye_struct, cape), 1);
+
+stat_advance(crafting, 25);
+
+// send message
+// "You dye the red cape blue."
+mes("You dye the <struct_param($cape_struct, color)> cape <struct_param($dye_struct, color)>.");
+
+
+[label,craft_dyes](obj $product)
+def_struct $struct = oc_param($product, crafting_capes_struct);
+
+// delete the ingredients
+inv_del(inv, struct_param($struct, ingredient), 1);
+inv_del(inv, struct_param($struct, secondary_ingredient), 1);
+
+// add the dye
+inv_add(inv, struct_param($struct, product), 1);
+
+// send message
+// "You mix the two dyes and make a green one."
+mes("You mix the two dyes and make <struct_param($struct, processmessage)> one.");

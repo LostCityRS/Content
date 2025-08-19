@@ -1,0 +1,167 @@
+[opnpc1,mourner2] @mourner_stand_back_citizen; // mourner brown outfit level 15
+[opnpc1,mourner3] @mourner_stand_back_citizen; // mourner brown outfit level 19
+[opnpc1,mourner1] @mourner_talk_to_player; // mourner black outfit
+[opnpc1,headmourner] @headmourner_talk_to_player;
+
+[opnpc1,mournerstew3] 
+if(%biohazard_progress < ^biohazard_complete) {
+    if(inv_total(worn, doctors_gown) = 0) {
+        ~chatnpc("<p,angry>How did you get in here?|This is a restricted area!");
+        ~npc_retaliate(0);
+        return;
+    }
+    ~chatplayer("<p,neutral>Hello there.");
+    ~chatnpc("<p,sad>Hello Doc, I feel terrible.|I think it was the stew.");
+    ~chatplayer("<p,neutral>Be more careful with your ingredients next time.");
+}
+
+[opnpc1,mournerstew1] 
+if(%biohazard_progress = ^biohazard_poisoned_stew) {
+    ~chatplayer("<p,neutral>Hello there.");
+    ~chatnpc("<p,sad>Oh dear oh dear.|I feel terrible, I think it was the stew.");
+    ~chatplayer("<p,neutral>You should be more careful with your ingredients.");
+    if(inv_total(worn, doctors_gown) > 0) {
+        ~chatnpc("<p,sad>There is one mourner who's really sick. They're resting upstairs. You should see to them first.");
+        ~chatplayer("<p,neutral>Okay, I'll see what I can do.");
+    } else {
+        ~chatnpc("<p,sad>I need a doctor.|The nurse's hut is to the south west.|Go now and bring us a doctor, that's an order.");
+    }
+    return;
+} 
+mes("The mourner doesn't feel like talking.");
+
+[opnpc1,mournertwb] // plague house mourners
+@mourner_talk_to_player;
+
+[opnpc1,mournerstew2] // mourner hq upstairs
+if(%biohazard_progress = ^biohazard_poisoned_stew & inv_total(worn, doctors_gown) > 0) {
+    ~chatplayer("<p,neutral>Hello there.");
+    ~chatnpc("<p,sad>You're here at last! I don't know what I've eaten but I feel like I'm on death's door."); 
+    ~chatplayer("<p,neutral>Hmm... interesting, sounds like food poisoning.");
+    ~chatnpc("<p,sad>Yes, I'd figured that out already. What can you give me to help.");
+    switch_int(~p_choice3("Just hold your breath and count to ten.", 1, "The best I can do is pray for you.", 2, "There's nothing I can do, it's fatal.", 3)) {
+        case 1 :
+            ~chatplayer("<p,neutral>Just hold your breath and count to ten.");
+            ~chatnpc("<p,confused>What? How will that help? What kind of doctor are you?");
+            ~chatplayer("<p,shifty>Erm... I'm new, I just started.");
+            ~chatnpc("<p,angry>You're no doctor!");
+            ~npc_retaliate(0);
+        case 2 :
+            ~chatplayer("<p,neutral>The best I can do is pray for you.");
+            ~chatnpc("<p,angry>Pray for me? You're no doctor... You're an imposter!");
+            ~npc_retaliate(0);
+        case 3 :
+            ~chatplayer("<p,neutral>There's nothing I can do, it's fatal.");
+            ~chatnpc("<p,shock>No, I'm too young to die! I've never even had a girlfriend.");
+            ~chatplayer("<p,neutral>That's life for you.");
+            ~chatnpc("<p,confused>Wait a minute, where's your equipment?");
+            ~chatplayer("<p,shifty>It's erm... at home.");
+            ~chatnpc("<p,angry>You're no doctor!");
+            ~npc_retaliate(0);
+    }
+    return;
+}
+mes("The mourner is sick.");
+p_delay(3);
+mes("He doesn't feel like talking.");
+
+[ai_queue3,mournerstew2]
+gosub(npc_death);
+if(finduid(%npc_aggressive_player) = true) {
+    queue(defeat_biohazard_mourner, 0); // reg queue, doesn't if_close (OSRS)
+}
+
+[queue,defeat_biohazard_mourner]
+if(inv_total(inv, mournerkeytw) = 0) {
+    mes("You search the mourner...");
+    mes("and find a key.");
+    inv_add(inv, mournerkeytw, 1);
+}
+
+[label,mourner_stand_back_citizen]
+~chatnpc("<p,neutral>Stand back citizen, do not approach me.");
+
+[label,mourner_talk_to_player]
+if (~inzone_coord_pair_table(ardougne_west, coord) = true) {
+    ~chatnpc("<p,confused>Hmmm, how did you get over here? You're not one of this rabble. Ah well, you'll have to stay. Can't risk you going back now.");
+    if(%elena_progress < ^quest_elena_freed_elena) {
+        @multi3("So what's a mourner?", mourner_so_whats_a_mourner, "I haven't got the plague though...", mourner_i_havent_got_the_plague_though, "I'm looking for a woman named <nc_name(elena2)>.", mourner_im_looking_for_a_woman);
+    } else {
+        @multi2("So what's a mourner?", mourner_so_whats_a_mourner, "I haven't got the plague though...", mourner_i_havent_got_the_plague_though);
+    }
+} else {
+    @mourner_outside_gates;
+}
+
+[label,mourner_so_whats_a_mourner]
+~chatplayer("<p,quiz>So what's a mourner?");
+~chatnpc("<p,neutral>We're working for King Lathas of East Ardougne. He has tasked us with containing the accursed plague sweeping West Ardougne.");
+~chatnpc("<p,neutral>We also do our best to ease these people's suffering. We're nicknamed mourners because we spend a lot of time at plague victim funerals, no one else is allowed to risk attending.");
+~chatnpc("<p,neutral>It's a demanding job, and we get little thanks from the people here.");
+
+[label,mourner_i_havent_got_the_plague_though]
+~chatplayer("<p,angry>I haven't got the plague though...");
+~chatnpc("<p,neutral>Can't risk you being a carrier. That protective clothing you have isn't regulation issue. It won't meet safety standards.");
+
+[label,mourner_im_looking_for_a_woman]
+~chatplayer("<p,neutral>I'm looking for a woman named <nc_name(elena2)>.");
+~chatnpc("<p,neutral>Ah yes, I've heard of her. A healer I believe. She must be mad coming over here voluntarily.");
+~chatnpc("<p,neutral>I hear rumours she has probably caught the plague now. Very tragic, a stupid waste of life.");
+
+[label,headmourner_talk_to_player]
+~chatnpc("<p,neutral>How did you get into West Ardougne? Ah well you'll have to stay, can't risk you spreading the plague outside.");
+switch_int(%elena_progress) {
+    case ^quest_elena_spoke_to_plague_house, ^quest_elena_spoke_to_clerk, ^quest_elena_spoke_to_bravek, ^quest_elena_spoke_cured_bravek :
+        @multi4("I need clearance to enter a plague house.", headmourner_i_need_clearance, "So what's a mourner?", mourner_so_whats_a_mourner, "I haven't got the plague though...", mourner_i_havent_got_the_plague_though, "I'm looking for a woman named <nc_name(elena2)>.", mourner_im_looking_for_a_woman);
+    case ^quest_elena_freed_elena, ^elena_complete, ^elena_complete_read_scroll : @multi2("So what's a mourner?", mourner_so_whats_a_mourner, "I haven't got the plague though...", mourner_i_havent_got_the_plague_though);
+    case default : @multi3("So what's a mourner?", mourner_so_whats_a_mourner, "I haven't got the plague though...", mourner_i_havent_got_the_plague_though, "I'm looking for a woman named <nc_name(elena2)>.", mourner_im_looking_for_a_woman);
+}
+
+[label,headmourner_i_need_clearance]
+~chatplayer("<p,neutral>I need clearance to enter a plague house. It's in the south east corner of West Ardougne.");
+~chatnpc("<p,shock>You must be nuts, absolutely not!");
+@multi3("There's a kidnap victim inside!", headmourner_theres_a_kidnap_victim_inside, "I've got a gas mask though...", headmourner_ive_got_a_gas_mask_though, "Yes, I'm utterly crazy.", headmourner_yes_im_utterly_crazy);
+
+[label,headmourner_theres_a_kidnap_victim_inside]
+~chatplayer("<p,angry>There's a kidnap victim inside!");
+~chatnpc("<p,neutral>Well they're as good as dead then, no point in trying to save them.");
+
+[label,headmourner_ive_got_a_gas_mask_though]
+~chatplayer("<p,confused>I've got a gas mask though...");
+~chatnpc("<p,neutral>It's not regulation. Anyway you're not properly trained to deal with the plague.");
+~chatplayer("<p,confused>How do I get trained?");
+~chatnpc("<p,neutral>It requires a strict 18 months of training.");
+~chatplayer("<p,angry>I don't have that sort of time.");
+
+[label,headmourner_yes_im_utterly_crazy]
+~chatplayer("<p,confused>Yes, I'm utterly crazy.");
+~chatnpc("<p,angry>You're wasting my time, I have a lot of work to do!");
+
+[label,mourner_outside_gates]
+~chatplayer("<p,happy>Hi.");
+~chatnpc("<p,quiz>What are you up to?");
+~chatplayer("<p,neutral>Just sight-seeing.");
+~chatnpc("<p,shock>This is no place for sight-seeing. Don't you know there's been a plague outbreak?");
+~chatplayer("<p,neutral>Yes, I had heard.");
+~chatnpc("<p,neutral>Then I suggest you leave as soon as you can.");
+@multi3("What brought the plague to Ardougne?", mourner_what_brought_the_plague_to_ardougne, "What are the symptoms of the plague?", mourner_what_are_the_symptoms_of_the_plague, "Thanks for the advice.", mourner_thanks_for_the_advice);
+
+[label,mourner_what_brought_the_plague_to_ardougne]
+~chatplayer("<p,quiz>What brought the plague to Ardougne?");
+~chatnpc("<p,neutral>It's all down to King Tyras of West Ardougne. It started came back from one of his visits to the lands west of here.");
+~chatnpc("<p,neutral>Some of his men must have unknowingly caught it out there and brought it back with them.");
+~chatplayer("<p,quiz>Does he know how bad the situation is now?");
+~chatnpc("<p,angry>If he did he wouldn't care. I believe he wants his people to suffer, he's an evil man.");
+~chatplayer("<p,shock>Isn't that treason?");
+~chatnpc("<p,angry>He's not my king.");
+
+[label,mourner_what_are_the_symptoms_of_the_plague]
+~chatplayer("<p,quiz>What are the symptoms of the plague?");
+~chatnpc("<p,neutral>The first signs are typical flu symptoms. These tend to be followed by severe nightmares, horrifying hallucinations which drive many to madness.");
+~chatplayer("<p,shock>Sounds nasty.");
+~chatnpc("<p,sad>It gets worse. Next the victim's blood changes into a thick black tar-like liquid, at this point they're past help.");
+~chatnpc("<p,sad>Their skin is cold to the touch, the victim is now brain dead. Their body however lives on driven by the virus, roaming like a zombie, spreading itself further wherever possible.");
+~chatplayer("<p,shock>I think I've heard enough.");
+
+[label,mourner_thanks_for_the_advice]
+~chatplayer("<p,neutral>Thanks for the advice.");

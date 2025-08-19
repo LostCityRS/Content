@@ -1,0 +1,683 @@
+[proc,p_choice2](string $string1, int $ret1, string $string2, int $ret2)(int)
+if_settext(multi2:com_0, "Select an Option");
+if_settext(multi2:com_1, $string1);
+if_settext(multi2:com_2, $string2);
+if_sethide(multi2:com_5, false);
+if_sethide(multi2:com_8, true);
+
+if_openchat(multi2);
+if_setresumebuttons(multi2:com_1, multi2:com_2, null, null, null);
+p_pausebutton;
+
+switch_component (last_com) {
+    case multi2:com_1 : return($ret1);
+    case default : return($ret2);
+}
+
+/** Used for things like ladder options. **/
+[proc,p_choice2_header](string $string1, int $ret1, string $string2, int $ret2, string $headertext)(int)
+if_settext(multi2:com_0, $headertext);
+if_settext(multi2:com_1, $string1);
+if_settext(multi2:com_2, $string2);
+if_sethide(multi2:com_5, true);
+if_sethide(multi2:com_8, false);
+
+if_openchat(multi2);
+if_setresumebuttons(multi2:com_1, multi2:com_2, null, null, null);
+p_pausebutton;
+
+switch_component (last_com) {
+    case multi2:com_1 : return($ret1);
+    case default : return($ret2);
+}
+
+[proc,p_choice3](string $string1, int $ret1, string $string2, int $ret2, string $string3, int $ret3)(int)
+if_settext(multi3:com_0, "Select an Option");
+if_settext(multi3:com_1, $string1);
+if_settext(multi3:com_2, $string2);
+if_settext(multi3:com_3, $string3);
+if_sethide(multi3:com_6, false);
+if_sethide(multi3:com_9, true);
+
+if_openchat(multi3);
+if_setresumebuttons(multi3:com_1, multi3:com_2, multi3:com_3, null, null);
+p_pausebutton;
+
+switch_component (last_com) {
+    case multi3:com_1 : return($ret1);
+    case multi3:com_2 : return($ret2);
+    case default : return($ret3);
+}
+
+// used for dough interface
+[proc,p_choice3_header](string $string1, int $ret1, string $string2, int $ret2, string $string3, int $ret3, string $headertext)(int)
+if_settext(multi3:com_0, $headertext);
+if_settext(multi3:com_1, $string1);
+if_settext(multi3:com_2, $string2);
+if_settext(multi3:com_3, $string3);
+if_sethide(multi3:com_6, true);
+if_sethide(multi3:com_9, false);
+
+if_openchat(multi3);
+if_setresumebuttons(multi3:com_1, multi3:com_2, multi3:com_3, null, null);
+p_pausebutton;
+
+switch_component (last_com) {
+    case multi3:com_1 : return($ret1);
+    case multi3:com_2 : return($ret2);
+    case default : return($ret3);
+}
+
+[proc,p_choice4](string $string1, int $ret1, string $string2, int $ret2, string $string3, int $ret3, string $string4, int $ret4)(int)
+if_settext(multi4:com_0, "Select an Option");
+if_settext(multi4:com_1, $string1);
+if_settext(multi4:com_2, $string2);
+if_settext(multi4:com_3, $string3);
+if_settext(multi4:com_4, $string4);
+if_sethide(multi4:com_7, false);
+if_sethide(multi4:com_8, true);
+
+if_openchat(multi4);
+if_setresumebuttons(multi4:com_1, multi4:com_2, multi4:com_3, multi4:com_4, null);
+p_pausebutton;
+
+switch_component (last_com) {
+    case multi4:com_1 : return($ret1);
+    case multi4:com_2 : return($ret2);
+    case multi4:com_3 : return($ret3);
+    case default : return($ret4);
+}
+
+[proc,p_choice4_header](string $string1, int $ret1, string $string2, int $ret2, string $string3, int $ret3, string $string4, int $ret4, string $headertext)(int)
+if_settext(multi4:com_0, $headertext);
+if_settext(multi4:com_1, $string1);
+if_settext(multi4:com_2, $string2);
+if_settext(multi4:com_3, $string3);
+if_settext(multi4:com_4, $string4);
+if_sethide(multi4:com_7, true);
+if_sethide(multi4:com_8, false);
+
+if_openchat(multi4);
+if_setresumebuttons(multi4:com_1, multi4:com_2, multi4:com_3, multi4:com_4, null);
+p_pausebutton;
+
+switch_component (last_com) {
+    case multi4:com_1 : return($ret1);
+    case multi4:com_2 : return($ret2);
+    case multi4:com_3 : return($ret3);
+    case default : return($ret4);
+}
+
+[proc,p_choice5](string $string1, int $ret1, string $string2, int $ret2, string $string3, int $ret3, string $string4, int $ret4, string $string5, int $ret5)(int)
+if_settext(multi5:com_0, "Select an Option");
+if_settext(multi5:com_1, $string1);
+if_settext(multi5:com_2, $string2);
+if_settext(multi5:com_3, $string3);
+if_settext(multi5:com_4, $string4);
+if_settext(multi5:com_5, $string5);
+if_sethide(multi5:com_8, false);
+if_sethide(multi5:com_9, true);
+
+if_openchat(multi5);
+if_setresumebuttons(multi5:com_1, multi5:com_2, multi5:com_3, multi5:com_4, multi5:com_5);
+p_pausebutton;
+
+switch_component (last_com) {
+    case multi5:com_1 : return($ret1);
+    case multi5:com_2 : return($ret2);
+    case multi5:com_3 : return($ret3);
+    case multi5:com_4 : return($ret4);
+    case default : return($ret5);
+}
+
+[proc,p_choice5_header](string $string1, int $ret1, string $string2, int $ret2, string $string3, int $ret3, string $string4, int $ret4, string $string5, int $ret5, string $headertext)(int)
+if_settext(multi5:com_0, $headertext);
+if_settext(multi5:com_1, $string1);
+if_settext(multi5:com_2, $string2);
+if_settext(multi5:com_3, $string3);
+if_settext(multi5:com_4, $string4);
+if_settext(multi5:com_5, $string5);
+if_sethide(multi5:com_8, true);
+if_sethide(multi5:com_9, false);
+
+if_openchat(multi5);
+if_setresumebuttons(multi5:com_1, multi5:com_2, multi5:com_3, multi5:com_4, multi5:com_5);
+p_pausebutton;
+
+switch_component (last_com) {
+    case multi5:com_1 : return($ret1);
+    case multi5:com_2 : return($ret2);
+    case multi5:com_3 : return($ret3);
+    case multi5:com_4 : return($ret4);
+    case default : return($ret5);
+}
+// ----
+
+[label,multi2](string $string1, label $label1, string $string2, label $label2)
+def_int $choice = ~p_choice2($string1, 1, $string2, 2);
+if ($choice = 1) jump($label1);
+jump($label2);
+
+[label,multi3](string $string1, label $label1, string $string2, label $label2, string $string3, label $label3)
+def_int $choice = ~p_choice3($string1, 1, $string2, 2, $string3, 3);
+if ($choice = 1) jump($label1);
+if ($choice = 2) jump($label2);
+jump($label3);
+
+[label,multi4](string $string1, label $label1, string $string2, label $label2, string $string3, label $label3, string $string4, label $label4)
+def_int $choice = ~p_choice4($string1, 1, $string2, 2, $string3, 3, $string4, 4);
+if ($choice = 1) jump($label1);
+if ($choice = 2) jump($label2);
+if ($choice = 3) jump($label3);
+jump($label4);
+
+[label,multi5](string $string1, label $label1, string $string2, label $label2, string $string3, label $label3, string $string4, label $label4, string $string5, label $label5)
+def_int $choice = ~p_choice5($string1, 1, $string2, 2, $string3, 3, $string4, 4, $string5, 5);
+if ($choice = 1) jump($label1);
+if ($choice = 2) jump($label2);
+if ($choice = 3) jump($label3);
+if ($choice = 4) jump($label4);
+jump($label5);
+
+[label,multi2_header](string $string1, label $label1, string $string2, label $label2, string $headertext)
+def_int $choice = ~p_choice2_header($string1, 1, $string2, 2, $headertext);
+if ($choice = 1) jump($label1);
+jump($label2);
+
+[label,multi3_header](string $string1, label $label1, string $string2, label $label2, string $string3, label $label3, string $headertext)
+def_int $choice = ~p_choice3_header($string1, 1, $string2, 2, $string3, 3, $headertext);
+if ($choice = 1) jump($label1);
+if ($choice = 2) jump($label2);
+jump($label3);
+
+[label,multi4_header](string $string1, label $label1, string $string2, label $label2, string $string3, label $label3, string $string4, label $label4, string $headertext)
+def_int $choice = ~p_choice4_header($string1, 1, $string2, 2, $string3, 3, $string4, 4, $headertext);
+if ($choice = 1) jump($label1);
+if ($choice = 2) jump($label2);
+if ($choice = 3) jump($label3);
+jump($label4);
+
+[label,multi5_header](string $string1, label $label1, string $string2, label $label2, string $string3, label $label3, string $string4, label $label4, string $string5, label $label5, string $headertext)
+def_int $choice = ~p_choice5_header($string1, 1, $string2, 2, $string3, 3, $string4, 4, $string5, 5, $headertext);
+if ($choice = 1) jump($label1);
+if ($choice = 2) jump($label2);
+if ($choice = 3) jump($label3);
+if ($choice = 4) jump($label4);
+jump($label5);
+
+// ----
+
+[proc,chatplayer_page](int $page)
+def_int $lines = split_linecount($page);
+
+def_interface $interface = null;
+if ($lines = 0) {
+    // sanity check
+    return;
+} else if ($lines = 1) {
+    $interface = chat1;
+    if_setplayerhead(chat1:com_0);
+    if_setanim(chat1:com_0, split_getanim($page));
+    if_settext(chat1:com_1, displayname);
+    if_settext(chat1:com_2, split_get($page, 0));
+} else if ($lines = 2) {
+    $interface = chat2;
+    if_setplayerhead(chat2:com_0);
+    if_setanim(chat2:com_0, split_getanim($page));
+    if_settext(chat2:com_1, displayname);
+    if_settext(chat2:com_2, split_get($page, 0));
+    if_settext(chat2:com_3, split_get($page, 1));
+} else if ($lines = 3) {
+    $interface = chat3;
+    if_setplayerhead(chat3:com_0);
+    if_setanim(chat3:com_0, split_getanim($page));
+    if_settext(chat3:com_1, displayname);
+    if_settext(chat3:com_2, split_get($page, 0));
+    if_settext(chat3:com_3, split_get($page, 1));
+    if_settext(chat3:com_4, split_get($page, 2));
+} else if ($lines = 4) {
+    $interface = chat4;
+    if_setplayerhead(chat4:com_0);
+    if_setanim(chat4:com_0, split_getanim($page));
+    if_settext(chat4:com_1, displayname);
+    if_settext(chat4:com_2, split_get($page, 0));
+    if_settext(chat4:com_3, split_get($page, 1));
+    if_settext(chat4:com_4, split_get($page, 2));
+    if_settext(chat4:com_5, split_get($page, 3));
+}
+
+if_openchat($interface);
+
+[proc,chatplayer](string $string)
+split_init($string, 380, 4, q8);
+def_int $page = 0;
+def_int $pagetotal = split_pagecount;
+while ($page < $pagetotal) {
+    ~chatplayer_page($page);
+    p_pausebutton;
+    $page = calc($page + 1);
+}
+
+// ----
+
+[proc,chatnpc_page](string $npc_name, npc $npc, int $page)
+def_int $lines = split_linecount($page);
+def_interface $interface = null;
+
+if ($lines = 0) {
+    // sanity check
+    return;
+} else if ($lines = 1) {
+    $interface = npcchat1;
+    if_setnpchead(npcchat1:com_0, $npc);
+    if_setanim(npcchat1:com_0, split_getanim($page));
+    if_settext(npcchat1:com_1, $npc_name);
+    if_settext(npcchat1:com_2, split_get($page, 0));
+} else if ($lines = 2) {
+    $interface = npcchat2;
+    if_setnpchead(npcchat2:com_0, $npc);
+    if_setanim(npcchat2:com_0, split_getanim($page));
+    if_settext(npcchat2:com_1, $npc_name);
+    if_settext(npcchat2:com_2, split_get($page, 0));
+    if_settext(npcchat2:com_3, split_get($page, 1));
+} else if ($lines = 3) {
+    $interface = npcchat3;
+    if_setnpchead(npcchat3:com_0, $npc);
+    if_setanim(npcchat3:com_0, split_getanim($page));
+    if_settext(npcchat3:com_1, $npc_name);
+    if_settext(npcchat3:com_2, split_get($page, 0));
+    if_settext(npcchat3:com_3, split_get($page, 1));
+    if_settext(npcchat3:com_4, split_get($page, 2));
+} else if ($lines = 4) {
+    $interface = npcchat4;
+    if_setnpchead(npcchat4:com_0, $npc);
+    if_setanim(npcchat4:com_0, split_getanim($page));
+    if_settext(npcchat4:com_1, $npc_name);
+    if_settext(npcchat4:com_2, split_get($page, 0));
+    if_settext(npcchat4:com_3, split_get($page, 1));
+    if_settext(npcchat4:com_4, split_get($page, 2));
+    if_settext(npcchat4:com_5, split_get($page, 3));
+}
+if_openchat($interface);
+
+[proc,chatnpc](string $string)
+split_init($string, 380, 4, q8);
+def_int $page = 0;
+def_int $pagetotal = split_pagecount;
+while ($page < $pagetotal) {
+    ~chatnpc_page(npc_name, npc_type, $page);
+    facesquare(npc_coord);
+    if(npc_getmode ! opplayer2 & npc_getmode ! applayer2) npc_setmode(playerfaceclose);
+    p_pausebutton;
+    $page = calc($page + 1);
+}
+
+[proc,.chatnpc](string $string)
+split_init($string, 380, 4, q8);
+def_int $page = 0;
+def_int $pagetotal = split_pagecount;
+while ($page < $pagetotal) {
+    ~chatnpc_page(.npc_name, .npc_type, $page);
+    facesquare(.npc_coord);
+    if(.npc_getmode ! opplayer2 & .npc_getmode ! applayer2) .npc_setmode(playerfaceclose);
+    p_pausebutton;
+    $page = calc($page + 1);
+}
+
+[proc,chatnpcrange](string $string)
+split_init($string, 380, 4, q8);
+def_int $page = 0;
+def_int $pagetotal = split_pagecount;
+while ($page < $pagetotal) {
+    ~chatnpc_page(npc_name, npc_type, $page);
+    facesquare(npc_coord);
+    if(npc_getmode ! opplayer2 & npc_getmode ! applayer2) npc_setmode(playerface);
+    p_pausebutton;
+    $page = calc($page + 1);
+}
+
+[proc,.chatnpcrange](string $string)
+split_init($string, 380, 4, q8);
+def_int $page = 0;
+def_int $pagetotal = split_pagecount;
+while ($page < $pagetotal) {
+    ~chatnpc_page(.npc_name, .npc_type, $page);
+    facesquare(.npc_coord);
+    if(.npc_getmode ! opplayer2 & .npc_getmode !applayer2) .npc_setmode(playerface);
+    p_pausebutton;
+    $page = calc($page + 1);
+}
+
+[proc,chatnpcnoturn](string $string)
+split_init($string, 380, 4, q8);
+def_int $page = 0;
+def_int $pagetotal = split_pagecount;
+while ($page < $pagetotal) {
+    ~chatnpc_page(npc_name, npc_type, $page);
+    facesquare(npc_coord);
+    p_pausebutton;
+    $page = calc($page + 1);
+}
+
+[proc,.chatnpcnoturn](string $string)
+split_init($string, 380, 4, q8);
+def_int $page = 0;
+def_int $pagetotal = split_pagecount;
+while ($page < $pagetotal) {
+    ~chatnpc_page(.npc_name, .npc_type, $page);
+    facesquare(.npc_coord);
+    p_pausebutton;
+    $page = calc($page + 1);
+}
+
+[proc,chatnpc_specific](string $npc_name, npc $npc, string $string)
+split_init($string, 380, 4, q8);
+def_int $page = 0;
+def_int $pagetotal = split_pagecount;
+while ($page < $pagetotal) {
+    ~chatnpc_page($npc_name, $npc, $page);
+    p_pausebutton;
+    $page = calc($page + 1);
+}
+// ----
+
+[proc,mesbox_page](int $page)
+def_int $lines = split_linecount($page);
+
+def_interface $interface = null;
+if ($lines = 0) {
+    // sanity check
+    return;
+} else if ($lines = 1) {
+    $interface = message1;
+    if_settext(message1:com_0, split_get($page, 0));
+} else if ($lines = 2) {
+    $interface = message2;
+    if_settext(message2:com_0, split_get($page, 0));
+    if_settext(message2:com_1, split_get($page, 1));
+} else if ($lines = 3) {
+    $interface = message3;
+    if_settext(message3:com_0, split_get($page, 0));
+    if_settext(message3:com_1, split_get($page, 1));
+    if_settext(message3:com_2, split_get($page, 2));
+} else if ($lines = 4) {
+    $interface = message4;
+    if_settext(message4:com_0, split_get($page, 0));
+    if_settext(message4:com_1, split_get($page, 1));
+    if_settext(message4:com_2, split_get($page, 2));
+    if_settext(message4:com_3, split_get($page, 3));
+} else if ($lines = 5) {
+    $interface = message5;
+    if_settext(message5:com_0, split_get($page, 0));
+    if_settext(message5:com_1, split_get($page, 1));
+    if_settext(message5:com_2, split_get($page, 2));
+    if_settext(message5:com_3, split_get($page, 3));
+    if_settext(message5:com_4, split_get($page, 4));
+}
+if_openchat($interface);
+
+[proc,mesbox](string $string)
+split_init($string, 470, 5, q8);
+def_int $page = 0;
+def_int $pagetotal = split_pagecount;
+while ($page < $pagetotal) {
+    ~mesbox_page($page);
+    p_pausebutton;
+    $page = calc($page + 1);
+}
+
+[proc,.mesbox_page](int $page)
+def_int $lines = split_linecount($page);
+
+def_interface $interface = null;
+if ($lines = 0) {
+    // sanity check
+    return;
+} else if ($lines = 1) {
+    $interface = message1;
+    .if_settext(message1:com_0, split_get($page, 0));
+} else if ($lines = 2) {
+    $interface = message2;
+    .if_settext(message2:com_0, split_get($page, 0));
+    .if_settext(message2:com_1, split_get($page, 1));
+} else if ($lines = 3) {
+    $interface = message3;
+    .if_settext(message3:com_0, split_get($page, 0));
+    .if_settext(message3:com_1, split_get($page, 1));
+    .if_settext(message3:com_2, split_get($page, 2));
+} else if ($lines = 4) {
+    $interface = message4;
+    .if_settext(message4:com_0, split_get($page, 0));
+    .if_settext(message4:com_1, split_get($page, 1));
+    .if_settext(message4:com_2, split_get($page, 2));
+    .if_settext(message4:com_3, split_get($page, 3));
+} else if ($lines = 5) {
+    $interface = message5;
+    .if_settext(message5:com_0, split_get($page, 0));
+    .if_settext(message5:com_1, split_get($page, 1));
+    .if_settext(message5:com_2, split_get($page, 2));
+    .if_settext(message5:com_3, split_get($page, 3));
+    .if_settext(message5:com_4, split_get($page, 4));
+}
+.if_openchat($interface);
+
+[proc,.mesbox](string $string)
+split_init($string, 470, 5, q8);
+def_int $page = 0;
+def_int $pagetotal = split_pagecount;
+while ($page < $pagetotal) {
+    ~.mesbox_page($page);
+    .p_pausebutton;
+    $page = calc($page + 1);
+}
+
+// ----
+
+[proc,objbox_page](obj $obj, int $scale, int $x, int $y, int $page)
+def_int $lines = split_linecount($page);
+
+def_interface $interface = null;
+if ($lines = 0) {
+    // sanity check
+    return;
+} else if ($lines = 1) {
+    $interface = objbox1;
+    if_setobject(objbox1:com_0, $obj, $scale);
+    if_setposition(objbox1:com_0, $x, $y);
+    if_settext(objbox1:com_1, split_get($page, 0));
+} else if ($lines = 2) {
+    $interface = objbox2;
+    if_setobject(objbox2:com_0, $obj, $scale);
+    if_setposition(objbox2:com_0, $x, $y);
+    if_settext(objbox2:com_2, split_get($page, 0));
+    if_settext(objbox2:com_1, split_get($page, 1));
+} else if ($lines = 3) {
+    $interface = objbox3;
+    if_setobject(objbox3:com_0, $obj, $scale);
+    if_setposition(objbox3:com_0, $x, $y);
+    if_settext(objbox3:com_2, split_get($page, 0));
+    if_settext(objbox3:com_1, split_get($page, 1));
+    if_settext(objbox3:com_4, split_get($page, 2));
+} else if ($lines = 4) {
+    $interface = objbox4;
+    if_setobject(objbox4:com_0, $obj, $scale);
+    if_setposition(objbox4:com_0, $x, $y);
+    if_settext(objbox4:com_2, split_get($page, 0));
+    if_settext(objbox4:com_1, split_get($page, 1));
+    if_settext(objbox4:com_4, split_get($page, 2));
+    if_settext(objbox4:com_5, split_get($page, 3));
+}
+if_openchat($interface);
+
+[proc,objbox](obj $obj, string $string, int $scale, int $x, int $y)
+split_init($string, 380, 4, q8);
+def_int $page = 0;
+def_int $pagetotal = split_pagecount;
+while ($page < $pagetotal) {
+    ~objbox_page($obj, $scale, $x, $y, $page);
+    p_pausebutton;
+    $page = calc($page + 1);
+}
+
+// ----
+
+[proc,doubleobjbox_page](obj $obj_1, int $scale1, int $x1, int $y1, obj $obj_2, int $scale2, int $x2, int $y2, int $page)
+def_int $lines = split_linecount($page);
+
+if ($lines = 0 | $lines > 4) {
+    // sanity check
+    return;
+} else if ($lines = 1) {
+    if_settext(doubleobjbox:com_1, split_get($page, 0));
+    if_settext(doubleobjbox:com_2, "");
+    if_settext(doubleobjbox:com_4, "");
+    if_settext(doubleobjbox:com_5, "");
+} else if ($lines = 2) {
+    if_settext(doubleobjbox:com_1, split_get($page, 0));
+    if_settext(doubleobjbox:com_2, "");
+    if_settext(doubleobjbox:com_4, split_get($page, 1));
+    if_settext(doubleobjbox:com_5, "");
+} else if ($lines = 3) {
+    if_settext(doubleobjbox:com_1, split_get($page, 0));
+    if_settext(doubleobjbox:com_2, "");
+    if_settext(doubleobjbox:com_4, split_get($page, 1));
+    if_settext(doubleobjbox:com_5, split_get($page, 2));
+} else if ($lines = 4) {
+    if_settext(doubleobjbox:com_1, split_get($page, 1));
+    if_settext(doubleobjbox:com_2, split_get($page, 0));
+    if_settext(doubleobjbox:com_4, split_get($page, 2));
+    if_settext(doubleobjbox:com_5, split_get($page, 3));
+}
+if_setobject(doubleobjbox:com_0, $obj_1, $scale1);
+if_setobject(doubleobjbox:com_6, $obj_2, $scale2);
+if_setposition(doubleobjbox:com_0, $x1, $y1);
+if_setposition(doubleobjbox:com_6, $x2, $y2);
+if_openchat(doubleobjbox);
+
+[proc,doubleobjbox](obj $obj_1, obj $obj_2, string $string, int $scale)
+split_init($string, 350, 4, q8);
+def_int $page = 0;
+def_int $pagetotal = split_pagecount;
+while ($page < $pagetotal) {
+    ~doubleobjbox_page($obj_1, $scale, 0, 0, $obj_2, $scale, 0, 0, $page);
+    p_pausebutton;
+    $page = calc($page + 1);
+}
+
+[proc,doubleobjbox2](obj $obj_1, int $scale1, int $x1, int $y1, obj $obj_2, int $scale2, int $x2, int $y2, string $string)
+split_init($string, 350, 4, q8);
+def_int $page = 0;
+def_int $pagetotal = split_pagecount;
+while ($page < $pagetotal) {
+    ~doubleobjbox_page($obj_1, $scale1, $x1, $y1, $obj_2, $scale2, $x2, $y2, $page);
+    p_pausebutton;
+    $page = calc($page + 1);
+}
+
+[proc,multiobj2](string $title, namedobj $obj1, int $x1, int $y1, int $scale1, string $string1, int $sx1, int $sy1, namedobj $obj2, int $x2, int $y2, int $scale2, string $string2, int $sx2, int $sy2)(namedobj)
+// reset any positions out of place
+if_setposition(multiobj2:obj1, $x1, $y1);
+if_setposition(multiobj2:objtext1, $sx1, $sy1);
+if_setposition(multiobj2:obj2, $x2, $y2);
+if_setposition(multiobj2:objtext2, $sx2, $sy2);
+
+if_settext(multiobj2:title, $title);
+if_setobject(multiobj2:obj1, $obj1, $scale1);
+if_settext(multiobj2:objtext1, $string1);
+if_setobject(multiobj2:obj2, $obj2, $scale2);
+if_settext(multiobj2:objtext2, $string2);
+
+if_openchat(multiobj2);
+
+if_setresumebuttons(multiobj2:obj1, multiobj2:obj2, multiobj2:objtext1, multiobj2:objtext2, null);
+p_pausebutton;
+
+switch_component (last_com) {
+    case multiobj2:obj1 : return($obj1);
+    case multiobj2:objtext1 : return($obj1);
+    case multiobj2:obj2 : return($obj2);
+    case multiobj2:objtext2 : return($obj2);
+    case default : return(null);
+}
+
+[proc,multiobj3](string $title, namedobj $obj1, int $x1, int $y1, int $scale1, string $string1, int $sx1, int $sy1, namedobj $obj2, int $x2, int $y2, int $scale2, string $string2, int $sx2, int $sy2, namedobj $obj3, int $x3, int $y3, int $scale3, string $string3, int $sx3, int $sy3)(namedobj)
+// reset any positions out of place
+if_setposition(multiobj3:com_2, $x1, $y1);
+if_setposition(multiobj3:com_3, $x2, $y2);
+if_setposition(multiobj3:com_4, $x3, $y3);
+if_setposition(multiobj3:com_5, $sx1, $sy1);
+if_setposition(multiobj3:com_6, $sx2, $sy2);
+if_setposition(multiobj3:com_7, $sx3, $sy3);
+
+if_settext(multiobj3:com_8, $title);
+if_setobject(multiobj3:com_2, $obj1, $scale1);
+if_settext(multiobj3:com_5, $string1);
+if_setobject(multiobj3:com_3, $obj2, $scale2);
+if_settext(multiobj3:com_6, $string2);
+if_setobject(multiobj3:com_4, $obj3, $scale3);
+if_settext(multiobj3:com_7, $string3);
+if_openchat(multiobj3);
+
+if_setresumebuttons(multiobj3:com_2, multiobj3:com_3, multiobj3:com_4, null, null);
+p_pausebutton;
+
+switch_component (last_com) {
+    case multiobj3:com_2 : return($obj1);
+    case multiobj3:com_3 : return($obj2);
+    case multiobj3:com_4 : return($obj3);
+    case default : return(null);
+}
+
+[if_button,multiobj3_close:com_8] if_close;
+[proc,multiobj3_close](string $title, namedobj $obj1, int $scale1, string $string1, namedobj $obj2, int $scale2, string $string2, namedobj $obj3, int $scale3, string $string3)(namedobj)
+if_settext(multiobj3_close:com_7, $title);
+if_setobject(multiobj3_close:com_1, $obj1, $scale1);
+if_settext(multiobj3_close:com_4, $string1);
+if_setobject(multiobj3_close:com_2, $obj2, $scale2);
+if_settext(multiobj3_close:com_5, $string2);
+if_setobject(multiobj3_close:com_3, $obj3, $scale3);
+if_settext(multiobj3_close:com_6, $string3);
+if_openchat(multiobj3_close);
+
+if_setresumebuttons(multiobj3_close:com_1, multiobj3_close:com_2, multiobj3_close:com_3, null, null);
+p_pausebutton;
+
+switch_component (last_com) {
+    case multiobj3_close:com_1 : return($obj1);
+    case multiobj3_close:com_2 : return($obj2);
+    case multiobj3_close:com_3 : return($obj3);
+    case default : return(null);
+}
+
+[proc,multiobj4](string $title, namedobj $obj1, int $x1, int $y1, int $scale1, string $string1, int $sx1, int $sy1, namedobj $obj2, int $x2, int $y2, int $scale2, string $string2, int $sx2, int $sy2, namedobj $obj3, int $x3, int $y3, int $scale3, string $string3, int $sx3, int $sy3, namedobj $obj4, int $x4, int $y4, int $scale4, string $string4, int $sx4, int $sy4)(namedobj)
+// reset any positions out of place
+if_setposition(multiobj4:com_2, $x1, $y1);
+if_setposition(multiobj4:com_3, $x2, $y2);
+if_setposition(multiobj4:com_4, $x3, $y3);
+if_setposition(multiobj4:com_5, $x4, $y4);
+if_setposition(multiobj4:com_6, $sx1, $sy1);
+if_setposition(multiobj4:com_7, $sx2, $sy2);
+if_setposition(multiobj4:com_8, $sx3, $sy3);
+if_setposition(multiobj4:com_9, $sx4, $sy4);
+
+if_settext(multiobj4:com_10, $title);
+if_setobject(multiobj4:com_2, $obj1, $scale1);
+if_settext(multiobj4:com_6, $string1);
+if_setobject(multiobj4:com_3, $obj2, $scale2);
+if_settext(multiobj4:com_7, $string2);
+if_setobject(multiobj4:com_4, $obj3, $scale3);
+if_settext(multiobj4:com_8, $string3);
+if_setobject(multiobj4:com_5, $obj4, $scale4);
+if_settext(multiobj4:com_9, $string4);
+if_openchat(multiobj4);
+
+if_setresumebuttons(multiobj4:com_2, multiobj4:com_3, multiobj4:com_4, multiobj4:com_5, null);
+p_pausebutton;
+
+switch_component (last_com) {
+    case multiobj4:com_2 : return($obj1);
+    case multiobj4:com_3 : return($obj2);
+    case multiobj4:com_4 : return($obj3);
+    case multiobj4:com_5 : return($obj4);
+    case default : return(null);
+}

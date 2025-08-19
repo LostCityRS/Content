@@ -1,0 +1,41 @@
+[ai_timer,_] ~npc_poison_timer;
+
+[proc,npc_poison_timer]
+// damage npc
+%npc_poison = sub(%npc_poison, 1);
+if (%npc_poison > 0) {
+    if (npc_stat(hitpoints) = 0) { // already dead
+        return;
+    }
+    npc_damage(^hitmark_poison, divide(add(%npc_poison, 4), 5));
+    // They died
+    if (npc_stat(hitpoints) = 0){
+        npc_queue(3, 0, 0);
+    }
+} else {
+    ~npc_poison_clear;
+    return;
+}
+
+
+
+
+
+
+[proc,npc_poison_clear]
+%npc_poison = 0;
+npc_settimer(0); // npc_cleartimer?
+
+
+[proc,npc_poison_start](int $severity)
+if (~npc_is_attackable() = false) {
+    return;
+}
+if (map_members = ^false) {
+    return;
+}
+
+if ($severity > %npc_poison) {
+    npc_settimer(30);
+    %npc_poison = $severity;
+}

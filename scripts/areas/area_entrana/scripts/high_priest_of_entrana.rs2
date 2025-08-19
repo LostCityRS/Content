@@ -1,0 +1,27 @@
+[opnpc1,high_priest_of_entrana]
+~chatnpc("<p,happy>Many greetings. Welcome to our fair island.");
+if(%grail_progress < ^grail_finding_percival & %grail_progress >= ^grail_spoken_merlin) {
+    ~chatplayer("<p,neutral>Hello, I am in search of the Holy Grail.");
+    ~chatnpc("<p,happy>The object of which you speak did once pass through holy Entrana. I know not where it is now however.");
+    ~chatnpc("<p,neutral>Nor do I really care.");
+    if(npc_find(coord, grail_crone, 9, 0) = false) {
+        npc_add(0_44_52_35_14, grail_crone, 500);
+    } else {
+        ~chatnpc("<p,neutral>Wait!");
+    }
+    @grail_crone;
+}
+if (%hero_progress = ^hero_started) { // only checks starting stage (OSRS)
+    // OSRS https://youtu.be/9wwjNvDXjFw?t=121 
+    ~chatplayer("<p,neutral>Hello, I am in search of an Entranan Firebird. Can you help me?");
+    ~chatnpc("<p,neutral>Well adventurer, I have heard that they exist on this|island, but have not ever seen one myself.");
+    ~chatnpc("<p,neutral>According to legend however, they are so hot that their|merest touch can burn flesh.");
+    ~chatnpc("<p,neutral>Apparently long ago a great hero used|a pair of magical gloves, stolen|from the Queen of the Ice to cool the|bird down enough to catch as a pet."); // imgur.com/VHHp1gy
+    ~chatplayer("<p,quiz>So where would I find this 'Queen of the Ice' then?");
+    ~chatnpc("<p,neutral>I know not adventurer, it was just a myth I was told|as a young boy. Perhaps somewhere icey?");
+    ~chatplayer("<p,neutral>Thanks!");
+}
+~chatnpc("<p,happy>Enjoy your stay here.|May it be spiritually uplifting!");
+
+[opnpcu,high_priest_of_entrana]
+~chatnpc("<p,confused>No thank you, I am not accepting donations for the church at this time.");

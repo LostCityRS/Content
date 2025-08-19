@@ -1,0 +1,133 @@
+// death
+[ai_queue3,elvarg]
+gosub(npc_death);
+// requires kill credit? https://youtu.be/6ZU7EIZcU4o?list=PLn23LiLYLb1aqrojPTi1_Np81LJku2Nd0&t=141
+if (npc_findhero = ^false) {
+    return;
+}
+if (%npc_aggressive_player ! uid) { // if u didnt do the last hit
+    return;
+}
+// finish dragon slayer quest
+// https://youtu.be/zmYEl97Smxs?list=PLn23LiLYLb1aqrojPTi1_Np81LJku2Nd0&t=222
+if (%dragon_progress < ^dragon_complete) {
+    queue(dragon_complete, 0);
+}
+
+[ai_queue1,elvarg] ~npc_default_retaliate_ap;
+
+// https://twitter.com/JagexAsh/status/1756992041777561878
+// "AP -> OP: 1/2, subject to a line-of-walk check.
+// OP -> AP: 1/8"
+[ai_applayer2,elvarg]
+//mes("<tostring(map_clock)>: Ap");
+if (%npc_action_delay > map_clock) {
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+// 1/2 chance to switch to op, with line of walk check
+if (random(2) = 0 & lineofwalk(npc_coord, coord) = true) {
+    npc_setmode(opplayer2);
+}
+~elvarg_dragon_fire_ap;
+
+
+[ai_opplayer2,elvarg]
+//mes("<tostring(map_clock)>: Op");
+if (%npc_action_delay > map_clock) {
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+// 1/8 chance to switch back to ap
+if (random(8) = 0) {
+    npc_setmode(applayer2);
+}
+
+// from 89 hits from 2 2006 videos: https://youtu.be/ucaYfz3ihWs?list=PLn23LiLYLb1aqrojPTi1_Np81LJku2Nd0
+// https://youtu.be/zmYEl97Smxs?list=PLn23LiLYLb1aqrojPTi1_Np81LJku2Nd0&t=104
+// seems like a 75% chance to melee, and 25% chance to dragon fire
+if (random(4) = 0) {
+    ~elvarg_dragon_fire_op;
+} else {
+    ~npc_default_attack;
+}
+
+[proc,elvarg_dragon_fire_op]
+if_close;
+spotanim_npc(firebreath_attack, 92, 0);
+npc_anim(dragon_firebreath_middle_attack, 0);
+sound_synth(dragonbreath, 0, 30);
+%npc_action_delay = add(map_clock, 4);
+
+// damage player
+def_int $maxhit = ~elvarg_max_hit;
+def_int $damage = randominc($maxhit);
+
+// not sure if this was a thing, but this video has it https://youtu.be/ucaYfz3ihWs?list=PLn23LiLYLb1aqrojPTi1_Np81LJku2Nd0&t=130
+stat_drain(prayer, 0, 10); // 10%
+
+queue(combat_damage_player, 0, $damage);
+queue(playerhit_n_retaliate, 0, npc_uid); // this should be a queue* command
+~npc_set_attack_vars;
+
+
+[proc,elvarg_dragon_fire_ap] // https://youtu.be/2TJp-tnFyxc?list=PLn23LiLYLb1aqrojPTi1_Np81LJku2Nd0&t=44
+if_close;
+npc_anim(dragon_firebreath_middle_attack, 0);
+sound_synth(fire_wave_all, 0, 0);
+%npc_action_delay = add(map_clock, 4);
+
+// yes its south west tile, as shorn in https://youtu.be/2TJp-tnFyxc?list=PLn23LiLYLb1aqrojPTi1_Np81LJku2Nd0&t=44
+def_int $duration = ~player_projectile(npc_coord, coord, uid, fireblast_travel, 92, 31, 51, 16, -5, 64, 10);
+spotanim_pl(fireblast_impact, 92, $duration);
+
+// damage player
+def_int $maxhit = ~elvarg_max_hit;
+def_int $damage = randominc($maxhit);
+
+// not sure if this was a thing, but this video has it https://youtu.be/ucaYfz3ihWs?list=PLn23LiLYLb1aqrojPTi1_Np81LJku2Nd0&t=130
+stat_drain(prayer, 0, 10); // 10%
+
+queue(combat_damage_player, calc($duration / 30), $damage);
+queue(playerhit_n_retaliate, calc($duration / 30), npc_uid); // this should be a queue* command
+~npc_set_attack_vars;
+
+
+// proc is used when the player has dragon fire shiled, prot magic, or antifire potion
+[proc,elvarg_max_hit]()(int)
+def_int $maxhit = 70;
+if (inv_total(worn, antidragonbreathshield) > 0) {
+    // https://youtu.be/zmYEl97Smxs?list=PLn23LiLYLb1aqrojPTi1_Np81LJku2Nd0&t=169
+    mes("Your shield absorbs most of the dragon fire!");
+    $maxhit = sub($maxhit, 60);
+    if (%prayer_protectfrommagic = ^true) {
+        $maxhit = sub($maxhit, 3);
+        // https://youtu.be/lSV2whAirvY?t=41
+        mes("Your prayers resist some of the dragon fire!");
+    }
+    if (map_clock < %antifire) {
+        $maxhit = sub($maxhit, 3);
+        // guess based off this https://youtu.be/UXNFe3FeDgg?t=15
+        mes("Your potion protects you from the heat of the dragon fire!");
+    }
+} else {
+    if (%prayer_protectfrommagic = ^true) {
+        $maxhit = sub($maxhit, 15);
+    }
+    if (map_clock < %antifire) {
+        $maxhit = sub($maxhit, 15);
+    }
+}
+return($maxhit);

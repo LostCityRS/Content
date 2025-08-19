@@ -1,0 +1,180 @@
+[ai_timer,borderguard1] @guard_scout_toll_fence;
+[ai_timer,borderguard2] @guard_scout_toll_fence;
+[opnpc1,borderguard1] @talk_to_border_guard(null);
+[opnpc1,borderguard2] @talk_to_border_guard(null);
+[oploc1,border_gate_toll_left] @find_and_talk_to_border_guard;
+[oploc1,border_gate_toll_right] @find_and_talk_to_border_guard;
+
+// searches for a nearby border guard
+// then starts dialogue with them
+[label,find_and_talk_to_border_guard]
+if (coordx(coord) < coordx(loc_coord)) { // in lumby
+    if (npc_find(coord, borderguard1, 1, 0) = true) {
+        @talk_to_border_guard(loc_coord);
+    }
+} else { // in al kharid
+    if (npc_find(coord, borderguard2, 1, 0) = true) {
+        @talk_to_border_guard(loc_coord);
+    }
+}
+
+[label,talk_to_border_guard](coord $loc_coord)
+// in early rs, paying 10gp will message "You pay the guard.".
+// osrs uses a different message. rsc uses this message.
+// https://youtu.be/gfWdQJH2Pmc?si=BKF8uqy1wLouzGCE&t=35
+// osrs using Pay-fare option on the gate gives different messages.
+~chatplayer("<p,quiz>Can I come through this gate?");
+
+if (%prince_progress >= ^prince_saved) {
+    ~chatnpc("<p,quiz>You may pass for free, you are a friend of Al-Kharid.");
+    @pass_toll_gate($loc_coord);
+}
+
+~chatnpc("<p,quiz>You must pay a toll of 10 gold coins to pass.");
+
+def_int $choice = ~p_choice3("No thank you, I'll walk around.", 1, "Who does my money go to?", 2, "Yes, ok.", 3);
+if ($choice = 1) {
+    ~chatplayer("<p,quiz>No, thank you. I'll walk around.");
+    ~chatnpc("<p,quiz>Ok suit yourself.");
+    return;
+} else if ($choice = 2) {
+    ~chatplayer("<p,quiz>Who does my money go to?");
+    ~chatnpc("<p,quiz>The money goes to the city of Al-Kharid.");
+    return;
+}
+
+~chatplayer("<p,quiz>Yes, ok.");
+if (inv_total(inv, coins) < 10) {
+    ~chatplayer("<p,quiz>Oh dear, I don't actually seem to have enough money.");
+    return;
+}
+
+mes("You pay the guard.");
+inv_del(inv, coins, 10);
+@pass_toll_gate($loc_coord);
+
+[label,pass_toll_gate](coord $loc_coord)
+// close the dialogue
+//if_close;
+
+def_coord $coord = 0_51_50_4_27;
+def_boolean $enter_east = false;
+
+// checks if we are west of the gate on the lumbridge side
+if (coordx(coord) < coordx($coord)) {
+    // if we are on the west side then our coord
+    // destination is moved over to the west
+    $coord = movecoord($coord, -1, 0, 0);
+    $enter_east = true;
+}
+
+if ($loc_coord ! null & distance(coord, $loc_coord) <= 1) {
+    if ($enter_east = false & (coord ! 0_51_50_4_28 & coord ! 0_51_50_4_27)) {
+        p_teleport($loc_coord);
+        p_stopaction;
+        p_delay(2);
+        @enter_through_border_gate_toll($enter_east, $loc_coord);
+    } else {
+        p_stopaction;
+        p_delay(1);
+        @enter_through_border_gate_toll($enter_east, $loc_coord);
+    }
+}
+
+p_delay(0);
+~forcemove($coord);
+p_stopaction;
+p_delay(0);
+// open the gates and teleport through
+@enter_through_border_gate_toll($enter_east, $loc_coord);
+
+// opens the gate and blocks all 4 sides
+// teleports us through the gate
+// plays the gates synth when opening
+// does magic
+[label,enter_through_border_gate_toll](boolean $west, coord $loc_coord)
+def_coord $destination;
+if ($west = true) {
+    $destination = movecoord(coord, 1, 0, 0);
+    $loc_coord = $destination;
+} else {
+    if ($loc_coord = null) {
+        $destination = movecoord(coord, -1, 0, 0);
+        $loc_coord = coord;
+    } else {
+        $destination = movecoord($loc_coord, -1, 0, 0);
+    }
+}
+
+loc_findallzone($loc_coord);
+while (loc_findnext = true) {
+    if (loc_coord = $loc_coord & (loc_category = border_gate_toll_right | loc_category = border_gate_toll_left)) {
+        if (loc_category = border_gate_toll_left) {
+            ~open_border_gate_toll_left_closed;
+        } else {
+            ~open_border_gate_toll_right_closed;
+        }
+    }
+}
+
+sound_synth(grate_open, 0, 0);
+facesquare($destination);
+p_teleport($destination);
+p_stopaction;
+p_delay(0);
+
+[proc,open_border_gate_toll_left_closed]()
+def_coord $other = movecoord(loc_coord, 0, 0, 1);
+
+def_coord $coord = ~movecoord_loc_return(~door_open(loc_angle, loc_shape));
+// Temp note: dur updated
+.loc_add($coord, inviswall, loc_angle, wall_straight, 3);
+.loc_add($coord, loc_param(next_loc_stage), calc(loc_angle + 3), loc_shape, 3);
+loc_add(loc_coord, inviswall, loc_angle, loc_shape, 3);
+
+loc_findallzone($coord);
+while (loc_findnext = true) {
+    if (loc_coord = $other & loc_category = border_gate_toll_right) {
+        def_coord $coord2 = ~movecoord_loc_return(~door_open(loc_angle, loc_shape));
+        // Temp note: dur updated
+        .loc_add($coord2, inviswall, loc_angle, wall_straight, 3);
+        .loc_add($coord2, loc_param(next_loc_stage), calc(loc_angle + 1), loc_shape, 3);
+        loc_add(loc_coord, inviswall, loc_angle, wall_straight, 3);
+    }
+}
+
+[proc,open_border_gate_toll_right_closed]()
+def_coord $other = movecoord(loc_coord, 0, 0, -1);
+
+
+
+def_coord $coord = ~movecoord_loc_return(~door_open(loc_angle, loc_shape));
+// Temp note: dur updated
+.loc_add($coord, inviswall, loc_angle, wall_straight, 3);
+.loc_add($coord, loc_param(next_loc_stage), modulo(add(loc_angle, 1), 4), loc_shape, 3);
+loc_add(loc_coord, inviswall, loc_angle, loc_shape, 3);
+
+loc_findallzone($coord);
+while (loc_findnext = true) {
+    if (loc_coord = $other & loc_category = border_gate_toll_left) {
+        $coord = ~movecoord_loc_return(~door_open(loc_angle, loc_shape));
+        // Temp note: dur updated
+        .loc_add($coord, inviswall, loc_angle, wall_straight, 3);
+        .loc_add($coord, loc_param(next_loc_stage), modulo(add(loc_angle, 3), 4), loc_shape, 3);
+        loc_add(loc_coord, inviswall, loc_angle, wall_straight, 3);
+    }
+}
+
+[label,guard_scout_toll_fence]
+if (random(4) ! 0) return;
+if (npc_getmode = playerfaceclose) return;
+
+def_coord $next_coord = movecoord(npc_coord, ~random_range(-1, 1), 0, ~random_range(-1, 1));
+
+def_int $count = 0;
+while ($next_coord = npc_coord & $count < 10) {
+    $next_coord = movecoord(npc_coord, ~random_range(-1, 1), 0, ~random_range(-1, 1));
+    $count = add($count, 1);
+}
+
+npc_facesquare($next_coord);

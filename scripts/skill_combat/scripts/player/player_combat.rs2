@@ -1,0 +1,108 @@
+[opnpc2,_] @player_combat_start;
+[apnpc2,_] @player_combat_start_ap;
+
+[label,player_combat_start_ap]
+def_int $attackrange = ~player_attackrange(inv_getobj(worn, ^wearpos_rhand));
+if (($attackrange <= 1 & ~player_in_combat_check = false) | npc_range(coord) > $attackrange) {
+    p_aprange($attackrange);
+    return;
+}
+@player_combat_start;
+
+[label,player_combat_start]
+if (~player_in_combat_check = false) {
+    return;
+}
+if (~sa_enabled = true) {
+    @player_special_attack;
+}
+if (%damagetype = ^ranged_style) {
+    @player_ranged_attack;
+}
+if (~player_autocast_enabled = true) {
+    @player_magic_attack;
+}
+@player_melee_attack;
+
+
+[proc,player_npc_hit_roll](int $damagetype)(boolean)
+def_int $attack_roll = ~player_attack_roll_specific($damagetype);
+def_int $defence_roll = ~npc_defence_roll_specific($damagetype);
+//mes("Clock: <tostring(map_clock)>, Player A: <tostring($attack_roll)>, NPC D: <tostring($defence_roll)>, Player Max: <tostring(%com_maxhit)>");
+//mes("Attack roll: <tostring($attack_roll)>, Defence roll: <tostring($defence_roll)>");
+if (randominc($attack_roll) > randominc($defence_roll)) {
+    return(true);
+}
+return(false);
+
+// returns the correct combat calculated attack damage for weapon
+[proc,player_attack_roll_specific](int $damagetype)(int)
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+switch_int ($damagetype) {
+    case ^stab_style : return(%com_stabattack);
+    case ^slash_style : return(%com_slashattack);
+    case ^crush_style : return(%com_crushattack);
+    case ^ranged_style : return(%com_rangeattack);
+    case ^magic_style : return(%com_magicattack);
+}
+error("combat style of <tostring($damagetype)> not defined in switch for p_npc_melee_roll");
+
+// returns the player's defence roll, depending on style
+[proc,player_defence_roll_specific](int $damagetype)(int)
+switch_int ($damagetype) {
+    case ^stab_style : return(%com_stabdef);
+    case ^slash_style : return(%com_slashdef);
+    case ^crush_style : return(%com_crushdef);
+    case ^ranged_style : return(%com_rangedef);
+    case ^magic_style : return(%com_magicdef);
+}
+error("style of <tostring($damagetype)> not defined in switch for player_defence_roll_specific");
+
+[proc,.player_defence_roll_specific](int $damagetype)(int)
+switch_int ($damagetype) {
+    case ^stab_style : return(.%com_stabdef);
+    case ^slash_style : return(.%com_slashdef);
+    case ^crush_style : return(.%com_crushdef);
+    case ^ranged_style : return(.%com_rangedef);
+    case ^magic_style : return(.%com_magicdef);
+}
+
+[proc,player_in_combat_check]()(boolean)
+if (map_multiway(npc_coord) = false) {
+    // player has been attacked in the last 8 ticks, and not by the current npc
+    // or player has been attacked in the last 8 ticks, and %aggressive_npc is null (for pvp)
+    // https://cdn.discordapp.com/attachments/1126857544523063367/1332910417856565249/found-old-drive-with-rsdemon-and-some-screenshots-v0-36uacu7glqzd1.png?ex=67999c0f&is=67984a8f&hm=a4c34a40791a120dba06adebb15a652a722e486fddd6d5a9e47ee9aa2c329fb3&
+    // 2006 year / osrs mes I'm already under attack.
+    // here's one from 2004: https://youtu.be/IC2n8t76DDY?t=34
+    if (add(%lastcombat_pvp, 8) > map_clock) {
+        mes("I'm already under attack");
+        return(false);
+    }
+    if (add(%lastcombat, 8) > map_clock & (%aggressive_npc ! npc_uid & %aggressive_npc ! null)) {
+        mes("I'm already under attack");
+        return(false);
+    }
+    // npc has been attacked in the last 8 ticks, and not by the current player
+    if ((add(%npc_lastcombat, 8) > map_clock & %npc_aggressive_player ! uid)) {
+        mes("Someone else is fighting that.");
+        return(false);
+    }
+}
+if (%npc_macro_event_target ! null & %npc_macro_event_target ! uid) {
+    mes("It's not after you."); // https://youtu.be/y58EFTJNIH8
+    return(false);
+}
+return(true);
+
+[proc,player_attackrange](obj $rhand)(int)
+if (~player_autocast_enabled = true){
+    return(10);
+}
+def_int $attackrange = 0;
+if ($rhand ! null) {
+    $attackrange = min(oc_param($rhand, attackrange), 10);
+    if (%damagestyle = ^style_ranged_longrange) {
+        $attackrange = min(add($attackrange, 2), 10);
+    }
+}
+return($attackrange);

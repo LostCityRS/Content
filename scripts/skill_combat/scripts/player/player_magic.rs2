@@ -1,0 +1,280 @@
+// to add a new combat spell:
+// create a constant (^spellname) in ../configs/magic/spells.constant
+// add it to the spell table in ../configs/magic/magic_combat_spells.dbrow
+// create an apnpct trigger for it in this script
+
+[label,player_magic_attack]
+if (~npc_is_attackable = false) { // test: wormbrain's special mes shows before if you dont have enough runes to autocast a specific spell
+    return;
+}
+def_dbrow $spell_data = ~get_spell_data(%autocast_spell);
+if (~check_spell_requirements($spell_data) = false) {
+    if (%autocast_spell = db_getfield($spell_data, magic_spell_table:spell, 0)) { // matches osrs behavior
+        ~player_autocast_reset;
+    }
+    return;
+}
+p_opnpct(db_getfield($spell_data, magic_spell_table:spellcom, 0));
+
+// osrs's opnpct triggers are unused
+[apnpct,magic:wind_strike]
+if (%tutorial_progress < ^tutorial_complete) {
+   ~pvm_tutorial_spell(^wind_strike);
+} else {
+   ~pvm_default_spell(^wind_strike);
+}
+[apnpct,magic:water_strike] ~pvm_default_spell(^water_strike);
+[apnpct,magic:earth_strike] ~pvm_default_spell(^earth_strike);
+[apnpct,magic:fire_strike] ~pvm_default_spell(^fire_strike);
+[apnpct,magic:wind_bolt] ~pvm_default_spell(^wind_bolt);
+[apnpct,magic:water_bolt] ~pvm_default_spell(^water_bolt);
+[apnpct,magic:earth_bolt] ~pvm_default_spell(^earth_bolt);
+[apnpct,magic:fire_bolt] ~pvm_default_spell(^fire_bolt);
+[apnpct,magic:wind_blast] ~pvm_default_spell(^wind_blast);
+[apnpct,magic:water_blast] ~pvm_default_spell(^water_blast);
+[apnpct,magic:earth_blast] ~pvm_default_spell(^earth_blast);
+[apnpct,magic:fire_blast] ~pvm_default_spell(^fire_blast);
+[apnpct,magic:wind_wave] ~pvm_default_spell(^wind_wave);
+[apnpct,magic:water_wave] ~pvm_default_spell(^water_wave);
+[apnpct,magic:earth_wave] ~pvm_default_spell(^earth_wave);
+[apnpct,magic:fire_wave] ~pvm_default_spell(^fire_wave);
+[apnpct,magic:curse] 
+if (npc_type = ungadulu_good) {
+   ~legends_spell_usage(^curse);
+} else {
+   ~pvm_default_spell(^curse);
+}
+[apnpct,magic:weaken]
+if (npc_type = ungadulu_good) {
+   ~legends_spell_usage(^weaken);
+} else {
+   ~pvm_default_spell(^weaken);
+}
+[apnpct,magic:confuse]
+if (npc_type = ungadulu_good) {
+   ~legends_spell_usage(^confuse);
+} else {
+   ~pvm_default_spell(^confuse);
+}
+[apnpct,magic:bind] ~pvm_default_spell(^bind);
+[apnpct,magic:snare] ~pvm_default_spell(^snare);
+[apnpct,magic:entangle] ~pvm_default_spell(^entangle);
+[apnpct,magic:vulnerability] ~pvm_default_spell(^vulnerability);
+[apnpct,magic:enfeeble] ~pvm_default_spell(^enfeeble);
+[apnpct,magic:stun] ~pvm_default_spell(^stun);
+
+[proc,pvm_default_spell](int $spell)
+def_dbrow $spell_data = ~get_spell_data($spell);
+if (~pvm_combat_spell_checks($spell_data) = false) {
+    return;
+}
+if (~pvm_freeze_allowed($spell_data) = false) {
+    return;
+}
+if (~pvm_debuff_allowed($spell_data) = false) {
+    return;
+}
+def_int $duration = ~pvm_spell_cast($spell_data);
+// if player DOESNT splash:
+if (~player_npc_hit_roll(^magic_style) = true) {
+    def_int $maxhit = ~magic_spell_maxhit($spell_data);
+    if (npc_type = count_draynor & inv_total(inv, garlic) > 0) {
+        $maxhit = add($maxhit, 1);
+    }
+    ~pvm_spell_success($spell_data, $maxhit, $duration);
+    ~pvm_stat_change_effect($spell_data);
+    ~pvm_freeze_effect($spell_data);
+} else {
+    ~pvm_spell_fail($spell_data, $duration);
+}
+
+// no 0 hp check for magic: you can attack slayer npcs when they're at 0 hp
+[proc,pvm_combat_spell_checks](dbrow $spell_data)(boolean)
+if_close;
+p_stopaction;
+if (map_clock < %action_delay) {
+    p_opnpct(db_getfield($spell_data, magic_spell_table:spellcom, 0));
+    return(false);
+}
+if (~check_spell_requirements($spell_data) = false) {
+    if (%autocast_spell = db_getfield($spell_data, magic_spell_table:spell, 0)) { // matches osrs behavior
+        ~player_autocast_reset;
+    }
+    return(false);
+}
+if (~player_in_combat_check = false) {
+    return(false);
+}
+// check if npc is attackable
+if (~npc_is_attackable_opt = false) {
+    return(false);
+}
+return(true);
+
+[proc,pvm_freeze_allowed](dbrow $spell_data)(boolean)
+// check if npc is already frozen
+if (db_getfield($spell_data, magic_spell_table:freeze_time, 0) > 0) {
+    if (%npc_stunned > map_clock) {
+        mes("Your target is already held by a magical force.");
+        return(false);
+    }
+    // immune message existed in 2005 https://oldschool.runescape.wiki/w/Update:Magic_and_Wilderness_Updates
+    if (calc(%npc_stunned + 5) > map_clock) {
+        // osrs wiki trivia says that snare didnt have this? No proof though
+        // ive found proof of bind and entangle having this in 2006: https://imgur.com/a/jBb1awE
+        mes("Your target is currently immune to that spell.");
+        return(false);
+    }
+}
+return(true);
+
+[proc,pvm_debuff_allowed](dbrow $spell_data)(boolean)
+// check if npc can be stat reduced
+def_stat $stat;
+def_int $constant;
+def_int $percent;
+def_npc_stat $npc_stat;
+def_int $i = 0;
+def_int $spell = db_getfield($spell_data, magic_spell_table:spell, 0);
+while ($i < db_getfieldcount($spell_data, magic_spell_table:stat_change) & $spell ! ^flames_of_zamorak & $spell ! ^claws_of_guthix & $spell ! ^saradomin_strike) {
+    $stat, $constant, $percent = db_getfield($spell_data, magic_spell_table:stat_change, $i);
+    $npc_stat = ~convert_stat_to_npc_stat($stat);
+    if (npc_stat($npc_stat) < npc_basestat($npc_stat)) {
+        // in osrs, confuse and weaken spell have a different message
+        if (($npc_stat = strength & $spell = ^weaken) | ($npc_stat = attack & $spell = ^confuse)) {
+            mes("Your foe's <lowercase(~stat_name($stat))> has already been lowered.");
+        } else {
+            mes("Your foe's <lowercase(~stat_name($stat))> has already been weakened.");
+        }
+        p_stopaction;
+        return(false);
+    }
+    $i = add($i, 1);
+}
+return(true);
+
+[proc,pvm_spell_cast](dbrow $spell_data)(int)
+~delete_spell_runes($spell_data);
+~give_spell_xp($spell_data);
+
+// in osrs you can only defensive cast with a staff. Not sure if this is the case in 2004
+// Might be confusing for players if they just so happen to have their non-magic weapon on defensive, and end up gaining def xp from manual casting.
+// so maybe jagex did it this way?
+
+// spell anim
+anim(db_getfield($spell_data, magic_spell_table:anim, 0), 0);
+// player spell visual effect
+if (db_getfieldcount($spell_data, magic_spell_table:spotanim_origin) > 0) {
+    spotanim_pl(db_getfield($spell_data, magic_spell_table:spotanim_origin, 0), 92, 0);
+}
+// shoot spell projectile
+%action_delay = add(map_clock, 5);
+def_int $duration = 0;
+if (db_getfieldcount($spell_data, magic_spell_table:spotanim_proj) > 0) {
+    $duration = ~npc_projectile(coord, npc_uid, db_getfield($spell_data, magic_spell_table:spotanim_proj, 0));
+}
+// OSRS:
+// only continue fighting if auto cast is turned on
+// freezes, and stat reductions dont continue ever, even if you have autocast enabled.
+// crumble undead continues autocast for some reason
+if (~player_autocast_enabled = true & db_getfield($spell_data, magic_spell_table:continue_by_autocast, 0) = true) {
+    p_opnpct(db_getfield(~get_spell_data(%autocast_spell), magic_spell_table:spellcom, 0));
+}
+return($duration);
+
+
+[proc,pvm_spell_success](dbrow $spell_data, int $maxhit, int $duration)
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+def_int $damagestyle = ^style_magic_normal;
+if (%damagestyle = ^style_melee_defensive) { // check varp directly
+    $damagestyle = ^style_magic_defensive; // casting a spell with defensive on gives mage + def xp
+}
+// play spell success sound
+sound_synth(db_getfield($spell_data, magic_spell_table:sound_success, 0), 0, 0);
+// roll 0-maxhit
+def_int $damage = randominc(min($maxhit, npc_param(max_dealt)));
+if(npc_type = salarin_the_twisted) {
+    def_int $spell = db_getfield($spell_data, magic_spell_table:spell, 0);
+    // strike spells are the only way to damage salarin the twisted, the damage is fixed 9-12
+    switch_int ($spell) {
+        case ^wind_strike : $damage = 9;
+        case ^water_strike : $damage = 10;
+        case ^earth_strike : $damage = 11;
+        case ^fire_strike : $damage = 12;
+    }
+}
+else if (npc_type = chronozon) {
+    def_int $spell = db_getfield($spell_data, magic_spell_table:spell, 0);
+    ~chronozon_spell($spell);
+}
+// if maxhit is defined then damage npc
+~npc_retaliate(calc($duration / 30 + 1)); // delayed an extra tick in osrs
+if ($maxhit ! null) {
+    // damage npc
+    // mes("Duration: <tostring($duration)>, Duration (ticks): <tostring(calc($duration / 30))>");
+    npc_queue(2, $damage, calc($duration / 30 + 1)); // delayed an extra tick in osrs
+    // npcs didnt have a flinch anim until sept 20 2006. https://youtu.be/UFgMqvI4to8
+    // https://oldschool.runescape.wiki/w/Update:Slug_Menace
+    // npc_anim(npc_param(defend_anim), $duration); // delay npc this tick
+    // npc sound
+    if (npc_param(defend_sound) ! null) {
+        sound_synth(npc_param(defend_sound), 0, $duration); // delay 1 client tick for the hit queue
+    }
+    def_int $damage_capped = min($damage, npc_stat(hitpoints));
+    ~give_combat_experience($damagestyle, $damage_capped, %npc_combat_xp_multiplier);
+    npc_heropoints($damage_capped);
+}
+// spell visual
+spotanim_npc(db_getfield($spell_data, magic_spell_table:spotanim_target, 0), $duration);
+
+
+[proc,pvm_spell_fail](dbrow $spell_data, int $duration)
+// splash
+if (db_getfieldcount($spell_data, magic_spell_table:sound_fail) > 0) {
+    sound_synth(db_getfield($spell_data, magic_spell_table:sound_fail, 0), 0, 0);
+} else {
+    // reduce stat, and freeze spells dont have fail sounds, so i assume they just play their normal sound
+    // every time?
+    sound_synth(db_getfield($spell_data, magic_spell_table:sound_success, 0), 0, 0);
+}
+// splash sound would play here, doesnt exist in this rev?
+// sound_synth(, 0, $duration);
+spotanim_npc(failedspell_impact, 92, $duration);
+// splashing in osrs causes insta auto retal
+~npc_retaliate(0);
+
+
+[proc,pvm_stat_change_effect](dbrow $spell_data)
+def_stat $stat;
+def_int $constant;
+def_int $percent;
+def_npc_stat $npc_stat;
+def_int $i = 0;
+while ($i < db_getfieldcount($spell_data, magic_spell_table:stat_change)) {
+    $stat, $constant, $percent = db_getfield($spell_data, magic_spell_table:stat_change, $i);
+    $npc_stat = ~convert_stat_to_npc_stat($stat);
+    if (npc_stat($npc_stat) >= npc_basestat($npc_stat)) {
+        if ($constant > 0 & $percent > 0) {
+            // if both positive assume statadd
+            // nothing ever uses this but i guess if someone wants to add some heal spell or something
+            npc_statadd($npc_stat, $constant, $percent);
+        } else {
+            npc_statsub($npc_stat, abs($constant), abs($percent)); // npc_statdrain?
+        }
+    }
+    $i = add($i, 1);
+}
+
+
+[proc,pvm_freeze_effect](dbrow $spell_data)
+// freeze npc if spell has freeze effect
+if (db_getfield($spell_data, magic_spell_table:freeze_time, 0) > 0) {
+    %npc_stunned = calc(map_clock + db_getfield($spell_data, magic_spell_table:freeze_time, 0) + 1);
+    npc_walktrigger(8, 0);
+}
+
+[ai_queue8,_]
+if (map_clock < %npc_stunned) {
+    npc_walk(npc_coord);
+    npc_walktrigger(8, 0);
+}

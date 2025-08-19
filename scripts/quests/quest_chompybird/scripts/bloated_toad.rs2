@@ -1,0 +1,141 @@
+[opheld4,bloated_toad]
+// release all
+def_int $count = inv_total(inv, bloated_toad);
+def_int $i = 0;
+inv_del(inv, bloated_toad, $count);
+while($i < $count) {
+    ~release_toad;
+    $i = add($i, 1);
+}
+if($count = 1) {
+    if(random(5) = 0) say("Free the fatsy toady!");
+    mes("You release the toad and see it hop off into the distance.");
+} else {
+    if(random(5) = 0) say("Free the fatsy toadies!");
+    mes("You release the toads and see them hop off into the distance.");
+}
+
+[opheld5,bloated_toad]
+// release
+inv_delslot(inv, last_slot);
+~release_toad;
+if(random(5) = 0) say("Free the fatsy toady!");
+mes("You release the toad and see it hop off into the distance.");
+
+[proc,release_toad]
+def_coord $release_coord = map_findsquare(coord, 0, 1, ^map_findsquare_lineofwalk);
+npc_add(map_findsquare(coord, 1, 1, ^map_findsquare_lineofwalk), toad, 10);
+npc_walk(movecoord(npc_coord, calc(10 * (coordx($release_coord) - coordx(npc_coord))), 0, calc(10 * (coordz($release_coord) - coordz(npc_coord)))));
+switch_int(random(3)) {
+    case 0 : npc_say("Croak!");
+    case 1 : npc_say("Ribbet!");
+}
+
+[opheld1,bloated_toad]
+if (%chompybird_progress < ^chompybird_shown_toad) {
+    ~objbox(bloated_toad,"You're not sure where Rantz told you to place the bloated toad. You decide to wait and ask him where to place it.", 250, 0, divide(^objbox_height, 2));
+    return;
+}
+
+if(%chompybird_progress < ^chompybird_complete) {
+    if (inzone(0_41_46_7_18, 0_41_46_15_27, coord) = false) {
+        mes("This is too far away for Rantz to shoot the chompy bird.");
+        return;
+    }
+}
+
+if(%chompybird_progress >= ^chompybird_complete) {
+    if (inzone(0_41_46_7_18, 0_41_46_15_27, coord) = true) {
+        mes("Rantz doesn't like it when you chompy hunt on his turf.");
+        mes("But you can hunt for chompys in the rest of the ogre area.");
+        return;
+    }
+    if(inzone(0_39_46_0_0, 0_41_46_63_63, coord) = false) { // just these 3 mapsquares at this point
+        mes("You won't attract a chompy bird this far away from the ogre area.");
+        return;
+    }
+}
+
+if(npc_findexact(coord, bloated_toad) = true) {
+    mes("There is a bloated toad already placed at this location.");
+    return;
+}
+
+anim(human_pickupfloor, 0);
+inv_del(inv, bloated_toad, 1);
+
+if (%chompybird_progress = ^chompybird_shown_toad) {
+    %chompybird_progress = ^chompybird_dropped_toad;
+}
+
+if (p_finduid(uid) = true) {
+    npc_add(coord, bloated_toad, 101);
+    %quest_chompybird_baiter = uid;
+    npc_queue(4, 0, 25);
+
+    mes("You carefully place the bloated toad bait.");
+
+    p_delay(0);
+    ~push_player(coord);
+}
+
+/**
+ * Handle a Bloated Toad rolling to spawn a Chompy Bird
+ *
+ * last_int is used for state tracking:
+ *  - how many times the toad has been rolled
+ *  - whether the toad has spawned a Chompy Bird
+ */
+[ai_queue4,bloated_toad]
+def_boolean $chompy_already_spawned = false;
+if (last_int >= 10) {
+    $chompy_already_spawned = true;
+}
+
+def_boolean $toad_should_explode = false;
+if (last_int = 3 | last_int = 13) {
+    $toad_should_explode = true;
+}
+
+def_int $next_state = calc(last_int + 1);
+
+def_boolean $should_spawn_chompy = false;
+if ($chompy_already_spawned = false & random(5) = 1) {
+    $should_spawn_chompy = true;
+
+    $next_state = calc($next_state + 10);
+}
+
+if ($toad_should_explode = true) {
+    ~toad_explode();
+} else {
+    npc_queue(4, $next_state, 25);
+}
+
+if ($should_spawn_chompy = true) {
+    ~spawn_chompy_bird(npc_coord, %quest_chompybird_baiter);
+}
+
+[proc,toad_explode]()
+// todo in OSRS this isn't sent with a height
+spotanim_map(chompy_toad_exploding, npc_coord, 0, 30);
+
+huntall(npc_coord, 1, 1);
+while (.huntnext = true) {
+    .mes("You're hit by bits of exploding toad!");
+
+    .sound_synth(toad_burst, 0, 20);
+    // is damage random per-player or per-toad?
+    .queue(damage_player, calc(random(1) + 1), 0);
+}
+
+// The toad is being eaten by the Chompy
+[ai_queue5,bloated_toad]
+npc_delay(3);
+
+// todo do we need to check that the Chompy is still there and eating the toad?
+//      should test on OSRS to confirm
+
+npc_say("!!Croak!!");
+npc_delay(2);
+npc_del;

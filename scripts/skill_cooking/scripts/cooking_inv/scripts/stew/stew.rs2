@@ -1,0 +1,79 @@
+[opheldu,potato]
+switch_obj (last_useitem) {
+    case bowl_water : @make_incomplete_stew(last_slot);
+    case stew2 : @make_uncooked_stew(last_slot, last_useslot);
+    case bowl_empty : @no_water_stew_message;
+    case raw_chompy : @quest_chompybird_add_ingredients_to_chompy_message;
+    case half_baked_bowl : @add_bowl_ingredient(last_item);
+    case default : ~displaymessage(^dm_default);
+};
+
+[opheldu,uncooked_stew]
+switch_obj (last_useitem) {
+    case spicespot : @make_curry;
+};
+
+[opheldu,spicespot]
+switch_obj (last_useitem) {
+    case uncooked_stew : @make_curry;
+};
+
+[opheld1,burnt_stew]
+inv_del(inv, burnt_stew, 1);
+inv_add(inv, bowl_empty, 1);
+mes("You empty the burnt stew from the bowl.");
+
+
+[label,no_water_stew_message]
+mes("I need some water before I can start making stew.");
+
+[label,make_incomplete_stew](int $last)
+if (stat(cooking) < 25) {
+    ~mesbox("You need a Cooking level of 25 to make a Stew.");
+    return;
+}
+def_obj $ingredient = inv_getobj(inv, $last);
+inv_del(inv, bowl_water, 1);
+inv_del(inv, $ingredient, 1);
+if ($ingredient = cooked_meat | $ingredient = cooked_chicken) {
+    mes("You cut up the meat and put it into the bowl.");
+    inv_add(inv, stew2, 1);
+} else {
+    mes("You cut up the <lowercase(oc_name($ingredient))> and put it into the bowl.");
+    inv_add(inv, stew1, 1);
+}
+
+[label,make_uncooked_stew](int $last_slot, int $last_useslot)
+if (stat(cooking) < 25) {
+    ~mesbox("You need a Cooking level of 25 to make a Stew.");
+    return;
+}
+def_obj $used_on = inv_getobj(inv, $last_slot);
+def_obj $used_with = inv_getobj(inv, $last_useslot);
+//delete the items
+inv_del(inv, $used_on, 1);
+inv_del(inv, $used_with, 1);
+//add the uncooked stew
+inv_add(inv, uncooked_stew, 1);
+//display message
+if ($used_on = stew1 | $used_with = stew1) {
+    mes("You cut up the meat and put it into the stew.");
+} else {
+    mes("You cut up the <lowercase(oc_name($used_on))> and put it into the stew.");
+}
+
+[label,make_curry]
+if (map_members = ^false) {
+    mes("You can only make that on a members' server.");
+    return;
+}
+inv_del(inv, uncooked_stew, 1);
+inv_del(inv, spicespot, 1);
+
+inv_add(inv, uncooked_curry, 1);
+mes("You add the spice to the stew and make a curry.");
+
+[opheld1,burnt_curry]
+inv_del(inv, burnt_curry, 1);
+inv_add(inv, bowl_empty, 1);
+mes("You empty the burnt curry from the bowl.");

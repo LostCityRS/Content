@@ -1,0 +1,9 @@
+[opnpc1,holgartsunkboat]
+if(%seaslug_progress ! ^seaslug_sailed_kent) {
+    ~chatplayer("<p,neutral>We'd better get back to the platform|so we can see what's going on.");
+    ~chatnpc("<p,shifty>You're right. It all sounds pretty creepy.");
+    ~board_ardougne_to_fishing_platform;
+    return;
+}
+~chatplayer("<p,quiz>Where are we?");
+~chatnpc("<p,neutral>Someway off mainland still.|You'd better see if me old matey's okay.");

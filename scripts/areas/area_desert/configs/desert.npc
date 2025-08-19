@@ -1,0 +1,76 @@
+[camel]
+vislevel=hide
+size=2
+walkanim=camel_walk
+readyanim=camel_ready
+name=Camel
+desc=Oh, it's a camel.
+model1=model_2939_npc
+moverestrict=outdoors
+param=death_anim,camel_death
+param=death_sound,cow_death
+
+[desert_wolf]
+name=Desert Wolf
+desc=A vicious Desert wolf
+walkanim=dog_walk
+readyanim=dog_ready
+op2=Attack
+vislevel=27
+recol1s=15855
+recol1d=21064
+recol2s=23254
+recol2d=21064
+model1=model_2937_npc
+respawnrate=100
+hitpoints=34
+attack=20
+strength=21
+defence=22
+magic=0
+ranged=0
+param=damagetype,^slash_style
+param=attack_anim,dog_attack
+param=defend_anim,dog_block
+param=death_anim,dog_death
+param=attack_sound,wolf_attack
+param=defend_sound,wolf_hit
+param=death_sound,wolf_death
+param=death_drop,wolf_bones
+huntmode=cowardly
+huntrange=1
+// osrs stats and Vislvl match 1:1
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4649
+
+[ugthanki]
+name=Ugthanki
+desc=A vicious attaking camel.
+size=2
+walkanim=camel_walk
+readyanim=camel_ready
+op2=Attack
+vislevel=42
+recol1s=30381
+recol1d=23009
+recol2s=32767
+recol2d=27681
+model1=model_2939_npc
+respawnrate=700
+hitpoints=45
+attack=35
+strength=35
+defence=35
+magic=0
+ranged=0
+param=damagetype,^stab_style
+param=attack_anim,camel_attack
+param=defend_anim,camel_block
+param=death_anim,camel_death
+param=attack_sound,cow_attack
+param=defend_sound,cow_hit
+param=death_sound,cow_death
+param=retreat,5
+huntmode=cowardly
+huntrange=2
+// osrs stats and Vislvl match 1:1
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4652

@@ -1,0 +1,115 @@
+[label,pvp_rune_thrownaxe_sa]
+def_obj $rhand = inv_getobj(worn, ^wearpos_rhand);
+anim(chainhit, 0);
+spotanim_pl(sp_attack_chainhit_launch_spotanim, 96, 0);
+
+def_coord $origin = .coord;
+def_player_uid $target1 = .uid;
+def_int $duration = ~pvp_rune_thrownaxe_hit(coord, $target1, 32);
+if ($duration = null) { // this shouldnt ever be reached
+    ~pvp_thrownaxe_drop_sa($rhand, $origin, $duration);
+    return;
+}
+def_coord $target1_coord = .coord;
+def_player_uid $target2 = ~pvp_rune_thrownaxe_hunt($origin, $target1, null, null, null);
+$duration = ~pvp_rune_thrownaxe_hit($target1_coord, $target2, $duration);
+if ($duration = null) { // spec is over
+    ~pvp_thrownaxe_drop_sa($rhand, $target1_coord, $duration);
+    return;
+}
+def_coord $target2_coord = .coord;
+def_player_uid $target3 = ~pvp_rune_thrownaxe_hunt($origin, $target1, $target2, null, null);
+$duration = ~pvp_rune_thrownaxe_hit($target2_coord, $target3, $duration);
+if ($duration = null) { // spec is over
+    ~pvp_thrownaxe_drop_sa($rhand, $target2_coord, $duration);
+    return;
+}
+def_coord $target3_coord = .coord;
+def_player_uid $target4 = ~pvp_rune_thrownaxe_hunt($origin, $target1, $target2, $target3, null);
+$duration = ~pvp_rune_thrownaxe_hit($target3_coord, $target4, $duration);
+if ($duration = null) { // spec is over
+    ~pvp_thrownaxe_drop_sa($rhand, $target3_coord, $duration);
+    return;
+}
+def_coord $target4_coord = .coord;
+def_player_uid $target5 = ~pvp_rune_thrownaxe_hunt($origin, $target1, $target2, $target3, $target4);
+$duration = ~pvp_rune_thrownaxe_hit($target4_coord, $target5, $duration);
+if ($duration = null) { // spec is over
+    ~pvp_thrownaxe_drop_sa($rhand, $target4_coord, $duration);
+    return;
+}
+~pvp_thrownaxe_drop_sa($rhand, $origin, $duration);
+
+[proc,pvp_rune_thrownaxe_hunt](coord $origin, player_uid $target1, player_uid $target2, player_uid $target3, player_uid $target4)(player_uid)
+huntall($origin, 3, ^vis_lineofsight);
+while (.huntnext = true) {
+    if (.uid ! $target1 & .uid ! $target2 & .uid ! $target3 & .uid ! $target4 & .uid ! uid) {
+        // test: player in multi, 1st target in singles, 2nd target in multi
+        // - result: chains onto 2nd target
+        // test: player in singles, 1st and 2nd target in multi
+        // - result: no chain
+        // test: player in multi, 1st target in multi, 2nd target in singles
+        // - result: no chain
+        // conclusion: it checks multi for coord() and next target $origin()
+        if (map_multiway(coord) = true & map_multiway(.coord) = true) {
+            return(.uid);
+        }
+    }
+}
+return(null);
+
+[proc,pvp_rune_thrownaxe_hit](coord $start, player_uid $target, int $duration)(int)
+if (stat(hitpoints) = 0) { // inferred from dragon dagger
+    return(null);
+}
+if ($target = null) {
+    return(null);
+}
+if (.finduid($target) = false) {
+    return(null);
+}
+if (~pvp_is_attackable = false) {
+    return(null);
+}
+if (~sa_enough_energy = false) {
+    return(null);
+}
+def_obj $ammo = inv_getobj(worn, ^wearpos_rhand);
+
+~set_sa_vars(oc_param($ammo, sa_energy));
+~set_pk_vars;
+
+def_int $damage = 0;
+def_int $combat_stat = ~combat_stat(add(stat(ranged), 10), oc_param($ammo, rangebonus)); // + 10 ranged levels
+def_int $maxhit = ~combat_maxhit($combat_stat);
+
+$duration = ~player_projectile($start, .coord, .uid, sp_attack_chainhit_travel_spotanim, 40, 36, $duration, 15, 0, 11, 5);
+def_boolean $hit = ~pvp_hit_roll(%damagetype);
+if ($hit = true) {
+    if (~.check_protect_prayer(^ranged_style) = true) {
+        $maxhit = scale(6, 10, $maxhit); // reduction of 40%
+    }
+    $damage = min(randominc($maxhit), .stat(hitpoints));
+    ~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
+    both_heropoints($damage);
+}
+
+def_int $poison_severity = oc_param($ammo, poison_severity);
+if ($damage > 0 & $poison_severity > 0 & random(4) = 0) { // 1/4 chance to poison
+    .queue(poison_player, 0, $poison_severity);
+}
+.queue(pvp_retaliate, divide($duration, 30), uid);
+~.pvp_damage(divide($duration, 30), $damage);
+.anim(.%com_defendanim, $duration);
+if ($hit = false) {
+    return(null);
+}
+return($duration);
+
+[proc,pvp_thrownaxe_drop_sa](obj $rhand, coord $target_coord, int $duration)
+~ranged_dropammo_pvp_specific($rhand, $target_coord, divide($duration, 30));
+if (inv_total(worn, $rhand) = 0) {
+    mes("That was your last one!");
+    p_stopaction;
+    ~update_all($rhand);
+}

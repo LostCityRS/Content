@@ -1,0 +1,15 @@
+[proc,quest_elena_set_progress](int $stage)
+%elena_progress = $stage;
+~send_quest_progress(questlist:elena, %elena_progress, ^elena_complete);
+
+[queue,quest_elena_complete]
+inv_del(inv, elena_picture, ^max_32bit_int);
+inv_del(inv, elenakey, ^max_32bit_int);
+inv_del(inv, warrant, ^max_32bit_int);
+inv_del(inv, scruffy_note, ^max_32bit_int);
+inv_del(inv, turnip_book, ^max_32bit_int);
+inv_add(inv, ardougnescroll, 1);
+stat_advance(mining, 24250);
+~quest_elena_set_progress(^elena_complete);
+session_log(^log_adventure, "Quest complete: Plague City");
+~send_quest_complete(questlist:elena, gasmask, 250, ^elena_questpoints, "You have completed the\\nPlague City Quest!");

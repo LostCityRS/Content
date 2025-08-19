@@ -1,0 +1,36 @@
+[label,pvp_magic_longbow_sa]
+def_obj $rhand = inv_getobj(worn, ^wearpos_rhand);
+def_obj $ammo = ~player_ranged_check_ammo($rhand); 
+if ($ammo = null) {
+    p_stopaction;
+    ~update_all($rhand);
+    return;
+}
+
+~set_sa_vars(oc_param($rhand, sa_energy));
+~set_pk_vars;
+
+anim(%com_attackanim, 0);
+spotanim_pl(sp_attack_glow_arrow_launch, 96, 0);
+sound_synth(powershot, 0, 0);
+.sound_synth(powershot, 0, 0);
+def_int $duration = ~player_projectile(coord, .coord, .uid, sp_attack_glow_arrow_travel, 40, 36, 41, 15, 5, 11, 5);
+~ranged_dropammo_pvp($ammo, calc($duration / 30));
+
+def_int $combat_stat = ~combat_stat(add(stat(ranged), 10), oc_param($ammo, rangebonus)); // + 10 ranged levels
+def_int $maxhit = ~combat_maxhit($combat_stat);
+if (~.check_protect_prayer(^ranged_style) = true) {
+    $maxhit = scale(6, 10, $maxhit); // reduction of 40%
+}
+def_int $damage = min(randominc($maxhit), .stat(hitpoints));
+~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
+both_heropoints($damage);
+
+def_int $poison_severity = oc_param($ammo, poison_severity);
+if ($damage > 0 & $poison_severity > 0 & random(4) = 0) { // 1/4 chance to poison
+    .queue(poison_player, 0, $poison_severity);
+}
+.queue(pvp_retaliate, divide($duration, 30), uid);
+~.pvp_damage(divide($duration, 30), $damage);
+// player does anim in old vids: https://youtu.be/4uVvAwcJd9M?t=49
+.anim(.%com_defendanim, $duration);

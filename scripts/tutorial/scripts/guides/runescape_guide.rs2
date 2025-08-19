@@ -1,0 +1,47 @@
+[opnpc1,newbie_basics_instructor]
+
+switch_int(%tutorial_progress) {
+    case ^newbie_basics_instructor_designed_character : @newbie_basics_instructor_welcome;
+//    case 2 : @newbie_basics_instructor_spanner;
+    case ^newbie_basics_instructor_interact_with_scenery : @newbie_basics_instructor_return;
+    case default : @newbie_basics_instructor_return;
+}
+
+[label,newbie_basics_instructor_welcome]
+if (map_production = false) {
+    ~chatnpc("<p,neutral>Do you want to skip the tutorial?");
+    def_int $choice = ~p_choice2("Yes please.", 1, "No, thank you.", 2);
+    if ($choice = 1) {
+        %tutorial_progress = ^tutorial_complete;
+        @tutorial_complete;
+    }
+}
+
+~chatnpc("<p,neutral>Greetings! I see you are a new arrival to this land. My|job is to welcome all the new visitors. So welcome!");
+~chatnpc("<p,neutral>You have already learnt the first thing needed to|succeed in this world... Talking to other people!");
+~chatnpc("<p,neutral>You will find many inhabitants of this world have useful|things to say to you. By clicking on them with your|mouse you can talk to them.");
+~chatnpc("<p,neutral>I would also suggest reading through some of the|supporting information on the website. There you can|find maps, a bestiary, and much more.");
+~chatnpc("<p,neutral>To continue the tutorial go through that door over there, and speak to your first instructor!");
+%tutorial_progress = ^newbie_basics_instructor_interact_with_scenery;
+~set_tutorial_progress;
+// The below commented out code will be relevant in October 2006, but was absent in September 2006.
+//~chatnpc("<p,neutral>You will notice a flashing icon of a spanner.|Please click on this to continue the tutorial.");
+//%tutorial_progress = 2;
+//~tutorial_step_player_controls_spanner;
+//if_settab(game_options, ^tab_game_options);
+//tut_flash(^tab_game_options);
+
+//[label,newbie_basics_instructor_spanner]
+//~chatnpc("<p,neutral>You will notice a flashing icon of a spanner.|Please click on this to continue the tutorial.");
+
+[label,newbie_basics_instructor_return]
+~chatnpc("<p,neutral>Welcome back. You have already learnt the first thing needed to succeed in this world: talking to other people!");
+~chatnpc("<p,neutral>You will find many inhabitants of this world have useful things to say to you. By clicking on them, you can talk to them.");
+~chatnpc("<p,neutral>To continue the tutorial go through that door over there, and speak to your first instructor!");
+
+[proc,set_hint_newbie_basics_instructor]
+if (%tutorial_progress < ^newbie_basics_instructor_interact_with_scenery) {
+    if (npc_find(0_48_48_21_35, newbie_basics_instructor, 10, 0) = true) {
+      hint_npc(npc_uid);
+    }
+}

@@ -1,0 +1,44 @@
+[oploct,magic:air_orb]@magic_spell_charge_orb(^air_orb, loc_type);
+[oploct,magic:water_orb]@magic_spell_charge_orb(^water_orb, loc_type);
+[oploct,magic:earth_orb]@magic_spell_charge_orb(^earth_orb, loc_type);
+[oploct,magic:fire_orb]@magic_spell_charge_orb(^fire_orb, loc_type);
+
+[label,magic_spell_charge_orb](int $spell, loc $loc)
+// check if they have orb in inv
+if (inv_total(inv, stafforb) < 1) {
+    mes("You must be holding an orb to enchant it.");
+    return;
+}
+def_dbrow $spell_data = ~get_spell_data($spell);
+if (~check_spell_requirements($spell_data) = false) {
+    return;
+}
+if($loc = legends_ancient_gate_5_closed) {
+    @legends_cast_orb_door($spell_data);
+}
+// check if used on correct loc
+if (db_getfield($spell_data, magic_spell_table:loc_type, 0) ! $loc) {
+    mes("This spell needs to be cast on <~add_article(lc_param(db_getfield($spell_data, magic_spell_table:loc_type, 0), charge_orb_name))>.");
+    return;
+}
+if (afk_event = ^true) {
+    ~macro_event_general_spawn(~macro_event_set_random);
+    return;
+}
+def_namedobj $final_obj;
+def_seq $anim;
+def_spotanim $spotanim;
+def_synth $sound;
+$final_obj, $anim, $spotanim, $sound = ~magic_spell_search_convertobj($spell_data, stafforb);
+// delete old, add new, play animations
+inv_del(inv, stafforb, 1);
+~delete_spell_runes($spell_data);
+inv_add(inv, $final_obj, 1);
+~give_spell_xp($spell_data);
+anim($anim, 0);
+spotanim_pl($spotanim, 92, 0);
+sound_synth($sound, 0, 0);
+// delay for 3-4 ticks
+// https://youtu.be/M7foXShcyBY&t=113
+// this could be 4 but not sure. osrs is 3 ticks
+p_delay(2);

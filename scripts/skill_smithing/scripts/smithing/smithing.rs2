@@ -1,0 +1,262 @@
+[inv_button1,smithing:column1] 
+@attempt_smithing(last_item, 1);
+[inv_button2,smithing:column1]
+@attempt_smithing(last_item, 5);
+[inv_button3,smithing:column1]
+@attempt_smithing(last_item, 10);
+[inv_button1,smithing:column2]
+@attempt_smithing(last_item, 1);
+[inv_button2,smithing:column2]
+@attempt_smithing(last_item, 5);
+[inv_button3,smithing:column2]
+@attempt_smithing(last_item, 10);
+[inv_button1,smithing:column3]
+@attempt_smithing(last_item, 1);
+[inv_button2,smithing:column3]
+@attempt_smithing(last_item, 5);
+[inv_button3,smithing:column3]
+@attempt_smithing(last_item, 10);
+[inv_button1,smithing:column4]
+@attempt_smithing(last_item, 1);
+[inv_button2,smithing:column4]
+@attempt_smithing(last_item, 5);
+[inv_button3,smithing:column4]
+@attempt_smithing(last_item, 10);
+[inv_button1,smithing:column5]
+@attempt_smithing(last_item, 1);
+[inv_button2,smithing:column5]
+@attempt_smithing(last_item, 5);
+[inv_button3,smithing:column5]
+@attempt_smithing(last_item, 10);
+
+
+[oplocu,anvil]
+if (%tutorial_progress < ^tutorial_complete) {
+    // This happens with any item, not just bars.
+    if (%tutorial_progress < ^newbie_mining_instructor_before_smelt_bronze_bar) {
+        ~mesbox("This is an anvil used for smithing.|You'll lean how to use it soon.");
+        return;
+    }
+
+    if (%tutorial_progress < ^newbie_mining_instructor_smith_a_dagger) {
+        ~mesbox("You need a hammer to work the metal with.|Talk to the mining instructor to get one");
+        return;
+    }
+}
+
+if (last_useitem = gold_bar & %legends_progress >= ^legends_asked_gujuo_holy_water) @make_golden_bowl;
+else if (oc_category(last_useitem) = category_151) @smithing_anvil_interface(last_useitem);
+else if (last_useitem = dragonshield_a | last_useitem = dragonshield_b) @make_dragon_sq;
+else ~displaymessage(^dm_default);
+
+[if_close,smithing]
+inv_stoptransmit(smithing:column1);
+inv_stoptransmit(smithing:column2);
+inv_stoptransmit(smithing:column3);
+inv_stoptransmit(smithing:column4);
+inv_stoptransmit(smithing:column5);
+
+[label,smithing_anvil_interface](obj $last_item)
+def_struct $struct = oc_param($last_item, smithing_anvil_struct);
+if ($struct = null) {
+    // https://web.archive.org/web/20170122060114/https://www.neoseeker.com/forums/2410/t682388-silver/
+    ~chatplayer("<p,neutral>Perhaps I should use this in a furnace instead.");
+    return;
+}
+def_int $levelrequired = struct_param($struct, levelrequired);
+def_int $player_level = stat(smithing);
+// check if high enough level
+if ($player_level < $levelrequired) {
+    ~mesbox("You need a Smithing level of at least <tostring($levelrequired)> to work <lowercase(oc_name(struct_param($struct, namedobj)))>s.");
+    return;
+}
+// check if player has a hammer
+if (inv_total(inv, hammer) < 1) {
+    ~mesbox("You need a hammer to work the metal with.");
+    return;
+}
+//set varps
+%smithing_bars = inv_total(inv, struct_param($struct, namedobj));
+%smithing_level = $player_level;
+// Check if tourist trap is completed before sending white text option on darts
+if (%desertrescue_progress >= ^desertrescue_learned_darts) {
+    %option1 = 1;
+} else {
+    %option1 = 0;
+}
+// hide wire button if its not bronze
+// hide studs button if its not steel
+if ($last_item = bronze_bar) {
+    // bronze plate bodies are unlocked at lvl 18, but the interface data uses gt,18. so i have to +1 here
+    if (%smithing_level = 18) {
+        %smithing_level = 19;
+    }
+    if_sethide (smithing:other_layer, false);
+    // https://web.archive.org/web/20050410152119/http://www.tip.it/runescape/smithing_tables.php?metal=bronze
+    if_settext (smithing:com_101, "Bronze wire");
+} else if ($last_item = steel_bar) {
+    if_sethide (smithing:stud_layer, false);
+    if_sethide (smithing:other_layer, false);
+    // https://imgur.com/CdcGdXD
+    if_settext (smithing:com_101, "Steel nails");
+}  else {
+    if_sethide (smithing:other_layer, true);
+    if_sethide (smithing:stud_layer, true);
+}
+// hide studs button if its not steel
+if ($last_item ! steel_bar) {
+    if_sethide (smithing:stud_layer, true);
+} else {
+    if_sethide (smithing:stud_layer, false);
+}
+// each bar needs to be shifted down, since only bronze level req is in the interface
+switch_obj ($last_item)
+{
+    case bronze_bar :
+        if (%tutorial_progress < ^tutorial_complete) {
+            %smithing_level = 1;
+        } else {
+            %smithing_level = calc($player_level + 1);
+        }
+        inv_transmit(smithing_bronze1, smithing:column1);
+        inv_transmit(smithing_bronze2, smithing:column2);
+        inv_transmit(smithing_bronze3, smithing:column3);
+        inv_transmit(smithing_bronze4, smithing:column4);
+        inv_transmit(smithing_bronze5, smithing:column5);
+    case iron_bar :
+        %smithing_level = calc($player_level - 14);
+        inv_transmit(smithing_iron1, smithing:column1);
+        inv_transmit(smithing_iron2, smithing:column2);
+        inv_transmit(smithing_iron3, smithing:column3);
+        inv_transmit(smithing_iron4, smithing:column4);
+        inv_transmit(smithing_iron5, smithing:column5);
+    case steel_bar :
+        %smithing_level = calc($player_level - 29);
+        inv_transmit(smithing_steel1, smithing:column1);
+        inv_transmit(smithing_steel2, smithing:column2);
+        inv_transmit(smithing_steel3, smithing:column3);
+        inv_transmit(smithing_steel4, smithing:column4);
+        inv_transmit(smithing_steel5, smithing:column5);
+    case mithril_bar :
+        %smithing_level = calc($player_level - 49);
+        inv_transmit(smithing_mithril1, smithing:column1);
+        inv_transmit(smithing_mithril2, smithing:column2);
+        inv_transmit(smithing_mithril3, smithing:column3);
+        inv_transmit(smithing_mithril4, smithing:column4);
+        inv_transmit(smithing_mithril5, smithing:column5);
+    case adamantite_bar :
+        %smithing_level = calc($player_level - 69);
+        inv_transmit(smithing_adamant1, smithing:column1);
+        inv_transmit(smithing_adamant2, smithing:column2);
+        inv_transmit(smithing_adamant3, smithing:column3);
+        inv_transmit(smithing_adamant4, smithing:column4);
+        inv_transmit(smithing_adamant5, smithing:column5);
+    case runite_bar :
+        // rune platebody, legs, and skirt go past 99 smithing
+        if ($player_level > 98) {
+            %smithing_level = 19;
+        } else {
+            %smithing_level = calc($player_level - 84);
+        }
+        inv_transmit(smithing_rune1, smithing:column1);
+        inv_transmit(smithing_rune2, smithing:column2);
+        inv_transmit(smithing_rune3, smithing:column3);
+        inv_transmit(smithing_rune4, smithing:column4);
+        inv_transmit(smithing_rune5, smithing:column5);
+    case default :
+        ~displaymessage(^dm_default);
+        return;
+}
+
+if_openmain(smithing);
+
+[label,attempt_smithing](obj $last_item, int $count)
+if_close;
+// get item data from db
+db_find(smithing:ifproduct, $last_item);
+def_dbrow $data = db_findnext;
+if ($data = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
+// todo: check if they have tourist trap completed for dart tips
+// IT CHECKS FOR DARTS FIRST BTW (before members check)
+switch_obj(db_getfield($data,smithing:product,0)) {
+     case bronze_dart_tip, iron_dart_tip, steel_dart_tip, mithril_dart_tip, adamant_dart_tip, rune_dart_tip :
+         if (%desertrescue_progress < ^desertrescue_learned_darts) {
+             ~mesbox("You're not sure how to make darts yet.");
+             return;
+         }
+ }
+
+// This check comes after darts but before mems, confirmed.
+if (~in_tutorial_island(coord) = true & last_item ! bronze_dagger) {
+    ~mesbox("You cannot make this on Tutorial Island.");
+    return;
+}
+
+// check if mems obj is selected
+if (oc_members($last_item) = true & map_members = ^false) {
+    mes("You can only make that on a members' server.");
+    return;
+}
+// check if player has enough bars
+def_int $bar_amount = db_getfield($data,smithing:bar_amount,0);
+def_namedobj $bar = db_getfield($data, smithing:bar, 0);
+if (inv_total(inv, $bar) < $bar_amount) {
+    ~mesbox("You don't have enough <lowercase(oc_name($bar))>s to make <db_getfield($data,smithing:end_message,0)>."); // https://youtu.be/Xud7h207rZc?t=286
+    return;
+}
+// check if player has high enough level
+def_int $levelrequired = db_getfield($data,smithing:levelrequired,0);
+if (stat(smithing) < $levelrequired) {
+    ~mesbox("You need a Smithing level of <tostring($levelrequired)> to make <db_getfield($data,smithing:levelfailmessage,0)>.");
+    return;
+}
+// play anim and sound
+anim(human_smithing, 0);
+sound_synth(anvil_4, 0, 0);
+// delay player during whole smithing sesh
+// https://oldschool.runescape.wiki/w/Update:Dev_Blog:_Third_Old_School_RuneScape_Content_Poll
+if (%tutorial_progress < ^tutorial_complete) {
+    ~tut_smithing_anvil($count);
+} else {
+    ~smithing_anvil($data, $count);
+}
+//--------------------------
+
+//--------------------------
+// items appear in the inventory after 2 ticks, then the player is delayed for 3 ticks after
+// https://youtu.be/vQixsBb7wPQ?t=95, level up interface takes 3 ticks to appear
+[proc,smithing_anvil](dbrow $data, int $count)
+p_delay(1);
+def_int $bar_amount = db_getfield($data,smithing:bar_amount,0);
+def_namedobj $bar = db_getfield($data, smithing:bar, 0);
+def_namedobj $product = db_getfield($data, smithing:product, 0);
+def_int $product_amount = db_getfield($data,smithing:product_amount,0);
+// delete bars
+inv_del(inv, $bar, $bar_amount);
+// add product
+inv_add(inv, $product, $product_amount);
+// add smithing xp
+def_struct $struct = oc_param($bar, smithing_anvil_struct);
+stat_advance(smithing, calc($bar_amount * struct_param($struct, xpperbar)));
+// display message
+mes("You hammer the <struct_param($struct, name)> and make <db_getfield($data,smithing:end_message,0)>.");
+p_delay(2);
+// end smithing if count is less than 1
+$count = calc($count - 1);
+// check if player has enough bars
+if (inv_total(inv, $bar) < $bar_amount & $count > 0) {
+    ~mesbox("You don't have enough <lowercase(oc_name($bar))>s to make any more."); // https://youtu.be/Xud7h207rZc?t=286
+    return;
+}
+if ($count < 1) {
+    return;
+}
+// play anim and sound
+anim(human_smithing, 0);
+sound_synth(anvil_4, 0, 0);
+// recall proc
+~smithing_anvil($data, $count);
+//--------------------------

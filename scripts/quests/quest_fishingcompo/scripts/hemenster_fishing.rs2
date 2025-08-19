@@ -1,0 +1,122 @@
+[opnpc1,0_41_53_compofishspot] @attempt_fish_hemenster;
+[opnpc1,0_41_53_sinisterfishspot] @attempt_fish_hemenster;
+
+[opnpc1,0_41_53_bigdavefishspot] 
+if(~in_hemenster_comp = false) {
+    return;
+}
+if(npc_find(coord, bigdave, 5, 0) = true) {
+    @bigdave_dialogue;
+}
+
+[opnpc1,0_41_53_joshuafishspot]
+if(~in_hemenster_comp = false) {
+    return;
+}
+if(npc_find(coord, joshua, 5, 0) = true) {
+    @joshua_dialogue;
+}
+
+[proc,get_hemenster_bait]()(namedobj)
+if(inv_total(inv, red_vine_worm) > 0) {
+    return (red_vine_worm);
+} 
+return (fishing_bait);
+
+[label,hemenster_catch](namedobj $bait)
+// RSC
+inv_del(inv, $bait, 1);
+if (npc_type = 0_41_53_sinisterfishspot) { // Using red vine worm + north spot
+   if($bait = red_vine_worm) {
+        inv_add(inv, raw_giant_carp, 1);
+        mes("You catch a giant carp.");
+   } else {
+        inv_add(inv, raw_sardine, 1);
+        mes("You catch a sardine.");
+   }
+} else {
+    if($bait = red_vine_worm) {
+        inv_add(inv, raw_sardine, 1);
+        mes("You catch a sardine.");
+   } else {
+        inv_add(inv, raw_shrimp, 1);
+        mes("You catch some shrimps.");
+   }
+}
+%hemenster_comp_stage = calc(%hemenster_comp_stage + 1);
+anim(null, 0);
+if (%hemenster_comp_stage = ^hemenster_comp_all_fish_caught) { // 3 fish caught 
+    if(npc_find(coord, bonzo, 12, 0) = true) {
+        ~chatnpc("<p,happy>Okay folks, time's up!|Let's see who caught the biggest fish!");
+        ~bonzo_handover_catch;
+    }
+}
+
+[label,attempt_fish_hemenster]
+if(%fishingcompo_progress >= ^fishingcompo_won_comp) {
+    ~mesbox("You have already won the fishing competition!|You don't need to catch any more fish here.");
+    return;
+}
+if(~in_hemenster_comp = false) {
+    return;
+}
+// Vampire check
+if((npc_type = 0_41_53_sinisterfishspot & %fishingcompo_progress = ^fishingcompo_in_comp) | (npc_type = 0_41_53_compofishspot & %fishingcompo_progress = ^fishingcompo_garlic_comp)) {
+    if(npc_find(coord, sinister_stranger, 8, 0) = true) {
+        @sinister_stranger_my_spot;
+    }
+}
+// check level
+if (stat(fishing) < 10) {
+    anim(null, 0);
+    // RSC
+    ~mesbox("You need at least 10 Fishing to lure these fish.");
+    return;
+}
+def_namedobj $bait = ~get_hemenster_bait;
+// equipment check
+if (inv_total(inv, fishing_rod) < 1 & inv_total(inv, $bait) < 1) {
+    anim(null, 0);
+    mes("You need a fishing rod and some bait to catch these fish.");
+    return;
+}
+if (inv_total(inv, fishing_rod) < 1) {
+    anim(null, 0);
+    mes("You need a fishing rod to catch these fish.");
+    return;
+} 
+if (inv_total(inv, $bait) < 1) {
+    anim(null, 0);
+    mes("You need some bait to catch these fish.");
+    return;
+}
+if (inv_freespace(inv) < 1 & inv_total(inv, $bait) > 1) {
+    ~mesbox("You can't carry any more fish.");
+    return;
+}
+// In RSC this is immediate with no bubble, i'm going to guess it probably uses the fishing animation + delay
+sound_synth(fishing_cast, 0, 0);
+anim(human_fishing_casting, 0);
+p_delay(4); 
+@hemenster_catch($bait);
+
+[proc,in_hemenster_comp]()(boolean)
+if (%hemenster_comp_stage = ^hemenster_comp_not_entered) { // Havn't entered the competition yet
+    if(npc_find(coord, bonzo, 12, 0) = true) {
+        ~chatnpc("<p,happy>Hey, you need to pay to enter the competition first! Only 5 gp entrance fee!");
+        mes("Talk to Bonzo to pay the entrance fee.");
+    }
+    return (false);
+} else if (%hemenster_comp_stage >= ^hemenster_comp_paidfee & %fishingcompo_progress = ^fishingcompo_started) { // Entered comp but hasnt been assigned spot
+    if(npc_find(coord, bonzo, 12, 0) = true) {
+        ~bonzo_set_places;
+    }
+    return (false);
+}else if (%hemenster_comp_stage = ^hemenster_comp_all_fish_caught) { // 3 fish caught 
+    if(npc_find(coord, bonzo, 12, 0) = true) {
+        ~chatnpc("<p,happy>Okay folks, time's up!|Let's see who caught the biggest fish!");
+        ~bonzo_handover_catch;
+    }
+    return (false);
+}
+return (true);

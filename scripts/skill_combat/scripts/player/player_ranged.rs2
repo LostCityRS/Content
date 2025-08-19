@@ -1,0 +1,146 @@
+[label,player_ranged_attack]
+if (~npc_is_attackable = false) {
+    return;
+}
+
+if (%action_delay > map_clock) {
+    p_opnpc(2);
+    return;
+}
+
+if (npc_stat(hitpoints) = 0) {
+    return;
+}
+
+// set the skill clock depending on the weapon attack rate
+def_obj $rhand = inv_getobj(worn, ^wearpos_rhand);
+if ($rhand = null) {
+    %action_delay = add(map_clock, 4);
+} else {
+    %action_delay = add(map_clock, oc_param($rhand, attackrate));
+}
+if (%damagestyle = ^style_ranged_rapid) {
+    %action_delay = sub(%action_delay, 1);
+}
+// this can be either the quiver or rhand.
+def_obj $ammo = ~player_ranged_check_ammo($rhand);
+if ($ammo = null) {
+    p_stopaction;
+    ~update_all($rhand);
+    return;
+}
+
+// check hit, give combat xp
+def_int $damage = 0;
+if (~player_npc_hit_roll(%damagetype) = true) {
+    def_int $maxhit = %com_maxhit;
+    if (npc_type = count_draynor & inv_total(inv, garlic) > 0) {
+        $maxhit = add($maxhit, 1);
+    }
+    if (inv_total(worn, holy_water) > 0) {
+        if(npc_param(demonbane_vulnerable) = true) {
+            $maxhit = scale(160, 100, %com_maxhit);
+            if(npc_type = nezikchened) {
+                $maxhit = add($maxhit, 5);
+            }
+            if (npc_stat(defence) >= npc_basestat(defence)) npc_statsub(defence, 0, 5);
+        } else {
+            $maxhit = 0;
+        }
+    }
+    $damage = randominc(min($maxhit, npc_param(max_dealt)));
+    def_int $damage_capped = min($damage, npc_stat(hitpoints));
+    ~give_combat_experience(%damagestyle, $damage_capped, %npc_combat_xp_multiplier);
+    npc_heropoints($damage_capped);
+}
+
+def_int $poison_severity = oc_param($ammo, poison_severity);
+if ($damage > 0 & $poison_severity > 0 & random(8) = 0) { // 1/8 chance to poison
+    // poison npc
+    ~npc_poison_start(max(sub($poison_severity, 14), 0)); // lowered by 14 if ranged attack
+}
+
+p_opnpc(2);
+
+//mes("attackstyle: <tostring(%attackstyle)>, damagestyle: <tostring(%damagestyle)>, damage: <tostring($damage)>, damagetype: <tostring(%damagetype)>");
+anim(%com_attackanim, 0);
+sound_synth(%com_attacksound, 0, 0);
+def_int $delay = add(~player_ranged_use_weapon($rhand, $ammo), 30); // osrs it seems to be delayed an extra tick
+~npc_retaliate(calc($delay / 30));
+npc_queue(2, $damage, calc($delay / 30));
+npc_anim(npc_param(defend_anim), sub($delay, 30)); // delay npc this tick
+if (npc_param(defend_sound) ! null) {
+    sound_synth(npc_param(defend_sound), 0, sub($delay, 30)); // delay 1 client tick for the hit queue
+}
+
+[proc,player_ranged_check_ammo](obj $rhand)(obj)
+def_category $weapon_cat = oc_category($rhand);
+if ($weapon_cat ! weapon_bow & $weapon_cat ! weapon_crossbow) {
+    return($rhand); // in this case, the rhand is the ammo.
+}
+def_obj $ammo = inv_getobj(worn, ^wearpos_quiver);
+if ($ammo = null) {
+    if($rhand = ogre_bow) mes("There is no ammo left in your quiver");
+    else mes("There is no ammo left in your quiver.");
+    return(null);
+}
+def_category $ammo_cat = oc_category($ammo);
+if (($rhand = ogre_bow & $ammo_cat ! ogre_arrows) | 
+    ($rhand ! ogre_bow & $weapon_cat = weapon_bow & $ammo_cat ! arrows)) {
+    mes("You can't use that ammo with your bow."); // todo confirm this for 2004.
+    return(null);
+}
+if ($weapon_cat = weapon_crossbow & $ammo_cat ! bolts) {
+    mes("You can't use that ammo with your crossbow."); // todo confirm this for 2004.
+    return(null);
+}
+if (oc_param($ammo, levelrequire) > oc_param($rhand, levelrequire)) { //todo confirm crossbows could use all bolts at lvl 1
+    mes("Your bow isn't powerful enough for those arrows."); // todo confirm this for 2004.
+    return(null);
+}
+
+return($ammo);
+
+[proc,player_ranged_use_weapon](obj $rhand, obj $ammo)(int)
+if ($ammo = ogre_arrow) spotanim_pl(oc_param($ammo, proj_launch), 50, 0);
+else spotanim_pl(oc_param($ammo, proj_launch), 96, 0);
+def_int $delay = 30;
+switch_category(oc_category($rhand)) {
+    case weapon_bow, weapon_crossbow : 
+        $delay = ~npc_projectile(coord, npc_uid, oc_param($ammo, proj_travel), 40, 36, 41, 15, 5, 11, 5);
+        ~ranged_dropammo_npc($ammo, divide($delay, 30));
+    case weapon_thrown, weapon_javelin : 
+        $delay = ~npc_projectile(coord, npc_uid, oc_param($ammo, proj_travel), 40, 36, 32, 15, 0, 11, 5);
+        ~ranged_dropammo_npc($ammo, divide($delay, 30));
+        if (inv_total(worn, $ammo) = 0) {
+            mes("That was your last one!");
+            p_stopaction;
+            ~update_all($ammo);
+        }
+}
+return($delay);
+
+[proc,ranged_dropammo_npc](obj $ammo, int $delay)
+if($ammo = holy_water) {
+    ~ranged_dropammo_holywater(npc_coord, $delay);
+    return;
+}
+if (random(^dropammo_chance) ! 0 | $ammo = holy_water) {
+    if (map_blocked(npc_coord) = false) {
+        inv_dropitem_delayed(worn, npc_coord, $ammo, 1, ^lootdrop_duration, $delay);
+        return;
+    }
+}
+inv_del(worn, $ammo, 1);
+
+[proc,ranged_dropammo_holywater](coord $coord, int $delay)
+if (~in_duel_arena(coord) = true) {
+    return;
+}
+inv_del(worn, holy_water, 1);
+if ($delay >= 0) {
+    world_delay($delay);
+}
+if (map_blocked($coord) = false) {
+    obj_add($coord, smashed_glass, 1, ^lootdrop_duration);
+}

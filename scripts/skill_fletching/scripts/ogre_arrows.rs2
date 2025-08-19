@@ -1,0 +1,144 @@
+[opheldu,wolf_bones]
+switch_obj(last_useitem) {
+    case chisel : @make_wolf_bone_tips;
+    case default : ~displaymessage(^dm_default);
+}
+
+[opheldu,ogre_arrow_shaft]
+switch_obj(last_useitem) {
+    case feather : @make_ogre_headless_arrows;
+    case default : ~displaymessage(^dm_default);
+}
+
+[opheldu,ogre_headless_arrow]
+switch_obj(last_useitem) {
+    case wolfbone_arrowheads : @make_ogre_arrows;
+    case default : ~displaymessage(^dm_default);
+}
+
+[label,make_ogre_shafts]
+if (map_members = ^false) {
+    mes(^mes_members_fletching); // guess
+    return;
+}
+if (%chompybird_progress < 1) {
+    // osrs
+    mes("You're not sure what you would make with these logs.");
+    return;
+}
+if (stat(fletching) < 5) {
+    // osrs
+    ~mesbox("You need a Fletching level of 5 to make those arrow shafts.");
+    return;
+}
+def_int $shaft_count = ~random_range(2, 6); // osrs
+inv_del(inv, achey_tree_logs, 1);
+inv_add(inv, ogre_arrow_shaft, $shaft_count);
+
+mes("You carefully cut the wood into <tostring($shaft_count)> arrow shafts.");
+
+stat_advance(fletching, multiply($shaft_count, 18));
+
+
+[label,make_wolf_bone_tips]
+if (map_members = ^false) {
+    mes(^mes_members_fletching); // guess
+    return;
+}
+if (%chompybird_progress < ^chompybird_started) {
+    mes("You're not sure what you would make with these."); // osrs
+    return;
+}
+if (stat(fletching) < 5) {
+    ~mesbox("You need a Fletching level of 5 to do that.");
+    return;
+}
+if (stat(crafting) < 5) {
+    ~mesbox("You need a Crafting level of 5 to do that.");
+    return;
+}
+def_int $tip_count = ~random_range(2, 6);
+inv_del(inv, wolf_bones, 1);
+inv_add(inv, wolfbone_arrowheads, $tip_count);
+
+mes("You chisel <tostring($tip_count)> wolf bone arrow tips.");
+
+stat_advance(fletching, multiply($tip_count, 25));
+stat_advance(crafting, multiply($tip_count, 25));
+
+
+[label,make_ogre_headless_arrows]
+if (map_members = ^false) {
+    mes(^mes_members_fletching); // guess
+    return;
+}
+if (%chompybird_progress < ^chompybird_started) {
+    mes("You're not sure what you would make with these."); // osrs
+    return;
+}
+if (stat(fletching) < 5) {
+    ~mesbox("You need a Fletching level of 5 to do that.");
+    return;
+}
+if(inv_total(inv, feather) < 4) {
+    mes("You need at least 4 matching feathers to make an ogre arrow.");
+    return;
+}
+
+def_int $feather_count = divide(min(inv_total(inv, feather), 24), 4);
+def_int $shaft_count = min(inv_total(inv, ogre_arrow_shaft), 6);
+def_int $arrow_count = min($feather_count, $shaft_count);
+
+if(inv_itemspace(inv, ogre_headless_arrow, $arrow_count, inv_size(inv)) = false & (inv_total(inv, feather) > 4 | inv_total(inv, ogre_arrow_shaft) > 1)) {
+    mes("You don't have enough inventory space to feather any shafts."); // OSRS
+    return;
+}
+
+if ($arrow_count > 1) {
+    mes("You attach <tostring(multiply($arrow_count, 4))> feathers to <tostring($arrow_count)> ogre arrow shafts.");
+} else {
+    mes("You attach four feathers to an ogre arrow shaft.");
+}
+inv_del(inv, feather, multiply($arrow_count, 4));
+inv_del(inv, ogre_arrow_shaft, $arrow_count);
+
+inv_add(inv, ogre_headless_arrow, $arrow_count);
+
+stat_advance(fletching, multiply($arrow_count, 15));
+
+
+[label,make_ogre_arrows]
+if (map_members = ^false) {
+    mes(^mes_members_fletching); // guess
+    return;
+}
+if (%chompybird_progress = ^chompybird_not_started) {
+    mes("You're not sure what you would make with these."); // osrs
+    return;
+}
+if (stat(fletching) < 5) {
+    ~mesbox("You need a Fletching level of 5 to do that.");
+    return;
+}
+def_int $headless_count = min(inv_total(inv, ogre_headless_arrow), 6);
+def_int $tip_count = min(inv_total(inv, wolfbone_arrowheads), 6);
+def_int $arrow_count = min($headless_count, $tip_count);
+
+// no inv space check
+if ($arrow_count > 1) {
+    mes("You make <tostring($arrow_count)> ogre arrows.");
+} else {
+    mes("You make an ogre arrow.");
+}
+
+inv_del(inv, ogre_headless_arrow, $arrow_count);
+inv_del(inv, wolfbone_arrowheads, $arrow_count);
+
+inv_add(inv, ogre_arrow, $arrow_count);
+
+// todo tbc exact mechanism
+if (%chompybird_progress ! ^chompybird_not_started & %chompybird_progress ! ^chompybird_complete) {
+    %chompybird_kills = setbit(%chompybird_kills, ^chompybird_varbit_made_arrows);
+}
+
+stat_advance(fletching, multiply($arrow_count, 10));

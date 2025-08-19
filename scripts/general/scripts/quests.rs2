@@ -1,0 +1,287 @@
+[proc,send_quest_progress](component $component, int $progress, int $complete_progress)
+~send_quest_progress_colour($component, $progress, $complete_progress);
+if_settab(questlist, ^tab_quest_journal);
+
+[proc,send_quest_progress_colour](component $component, int $progress, int $complete_progress)
+// if_setcolor uses 5 bits per color
+if ($progress = 0) {
+    if_setcolour($component, ^red_rgb);
+} else if ($progress >= $complete_progress) {
+    if_setcolour($component, ^green_rgb);
+} else {
+    if_setcolour($component, ^yellow_rgb);
+}
+
+[proc,send_quest_complete](component $component, namedobj $obj, int $objscale, int $questpoints, string $questmessage)
+// Random quest complete jingle.
+def_int $random = random(128);
+if ($random < 32) {       // The least common music that plays when completing a quest.
+    midi_jingle(^quest_complete_3_jingle, ^quest_complete_3_millis);
+} else if ($random < 64) {// A less common music that plays when completing a quest.
+    midi_jingle(^quest_complete_2_jingle, ^quest_complete_2_millis);
+} else {                 // The most common music that plays when completing a quest.
+    midi_jingle(^quest_complete_1_jingle, ^quest_complete_1_millis);
+}
+// Send Quest Scroll
+switch_component ($component) {
+    case questlist:itgronigen ://Obveratory: Updates QP before quest scroll is queued & uses custom quest scroll
+        if_openmain(questscroll_itgronigen);
+    case questlist:fluffs ://Gertrude's Cat: Updates QP before quest scroll is queued & uses custom quest scroll
+        if_openmain(questscroll_fluffs);
+    case questlist:seaslug, questlist:itwatchtower ://Seaslug & Watchtower: Updates QP before quest scroll is queued
+        if_settext(questscroll:com_3, $questmessage);
+        if_settext(questscroll:com_9, tostring($questpoints));
+        if_settext(questscroll:com_10, "Quest points.");
+        if_setobject(questscroll:com_4, $obj, $objscale);
+        if_openmain(questscroll);
+    case default ://All other quests
+        ~update_questpoints;
+        if_settext(questscroll:com_3, $questmessage);
+        if_settext(questscroll:com_9, tostring($questpoints));
+        if_settext(questscroll:com_10, "Quest points.");
+        if_setobject(questscroll:com_4, $obj, $objscale);
+        if_openmain(questscroll);
+}
+// Update Quest Tab color
+if_setcolour($component, ^green_rgb);
+if_settab(questlist, ^tab_quest_journal);
+mes("Congratulations! Quest complete!");
+
+[proc,update_questpoints]
+def_int $questpointrecount = ~count_questpoints;
+//Only update if the count has changed
+if ($questpointrecount ! %questpoints) {
+    %questpoints = $questpointrecount;
+}
+
+[proc,count_questpoints]()(int)
+def_int $questpoints = 0;
+if (%runemysteries_progress = ^runemysteries_complete) {
+    $questpoints = add($questpoints, ^runemysteries_questpoints); 
+}
+if (%doric_progress = ^doric_complete) {
+    $questpoints = add($questpoints, ^doric_questpoints); 
+}
+if (%cook_progress = ^cook_complete) {
+    $questpoints = add($questpoints, ^cook_questpoints); 
+}
+if (%romeojuliet_progress = ^romeojuliet_complete) {
+    $questpoints = add($questpoints, ^romeojuliet_questpoints); 
+}
+if (%hetty_progress = ^hetty_complete) {
+    $questpoints = add($questpoints, ^hetty_questpoints); 
+}
+if (%chompybird_progress = ^chompybird_complete) {
+    $questpoints = add($questpoints, ^chompybird_questpoints); 
+}
+if (%priest_progress = ^priest_complete) {
+    $questpoints = add($questpoints, ^priest_questpoints); 
+}
+if (%squire_progress = ^squire_complete) {
+    $questpoints = add($questpoints, ^squire_questpoints); 
+}
+if (%imp_progress = ^imp_complete) {
+    $questpoints = add($questpoints, ^imp_questpoints); 
+}
+if (%druid_progress = ^druid_complete) {
+    $questpoints = add($questpoints, ^druid_questpoints);
+}
+if (%gobdip_progress = ^gobdip_complete) {
+    $questpoints = add($questpoints, ^gobdip_questpoints); 
+}
+if (%sheep_progress = ^sheep_complete) {
+    $questpoints = add($questpoints, ^sheep_questpoints); 
+}
+if (%fluffs_progress = ^fluffs_complete) {
+    $questpoints = add($questpoints, ^fluffs_questpoints); 
+}
+if (%demon_progress = ^demon_complete) {
+    $questpoints = add($questpoints, ^demon_questpoints); 
+}
+if (%prince_progress = ^prince_complete) {
+    $questpoints = add($questpoints, ^prince_questpoints); 
+}
+if (%blackknight_progress = ^blackknight_complete) {
+    $questpoints = add($questpoints, ^blackknight_questpoints); 
+}
+if (%haunted_progress = ^haunted_complete) {
+    $questpoints = add($questpoints, ^haunted_questpoints); 
+}
+if (%hunt_progress = ^hunt_complete) {
+    $questpoints = add($questpoints, ^hunt_questpoints); 
+}
+if (%drunkmonk_progress = ^drunkmonk_complete) {
+    $questpoints = add($questpoints, ^drunkmonk_questpoints); 
+}
+if (%vampire_progress = ^vampire_complete) {
+    $questpoints = add($questpoints, ^vampire_questpoints); 
+}
+if (%totem_progress = ^totem_complete) {
+    $questpoints = add($questpoints, ^totem_questpoints); 
+}
+if (%fishingcompo_progress = ^fishingcompo_complete) {
+    $questpoints = add($questpoints, ^fishingcompo_questpoints); 
+}
+if (%scorpcatcher_progress = ^scorpcatcher_complete) {
+    $questpoints = add($questpoints, ^scorpcatcher_questpoints); 
+}
+if (%zanaris_progress = ^zanaris_complete) {
+    $questpoints = add($questpoints, ^zanaris_questpoints); 
+}
+if (%blackarmgang_progress = ^blackarmgang_complete | %phoenixgang_progress = ^phoenixgang_complete) {
+    $questpoints = add($questpoints, ^blackarmgang_questpoints); 
+}
+if (%elena_progress >= ^elena_complete) {
+    $questpoints = add($questpoints, ^elena_questpoints); 
+}
+if (%dragon_progress >= ^dragon_complete) {
+    $questpoints = add($questpoints, ^dragon_questpoints); 
+}
+if (%seaslug_progress = ^seaslug_complete) {
+    $questpoints = add($questpoints, ^seaslug_questpoints); 
+}
+if (%arthur_progress = ^arthur_complete) {
+    $questpoints = add($questpoints, ^arthur_questpoints); 
+}
+if (%tree_progress = ^tree_complete) {
+    $questpoints = add($questpoints, ^tree_questpoints); 
+}
+if (%waterfall_progress = ^waterfall_complete) {
+    $questpoints = add($questpoints, ^waterfall_questpoints); 
+}
+if (%grail_progress = ^grail_complete) {
+    $questpoints = add($questpoints, ^grail_questpoints); 
+}
+if (%ball_progress = ^ball_complete) {
+    $questpoints = add($questpoints, ^ball_questpoints); 
+}
+if (%murder_progress = ^murder_complete) {
+    $questpoints = add($questpoints, ^murder_questpoints); 
+}
+if (%hazeelcult_progress = ^hazeelcult_complete) {
+    $questpoints = add($questpoints, ^hazeelcult_questpoints); 
+}
+if (%hero_progress = ^hero_complete) {
+    $questpoints = add($questpoints, ^hero_questpoints); 
+}
+if (%itgronigen_progress >= ^itgronigen_complete) { // varp is incremented for getting wine post quest
+    $questpoints = add($questpoints, ^itgronigen_questpoints); 
+}
+if (%arena_progress >= ^arena_complete) { // different completion states based on if you kill general khazard or not
+    $questpoints = add($questpoints, ^arena_questpoints); 
+}
+if (%junglepotion_progress >= ^junglepotion_complete) {
+    $questpoints = add($questpoints, ^junglepotion_questpoints); 
+}
+if (%ikov_progress >= ^ikov_completed_armadyl) { // 80 = armadyl completion, 90 = lucien completion
+    $questpoints = add($questpoints, ^ikov_questpoints); 
+}
+if (%biohazard_progress >= ^biohazard_complete) {
+    $questpoints = add($questpoints, ^biohazard_questpoints); 
+}
+if (%sheepherder_progress >= ^sheepherder_complete) {
+    $questpoints = add($questpoints, ^sheepherder_questpoints); 
+}
+if (%mcannon_progress = ^mcannon_complete) {
+    $questpoints = add($questpoints, ^mcannon_questpoints); 
+}
+if (~get_cog_progress = ^quest_cog_complete) {
+    $questpoints = add($questpoints, ^cog_questpoints); 
+}
+if (%grandtree_progress = ^grandtree_complete) {
+    $questpoints = add($questpoints, ^grandtree_questpoints); 
+}
+if (%upass_progress = ^upass_complete) {
+    $questpoints = add($questpoints, ^upass_questpoints); 
+}
+if (%zombiequeen_progress >= ^zombiequeen_complete) {
+    $questpoints = add($questpoints, ^zombiequeen_questpoints); 
+}
+if (%crest_progress = ^crest_complete) {
+    $questpoints = add($questpoints, ^crest_questpoints); 
+}
+if (%itexam_progress = ^itexam_complete) {
+    $questpoints = add($questpoints, ^itexam_questpoints); 
+}
+if (%desertrescue_progress = ^desertrescue_complete) {
+    $questpoints = add($questpoints, ^desertrescue_questpoints); 
+}
+if (%itwatchtower_progress >= ^itwatchtower_complete) {
+    $questpoints = add($questpoints, ^itwatchtower_questpoints); 
+}
+if (%legends_progress = ^legends_complete) {
+    $questpoints = add($questpoints, ^legends_questpoints); 
+}
+if (testbit(%elemental_workshop_bits, ^elemental_workshop_complete) = ^true) {
+    $questpoints = add($questpoints, ^elemental_workshop_questpoints); 
+}
+return ($questpoints);
+
+[proc,update_questlist]
+~update_questpoints;
+~send_quest_progress_colour(questlist:runemysteries, %runemysteries_progress, ^runemysteries_complete);
+~send_quest_progress_colour(questlist:doric, %doric_progress, ^doric_complete);
+~send_quest_progress_colour(questlist:cook, %cook_progress, ^cook_complete);
+~send_quest_progress_colour(questlist:romeojuliet, %romeojuliet_progress, ^romeojuliet_complete);
+~send_quest_progress_colour(questlist:hetty, %hetty_progress, ^hetty_complete);
+~send_quest_progress_colour(questlist:chompybird, %chompybird_progress, ^chompybird_complete);
+~send_quest_progress_colour(questlist:priest, %priest_progress, ^priest_complete);
+~send_quest_progress_colour(questlist:squire, %squire_progress, ^squire_complete);
+~send_quest_progress_colour(questlist:imp, %imp_progress, ^imp_complete);
+~send_quest_progress_colour(questlist:druid, %druid_progress, ^druid_complete);
+~send_quest_progress_colour(questlist:gobdip, %gobdip_progress, ^gobdip_complete);
+~send_quest_progress_colour(questlist:sheep, %sheep_progress, ^sheep_complete);
+~send_quest_progress_colour(questlist:fluffs, %fluffs_progress, ^fluffs_complete);
+~send_quest_progress_colour(questlist:demon, %demon_progress, ^demon_complete);
+~send_quest_progress_colour(questlist:prince, %prince_progress, ^prince_complete);
+~send_quest_progress_colour(questlist:fortress, %blackknight_progress, ^blackknight_complete);
+~send_quest_progress_colour(questlist:haunted, %haunted_progress, ^haunted_complete);
+~send_quest_progress_colour(questlist:hunt, %hunt_progress, ^hunt_complete);
+~send_quest_progress_colour(questlist:drunkmonk, %drunkmonk_progress, ^drunkmonk_complete);
+~send_quest_progress_colour(questlist:vampire, %vampire_progress, ^vampire_complete);
+~send_quest_progress_colour(questlist:totem, %totem_progress, ^totem_complete);
+~send_quest_progress_colour(questlist:fishingcompo, %fishingcompo_progress, ^fishingcompo_complete);
+~send_quest_progress_colour(questlist:scorpcatcher, %scorpcatcher_progress, ^scorpcatcher_complete);
+~send_quest_progress_colour(questlist:zanaris, %zanaris_progress, ^zanaris_complete);
+~send_quest_progress_colour(questlist:dragon, %dragon_progress, ^dragon_complete);
+if (%phoenixgang_progress > 0 & %blackarmgang_progress ! ^blackarmgang_complete) { // shield of arrav
+    ~send_quest_progress_colour(questlist:blackarmgang, %phoenixgang_progress, ^phoenixgang_complete);
+} else {
+    ~send_quest_progress_colour(questlist:blackarmgang, %blackarmgang_progress, ^blackarmgang_complete);
+}
+~send_quest_progress_colour(questlist:elena, %elena_progress, ^elena_complete);
+~send_quest_progress_colour(questlist:seaslug, %seaslug_progress, ^seaslug_complete);
+~send_quest_progress_colour(questlist:arthur, %arthur_progress, ^arthur_complete);
+~send_quest_progress_colour(questlist:tree, %tree_progress, ^tree_complete);
+~send_quest_progress_colour(questlist:waterfall, %waterfall_progress, ^waterfall_complete);
+~send_quest_progress_colour(questlist:grail, %grail_progress, ^grail_complete);
+~send_quest_progress_colour(questlist:ball, %ball_progress, ^ball_complete);
+~send_quest_progress_colour(questlist:murder, %murder_progress, ^murder_complete);
+~send_quest_progress_colour(questlist:itexam, ~itexam_progress, ^itexam_complete);
+~send_quest_progress_colour(questlist:hazeelcult, %hazeelcult_progress, ^hazeelcult_complete);
+~send_quest_progress_colour(questlist:hero, %hero_progress, ^hero_complete);
+~send_quest_progress_colour(questlist:itgronigen, %itgronigen_progress, ^itgronigen_complete);
+~send_quest_progress_colour(questlist:arena, %arena_progress, ^arena_complete);
+~send_quest_progress_colour(questlist:junglepotion, %junglepotion_progress, ^junglepotion_complete);
+~send_quest_progress_colour(questlist:ikov, %ikov_progress, ^ikov_completed_armadyl);
+~send_quest_progress_colour(questlist:biohazard, %biohazard_progress, ^biohazard_complete);
+~send_quest_progress_colour(questlist:sheepherder, %sheepherder_progress, ^sheepherder_complete);
+~send_quest_progress_colour(questlist:mcannon, %mcannon_progress, ^mcannon_complete);
+~send_quest_progress_colour(questlist:cog, ~get_cog_progress, ^quest_cog_complete);
+~send_quest_progress_colour(questlist:grandtree, %grandtree_progress, ^grandtree_complete);
+if (testbit(%upass_map_mechanisms, ^upass_started_bit) = ^true & %upass_progress ! ^upass_complete) { // underground pass sets a bit for the 1st stage instead of using the progress varp
+    ~send_quest_progress_colour(questlist:upass, 1, ^upass_complete);
+} else {
+    ~send_quest_progress_colour(questlist:upass, %upass_progress, ^upass_complete);
+}
+~send_quest_progress_colour(questlist:zombiequeen, %zombiequeen_progress, ^zombiequeen_complete);
+~send_quest_progress_colour(questlist:crest, %crest_progress, ^crest_complete);
+~send_quest_progress_colour(questlist:desertrescue, %desertrescue_progress, ^desertrescue_complete);
+~send_quest_progress_colour(questlist:itwatchtower, %itwatchtower_progress, ^itwatchtower_complete);
+~send_quest_progress_colour(questlist:legends, %legends_progress, ^legends_complete);
+~send_quest_progress_colour(questlist:elemental_workshop, %elemental_workshop_bits, sub(pow(2, ^elemental_workshop_complete), 1));
+if_settab(questlist, ^tab_quest_journal);
+
+if (%drunkmonk_progress >= ^drunkmonk_spoken_to_omad) {
+    settimer(blanket_ladder, 1);
+}

@@ -1,0 +1,153 @@
+[oplocu,_cooking_oven] @attempt_cook_item(last_useitem);
+[oplocu,_cooking_fire]
+if(oc_param(last_useitem, unlit_arrow) = ^true) { // might not work on every fire?
+    @light_firearrow(last_useitem);
+} else if (%tutorial_progress < ^tutorial_complete) {
+    @tut_attempt_cook_item(last_useitem);
+} else {
+    @attempt_cook_item(last_useitem);
+}
+
+[label,attempt_cook_item](obj $uncooked_item)
+//not sure if this is used
+p_arrivedelay();
+// get item data from db
+db_find(cooking_generic:uncooked, $uncooked_item);
+def_dbrow $data = db_findnext;
+if ($data = null) {
+    ~mesbox("You can't cook that.");
+    return;
+}
+if (string_length(db_getfield($data, cooking_generic:cantcookmessage_range, 0)) > 0 & lc_category(loc_type) = cooking_oven) {
+    ~mesbox(db_getfield($data, cooking_generic:cantcookmessage_range, 0));
+    return;
+}
+if (string_length(db_getfield($data, cooking_generic:cantcookmessage_fire, 0)) > 0 & lc_category(loc_type) = cooking_fire) {
+    ~mesbox(db_getfield($data, cooking_generic:cantcookmessage_fire, 0));
+    return;
+}
+// check if mems obj
+def_namedobj $cooked_item = db_getfield($data,cooking_generic:cooked,0);
+if (oc_members($cooked_item) = true | oc_members($uncooked_item) = true) {
+    // complete guess btw, i have no idea what sorta message they'd use here. Perhaps theres early osrs footage of this but ive not found any.
+    if (map_members = ^false) {
+        mes("You can only make that on a members' server.");
+        return;
+    }
+}
+// check if player has high enough level
+def_int $levelrequired = db_getfield($data,cooking_generic:levelrequired,0);
+if (stat(cooking) < $levelrequired) {
+    ~mesbox("You need a Cooking level of <tostring($levelrequired)> to cook <lowercase(oc_name($cooked_item))>.");
+    return;
+}
+// macro event
+if (afk_event = ^true) {
+    ~macro_event_general_spawn(~macro_event_set_random);
+    return;
+}
+// def variables
+def_string $cookmessage;
+def_string $succesmessage = db_getfield($data,cooking_generic:successmessage,0);
+def_string $burnmessage = db_getfield($data,cooking_generic:burnmessage,0);
+def_seq $anim;
+// field can specify "0" to not show any message at all. Only applies to heating up cocktails AFAIK
+// else if not specified at all it just shows the default message below.
+if (string_length($succesmessage) < 1 & compare($succesmessage, "0") ! 0) {
+    $succesmessage = "The <lowercase(oc_name($cooked_item))> is now nicely cooked.";
+}
+if (string_length($burnmessage) < 1 & compare($burnmessage, "0") ! 0) {
+    $burnmessage = "You accidentally burn the <lowercase(oc_name($cooked_item))>.";
+}
+// diff loc categories give diff messages
+def_int $low;
+def_int $high;
+$low, $high = db_getfield($data,cooking_generic:successchance,0);
+def_int $low_range;
+def_int $high_range;
+$low_range, $high_range = db_getfield($data,cooking_generic:successchance_range,0);
+def_int $low_gauntlets;
+def_int $high_gauntlets;
+$low_gauntlets, $high_gauntlets = db_getfield($data,cooking_generic:successchance_gauntlets,0);
+def_int $low_cookomatic;
+def_int $high_cookomatic;
+$low_cookomatic, $high_cookomatic = db_getfield($data,cooking_generic:successchance_cookomatic,0);
+
+def_category $cooking_source = lc_category(loc_type);
+if ($cooking_source = cooking_oven) {
+    $cookmessage = db_getfield($data,cooking_generic:cookmessage_range,0);
+    if ($low_range > null | $high_range > null) {
+        $low = $low_range;
+        $high = $high_range;
+    }
+    $anim = human_potterywheel;
+    if (string_length($cookmessage) < 1 & compare($cookmessage, "0") ! 0) {
+        $cookmessage = "You put the <lowercase(oc_name($cooked_item))> on the stove.";
+    }
+} else if ($cooking_source = cooking_fire) {
+    $cookmessage = db_getfield($data,cooking_generic:cookmessage_fire,0);
+    $anim = human_firecooking;
+    if (string_length($cookmessage) < 1 & compare($cookmessage, "0") ! 0) {
+        $cookmessage = "You cook the <lowercase(oc_name($cooked_item))> on the fire..."; // imgur.com/ESssj2u
+    }
+}
+// cooking gauntlets prioritize over cook o matic it seems
+if (inv_total(worn, gauntlets_of_cooking) > 0 & ($low_gauntlets > null | $high_gauntlets > null)) {
+    $low = $low_gauntlets;
+    $high = $high_gauntlets;
+} else if (loc_type = cooksquestrange & ($low_cookomatic > null | $high_cookomatic > null)) { // lumbridge cook-o-matic 100
+    $low = $low_cookomatic;
+    $high = $high_cookomatic;
+}
+def_boolean $passes_roll;
+// field can specify 0 to always burn, or 1 to always cook
+if ($low = 0 & $high = 0) {
+    $passes_roll = false;
+} else if ($low = 1 & $high = 1) {
+    $passes_roll = true;
+} else {
+    $passes_roll = stat_random(cooking, $low, $high);
+}
+def_namedobj $burnt_item = db_getfield($data,cooking_generic:burnt,0);
+def_namedobj $additional_item = db_getfield($data,cooking_generic:additional,0);
+def_int $experience = db_getfield($data,cooking_generic:experience,0);
+@cook_item($passes_roll, $anim, $cookmessage, $succesmessage, $burnmessage, $uncooked_item, $cooked_item, $burnt_item, $additional_item, $experience);
+
+
+// i put this in a label so its easier to transition to weak queues later on
+[label,cook_item](boolean $passes_roll, seq $anim, string $cookmessage, string $succesmessage, string $burnmessage, obj $uncooked_item, namedobj $cooked_item, namedobj $burnt_item, namedobj $additional_item, int $experience)
+mes($cookmessage);
+anim($anim, 0);
+sound_synth(fry, 0, 0);
+switch_obj($uncooked_item) {
+    case half_baked_batta : $cooked_item = ~gnome_batta;
+    case half_baked_bowl : $cooked_item = ~gnome_bowl;
+    case half_baked_crunchies : $cooked_item = ~gnome_crunchies;
+}
+// rsc delays for about 3 ticks.
+// This post says they removed unnecessary delays and "None of the above no longer take any more time than in Runescape 1."
+// https://oldschool.runescape.wiki/w/Update:Huge_Runescape_2_update
+p_delay(1);
+inv_del(inv, $uncooked_item, 1);
+
+if ($passes_roll = true) {
+    inv_add(inv, $cooked_item, 1);
+    if (compare($succesmessage, "0") ! 0) {
+        mes($succesmessage);
+    }
+    stat_advance(cooking, $experience);
+    // these dont give additional items
+    if ($cooked_item = half_baked_batta | $cooked_item = half_baked_bowl | $cooked_item = half_baked_crunchies) {
+        return;
+    }
+    if ($additional_item ! null) {
+        inv_add(inv, $additional_item, 1);
+    }
+} else {
+    inv_add(inv, $burnt_item, 1);
+    mes($burnmessage);
+    // for tins and what not
+    if ($additional_item ! null) {
+        inv_add(inv, $additional_item, 1);
+    }
+}

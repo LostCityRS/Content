@@ -1,0 +1,12 @@
+[opobj3,mcannonremains]
+if(%mcannon_progress = ^mcannon_tasked_with_checking_guard_tower) {
+    if (inv_total(inv, mcannonremains) > 0) {
+        // Message fromm Revisionism's RSC replay
+        ~chatplayer("<p,neutral>Carrying one 'dwarfs remains' is bad enough.");
+        return;
+    }
+    @pickup_obj;
+} else {
+    // Made up message.
+    ~chatplayer("<p,neutral>I'm not sure why I'd want to do that...");
+}

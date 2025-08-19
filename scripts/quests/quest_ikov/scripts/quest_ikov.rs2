@@ -1,0 +1,76 @@
+[oploc1,ikov_luciendoor]
+if(%ikov_progress >= ^ikov_started) {
+    ~open_and_close_door2(loc_1538, ~check_axis_locactive(coord), door_open);
+    return;
+}
+// https://www.youtube.com/watch?v=-tsHE3OEuYk&t=126s
+mes("The door won't open. No one seems to be in.");
+
+[proc,randomize_ice_arrow_chest]
+switch_int(random(6)) {
+    case 0 : %ikov_icearrowchest_coord = 0_42_153_22_58;
+    case 1 : %ikov_icearrowchest_coord = 0_42_153_31_46;
+    case 2 : %ikov_icearrowchest_coord = 0_42_153_41_58;
+    case 3 : %ikov_icearrowchest_coord = 0_42_153_59_56;
+    case 4 : %ikov_icearrowchest_coord = 0_42_153_50_43;
+    case 5 : %ikov_icearrowchest_coord = 0_42_153_57_29;
+}
+
+[proc,lucien_attack]()(boolean)
+if(map_members = ^true & %ikov_progress >= ^ikov_completed_armadyl) { // RS3 wiki implies map_members check here, seems to make sense
+    // RS3, OSRS wiki also mentions: "If you try to attack Lucien before the end of the Temple of Ikov quest without wearing the Armadyl pendant, he says "You do not want to attack me. I am your friend."
+    // so likely was in OSRS as well
+    mes("You have completed the Temple of Ikov quest.");
+    return (false);
+}
+if(map_members = ^true & %ikov_progress = ^ikov_helping_armadyl & inv_total(worn, ikov_pendantofarmardyl) > 0) {
+    return (true);
+}
+~chatnpc("<p,neutral>You don't want to attack me. I am your friend.");
+if_close;
+p_delay(0);
+npc_anim(human_mindtrick, 0);
+p_delay(1);
+~mesbox("You decide not to attack Lucien. He is your friend.");
+return (false);
+
+[opobj3,ikov_staffofarmardyl]
+if(%ikov_progress >= ^ikov_completed_armadyl) {
+    mes("You have completed the quest of the Temple of Ikov.");
+    return;
+}
+if(%ikov_progress = ^ikov_helping_armadyl) {
+    mes("You decide not to steal the staff as you have agreed to help the Guardians.");
+    return;  
+}
+if(~obj_gettotal(ikov_staffofarmardyl) > 0) {
+    mes("I already have the staff.");
+    return;
+}
+npc_huntall(coord, 5, 1); // requires los, might need to recheck dist?
+while (npc_huntnext = true) {
+    if (npc_category = guardian_of_armadyl) {
+        npc_say("That is not thine to take!");
+        npc_setmode(opplayer2);
+        return;
+    }
+}
+@pickup_obj;
+
+[queue,ikov_armadyl_quest_complete](npc_uid $npc)
+%ikov_progress = ^ikov_completed_armadyl;
+stat_advance(ranged, 105000);
+stat_advance(fletching, 80000);
+session_log(^log_adventure, "Quest complete: Temple of Ikov (Armadyl)");
+~send_quest_complete(questlist:ikov, yew_longbow, 250, ^ikov_questpoints, "You have completed the\\nTemple of Ikov Quest for Armadyl!");
+if (npc_finduid($npc) = true) {
+    gosub(npc_death);
+}
+
+[queue,ikov_lucien_quest_complete]
+%ikov_progress = ^ikov_completed_lucien;
+inv_del(inv, ikov_staffofarmardyl, 1);
+stat_advance(ranged, 105000);
+stat_advance(fletching, 80000);
+session_log(^log_adventure, "Quest complete: Temple of Ikov (Lucien)");
+~send_quest_complete(questlist:ikov, yew_longbow, 250, ^ikov_questpoints, "You have completed the\\nTemple of Ikov Quest for Lucien!");

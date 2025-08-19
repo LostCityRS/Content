@@ -1,0 +1,70 @@
+[opheld1,spade]
+// Pirate's Treasure
+if (distance(coord, 0_46_52_55_55) <= 1) {
+    @hunt_dig;
+}
+
+// zombiequeen (todo: did this always exist? It almost certainly existed in 2007, checking https://youtu.be/w1I0GXAkLKw?si=avVq7fsXaho-wZvK&t=317, it does
+// facesquare(loc_coord), which wouldnt be needed if it was only triggerable from oplocu
+if(inzone(0_45_46_40_54, 0_45_46_43_55, coord) = true) {
+    if(loc_find(0_45_46_41_55, loc_2217) = true) {
+        @zombiequeen_mound_dig;
+    }
+}
+
+// Everything else
+p_arrivedelay;
+p_stopaction;
+anim(human_dig, 0);
+
+// itexam - digsite area, workmen get angry if you dig around the whole mapsquare
+if (inzone(0_52_53_0_0, 0_52_53_63_63, coord) = true) {
+    @digworkman1_intervene;
+}
+
+// Treasure Trails
+if(map_members = ^true & ~trail_hasclue_inv = true) {
+    def_obj $clue = ~trail_getclue_inv;
+
+    if(~trail_clue_coord($clue) = true & oc_param($clue, trail_casket) ! null) {
+        def_boolean $sextant_clue = oc_param($clue, trail_sextant);
+        def_coord $trail_coord = oc_param($clue, trail_coord);
+        // for coord clues, https://www.youtube.com/watch?v=rcNbwik5-Ig looking at wiki and this 2013 video you can be 1 tile off and it will still work
+        // todo: try and confirm this behaviour for 2004, this pre dec-2006 video also has this behaviour https://www.youtube.com/watch?v=yH6YaavzuMc
+        // also https://www.youtube.com/watch?v=QhdRJd-g438 for maps
+        if($sextant_clue = true & (inv_total(inv, trail_watch) = 0 | inv_total(inv, trail_chart) = 0 | inv_total(inv, trail_sextant) = 0)) {
+            ~displaymessage(^dm_default);
+            return;
+        }
+        if(distance(coord, $trail_coord) <= 1) {
+            if(oc_param($clue, trail_guardian) ! null) {
+                def_npc $guard = oc_param($clue, trail_guardian);
+                if($guard = trail_hard & testbit(%trail_clue, 4) = ^false) {
+                    npc_huntall(coord, 10, 0); // zamorak/saradomin wizards range
+                    while (npc_huntnext = true) {
+                        if(npc_type = trail_hard & %npc_aggressive_player = uid) {
+                            return;
+                        }
+                    }
+                    // los not low: https://www.youtube.com/watch?v=AoozFVuxWx8&t=88s, https://youtu.be/K8IepVULXYM?si=-phA8d-3sJ1ohS9H&t=26
+                    // https://youtu.be/uAv5a6y-3OQ?si=QxAUtMVq6KCZebat&t=36 notice smokepuff on adj tile to where he appears, confirms it should be map_findsquare
+                    npc_add(map_findsquare(coord, 1, 1, ^map_findsquare_lineofsight), trail_hard, 500);
+                    spotanim_map(smokepuff_large, npc_coord, 124, 0);
+                    npc_say("Die, human!");
+                    %aggressive_npc = npc_uid;
+                    // this prevents other players from attacking w/manual cast, this might've been a later change
+                    %npc_lastcombat = sub(^max_32bit_int, 8);
+                    %npc_aggressive_player = uid;
+                    npc_setmode(applayer2);
+                    return;
+                }
+            }
+            inv_del(inv, $clue, 1);
+            def_namedobj $casket = oc_param($clue, trail_casket);
+            inv_add(inv, $casket, 1);
+            ~trail_casket_obtained($casket);
+            return;
+        }
+    }
+}
+~displaymessage(^dm_default);

@@ -1,0 +1,60 @@
+[label,scorpion_caught]
+mes("You've already caught this scorpion");
+
+[label,scorpion_sting]
+mes("The scorpion stings you!");
+queue(damage_player, 0, 3);
+
+[label,catch_scorp](namedobj $next_cage)
+inv_del(inv, last_useitem, 1);
+npc_del;
+inv_add(inv, $next_cage, 1);
+mes("You catch a scorpion!");
+
+[opnpcu,questscorpiona]
+switch_obj (last_useitem) {
+    case scorpioncagea, scorpioncageab, scorpioncageab, scorpioncagefull : @scorpion_caught;
+    case scorpioncageempty : @catch_scorp(scorpioncagea);
+    case scorpioncageb : @catch_scorp(scorpioncageab);
+    case scorpioncagec : @catch_scorp(scorpioncageac);
+    case scorpioncagebc : @catch_scorp(scorpioncagefull);
+}
+
+[opnpcu,questscorpionb]
+switch_obj (last_useitem) {
+    case scorpioncageb, scorpioncageab, scorpioncagebc, scorpioncagefull : @scorpion_caught;
+    case scorpioncageempty : @catch_scorp(scorpioncageb);
+    case scorpioncagea : @catch_scorp(scorpioncageab);
+    case scorpioncagec : @catch_scorp(scorpioncagebc);
+    case scorpioncageac : @catch_scorp(scorpioncagefull);
+}
+
+[opnpcu,questscorpionc]
+switch_obj (last_useitem) {
+    case scorpioncagec, scorpioncageac, scorpioncagebc, scorpioncagefull : @scorpion_caught;
+    case scorpioncageempty : @catch_scorp(scorpioncagec);
+    case scorpioncagea : @catch_scorp(scorpioncageac);
+    case scorpioncageb : @catch_scorp(scorpioncagebc);
+    case scorpioncageab : @catch_scorp(scorpioncagefull);
+}
+
+[opnpc1,questscorpiona] @scorpion_sting;
+[opnpc1,questscorpionb] @scorpion_sting;
+[opnpc1,questscorpionc] @scorpion_sting;
+
+// Taverley wall
+[oploc1,loc_2117]
+if(%scorpcatcher_progress < ^scorpcatcher_first_hint) {
+    mes("Looks like a wall...");
+    return;
+}
+def_boolean $entering = ~check_axis(coord, loc_coord, loc_angle);
+mes("You've found a secret door");
+~open_and_close_door2(oldwall, ~check_axis(coord, loc_coord, loc_angle), door_open);
+
+[queue,scorpcatcher_quest_complete]
+inv_del(inv, scorpioncagefull, 1);
+%scorpcatcher_progress = ^scorpcatcher_complete;
+session_log(^log_adventure, "Quest complete: Scorpion Catcher");
+~send_quest_complete(questlist:scorpcatcher, scorpioncagefull, 250, ^scorpcatcher_questpoints, "You have completed the\\nScorpion Catcher Quest!");
+stat_advance(strength, 66250);

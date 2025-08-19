@@ -1,0 +1,170 @@
+// Locations:
+// 3016 3513 0 - Black Knight's Fortress
+// 2962 3338 2 - Sir Amik Varze
+// 3031 3508 1 - Hole
+// 3025 3508 0 - Grate
+
+// https://youtu.be/cbJE-AjhON4?t=269
+[oploc1,inaclefayeunopenabledoorr]
+mes("You can't open this door.");
+
+[oploc1,inaclefayeunopenabledoorl]
+mes("You can't open this door.");
+
+[oploc1,blackknight_front_door]
+def_boolean $is_outside = ~check_axis(coord, loc_coord, loc_angle);
+if ($is_outside = true & ((inv_getobj(worn, ^wearpos_hat) ! bronze_med_helm) | (inv_getobj(worn, ^wearpos_torso) ! iron_chainbody))) {
+    if (npc_find(0_47_54_8_56, fortressguard, 5, 1) = true) {
+        @blackknight_entrance_fortressguard;
+    }
+} else {
+    ~open_and_close_door(loc_param(next_loc_stage), $is_outside, false);
+}
+
+[oploc1,blackknight_door_to_grill]
+def_boolean $is_outside = ~check_axis(coord, loc_coord, loc_angle);
+if ($is_outside = false) {
+    // black knights guarding the ladder down to the grill will aggress the player
+    // - https://youtu.be/6RNx7Sbut8A?t=250
+    ~black_knights_aggro(coord, coord);
+}
+~open_and_close_door(loc_param(next_loc_stage), $is_outside, false);
+
+[label,blackknight_entrance_fortressguard]
+~chatnpc("<p,angry>Hey, you can't come in here!|This is a high security military installation.");
+def_int $option = ~p_choice3("Yes, but I work here!", 1, "Oh sorry.", 2, "So who does it belong to?", 3);
+if ($option = 1) {
+    ~chatplayer("<p,angry>Yes, but I work here!");
+    ~chatnpc("<p,angry>Well this the guards entrance. I might be new here but I can tell you're not a guard.|You're not even wearing proper guards uniform!");
+    def_int $beg_or_more_info = ~p_choice2("Pleaassee let me in!", 1, "So what is this uniform?", 2);
+
+    if ($beg_or_more_info = 1) {
+        ~chatplayer("<p,sad>Pleaassee let me in!");
+        ~chatnpc("<p,angry>Go away, you're getting annoying.");
+    } else if ($beg_or_more_info = 2) {
+        ~chatplayer("<p,neutral>So what is this uniform?");
+        ~chatnpc("<p,confused>Well you can see me wearing it.|It's iron chain mail and a medium bronze helmet.");
+    }
+} else if ($option = 2) {
+   ~chatplayer("<p,neutral>Oh sorry.");
+   ~chatnpc("<p,angry>Don't let it happen again.");
+} else if ($option = 3) {
+    ~chatplayer("<p,neutral>So who does it belong to?");
+    ~chatnpc("<p,angry>This fortress belongs to the order of Black Knights known as the Kinshra.");
+}
+
+[oploc1,blackknight_banquet_hall_door]
+def_boolean $is_inside = ~check_axis(coord, loc_coord, loc_angle);
+def_coord $blackknight_near_banquet_hall = 0_47_54_11_59;
+def_coord $blackknight_outside = 0_47_54_8_57;
+if ($is_inside = false) {
+    if (npc_find(coord, fortressguard, 10, 1) = true) {
+        @blackknight_banquet_hall_fortressguard;
+    }
+} else {
+    ~open_and_close_door(loc_param(next_loc_stage), $is_inside, false);
+}
+
+[label,blackknight_banquet_hall_fortressguard]
+~chatnpc("<p,neutral>I wouldn't go in there if I woz you.|Those Black Knights are in an important meeting;|They said they'd kill anyone who went in there!");
+def_int $option = ~p_choice2("Ok I won't.", 1, "I don't care. I'm going in anyway.", 2);
+if ($option = 1) {
+    ~chatplayer("<p,neutral>Ok I won't.");
+} else {
+   ~chatplayer("<p,neutral>I don't care. I'm going in anyway.");
+   ~open_and_close_door(loc_param(next_loc_stage), false, false);
+   // search for one black knight to yell
+   // - https://youtu.be/vNPISjaWfvQ?t=123
+   // - https://youtu.be/6RNx7Sbut8A?t=306
+   // - in osrs it gets flinched, but in https://youtu.be/6RNx7Sbut8A?t=306 it insta retals and i doubt its a hunt
+   ~black_knights_aggro(0_47_54_17_59, 0_47_54_17_59);
+}
+[oploc1,blackknight_potion_room_door]
+mes("It's locked.");
+
+// Secret wall push
+[oploc1,blackknight_pushable_wall]
+mes("You push against the wall. You find a secret passage.");
+~open_and_close_door2(loc_param(next_loc_stage), ~check_axis_locactive(coord), coffin_open);
+
+// Using Cabbage on hole
+[oplocu,blackknight_hole]
+switch_obj (last_useitem)
+{
+    case cabbage : @black_knights_fortress_correct_cabbage;
+    case magic_cabbage : @black_knights_fortress_incorrect_cabbage;
+    case default : ~displaymessage(^dm_default);
+};
+
+[label,black_knights_fortress_correct_cabbage]
+if (%blackknight_progress = 2) {
+    inv_del(inv, cabbage, 1);
+    mes("You drop a cabbage down the hole.");
+    p_delay(2);
+    mes("The cabbage lands in the cauldron below.");
+    p_delay(2);
+    mes("The mixture in the cauldron starts to froth and bubble.");
+    p_delay(2);
+    mes("You hear the witch groan in dismay.");
+    p_delay(2);
+    // initially we did not update quest stage unless the player clicked here to
+    // continue on the chatplayer, but a few people got tripped up by that
+    // now we are updating quest stage first so it cannot be interrupted
+    ~update_blackknight_progress;
+    ~chatplayer("<p,quiz>Right I think that's successfully sabotaged the secret weapon.");
+} else {
+    ~chatplayer("<p,confused>Why would I want to do that?");
+}
+
+[label,black_knights_fortress_incorrect_cabbage]
+if (%blackknight_progress = 2) {
+    mes("This is the wrong sort of cabbage!");
+    p_delay(2);
+    mes("You are meant to be hindering the witch.");
+    p_delay(2);
+    mes("Not helping her.");
+    p_delay(2);
+} else {
+    ~chatplayer("<p,confused>Why would I want to do that?");
+}
+
+// Listening at grate
+[oploc1,blackknight_grate]
+if (%blackknight_progress = 1) {
+    ~chatnpc_specific("Black Knight", grillknight, "<p,quiz>So, how's the secret weapon coming along?");
+    ~chatnpc_specific("Witch", fortwitch, "<p,happy>The invincibility potion is almost ready...");
+    ~chatnpc_specific("Witch", fortwitch, "<p,happy>It's taken me five years but it's almost ready.");
+    ~chatnpc_specific("Witch", fortwitch, "<p,neutral>Greldo the Goblin here|is just going to fetch the last ingredient for me.");
+    ~chatnpc_specific("Witch", fortwitch, "<p,neutral>It's a specially grown cabbage.|Grown by my cousin Helda who lives in Draynor Manor.");
+    ~chatnpc_specific("Witch", fortwitch, "<p,neutral>The soil there is slightly magical.|And it gives the cabbages slight magic properties.");
+    ~chatnpc_specific("Witch", fortwitch, "<p,shock>Not to mention the trees!");
+    ~chatnpc_specific("Witch", fortwitch, "<p,neutral>Now remember Greldo only a Draynor Manor| cabbage will do! Don't get lazy| and bring any old cabbage, THAT| would ENTIRELY wreck the potion!"); // https://web.archive.org/web/*/http://zybez.com/img/qimg/blackknight/6_grill.jpg
+    ~chatnpc_specific("Greldo", greldo, "<p,goblinchat>Yes mithreth."); // neutral in osrs
+    ~update_blackknight_progress;
+} else {
+    mes("I can't hear much right now.");
+}
+
+[proc,update_blackknight_progress]
+%blackknight_progress = calc(%blackknight_progress + 1);
+~send_quest_progress(questlist:fortress, %blackknight_progress, ^blackknight_complete);
+
+[queue,black_knights_fortress_quest_complete]
+%blackknight_progress = ^blackknight_complete;
+inv_add(inv, coins, 2500);
+mes("Sir Amik hands you 2500 coins.");
+session_log(^log_adventure, "Quest complete: Black Knight's Fortress");
+~send_quest_complete(questlist:fortress, coins, 250, ^blackknight_questpoints, "You have completed the\\nBlack Knights' Fortress Quest!");
+
+[proc,black_knights_aggro](coord $first_search_coord, coord $all_search_coord)
+if (npc_find($first_search_coord, aggressive_black_knight, 5, 0) = true) {
+    npc_say("Die intruder!!!");
+}
+// def does this findall thing https://youtu.be/6RNx7Sbut8A?t=423
+// isnt the case in osrs!
+npc_findall($all_search_coord, aggressive_black_knight, 5, 0);
+while (npc_findnext = true) {
+    if (npc_getmode ! opplayer2) {
+        npc_setmode(opplayer2);
+    }
+}

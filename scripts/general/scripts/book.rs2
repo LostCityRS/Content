@@ -1,0 +1,96 @@
+[if_button,book:com_1]
+switch_obj (%open_book) {
+    case baxtorian_book_waterfall_quest : @book_flip_page(^book_direction_backward, 0, 4, book_on_baxtorian_page);
+    case witches_diary : @book_flip_page(^book_direction_backward, 0, 3, witches_diary);
+    case ardougne_book : @book_flip_page(^book_direction_backward, 0, 3, guide_ardougne);
+    case the_shield_of_arrav : @book_flip_page(^book_direction_backward, 0, 2, shieldofarrav_book);
+    case book_of_astrology : @book_flip_page(^book_direction_backward, 0, 3, astrology_book);
+    case grandtree_translationbook : @book_flip_page(^book_direction_backward, 0, 4, translation_book);
+    case grandtree_journal : @book_flip_page(^book_direction_backward, 0, 3, glough_book);
+    case mcannonbook : @book_flip_page(^book_direction_backward, 0, 3, cannon_instructions);
+    case upass_journal : @book_flip_page(^book_direction_backward, 0, 1, journal_of_randas);
+    case old_journal : @book_flip_page(^book_direction_backward, 0, 2, ibanhistory);
+    case ibansshadow : @book_flip_page(^book_direction_backward, 0, 1, ibanshadow);
+    case ibansdove : @book_flip_page(^book_direction_backward, 0, 2, ibanconscience);
+    case digsitebook : @book_flip_page(^book_direction_backward, 0, 1, book_on_chemicals);
+    case book_of_binding : @book_flip_page(^book_direction_backward, 0, 4, book_of_binding_page);
+    case elemental_workshop_shield_book : @book_flip_page(^book_direction_backward, 0, 1, elemental_shield_book);
+}
+p_delay(0);
+
+[if_button,book:com_3]
+switch_obj (%open_book) {
+    case baxtorian_book_waterfall_quest : @book_flip_page(^book_direction_forward, 0, 4, book_on_baxtorian_page);
+    case witches_diary : @book_flip_page(^book_direction_forward, 0, 3, witches_diary);
+    case ardougne_book : @book_flip_page(^book_direction_forward, 0, 3, guide_ardougne);
+    case the_shield_of_arrav : @book_flip_page(^book_direction_forward, 0, 2, shieldofarrav_book);
+    case book_of_astrology : @book_flip_page(^book_direction_forward, 0, 3, astrology_book);
+    case grandtree_translationbook : @book_flip_page(^book_direction_forward, 0, 4, translation_book);
+    case grandtree_journal : @book_flip_page(^book_direction_forward, 0, 3, glough_book);
+    case mcannonbook : @book_flip_page(^book_direction_forward, 0, 3, cannon_instructions);
+    case upass_journal : @book_flip_page(^book_direction_forward, 0, 1, journal_of_randas);
+    case old_journal : @book_flip_page(^book_direction_forward, 0, 2, ibanhistory);
+    case ibansshadow : @book_flip_page(^book_direction_forward, 0, 1, ibanshadow);
+    case ibansdove : @book_flip_page(^book_direction_forward, 0, 2, ibanconscience);
+    case digsitebook : @book_flip_page(^book_direction_forward, 0, 1, book_on_chemicals);
+    case book_of_binding : @book_flip_page(^book_direction_forward, 0, 4, book_of_binding_page);
+    case elemental_workshop_shield_book : @book_flip_page(^book_direction_forward, 0, 1, elemental_shield_book);
+}
+p_delay(0);
+
+[proc,book](string $title, string $string)
+split_init($string, 175, 22, q8);
+def_int $page = 0;
+def_int $pagetotal = split_pagecount;
+while ($page < $pagetotal) {
+    ~book_page($title, $page);
+    $page = calc($page + 1);
+}
+
+[proc,book_page](string $title, int $page)
+if_settext(book:com_5, split_get($page, 0));
+if_settext(book:com_6, split_get($page, 1));
+if_settext(book:com_7, split_get($page, 2));
+if_settext(book:com_8, split_get($page, 3));
+if_settext(book:com_9, split_get($page, 4));
+if_settext(book:com_10, split_get($page, 5));
+if_settext(book:com_11, split_get($page, 6));
+if_settext(book:com_12, split_get($page, 7));
+if_settext(book:com_13, split_get($page, 8));
+if_settext(book:com_14, split_get($page, 9));
+if_settext(book:com_15, split_get($page, 10));
+if_settext(book:com_16, split_get($page, 11));
+if_settext(book:com_17, split_get($page, 12));
+if_settext(book:com_18, split_get($page, 13));
+if_settext(book:com_19, split_get($page, 14));
+if_settext(book:com_20, split_get($page, 15));
+if_settext(book:com_21, split_get($page, 16));
+if_settext(book:com_22, split_get($page, 17));
+if_settext(book:com_23, split_get($page, 18));
+if_settext(book:com_24, split_get($page, 19));
+if_settext(book:com_25, split_get($page, 20));
+if_settext(book:com_26, split_get($page, 21));
+if_settext(book:book_title, $title);
+if_openmain(book);
+
+[label,book_flip_page](int $page_direction, int $min_page, int $max_page, proc $proc)
+%book_page = add(%book_page, $page_direction);
+if (%book_page > $max_page) {
+    %book_page = $max_page;
+} else if (%book_page < $min_page) {
+    %book_page = $min_page;
+}
+
+if (%book_page = $min_page) {
+    if_sethide(book:com_1, true);
+} else {
+    if_sethide(book:com_1, false);
+}
+
+if (%book_page = $max_page) {
+    if_sethide(book:com_3, true);
+} else {
+    if_sethide(book:com_3, false);
+}
+
+gosub($proc);

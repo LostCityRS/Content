@@ -1,0 +1,20 @@
+[debugproc,loc](loc $loc)
+if ($loc = null) {
+    @debugusage("::loc (name)", "::loc magic_tree", "::loc castlewall");
+    return;
+}
+
+loc_add(coord, $loc, 0, centrepiece_straight, 500);
+
+[debugproc,loc_anim](loc $loc, seq $seq)
+if ($loc = null | $seq = null) {
+    @debugusage("::loc_anim (name) (seq)", "::loc_anim chompybird_spitroast_empty roast", "");
+    return;
+}
+
+loc_findallzone(coord);
+while (loc_findnext = true) {
+    if (loc_type = $loc) {
+        loc_anim($seq);
+    }
+}

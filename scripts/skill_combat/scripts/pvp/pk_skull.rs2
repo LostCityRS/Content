@@ -1,0 +1,56 @@
+// requires .active_player and active_player
+[proc,deserves_pk_skull]()(boolean)
+if (~in_duel_arena(coord) = true) {
+    return(false);
+}
+if (.%pk_prey1 = uid | .%pk_prey2 = uid | %pk_predator1 = .uid | %pk_predator2 = .uid | %pk_predator3 = .uid) {
+    return(false);
+}
+return(true);
+
+[proc,set_pk_vars]
+if (~deserves_pk_skull = true) {
+    ~pk_skull(^pk_skull_duration);
+}
+// for preys
+%pk_prey2 = %pk_prey1;
+%pk_prey1 = .uid; 
+
+// for predators
+.%pk_predator3 = .%pk_predator2;
+.%pk_predator2 = .%pk_predator1;
+.%pk_predator1 = uid;
+
+.%lastcombat = map_clock;
+.%lastcombat_pvp = map_clock;
+.%aggressive_npc = null; // prevents npc's from attacking your opponent after you attack them.
+
+// requires active_player
+[proc,pk_skull](int $duration)
+~headicon_add(^headicon_skull);
+%pk_skull = add(map_clock, $duration);
+clearsofttimer(pk_skull_timer);
+softtimer(pk_skull_timer, $duration);
+
+[proc,clear_pk_skull]
+~headicon_del(^headicon_skull);
+clearsofttimer(pk_skull_timer);
+%pk_skull = 0;
+
+[softtimer,pk_skull_timer]
+~clear_pk_skull;
+
+[proc,set_pk_skull_logout]
+if (%pk_skull < 1) {
+    return;
+}
+%pk_skull = sub(%pk_skull, map_clock);
+
+[proc,set_pk_skull_login]
+if (%pk_skull < 1) {
+    return;
+}
+if (%pk_skull > ^pk_skull_duration) {
+    %pk_skull = ^pk_skull_duration;
+}
+~pk_skull(%pk_skull);

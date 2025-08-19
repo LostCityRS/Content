@@ -1,0 +1,194 @@
+[proc,spawn_chompy_bird](coord $coord, player_uid $baiter_uid)
+{
+    // def_coord $spawn_coord = map_findsquare($coord, 3, 10, 1);
+    def_coord $spawn_coord = map_findsquare($coord, 4, 4, 1);
+    
+    npc_add($spawn_coord, chompy_bird, 100); // no seq for flying away at end, prob just despawned?
+    %quest_chompybird_baiter = $baiter_uid;
+    npc_anim(chompy_landing, 0);
+    npc_say("Sqwirk!");
+    if(finduid(%quest_chompybird_baiter) = true) {
+        hint_npc(npc_uid);
+    }
+
+    // todo confirm behaviour, looks like it wanders first then hunts?
+    npc_sethuntmode(chompybird);
+}
+
+// triggered by the .hunt config, the Chompy has found, and arrived at, the Bloated Toad
+[ai_queue4,chompy_bird]
+if (.npc_find(npc_coord, bloated_toad, 2, ^vis_lineofwalk) = true) {
+    npc_sethuntmode(null);
+    npc_setmode(none);
+    npc_walk(npc_coord);
+    npc_facesquare(.npc_coord);
+    npc_queue(5, 0, 0);
+    .npc_queue(5, 0, 0);
+}
+
+
+// the Chompy is eating the toad
+[ai_queue5,chompy_bird]
+npc_say("Sqwark!");
+npc_anim(chompy_attack, 0);
+npc_delay(3);
+npc_say("Gobble!");
+npc_delay(2);
+npc_setmode(null);
+npc_sethuntmode(chompybird);
+
+// todo consider some check that the toad actually still exists?
+//      might not be necessary though
+
+if (p_finduid(%quest_chompybird_baiter) = true) {
+    if (%chompybird_progress = ^chompybird_dropped_toad) {
+        %chompybird_progress = ^chompybird_chompy_ate_toad;
+    }
+}
+
+[opnpc4,chompybird_dead]
+mes("You start plucking the chompy bird.");
+anim(human_pickupfloor, 0);
+p_delay(1);
+obj_add(npc_coord, raw_chompy, 1, ^lootdrop_duration);
+obj_add(npc_coord, bones, 1, ^lootdrop_duration);
+inv_add(inv, feather, calc(random(20) + 10));
+npc_del;
+
+// no attackrange checks (OSRS)
+[apnpc5,chompy_bird] @player_combat_chompybird_start;
+[opnpc5,chompy_bird] @player_combat_chompybird_start;
+
+[label,player_combat_chompybird_start]
+def_obj $rhand = inv_getobj(worn, ^wearpos_rhand);
+
+if ($rhand = null) {
+    // todo confirm for 2004
+    mes("You'll need a weapon to try and attack this beast.");
+    return;
+}
+
+if (%damagetype ! ^ranged_style) {
+    // todo confirm for 2004
+    mes("The Chompy Bird is too quick for your melee weapon.");
+    return;
+}
+
+if ($rhand ! ogre_bow) {
+    // todo confirm for 2004
+    mes("Your ranged weapon isn't powerful enough to hurt the Chompy bird.");
+    return;
+}
+
+if(%quest_chompybird_baiter ! uid) {
+    mes("This is not your Chompy Bird to shoot.");
+    return;
+}
+
+
+def_obj $ammo = inv_getobj(worn, ^wearpos_quiver);
+if ($ammo = null) {
+    // https://youtu.be/Qc-4z_z2JLk?si=Bh2bAhDlFQxedAqg&t=446
+    mes("There is no ammo left in your quiver");
+    return;
+}
+
+if ($ammo ! ogre_arrow) {
+    // todo confirm for 2004
+    mes("You can't use that ammo with your bow.");
+    return;
+}
+
+def_int $attackrange = ~player_attackrange($rhand);
+if (npc_range(coord) > $attackrange) {
+    p_aprange($attackrange);
+    return;
+}
+~player_combat_chompybird($rhand, $ammo);
+
+// is this right?  it's basically a replica of the existing combat logic,
+// but that relies on some npc_hasop(2) checks, which I don't want to mess with
+[proc,player_combat_chompybird](obj $rhand, obj $ammo)
+// no aprange stuff at all, cb style doesn't matter
+if (~player_in_combat_check = false) {
+    return;
+}
+
+p_stopaction;
+
+if (%action_delay > map_clock) {
+    p_opnpc(5);
+    return;
+}
+
+if (npc_stat(hitpoints) = 0) {
+    return;
+}
+
+// set the skill clock depending on the weapon attack rate
+%action_delay = add(map_clock, oc_param($rhand, attackrate));
+
+if (%damagestyle = ^style_ranged_rapid) {
+    %action_delay = sub(%action_delay, 1);
+}
+
+// check hit, give combat xp
+def_int $damage = 0;
+if (~player_npc_hit_roll(%damagetype) = true) {
+    def_int $maxhit = %com_maxhit;
+    $damage = randominc(min($maxhit, npc_param(max_dealt)));
+    def_int $damage_capped = min($damage, npc_stat(hitpoints));
+    ~give_combat_experience(%damagestyle, $damage_capped, %npc_combat_xp_multiplier);
+    npc_heropoints($damage_capped);
+}
+
+def_int $delay = add(~player_use_ogre_bow($ammo), 30); // osrs it seems to be delayed an extra tick
+anim(%com_attackanim, 0);
+sound_synth(%com_attacksound, 0, 0);
+// Chompies don't fight back
+npc_queue(2, $damage, calc($delay / 30)); // ai_queue2 takes uncapped damage (avoids npcs from tick healing)
+if (npc_param(defend_sound) ! null) {
+    sound_synth(npc_param(defend_sound), 0, sub($delay, 30)); // delay 1 client tick for the hit queue
+}
+
+p_opnpc(5);
+
+~ranged_dropammo_npc($ammo, divide($delay, 30));
+
+if (random(2) = 0) {
+    // There's some randomness here, this is a guess
+    npc_say("Screech!");
+    npc_setmode(playerescape);
+}
+
+// Ogre arrow launch spotanim is higher than other arrows by default, so we compensate for that here
+[proc,player_use_ogre_bow](obj $ammo)(int)
+spotanim_pl(oc_param($ammo, proj_launch), 50, 0);
+return(~npc_projectile(coord, npc_uid, oc_param($ammo, proj_travel), 40, 36, 41, 15, 5, 11, 5));
+
+[ai_queue3,chompy_bird]
+if(npc_findhero = ^true) { // happens before npc_death
+    queue(chompybird_kill, 0);
+}
+gosub(npc_death);
+
+// todo confirm duration
+npc_add(npc_coord, chompybird_dead, 100);
+
+[queue,chompybird_kill]
+if (%chompybird_progress = ^chompybird_rantz_gave_player_bow) {
+    %chompybird_progress = ^chompybird_player_killed_chompy;
+    return;
+}
+if(%chompybird_progress < ^chompybird_complete | %chompybird_kills >= 100000) { 
+    return; 
+}
+// https://youtu.be/7ze4YEvQwHM?si=AYdN3zfe62SP4emb&t=215
+mes("You scratch a notch on your bow for the chompy bird kill.");
+%chompybird_kills = calc(%chompybird_kills + 1);
+if(%chompybird_kills = 4000) {
+    stat_advance(ranged, 300000);
+    mes("You've been awarded ranged experience for your relentless pursuit of chompies!");
+    // https://youtu.be/cQ_HQgUodI0?si=NMThWxkpJozNbe57&t=121
+    ~objbox(chompy_bird_obj, "@blu@**** Congratulations! 4000 Chompies! ****|@dre@~ You're an Expert Dragon Archer! ~|This is the highest honour that can be bestowed on any chompy bird hunter.", 250, 0, ^objbox_height); 
+}

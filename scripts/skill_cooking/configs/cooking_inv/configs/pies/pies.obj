@@ -1,0 +1,213 @@
+[apple_pie]
+name=Apple pie
+desc=Mmm Apple pie.
+iop1=Eat
+cost=30
+model=model_2767_obj
+recol1s=30545
+recol1d=22982
+recol2s=7264
+recol2d=15620
+recol3s=15855
+recol3d=20971
+2dyof=-9
+2dzoom=950
+2dyan=104
+2dxan=192
+weight=450g
+category=category_129
+param=next_obj_stage,half_an_apple_pie
+
+[redberry_pie]
+name=Redberry pie
+desc=Looks tasty.
+iop1=Eat
+cost=12
+model=model_2767_obj
+recol1s=30545
+recol1d=22982
+recol2s=7264
+recol2d=15620
+recol3s=15855
+recol3d=20971
+2dyof=-9
+2dzoom=950
+2dyan=104
+2dxan=192
+weight=450g
+category=category_129
+param=next_obj_stage,half_a_redberry_pie
+
+[meat_pie]
+name=Meat pie
+desc=Not for vegetarians.
+iop1=Eat
+cost=15
+model=model_2767_obj
+recol1s=30545
+recol1d=22982
+recol2s=7264
+recol2d=15620
+recol3s=15855
+recol3d=20971
+2dyof=-9
+2dzoom=950
+2dyan=104
+2dxan=192
+weight=450g
+category=category_129
+param=next_obj_stage,half_a_meat_pie
+
+[half_a_meat_pie]
+name=Half a meat pie
+desc=Half of it is suitable for vegetarians.
+iop1=Eat
+cost=8
+model=model_2643_obj
+recol1s=30545
+recol1d=22982
+recol2s=7264
+recol2d=15620
+recol3s=15855
+recol3d=20971
+recol4s=7399
+recol4d=19878
+recol5s=10570
+recol5d=18858
+recol6s=15554
+recol6d=9315
+2dyof=-9
+2dzoom=950
+2dyan=104
+2dxan=192
+weight=225g
+category=category_129
+param=next_obj_stage,piedish
+
+[half_a_redberry_pie]
+name=Half a redberry pie
+desc=So tasty I kept some for later.
+iop1=Eat
+cost=6
+model=model_2643_obj
+recol1s=30545
+recol1d=22982
+recol2s=7264
+recol2d=15620
+recol3s=15855
+recol3d=20971
+recol4s=7399
+recol4d=19878
+recol5s=10570
+recol5d=18858
+recol6s=15554
+recol6d=18564
+2dyof=-9
+2dzoom=950
+2dyan=104
+2dxan=192
+weight=225g
+category=category_129
+param=next_obj_stage,piedish
+
+[half_an_apple_pie]
+name=Half an apple pie
+desc=Mmm half an apple pie.
+iop1=Eat
+cost=15
+model=model_2643_obj
+recol1s=30545
+recol1d=22982
+recol2s=7264
+recol2d=15620
+recol3s=15855
+recol3d=20971
+recol4s=7399
+recol4d=19878
+recol5s=10570
+recol5d=18858
+recol6s=15554
+recol6d=22384
+2dyof=-9
+2dzoom=950
+2dyan=104
+2dxan=192
+weight=225g
+category=category_129
+param=next_obj_stage,piedish
+
+[burnt_pie]
+name=Burnt pie
+desc=I think I left it on the stove too long.
+iop1=Empty Dish
+model=model_2767_obj
+recol1s=30545
+recol1d=6342
+recol2s=7264
+recol2d=3171
+recol3s=15855
+recol3d=20971
+2dyof=-9
+2dzoom=950
+2dyan=104
+2dxan=192
+cost=1
+weight=350g
+
+[redberry]
+cost=3
+name=Redberries
+desc=Very bright red berries.
+model=model_2358_obj
+2dxof=1
+2dyof=4
+2dzoom=970
+2dyan=668
+2dxan=404
+weight=7g
+param=uncooked_pie_struct,uncooked_redberry_pie
+
+[pie_shell]
+name=Pie shell
+desc=I need to find a filling for this pie.
+model=model_2567_obj
+recol1s=7399
+recol1d=28368
+recol2s=10570
+recol2d=28368
+recol3s=15855
+recol3d=20971
+2dyof=-9
+2dzoom=950
+2dyan=104
+2dxan=192
+cost=4
+weight=250g
+
+[cooking_apple]
+name=Cooking apple
+desc=Keeps the doctor away.
+model=model_2404_obj
+2dzoom=940
+2dyan=80
+2dxan=212
+cost=1
+weight=3oz
+param=uncooked_pie_struct,uncooked_apple_pie
+
+[piedish]
+name=Pie dish
+desc=Deceptively pie shaped.
+model=model_2567_obj
+recol1s=7399
+recol1d=19878
+recol2s=10570
+recol2d=18858
+recol3s=15855
+recol3d=20971
+2dyof=-9
+2dzoom=950
+2dyan=104
+2dxan=192
+cost=3
+weight=100g

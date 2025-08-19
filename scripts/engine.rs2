@@ -1,0 +1,1059 @@
+// Core language ops (0-99)
+// info: Call a proc and return to this point after. You cannot pass any arguments to it.
+[command,gosub](proc $proc)
+// info: Jump to a label and continue the script there. You cannot pass any arguments it.
+[command,jump](label $label)
+
+// Server ops (1000-1999)
+// info: Get the world's current cycle count
+[command,map_clock]()(int)
+// info: Returns true if the world is configured as a members world
+[command,map_members]()(int)
+// info: Get the number of players in a given area
+[command,map_playercount](coord $coord1, coord $coord2)(int)
+// info: Search (hunt) for players in a given area
+[command,huntall](coord $source, int $distance, int $checkvis)
+// info: Use the next result from huntall
+[command,huntnext]()(boolean)
+// info: Use the next result from huntall on the secondary pointer
+[command,.huntnext]()(boolean)
+// info: Search (hunt) for one npc in a given area, prioritized by distance
+[command,npc_hunt](coord $source, int $distance, int $checkvis)(boolean)
+// info: Search (hunt) for one npc in a given area, prioritized by distance, secondary pointer
+[command,.npc_hunt](coord $source, int $distance, int $checkvis)(boolean)
+// info: Search (hunt) for npcs in a given area
+[command,npc_huntall](coord $source, int $distance, int $checkvis)
+// info: Use the next result from npc_huntall
+[command,npc_huntnext]()(boolean)
+// info: Use the next result from npc_huntall on the secondary pointer
+[command,.npc_huntnext]()(boolean)
+// info: Returns true if $pos is in the area between $from and $to
+[command,inzone](coord $from, coord $to, coord $pos)(boolean)
+// info: Returns true if $pos is in the area between $from and $to
+[command,.inzone](coord $from, coord $to, coord $pos)(boolean) // todo: replace all instances of this with inzone, should not have secondary
+// info: Returns true if $from has an unbroken line-of-walk to $to
+[command,lineofwalk](coord $from, coord $to)(boolean)
+// info: Play a spotanim on a tile
+[command,spotanim_map](spotanim $anim, coord $coord, int $height, int $delay)
+// [command,map_anim](coord $coord, spotanim $spotanim, int $height, int $delay) // this is the name for the packet
+// info: Get the distance between two coords
+[command,distance](coord $coord1, coord $coord2)(int)
+// info: Move a coord across each axis
+[command,movecoord](coord $coord, int $x, int $y, int $z)(coord)
+// info: Get how long a seq takes to play on the client
+[command,seqlength](seq $seq)(int)
+// info: Initialize the split text system
+[command,split_init](string $text, int $width, int $lines, fontmetrics $font)
+// info: Get how many pages split_init has calculated
+[command,split_pagecount]()(int)
+// info: Get the split text on a given $page and $line
+[command,split_get](int $page, int $line)(string)
+// info: Get the number of lines in a given $page
+[command,split_linecount](int $page)(int)
+// info: Get the anim for a given $page
+[command,split_getanim](int $page)(seq)
+// info: Get a param on a struct
+[command,struct_param]/*(struct $struct, param $param)(dynamic)*/
+// info: Get the x axis of a coord
+[command,coordx](coord $coord)(int)
+// info: Get the y axis (level) of a coord
+[command,coordy](coord $coord)(int)
+// info: Get the z axis (NOT level) of a coord
+[command,coordz](coord $coord)(int)
+// info: Get how many players are currently in the world
+[command,playercount]()(int)
+// info: Returns true if the map tile at $coord is blocked
+[command,map_blocked](coord $coord)(boolean)
+// info: Returns true if the map tile at $coord is indoors
+[command,map_indoors](coord $coord)(boolean)
+// info: Returns true if $from has an unbroken line-of-walk to $to
+[command,lineofsight](coord $from, coord $to)(boolean)
+// info: Delay this script for $delay ticks on the world, not tied to any player/npc
+[command,world_delay](int $delay)
+// info: Cast a projectile targeting a player
+[command,projanim_pl](coord $from, player_uid $to, spotanim $spotanim, int $fromHeight, int $toHeight, int $delay, int $duration, int $peak, int $arc)
+// info: Cast a projectile targeting a npc
+[command,projanim_npc](coord $from, npc_uid $to, spotanim $spotanim, int $fromHeight, int $toHeight, int $delay, int $duration, int $peak, int $arc)
+// info: Cast a projectile targeting a coord
+[command,projanim_map](coord $from, coord $to, spotanim $spotanim, int $fromHeight, int $toHeight, int $delay, int $duration, int $peak, int $arc)
+// info: Returns true if it's unsafe to spawn a loc on this tile
+[command,map_locaddunsafe](coord $coord)(boolean)
+// info: Get the number of npcs in the world
+[command,npccount]()(int) // todo: move this to debug ops
+// info: Get the number of zones in the world
+[command,zonecount]()(int) // todo: move this to debug ops
+// info: Get the number of objects in the world
+[command,loccount]()(int) // todo: move this to debug ops
+// info: Get the number of locs in the world
+[command,objcount]()(int) // todo: move this to debug ops
+// info: Get a random coord centered on $coord within $minradius and $maxradius, using ^map_findsquare_ constants for $type
+[command,map_findsquare](coord $coord, int $minradius, int $maxradius, int $type)(coord)
+// info: Returns true if the map tile at $coord is in a multi-way combat area
+[command,map_multiway](coord $coord)(boolean)
+
+// Player ops (2000-2499)
+// info: Get access to $player if they are in the world
+[command,finduid](player_uid $player)(boolean)
+// info: Get access to $player (secondary pointer) if they are in the world
+[command,.finduid](player_uid $player)(boolean)
+// info: Get protected access to $player if they are in the world and accessible
+[command,p_finduid](player_uid $player)(boolean)
+// info: Get protected access to $player (secondary pointer) if they are in the world and accessible
+[command,.p_finduid](player_uid $player)(boolean)
+// info: Strong-queue a script on a player (do not use in early 2004)
+[command,strongqueue](queue $queue, int $delay)
+// info: Weak-queue a script on a player (do not use in early 2004)
+[command,weakqueue](queue $queue, int $delay)
+// info: Play an animation on a player
+[command,anim](seq $anim, int $delay)
+// info: Play an animation on a secondary player
+[command,.anim](seq $anim, int $delay)
+// info: Returns true if the player's packet buffer is full for this cycle
+[command,buffer_full]()(int)
+// info: Refresh the player's appearance
+[command,buildappearance](inv $inv)
+// info: Refresh the secondary player's appearance
+[command,.buildappearance](inv $inv)
+// info: Move the camera
+[command,cam_moveto](coord $sourceCoord, int $sourceHeight, int $moveSpeed, int $moveMultiplier)
+// info: Make the camera look at a coord
+[command,cam_lookat](coord $destCoord, int $destHeight, int $rotationSpeed, int $rotationMultiplier)
+// info: Shake the camera
+[command,cam_shake](int $type, int $jitter, int $amplitude, int $frequency)
+// info: Reset the camera back to the player
+[command,cam_reset]
+// info: Reset the camera back to the secondary player
+[command,.cam_reset]
+// info: Get the player's coord
+[command,coord]()(coord)
+// info: Get the secondary player's coord
+[command,.coord]()(coord)
+// info: Get the player's formatted display name
+[command,displayname]()(string)
+// info: Get the secondary player's formatted display name
+[command,.displayname]()(string)
+// info: Make the player face a coord
+[command,facesquare](coord $coord)
+// info: Make the secondary player face a coord
+[command,.facesquare](coord $coord)
+// info: Restore the player's run energy
+[command,healenergy](int $amount)
+// info: Restore the secondary player's run energy
+[command,.healenergy](int $amount)
+// info: Close open interfaces
+[command,if_close]
+// info: Close open interfaces for the secondary player
+[command,.if_close]
+// info: Get the last component that was clicked
+[command,last_com]()(component)
+// info: Get the last int (number) that was input
+[command,last_int]()(int)
+// info: Get the last item that was selected
+[command,last_item]()(obj) // unconfirmed, inferred from useitem and useslot
+// info: Get the last item's slot
+[command,last_slot]()(int)
+// info: Get the last used item (useitem on item)
+[command,last_useitem]()(obj)
+// info: Get the last used item's slot
+[command,last_useslot]()(int)
+// info: Send a message to the chatbox
+[command,mes](string $text)
+// info: Send a message to the chatbox of the secondary player
+[command,.mes](string $text)
+// info: Get the player's internally stored name - lowercased, underscores
+[command,name]()(string)
+// info: Get the sedondary player's internally stored name - lowercased, underscores
+[command,.name]()(string)
+// info: Requires protected access - set 
+[command,p_aprange](int $range)
+// info: Requires protected access - if the player moved this cycle, wait a tick before continuing
+[command,p_arrivedelay]
+// info: Requires protected access - open a number input dialog
+[command,p_countdialog]
+// info: Requires protected access - delay this script/the player for $delay cycles
+[command,p_delay](int $delay)
+// info: Requires protected access - delay this script/the secondary player for $delay cycles
+[command,.p_delay](int $delay)
+// info: Requires protected access - run the opheld $op trigger for the item at $slot in $inv
+[command,p_opheld](int $op, int $inv, int $slot)
+// info: Requires protected access - set the player's interaction to oploc $op on the active_loc
+[command,p_oploc](int $op)
+// info: Requires protected access - set the player's interaction to opnpc $op on the active_npc
+[command,p_opnpc](int $op)
+// info: Requires protected access - cast a spell on the active_npc
+[command,p_opnpct](component $spell)
+// info: Requires protected access - open a "Click here to continue" dialog
+[command,p_pausebutton]
+// info: Requires protected access - open a "Click here to continue" dialog for the secondary player
+[command,.p_pausebutton]
+// info: Requires protected access - clear the current interaction and walk queue
+[command,p_stopaction]
+// info: Requires protected access - clear the current interaction and walk queue of the secondary player
+[command,.p_stopaction]
+// info: Requires protected access - teleport the player to $coord, forcing a visual teleport
+[command,p_telejump](coord $coord)
+// info: Requires protected access - teleport the secondary player to $coord, forcing a visual teleport
+[command,.p_telejump](coord $coord)
+// info: Requires protected access - walk the player to $dest
+[command,p_walk](coord $dest)
+// info: Requires protected access - walk the secondary player to $dest
+[command,.p_walk](coord $dest)
+// info: Make the player say $text overhead
+[command,say](string $text)
+// info: Make the secondary player say $text overhead
+[command,.say](string $text)
+// info: Play a $sound
+[command,sound_synth](synth $sound, int $loops, int $delay)
+// info: Play a $sound for the secondary player
+[command,.sound_synth](synth $sound, int $loops, int $delay)
+// info: Get the permissions level the player has
+[command,staffmodlevel]()(int)
+// info: Get the permissions level the secondary player has
+[command,.staffmodlevel]()(int)
+// info: Get the current level of $stat (different than base)
+[command,stat](stat $stat)(int)
+// info: Get the current level of $stat (different than base) for the secondary player
+[command,.stat](stat $stat)(int)
+// info: Get the base level of $stat
+[command,stat_base](stat $stat)(int)
+// info: Get the base level of $stat for the secondary player
+[command,.stat_base](stat $stat)(int)
+// info: Add to $stat
+[command,stat_add](stat $stat, int $constant, int $percent)
+// info: Add to $stat for the secondary player
+[command,.stat_add](stat $stat, int $constant, int $percent)
+// info: Drain base level of $stat
+[command,stat_sub](stat $stat, int $constant, int $percent)
+// info: Drain base level of $stat for the secondary player
+[command,.stat_sub](stat $stat, int $constant, int $percent)
+// info: Heal $stat back to base
+[command,stat_heal](stat $stat, int $constant, int $percent)
+// info: Heal $stat back to base for the secondary player
+[command,.stat_heal](stat $stat, int $constant, int $percent)
+// info: Clamped boost to $stat
+[command,stat_boost](stat $stat, int $constant, int $percent)
+// info: Clamped boost to $stat for the secondary player
+[command,.stat_boost](stat $stat, int $constant, int $percent)
+// info: Drain current level of $stat
+[command,stat_drain](stat $stat, int $constant, int $percent)
+// info: Drain current level of $stat for the secondary player
+[command,.stat_drain](stat $stat, int $constant, int $percent)
+// info: Roll a skill success check
+[command,stat_random](stat $stat, int $low, int $high)(boolean)
+// info: Roll a skill success check for the secondary player
+[command,.stat_random](stat $stat, int $low, int $high)(boolean)
+// info: Get the player's UID to use in finduid/p_finduid later
+[command,uid]()(player_uid)
+// info: Get the secondary player's UID to use in finduid/p_finduid later
+[command,.uid]()(player_uid)
+// info: Request the player to log out
+[command,p_logout]
+// info: Prevent logout for a duration
+[command,p_preventlogout](string $message, int $duration)
+// info: Prevent logout for a duration on the secondary pointer
+[command,.p_preventlogout](string $message, int $duration)
+// info: Set a component's colour
+[command,if_setcolour](component $component, int $colour)
+// info: Open a modal in the chat box
+[command,if_openchat](interface $interface)
+// info: Open a modal in the chat box for the secondary player
+[command,.if_openchat](interface $interface)
+// info: Open two modals, one in the main viewport and one on the side tab
+[command,if_openmain_side](interface $interface1, interface $interface2)
+// info: Open two modals for the secondary player, one in the main viewport and one on the side tab
+[command,.if_openmain_side](interface $interface1, interface $interface2)
+// info: Hide a component
+[command,if_sethide](component $component, boolean $hide)
+// info: Hide a component for the secondary player
+[command,.if_sethide](component $component, boolean $hide)
+// info: Set a component's model to an object
+[command,if_setobject](component $component, obj $obj, int $scale)
+// info: Set a component's model to an object for the secondary player
+[command,.if_setobject](component $component, obj $obj, int $scale)
+// info: Set a component's model
+[command,if_setmodel](component $component, int $model)
+// info: Recolor a component's model
+[command,if_setrecol](component $component, int $src, int $dest)
+// info: Open the tutorial modal mode ("sticky" interface)
+[command,tut_open](interface $interface)
+// info: Close the tutorial modal mode (back to normal gameplay)
+[command,tut_close]
+// info: Flash a side tab icon
+[command,tut_flash](int $tab)
+// info: Set a component's model animation
+[command,if_setanim](component $component, seq $anim)
+// info: Set a side tab to a specific interface
+[command,if_settab](interface $interface, int $tab)
+// info: Set a side tab to a specific interface for the secondary player
+[command,.if_settab](interface $interface, int $tab)
+// info: Change the player's open side tab
+[command,if_settabactive](int $tab)
+// info: Change the secondary player's open side tab
+[command,.if_settabactive](int $tab)
+// info: Open a modal in the main viewport
+[command,if_openmain](interface $interface)
+// info: Open a modal in the main viewport for the secondary player
+[command,.if_openmain](interface $interface)
+// later
+// [command,if_openoverlay](interface $interface)
+// [command,.if_openoverlay](interface $interface)
+// info: Open a modal in the side tab
+[command,if_openside](interface $interface)
+// info: Set a component's model to the local player's chat head
+[command,if_setplayerhead](component $component)
+// info: Set a component's text
+[command,if_settext](component $component, string $text)
+// info: Set a component's text for the secondary player
+[command,.if_settext](component $component, string $text)
+// info: Set a component's model to a npc's chat head
+[command,if_setnpchead](component $component, npc $npc)
+// info: Reposition a component
+[command,if_setposition](component $component, int $x, int $y);
+// info: Give xp in a stat
+[command,stat_advance](stat $stat, int $exp)
+// info: Hurt a player
+[command,damage](player_uid $uid, int $type, int $amount)
+// info: Hurt the secondary player
+[command,.damage](player_uid $uid, int $type, int $amount)
+// info: internal- set which buttons can re-trigger the suspended script
+[command,if_setresumebuttons](component $component1, component $component2, component $component3, component $component4, component $component5)
+// info: Choose a text string based on the player's gender
+[command,text_gender](string $male_text, string $female_text)(string)
+// info: Choose a text string based on the secondary player's gender
+[command,.text_gender](string $male_text, string $female_text)(string)
+// info: Play a song
+[command,midi_song](string $song)
+// info: Play a jingle (advancing levels, completing quests, ...)
+[command,midi_jingle](string $jingle, int $length)
+// info: Show the hint arrow at $coord
+[command,hint_coord](int $offset, coord $coord, int $height)
+// info: Start a softtimer on the active_player
+[command,softtimer]/*(softtimer $timer, int $interval, ...)*/
+// info: Start a softtimer on the secondary active_player
+[command,.softtimer]/*(softtimer $timer, int $interval, ...)*/
+// info: Clear a softtimer from the active_player
+[command,clearsofttimer](softtimer $timer)
+// info: Clear a softtimer from the secondary active_player
+[command,.clearsofttimer](softtimer $timer)
+// info: Start a timer on the active_player
+[command,settimer]/*(timer $timer, int $interval, ...)*/
+// info: Start a timer on the secondary active_player
+[command,.settimer]/*(timer $timer, int $interval, ...)*/
+// info: Clear a timer from the active_player
+[command,cleartimer](timer $timer)
+// info: Clear a timer from the secondary active_player
+[command,.cleartimer](timer $timer)
+// info: Return ^true if the active_player has $timer running
+[command,gettimer](timer $timer)(int) // confirmed
+// info: Play a spotanim on the active_player
+[command,spotanim_pl](spotanim $spotanim, int $height, int $delay)
+// info: Play a spotanim on the secondary active_player
+[command,.spotanim_pl](spotanim $spotanim, int $height, int $delay)
+// info: Clear the hint arrow
+[command,hint_stop]
+// info: Clear the hint arrow for the secondary player
+[command,.hint_stop]
+// info: Requires protected access - move the player from $startCoord to $endCoord with a finer ability to control speed
+[command,p_exactmove](coord $startCoord, coord $endCoord, int $startCycle, int $endCycle, int $direction)
+// info: Queue a script on a player
+[command,queue](queue $queue, int $delay) // + args
+// info: Queue a script on the secondary player
+[command,.queue](queue $queue, int $delay) // + args
+// info: Long queue a script on a player with special behavior if it hasn't ran by the time the player logs out
+[command,longqueue](queue $queue, int $delay, int $logout_action) // + args
+// info: Long queue a script on a secondary player with special behavior if it hasn't ran by the time the player logs out
+[command,.longqueue](queue $queue, int $delay, int $logout_action) // + args
+// info: Returns true if the player has an open modal or is delayed
+[command,busy]()(boolean)
+// info: Returns true if the secondary player has an open modal or is delayed
+[command,.busy]()(boolean)
+// info: Returns true if the player has an interaction or waypoints to walk to
+[command,busy2]()(boolean)
+// info: Returns true if the secondary player has an interaction or waypoints to walk to
+[command,.busy2]()(boolean)
+// info: Get the number of queued scripts that are specifically $queue
+[command,getqueue](queue $queue)(int)
+// info: Get the number of queued scripts that are specifically $queue for the secondary player
+[command,.getqueue](queue $queue)(int)
+// info: Requires protected access - merge the player's visual model with a loc so render priorities are correct
+[command,p_locmerge](int $startCycle, int $endCycle, coord $southEast, coord $northWest);
+// info: Show the welcome screen
+[command,last_login_info]
+// info: Requires protected access - teleport the player to $coord, short distances (1-2 tiles) will visually walk/run
+[command,p_teleport](coord $coord)
+// info: Requires protected access - teleport the secondary player to $coord, short distances (1-2 tiles) will visually walk/run
+[command,.p_teleport](coord $coord)
+// info: Set the player's base ready animation
+[command,bas_readyanim](seq $seq)
+// info: Set the secondary player's base ready animation
+[command,.bas_readyanim](seq $seq)
+// info: Set the player's base turn-on-spot animation
+[command,bas_turnonspot](seq $seq)
+// info: Set the secondary player's base turn-on-spot animation
+[command,.bas_turnonspot](seq $seq)
+// info: Set the player's base walking forward animation
+[command,bas_walk_f](seq $seq)
+// info: Set the secodnary player's base walking forward animation
+[command,.bas_walk_f](seq $seq)
+// info: Set the player's base walking backwards animation
+[command,bas_walk_b](seq $seq)
+// info: Set the secondary player's base walking backwards animation
+[command,.bas_walk_b](seq $seq)
+// info: Set the player's base turn-left animation
+[command,bas_walk_l](seq $seq)
+// info: Set the secondary player's base turn-left animation
+[command,.bas_walk_l](seq $seq)
+// info: Set the player's base turn-right animation
+[command,bas_walk_r](seq $seq)
+// info: Set the secondary player's base turn-right animation
+[command,.bas_walk_r](seq $seq)
+// info: Set the player's base running animation
+[command,bas_running](seq $seq)
+// info: Set the secondary player's base running animation
+[command,.bas_running](seq $seq)
+// info: Get the player's current gender (0 = male, 1 = female)
+[command,gender]()(int)
+// info: Get the secondary player's current gender (0 = male, 1 = female)
+[command,.gender]()(int)
+// info: Show the hint arrow on $npc
+[command,hint_npc](npc_uid $npc)
+// info: Show the hint arrow on $player
+[command,hint_player](player_uid $player)
+// info: Show the hint arrow on the secodnary $player
+[command,.hint_player](player_uid $player)
+// info: Get the currently set headicons
+[command,headicons_get]()(int)
+// info: Get the currently set headicons for the secondary player
+[command,.headicons_get]()(int)
+// info: Set the player's headicons
+[command,headicons_set](int $icons)
+// info: Set the secondary player's headicons
+[command,.headicons_set](int $icons)
+// info: Requires protected access - set the player's interaction to opobj $op on the active_player
+[command,p_opobj](int $op)
+// info: Requires protected access - set the player's interaction to opplayer $op on the active_player
+[command,p_opplayer](int $op)
+// info: Requires protected access - set the secondary player's interaction to opplayer $op on the active_player
+[command,.p_opplayer](int $op)
+// info: Requires protected access - cast a spell on the active_player
+[command,p_opplayert](component $spell)
+// info: Find all players around $coord (limited to the nearest 8x8 zone area)
+[command,player_findallzone](coord $coord)
+// info: Use the next result from player_findallzone
+[command,player_findnext]()(boolean)
+// info: Allow the player to redesign their appearance (the packet is sent to the server)
+[command,allowdesign](boolean $allow)
+// info: Used in inv_buttond, similar to last_useslot, this is the other item in scope
+[command,last_targetslot]()(int)
+// info: Set the player's walktrigger
+[command,walktrigger](walktrigger $trigger)
+// info: Set the secondary player's walktrigger
+[command,.walktrigger](walktrigger $trigger)
+// info: Get the player's current walktrigger
+[command,getwalktrigger]()(walktrigger)
+// info: Get the secondary player's current walktrigger
+[command,.getwalktrigger]()(walktrigger)
+// info: Clear the player's script queue
+[command,clearqueue](queue $queue)
+// info: Clear the secondary player's script queue
+[command,.clearqueue](queue $queue)
+// info: Returns ^true if the player is ready for another AFK event
+[command,afk_event]()(int)
+// info: Get the player's low memory mode
+[command,lowmemory]()(boolean)
+// info: Set the player's identity kit
+[command,setidkit](idkit $kit, int $color)
+// info: Set the active_player to the hero that's done the most damage to the current active_player
+[command,findhero]()(boolean)
+// info: Set the secondary active_player to the hero that's done the most damage to the current secondary active_player
+[command,.findhero]()(boolean)
+// info: Track damage dealt to the active_player from .active_player
+[command,both_heropoints](int $damage)
+// info: Set the player's gender
+[command,setgender](int $gender)
+// info: Set the player's skin
+[command,setskincolour](int $skin_colour)
+// info: Requires protected access - allow or deny animations to be played
+[command,p_animprotect](int $toggle)
+// info: Requires protected access - allow or deny animations to be played on the secondary pointer
+[command,.p_animprotect](int $toggle)
+// info: Get the player's curernt run energy
+[command,runenergy]()(int)
+// info: Get the player's current run weight
+[command,weight]()(int)
+// info: Requires protected access - clear the current interaction, but leave the walk queue intact
+[command,p_clearpendingaction]
+// info: Add an event to the player's session logs
+[command,session_log](int $type, string $event)
+// info: Add an event to the player's wealth events
+[command,wealth_event](int $eventType, string $name, int $count, int $value)
+// info: Toggle the player's run-mode
+[command,p_run](int $state)
+// info: Check player's membership status
+[command,playermember]()(int)
+
+// Npc ops (2500-2999)
+// info: Get access to the npc if they are in the world
+[command,npc_finduid](npc_uid $uid)(boolean)
+// info: Get access to the secondary npc if they are in the world
+[command,.npc_finduid](npc_uid $uid)(boolean)
+// info: Spawn a new NPC in the world
+[command,npc_add](coord $coord, npc $npc, int $duration)
+// info: Spawn a new NPC in the world
+[command,.npc_add](coord $coord, npc $npc, int $duration)
+// info: Play an animation on a npc
+[command,npc_anim](seq $seq, int $delay)
+// info: Play an animation on a secondary npc
+[command,.npc_anim](seq $seq, int $delay)
+// info: Get the current npc's category
+[command,npc_category]()(category)
+// info: Get the secondary npc's category
+[command,.npc_category]()(category)
+// info: Get the current npc's coord
+[command,npc_coord]()(coord)
+// info: Get the secondary npc's coord
+[command,.npc_coord]()(coord)
+// info: Delete the current npc
+[command,npc_del]
+// info: Delete the secondary npc
+[command,.npc_del]
+// info: Delay this script/npc for $delay cycles
+[command,npc_delay](int $delay)
+// info: Delay this script/npc for $delay cycles on the secondary npc
+[command,.npc_delay](int $delay)
+// info: Make the npc face a coord
+[command,npc_facesquare](coord $coord)
+// info: Make the secondary npc face a coord
+[command,.npc_facesquare](coord $coord)
+// info: Return true if a specific npc exists at $coord and passes a visibility check
+[command,npc_find](coord $coord, npc $npc, int $distance, int $checkvis)(boolean)
+// info: Return true if a specific secondary npc exists at $coord and passes a visibility check
+[command,.npc_find](coord $coord, npc $npc, int $distance, int $checkvis)(boolean)
+// info: Return true if a specific npc_category exists at $coord and passes a visibility check
+[command,npc_findcat](coord $coord, category $category, int $distance, int $checkvis)(boolean)
+// info: Return true if a specific secondary npc_category exists at $coord and passes a visibility check
+[command,.npc_findcat](coord $coord, category $category, int $distance, int $checkvis)(boolean)
+// info: Search for npcs in a given area
+[command,npc_findall](coord $coord, npc $npc, int $distance, int $checkvis)
+// info: Search for secondary npcs in a given area
+[command,.npc_findall](coord $coord, npc $npc, int $distance, int $checkvis)
+// info: Search for any npc in a given area
+[command,npc_findallany](coord $coord, int $distance, int $checkvis)
+// info: Search for any secondary npc in a given area
+[command,.npc_findallany](coord $coord, int $distance, int $checkvis)
+// info: Return true if a specific npc exists at $coord
+[command,npc_findexact](coord $coord, npc $npc)(boolean)
+// info: Return true if a specific secondary npc exists at $coord
+[command,.npc_findexact](coord $coord, npc $npc)(boolean)
+// info: Return true if the player that has dealt the most damage to this npc is in the world
+[command,npc_findhero]()(int)
+// info: Get a param on the current npc
+[command,npc_param]/*(param $param)(dynamic)*/
+// info: Queue a script on a npc
+[command,npc_queue](int $ai_queue, int $arg, int $delay)
+// info: Queue a script on a secondary npc
+[command,.npc_queue](int $ai_queue, int $arg, int $delay)
+// info: Get the distance between the npc and a coord
+[command,npc_range](coord $coord)(int)
+// info: Make the npc say $text overhead
+[command,npc_say](string $text)
+// info: Make the secondary npc say $text overhead
+[command,.npc_say](string $text)
+// info: Set the npc's hunt distance
+[command,npc_sethunt](int $distance)
+// info: Set the npc's hunt mode
+[command,npc_sethuntmode](hunt $hunt)
+// info: Set the npc's ai mode
+[command,npc_setmode](npc_mode $mode)
+// info: Set the secondary npc's ai mode
+[command,.npc_setmode](npc_mode $mode)
+// info: Get the base level of $stat
+[command,npc_basestat](npc_stat $stat)(int)
+// info: Get the current level of $stat
+[command,npc_stat](npc_stat $stat)(int)
+// info: Boost $stat
+[command,npc_statadd](npc_stat $stat, int $constant, int $percent)
+// info: Heal $stat back to base
+[command,npc_statheal](npc_stat $stat, int $amount_to_heal, int $percent_to_heal)
+// info: Drain $stat
+[command,npc_statsub](npc_stat $stat, int $constant, int $percent)
+// info: Get the current npc's type
+[command,npc_type]()(npc)
+// info: Get the secondary npc's type
+[command,.npc_type]()(npc)
+// info: Hurt the current npc
+[command,npc_damage](int $type, int $amount)
+// info: Get the current npc's display name
+[command,npc_name]()(string)
+// info: Get the secondary npc's display name
+[command,.npc_name]()(string)
+// info: Get the npc's UID to use in npc_finduid later
+[command,npc_uid]()(npc_uid)
+// info: Get the secondary npc's UID to use in npc_finduid later
+[command,.npc_uid]()(npc_uid)
+// info: Start the npc's timer to run on each $interval cycle
+[command,npc_settimer](int $interval)
+// info: Start the secondary npc's timer to run on each $interval cycle
+[command,.npc_settimer](int $interval)
+// info: Play a spotanim on the npc
+[command,spotanim_npc](spotanim $spotanim, int $height, int $delay)
+// info: Play a spotanim on the secondary npc
+[command,.spotanim_npc](spotanim $spotanim, int $height, int $delay)
+// info: Find all NPCs around $coord (limited to the nearest 8x8 zone area)
+[command,npc_findallzone](coord $coord)
+// info: Use the next result from npc_findallzone
+[command,npc_findnext]()(boolean)
+// info: Use the next result from npc_findallzone on the secondary pointer
+[command,.npc_findnext]()(boolean)
+// info: Teleport the npc to $coord, short distances (1-2 tiles) will visually walk/run
+[command,npc_tele](coord $coord)
+// info: Teleport the secondary npc to $coord, short distances (1-2 tiles) will visually walk/run
+[command,.npc_tele](coord $coord)
+// info: Change the npc's current type - new npc properties will be inherited
+[command,npc_changetype](npc $type, int $duration)
+// info: Change the npc's current type - new npc properties will be inherited
+[command,npc_changetype_keepall](npc $type, int $duration)
+// info: Return the current npc's ai mode
+[command,npc_getmode]()(npc_mode)
+// info: Return the secondary npc's ai mode
+[command,.npc_getmode]()(npc_mode)
+// info: Track damage dealt to the active_npc from active_player
+[command,npc_heropoints](int $damage)
+// info: Set the npc's walktrigger
+[command,npc_walktrigger](int $ai_queue, int $arg)
+// info: Set the secondary npc's walktrigger
+[command,.npc_walktrigger](int $ai_queue, int $arg)
+// info: Walk the npc to $coord
+[command,npc_walk](coord $coord)
+// info: Walk the secondary npc to $coord
+[command,.npc_walk](coord $coord)
+// info: Get the npc's attack range
+[command,npc_attackrange]()(int)
+// info: Get the secondary npc's attack range
+[command,.npc_attackrange]()(int)
+// info: If the NPC moved this cycle, wait a tick before continuing
+[command,npc_arrivedelay]
+// info: Return true if the npc has the specified op
+[command,npc_hasop](int $op)(boolean)
+// info: Return true if the secondary npc has the specified op
+[command,.npc_hasop](int $op)(boolean)
+// info: check if the npc's target is within the npc's maxrange
+[command,npc_inrange]()(boolean)
+
+// Loc ops (3000-3499)
+// info: Spawn a loc at $coord
+[command,loc_add](coord $coord, loc $loc, int $angle, locshape $shape, int $duration)
+// info: Spawn a loc at $coord
+[command,.loc_add](coord $coord, loc $loc, int $angle, locshape $shape, int $duration)
+// info: Get the current loc's angle
+[command,loc_angle]()(int)
+// info: Play an animation on the loc
+[command,loc_anim](seq $anim)
+// info: Get the current loc's category
+[command,loc_category]()(category)
+// info: Get the secondary loc's category
+[command,.loc_category]()(category)
+// info: Change the loc into a new loc for $duration cycles
+[command,loc_change](loc $new_loc, int $duration)
+// info: Change the secondary loc into a new loc for $duration cycles
+[command,.loc_change](loc $new_loc, int $duration)
+// info: Get the current loc's coord
+[command,loc_coord]()(coord)
+// info: Get the secondary loc's coord
+[command,.loc_coord]()(coord)
+// info: Delete the current loc, it will respawn in $duration cycles if it's a permanent loc
+[command,loc_del](int $duration)
+// info: Delete the secondary loc, it will respawn in $duration cycles if it's a permanent loc
+[command,.loc_del](int $duration)
+// info: Return true if a specific loc exists at $coord
+[command,loc_find](coord $coord, loc $loc)(boolean)
+// info: Return true if a specific loc exists at $coord
+[command,.loc_find](coord $coord, loc $loc)(boolean)
+// info: Find all locs around $coord (limited to the nearest 8x8 zone area)
+[command,loc_findallzone](coord $coord)
+// info: Use the next result from loc_findallzone
+[command,loc_findnext]()(boolean)
+// info: Use the next result from loc_findallzone
+[command,.loc_findnext]()(boolean)
+// info: Get a param on the current loc
+[command,loc_param]/*(param $param)(dynamic)*/
+// info: Get the current loc's type
+[command,loc_type]()(loc)
+// info: Get the secondary loc's type
+[command,.loc_type]()(loc)
+// info: Get the current loc's display name
+[command,loc_name]()(string)
+// info: Get the current loc's shape
+[command,loc_shape]()(locshape)
+// info: Get the secondary loc's shape
+[command,.loc_shape]()(locshape)
+
+// Obj ops (3500-4000)
+// info: Spawn an object at $coord for the current player
+[command,obj_add](coord $coord, namedobj $obj, int $count, int $duration)
+// info: Spawn an object at $coord for the secondary player
+[command,.obj_add](coord $coord, namedobj $obj, int $count, int $duration)
+// info: Spawn an object at $coord for all players
+[command,obj_addall](coord $coord, namedobj $obj, int $count, int $duration)
+// info: Get a param on the current object
+[command,obj_param]/*(param $param)(dynamic)*/
+// info: Get the current object's display anme
+[command,obj_name]()(string)
+// info: Despawn the current object
+[command,obj_del]
+// info: Get how many of the current object there are
+[command,obj_count]()(int)
+// info: Get the current object's type
+[command,obj_type]()(obj)
+// info: Pick up the current object and place it in $inv
+[command,obj_takeitem](inv $inv)
+// info: Get the current object's coord
+[command,obj_coord]()(coord)
+// info: Return true if a specific object exists at $coord
+[command,obj_find](coord $coord, obj $obj)(boolean)
+// info: Find all Objs around $coord (limited to the nearest 8x8 zone area)
+[command,obj_findallzone](coord $coord)
+// info: Use the next result from obj_findallzone
+[command,obj_findnext]()(boolean)
+// info: Use the next result from obj_findallzone
+[command,.obj_findnext]()(boolean)
+
+// Npc config ops (4000-4099)
+// info: Get the name from a npc config
+[command,nc_name](npc $npc)(string)
+// info: Get a param from a npc config
+[command,nc_param]/*(npc $npc, param $param)(dynamic)*/
+// info: Get the category from a npc config
+[command,nc_category](npc $npc)(category)
+// info: Get the description text from a npc config
+[command,nc_desc](npc $npc)(string)
+// info: Get the internal debug name from a npc config
+[command,nc_debugname](npc $npc)(string)
+// info: Get the display name from a npc config
+[command,nc_op](npc $npc, int $op)(string)
+// info: Get size form a npc config
+[command,nc_size](npc $npc)(int)
+
+// Loc config ops (4100-4199)
+// info: Get the name from a loc config
+[command,lc_name](loc $loc)(string)
+// info: Get a param from a loc config
+[command,lc_param]/*(loc $loc, param $param)(dynamic)*/
+// info: Get the category from a loc config
+[command,lc_category](loc $loc)(category)
+// info: Get the description text from a loc config
+[command,lc_desc](loc $loc)(string)
+// info: Get the internal debug name from a loc config
+[command,lc_debugname](loc $loc)(string)
+// info: Get the width from a loc config
+[command,lc_width](loc $loc)(int)
+// info: Get the length from a loc config
+[command,lc_length](loc $loc)(int)
+
+// Obj config ops (4200-4299)
+// info: Get the obj config's name
+[command,oc_name](obj $obj)(string)
+// info: Get a param from an obj config
+[command,oc_param]/*(obj $obj, param $param)(dynamic)*/
+// info: Get the category from an obj config
+[command,oc_category](obj $obj)(category)
+// info: Get the description text from an obj config
+[command,oc_desc](obj $obj)(string)
+// info: Get the members requirement from an obj config
+[command,oc_members](obj $obj)(boolean)
+// info: Get the weight from an obj config
+[command,oc_weight](obj $obj)(int)
+// info: Get the first "wearpos" - wear position - worn slot from an obj config
+[command,oc_wearpos](obj $obj)(int)
+// info: Get the second "wearpos" - wear position - worn slot from an obj config
+[command,oc_wearpos2](obj $obj)(int)
+// info: Get the third "wearpos" - wear position - worn slot from an obj config
+[command,oc_wearpos3](obj $obj)(int)
+// info: Get the cost from an obj config
+[command,oc_cost](obj $obj)(int)
+// info: Return true if an obj is tradeable
+[command,oc_tradeable](obj $obj)(boolean)
+// info: Get the internal debug name from an obj config
+[command,oc_debugname](obj $obj)(string)
+// info: Get the certed version of an obj
+[command,oc_cert](obj $obj)(obj)
+// info: Get the uncerted version of an obj
+[command,oc_uncert](obj $obj)(obj)
+// info: Return true if an obj is stackable
+[command,oc_stackable](obj $obj)(boolean)
+
+// Inventory ops (4300-4399)
+// info: Get the inv config's allstock state
+[command,inv_allstock](inv $inv)(boolean)
+// info: Get the inv config's size
+[command,inv_size](inv $inv)(int)
+// info: Get the secondary inv config's size
+[command,.inv_size](inv $inv)(int) // todo: remove this
+// info: Get the base stock of $obj in the inv config
+[command,inv_stockbase](inv $inv, obj $obj)(int)
+// info: Add an object to an inventory
+[command,inv_add](inv $inv, namedobj $obj, int $count)
+// info: Add an object to a secondary inventory
+[command,.inv_add](inv $inv, namedobj $obj, int $count)
+// info: Replace an object in an inventory
+[command,inv_changeslot](inv $inv, namedobj $find, namedobj $replace, int $replace_count) // Unconfirmed arguments, inferred from comment in a released script
+// info: Replace an object in a secondary inventory
+[command,.inv_changeslot](inv $inv, namedobj $find, namedobj $replace, int $replace_count)
+// info: Clear all objects from an inventory
+[command,inv_clear](inv $inv)
+// info: Clear all objects from a secondary inventory
+[command,.inv_clear](inv $inv)
+// info: Delete an $count of an object from an inventory
+[command,inv_del](inv $inv, obj $obj, int $count)
+// info: Delete an $count of an object from a secondary inventory
+[command,.inv_del](inv $inv, obj $obj, int $count)
+// info: Delete everything in $slot from an inventory
+[command,inv_delslot](inv $inv, int $slot)
+// info: Delete everything in $slot from a secondary inventory
+[command,.inv_delslot](inv $inv, int $slot)
+// info: Drop an object from an inventory
+[command,inv_dropitem](inv $inv, coord $coord, obj $obj, int $count, int $duration)
+// info: Drop an object from an inventory after a specified number of ticks
+[command,inv_dropitem_delayed](inv $inv, coord $coord, obj $obj, int $count, int $duration, int $delay)
+// info: Drop an object from a secondary inventory after a specified number of ticks
+[command,.inv_dropitem_delayed](inv $inv, coord $coord, obj $obj, int $count, int $duration, int $delay)
+// info: Drop an object from a secondary inventory
+[command,.inv_dropitem](inv $inv, coord $coord, obj $obj, int $count, int $duration)
+// info: Drop everything in $slot from an inventory
+[command,inv_dropslot](inv $inv, coord $coord, int $slot, int $duration)
+// info: Drop everything in $slot from a secondary inventory
+[command,.inv_dropslot](inv $inv, coord $coord, int $slot, int $duration)
+// info: Get the number of free slots in an inventory
+[command,inv_freespace](inv $inv)(int)
+// info: Get the number of free slots in a secondary inventory
+[command,.inv_freespace](inv $inv)(int)
+// info: Get the number of objects in $slot in an inventory
+[command,inv_getnum](inv $inv, int $slot)(int)
+// info: Get the number of objects in $slot in a secondary inventory
+[command,.inv_getnum](inv $inv, int $slot)(int)
+// info: Get the object in $slot in an inventory
+[command,inv_getobj](inv $inv, int $slot)(obj)
+// info: Get the object in $slot in a secondary inventory
+[command,.inv_getobj](inv $inv, int $slot)(obj)
+// info: Check if an object fits in an inventory
+[command,inv_itemspace](inv $inv, obj $obj, int $count, int $size)(boolean)
+// info: Check if an object fits in a secondary inventory
+[command,.inv_itemspace](inv $inv, obj $obj, int $count, int $size)(boolean)
+// info: Check if an object fits in an inventory, returning the overflowed amount, if any
+[command,inv_itemspace2](inv $inv, obj $obj, int $count, int $size)(int)
+// info: Check if an object fits in a secondary inventory, returning the overflowed amount, if any
+[command,.inv_itemspace2](inv $inv, obj $obj, int $count, int $size)(int)
+// info: Move an object to another slot in an inventory
+[command,inv_movefromslot](inv $from_inv, inv $to_inv, int $from_slot)
+// info: Move an object to another slot in a secondary inventory
+[command,.inv_movefromslot](inv $from_inv, inv $to_inv, int $from_slot)
+// info: Move an object from one slot to another slot in an inventory
+[command,inv_movetoslot](inv $from_inv, inv $to_inv, int $from_slot, int $to_slot)
+// info: Move an object from one slot to another slot in a secondary inventory
+[command,.inv_movetoslot](inv $from_inv, inv $to_inv, int $from_slot, int $to_slot)
+// info: Move all items from one player's inventory to another
+[command,both_moveinv](inv $from_inv, inv $to_inv)
+// info: Move all items from one player's secondary inventory to another
+[command,.both_moveinv](inv $from_inv, inv $to_inv)
+// info: Move an object from one inventory to another (first free slot)
+[command,inv_moveitem](inv $from_inv, inv $to_inv, obj $obj, int $count)
+// info: Move an object from one secondary inventory to another (first free slot)
+[command,.inv_moveitem](inv $from_inv, inv $to_inv, obj $obj, int $count)
+// info: Move an object from one inventory to another (first free slot) and cert it
+[command,inv_moveitem_cert](inv $from_inv, inv $to_inv, obj $obj, int $count)
+// info: Move an object from one secondary inventory to another (first free slot) and cert it
+[command,.inv_moveitem_cert](inv $from_inv, inv $to_inv, obj $obj, int $count)
+// info: Move an object from one inventory to another (first free slot) and uncert it
+[command,inv_moveitem_uncert](inv $from_inv, inv $to_inv, obj $obj, int $count)
+// info: Move an object from one secondary inventory to another (first free slot) and uncert it
+[command,.inv_moveitem_uncert](inv $from_inv, inv $to_inv, obj $obj, int $count)
+// info: Set the $slot in $inv to $object x $count
+[command,inv_setslot](inv $inv, int $slot, namedobj $obj, int $count)
+// info: Set the $slot in secondary $inv to $object x $count
+[command,.inv_setslot](inv $inv, int $slot, namedobj $obj, int $count)
+// info: Return the total number of $obj in $inv
+[command,inv_total](inv $inv, obj $obj)(int)
+// info: Return the total number of $obj in secondary $inv
+[command,.inv_total](inv $inv, obj $obj)(int)
+// info: Return the total number of objects that match $category in $inv
+[command,inv_totalcat](inv $inv, category $category)(int)
+// info: Return the total number of objects that match $category in secondary $inv
+[command,.inv_totalcat](inv $inv, category $category)(int)
+// info: Populate an inventory on a component
+[command,inv_transmit](inv $inv, component $component)
+// info: Populate a secondary inventory on a component
+[command,.inv_transmit](inv $inv, component $component)
+// info: Transmit an inventory from one player to another player
+[command,invother_transmit](player_uid $player, inv $inv, component $component)
+// info: Transmit a secondary inventory from one player to another player
+[command,.invother_transmit](player_uid $player, inv $inv, component $component)
+// info: Stop transmitting an inventory on a component
+[command,inv_stoptransmit](component $component)
+// info: Stop transmitting a secondary inventory on a component
+[command,.inv_stoptransmit](component $component)
+// info: Drop an object from an inventory, visible to the other active player
+[command,both_dropslot](inv $inv, coord $coord, int $slot, int $duration)
+// info: Drop an object from a secondary inventory, visible to the other active player
+[command,.both_dropslot](inv $inv, coord $coord, int $slot, int $duration)
+// info: Drop all items from an inventory
+[command,inv_dropall](inv $inv, coord $coord, int $duration)
+// info: Drop all items from a secondary inventory
+[command,.inv_dropall](inv $inv, coord $coord, int $duration)
+// todo: compiler update
+// [command,inv_totalparam]/*(inv $inv, param $param)(int)*/
+// [command,.inv_totalparam]/*(inv $inv, param $param)(int)*/
+// [command,inv_totalparam_stack]/*(inv $inv, param $param)(int)*/
+// [command,.inv_totalparam_stack]/*(inv $inv, param $param)(int)*/
+[command,inv_debugname](inv $inv)(string)
+
+// Enum ops (4400-4499)
+// info: Get a value from an enum - type $input, type $output, enum $enum, any $key
+[command,enum] // (type $input, type $output, enum $enum, dynamic $key)(dynamic)
+// info: Get how many values are in an enum
+[command,enum_getoutputcount](enum $enum)(int)
+
+// String ops (4500-4599)
+[command,append_num](string $text, int $num)(string)
+// info: Concatenate two strings
+[command,append](string $text1, string $text2)(string)
+[command,append_signnum](string $text, int $num)(string)
+// info: Convert a string to lowercase
+[command,lowercase](string $text)(string)
+// info: Convert a number to a string
+[command,tostring](int $int0)(string)
+[command,compare](string $text1, string $text2)(int)
+// info: Append a char to a string
+[command,append_char](string $text, char $char)(string)
+// info: Get the length of a string
+[command,string_length](string $text)(int)
+// info: Take a substring of $text
+[command,substring](string $text, int $start, int $end)(string)
+// info: Get the index of a char in a string
+[command,string_indexof_char](string $text, char $char)(int)
+// info: Get the index of a string in a string
+[command,string_indexof_string](string $text1, string $text2)(int)
+
+// Number ops (4600-4699)
+// info: Add two numbers together
+[command,add](int $n1, int $n2)(int)
+// info: Subtract two numbers
+[command,sub](int $n1, int $n2)(int)
+// info: Multiply two numbers
+[command,multiply](int $n1, int $n2)(int)
+// info: Divide two numbers
+[command,divide](int $n1, int $n2)(int)
+// info: Get a random number - within the range of 0 to $num - 1
+[command,random](int $num)(int)
+// info: Get a random-inclusive number - within the range of 0 to $num
+[command,randominc](int $num)(int)
+// info: Linearly interpolate between two points
+[command,interpolate](int $y0, int $y1, int $x0, int $x1, int $x)(int)
+// info: Add a percentage of $num to $num
+[command,addpercent](int $num, int $percent)(int)
+// info: Set a bit of a number
+[command,setbit](int $value, int $bit)(int)
+// info: Return true if a bit is set
+[command,testbit](int $value, int $bit)(int)
+// info: Get the remainder of $n1 / $n2
+[command,modulo](int $n1, int $n2)(int)
+// info: Raise $n1 to the power of $n2
+[command,pow](int $n1, int $n2)(int)
+// info: Raise $n1 to the power of $n2
+[command,invpow](int $n1, int $n2)(int)
+// info: Bitwise AND of $n1 and $n2
+[command,and](int $n1, int $n2)(int)
+// info: Bitwise OR of $n1 and $n2
+[command,or](int $n1, int $n2)(int)
+// info: Return whichever number is greater
+[command,max](int $a, int $b)(int)
+// info: Return whichever number is lesser
+[command,min](int $a, int $b)(int)
+// info: ($int0 * $int2) / $int1
+[command,scale](int $int0, int $int1, int $int2)(int)
+// info: Count the number of set bits
+[command,bitcount](int $num)(int)
+// info: Flip a specific bit of a number
+[command,togglebit](int $num, int $bit)(int)
+// info: Clear a specific bit of a number
+[command,clearbit](int $num, int $bit)(int)
+// info: Set a range of bits of a number (to 1)
+[command,setbit_range](int $num, int $start_bit, int $end_bit)(int)
+// info: Clear a range of bits of a number (to 0)
+[command,clearbit_range](int $num, int $start_bit, int $end_bit)(int)
+// info: Get a range of bits of a number, as a number
+[command,getbit_range](int $num, int $start_bit, int $end_bit)(int)
+// info: Set a range of bits of a number
+[command,setbit_range_toint](int $num, int $value, int $start_bit, int $end_bit)(int)
+[command,sin_deg](int $x)(int)
+[command,cos_deg](int $x)(int)
+[command,atan2_deg](int $x, int $y)(int)
+// info: Get the absolute value of a number
+[command,abs](int $num)(int)
+
+// DB ops (7500-7599)
+[command,db_find_with_count]
+[command,db_findnext]()(dbrow)
+[command,db_getfield]
+[command,db_getfieldcount](dbrow $dbrow0, dbcolumn $dbcolumn1)(int)
+[command,db_listall_with_count](dbtable $dbtable0)(int)
+[command,db_getrowtable](dbrow $dbrow0)(dbtable)
+[command,db_findbyindex](int $index)(dbrow)
+[command,db_find_refine_with_count]
+[command,db_find]
+[command,db_find_refine]
+[command,db_listall](dbtable $dbtable0)()
+
+// Debug ops (10000-11000)
+// info: Raise a script error on the server
+[command,error](string $text)
+// info: Return true if the world is in a production environment
+[command,map_production]()(boolean)
+// info: Server debug stats
+[command,map_lastclock]()(int)
+// info: Server debug stats
+[command,map_lastworld]()(int)
+// info: Server debug stats
+[command,map_lastclientin]()(int)
+// info: Server debug stats
+[command,map_lastnpc]()(int)
+// info: Server debug stats
+[command,map_lastplayer]()(int)
+// info: Server debug stats
+[command,map_lastlogin]()(int)
+// info: Server debug stats
+[command,map_lastlogout]()(int)
+// info: Server debug stats
+[command,map_lastzone]()(int)
+// info: Server debug stats
+[command,map_lastclientout]()(int)
+// info: Server debug stats
+[command,map_lastcleanup]()(int)
+// info: Server debug stats
+[command,map_lastbandwidthin]()(int)
+// info: Server debug stats
+[command,map_lastbandwidthout]()(int)
+// info: Start tracking time
+[command,timespent]
+// info: Get the time spent since the timespent command was ran. This can be ^micros or ^millis
+[command,gettimespent](int $unit)(int)
+// info: Print a message on the server
+[command,console](string $text)
+
+// [command,inv_setvar](inv $inv, int $slot, obj $obj, int $value)
+// [command,inv_getvar](inv $inv, int $slot, obj $obj)(int)
+// [command,region_findbycoord](coord $coord)(boolean)
+// [command,controller_coord]()(coord)
+// [command,controller_del]
+// [command,mes_typed](int $type, string $message)
+// [command,controller_queue](int $id, int $type, int $delay)
+// [command,controller_findexact](regioncoord $coord, int $type)(boolean)
+// [command,region_getcoord](int $int1, int $int2, int $int3)(regioncoord)
+// [command,sound_area](coord $coord, int $int1, synth $sound, int $int2, int $int3)
+// [command,p_transmogrify](npc $npc)
+// [command,if_setevents](component $component, int $int1, int $int2, boolean $boolean1, int $int3, int $int4, int $int5, boolean $boolean2, boolean $boolean3)
+// [command,runclientscript](string $string)
+// [command,obj_getvar]
+// [command,obj_setvar]
+// [command,inv_totalparam](inv $inv, param param)(int)
+// [command,inv_totalparam_stack](inv $inv, param param)(int)
+// [command,obj_adddelayed]

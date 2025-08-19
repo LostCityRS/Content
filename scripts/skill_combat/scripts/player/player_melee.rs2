@@ -1,0 +1,59 @@
+// begins combat
+[label,player_melee_attack]
+p_stopaction;
+if (~npc_is_attackable() = false) {
+    return;
+}
+
+if (%action_delay > map_clock) {
+    p_opnpc(2); // it is guaranteed here that we are already within op distance
+    return;
+}
+
+if (npc_stat(hitpoints) = 0) {
+    p_stopaction;
+    return; // this means the npc is not avail to fight i.e dead
+}
+
+// check hit, give combat xp
+def_int $damage = 0;
+if (~player_npc_hit_roll(%damagetype) = true) {
+    def_int $maxhit = %com_maxhit;
+    if (npc_type = count_draynor & inv_total(inv, garlic) > 0) {
+        $maxhit = add($maxhit, 1);
+    }
+    if (npc_param(demonbane_vulnerable) = true & inv_total(worn, silverlight) > 0) {
+        $maxhit = scale(160, 100, %com_maxhit);
+    }
+    $damage = randominc(min($maxhit, npc_param(max_dealt)));
+    def_int $damage_capped = min($damage, npc_stat(hitpoints));
+    ~give_combat_experience(%damagestyle, $damage_capped, %npc_combat_xp_multiplier);
+    npc_heropoints($damage_capped);
+}
+
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+if ($weapon ! null) {
+    def_int $poison_severity = oc_param($weapon, poison_severity);
+    if ($damage > 0 & $poison_severity > 0 & random(4) = 0) { // 1/4 chance to poison
+        // poison npc
+        ~npc_poison_start($poison_severity);
+    }
+}
+
+//mes("attackstyle: <tostring(%attackstyle)>, damagestyle: <tostring(%damagestyle)>, damage: <tostring($damage)>, damagetype: <tostring(%damagetype)>");
+anim(%com_attackanim, 0);
+sound_synth(%com_attacksound, 0, 0);
+~npc_retaliate(0);
+npc_queue(2, $damage, 0);
+npc_anim(npc_param(defend_anim), 20); 
+if (npc_param(defend_sound) ! null) {
+    sound_synth(npc_param(defend_sound), 0, 20); // delay npc this tick
+}
+// set the skill clock depending on the weapon attack rate
+if ($weapon = null) {
+    %action_delay = add(map_clock, 4);
+} else {
+    %action_delay = add(map_clock, oc_param($weapon, attackrate));
+}
+
+p_opnpc(2);

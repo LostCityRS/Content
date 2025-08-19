@@ -1,0 +1,164 @@
+[oploc1,loc_2706]
+if(coordz(coord) > coordz(loc_coord)) {
+    ~open_and_close_door(loc_1535, ~check_axis(coord, loc_coord, loc_angle), false);
+    return;
+}
+mes("This door is securely locked.");
+
+[oploc2,loc_2707]
+if(%totem_progress >= ^totem_started) {
+    if(inv_total(inv, tribal_totem_label) = 0) {
+        ~mesbox("There is a label on this crate. It says; To Lord Handelmort, Handelmort Mansion, Ardougne.You carefully peel it off and take it.");
+        inv_add(inv, tribal_totem_label, 1);
+    } else {
+        ~mesbox("You can see the gluey outline from where you peeled the address label off.");
+    }
+}
+mes("This crate is securely fastened shut.");
+
+[oplocu,loc_2708]
+switch_obj(last_useitem) {
+    case tribal_totem_label :
+        if(%totem_progress >= ^totem_crate_marked) {
+            mes("You have already replaced the delivery address label.");
+            return;
+        }
+        ~mesbox("You carefully place the delivery label over the existing label, covering it completely.");
+        inv_del(inv, tribal_totem_label, 1);
+        %totem_progress = ^totem_crate_marked;
+        ~chatplayer("<p,happy>Now I just need someone to deliver it for me.");
+        return;
+    case default : ~displaymessage(^dm_default);
+}
+
+// for the %handlemort_traps_disabled varp, bit 0 holds the lock completion state (0/1), bits 1-20 store the current lock values (a-z -> 1-25)
+// bit 21 stores the stairs trap state (0/1)
+[if_button,tribal_door2:com_57]
+if_close;
+if(testbit(%handelmort_traps_disabled, 0) = ^false) {
+    if(~get_tribal_door_lock(1) = 10 & ~get_tribal_door_lock(2) = 20 & ~get_tribal_door_lock(3) = 17 & ~get_tribal_door_lock(4) = 19) {
+        mes("The combination seems correct!");
+        %handelmort_traps_disabled = setbit(%handelmort_traps_disabled, 0);
+        return;
+    }
+    mes("This combination is incorrect.");
+    return;
+} 
+
+// OSRS seems to have a bug with this lock puzzle where the shown letter and the stored varp value 
+// can desync somehow, todo: figure out how to recreate that
+[if_button,tribal_door2:com_47] @tribal_door_combo(1, -1);
+[if_button,tribal_door2:com_49] @tribal_door_combo(2, -1);
+[if_button,tribal_door2:com_51] @tribal_door_combo(3, -1);
+[if_button,tribal_door2:com_53] @tribal_door_combo(4, -1);
+
+[if_button,tribal_door2:com_48] @tribal_door_combo(1, 1);
+[if_button,tribal_door2:com_50] @tribal_door_combo(2, 1);
+[if_button,tribal_door2:com_52] @tribal_door_combo(3, 1);
+[if_button,tribal_door2:com_54] @tribal_door_combo(4, 1);
+
+[proc,clear_tribaldoor_inter]
+%handelmort_traps_disabled = clearbit_range(%handelmort_traps_disabled, 0, 19);
+if_settext(tribal_door2:com_43, enum(int, string, alphabet, 0));
+if_settext(tribal_door2:com_44, enum(int, string, alphabet, 0));
+if_settext(tribal_door2:com_45, enum(int, string, alphabet, 0));
+if_settext(tribal_door2:com_46, enum(int, string, alphabet, 0));
+
+[proc,calc_tribaldoor_value](int $current, int $change)(int)
+def_int $stage = calc($current + $change);
+if($stage > 25) {
+    $stage = 0;
+} else if ($stage < 0) {
+    $stage = 25;
+}
+return ($stage);
+
+[proc,get_tribal_door_lock](int $lock_index)(int)
+return (getbit_range(%handelmort_traps_disabled, calc(5 * $lock_index - 4), calc(5 * $lock_index)));
+
+[label,tribal_door_combo](int $lock_index, int $change)
+def_int $current_stage = ~get_tribal_door_lock($lock_index);
+def_int $stage = ~calc_tribaldoor_value($current_stage, $change);
+%handelmort_traps_disabled = setbit_range_toint(%handelmort_traps_disabled, $stage, calc(5 * $lock_index - 4), calc(5 * $lock_index));
+switch_int($lock_index) {
+    case 1 : if_settext(tribal_door2:com_43, enum(int, string, alphabet, $stage));
+    case 2 : if_settext(tribal_door2:com_44, enum(int, string, alphabet, $stage));
+    case 3 : if_settext(tribal_door2:com_45, enum(int, string, alphabet, $stage));
+    case 4 : if_settext(tribal_door2:com_46, enum(int, string, alphabet, $stage));
+}
+
+[oploc1,loc_2705]
+if(testbit(%handelmort_traps_disabled, 0) = ^false) {
+    ~clear_tribaldoor_inter;
+    if_openmain(tribal_door2);
+    return;
+}
+~open_and_close_door(loc_1535, ~check_axis(coord, loc_coord, loc_angle), false);
+
+[oploc1,loc_2711]
+// OSRS seems to only allow interaction from the top side of the ladder, so just going to assume
+// this is probably how it worked in 2004
+def_coord $start = movecoord(loc_coord, 0, 0, 3);
+p_delay(0);
+p_walk($start);
+p_delay(calc(distance(coord, $start) + 1));
+if(testbit(%handelmort_traps_disabled, 21) = ^true) {
+    p_telejump(1_41_51_7_57);
+    mes("You climb up the stairs.");
+    return;
+}
+mes("As you climb the stairs you hear a click...");
+sound_synth(locked, 0, 0);
+// todo: screen fade to blackout
+p_delay(2);
+mes("You have fallen through a trap!");
+p_telejump(^totem_stairs_fail_coord);
+// unfade
+p_delay(2);
+~damage_self(calc(((stat(hitpoints) * 20) / 100) + 1));
+
+[oploc2,loc_2711]
+def_coord $start = movecoord(loc_coord, 0, 0, 3);
+p_delay(0);
+p_walk($start);
+p_delay(calc(distance(coord, $start) + 1));
+if(stat(thieving) < 21) {
+    mes("You don't find anything interesting");
+    return;
+}
+// doesn't use the stage varp here either even though it could
+%handelmort_traps_disabled = setbit(%handelmort_traps_disabled, 21);
+// https://storage.googleapis.com/tannerdino/images/7_10.png
+~mesbox("Your trained senses as a thief enable you|to see that there is a trap in these stairs.|You make a note of its location for|future reference when using these stairs.");
+
+[oploc1,loc_2709]
+~open_chest(loc_2710);
+mes("You open the chest.");
+
+[oploc1,loc_2710]
+if(inv_total(inv, tribal_totem) = 0 & inv_total(bank, tribal_totem) = 0) {
+    ~mesbox("Inside the chest you find the tribal totem.");
+    inv_add(inv, tribal_totem, 1);
+} else {
+    mes("The chest is empty.");
+}
+// Temp note: dur does not need updated
+loc_change(loc_2709, 300);
+
+[oploc2,loc_2710]
+~close_chest(loc_2709);
+mes("You close the chest.");
+
+[oploc2,loc_2708]
+~mesbox("There is a label on this crate. It says;");
+if(%totem_progress >= ^totem_crate_marked) {
+    ~mesbox("To Lord Handelmort, Handelmort Mansion, Ardougne.");
+}
+~mesbox("Senior Patents Clerk, Chamber of Invention, The Wizards' Tower, Misthalin. The crate is securely fastened shut and ready for delivery.");
+
+[queue,totem_quest_complete]
+%totem_progress = ^totem_complete;
+session_log(^log_adventure, "Quest complete: Tribal Totem");
+~send_quest_complete(questlist:totem, tribal_totem, 250, ^totem_questpoints, "You have completed the\\nTribal Totem Quest!");
+stat_advance(thieving, 17750);
+inv_add(inv, swordfish, 5);

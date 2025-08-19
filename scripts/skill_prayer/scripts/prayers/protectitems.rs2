@@ -1,0 +1,31 @@
+[if_button,prayer:prayer_protectitems]
+if_close;
+if (p_finduid(uid) = true) {
+    @activate_prayer_protectitems;
+}
+%prayer_protectitems = %prayer_protectitems;
+
+[label,activate_prayer_protectitems]
+p_clearpendingaction;
+def_dbrow $data = ~get_prayer_data(^prayer_protectitems);
+if ($data = null) {
+    return;
+}
+if (%prayer_protectitems = ^true) {
+    %prayer_protectitems = ^false;
+    ~prayer_deactivate(^prayer_protectitems);
+    return;
+}
+if (~prayer_checks($data) = false) {
+    %prayer_protectitems = ^false;
+    return;
+}
+def_int $levelreq = db_getfield($data, prayers:level, 0);
+if (stat_base(prayer) < $levelreq){
+    %prayer_protectitems = ^false;
+    sound_synth(prayer_off, 0, 0);
+    ~mesbox("You need a @dbl@Prayer level of <tostring($levelreq)> to use <db_getfield($data, prayers:name, 0)>.");
+    return;
+}
+%prayer_protectitems = ^true;
+~prayer_activate($data);

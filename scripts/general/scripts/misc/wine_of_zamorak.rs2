@@ -1,0 +1,34 @@
+// Sources
+// https://www.youtube.com/watch?v=U3NUBXGV1SY&t=78s
+// https://www.youtube.com/watch?v=9WB1kF-IBro&t=230s
+// https://youtu.be/sGcGQLV1Lf4
+// https://oldschool.runescape.wiki/w/Wine_of_zamorak
+[opobj3,wine_of_zamorak]
+if (obj_coord = 0_45_54_50_59) {
+    mes("STOP STEALING MY WINE! GAH!");
+    spotanim_pl(zamorak_flame, 0, 0);
+    sound_synth(flames_of_zamorak, 0, 0);
+    ~damage_self(calc((stat(hitpoints) / 20) + 1));
+    stat_drain(attack, 1, 5);
+    stat_drain(strength, 1, 5);
+    stat_drain(defence, 1, 5);
+    stat_drain(ranged, 1, 5);
+    stat_drain(magic, 1, 5);
+    if (npc_find(0_45_54_54_60, chaosmonk2, 5, 0) = true | npc_find(0_45_54_54_60, chaosmonk1, 5, 0) = true) {
+        npc_say("Hands off Zamorak's wine!");
+        npc_findall(0_45_54_54_60, chaosmonk2, 5, 0);
+        while (npc_findnext = true) {
+            if (npc_getmode ! opplayer2) {
+                npc_setmode(opplayer2);
+            }
+        }
+        npc_findall(0_45_54_54_60, chaosmonk1, 5, 0);
+        while (npc_findnext = true) {
+            if (npc_getmode ! opplayer2) {
+                npc_setmode(opplayer2);
+            }
+        }
+        return;
+    }
+}
+@pickup_obj;

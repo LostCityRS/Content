@@ -1,0 +1,75 @@
+[proc,macro_geni_spawn]
+spotanim_map(smokepuff, npc_coord, 124, 0);
+sound_synth(genie_appear, 0, 0);
+npc_say("Greetings <text_gender("master", "mistress")> <displayname>!");
+%npc_macro_event_target = uid;
+// this matches this video: https://www.youtube.com/watch?v=el-h9hbSH80&t=293s
+npc_setmode(playerfollow);
+
+[ai_timer,macro_geni]
+if (~macro_event_lost = true) {
+    // only confirmed for mysterious old man
+    npc_queue(5, 0, 0);
+    return;
+}
+
+if (finduid(%npc_macro_event_target) = true) {
+    // warning message https://youtu.be/TCQl_9PALag?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT&t=395
+    // this video goes 50t after respawn without warning message https://youtu.be/KkyVz0tSOQA?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT&t=176
+    // 3 warning messages: https://youtu.be/g5k3XuXxyYQ?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT
+    if (%npc_int = 0) {
+        npc_anim(emote_wave, 20);
+        npc_say("Ehem... master <displayname>?");
+    } else if (%npc_int = 1) {
+        npc_anim(emote_think, 20);
+        npc_say("Are you there, master <displayname>?");
+    } else if (%npc_int = 2) {
+        npc_anim(emote_angry, 20);
+        npc_say("You shouldn't ignore a Genie master <displayname>?");
+    } else if (%npc_int = 3) { // failing genie: https://youtu.be/MS7ADB-hh18?t=6
+        npc_say("No one ignores me!");
+        npc_anim(human_castteleport, 0);
+        %macro_event = ^no_macro_event;
+        queue(macro_event_fail_teleport, 0);
+        npc_delay(0);
+        npc_del;
+        return;
+    }
+    %npc_int = add(%npc_int, 1);
+}
+
+[ai_queue5,macro_geni]
+// only confirmed for mysterious old man
+npc_delay(2);
+npc_anim(emote_cry, 20);
+npc_say("I lose more friends that way.");
+npc_delay(2);
+~macro_event_disappear;
+
+[ai_queue6,macro_geni]
+npc_anim(emote_wave, 20);
+npc_delay(2);
+~macro_event_disappear;
+
+[opnpc1,macro_geni]
+if (uid ! %npc_macro_event_target) {
+    // https://youtu.be/qNQYgiNMBes?t=134
+    if (.finduid(%npc_macro_event_target) = true) {
+        ~chatnpc("<p,sad>Sorry, but I'm trying to talk to <.displayname>.|However, <.text_gender("he", "she")> appears to be ignoring me..."); 
+        return;
+    }
+    ~chatnpc("<p,sad>Sorry, but I'm trying to talk to another player.|However, they appear to be ignoring me...");
+    return;
+}
+if (%npc_int = ^genie_happy) {
+    ~chatnpc("<p,neutral>Have a nice day, <text_gender("master", "mistress")>.");
+    return;
+}
+%npc_int = ^genie_happy;
+%macro_event = ^no_macro_event;
+inv_add(inv, macro_genilamp, 1);
+// delays are taken from this video: https://youtu.be/EN4c2hV65Qk?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT
+npc_queue(6, 0, 2);
+npc_settimer(0);
+// 2005 https://imgur.com/jrofzN2
+~chatnpc("<p,neutral>Ah, so you are there <text_gender("master", "mistress")>. I'm so glad you|summoned me. Please take this lamp, and make your|wish!");

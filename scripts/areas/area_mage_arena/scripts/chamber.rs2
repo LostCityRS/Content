@@ -1,0 +1,22 @@
+[oploc1,loc_2873] @pray_at_statue("Saradomin", saradomin_cape);
+[oploc1,loc_2874] @pray_at_statue("Zamorak", zamorak_cape);
+[oploc1,loc_2875] @pray_at_statue("Guthix", guthix_cape);
+
+[label,pray_at_statue](string $name, namedobj $cape)
+~forcewalk2(movecoord(loc_coord, 0, 0, -2));
+facesquare(loc_coord);
+if (~obj_gettotalcat(armour_godcape) > 0) { // already have a cape
+    anim(human_pray, 10);
+    p_delay(2);
+    ~mesbox("You kneel and chant to <$name>...|... but there is no response.");
+    return;
+}
+~mesbox("You kneel and begin to chant to <$name>...");
+if (%magearena = ^mage_arena_complete) %magearena = ^mage_arena_prayed_at_statue;
+anim(human_pray, 10);
+p_delay(2);
+// always obj_add's https://youtu.be/fJVqiCdunZw?list=PLn23LiLYLb1Y4vxMPWXM-CVEvOUfuAP_o
+obj_add(movecoord(loc_coord, 0, 0, -1), $cape, 1, 50); // 50 ticks in osrs
+spotanim_map(smokepuff_large, movecoord(loc_coord, 0, 0, -1), 60, 0);
+sound_synth(smokepuff, 0, 0);
+~mesbox("You feel a rush of energy charge through your veins. Suddenly a|cape appears before you.");

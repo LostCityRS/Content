@@ -1,0 +1,17 @@
+[opnpc1,squire]
+// Treasure Trail
+if(inv_total(inv, trail_clue_easy_simple017) = 1) {
+    @trail_squire;
+} else if(%squire_progress = ^squire_not_started) {
+    @squire_start;
+} else if(%squire_progress = ^squire_complete) {
+    ~chatnpc("<p,happy>Hello friend! Many thanks for all of your help! Vyvin never even realised it was a different sword, and I still have my job!");
+} else {
+    ~chatnpc("<p,quiz>So how are you doing getting a sword?");
+    @squire_status_report;
+}
+
+[label,trail_squire]
+// https://www.youtube.com/watch?v=8OoLv8-OsbY
+~chatnpc("<p,neutral>OK, here you go.");
+~progress_clue_easy(trail_clue_easy_simple017, "You've found another clue scroll!");

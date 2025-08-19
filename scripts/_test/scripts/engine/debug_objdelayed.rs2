@@ -1,0 +1,11 @@
+[debugproc,inv_dropitem_delayed]
+if (p_finduid(uid) = false) {
+    return;
+}
+if (inv_total(worn, bronze_arrow) < 1) {
+    mes("equip bronze arrow");
+    inv_add(inv, bronze_arrow, 1000);
+    return;
+}
+mes(tostring(map_clock));
+inv_dropitem_delayed(worn, movecoord(coord, 1, 0, 0), bronze_arrow, 1, 100, 5);

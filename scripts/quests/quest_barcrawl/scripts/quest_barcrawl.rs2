@@ -1,0 +1,16 @@
+[opheld1,barcrawl_card]
+// https://www.global-rs.com/guides/miniquests/barcrawl/
+if(~visited_all_bars = true) {
+    // you don't need to do this to complete the barcrawl but it does update the varp here
+    %barcrawl_progress = setbit(%barcrawl_progress, ^drunkcard_index);
+    mes("You are too drunk to be able to read the barcrawl card");
+    return;
+}
+@scroll_barcrawl_card;
+
+
+[proc,visited_all_bars]()(boolean)
+if(getbit_range(%barcrawl_progress, 3, 12) = calc(pow(2,10) - 1)) {
+    return (true);
+}
+return (false);

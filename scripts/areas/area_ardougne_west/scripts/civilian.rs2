@@ -1,0 +1,78 @@
+[opnpcu,wantcat1] @civilian_give_runes;
+
+[opnpcu,wantcat2] @civilian_give_runes;
+
+[opnpcu,wantcat3] @civilian_give_runes;
+
+[opnpc1,wantcat1]
+~chatplayer("<p,happy>Hello there.");
+~chatnpc("<p,neutral>Oh hello, I'm sorry, I'm a bit worn out.");
+~chatplayer("<p,neutral>Busy day?");
+~chatnpc("<p,neutral>Oh, It's those mice! They're everywhere! What I really need is a cat. But they're hard to come by nowadays.");
+@civilian_talk_about_cats;
+
+[opnpc1,wantcat2]
+~chatplayer("<p,happy>Hi there.");
+~chatnpc("<p,happy>Good day to you traveller.");
+~chatplayer("<p,neutral>What are you up to?");
+~chatnpc("<p,bored>Chasing mice as usual! It's all I seem to do nowadays.");
+~chatplayer("<p,neutral>You must waste a lot of time?");
+~chatnpc("<p,neutral>Yes, but what can you do? It's not like there's many cats around here!");
+@civilian_talk_about_cats;
+
+[opnpc1,wantcat3]
+~chatplayer("<p,happy>Hello there.");
+~chatnpc("<p,neutral>I'm a bit busy to talk right now, sorry.");
+~chatplayer("<p,neutral>Why? What are you doing?");
+~chatnpc("<p,angry>Trying to kill these mice! What I really need is a cat!");
+@civilian_talk_about_cats;
+
+[label,civilian_talk_about_cats]
+if (~civilian_player_has_cat = true) {
+    @multi2("I have a cat that I could sell.", civilian_i_have_a_cat_i_could_sell, "Nope, they're not easy to get hold of.", civilian_ok_then_youve_got_a_deal);
+}
+if(inv_total(inv, cavewitchcat) > 0) {
+    ~chatplayer("<p,happy>I have a cat...look!");
+    ~chatnpc("<p,confused>Hmmm...doesn't look like it's seen daylight in years. That's not going to catch any mice!");
+    return;
+}
+~chatplayer("<p,neutral>No, you're right, you don't see many around.");
+
+[label,civilian_i_have_a_cat_i_could_sell]
+~chatplayer("<p,happy>I have a cat that I could sell.");
+~chatnpc("<p,happy>You don't say, is that it ?");
+~chatplayer("<p,happy>Say hello to a real mouse killer!");
+~chatnpc("<p,happy>Hmmm, not bad, not bad at all. Looks like it's a lively one.");
+~chatplayer("<p,confused>Erm...kind of...");
+~chatnpc("<p,neutral>I don't have much in the way of money. I do have these!");
+~objbox(deathrune, "The peasant shows you a sack of Death Runes.", 250, 0, divide(^objbox_height, 2));
+~chatnpc("<p,happy>The dwarves bring them from the mine for us. Tell you what, I'll give you 100 Death Runes for the cat.");
+@multi2("Nope, I'm not parting for that.", civilian_im_not_parting_for_that, "Ok then, you've got a deal.", civilian_ok_then_youve_got_a_deal);
+
+[label,civilian_nope_theyre_not_easy_to_get_hold_of]
+~chatplayer("<p,neutral>Nope, they're not easy to get hold of.");
+
+[label,civilian_im_not_parting_for_that]
+~chatplayer("<p,angry>Nope, I'm not parting for that.");
+~chatnpc("<p,angry>Well, I'm not giving you anymore!");
+
+[label,civilian_ok_then_youve_got_a_deal]
+~chatplayer("<p,happy>Ok then, you've got a deal.");
+~chatnpc("<p,happy>Great! Hand over the cat and I'll give you the runes.");
+
+[proc,civilian_player_has_cat]()(boolean)
+if (inv_totalcat(inv, cat) > 0  | inv_totalcat(inv, overgrown) > 0) {
+    return(true);
+}
+return(false);
+
+[label,civilian_give_runes]
+if(oc_category(last_useitem) = cat | oc_category(last_useitem) = overgrown) {
+    inv_del(inv, last_useitem, 1);
+    inv_add(inv, deathrune, 100);
+    ~objbox(deathrune, "You hand over the cat.|You are given 100 Death Runes.", 250, 0, 0);
+    ~chatnpc("<p,happy>Great, thanks for that!");
+    ~chatplayer("<p,happy>That's ok, take care.");
+    return;
+}
+~displaymessage(^dm_default);
