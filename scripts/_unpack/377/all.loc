@@ -56365,7 +56365,7 @@ hillskew=yes
 sharelight=yes
 active=no
 
-[loc_6702]
+[barrows_stairs_ahrim]
 name=Staircase
 desc=I can climb these stairs.
 model=loc_6702
@@ -56385,7 +56385,7 @@ forceapproach=south
 sharelight=yes
 mapscene=7
 
-[loc_6703]
+[barrows_stairs_dharok]
 name=Staircase
 desc=I can climb these stairs.
 model=loc_6702
@@ -56405,7 +56405,7 @@ forceapproach=south
 sharelight=yes
 mapscene=7
 
-[loc_6704]
+[barrows_stairs_guthan]
 name=Staircase
 desc=I can climb these stairs.
 model=loc_6702
@@ -56425,7 +56425,7 @@ forceapproach=south
 sharelight=yes
 mapscene=7
 
-[loc_6705]
+[barrows_stairs_karil]
 name=Staircase
 desc=I can climb these stairs.
 model=loc_6702
@@ -56445,7 +56445,7 @@ forceapproach=south
 sharelight=yes
 mapscene=7
 
-[loc_6706]
+[barrows_stairs_torag]
 name=Staircase
 desc=I can climb these stairs.
 model=loc_6702
@@ -56465,7 +56465,7 @@ forceapproach=south
 sharelight=yes
 mapscene=7
 
-[loc_6707]
+[barrows_stairs_verac]
 name=Staircase
 desc=I can climb these stairs.
 model=loc_6702
@@ -56485,7 +56485,7 @@ forceapproach=south
 sharelight=yes
 mapscene=7
 
-[loc_6708]
+[barrows_ladder]
 name=Ladder
 desc=I can climb this.
 model=puzzle_ladder
@@ -56500,38 +56500,38 @@ blockwalk=no
 op1=Climb-up
 mapscene=7
 
-[loc_6709]
+[barrows_ladder_a]
 active=yes
 blockwalk=no
-multivar=varbit_465
-multiloc=1,loc_6708
+multivar=barrows_chamber_a
+multiloc=1,barrows_ladder
 
-[loc_6710]
+[barrows_ladder_c]
 active=yes
 blockwalk=no
-multivar=varbit_466
-multiloc=1,loc_6708
+multivar=barrows_chamber_c
+multiloc=1,barrows_ladder
 
-[loc_6711]
+[barrows_ladder_g]
 active=yes
 blockwalk=no
-multivar=varbit_467
-multiloc=1,loc_6708
+multivar=barrows_chamber_g
+multiloc=1,barrows_ladder
 
-[loc_6712]
+[barrows_ladder_i]
 active=yes
 blockwalk=no
-multivar=varbit_468
-multiloc=1,loc_6708
+multivar=barrows_chamber_i
+multiloc=1,barrows_ladder
 
-[loc_6713]
+[barrows_door_inactive_r]
 name=Door
 desc=I wonder what is awaiting me on the other side?
 model=loc_6713
 mirror=yes
 active=yes
 
-[loc_6714]
+[barrows_door_unlocked_r]
 name=Door
 desc=I wonder what is awaiting me on the other side?
 model=loc_6713
@@ -56539,7 +56539,7 @@ mirror=yes
 active=yes
 op1=Open
 
-[loc_6715]
+[barrows_door_locked_r]
 name=Door
 desc=I wonder what is awaiting me on the other side?
 model=loc_6713
@@ -56558,132 +56558,132 @@ recol6d=2112
 mirror=yes
 active=yes
 
-[loc_6716]
+[barrows_door_a_r]
 mirror=yes
 active=yes
 multivar=barrows_door_a
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6717]
+[barrows_door_b_r]
 mirror=yes
 active=yes
 multivar=barrows_door_b
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6718]
+[barrows_door_c_r]
 mirror=yes
 active=yes
 multivar=barrows_door_c
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6719]
+[barrows_door_d_r]
 mirror=yes
 active=yes
 multivar=barrows_door_d
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6720]
+[barrows_door_e_r]
 mirror=yes
 active=yes
 multivar=barrows_door_e
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6721]
+[barrows_door_f_r]
 mirror=yes
 active=yes
 multivar=barrows_door_f
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6722]
+[barrows_door_g_r]
 mirror=yes
 active=yes
 multivar=barrows_door_g
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6723]
+[barrows_door_h_r]
 mirror=yes
 active=yes
 multivar=barrows_door_h
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6724]
+[barrows_door_i_r]
 mirror=yes
 active=yes
 multivar=barrows_door_i
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6725]
+[barrows_door_j_r]
 mirror=yes
 active=yes
 multivar=barrows_door_j
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6726]
+[barrows_door_k_r]
 mirror=yes
 active=yes
 multivar=barrows_door_k
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6727]
+[barrows_door_l_r]
 mirror=yes
 active=yes
 multivar=barrows_door_l
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6728]
+[barrows_door_m_r]
 mirror=yes
 active=yes
 multivar=barrows_door_m
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6729]
+[barrows_door_n_r]
 mirror=yes
 active=yes
 multivar=barrows_door_n
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6730]
+[barrows_door_o_r]
 mirror=yes
 active=yes
 multivar=barrows_door_o
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6731]
+[barrows_door_p_r]
 mirror=yes
 active=yes
 multivar=barrows_door_p
-multiloc=0,loc_6714
-multiloc=1,loc_6715
+multiloc=0,barrows_door_unlocked_r
+multiloc=1,barrows_door_locked_r
 
-[loc_6732]
+[barrows_door_inactive_l]
 name=Door
 desc=I wonder what awaits me on the other side?
 model=loc_6713
 active=yes
 
-[loc_6733]
+[barrows_door_unlocked_l]
 name=Door
 desc=I wonder what awaits me on the other side?
 model=loc_6713
 active=yes
 op1=Open
 
-[loc_6734]
+[barrows_door_locked_l]
 name=Door
 desc=I wonder what awaits me on the other side?
 model=loc_6713
@@ -56701,103 +56701,103 @@ recol6s=4226
 recol6d=2112
 active=yes
 
-[loc_6735]
+[barrows_door_a_l]
 active=yes
 multivar=barrows_door_a
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6736]
+[barrows_door_b_l]
 active=yes
 multivar=barrows_door_b
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6737]
+[barrows_door_c_l]
 active=yes
 multivar=barrows_door_c
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6738]
+[barrows_door_d_l]
 active=yes
 multivar=barrows_door_d
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6739]
+[barrows_door_e_l]
 active=yes
 multivar=barrows_door_e
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6740]
+[barrows_door_f_l]
 active=yes
 multivar=barrows_door_f
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6741]
+[barrows_door_g_l]
 active=yes
 multivar=barrows_door_g
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6742]
+[barrows_door_h_l]
 active=yes
 multivar=barrows_door_h
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6743]
+[barrows_door_i_l]
 active=yes
 multivar=barrows_door_i
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6744]
+[barrows_door_j_l]
 active=yes
 multivar=barrows_door_j
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6745]
+[barrows_door_k_l]
 active=yes
 multivar=barrows_door_k
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6746]
+[barrows_door_l_l]
 active=yes
 multivar=barrows_door_l
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6747]
+[barrows_door_m_l]
 active=yes
 multivar=barrows_door_m
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6748]
+[barrows_door_n_l]
 active=yes
 multivar=barrows_door_n
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6749]
+[barrows_door_o_l]
 active=yes
 multivar=barrows_door_o
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6750]
+[barrows_door_p_l]
 active=yes
 multivar=barrows_door_p
-multiloc=0,loc_6733
-multiloc=1,loc_6734
+multiloc=0,barrows_door_unlocked_l
+multiloc=1,barrows_door_locked_l
 
-[loc_6751]
+[barrows_rockslide_a]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56807,9 +56807,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_a
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6752]
+[barrows_rockslide_b]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56819,9 +56819,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_b
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6753]
+[barrows_rockslide_c]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56831,9 +56831,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_c
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6754]
+[barrows_rockslide_d]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56843,9 +56843,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_d
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6755]
+[barrows_rockslide_e]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56855,9 +56855,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_e
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6756]
+[barrows_rockslide_f]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56867,9 +56867,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_f
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6757]
+[barrows_rockslide_g]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56879,9 +56879,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_g
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6758]
+[barrows_rockslide_h]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56891,9 +56891,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_h
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6759]
+[barrows_rockslide_i]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56903,9 +56903,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_i
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6760]
+[barrows_rockslide_j]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56915,9 +56915,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_j
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6761]
+[barrows_rockslide_k]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56927,9 +56927,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_k
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6762]
+[barrows_rockslide_l]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56939,9 +56939,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_l
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6763]
+[barrows_rockslide_m]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56951,9 +56951,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_m
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6764]
+[barrows_rockslide_n]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56963,9 +56963,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_n
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6765]
+[barrows_rockslide_o]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56975,9 +56975,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_o
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6766]
+[barrows_rockslide_p]
 recol1s=12580
 recol1d=5282
 width=2
@@ -56987,9 +56987,9 @@ hillskew=yes
 blockrange=no
 blockwalk=no
 multivar=barrows_door_p
-multiloc=1,loc_6807
+multiloc=1,barrows_rockslide2
 
-[loc_6767]
+[barrows_torch]
 name=Standing torch
 desc=A crude torch stuck in the ground.
 model=favour_standing_torch
@@ -57000,24 +57000,24 @@ recol2d=8420
 recol3s=12514
 recol3d=4192
 
-[loc_6768]
+[barrow_low_walls+pillar]
 model=loc_6768
 sharelight=yes
 occlude=yes
 
-[loc_6769]
+[barrow_low_walls+pillarl]
 model=loc_6768
 sharelight=yes
 occlude=yes
 mirror=yes
 
-[loc_6770]
+[barrow_low_walls+pillartop]
 model=loc_6770
 sharelight=yes
 width=3
 active=no
 
-[loc_6771]
+[barrow_dharok_sarcophagus]
 name=Sarcophagus
 desc=A large stone coffin.
 model=loc_6771
@@ -57036,7 +57036,7 @@ length=3
 width=2
 op1=Search
 
-[loc_6772]
+[barrow_torag_sarcophagus]
 name=Sarcophagus
 desc=A large stone coffin.
 model=loc_6771
@@ -57055,7 +57055,7 @@ length=3
 width=2
 op1=Search
 
-[loc_6773]
+[barrow_guthan_sarcophagus]
 name=Sarcophagus
 desc=A large stone coffin.
 model=loc_6771
@@ -57074,7 +57074,7 @@ length=3
 width=2
 op1=Search
 
-[loc_6774]
+[barrows_stone_chest_closed]
 name=Chest
 desc=A large stone chest.
 model=loc_6774
@@ -57084,7 +57084,7 @@ forceapproach=south
 width=2
 length=2
 
-[loc_6775]
+[barrows_stone_chest_open]
 name=Chest
 desc=A large stone chest.
 model=loc_6775
@@ -57097,7 +57097,7 @@ forceapproach=south
 width=2
 length=2
 
-[loc_6776]
+[barrows_skeleton_1]
 name=Skeleton
 desc=Looks like he's been dead a while now...
 model=corpse
@@ -57105,7 +57105,7 @@ recol1s=27413
 recol1d=9542
 blockrange=no
 
-[loc_6777]
+[barrows_skeleton_2]
 name=Skeleton
 desc=I don't think he'd mind us checking for his wallet now...
 model=corpse2
@@ -57113,7 +57113,7 @@ recol1s=27413
 recol1d=9542
 blockrange=no
 
-[loc_6778]
+[barrows_skeleton_3]
 name=Skeleton
 desc=I'm sure he died of natural causes. Like a massive dragon or something...
 model=corpse3
@@ -57122,25 +57122,25 @@ recol1d=9542
 width=2
 blockrange=no
 
-[loc_6779]
+[barrows_crypt]
 model=loc_6779
 active=no
 hillskew=yes
 sharelight=yes
 
-[loc_6780]
+[barrows_crypt_inner]
 model=loc_6780
 active=no
 hillskew=yes
 sharelight=yes
 
-[loc_6781]
+[barrows_crypt_missing_brick]
 model=loc_6781
 active=no
 hillskew=yes
 sharelight=yes
 
-[loc_6782]
+[barrows_crypt_purple]
 model=loc_6779
 recol1s=4225
 recol1d=7235
@@ -57156,7 +57156,7 @@ active=no
 hillskew=yes
 sharelight=yes
 
-[loc_6783]
+[barrows_crypt_inner_purple]
 model=loc_6780
 recol1s=4225
 recol1d=7235
@@ -57172,7 +57172,7 @@ active=no
 hillskew=yes
 sharelight=yes
 
-[loc_6784]
+[barrows_bricks_pile_1]
 model=ahoy_harbourwall_crumbly_pile1
 recol1s=16941
 recol1d=7396
@@ -57182,7 +57182,7 @@ recol3s=12713
 recol3d=5282
 active=no
 
-[loc_6785]
+[barrows_bricks_pile_2]
 model=ahoy_harbourwall_crumbly_pile2
 recol1s=16941
 recol1d=7396
@@ -57192,20 +57192,20 @@ recol3s=12713
 recol3d=5282
 active=no
 
-[loc_6786]
+[barrows_skewsteps]
 model=loc_6786
 hillskew=yes
 forcedecor=yes
 ambient=10
 
-[loc_6787]
+[barrows_skewsteps_corner]
 model=loc_6787
 hillskew=yes
 sharelight=yes
 forcedecor=yes
 ambient=10
 
-[loc_6788]
+[barrows_mountain_cavewall_top]
 model=cavewall_top
 recol1s=12580
 recol1d=0
@@ -57213,7 +57213,7 @@ sharelight=yes
 hillskew=yes
 active=no
 
-[loc_6789]
+[barrows_mountain_cavewall_top5]
 model=cavewall_top5
 recol1s=12580
 recol1d=11592
@@ -57221,7 +57221,7 @@ sharelight=yes
 hillskew=yes
 active=no
 
-[loc_6790]
+[barrows_mountaincavewall_top_higher]
 model=cavewall_top_higher
 recol1s=12580
 recol1d=11592
@@ -57229,7 +57229,7 @@ sharelight=yes
 hillskew=yes
 active=no
 
-[loc_6791]
+[barrows_bed]
 name=Bed
 desc=The groundskeeper's bed.
 model=normal_bed
@@ -57243,13 +57243,13 @@ recol4s=12448
 recol4d=5347
 length=2
 
-[loc_6792]
+[barrows_drystonewall+grass]
 model=loc_6792
 hillskew=yes
 sharelight=yes
 blockrange=no
 
-[loc_6793]
+[barrows_short_grass_1]
 model=viking_grass1
 recol1s=21140
 recol1d=9670
@@ -57260,7 +57260,7 @@ recol3d=5442
 hillskew=yes
 active=no
 
-[loc_6794]
+[barrows_short_grass_2]
 model=viking_grass2
 recol1s=21140
 recol1d=9670
@@ -57271,7 +57271,7 @@ recol3d=5442
 hillskew=yes
 active=no
 
-[loc_6795]
+[barrows_short_grass_3]
 model=viking_grass3
 recol1s=21140
 recol1d=9670
@@ -57282,7 +57282,7 @@ recol3d=5442
 hillskew=yes
 active=no
 
-[loc_6796]
+[barrows_short_grass_4]
 model=viking_grass4
 recol1s=21140
 recol1d=9670
@@ -57293,7 +57293,7 @@ recol3d=5442
 hillskew=yes
 active=no
 
-[loc_6797]
+[barrows_grass_3_wall_edge]
 model=loc_4529
 recol1s=21140
 recol1d=9670
@@ -57304,7 +57304,7 @@ recol3d=5442
 hillskew=yes
 active=no
 
-[loc_6798]
+[barrows_grass_4_wall_edge]
 model=loc_4530
 recol1s=21140
 recol1d=9670
@@ -57315,7 +57315,7 @@ recol3d=5442
 hillskew=yes
 active=no
 
-[loc_6799]
+[barrows_grass_4_wall_corner]
 model=loc_4531
 recol1s=21140
 recol1d=9670
@@ -57326,7 +57326,7 @@ recol3d=5442
 hillskew=yes
 active=no
 
-[loc_6800]
+[barrows_grass_wall_edge_2]
 model=loc_4532
 recol1s=21140
 recol1d=9670
@@ -57337,7 +57337,7 @@ recol3d=5442
 hillskew=yes
 active=no
 
-[loc_6801]
+[barrows_dugupsoil_1]
 model=dugupsoil1_upass
 recol1s=13505
 recol1d=6339
@@ -57348,7 +57348,7 @@ recol3d=6339
 hillskew=yes
 active=no
 
-[loc_6802]
+[barrows_dugupsoil_2]
 model=dugupsoil2_upass
 recol1s=13505
 recol1d=6339
@@ -57359,7 +57359,7 @@ recol3d=6339
 hillskew=yes
 active=no
 
-[loc_6803]
+[barrows_dugupsoil_3]
 model=dugupsoil3_upass
 recol1s=13505
 recol1d=6339
@@ -57370,7 +57370,7 @@ recol3d=6339
 hillskew=yes
 active=no
 
-[loc_6804]
+[barrows_mountainrocks_1]
 model=death_mountainrocks1
 recol1s=8454
 recol1d=6339
@@ -57384,7 +57384,7 @@ active=no
 hillskew=yes
 blockrange=no
 
-[loc_6805]
+[barrows_mountainrocks_1_large]
 model=death_mountainrocks1
 recol1s=8454
 recol1d=6339
@@ -57403,7 +57403,7 @@ resizey=256
 resizez=256
 blockrange=no
 
-[loc_6806]
+[barrows_rockslide1]
 model=loc_471
 recol1s=12580
 recol1d=5282
@@ -57414,7 +57414,7 @@ blockrange=no
 hillskew=yes
 mapscene=11
 
-[loc_6807]
+[barrows_rockslide2]
 model=loc_472
 recol1s=12580
 recol1d=5282
@@ -57425,7 +57425,7 @@ hillskew=yes
 blockrange=no
 mapscene=11
 
-[loc_6808]
+[barrows_rockslide3]
 model=loc_473
 recol1s=12580
 recol1d=5282
@@ -57437,7 +57437,7 @@ blockrange=no
 hillskew=yes
 mapscene=12
 
-[loc_6809]
+[barrows_rockslide4]
 model=loc_474
 recol1s=12580
 recol1d=5282
@@ -57449,19 +57449,19 @@ blockrange=no
 hillskew=yes
 mapscene=12
 
-[loc_6810]
+[barrows_rockslide5]
 model=loc_475
 recol1s=12580
 recol1d=5282
 hillskew=yes
 
-[loc_6811]
+[barrows_rockslide6]
 model=loc_476
 recol1s=12580
 recol1d=5282
 hillskew=yes
 
-[loc_6812]
+[barrows_dugupsoil_1_purple]
 model=dugupsoil1_upass
 recol1s=13505
 recol1d=7235
@@ -57472,7 +57472,7 @@ recol3d=7235
 hillskew=yes
 active=no
 
-[loc_6813]
+[barrows_dugupsoil_2_purple]
 model=dugupsoil2_upass
 recol1s=13505
 recol1d=7235
@@ -57483,7 +57483,7 @@ recol3d=7235
 hillskew=yes
 active=no
 
-[loc_6814]
+[barrows_dugupsoil_3_purple]
 model=dugupsoil3_upass
 recol1s=13505
 recol1d=7235
@@ -57494,7 +57494,7 @@ recol3d=7235
 hillskew=yes
 active=no
 
-[loc_6815]
+[barrows_crypt_missing_brick_purple]
 model=loc_6781
 recol1s=4225
 recol1d=7235
@@ -57510,7 +57510,7 @@ active=no
 hillskew=yes
 sharelight=yes
 
-[loc_6816]
+[barrows_bricks_pile_1_purple]
 model=ahoy_harbourwall_crumbly_pile1
 recol1s=16941
 recol1d=9349
@@ -57520,7 +57520,7 @@ recol3s=12713
 recol3d=7235
 active=no
 
-[loc_6817]
+[barrows_bricks_pile_2_purple]
 model=ahoy_harbourwall_crumbly_pile2
 recol1s=16941
 recol1d=9349
@@ -57530,7 +57530,7 @@ recol3s=12713
 recol3d=7235
 active=no
 
-[loc_6818]
+[barrows_torch_fire]
 model=viking_torch_fire
 recol1s=31393
 recol1d=25414
@@ -57550,7 +57550,7 @@ resizex=80
 resizey=80
 active=no
 
-[loc_6819]
+[barrows_skewsteps_purple]
 model=loc_6786
 recol1s=8453
 recol1d=11463
@@ -57566,7 +57566,7 @@ hillskew=yes
 forcedecor=yes
 ambient=10
 
-[loc_6820]
+[barrows_skewsteps_corner_purple]
 model=loc_6787
 recol1s=8453
 recol1d=11463
@@ -57583,7 +57583,7 @@ sharelight=yes
 forcedecor=yes
 ambient=10
 
-[loc_6821]
+[barrow_ahrim_sarcophagus]
 name=Sarcophagus
 desc=A large stone coffin.
 model=loc_6771
@@ -57602,7 +57602,7 @@ length=3
 width=2
 op1=Search
 
-[loc_6822]
+[barrow_karil_sarcophagus]
 name=Sarcophagus
 desc=A large stone coffin.
 model=loc_6771
@@ -57621,7 +57621,7 @@ length=3
 width=2
 op1=Search
 
-[loc_6823]
+[barrow_verac_sarcophagus]
 name=Sarcophagus
 desc=A large stone coffin.
 model=loc_6771
@@ -57640,7 +57640,7 @@ length=3
 width=2
 op1=Search
 
-[loc_6824]
+[barrows_locked_door]
 name=Door
 desc=It's locked.
 model=zanarisdoor
@@ -57654,7 +57654,7 @@ recol4s=7330
 recol4d=4256
 active=yes
 
-[loc_6825]
+[barrows_farmhouse_wall_occluding]
 model=viking_abode_wall
 recol1s=8387
 recol1d=6338
@@ -57672,7 +57672,7 @@ occlude=yes
 active=no
 resizey=120
 
-[loc_6826]
+[barrows_farmhouse_wall_window_occluding]
 model=viking_longhall_wall_window
 recol1s=19912
 recol1d=8484
@@ -57690,12 +57690,12 @@ occlude=yes
 active=no
 resizey=120
 
-[loc_6827]
+[barrows_waterpump]
 name=Waterpump
 desc=It might still work...
 model=loc_6827
 
-[loc_6828]
+[barrows_town_dugupsoil_1]
 model=dugupsoil1_upass
 recol1s=13505
 recol1d=7396
@@ -57706,7 +57706,7 @@ recol3d=7396
 hillskew=yes
 active=no
 
-[loc_6829]
+[barrows_town_dugupsoil_2]
 model=dugupsoil2_upass
 recol1s=13505
 recol1d=7396
@@ -57717,7 +57717,7 @@ recol3d=7396
 hillskew=yes
 active=no
 
-[loc_6830]
+[barrows_town_dugupsoil_3]
 model=dugupsoil3_upass
 recol1s=13505
 recol1d=7396
@@ -57795,7 +57795,7 @@ recol6d=6337
 sharelight=yes
 active=no
 
-[loc_6835]
+[barrows_sign]
 name=Warning sign
 desc=Danger... weak surface beyond gate. Digging may lead to cave-ins.
 model=signpost2
@@ -107486,14 +107486,14 @@ blockwalk=no
 sharelight=yes
 op1=Swim
 
-[loc_10284]
+[barrows_stone_chest]
 active=yes
 forceapproach=south
 width=2
 length=2
 multivar=barrows_chest_open
-multiloc=0,loc_6774
-multiloc=1,loc_6775
+multiloc=0,barrows_stone_chest_closed
+multiloc=1,barrows_stone_chest_open
 
 [vc_door_closed_inactive]
 model=mcannondoor
