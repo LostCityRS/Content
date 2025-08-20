@@ -1,7 +1,4 @@
 [debugproc,overlay](interface $interface)
-if ($interface = null) {
-    return;
-}
 if_openoverlay($interface);
 
 [debugproc,minimap](int $type)
