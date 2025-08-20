@@ -87,6 +87,17 @@ if(%emote_lean = ^false) {
 }
 @controls_emote(emote_mime_lean);
 
+[if_button,controls:com_45] @controls_emote(emote_blow_kiss);
+[if_button,controls:com_55] @controls_emote(emote_panic);
+[if_button,controls:com_56] @controls_emote(emote_dance_scottish);
+[if_button,controls:com_57] @controls_emote(emote_dance_spin);
+[if_button,controls:com_58] @controls_emote(emote_dance_headbang);
+[if_button,controls:com_59] @controls_emote(emote_jump_with_joy);
+[if_button,controls:com_60] @controls_emote(emote_ya_boo_sucks);
+[if_button,controls:com_61] @controls_emote(emote_yawn);
+[if_button,controls:com_62] @controls_emote(emote_fremmenik_salute);
+[if_button,controls:com_63] @controls_emote(emote_shrug);
+
 [if_button,controls:com_76]
 if(%lost_tribe_quest < 7) {
     @lockemote_lost_tribe;
