@@ -1,0 +1,49 @@
+[debugproc,skill]
+if (p_finduid(uid) = false) {
+    return;
+}
+def_obj $obj;
+def_int $int;
+$obj, $int = ~skillmulti1(rune_kiteshield);
+
+mes("<oc_debugname($obj)>, <tostring($int)>");
+
+[debugproc,skill2]
+if (p_finduid(uid) = false) {
+    return;
+}
+def_obj $obj;
+def_int $int;
+$obj, $int = ~skillmulti2(bronze_bar, iron_bar);
+
+mes("<oc_debugname($obj)>, <tostring($int)>");
+
+[debugproc,skill3]
+if (p_finduid(uid) = false) {
+    return;
+}
+def_obj $obj;
+def_int $int;
+$obj, $int = ~skillmulti3(bronze_bar, iron_bar, steel_bar);
+
+mes("<oc_debugname($obj)>, <tostring($int)>");
+
+[debugproc,skill4]
+if (p_finduid(uid) = false) {
+    return;
+}
+def_obj $obj;
+def_int $int;
+$obj, $int = ~skillmulti4(bronze_bar, iron_bar, steel_bar, mithril_bar);
+
+mes("<oc_debugname($obj)>, <tostring($int)>");
+
+[debugproc,skill5]
+if (p_finduid(uid) = false) {
+    return;
+}
+def_obj $obj;
+def_int $int;
+$obj, $int = ~skillmulti5(bronze_bar, iron_bar, steel_bar, mithril_bar, runite_bar);
+
+mes("<oc_debugname($obj)>, <tostring($int)>");

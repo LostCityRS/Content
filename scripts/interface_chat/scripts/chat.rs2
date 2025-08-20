@@ -682,3 +682,157 @@ while ($page < $pagetotal) {
 //     case multiobj4:com_5 : return($obj4);
 //     case default : return(null);
 // }
+
+
+// Used for make-x interfaces. Only skillmulti1 works for now until we figure out a good resumebutton solution.
+
+[proc,skillmulti1](namedobj $obj1)(namedobj, int)
+if_openchat(skillmulti1);
+if_setobject(skillmulti1:com_2, $obj1, 200);
+
+if_setresumebuttons(skillmulti1:com_3, skillmulti1:com_4, skillmulti1:com_5, skillmulti1:com_6, null);
+p_pausebutton;
+
+switch_component (last_com) {
+    case skillmulti1:com_3 : return($obj1, ^max_32bit_int);
+    case skillmulti1:com_4 : 
+        p_countdialog;
+        return($obj1, last_int);
+    case skillmulti1:com_5 : return($obj1, 5);
+    case skillmulti1:com_6 : return($obj1, 1);
+    case default : return(null, null);
+}
+
+[proc,skillmulti2](namedobj $obj1, namedobj $obj2)(namedobj, int)
+if_openchat(skillmulti2);
+if_setobject(skillmulti2:com_2, $obj1, 200);
+if_setobject(skillmulti2:com_3, $obj2, 200);
+
+p_pausebutton;
+
+switch_component (last_com) {
+    case skillmulti2:com_4 : 
+        p_countdialog;
+        return($obj1, last_int);
+    case skillmulti2:com_5 : return($obj1, 10);
+    case skillmulti2:com_6 : return($obj1, 5);
+    case skillmulti2:com_7 : return($obj1, 1);
+    case skillmulti2:com_8 : 
+        p_countdialog;
+        return($obj2, last_int);
+    case skillmulti2:com_9 : return($obj2, 10);
+    case skillmulti2:com_10 : return($obj2, 5);
+    case skillmulti2:com_11 : return($obj2, 1);
+    case default : return(null, null);
+}
+
+[proc,skillmulti3](namedobj $obj1, namedobj $obj2, namedobj $obj3)(namedobj, int)
+if_openchat(skillmulti3);
+if_setobject(skillmulti3:com_2, $obj1, 200);
+if_setobject(skillmulti3:com_3, $obj2, 200);
+if_setobject(skillmulti3:com_4, $obj3, 200);
+
+p_pausebutton;
+
+switch_component (last_com) {
+    case skillmulti3:com_5 : 
+        p_countdialog;
+        return($obj1, last_int);
+    case skillmulti3:com_6 : return($obj1, 10);
+    case skillmulti3:com_7 : return($obj1, 5);
+    case skillmulti3:com_8 : return($obj1, 1);
+    case skillmulti3:com_9 : 
+        p_countdialog;
+        return($obj2, last_int);
+    case skillmulti3:com_10 : return($obj2, 10);
+    case skillmulti3:com_11 : return($obj2, 5);
+    case skillmulti3:com_12 : return($obj2, 1);
+    case skillmulti3:com_13 : 
+        p_countdialog;
+        return($obj3, last_int);
+    case skillmulti3:com_14 : return($obj3, 10);
+    case skillmulti3:com_15 : return($obj3, 5);
+    case skillmulti3:com_16 : return($obj3, 1);
+    case default : return(null, null);
+}
+
+[proc,skillmulti4](namedobj $obj1, namedobj $obj2, namedobj $obj3, namedobj $obj4)(namedobj, int)
+if_openchat(skillmulti4);
+if_setobject(skillmulti4:com_2, $obj1, 200);
+if_setobject(skillmulti4:com_3, $obj2, 200);
+if_setobject(skillmulti4:com_4, $obj3, 200);
+if_setobject(skillmulti4:com_5, $obj4, 200);
+
+p_pausebutton;
+
+switch_component (last_com) {
+    case skillmulti4:com_6 : 
+        p_countdialog;
+        return($obj1, last_int);
+    case skillmulti4:com_7 : return($obj1, 10);
+    case skillmulti4:com_8 : return($obj1, 5);
+    case skillmulti4:com_9 : return($obj1, 1);
+    case skillmulti4:com_10 : 
+        p_countdialog;
+        return($obj2, last_int);
+    case skillmulti4:com_11 : return($obj2, 10);
+    case skillmulti4:com_12 : return($obj2, 5);
+    case skillmulti4:com_13 : return($obj2, 1);
+    case skillmulti4:com_14 : 
+        p_countdialog;
+        return($obj3, last_int);
+    case skillmulti4:com_15 : return($obj3, 10);
+    case skillmulti4:com_16 : return($obj3, 5);
+    case skillmulti4:com_17 : return($obj3, 1);
+    case skillmulti4:com_18 : 
+        p_countdialog;
+        return($obj4, last_int);
+    case skillmulti4:com_19 : return($obj4, 10);
+    case skillmulti4:com_20 : return($obj4, 5);
+    case skillmulti4:com_21 : return($obj4, 1);
+    case default : return(null, null);
+}
+
+[proc,skillmulti5](namedobj $obj1, namedobj $obj2, namedobj $obj3, namedobj $obj4, namedobj $obj5)(namedobj, int)
+if_openchat(skillmulti5);
+if_setobject(skillmulti5:com_2, $obj1, 200);
+if_setobject(skillmulti5:com_3, $obj2, 200);
+if_setobject(skillmulti5:com_4, $obj3, 200);
+if_setobject(skillmulti5:com_5, $obj4, 200);
+if_setobject(skillmulti5:com_6, $obj5, 200);
+
+p_pausebutton;
+
+switch_component (last_com) {
+    case skillmulti5:com_7 : 
+        p_countdialog;
+        return($obj1, last_int);
+    case skillmulti5:com_8 : return($obj1, 10);
+    case skillmulti5:com_9 : return($obj1, 5);
+    case skillmulti5:com_10 : return($obj1, 1);
+    case skillmulti5:com_11 : 
+        p_countdialog;
+        return($obj2, last_int);
+    case skillmulti5:com_12 : return($obj2, 10);
+    case skillmulti5:com_13 : return($obj2, 5);
+    case skillmulti5:com_14 : return($obj2, 1);
+    case skillmulti5:com_15 : 
+        p_countdialog;
+        return($obj3, last_int);
+    case skillmulti5:com_16 : return($obj3, 10);
+    case skillmulti5:com_17 : return($obj3, 5);
+    case skillmulti5:com_18 : return($obj3, 1);
+    case skillmulti5:com_19 : 
+        p_countdialog;
+        return($obj4, last_int);
+    case skillmulti5:com_20 : return($obj4, 10);
+    case skillmulti5:com_21 : return($obj4, 5);
+    case skillmulti5:com_22 : return($obj4, 1);
+    case skillmulti5:com_23 : 
+        p_countdialog;
+        return($obj5, last_int);
+    case skillmulti5:com_24 : return($obj5, 10);
+    case skillmulti5:com_25 : return($obj5, 5);
+    case skillmulti5:com_26 : return($obj5, 1);
+    case default : return(null, null);
+}
