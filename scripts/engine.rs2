@@ -294,9 +294,10 @@
 [command,if_openmain](interface $interface)
 // info: Open a modal in the main viewport for the secondary player
 [command,.if_openmain](interface $interface)
-// later
-// [command,if_openoverlay](interface $interface)
-// [command,.if_openoverlay](interface $interface)
+// info: Open an overlay in the main viewport
+[command,if_openoverlay](interface $interface)
+// info: Open an overlay in the main viewport for the secondary player
+[command,.if_openoverlay](interface $interface)
 // info: Open a modal in the side tab
 [command,if_openside](interface $interface)
 // info: Set a component's model to the local player's chat head
@@ -325,6 +326,8 @@
 [command,midi_song](string $song)
 // info: Play a jingle (advancing levels, completing quests, ...)
 [command,midi_jingle](string $jingle, int $length)
+// info: Change the active_player type of minimap displayed
+[command,minimap_toggle](int $type)
 // info: Show the hint arrow at $coord
 [command,hint_coord](int $offset, coord $coord, int $height)
 // info: Start a softtimer on the active_player
