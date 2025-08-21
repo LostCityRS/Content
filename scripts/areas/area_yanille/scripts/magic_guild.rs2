@@ -16,17 +16,17 @@ if($entering = true & stat(magic) < 66) {
 }
 ~open_and_close_double_door2($entering, $side, door_open);
 
-[oploc1,loc_2156]
+[oploc1,wiztowerportal]
 mes("You enter the magic portal...");
 mes("You teleport to the Wizards' tower.");
 p_teleport(0_48_49_37_23);
 
-[oploc1,loc_2157]
+[oploc1,darkwizportal]
 mes("You enter the magic portal...");
 mes("You teleport to the Dark Wizards' tower.");
 p_teleport(0_45_52_27_5);
 
-[oploc1,loc_2158]
+[oploc1,thormacportal]
 mes("You enter the magic portal...");
 mes("You teleport to Thormac the Sorcerer's house.");
 p_teleport(0_42_53_15_14);

@@ -4,7 +4,7 @@ if(stat(agility) < 52) {
     return;
 }
 mes("You go through the gate and try to edge over the ridge...");
-~open_and_close_door(loc_1541, false, false);
+~open_and_close_door(poshdooropen, false, false);
 p_delay(0);
 ~set_readywalk_bas(human_walk_logbalance_ready, human_walk_logbalance);
 ~forcemove(movecoord(coord, 0, 0, 6));
@@ -40,7 +40,7 @@ p_delay(0);
 stat_advance(agility, 150);
 if(loc_find(movecoord(coord, 0, 0, -1), loc_2309) = true) {
     loc_change(inviswall, 3);
-    loc_add(movecoord(loc_coord, 0, 0, -1), loc_1541, 0, loc_shape, 3);
+    loc_add(movecoord(loc_coord, 0, 0, -1), poshdooropen, 0, loc_shape, 3);
 }
 sound_synth(door_open, 0, 0);
 p_teleport(movecoord(coord, 0, 0, -2));

@@ -3,7 +3,7 @@
 // Sources:
 // (2005) https://www.youtube.com/watch?v=QX-ieoyDXh4
 // https://runescapeclassic.fandom.com/wiki/The_Restless_Ghost
-[oploc1,loc_2145]
+[oploc1,shutghostcoffin]
 p_arrivedelay;
 mes("You open the coffin.");
 anim(human_openchest, 0);
@@ -11,19 +11,19 @@ sound_synth(coffin_open, 0, 0);
 ~check_restlessghost_spawn; // probably before delay like closing
 p_delay(0);
 // Temp note: dur does not need updated
-loc_change(loc_2146, 300);
+loc_change(restless_ghost_altar, 300);
 
-[oploc2,loc_2145]
+[oploc2,shutghostcoffin]
 ~mesbox("Maybe I should open it first."); // guessing, op was never removed before rework
 
-[oploc1,loc_2146]
+[oploc1,restless_ghost_altar]
 mes("You close the coffin.");
 anim(human_closechest, 0);
 sound_synth(coffin_close, 0, 0);
 ~check_restlessghost_spawn; // https://youtu.be/QX-ieoyDXh4?si=mJjuZG052xLGiVWq&t=950
 p_delay(0);
 // Temp note: dur does not need updated
-loc_change(loc_2145, 300);
+loc_change(shutghostcoffin, 300);
 
 [proc,check_restlessghost_spawn]
 if(%priest_progress = ^priest_complete) { // Don't send ghost if the quest is complete
@@ -33,7 +33,7 @@ if (npc_find(loc_coord, ghostx, 4, 0) = false) {
     npc_add(0_50_49_49_58, ghostx, 100);
 }
 
-[oploc2,loc_2146]
+[oploc2,restless_ghost_altar]
 ~check_restlessghost_spawn;
 if (%priest_progress = ^priest_complete) {
     ~mesbox("Theres a nice and complete skeleton in here!");
@@ -43,17 +43,17 @@ if (%priest_progress = ^priest_complete) {
     mes("You search the coffin and find some human remains.");
 }
 
-[oplocu,loc_2145]
-if (last_useitem = ghost_skull & %priest_progress = ^priest_obtained_skull) {
+[oplocu,shutghostcoffin]
+if (last_useitem = ghostskull & %priest_progress = ^priest_obtained_skull) {
     ~mesbox("Maybe I should open it first.");
     return;
 }
 ~displaymessage(^dm_default);
 
-[oplocu,loc_2146]
-if (last_useitem = ghost_skull & %priest_progress = ^priest_obtained_skull) {
+[oplocu,restless_ghost_altar]
+if (last_useitem = ghostskull & %priest_progress = ^priest_obtained_skull) {
     ~mesbox("You put the skull in the coffin.");
-    inv_del(inv, ghost_skull, 1);
+    inv_del(inv, ghostskull, 1);
     if(npc_find(coord, ghostx, 4, 0) = true) {
         npc_del;
     }
@@ -65,8 +65,8 @@ if (last_useitem = ghost_skull & %priest_progress = ^priest_obtained_skull) {
 }
 ~displaymessage(^dm_default);
 
-[opobj3,ghost_skull]
-if(inv_total(inv, ghost_skull) > 0 | inv_total(bank, ghost_skull) > 0) {
+[opobj3,ghostskull]
+if(inv_total(inv, ghostskull) > 0 | inv_total(bank, ghostskull) > 0) {
     ~mesbox("You already have the Ghost's skull.");
     return;
 }
@@ -82,18 +82,18 @@ if (%priest_progress = ^priest_spoken_ghost | %priest_progress = ^priest_obtaine
     ~mesbox("That skull looks scary. I've got no reason to take it, I think I'll leave|it alone.");
 }
 
-[opheld5,ghost_skull]
+[opheld5,ghostskull]
 // objbox in osrs, dont think so here considering the objbox's in this quest are mesbox pre-rework 
 ~mesbox("Dropping this skull here will destroy it!");
 def_int $choice = ~p_choice2_header("Yes.", 1, "No.", 2, "Are you sure you want to drop the skull?");
 if ($choice = 1) {
-    inv_del(inv, ghost_skull, 1);
+    inv_del(inv, ghostskull, 1);
 }
 if_close;
 
 [queue,priest_quest_complete]
 %priest_progress = ^priest_complete;
 session_log(^log_adventure, "Quest complete: The Restless Ghost");
-~send_quest_complete(questlist:priest, ghost_skull, 220, ^priest_questpoints, "You have completed the\\nRestless Ghost Quest!");
+~send_quest_complete(questlist:priest, ghostskull, 220, ^priest_questpoints, "You have completed the\\nRestless Ghost Quest!");
 stat_advance(prayer, 11250);
 

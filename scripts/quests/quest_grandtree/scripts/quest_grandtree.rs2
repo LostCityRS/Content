@@ -1,9 +1,9 @@
-[oploc1,loc_2446]
+[oploc1,grandtree_trapdoorunder]
 if(%grandtree_progress = ^grandtree_complete) {
     anim(human_pickupfloor, 0);
     sound_synth(door_open, 0, 0);
     // Temp note: dur updated
-    loc_change(loc_2445, 6); 
+    loc_change(grandtree_trapdooropen, 6); 
     p_delay(1);
     p_teleport(movecoord(coord, 0, 0, 6400));
     return;
@@ -20,7 +20,7 @@ if(%grandtree_progress >= ^grandtree_found_prisoner & %grandtree_progress <= ^gr
     npc_add(movecoord(^grandtree_jail_coord, 0, 0, -1), grandtree_charlie, 500);
 }
 
-[oploc1,loc_2447]
+[oploc1,grandtree_climbtree]
 p_arrivedelay;
 if(stat(agility) < 25) {
     ~mesbox("You need at least 25 Agility to climb the tree.");
@@ -28,7 +28,7 @@ if(stat(agility) < 25) {
 }
 ~agility_climb_up(0, movecoord(loc_coord, 2, 1, 1));
 
-[oploc1,loc_2448] 
+[oploc1,grandtree_downtree] 
 p_arrivedelay;
 ~agility_climb_up(0, movecoord(loc_coord, -1, -1, -1));
 
@@ -50,12 +50,12 @@ if (oc_tradeable(last_useitem) = true | last_useitem = grandtree_twigt | last_us
 }
 mes("You cannot put that on a pillar.");
 
-[oploc1,loc_2444]
+[oploc1,grandtree_trapdoorclosed]
 if(%grandtree_progress >= ^grandtree_unlocked_trapdoor) {
     anim(human_pickupfloor, 0);
     sound_synth(door_open, 0, 0);
     // Temp note: dur updated
-    loc_change(loc_2445, 5); // idk cause this is varbit now, will assume same as the other trapdoor
+    loc_change(grandtree_trapdooropen, 5); // idk cause this is varbit now, will assume same as the other trapdoor
     p_delay(1);
     p_teleport(0_38_154_59_8);
     if(%grandtree_progress = ^grandtree_unlocked_trapdoor) {
@@ -65,10 +65,10 @@ if(%grandtree_progress >= ^grandtree_unlocked_trapdoor) {
 }
 ~mesbox("The trapdoor won't open.");
 
-[oploc1,loc_2436]
+[oploc1,grandtree_chestclosed]
 ~mesbox("The chest is locked.");
 
-[oplocu,loc_2436]
+[oplocu,grandtree_chestclosed]
 if(last_useitem = grandtree_gloughskey) {
     p_arrivedelay;
     anim(human_openchest, 0);
@@ -91,9 +91,9 @@ if(last_useitem = grandtree_gloughskey) {
 }
 // no nothing interesting happens
 
-[oploc1,loc_2434] @open_cupboard(false);
+[oploc1,grandtree_cupboardclosed] @open_cupboard(false);
 
-[oploc2,loc_2435]
+[oploc2,grandtree_cupboardopen]
 if((%grandtree_progress = ^grandtree_spoken_prisoner | %grandtree_progress = ^grandtree_found_journal) & ~obj_gettotal(grandtree_journal) = 0) {
     // https://youtu.be/LFvLBRCxFwk?si=7pHYoJgRRdwxc3nu&t=598
     ~objbox(grandtree_journal, "You've found Glough's Journal!", 250, 0, divide(^objbox_height, 2));
@@ -106,7 +106,7 @@ if((%grandtree_progress = ^grandtree_spoken_prisoner | %grandtree_progress = ^gr
 }
 mes("You search the cupboard but you find nothing.");
 
-[oploc3,loc_2435] 
+[oploc3,grandtree_cupboardopen] 
 @close_cupboard(false);
 
 [oploc1,_shipyard_gate]
@@ -133,7 +133,7 @@ while(loc_findnext = true) {
             def_loc $type = loc_type;
             // Temp note: dur updated
             loc_change(inviswall, 3);
-            if($type = loc_2438) {
+            if($type = grandtree_fencegate_l) {
                 // Temp note: dur updated
                 loc_add(movecoord($central_coord, -1, 0, 0), inacfishinggateclosedl, 3, loc_shape, 3);
                 loc_add(movecoord($central_coord, -2, 0, 0), inacfishinggateclosedr, 3, loc_shape, 3); 
@@ -142,7 +142,7 @@ while(loc_findnext = true) {
 }
 p_delay(0);
 
-[oploc1,loc_2451]
+[oploc1,grandtree_rootdoor]
 anim(human_push, 0);
 if(%grandtree_progress ! ^grandtree_complete) {
     p_delay(0);

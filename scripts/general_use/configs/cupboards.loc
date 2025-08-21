@@ -1,4 +1,4 @@
-[loc_367]
+[cupboard]
 name=Cupboard
 desc=This may be worth opening.
 model=model_loc_367
@@ -6,9 +6,9 @@ length=2
 forceapproach=east
 op1=Open
 category=cupboard_closed
-param=cupboard_other,loc_370
+param=cupboard_other,cupboardopen
 
-[loc_368]
+[cupboardhigh]
 name=Cupboard
 desc=This may be worth opening.
 model=model_loc_368
@@ -16,9 +16,9 @@ length=2
 forceapproach=east
 op1=Open
 category=cupboard_closed
-param=cupboard_other,loc_371
+param=cupboard_other,cupboardopen_high
 
-[loc_369]
+[cupboard_big]
 name=Large cupboard
 desc=This may be worth opening.
 model=model_loc_369
@@ -27,9 +27,9 @@ length=3
 forceapproach=east
 op1=Open
 category=cupboard_closed
-param=cupboard_other,loc_372
+param=cupboard_other,cupboardopen_big
 
-[loc_370]
+[cupboardopen]
 name=Open Cupboard
 desc=This may be worth searching.
 model=model_loc_370
@@ -38,9 +38,9 @@ op2=Search
 op3=Shut
 forceapproach=east
 category=cupboard_opened
-param=cupboard_other,loc_367
+param=cupboard_other,cupboard
 
-[loc_371]
+[cupboardopen_high]
 name=Cupboard
 desc=This may be worth searching.
 model=model_loc_371
@@ -49,9 +49,9 @@ op2=Search
 op3=Shut
 forceapproach=east
 category=cupboard_opened
-param=cupboard_other,loc_368
+param=cupboard_other,cupboardhigh
 
-[loc_372]
+[cupboardopen_big]
 name=Large open cupboard
 desc=This may be worth searching.
 model=model_loc_372
@@ -61,9 +61,9 @@ op2=Search
 op3=Close
 forceapproach=east
 category=cupboard_opened
-param=cupboard_other,loc_369
+param=cupboard_other,cupboard_big
 
-[loc_2271]
+[vyvincupboardshut]
 name=Cupboard
 desc=I wonder what's inside?
 model=model_loc_368
@@ -71,9 +71,9 @@ length=2
 op1=Open
 forceapproach=east
 category=cupboard_closed
-param=cupboard_other,loc_2272
+param=cupboard_other,vyvincupboardopen
 
-[loc_2272]
+[vyvincupboardopen]
 name=Cupboard
 desc=It's open.
 model=model_loc_371
@@ -82,9 +82,9 @@ op1=Search
 op2=Shut
 forceapproach=east
 category=cupboard_opened
-param=cupboard_other,loc_2271
+param=cupboard_other,vyvincupboardshut
 
-[loc_2612]
+[garliccupboardshut]
 name=Cupboard
 desc=Wonder what's in here...
 model=model_loc_368
@@ -92,9 +92,9 @@ length=2
 op1=Open
 forceapproach=east
 category=cupboard_closed
-param=cupboard_other,loc_2613
+param=cupboard_other,garliccupboardopen
 
-[loc_2613]
+[garliccupboardopen]
 name=Cupboard
 desc=Smells kind of funny...
 model=model_loc_371
@@ -103,4 +103,4 @@ op1=Search
 op2=Close
 forceapproach=east
 category=cupboard_opened
-param=cupboard_other,loc_2612
+param=cupboard_other,garliccupboardshut

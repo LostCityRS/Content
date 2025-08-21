@@ -98,6 +98,6 @@ if(%prince_progress = ^prince_spoken_osman & inv_total(inv, softclay) >= 1) {
 ~chatnpc("<p,neutral>Only for a moment then.");
 ~mesbox("You put a piece of your soft clay in your hand.|As you touch the key, you take an imprint of it.");
 inv_del(inv, softclay, 1);
-inv_add(inv, key_print, 1);
+inv_add(inv, keyprint, 1);
 ~chatplayer("<p,happy>Thank you so much, you are too kind, o great Keli.");
 ~chatnpc("<p,neutral>You are welcome, run along now, I am very busy.");

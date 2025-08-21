@@ -1,5 +1,5 @@
 
-[legends_gate_west]
+[legendsguildgatel]
 name=Gate
 model=model_loc_52
 active=yes
@@ -9,7 +9,7 @@ category=double_door_open_and_close_left
 param=next_loc_stage,loc_1562
 param=open_sound,grate_open
 
-[legends_gate_east]
+[legendsguildgater]
 name=Gate
 model=model_loc_52
 mirror=yes
@@ -20,7 +20,7 @@ category=double_door_open_and_close_right
 param=next_loc_stage,loc_1563
 param=open_sound,grate_open
 
-[legends_radimus_cupboard_closed]
+[legends_cupboard]
 name=Cupboard
 desc=An antique by anyones standards.
 model=model_loc_367
@@ -28,9 +28,9 @@ length=2
 forceapproach=east
 op1=Open
 category=cupboard_closed
-param=cupboard_other,legends_radimus_cupboard_open
+param=cupboard_other,legends_cupboardopen
 
-[legends_radimus_cupboard_open]
+[legends_cupboardopen]
 name=Open Cupboard
 desc=An antique by anyone's standards, however, it might have something interesting in it.
 model=model_loc_370
@@ -39,9 +39,9 @@ op2=Search
 op3=Shut
 forceapproach=east
 category=cupboard_opened
-param=cupboard_other,legends_radimus_cupboard_closed
+param=cupboard_other,legends_cupboard
 
-[jungle_tree_1]
+[kharazi_jungle_tree_logs]
 name=Jungle Tree
 desc=Looks good for logging.
 model=model_loc_1301
@@ -55,9 +55,9 @@ op3=hidden
 mapscene=5
 blockwalk=no
 category=jungle_tree
-param=next_loc_stage,jungle_tree_stump
+param=next_loc_stage,junglestump_kharazi
 
-[jungle_palm]
+[kharazi_jungle_palm]
 name=Jungle Palm
 desc=A leafy jungle palm, dense foliage.
 model=model_loc_1313
@@ -65,7 +65,7 @@ width=3
 length=2
 mapscene=5
 
-[jungle_tree_2]
+[kharazi_jungle_tree1]
 name=Jungle Tree
 desc=Home to many unusual creatures.
 model=model_loc_1301
@@ -74,9 +74,9 @@ op3=hidden
 mapscene=5
 blockwalk=no
 category=jungle_tree
-param=next_loc_stage,jungle_tree_stump
+param=next_loc_stage,junglestump_kharazi
 
-[jungle_tree_3]
+[kharazi_jungle_tree2]
 name=Jungle Tree
 desc=A leafy tree.
 model=model_loc_1302
@@ -85,9 +85,9 @@ op3=hidden
 mapscene=5
 blockwalk=no
 category=jungle_tree
-param=next_loc_stage,jungle_tree_stump
+param=next_loc_stage,junglestump_kharazi
 
-[jungle_tree_stump]
+[junglestump_kharazi]
 name=Tree stump
 desc=This tree has been cut down.
 model=model_loc_1341
@@ -96,7 +96,7 @@ blockwalk=no
 recol1s=4194
 recol1d=5218
 
-[jungle_bush_1]
+[kharazi_jungle_plant1]
 name=Jungle Bush
 desc=A jungle bush, quite common to these areas.
 model=model_loc_1390
@@ -105,9 +105,9 @@ op3=hidden
 mapscene=5
 blockwalk=no
 category=jungle_bush
-param=next_loc_stage,slashed_bush
+param=next_loc_stage,kharazi_jungle_plant1_slashed
 
-[jungle_bush_2]
+[kharazi_jungle_plant2]
 name=Jungle Bush
 desc=A jungle bush, quite common to these areas.
 model=model_loc_1390
@@ -118,9 +118,9 @@ blockwalk=no
 recol1s=5504
 recol1d=736
 category=jungle_bush
-param=next_loc_stage,slashed_bush
+param=next_loc_stage,kharazi_jungle_plant1_slashed
 
-[slashed_bush]
+[kharazi_jungle_plant1_slashed]
 name=Slashed bush
 desc=A jungle bush that has been chopped down.
 model=model_loc_2894
@@ -129,7 +129,7 @@ blockwalk=no
 recol1s=5504
 recol1d=736
 
-[slashed_bush_unused]
+[kharazi_jungle_plant2_slashed]
 name=Slashed bush
 desc=A jungle bush that has been chopped down.
 model=model_loc_2894
@@ -138,7 +138,7 @@ blockwalk=no
 recol1s=5504
 recol1d=736
 
-[legends_guild_door_1]
+[legendsguilddoorl]
 name=Legends Guild door
 desc=A door to the Legends Guild.
 model=model_loc_1573
@@ -151,10 +151,10 @@ recol2d=10570
 recol3s=24129
 recol3d=20159
 category=double_door_open_and_close_left
-param=next_loc_stage,loc_2898
+param=next_loc_stage,inac_legendsguilddoorl
 param=open_sound,door_open
 
-[legends_guild_door_2]
+[legendsguilddoorr]
 name=Legends Guild door
 desc=A door to the Legends Guild.
 model=model_loc_1573
@@ -168,10 +168,10 @@ recol2d=10570
 recol3s=24129
 recol3d=20159
 category=double_door_open_and_close_right
-param=next_loc_stage,loc_2899
+param=next_loc_stage,inac_legendsguilddoorr
 param=open_sound,door_open
 
-[loc_2898]
+[inac_legendsguilddoorl]
 model=model_loc_1573
 recol1s=27361
 recol1d=15871
@@ -180,7 +180,7 @@ recol2d=10570
 recol3s=24129
 recol3d=20159
 
-[loc_2899]
+[inac_legendsguilddoorr]
 model=model_loc_1573
 mirror=yes
 recol1s=27361
@@ -190,7 +190,7 @@ recol2d=10570
 recol3s=24129
 recol3d=20159
 
-[legends_mossy_rock_1]
+[lgshamancaverock1]
 name=Mossy rock
 desc=Looks slippery!
 model=model_loc_477
@@ -201,7 +201,7 @@ op1=Search
 recol1s=7488
 recol1d=32767
 
-[legends_mossy_rock_2]
+[lgshamancaverock2]
 name=Mossy rock
 desc=Looks slippery!
 model=model_loc_478
@@ -210,21 +210,21 @@ op1=Search
 recol1s=7488
 recol1d=32767
 
-[legends_rocks_1]
+[lgshamancaverock3]
 name=Rocks
 desc=Stoney!
 model=model_loc_453
 op1=Search
 mapscene=12
 
-[legends_cave_entrance_1]
+[shaman_entrance_caver]
 name=Cave entrance
 model=model_loc_1423
 sharelight=yes
 hillskew=yes
 op1=Walk through
 
-[legends_cave_entrance_2]
+[shaman_entrance_cavel]
 name=Cave entrance
 model=model_loc_1423
 sharelight=yes
@@ -232,7 +232,7 @@ hillskew=yes
 mirror=yes
 op1=Walk through
 
-[legends_crate]
+[shaman_crate]
 name=Crate
 desc=An old crate for storage.
 model=model_loc_63
@@ -243,14 +243,14 @@ retex1d=wood2
 retex2s=elfwood
 retex2d=wood2
 
-[legends_table]
+[shaman_small_table]
 name=Table
 desc=Useful for putting things on.
 model=model_loc_620
 op1=Look at
 op2=Search
 
-[legends_bed]
+[shaman_poor_bed]
 name=Bed
 desc=I guess I could sleep in it if I was really tired.
 model=model_loc_423
@@ -258,7 +258,7 @@ width=2
 length=3
 op2=Search
 
-[legends_fire_wall_1]
+[lqfirewall_straight]
 name=Fire Wall
 desc=A wall of magic fire.
 model=model_loc_715
@@ -271,7 +271,7 @@ op2=Investigate
 mapscene=15
 blockrange=no
 
-[legends_fire_wall_2]
+[lqfirewall_diagonal]
 name=Fire Wall
 desc=A wall of magic fire.
 model=model_loc_716
@@ -284,13 +284,13 @@ op2=Investigate
 mapscene=15
 blockrange=no
 
-[legends_desk]
+[shaman_desk]
 name=Desk
 model=model_loc_620
 op1=Look
 op2=Search
 
-[legends_bookcase]
+[shaman_bookcase]
 name=Bookcase
 desc=Bamboo storage!
 model=model_loc_394
@@ -299,28 +299,28 @@ op1=Look
 op2=Search
 forceapproach=east
 
-[legends_ancient_gate_1_closed]
+[lglockpickgatebottoml]
 name=Ancient Gate
 model=model_loc_2912
 active=yes
 op1=Open
 op2=Search
 category=double_door_open_and_close_left
-param=next_loc_stage,legends_ancient_gate_1_open
+param=next_loc_stage,inac_lglockpickgatebottoml
 
-[legends_ancient_gate_2_closed]
+[lglockpickgatebottomr]
 name=Ancient Gate
 model=model_loc_2913
 active=yes
 op1=Open
 op2=Search
 category=double_door_open_and_close_right
-param=next_loc_stage,legends_ancient_gate_2_open
+param=next_loc_stage,inac_lglockpickgatebottomr
 
-[legends_ancient_gate_1_open]
+[inac_lglockpickgatebottoml]
 model=model_loc_2912
 
-[legends_ancient_gate_2_open]
+[inac_lglockpickgatebottomr]
 model=model_loc_2913
 
 [legends_cave_entrance_3]
@@ -331,12 +331,12 @@ width=4
 length=2
 op1=Enter
 
-[loc_2917]
+[shaman_cave_crevice_in]
 model=model_loc_1418
 sharelight=yes
 hillskew=yes
 
-[legends_crevice]
+[shaman_cave_crevice]
 name=Crevice
 desc=A large crack in the wall.
 model=model_loc_1418
@@ -345,7 +345,7 @@ hillskew=yes
 op1=Look at
 op2=Search
 
-[legends_boulder_1]
+[mine_test_boulder1]
 name=Boulder
 desc=A huge lump of rock.
 model=model_loc_2919
@@ -355,7 +355,7 @@ mapscene=11
 op1=Smash-to-bits
 category=boulder_legends
 
-[legends_boulder_2]
+[mine_test_boulder2]
 name=Boulder
 desc=A huge lump of rock.
 model=model_loc_2919
@@ -365,7 +365,7 @@ mapscene=11
 op1=Smash-to-bits
 category=boulder_legends
 
-[legends_boulder_3]
+[mine_test_boulder3]
 name=Boulder
 desc=A huge lump of rock.
 model=model_loc_2919
@@ -375,7 +375,7 @@ mapscene=11
 op1=Smash-to-bits
 category=boulder_legends
 
-[legends_ancient_gate_3_closed]
+[lgstrengthtrialgatel]
 name=Ancient Gate
 model=model_loc_2922
 active=yes
@@ -389,9 +389,9 @@ recol3d=1057
 recol4s=9512
 recol4d=11328
 category=double_door_open_and_close_left
-param=next_loc_stage,legends_ancient_gate_3_open
+param=next_loc_stage,lgstrengthtrialgate_inact_l
 
-[legends_ancient_gate_4_closed]
+[lgstrengthtrialgater]
 name=Ancient Gate
 model=model_loc_2923
 active=yes
@@ -405,9 +405,9 @@ recol3d=1057
 recol4s=9512
 recol4d=11328
 category=double_door_open_and_close_right
-param=next_loc_stage,legends_ancient_gate_4_open
+param=next_loc_stage,lgstrengthtrialgate_inact_r
 
-[legends_ancient_gate_3_open]
+[lgstrengthtrialgate_inact_l]
 name=Ancient Gate
 model=model_loc_2922
 active=yes
@@ -420,7 +420,7 @@ recol3d=1057
 recol4s=9512
 recol4d=11328
 
-[legends_ancient_gate_4_open]
+[lgstrengthtrialgate_inact_r]
 name=Ancient Gate
 model=model_loc_2923
 active=yes
@@ -433,7 +433,7 @@ recol3d=1057
 recol4s=9512
 recol4d=11328
 
-[legends_jagged_wall]
+[crumbled_wall]
 name=Jagged wall
 desc=A high wall made up of rocks with sharp edges.
 model=model_loc_1613
@@ -443,7 +443,7 @@ op2=Jump-over
 retex1s=mossybricks
 retex1d=mossy
 
-[legends_marked_wall]
+[lgancientwalldoor]
 name=Marked wall
 desc=It looks like ancient graffiti.
 model=model_loc_2927
@@ -452,7 +452,7 @@ occlude=yes
 op1=Use
 op2=Search
 
-[legends_carved_rock]
+[lg_gemplacerock]
 name=Carved rock
 desc=An ornately carved rock with a pointed recepticle.
 model=model_loc_534
@@ -461,13 +461,13 @@ op2=Search
 recol1s=13537
 recol1d=7329
 
-[legends_buried_skeleton]
+[lg_dwarfremains]
 name=Buried skeleton
 desc=A half buried skeleton, probably dwarven remains.
 model=model_loc_2929
 op1=Search
 
-[legends_ancient_gate_5_closed]
+[lgmagictrialgateclosed]
 name=Ancient Gate
 desc=A huge, strangely constructed doorway, not sure how this opens.
 model=model_loc_2930
@@ -477,7 +477,7 @@ width=2
 op1=Open
 op2=Search
 
-[legends_ancient_gate_5_open]
+[lgmagictrialgateopen]
 name=Ancient Gate
 desc=It looks like a magical portal of somekind, who knows where it leads to?
 model=model_loc_2931
@@ -485,7 +485,7 @@ active=yes
 length=2
 width=2
 
-[legends_barrel]
+[skullcavebarrel]
 name=Barrel
 desc=Strangely, there's a locked barrel here, I wonder what's inside.
 model=model_loc_362
@@ -493,14 +493,14 @@ op1=Smash
 recol1s=8456
 recol1d=15459
 
-[loc_2933]
+[skullcavebarrel_breaking]
 model=model_loc_672
 anim=barrel
 hasalpha=yes
 blockwalk=no
 active=no
 
-[legends_winch]
+[lg_winchdown_norope]
 name=Winch
 desc=A large scaffold platform most likely used for lifting and lowering heavy items.
 model=model_loc_2934
@@ -512,7 +512,7 @@ resizey=300
 resizez=300
 op1=Search
 
-[legends_winch_rope]
+[lg_winchdown_rope]
 name=Winch
 desc=Used to move earth to, and from, the dig shaft. A rope has been thrown over it.
 model=model_loc_2350
@@ -524,13 +524,13 @@ resizey=300
 resizez=300
 op1=Climb-down
 
-[legends_totem_pole_1]
+[lg_ord_totem_pole]
 name=Totem Pole
 desc=A sculpted trunk of wood.
 model=model_loc_870
 op1=Look
 
-[legends_totem_pole_2]
+[lg_totem_pole_good]
 name=Totem Pole
 desc=A sculpted trunk of wood.
 model=model_loc_870
@@ -544,7 +544,7 @@ recol3d=7297
 recol4s=7360
 recol4d=14592
 
-[legends_totem_pole_3]
+[lg_totem_pole_evil]
 name=Totem Pole
 desc=A sculpted trunk of wood.
 model=model_loc_870
@@ -572,7 +572,7 @@ recol3d=13378
 recol4s=7360
 recol4d=31554
 
-[loc_2940]
+[lg_dressed_table]
 name=Table
 desc=A wonderfully dressed table.
 model=model_loc_625
@@ -582,7 +582,7 @@ retex1d=wood2
 recol2s=6309
 recol2d=4228
 
-[legends_sacred_water]
+[lgwaterpool]
 name=Sacred water
 desc=Sparkling sacred water straight from the source.
 model=model_loc_42
@@ -590,7 +590,7 @@ shadow=no
 hillskew=yes
 op1=Look
 
-[legends_water_pool]
+[sacred_water]
 name=Water Pool
 desc=A sparkling, babbling flow of water from an underground source.
 model=model_loc_443
@@ -600,7 +600,7 @@ op1=Look
 op2=Investigate
 mapscene=8
 
-[legends_polluted_water]
+[sacred_water_polluted]
 name=Polluted water
 desc=Disgusting filthy quagmire that oozes from the ground.
 model=model_loc_443
@@ -610,7 +610,7 @@ op1=Look
 retex1s=water
 retex1d=bark
 
-[legends_tall_reeds]
+[tall_reeds]
 name=Tall Reeds
 desc=Found near the waters edge.
 model=model_loc_1162
@@ -618,7 +618,7 @@ blockwalk=no
 op1=Look
 op2=Search
 
-[legends_yommi_tree_baby]
+[yommitree_baby]
 name=Yommi tree baby
 desc=A baby Yommi tree, it has a mystical aura.
 model=model_loc_1298
@@ -626,7 +626,7 @@ width=3
 length=3
 blockwalk=no
 
-[legends_yommi_tree_sapling]
+[yommitree_sapling]
 name=Yommi tree sapling
 desc=An adolescent looking Yommi tree, it has a mystical aura.
 model=model_loc_2946
@@ -637,7 +637,7 @@ width=3
 length=3
 blockwalk=no
 
-[legends_dead_yommi_sapling]
+[yommitree_saplingdead]
 name=Dead Yommi sapling
 desc= A dead Yommi tree sapling, you'll need a tough axe to remove this.
 model=model_loc_2946
@@ -652,7 +652,7 @@ recol1d=16898
 recol2s=15817
 recol2d=16898
 
-[legends_adult_yommi_tree]
+[yommitree_adult]
 name=Adult Yommi tree
 desc= A fully grown Yommi tree, it won't get much taller than this.
 model=model_loc_2946
@@ -660,7 +660,7 @@ width=3
 length=3
 blockwalk=no
 
-[legends_dead_yommi]
+[yommitree_adult_dead]
 name=Dead Yommi
 desc=A dead fully grown Yommi tree, you'll need a tough, sharp axe to remove this.
 model=model_loc_1278
@@ -672,7 +672,7 @@ recol1d=16898
 recol2s=15817
 recol2d=16898
 
-[legends_felled_yommi_tree]
+[yommitree_felled]
 name=Felled Yommi tree
 desc=A felled adult Yommi tree, perhaps you should trim those branches?
 model=model_loc_2950
@@ -680,7 +680,7 @@ width=3
 length=3
 blockwalk=no
 
-[legends_rotten_yommi]
+[yommitree_felled_rotten]
 name=Rotten Yommi
 desc=A rotten felled Yommi tree, it was left too long in the damp jungle.
 model=model_loc_2950
@@ -692,7 +692,7 @@ recol1d=16898
 recol2s=15817
 recol2d=16898
 
-[legends_trimmed_yommi]
+[yommitree_trimmed]
 name=Trimmed Yommi
 desc=A trimmed Yommi tree log, perfect for sculpting into a totem pole.
 model=model_loc_2952
@@ -700,7 +700,7 @@ width=3
 length=3
 blockwalk=no
 
-[legends_rotten_yommi_tree]
+[yommitree_trimmed_rotten]
 name=Rotten Yommi tree
 desc=A rotten Yommi tree log, it was left too long in the damp jungle air.
 model=model_loc_2952
@@ -712,7 +712,7 @@ recol1d=16898
 recol2s=15817
 recol2d=16898
 
-[legends_totem_pole_5]
+[yommitree_totem]
 name=Totem pole
 desc=A beatifully crafted totem pole carved from the trunk of the sacred Yommi tree.
 model=model_loc_2954
@@ -721,7 +721,7 @@ width=3
 length=3
 blockwalk=no
 
-[legends_rotten_totem_pole]
+[yommitree_totem_rotten]
 name=Rotten Totem pole
 desc=A rotten totem pole, it was left to rot in the jungle.
 model=model_loc_2954
@@ -733,7 +733,7 @@ recol1d=16898
 recol2s=11591
 recol2d=19012
 
-[legends_fertile_soil]
+[fertilesoil]
 name=Fertile Soil
 desc=This earth is particularly fertile.
 model=model_loc_2956
@@ -743,7 +743,7 @@ hillskew=yes
 active=yes
 blockwalk=no
 
-[legends_damaged_earth]
+[damaged_earth]
 name=Damaged Earth
 desc=This earth is damaged by cultivation, time will return the fertility.
 model=model_loc_2956
@@ -752,13 +752,13 @@ length=3
 hillskew=yes
 blockwalk=no
 
-[legends_climbing_rope]
+[lgclimbrope_viyeldicaves]
 name=Climbing rope
 desc=A rope hangs here.
 model=model_loc_1762
 op1=Climb
 
-[legends_rocky_ledge_1]
+[rocky_ledge]
 name=Rocky Ledge
 desc=A dangerous path onwards.
 model=plainrock2
@@ -766,42 +766,42 @@ hillskew=yes
 hillskew=yes
 op1=Climb-over
 
-[legends_rocky_ledge_2]
+[rocky_ledge1]
 name=Rocky Ledge
 desc=A dangerous path onwards.
 model=plainrock2
 hillskew=yes
 op1=Climb-over
 
-[legends_rocky_ledge_3]
+[rocky_ledge2]
 name=Rocky Ledge
 desc=A dangerous path onwards.
 model=plainrock2
 hillskew=yes
 op1=Climb-over
 
-[legends_rocks_2]
+[viycaves_climbrock1]
 name=Rocks
 desc=Stoney!
 model=plainrock2
 hillskew=yes
 op1=Climb-over
 
-[legends_rocks_3]
+[viycaves_climbrock2]
 name=Rocks
 desc=Stoney!
 model=plainrock2
 hillskew=yes
 op1=Climb-over
 
-[legends_rocks_4]
+[viycaves_climbrock3]
 name=Rocks
 desc=Stoney!
 model=plainrock2
 hillskew=yes
 op1=Climb-over
 
-[legends_mossy_rock_3]
+[dragons_eye_rock]
 name=Mossy rock
 desc=Looks slippery!
 model=model_loc_477
@@ -812,31 +812,31 @@ op1=Search
 recol1s=7488
 recol1d=31050
 
-[loc_2967]
+[cavewall_face1_hce]
 model=model_loc_2967
 sharelight=yes
 hillskew=yes
 
-[loc_2968]
+[cavewall_face1_hcf]
 model=model_loc_2968
 sharelight=yes
 hillskew=yes
 
-[legends_recess]
+[heart_recess_empty]
 name=Recess
 desc=It looks like a strangly shaped depression in the rock.
 model=model_loc_2967
 hillskew=yes
 op1=Search
 
-[legends_filled_recess]
+[heart_recess_full]
 name=Filled Recess
 desc=This recess has a glowing heart shaped crystal in it.
 model=model_loc_2968
 hillskew=yes
 op1=Search
 
-[legends_shimmering_field]
+[legendsquest_force_barrier]
 name=Shimmering field
 desc=This looks like some sort of shimering surface.
 model=model_loc_2228
@@ -844,7 +844,7 @@ active=yes
 op1=Walk-through
 op2=Look
 
-[legends_boulder_4]
+[lgboulder_source1]
 name=Boulder
 desc=A huge lump of rock.
 model=model_loc_2919
@@ -853,7 +853,7 @@ length=2
 mapscene=11
 op1=Smash-to-bits
 
-[legends_boulder_5]
+[lgboulder_source2]
 name=Boulder
 desc=A huge lump of rock.
 model=model_loc_2919
@@ -862,7 +862,7 @@ length=2
 mapscene=11
 op1=Smash-to-bits
 
-[legends_boulder_6]
+[lgboulder_source3]
 name=Boulder
 desc=A huge lump of rock.
 model=model_loc_2919
@@ -871,14 +871,14 @@ length=2
 mapscene=11
 op1=Smash-to-bits
 
-[legends_leafy_palm_tree]
+[kharazi_bamboo_tree_base_leafy]
 name=Leafy Palm Tree
 desc=This tree is particularly leafy.
 model=model_loc_1326
 mapscene=0
 op1=Shake
 
-[legends_leafy_palm_tree_empty]
+[kharazi_bamboo_tree_inac]
 name=Leafy Palm Tree
 desc=This tree is particularly leafy.
 model=model_loc_1326

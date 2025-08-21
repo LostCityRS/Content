@@ -68,7 +68,7 @@ switch_loc (loc_type) {
     case bakers_stall_stealing : 
         longqueue(stolen_from_stall_baker, ^baker_stall_timer, ^discard);
         %thieving_stall_timer = setbit(%thieving_stall_timer, ^baker_stall_index);
-    case tea_stall_stealing : 
+    case tea_stall : 
         longqueue(stolen_from_stall_tea, ^tea_stall_timer, ^discard);
         %thieving_stall_timer = setbit(%thieving_stall_timer, ^tea_stall_index);
     case silk_stall_stealing : 
@@ -90,7 +90,7 @@ switch_loc (loc_type) {
 ~stealing_check_for_reward($data);
 stat_advance(thieving, $experience);
 // Temp note: dur does not need updated
-loc_change(market_stall, $respawn_ticks);
+loc_change(market, $respawn_ticks);
 
 [label,activate_trapped_chest]
 p_arrivedelay;

@@ -1,4 +1,4 @@
-[oploc1,loc_2871]
+[oploc1,magearena_ladder_to_cellar]
 p_arrivedelay;
 // https://youtu.be/uSO-ilQk5XY?si=mj3w1GIB5ZM0BnAZ&t=1089
 anim(human_reachforladder, 0);
@@ -6,13 +6,13 @@ p_delay(1);
 p_telejump(movecoord(coord, -549, 0, 756));
 mes("You climb down the ladder.");
 
-[oploc1,loc_2872]
+[oploc1,magearena_ladder_from_cellar]
 p_arrivedelay;
 ~climb_ladder(movecoord(coord, 549, 0, -756), true);
 
 
-[oploc1,loc_2878] @jump_in_sparkling_pool(^sparkling_pool_chamber_coord);
-[oploc1,loc_2879] @jump_in_sparkling_pool(^sparkling_pool_return_coord);
+[oploc1,magearena_waterportal1] @jump_in_sparkling_pool(^sparkling_pool_chamber_coord);
+[oploc1,magearena_waterportal2] @jump_in_sparkling_pool(^sparkling_pool_return_coord);
 
 [label,jump_in_sparkling_pool](coord $tele_coord)
 def_int $width = 3;
@@ -78,7 +78,7 @@ anim(null, 0);
 
 
 // need to find screenshots to confirm these
-[oploc1,loc_2880]
+[oploc1,magearena_scan]
 // if north of the loc
 if (coordz(coord) > coordz(loc_coord)) {
     if (%magearena < ^mage_arena_complete) {

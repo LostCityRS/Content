@@ -1,4 +1,4 @@
-[oploc1,dragonslayer_gangplank_board]
+[oploc1,dragonshipgangplank_on]
 if (%dragon_progress < ^quest_dragon_bought_ship | %dragon_progress >= ^dragon_complete) {
     if (npc_find(coord, klarense, 5, 0) = true) {
         ~chatnpc("<p,neutral>Hey, stay off my ship! That's private property!");
@@ -17,7 +17,7 @@ switch_int (loc_angle) {
         p_telejump(movecoord(coord, 0, 1, 2));
 }
 
-[oploc1,dragonslayer_gangplank_disembark]
+[oploc1,dragonshipgangplank_off]
 mes("You disembark the ship.");
 switch_int (loc_angle) {
     case ^loc_west,^loc_east :
@@ -30,7 +30,7 @@ switch_int (loc_angle) {
         p_telejump(movecoord(coord, 0, -1, -2));
 }
 
-[oploc1,lady_lumbridge_ladder]
+[oploc1,dragonshipladdertop]
 p_arrivedelay; //osrs
 if (%dragon_planks < 3) {
     ~climb_ladder(1_47_150_39_40, true);
@@ -40,15 +40,15 @@ if (%dragon_planks < 3) {
     ~climb_ladder(2_47_150_39_40, true);
 }
 
-[oploc1,lady_lumbridge_ladder2]
+[oploc1,dragonshipladder]
 ~climb_ladder(1_47_50_39_7, true);
 
-[oploc1,lady_lumbridge_hole]
+[oploc1,shiphole]
 // left click didnt auto add planks
 ~mesbox("You'll need to use wooden planks on this hole to patch it up.");
 
 
-[oplocu,lady_lumbridge_hole]
+[oplocu,shiphole]
 switch_obj (last_useitem) {
     case woodplank : @add_plank_to_ship_hole; 
     case default : ~mesbox("That won't help get the ship seaworthy.");
@@ -90,7 +90,7 @@ p_teleport(movecoord(coord, 0, 1, 0));
 // holes is not a typo https://youtu.be/kCMB4I_aJJM?t=106
 ~mesbox("You have successfully patched the holes in the ship.");
 
-[oploc1,lady_lumbridge_ladder_shipwreck]
+[oploc1,dragonshipladdertop2]
 p_arrivedelay;
 def_coord $coord = movecoord(coord, 0, -1, 0);
 if (map_blocked($coord) = true) { // just incase the player wants to hide behind the ladder

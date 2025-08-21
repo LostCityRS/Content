@@ -20,7 +20,7 @@ if (~gnome_cocktail_ingredient_space = 0) { // guess
     return;
 }
 switch_obj($ingredient) {
-    case lemon, orange, pineapple, lime, dwellberry :
+    case lemon, orange, pineapple, lime, dwellberries :
         mes("You squeeze the juice from the <lowercase(oc_name($ingredient))> into your cocktail shaker..."); // guess
     case vodka, gin, brandy, whisky, bucket_milk :
         mes("You pour the <lowercase(oc_name($ingredient))> into your cocktail shaker..."); // guess
@@ -47,7 +47,7 @@ switch_obj($ingredient) {
     case pineapple : %gnome_cocktail_bits1 = setbit_range_toint(%gnome_cocktail_bits1, add(getbit_range(%gnome_cocktail_bits1, 28, 31), 1), 28, 31);
     case equa_leaves : %gnome_cocktail_bits2 = setbit_range_toint(%gnome_cocktail_bits2, add(getbit_range(%gnome_cocktail_bits2, 0, 3), 1), 0, 3);
     case bucket_milk : %gnome_cocktail_bits2 = setbit_range_toint(%gnome_cocktail_bits2, add(getbit_range(%gnome_cocktail_bits2, 4, 7), 1), 4, 7);
-    case dwellberry : %gnome_cocktail_bits2 = setbit_range_toint(%gnome_cocktail_bits2, add(getbit_range(%gnome_cocktail_bits2, 8, 11), 1), 8, 11);
+    case dwellberries : %gnome_cocktail_bits2 = setbit_range_toint(%gnome_cocktail_bits2, add(getbit_range(%gnome_cocktail_bits2, 8, 11), 1), 8, 11);
 }
 
 [label,pour_cocktail_shaker]

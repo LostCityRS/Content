@@ -11,7 +11,7 @@ if(npc_finduid($uid) = true) {
     @kaqemeex_herblore_fundamentals;
 }
 
-[oplocu,druid_cauldron]
+[oplocu,cauldron_of_thunder]
 def_obj $useitem = last_useitem;
 p_arrivedelay;
 if($useitem = raw_rat_meat) {

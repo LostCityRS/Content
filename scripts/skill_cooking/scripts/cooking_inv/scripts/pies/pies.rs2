@@ -12,7 +12,7 @@ switch_obj (last_useitem) {
 
 [opheldu,pie_shell]
 switch_obj (last_useitem) {
-    case cooking_apple, cooked_meat, cooked_chicken, redberry : @make_uncooked_pie(last_useslot);
+    case cooking_apple, cooked_meat, cooked_chicken, redberries : @make_uncooked_pie(last_useslot);
     case default : ~displaymessage(^dm_default);
 }
 
@@ -22,7 +22,7 @@ switch_obj (last_useitem) {
     case default : ~displaymessage(^dm_default);
 }
 
-[opheldu,redberry]
+[opheldu,redberries]
 switch_obj (last_useitem) {
     case pie_shell : @make_uncooked_pie(last_slot);
     case default : ~displaymessage(^dm_default);

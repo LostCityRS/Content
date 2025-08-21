@@ -105,7 +105,7 @@ p_delay(5);
 
 [proc,clicking_a_loc_then_clicking_away_before_reaching]
 mes("Test 3 (manual): Clicking a Loc then clicking away before reaching");
-loc_add(movecoord(coord, 0, 0, 5), loc_1276, 0, centrepiece_straight, 10);
+loc_add(movecoord(coord, 0, 0, 5), tree, 0, centrepiece_straight, 10);
 
 [proc,clicking_a_loc_then_walking_far_away]
 mes("Test 4 (manual): Clicking a Loc then walking far away");
@@ -291,7 +291,7 @@ p_opnpct(magic:wind_strike);
 
 [proc,pathing_to_a_loc_as_it_is_deleted_before_reaching]
 mes("Test 25: Pathing to a Loc as it is deleted before reaching");
-loc_add(movecoord(coord, 0, 0, 10), loc_1276, 0, centrepiece_straight, 5);
+loc_add(movecoord(coord, 0, 0, 10), tree, 0, centrepiece_straight, 5);
 p_oploc(1);
 
 [proc,pathing_to_an_obj_as_it_is_deleted_before_reaching]
@@ -345,7 +345,7 @@ npc_tele(movecoord(npc_coord, -5, 0, -10));
 [proc,not_repathing_to_an_npc_not_on_your_last_waypoint]
 mes("Test 30: Not repathing to an Npc not on your last waypoint");
 p_telejump(0_50_50_39_7);
-if (loc_find(0_50_50_38_10, loc_1533) = true) {
+if (loc_find(0_50_50_38_10, desertdoorclosed) = true) {
     def_coord $new_loc_coord = ~movecoord_loc_return(~door_open(loc_angle, loc_shape));
     loc_del(500);
     loc_add($new_loc_coord, loc_param(next_loc_stage), modulo(add(loc_angle, 1), 4), loc_shape, 500);
@@ -362,7 +362,7 @@ p_opnpc(2);
 
 world_delay(2);
 
-if (loc_find(0_50_50_37_10, loc_1534) = true) {
+if (loc_find(0_50_50_37_10, desertdooropen) = true) {
     def_coord $new_loc_coord = ~movecoord_loc_return(~door_close(loc_angle, loc_shape));
     loc_del(500);
     loc_add($new_loc_coord, loc_param(next_loc_stage), modulo(add(loc_angle, 3), 4), loc_shape, 500);
@@ -370,7 +370,7 @@ if (loc_find(0_50_50_37_10, loc_1534) = true) {
 
 world_delay(2);
 
-if (loc_find(0_50_50_38_10, loc_1533) = true) {
+if (loc_find(0_50_50_38_10, desertdoorclosed) = true) {
     def_coord $new_loc_coord = ~movecoord_loc_return(~door_open(loc_angle, loc_shape));
     loc_del(500);
     loc_add($new_loc_coord, loc_param(next_loc_stage), modulo(add(loc_angle, 1), 4), loc_shape, 500);

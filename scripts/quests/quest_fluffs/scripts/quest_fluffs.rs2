@@ -113,7 +113,7 @@ switch_int ($option) {
         %fluffs_progress = ^fluffs_paid_boy;
 }
 
-[oploc1,loc_2618]
+[oploc1,gertrudefence]
 if(coordz(coord) < coordz(loc_coord) & map_members = ^false) {
     mes(^mes_members_do_that); // guess
     return; 
@@ -135,10 +135,10 @@ if(%lumberyard_fence_used > map_clock) {
 %lumberyard_fence_used = calc(map_clock + 3);
 ~agility_exactmove(human_walk_style, 0, 2, $start_coord, $end_coord, 0, 60, $dir, true);
 
-[opheldu,doogle_leaves]
+[opheldu,doogleleaves]
 if(last_useitem = raw_sardine) {
     ~mesbox("You rub the doogle leaves over the sardine.");
-    inv_del(inv, doogle_leaves, 1);
+    inv_del(inv, doogleleaves, 1);
     inv_del(inv, raw_sardine, 1);
     inv_add(inv, seasoned_sardine, 1);
     return;
@@ -151,10 +151,10 @@ if (last_useitem = raw_chompy) {
 ~displaymessage(^dm_default);
 
 [opheldu,raw_sardine]
-if(last_useitem = doogle_leaves) {
+if(last_useitem = doogleleaves) {
     ~mesbox("You rub the doogle leaves over the sardine."); //mesbox is before item
     inv_del(inv, raw_sardine, 1);
-    inv_del(inv, doogle_leaves, 1);
+    inv_del(inv, doogleleaves, 1);
     inv_add(inv, seasoned_sardine, 1);
     return;
 }
@@ -278,14 +278,14 @@ if (npc_coord = %fluffs_crate & %fluffs_progress = ^fluffs_gave_sardine & inv_to
 }
 mes("You find nothing.");
 
-[oploc1,loc_2619]
+[oploc1,gertrudeempty_barrel]
 mes("You search the barrel.");
 p_delay(4);
 mes("You find nothing.");
 p_delay(4);
 mes("You can hear kittens mewing close by...");
 
-[oploc1,loc_2620]
+[oploc1,gertrudeempty_crate]
 if(loc_coord = 0_51_54_45_47 & inv_total(inv, trail_clue_hard_map001) > 0) {
     ~trail_clue_hard_loc_interact(trail_clue_hard_map001);
     return;

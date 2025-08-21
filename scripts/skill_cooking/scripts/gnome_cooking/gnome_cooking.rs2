@@ -1,4 +1,4 @@
-[opheldu,dwellberry]
+[opheldu,dwellberries]
 switch_obj(last_useitem) {
     case cocktail_shaker : @add_cocktail_ingredient(last_item);
     case half_baked_bowl : @add_bowl_ingredient(last_item);
@@ -23,7 +23,7 @@ switch_obj(last_useitem) {
     case cocktail_shaker : @add_batta_ingredient(last_item);
     case half_baked_bowl : @add_bowl_ingredient(last_item);
     case half_baked_batta : @add_batta_ingredient(last_item);
-    case half_baked_crunchies : @add_crunchies_ingredient(last_item);
+    case half_baked_crunchy : @add_crunchies_ingredient(last_item);
     case raw_chompy : @quest_chompybird_add_ingredients_to_chompy_message;
     case default : ~displaymessage(^dm_default);
 }
@@ -51,7 +51,7 @@ switch_obj(last_useitem) {
 switch_obj(last_useitem) {
     case gnome_spice : @opheldu_make_gnome_food(spicy_worm, "You add the gnome spice to the king worm.");
     case half_baked_bowl : @add_bowl_ingredient(last_item);
-    case half_baked_crunchies : @add_crunchies_ingredient(last_item);
+    case half_baked_crunchy : @add_crunchies_ingredient(last_item);
     case default : ~displaymessage(^dm_default);
 }
 
@@ -60,7 +60,7 @@ switch_obj(last_useitem) {
     case gnome_spice : @opheldu_make_gnome_food(spicy_toads_legs, "You add the gnome spice to the toad legs.");
     case equa_leaves : @opheldu_make_gnome_food(equa_toads_legs, "You add the equa leaves to the toad legs.");
     case half_baked_bowl : @add_bowl_ingredient(last_item);
-    case half_baked_crunchies : @add_crunchies_ingredient(last_item);
+    case half_baked_crunchy : @add_crunchies_ingredient(last_item);
     case default : ~displaymessage(^dm_default);
 }
 
@@ -102,7 +102,7 @@ switch_obj(last_useitem) {
     case toads_legs : @opheldu_make_gnome_food(spicy_toads_legs, "You add the gnome spice to the toad legs.");
     case equa_toads_legs : @opheldu_make_gnome_food(seasoned_toads_legs, "You add the gnome spice to the equa toad legs.");
     case half_baked_bowl : @add_bowl_ingredient(last_item);
-    case half_baked_crunchies : @add_crunchies_ingredient(last_item);
+    case half_baked_crunchy : @add_crunchies_ingredient(last_item);
     case default : ~displaymessage(^dm_default);
 }
 

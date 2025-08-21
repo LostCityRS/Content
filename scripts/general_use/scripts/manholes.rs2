@@ -1,11 +1,11 @@
-[oploc1,loc_881]
+[oploc1,manholeclosed]
 mes("You pull back the cover from over the manhole.");
 sound_synth(coffin_open, 0, 0);
 // Temp note: dur does not need updated
-loc_change(loc_882, 400);
+loc_change(manholeopen, 400);
 loc_add(movecoord(loc_coord, 0, 0, -1), loc_883, loc_angle, loc_shape, 400);
 
-[oploc1,loc_882]
+[oploc1,manholeopen]
 mes("You climb down through the manhole.");
 p_telejump(movecoord(coord(), 0, 0, 6400));
 
@@ -13,7 +13,7 @@ p_telejump(movecoord(coord(), 0, 0, 6400));
 mes("You place the cover back over the manhole.");
 // Temp note: dur does not need updated
 loc_del(400);
-if (.loc_find(movecoord(loc_coord, 0, 0, 1), loc_882) = true) {
+if (.loc_find(movecoord(loc_coord, 0, 0, 1), manholeopen) = true) {
     // Temp note: dur does not need updated
-    .loc_change(loc_881, 400);
+    .loc_change(manholeclosed, 400);
 }

@@ -1,4 +1,4 @@
-[oploc1,loc_2537] @rehnissons_enter_house;
+[oploc1,rehnisondoorshut] @rehnissons_enter_house;
 [oploc1,loc_2534] @west_ardougne_plague_house_doors;
 [oploc1,loc_2535] mes("This door is locked."); // todo probs not right but yolo in 225 seems only 1 door is the correct one.
 
@@ -50,9 +50,9 @@ if (~check_axis(coord, loc_coord, loc_angle) = true) {
 }
 p_teleport($dest);
 // Temp note: dur updated
-if(.loc_find(loc_coord, loc_1572) = true) {
+if(.loc_find(loc_coord, boardedupdoor) = true) {
     .loc_del(3);
-    .loc_add(movecoord($loc_coord, $x, 0, $z), loc_1572, modulo(add($angle, 1), 4), .loc_shape, 3);
+    .loc_add(movecoord($loc_coord, $x, 0, $z), boardedupdoor, modulo(add($angle, 1), 4), .loc_shape, 3);
 }
 loc_change(inviswall, 3);
 loc_add(movecoord($loc_coord, $x, 0, $z), loc_2536, modulo(add($angle, 1), 4), $shape, 3);

@@ -1,5 +1,5 @@
 // Gnome stronghold entrance gate
-[oploc1,loc_190]
+[oploc1,gnome_areagate]
 if(%grandtree_progress = ^grandtree_released_prison & coordz(coord) > coordz(loc_coord)) { // only when leaving
     ~chatnpc_specific(nc_name(gnomekingsguard), gnomekingsguard, "<p,angry>Halt, human!");
     ~chatplayer("<p,shock>What?, why?"); // intentional
@@ -36,10 +36,10 @@ p_delay(0);
 // replace gate
 // Temp note: dur updated
 loc_del(5);
-loc_add(movecoord($loc_coord, 3, 0, 0), loc_192, 0, loc_shape, 5); // opened right side
+loc_add(movecoord($loc_coord, 3, 0, 0), gnome_areagate_open_right, 0, loc_shape, 5); // opened right side
 loc_add(movecoord($loc_coord, 2, 0, 0), inviswall, 3, loc_shape, 5); // blocks whole path
 loc_add(movecoord($loc_coord, 2, 0, 1), inviswall, 1, loc_shape, 5);
-loc_add($loc_coord, loc_191, 2, loc_shape, 5); 
+loc_add($loc_coord, gnome_areagate_open_left, 2, loc_shape, 5); 
 // walk to dest
 if(coordz(coord) > coordz($loc_coord)) {
     ~forcemove(movecoord(coord, 0, 0, -3));
@@ -48,8 +48,8 @@ if(coordz(coord) > coordz($loc_coord)) {
 }
 
 // Grand Tree gate
-[oploc1,loc_1967] @open_tree_door(loc_1969, 2465);
-[oploc1,loc_1968] @open_tree_door(loc_1970, 2466);
+[oploc1,treedoorl] @open_tree_door(treedoorl_open, 2465);
+[oploc1,treedoorr] @open_tree_door(treedoorr_open, 2466);
 
 // pass start x because these door locs are also on the sides (maybe to increase the hitbox)
 [label,open_tree_door](loc $open_door, int $start_x)

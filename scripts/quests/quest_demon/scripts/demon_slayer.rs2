@@ -6,7 +6,7 @@ session_log(^log_adventure, "Quest complete: Demon Slayer");
 ~send_quest_complete(questlist:demon, silverlight, 250, ^demon_questpoints, "You have completed the\\nDemon Slayer Quest!");
 
 // Search Drain
-[oploc1,varrock_palace_sewer_drain]
+[oploc1,questdrain]
 ~mesbox("This is the drainpipe running from the kitchen sink to the sewer.");
 if (%demon_progress < ^demon_key_hunt) {
     ~mesbox("I can see a key but I can't quite reach it...");
@@ -20,7 +20,7 @@ if (%demon_progress < ^demon_key_hunt) {
 }
 
 // For using bucket on drain
-[oplocu,varrock_palace_sewer_drain]
+[oplocu,questdrain]
 if (last_useitem ! bucket_water) {
     ~displaymessage(^dm_default);
     return;

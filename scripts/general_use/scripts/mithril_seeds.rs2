@@ -31,35 +31,35 @@ loc_del(1);
 [proc,random_flowers]()(loc)
 def_int $rand = random(1001);
 if($rand < 150) {
-    return (mixed_flowers);
+    return (flower_waterfall_quest_mixed);
 } else if($rand < 300) {
-    return (red_flowers);
+    return (flower_waterfall_quest_red);
 } else if($rand < 450) {
-    return (blue_flowers);
+    return (flower_waterfall_quest_blue);
 } else if($rand < 600) {
-    return (yellow_flowers);
+    return (flower_waterfall_quest_yellow);
 } else if($rand < 750) {
-    return (purple_flowers);
+    return (flower_waterfall_quest_purple);
 } else if($rand < 900) {
-    return (orange_flowers);
+    return (flower_waterfall_quest_orange);
 } else if($rand < 998) {
-    return (assorted_flowers);
+    return (flower_waterfall_quest);
 } else if($rand < 999) {
-    return (white_flowers);
+    return (flower_waterfall_quest_white);
 } else if($rand < 1001) {
-    return (black_flowers);
+    return (flower_waterfall_quest_black);
 }
 
 [proc,flowers_obj](loc $flowers_loc)(namedobj)
 switch_loc($flowers_loc) {
-    case assorted_flowers : return (flowers_waterfall_quest);
-    case red_flowers : return (flowers_waterfall_quest_red);
-    case blue_flowers : return (flowers_waterfall_quest_blue);
-    case yellow_flowers : return (flowers_waterfall_quest_yellow);
-    case purple_flowers : return (flowers_waterfall_quest_purple);
-    case orange_flowers : return (flowers_waterfall_quest_orange);
-    case mixed_flowers : return (flowers_waterfall_quest_mixed);
-    case white_flowers : return (flowers_waterfall_quest_white);
-    case black_flowers : return (flowers_waterfall_quest_black);
+    case flower_waterfall_quest : return (flowers_waterfall_quest);
+    case flower_waterfall_quest_red : return (flowers_waterfall_quest_red);
+    case flower_waterfall_quest_blue : return (flowers_waterfall_quest_blue);
+    case flower_waterfall_quest_yellow : return (flowers_waterfall_quest_yellow);
+    case flower_waterfall_quest_purple : return (flowers_waterfall_quest_purple);
+    case flower_waterfall_quest_orange : return (flowers_waterfall_quest_orange);
+    case flower_waterfall_quest_mixed : return (flowers_waterfall_quest_mixed);
+    case flower_waterfall_quest_white : return (flowers_waterfall_quest_white);
+    case flower_waterfall_quest_black : return (flowers_waterfall_quest_black);
     case default : return (flowers_waterfall_quest_mixed);
 }

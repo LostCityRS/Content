@@ -1,4 +1,4 @@
-[oploc1,loc_388]
+[oploc1,spookywardrobe]
 p_arrivedelay;
 anim(human_openbigcupboard, 0);
 p_delay(0);
@@ -7,13 +7,13 @@ p_delay(0);
 // 1/21 of spooky wardrobe, https://archive.is/FPJBA
 if (random(21) = 0) {
     // Temp note: dur does not need updated
-    loc_change(loc_390, 500);
+    loc_change(spookywardrobe_open_skeleton, 500);
 } else {
     // Temp note: dur does not need updated
-    loc_change(loc_389, 500);
+    loc_change(spookywardrobe_open, 500);
 }
 
-[oploc2,loc_389]
+[oploc2,spookywardrobe_open]
 p_arrivedelay;
 if (random(^findsomethingnice_chance) = 0 & ~in_tutorial_island(coord) = false) { // complete guess
     mes("You search the wardrobe..."); // guess
@@ -23,22 +23,22 @@ if (random(^findsomethingnice_chance) = 0 & ~in_tutorial_island(coord) = false) 
 }
 mes("The wardrobe is empty.");
 
-[oploc3,loc_389]
+[oploc3,spookywardrobe_open]
 p_arrivedelay;
 anim(human_closechest, 0);
 p_delay(0);
 // todo - Sound
 // Temp note: dur does not need updated
-loc_change(loc_388, 500);
+loc_change(spookywardrobe, 500);
 
-[oploc2,loc_390]
+[oploc2,spookywardrobe_open_skeleton]
 p_arrivedelay;
 mes("Eek! There's a skeleton in there.");
 
-[oploc3,loc_390]
+[oploc3,spookywardrobe_open_skeleton]
 p_arrivedelay;
 anim(human_closechest, 0);
 p_delay(0);
 // todo - Sound
 // Temp note: dur does not need updated
-loc_change(loc_388, 500);
+loc_change(spookywardrobe, 500);

@@ -20,7 +20,7 @@ if(%legends_progress >= ^legends_defeated_nezikchened_water) {
         return;
     }
     mes("You push the boulder out of the way.");
-    loc_add(npc_coord, legends_sacred_water, 0, centrepiece_straight, 30);
+    loc_add(npc_coord, lgwaterpool, 0, centrepiece_straight, 30);
     npc_walk(movecoord(npc_coord, -2, 0, 0)); // TODO: this npc walks in osrs but it doesn't move the boulder on here
     sound_synth(grate_open, 0, 0); // this is the correct sound
     npc_queue(10, 0, 30);
@@ -35,10 +35,10 @@ if(%legends_progress >= ^legends_defeated_nezikchened_water) {
     @echned_dialogue;
 }
 
-[oploc1,legends_sacred_water]
+[oploc1,lgwaterpool]
 ~mesbox("You see some sparkling effervescent water, it looks somehow similar to the water above ground.");
 
-[oplocu,legends_sacred_water]
+[oplocu,lgwaterpool]
 if(%legends_progress < ^legends_defeated_nezikchened_water) {
     mes("Some magical force keeps you away from the water."); // OSRS
     return;

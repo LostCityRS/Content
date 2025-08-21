@@ -119,8 +119,8 @@ if(getbit_range(%elemental_workshop_bits, ^elemental_workshop_water_controls_lef
     mes("You hear the sound of a water wheel starting up.");
     if(loc_find(0_42_154_31_51, elemental_wheel) = true) {
         loc_anim(elemental_wheel_spin);
-        loc_add(0_42_154_34_51, loc_2016, 2, centrepiece_straight, 4);
-        loc_add(0_42_154_30_51, loc_2018, 0, centrepiece_straight, 4);
+        loc_add(0_42_154_34_51, waterfall_foam, 2, centrepiece_straight, 4);
+        loc_add(0_42_154_30_51, waterfall_foam_small, 0, centrepiece_straight, 4);
     }
     sound_synth(water_wheel_start, 0, 0);
     return;

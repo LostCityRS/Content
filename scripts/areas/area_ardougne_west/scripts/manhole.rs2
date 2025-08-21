@@ -1,15 +1,15 @@
-[oploc1,loc_2543] @elena_open_manhole;
-[oploc1,loc_2544] @elena_enter_manhole;
-[oploc1,loc_2545] @elena_close_manhole;
+[oploc1,plaguemanholeclosed] @elena_open_manhole;
+[oploc1,plaguemanholeopen] @elena_enter_manhole;
+[oploc1,plaguemanholecover] @elena_close_manhole;
 
 [label,elena_open_manhole]
 loc_findallzone(^quest_elena_west_ardy_manhole_coord); // the manhole is not in the same zone as the player tele.
 while (loc_findnext = true) {
     // if the manhole is closed we open it when getting out basically.
-    if (loc_type = loc_2543) {
+    if (loc_type = plaguemanholeclosed) {
         // Temp note: dur does not need updated
         loc_change(loc_param(next_loc_stage), 500);
-        loc_add(movecoord(loc_coord, 0, 0, -1), loc_2545, loc_angle, centrepiece_straight, 500);
+        loc_add(movecoord(loc_coord, 0, 0, -1), plaguemanholecover, loc_angle, centrepiece_straight, 500);
     }
 }
 
@@ -25,7 +25,7 @@ loc_findallzone(^quest_elena_west_ardy_manhole_coord); // the manhole is not in 
 loc_del(500);
 while (loc_findnext = true) {
     // if the manhole is closed we open it when getting out basically.
-    if (loc_type = loc_2544) {
+    if (loc_type = plaguemanholeopen) {
         // Temp note: dur does not need updated
         loc_change(loc_param(next_loc_stage), 500);
     }

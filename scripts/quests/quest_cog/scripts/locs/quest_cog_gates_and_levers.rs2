@@ -2,7 +2,7 @@
 if (testbit(%cog_progress, ^quest_cog_rat_door_bit) = ^true) {
     ~mesbox("The death throes of the rats seem to have shaken the door|loose of its hinges. You pick it up and go through.");
     if_close;
-    ~open_and_close_door2(loc_1541, ~check_axis(coord, loc_coord, loc_angle), grate_open);
+    ~open_and_close_door2(poshdooropen, ~check_axis(coord, loc_coord, loc_angle), grate_open);
 } else {
     mes("This door does not seem to be openable.");
 }
@@ -12,7 +12,7 @@ def_boolean $is_inside = ~check_axis(coord, loc_coord, loc_angle);
 if ($is_inside = true) {
     // Temp note: dur does not need updated
     loc_del(500);
-    loc_add(movecoord(loc_coord, 1, 0, 0), loc_1541, 3, loc_shape, 500);
+    loc_add(movecoord(loc_coord, 1, 0, 0), poshdooropen, 3, loc_shape, 500);
     sound_synth(grate_open, 0, 0);
 
     if(loc_find(0_40_150_31_61, ctlevera) = true) {
@@ -38,7 +38,7 @@ loc_add(loc_coord, ctlevera2, loc_angle, loc_shape, 500);
 if(loc_find(0_40_150_35_57, ctratgatea) = true) {
     // Temp note: dur does not need updated
     loc_del(500);
-    loc_add(movecoord(loc_coord, 1, 0, 0), loc_1541, 3, loc_shape, 500);
+    loc_add(movecoord(loc_coord, 1, 0, 0), poshdooropen, 3, loc_shape, 500);
 }
 
 [oploc1,ctlevera2]
@@ -51,7 +51,7 @@ sound_synth(lever, 0, 0);
 loc_del(500);
 loc_add(loc_coord, ctlevera, loc_angle, loc_shape, 500);
 
-if(loc_find(0_40_150_36_57, loc_1541) = true) {
+if(loc_find(0_40_150_36_57, poshdooropen) = true) {
     // Temp note: dur does not need updated
     loc_del(500);
     loc_add(movecoord(loc_coord, -1, 0, 0), ctratgatea, 2, loc_shape, 2);

@@ -1,4 +1,4 @@
-[loc_2048]
+[ardougnewalldoor_left]
 name=Door
 desc=It's a door.
 model=model_loc_2048
@@ -6,7 +6,7 @@ sharelight=yes
 occlude=yes
 op1=Open
 
-[loc_2049]
+[ardougnewalldoor_right]
 name=Door
 desc=It's a door.
 model=model_loc_2048
@@ -15,7 +15,7 @@ occlude=yes
 mirror=yes
 op1=Open
 
-[loc_2546]
+[w_ardougnedoubledoorl]
 name=Door
 model=model_loc_71
 op1=Open
@@ -26,9 +26,9 @@ retex2d=wood2
 recol3s=24001
 recol3d=15855
 category=door_left_closed
-param=next_loc_stage,loc_2547
+param=next_loc_stage,w_ardougnedoubledoorlopen
 
-[loc_2547]
+[w_ardougnedoubledoorlopen]
 name=Door
 model=model_loc_71
 op1=Close
@@ -39,9 +39,9 @@ retex2d=wood2
 recol3s=24001
 recol3d=15855
 category=door_left_opened
-param=next_loc_stage,loc_2546
+param=next_loc_stage,w_ardougnedoubledoorl
 
-[loc_2548]
+[w_ardougnedoubledoorr]
 name=Door
 model=model_loc_71
 mirror=yes
@@ -53,9 +53,9 @@ retex2d=wood2
 recol3s=24001
 recol3d=15855
 category=door_right_closed
-param=next_loc_stage,loc_2549
+param=next_loc_stage,w_ardougnedoubledoorropen
 
-[loc_2549]
+[w_ardougnedoubledoorropen]
 name=Door
 model=model_loc_71
 mirror=yes
@@ -67,4 +67,4 @@ retex2d=wood2
 recol3s=24001
 recol3d=15855
 category=door_right_opened
-param=next_loc_stage,loc_2548
+param=next_loc_stage,w_ardougnedoubledoorr

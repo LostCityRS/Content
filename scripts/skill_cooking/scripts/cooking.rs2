@@ -122,7 +122,7 @@ sound_synth(fry, 0, 0);
 switch_obj($uncooked_item) {
     case half_baked_batta : $cooked_item = ~gnome_batta;
     case half_baked_bowl : $cooked_item = ~gnome_bowl;
-    case half_baked_crunchies : $cooked_item = ~gnome_crunchies;
+    case half_baked_crunchy : $cooked_item = ~gnome_crunchies;
 }
 // rsc delays for about 3 ticks.
 // This post says they removed unnecessary delays and "None of the above no longer take any more time than in Runescape 1."
@@ -137,7 +137,7 @@ if ($passes_roll = true) {
     }
     stat_advance(cooking, $experience);
     // these dont give additional items
-    if ($cooked_item = half_baked_batta | $cooked_item = half_baked_bowl | $cooked_item = half_baked_crunchies) {
+    if ($cooked_item = half_baked_batta | $cooked_item = half_baked_bowl | $cooked_item = half_baked_crunchy) {
         return;
     }
     if ($additional_item ! null) {

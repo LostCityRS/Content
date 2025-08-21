@@ -1,4 +1,4 @@
-[oploc1,loc_1586] ~open_and_close_door2(loc_1588, ~check_axis_locactive(coord), coffin_open);
+[oploc1,secretdoor2] ~open_and_close_door2(inactivesecretdoor2, ~check_axis_locactive(coord), coffin_open);
 
 [oploc1,ikov_darkstairsdown]
 if(inv_totalcat(inv, light_source_lit) > 0) {
@@ -169,14 +169,14 @@ p_teleport(0_41_153_41_57);
 
 [oploc1,ikov_trapleverdoor]
 if(%ikov_progress >= ^ikov_pulled_lever) {
-    ~open_and_close_door2(loc_1532, ~check_axis_locactive(coord), door_open);
+    ~open_and_close_door2(desertdoor_inactive, ~check_axis_locactive(coord), door_open);
     return;
 }
 mes("The door won't open.");
 
 [oploc1,ikov_firewarriordoor]
 if(%ikov_progress >= ^ikov_defeated_fire_warrior) {
-    ~open_and_close_door2(loc_1532, ~check_axis_locactive(coord), door_open);
+    ~open_and_close_door2(desertdoor_inactive, ~check_axis_locactive(coord), door_open);
     return;
 }
 p_arrivedelay; // https://youtu.be/cePHhIOqsqg?si=-8QJd7t7ZIBz4K7y&t=667
@@ -224,11 +224,11 @@ if(inv_total(inv, ikov_shinykey) = 0) {
     sound_synth(locked, 0, 0);
     return;
 }
-~open_and_close_door2(loc_1532, ~check_axis_locactive(coord), door_open);
+~open_and_close_door2(desertdoor_inactive, ~check_axis_locactive(coord), door_open);
 
 [oplocu,ikov_shinykeydoor]
 if(last_useitem = ikov_shinykey) {
-    ~open_and_close_door2(loc_1532, ~check_axis_locactive(coord), door_open);
+    ~open_and_close_door2(desertdoor_inactive, ~check_axis_locactive(coord), door_open);
     return;
 }
 ~displaymessage(^dm_default);

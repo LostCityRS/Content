@@ -26,7 +26,7 @@
 [oploc1,millbase]
 @millbase_take;
 
-[oploc1,millbase_full]
+[oploc1,millbase_flour]
 @millbase_take;
 
 [oplocu,millbase]
@@ -36,7 +36,7 @@ if (last_useitem = pot_empty) {
     ~displaymessage(^dm_default);
 }
 
-[oplocu,millbase_full]
+[oplocu,millbase_flour]
 if (last_useitem = pot_empty) {
     @millbase_take;
 } else {
@@ -123,7 +123,7 @@ if (loc_find($hopper_coord, hopper_full) = true) {
     loc_change($hopper, 500);
 
     if (loc_find($millbase_coord, millbase) = true) {
-        loc_change(millbase_full, 500);
+        loc_change(millbase_flour, 500);
     }
 } else {
     mes("You operate the empty hopper. Nothing interesting happens.");

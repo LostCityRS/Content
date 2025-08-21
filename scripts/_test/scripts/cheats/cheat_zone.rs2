@@ -14,10 +14,10 @@ if (p_finduid(uid) = true) {
 [debugproc,add_locs]
 if (p_finduid(uid) = true) {
     p_telejump(0_37_55_32_30);
-    loc_add(0_37_55_32_30, loc_1276, 0, centrepiece_straight, 10);
-    loc_add(0_37_55_32_29, loc_1276, 0, centrepiece_straight, 10);
-    loc_add(0_37_55_32_28, loc_1276, 0, centrepiece_straight, 10);
-    loc_add(0_37_55_32_27, loc_1276, 0, centrepiece_straight, 10);
+    loc_add(0_37_55_32_30, tree, 0, centrepiece_straight, 10);
+    loc_add(0_37_55_32_29, tree, 0, centrepiece_straight, 10);
+    loc_add(0_37_55_32_28, tree, 0, centrepiece_straight, 10);
+    loc_add(0_37_55_32_27, tree, 0, centrepiece_straight, 10);
 }
 
 
@@ -25,7 +25,7 @@ if (p_finduid(uid) = true) {
 if (p_finduid(uid) = true) {
     p_telejump(0_37_55_32_30);
     p_delay(0);
-    loc_add(0_37_55_32_30, loc_1276, 0, centrepiece_straight, 10);
+    loc_add(0_37_55_32_30, tree, 0, centrepiece_straight, 10);
     loc_del(100);
 }
 
@@ -33,7 +33,7 @@ if (p_finduid(uid) = true) {
 if (p_finduid(uid) = true) {
     p_telejump(0_37_55_32_30);
     p_delay(0);
-    loc_add(0_37_55_32_30, loc_1276, 0, centrepiece_straight, 10);
+    loc_add(0_37_55_32_30, tree, 0, centrepiece_straight, 10);
     p_delay(0);
     loc_del(100);
     p_delay(0);
@@ -61,7 +61,7 @@ if (p_finduid(uid) = true) {
 if (p_finduid(uid) = true) {
     p_telejump(0_37_55_32_9);
     p_delay(0);
-    loc_add(0_37_55_32_9, loc_1276, 0, centrepiece_straight, 10);
+    loc_add(0_37_55_32_9, tree, 0, centrepiece_straight, 10);
     p_delay(1);
     loc_add(0_37_55_32_9, loc_2732, 1, centrepiece_straight, 10);
 }
@@ -70,7 +70,7 @@ if (p_finduid(uid) = true) {
 if (p_finduid(uid) = true) {
     p_telejump(0_37_55_32_9);
     p_delay(0);
-    loc_add(0_37_55_32_9, loc_1276, 0, centrepiece_straight, 10);
+    loc_add(0_37_55_32_9, tree, 0, centrepiece_straight, 10);
     p_delay(1);
     loc_change(loc_2732, 10);
 }
@@ -118,9 +118,9 @@ if (p_finduid(uid) = true) {
 if (p_finduid(uid) = true) {
     p_telejump(0_37_55_32_30);
     p_delay(0);
-    loc_add(0_37_55_32_30, loc_1276, 0, centrepiece_straight, 10);
+    loc_add(0_37_55_32_30, tree, 0, centrepiece_straight, 10);
     p_delay(0);
     loc_del(10);
     p_delay(0);
-    loc_add(0_37_55_32_30, loc_1276, 0, centrepiece_straight, 100);
+    loc_add(0_37_55_32_30, tree, 0, centrepiece_straight, 100);
 }

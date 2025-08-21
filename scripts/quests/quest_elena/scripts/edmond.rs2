@@ -8,8 +8,8 @@ switch_int(%elena_progress) {
         @multi2("What's happened to her?", edmond_what_happened_to_elena, "Well, good luck finding her.", edmond_goodluck_finding_elena);
     case ^quest_elena_started :
         ~chatplayer("<p,happy>Hello Edmond.");
-        ~chatnpc("<p,quiz>Have you got the <lowercase(oc_name(dwellberry))>?");
-        if (inv_total(inv, dwellberry) = 0) {
+        ~chatnpc("<p,quiz>Have you got the <lowercase(oc_name(dwellberries))>?");
+        if (inv_total(inv, dwellberries) = 0) {
             ~chatplayer("<p,sad>Sorry, I'm afraid not.");
             ~chatnpc("<p,neutral>You'll probably find them in McGrubor's Wood to the north.");
         } else {
@@ -73,9 +73,9 @@ switch_int(%elena_progress) {
 [label,edmond_can_i_help_find_elena]
 ~chatplayer("<p,quiz>Can I help find her?");
 ~chatnpc("<p,confused>Really, would you? I've been working on a plan to get over the wall, but I'm too old and tired to carry it through.");
-~chatnpc("<p,neutral>If you're going over, the first thing you'll need is protection. My wife made a special gasmask for <nc_name(elena2)> with <lowercase(oc_name(dwellberry))> rubbed into it.");
-~chatnpc("<p,neutral><oc_name(dwellberry)> help repel the virus.|We need some more though...");
-~chatplayer("<p,quiz>Where can I find these <oc_name(dwellberry)>?");
+~chatnpc("<p,neutral>If you're going over, the first thing you'll need is protection. My wife made a special gasmask for <nc_name(elena2)> with <lowercase(oc_name(dwellberries))> rubbed into it.");
+~chatnpc("<p,neutral><oc_name(dwellberries)> help repel the virus.|We need some more though...");
+~chatplayer("<p,quiz>Where can I find these <oc_name(dwellberries)>?");
 ~quest_elena_set_progress(^quest_elena_started);
 ~chatnpc("<p,neutral>The only place I know is McGrubor's Wood to the north.");
 ~chatplayer("<p,neutral>Okay, I'll go get some.");

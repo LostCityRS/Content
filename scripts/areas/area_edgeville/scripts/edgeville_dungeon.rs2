@@ -1,7 +1,7 @@
-[oploc1,loc_1804]
+[oploc1,brasskeydoor]
 mes("The door is locked.");
 
-[oplocu,loc_1804]
+[oplocu,brasskeydoor]
 switch_obj(last_useitem) {
     case edgevilledungeonkey : @open_edgeville_dungeon_door;
     case default : ~displaymessage(^dm_default);

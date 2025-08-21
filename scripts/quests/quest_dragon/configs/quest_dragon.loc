@@ -1,11 +1,11 @@
-[dragon_slayer_magic_chest_closed]
+[oraclechestshut]
 name=Chest
 desc=I wonder what's inside?
 model=wooden_chest
 op1=Open
 forceapproach=north
 
-[dragon_slayer_magic_chest_opened]
+[oraclechestopen]
 name=Chest
 desc=It's closed.
 model=model_loc_76
@@ -13,7 +13,7 @@ op1=Search
 op2=Close
 forceapproach=north
 
-[lady_lumbridge_hole]
+[shiphole]
 name=Hole
 desc=This ship's not getting far with that.
 model=model_loc_281
@@ -21,7 +21,7 @@ active=yes
 op1=Repair
 sharelight=yes
 
-[lady_lumbridge_ladder]
+[dragonshipladdertop]
 name=Ladder
 desc=Takes me into the ship.
 model=model_loc_10
@@ -29,7 +29,7 @@ active=yes
 op1=Climb-down
 mapscene=7
 
-[lady_lumbridge_ladder_shipwreck]
+[dragonshipladdertop2]
 name=Ladder
 desc=Takes me into the ship.
 model=model_loc_10
@@ -37,28 +37,28 @@ active=yes
 op1=Climb-down
 mapscene=7
 
-[lady_lumbridge_ladder2]
+[dragonshipladder]
 name=Ladder
 model=model_loc_11
 active=yes
 op1=Climb-up
 mapscene=7
 
-[dragonslayer_gangplank_board]
+[dragonshipgangplank_on]
 name=Gangplank
 desc=Handy for boarding the ship.
 model=model_loc_69
 active=yes
 op1=Cross
 
-[dragonslayer_gangplank_disembark]
+[dragonshipgangplank_off]
 name=Gangplank
 desc=Handy for boarding the ship.
 model=model_loc_69
 active=yes
 op1=Cross
 
-[melzar_maze_entrance]
+[melzardoor]
 name=Door
 desc=It's closed.
 model=model_loc_3
@@ -69,7 +69,7 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[melzar_maze_red_door]
+[reddoor]
 name=Door
 desc=It's closed.
 model=model_loc_3
@@ -80,7 +80,7 @@ retex1d=door2
 recol2s=6342
 recol2d=30753
 
-[melzar_maze_orange_door]
+[orangedoor]
 name=Door
 desc=It's closed.
 model=model_loc_3
@@ -91,7 +91,7 @@ retex1d=door2
 recol2s=6342
 recol2d=31201
 
-[melzar_maze_yellow_door]
+[yellowdoor]
 name=Door
 desc=It's closed.
 model=model_loc_3
@@ -102,7 +102,7 @@ retex1d=door2
 recol2s=6342
 recol2d=31649
 
-[melzar_maze_blue_door]
+[bluedoor]
 name=Door
 desc=It's closed.
 model=model_loc_3
@@ -113,7 +113,7 @@ retex1d=door2
 recol2s=6342
 recol2d=31
 
-[melzar_maze_magenta_door]
+[magentadoor]
 name=Door
 desc=It's closed.
 model=model_loc_3
@@ -124,7 +124,7 @@ retex1d=door2
 recol2s=6342
 recol2d=30781
 
-[melzar_maze_green_door]
+[greendoor]
 name=Door
 desc=It's closed.
 model=model_loc_3
@@ -135,7 +135,7 @@ retex1d=door2
 recol2s=6342
 recol2d=2626
 
-[melzar_maze_exit_door]
+[funexit]
 name=Door
 desc=It's closed.
 model=model_loc_3
@@ -146,14 +146,14 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[melzar_maze_chest_closed]
+[funchestshut]
 name=Chest
 desc=It's closed.
 model=wooden_chest
 op1=Open
 forceapproach=north
 
-[melzar_maze_chest_opened]
+[funchestopen]
 name=Chest
 desc=It's open.
 model=model_loc_76
@@ -161,7 +161,7 @@ op1=Search
 op2=Close
 forceapproach=north
 
-[melzar_maze_ladder]
+[funladdertop]
 name=Ladder
 model=model_loc_133
 active=yes
@@ -217,7 +217,7 @@ desc=A rope hangs here that I can climb.
 model=model_loc_1762
 op1=Climb
 
-[crandor_secret_door]
+[dragonsecretdoor]
 name=Wall
 desc=There is something strange about this wall...
 model=model_loc_3
@@ -225,4 +225,4 @@ active=yes
 op1=Open
 retex1s=wall
 retex1d=mossybricks
-param=next_loc_stage,loc_1588
+param=next_loc_stage,inactivesecretdoor2

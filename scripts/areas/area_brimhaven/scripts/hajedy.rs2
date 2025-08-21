@@ -1,6 +1,6 @@
-[oploc1,loc_2230] ~mesbox("A sturdy travelling cart built for long trips through jungle areas."); // rsc
+[oploc1,brimhavencart] ~mesbox("A sturdy travelling cart built for long trips through jungle areas."); // rsc
 
-[oploc2,loc_2230]
+[oploc2,brimhavencart]
 ~mesbox("This looks like a sturdy travelling cart.|A nearby man walks over to you."); // rsc
 if(npc_find(coord, brimhavencartdriver, 7, 0) = true) {
     @brimhavencartdriver_dialogue;

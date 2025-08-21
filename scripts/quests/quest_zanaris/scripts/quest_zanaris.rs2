@@ -1,4 +1,4 @@
-[oplocu,loc_2409]
+[oplocu,leprechauntree]
 switch_obj(last_useitem) {
     case bronze_axe, iron_axe, steel_axe, black_axe, mithril_axe, adamant_axe, rune_axe :
         p_oploc(1); // gets delayed by a tick >:(
@@ -8,7 +8,7 @@ switch_obj(last_useitem) {
     case default : ~displaymessage(^dm_default);
 };
 
-[oploc1,loc_2409]
+[oploc1,leprechauntree]
 if (map_members = ^false) {
     mes(^mes_members_do_that);
     return;
@@ -25,7 +25,7 @@ if (npc_find($shamus_spawnpoint, zanarisleprechaun, 15, 0) = true) {
 npc_add($shamus_spawnpoint, zanarisleprechaun, 100);
 npc_walk(movecoord(npc_coord, 10, 0, 0));
 
-[oploc1,loc_1292]
+[oploc1,dramentree]
 if(%zanaris_progress < ^zanaris_spoken_shamus) {
     ~mesbox("The tree seems to have a ominous aura to it.|You do not feel like chopping it down.");
     return;
@@ -86,9 +86,9 @@ if(%zanaris_progress = ^zanaris_tree_chopped) {
 inv_del(inv, dramen_branch, 1);
 inv_add(inv, dramen_staff, 1);
 
-[oploc1,loc_2406]
+[oploc1,zanarisdoor]
 def_boolean $entering = ~check_axis(coord, loc_coord, loc_angle);
-~open_and_close_door2(loc_1532, $entering, door_open);
+~open_and_close_door2(desertdoor_inactive, $entering, door_open);
 if($entering = false) {
     if(inv_total(worn, dramen_staff) > 0 & map_members = ^true) {
         mes("The world starts to shimmer..."); // not sure what seq/spotanim would've been played here, just going to assume it was like a normal tele

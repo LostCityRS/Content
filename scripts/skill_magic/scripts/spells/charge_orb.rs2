@@ -13,7 +13,7 @@ def_dbrow $spell_data = ~get_spell_data($spell);
 if (~check_spell_requirements($spell_data) = false) {
     return;
 }
-if($loc = legends_ancient_gate_5_closed) {
+if($loc = lgmagictrialgateclosed) {
     @legends_cast_orb_door($spell_data);
 }
 // check if used on correct loc

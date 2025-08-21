@@ -1,5 +1,5 @@
-[oploc1,heroes_door_left] @open_heroes_guild(^left);
-[oploc1,heroes_door_right] @open_heroes_guild(^right);
+[oploc1,herodoor_l] @open_heroes_guild(^left);
+[oploc1,herodoor_r] @open_heroes_guild(^right);
 
 [label,open_heroes_guild](int $side) {
   if (%hero_progress >= ^hero_complete) {

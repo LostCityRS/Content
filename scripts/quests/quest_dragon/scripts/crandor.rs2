@@ -8,7 +8,7 @@ p_teleport(0_44_150_17_58); //osrs
 [oploc1,crandor_climbing_rope]
 p_teleport(0_44_50_17_57); // osrs
 
-[oploc1,crandor_secret_door]
+[oploc1,dragonsecretdoor]
 def_boolean $entering = ~check_axis_locactive(coord);
 if (%dragon_wall = ^false) {
     // unlocked automatically when quest is completed?

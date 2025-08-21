@@ -7,7 +7,7 @@ switch_obj (last_useitem)
             return;
         }
         @craft_studded(studded_chaps);
-    case leather_body :
+    case leather_armour :
         if (map_members = ^false) {
             mes(^mes_members_feature);
             return;
@@ -26,7 +26,7 @@ if (last_useitem = studs) {
 }
 ~displaymessage(^dm_default);
 
-[opheldu,leather_body]
+[opheldu,leather_armour]
 if (last_useitem = studs) {
     if (map_members = ^false) {
         mes(^mes_members_feature);

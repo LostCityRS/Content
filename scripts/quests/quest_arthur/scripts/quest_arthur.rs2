@@ -220,7 +220,7 @@ if(testbit(%excalibur_components_progress, ^excalibur_rewarded) = ^false) {
         @lake_beggar_dialogue;
     } 
 }
-~open_and_close_door2(loc_1535, ~check_axis(coord, loc_coord, loc_angle), door_open);
+~open_and_close_door2(poordoor, ~check_axis(coord, loc_coord, loc_angle), door_open);
 
 [oploc1,jewellersladder]
 p_arrivedelay;

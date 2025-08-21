@@ -1,6 +1,6 @@
 [oploc1,loc_2614] @quest_vampire_coffin_open;
-[oploc1,loc_2615] @quest_vampire_coffin_search;
-[oploc2,loc_2615] @quest_vampire_coffin_close;
+[oploc1,vampcoffinopen] @quest_vampire_coffin_search;
+[oploc2,vampcoffinopen] @quest_vampire_coffin_close;
 
 [proc,quest_vampire_set_progress](int $stage)
 %vampire_progress = $stage;
@@ -8,7 +8,7 @@
 
 [label,quest_vampire_coffin_open]
 // Temp note: dur does not need updated ?? nice even number
-loc_change(loc_2615, 10);
+loc_change(vampcoffinopen, 10);
 if (%vampire_progress = ^vampire_complete | %vampire_progress = ^quest_vampire_not_started) {
     return;
 }

@@ -17,8 +17,8 @@ if(%grail_progress > ^grail_not_started) {
                 ~chatnpc("<p,bored>Free up some space and I'll give you a feather.");
                 return;
             }
-            if(~obj_gettotal(magic_gold_feather) = 0) {
-                inv_add(inv, magic_gold_feather, 1);
+            if(~obj_gettotal(magic_golden_feather) = 0) {
+                inv_add(inv, magic_golden_feather, 1);
                 ~mesbox("King Arthur gives you a feather.");
             } else {
                 ~chatnpc("<p,bored>You've got one of the feathers somewhere - off you go."); // think these check dialogues may have been added to osrs but not sure

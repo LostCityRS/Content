@@ -62,7 +62,7 @@ switch_int (%priest_progress) {
 }
 
 [opnpcu,ghostx]
-if(last_useitem = ghost_skull) {
+if(last_useitem = ghostskull) {
     ~mesbox("I can't give it to him. It goes right through him.");
     return;
 }

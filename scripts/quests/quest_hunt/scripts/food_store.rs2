@@ -1,4 +1,4 @@
-[oploc1,food_store_door]
+[oploc1,wydindoor]
 def_boolean $entering = ~check_axis(coord, loc_coord, loc_angle);
 if ($entering = true) {
     if (npc_find(coord, wydin, 10, 0) = true) {
@@ -13,7 +13,7 @@ if ($entering = true) {
 
 }
 
-~open_and_close_door(loc_2070, $entering, false);
+~open_and_close_door(wydindooropen, $entering, false);
 
 [label,wydin_employees_only]
 ~chatnpc("<p,neutral>Hey, you can't go in there. Only employees of the grocery store can go in.");
@@ -22,7 +22,7 @@ if ($entering = true) {
 [label,wydin_apron_required]
 ~chatnpc("<p,neutral>Can you put your apron on before going in there, please?");
 
-[oploc1,food_store_crate]
+[oploc1,grocerycrate]
 mes("There are a lot of bananas in the crate.");
 p_delay(3);
 

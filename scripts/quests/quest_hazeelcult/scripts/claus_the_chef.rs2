@@ -42,7 +42,7 @@ switch_int(%hazeelcult_progress) {
         ~chatnpc("<p,neutral>Sorry! Can't stop to chat! You would be AMAZED at how many meals this family gets through daily!");
 }
 
-[oplocu,loc_2859]
+[oplocu,carnilleanrange]
 if(last_useitem = poison) {
     if(%hazeelcult_progress = ^hazeelcult_clivet_decision & %hazeelcult_side = ^hazeelcult_evilside) {
         %hazeelcult_progress = ^hazeelcult_poured_poison;

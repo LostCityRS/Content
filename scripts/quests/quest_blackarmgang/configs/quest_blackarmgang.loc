@@ -1,4 +1,4 @@
-[loc_2397]
+[phoenixdoor]
 name=Door
 desc=A solid looking door.
 model=model_loc_3
@@ -9,7 +9,7 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[loc_2398]
+[phoenixdoor2]
 name=Door
 desc=A solid looking door.
 model=model_loc_3
@@ -20,7 +20,7 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[loc_2399]
+[blackarmdoor]
 name=Door
 desc=A solid looking door.
 model=model_loc_3
@@ -31,7 +31,7 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[loc_2400]
+[blackarmcupboardshut]
 name=Cupboard
 desc=Might be worth searching.
 model=model_loc_367
@@ -40,9 +40,9 @@ length=3
 active=yes
 op1=Open
 forceapproach=east
-param=cupboard_other,loc_2401
+param=cupboard_other,blackarmcupboardopen
 
-[loc_2401]
+[blackarmcupboardopen]
 name=Cupboard
 desc=Might be worth searching.
 model=model_loc_370
@@ -52,9 +52,9 @@ active=yes
 op1=Shut
 op2=Search
 forceapproach=east
-param=cupboard_other,loc_2400
+param=cupboard_other,blackarmcupboardshut
 
-[loc_2402]
+[questbookcase]
 name=Bookcase
 desc=A good source of books!
 model=model_loc_380
@@ -62,7 +62,7 @@ length=2
 active=yes
 op2=Check
 
-[loc_2403]
+[phoenixshutchest]
 name=Chest
 desc=Might be worth searching.
 model=wooden_chest
@@ -72,7 +72,7 @@ forceapproach=north
 recol1s=10570
 recol1d=17921
 
-[loc_2404]
+[phoenixopenchest]
 name=Chest
 desc=Might be worth searching.
 model=model_loc_76

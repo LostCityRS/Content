@@ -18,7 +18,7 @@ switch_int(~p_choice2("Can I see what you are selling?", 1, "I don't need anythi
 ~chatnpc("<p,angry>Arr, small thing wants my food, does it?|I'll teach you to deal with ogres!");
 ~npc_retaliate(0);
 
-[oploc1,loc_2793]
+[oploc1,rockcounter_withcakes]
 if (stat(thieving) < 15) {
     ~mesbox("You need a Thieving level of 15 to steal from this stall."); // OSRS (matches RSC)
     return;
@@ -35,7 +35,7 @@ if(inv_freespace(inv) = 0) {
 mes("You cautiously grab a cake from the stall.");
 inv_add(inv, rockcake, 1);
 // Temp note: dur updated
-loc_change(loc_2792, 12); // 11t osrs
+loc_change(empty_rock_cake_counter, 12); // 11t osrs
 stat_advance(thieving, 65);
 
 [opnpc1,falseogretrader]

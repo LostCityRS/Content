@@ -1,41 +1,41 @@
 // NOTE: seqs+sounds for vine/fungus probably added later (seq 2094-2097) assuming no p_delay if there's no animation (unless they re-used some anim)
 // loc's with animations also have arrivedelay, probably not the case originally
-[oploc2,junglepotion_marshy_jungle_vine]
+[oploc2,snake_vine_full]
 if(%junglepotion_progress < ^junglepotion_get_snake_weed) {
 	mes("Unfortunately, you find nothing of interest.");
 	return;
 }
-~junglepotion_pick_herb("vine", unidentified_snake_weed, junglepotion_marshy_jungle_vine_empty);
+~junglepotion_pick_herb("vine", unidentified_snake_weed, snake_vine_empty);
 
-[oploc2,junglepotion_palm_tree]
+[oploc2,ardrigal_palm_full]
 if(%junglepotion_progress < ^junglepotion_get_ardrigal) {
 	mes("You find nothing of significance.");
 	return;
 }
-~junglepotion_pick_herb("palm", unidentified_ardrigal, junglepotion_palm_tree_empty);
+~junglepotion_pick_herb("palm", unidentified_ardrigal, ardrigal_palm_empty);
 
-[oploc2,junglepotion_scorched_earth]
+[oploc2,sito_soil_full]
 if(%junglepotion_progress < ^junglepotion_get_sito_foil) {
 	mes("You find nothing of significance.");
 	return;
 }
-~junglepotion_pick_herb("scorched earth", unidentified_sito_foil, junglepotion_scorched_earth_empty);
+~junglepotion_pick_herb("scorched earth", unidentified_sito_foil, sito_soil_empty);
 
-[oploc2,junglepotion_rock]
+[oploc2,volencia_moss_rock_full]
 if(%junglepotion_progress < ^junglepotion_get_volencia_moss) {
 	mes("You find nothing of significance.");
 	return;
 }
-~junglepotion_pick_herb("rock", unidentified_volencia_moss, junglepotion_rock_empty);
+~junglepotion_pick_herb("rock", unidentified_volencia_moss, volencia_moss_rock_empty);
 
-[oploc2,junglepotion_wall_fungus]
+[oploc2,rogues_purse_cave_full]
 if(%junglepotion_progress < ^junglepotion_get_rogues_purse) {
 	mes("Unfortunately, you find nothing of interest.");
 	return;
 }
 ~junglepotion_pick_herb("wall", unidentified_rogues_purse, null);
 
-[oploc2,junglepotion_rocks]
+[oploc2,pothole_cave_entrance]
 ~mesbox("You search the rocks... You find an entrance into some caves.");
 def_int $option = ~p_choice2_header("Yes, I'll enter the cave.", 1, "No thanks, I'll give it a miss.", 2, "Would you like to enter the caves?");
 if ($option = 1) {
@@ -45,7 +45,7 @@ if ($option = 1) {
 	~mesbox("You decide to stay where you are!");
 }
 
-[oploc1,junglepotion_hand_holds]
+[oploc1,jp_caverocksout]
 ~mesbox("You attempt to climb the rocks back out.");
 p_telejump(0_44_48_7_48);
 

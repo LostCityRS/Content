@@ -1,4 +1,4 @@
-[loc_1985]
+[largeroot_gnome]
 name=Root
 desc=A large root.
 model=model_loc_1339
@@ -9,7 +9,7 @@ op1=Search
 active=yes
 category=grandtree_root
 
-[loc_1986]
+[largeroot2_gnome]
 name=Root
 desc=A large root.
 model=model_loc_1340
@@ -20,16 +20,16 @@ op1=Search
 active=yes
 category=grandtree_root
 
-[loc_2434]
+[grandtree_cupboardclosed]
 name=Cupboard
 desc=This may be worth opening.
 model=model_loc_367
 length=2
 forceapproach=east
 op1=Open
-param=cupboard_other,loc_2435
+param=cupboard_other,grandtree_cupboardopen
 
-[loc_2435]
+[grandtree_cupboardopen]
 name=Cupboard
 desc=This may be worth opening.
 model=model_loc_370
@@ -37,20 +37,20 @@ length=2
 forceapproach=east
 op2=Search
 op3=Close
-param=cupboard_other,loc_2434
+param=cupboard_other,grandtree_cupboardclosed
 
-[loc_2436]
+[grandtree_chestclosed]
 name=Closed chest
 desc=I wonder what's inside.
 model=wooden_chest
 op1=Open
 forceapproach=north
 
-[loc_2437]
+[grandtree_chestopen]
 model=model_loc_76
 active=no
 
-[loc_2438]
+[grandtree_fencegate_l]
 name=Gate
 desc=A wooden gate.
 model=model_loc_47
@@ -59,7 +59,7 @@ active=yes
 blockrange=no
 category=shipyard_gate
 
-[loc_2439]
+[grandtree_fencegate_r]
 name=Gate
 desc=A wooden gate.
 model=model_loc_47
@@ -68,7 +68,7 @@ op1=Open
 active=yes
 category=shipyard_gate
 
-[loc_2440]
+[grandtree_pillart]
 name=Pillar
 desc=Wonder what this pillar is for?
 model=model_loc_2440
@@ -76,7 +76,7 @@ blockrange=no
 active=yes
 category=grandtree_pillar
 
-[loc_2441]
+[grandtree_pillaru]
 name=Pillar
 desc=Wonder what this pillar is for?
 model=model_loc_2440
@@ -84,7 +84,7 @@ blockrange=no
 active=yes
 category=grandtree_pillar
 
-[loc_2442]
+[grandtree_pillarz]
 name=Pillar
 desc=Wonder what this pillar is for?
 model=model_loc_2440
@@ -92,7 +92,7 @@ blockrange=no
 active=yes
 category=grandtree_pillar
 
-[loc_2443]
+[grandtree_pillaro]
 name=Pillar
 desc=Wonder what this pillar is for?
 model=model_loc_2440
@@ -100,7 +100,7 @@ blockrange=no
 active=yes
 category=grandtree_pillar
 
-[loc_2444]
+[grandtree_trapdoorclosed]
 name=Trapdoor
 desc=I wonder what's under it?
 model=model_loc_2444
@@ -108,12 +108,12 @@ active=yes
 op1=Open
 mapscene=43
 
-[loc_2445]
+[grandtree_trapdooropen]
 model=model_loc_2445
 active=no
 mapscene=43
 
-[loc_2446]
+[grandtree_trapdoorunder]
 name=Trap door
 desc=This leads to somewhere...but where?
 model=model_loc_2444
@@ -121,35 +121,35 @@ active=yes
 op1=Open
 mapscene=43
 
-[loc_2447]
+[grandtree_climbtree]
 name=Tree
 desc=I reckon I could climb that!
 model=model_loc_1134
 active=yes
 op1=Climb-up
 
-[loc_2448]
+[grandtree_downtree]
 name=Tree
 desc=I reckon I could climb that!
 model=model_loc_1137
 active=yes
 op1=Climb-down
 
-[loc_2449]
+[grandtree_daconiarocks1]
 name=Daconia rocks
 desc=Some magical rocks.
 model=plainrock1
 recol1s=6342
 recol1d=4264
 
-[loc_2450]
+[grandtree_daconiarocks2]
 name=Daconia rocks
 desc=Some magical rocks.
 model=plainrock2
 recol1s=6342
 recol1d=4264
 
-[loc_2451]
+[grandtree_rootdoor]
 name=Roots
 desc=There's something behind these roots.
 model=model_loc_2451

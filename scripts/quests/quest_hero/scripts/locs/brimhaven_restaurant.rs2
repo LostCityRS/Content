@@ -1,11 +1,11 @@
-[oploc1,brimhaven_restaurant_backdoor]
+[oploc1,herokitchendoor]
 if (%hero_progress >= ^hero_phoenix_talked_alfonse & %phoenixgang_progress = ^phoenixgang_complete) {
   ~open_and_close_door(loc_type, ~check_axis(coord, loc_coord, loc_angle), false);
   return;
 }
 mes("This door seems to be locked...");
 
-[oploc1,brimhaven_restaurant_walldoor]
+[oploc1,herokitchenpanel]
 if (%hero_progress >= ^hero_phoenix_talked_charlie) { // Only opens after talking to Charlie (https://youtu.be/kDACyq673wM?t=778)
   ~open_and_close_door(loc_type, ~check_axis(coord, loc_coord, loc_angle), false);
   return;

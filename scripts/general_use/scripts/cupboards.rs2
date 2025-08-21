@@ -3,17 +3,17 @@
 [oploc2,_cupboard_opened] @close_cupboard(~cupboards_use_message);
 
 // fight arena
-[oploc2,loc_370] @search_cupboard;
-[oploc3,loc_370] @close_cupboard(false);
+[oploc2,cupboardopen] @search_cupboard;
+[oploc3,cupboardopen] @close_cupboard(false);
 
 // ranging guild
 // this cupboard is not accessible
-[oploc2,loc_371] @search_cupboard;
-[oploc3,loc_371] @close_cupboard(false);
+[oploc2,cupboardopen_high] @search_cupboard;
+[oploc3,cupboardopen_high] @close_cupboard(false);
 
 // sorcerers tower
-[oploc2,loc_372] @search_cupboard;
-[oploc3,loc_372] @close_cupboard(false);
+[oploc2,cupboardopen_big] @search_cupboard;
+[oploc3,cupboardopen_big] @close_cupboard(false);
 
 [label,search_cupboard]
 //mes(~coord_tostring(loc_coord));
@@ -62,7 +62,7 @@ if ($message = true) {
 
 [proc,cupboards_use_message]()(boolean)
 switch_loc (loc_type) {
-    case loc_2612, loc_2613, loc_2524, loc_2525, legends_radimus_cupboard_closed : return(true);
+    case garliccupboardshut, garliccupboardopen, alrenascupboardshut, alrenascupboardopen, legends_cupboard : return(true);
     case default : return(false);
 }
 

@@ -4,14 +4,14 @@ if ($is_inside = false) {
     if (stat(cooking) < 32) {
         mes("You need a cooking level of 32 to enter the Chef's Guild.");
         def_string $fail_message = "<p,neutral>Sorry. Only the finest chefs are allowed in here. Get your cooking level up to 32"; 
-        if (inv_total(worn, chefshat) < 1) {
+        if (inv_total(worn, chefs_hat) < 1) {
             $fail_message = append($fail_message, " and come back wearing a chef's hat");
         }
         $fail_message = append($fail_message, ".");
         ~chatnpc_specific("Head chef", head_chef, $fail_message);
         return;
     }
-    if (inv_total(worn, chefshat) < 1) {
+    if (inv_total(worn, chefs_hat) < 1) {
         ~chatnpc_specific("Head chef", head_chef, "<p,neutral>You can't come in here unless you're wearing a chef's hat, or something like that.");
         return;
     }

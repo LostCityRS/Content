@@ -5,7 +5,7 @@
 
 [opnpc1,mournerstew3] 
 if(%biohazard_progress < ^biohazard_complete) {
-    if(inv_total(worn, doctors_gown) = 0) {
+    if(inv_total(worn, doctor_gown) = 0) {
         ~chatnpc("<p,angry>How did you get in here?|This is a restricted area!");
         ~npc_retaliate(0);
         return;
@@ -20,7 +20,7 @@ if(%biohazard_progress = ^biohazard_poisoned_stew) {
     ~chatplayer("<p,neutral>Hello there.");
     ~chatnpc("<p,sad>Oh dear oh dear.|I feel terrible, I think it was the stew.");
     ~chatplayer("<p,neutral>You should be more careful with your ingredients.");
-    if(inv_total(worn, doctors_gown) > 0) {
+    if(inv_total(worn, doctor_gown) > 0) {
         ~chatnpc("<p,sad>There is one mourner who's really sick. They're resting upstairs. You should see to them first.");
         ~chatplayer("<p,neutral>Okay, I'll see what I can do.");
     } else {
@@ -34,7 +34,7 @@ mes("The mourner doesn't feel like talking.");
 @mourner_talk_to_player;
 
 [opnpc1,mournerstew2] // mourner hq upstairs
-if(%biohazard_progress = ^biohazard_poisoned_stew & inv_total(worn, doctors_gown) > 0) {
+if(%biohazard_progress = ^biohazard_poisoned_stew & inv_total(worn, doctor_gown) > 0) {
     ~chatplayer("<p,neutral>Hello there.");
     ~chatnpc("<p,sad>You're here at last! I don't know what I've eaten but I feel like I'm on death's door."); 
     ~chatplayer("<p,neutral>Hmm... interesting, sounds like food poisoning.");

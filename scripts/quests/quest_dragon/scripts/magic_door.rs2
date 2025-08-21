@@ -28,25 +28,25 @@ if ($entering = false & %dragon_oracle < ^quest_dragon_gone_through_oracle_door)
 
 
 // magic chest
-[oploc1,dragon_slayer_magic_chest_closed]
+[oploc1,oraclechestshut]
 p_arrivedelay;
 mes("You open the chest.");
 anim(human_openchest, 0);
 sound_synth(chest_open, 0, 0);
 p_delay(0);
 // Temp note: dur does not need updated
-loc_change(dragon_slayer_magic_chest_opened, 300);
+loc_change(oraclechestopen, 300);
 
-[oploc2,dragon_slayer_magic_chest_opened]
+[oploc2,oraclechestopen]
 p_arrivedelay;
 mes("You close the chest.");
 anim(human_closechest, 0);
 sound_synth(chest_close, 0, 0);
 p_delay(0);
 // Temp note: dur does not need updated
-loc_change(dragon_slayer_magic_chest_closed, 300);
+loc_change(oraclechestshut, 300);
 
-[oploc1,dragon_slayer_magic_chest_opened]
+[oploc1,oraclechestopen]
 if (~quest_dragon_getting_map_parts = false | ~obj_gettotal(mappart3) > 0 | ~obj_gettotal(dragonmap) > 0) {
     mes("You find nothing in the chest.");
 } else {
@@ -58,4 +58,4 @@ if (~quest_dragon_getting_map_parts = false | ~obj_gettotal(mappart3) > 0 | ~obj
 }
 // auto closes, yes. https://youtu.be/tmPf68hogzw?t=471
 // Temp note: dur does not need updated
-loc_change(dragon_slayer_magic_chest_closed, 300);
+loc_change(oraclechestshut, 300);

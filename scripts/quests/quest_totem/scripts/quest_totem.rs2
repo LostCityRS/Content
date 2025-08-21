@@ -1,11 +1,11 @@
-[oploc1,loc_2706]
+[oploc1,tribaltotemdoor]
 if(coordz(coord) > coordz(loc_coord)) {
-    ~open_and_close_door(loc_1535, ~check_axis(coord, loc_coord, loc_angle), false);
+    ~open_and_close_door(poordoor, ~check_axis(coord, loc_coord, loc_angle), false);
     return;
 }
 mes("This door is securely locked.");
 
-[oploc2,loc_2707]
+[oploc2,horncrate]
 if(%totem_progress >= ^totem_started) {
     if(inv_total(inv, tribal_totem_label) = 0) {
         ~mesbox("There is a label on this crate. It says; To Lord Handelmort, Handelmort Mansion, Ardougne.You carefully peel it off and take it.");
@@ -16,7 +16,7 @@ if(%totem_progress >= ^totem_started) {
 }
 mes("This crate is securely fastened shut.");
 
-[oplocu,loc_2708]
+[oplocu,teleportcrate]
 switch_obj(last_useitem) {
     case tribal_totem_label :
         if(%totem_progress >= ^totem_crate_marked) {
@@ -87,15 +87,15 @@ switch_int($lock_index) {
     case 4 : if_settext(tribal_door2:com_46, enum(int, string, alphabet, $stage));
 }
 
-[oploc1,loc_2705]
+[oploc1,combodoor]
 if(testbit(%handelmort_traps_disabled, 0) = ^false) {
     ~clear_tribaldoor_inter;
     if_openmain(tribal_door2);
     return;
 }
-~open_and_close_door(loc_1535, ~check_axis(coord, loc_coord, loc_angle), false);
+~open_and_close_door(poordoor, ~check_axis(coord, loc_coord, loc_angle), false);
 
-[oploc1,loc_2711]
+[oploc1,totemtrapstairs]
 // OSRS seems to only allow interaction from the top side of the ladder, so just going to assume
 // this is probably how it worked in 2004
 def_coord $start = movecoord(loc_coord, 0, 0, 3);
@@ -117,7 +117,7 @@ p_telejump(^totem_stairs_fail_coord);
 p_delay(2);
 ~damage_self(calc(((stat(hitpoints) * 20) / 100) + 1));
 
-[oploc2,loc_2711]
+[oploc2,totemtrapstairs]
 def_coord $start = movecoord(loc_coord, 0, 0, 3);
 p_delay(0);
 p_walk($start);
@@ -131,11 +131,11 @@ if(stat(thieving) < 21) {
 // https://storage.googleapis.com/tannerdino/images/7_10.png
 ~mesbox("Your trained senses as a thief enable you|to see that there is a trap in these stairs.|You make a note of its location for|future reference when using these stairs.");
 
-[oploc1,loc_2709]
-~open_chest(loc_2710);
+[oploc1,totemshutchest]
+~open_chest(totemopenchest);
 mes("You open the chest.");
 
-[oploc1,loc_2710]
+[oploc1,totemopenchest]
 if(inv_total(inv, tribal_totem) = 0 & inv_total(bank, tribal_totem) = 0) {
     ~mesbox("Inside the chest you find the tribal totem.");
     inv_add(inv, tribal_totem, 1);
@@ -143,13 +143,13 @@ if(inv_total(inv, tribal_totem) = 0 & inv_total(bank, tribal_totem) = 0) {
     mes("The chest is empty.");
 }
 // Temp note: dur does not need updated
-loc_change(loc_2709, 300);
+loc_change(totemshutchest, 300);
 
-[oploc2,loc_2710]
-~close_chest(loc_2709);
+[oploc2,totemopenchest]
+~close_chest(totemshutchest);
 mes("You close the chest.");
 
-[oploc2,loc_2708]
+[oploc2,teleportcrate]
 ~mesbox("There is a label on this crate. It says;");
 if(%totem_progress >= ^totem_crate_marked) {
     ~mesbox("To Lord Handelmort, Handelmort Mansion, Ardougne.");

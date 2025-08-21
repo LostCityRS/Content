@@ -32,8 +32,8 @@ switch_int ($option) {
 ~chatplayer("<p,confused>I'm more of an adventurer really.");
 ~chatnpc("<p,neutral>In this day and age we're all soldiers.|No time to waste gassing, Fight! Fight! Fight!");
 
-[oploc1,loc_2039] @open_combat_training_gate(^left);
-[oploc1,loc_2041] @open_combat_training_gate(^right);
+[oploc1,lathastraining_gatel] @open_combat_training_gate(^left);
+[oploc1,lathastraining_gater] @open_combat_training_gate(^right);
 
 [label,open_combat_training_gate](int $side)
 if(%biohazard_progress < ^biohazard_complete) {
@@ -42,7 +42,7 @@ if(%biohazard_progress < ^biohazard_complete) {
 }
 ~open_and_close_double_door2(~check_axis(coord, loc_coord, loc_angle), $side, grate_open);
 
-[oploc1,combat_training_dummy] // Combat training camp dummy
+[oploc1,biohazarddummy] // Combat training camp dummy
 if (%damagestyle = ^style_ranged_accurate | %damagestyle = ^style_ranged_longrange | %damagestyle = ^style_ranged_rapid) {
     mes("You can't use ranged attacks on the dummy.");
     return;

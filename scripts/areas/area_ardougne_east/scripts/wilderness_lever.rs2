@@ -1,6 +1,6 @@
 
 // preferebly another video of this lever. https://youtu.be/GnaZfzxIyt8?list=PLn23LiLYLb1bYAFU3Vdk3N9niuHs-b-4-&t=164
-[oploc1,ardougne_to_wilderness_lever]
+[oploc1,wildinlever]
 p_arrivedelay;
 if (%warning_wilderness_teleport_lever = ^false) {
     ~mesbox("Warning! Pulling the lever will teleport you deep into the wilderness.");
@@ -29,7 +29,7 @@ p_delay(0);
 mes("...And teleport into the wilderness.");
 
 
-[oploc1,wilderness_to_ardougne_lever]
+[oploc1,wildoutlever]
 p_arrivedelay;
 // teleport to wilderness
 anim(human_leverdown, 0); // OSRS uses seq's not in 225, going to assume here

@@ -36,7 +36,7 @@ switch_obj($ingredient) {
     case equa_leaves : %gnome_batta_bits1 = setbit_range_toint(%gnome_batta_bits1, add(getbit_range(%gnome_batta_bits1, 16, 19), 1), 16, 19);
     case onion : %gnome_batta_bits1 = setbit_range_toint(%gnome_batta_bits1, add(getbit_range(%gnome_batta_bits1, 20, 23), 1), 20, 23);
     case cabbage : %gnome_batta_bits1 = setbit_range_toint(%gnome_batta_bits1, add(getbit_range(%gnome_batta_bits1, 24, 27), 1), 24, 27);
-    case dwellberry : %gnome_batta_bits1 = setbit_range_toint(%gnome_batta_bits1, add(getbit_range(%gnome_batta_bits1, 28, 31), 1), 28, 31);
+    case dwellberries : %gnome_batta_bits1 = setbit_range_toint(%gnome_batta_bits1, add(getbit_range(%gnome_batta_bits1, 28, 31), 1), 28, 31);
     case chocolate_bar : %gnome_batta_bits2 = setbit_range_toint(%gnome_batta_bits2, add(getbit_range(%gnome_batta_bits2, 0, 3), 1), 0, 3);
     case potato : %gnome_batta_bits2 = setbit_range_toint(%gnome_batta_bits2, add(getbit_range(%gnome_batta_bits2, 4, 7), 1), 4, 7);
     case gnome_spice : %gnome_batta_bits2 = setbit_range_toint(%gnome_batta_bits2, add(getbit_range(%gnome_batta_bits2, 8, 11), 1), 8, 11);
@@ -74,7 +74,7 @@ if ($seasoned_toad_legs_count = 1 & $cheese_count = 1 & $total = 2) {
 }
 // cheese & tomato batta
 if ($cheese_count = 1 & $tomato_count = 1 & $total = 2) {
-    return(unfinished_cheese_tom_batta1);
+    return(unfinished_cheese_tom_batta);
 }
 // fruit batta
 if ($equa_leaves_count = 4 & $total = 4) {

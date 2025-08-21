@@ -31,7 +31,7 @@ if(inv_total(inv, rope) > 0) {
     %prince_progress = ^prince_tied_keli;
 }
 
-[oplocu,loc_2881]
+[oplocu,alidoor]
 if (last_useitem ! princeskey | coordz(coord) <= coordz(loc_coord)) {
     ~displaymessage(^dm_default);
     return;
@@ -41,15 +41,15 @@ if(%prince_progress <= ^prince_guard_drunk | npc_find(coord, lady_keli, 10, 0) =
     return;
 }
 mes("You unlock the door.");
-~open_and_close_metal_gate2(loc_1541, false, false);
+~open_and_close_metal_gate2(poshdooropen, false, false);
 
-[oploc1,loc_2881]
+[oploc1,alidoor]
 if(coordz(coord) > coordz(loc_coord)) {
     mes("The door is locked.");
     sound_synth(locked, 0, 0);
     return;
 }
-~open_and_close_metal_gate2(loc_1541, true, false);
+~open_and_close_metal_gate2(poshdooropen, true, false);
 
 [queue,prince_complete]
 %prince_progress = ^prince_complete;

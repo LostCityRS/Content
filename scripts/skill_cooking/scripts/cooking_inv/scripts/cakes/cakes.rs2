@@ -32,7 +32,7 @@ switch_obj (last_useitem) {
     case cake : @make_chocolate_cake(last_slot);
     case pestle_and_mortar : ~attempt_grind_ingredient(last_useslot, last_slot);
     case half_baked_bowl : @add_bowl_ingredient(last_item);
-    case half_baked_crunchies : @add_crunchies_ingredient(last_item);
+    case half_baked_crunchy : @add_crunchies_ingredient(last_item);
     case default : ~displaymessage(^dm_default);
 }
 

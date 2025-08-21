@@ -74,7 +74,7 @@ switch_int (%priest_progress) {
         ~chatnpc("<p,angry>I hate warlocks.");
         ~chatnpc("<p,happy>Ah well, good luck!");
     case ^priest_obtained_skull :
-        if(inv_total(inv, ghost_skull) = 0) { // this only checks the player inv
+        if(inv_total(inv, ghostskull) = 0) { // this only checks the player inv
             ~chatplayer("<p,sad>Well, I found the ghost's skull but then lost it.");
             ~chatnpc("<p,neutral>Don't worry, I'm sure you'll find it again.");
             return;

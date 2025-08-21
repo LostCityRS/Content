@@ -61,7 +61,7 @@ if(%arena_progress = ^arena_sent_jail) {
         $x, $z = ~door_open($angle, loc_shape);
         // Temp note: dur updated
         loc_change(inviswall, 3);
-        loc_add(movecoord($loc_coord, $x, 0, $z), loc_1532, modulo(add($angle, 1), 4), $shape, 3);
+        loc_add(movecoord($loc_coord, $x, 0, $z), desertdoor_inactive, modulo(add($angle, 1), 4), $shape, 3);
         sound_synth(door_open, 0, 0);
     }
     ~forcemove(movecoord(coord, -4, 0, 4));

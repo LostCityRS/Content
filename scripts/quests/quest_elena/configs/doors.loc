@@ -1,4 +1,4 @@
-[loc_2526]
+[elenagateshut]
 name=Door
 model=model_loc_3
 active=yes
@@ -8,9 +8,9 @@ retex1d=door
 recol2s=6342
 recol2d=11458
 category=door_open_and_close
-param=next_loc_stage,loc_2527
+param=next_loc_stage,elenagateopen
 
-[loc_2527]
+[elenagateopen]
 name=Door
 model=model_loc_3
 active=yes
@@ -19,9 +19,9 @@ retex1d=door
 recol2s=6342
 recol2d=11458
 category=door_open_and_close
-param=next_loc_stage,loc_2526
+param=next_loc_stage,elenagateshut
 
-[loc_2537]
+[rehnisondoorshut]
 name=Door
 desc=The door is closed.
 model=model_loc_3
@@ -32,9 +32,9 @@ retex1d=door
 recol2s=6342
 recol2d=11458
 category=door_open_and_close
-param=next_loc_stage,loc_2538
+param=next_loc_stage,rehnisondooropen
 
-[loc_2538]
+[rehnisondooropen]
 name=Door
 model=model_loc_3
 active=yes
@@ -43,4 +43,4 @@ retex1d=door
 recol2s=6342
 recol2d=11458
 category=door_open_and_close
-param=next_loc_stage,loc_2537
+param=next_loc_stage,rehnisondoorshut

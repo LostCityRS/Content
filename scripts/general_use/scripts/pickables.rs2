@@ -1,5 +1,5 @@
 // Pickable Potatoes
-[oploc2,loc_312]
+[oploc2,potato]
 p_arrivedelay;
 if(inv_freespace(inv) = 0) {
     mes("You don't have room for this potato.");
@@ -11,7 +11,7 @@ if(inv_freespace(inv) = 0) {
 }
 
 // Pickable Wheat
-[oploc2,loc_313]
+[oploc2,wheat]
 p_arrivedelay;
 if(inv_freespace(inv) = 0) {
     mes("You can't carry any more grain.");

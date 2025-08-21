@@ -82,11 +82,11 @@ mes("You climb up the pile of rubble...");
 mes("You climb down the pile of rubble...");
 p_telejump(0_40_149_56_35);
 
-[oploc1,loc_377]
+[oploc1,shuttwistedchest]
 sound_synth(locked, 0, 0);
 mes("The chest is locked.");
 
-[oplocu,loc_377]
+[oplocu,shuttwistedchest]
 // https://youtu.be/A4crb0CaneU?si=ty3obEvZ9cIxbJ4F&t=278, typos are all intentional
 if(last_useitem = sinister_key) {
     mes("you unlock the chest with your key...");
@@ -112,7 +112,7 @@ if(last_useitem = sinister_key) {
 }
 ~displaymessage(^dm_default);
 
-[oploc1,loc_412]
+[oploc1,trappedchaosaltar]
 if (stat(prayer) >= stat_base(prayer)) {
     mes("You already have full prayer points.");
 } else {

@@ -1,47 +1,47 @@
 
-[witchaven_north_lever_down]
+[leverg]
 name=Lever
 desc=This lever is down.
 model=model_loc_33
 active=yes
 op1=Pull
 
-[witchaven_north_lever_up]
+[leverg2]
 name=Lever
 desc=This lever is up.
 model=model_loc_34
 active=yes
 op1=Pull
 
-[witchaven_south_lever_down]
+[leverh]
 name=Lever
 desc=This lever is down.
 model=model_loc_33
 active=yes
 op1=Pull
 
-[witchaven_south_lever_up]
+[leverh2]
 name=Lever
 desc=This lever is up.
 model=model_loc_34
 active=yes
 op1=Pull
 
-[witchaven_north_room_lever_down]
+[leveri]
 name=Lever
 desc=This lever is down.
 model=model_loc_33
 active=yes
 op1=Pull
 
-[witchaven_north_room_lever_up]
+[leveri2]
 name=Lever
 desc=This lever is up.
 model=model_loc_34
 active=yes
 op1=Pull
 
-[witchaven_south_west_door]
+[famcrest_doorh2]
 name=Door
 desc=This door is closed by an unknown mechanism.
 model=model_loc_3
@@ -52,7 +52,7 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[witchaven_door_open]
+[famcrest_doorh2i2]
 name=Door
 desc=This door is closed by an unknown mechanism.
 model=model_loc_3
@@ -63,7 +63,7 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[witchaven_south_east_door]
+[famcrest_doorg2h1]
 name=Door
 desc=This door is closed by an unknown mechanism.
 model=model_loc_3
@@ -74,7 +74,7 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[witchaven_goldmine_door]
+[famcrest_doori2h1]
 name=Door
 desc=This door is closed by an unknown mechanism.
 model=model_loc_3
@@ -85,7 +85,7 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[witchaven_north_door]
+[famcrest_doorh2g1]
 name=Door
 desc=This door is closed by an unknown mechanism.
 model=model_loc_3
@@ -99,7 +99,7 @@ recol2d=11458
 // These gates were added in rev 194, and removed somewhere between 299 and 306.
 // Can't find any footage of how they operated, but are no opened versions available,
 // so assuming they close automatically after the player passes through.
-[edgeville_dungeon_chronozon_gate_west]
+[chronodoorl]
 name=Gate
 desc=This gate is closed shut.
 model=model_loc_52
@@ -113,7 +113,7 @@ category=double_door_open_and_close_left
 param=next_loc_stage,loc_1562
 param=open_sound,grate_open
 
-[edgeville_dungeon_chronozon_gate_east]
+[chronodoorr]
 name=Gate
 desc=This gate is closed shut.
 model=model_loc_52

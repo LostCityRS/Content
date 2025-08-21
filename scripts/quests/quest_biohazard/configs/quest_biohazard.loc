@@ -8,7 +8,7 @@ recol1d=23181
 recol2s=320
 recol2d=15716
 
-[loc_2044]
+[w_ardougnefoodtrough]
 name=Trough
 desc=Like an animal dinner table.
 model=model_loc_40
@@ -18,28 +18,28 @@ recol1d=7299
 recol2s=15855
 recol2d=8456
 
-[loc_2045]
+[kandarin_rugcorner]
 model=model_loc_107
 recol1s=15360
 recol1d=24675
 recol2s=28321
 recol2d=26
 
-[loc_2046]
+[kandarin_rugside]
 model=model_loc_108
 recol1s=15360
 recol1d=24675
 recol2s=28321
 recol2d=26
 
-[loc_2047]
+[kandarin_rugmiddle]
 model=model_loc_109
 recol1s=15360
 recol1d=24675
 recol2s=0
 recol2d=26
 
-[loc_2050]
+[guidorgatelclosed]
 name=Gate
 desc=A wooden gate.
 model=model_loc_47
@@ -47,7 +47,7 @@ op1=Open
 op2=hidden
 category=varrock_gate
 
-[loc_2051]
+[guidorgaterclosed]
 name=Gate
 desc=A wooden gate.
 model=model_loc_47
@@ -55,14 +55,14 @@ op1=Open
 mirror=yes
 category=varrock_gate
 
-[loc_2052]
+[guidorgatelopen]
 model=model_loc_47
 
-[loc_2053]
+[guidorgateropen]
 model=model_loc_47
 mirror=yes
 
-[loc_2056]
+[jericoscupboardshut]
 name=Cupboard
 desc=It's closed.
 model=model_loc_367
@@ -70,9 +70,9 @@ length=2
 op1=Open
 forceapproach=east
 category=cupboard_closed
-param=cupboard_other,loc_2057
+param=cupboard_other,jericoscupboardopen
 
-[loc_2057]
+[jericoscupboardopen]
 name=Cupboard
 desc=It's open.
 model=model_loc_370
@@ -81,34 +81,34 @@ op1=Search
 op2=Close
 forceapproach=east
 category=cupboard_opened
-param=cupboard_other,loc_2056
+param=cupboard_other,jericoscupboardshut
 
-[loc_2058]
+[mournerquaters_gatel]
 name=Gate
 desc=It's closed.
 model=model_loc_52
 op1=Open
 mirror=yes
 category=double_door_open_and_close_left
-param=next_loc_stage,loc_2059
+param=next_loc_stage,mournerquaters_gatelopen
 
-[loc_2059]
+[mournerquaters_gatelopen]
 model=model_loc_52
 
-[loc_2060]
+[mournerquaters_gater]
 name=Gate
 desc=It's closed.
 model=model_loc_52
 op1=Open
 mirror=yes
 category=double_door_open_and_close_right
-param=next_loc_stage,loc_2061
+param=next_loc_stage,mournerquaters_gateropen
 
-[loc_2061]
+[mournerquaters_gateropen]
 model=model_loc_52
 mirror=yes
 
-[loc_2062]
+[bionursescupboardshut]
 name=Cupboard
 desc=It's closed.
 model=model_loc_367
@@ -116,9 +116,9 @@ length=2
 op1=Open
 forceapproach=east
 category=cupboard_closed
-param=cupboard_other,loc_2063
+param=cupboard_other,bionursescupboardopen
 
-[loc_2063]
+[bionursescupboardopen]
 name=Cupboard
 desc=It's open.
 model=model_loc_370
@@ -127,9 +127,9 @@ op1=Search
 op2=Close
 forceapproach=east
 category=cupboard_opened
-param=cupboard_other,loc_2062
+param=cupboard_other,bionursescupboardshut
 
-[loc_2064]
+[mournercrateup]
 name=Crate
 desc=For storage.
 model=model_loc_63

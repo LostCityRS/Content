@@ -1,16 +1,16 @@
-[oploc1,legends_rocks_1] @legends_search_rocks;
-[oploc1,legends_mossy_rock_1] @legends_search_rocks;
-[oploc1,legends_mossy_rock_2] @legends_search_rocks;
+[oploc1,lgshamancaverock3] @legends_search_rocks;
+[oploc1,lgshamancaverock1] @legends_search_rocks;
+[oploc1,lgshamancaverock2] @legends_search_rocks;
 
-[oploc1,legends_cave_entrance_1] @legends_cave_entrance;
-[oploc1,legends_cave_entrance_2] @legends_cave_entrance;
+[oploc1,shaman_entrance_caver] @legends_cave_entrance;
+[oploc1,shaman_entrance_cavel] @legends_cave_entrance;
 
-[oploc1,legends_fire_wall_1] @legends_touch_fire_wall;
-[oploc1,legends_fire_wall_2] @legends_touch_fire_wall;
-[oploc2,legends_fire_wall_1] @legends_investigate_fire_wall;
-[oploc2,legends_fire_wall_2] @legends_investigate_fire_wall;
-[oplocu,legends_fire_wall_1] @legends_use_on_fire_wall;
-[oplocu,legends_fire_wall_2] @legends_use_on_fire_wall;
+[oploc1,lqfirewall_straight] @legends_touch_fire_wall;
+[oploc1,lqfirewall_diagonal] @legends_touch_fire_wall;
+[oploc2,lqfirewall_straight] @legends_investigate_fire_wall;
+[oploc2,lqfirewall_diagonal] @legends_investigate_fire_wall;
+[oplocu,lqfirewall_straight] @legends_use_on_fire_wall;
+[oplocu,lqfirewall_diagonal] @legends_use_on_fire_wall;
 
 [opheld1,scrawled_note2]
 ~mesbox("You try your best to decode the writing.|This is what you make out...");
@@ -33,10 +33,10 @@
 ~mesbox("You read the ancient shaman's tome. It is written in a strange sort of language but you manage a rough translation.");
 ~mesbox("...scattered are my hopes that I will ever be released from this flaming Octagram, it is the only thing which will contain this beast within. Although its grip over me is weakened with magic, it is hopeless to know if a saviour would guess this. I am doomed...");
 
-[oploc1,legends_table]
+[oploc1,shaman_small_table]
 ~mesbox("A crudely constructed makeshift table made from various pieces of wood. You see a piece of screwed up paper on the table top.");
 
-[oploc2,legends_table]
+[oploc2,shaman_small_table]
 mes("You start searching the table...");
 p_delay(1);
 if (inv_total(inv, scrawled_note2) = 0 & %legends_progress < ^legends_complete) {
@@ -46,10 +46,10 @@ if (inv_total(inv, scrawled_note2) = 0 & %legends_progress < ^legends_complete) 
 } 
 mes("You cannot find anything else in here.");
 
-[oploc1,legends_crate]
+[oploc1,shaman_crate]
 ~mesbox("It looks like a rickety old crate, perhaps placed in this recess to hide it from prying eyes.");
 
-[oploc2,legends_crate]
+[oploc2,shaman_crate]
 mes("You search the crate.");
 p_delay(1);
 if (inv_total(inv, scrawled_note1) = 0 & %legends_progress < ^legends_complete) {
@@ -59,7 +59,7 @@ if (inv_total(inv, scrawled_note1) = 0 & %legends_progress < ^legends_complete) 
 }
 mes("You can't find anything else here.");
 
-[oploc2,legends_bed]
+[oploc2,shaman_poor_bed]
 mes("You search the flea infested rags...");
 p_delay(1);
 if (inv_total(inv, scrawled_note3) = 0 & %legends_progress < ^legends_complete) {
@@ -70,10 +70,10 @@ if (inv_total(inv, scrawled_note3) = 0 & %legends_progress < ^legends_complete) 
 }
 mes("You cannot find anything else in here.");
 
-[oploc1,legends_desk]
+[oploc1,shaman_desk]
 mes("It's a very old rickety desk made of bamboo.");
 
-[oploc2,legends_desk]
+[oploc2,shaman_desk]
 // rs3
 mes("You give the desk a good search.");
 p_delay(1);
@@ -84,10 +84,10 @@ if (inv_total(inv,shamans_tome) = 0 & %legends_progress < ^legends_complete) {
 }
 mes("You find nothing else of interest here.");
 
-[oploc1,legends_bookcase]
+[oploc1,shaman_bookcase]
 ~mesbox("This bamboo book shelf doesn't house many books, it doesn't look as if the Shaman has much opportunity to read at the moment in any case.");
 
-[oploc2,legends_bookcase]
+[oploc2,shaman_bookcase]
 ~mesbox("You search the bookcase, it looks fairly old...|After a while you notice that there is a small crevice|in the back. You might just be able to force your way|through if you were in any way athletic.");
 if (~p_choice2_header("Yes please!", 1, "No thanks!", 2, "Would you like to squeeze into this crevice?") = 1) {
     if_close;
@@ -113,10 +113,10 @@ else {
     mes("You decide not to squeeze yourself into that ridiculously small crevice.");
 }
 
-[oploc1,legends_crevice]
+[oploc1,shaman_cave_crevice]
 mes("It looks like a crevice, you could possibly squeeze through.");
 
-[oploc2,legends_crevice]
+[oploc2,shaman_cave_crevice]
 ~mesbox("You search the the crevice. It looks as if you might be able to squeeze through, would you like to try?");
 if (~p_choice2_header("Yes please!", 1, "No thanks.", 2, "Squeeze through incredibly tight crevice?") = 1) {
     if_close;
@@ -129,7 +129,7 @@ else {
     mes("You decide not to try and squeeze your way through the crevice.");
 }
 
-[oploc2,legends_radimus_cupboard_open]
+[oploc2,legends_cupboardopen]
 if(npc_find(coord, radimus_erkle, 5, 0) = false) {
     return;
 }
@@ -148,7 +148,7 @@ if (inv_total(inv, machette) > 0 | inv_total(worn, machette) > 0) {
     mes("You find a machete.");
 }
 
-[oploc3,legends_radimus_cupboard_open]
+[oploc3,legends_cupboardopen]
 @close_cupboard(true);
 
 [proc,player_in_fire_octagram]()(boolean)
@@ -166,7 +166,7 @@ while(.huntnext = true) {
 return (false);
 
 [proc,legends_fire_wall_walk]
-if(loc_type = legends_fire_wall_1) {
+if(loc_type = lqfirewall_straight) {
     switch_int(loc_angle) {
         case ^loc_north :
             if(coordz(coord) > coordz(loc_coord)) p_teleport(movecoord(loc_coord, 0, 0, -1));
@@ -369,14 +369,14 @@ mes("You crawl back out from the cavern...");
 p_delay(2);
 p_teleport(0_43_45_29_54);
 
-[oploc1,legends_ancient_gate_1_closed] @open_outer_ancient_gate(^left);
-[oploc1,legends_ancient_gate_2_closed] @open_outer_ancient_gate(^right);
-[oploc2,legends_ancient_gate_1_closed] @search_outer_ancient_gate(^left);
-[oploc2,legends_ancient_gate_2_closed] @search_outer_ancient_gate(^right);
-[oplocu,legends_ancient_gate_1_closed] @use_on_outer_ancient_gate(^left);
-[oplocu,legends_ancient_gate_2_closed] @use_on_outer_ancient_gate(^right);
-[oploc1,legends_ancient_gate_3_closed] @open_inner_ancient_gate(^left);
-[oploc1,legends_ancient_gate_4_closed] @open_inner_ancient_gate(^right);
+[oploc1,lglockpickgatebottoml] @open_outer_ancient_gate(^left);
+[oploc1,lglockpickgatebottomr] @open_outer_ancient_gate(^right);
+[oploc2,lglockpickgatebottoml] @search_outer_ancient_gate(^left);
+[oploc2,lglockpickgatebottomr] @search_outer_ancient_gate(^right);
+[oplocu,lglockpickgatebottoml] @use_on_outer_ancient_gate(^left);
+[oplocu,lglockpickgatebottomr] @use_on_outer_ancient_gate(^right);
+[oploc1,lgstrengthtrialgatel] @open_inner_ancient_gate(^left);
+[oploc1,lgstrengthtrialgater] @open_inner_ancient_gate(^right);
 
 [label,open_outer_ancient_gate](int $side)
 def_boolean $entering = ~check_axis(coord, loc_coord, loc_angle);
@@ -514,14 +514,14 @@ if ($pickaxe = null) {
     mes("You do not have a pickaxe which you have the Mining level to use.");
     // this triggers if you are south of the first boulder, or interacting with either of the latter
     // two boulders from either side
-    if(coordz(coord) < coordz(loc_coord) | loc_type = legends_boulder_2 | loc_type = legends_boulder_3) {
+    if(coordz(coord) < coordz(loc_coord) | loc_type = mine_test_boulder2 | loc_type = mine_test_boulder3) {
         @boulder_legends_stuck;
     }
     return;
 }
 if (stat(mining) < 52) {
     mes("You need a Mining level of 52 to mine your way through this rock.");
-    if(coordz(coord) < coordz(loc_coord) | loc_type = legends_boulder_2 | loc_type = legends_boulder_3) {
+    if(coordz(coord) < coordz(loc_coord) | loc_type = mine_test_boulder2 | loc_type = mine_test_boulder3) {
         @boulder_legends_stuck;
     }
     return;
@@ -578,10 +578,10 @@ else {
     ~mesbox("You decide to stay where you are.");
 }
 
-[oploc1,legends_jagged_wall]
+[oploc1,crumbled_wall]
 ~mesbox("It looks like this room was once sealed, but the top wall fell down.|If you're feeling particularly agile, you could try jumping over it.");
 
-[oploc2,legends_jagged_wall]
+[oploc2,crumbled_wall]
 if (stat(agility) < 50) {
     mes("You need an Agility level of 50 to jump this wall.");
     return;
@@ -613,7 +613,7 @@ else {
     ~damage_self(5);
 }
 
-[oploc1,legends_marked_wall]
+[oploc1,lgancientwalldoor]
 if (testbit(%legends_bits, ^legends_law_rune_2_used) = ^true) {
     @enter_marked_wall(loc_coord);
 }
@@ -624,7 +624,7 @@ else {
     mes("Perhaps you should search it?");
 }
 
-[oploc2,legends_marked_wall]
+[oploc2,lgancientwalldoor]
 mes("You search the wall.");
 if (testbit(%legends_bits, ^legends_law_rune_2_used) = ^true) {
     ~mesbox("You find the word 'SMELL' marked on the wall. The outline of a door appears on the wall. What would you like to do?");
@@ -655,7 +655,7 @@ else {
     }
 }
 
-[oplocu,legends_marked_wall]
+[oplocu,lgancientwalldoor]
 if (last_useitem = soulrune) {
     if (testbit(%legends_bits, ^legends_soul_rune_used) = ^false) {
         inv_del(inv, soulrune, 1);
@@ -743,10 +743,10 @@ else {
     mes("You appear in a large cavern like room filled with pools of water.");
 }
 
-[oploc1,legends_carved_rock]
+[oploc1,lg_gemplacerock]
 ~mesbox("It's meant to look like a stalagmite, but there is something that looks slightly artificial about it. Looking at it more carefully, it seems to look carved.");
 
-[oploc2,legends_carved_rock]
+[oploc2,lg_gemplacerock]
 if (getbit_range(%legends_bits, ^legends_opal_used, ^legends_emerald_used) = ^legends_all_gems_used) {
     if(obj_find(0_43_145_13_17, book_of_binding) = true) {
         mes("You see that a book has appeared in the centre of the room.");
@@ -771,7 +771,7 @@ if (testbit(%legends_bits, $gem_bit) = ^true) {
     mes("The gem soon begins to fade.");
 }
 
-[oplocu,legends_carved_rock]
+[oplocu,lg_gemplacerock]
 db_find(legends_gem_data:gem, last_useitem);
 def_dbrow $data = db_findnext;
 if ($data = null) { // no NIH on rs3
@@ -819,7 +819,7 @@ if ($data = null) {
 def_namedobj $gem = db_getfield($data, legends_gem_data:gem_named, 0);
 def_coord $rock_coord = db_getfield($data, legends_gem_data:rock_coord, 0);
 def_int $gem_bit = db_getfield($data, legends_gem_data:gem_bit, 0);
-if (loc_find($rock_coord, legends_carved_rock) = true & distance(coord, $rock_coord) <= 1) {
+if (loc_find($rock_coord, lg_gemplacerock) = true & distance(coord, $rock_coord) <= 1) {
     def_string $name = lowercase(oc_name(inv_getobj(inv, $last_slot)));
     if (testbit(%legends_bits, $gem_bit) = ^true & (inv_total(inv, book_of_binding) = 0 | %legends_progress < ^legends_complete)) {
         mes("You have already placed the <$name> above this rock.");
@@ -932,7 +932,7 @@ while($i < 13) {
     world_delay(1);
 }
 
-[oploc1,legends_buried_skeleton]
+[oploc1,lg_dwarfremains]
 ~mesbox("It looks as if some poor unfortunate soul died here.");
 if_close;
 p_delay(1);
@@ -949,7 +949,7 @@ if ($pickaxe = null) {
 }
 mes("There's nothing interesting about these remains.");
 
-[oploc1,legends_ancient_gate_5_closed]
+[oploc1,lgmagictrialgateclosed]
 if(coordz(coord) > coordz(loc_coord)) {
     mes("The gate shimmers and changes as you approach.");
     mes("You feel yourself being pulled through the portal.");
@@ -958,7 +958,7 @@ if(coordz(coord) > coordz(loc_coord)) {
 }
 ~mesbox("This door is fused with rock, it doesn't seem possible to open it.|But it does look slightly strange in some way.");
 
-[oploc2,legends_ancient_gate_5_closed]
+[oploc2,lgmagictrialgateclosed]
 ~mesbox("It just looks like a normal door... at first.|And then you notice that some of the inscriptions make up letters.|After some time you manage to make sense of it.|Would you like to read it?");
 def_int $choice = ~p_choice3("Yes, I'll read it.", 1, "No, I don't want to read that.", 2, "Search further...", 3);
 if ($choice = 1) {
@@ -975,19 +975,19 @@ else {
     ~mesbox("All of these images are contained within a sphere.");
 }
 
-[oploc1,legends_water_pool]
+[oploc1,sacred_water]
 ~mesbox("It looks like a small babbling brook that comes from and disappears underground again. The water bubbles with a strange effervescence.");
 
-[oploc2,legends_water_pool]
+[oploc2,sacred_water]
 ~mesbox("It looks like you'll have problems getting some of the water as it's difficult to reach with all the rocks around it. There is a narrow gap that you simply won't be able to get a container into.");
 
-[oplocu,legends_water_pool]
+[oplocu,sacred_water]
 if (last_useitem = reed_hollow) {
     if (%legends_progress >= ^legends_germinated_seeds & %legends_progress < ^legends_defeated_nezikchened_water) {
         if (%legends_progress = ^legends_germinated_seeds) {
             %legends_progress = ^legends_water_pool_dried_up;
         }
-        loc_change(legends_polluted_water, 30);
+        loc_change(sacred_water_polluted, 30);
         ~mesbox("It looks as if this pool has dried up. A thick black sludge has replaced|the sparkling pure water. There is a disgusting stench of death that|emanates from this area. Maybe Gujuo knows what's happened.");
         return;
     }
@@ -1053,10 +1053,10 @@ else {
     ~displaymessage(^dm_default);
 }
 
-[oploc1,legends_polluted_water]
+[oploc1,sacred_water_polluted]
 ~mesbox("It looks as if this pool has dried up. A thick black sludge has replaced|the sparkling pure water. There is a disgusting stench of death that|emanates from this area. Maybe Gujuo knows what's happened.");
 
-[oplocu,legends_polluted_water]
+[oplocu,sacred_water_polluted]
 // todo: test this assumption
 if (last_useitem = reed_hollow) {
     ~mesbox("It looks as if this pool has dried up. A thick black sludge has replaced|the sparkling pure water. There is a disgusting stench of death that|emanates from this area. Maybe Gujuo knows what's happened.");
@@ -1065,13 +1065,13 @@ else {
     ~displaymessage(^dm_default);
 }
 
-[oploc1,legends_tall_reeds]
+[oploc1,tall_reeds]
 ~mesbox("These look like interesting plants, right next to the water's edge. They make the pool look really picturesque.");
 
-[oploc2,legends_tall_reeds]
+[oploc2,tall_reeds]
 ~mesbox("These tall reeds look nice and long with a long tube for a stem. They reach all the way down to the water.");
 
-[oplocu,legends_tall_reeds]
+[oplocu,tall_reeds]
 if (last_useitem = knife) {
     anim(human_knife_slash, 0);
     p_delay(0);
@@ -1114,7 +1114,7 @@ switch_coord(loc_coord) {
     case 0_45_45_31_25 : %yommi_spot6 = uid;
 }
 
-[oplocu,legends_fertile_soil]
+[oplocu,fertilesoil]
 if(last_useitem = yommiseeds) {
     ~mesbox("These seeds need to be germinated before you can plant them.");
     return;
@@ -1144,21 +1144,21 @@ if(last_useitem = yommiseeds_germ) {
     }
     mes("You plant the Yommi tree seed in the soil.");
     ~set_player_yommi_planter;
-    loc_change(legends_yommi_tree_baby, 5);
+    loc_change(yommitree_baby, 5);
     p_delay(1);
     inv_del(inv, yommiseeds_germ, 1);
     mes("It starts to grow at a remarkable rate.");
     p_delay(1);
     mes("It looks as if this Yommi tree needs to be watered.");
-    loc_change(legends_yommi_tree_sapling, 100);
+    loc_change(yommitree_sapling, 100);
     p_delay(1);
     world_delay(49); // 51t (something is wrong with world delay lol)
-    if(loc_find(loc_coord, legends_yommi_tree_sapling) = true) {
-        loc_change(legends_dead_yommi_sapling, 50);
+    if(loc_find(loc_coord, yommitree_sapling) = true) {
+        loc_change(yommitree_saplingdead, 50);
     }
 }
 
-[oplocu,legends_yommi_tree_sapling]
+[oplocu,yommitree_sapling]
 if(last_useitem = goldbowlbless_pure) {
     if(~get_yommi_planter ! uid) {
         mes("This is not your Yommi tree.");
@@ -1171,16 +1171,16 @@ if(last_useitem = goldbowlbless_pure) {
     mes("It grows at a remarkable rate...");
     p_delay(1);
     mes("Soon the tree stops growing.");
-    loc_change(legends_adult_yommi_tree, 100);
+    loc_change(yommitree_adult, 100);
     p_delay(1);
     mes("It looks tall enough now to make a good-sized totem pole.");
     world_delay(49); // 51t
-    if(loc_find(loc_coord, legends_adult_yommi_tree) = true) {
-        loc_change(legends_dead_yommi, 50);
+    if(loc_find(loc_coord, yommitree_adult) = true) {
+        loc_change(yommitree_adult_dead, 50);
     }
 }
 
-[oplocu,legends_adult_yommi_tree]
+[oplocu,yommitree_adult]
 if(oc_category(last_useitem) = weapon_axe) {
     if(~get_yommi_planter ! uid) {
         mes("This is not your Yommi tree.");
@@ -1194,16 +1194,16 @@ if(oc_category(last_useitem) = weapon_axe) {
     mes("You prepare to chop the Yommi tree.");
     p_delay(1);
     mes("You chop the Yommi tree down.");
-    loc_change(legends_felled_yommi_tree, 100);
+    loc_change(yommitree_felled, 100);
     p_delay(1);
     anim(null, 0);
     world_delay(49); // 51t (something is wrong with world delay lol)
-    if(loc_find(loc_coord, legends_felled_yommi_tree) = true) {
-        loc_change(legends_rotten_yommi, 50);
+    if(loc_find(loc_coord, yommitree_felled) = true) {
+        loc_change(yommitree_felled_rotten, 50);
     }
 }
 
-[oplocu,legends_felled_yommi_tree]
+[oplocu,yommitree_felled]
 if(oc_category(last_useitem) = weapon_axe) {
     if(~get_yommi_planter ! uid) {
         mes("This is not your Yommi tree.");
@@ -1217,15 +1217,15 @@ if(oc_category(last_useitem) = weapon_axe) {
     mes("You professionally wield your axe...");
     p_delay(1);
     mes("and trim the branches from the Yommi Tree.");
-    loc_change(legends_trimmed_yommi, 100);
+    loc_change(yommitree_trimmed, 100);
     anim(null, 0);
     world_delay(49); // 51t (something is wrong with world delay lol)
-    if(loc_find(loc_coord, legends_trimmed_yommi) = true) {
-        loc_change(legends_rotten_yommi_tree, 50);
+    if(loc_find(loc_coord, yommitree_trimmed) = true) {
+        loc_change(yommitree_trimmed_rotten, 50);
     }
 }
 
-[oplocu,legends_trimmed_yommi]
+[oplocu,yommitree_trimmed]
 if(oc_category(last_useitem) = weapon_axe) {
     if(~get_yommi_planter ! uid) {
         mes("This is not your Yommi tree.");
@@ -1239,15 +1239,15 @@ if(oc_category(last_useitem) = weapon_axe) {
     mes("You professionally wield your axe...");
     p_delay(1);
     mes("as you carve a wonderful totem pole from the Yommi tree trunk.");
-    loc_change(legends_totem_pole_5, 100);
+    loc_change(yommitree_totem, 100);
     anim(null, 0);
     world_delay(49); // 51t (something is wrong with world delay lol)
-    if(loc_find(loc_coord, legends_totem_pole_5) = true) {
-        loc_change(legends_rotten_totem_pole, 50);
+    if(loc_find(loc_coord, yommitree_totem) = true) {
+        loc_change(yommitree_totem_rotten, 50);
     }
 }
 
-[oploc1,legends_totem_pole_5]
+[oploc1,yommitree_totem]
 if(~get_yommi_planter ! uid) {
     mes("This is not your Yommi tree.");
     return;
@@ -1263,35 +1263,35 @@ if(%legends_progress < ^legends_collected_totem) {
     %legends_progress = ^legends_collected_totem;
     %legends_bits = clearbit_range(%legends_bits, ^legends_defeated_san_final, ^legends_defeated_ranalph_final);
 }
-loc_change(legends_damaged_earth, 50);
+loc_change(damaged_earth, 50);
 inv_add(inv, thtotempole, 1);
 mes("But you manage to lift it.");
 
-[oplocu,legends_dead_yommi_sapling]
+[oplocu,yommitree_saplingdead]
 if(oc_category(last_useitem) = weapon_axe) {
     @yommi_chop_logs("You use your axe on the dead sapling Yommi tree.");
 }
 ~displaymessage(^dm_default);
 
-[oplocu,legends_dead_yommi]
+[oplocu,yommitree_adult_dead]
 if(oc_category(last_useitem) = weapon_axe) {
     @yommi_chop_logs("You use your axe on the rotten adult Yommi tree.");
 }
 ~displaymessage(^dm_default);
 
-[oplocu,legends_rotten_yommi]
+[oplocu,yommitree_felled_rotten]
 if(oc_category(last_useitem) = weapon_axe) {
     @yommi_chop_logs("You use your axe on the rotten felled Yommi tree.");
 }
 ~displaymessage(^dm_default);
 
-[oplocu,legends_rotten_yommi_tree]
+[oplocu,yommitree_trimmed_rotten]
 if(oc_category(last_useitem) = weapon_axe) {
     @yommi_chop_logs("You use your axe on the rotten trimmed Yommi tree.");
 }
 ~displaymessage(^dm_default);
 
-[oplocu,legends_rotten_totem_pole]
+[oplocu,yommitree_totem_rotten]
 if(oc_category(last_useitem) = weapon_axe) {
     @yommi_chop_logs("You use your axe on the rotten Yommi totem pole.");
 }
@@ -1306,7 +1306,7 @@ if(last_useitem ! rune_axe) {
 mes($chop_mes);
 def_int $rolls = 0;
 anim(human_woodcutting_rune_axe, 0);
-loc_change(legends_fertile_soil, 50);
+loc_change(fertilesoil, 50);
 while($rolls < 3) {
     def_int $rand = random(10);
     if($rand < 1) {
@@ -1522,7 +1522,7 @@ inv_del(inv, stafforb, 1);
 anim($anim, 0);
 spotanim_pl($spotanim, 92, 0);
 sound_synth($sound, 0, 0);
-loc_change(legends_ancient_gate_5_open, 10);
+loc_change(lgmagictrialgateopen, 10);
 p_delay(1);
 mes("The gate changes!");
 anim(null, 0);
@@ -1533,35 +1533,35 @@ anim(null, 0);
 ~objbox(stafforb, "The orb shatters with the power of the magic. The spell works and you magically appear in a different part of the cave system. It seems that the gate was a test of magical ability.", 250, 0, 0);
 ~mesbox("As soon as you enter the room, you are filled with dread. In the centre of the room is a large gaping hole. It goes down a long way...");
 
-[oploc1,legends_winch]
+[oploc1,lg_winchdown_norope]
 if(testbit(%legends_bits, ^legends_tied_rope_winch) = ^true) {
     mes("You search the wooden beams and find the rope you attached.");
-    loc_change(legends_winch_rope, 30);
+    loc_change(lg_winchdown_rope, 30);
     return;
 }
 mes("You see nothing special about this...");
 p_delay(2);
 mes("Perhaps with a rope, it might be a bit more functional.");
 
-[oplocu,legends_winch]
+[oplocu,lg_winchdown_norope]
 if(last_useitem = rope) {
     if(testbit(%legends_bits, ^legends_tied_rope_winch) = ^true) {
         mes("You have already thrown a rope around this wooden beam.");
-        loc_change(legends_winch_rope, 30);
+        loc_change(lg_winchdown_rope, 30);
         return;
     }
     mes("You throw a rope around the winch.");
     inv_del(inv, rope, 1);
-    loc_change(legends_winch_rope, 30);
+    loc_change(lg_winchdown_rope, 30);
     %legends_bits = setbit(%legends_bits, ^legends_tied_rope_winch);
     return;
 }
 ~displaymessage(^dm_default);
 
-[oploc1,legends_winch_rope]
+[oploc1,lg_winchdown_rope]
 if(testbit(%legends_bits, ^legends_tied_rope_winch) = ^false) {
     mes("The rope snaps as you're about to climb down it."); // TODO: rsc, need to confirm 
-    loc_change(legends_winch, 30);
+    loc_change(lg_winchdown_norope, 30);
     return;
 }
 ~mesbox("The climb down looks pretty dangerous, |it leads into a very dark hole.| It's actually quite frightening.| Are you sure you want to go down?");
@@ -1604,14 +1604,14 @@ p_delay(2);
 mes("And you can go no further.");
 ~chatplayer("<p,scared>No! It's too scary!");
 
-[oploc1,legends_climbing_rope]
+[oploc1,lgclimbrope_viyeldicaves]
 mes("You climb back up the rope to the Shaman Caves..");
 anim(human_reachforladder, 0);
 p_delay(1);
 p_teleport(0_43_145_8_48);
 
 // these all have different messages and delays are off, can't really generalize it
-[oploc1,legends_rocky_ledge_1]
+[oploc1,rocky_ledge]
 if(coordx(coord) < coordx(loc_coord)) {
     p_teleport(loc_coord);
     p_delay(1);
@@ -1648,7 +1648,7 @@ if(stat_random(agility, 110, 250) = false) {
 p_teleport(movecoord(loc_coord, -1, 0, 0));
 mes("You climb confidently over the rocks and hold your balance well.");
 
-[oploc1,legends_rocky_ledge_2]
+[oploc1,rocky_ledge1]
 if(coordx(coord) > coordx(loc_coord)) {
     mes("You step confidently onto the rocky ledge.");
     p_teleport(movecoord(loc_coord, 0, 0, -1));
@@ -1684,7 +1684,7 @@ mes("You climb confidently over the rocks and hold your balance well.");
 p_delay(1);
 p_teleport(movecoord(loc_coord, 1, 0, 0));
 
-[oploc1,legends_rocky_ledge_3]
+[oploc1,rocky_ledge2]
 if(coordz(coord) < coordz(loc_coord)) {
     mes("You step confidently onto the rocky ledge.");
     p_teleport(movecoord(loc_coord, 0, 0, 1));
@@ -1720,7 +1720,7 @@ mes("You climb confidently over the rocks and hold your balance well.");
 p_delay(1);
 p_teleport(movecoord(loc_coord, 0, 0, -1));
 
-[oploc1,legends_rocks_2]
+[oploc1,viycaves_climbrock1]
 if(coordx(coord) > coordx(loc_coord)) {
     mes("You easily climb over the rocks.");
     p_teleport(loc_coord);
@@ -1769,7 +1769,7 @@ if(stat_random(agility, 110, 250) = false) {
 mes("You climb over the rocks quite easily.");
 p_teleport(movecoord(loc_coord, 1, 0, 0));
 
-[oploc1,legends_rocks_3]
+[oploc1,viycaves_climbrock2]
 if(coordz(coord) < coordz(loc_coord)) {
     mes("You easily climb over the rocks.");
     p_teleport(loc_coord);
@@ -1818,7 +1818,7 @@ if(stat_random(agility, 110, 250) = false) {
 mes("You climb over the rocks quite easily.");
 p_teleport(movecoord(loc_coord, 0, 0, -1));
 
-[oploc1,legends_rocks_4]
+[oploc1,viycaves_climbrock3]
 if(coordz(coord) < coordz(loc_coord)) {
     mes("You easily climb over the rocks.");
     p_teleport(loc_coord);
@@ -1867,10 +1867,10 @@ if(stat_random(agility, 110, 250) = false) {
 mes("You climb over the rocks quite easily.");
 p_teleport(movecoord(loc_coord, 0, 0, -1));
 
-[oploc1,furnace_underground]
+[oploc1,furnace_legendsquest]
 ~mesbox("This is an ancient looking furnace, it is partially molten and buried by years of rock debris. Inside the furnace there is a compartment with strangely shaped sections.");
 
-[oploc2,furnace_underground]
+[oploc2,furnace_legendsquest]
 ~mesbox("You search the lava furnace. You find a small compartment that you may be able to use. Strangely, it looks as if It looks designed it is designed for a specific purpose... to fuse things together at very high temperatures...");
 @legends_furnace_pieces(true);
 
@@ -1902,7 +1902,7 @@ if($total = 0) {
 
 [opheld1,heartcrystal_glow] ~objbox(heartcrystal_glow, "This crystal seems to glow and has a very mystical aura about it. It seems to be vaguely heart shaped.", 250, 0, ^objbox_height);
 
-[oplocu,furnace_underground]
+[oplocu,furnace_legendsquest]
 if(stat(crafting) < 50) {
     mes("You need a Crafting level of 50 to use this furnace.");
     return;
@@ -1921,10 +1921,10 @@ if(last_useitem = heartcrystal_sectionc | last_useitem = heartcrystal_sectionb |
 }
 mes("The furnace doesn't seem to be working.");
 
-[oploc1,legends_mossy_rock_3]
+[oploc1,dragons_eye_rock]
 mes("These rocks look somehow manufactured.");
 
-[oplocu,legends_mossy_rock_3]
+[oplocu,dragons_eye_rock]
 if(last_useitem = heartcrystal) {
     @heart_crystal_mossy_rock;
 }
@@ -1942,10 +1942,10 @@ inv_del(inv, heartcrystal, 1);
 inv_add(inv, heartcrystal_glow, 1);
 ~objbox(heartcrystal_glow, "You carefully place the dragon crystal on the rock. The rocks seem to vibrate and hum and the crystal starts to glow. The vibration in the area diminishes, but the crystal continues to glow.", 250, 0, ^objbox_height);
 
-[oploc1,legends_recess]
+[oploc1,heart_recess_empty]
 ~mesbox("You see a heart-shaped depression in the wall.|A message reads...|@blu@All ye who stand 'ere the dragons teeth,|@blu@Place your full true heart within, and proceed...");
 
-[oplocu,legends_recess]
+[oplocu,heart_recess_empty]
 if(last_useitem = heartcrystal) {
     ~mesbox("The crystal seems to fit into the recess perfectly, but nothing interesting happens.");
 } else if(last_useitem = heartcrystal_glow) {
@@ -1959,13 +1959,13 @@ if(last_useitem = heartcrystal) {
     spotanim_map(watersplash, coord, 128, 0);
     spotanim_map(watersplash, coord, 128, 0);
     inv_del(inv, heartcrystal_glow, 1);
-    loc_change(legends_filled_recess, 15);
+    loc_change(heart_recess_full, 15);
 }
 
-[oploc1,legends_filled_recess]
+[oploc1,heart_recess_full]
 ~mesbox("You see a magical, glowing crystal shape in the wall. It grants access to the cavern.");
 
-[oploc1,legends_shimmering_field]
+[oploc1,legendsquest_force_barrier]
 if(%legends_progress >= ^legends_heart_in_recess) {
     if(coordz(coord) > coordz(loc_coord)) {
         mes("You walk carefully through the magical barrier and");
@@ -1982,7 +1982,7 @@ p_delay(1);
 // https://youtu.be/uF1a9xsV7zo?si=0-xYBOVVD_6oYi0h&t=2610
 ~mesbox("You walk into an invisible barrier... Some kind of magical force will not allow you to pass into the cavern. You notice something interesting on the wall to the left.");
 
-[oploc2,legends_shimmering_field]
+[oploc2,legendsquest_force_barrier]
 ~mesbox("You see a shimmering field right in front of your eyes. It seems to float in the air. You touch it with your hand and it seems to resist your movements. It will definitely bar you from getting into the next cave.");
 
 [opheld1,holyforce]
@@ -2015,15 +2015,15 @@ npc_say("Perish, Vacu!");
 %npc_aggressive_player = uid;
 %npc_lastcombat = sub(^max_32bit_int, 8);
 
-[oploc1,legends_leafy_palm_tree]
+[oploc1,kharazi_bamboo_tree_base_leafy]
 mes("You give the bamboo tree a good shake.");
 anim(human_push, 0);
 p_delay(0);
 mes("A palm leaf falls to the ground.");
-loc_change(legends_leafy_palm_tree, 44); // static 43t
+loc_change(kharazi_bamboo_tree_base_leafy, 44); // static 43t
 obj_add(map_findsquare(coord, 1, 1, ^map_findsquare_lineofwalk), palm_leaf, 1, 100);
 
-[oplocu,legends_totem_pole_1]
+[oplocu,lg_ord_totem_pole]
 if(last_useitem = thtotempole) {
     if(%legends_progress < ^legends_defeated_nezikchened_final) {
         ~mesbox("You attempt to replace the evil totem pole.|A black cloud emanates from the evil totem pole and|it slowly forms into the dread demon Nezikchened.");
@@ -2037,25 +2037,25 @@ if(last_useitem = thtotempole) {
         npc_walk(movecoord(coord, 1, 0, 0));
         npc_setmode(opplayer2);
     } else {
-        loc_change(legends_totem_pole_2, 20);
+        loc_change(lg_totem_pole_good, 20);
         ~mesbox("You have already replaced the evil totem pole with your own. You feel a great sense of accomplishment.");
     }
     return;
 }
 ~displaymessage(^dm_default);
 
-[oploc1,legends_totem_pole_1]
+[oploc1,lg_ord_totem_pole]
 if(%legends_progress < ^legends_replaced_totem) {
-    loc_change(legends_totem_pole_3, 20);
+    loc_change(lg_totem_pole_evil, 20);
     ~mesbox("This totem pole looks corrupted. You don't like to look at it for too long.");
 } else if(%legends_progress >= ^legends_replaced_totem) {
-    loc_change(legends_totem_pole_2, 20);
+    loc_change(lg_totem_pole_good, 20);
     ~mesbox("This totem pole is truly awe inspiring. It depicts powerful Karamja jungle animals. It is very well carved and brings a sense of power and spiritual fulfillment to anyone who looks at it.");
 }
 
-[oploc1,legends_totem_pole_2]
+[oploc1,lg_totem_pole_good]
 if(%legends_progress < ^legends_replaced_totem) {
-    loc_change(legends_totem_pole_3, 20);
+    loc_change(lg_totem_pole_evil, 20);
     ~mesbox("This totem pole corrupted. You don't like to look at it for too long.");
 } else if(%legends_progress >= ^legends_replaced_totem) {
     ~mesbox("This totem pole is truly awe inspiring. It depicts powerful Karamja jungle animals. It is very well carved and brings a sense of power and spiritual fulfillment to anyone who looks at it.");

@@ -1,12 +1,12 @@
-[oploc1,loc_2631] @unlock_taverley_jaildoor(false);
-[oplocu,loc_2631]
+[oploc1,dungeonjail] @unlock_taverley_jaildoor(false);
+[oplocu,dungeonjail]
 if(last_useitem = jail_key) {
     @unlock_taverley_jaildoor(true);
 } 
 ~displaymessage(^dm_default);
 
-[oploc1,loc_2623] @unlock_taverley_jaildoor(false);
-[oplocu,loc_2623]
+[oploc1,deepdungeondoor] @unlock_taverley_jaildoor(false);
+[oplocu,deepdungeondoor]
 if(last_useitem = dusty_key) {
     @unlock_taverley_jaildoor(true);
 } 

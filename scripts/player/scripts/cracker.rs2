@@ -8,21 +8,22 @@ if(.busy = true) {
     mes("<.displayname> is busy.");
     return;
 }
-// https://youtu.be/uQfnBk527CI?si=MqH5lJRcJLRb9dyQ&t=58
-mes("You pull a Christmas cracker...");
-.mes("You pull a Christmas cracker...");
+// https://www.youtube.com/watch?v=wzcCsb-62CU
+mes("Pulling cracker");
+mes("You pull a christmas cracker...");
+.mes("You pull a christmas cracker...");
 anim(human_explodingvial, 0);
 inv_del(inv, christmas_cracker, 1);
 if (random(2) = 1) {
-    mes("You get the prize from the cracker");
+    mes("Hey! I got the cracker!");
     .mes("The person you pulled the cracker with gets the prize.");
     inv_add(inv, ~cracker_partyhat, 1);
-    .inv_add(inv, ~cracker_other);
+    inv_add(inv, ~cracker_other);
 } else {
     mes("The person you pulled the cracker with gets the prize.");
     .mes("You get the prize from the cracker");
     .inv_add(inv, ~cracker_partyhat, 1);
-    inv_add(inv, ~cracker_other);
+    .inv_add(inv, ~cracker_other);
 }
 
 [proc,cracker_partyhat]()(namedobj)

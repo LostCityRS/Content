@@ -11,7 +11,7 @@ mes("You can't open this door.");
 [oploc1,inaclefayeunopenabledoorl]
 mes("You can't open this door.");
 
-[oploc1,blackknight_front_door]
+[oploc1,bkfortressdoor1]
 def_boolean $is_outside = ~check_axis(coord, loc_coord, loc_angle);
 if ($is_outside = true & ((inv_getobj(worn, ^wearpos_hat) ! bronze_med_helm) | (inv_getobj(worn, ^wearpos_torso) ! iron_chainbody))) {
     if (npc_find(0_47_54_8_56, fortressguard, 5, 1) = true) {
@@ -21,7 +21,7 @@ if ($is_outside = true & ((inv_getobj(worn, ^wearpos_hat) ! bronze_med_helm) | (
     ~open_and_close_door(loc_param(next_loc_stage), $is_outside, false);
 }
 
-[oploc1,blackknight_door_to_grill]
+[oploc1,bkfortressdoor3]
 def_boolean $is_outside = ~check_axis(coord, loc_coord, loc_angle);
 if ($is_outside = false) {
     // black knights guarding the ladder down to the grill will aggress the player
@@ -53,7 +53,7 @@ if ($option = 1) {
     ~chatnpc("<p,angry>This fortress belongs to the order of Black Knights known as the Kinshra.");
 }
 
-[oploc1,blackknight_banquet_hall_door]
+[oploc1,bkfortressdoor2]
 def_boolean $is_inside = ~check_axis(coord, loc_coord, loc_angle);
 def_coord $blackknight_near_banquet_hall = 0_47_54_11_59;
 def_coord $blackknight_outside = 0_47_54_8_57;
@@ -79,16 +79,16 @@ if ($option = 1) {
    // - in osrs it gets flinched, but in https://youtu.be/6RNx7Sbut8A?t=306 it insta retals and i doubt its a hunt
    ~black_knights_aggro(0_47_54_17_59, 0_47_54_17_59);
 }
-[oploc1,blackknight_potion_room_door]
+[oploc1,inacbkfortressdoor]
 mes("It's locked.");
 
 // Secret wall push
-[oploc1,blackknight_pushable_wall]
+[oploc1,bksecretdoor]
 mes("You push against the wall. You find a secret passage.");
 ~open_and_close_door2(loc_param(next_loc_stage), ~check_axis_locactive(coord), coffin_open);
 
 // Using Cabbage on hole
-[oplocu,blackknight_hole]
+[oplocu,blackknighthole]
 switch_obj (last_useitem)
 {
     case cabbage : @black_knights_fortress_correct_cabbage;
@@ -129,7 +129,7 @@ if (%blackknight_progress = 2) {
 }
 
 // Listening at grate
-[oploc1,blackknight_grate]
+[oploc1,witchgrill]
 if (%blackknight_progress = 1) {
     ~chatnpc_specific("Black Knight", grillknight, "<p,quiz>So, how's the secret weapon coming along?");
     ~chatnpc_specific("Witch", fortwitch, "<p,happy>The invincibility potion is almost ready...");

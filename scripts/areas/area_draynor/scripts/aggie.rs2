@@ -23,7 +23,7 @@ if($option = 1) {
     @aggie_dyes;
 } else if($option = 5) {
     ~chatplayer("<p,quiz>Could you think of a way to make skin paste?");
-    if(inv_total(inv, redberry) > 0 & inv_total(inv, pot_flour) > 0 & (inv_total(inv, bucket_water) > 0 | inv_total(inv, jug_water) > 0) & inv_total(inv, ashes) > 0) {
+    if(inv_total(inv, redberries) > 0 & inv_total(inv, pot_flour) > 0 & (inv_total(inv, bucket_water) > 0 | inv_total(inv, jug_water) > 0) & inv_total(inv, ashes) > 0) {
         ~chatnpc("<p,happy>Yes I can, I see you already have the ingredients. Would you like me to mix some for you now?");
         @multi2("Yes please. Mix me some skin paste.", aggie_mix_paste, "No thank you, I don't need any skin paste right now.", aggie_no_paste);
     } else {
@@ -37,7 +37,7 @@ if($option = 1) {
 [opnpcu,aggie]
 switch_obj(last_useitem) {
     case onion : @aggie_yellow_dye;
-    case redberry : @aggie_red_dye;
+    case redberries : @aggie_red_dye;
     case woadleaf : @aggie_blue_dye;
     case default : ~displaymessage(^dm_default);
 }
@@ -102,7 +102,7 @@ inv_add(inv, yellowdye, 1);
 ~objbox(yellowdye, "You hand the onions and payment to Aggie.|Aggie takes a yellow bottle from nowhere and hands it to you.", 250, 0, ^objbox_height);
 
 [label,aggie_red_dye]
-if(inv_total(inv, redberry) < 3) {
+if(inv_total(inv, redberries) < 3) {
     ~mesbox("You don't have enough berries to make the red dye!");
     return;
 } else if(inv_total(inv, coins) < 5) {
@@ -111,7 +111,7 @@ if(inv_total(inv, redberry) < 3) {
 }
 ~chatplayer("<p,neutral>Okay, make me some red dye please.");
 inv_del(inv, coins, 5);
-inv_del(inv, redberry, 3);
+inv_del(inv, redberries, 3);
 inv_add(inv, reddye, 1);
 ~objbox(reddye, "You hand the berries and payment to Aggie.|Aggie takes a red bottle from nowhere and hands it to you.", 250, 0, ^objbox_height);
 
@@ -147,7 +147,7 @@ if(inv_total(inv, bucket_water) > 0) {
 }
 ~mesbox("You hand the ash, flour, water and redberries to Aggie.|Aggie tips the ingredients into a cauldron|and mutters some words.");
 ~chatnpc("<p,confused>Tourniquet, Fenderbaum, Tottenham, Marshmallow, Marblearch.");
-inv_del(inv, redberry, 1);
+inv_del(inv, redberries, 1);
 inv_del(inv, pot_flour, 1);
 inv_del(inv, ashes, 1);
 inv_add(inv, skinpaste, 1);

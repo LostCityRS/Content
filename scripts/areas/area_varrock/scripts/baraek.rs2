@@ -2,17 +2,17 @@
 if(%phoenixgang_progress = 3) { // you wont get options for selling both furs while doing the quest, grey is prio'd
     if(inv_total(inv, grey_wolf_fur) > 0) {
         @multi4("Can you tell me where I can find the Phoenix Gang?", baraek_phoenixgang, "Can you sell me some furs?", baraek_sell_fur, "Hello. I am in search of a quest.", baraek_quest, "Would you like to buy my grey wolf fur?", baraek_grey_wolf_fur);
-    } else if(inv_total(inv, bear_fur) > 0) {
+    } else if(inv_total(inv, fur) > 0) {
         @multi4("Can you tell me where I can find the Phoenix Gang?", baraek_phoenixgang, "Can you sell me some furs?", baraek_sell_fur, "Hello. I am in search of a quest.", baraek_quest, "Would you like to buy my fur?", baraek_buy_fur);
     } else {
         @multi3("Can you tell me where I can find the Phoenix Gang?", baraek_phoenixgang, "Can you sell me some furs?", baraek_sell_fur, "Hello. I am in search of a quest.", baraek_quest);
     }
 } else {
-    if(inv_total(inv, grey_wolf_fur) > 0 & inv_total(inv, bear_fur) > 0) {
+    if(inv_total(inv, grey_wolf_fur) > 0 & inv_total(inv, fur) > 0) {
         @multi4("Can you sell me some furs?", baraek_sell_fur, "Hello. I am in search of a quest.", baraek_quest, "Would you like to buy my fur?", baraek_buy_fur, "Would you like to buy my grey wolf fur?", baraek_grey_wolf_fur);
     } else if(inv_total(inv, grey_wolf_fur) > 0) {
         @multi3("Can you sell me some furs?", baraek_sell_fur, "Hello. I am in search of a quest.", baraek_quest, "Would you like to buy my grey wolf fur?", baraek_grey_wolf_fur);
-    } else if(inv_total(inv, bear_fur) > 0) {
+    } else if(inv_total(inv, fur) > 0) {
         @multi3("Can you sell me some furs?", baraek_sell_fur, "Hello. I am in search of a quest.", baraek_quest, "Would you like to buy my fur?", baraek_buy_fur);
     } else {
         @multi2("Can you sell me some furs?", baraek_sell_fur, "Hello. I am in search of a quest.", baraek_quest);
@@ -36,8 +36,8 @@ switch_int(~p_choice2("Yeah, Okay, here you go.", 1, "20 gold coins? That's an o
                     return;
                 }
                 inv_del(inv, coins, 18);
-                inv_add(inv, bear_fur, 1);
-                ~objbox(bear_fur, "Baraek sells you a fur.", 250, 0, divide(^objbox_height, 2));
+                inv_add(inv, fur, 1);
+                ~objbox(fur, "Baraek sells you a fur.", 250, 0, divide(^objbox_height, 2));
             } else if($option = 2) {
                 ~chatplayer("<p,neutral>No thanks, I'll leave it.");
                 ~chatnpc("<p,neutral>It's your loss mate.");
@@ -45,8 +45,8 @@ switch_int(~p_choice2("Yeah, Okay, here you go.", 1, "20 gold coins? That's an o
             return;
         }
         inv_del(inv, coins, 20);
-        inv_add(inv, bear_fur, 1);
-        ~objbox(bear_fur, "Baraek sells you a fur.", 250, 0, divide(^objbox_height, 2));
+        inv_add(inv, fur, 1);
+        ~objbox(fur, "Baraek sells you a fur.", 250, 0, divide(^objbox_height, 2));
     case 2 :
         ~chatplayer("<p,angry>20 gold coins? That's an outrage!");
         ~chatnpc("<p,sad>Well, I can't go any cheaper than that mate.|I have a family to feed.");
@@ -59,7 +59,7 @@ switch_int(~p_choice2("Yeah, Okay, here you go.", 1, "20 gold coins? That's an o
 [label,baraek_buy_fur]
 ~chatplayer("<p,quiz>Would you like to buy my fur?");
 ~chatnpc("<p,neutral>Let's have a look at it.");
-~objbox(bear_fur, "You hand Baraek your fur to look at.", 250, 0, 0);
+~objbox(fur, "You hand Baraek your fur to look at.", 250, 0, 0);
 if_close;
 p_delay(3);
 ~chatnpc("<p,neutral>It's not in the best condition. I guess I could give you 12 coins for each one.");
@@ -67,8 +67,8 @@ def_int $option = ~p_choice2("OK, here you go.", 1, "No thanks, I'll leave it.",
 if($option = 1) {
     ~chatplayer("<p,neutral>Yeah, that'll do.");
     if_close;
-    while(inv_total(inv, bear_fur) > 0) {
-        inv_del(inv, bear_fur, 1);
+    while(inv_total(inv, fur) > 0) {
+        inv_del(inv, fur, 1);
         inv_add(inv, coins, 12);
         p_delay(0);
     }

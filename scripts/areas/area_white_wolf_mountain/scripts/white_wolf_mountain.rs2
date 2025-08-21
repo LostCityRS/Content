@@ -1,10 +1,10 @@
-[oploc1,ice_queen_lair_rockslide]
+[oploc1,herorockslide]
 mes("These rocks contain nothing interesting. They are just in the way.");
 
-[oploc2,ice_queen_lair_rockslide]
+[oploc2,herorockslide]
 ~mine_ice_queen_lair_rockslide;
 
-[oplocu,ice_queen_lair_rockslide]
+[oplocu,herorockslide]
 if (oc_category(last_useitem) = weapon_pickaxe) {
   p_oploc(2);
   return;

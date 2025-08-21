@@ -83,7 +83,7 @@ if(%temp > 0) { // if you had started the dialogue by clicking on the gate, it w
     ~open_and_close_double_door2(~check_axis(coord, loc_coord, loc_angle), sub(%temp, 1), grate_open);
     return;
 }
-if (loc_find(^legends_guild_gate_west_coord, legends_gate_west) = true) {
+if (loc_find(^legends_guild_gate_west_coord, legendsguildgatel) = true) {
     def_coord $inside_dest = ^legends_guild_gate_dest_in_coord;
     if (coord ! loc_coord) {
         // If you're not right next to the gate: sends you two steps away, then opens gate

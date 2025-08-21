@@ -1,4 +1,4 @@
-[oploc1,loc_2268]
+[oploc1,paramayaladderup]
 if(inv_total(inv, paramayaticket) = 0) {
     ~chatnpc_specific(nc_name(shiloinnowner), shiloinnowner, "You can buy a ticket to the dormitory from me. And have a lovely night's rest.");
     return;
@@ -9,7 +9,7 @@ if_close;
 p_delay(0);
 ~climb_ladder(movecoord(coord, 0, 1, 0), true);
 
-[oploc1,loc_2269]
+[oploc1,paramayaladderdown]
 mes("You climb down the ladder.");
 ~climb_ladder(1_44_46_45_51, false);
 

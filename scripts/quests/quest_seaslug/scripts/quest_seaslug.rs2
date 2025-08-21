@@ -59,7 +59,7 @@ if(%seaslug_progress = ^seaslug_spoken_kent) {
     %seaslug_progress = ^seaslug_lit_torch;
 }
 
-[oploc1,loc_2517]
+[oploc1,slugladder]
 p_arrivedelay;
 if(%seaslug_progress >= ^seaslug_spoken_kent & %seaslug_progress < ^seaslug_complete) {
     if(inv_total(inv, torch_lit) = 0) {
@@ -75,7 +75,7 @@ if(%seaslug_progress >= ^seaslug_spoken_kent & %seaslug_progress < ^seaslug_comp
 }
 ~climb_ladder(movecoord(coord(), 0, 1, 0), true);
 
-[oploc1,loc_2518]
+[oploc1,loosepanel]
 mes("You kick the loose panel.");
 anim(human_unarmedkick, 0);
 sound_synth(unarmed_kick, 0, 0);
@@ -90,7 +90,7 @@ if(%seaslug_progress = ^seaslug_kennith_need_escape) {
 p_delay(3);
 mes("But nothing interesting happens.");
 
-[oploc1,loc_2520]
+[oploc1,fishingcrane]
 if(coordz(coord) < coordz(movecoord(loc_coord, 0, 0, 3))) {
     mes("I need to get closer to use that.");
     return;
@@ -113,7 +113,7 @@ if(%seaslug_progress = ^seaslug_need_kennith_path) {
 }
 p_delay(4);
 
-[oploc1,loc_2519]
+[oploc1,kennithwall]
 if (npc_find(movecoord(coord, 0, 0, 2), kennith, 5, 0) = true) {
     @kennith_chat;
 }

@@ -1,4 +1,4 @@
-[oploc2,loc_2402] // palace bookcase
+[oploc2,questbookcase] // palace bookcase
 if(%phoenixgang_progress ! 1) {
     mes("A large collection of books.");
     return;
@@ -11,7 +11,7 @@ if(inv_total(inv, the_shield_of_arrav) > 0) {
 ~mesbox("You take the book from the bookcase.");
 inv_add(inv, the_shield_of_arrav, 1);
 
-[oploc1,loc_2397]
+[oploc1,phoenixdoor]
 // 1 tile away from player
 def_boolean $leaving = ~check_axis(coord, loc_coord, loc_angle);
 if(%phoenixgang_progress >= ^phoenixgang_joined | $leaving = true) {
@@ -29,9 +29,9 @@ if (npc_find(coord, straven, 1, 0) = true) {
 }
 mes("The door is securely locked.");
 
-[oploc1,loc_2403] ~open_chest(loc_2404);
+[oploc1,phoenixshutchest] ~open_chest(phoenixopenchest);
 
-[oploc1,loc_2404]
+[oploc1,phoenixopenchest]
 ~mesbox("You search the chest.");
 if(%phoenixgang_progress = ^phoenixgang_complete | inv_total(inv, arravshield1) > 0 | inv_total(bank, arravshield1) > 0) {
     ~mesbox("The chest is empty.");
@@ -40,10 +40,10 @@ if(%phoenixgang_progress = ^phoenixgang_complete | inv_total(inv, arravshield1) 
 ~objbox(arravshield1, "You find half a shield, which you take.", 250, 0, 0); // additional dialogue if in bank or full inv, likely w/rework
 inv_add(inv, arravshield1, 1);
 
-[oploc2,loc_2404] ~close_chest(loc_2403);
+[oploc2,phoenixopenchest] ~close_chest(phoenixshutchest);
 
-[oploc1,loc_2398] @unlock_weaponstore_door(false);
-[oplocu,loc_2398]
+[oploc1,phoenixdoor2] @unlock_weaponstore_door(false);
+[oplocu,phoenixdoor2]
 if(last_useitem = phoenixkey2) {
     @unlock_weaponstore_door(true);
 } 
@@ -83,7 +83,7 @@ if ($leaving = true) {
 p_teleport($dest);
 // Temp note: dur updated
 loc_change(inviswall, 3);
-loc_add(movecoord($loc_coord, $x, 0, $z), loc_1535, modulo(add($angle, 1), 4), $shape, 3);
+loc_add(movecoord($loc_coord, $x, 0, $z), poordoor, modulo(add($angle, 1), 4), $shape, 3);
 
 [opobj3,phoenix_crossbow]
 // not a zone specific check, you can drop a crossbow in the nearby building to trigger this dialogue 
@@ -96,7 +96,7 @@ if (inv_itemspace(inv, obj_type, obj_count, inv_size(inv)) = false) {
 }
 @pickup_obj;
 
-[oploc1,loc_2399]
+[oploc1,blackarmdoor]
 def_boolean $leaving = ~check_axis(coord, loc_coord, loc_angle);
 if(%blackarmgang_progress >= ^blackarmgang_joined) {
     ~open_hideout_door($leaving, "You hear heavy bolts being drawn back as the door is unlocked.");
@@ -104,10 +104,10 @@ if(%blackarmgang_progress >= ^blackarmgang_joined) {
 }
 mes("This door seems to be locked from the inside.");
 
-[oploc1,loc_2400] @open_cupboard(~cupboards_use_message);
-[oploc1,loc_2401] @close_cupboard(~cupboards_use_message);
+[oploc1,blackarmcupboardshut] @open_cupboard(~cupboards_use_message);
+[oploc1,blackarmcupboardopen] @close_cupboard(~cupboards_use_message);
 
-[oploc2,loc_2401]
+[oploc2,blackarmcupboardopen]
 if(%blackarmgang_progress = ^blackarmgang_complete | inv_total(inv, arravshield2) > 0 | inv_total(bank, arravshield2) > 0) {
     ~mesbox("The cupboard is bare.");
     return;

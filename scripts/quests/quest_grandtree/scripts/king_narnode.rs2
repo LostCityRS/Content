@@ -215,9 +215,9 @@ switch_int(%grandtree_progress) {
                     p_delay($npc_dist);
                 }
                 npc_facesquare(movecoord(^narnode_trapdoor_coord, -1, 0, -1));
-                if(loc_find(movecoord(^narnode_trapdoor_coord, -1, 0, -1), loc_2446) = true) {
+                if(loc_find(movecoord(^narnode_trapdoor_coord, -1, 0, -1), grandtree_trapdoorunder) = true) {
                     // Temp note: dur does not need updated ? @indio
-                    loc_change(loc_2445, 10);
+                    loc_change(grandtree_trapdooropen, 10);
                 }
                 npc_say("Down here.");
                 ~forcewalk(movecoord(^narnode_trapdoor_coord, 0, 0, -1));

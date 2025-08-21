@@ -1,5 +1,5 @@
-[oploc1,legends_guild_door_1] @open_legends_door(^left);
-[oploc1,legends_guild_door_2] @open_legends_door(^right);
+[oploc1,legendsguilddoorl] @open_legends_door(^left);
+[oploc1,legendsguilddoorr] @open_legends_door(^right);
 
 [label,open_legends_door](int $side)
 if (%legends_progress >= ^legends_returned_to_radimus) {

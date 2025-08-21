@@ -1,7 +1,7 @@
 [oploc1,loc_2417]
-~open_chest(loc_2418);
+~open_chest(partyroom_chestopen);
 
-[oploc2,loc_2418]
+[oploc2,partyroom_chestopen]
 inv_transmit(partyroom_dropinv, party_drop_chest:inv);
 inv_transmit(partyroom_tempinv, party_drop_chest:playerinv);
 inv_transmit(inv, party_drop_chest_side:inv);
@@ -13,7 +13,7 @@ inv_stoptransmit(party_drop_chest:inv);
 inv_stoptransmit(party_drop_chest:playerinv);
 ~moveallinv(partyroom_tempinv, inv);
 
-[oploc3,loc_2418]
+[oploc3,partyroom_chestopen]
 ~close_chest(loc_2417);
 
 [inv_button1,party_drop_chest:playerinv] @withdraw_partychest(last_slot, 1);

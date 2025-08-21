@@ -10,23 +10,23 @@ inv_add(inv, steel_gauntlets, 1);
 session_log(^log_adventure, "Quest complete: Family Crest");
 ~send_quest_complete(questlist:crest, steel_gauntlets, 250, ^squire_questpoints, "You have completed the\\nFamily Crest Quest!");
 
-[oploc1,witchaven_north_room_lever_down]
-~crest_toggle_lever(coord, witchaven_north_room_lever_up, ^crest_north_room_lever, true);
+[oploc1,leveri]
+~crest_toggle_lever(coord, leveri2, ^crest_north_room_lever, true);
 
-[oploc1,witchaven_north_room_lever_up]
-~crest_toggle_lever(coord, witchaven_north_room_lever_down, ^crest_north_room_lever, false);
+[oploc1,leveri2]
+~crest_toggle_lever(coord, leveri, ^crest_north_room_lever, false);
 
-[oploc1,witchaven_north_lever_down]
-~crest_toggle_lever(coord, witchaven_north_lever_up, ^crest_north_lever, true);
+[oploc1,leverg]
+~crest_toggle_lever(coord, leverg2, ^crest_north_lever, true);
 
-[oploc1,witchaven_north_lever_up]
-~crest_toggle_lever(coord, witchaven_north_lever_down, ^crest_north_lever, false);
+[oploc1,leverg2]
+~crest_toggle_lever(coord, leverg, ^crest_north_lever, false);
 
-[oploc1,witchaven_south_lever_down]
-~crest_toggle_lever(coord, witchaven_south_lever_up, ^crest_south_lever, true);
+[oploc1,leverh]
+~crest_toggle_lever(coord, leverh2, ^crest_south_lever, true);
 
-[oploc1,witchaven_south_lever_up]
-~crest_toggle_lever(coord, witchaven_south_lever_down, ^crest_south_lever, false);
+[oploc1,leverh2]
+~crest_toggle_lever(coord, leverh, ^crest_south_lever, false);
 
 [proc,crest_toggle_lever](coord $coord, loc $new_loc, int $lever, boolean $up) {
     facesquare(movecoord($coord, 0, 1, 0));
@@ -46,41 +46,41 @@ session_log(^log_adventure, "Quest complete: Family Crest");
 }
 
 // Opens if north lever is down and south lever is up
-[oploc1,witchaven_north_door]
+[oploc1,famcrest_doorh2g1]
 if (testbit(%crest_spells_levers_gauntlets, ^crest_north_lever) = ^false &
     testbit(%crest_spells_levers_gauntlets, ^crest_south_lever) = ^true) {
-    ~open_and_close_door2(witchaven_door_open, ~check_axis(coord, loc_coord, loc_angle), door_open);
+    ~open_and_close_door2(famcrest_doorh2i2, ~check_axis(coord, loc_coord, loc_angle), door_open);
 } 
 else {
     mes("This door is locked.");
 }
 
 // Opens if north lever is up and south lever is up
-[oploc1,witchaven_south_west_door]
+[oploc1,famcrest_doorh2]
 if (testbit(%crest_spells_levers_gauntlets, ^crest_north_lever) = ^true &
     testbit(%crest_spells_levers_gauntlets, ^crest_south_lever) = ^true) {
-    ~open_and_close_door2(witchaven_door_open, ~check_axis(coord, loc_coord, loc_angle), door_open);
+    ~open_and_close_door2(famcrest_doorh2i2, ~check_axis(coord, loc_coord, loc_angle), door_open);
 }
 else {
     mes("This door is locked.");
 }
 
 // Opens if north lever is up and south lever is down
-[oploc1,witchaven_south_east_door]
+[oploc1,famcrest_doorg2h1]
 if (testbit(%crest_spells_levers_gauntlets, ^crest_north_lever) = ^true &
     testbit(%crest_spells_levers_gauntlets, ^crest_south_lever) = ^false) {
-    ~open_and_close_door2(witchaven_door_open, ~check_axis(coord, loc_coord, loc_angle), door_open);
+    ~open_and_close_door2(famcrest_doorh2i2, ~check_axis(coord, loc_coord, loc_angle), door_open);
 }
 else {
     mes("This door is locked.");
 }
 
 // Opens if north lever is up, south lever is down, and the north room lever is up
-[oploc1,witchaven_goldmine_door]
+[oploc1,famcrest_doori2h1]
 if (%crest_progress = ^crest_complete | (testbit(%crest_spells_levers_gauntlets, ^crest_north_lever) = ^true &
     testbit(%crest_spells_levers_gauntlets, ^crest_south_lever) = ^false &
     testbit(%crest_spells_levers_gauntlets, ^crest_north_room_lever) = ^true)) {
-    ~open_and_close_door2(witchaven_door_open, ~check_axis(coord, loc_coord, loc_angle), door_open);
+    ~open_and_close_door2(famcrest_doorh2i2, ~check_axis(coord, loc_coord, loc_angle), door_open);
 }
 else {
     mes("This door is locked.");

@@ -2,7 +2,7 @@
 // PANNING
 ////////////////////////////////////////////////
 
-[oploc1,digsite_panning_point]
+[oploc1,panning_point]
 // on osrs, varbit 2544 (varp 135, bit 1) indicates if you've completed the panning guide errand or not
 if (~itexam_testbit(^itexam_bit_panning_guide_tea_given) = ^false) {
     if (npc_find(coord, panning_guide, 10, 0) = true) {
@@ -72,11 +72,11 @@ if ($rand < 3) {
 // STUDENT 3 ERRAND 1
 ////////////////////////////////////////////////
 
-[oploc1,digsite_bush_empty]
+[oploc1,digsitebush]
 anim(human_pickuptable, 0);
 mes("You search the bush...You find nothing of interest.");
 
-[oploc1,digsite_bush_rock_sample]
+[oploc1,digsitebushsample]
 anim(human_pickuptable, 0);
 
 if (~itexam_progress > ^itexam_first_exam | inv_total(inv, rock_sample3) > 0) {
@@ -94,7 +94,7 @@ if (~itexam_progress > ^itexam_first_exam | inv_total(inv, rock_sample3) > 0) {
 // SKELETON
 ////////////////////////////////////////////////
 
-[oploc1,digsite_buried_skeleton]
+[oploc1,halfburiedskeleton1]
 mes("You search the skeleton...");
 mes("You find nothing of interest.");
 
@@ -102,11 +102,11 @@ mes("You find nothing of interest.");
 // SACKS
 ////////////////////////////////////////////////
 
-[oploc1,digsite_sacks_empty]
+[oploc1,digsitesacks]
 mes("You search the sacks...");
 mes("You find nothing of interest.");
 
-[oploc1,digsite_sacks_specimen_jars]
+[oploc1,digsamplesacks]
 
 if (inv_total(inv, specimen_jar) > 0) {
     mes("You search the sacks...");
@@ -180,7 +180,7 @@ if (inzone(0_52_53_22_12, 0_52_53_29_20, loc_coord) = true | inzone(0_52_53_42_4
 // TRAINING DIG
 ////////////////////////////////////////////////
 
-[oploc1,digsite_signpost_training_site]
+[oploc1,digsigntrain]
 mes("This site is for training purposes only.");
 
 [label,dig_training_site](obj $item)
@@ -233,7 +233,7 @@ if ($rand < 8) {
 // LEVEL 1 DIG
 ////////////////////////////////////////////////
 
-[oploc1,digsite_signpost_level_1_site]
+[oploc1,digsign1]
 mes("Level 1 digs only.");
 
 [label,dig_level_1_site](obj $item)
@@ -320,7 +320,7 @@ if ($rand < 2) {
 // LEVEL 2 DIG
 ////////////////////////////////////////////////
 
-[oploc1,digsite_signpost_level_2_site]
+[oploc1,digsign2]
 mes("Level 2 digs only.");
 
 [label,dig_level_2_site](obj $item)
@@ -394,7 +394,7 @@ if ($rand < 3) {
 // LEVEL 3 DIG
 ////////////////////////////////////////////////
 
-[oploc1,digsite_signpost_level_3_site]
+[oploc1,digsign3]
 mes("Level 3 digs only.");
 
 [label,dig_level_3_site](obj $item)
@@ -580,7 +580,7 @@ if ($choice = 1) {
 // WINCH
 ////////////////////////////////////////////////
 
-[oploc1,digsite_winch]
+[oploc1,digwinch1]
 if (~itexam_progress < ^itexam_mineshaft_permit) {
     @digworkman1_intervene_winch;
 }
@@ -594,7 +594,7 @@ if (~itexam_testbit(^itexam_bit_winch_rope_attached) = ^false) {
     @digsite_winch_teleport;
 }
 
-[oplocu,digsite_winch]
+[oplocu,digwinch1]
 if (last_useitem = rope) {
     if (~itexam_testbit(^itexam_bit_winch_rope_attached) = ^false) {
         // osrs varbit 2545 0 to 1
@@ -634,7 +634,7 @@ if (~itexam_progress >= ^itexam_removed_blockage) {
 // PRIVATE DIG WINCH
 ////////////////////////////////////////////////
 
-[oploc1,digsite_private_dig_winch]
+[oploc1,digwinch2]
 if (~itexam_progress < ^itexam_mineshaft_permit) {
     @digworkman1_intervene_winch;
 }
@@ -649,7 +649,7 @@ if (~itexam_testbit(^itexam_bit_private_winch_rope_attached) = ^false) {
     @digsite_private_winch_teleport;
 }
 
-[oplocu,digsite_private_dig_winch]
+[oplocu,digwinch2]
 if (last_useitem = rope) {
     if (~itexam_testbit(^itexam_bit_private_winch_rope_attached) = ^false) {
         // osrs varbit 2546 0 to 1
@@ -687,10 +687,10 @@ if (~itexam_progress >= ^itexam_removed_blockage) {
 // PRIVATE DIG
 ////////////////////////////////////////////////
 
-[oploc1,digsite_signpost_private_site]
+[oploc1,digsignprivate]
 mes("Private dig.");
 
-[oploc1,digsite_private_dig_exit_rope]
+[oploc1,winchladder1]
 anim(human_pickuptable, 0);
 p_teleport(0_52_53_42_35);
 facesquare(0_52_53_42_34);
@@ -699,19 +699,19 @@ facesquare(0_52_53_42_34);
 // ALTAR CAVE
 ////////////////////////////////////////////////
 
-[oploc1,digsite_blocked_altar_exit_rope]
+[oploc1,winchladder2]
 anim(human_pickuptable, 0);
 p_teleport(0_52_53_26_25);
 facesquare(0_52_53_25_25);
 
-[oploc1,digsite_blocked_altar_brick]
+[oploc1,digblastbrick]
 if (~itexam_progress >= ^itexam_poured_compound_on_bricks) {
     ~chatplayer("<p,neutral>The brick is covered with the chemicals I made.");
 } else {
     ~chatplayer("<p,neutral>Hmmm, there's a room past these bricks. If I could move them out of the way then I could find out what's inside. Maybe there's someone around here who can help...");
 }
 
-[oplocu,digsite_blocked_altar_brick]
+[oplocu,digblastbrick]
 def_obj $item = last_useitem;
 
 if ($item = digcompound) {
@@ -773,22 +773,22 @@ p_teleport(0_52_152_40_39);
 // DIGSITE CHEST
 ////////////////////////////////////////////////
 
-[oploc1,digsite_chest]
+[oploc1,digchestclosed]
 mes("The chest is locked.");
 
-[oplocu,digsite_chest]
+[oplocu,digchestclosed]
 if (last_useitem = digchestkey) {
     mes("You use the key in the chest.");
     anim(human_openchest, 0);
     inv_del(inv, digchestkey, 1);
     p_delay(0);
     // Temp note: dur does not need updated
-    loc_change(digsite_chest_open, 300);
+    loc_change(digchestopen, 300);
 } else {
     ~displaymessage(^dm_default);
 }
 
-[oploc1,digsite_chest_open]
+[oploc1,digchestopen]
 // There's no quest state check on osrs, anyone can search the chest and get the powder at any time
 inv_add(inv, unidentified_powder, 1);
 ~objbox(unidentified_powder, "You find some unusual powder inside...", 250, 0, divide(^objbox_height, 2));
@@ -797,10 +797,10 @@ inv_add(inv, unidentified_powder, 1);
 // NITROGLYCERIN BARREL
 ////////////////////////////////////////////////
 
-[oploc1,digsite_sealed_barrel]
+[oploc1,digbarrelclosed]
 ~chatplayer("<p,quiz>Mmmm... The lid is shut tight; I'll have to find something to lever it off.");
 
-[oploc2,digsite_sealed_barrel]
+[oploc2,digbarrelclosed]
 if (~itexam_testbit(^itexam_bit_barrel_open) = ^true) {
     mes("You search the barrel...");
     mes("The barrel has a foul-smelling liquid inside.");
@@ -809,7 +809,7 @@ if (~itexam_testbit(^itexam_bit_barrel_open) = ^true) {
     ~chatplayer("<p,quiz>It's closed tight.");
 }
 
-[oplocu,digsite_sealed_barrel]
+[oplocu,digbarrelclosed]
 def_obj $item = last_useitem;
 
 if ($item = trowel) {
@@ -891,5 +891,5 @@ cam_reset;
 mes("You were very badly injured by the burning liquid.");
 say("Ow! That really hurt!");
 
-[oploc1,loc_2371]
+[oploc1,digcentresign]
 mes("Digsite information and exam centre.");

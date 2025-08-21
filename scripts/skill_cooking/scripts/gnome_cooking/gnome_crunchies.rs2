@@ -1,9 +1,9 @@
-[opheld1,half_baked_crunchies]
+[opheld1,half_baked_crunchy]
 ~mesbox("You inspect the half baked crunchies..."); // guess
 ~gnome_crunchies_ingredient_display;
 
 
-[opheldu,half_baked_crunchies]
+[opheldu,half_baked_crunchy]
 if (oc_param(last_useitem, gnome_cooking_ingredient) = ^false) {
     ~displaymessage(^dm_default);
     return;
@@ -37,7 +37,7 @@ switch_obj($ingredient) {
     case equa_leaves : %gnome_crunchies_bits1 = setbit_range_toint(%gnome_crunchies_bits1, add(getbit_range(%gnome_crunchies_bits1, 16, 19), 1), 16, 19);
     case onion : %gnome_crunchies_bits1 = setbit_range_toint(%gnome_crunchies_bits1, add(getbit_range(%gnome_crunchies_bits1, 20, 23), 1), 20, 23);
     case cabbage : %gnome_crunchies_bits1 = setbit_range_toint(%gnome_crunchies_bits1, add(getbit_range(%gnome_crunchies_bits1, 24, 27), 1), 24, 27);
-    case dwellberry : %gnome_crunchies_bits1 = setbit_range_toint(%gnome_crunchies_bits1, add(getbit_range(%gnome_crunchies_bits1, 28, 31), 1), 28, 31);
+    case dwellberries : %gnome_crunchies_bits1 = setbit_range_toint(%gnome_crunchies_bits1, add(getbit_range(%gnome_crunchies_bits1, 28, 31), 1), 28, 31);
     case chocolate_bar : %gnome_crunchies_bits2 = setbit_range_toint(%gnome_crunchies_bits2, add(getbit_range(%gnome_crunchies_bits2, 0, 3), 1), 0, 3);
     case potato : %gnome_crunchies_bits2 = setbit_range_toint(%gnome_crunchies_bits2, add(getbit_range(%gnome_crunchies_bits2, 4, 7), 1), 4, 7);
     case gnome_spice : %gnome_crunchies_bits2 = setbit_range_toint(%gnome_crunchies_bits2, add(getbit_range(%gnome_crunchies_bits2, 8, 11), 1), 8, 11);

@@ -1,4 +1,4 @@
-[oploc1,loc_2032]
+[oploc1,guidordoor]
 def_boolean $entering = ~check_axis(coord, loc_coord, loc_angle);
 if($entering = false) {
     ~open_and_close_door2(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), door_open);
@@ -41,7 +41,7 @@ if(%biohazard_progress = ^biohazard_spoken_jerico & last_useitem = birdfeed) {
 } 
 ~displaymessage(^dm_default);
 
-[oploc1,loc_2057]
+[oploc1,jericoscupboardopen]
 // https://youtu.be/_ZNalEQB70o?si=aEyFbzV255lYgoNI&t=208
 ~objbox(birdfeed, "The cupboard is full of birdfeed.", 250, 0, divide(^objbox_height, 2));
 if(%biohazard_progress < ^biohazard_spoken_jerico) {
@@ -79,13 +79,13 @@ mes("The pigeons don't want to leave");
 [label,biohazard_climb_ladder](coord $dest)
 if_close;
 mes("You climb up the rope ladder...");
-if (loc_find(0_39_51_61_3, loc_2066) = true) {
+if (loc_find(0_39_51_61_3, bioladderwall) = true) {
     // Temp note: dur updated
-    loc_change(loc_2065, 5);
+    loc_change(bioladder, 5);
 }
-if (loc_find(0_39_51_62_3, loc_2066) = true) {
+if (loc_find(0_39_51_62_3, bioladderwall) = true) {
     // Temp note: dur updated
-    loc_change(loc_2065, 5);
+    loc_change(bioladder, 5);
 }
 if(%biohazard_progress = ^biohazard_released_pigeons) %biohazard_progress = ^biohazard_climbed_ladder;
 p_delay(3); // 4t
@@ -106,23 +106,23 @@ if(last_useitem = rottenapples) {
 }
 // no nothing interesting happens (rs3)
 
-[oploc1,loc_2063]
+[oploc1,bionursescupboardopen]
 mes("You search the cupboard...");
-if(~obj_gettotal(doctors_gown) = 0 & %biohazard_progress >= ^biohazard_poisoned_stew) {
-    mes("and find a <lowercase(oc_name(doctors_gown))>.");
-    inv_add(inv, doctors_gown, 1);
+if(~obj_gettotal(doctor_gown) = 0 & %biohazard_progress >= ^biohazard_poisoned_stew) {
+    mes("and find a <lowercase(oc_name(doctor_gown))>.");
+    inv_add(inv, doctor_gown, 1);
     return;
 }
 mes("but you find nothing of interest.");
 
-[oploc1,loc_2058] @open_mournerhq_gate(^left, false);
-[oploc1,loc_2060] @open_mournerhq_gate(^right, false);
+[oploc1,mournerquaters_gatel] @open_mournerhq_gate(^left, false);
+[oploc1,mournerquaters_gater] @open_mournerhq_gate(^right, false);
 
-[oplocu,loc_2058] 
+[oplocu,mournerquaters_gatel] 
 if(last_useitem = mournerkeytw) @open_mournerhq_gate(^left, true);
 ~displaymessage(^dm_default);
 
-[oplocu,loc_2060]
+[oplocu,mournerquaters_gater]
 if(last_useitem = mournerkeytw) @open_mournerhq_gate(^right, true);
 ~displaymessage(^dm_default);
 
@@ -148,7 +148,7 @@ if(loc_find($loc_coord, $loc_type) = true) {
     ~open_and_close_double_door3($entering, $loc_type, $loc_shape, $loc_angle, $loc_coord, $side, grate_open);
 }
 
-[oploc1,loc_2064]
+[oploc1,mournercrateup]
 mes("You search the crate.");
 p_delay(3);
 if(~obj_gettotal(distillator) > 0 | %biohazard_progress > ^biohazard_found_distillator) {

@@ -529,7 +529,7 @@ if(inv_total(inv, doomion_amulet) > 0 & inv_total(inv, othainian_amulet) > 0 & i
     mes("...You place them on the chest and it opens.");
     sound_synth(chest_open, 0, 0);
     // Temp note: dur does not need updated
-    loc_change(loc_378, 10); // osrs uses 378, you can kind of break this chest for a few minutes but idk if that was original behaviour
+    loc_change(chestopen, 10); // osrs uses 378, you can kind of break this chest for a few minutes but idk if that was original behaviour
     p_delay(1);
     if(inv_total(inv, ibansshadow) > 0) { // no doll check
         mes("But you find nothing.");

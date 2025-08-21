@@ -1,8 +1,8 @@
-[oploc1,muddy_chest_closed]
+[oploc1,muddy_chestclosed]
 mes("The chest is locked.");
 sound_synth(locked, 0, 0);
 
-[oplocu,muddy_chest_closed]
+[oplocu,muddy_chestclosed]
 if (last_useitem ! muddy_key) {
     ~displaymessage(^dm_default);
     return;
@@ -12,7 +12,7 @@ sound_synth(chest_open, 0, 0);
 mes("You unlock the chest with your key.");
 p_delay(0);
 // Temp note: dur updated
-loc_add(loc_coord, muddy_chest_opened, loc_angle, loc_shape, 2);
+loc_add(loc_coord, muddy_chestopen, loc_angle, loc_shape, 2);
 inv_del(inv, muddy_key, 1);
 inv_add(inv, mithril_bar, 1);
 inv_add(inv, lawrune, 2);

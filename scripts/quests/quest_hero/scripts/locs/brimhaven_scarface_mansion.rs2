@@ -1,4 +1,4 @@
-[oploc1,brimhaven_mansion_door]
+[oploc1,garvdoor]
 if (%hero_progress >= ^hero_blackarm_mansion_unlocked & %blackarmgang_progress >= ^blackarmgang_complete) {
   // todo - check if wearing black armor?
   ~open_and_close_door(loc_type, ~check_axis(coord, loc_coord, loc_angle), false);
@@ -6,12 +6,12 @@ if (%hero_progress >= ^hero_blackarm_mansion_unlocked & %blackarmgang_progress >
 }
 @attempt_open_brimhaven_mansion_door;
 
-[oploc1,grips_cupboard_closed]
+[oploc1,gripcbshut]
 // Temp note: dur does not need updated
-loc_change(grips_cupboard_opened, 500); // todo - how long to keep open?
+loc_change(gripcbopen, 500); // todo - how long to keep open?
 @summon_grip;
 
-[oploc1,grips_cupboard_opened]
+[oploc1,gripcbopen]
 @summon_grip;
 
 [label,summon_grip]
@@ -34,7 +34,7 @@ if (npc_find(coord, pirate_guard, 4, 0) = true) {
   }
 }
 
-[oploc1,brimhaven_mansion_backdoor]
+[oploc1,pete_sidedoor]
 if (coordz(coord) = coordz(loc_coord)) {
   ~open_and_close_door(loc_type, ~check_axis(coord, loc_coord, loc_angle), false);
   return;
@@ -42,14 +42,14 @@ if (coordz(coord) = coordz(loc_coord)) {
 ~mesbox("This door is locked.");
 ~chatplayer("<p,neutral>This room isn't a lot of use on its own... Maybe I can|get extra help from the inside somehow... I wonder if|any of the other players have found a way in.");
 
-[oplocu,brimhaven_mansion_backdoor]
+[oplocu,pete_sidedoor]
 if (last_useitem = misc_key) {
   ~open_and_close_door(loc_type, ~check_axis(coord, loc_coord, loc_angle), false);
   return;
 }
 ~displaymessage(^dm_default);
 
-[oploc1,scarface_pete_trophy_room_door]
+[oploc1,pete_treasuredoor]
 // opening chest room https://youtu.be/KRhwwgo8YHM?t=524 , https://youtu.be/jo9mc5vtrQ4?t=576 
 if (coord = loc_coord) {
   mes("The door locks shut behind you.");
@@ -58,7 +58,7 @@ if (coord = loc_coord) {
 }
 mes("The door is locked.");
 
-[oplocu,scarface_pete_trophy_room_door]
+[oplocu,pete_treasuredoor]
 if (last_useitem = grip_keys) {
   if (%hero_progress < ^hero_blackarm_id_papers_given) {
     // todo - need dialogue if you try opening door without progressing correctly
@@ -71,12 +71,12 @@ if (last_useitem = grip_keys) {
 }
 ~displaymessage(^dm_default);
 
-[oploc1,scarface_pete_candlestick_chest]
+[oploc1,shutcandlechest]
 mes("You open the chest.");
 // Temp note: dur does not need updated
-loc_change(scarface_pete_candlestick_chest_open, 500); // todo - how long to keep open?
+loc_change(opencandlechest, 500); // todo - how long to keep open?
 
-[oploc1,scarface_pete_candlestick_chest_open]
+[oploc1,opencandlechest]
 if (~obj_gettotal(petecandlestick) > 0) {
   ~mesbox("The chest is empty.");
   if(inv_total(bank, petecandlestick) > 0) {
@@ -90,4 +90,4 @@ if (~obj_gettotal(petecandlestick) > 0) {
   }
 }
 // Temp note: dur does not need updated
-loc_change(scarface_pete_candlestick_chest, 500);
+loc_change(shutcandlechest, 500);

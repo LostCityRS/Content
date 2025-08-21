@@ -42,7 +42,7 @@ if ($dropint < 1) {
 } else if ($dropint < 22) {
     obj_add(npc_coord, bolt, 8, ^lootdrop_duration);
 } else if ($dropint < 25) {
-    obj_add(npc_coord, chefshat, 1, ^lootdrop_duration);
+    obj_add(npc_coord, chefs_hat, 1, ^lootdrop_duration);
 } else if ($dropint < 29) {
     if (map_members = ^true) {
         obj_add(npc_coord, bronze_spear, 1, ^lootdrop_duration);

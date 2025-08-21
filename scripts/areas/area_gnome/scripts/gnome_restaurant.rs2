@@ -441,7 +441,7 @@ if ($missing_crunchy_tray = true | $missing_batta_tin = true | $missing_gnomebow
 
 // osrs is missing the check for prepared half baked items (which were added in 2006 rework).
 [proc,gnome_restaurant_missing_crunchy_tray]()(boolean)
-if (inv_total(inv, crunchy_tray) < 1 & inv_total(inv, raw_crunchies) < 1 & inv_total(inv, half_baked_crunchies) < 1) {
+if (inv_total(inv, crunchy_tray) < 1 & inv_total(inv, raw_crunchies) < 1 & inv_total(inv, half_baked_crunchy) < 1) {
     return(true);
 }
 return(false);

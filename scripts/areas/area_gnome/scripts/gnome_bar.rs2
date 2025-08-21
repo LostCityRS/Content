@@ -44,7 +44,7 @@ if (inv_total(inv, fruit_blast) > 0) {
     inv_add(inv, cocktail_glass_empty, 1);
     inv_add(inv, vodka, 1);
     inv_add(inv, gin, 1);
-    inv_add(inv, dwellberry, 1);
+    inv_add(inv, dwellberries, 1);
     inv_add(inv, pineapple, 1);
     inv_add(inv, pot_of_cream, 1);
     %gnome_bar_progress = 3;
@@ -136,7 +136,7 @@ if (inv_total(inv, chocolate_saturday) > 0) {
     ~chatnpc("<p,neutral>I'm sure you'll make a great bartender.");
     return;
 }
-if (~gnome_bar_cocktail_checks(premade_chocolate_saturday, "Choc Saturday") = false) {
+if (~gnome_bar_cocktail_checks(premade_choc_saturday, "Choc Saturday") = false) {
     return;
 }
 ~chatplayer("<p,sad>I haven't managed to make it yet.");

@@ -1,7 +1,7 @@
 [oploc1,cavewitch_door]
 if(testbit(%upass_map_mechanisms, ^upass_dropped_cat) = ^true) {
     mes("You open the door...");
-    ~open_and_close_door3(loc_1532, ~check_axis(coord, loc_coord, loc_angle), door_open);
+    ~open_and_close_door3(desertdoor_inactive, ~check_axis(coord, loc_coord, loc_angle), door_open);
     p_delay(3);
     mes("The Witch is busy talking to the cat.");
     return;

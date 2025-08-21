@@ -1,4 +1,4 @@
-[oplocu,loc_2670]
+[oplocu,desert_cactus_full]
 def_obj $item = last_useitem;
 
 if ($item ! knife & oc_param($item, slashattack_anim) = human_unarmedpunch) {
@@ -8,7 +8,7 @@ if ($item ! knife & oc_param($item, slashattack_anim) = human_unarmedpunch) {
     @cut_kharidian_cactus($item);
 } 
 
-[oplocu,loc_2671]
+[oplocu,desert_cactus_empty]
 def_obj $item = last_useitem;
 
 if ($item = knife | oc_param($item, slashattack_anim) ! human_unarmedpunch) {
@@ -16,7 +16,7 @@ if ($item = knife | oc_param($item, slashattack_anim) ! human_unarmedpunch) {
     return;
 }
 
-[oploc1,loc_2670]
+[oploc1,desert_cactus_full]
 def_obj $item = ~slash_checker;
 
 if ($item = null) {

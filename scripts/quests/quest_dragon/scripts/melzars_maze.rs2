@@ -1,5 +1,5 @@
 // entrance
-[oploc1,melzar_maze_entrance] 
+[oploc1,melzardoor] 
 sound_synth(locked, 0, 0);
 mes("The door is securely locked.");
 // def_boolean $entering = ~check_axis_locactive(coord);
@@ -10,19 +10,19 @@ mes("The door is securely locked.");
 // }
 // ~open_and_close_door(loc_1535, $entering, false);
 
-[oplocu,melzar_maze_entrance] // https://youtu.be/tmPf68hogzw?t=54
+[oplocu,melzardoor] // https://youtu.be/tmPf68hogzw?t=54
  if (last_useitem = melzarkey) {
-    ~open_and_close_door(loc_1535, ~check_axis_locactive(coord), false);
+    ~open_and_close_door(poordoor, ~check_axis_locactive(coord), false);
 } else {
     ~displaymessage(^dm_default);
 }
 
-[oploc1,melzar_maze_exit_door]
+[oploc1,funexit]
 if (~check_axis_locactive(coord) = false) {
     mes("The door is locked."); // osrs
     return;
 }
-~open_and_close_door(loc_1535, true, false);
+~open_and_close_door(poordoor, true, false);
 
 
 // broken ladder
@@ -30,28 +30,28 @@ if (~check_axis_locactive(coord) = false) {
 mes("The ladder is broken, I can't climb it."); // osrs
 
 // ladder
-[oploc1,melzar_maze_ladder]
+[oploc1,funladdertop]
 // No arrivedelay in osrs
 ~climb_ladder(movecoord(coord, 0, 0, 6400), true);
 
 // red door
-[oploc1,melzar_maze_red_door] mes("This door is securely locked."); // osrs
-[oplocu,melzar_maze_red_door] @open_melzar_maze_door(redkey);
+[oploc1,reddoor] mes("This door is securely locked."); // osrs
+[oplocu,reddoor] @open_melzar_maze_door(redkey);
 // orange door
-[oploc1,melzar_maze_orange_door] mes("This door is securely locked."); // osrs
-[oplocu,melzar_maze_orange_door] @open_melzar_maze_door(orangekey);
+[oploc1,orangedoor] mes("This door is securely locked."); // osrs
+[oplocu,orangedoor] @open_melzar_maze_door(orangekey);
 // yellow door
-[oploc1,melzar_maze_yellow_door] mes("This door is securely locked."); // osrs
-[oplocu,melzar_maze_yellow_door] @open_melzar_maze_door(yellowkey);
+[oploc1,yellowdoor] mes("This door is securely locked."); // osrs
+[oplocu,yellowdoor] @open_melzar_maze_door(yellowkey);
 // blue door
-[oploc1,melzar_maze_blue_door] mes("This door is securely locked."); // osrs
-[oplocu,melzar_maze_blue_door] @open_melzar_maze_door(bluekey);
+[oploc1,bluedoor] mes("This door is securely locked."); // osrs
+[oplocu,bluedoor] @open_melzar_maze_door(bluekey);
 // magenta door
-[oploc1,melzar_maze_magenta_door] mes("This door is securely locked."); // osrs
-[oplocu,melzar_maze_magenta_door] @open_melzar_maze_door(magentakey);
+[oploc1,magentadoor] mes("This door is securely locked."); // osrs
+[oplocu,magentadoor] @open_melzar_maze_door(magentakey);
 // green door
-[oploc1,melzar_maze_green_door] mes("This door is securely locked."); // osrs
-[oplocu,melzar_maze_green_door] @open_melzar_maze_door(greenkey);
+[oploc1,greendoor] mes("This door is securely locked."); // osrs
+[oplocu,greendoor] @open_melzar_maze_door(greenkey);
 
 
 [label,open_melzar_maze_door](obj $key)
@@ -59,7 +59,7 @@ mes("The ladder is broken, I can't climb it."); // osrs
     // mes("The key disintegrates as it unlocks the door."); // osrs
     mes("The key disintegrates as it unlocks the door..."); // screenshot
     inv_del(inv, $key, 1);
-    ~open_and_close_door(loc_1535, ~check_axis_locactive(coord), false);
+    ~open_and_close_door(poordoor, ~check_axis_locactive(coord), false);
 } else {
     ~displaymessage(^dm_default); // osrs
 }
@@ -136,26 +136,26 @@ obj_add(npc_coord, greenkey, 1, ^lootdrop_duration);
 
 
 // chest
-[oploc1,melzar_maze_chest_closed]
+[oploc1,funchestshut]
 p_arrivedelay;
 mes("You open the chest.");
 anim(human_openchest, 0);
 sound_synth(chest_open, 0, 0);
 p_delay(0);
 // Temp note: dur does not need updated
-loc_change(melzar_maze_chest_opened, 300);
+loc_change(funchestopen, 300);
 
 
-[oploc2,melzar_maze_chest_opened]
+[oploc2,funchestopen]
 p_arrivedelay;
 mes("You close the chest.");
 anim(human_closechest, 0);
 sound_synth(chest_close, 0, 0);
 p_delay(0);
 // Temp note: dur does not need updated
-loc_change(melzar_maze_chest_closed, 300);
+loc_change(funchestshut, 300);
 
-[oploc1,melzar_maze_chest_opened]
+[oploc1,funchestopen]
 if (~quest_dragon_getting_map_parts = false | ~obj_gettotal(mappart1) > 0 | ~obj_gettotal(dragonmap) > 0) {
     mes("You find nothing in the chest.");
 } else {
@@ -166,4 +166,4 @@ if (~quest_dragon_getting_map_parts = false | ~obj_gettotal(mappart1) > 0 | ~obj
     inv_add(inv, mappart1, 1);
 }
 // Temp note: dur does not need updated
-loc_change(melzar_maze_chest_closed, 300);
+loc_change(funchestshut, 300);

@@ -28,7 +28,7 @@ while(loc_findnext = true) {
             def_loc $type = loc_type;
             // Temp note: dur updated
             loc_change(inviswall, 3);
-            if($type = sheepherder_gate_left) {
+            if($type = plaguesheep_gatel) {
                 // Temp note: dur updated
                 loc_add(movecoord($central_coord, 1, 0, 0), inacfishinggateclosedl, 1, loc_shape, 3);
                 loc_add(movecoord($central_coord, 2, 0, 0), inacfishinggateclosedr, 1, loc_shape, 3); 

@@ -1,30 +1,30 @@
-[combat_training_dummy]
+[biohazarddummy]
 name=Dummy
 desc=I've met less intelligent conversationalists.
 model=model_loc_823
 op1=Hit
 forceapproach=south
 
-[loc_2039]
+[lathastraining_gatel]
 name=Gate
 desc=It's closed.
 model=model_loc_52
 op1=Open
 category=double_door_open_and_close_left
-param=next_loc_stage,loc_2040
+param=next_loc_stage,lathastraining_gatelopen
 
-[loc_2040]
+[lathastraining_gatelopen]
 model=model_loc_52
 
-[loc_2041]
+[lathastraining_gater]
 name=Gate
 desc=It's closed.
 model=model_loc_52
 op1=Open
 mirror=yes
 category=double_door_open_and_close_right
-param=next_loc_stage,loc_2042
+param=next_loc_stage,lathastraining_gateropen
 
-[loc_2042]
+[lathastraining_gateropen]
 model=model_loc_52
 mirror=yes

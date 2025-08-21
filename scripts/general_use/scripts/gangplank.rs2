@@ -18,7 +18,7 @@ switch_int (loc_angle) {
         p_delay(0);
         p_telejump(movecoord(coord, 0, 1, calc(-2 * $dir_mod)));
 }
-if(loc_type ! loc_2412 & loc_type ! loc_2414) {
+if(loc_type ! ship_to_entrana_on & loc_type ! ship_from_entrana_on) {
     mes("You board the ship.");
 }
 if(string_length($board_mes) ! 0) {

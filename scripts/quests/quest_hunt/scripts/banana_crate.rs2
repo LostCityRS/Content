@@ -1,4 +1,4 @@
-[oploc1,banana_crate]
+[oploc1,bananacrate]
 if (%crate_bananas = 0 & %crate_rum = 0) {
     mes("The crate is completely empty.");
 } else if (%crate_bananas = 0 & %crate_rum = 1) {
@@ -17,7 +17,7 @@ if (%crate_bananas = 0 & %crate_rum = 0) {
     }
 }
 
-[oplocu,banana_crate]
+[oplocu,bananacrate]
 if (last_useitem ! banana & last_useitem ! karamja_rum) {
     ~displaymessage(^dm_default);
     return;

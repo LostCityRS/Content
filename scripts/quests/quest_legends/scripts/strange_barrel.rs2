@@ -1,4 +1,4 @@
-[oploc1,legends_barrel]
+[oploc1,skullcavebarrel]
 def_coord $loc_coord = loc_coord;
 anim(%com_attackanim, 0);
 p_delay(0);
@@ -38,7 +38,7 @@ if($rand < 32) {
     ~legends_barrel_explode;
 }
 world_delay(~random_range(30, 35));
-loc_add(map_findsquare($loc_coord, 0, 7, ^map_findsquare_lineofwalk), legends_barrel, 0, centrepiece_straight, 10000);
+loc_add(map_findsquare($loc_coord, 0, 7, ^map_findsquare_lineofwalk), skullcavebarrel, 0, centrepiece_straight, 10000);
 
 [proc,legends_barrel_explode]
 mes("You're hit by splintering pieces of wood as a nearby barrel explodes.");

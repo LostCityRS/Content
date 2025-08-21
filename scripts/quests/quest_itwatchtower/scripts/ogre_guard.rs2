@@ -11,7 +11,7 @@ switch_int(%gutanoth_gold) {
             inv_del(inv, gold_bar, 1);
             %gutanoth_gold = ^gutanoth_found_gold;
             ~chatnpc("<p,happy>It's brought it! On your way.");
-            if(loc_find(0_39_47_53_20, loc_2787) = true) @enter_gutanoth(movecoord(loc_coord, 0, 0, -1));
+            if(loc_find(0_39_47_53_20, ogreguardgate1right) = true) @enter_gutanoth(movecoord(loc_coord, 0, 0, -1));
             return;
         }
         ~chatplayer("<p,sad>No, I don't have it.");
@@ -31,7 +31,7 @@ switch_int(%gutanoth_gold) {
 [opnpcu,ogre_guard1]
 if(last_useitem = gold_bar) {
     if(%gutanoth_gold >= ^gutanoth_found_gold) {
-        if(loc_find(0_39_47_53_20, loc_2787) = true) @enter_gutanoth(movecoord(loc_coord, 0, 0, -1));
+        if(loc_find(0_39_47_53_20, ogreguardgate1right) = true) @enter_gutanoth(movecoord(loc_coord, 0, 0, -1));
         return;
     }
     @ogre_guard1_dialogue;
@@ -63,7 +63,7 @@ if(inv_total(inv, ogrerelic) > 0) {
     ~chatplayer("<p,happy>I have a relic from a chieftan!");
     %itwatchtower_progress = ^itwatchtower_given_relic;
     ~chatnpc("<p,happy>It's got the statue of Dalgroth.|Welcome to Gu'Tanoth,|friend of the ogres.");
-    if(loc_find(0_39_47_8_54, loc_2788) = true) @enter_gutanoth(movecoord(loc_coord, -1, 0, 0));
+    if(loc_find(0_39_47_8_54, ogreguardgate2) = true) @enter_gutanoth(movecoord(loc_coord, -1, 0, 0));
     return;
 }
 ~chatplayer("<p,sad>I don't have anything.");
@@ -108,7 +108,7 @@ inv_del(inv, rockcake, 1);
 %itwatchtower_bits = setbit_range_toint(%itwatchtower_bits, 2, ^itwatchtower_market_lower, ^itwatchtower_market_upper);
 ~chatplayer("<p,neutral>How about this?");
 ~chatnpc("<p,happy>Well, well, look at this.|My favourite: rock cake!|Okay, we will let it through.");
-if(loc_find(0_39_47_11_3, loc_2832) = true) p_oploc(1); // might be force walk into interaction instead originally
+if(loc_find(0_39_47_11_3, ganothbattlement) = true) p_oploc(1); // might be force walk into interaction instead originally
 
 [label,ogre_guard3_dialogue]
 switch_int(getbit_range(%itwatchtower_bits, ^itwatchtower_market_lower, ^itwatchtower_market_upper)) {

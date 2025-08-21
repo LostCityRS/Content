@@ -1,4 +1,4 @@
-[loc_0]
+[mcannoncrate]
 name=Crate
 desc=I wonder what's inside.
 model=model_loc_0
@@ -152,7 +152,7 @@ width=2
 length=2
 op1=Climb-down
 
-[loc_66]
+[brimhaven_backdoor_entrance]
 name=Crate wall
 desc=Surprisingly sturdy looking.
 model=model_loc_3
@@ -350,7 +350,7 @@ retex1d=door
 recol2s=6342
 recol2d=11458
 category=door_open_and_close
-param=next_loc_stage,loc_1532
+param=next_loc_stage,desertdoor_inactive
 
 [loc_154]
 name=Tree
@@ -359,7 +359,7 @@ model=model_loc_154
 width=2
 length=2
 op1=Chop down
-param=next_loc_stage,loc_1348
+param=next_loc_stage,deadtree1_stump
 
 [hauntedbookcaseopen]
 name=Bookcase
@@ -416,15 +416,15 @@ name=Strange machine
 desc=It's a strange machine.
 model=model_loc_164
 
-[loc_168]
+[decking_twister]
 model=model_loc_168
 hillskew=yes
 
-[loc_169]
+[decking_border]
 model=model_loc_169
 hillskew=yes
 
-[muddy_chest_closed]
+[muddy_chestclosed]
 name=Closed chest
 desc=I wonder what's inside.
 model=wooden_chest
@@ -433,7 +433,7 @@ forceapproach=north
 recol1s=10570
 recol1d=15621
 
-[muddy_chest_opened]
+[muddy_chestopen]
 name=Open chest
 desc=Perhaps I should search it.
 model=model_loc_76
@@ -441,7 +441,7 @@ forceapproach=north
 recol1s=10570
 recol1d=15621
 
-[closed_crystal_chest]
+[crystal_chestclosed]
 name=Closed chest
 desc=I wonder what's inside.
 model=wooden_chest
@@ -450,7 +450,7 @@ forceapproach=north
 recol1s=10570
 recol1d=14800
 
-[opened_crystal_chest]
+[crystal_chestopen]
 name=Open chest
 desc=Perhaps I should search it.
 model=model_loc_76
@@ -466,7 +466,7 @@ hillskew=yes
 model=model_loc_175
 hillskew=yes
 
-[loc_176]
+[gravel_brown_2]
 model=model_loc_176
 hillskew=yes
 recol1s=10570
@@ -474,7 +474,7 @@ recol1d=8352
 recol2s=17969
 recol2d=10433
 
-[loc_177]
+[gravel_brown_3]
 model=model_loc_177
 hillskew=yes
 recol1s=10570
@@ -482,7 +482,7 @@ recol1d=8352
 recol2s=17969
 recol2d=10433
 
-[loc_178]
+[gravel_brown_4]
 model=model_loc_178
 hillskew=yes
 recol1s=10570
@@ -494,15 +494,15 @@ recol2d=10433
 model=model_loc_179
 hillskew=yes
 
-[gravel_2]
+[gravel_3]
 model=model_loc_176
 hillskew=yes
 
-[loc_181]
+[gravel_4]
 model=model_loc_177
 hillskew=yes
 
-[loc_182]
+[gravel_5]
 model=model_loc_178
 hillskew=yes
 
@@ -510,7 +510,7 @@ hillskew=yes
 model=model_loc_183
 length=2
 
-[loc_184]
+[dugupsoil1_upass]
 model=model_loc_184
 hillskew=yes
 recol1s=13505
@@ -520,7 +520,7 @@ recol2d=7329
 recol3s=15586
 recol3d=7329
 
-[loc_185]
+[dugupsoil2_upass]
 model=model_loc_185
 hillskew=yes
 recol1s=13505
@@ -530,7 +530,7 @@ recol2d=7329
 recol3s=15586
 recol3d=7329
 
-[loc_186]
+[dugupsoil3_upass]
 model=model_loc_186
 hillskew=yes
 recol1s=13505
@@ -540,7 +540,7 @@ recol2d=7329
 recol3s=15586
 recol3d=7329
 
-[loc_187]
+[gnome_glider]
 name=Gnome glider
 desc=Fly Gnome Air.
 model=model_loc_187
@@ -548,7 +548,7 @@ width=4
 length=4
 active=yes
 
-[loc_188]
+[gnome_glidercrashed]
 name=Crashed glider
 desc=Probably pilot error.
 model=model_loc_188
@@ -556,24 +556,24 @@ width=4
 length=4
 active=yes
 
-[loc_189]
+[gnomebar]
 name=Blurberry bar
 desc=The Blurberry bar - cocktails extraordinaire!
 model=model_loc_189
 length=3
 active=yes
 
-[loc_193]
+[gnome_gate]
 model=model_loc_193
 hillskew=yes
 
-[loc_196]
+[torch]
 model=model_loc_196
 anim=torch
 ambient=20
 hasalpha=yes
 
-[loc_197]
+[torch_grubby]
 model=model_loc_196
 anim=torch
 ambient=20
@@ -581,58 +581,58 @@ hasalpha=yes
 recol1s=8456
 recol1d=8387
 
-[loc_198]
+[cave_torch]
 model=model_loc_198
 width=2
 anim=torch
 hasalpha=yes
 
-[loc_199]
+[cave_facetorch]
 model=model_loc_199
 anim=torch
 hasalpha=yes
 
-[loc_200]
+[gnome_lamp]
 name=Lamp
 desc=A quirky gnome lamp.
 model=model_loc_200
 
-[loc_201]
+[gnome_lamp2]
 name=Lamp
 desc=These insects love this light.
 model=model_loc_201
 anim=glamp
 hasalpha=yes
 
-[loc_202]
+[candles]
 name=Candles
 desc=It's amazing what bees produce!
 model=model_loc_202
 
-[loc_203]
+[goldcandles]
 name=Candles
 desc=Posh candlesticks.
 model=model_loc_202
 recol1s=15716
 recol1d=31297
 
-[loc_204]
+[blackcandles]
 name=Candles
 desc=Posh candlesticks.
 model=model_loc_202
 recol1s=15716
 recol1d=5252
 
-[loc_205]
+[lantern]
 model=model_loc_205
 ambient=50
 
-[loc_206]
+[skulltorch]
 model=model_loc_206
 anim=torch
 hasalpha=yes
 
-[loc_207]
+[skulltorch_grubby]
 model=model_loc_206
 anim=torch
 hasalpha=yes
@@ -641,24 +641,24 @@ recol1d=20048
 recol2s=23254
 recol2d=16877
 
-[loc_208]
+[spookycandles]
 name=Candles
 desc=Scary lighting apparatus.
 model=model_loc_208
 
-[loc_209]
+[chandalier]
 name=Chandalier
 desc=An ornamental lighting fixture.
 model=model_loc_209
 
-[loc_210]
+[ice_light]
 name=Ice Light
 desc=A mysterious glowing ice crystal.
 model=model_loc_210
 ambient=50
 contrast=50
 
-[loc_211]
+[candles_dark]
 name=Candles
 desc=It's amazing what bees produce!
 model=model_loc_202
@@ -671,7 +671,7 @@ recol3d=1058
 recol4s=15716
 recol4d=1058
 
-[loc_212]
+[backsail]
 name=Sail
 desc=Useful for making ships move.
 model=model_loc_212
@@ -694,48 +694,48 @@ model=model_loc_216
 model=model_loc_216
 mirror=yes
 
-[loc_218]
+[frontsail]
 name=Sail
 desc=Useful for making ships move.
 model=model_loc_218
 width=8
 
-[loc_219]
+[longsternl]
 model=model_loc_219
 active=no
 width=4
 
-[loc_220]
+[longsternr]
 model=model_loc_219
 active=no
 width=4
 mirror=yes
 
-[loc_221]
+[longsternl+bust]
 name=Figurehead
 desc=This figure brings luck to those who sail.
 model=model_loc_221
 width=4
 
-[loc_222]
+[longsternr+bust]
 name=Figurehead
 desc=This figure brings luck to those who sail.
 model=model_loc_221
 width=4
 mirror=yes
 
-[loc_223]
+[longsternrailingl]
 model=model_loc_223
 active=no
 width=4
 
-[loc_224]
+[longsternrailingr]
 model=model_loc_223
 active=no
 width=4
 mirror=yes
 
-[loc_225]
+[middlesaill]
 name=Sail
 desc=Useful for making ships move.
 model=model_loc_225
@@ -743,7 +743,7 @@ width=2
 length=2
 sharelight=yes
 
-[loc_226]
+[middlesailr]
 name=Sail
 desc=Useful for making ships move.
 model=model_loc_225
@@ -752,7 +752,7 @@ length=2
 sharelight=yes
 mirror=yes
 
-[loc_227]
+[pileofrope]
 name=Pile of rope
 desc=Barnacle infested rope.
 model=model_loc_227
@@ -761,91 +761,91 @@ blockrange=no
 ambient=30
 contrast=30
 
-[loc_228]
+[shiphigherwall]
 model=model_loc_228
 sharelight=yes
 
-[loc_229]
+[shiphigherwall_top]
 model=model_loc_229
 sharelight=yes
 
-[loc_230]
+[shiphigherwall_low]
 model=model_loc_230
 sharelight=yes
 
-[loc_231]
+[shiphigherwall_back]
 model=model_loc_231
 width=2
 sharelight=yes
 
-[loc_232]
+[shiphigherwall_backedgel]
 model=model_loc_232
 width=2
 sharelight=yes
 
-[loc_233]
+[shiphigherwall_backedger]
 model=model_loc_232
 width=2
 sharelight=yes
 mirror=yes
 
-[loc_234]
+[shiphull]
 model=model_loc_234
 sharelight=yes
 active=no
 
-[loc_235]
+[shiphull_filledl]
 model=model_loc_235
 sharelight=yes
 active=no
 
-[loc_236]
+[shiphull_filledr]
 model=model_loc_235
 sharelight=yes
 active=no
 mirror=yes
 
-[loc_237]
+[ship_fullwall]
 model=model_loc_237
 sharelight=yes
 active=no
 
-[loc_238]
+[shiphull_diag]
 model=model_loc_238
 sharelight=yes
 active=no
 
-[loc_239]
+[shiphull_doublefiller]
 model=model_loc_239
 active=no
 
-[loc_240]
+[shiphull_filler]
 model=model_loc_240
 active=no
 
-[loc_241]
+[shiphull+cannonclosed]
 model=model_loc_241
 sharelight=yes
 active=no
 
-[loc_242]
+[shiphull+cannonopen]
 model=model_loc_242
 width=2
 sharelight=yes
 active=no
 
-[loc_243]
+[shiphull+porthole]
 model=model_loc_243
 width=2
 sharelight=yes
 active=no
 
-[loc_244]
+[shiphull+window]
 model=model_loc_244
 sharelight=yes
 active=no
 
-[loc_245]
+[shipladder_angled]
 name=Ship's ladder
 desc=Allows access to other parts of the ship.
 model=model_loc_245
@@ -853,7 +853,7 @@ sharelight=yes
 op1=Climb-up
 forceapproach=south
 
-[loc_246]
+[shipladder_top_angled]
 name=Ship's ladder
 desc=Allows access to other parts of the ship.
 model=model_loc_246
@@ -861,38 +861,38 @@ sharelight=yes
 op1=Climb-down
 forceapproach=south
 
-[loc_247]
+[ship_net1]
 model=model_loc_247
 active=no
 blockwalk=no
 
-[loc_248]
+[ship_net2]
 model=model_loc_248
 active=no
 blockwalk=no
 
-[loc_249]
+[shiprail]
 model=model_loc_249
 sharelight=yes
 
-[loc_250]
+[shiprailstern]
 model=model_loc_250
 active=no
 
-[loc_251]
+[shiprailstern2]
 model=model_loc_251
 active=no
 
-[loc_252]
+[steeringwheel]
 name=Ship's wheel
 desc=Without this I'm going around in circles.
 model=model_loc_252
 
-[loc_253]
+[stern]
 model=model_loc_253
 active=no
 
-[loc_254]
+[stern+bust]
 name=Figurehead
 desc=This figure brings luck to those who sail.
 model=model_loc_254
@@ -904,298 +904,298 @@ desc=Used for pulling things up.
 model=model_loc_255
 op1=Operate
 
-[loc_256]
+[frontmast]
 model=model_loc_256
 width=8
 active=no
 
-[loc_257]
+[frontmast_supportl]
 model=model_loc_257
 width=2
 active=no
 
-[loc_258]
+[frontmast_supportr]
 model=model_loc_257
 width=2
 mirror=yes
 active=no
 
-[loc_259]
+[frontmast_suppport]
 model=model_loc_259
 width=2
 active=no
 
-[loc_260]
+[frontmast_support_bust]
 name=Figurehead
 desc=This figure brings luck to those who sail.
 model=model_loc_260
 width=2
 
-[loc_261]
+[mast1]
 name=Mast
 desc=Holds up the sails.
 model=model_loc_261
 
-[loc_262]
+[mast2]
 model=model_loc_262
 active=no
 
-[loc_263]
+[mast3]
 model=model_loc_263
 name=Mast
 
 [mast4]
 model=model_loc_264
 
-[loc_265]
+[sail1_l]
 name=Sail
 desc=Useful if there is any wind.
 model=model_loc_265
 length=3
 
-[loc_266]
+[sail1_r]
 name=Sail
 desc=Useful for making ships move.
 model=model_loc_265
 mirror=yes
 length=3
 
-[loc_267]
+[sail2_l]
 name=Sail
 desc=Useful for making ships move.
 model=model_loc_267
 length=3
 
-[loc_268]
+[sail2_r]
 name=Sail
 desc=Useful for making ships move
 model=model_loc_267
 mirror=yes
 length=3
 
-[loc_269]
+[shiprope]
 model=model_loc_269
 hillskew=yes
 sharelight=yes
 
-[loc_270]
+[gangplank]
 model=model_loc_270
 sharelight=yes
 forcedecor=yes
 
-[loc_271]
+[anchor]
 name=Anchor
 desc=How much does this weigh?
 model=model_loc_271
 
-[loc_272]
+[ship_ladder]
 name=Ship's ladder
 desc=I can climb up here.
 model=model_loc_272
 op1=Climb-up
 forceapproach=south
 
-[loc_273]
+[ship_laddertop]
 name=Ship's ladder
 desc=I can go below decks with this ladder.
 model=model_loc_273
 op1=Climb-down
 forceapproach=south
 
-[loc_274]
+[sail1_hoistedl]
 name=Hoisted sail
 desc=A conveniently rolled sail.
 model=model_loc_274
 length=3
 
-[loc_275]
+[sail1_hoistedr]
 name=Hoisted sail
 desc=A conveniently rolled sail.
 model=model_loc_274
 length=3
 mirror=yes
 
-[loc_276]
+[sail2_hoistedl]
 name=Hoisted sail
 desc=A conveniently rolled sail.
 model=model_loc_276
 length=3
 
-[loc_277]
+[sail2_hoistedr]
 name=Hoisted sail
 desc=A conveniently rolled sail.
 model=model_loc_276
 length=3
 mirror=yes
 
-[loc_278]
+[backsail_hoisted]
 name=Hoisted sail
 desc=A conveniently rolled sail.
 model=model_loc_278
 width=5
 
-[loc_279]
+[frontsail_hoisted]
 name=Hoisted sail
 desc=A conveniently rolled sail.
 model=model_loc_279
 width=8
 
-[loc_280]
+[rudder]
 model=model_loc_280
 
-[loc_281]
+[shiphull_broken]
 model=model_loc_281
 sharelight=yes
 active=no
 
-[loc_282]
+[shiphull_fixed]
 model=model_loc_282
 sharelight=yes
 active=no
 
-[loc_283]
+[shiphull_damaged_l]
 model=model_loc_283
 sharelight=yes
 active=no
 
-[loc_284]
+[shiphull_damaged_r]
 model=model_loc_283
 mirror=yes
 sharelight=yes
 active=no
 
-[loc_285]
+[shiphull_damaged_mid]
 model=model_loc_285
 sharelight=yes
 active=no
 
-[loc_286]
+[shiphull_damaged_porthole]
 model=model_loc_286
 width=2
 sharelight=yes
 active=no
 
-[loc_287]
+[ship_laddertop_noclimb]
 name=Ladder
 desc=I'm not allowed to climb this ladder.
 model=model_loc_273
 op1=Climb-down
 
-[loc_288]
+[wake]
 model=model_loc_288
 anim=wake
 hasalpha=yes
 length=3
 active=no
 
-[loc_289]
+[wake2]
 model=model_loc_289
 anim=wake2
 hasalpha=yes
 length=3
 active=no
 
-[loc_290]
+[wake2_left]
 model=model_loc_290
 anim=wake2
 hasalpha=yes
 length=3
 active=no
 
-[loc_291]
+[ship_hold_corner]
 model=model_loc_291
 forcedecor=yes
 sharelight=yes
 
-[loc_292]
+[ship_hold_straight]
 model=model_loc_292
 forcedecor=yes
 sharelight=yes
 
-[loc_293]
+[hold_ladder_floor]
 model=model_loc_293
 forcedecor=yes
 sharelight=yes
 
-[loc_294]
+[hold_ladder_floor_2]
 model=model_loc_294
 forcedecor=yes
 sharelight=yes
 
-[loc_295]
+[ship_ladder_noclimb]
 model=model_loc_272
 active=no
 
-[loc_296]
+[plough]
 name=Plough
 desc=It's like a land rudder.
 model=model_loc_296
 width=3
 length=2
 
-[loc_297]
+[scarecrow]
 name=Scarecrow
 desc=Disturbingly man like.
 model=model_loc_297
 
-[loc_301]
+[foodtrough]
 name=Food trough
 desc=Animals have no table manners.
 model=model_loc_40
 width=2
 
-[loc_302]
+[eggs]
 name=Eggs
 desc=Unfertilised chicken ovums. Lovely in cakes.
 model=model_loc_302
 
-[loc_303]
+[compost]
 name=Compost
 desc=In the city we would call this mouldy rubbish.
 model=model_loc_152
 width=2
 length=2
 
-[loc_306]
+[brokencart]
 name=Broken cart
 desc=A used cart seller will probably try and sell it later.
 model=model_loc_306
 width=3
 length=3
 
-[loc_307]
+[cart]
 name=Cart
 desc=One horse power, wooden suspension. A beauty.
 model=model_loc_307
 width=2
 length=3
 
-[loc_308]
+[cart_boxes]
 name=Cart
 desc=One horse power, wooden suspension. A beauty.
 model=model_loc_308
 width=2
 length=3
 
-[loc_309]
+[logpile]
 name=Log pile
 desc=Dead tree parts piled together neatly.
 model=model_loc_309
 
-[loc_310]
+[mudpatch]
 name=Mudpatch
 desc=A patch of soft dark brown matter. Probably mud.
 model=model_loc_310
 width=2
 length=2
 
-[loc_311]
+[mudpile]
 name=Mudpile
 desc=A pile of something I hope is mud.
 model=model_loc_13
 length=2
 
-[loc_312]
+[potato]
 name=Potato
 desc=Potato-licious!
 model=model_loc_312
@@ -1203,7 +1203,7 @@ op2=Pick
 blockwalk=no
 blockrange=no
 
-[loc_313]
+[wheat]
 name=Wheat
 desc=Baby bread.
 model=model_loc_313
@@ -1225,11 +1225,11 @@ hillskew=yes
 model=model_loc_186
 hillskew=yes
 
-[loc_317]
+[dugupsoil4]
 model=model_loc_317
 hillskew=yes
 
-[loc_318]
+[dugupsoil5]
 model=model_loc_318
 hillskew=yes
 
@@ -1263,7 +1263,7 @@ recol2d=16774
 recol3s=15586
 recol3d=16774
 
-[loc_322]
+[dugupsoil4_light]
 model=model_loc_317
 hillskew=yes
 recol1s=13505
@@ -1273,7 +1273,7 @@ recol2d=16774
 recol3s=15586
 recol3d=16774
 
-[loc_323]
+[dugupsoil5_light]
 model=model_loc_318
 hillskew=yes
 recol1s=13505
@@ -1313,17 +1313,17 @@ recol2d=10433
 recol3s=15586
 recol3d=8352
 
-[loc_327]
+[broken_cart_wheel]
 name=Broken cart wheel
 desc=The remains of a bad driver.
 model=model_loc_327
 
-[loc_328]
+[mudpatch2]
 model=model_loc_328
 width=2
 active=no
 
-[loc_329]
+[dugupsoil1_desert]
 model=model_loc_184
 hillskew=yes
 recol1s=13505
@@ -1333,7 +1333,7 @@ recol2d=11622
 recol3s=15586
 recol3d=11590
 
-[loc_330]
+[dugupsoil2_desert]
 model=model_loc_185
 hillskew=yes
 recol1s=13505
@@ -1343,7 +1343,7 @@ recol2d=11622
 recol3s=15586
 recol3d=11590
 
-[loc_331]
+[dugupsoil3_desert]
 model=model_loc_186
 hillskew=yes
 recol1s=13505
@@ -1353,7 +1353,7 @@ recol2d=11622
 recol3s=15586
 recol3d=11590
 
-[loc_332]
+[dugupsoil1_soot]
 model=model_loc_184
 hillskew=yes
 recol1s=13505
@@ -1363,7 +1363,7 @@ recol2d=3138
 recol3s=15586
 recol3d=3138
 
-[loc_333]
+[dugupsoil2_soot]
 model=model_loc_185
 hillskew=yes
 recol1s=13505
@@ -1373,7 +1373,7 @@ recol2d=3138
 recol3s=15586
 recol3d=3138
 
-[loc_334]
+[dugupsoil3_soot]
 model=model_loc_186
 hillskew=yes
 recol1s=13505
@@ -1383,7 +1383,7 @@ recol2d=3138
 recol3s=15586
 recol3d=3138
 
-[loc_335]
+[dugupsoil1_grey]
 model=model_loc_184
 hillskew=yes
 recol1s=13505
@@ -1393,7 +1393,7 @@ recol2d=10570
 recol3s=15586
 recol3d=10570
 
-[loc_336]
+[dugupsoil2_grey]
 model=model_loc_185
 hillskew=yes
 recol1s=13505
@@ -1403,7 +1403,7 @@ recol2d=10570
 recol3s=15586
 recol3d=10570
 
-[loc_337]
+[dugupsoil3_grey]
 model=model_loc_186
 hillskew=yes
 recol1s=13505
@@ -1413,7 +1413,7 @@ recol2d=10570
 recol3s=15586
 recol3d=10570
 
-[loc_338]
+[dugupsoil1_sandfloor]
 model=model_loc_184
 hillskew=yes
 recol1s=13505
@@ -1423,7 +1423,7 @@ recol2d=16737
 recol3s=15586
 recol3d=16737
 
-[loc_339]
+[dugupsoil2_sandfloor]
 model=model_loc_185
 hillskew=yes
 recol1s=13505
@@ -1433,7 +1433,7 @@ recol2d=16737
 recol3s=15586
 recol3d=16737
 
-[loc_340]
+[dugupsoil3_sandfloor]
 model=model_loc_186
 hillskew=yes
 recol1s=13505
@@ -1443,7 +1443,7 @@ recol2d=16737
 recol3s=15586
 recol3d=16737
 
-[loc_341]
+[dugupsoil4_sandfloor]
 model=model_loc_317
 hillskew=yes
 recol1s=13505
@@ -1453,7 +1453,7 @@ recol2d=25295
 recol3s=14594
 recol3d=25295
 
-[loc_342]
+[dugupsoil5_sandfloor]
 model=model_loc_318
 hillskew=yes
 recol1s=13505
@@ -1463,7 +1463,7 @@ recol2d=25295
 recol3s=14594
 recol3d=25295
 
-[loc_343]
+[dugupsoil1_body]
 model=model_loc_184
 hillskew=yes
 recol1s=13505
@@ -1473,7 +1473,7 @@ recol2d=12423
 recol3s=15586
 recol3d=12423
 
-[loc_344]
+[dugupsoil2_body]
 model=model_loc_185
 hillskew=yes
 recol1s=13505
@@ -1483,7 +1483,7 @@ recol2d=12423
 recol3s=15586
 recol3d=12423
 
-[loc_345]
+[dugupsoil3_body]
 model=model_loc_186
 hillskew=yes
 recol1s=13505
@@ -1493,31 +1493,31 @@ recol2d=12423
 recol3s=15586
 recol3d=12423
 
-[loc_346]
+[cabinet]
 name=Cabinet
 desc=The perfect place to store things.
 model=model_loc_346
 
-[loc_347]
+[cabinet2]
 name=Cabinet
 desc=The perfect place to store things.
 model=model_loc_347
 
-[loc_354]
+[crate2]
 name=Crate
 desc=A wooden crate for storage.
 model=model_loc_0
 op1=Search
 category=empty_crate
 
-[loc_355]
+[crate3]
 name=Crate
 desc=A wooden crate for storage.
 model=model_loc_355
 op1=Search
 category=empty_crates
 
-[loc_356]
+[crate_old]
 name=Crate
 desc=An old crate for storage.
 model=model_loc_63
@@ -1528,7 +1528,7 @@ retex2s=elfwood
 retex2d=wood2
 category=empty_crate
 
-[loc_357]
+[crate2_old]
 name=Crate
 desc=An old crate for storage.
 model=model_loc_0
@@ -1539,7 +1539,7 @@ retex2s=elfwood
 retex2d=wood2
 category=empty_crate
 
-[loc_358]
+[crate3_old]
 name=Crate
 desc=An old crate for storage.
 model=model_loc_355
@@ -1550,63 +1550,63 @@ retex2s=elfwood
 retex2d=wood2
 category=empty_crate
 
-[loc_359]
+[boxes]
 name=Boxes
 desc=A pile of boxes for storage.
 model=model_loc_359
 op1=Search
 category=empty_boxes
 
-[loc_360]
+[boxes2]
 name=Boxes
 desc=A pile of boxes for storage.
 model=model_loc_359
 op1=Search
 category=empty_boxes
 
-[loc_361]
+[boxes3]
 name=Boxes
 desc=A pile of boxes for storage.
 model=model_loc_359
 op1=Search
 category=empty_boxes
 
-[loc_362]
+[barrel]
 name=Barrel
 desc=A wooden barrel for storage.
 model=model_loc_362
 
-[loc_363]
+[barrel_fish]
 name=Barrel
 desc=A wooden barrel containing lots of fish.
 model=model_loc_363
 
-[loc_364]
+[barrelwithtap]
 name=Barrel
 desc=It's got ale in it.
 model=model_loc_364
 forceapproach=south
 
-[loc_365]
+[sacks]
 name=Sacks
 desc=These may have something in them.
 model=model_loc_23
 op1=Search
 
-[loc_366]
+[crate]
 name=Crate
 desc=Useful for transportation of delicate items.
 model=model_loc_63
 op1=Search
 category=empty_crate
 
-[loc_373]
+[dresser]
 name=Dresser
 desc=The perfect accompaniment to a bedroom.
 model=model_loc_373
 width=2
 
-[loc_380]
+[bookcase]
 name=Bookcase
 desc=A good source of books!
 model=model_loc_380
@@ -1615,7 +1615,7 @@ op1=Search
 forceapproach=east
 category=bookcase
 
-[loc_381]
+[bookcase2]
 name=Bookcase
 desc=A good source of books!
 model=model_loc_381
@@ -1623,48 +1623,48 @@ op1=Search
 forceapproach=east
 category=bookcase
 
-[loc_382]
+[desertbasket_closed]
 name=Basket
 desc=A woven storage basket.
 model=model_loc_382
 
-[loc_383]
+[desertbasket_open]
 name=Basket
 desc=A woven storage basket.
 model=model_loc_383
 
-[loc_384]
+[desertbasket_open2]
 name=Basket
 desc=A woven storage basket.
 model=model_loc_384
 
-[loc_385]
+[groupofdesertbaskets]
 name=Basket
 desc=A woven storage basket.
 model=model_loc_385
 
-[loc_386]
+[egypt_largeurn]
 name=Large urn
 desc=A gigantic pottery urn.
 model=model_loc_386
 length=2
 width=2
 
-[loc_387]
+[spookybookshelves]
 name=Bookshelves
 desc=This no doubt contains arcane knowledge.
 model=model_loc_387
 length=2
 forceapproach=east
 
-[loc_388]
+[spookywardrobe]
 name=Wardrobe
 desc=I wonder what this spooky item contains.
 model=model_loc_388
 forceapproach=east
 op1=Open
 
-[loc_389]
+[spookywardrobe_open]
 name=Wardrobe
 desc=It smells funny in there.
 model=model_loc_389
@@ -1673,23 +1673,23 @@ op2=Search
 op3=Close
 forceapproach=east
 
-[loc_390]
+[spookywardrobe_open_skeleton]
 name=Wardrobe
 desc=It smells funny in there.
 model=model_loc_390
 op2=Search
 op3=Close
 
-[loc_391]
+[cookingutensils]
 model=model_loc_391
 ambient=50
 
-[loc_392]
+[fishing_net_full]
 name=Full fishing net
 desc=A fishing net full of fish.
 model=model_loc_392
 
-[loc_393]
+[bookcase_bamboo]
 name=Bookcase
 desc=A good source of books!
 model=model_loc_393
@@ -1698,7 +1698,7 @@ op1=Search
 forceapproach=east
 category=bookcase
 
-[loc_394]
+[shelves_bamboo]
 name=Bookcase
 desc=Bamboo storage!
 model=model_loc_394
@@ -1706,17 +1706,17 @@ length=2
 op1=Search
 category=bookcase
 
-[loc_395]
+[pot_bamboo]
 name=Pot
 desc=bamboo storage!
 model=model_loc_395
 
-[loc_396]
+[pots_bamboo]
 name=Pots
 desc=bamboo storage!
 model=model_loc_396
 
-[loc_397]
+[cabinet2_dark]
 name=Cabinet
 desc=The perfect place to store things.
 model=model_loc_347
@@ -1729,52 +1729,52 @@ recol3d=1058
 recol4s=17969
 recol4d=1058
 
-[loc_400]
+[smallgrave]
 name=Small gravestone
 desc=A small simple gravestone.
 model=model_loc_400
 
-[loc_401]
+[poorgravestone]
 name=Grave marker
 desc=A simple marker for a forgotten person.
 model=model_loc_401
 
-[loc_402]
+[tombgravestone]
 name=Tombstone
 desc=The remiains of someone lie inside.
 model=model_loc_402
 width=2
 
-[loc_403]
+[biggravestone]
 name=Large grave stone
 desc=A monument to a special person.
 model=model_loc_403
 
-[loc_404]
+[gravestone1]
 name=Gravestone
 desc=The inscription is worn away and unreadable.
 model=model_loc_404
 
-[loc_405]
+[gravestone2]
 name=Gravestone
 desc='Here lies...' is all I can read.
 model=model_loc_405
 
-[loc_406]
+[largegrave]
 name=Large grave
 desc=Whoever bought this must have really cared for the inhabitant.
 model=model_loc_406
 width=2
 length=2
 
-[loc_407]
+[henge]
 name=Henge
 desc=Looks like a stone doorway to me.
 model=model_loc_407
 length=2
 mapscene=14
 
-[loc_408]
+[henge_diagonal]
 name=Henge
 desc=Looks like a stone doorway to my untrained eye.
 model=model_loc_408
@@ -1782,26 +1782,26 @@ width=2
 length=2
 mapscene=14
 
-[loc_413]
+[dolmen]
 name=Dolmen
 desc=Looks suspiciously like a big stone table.
 model=model_loc_410
 width=2
 length=2
 
-[loc_414]
+[egyptcoffin1]
 name=Coffin
 desc=A really posh upright coffin.
 model=model_loc_414
 op1=Open
 
-[loc_415]
+[egyptcoffin2]
 name=Coffin
 desc=Whoevers inside must have been rich.
 model=model_loc_415
 op1=Close
 
-[loc_416]
+[churchorgan]
 name=Church organ
 desc=With skill I can play this.
 model=model_loc_416
@@ -1809,13 +1809,13 @@ width=4
 length=2
 op1=Play
 
-[loc_417]
+[bed]
 name=Bed
 desc=Great for sleeping in.
 model=model_loc_417
 length=2
 
-[loc_418]
+[bluebed]
 name=Bed
 desc=A stylish looking bed.
 model=model_loc_417
@@ -1825,7 +1825,7 @@ recol1d=21279
 recol2s=25224
 recol2d=10778
 
-[loc_419]
+[brownbed]
 name=Bed
 desc=A drab looking bed.
 model=model_loc_417
@@ -1835,7 +1835,7 @@ recol1d=14594
 recol2s=25224
 recol2d=19917
 
-[loc_420]
+[orangebed]
 name=Bed
 desc=A stylish looking bed.
 model=model_loc_417
@@ -1845,7 +1845,7 @@ recol1d=31201
 recol2s=25224
 recol2d=2528
 
-[loc_421]
+[darkknight_bed]
 name=Bed
 desc=A stylish looking bed.
 model=model_loc_417
@@ -1855,27 +1855,27 @@ recol1d=5252
 recol2s=25224
 recol2d=14402
 
-[loc_422]
+[poorbed]
 name=Bed
 desc=Technically a bed.
 model=model_loc_422
 length=2
 
-[loc_423]
+[poorbed2]
 name=Bed
 desc=I guess I could sleep in it if I was really tired.
 model=model_loc_423
 width=2
 length=3
 
-[loc_424]
+[bigbed]
 name=Bed
 desc=Lovely comfy looking big bed.
 model=model_loc_424
 width=2
 length=3
 
-[loc_425]
+[bigbed_orange]
 name=Bed
 desc=Lovely comfy looking big bed.
 model=model_loc_424
@@ -1886,21 +1886,21 @@ recol1d=31201
 recol2s=25224
 recol2d=3554
 
-[loc_426]
+[bigbed2]
 name=Bed
 desc=Posh looking bed.
 model=model_loc_426
 width=3
 length=3
 
-[loc_427]
+[bigbed3]
 name=Bed
 desc=A bed fit for a king.
 model=model_loc_427
 width=3
 length=3
 
-[loc_428]
+[bigbed3_orange]
 name=Bed
 desc=A bed fit for a king.
 model=model_loc_427
@@ -1911,46 +1911,46 @@ recol1d=3554
 recol2s=14336
 recol2d=31201
 
-[loc_429]
+[bigbed4]
 name=Bed
 desc=One of the nicest beds I have ever seen.
 model=model_loc_429
 width=3
 length=3
 
-[loc_430]
+[hammock]
 name=Hammock
 desc=Perfect for snoozing in the sun.
 model=model_loc_430
 width=2
 
-[loc_431]
+[egypt_bed]
 name=Chaise longue
 desc=A comfortable seat to recline and recuperate.
 model=model_loc_431
 length=2
 
-[loc_432]
+[spookybed]
 name=Bed
 desc=I dont think anyone's slept here for a long long time.
 model=model_loc_432
 width=3
 length=3
 
-[loc_433]
+[bigbed_bamboo]
 name=Bed
 desc=Bamboo's a versatile material.
 model=model_loc_433
 width=2
 length=3
 
-[loc_434]
+[bed_bamboo]
 name=Bed
 desc=Bamboo's a versatile material.
 model=model_loc_434
 length=2
 
-[loc_435]
+[bed_bamboo_mirror]
 name=Bed
 desc=Bamboo's a versatile material.
 model=model_loc_434
@@ -2195,7 +2195,7 @@ model=model_loc_469
 blockwalk=no
 blockrange=no
 
-[loc_470]
+[barberspole]
 model=model_loc_470
 anim=barberspole_spin
 ambient=20
@@ -2951,21 +2951,21 @@ blockwalk=no
 recol1s=12580
 recol1d=7329
 
-[loc_554]
+[icicle_large_up]
 name=Icicle
 desc=Frozen water has formed an icicle here.
 model=model_loc_554
 recol1s=13537
 recol1d=30653
 
-[loc_555]
+[icicle_small_up]
 name=Icicle
 desc=Frozen water has formed an icicle here.
 model=model_loc_534
 recol1s=13537
 recol1d=30653
 
-[loc_556]
+[icicle_large_down]
 name=Icicle
 desc=Frozen water has formed an icicle here.
 model=model_loc_556
@@ -2973,14 +2973,14 @@ blockwalk=no
 recol1s=13537
 recol1d=30653
 
-[loc_557]
+[icicle_small_floor]
 name=Icicle
 desc=Frozen water has formed an icicle here.
 model=model_loc_544
 recol1s=14560
 recol1d=30653
 
-[loc_558]
+[caveentrance_ice]
 name=Cave entrance
 desc=It looks cold in there.
 model=model_loc_2
@@ -2997,164 +2997,164 @@ recol4d=9513
 recol5s=2048
 recol5d=32767
 
-[loc_559]
+[snow1]
 model=model_loc_559
 hillskew=yes
 contrast=100
 ambient=10
 
-[loc_560]
+[snow2]
 model=model_loc_560
 hillskew=yes
 contrast=100
 ambient=10
 
-[loc_561]
+[snow3]
 model=model_loc_561
 hillskew=yes
 contrast=100
 ambient=10
 
-[loc_562]
+[statue_femalewarrior]
 name=Statue of a warrior
 desc=This person was of great importance.
 model=model_loc_562
 
-[loc_563]
+[statue_king]
 name=Statue of a king
 desc=A monarch chiselled in stone.
 model=model_loc_563
 
-[loc_564]
+[statue_queen]
 name=Statue of a queen.
 desc=A monarch chiselled in stone.
 model=model_loc_564
 
-[loc_565]
+[goldstatue_king]
 name=Statue of a king
 desc=A sculpture of a monarch.
 model=model_loc_563
 recol1s=15855
 recol1d=18849
 
-[loc_566]
+[statue_malewarrior]
 name=Statue of a warrior
 desc=This person was of great importance.
 model=model_loc_566
 
-[loc_567]
+[tribalstatue]
 name=Tribal statue
 desc=A huge carving of a ancient race.
 model=model_loc_567
 width=2
 length=2
 
-[loc_568]
+[statue_dwarfminer]
 name=Dwarf statue
 desc=A depiction of a great dwarf miner.
 model=model_loc_568
 
-[loc_569]
+[gnomestatue1]
 name=Gnome statue
 desc=A depiction of a famous gnome warrior.
 model=model_loc_569
 
-[loc_570]
+[gnomestatue2]
 name=Gnome statue
 desc=A depiction of a famous gnome warrior.
 model=model_loc_570
 
-[loc_571]
+[gnomebust1]
 name=Gnome statue
 desc=The head and shoulders of a famous gnome.
 model=model_loc_571
 
-[loc_572]
+[gnomebust2]
 name=Gnome statue
 desc=The head and shoulders of a famous gnome.
 model=model_loc_572
 
-[loc_573]
+[gnomestatue3]
 name=Gnome statue
 desc=A depiction of a famous gnome baller.
 model=model_loc_573
 
-[loc_574]
+[bust1]
 name=Statue
 desc=A carving of a figure from the history of RuneScape.
 model=model_loc_574
 
-[loc_575]
+[bust2]
 name=Statue
 desc=A carving of a figure from the history of RuneScape.
 model=model_loc_575
 
-[loc_576]
+[bust3]
 name=Statue
 desc=A carving of a figure from the history of RuneScape.
 model=model_loc_576
 
-[loc_577]
+[gargoyle1]
 model=model_loc_577
 
-[loc_578]
+[gargoyle1_darkbrown]
 model=model_loc_577
 recol1s=15855
 recol1d=11557
 
-[loc_579]
+[egypt_statue1]
 name=Statue
 desc=An expertly chiselled statue.
 model=model_loc_579
 
-[loc_580]
+[egypt_statue2]
 name=Statue
 desc=An expertly chiselled statue.
 model=model_loc_580
 
-[loc_581]
+[egypt_statue3]
 name=Statue
 desc=An expertly chiselled statue.
 model=model_loc_581
 
-[loc_582]
+[egypt_statue4]
 name=Statue
 desc=An unusual symbol of ancient times.
 model=model_loc_582
 
-[loc_583]
+[egypt_statue5]
 name=Vase
 desc=An expertly crafted model of a vase.
 model=model_loc_583
 
-[loc_584]
+[egypt_statue6]
 name=Statue
 desc=An expertly chiselled statue of a bird.
 model=model_loc_584
 
-[loc_585]
+[statue_saradomin]
 name=Statue of Saradomin
 desc=What a good likeness!
 model=model_loc_585
 
-[loc_586]
+[statue_saradomin2]
 name=Statue of Saradomin
 desc=What a good likeness!
 model=model_loc_586
 
-[loc_587]
+[statue_zamarok]
 name=Statue of Zamorak
 desc=A depiction of the evil god Zamorak.
 model=model_loc_587
 
-[loc_588]
+[statue_base]
 name=Statue steps.
 desc= A base for the statue to sit on.
 model=model_loc_588
 width=3
 length=3
 
-[loc_589]
+[crystalball_table]
 name=Crystal ball
 desc=The scrying glass of a seer.
 model=model_loc_589
@@ -3162,74 +3162,74 @@ width=2
 length=2
 blockrange=no
 
-[loc_625]
+[longtable_decrative]
 model=model_loc_625
 width=2
 active=no
 blockrange=no
 
-[loc_626]
+[longtable_decrative_end]
 model=model_loc_626
 blockrange=no
 sharelight=yes
 active=no
 
-[loc_627]
+[longtable_decrative_mid]
 model=model_loc_627
 blockrange=no
 sharelight=yes
 active=no
 
-[silver_stall]
+[silvermarket]
 name=Silver stall
 desc=Finely wrought wares of silver.
 model=silk_stall
 width=2
 length=2
 
-[silk_stall]
+[silkmarket]
 name=Silk stall
 desc=Garments for the discerning.
 model=silk_stall
 width=2
 length=2
 
-[bakery_stall]
+[bakerymarket]
 name=Bakery stall
 desc=Bread cakes and pastries.
 model=bakery_stall
 width=2
 length=2
 
-[gem_stall]
+[gemmarket]
 name=Gem stall
 desc=Finest precious stones.
 model=gem_stall
 width=2
 length=2
 
-[fur_stall]
+[furmarket]
 name=Fur stall
 desc=These will keep you warm.
 model=fur_stall
 width=2
 length=2
 
-[spice_stall]
+[spicemarket]
 name=Spice stall
 desc=The spice is right.
 model=spice_stall
 width=2
 length=2
 
-[market_stall]
+[market]
 name=Market stall
 desc=Always a source of good bargains.
 model=market_stall
 width=2
 length=2
 
-[tea_stall_stealing]
+[tea_stall]
 name=Tea stall
 desc=Fine brews from exotic regions.
 model=tea_stall
@@ -3237,93 +3237,93 @@ width=2
 length=2
 op2=Steal-from
 
-[loc_636]
+[trackbuffer]
 name=Buffers
 desc=Keeps mine carts from rolling away.
 model=model_loc_636
 
-[loc_637]
+[minecart]
 name=Mine cart
 desc=You can 'cart' things around on this.
 model=model_loc_637
 
-[loc_638]
+[trackstraight_gdecor]
 model=model_loc_638
 hillskew=yes
 sharelight=yes
 forcedecor=yes
 
-[loc_639]
+[track_curve_a]
 model=model_loc_639
 hillskew=yes
 sharelight=yes
 forcedecor=yes
 
-[loc_640]
+[track_curve_b]
 model=model_loc_640
 hillskew=yes
 sharelight=yes
 forcedecor=yes
 
-[loc_641]
+[track_curve_c]
 model=model_loc_641
 hillskew=yes
 sharelight=yes
 forcedecor=yes
 
-[loc_642]
+[track_curve_d]
 model=model_loc_642
 hillskew=yes
 sharelight=yes
 forcedecor=yes
 
-[loc_643]
+[track_points_a]
 model=model_loc_643
 hillskew=yes
 sharelight=yes
 forcedecor=yes
 
-[loc_644]
+[track_points_b]
 model=model_loc_644
 hillskew=yes
 sharelight=yes
 forcedecor=yes
 
-[loc_645]
+[track_points_c]
 model=model_loc_645
 hillskew=yes
 sharelight=yes
 forcedecor=yes
 
-[loc_646]
+[track_points_d]
 model=model_loc_646
 hillskew=yes
 sharelight=yes
 forcedecor=yes
 
-[loc_647]
+[rack]
 name=Rack
 desc=Makes you taller.
 model=model_loc_647
 width=3
 length=2
 
-[loc_648]
+[stocks]
 name=Stocks
 desc=A bit large for a bracelet!
 model=model_loc_648
 
-[loc_649]
+[gallows]
 name=Gallows
 desc=A macabre variation on the neck tie.
 model=model_loc_649
 width=2
 length=2
 
-[loc_650]
+[manicals]
 model=model_loc_650
 
-[digsite_buried_skeleton]
+[halfburiedskeleton1]
 name=Buried skeleton
 desc=Dead and half buried.
 model=model_loc_651
@@ -3332,67 +3332,67 @@ width=3
 op1=Search
 blockrange=no
 
-[loc_652]
+[bloodsplatter1]
 model=model_loc_652
 
-[loc_653]
+[bloodsplatter2]
 model=model_loc_653
 
-[loc_654]
+[bloodsplatter3]
 model=model_loc_654
 
-[loc_655]
+[bloodscratch]
 model=model_loc_655
 ambient=50
 
-[loc_656]
+[bloodscratch2]
 model=model_loc_656
 ambient=50
 
-[loc_657]
+[bloodscratch3]
 model=model_loc_657
 ambient=50
 
-[loc_658]
+[pile_of_skulls]
 name=Pile of skulls
 desc=Disturbing but tidy.
 model=model_loc_658
 blockrange=no
 
-[loc_659]
+[charred_bones]
 name=Charred bones
 desc=I don't even want to think about what did that...
 model=model_loc_659
 blockrange=no
 blockwalk=no
 
-[loc_660]
+[corpse]
 name=Corpse
 desc=Now that's what I call slimline!
 model=model_loc_660
 blockrange=no
 
-[loc_661]
+[corpse2]
 name=Corpse
 desc=He looks very relaxed.
 model=model_loc_661
 blockrange=no
 
-[loc_662]
+[corpse3]
 name=Corpse
 desc=Now he's just too thin.
 model=model_loc_662
 width=2
 blockrange=no
 
-[loc_663]
+[corpse4]
 name=Corpse
 desc=He hasn't eaten in a long time.
 model=model_loc_663
 width=2
 blockrange=no
 
-[loc_664]
+[corpse_burnt]
 name=Corpse
 desc=Now that's what I call slimline!
 model=model_loc_660
@@ -3400,7 +3400,7 @@ blockrange=no
 recol1s=27413
 recol1d=7399
 
-[loc_665]
+[corpse2_burnt]
 name=Corpse
 desc=He looks very relaxed.
 model=model_loc_661
@@ -3408,7 +3408,7 @@ blockrange=no
 recol1s=27413
 recol1d=7399
 
-[loc_666]
+[corpse3_burnt]
 name=Corpse
 desc=Now he's just too thin.
 model=model_loc_662
@@ -3419,7 +3419,7 @@ recol1d=7399
 recol2s=15855
 recol2d=5285
 
-[loc_667]
+[corpse4_burnt]
 name=Corpse
 desc=He hasn't eaten in a long time.
 model=model_loc_663
@@ -3428,7 +3428,7 @@ blockrange=no
 recol1s=27413
 recol1d=7399
 
-[loc_668]
+[pile_of_skulls_grubby]
 name=Pile of skulls
 desc=Disturbing but tidy.
 model=model_loc_658
@@ -3486,183 +3486,183 @@ hasalpha=yes
 model=model_loc_679
 hasalpha=yes
 
-[loc_680]
+[piano_a]
 name=Piano
 desc=I was always forced to play this as a child.
 model=model_loc_680
 width=2
 length=2
 
-[loc_681]
+[piano_normal]
 name=Piano
 desc=I never learnt to play.
 model=model_loc_681
 width=2
 
-[loc_682]
+[piano_b]
 name=Piano stool
 desc=Time for a recital?
 model=model_loc_682
 width=2
 
-[loc_683]
+[grandfatherclock]
 name=Grandfather clock
 desc=Tick-tock, it's a clock.
 model=model_loc_683
 
-[loc_685]
+[weathervane]
 name=Weather vane
 desc=Shows which way the wind blows.
 model=model_loc_685
 anim=weathervane
 
-[loc_686]
+[brokenfloorboards1]
 model=model_loc_686
 
-[loc_687]
+[brokenfloorboards2]
 model=model_loc_687
 
-[loc_688]
+[brokenfloorboards3]
 model=model_loc_688
 
-[loc_689]
+[bathmirror]
 name=Mirror
 desc=Looking good!
 model=model_loc_689
 
-[loc_690]
+[bathscreen]
 name=Bath screen
 desc=Use this to get changed behind.
 model=model_loc_690
 length=2
 
-[screen]
+[dressing_screen]
 desc=Use this to get changed behind and retain modesty.
 model=model_loc_690
 length=2
 
-[loc_692]
+[cauldron]
 name=Cauldron
 desc=I don't even want to think about what's cooking in that.
 model=model_loc_692
 anim=cauldron
 
-[loc_693]
+[witchesbroom]
 name=Broom
 desc=Good for sweeping.
 model=model_loc_693
 
-[loc_694]
+[clothesmodel1]
 name=Clothes model
 desc=I'm guessing it's for making womens clothes.
 model=model_loc_694
 
-[loc_695]
+[clothesmodel2]
 name=Clothes model
 desc=Helps make human clothing.
 model=model_loc_695
 
-[loc_696]
+[hole]
 name=Hole
 desc=A hole.
 model=model_loc_696
 sharelight=yes
 shadow=no
 
-[loc_697]
+[animalskull]
 name=Animal skull
 desc=Dead animal head. Lovely.
 model=model_loc_697
 
-[loc_698]
+[bigegg]
 name=Big egg
 desc=Must have been laid by a huge bird.
 model=model_loc_698
 
-[loc_699]
+[carcass]
 name=Carcass
 desc=Whatever it was I'm glad its not alive.
 model=model_loc_699
 width=2
 length=2
 
-[loc_700]
+[curvedbone]
 name=Curved bone
 desc=Spooky!
 model=model_loc_700
 
-[loc_701]
+[curvedbone_burnt]
 name=Curved bone
 desc=Spooky!
 model=model_loc_700
 recol1s=32767
 recol1d=8456
 
-[loc_702]
+[largebone]
 name=Large bone
 desc=A dog's idea of heaven.
 model=model_loc_702
 
-[loc_703]
+[largebone_burnt]
 name=Large bone
 desc=A dog's idea of heaven.
 model=model_loc_702
 recol1s=31709
 recol1d=8456
 
-[loc_704]
+[tentacles]
 model=model_loc_704
 anim=tentacles
 
-[loc_705]
+[ceilingweb]
 model=model_loc_705
 
-[loc_706]
+[floorweb]
 model=model_loc_706
 
-[loc_707]
+[bell]
 name=Bell
 desc=Ding-Dong!
 model=model_loc_707
 
-[loc_708]
+[bell_mechanism]
 name=Bell mechanism
 desc=Some kind of pulley system.
 model=model_loc_708
 
-[loc_709]
+[bell_rope]
 name=Bell rope
 desc=Suprisingly rope shaped.
 model=model_loc_709
 
-[loc_710]
+[hole_in_wall]
 name=Hole in wall
 desc=Suspiciously hole shaped.
 model=model_loc_710
 
-[loc_711]
+[crystal_cluster_1]
 name=Crystal cluster
 desc=A huge chunk of shining natural crystal.
 model=model_loc_711
 
-[loc_712]
+[crystal_cluster_2]
 name=Crystal cluster
 desc=A huge chunk of shining natural crystal.
 model=model_loc_712
 
-[loc_713]
+[crystal_cluster_3]
 name=Crystal cluster
 desc=A huge chunk of shining natural crystal.
 model=model_loc_713
 
-[loc_714]
+[fire_remains]
 name=Fire remains
 desc=A recently extinguished fire.
 model=model_loc_714
 anim=fire
 hasalpha=yes
 
-[loc_715]
+[firewall_straight]
 model=model_loc_715
 anim=firewall
 hasalpha=yes
@@ -3670,7 +3670,7 @@ ambient=100
 contrast=100
 shadow=no
 
-[loc_716]
+[firewall_diagonal]
 model=model_loc_716
 anim=firewall
 hasalpha=yes
@@ -3678,24 +3678,24 @@ ambient=100
 contrast=100
 shadow=no
 
-[loc_717]
+[straightledge2]
 model=model_loc_717
 forcedecor=yes
 sharelight=yes
 
-[loc_718]
+[barrel_swords]
 name=Barrel
 desc=A barrel full of swords...
 model=model_loc_718
 
-[loc_719]
+[caveentrance4]
 model=model_loc_194
 width=4
 length=4
 active=no
 active=no
 
-[loc_720]
+[caveentrance3]
 model=model_loc_2
 width=3
 length=2
@@ -3718,13 +3718,13 @@ recol4d=10570
 recol5s=2048
 recol5d=6342
 
-[loc_722]
+[watercave]
 model=model_loc_722
 active=no
 width=6
 length=6
 
-[loc_723]
+[halfburiedskeleton2]
 name=Buried skeleton
 desc=I'm glad this isn't around anymore!
 model=model_loc_723
@@ -3732,7 +3732,7 @@ width=2
 length=2
 op1=Search
 
-[loc_724]
+[standing_torch]
 name=Standing torch
 desc=A crude torch stuck in the ground.
 model=model_loc_724
@@ -3748,16 +3748,16 @@ ambient=100
 contrast=100
 shadow=no
 
-[loc_726]
+[fairy_sparkle]
 model=model_loc_726
 
-[loc_727]
+[cave_exit]
 name=Cave web
 desc=A fissure in the cave wall.
 model=model_loc_727
 hillskew=yes
 
-[loc_728]
+[sand_detail1]
 model=model_loc_184
 hillskew=yes
 recol1s=13505
@@ -3767,7 +3767,7 @@ recol2d=25295
 recol3s=14594
 recol3d=25295
 
-[loc_729]
+[sand_detail2]
 model=model_loc_185
 hillskew=yes
 recol1s=13505
@@ -3777,7 +3777,7 @@ recol2d=25295
 recol3s=14594
 recol3d=25295
 
-[loc_730]
+[sand_detail3]
 model=model_loc_186
 hillskew=yes
 recol1s=13505
@@ -3787,7 +3787,7 @@ recol2d=25295
 recol3s=14594
 recol3d=25295
 
-[loc_731]
+[lavabubbles]
 model=model_loc_731
 anim=lavabubbles
 hasalpha=yes
@@ -3797,7 +3797,7 @@ ambient=50
 contrast=25
 blockwalk=no
 
-[loc_732]
+[lavafire]
 model=model_loc_732
 anim=lavafire
 hasalpha=yes
@@ -3807,28 +3807,28 @@ ambient=50
 contrast=25
 blockwalk=no
 
-[loc_733]
+[bigweb_slashable]
 name=Web
 desc=This huge web blocks your path.
 model=model_loc_733
 op1=Slash
 sharelight=yes
 
-[loc_734]
+[bigweb_slashed]
 name=Slashed web
 desc=A huge web, cruelly slashed in half.
 model=model_loc_734
 blockwalk=no
 sharelight=yes
 
-[loc_736]
+[animalskull_burnt]
 name=Animal skull
 desc=Dead animal head. Lovely.
 model=model_loc_697
 recol1s=30652
 recol1d=14798
 
-[loc_737]
+[carcass_burnt]
 name=Carcass
 desc=Whatever it was I'm glad its not alive.
 model=model_loc_699
@@ -3853,7 +3853,7 @@ ambient=100
 contrast=100
 hasalpha=yes
 
-[loc_741]
+[ladder_old_base]
 name=Broken Ladder
 desc=Looks a little too broken to climb.
 model=model_loc_741
@@ -3865,29 +3865,29 @@ model=model_loc_742
 length=2
 sharelight=yes
 
-[loc_743]
+[ladder_on_ground]
 name=Ladder
 desc=An old-looking ladder.
 model=model_loc_743
 width=2
 
-[loc_744]
+[scaffold]
 name=Scaffold
 desc=An old-looking bit of scaffolding.
 model=model_loc_744
 width=2
 
-[loc_745]
+[puddle]
 model=model_loc_745
 
-[loc_746]
+[puddle2]
 model=model_loc_746
 
-[loc_747]
+[museum_marble]
 model=model_loc_747
 active=no
 
-[loc_748]
+[caveentrance5]
 name=Cave entrance
 desc=The entrance to the cave.
 model=model_loc_748
@@ -3898,31 +3898,31 @@ length=2
 model=model_loc_212
 width=16
 
-[loc_750]
+[waterfall_overlay_1]
 model=model_loc_750
 hillskew=yes
 active=no
 sharelight=yes
 
-[loc_751]
+[waterfall_overlay_2]
 model=model_loc_751
 hillskew=yes
 active=no
 sharelight=yes
 
-[loc_752]
+[waterfall_overlay_3]
 model=model_loc_752
 hillskew=yes
 active=no
 sharelight=yes
 
-[loc_753]
+[waterfall_overlay_4]
 model=model_loc_753
 hillskew=yes
 active=no
 sharelight=yes
 
-[loc_754]
+[waterfall_overlay]
 model=model_loc_754
 hillskew=yes
 active=no
@@ -3930,31 +3930,31 @@ sharelight=yes
 ambient=-56
 contrast=-56
 
-[loc_755]
+[obstacle_plank]
 model=model_loc_755
 sharelight=yes
 hillskew=yes
 
-[loc_756]
+[stonedisc]
 model=model_loc_756
 hillskew=yes
 
-[loc_757]
+[stonedisc_darkbrown]
 model=model_loc_756
 recol1s=13741
 recol1d=16773
 
-[loc_758]
+[stonedisc_lightbrown]
 model=model_loc_756
 recol1s=13741
 recol1d=22817
 
-[loc_759]
+[stonedisc_darkgrey]
 model=model_loc_756
 recol1s=13741
 recol1d=10570
 
-[loc_760]
+[magearena_side_a]
 model=model_loc_760
 sharelight=yes
 shadow=no
@@ -3969,7 +3969,7 @@ recol3d=2114
 recol4s=16673
 recol4d=1057
 
-[loc_761]
+[magearena_side_b]
 model=model_loc_761
 sharelight=yes
 shadow=no
@@ -3984,7 +3984,7 @@ recol3d=2114
 recol4s=16673
 recol4d=1057
 
-[loc_762]
+[magearena_side_c_r]
 model=model_loc_762
 sharelight=yes
 shadow=no
@@ -3999,7 +3999,7 @@ recol3d=2114
 recol4s=16673
 recol4d=1057
 
-[loc_763]
+[magearena_side_c_l]
 model=model_loc_762
 sharelight=yes
 shadow=no
@@ -4015,7 +4015,7 @@ recol3d=2114
 recol4s=16673
 recol4d=1057
 
-[loc_764]
+[magearena_side_d_r]
 model=model_loc_764
 sharelight=yes
 shadow=no
@@ -4030,7 +4030,7 @@ recol3d=2114
 recol4s=16673
 recol4d=1057
 
-[loc_765]
+[magearena_side_d_l]
 model=model_loc_764
 sharelight=yes
 shadow=no
@@ -4046,28 +4046,28 @@ recol3d=2114
 recol4s=16673
 recol4d=1057
 
-[loc_766]
+[floor_depth1]
 model=model_loc_766
 hillskew=yes
 sharelight=yes
 
-[loc_767]
+[floor_depth2]
 model=model_loc_767
 hillskew=yes
 sharelight=yes
 
-[loc_768]
+[floor_depth3]
 model=model_loc_768
 hillskew=yes
 sharelight=yes
 
-[loc_769]
+[floor_depth1_grey]
 model=model_loc_766
 hillskew=yes
 recol1s=7329
 recol1d=5285
 
-[loc_770]
+[floor_depth2_grey]
 model=model_loc_767
 hillskew=yes
 recol1s=7329
@@ -4094,7 +4094,7 @@ model=model_loc_771
 mapscene=19
 forcedecor=yes
 
-[loc_775]
+[agility_training_icon]
 model=model_loc_771
 mapscene=20
 forcedecor=yes
@@ -4184,128 +4184,128 @@ model=model_loc_771
 mapscene=28
 forcedecor=yes
 
-[loc_793]
+[pit_edge1_1]
 model=model_loc_793
 hillskew=yes
 sharelight=yes
 ambient=100
 contrast=100
 
-[loc_794]
+[pit_edge2corner]
 model=model_loc_794
 hillskew=yes
 sharelight=yes
 ambient=100
 contrast=100
 
-[loc_795]
+[pit_edge1corner]
 model=model_loc_795
 hillskew=yes
 sharelight=yes
 ambient=100
 contrast=100
 
-[loc_796]
+[pier]
 model=model_loc_796
 sharelight=yes
 forcedecor=yes
 mapscene=46
 
-[loc_797]
+[pier2]
 model=model_loc_797
 sharelight=yes
 forcedecor=yes
 mapscene=46
 
-[loc_798]
+[pier3]
 model=model_loc_798
 sharelight=yes
 forcedecor=yes
 mapscene=46
 
-[loc_799]
+[pier_hillskew]
 model=model_loc_796
 sharelight=yes
 forcedecor=yes
 hillskew=yes
 mapscene=46
 
-[loc_800]
+[pier2_edge]
 model=model_loc_800
 sharelight=yes
 forcedecor=yes
 mapscene=46
 
-[loc_801]
+[pier3_edge]
 model=model_loc_801
 sharelight=yes
 forcedecor=yes
 mapscene=46
 
-[loc_802]
+[pier2_edge_mirror]
 model=model_loc_800
 sharelight=yes
 forcedecor=yes
 mapscene=46
 mirror=yes
 
-[loc_803]
+[pier3_edge_mirror]
 model=model_loc_801
 sharelight=yes
 forcedecor=yes
 mapscene=46
 mirror=yes
 
-[loc_804]
+[pier_half]
 model=model_loc_804
 sharelight=yes
 forcedecor=yes
 
-[loc_805]
+[pier_half2]
 model=model_loc_805
 sharelight=yes
 forcedecor=yes
 
-[loc_806]
+[pier_half_mirror]
 model=model_loc_804
 sharelight=yes
 forcedecor=yes
 mirror=yes
 
-[loc_807]
+[pier_half2_mirror]
 model=model_loc_805
 sharelight=yes
 forcedecor=yes
 mirror=yes
 
-[loc_808]
+[pier_broken]
 model=model_loc_808
 hillskew=yes
 sharelight=yes
 forcedecor=yes
 
-[loc_809]
+[pier_broken_mirror]
 model=model_loc_808
 hillskew=yes
 sharelight=yes
 forcedecor=yes
 mirror=yes
 
-[loc_810]
+[pier2_hillskew_edge]
 model=model_loc_800
 sharelight=yes
 forcedecor=yes
 mapscene=46
 hillskew=yes
 
-[loc_811]
+[pier3_hillskew_edge]
 model=model_loc_801
 sharelight=yes
 forcedecor=yes
 mapscene=46
 hillskew=yes
 
-[loc_812]
+[pier2_edge_hillskew_mirror]
 model=model_loc_800
 sharelight=yes
 forcedecor=yes
@@ -4313,7 +4313,7 @@ mapscene=46
 mirror=yes
 hillskew=yes
 
-[loc_813]
+[pier3_edge_hillskew_mirror]
 model=model_loc_801
 sharelight=yes
 forcedecor=yes
@@ -4321,27 +4321,27 @@ mapscene=46
 mirror=yes
 hillskew=yes
 
-[loc_814]
+[pier_rail]
 model=model_loc_814
 sharelight=yes
 hillskew=yes
 blockrange=no
 
-[loc_815]
+[pier_edge]
 model=model_loc_815
 sharelight=yes
 hillskew=yes
 
-[loc_816]
+[pier_shadow_on_water]
 model=model_loc_816
 active=no
 
-[loc_817]
+[suitofarmour]
 name=Suit of armour
 desc=I always wonder if someone's hiding inside when I see these.
 model=model_loc_817
 
-[loc_818]
+[suitofarmour_darkknight]
 name=Suit of armour
 desc=Looks kind of like a man made of metal.
 model=model_loc_817
@@ -4350,7 +4350,7 @@ recol1d=5252
 recol2s=20001
 recol2d=14402
 
-[loc_819]
+[suitofarmour_whiteknight]
 name=Suit of armour
 desc=Looks kind of like a man made of metal.
 model=model_loc_817
@@ -4363,7 +4363,7 @@ recol3d=4333
 recol4s=20001
 recol4d=4333
 
-[loc_820]
+[suitofarmour_varrock]
 name=Suit of armour
 desc=Looks kind of like a man made of metal.
 model=model_loc_817
@@ -4372,76 +4372,76 @@ recol1d=31201
 recol2s=20001
 recol2d=2528
 
-[loc_821]
+[cannon]
 name=Cannon
 desc=Not suitable for children. Aim away from face.
 model=model_loc_821
 length=2
 
-[loc_822]
+[cannonballs]
 name=Cannonballs
 desc=Big heavy metal balls.
 model=model_loc_822
 
-[attack_dummy]
+[sworddummy]
 name=Dummy
 desc=The easiest opponent I'll ever fight.
 model=model_loc_823
 op2=Attack
 
-[loc_824]
+[gnomedefence1]
 name=Wooden defence
 desc=A wooden defensive structure.
 model=model_loc_824
 
-[damaged_armour]
+[damagedarmour1]
 model=model_loc_825
 
-[loc_826]
+[damagedarmour2]
 model=model_loc_826
 
-[loc_827]
+[damagedarmour3]
 model=model_loc_827
 
-[loc_828]
+[damagedarmour4]
 model=model_loc_828
 
-[loc_829]
+[target]
 name=Target
 desc=For private use only!
 model=model_loc_829
 
-[loc_830]
+[timberdefence]
 model=model_loc_830
 wallwidth=32
 sharelight=yes
 hillskew=yes
 blockrange=no
 
-[loc_831]
+[timberdefence_edgel]
 model=model_loc_831
 wallwidth=32
 sharelight=yes
 hillskew=yes
 blockrange=no
 
-[loc_832]
+[timberdefence_edger]
 model=model_loc_832
 wallwidth=32
 sharelight=yes
 hillskew=yes
 blockrange=no
 
-[loc_833]
+[watchtowerspikes]
 model=model_loc_833
 
-[loc_834]
+[cabinet_swords]
 name=Sword cabinet
 desc=Break glass in case of emergency.
 model=model_loc_834
 length=2
 
-[loc_835]
+[orangecabinet_swords]
 name=Sword cabinet
 desc=Break glass in case of emergency.
 model=model_loc_834
@@ -4449,19 +4449,19 @@ length=2
 recol1s=12610
 recol1d=31201
 
-[loc_836]
+[cabinet_bows]
 name=Bow cabinet
 desc=An attractively laid out collection of ranging weapons.
 model=model_loc_836
 length=2
 
-[loc_837]
+[cabinet_axes]
 name=Axe cabinet
 desc=Break glass in case of emergency.
 model=model_loc_837
 length=2
 
-[loc_838]
+[orangecabinet_axes]
 name=Axe cabinet
 desc=Break glass in case of emergency.
 model=model_loc_837
@@ -4469,7 +4469,7 @@ length=2
 recol1s=12610
 recol1d=31201
 
-[loc_839]
+[cabinet_bows_white]
 name=Bow cabinet
 desc=An attractively laid out collection of ranging weapons.
 model=model_loc_836
@@ -4479,19 +4479,19 @@ recol1d=17969
 recol2s=12610
 recol2d=21147
 
-[loc_840]
+[wallshield]
 model=model_loc_840
 ambient=20
 
-[loc_841]
+[wallshield2]
 model=model_loc_841
 ambient=20
 
-[loc_842]
+[wallshield3]
 model=model_loc_842
 ambient=20
 
-[loc_843]
+[wallshield3_white]
 model=model_loc_842
 ambient=20
 recol1s=15
@@ -4499,11 +4499,11 @@ recol1d=21147
 recol2s=15855
 recol2d=4333
 
-[loc_844]
+[wallshield4]
 model=model_loc_844
 ambient=20
 
-[loc_845]
+[wallshield_varrock]
 model=model_loc_844
 ambient=20
 recol1s=15
@@ -4511,7 +4511,7 @@ recol1d=31201
 recol2s=15855
 recol2d=2528
 
-[loc_846]
+[wallshield_rangeguild]
 model=model_loc_841
 ambient=20
 recol1s=15
@@ -4519,7 +4519,7 @@ recol1d=2528
 recol2s=15855
 recol2d=31201
 
-[loc_847]
+[wallshield_darkknight]
 model=model_loc_842
 ambient=20
 recol1s=15
@@ -4527,30 +4527,30 @@ recol1d=5252
 recol2s=15855
 recol2d=14402
 
-[loc_848]
+[spearwall]
 name=Spear wall
 desc=A row of sharp pointy spears.
 model=model_loc_848
 width=2
 blockrange=no
 
-[loc_849]
+[spearwall_row2]
 name=Spear wall
 desc=Rows of sharp pointy spears.
 model=model_loc_849
 hillskew=yes
 blockrange=no
 
-[loc_850]
+[helmetrack]
 model=model_loc_850
 ambient=20
 
-[loc_851]
+[standard_tatty]
 name=Standard
 desc=A tatty old standard.
 model=model_loc_851
 
-[loc_852]
+[standard_tatty_dark]
 name=Standard
 desc=A tatty old standard.
 model=model_loc_851
@@ -4559,27 +4559,27 @@ recol1d=7399
 recol2s=28355
 recol2d=3204
 
-[loc_853]
+[standard_red]
 name=Standard
 desc=A red standard.
 model=model_loc_853
 
-[loc_854]
+[standard_blue]
 name=Standard
 desc=A blue standard.
 model=model_loc_854
 
-[loc_855]
+[standard_blue2]
 name=Standard
 desc=A blue standard.
 model=model_loc_855
 
-[loc_856]
+[standard_blue3]
 name=Standard
 desc=A blue standard.
 model=model_loc_856
 
-[loc_857]
+[gnomestandard1]
 name=Standard
 desc=A standard of the gnome race.
 model=model_loc_856
@@ -4588,7 +4588,7 @@ recol1d=12934
 recol2s=15
 recol2d=32767
 
-[loc_858]
+[gnomestandard2]
 name=Standard
 desc=A standard of the gnome race.
 model=model_loc_854
@@ -4599,125 +4599,125 @@ recol2d=12934
 recol3s=22337
 recol3d=32767
 
-[loc_859]
+[ogrestandard]
 name=Standard
 desc=The standard of the ogre race.
 model=model_loc_859
 
-[loc_860]
+[flagpole_asgarnia]
 name=Flagpole
 desc=The flag of Asgarnia.
 model=model_loc_860
 anim=flagpole
 
-[loc_861]
+[flagpole_kandarin]
 name=Flagpole
 desc=The flag of Kandarin.
 model=model_loc_861
 anim=flagpole
 
-[loc_862]
+[flagpole_ardougne]
 name=Flagpole
 desc=The flag of Ardougne.
 model=model_loc_862
 anim=flagpole
 
-[loc_863]
+[standard1_asgarnia]
 name=Standard
 desc=A standard of Asgarnia.
 model=model_loc_863
 contrast=100
 ambient=10
 
-[loc_864]
+[standard1_kandarin]
 name=Standard
 desc=A standard of Kandarin.
 model=model_loc_864
 contrast=100
 ambient=10
 
-[loc_865]
+[standard2_asgarnia]
 name=Standard
 desc=A standard of Asgarnia.
 model=model_loc_865
 contrast=100
 ambient=10
 
-[loc_866]
+[standard2_kandarin]
 name=Standard
 desc=A standard of Kandarin.
 model=model_loc_866
 contrast=100
 ambient=10
 
-[loc_867]
+[standard1_misthalin]
 name=Standard
 desc=A standard of Misthalin.
 model=model_loc_867
 contrast=100
 ambient=10
 
-[loc_868]
+[standard1_varrock]
 name=Standard
 desc=A standard of Varrock.
 model=model_loc_868
 contrast=100
 ambient=10
 
-[loc_869]
+[flagpole]
 name=Flagpole
 desc=A flag flies here.
 model=model_loc_869
 anim=flagpole
 
-[loc_870]
+[totem_pole]
 name=Totem Pole
 desc=A sculpted trunk of wood.
 model=model_loc_870
 
-[loc_871]
+[bathpipes]
 name=Bath pipes
 desc=Takes my dirty bath water away.
 model=model_loc_871
 
-[loc_872]
+[largesewerpipe]
 name=Large sewer pipe
 desc=It smells horrible in there.
 model=model_loc_872
 
-[loc_875]
+[bath]
 name=Bath
 desc=Wash here.
 model=model_loc_875
 length=2
 blockrange=no
 
-[loc_876]
+[pipe+drain]
 model=model_loc_876
 
-[loc_877]
+[wallpipe]
 model=model_loc_41
 
-[loc_885]
+[barpumps]
 name=Bar pumps
 desc=If only I had one of those at home...
 model=model_loc_885
 blockrange=no
 
-[loc_886]
+[barnopumps]
 name=Bar pumps
 desc=If only I had one of those at home...
 model=model_loc_886
 blockrange=no
 
-[loc_887]
+[painting_king]
 name=Portrait
 desc=A painting of the King looking royal.
 model=model_loc_887
 ambient=20
 active=yes
 
-[loc_888]
+[painting_landscape]
 name=Painting
 desc=A beautiful landscape.
 model=model_loc_887
@@ -4726,7 +4726,7 @@ active=yes
 retex1s=painting2
 retex1d=painting1
 
-[loc_889]
+[painting_elf]
 name=Painting
 desc=A mysterious figure stands alone in this haunting image.
 model=model_loc_887
@@ -4735,14 +4735,14 @@ active=yes
 retex1s=painting2
 retex1d=elfpainting
 
-[loc_890]
+[painting2_king]
 name=Portrait
 desc=Hail to the King!
 model=model_loc_890
 ambient=20
 active=yes
 
-[loc_891]
+[painting2_landscape]
 name=Landscape
 desc=I don't know much about art, but I like this.
 model=model_loc_890
@@ -4751,7 +4751,7 @@ active=yes
 retex1s=painting2
 retex1d=painting1
 
-[loc_892]
+[painting2_elf]
 name=Painting
 desc=A painting of some guy standing around somewhere.
 model=model_loc_890
@@ -4760,14 +4760,14 @@ active=yes
 retex1s=painting2
 retex1d=elfpainting
 
-[loc_893]
+[painting3_king]
 name=Painting
 desc=A really bad portrait of the King.
 model=model_loc_893
 ambient=20
 active=yes
 
-[loc_894]
+[painting3_landscape]
 name=Landscape
 desc=Fine brushwork adds to the realism of this serene landscape.
 model=model_loc_893
@@ -4776,7 +4776,7 @@ active=yes
 retex1s=painting2
 retex1d=painting1
 
-[loc_895]
+[painting3_elf]
 name=Painting
 desc=Pretty good painting.
 model=model_loc_893
@@ -4785,27 +4785,27 @@ active=yes
 retex1s=painting2
 retex1d=elfpainting
 
-[loc_896]
+[starchart]
 name=Star chart
 desc=I can see the stars on this.
 model=model_loc_896
 ambient=100
 active=yes
 
-[loc_897]
+[starchart2]
 name=Star chart
 desc=A picture of the stars with funny diagrams and things on.
 model=model_loc_897
 ambient=100
 active=yes
 
-[loc_898]
+[plaguecross]
 name=Cross
 desc=Cross shaped.
 model=model_loc_898
 active=yes
 
-[loc_899]
+[hangingbannerl]
 name=Hanging banner
 desc=Mmmm decorative!
 model=model_loc_899
@@ -4813,7 +4813,7 @@ ambient=50
 sharelight=yes
 active=yes
 
-[loc_900]
+[hangingbannerl_white]
 name=Hanging banner
 desc=Brightens up the room a bit.
 model=model_loc_899
@@ -4831,7 +4831,7 @@ recol4d=17969
 recol5s=28321
 recol5d=21147
 
-[loc_901]
+[hangingbannerr]
 name=Hanging banner
 desc=I don't know art, but I like it!
 model=model_loc_901
@@ -4839,7 +4839,7 @@ ambient=50
 sharelight=yes
 active=yes
 
-[loc_902]
+[hangingbannerr_white]
 name=Hanging banner
 desc=Not bad at all.
 model=model_loc_901
@@ -4857,19 +4857,19 @@ recol4d=17969
 recol5s=28321
 recol5d=21147
 
-[loc_903]
+[unimountedhead]
 name=Unicorn's head
 desc=Alas poor unicorn, I knew him well.
 model=model_loc_903
 active=yes
 
-[loc_904]
+[dragonmountedhead]
 name=Dragon's head
 desc=A scary looking dragons head.
 model=model_loc_904
 active=yes
 
-[loc_905]
+[dragonmountedhead_red]
 name=Dragon's head
 desc=Not what I would pick as wall decoration.
 model=model_loc_904
@@ -4877,13 +4877,13 @@ active=yes
 recol1s=15855
 recol1d=15360
 
-[loc_906]
+[bullmountedhead]
 name=Bull's head
 desc=Looks like the bull lost.
 model=model_loc_906
 active=yes
 
-[loc_907]
+[witchescharms]
 name=Charms
 desc=Trinkets and stuff.
 model=model_loc_907
@@ -4891,44 +4891,44 @@ ambient=50
 anim=witchcharms
 active=yes
 
-[loc_908]
+[witcheswallchart]
 name=Mystical wall chart
 desc=Weird looking symbols and diagrams.
 model=model_loc_908
 ambient=50
 active=yes
 
-[loc_909]
+[plaque]
 name=Plaque
 desc=Something is written on it. I can't read what.
 model=model_loc_909
 active=yes
 
-[loc_910]
+[egyptwalldecor_eye]
 name=Evil eye decoration
 desc=Looks like an eye with huge lashes.
 model=model_loc_910
 active=yes
 
-[loc_911]
+[egyptwalldecor_glyphs]
 name=Glyphs
 desc=A tablet covered in weird looking little squiggles and pictures.
 model=model_loc_911
 active=yes
 
-[loc_912]
+[egyptwalldecor_cross]
 model=model_loc_912
 active=no
 
-[loc_913]
+[egyptwalldecor_beetle]
 model=model_loc_913
 active=no
 
-[loc_914]
+[egyptwalldecor_column]
 model=model_loc_914
 active=no
 
-[loc_915]
+[egypt_font]
 name=Font
 desc=A posh water bowl.
 model=model_loc_915
@@ -4938,7 +4938,7 @@ active=yes
 model=model_loc_916
 sharelight=yes
 
-[poorrugcorner1]
+[poorrug1corner]
 model=model_loc_917
 sharelight=yes
 
@@ -4946,43 +4946,43 @@ sharelight=yes
 model=model_loc_918
 sharelight=yes
 
-[loc_919]
+[poorrug2]
 model=model_loc_919
 sharelight=yes
 
-[loc_920]
+[poorrug2corner]
 model=model_loc_920
 sharelight=yes
 
-[loc_921]
+[poorrug2side]
 model=model_loc_921
 sharelight=yes
 
-[loc_922]
+[poorrug3]
 model=model_loc_922
 sharelight=yes
 
-[loc_923]
+[poorrug3corner]
 model=model_loc_923
 sharelight=yes
 
-[loc_924]
+[poorrug3side]
 model=model_loc_924
 sharelight=yes
 
-[loc_925]
+[rugcorner]
 model=model_loc_107
 sharelight=yes
 
-[loc_926]
+[rugside]
 model=model_loc_108
 sharelight=yes
 
-[loc_927]
+[rugmiddle]
 model=model_loc_109
 sharelight=yes
 
-[loc_928]
+[rugcorner_white]
 model=model_loc_107
 sharelight=yes
 recol1s=15360
@@ -4990,7 +4990,7 @@ recol1d=21147
 recol2s=28321
 recol2d=17969
 
-[loc_929]
+[rugside_white]
 model=model_loc_108
 sharelight=yes
 recol1s=15360
@@ -4998,7 +4998,7 @@ recol1d=21147
 recol2s=28321
 recol2d=17969
 
-[loc_930]
+[rugmiddle_white]
 model=model_loc_109
 sharelight=yes
 recol1s=15360
@@ -5006,7 +5006,7 @@ recol1d=21147
 recol2s=28321
 recol2d=17969
 
-[loc_931]
+[rugside_darkknight]
 model=model_loc_108
 sharelight=yes
 recol1s=15360
@@ -5014,7 +5014,7 @@ recol1d=5252
 recol2s=28321
 recol2d=14402
 
-[loc_932]
+[rugmiddle_darkknight]
 model=model_loc_109
 sharelight=yes
 recol1s=15360
@@ -5022,7 +5022,7 @@ recol1d=5252
 recol2s=28321
 recol2d=14402
 
-[loc_933]
+[rugcorner_darkknight]
 model=model_loc_107
 sharelight=yes
 recol1s=15360
@@ -5030,7 +5030,7 @@ recol1d=5252
 recol2s=28321
 recol2d=14402
 
-[loc_934]
+[rugcorner_orange]
 model=model_loc_107
 sharelight=yes
 recol1s=15360
@@ -5040,7 +5040,7 @@ recol2d=3554
 recol3s=28321
 recol3d=3554
 
-[loc_935]
+[rugside_orange]
 model=model_loc_108
 sharelight=yes
 recol1s=15360
@@ -5050,7 +5050,7 @@ recol2d=3554
 recol3s=28321
 recol3d=3554
 
-[loc_936]
+[rugmiddle_orange]
 model=model_loc_109
 sharelight=yes
 recol1s=15360
@@ -5060,31 +5060,31 @@ recol2d=3554
 recol3s=28321
 recol3d=3554
 
-[loc_937]
+[rugcorner2]
 model=model_loc_107
 sharelight=yes
 
-[loc_938]
+[rugside2]
 model=model_loc_108
 sharelight=yes
 
-[loc_939]
+[rugmiddle2]
 model=model_loc_109
 sharelight=yes
 
-[loc_940]
+[bluerugcorner]
 model=model_loc_107
 sharelight=yes
 recol1s=15360
 recol1d=7199
 
-[loc_941]
+[bluerugside]
 model=model_loc_108
 sharelight=yes
 recol1s=15360
 recol1d=7199
 
-[loc_942]
+[bluerugmiddle]
 model=model_loc_109
 sharelight=yes
 recol1s=15360
@@ -5114,31 +5114,31 @@ recol1d=5602
 recol2s=28321
 recol2d=9837
 
-[loc_946]
+[fur1]
 model=model_loc_946
 
-[loc_947]
+[fur2]
 model=model_loc_947
 
-[loc_948]
+[fur3]
 model=model_loc_948
 
-[loc_949]
+[fur4]
 model=model_loc_949
 
-[loc_950]
+[fur_a]
 model=model_loc_110
 sharelight=yes
 
-[loc_951]
+[fur_b]
 model=model_loc_111
 sharelight=yes
 
-[loc_952]
+[fur_c]
 model=model_loc_112
 sharelight=yes
 
-[loc_953]
+[fur_d]
 model=model_loc_113
 sharelight=yes
 
@@ -5148,7 +5148,7 @@ desc=For wiping muddy feet on.
 model=model_loc_954
 active=yes
 
-[loc_955]
+[spookypicture]
 name=Spooky picture
 desc=Disturbingly its eyes look everywhere in the room except at you.
 model=model_loc_955
@@ -5156,48 +5156,48 @@ ambient=50
 anim=spookypic
 active=yes
 
-[loc_956]
+[skirtingboard]
 model=model_loc_956
 
-[loc_957]
+[skirtingboard_corners]
 model=model_loc_957
 
-[loc_958]
+[skirtingboard_outsidecorners]
 model=model_loc_958
 
-[loc_959]
+[clockface]
 name=Clock face
 desc=What has a face and hands but is not a man?
 model=model_loc_959
 active=yes
 
-[loc_960]
+[clockface_back]
 name=Clock face
 desc=It's a time machine....sort of!
 model=model_loc_960
 active=yes
 
-[loc_961]
+[banknoticeboard]
 name=Bank notice board
 desc='Ask about our low, low interest rates!'
 model=model_loc_961
 ambient=50
 active=yes
 
-[loc_962]
+[noticeboard]
 name=Noticeboard
 desc=Some helpful people have placed notes on here, how nice.
 model=model_loc_961
 ambient=50
 active=yes
 
-[loc_963]
+[clothesequipment]
 name=Clothes equipment
 desc=Essentials for a seamstress.
 model=model_loc_963
 active=yes
 
-[loc_964]
+[swordfishr]
 name=Stuffed swordfish
 desc=It really was this big!
 model=model_loc_964
@@ -5205,7 +5205,7 @@ contrast=100
 ambient=10
 active=yes
 
-[loc_965]
+[swordfishl]
 name=Stuffed swordfish
 desc=It really was this big!
 model=model_loc_965
@@ -5213,7 +5213,7 @@ contrast=100
 ambient=10
 active=yes
 
-[loc_966]
+[jollyroger]
 name=Jolly Roger
 desc=He dosen't look too jolly to me!
 model=model_loc_966
@@ -5221,13 +5221,13 @@ contrast=100
 ambient=10
 active=yes
 
-[loc_967]
+[hangingshipwheel]
 name=Hanging wheel
 desc=Looks like this ship was way off course!
 model=model_loc_967
 active=yes
 
-[loc_968]
+[piratemap]
 name=Pirate map
 desc=X marks the spot.
 model=model_loc_968
@@ -5235,13 +5235,13 @@ contrast=100
 ambient=10
 active=yes
 
-[loc_969]
+[fishingnet]
 name=Fishing net
 desc=Complete with authentic seaweed!
 model=model_loc_969
 active=yes
 
-[varrock_palace_plaque]
+[plaque_zamorak_monk]
 name=Plaque
 desc=This mentions the monk trapped here...
 model=model_loc_909
@@ -5250,37 +5250,37 @@ active=yes
 recol1s=6342
 recol1d=31393
 
-[loc_971]
+[hanging_bow_and_arrow]
 name=Bow and Arrow
 desc=A useful ranging device.
 model=model_loc_971
 active=yes
 
-[loc_972]
+[hanging_arrows]
 name=Arrows
 desc=Use these with bows.
 model=model_loc_972
 active=yes
 
-[loc_973]
+[hanging_javelin]
 name=Javelin
 desc=A powerful throwing weapon.
 model=model_loc_973
 active=yes
 
-[loc_974]
+[hanging_studded_leather]
 name=Studded Leather
 desc=Improved Leather armour for archers.
 model=model_loc_974
 active=yes
 
-[loc_975]
+[hanging_dragonhide]
 name=Dragonhide Leather
 desc=Leather made from the skin of a Dragon.
 model=model_loc_975
 active=yes
 
-[loc_976]
+[rugcorner_blue]
 model=model_loc_107
 sharelight=yes
 recol1s=15360
@@ -5288,7 +5288,7 @@ recol1d=9484
 recol2s=28321
 recol2d=4198
 
-[loc_977]
+[rugside_blue]
 model=model_loc_108
 sharelight=yes
 recol1s=15360
@@ -5298,7 +5298,7 @@ recol2d=4198
 recol3s=0
 recol3d=5255
 
-[loc_978]
+[rugmiddle_blue]
 model=model_loc_109
 sharelight=yes
 recol1s=15360
@@ -5306,7 +5306,7 @@ recol1d=9484
 recol2s=0
 recol2d=5255
 
-[loc_979]
+[drystonewall]
 model=model_loc_979
 wallwidth=32
 sharelight=yes
@@ -5331,18 +5331,18 @@ sharelight=yes
 hillskew=yes
 blockrange=no
 
-[loc_983]
+[poshwallfencing_with_plant]
 model=model_loc_983
 sharelight=yes
 hillskew=yes
 blockrange=no
 
-[woodenrailing]
+[poshwallfencingleftgate]
 model=model_loc_984
 sharelight=yes
 hillskew=yes
 
-[loc_985]
+[poshwallfencingrightgate]
 model=model_loc_985
 sharelight=yes
 hillskew=yes
@@ -5353,21 +5353,21 @@ sharelight=yes
 hillskew=yes
 length=3
 
-[loc_987]
+[poshwallfencing_brown]
 model=model_loc_982
 sharelight=yes
 hillskew=yes
 recol1s=15855
 recol1d=11559
 
-[loc_988]
+[poshwallfencingleftgate_brown]
 model=model_loc_984
 sharelight=yes
 hillskew=yes
 recol1s=15855
 recol1d=11559
 
-[loc_989]
+[poshwallfencingrightgate_brown]
 model=model_loc_985
 sharelight=yes
 hillskew=yes
@@ -5382,43 +5382,43 @@ hillskew=yes
 recol1s=15855
 recol1d=11559
 
-[loc_991]
+[grassyfencing]
 model=model_loc_991
 sharelight=yes
 hillskew=yes
 blockrange=no
 
-[loc_992]
+[grassyfencing2]
 model=model_loc_992
 sharelight=yes
 hillskew=yes
 blockrange=no
 
-[loc_994]
+[woodenrailing]
 model=model_loc_994
 sharelight=yes
 blockrange=no
 
-[loc_995]
+[woodenrailing_hillskew]
 model=model_loc_994
 sharelight=yes
 blockrange=no
 hillskew=yes
 
-[loc_996]
+[goldenrailing]
 model=model_loc_994
 sharelight=yes
 blockrange=no
 recol1s=10368
 recol1d=18849
 
-[loc_997]
+[railing]
 model=model_loc_14
 sharelight=yes
 hillskew=yes
 blockrange=no
 
-[loc_998]
+[railing_diag_r]
 model=model_loc_998
 sharelight=yes
 hillskew=yes
@@ -5427,7 +5427,7 @@ width=2
 active=no
 blockrange=no
 
-[loc_999]
+[railing_diag_l]
 model=model_loc_998
 sharelight=yes
 hillskew=yes
@@ -5437,20 +5437,20 @@ mirror=yes
 active=no
 blockrange=no
 
-[loc_1000]
+[museumbarriers]
 model=model_loc_512
 blockrange=no
 blockrange=no
 
-[loc_1001]
+[museumbarriers_withsign1]
 model=model_loc_1001
 blockrange=no
 
-[loc_1002]
+[museumbarriers_withsign2]
 model=model_loc_1002
 blockrange=no
 
-[loc_1003]
+[floor_depth5]
 name=Broken fence
 desc=I can climb over this...
 model=model_loc_1003
@@ -5460,14 +5460,14 @@ op1=Climb-over
 hillskew=yes
 blockrange=no
 
-[loc_1004]
+[broken_railing_left]
 name=Broken Railing
 desc=This section of railing has been broken
 model=model_loc_1004
 hillskew=yes
 blockrange=no
 
-[loc_1005]
+[broken_railing_right]
 name=Broken Railing
 desc=This section of railing has been broken
 model=model_loc_1004
@@ -5475,264 +5475,264 @@ hillskew=yes
 mirror=yes
 blockrange=no
 
-[loc_1006]
+[broken_railing_hole]
 name=Broken Railing
 desc=There is a hole in this section of the railing.
 model=model_loc_1006
 hillskew=yes
 blockrange=no
 
-[loc_1007]
+[fence_terminator_left]
 model=model_loc_1007
 sharelight=yes
 hillskew=yes
 blockrange=no
 
-[loc_1008]
+[fence_terminator_right]
 model=model_loc_1007
 sharelight=yes
 mirror=yes
 hillskew=yes
 blockrange=no
 
-[loc_1009]
+[woodenrailing_blue]
 model=model_loc_994
 sharelight=yes
 blockrange=no
 recol1s=10368
 recol1d=15890
 
-[loc_1010]
+[barshelf_empty]
 name=Shelves
 desc=Someone was thirsty...
 model=model_loc_1010
 
-[loc_1011]
+[barshelf_full1]
 name=Shelves
 desc=Full of lovely drinks!
 model=model_loc_1011
 
-[loc_1012]
+[barshelf_full2]
 name=Shelves
 desc=Full of lovely drinks!
 model=model_loc_1012
 
-[loc_1013]
+[cookingshelves]
 name=Cooking shelves
 desc=Storage for cookery items.
 model=model_loc_1013
 
-[loc_1014]
+[cookingshelvesempty]
 name=Shelves
 desc=Storage for all needs.
 model=model_loc_1014
 
-[loc_1015]
+[warehouse_shelves]
 name=Warehouse shelves
 desc=Storage for all needs.
 model=model_loc_1015
 
-[loc_1016]
+[warehouse_shelves2]
 name=Warehouse shelves
 desc=Storage for all needs.
 model=model_loc_1016
 
-[loc_1017]
+[warehouse_shelves3]
 name=Warehouse shelves
 desc=Storage for all needs.
 model=model_loc_1017
 
-[loc_1018]
+[warehouse_shelves4]
 name=Warehouse shelves
 desc=Storage for all needs.
 model=model_loc_1018
 
-[loc_1019]
+[witchshelf1]
 model=model_loc_1019
 ambient=50
 
-[loc_1020]
+[witchshelf2]
 model=model_loc_1020
 ambient=50
 
-[loc_1021]
+[witchshelf3]
 model=model_loc_1021
 ambient=50
 
-[loc_1022]
+[cookingshelf]
 model=model_loc_1022
 ambient=50
 
-[loc_1023]
+[cookingshelfempty]
 model=model_loc_1023
 ambient=50
 
-[loc_1024]
+[shelves1]
 name=Shelves
 desc=Used for storing things on.
 model=model_loc_1024
 
-[loc_1025]
+[clothesequip_shelves]
 name=Clothing shelves
 desc=Tailor made for needlework supplies
 model=model_loc_1025
 
-[loc_1026]
+[cookingshelfempty_dark]
 model=model_loc_1023
 ambient=50
 recol1s=6240
 recol1d=1058
 
-[loc_1027]
+[tanningline]
 name=Tanning line
 desc=Prepared hides hang here drying.
 model=model_loc_1027
 width=3
 
-[loc_1028]
+[tanningvat]
 name=Vat
 desc=This contains dye for leather.
 model=model_loc_1028
 
-[loc_1029]
+[tanningvat2]
 name=Vat
 desc=This contains dye for leather.
 model=model_loc_1029
 
-[loc_1030]
+[tanningmangel_a]
 name=Mangle
 desc=Used to squeeze moisture from the hide.
 model=model_loc_1030
 
-[loc_1031]
+[tanningmangel_b]
 name=Mangle
 desc=Used to squeeze moisture from the hide.
 model=model_loc_1031
 
-[loc_1032]
+[dangersign]
 name=Danger sign
 desc=Danger!
 model=model_loc_1032
 
-[loc_1033]
+[signpost]
 name=Signpost
 desc=This tells you which way is which.
 model=model_loc_1033
 
-[loc_1034]
+[signpost2]
 name=Signpost
 desc=This tells you which way is which.
 model=model_loc_1034
 
-[loc_1035]
+[signpost4]
 name=Signpost
 desc=This tells you which way is which.
 model=model_loc_1035
 
-[loc_1036]
+[bridge_wallsignpost_l]
 model=model_loc_1036
 
-[loc_1037]
+[bridge_wallsignpost_r]
 model=model_loc_1037
 
-[loc_1038]
+[bridge_sign]
 model=model_loc_1038
 
-[loc_1039]
+[shopsign]
 model=model_loc_1039
 
-[loc_1040]
+[darkshopsign]
 model=model_loc_1039
 recol1s=17633
 recol1d=7264
 
-[loc_1041]
+[bluemoonsign]
 model=model_loc_1041
 
-[loc_1042]
+[jollyboarsign]
 model=model_loc_1042
 
-[loc_1043]
+[generalstoresign]
 model=model_loc_1039
 recol1s=17633
 recol1d=7264
 
-[loc_1044]
+[archerystoresign]
 model=model_loc_1044
 
-[loc_1045]
+[clothesshopsign]
 model=model_loc_1045
 
-[loc_1046]
+[swordshopsign]
 model=model_loc_1046
 
-[loc_1047]
+[axeshopsign]
 model=model_loc_1047
 
-[loc_1048]
+[staffshopsign]
 model=model_loc_1048
 
-[loc_1049]
+[banksign]
 model=model_loc_1049
 
-[loc_1050]
+[grocersign]
 model=model_loc_1050
 
-[loc_1051]
+[rustyanchorsign]
 model=model_loc_1051
 
-[loc_1052]
+[fishingshopsign]
 model=model_loc_1052
 
-[loc_1053]
+[jewellerssign]
 model=model_loc_1053
 
-[loc_1054]
+[2_handedsign]
 model=model_loc_1054
 
-[loc_1055]
+[herbalistsign]
 model=model_loc_1055
 
-[loc_1056]
+[harrysfishingsign]
 model=model_loc_1056
 
-[loc_1057]
+[shrimp+parrotsign]
 name=Sign
 desc=Ye olde shrimp and parrot.
 model=model_loc_1057
 active=yes
 
-[loc_1058]
+[deadmanschestsign]
 model=model_loc_1058
 
-[loc_1059]
+[risingsunsign]
 model=model_loc_1059
 
-[loc_1060]
+[hicktonsarcherysign]
 model=model_loc_1060
 
-[loc_1061]
+[forestersarmsign]
 model=model_loc_1061
 
-[loc_1062]
+[rpdtsign]
 model=model_loc_1062
 
-[loc_1063]
+[flyinghorsesign]
 model=model_loc_1063
 
-[loc_1064]
+[fancydresssign]
 model=model_loc_1064
 
-[loc_1065]
+[dancingdonkeysign]
 model=model_loc_1065
 
-[loc_1066]
+[dragoninnsign]
 model=model_loc_1066
 
-[loc_1067]
+[paramayahostelsign]
 model=model_loc_1067
 
-[loc_1068]
+[blue_moon_plaque]
 name=Sign
 desc=The Blue Moon Inn - Licensed to sell intoxicating liquor.
 model=model_loc_909
@@ -5740,7 +5740,7 @@ active=yes
 recol1s=6240
 recol1d=31649
 
-[loc_1069]
+[jolly_boar_plaque]
 name=Sign
 desc=The Jolly Boar - Purveyors of fine brews.
 model=model_loc_909
@@ -5748,7 +5748,7 @@ active=yes
 recol1s=6240
 recol1d=31649
 
-[loc_1070]
+[rusty_anchor_plaque]
 name=Sign
 desc=The Rusty Anchor - Licensed to sell intoxicating beverages.
 model=model_loc_909
@@ -5756,7 +5756,7 @@ active=yes
 recol1s=6240
 recol1d=31649
 
-[loc_1071]
+[shrimp_and_parrot_plaque]
 name=Sign
 desc=The Shrimp and Parrot - Licensed to sell dangerous liquids.
 model=model_loc_909
@@ -5764,7 +5764,7 @@ active=yes
 recol1s=6240
 recol1d=31649
 
-[loc_1072]
+[dead_mans_chest_plaque]
 name=Sign
 desc=The Dead Man's Chest - Brews to maroon any pirate.
 model=model_loc_909
@@ -5772,7 +5772,7 @@ active=yes
 recol1s=6240
 recol1d=31649
 
-[loc_1073]
+[rising_sun_plaque]
 name=Sign
 desc=The Rising Sun - Purveyors of fine liquor.
 model=model_loc_909
@@ -5780,7 +5780,7 @@ active=yes
 recol1s=6240
 recol1d=31649
 
-[loc_1074]
+[foresters_arms_plaque]
 name=Sign
 desc=The Forester's Arms - Quality Real Ales.
 model=model_loc_909
@@ -5788,7 +5788,7 @@ active=yes
 recol1s=6240
 recol1d=31649
 
-[loc_1075]
+[flying_horse_plaque]
 name=Sign
 desc=The Flying Horse - Often seen after 10 pints.
 model=model_loc_909
@@ -5796,7 +5796,7 @@ active=yes
 recol1s=6240
 recol1d=31649
 
-[loc_1076]
+[dancing_donkey_plaque]
 name=Sign
 desc=The Dancing Donkey - Licensed to sell intoxicating beverages.
 model=model_loc_909
@@ -5804,7 +5804,7 @@ active=yes
 recol1s=6240
 recol1d=31649
 
-[loc_1077]
+[dragon_inn_plaque]
 name=Sign
 desc=The Dragon Inn - Visit us for a firey frothy brew!
 model=model_loc_909
@@ -5812,7 +5812,7 @@ active=yes
 recol1s=6240
 recol1d=31649
 
-[loc_1078]
+[karamja_spirits_bar]
 name=Sign
 desc=Karamja Spirits bar - For all your alcohol needs.
 model=model_loc_909
@@ -5820,70 +5820,70 @@ active=yes
 recol1s=6240
 recol1d=31649
 
-[loc_1079]
+[varock1_signpost]
 name=Signpost
 desc=North to Varrock :: East to Al-Kharid.
 model=model_loc_1034
 
-[loc_1080]
+[draynor1_signpost]
 name=Signpost
 desc=North to Draynor Village :: East to Varrock.
 model=model_loc_1034
 
-[loc_1081]
+[draynor2_signpost]
 name=Signpost
 desc=North to Draynor Village.
 model=model_loc_1034
 
-[loc_1082]
+[draynorjunction1_signpost]
 name=Signpost
 desc=North to Draynor Manor :: East to Lumbridge.
 model=model_loc_1035
 
-[loc_1083]
+[draynorjunction2_signpost]
 name=Signpost
 desc=South to  Wizards Tower ::  West to Asgarnia.
 model=model_loc_1035
 
-[loc_1084]
+[junction1_signpost]
 name=Signpost
 desc=South to Lumbridge :: West to Varrock :: East to Digsite.
 model=model_loc_1035
 
-[loc_1085]
+[junction2_signpost]
 name=Signpost
 desc=South to Al-Kharid :: West to Lumbridge :: East to Digsite.
 model=model_loc_1035
 
-[loc_1086]
+[junction3_signpost]
 name=Signpost
 desc=North to Varrock :: East to digsite.
 model=model_loc_1034
 
-[loc_1087]
+[junctionsign4_signpost]
 name=Signpost
 desc=South to Wizards Tower :: North to Draynor Village :: East to Lumbridge.
 model=model_loc_1035
 
-[loc_1088]
+[chair]
 name=Chair
 desc=The ideal thing to sit on.
 model=model_loc_1088
 blockrange=no
 
-[loc_1089]
+[smashedchair]
 name=Smashed chair
 desc=Not so good for sitting on.
 model=model_loc_1089
 blockrange=no
 
-[loc_1090]
+[posh_chair]
 name=Chair
 desc=A comfortable seat.
 model=model_loc_1090
 blockrange=no
 
-[loc_1091]
+[posh_chair_orange]
 name=Chair
 desc=A comfortable seat.
 model=model_loc_1090
@@ -5891,7 +5891,7 @@ blockrange=no
 recol1s=13312
 recol1d=31201
 
-[loc_1092]
+[posh_chair_white]
 name=Chair
 desc=A comfortable seat.
 model=model_loc_1090
@@ -5901,37 +5901,37 @@ recol1d=21147
 recol2s=10401
 recol2d=4192
 
-[loc_1093]
+[chair3]
 name=Chair
 desc=Good for sitting on.
 model=model_loc_1093
 blockrange=no
 
-[loc_1094]
+[chair4]
 name=Chair
 desc=Good for sitting on.
 model=model_loc_1094
 blockrange=no
 
-[loc_1095]
+[stool2]
 name=Stool
 desc=Good for sitting on.
 model=model_loc_1095
 blockrange=no
 
-[loc_1096]
+[rocking_chair]
 name=Rocking chair
 desc=Good for rocking in!
 model=model_loc_1096
 blockrange=no
 
-[loc_1097]
+[throne]
 name=Throne
 desc=A kingly seat for a royal behind.
 model=model_loc_1097
 blockrange=no
 
-[loc_1098]
+[throne_white]
 name=Throne
 desc=A kingly seat for a royal behind.
 model=model_loc_1097
@@ -5943,7 +5943,7 @@ recol2d=21147
 recol3s=31393
 recol3d=21147
 
-[loc_1099]
+[throne_orange]
 name=Throne
 desc=A kingly seat for a royal behind.
 model=model_loc_1097
@@ -5953,13 +5953,13 @@ recol1d=31201
 recol2s=5248
 recol2d=31201
 
-[loc_1100]
+[barstool]
 name=Barstool
 desc=The perfect way to sit at the bar.
 model=model_loc_1100
 blockrange=no
 
-[loc_1101]
+[barstool_white]
 name=Chair
 desc=The perfect way to sit at the bar.
 model=model_loc_1100
@@ -5969,50 +5969,50 @@ recol1d=21147
 recol2s=9312
 recol2d=4192
 
-[loc_1102]
+[stool]
 name=Stool
 desc=Good for sitting on.
 model=model_loc_1102
 blockrange=no
 
-[loc_1103]
+[gnomestool]
 name=Stool
 desc=Gnomes sit on these.
 model=model_loc_1103
 blockrange=no
 
-[loc_1104]
+[gnomebench]
 name=Bench
 desc=Gnomes are found sitting here.
 model=model_loc_1104
 width=2
 blockrange=no
 
-[loc_1105]
+[gnomethrone]
 name=Throne
 desc=A kingly seat for a royal behind.
 model=model_loc_1105
 blockrange=no
 
-[loc_1106]
+[bench]
 name=Bench
 desc=Sit back and relax...
 model=model_loc_1106
 width=2
 blockrange=no
 
-[loc_1107]
+[wallbench]
 model=model_loc_1107
 blockrange=no
 
-[loc_1108]
+[egypt_throne]
 name=Throne
 desc=A kingly seat for a royal behind.
 model=model_loc_1108
 width=2
 blockrange=no
 
-[loc_1109]
+[egypt_throne2]
 name=Throne
 desc=A kingly seat for a royal behind.
 model=model_loc_1109
@@ -6020,32 +6020,32 @@ width=2
 length=2
 blockrange=no
 
-[loc_1110]
+[egypt_chair]
 name=Chair
 desc=Used for sitting on.
 model=model_loc_1110
 blockrange=no
 
-[loc_1111]
+[spookychair]
 name=Chair
 desc=Do I dare sit on this?
 model=model_loc_1111
 blockrange=no
 
-[loc_1112]
+[pew]
 name=Pew
 desc=Church seating.
 model=model_loc_1112
 width=2
 blockrange=no
 
-[loc_1113]
+[stool_bamboo]
 name=stool
 desc=park it here...
 model=model_loc_1113
 blockrange=no
 
-[loc_1114]
+[ice_throne]
 name=Ice Throne
 desc=Wouldn't like to sit on that for too long...
 model=model_loc_1114
@@ -6053,7 +6053,7 @@ width=2
 length=3
 blockrange=no
 
-[loc_1115]
+[chair_dark]
 name=Chair
 desc=The ideal thing to sit on.
 model=model_loc_1088
@@ -6061,7 +6061,7 @@ blockrange=no
 recol1s=10401
 recol1d=1058
 
-[loc_1116]
+[hedge]
 name=Hedge
 desc=Keeps the neighbours out!
 model=model_loc_1116
@@ -6069,7 +6069,7 @@ sharelight=yes
 hillskew=yes
 mapscene=9
 
-[loc_1117]
+[hedgecorner]
 name=Hedge
 desc=Keeps the neighbours out!
 model=model_loc_1117
@@ -6077,7 +6077,7 @@ sharelight=yes
 hillskew=yes
 mapscene=9
 
-[loc_1118]
+[wildbush1]
 name=Bush
 desc=Found in wild areas.
 model=model_loc_1118
@@ -6086,7 +6086,7 @@ length=2
 mapscene=9
 blockrange=no
 
-[loc_1119]
+[wildbush2]
 name=Bush
 desc=These are commonly found.
 model=model_loc_1119
@@ -6094,7 +6094,7 @@ width=2
 length=2
 mapscene=9
 
-[loc_1120]
+[wildbush3]
 name=Bush
 desc=An unusual bush.
 model=model_loc_1120
@@ -6103,7 +6103,7 @@ length=2
 mapscene=9
 blockrange=no
 
-[loc_1121]
+[wildbush4]
 name=Bush
 desc=A wild bush.
 model=model_loc_1121
@@ -6111,7 +6111,7 @@ length=2
 mapscene=9
 blockrange=no
 
-[loc_1122]
+[leaflessbush]
 name=Bush
 desc=All the leaves have fallen off.
 model=model_loc_1122
@@ -6120,7 +6120,7 @@ length=2
 mapscene=6
 blockrange=no
 
-[loc_1123]
+[leaflessbush2]
 name=Bush
 desc=All the leaves have fallen off.
 model=model_loc_1122
@@ -6134,172 +6134,172 @@ blockrange=no
 recol1s=4194
 recol1d=11590
 
-[loc_1124]
+[bush1]
 name=Bush
 desc=A commonly found bush.
 model=model_loc_1124
 mapscene=9
 blockrange=no
 
-[loc_1125]
+[bush2]
 name=Bush
 desc=Bushy!
 model=model_loc_1125
 mapscene=9
 blockrange=no
 
-[loc_1126]
+[rosebush]
 name=Rosebush
 model=model_loc_1126
 width=2
 blockrange=no
 
-[loc_1127]
+[tkcanopymiddle]
 model=model_loc_1127
 active=no
 
-[loc_1128]
+[tkcanopyfiller]
 model=model_loc_1128
 active=no
 length=4
 
-[loc_1129]
+[tkcanopycorner]
 model=model_loc_1129
 length=4
 width=4
 active=no
 
-[loc_1130]
+[tkcanopymiddle2]
 model=model_loc_1130
 active=no
 
-[tk1]
+[tkcanopyfiller2]
 model=model_loc_1131
 length=3
 active=no
 
-[loc_1132]
+[tkcanopycorner2]
 model=model_loc_1132
 length=3
 width=3
 active=no
 
-[loc_1133]
+[tk1]
 model=model_loc_1133
 active=no
 
-[loc_1134]
+[tk2]
 model=model_loc_1134
 active=no
 
-[loc_1135]
+[tk3]
 model=model_loc_1135
 active=no
 
-[loc_1136]
+[tk4]
 model=model_loc_1136
 active=no
 
-[loc_1137]
+[tk_r]
 model=model_loc_1137
 active=no
 
-[loc_1138]
+[tk_l]
 model=model_loc_1138
 active=no
 
-[loc_1139]
+[tk_end]
 model=model_loc_1139
 active=no
 
-[loc_1140]
+[tk_end2]
 model=model_loc_1140
 active=no
 
-[loc_1141]
+[tk_top]
 model=model_loc_1141
 length=2
 active=no
 
-[loc_1142]
+[tk_top2]
 model=model_loc_1142
 active=no
 
-[loc_1143]
+[tk_ns]
 model=model_loc_1143
 active=no
 
-[loc_1144]
+[tkbush_r]
 name=Bush
 desc=A leafy bush.
 model=model_loc_1144
 
-[loc_1145]
+[tkbush_ns]
 name=Bush
 desc=A leafy bush.
 model=model_loc_1145
 
-[loc_1146]
+[tkbush_l]
 name=Bush
 desc=A leafy bush.
 model=model_loc_1144
 
-[loc_1147]
+[fairyhouse1]
 name=Fairy house
 desc=The abode of a fairy.
 model=model_loc_1147
 
-[loc_1148]
+[fairyhouse2]
 name=Fairy house
 desc=The abode of a fairy.
 model=model_loc_1148
 
-[loc_1149]
+[tk1_fairyhouse]
 name=Fairy house
 desc=The abode of a fairy.
 model=model_loc_1149
 
-[loc_1150]
+[fairybank]
 name=Fairy bank
 desc=Fairies need money too!
 model=model_loc_1150
 
-[loc_1151]
+[fairymarket]
 name=Fairy market stall
 desc=A fairy is selling items here.
 model=model_loc_1151
 
-[loc_1152]
+[pottedfern]
 name=Potted fern
 desc=A small potted plant.
 model=model_loc_1152
 blockrange=no
 
-[loc_1153]
+[pottedfern1]
 name=Potted fern
 desc=Someone has planted this.
 model=model_loc_1153
 blockrange=no
 
-[loc_1154]
+[pottedfern2]
 name=Potted fern
 desc=A nicely potted fern.
 model=model_loc_1154
 blockrange=no
 
-[loc_1155]
+[pottedsmallfern]
 name=Potted fern
 desc=Better than weeding.
 model=model_loc_1155
 blockrange=no
 
-[loc_1156]
+[pottedblueflower]
 name=Potted flower
 desc=I bet bees like this.
 model=model_loc_1156
 blockrange=no
 
-[loc_1157]
+[pottedredflower]
 name=Potted flower
 desc=I bet bees like this.
 model=model_loc_1156
@@ -6307,16 +6307,16 @@ blockrange=no
 recol1s=31
 recol1d=20513
 
-[loc_1158]
+[egypt_plantpotted]
 name=Potted plant
 desc=A large potted plant.
 model=model_loc_1158
 blockrange=no
 
-[loc_1159]
+[hangingbasket]
 model=model_loc_1159
 
-[loc_1160]
+[pottedplant_bamboo]
 name=Potted plant
 desc=A plant in a bamboo pot.
 model=model_loc_1160
@@ -6331,20 +6331,20 @@ blockwalk=no
 blockrange=no
 mapscene=9
 
-[loc_1162]
+[bullrushes]
 name=Bullrushes
 desc=Found near the water's edge.
 model=model_loc_1162
 blockwalk=no
 blockrange=no
 
-[loc_1163]
+[mushroom]
 name=Mushroom
 desc=Not good for eating.
 model=model_loc_1163
 blockrange=no
 
-[loc_1164]
+[mushroom_dark]
 name=Mushroom
 desc=Not good for eating.
 model=model_loc_1163
@@ -6354,19 +6354,19 @@ recol1d=11555
 recol2s=31674
 recol2d=14792
 
-[loc_1165]
+[mushroom2]
 name=Mushroom
 desc=Fungal growth.
 model=model_loc_1165
 blockrange=no
 
-[loc_1166]
+[mushrooms2]
 name=Mushrooms
 desc=Poisonous no doubt.
 model=model_loc_1166
 blockrange=no
 
-[loc_1167]
+[mushroom2_dark]
 name=Mushroom
 desc=Fungal growth.
 model=model_loc_1165
@@ -6378,7 +6378,7 @@ recol2d=17933
 recol3s=29492
 recol3d=14758
 
-[loc_1168]
+[mushrooms2_dark]
 name=Mushrooms
 desc=Poisonous no doubt.
 model=model_loc_1166
@@ -6396,19 +6396,19 @@ recol5d=11492
 recol6s=21764
 recol6d=10436
 
-[loc_1169]
+[mushroom2_large]
 name=Mushroom
 desc=Poisonous no doubt.
 model=model_loc_1169
 blockrange=no
 
-[loc_1170]
+[nastyfungus]
 name=Fungus
 desc=I doubt that's edible.
 model=model_loc_1170
 blockrange=no
 
-[loc_1171]
+[nastyfungus_dark]
 name=Fungus
 desc=I doubt that's edible.
 model=model_loc_1170
@@ -6418,7 +6418,7 @@ recol1d=11555
 recol2s=30415
 recol2d=14792
 
-[loc_1172]
+[wildernessfungus]
 name=Fungus
 desc=I doubt that's edible.
 model=model_loc_1170
@@ -6428,21 +6428,21 @@ recol1d=17830
 recol2s=30415
 recol2d=25157
 
-[loc_1173]
+[smallfern]
 name=Small fern
 desc=A commonly found fern.
 model=model_loc_1173
 blockwalk=no
 blockrange=no
 
-[loc_1174]
+[thistle]
 name=Thistle
 desc=Spikey!
 model=model_loc_1174
 blockwalk=no
 blockrange=no
 
-[loc_1175]
+[waterlily1]
 name=Waterlily
 desc=A home for frogs.
 model=model_loc_1175
@@ -6452,7 +6452,7 @@ shadow=no
 blockwalk=no
 blockrange=no
 
-[loc_1176]
+[waterlily2]
 name=Waterlily
 desc=Otherwise known as a lilypad.
 model=model_loc_1176
@@ -6462,7 +6462,7 @@ shadow=no
 blockwalk=no
 blockrange=no
 
-[loc_1177]
+[waterlily3]
 name=Waterlily
 desc=A home for frogs.
 model=model_loc_1177
@@ -6472,7 +6472,7 @@ shadow=no
 blockwalk=no
 blockrange=no
 
-[loc_1178]
+[heather]
 name=Heather
 desc=Smells lovely!
 model=model_loc_1178
@@ -6481,48 +6481,48 @@ blockrange=no
 recol1s=197
 recol1d=294
 
-[loc_1179]
+[heather2]
 name=Heather
 desc=Who is this heather girl?
 model=model_loc_1179
 blockwalk=no
 blockrange=no
 
-[loc_1180]
+[heather3]
 name=Heather
 desc=I wonder why it's purple?
 model=model_loc_1180
 blockwalk=no
 blockrange=no
 
-[loc_1181]
+[nettles]
 name=Nettles
 desc=I better not get stung.
 model=model_loc_1181
 blockwalk=no
 blockrange=no
 
-[loc_1182]
+[plantriddenwall]
 model=model_loc_1182
 
-[loc_1183]
+[wallmossdam]
 model=model_loc_1183
 
-[loc_1184]
+[jungle1]
 name=Creeping plant
 desc=The tendrils of a creeping plant.
 model=model_loc_1184
 blockwalk=no
 blockrange=no
 
-[loc_1185]
+[rockery]
 name=Rockery
 desc=Nicely planted.
 model=model_loc_1185
 blockwalk=no
 blockrange=no
 
-[loc_1186]
+[greener_jungle1]
 name=Curling plant
 desc=A large curling plant.
 model=model_loc_1184
@@ -6531,14 +6531,14 @@ blockwalk=no
 recol1s=5504
 recol1d=768
 
-[loc_1187]
+[blueflower]
 name=Flower
 desc=That's pretty.
 model=model_loc_1187
 blockwalk=no
 blockrange=no
 
-[loc_1188]
+[redflower]
 name=Flower
 desc=Blooming!
 model=model_loc_1187
@@ -6554,42 +6554,42 @@ model=model_loc_1189
 blockwalk=no
 blockrange=no
 
-[loc_1190]
+[sunflower]
 name=Sunflower
 desc=Is this the biggest flower around?
 model=model_loc_1190
 blockwalk=no
 blockrange=no
 
-[loc_1191]
+[sunflowers]
 name=Sunflowers
 desc=These are huge!
 model=model_loc_1191
 blockwalk=no
 blockrange=no
 
-[loc_1192]
+[rareflower_1]
 name=Flowers
 desc=A rare flower.
 model=model_loc_1192
 blockwalk=no
 blockrange=no
 
-[loc_1193]
+[rareflowers_1]
 name=Flowers
 desc=Don't flowers make you feel better?
 model=model_loc_1193
 blockwalk=no
 blockrange=no
 
-[loc_1194]
+[tulips]
 name=Tulips
 desc=Can this talk?
 model=model_loc_1194
 blockwalk=no
 blockrange=no
 
-[loc_1195]
+[rareflower_blue]
 name=Flowers
 desc=You don't see that many of these.
 model=model_loc_1192
@@ -6608,7 +6608,7 @@ recol5d=10778
 recol6s=28936
 recol6d=11901
 
-[loc_1196]
+[rareflowers_blue]
 name=Flowers
 desc=I wonder what these are?
 model=model_loc_1193
@@ -6627,7 +6627,7 @@ recol5d=10778
 recol6s=28936
 recol6d=11901
 
-[loc_1197]
+[rareflower_yellow]
 name=Flower
 desc=A rarely found flower.
 model=model_loc_1192
@@ -6644,7 +6644,7 @@ recol4d=31393
 recol5s=28936
 recol5d=31553
 
-[loc_1198]
+[rareflowers_yellow]
 name=Flowers
 desc=Very rare flowers.
 model=model_loc_1193
@@ -6661,14 +6661,14 @@ recol4d=31393
 recol5s=28936
 recol5d=31553
 
-[loc_1199]
+[flowerbed1]
 name=Flowerbed
 desc=These smell nice.
 model=model_loc_1199
 blockwalk=no
 blockrange=no
 
-[loc_1200]
+[flowerbed_red]
 name=Flowerbed
 desc=A bed of red flowers.
 model=model_loc_1199
@@ -6679,7 +6679,7 @@ recol1d=30753
 recol2s=959
 recol2d=31649
 
-[loc_1201]
+[flowerbed_yellow]
 name=Flowerbed
 desc=These are pretty.
 model=model_loc_1199
@@ -6690,32 +6690,32 @@ recol1d=31649
 recol2s=959
 recol2d=864
 
-[loc_1202]
+[jungleflower]
 name=Jungle flower
 desc=Found only in jungle areas.
 model=model_loc_1202
 blockrange=no
 
-[loc_1203]
+[jungleorchid]
 name=Orchid
 desc=A very rare exotic flower.
 model=model_loc_1203
 blockrange=no
 
-[loc_1204]
+[jungleplant4]
 name=Jungle plant
 desc=A small fernlike plant.
 model=model_loc_1204
 blockrange=no
 
-[loc_1205]
+[greenvine_yellowleaves]
 name=Vine
 desc=The leaves of a nasty creeping plant.
 model=model_loc_1205
 hillskew=yes
 sharelight=yes
 
-[loc_1206]
+[green_vineplant]
 name=Vine
 desc=The flower of a nasty creeping plant.
 model=model_loc_1206
@@ -6725,88 +6725,88 @@ recol1d=27553
 recol2s=15393
 recol2d=6496
 
-[loc_1207]
+[thick_root_vineplant]
 name=Vine
 desc=The flower of a nasty creeping plant.
 model=model_loc_1206
 hillskew=yes
 
-[loc_1208]
+[vineplant]
 name=Vine
 desc=The flower of a nasty creeping plant.
 model=model_loc_1208
 hillskew=yes
 
-[loc_1209]
+[redvine_star]
 model=model_loc_1209
 hillskew=yes
 sharelight=yes
 
-[loc_1210]
+[redvine_root]
 model=model_loc_1210
 hillskew=yes
 sharelight=yes
 
-[loc_1211]
+[greenvine_star]
 model=model_loc_1211
 hillskew=yes
 sharelight=yes
 recol1s=20513
 recol1d=8737
 
-[loc_1212]
+[greenvine_root]
 model=model_loc_1212
 hillskew=yes
 sharelight=yes
 recol1s=15393
 recol1d=8737
 
-[loc_1213]
+[redvine_straight]
 model=model_loc_58
 hillskew=yes
 sharelight=yes
 
-[loc_1214]
+[redvine_corner]
 model=model_loc_1214
 hillskew=yes
 sharelight=yes
 
-[loc_1215]
+[redvine_junction]
 model=model_loc_1215
 hillskew=yes
 sharelight=yes
 
-[loc_1216]
+[redvine_diag1]
 model=model_loc_1216
 hillskew=yes
 sharelight=yes
 
-[loc_1217]
+[redvine_diag2]
 model=model_loc_1217
 hillskew=yes
 sharelight=yes
 
-[loc_1218]
+[redvine_diag3]
 model=model_loc_1218
 hillskew=yes
 sharelight=yes
 
-[loc_1219]
+[redvine_diagfiller]
 model=model_loc_1219
 hillskew=yes
 sharelight=yes
 
-[loc_1220]
+[redvine_end]
 model=model_loc_1220
 hillskew=yes
 sharelight=yes
 
-[loc_1221]
+[redvine_end_diag]
 model=model_loc_1221
 hillskew=yes
 sharelight=yes
 
-[loc_1222]
+[greenvine_straight]
 model=model_loc_1222
 hillskew=yes
 sharelight=yes
@@ -6815,7 +6815,7 @@ recol1d=14916
 recol2s=16417
 recol2d=17000
 
-[loc_1223]
+[greenvine_corner]
 model=model_loc_1223
 hillskew=yes
 sharelight=yes
@@ -6824,7 +6824,7 @@ recol1d=14916
 recol2s=16417
 recol2d=17000
 
-[loc_1224]
+[greenvine_junction]
 model=model_loc_1224
 hillskew=yes
 sharelight=yes
@@ -6833,7 +6833,7 @@ recol1d=14916
 recol2s=16417
 recol2d=17000
 
-[loc_1225]
+[greenvine_diag1]
 model=model_loc_1225
 hillskew=yes
 sharelight=yes
@@ -6842,7 +6842,7 @@ recol1d=14916
 recol2s=16417
 recol2d=17000
 
-[loc_1226]
+[greenvine_diag2]
 model=model_loc_1226
 hillskew=yes
 sharelight=yes
@@ -6851,7 +6851,7 @@ recol1d=14916
 recol2s=16417
 recol2d=17000
 
-[loc_1227]
+[greenvine_diag3]
 model=model_loc_1227
 hillskew=yes
 sharelight=yes
@@ -6860,14 +6860,14 @@ recol1d=14916
 recol2s=16417
 recol2d=17000
 
-[loc_1228]
+[greenvine_diagfiller]
 model=model_loc_1228
 hillskew=yes
 sharelight=yes
 recol1s=15393
 recol1d=14916
 
-[loc_1229]
+[greenvine_end]
 model=model_loc_1229
 hillskew=yes
 sharelight=yes
@@ -6876,7 +6876,7 @@ recol1d=14916
 recol2s=16417
 recol2d=17000
 
-[loc_1230]
+[greenvine_end_diag]
 model=model_loc_1230
 hillskew=yes
 sharelight=yes
@@ -6885,7 +6885,7 @@ recol1d=14916
 recol2s=16417
 recol2d=17000
 
-[loc_1231]
+[vinetree_end]
 name=Vine
 desc=Nasty curling tendrils of a creeping plant.
 model=model_loc_1231
@@ -6893,7 +6893,7 @@ width=2
 length=2
 sharelight=yes
 
-[loc_1232]
+[bodyvine_straight]
 model=model_loc_58
 hillskew=yes
 sharelight=yes
@@ -6902,7 +6902,7 @@ recol1d=12423
 recol2s=16417
 recol2d=12423
 
-[loc_1233]
+[bodyvine_corner]
 model=model_loc_1214
 hillskew=yes
 sharelight=yes
@@ -6911,7 +6911,7 @@ recol1d=12423
 recol2s=16417
 recol2d=12423
 
-[loc_1234]
+[bodyvine_junction]
 model=model_loc_1215
 hillskew=yes
 sharelight=yes
@@ -6920,7 +6920,7 @@ recol1d=12423
 recol2s=16417
 recol2d=12423
 
-[loc_1235]
+[bodyvine_diag1]
 model=model_loc_1216
 hillskew=yes
 sharelight=yes
@@ -6929,7 +6929,7 @@ recol1d=12423
 recol2s=16417
 recol2d=12423
 
-[loc_1236]
+[bodyvine_diag2]
 model=model_loc_1217
 hillskew=yes
 sharelight=yes
@@ -6938,7 +6938,7 @@ recol1d=12423
 recol2s=16417
 recol2d=12423
 
-[loc_1237]
+[bodyvine_diag3]
 model=model_loc_1218
 hillskew=yes
 sharelight=yes
@@ -6947,14 +6947,14 @@ recol1d=12423
 recol2s=16417
 recol2d=12423
 
-[loc_1238]
+[bodyvine_diagfiller]
 model=model_loc_1219
 hillskew=yes
 sharelight=yes
 recol1s=15393
 recol1d=12423
 
-[loc_1239]
+[bodyvine_end]
 model=model_loc_1220
 hillskew=yes
 sharelight=yes
@@ -6963,7 +6963,7 @@ recol1d=12423
 recol2s=16417
 recol2d=12423
 
-[loc_1240]
+[bodyvine_end_diag]
 model=model_loc_1221
 hillskew=yes
 sharelight=yes
@@ -6972,23 +6972,23 @@ recol1d=12423
 recol2s=16417
 recol2d=12423
 
-[loc_1241]
+[junglefloor1]
 model=model_loc_1241
 hillskew=yes
 
-[loc_1242]
+[junglefloor2]
 model=model_loc_1242
 hillskew=yes
 
-[loc_1243]
+[junglefloor3]
 model=model_loc_1243
 hillskew=yes
 
-[loc_1244]
+[small_grass_stones]
 model=model_loc_1244
 hillskew=yes
 
-[loc_1245]
+[large_grass_stones]
 model=model_loc_1245
 hillskew=yes
 
@@ -7004,25 +7004,25 @@ hillskew=yes
 model=model_loc_1248
 hillskew=yes
 
-[loc_1249]
+[full_twig_dark]
 model=model_loc_1246
 hillskew=yes
 recol1s=7330
 recol1d=4194
 
-[loc_1250]
+[broken_twig_dark]
 model=model_loc_1247
 hillskew=yes
 recol1s=7330
 recol1d=4194
 
-[loc_1251]
+[full_twig_light]
 model=model_loc_1246
 hillskew=yes
 recol1s=7330
 recol1d=13602
 
-[loc_1252]
+[broken_twig_light]
 model=model_loc_1247
 hillskew=yes
 recol1s=7330
@@ -7064,14 +7064,14 @@ hillskew=yes
 recol1s=352
 recol1d=12773
 
-[loc_1261]
+[pineneedles]
 model=model_loc_1261
 
-[loc_1262]
+[hay_1]
 model=model_loc_1262
 hillskew=yes
 
-[loc_1263]
+[hay_2]
 model=model_loc_1263
 hillskew=yes
 
@@ -7083,52 +7083,52 @@ hillskew=yes
 model=model_loc_1265
 hillskew=yes
 
-[loc_1266]
+[shell1]
 model=model_loc_1266
 
-[loc_1267]
+[shell2]
 model=model_loc_1267
 
-[loc_1268]
+[starfish]
 model=model_loc_1268
 
-[loc_1269]
+[shell1big]
 model=model_loc_1269
 
-[loc_1270]
+[shell2big]
 model=model_loc_1270
 
-[loc_1271]
+[starfishbig]
 model=model_loc_1271
 
-[loc_1272]
+[grass_1_swamp]
 model=model_loc_1253
 recol1s=352
 recol1d=1252
 
-[loc_1273]
+[grass_2_swamp]
 model=model_loc_1254
 recol1s=352
 recol1d=1252
 
-[loc_1274]
+[grass_3_swamp]
 model=model_loc_1255
 recol1s=352
 recol1d=1252
 
-[loc_1275]
+[grass_4_swamp]
 model=model_loc_1256
 recol1s=352
 recol1d=1252
 
-[loc_1287]
+[deadtree2_web_r]
 name=Dead tree
 desc=It's only useful for firewood now.
 model=model_loc_1287
 mapscene=6
 sharelight=yes
 
-[loc_1288]
+[deadtree2_web_l]
 name=Dead tree
 desc=It's only useful for firewood now.
 model=model_loc_1287
@@ -7136,7 +7136,7 @@ mapscene=6
 mirror=yes
 sharelight=yes
 
-[loc_1292]
+[dramentree]
 name=Dramen tree
 desc=An ancient magical tree.
 model=model_loc_1292
@@ -7146,7 +7146,7 @@ op1=Chop down
 op3=hidden
 mapscene=0
 
-[loc_1296]
+[fallentree]
 name=Fallen tree
 desc=This tree has fallen to the ground.
 model=model_loc_1296
@@ -7154,7 +7154,7 @@ width=3
 length=2
 mapscene=6
 
-[loc_1297]
+[darkfallentree]
 name=Fallen tree
 desc=This tree was either the victim of weather or mankind.
 model=model_loc_1296
@@ -7164,28 +7164,28 @@ mapscene=6
 recol1s=17633
 recol1d=5218
 
-[loc_1298]
+[fern]
 name=Fern
 desc=A commonly found fern.
 model=model_loc_1298
 blockwalk=no
 mapscene=9
 
-[loc_1299]
+[fern1]
 name=Fern
 desc=Is this a weed?
 model=model_loc_1299
 blockwalk=no
 mapscene=9
 
-[loc_1300]
+[fern2]
 name=Fern
 desc=A fern is growing here.
 model=model_loc_1300
 blockwalk=no
 mapscene=9
 
-[loc_1301]
+[jungletree1]
 name=Tree
 desc=Home to many unusual creatures.
 model=model_loc_1301
@@ -7193,7 +7193,7 @@ width=2
 length=2
 mapscene=5
 
-[loc_1302]
+[jungletree2]
 name=Leafy tree
 desc=A leafy tree.
 model=model_loc_1302
@@ -7201,7 +7201,7 @@ width=2
 length=2
 mapscene=5
 
-[loc_1303]
+[jungletree1_karamja]
 name=Tree
 desc=A tree found in tropical areas.
 model=model_loc_1301
@@ -7211,7 +7211,7 @@ mapscene=5
 recol1s=7298
 recol1d=16773
 
-[loc_1304]
+[jungletree2_karamja]
 name=Tree
 desc=A tree found in tropical areas.
 model=model_loc_1302
@@ -7242,7 +7242,7 @@ width=2
 length=2
 mapscene=0
 
-[loc_1311]
+[palm]
 name=Palm
 desc=This would be good to sleep under.
 model=model_loc_1311
@@ -7250,7 +7250,7 @@ width=2
 length=2
 mapscene=5
 
-[loc_1312]
+[palm2]
 name=Palm
 desc=An essential for tropical islands.
 model=model_loc_1312
@@ -7258,7 +7258,7 @@ width=2
 length=2
 mapscene=5
 
-[loc_1313]
+[medplant]
 name=Plant
 desc=An unusual tree grows here.
 model=model_loc_1313
@@ -7266,7 +7266,7 @@ width=3
 length=2
 mapscene=5
 
-[loc_1314]
+[medplant_karamja]
 name=Plant
 desc=An unusual tree grows here.
 model=model_loc_1313
@@ -7278,7 +7278,7 @@ recol1d=18887
 recol2s=864
 recol2d=12869
 
-[loc_1320]
+[mossbranch1]
 name=Mossy branch
 desc=The branch is infested with moss.
 model=model_loc_1320
@@ -7286,7 +7286,7 @@ width=3
 length=4
 mapscene=1
 
-[loc_1321]
+[mossbranch2]
 name=Mossy branch
 desc=The branch is infested with moss.
 model=model_loc_1321
@@ -7294,57 +7294,57 @@ width=3
 length=5
 mapscene=1
 
-[loc_1322]
+[hollowtree]
 name=Hollow tree
 desc=The trunk of this tree is hollow.
 model=model_loc_1322
 mapscene=2
 
-[loc_1323]
+[roots_1]
 name=Roots
 desc=A gnarly old tree root.
 model=model_loc_1323
 mapscene=6
 blockrange=no
 
-[loc_1324]
+[roots_2]
 name=Roots
 desc=The roots of a tree are exposed.
 model=model_loc_1324
 mapscene=6
 blockrange=no
 
-[loc_1325]
+[roots_3]
 name=Roots
 desc=I hope I don't trip over any of these.
 model=model_loc_1325
 mapscene=6
 blockrange=no
 
-[loc_1326]
+[bamboo_tree_base]
 name=Bamboo tree
 desc=A terribly tall tropical tree.
 model=model_loc_1326
 mapscene=0
 
-[loc_1327]
+[bamboo_tree_mid]
 name=Bamboo tree
 desc=A terribly tall tropical tree.
 model=model_loc_1327
 
-[loc_1328]
+[bamboo_tree_uppermid]
 name=Bamboo tree
 desc=A terribly tall tropical tree.
 model=model_loc_1328
 
-[loc_1329]
+[bamboo_tree_top]
 name=Bamboo leaves
 desc=Leaves of a bamboo tree.
 model=model_loc_1329
 width=3
 length=3
 
-[loc_1333]
+[deadtree_with_vine]
 name=Dead tree
 desc=This old tree has been taken over by parasitic plants.
 model=model_loc_1333
@@ -7353,21 +7353,21 @@ length=2
 sharelight=yes
 mapscene=6
 
-[loc_1334]
+[hollowlog]
 name=Hollow log
 desc=This old tree is rotting away.
 model=model_loc_1334
 width=3
 mapscene=6
 
-[loc_1335]
+[hollowlogsmaller]
 name=Hollow log
 desc=This old tree is rotting away.
 model=model_loc_1335
 width=2
 mapscene=6
 
-[loc_1336]
+[hollowlog_snow]
 name=Hollow log
 desc=This old tree is rotting away.
 model=model_loc_1334
@@ -7377,7 +7377,7 @@ recol1d=13570
 recol2s=20904
 recol2d=32767
 
-[loc_1337]
+[hollowlogsmaller_snow]
 name=Hollow log
 desc=This old tree is rotting away.
 model=model_loc_1335
@@ -7387,12 +7387,12 @@ recol1d=13570
 recol2s=20904
 recol2d=32767
 
-[loc_1338]
+[hollowlog_verysmall]
 name=Hollow log
 desc=This old tree is rotting away.
 model=model_loc_1338
 
-[loc_1339]
+[wildernessroot1]
 name=Roots
 desc=They're just waiting to trip someone up.
 model=model_loc_1339
@@ -7400,7 +7400,7 @@ width=3
 length=3
 mapscene=6
 
-[loc_1340]
+[wildernessroot2]
 name=Roots
 desc=They're just waiting to trip someone up.
 model=model_loc_1340
@@ -7408,27 +7408,27 @@ width=3
 length=3
 mapscene=6
 
-[loc_1360]
+[leaning_bamboo_tree_base]
 name=Bamboo tree
 desc=This tree contains dangerous insects no doubt.
 model=model_loc_1360
 mapscene=23
 
-[loc_1361]
+[leaning_bamboo_tree_mid]
 name=Bamboo tree
 desc=This tree contains dangerous insects no doubt.
 model=model_loc_1361
 width=7
 length=7
 
-[loc_1362]
+[leaning_bamboo_tree_top]
 name=Bamboo tree
 desc=This tree contains dangerous insects no doubt.
 model=model_loc_1362
 width=4
 length=3
 
-[loc_1363]
+[large_swamp_root]
 name=Roots
 desc=They're just waiting to trip someone up.
 model=model_loc_1339
@@ -7438,7 +7438,7 @@ mapscene=6
 recol1s=6240
 recol1d=3235
 
-[loc_1364]
+[swamp_root]
 name=Roots
 desc=They're just waiting to trip someone up.
 model=model_loc_1340
@@ -7448,7 +7448,7 @@ mapscene=6
 recol1s=6240
 recol1d=3235
 
-[loc_1366]
+[swamp_roots_1]
 name=Roots
 desc=A gnarly old tree root.
 model=model_loc_1323
@@ -7456,7 +7456,7 @@ mapscene=6
 recol1s=6240
 recol1d=3235
 
-[loc_1367]
+[swamp_roots_2]
 name=Roots
 desc=The roots of this tree are exposed.
 model=model_loc_1324
@@ -7464,7 +7464,7 @@ mapscene=6
 recol1s=6240
 recol1d=3235
 
-[loc_1368]
+[swamp_roots_3]
 name=Roots
 desc=I hope I don't trip over any of these.
 model=model_loc_1325
@@ -7472,7 +7472,7 @@ mapscene=6
 recol1s=6240
 recol1d=3235
 
-[loc_1369]
+[medplant_swamp]
 name=Plant
 desc=An unusual tree grows here.
 model=model_loc_1313
@@ -7484,7 +7484,7 @@ recol1d=3203
 recol2s=864
 recol2d=392
 
-[loc_1370]
+[hollowlog_swamp]
 name=Hollow log
 desc=This old tree is rotting away.
 model=model_loc_1334
@@ -7495,48 +7495,48 @@ recol1d=3203
 recol2s=18823
 recol2d=3203
 
-[loc_1371]
+[bamboo_tree_2_base]
 name=Bamboo tree
 desc=This tree contains dangerous insects no doubt.
 model=model_loc_1371
 mapscene=0
 
-[loc_1372]
+[bamboo_tree_2_mid]
 name=Bamboo tree
 desc=This tree contains dangerous insects no doubt.
 model=model_loc_1372
 
-[loc_1373]
+[bamboo_tree_2_uppermid]
 name=Bamboo tree
 desc=This tree contains dangerous insects no doubt.
 model=model_loc_1373
 
-[loc_1374]
+[bamboo_tree_2_top]
 name=Bamboo tree
 desc=This tree contains dangerous insects no doubt.
 model=model_loc_1374
 width=4
 length=3
 
-[loc_1375]
+[bamboo_tree_3_base]
 name=Bamboo tree
 desc=This tree contains dangerous insects no doubt.
 model=model_loc_1375
 mapscene=0
 
-[loc_1376]
+[bamboo_tree_3_mid]
 name=Bamboo tree
 desc=This tree contains dangerous insects no doubt.
 model=model_loc_1376
 
-[loc_1377]
+[bamboo_tree_3_top]
 name=Bamboo tree
 desc=This tree contains dangerous insects no doubt.
 model=model_loc_1377
 width=4
 length=3
 
-[loc_1378]
+[hollowlog_wilderness]
 name=Hollow log
 desc=This old tree is rotting away.
 model=model_loc_1334
@@ -7546,7 +7546,7 @@ recol1d=4194
 recol2s=18823
 recol2d=4194
 
-[loc_1379]
+[hollowlogsmaller_wilderness]
 name=Hollow log
 desc=This old tree is rotting away.
 model=model_loc_1335
@@ -7556,7 +7556,7 @@ recol1d=4194
 recol2s=18823
 recol2d=4194
 
-[loc_1380]
+[wilderness_roots_1]
 name=Roots
 desc=A gnarly old tree root.
 model=model_loc_1323
@@ -7564,7 +7564,7 @@ mapscene=6
 recol1s=6240
 recol1d=4194
 
-[loc_1381]
+[wilderness_roots_2]
 name=Roots
 desc=The roots of this tree are exposed.
 model=model_loc_1324
@@ -7572,7 +7572,7 @@ mapscene=6
 recol1s=6240
 recol1d=4194
 
-[loc_1382]
+[wilderness_roots_3]
 name=Roots
 desc=I hope I don't trip over any of these.
 model=model_loc_1325
@@ -7580,7 +7580,7 @@ mapscene=6
 recol1s=6240
 recol1d=4194
 
-[loc_1385]
+[body_roots_1]
 name=Roots
 desc=A gnarly old tree root.
 model=model_loc_1323
@@ -7588,7 +7588,7 @@ mapscene=6
 recol1s=6240
 recol1d=12423
 
-[loc_1386]
+[body_roots_2]
 name=Roots
 desc=The roots of this tree are exposed.
 model=model_loc_1324
@@ -7596,7 +7596,7 @@ mapscene=6
 recol1s=6240
 recol1d=12423
 
-[loc_1387]
+[body_roots_3]
 name=Roots
 desc=I hope I don't trip over any of these.
 model=model_loc_1325
@@ -7604,7 +7604,7 @@ mapscene=6
 recol1s=6240
 recol1d=12423
 
-[loc_1388]
+[body_root1]
 name=Roots
 desc=They're just waiting to trip someone up.
 model=model_loc_1339
@@ -7614,7 +7614,7 @@ mapscene=6
 recol1s=6240
 recol1d=12423
 
-[loc_1389]
+[body_root2]
 name=Roots
 desc=They're just waiting to trip someone up.
 model=model_loc_1340
@@ -7624,7 +7624,7 @@ mapscene=6
 recol1s=6240
 recol1d=12423
 
-[loc_1390]
+[jungle2]
 name=Jungle plant
 desc=Commonly found in these parts.
 model=model_loc_1390
@@ -7632,7 +7632,7 @@ width=2
 blockwalk=no
 blockrange=no
 
-[loc_1391]
+[plant1]
 name=Plant
 desc=A leafy plant.
 model=model_loc_1391
@@ -7640,7 +7640,7 @@ width=2
 length=2
 blockrange=no
 
-[loc_1392]
+[plant2]
 name=Plant
 desc=A leafy fern.
 model=model_loc_1392
@@ -7648,13 +7648,13 @@ width=2
 length=2
 blockrange=no
 
-[loc_1393]
+[plant3]
 name=Plant
 desc=A small bushy plant.
 model=model_loc_1393
 blockrange=no
 
-[loc_1394]
+[plant4]
 name=Plant
 desc=A leafy shrub.
 model=model_loc_1394
@@ -7662,28 +7662,28 @@ width=2
 length=2
 blockrange=no
 
-[loc_1395]
+[flytrap2]
 name=Fly trap
 desc=No flies on me.
 model=model_loc_1395
 anim=flytrap
 blockrange=no
 
-[loc_1396]
+[cactus]
 name=Cactus
 desc=How do these things manage to grow?
 model=model_loc_1396
 mapscene=4
 blockrange=no
 
-[loc_1397]
+[cut_cactus]
 name=Cactus
 desc=This cactus has recently had a chunk taken off.
 model=model_loc_1397
 mapscene=4
 blockrange=no
 
-[loc_1398]
+[greener_jungle2]
 name=Jungle plant
 desc=A leafy fern.
 model=model_loc_1390
@@ -7692,7 +7692,7 @@ blockrange=no
 recol1s=5504
 recol1d=736
 
-[loc_1399]
+[jungleplant1]
 name=Jungle plant
 desc=This has broad leaves.
 model=model_loc_1399
@@ -7700,7 +7700,7 @@ width=2
 length=2
 blockrange=no
 
-[loc_1400]
+[jungleplant1_karamja]
 name=Jungle plant
 desc=A large waxy jungle plant.
 model=model_loc_1399
@@ -7710,7 +7710,7 @@ blockrange=no
 recol1s=608
 recol1d=9763
 
-[loc_1401]
+[jungleplant2]
 name=Jungle plant
 desc=A type of jungle fern.
 model=model_loc_1401
@@ -7718,7 +7718,7 @@ width=2
 length=2
 blockrange=no
 
-[loc_1402]
+[jungleplant3]
 name=Jungle plant
 desc=A large waxy jungle plant.
 model=model_loc_1399
@@ -7728,7 +7728,7 @@ blockrange=no
 recol1s=608
 recol1d=14054
 
-[loc_1403]
+[cactus2]
 name=Cactus
 desc=How do these things manage to grow?
 model=model_loc_1403
@@ -7736,7 +7736,7 @@ width=2
 length=2
 mapscene=4
 
-[loc_1404]
+[cactus3]
 name=Cactus
 desc=How do these things manage to grow?
 model=model_loc_1404
@@ -7744,7 +7744,7 @@ width=2
 length=2
 mapscene=4
 
-[loc_1405]
+[cactus4]
 name=Cactus
 desc=How do these things manage to grow?
 model=model_loc_1405
@@ -7753,7 +7753,7 @@ length=2
 mapscene=4
 blockrange=no
 
-[loc_1406]
+[cactus5]
 name=Cactus
 desc=How do these things manage to grow?
 model=model_loc_1406
@@ -7762,7 +7762,7 @@ length=2
 mapscene=4
 blockrange=no
 
-[loc_1407]
+[whippingplant]
 name=Whipping Plant
 desc=Leaves a nasty mark.
 model=model_loc_1407
@@ -7771,35 +7771,35 @@ length=2
 blockwalk=no
 blockrange=no
 
-[loc_1414]
+[desertroofbeams]
 model=model_loc_1414
 
-[loc_1415]
+[desertwall]
 model=model_loc_1415
 sharelight=yes
 occlude=yes
 
-[loc_1416]
+[desertroofwall]
 model=model_loc_1416
 sharelight=yes
 
-[loc_1417]
+[cavewall_face1]
 model=model_loc_1417
 sharelight=yes
 hillskew=yes
 
-[loc_1418]
+[cavewall_face1withcrack]
 model=model_loc_1418
 sharelight=yes
 hillskew=yes
 
-[loc_1419]
+[cavewall_waterface1]
 model=model_loc_1419
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1420]
+[cavewall_waterface1_lev2]
 model=model_loc_1420
 sharelight=yes
 hillskew=yes
@@ -7810,93 +7810,93 @@ model=model_loc_1421
 width=2
 sharelight=yes
 
-[loc_1422]
+[cavewall_facefortorch1]
 model=model_loc_1422
 sharelight=yes
 hillskew=yes
 
-[loc_1423]
+[cavewall_door1r]
 model=model_loc_1423
 sharelight=yes
 hillskew=yes
 
-[loc_1424]
+[cavewall_door1l]
 model=model_loc_1423
 sharelight=yes
 hillskew=yes
 mirror=yes
 
-[loc_1425]
+[cavewall_facefordoorr]
 model=model_loc_1425
 sharelight=yes
 hillskew=yes
 
-[loc_1426]
+[cavewall_facefordoorl]
 model=model_loc_1425
 sharelight=yes
 hillskew=yes
 mirror=yes
 
-[loc_1427]
+[cavewall_faceforrope]
 model=model_loc_1427
 sharelight=yes
 hillskew=yes
 
-[loc_1428]
+[cavewall_face1_lev2]
 model=model_loc_1428
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1429]
+[cavewall_slope_lev2]
 model=model_loc_1429
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1430]
+[cavewall_slope2_lev2]
 model=model_loc_1430
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1431]
+[cavewall_slopefill]
 model=model_loc_1431
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1432]
+[cavewall_small_face1]
 model=model_loc_1432
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1433]
+[cavewall_small_corner]
 model=model_loc_1433
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1434]
+[cavewall_top]
 model=model_loc_1434
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1435]
+[cavewall_top5]
 model=model_loc_1435
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1436]
+[cavewall_top_higher]
 model=model_loc_1436
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1437]
+[cavewall_top_higherblack]
 model=model_loc_1436
 sharelight=yes
 hillskew=yes
@@ -7904,26 +7904,26 @@ active=no
 recol1s=12580
 recol1d=2114
 
-[loc_1438]
+[cavernwall_top2]
 model=model_loc_1438
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1439]
+[cavernwall_top]
 model=model_loc_1439
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1440]
+[cavewall_face1_white]
 model=model_loc_1417
 sharelight=yes
 hillskew=yes
 recol1s=12580
 recol1d=30653
 
-[loc_1441]
+[cavewall_top_white]
 model=model_loc_1434
 sharelight=yes
 hillskew=yes
@@ -7931,7 +7931,7 @@ active=no
 recol1s=12580
 recol1d=30653
 
-[loc_1442]
+[cavewall_top5_white]
 model=model_loc_1435
 sharelight=yes
 hillskew=yes
@@ -7939,7 +7939,7 @@ active=no
 recol1s=12580
 recol1d=30653
 
-[loc_1443]
+[cavewall_top_higherwhite]
 model=model_loc_1436
 sharelight=yes
 hillskew=yes
@@ -7947,7 +7947,7 @@ active=no
 recol1s=12580
 recol1d=30653
 
-[loc_1444]
+[cave_detail1_white]
 model=model_loc_1444
 contrast=100
 ambient=50
@@ -7955,7 +7955,7 @@ hillskew=yes
 recol1s=12580
 recol1d=30653
 
-[loc_1445]
+[cave_detail1r_white]
 model=model_loc_1444
 contrast=100
 ambient=50
@@ -7964,7 +7964,7 @@ hillskew=yes
 recol1s=12580
 recol1d=30653
 
-[loc_1446]
+[cave_detail2_white]
 model=model_loc_1446
 contrast=100
 ambient=50
@@ -7972,7 +7972,7 @@ hillskew=yes
 recol1s=12580
 recol1d=30653
 
-[loc_1447]
+[cave_detail2r_white]
 model=model_loc_1446
 contrast=100
 ambient=50
@@ -7981,7 +7981,7 @@ hillskew=yes
 recol1s=12580
 recol1d=30653
 
-[loc_1448]
+[cave_detail1_black]
 model=model_loc_1444
 contrast=100
 ambient=50
@@ -7989,7 +7989,7 @@ hillskew=yes
 recol1s=12580
 recol1d=2114
 
-[loc_1449]
+[cave_detail1r_black]
 model=model_loc_1444
 contrast=100
 ambient=50
@@ -7998,7 +7998,7 @@ hillskew=yes
 recol1s=12580
 recol1d=2114
 
-[loc_1450]
+[cave_detail2_black]
 model=model_loc_1446
 contrast=100
 ambient=50
@@ -8006,7 +8006,7 @@ hillskew=yes
 recol1s=12580
 recol1d=2114
 
-[loc_1451]
+[cave_detail2r_black]
 model=model_loc_1446
 contrast=100
 ambient=50
@@ -8015,61 +8015,61 @@ hillskew=yes
 recol1s=12580
 recol1d=2114
 
-[loc_1452]
+[cave_detail1]
 model=model_loc_1444
 contrast=100
 ambient=50
 hillskew=yes
 
-[loc_1453]
+[cave_detail1r]
 model=model_loc_1444
 contrast=100
 ambient=50
 mirror=yes
 hillskew=yes
 
-[loc_1454]
+[cave_detail2]
 model=model_loc_1446
 contrast=100
 ambient=50
 hillskew=yes
 
-[loc_1455]
+[cave_detail2r]
 model=model_loc_1446
 contrast=100
 ambient=50
 mirror=yes
 hillskew=yes
 
-[loc_1456]
+[cave_climbingrocks]
 model=model_loc_1456
 width=2
 contrast=100
 ambient=50
 hillskew=yes
 
-[loc_1457]
+[cave_blood1]
 model=model_loc_1457
 width=2
 contrast=100
 ambient=50
 hillskew=yes
 
-[loc_1458]
+[cave_twig1]
 model=model_loc_1458
 width=2
 contrast=100
 ambient=50
 hillskew=yes
 
-[loc_1459]
+[cavewall_face1_dark]
 model=model_loc_1417
 sharelight=yes
 hillskew=yes
 recol1s=12580
 recol1d=7329
 
-[loc_1460]
+[cavewall_top_dark]
 model=model_loc_1434
 sharelight=yes
 hillskew=yes
@@ -8077,44 +8077,44 @@ active=no
 recol1s=12580
 recol1d=7329
 
-[loc_1461]
+[cavewall_top_lightdark]
 model=model_loc_1461
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1462]
+[cavewall_top_lightdark_endl]
 model=model_loc_1462
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1463]
+[cavewall_top_lightdark_endr]
 model=model_loc_1462
 sharelight=yes
 hillskew=yes
 active=no
 mirror=yes
 
-[loc_1464]
+[cavewall_top_lightdark2]
 model=model_loc_1464
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1465]
+[cavewall_top_lightdark5]
 model=model_loc_1465
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1466]
+[cavewall_top_lightdark52]
 model=model_loc_1466
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1467]
+[cavewall_top5_dark]
 model=model_loc_1435
 sharelight=yes
 hillskew=yes
@@ -8122,7 +8122,7 @@ active=no
 recol1s=12580
 recol1d=7329
 
-[loc_1468]
+[cavewall_top_higherdark]
 model=model_loc_1436
 sharelight=yes
 hillskew=yes
@@ -8130,21 +8130,21 @@ active=no
 recol1s=12580
 recol1d=7329
 
-[loc_1469]
+[cavewall_face1_lev2_dark]
 model=model_loc_1428
 sharelight=yes
 hillskew=yes
 recol1s=12580
 recol1d=7329
 
-[loc_1470]
+[cavewall_slope_lev2_dark]
 model=model_loc_1429
 sharelight=yes
 hillskew=yes
 recol1s=12580
 recol1d=7329
 
-[loc_1471]
+[cavewall_slope2_lev2_dark]
 model=model_loc_1430
 sharelight=yes
 hillskew=yes
@@ -8158,7 +8158,7 @@ hillskew=yes
 recol1s=12580
 recol1d=7329
 
-[loc_1473]
+[cave_detail1_dark]
 model=model_loc_1444
 contrast=100
 ambient=50
@@ -8166,7 +8166,7 @@ hillskew=yes
 recol1s=12580
 recol1d=7329
 
-[loc_1474]
+[cave_detail1r_dark]
 model=model_loc_1444
 contrast=100
 ambient=50
@@ -8175,7 +8175,7 @@ hillskew=yes
 recol1s=12580
 recol1d=7329
 
-[loc_1475]
+[cave_detail2_dark]
 model=model_loc_1446
 contrast=100
 ambient=50
@@ -8183,7 +8183,7 @@ hillskew=yes
 recol1s=12580
 recol1d=7329
 
-[loc_1476]
+[cave_detail2r_dark]
 model=model_loc_1446
 contrast=100
 ambient=50
@@ -8192,13 +8192,13 @@ hillskew=yes
 recol1s=12580
 recol1d=7329
 
-[loc_1477]
+[cavewalltunnel]
 model=model_loc_1477
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1478]
+[cavewalltunnel_dark]
 model=model_loc_1477
 sharelight=yes
 hillskew=yes
@@ -8206,14 +8206,14 @@ active=no
 recol1s=12580
 recol1d=7329
 
-[loc_1479]
+[cavewall_face1_body]
 model=model_loc_1417
 sharelight=yes
 hillskew=yes
 recol1s=12580
 recol1d=12488
 
-[loc_1480]
+[cave_detail1_body]
 model=model_loc_1444
 width=2
 contrast=100
@@ -8222,7 +8222,7 @@ hillskew=yes
 recol1s=12580
 recol1d=12423
 
-[loc_1481]
+[cave_detail1r_body]
 model=model_loc_1444
 width=2
 contrast=100
@@ -8232,7 +8232,7 @@ hillskew=yes
 recol1s=12580
 recol1d=12423
 
-[loc_1482]
+[cave_detail2_body]
 model=model_loc_1446
 width=2
 contrast=100
@@ -8241,7 +8241,7 @@ hillskew=yes
 recol1s=12580
 recol1d=12423
 
-[loc_1483]
+[cave_detail2r_body]
 model=model_loc_1446
 width=2
 contrast=100
@@ -8251,7 +8251,7 @@ hillskew=yes
 recol1s=12580
 recol1d=12423
 
-[loc_1484]
+[cavewall_top_body]
 model=model_loc_1434
 sharelight=yes
 hillskew=yes
@@ -8259,13 +8259,13 @@ active=no
 recol1s=12580
 recol1d=12488
 
-[loc_1485]
+[cavewall_top_lower]
 model=model_loc_1434
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1486]
+[cavewall_top_lower_dark]
 model=model_loc_1486
 sharelight=yes
 hillskew=yes
@@ -8273,7 +8273,7 @@ active=no
 recol1s=12580
 recol1d=7329
 
-[loc_1487]
+[cavewall_top_lower_light]
 model=model_loc_1486
 sharelight=yes
 hillskew=yes
@@ -8281,21 +8281,21 @@ active=no
 recol1s=12580
 recol1d=30653
 
-[loc_1488]
+[darkwall]
 model=model_loc_1415
 sharelight=yes
 occlude=yes
 recol1s=25366
 recol1d=1058
 
-[loc_1489]
+[cavewall_face1_grey]
 model=model_loc_1417
 sharelight=yes
 hillskew=yes
 recol1s=12580
 recol1d=11627
 
-[loc_1490]
+[cavewall_top_grey]
 model=model_loc_1434
 sharelight=yes
 hillskew=yes
@@ -8303,14 +8303,14 @@ active=no
 recol1s=12580
 recol1d=11627
 
-[loc_1491]
+[cavewall_face1_lev2_dark_grey]
 model=model_loc_1428
 sharelight=yes
 hillskew=yes
 recol1s=12580
 recol1d=11627
 
-[loc_1492]
+[cavewall_top5_grey]
 model=model_loc_1435
 sharelight=yes
 hillskew=yes
@@ -8318,7 +8318,7 @@ active=no
 recol1s=12580
 recol1d=11627
 
-[loc_1493]
+[cave_detail1_grey]
 model=model_loc_1444
 contrast=100
 ambient=50
@@ -8326,14 +8326,14 @@ hillskew=yes
 recol1s=12580
 recol1d=11627
 
-[loc_1494]
+[cavewall_facefordoorr_grey]
 model=model_loc_1425
 sharelight=yes
 hillskew=yes
 recol1s=12580
 recol1d=11627
 
-[loc_1495]
+[cavewall_facefordoorl_grey]
 model=model_loc_1425
 sharelight=yes
 hillskew=yes
@@ -8341,7 +8341,7 @@ mirror=yes
 recol1s=12580
 recol1d=11627
 
-[loc_1496]
+[cavewall_top_lighttomud]
 model=model_loc_1461
 sharelight=yes
 hillskew=yes
@@ -8351,7 +8351,7 @@ recol1d=7329
 recol2s=7331
 recol2d=9441
 
-[loc_1497]
+[cavewall_top_lighttomud_endl]
 model=model_loc_1462
 sharelight=yes
 hillskew=yes
@@ -8361,7 +8361,7 @@ recol1d=7329
 recol2s=7331
 recol2d=9441
 
-[loc_1498]
+[cavewall_top_lighttomud_endr]
 model=model_loc_1462
 sharelight=yes
 hillskew=yes
@@ -8372,7 +8372,7 @@ recol1d=7329
 recol2s=7331
 recol2d=9441
 
-[loc_1499]
+[cavewall_top_lighttomud2]
 model=model_loc_1464
 sharelight=yes
 hillskew=yes
@@ -8382,7 +8382,7 @@ recol1d=7329
 recol2s=7331
 recol2d=9441
 
-[loc_1500]
+[cavewall_top_lighttomud5]
 model=model_loc_1465
 sharelight=yes
 hillskew=yes
@@ -8392,7 +8392,7 @@ recol1d=7329
 recol2s=7331
 recol2d=9441
 
-[loc_1501]
+[cavewall_top_lighttomud52]
 model=model_loc_1466
 sharelight=yes
 hillskew=yes
@@ -8402,14 +8402,14 @@ recol1d=7329
 recol2s=7331
 recol2d=9441
 
-[loc_1502]
+[cavewall_face1_black]
 model=model_loc_1417
 sharelight=yes
 hillskew=yes
 recol1s=12580
 recol1d=2114
 
-[loc_1503]
+[cavewall_top_black]
 model=model_loc_1434
 sharelight=yes
 hillskew=yes
@@ -8432,61 +8432,61 @@ sharelight=yes
 occlude=yes
 active=yes
 
-[loc_1509]
+[archeddooropen]
 model=model_loc_1506
 mirror=yes
 active=no
 
-[loc_1510]
+[archeddoorclosed]
 model=model_loc_1506
 active=no
 
-[loc_1518]
+[thickpoordoor]
 model=model_loc_1518
 sharelight=yes
 
-[loc_1521]
+[castledoubledoorl]
 model=model_loc_1518
 sharelight=yes
 mirror=yes
 
-[loc_1522]
+[opencastledoubledoorl]
 model=model_loc_71
 active=no
 
-[loc_1523]
-model=model_loc_71
-mirror=yes
-active=no
-
-[loc_1524]
-model=model_loc_71
-active=no
-
-[loc_1525]
+[doubledoorhingel]
 model=model_loc_71
 mirror=yes
 active=no
 
-[loc_1526]
+[castledoubledoorr]
+model=model_loc_71
+active=no
+
+[opencastledoubledoorr]
+model=model_loc_71
+mirror=yes
+active=no
+
+[doubledoorhinger]
 name=Curtain
 desc=The curtain is closed.
 model=model_loc_1526
 active=yes
 op1=Open
 
-[loc_1527]
+[inaccastledoubledoorl]
 model=model_loc_1527
 active=no
 
-[loc_1528]
+[inaccastledoubledoorr]
 name=Curtain
 desc=The curtain is closed.
 model=model_loc_1526
 active=yes
 op1=Open
 
-[loc_1529]
+[inaccastledoubledoorlopen]
 name=Curtain
 desc=The curtain is open.
 model=model_loc_1527
@@ -8495,36 +8495,36 @@ op1=Close
 blockwalk=no
 blockrange=no
 
-[loc_1547]
+[prisondooropen]
 model=model_loc_1547
 blockrange=no
 
-[loc_1548]
+[inactiveprisondoor]
 model=model_loc_1547
 mirror=yes
 blockrange=no
 
-[loc_1549]
+[prisondoor_r]
 model=model_loc_1549
 blockrange=no
 
-[loc_1550]
+[prisondooropen_r]
 model=model_loc_1549
 mirror=yes
 blockrange=no
 
-[loc_1554]
+[portcullis_1l]
 model=model_loc_47
 mirror=yes
 active=no
 blockrange=no
 
-[loc_1555]
+[portcullis_1r]
 model=model_loc_47
 active=no
 blockrange=no
 
-[loc_1559]
+[openfencegate_l]
 name=Gate
 model=model_loc_1559
 length=2
@@ -8557,24 +8557,24 @@ length=3
 sharelight=yes
 blockrange=no
 
-[loc_1567]
+[trapdoor_nonactive]
 model=model_loc_100
 
-[loc_1568]
+[trapdoor]
 name=Trapdoor
 desc=I wonder what's under it?
 model=model_loc_100
 active=yes
 op1=Open
 
-[loc_1569]
+[trapdoor_level1]
 name=Trapdoor
 desc=I wonder what's under it?
 model=model_loc_100
 active=yes
 op1=Open
 
-[loc_1570]
+[trapdoor_open]
 name=Trapdoor
 desc=I wonder what's down there?
 model=model_loc_1570
@@ -8582,7 +8582,7 @@ active=yes
 op1=Climb-down
 op2=Close
 
-[loc_1571]
+[trapdoor_open_level1]
 name=Trapdoor
 desc=I wonder what's down there?
 model=model_loc_1570
@@ -8590,20 +8590,20 @@ active=yes
 op1=Climb-down
 op2=Close
 
-[loc_1572]
+[boardedupdoor]
 name=Boarded-up door
 desc=This door has been boarded up.
 model=model_loc_1572
 active=yes
 
-[loc_1573]
+[palacedoor_r]
 name=Doors
 desc=A door to a grand place.
 model=model_loc_1573
 active=yes
 mirror=yes
 
-[loc_1574]
+[openpalacedoor_r]
 name=Doors
 desc=A door to a grand place.
 model=model_loc_1573
@@ -8611,21 +8611,21 @@ active=yes
 op1=Close
 mirror=yes
 
-[loc_1575]
+[palacedoor_l]
 name=Doors
 desc=A door to a grand place.
 model=model_loc_1573
 active=yes
 op1=Open
 
-[loc_1576]
+[openpalacedoor_l]
 name=Doors
 desc=A door to a grand place.
 model=model_loc_1573
 active=yes
 op1=Close
 
-[loc_1577]
+[stone_arched_doortop]
 name=Doorway
 desc=The top of the archway.
 model=model_loc_1577
@@ -8633,7 +8633,7 @@ length=3
 blockwalk=no
 sharelight=yes
 
-[loc_1578]
+[stone_arched_doortop_b_l]
 name=Doorway
 desc=The top of the archway.
 model=model_loc_1578
@@ -8641,7 +8641,7 @@ length=2
 blockwalk=no
 sharelight=yes
 
-[loc_1579]
+[stone_arched_doortop_b_r]
 name=Doorway
 desc=The top of the archway.
 model=model_loc_1578
@@ -8650,43 +8650,43 @@ blockwalk=no
 sharelight=yes
 mirror=yes
 
-[loc_1580]
+[stone_arched_doorbase_r]
 name=Doorway
 desc=The base of the archway.
 model=model_loc_1580
 sharelight=yes
 
-[loc_1581]
+[stone_arched_doorbase_l]
 name=Doorway
 desc=The base of the archway.
 model=model_loc_1580
 mirror=yes
 sharelight=yes
 
-[loc_1582]
+[bamboo_doorway]
 model=model_loc_1582
 blockwalk=no
 blockrange=no
 
-[loc_1583]
+[secretdoor]
 name=Wall
 desc=There is something strange about this wall...
 model=model_loc_3
 active=yes
 op1=Push
 
-[loc_1584]
+[secretdooropen]
 name=Wall
 desc=There is something strange about this wall...
 model=model_loc_3
 active=yes
 op1=Push
 
-[loc_1585]
+[inactivesecretdoor]
 model=model_loc_3
 active=no
 
-[loc_1586]
+[secretdoor2]
 name=Wall
 desc=There is something strange about this wall...
 model=model_loc_3
@@ -8695,7 +8695,7 @@ op1=Push
 retex1s=wall
 retex1d=mossybricks
 
-[loc_1587]
+[secretdooropen2]
 name=Wall
 desc=There is something strange about this wall...
 model=model_loc_3
@@ -8704,14 +8704,14 @@ op1=Push
 retex1s=wall
 retex1d=mossybricks
 
-[loc_1588]
+[inactivesecretdoor2]
 model=model_loc_3
 active=yes
 active=no
 retex1s=wall
 retex1d=mossybricks
 
-[loc_1589]
+[lockedmetalgatel]
 name=Gate
 desc=A wrought iron gate.
 model=model_loc_52
@@ -8720,7 +8720,7 @@ active=yes
 blockrange=no
 category=locked_gate
 
-[loc_1590]
+[lockedmetalgater]
 name=Gate
 desc=A wrought iron gate.
 model=model_loc_52
@@ -8812,86 +8812,86 @@ wallwidth=8
 sharelight=yes
 occlude=yes
 
-[loc_1603]
+[timberwall_no_occlude]
 model=model_loc_1602
 wallwidth=8
 sharelight=yes
 
-[loc_1604]
+[thatched_timberroof]
 model=model_loc_1604
 sharelight=yes
 retex1s=roof
 retex1d=thatched
 
-[loc_1605]
+[thatched_timberroof_fill]
 model=model_loc_1604
 sharelight=yes
 retex1s=roof
 retex1d=thatched
 
-[loc_1606]
+[woodenroof_redslate]
 model=model_loc_1604
 sharelight=yes
 
-[loc_1607]
+[timber_overhang]
 model=model_loc_1607
 
-[loc_1608]
+[roof_veryspecial_thatched]
 model=model_loc_1608
 sharelight=yes
 active=no
 retex1s=roof
 retex1d=thatched
 
-[loc_1609]
+[timber_scafold]
 name=Scaffold
 desc=A wooden structure used in the process of building.
 model=model_loc_1609
 sharelight=yes
 active=yes
 
-[loc_1610]
+[timber_scafoldedge]
 name=Scaffold
 desc=A wooden structure used in the process of building.
 model=model_loc_1610
 sharelight=yes
 active=yes
 
-[loc_1611]
+[timber_scafoldtop]
 name=Scaffold
 desc=A wooden structure used in the process of building.
 model=model_loc_1611
 sharelight=yes
 active=yes
 
-[loc_1612]
+[timber_scafoldtall]
 name=Scaffold
 desc=A wooden structure used in the process of building.
 model=model_loc_1612
 sharelight=yes
 active=yes
 
-[loc_1613]
+[broken_timber1]
 name=Timber
 desc=This timber is broken
 model=model_loc_1613_1
 retex1s=mossybricks
 retex1d=wood2
 
-[loc_1614]
+[broken_timber2]
 name=Timber
 desc=This timber is broken
 model=model_loc_1614_1
 retex1s=mossybricks
 retex1d=wood2
 
-[loc_1615]
+[timberwall_with_window]
 model=model_loc_1615
 wallwidth=8
 sharelight=yes
 occlude=yes
 
-[loc_1616]
+[bamboo_wall]
 model=model_loc_1616
 sharelight=yes
 occlude=yes
@@ -8899,24 +8899,24 @@ contrast=100
 ambient=10
 active=no
 
-[loc_1617]
+[bamboo_ramp]
 model=model_loc_1617
 active=no
 sharelight=yes
 occlude=yes
 width=2
 
-[loc_1618]
+[bamboo_picture]
 model=model_loc_1618
 sharelight=yes
 occlude=yes
 
-[loc_1619]
+[lum_bridge_e]
 model=model_loc_1619
 sharelight=yes
 active=no
 
-[loc_1620]
+[oldcastlewall]
 model=model_loc_1512
 wallwidth=32
 sharelight=yes
@@ -8926,7 +8926,7 @@ retex1d=mossybricks
 recol2s=6342
 recol2d=5248
 
-[loc_1621]
+[oldbigstone_castlewall]
 model=model_loc_1621
 sharelight=yes
 wallwidth=32
@@ -8936,13 +8936,13 @@ retex1d=mossybricks
 recol2s=6342
 recol2d=5248
 
-[loc_1622]
+[oldcastlebattlements]
 model=model_loc_1622
 sharelight=yes
 retex1s=wall
 retex1d=mossybricks
 
-[loc_1623]
+[oldcastlewall_with_battlements_a]
 model=model_loc_1623
 sharelight=yes
 occlude=yes
@@ -8969,13 +8969,13 @@ hillskew=yes
 active=no
 blockrange=no
 
-[loc_1627]
+[crumblywall1_skew]
 model=model_loc_1613
 sharelight=yes
 hillskew=yes
 active=no
 
-[loc_1628]
+[crumblywall2_skew]
 model=model_loc_1614
 sharelight=yes
 hillskew=yes
@@ -9002,11 +9002,11 @@ retex1d=mossybricks
 recol2s=6342
 recol2d=5248
 
-[loc_1632]
+[oldroof_chimney_redslate]
 model=model_loc_1632
 sharelight=yes
 
-[loc_1633]
+[oldroof_chimney_greyslate]
 model=model_loc_1632
 sharelight=yes
 retex1s=roof
@@ -9014,7 +9014,7 @@ retex1d=roof2
 retex2s=wall
 retex2d=mossybricks
 
-[loc_1634]
+[oldroof_chimney_thatched]
 model=model_loc_1632
 sharelight=yes
 retex1s=roof
@@ -9022,7 +9022,7 @@ retex1d=thatched
 retex2s=wall
 retex2d=mossybricks
 
-[loc_1635]
+[oldroofedgeoutsidewalll_thatched]
 model=model_loc_1635
 sharelight=yes
 retex1s=roof
@@ -9030,7 +9030,7 @@ retex1d=thatched
 retex2s=wall
 retex2d=mossybricks
 
-[loc_1636]
+[oldroofedgeoutsidewallr_thatched]
 model=model_loc_1635
 sharelight=yes
 mirror=yes
@@ -9039,7 +9039,7 @@ retex1d=thatched
 retex2s=wall
 retex2d=mossybricks
 
-[loc_1637]
+[oldroofoutsidewall_thatched]
 model=model_loc_1637
 sharelight=yes
 retex1s=roof
@@ -9047,7 +9047,7 @@ retex1d=thatched
 retex2s=wall
 retex2d=mossybricks
 
-[loc_1638]
+[oldroofoutsidewalll_thatched]
 model=model_loc_1638
 sharelight=yes
 retex1s=roof
@@ -9055,7 +9055,7 @@ retex1d=thatched
 retex2s=wall
 retex2d=mossybricks
 
-[loc_1639]
+[oldroofoutsidewallr_thatched]
 model=model_loc_1638
 sharelight=yes
 mirror=yes
@@ -9064,7 +9064,7 @@ retex1d=mossybricks
 retex2s=roof
 retex2d=thatched
 
-[loc_1640]
+[oldroof_wooden]
 model=model_loc_1640
 sharelight=yes
 retex1s=roof
@@ -9072,7 +9072,7 @@ retex1d=wood2
 retex2s=wall
 retex2d=mossybricks
 
-[loc_1641]
+[oldroof_thatched]
 model=model_loc_1640
 sharelight=yes
 retex1s=roof
@@ -9080,13 +9080,13 @@ retex1d=thatched
 retex2s=wall
 retex2d=mossybricks
 
-[loc_1642]
+[oldroof_redslate]
 model=model_loc_1640
 sharelight=yes
 retex1s=wall
 retex1d=mossybricks
 
-[loc_1643]
+[oldroof_greyslate]
 model=model_loc_1640
 sharelight=yes
 retex1s=roof
@@ -9094,7 +9094,7 @@ retex1d=roof2
 retex2s=wall
 retex2d=mossybricks
 
-[loc_1644]
+[oldroofwallfiller]
 model=model_loc_1644
 sharelight=yes
 retex1s=wall
@@ -9111,18 +9111,18 @@ ambient=20
 recol1s=12684
 recol1d=10535
 
-[loc_1647]
+[castlearch_left]
 model=model_loc_1647
 sharelight=yes
 active=no
 
-[loc_1648]
+[castlearch_right]
 model=model_loc_1647
 sharelight=yes
 mirror=yes
 active=no
 
-[loc_1649]
+[oldstone_arch_left]
 model=model_loc_1647
 sharelight=yes
 active=no
@@ -9131,7 +9131,7 @@ recol1d=7329
 retex2s=wall
 retex2d=mossybricks
 
-[loc_1650]
+[oldstone_arch_right]
 model=model_loc_1647
 sharelight=yes
 mirror=yes
@@ -9141,7 +9141,7 @@ recol1d=7329
 retex2s=wall
 retex2d=mossybricks
 
-[loc_1651]
+[cross_castleedge]
 model=model_loc_1651
 sharelight=yes
 
@@ -9201,7 +9201,7 @@ retex1d=wood2
 recol2s=15855
 recol2d=7329
 
-[loc_1658]
+[oldwall_blackback_a]
 model=model_loc_1658
 sharelight=yes
 occlude=yes
@@ -9211,7 +9211,7 @@ retex1d=mossybricks
 recol2s=6342
 recol2d=5248
 
-[loc_1659]
+[oldwall_blackback_b]
 model=model_loc_1659
 sharelight=yes
 occlude=yes
@@ -9221,11 +9221,11 @@ retex1d=mossybricks
 recol2s=6342
 recol2d=5248
 
-[loc_1660]
+[castlecrumbly2]
 model=model_loc_1660
 active=no
 
-[loc_1661]
+[oldpileofbricks_l]
 name=Bricks
 desc=A pile of bricks.
 model=model_loc_1661
@@ -9234,7 +9234,7 @@ retex1d=mossybricks
 recol2s=6342
 recol2d=5248
 
-[loc_1662]
+[oldpileofbricks]
 name=Bricks
 desc=A pile of bricks.
 model=model_loc_1662
@@ -9243,7 +9243,7 @@ retex1d=mossybricks
 recol2s=6342
 recol2d=5248
 
-[loc_1663]
+[oldpileofbricks_r]
 name=Bricks
 desc=A pile of bricks.
 model=model_loc_1661
@@ -9253,7 +9253,7 @@ retex1d=mossybricks
 recol2s=6342
 recol2d=5248
 
-[loc_1664]
+[elfwall]
 model=model_loc_3
 sharelight=yes
 occlude=yes
@@ -9262,39 +9262,39 @@ retex1d=elfwall
 recol2s=6342
 recol2d=12650
 
-[loc_1665]
+[elfroof]
 model=model_loc_1665
 sharelight=yes
 
-[loc_1666]
+[elfroof_chimney]
 model=model_loc_1666
 sharelight=yes
 
-[loc_1667]
+[elfroofedge]
 model=model_loc_1667
 sharelight=yes
 
-[loc_1668]
+[elfroofbeam]
 model=model_loc_1668
 
-[loc_1669]
+[tentroof1]
 model=model_loc_1669
 sharelight=yes
 
-[loc_1670]
+[tentroof2]
 model=model_loc_1670
 sharelight=yes
 
-[loc_1671]
+[tentroof3]
 model=model_loc_1671
 sharelight=yes
 
-[loc_1672]
+[tentwall1]
 model=model_loc_1672
 sharelight=yes
 occlude=yes
 
-[loc_1673]
+[tentwall2]
 model=model_loc_1673
 sharelight=yes
 occlude=yes
@@ -9304,27 +9304,27 @@ model=model_loc_1674
 sharelight=yes
 occlude=yes
 
-[loc_1675]
+[tentdoor1]
 model=model_loc_1675
 sharelight=yes
 blockwalk=no
 
-[loc_1676]
+[tentdoor2]
 model=model_loc_1676
 sharelight=yes
 blockwalk=no
 
-[loc_1677]
+[tentdoor3]
 model=model_loc_1677
 sharelight=yes
 blockwalk=no
 
-[tent_door]
+[tentdoor4]
 model=model_loc_1678
 sharelight=yes
 blockwalk=no
 
-[loc_1679]
+[tentwallold_door]
 model=model_loc_1679
 sharelight=yes
 blockwalk=no
@@ -9333,7 +9333,7 @@ blockwalk=no
 model=model_loc_1680
 active=no
 
-[loc_1681]
+[guideropes2]
 model=model_loc_1681
 active=no
 
@@ -9341,11 +9341,11 @@ active=no
 model=model_loc_1682
 sharelight=yes
 
-[loc_1683]
+[tentroofcentre2]
 model=model_loc_1683
 sharelight=yes
 
-[loc_1684]
+[tentwall0ld]
 model=model_loc_1684
 sharelight=yes
 occlude=yes
@@ -9354,11 +9354,11 @@ occlude=yes
 model=model_loc_1685
 sharelight=yes
 
-[loc_1686]
+[tentroofold]
 model=model_loc_1686
 sharelight=yes
 
-[loc_1687]
+[egyptian_wall]
 model=model_loc_3
 sharelight=yes
 occlude=yes
@@ -9366,7 +9366,7 @@ active=no
 retex1s=wall
 retex1d=glyphs
 
-[loc_1688]
+[egyptian_wall_2]
 model=model_loc_3
 sharelight=yes
 occlude=yes
@@ -9374,21 +9374,21 @@ active=no
 retex1s=wall
 retex1d=mossy
 
-[loc_1689]
+[egypt_crumblywall1]
 model=model_loc_1613
 sharelight=yes
 active=no
 retex1s=mossybricks
 retex1d=mossy
 
-[loc_1690]
+[egypt_crumblywall2]
 model=model_loc_1614
 sharelight=yes
 active=no
 retex1s=mossybricks
 retex1d=mossy
 
-[loc_1691]
+[egypt_crumblywall11]
 model=model_loc_1613
 sharelight=yes
 mirror=yes
@@ -9396,7 +9396,7 @@ active=no
 retex1s=mossybricks
 retex1d=mossy
 
-[loc_1692]
+[egypt_crumblywall22]
 model=model_loc_1614
 sharelight=yes
 mirror=yes
@@ -9404,155 +9404,155 @@ active=no
 retex1s=mossybricks
 retex1d=mossy
 
-[loc_1693]
+[egypt_crumblywall1_glyphs]
 model=model_loc_1613
 sharelight=yes
 active=no
 retex1s=mossybricks
 retex1d=glyphs
 
-[loc_1694]
+[egypt_crumblywall2_glyphs]
 model=model_loc_1614
 sharelight=yes
 active=no
 retex1s=mossybricks
 retex1d=glyphs
 
-[loc_1695]
+[egypt_low_wall]
 model=model_loc_1695
 sharelight=yes
 occlude=yes
 active=no
 
-[loc_1696]
+[egypt_low_wall_2]
 model=model_loc_1696
 sharelight=yes
 occlude=yes
 active=no
 
-[loc_1697]
+[pyramid_side]
 model=model_loc_1697
 sharelight=yes
 occlude=yes
 active=no
 
-[loc_1698]
+[pyramid_corner]
 model=model_loc_1698
 sharelight=yes
 occlude=yes
 active=no
 
-[loc_1699]
+[pyramid_filledside]
 model=model_loc_1699
 sharelight=yes
 occlude=yes
 active=no
 
-[loc_1700]
+[pyramid_filledcorner]
 model=model_loc_1700
 sharelight=yes
 occlude=yes
 active=no
 
-[loc_1701]
+[bridge_floor]
 model=model_loc_1701
 sharelight=yes
 active=no
 forcedecor=yes
 
-[loc_1702]
+[bridge_cornerfloor]
 model=model_loc_1702
 sharelight=yes
 active=no
 forcedecor=yes
 
-[loc_1703]
+[bridge_floorlight]
 model=model_loc_1703
 sharelight=yes
 active=no
 forcedecor=yes
 
-[loc_1704]
+[bridge_sidefloor]
 model=model_loc_1704
 sharelight=yes
 active=no
 forcedecor=yes
 
-[loc_1705]
+[bridge_floorplain]
 model=model_loc_1705
 active=no
 
-[loc_1706]
+[bridge_floorsupport]
 model=model_loc_1706
 active=no
 mapscene=47
 
-[loc_1707]
+[bridge_corner]
 model=model_loc_1707
 active=no
 
-[loc_1708]
+[bridge_wall]
 model=model_loc_1708
 active=no
 
-[loc_1709]
+[bridgesupportshort]
 model=model_loc_1709
 active=no
 resizey=43
 
-[loc_1710]
+[bridgesupport]
 model=model_loc_1709
 active=no
 
-[loc_1711]
+[bridgesupportlong]
 model=model_loc_1711
 active=no
 
-[loc_1712]
+[bridgesupportlong_posh]
 model=model_loc_1712
 active=no
 
-[loc_1713]
+[bridgesupportlong_posh2]
 model=model_loc_1713
 active=no
 
-[loc_1714]
+[bridgesupport2]
 model=model_loc_1714
 active=no
 
-[loc_1715]
+[bridgesupport2_r]
 model=model_loc_1714
 active=no
 mirror=yes
 
-[loc_1716]
+[bridgesupport3]
 model=model_loc_1716
 active=no
 
-[loc_1717]
+[bridgesupport5]
 model=model_loc_1717
 active=no
 
-[loc_1718]
+[brown_bridgesupport2]
 model=model_loc_1714
 width=2
 active=no
 retex1s=wall
 retex1d=mossybricks
 
-[loc_1719]
+[brown_bridgesupport3]
 model=model_loc_1716
 active=no
 retex1s=wall
 retex1d=mossybricks
 
-[loc_1720]
+[brown_bridgesupport5]
 model=model_loc_1717
 active=no
 retex1s=wall
 retex1d=mossybricks
 
-[loc_1721]
+[bamboo_bridge1]
 model=model_loc_1721
 sharelight=yes
 hillskew=yes
@@ -9862,7 +9862,7 @@ model=model_loc_11
 active=yes
 op1=Climb-up
 
-[loc_1769]
+[wood1]
 model=model_loc_3
 sharelight=yes
 occlude=yes
@@ -9871,7 +9871,7 @@ retex1d=elfwood
 recol2s=6342
 recol2d=23020
 
-[loc_1770]
+[wood2]
 model=model_loc_3
 sharelight=yes
 occlude=yes
@@ -9880,12 +9880,12 @@ retex1d=planks
 recol2s=6342
 recol2d=16743
 
-[loc_1771]
+[wood_wall_barricadel]
 model=model_loc_1771
 sharelight=yes
 hillskew=yes
 
-[loc_1772]
+[wood_wall_barricader]
 model=model_loc_1772
 sharelight=yes
 hillskew=yes
@@ -9895,32 +9895,32 @@ model=model_loc_1773
 sharelight=yes
 active=no
 
-[loc_1774]
+[watchtower_leg2]
 model=model_loc_1774
 sharelight=yes
 active=no
 
-[loc_1775]
+[watchtower_mid2]
 model=model_loc_1775
 sharelight=yes
 active=no
 
-[loc_1776]
+[millroofleft]
 model=model_loc_1776
 sharelight=yes
 
-[loc_1777]
+[millroofright]
 model=model_loc_1777
 sharelight=yes
 
-[loc_1778]
+[mill]
 name=Millstones
 desc=These huge stone discs grind grain to make flour.
 model=model_loc_1778
 width=2
 length=2
 
-[loc_1779]
+[millsail]
 name=Sails
 desc=These sails use the wind to drive the windmill.
 model=model_loc_1779
@@ -9928,7 +9928,7 @@ length=4
 sharelight=yes
 anim=millsail
 
-[loc_1780]
+[sailobject]
 name=Sails
 desc=These sails use the wind to drive the windmill.
 model=model_loc_1780
@@ -9941,7 +9941,7 @@ width=2
 length=2
 op1=Empty
 
-[millbase_full]
+[millbase_flour]
 name=Flour bin
 desc=The ground flour comes down from the millstones above.
 model=model_loc_1782
@@ -9949,18 +9949,18 @@ width=2
 length=2
 op1=Empty
 
-[loc_1783]
+[milltop1]
 model=model_loc_1783
 width=2
 active=no
 
-[loc_1784]
+[milltop2]
 model=model_loc_1784
 width=2
 length=2
 active=no
 
-[loc_1785]
+[milltop3]
 model=model_loc_1785
 active=no
 
@@ -9984,65 +9984,65 @@ model=model_loc_1789
 width=4
 length=4
 
-[loc_1790]
+[roofedge_redslate]
 model=model_loc_1790
 sharelight=yes
 
-[loc_1791]
+[roofedge_greyslate]
 model=model_loc_1790
 sharelight=yes
 retex1s=roof
 retex1d=roof2
 
-[loc_1792]
+[roofedge_thatched]
 model=model_loc_1790
 sharelight=yes
 retex1s=roof
 retex1d=thatched
 
-[loc_1793]
+[roofedge_wooden]
 model=model_loc_1790
 sharelight=yes
 retex1s=roof
 retex1d=wood2
 
-[loc_1794]
+[roofedgeoutsidewalll_thatched]
 model=model_loc_1635
 sharelight=yes
 retex1s=roof
 retex1d=thatched
 
-[loc_1795]
+[roofedgeoutsidewallr_thatched]
 model=model_loc_1635
 sharelight=yes
 mirror=yes
 retex1s=roof
 retex1d=thatched
 
-[magicwall]
+[sw_isle_basement_wall]
 model=model_loc_1796
 length=2
 shadow=no
 
-[loc_1797]
+[waterfallsquishedrocks]
 name=Waterfall rocks
 desc=Some very hard rocks, I wouldn't want to fall on those.
 model=model_loc_1797
 hillskew=yes
 
-[loc_1798]
+[dugupsoil1_squished]
 model=model_loc_1798
 hillskew=yes
 
-[loc_1799]
+[dugupsoil2_squished]
 model=model_loc_1799
 hillskew=yes
 
-[loc_1800]
+[dugupsoil3_squished]
 model=model_loc_1800
 hillskew=yes
 
-[loc_1801]
+[dugupsoil1_squished_light]
 model=model_loc_1798
 hillskew=yes
 recol1s=13505
@@ -10052,7 +10052,7 @@ recol2d=16774
 recol3s=15586
 recol3d=16774
 
-[loc_1802]
+[dugupsoil2_squished_light]
 model=model_loc_1799
 hillskew=yes
 recol1s=13505
@@ -10062,7 +10062,7 @@ recol2d=16774
 recol3s=15586
 recol3d=16774
 
-[loc_1803]
+[dugupsoil3_squished_light]
 model=model_loc_1800
 hillskew=yes
 recol1s=13505
@@ -10072,7 +10072,7 @@ recol2d=16774
 recol3s=15586
 recol3d=16774
 
-[loc_1804]
+[brasskeydoor]
 name=Door
 desc=This door requires a key.
 model=model_loc_3
@@ -10082,9 +10082,9 @@ retex1s=wall
 retex1d=door2
 recol2s=6342
 recol2d=11458
-param=next_loc_stage,loc_1535
+param=next_loc_stage,poordoor
 
-[loc_1805]
+[championdoor]
 name=Door
 desc=The door to the champion's guild.
 model=model_loc_3
@@ -10094,19 +10094,19 @@ retex1s=wall
 retex1d=door2
 recol2s=6342
 recol2d=11458
-param=next_loc_stage,loc_1535
+param=next_loc_stage,poordoor
 
-[loc_1806]
+[cavern1]
 model=model_loc_1806
 sharelight=yes
 occlude=yes
 
-[loc_1807]
+[cavern2]
 model=model_loc_1807
 sharelight=yes
 occlude=yes
 
-[loc_1808]
+[wall2]
 model=model_loc_3
 sharelight=yes
 occlude=yes
@@ -10115,14 +10115,14 @@ retex1d=rockwall
 recol2s=6342
 recol2d=5316
 
-[loc_1809]
+[mossyswall]
 model=model_loc_3
 sharelight=yes
 occlude=yes
 retex1s=wall
 retex1d=mossy
 
-[loc_1810]
+[webwall]
 name=Web
 desc=Here be spiders!
 model=model_loc_727
@@ -10130,7 +10130,7 @@ op1=Slash
 recol1s=3171
 recol1d=7366
 
-[loc_1811]
+[sliced_web]
 name=Sliced web
 desc=I can walk through this tarrered web.
 model=model_loc_1811
@@ -10152,14 +10152,14 @@ model=model_loc_1813
 sharelight=yes
 occlude=yes
 
-[loc_1816]
+[dragonkinginlever]
 name=Lever
 desc=I wonder what this does...
 model=model_loc_34
 active=yes
 op1=Pull
 
-[loc_1817]
+[dragonkingoutlever]
 name=Lever
 desc=I wonder what this does...
 model=model_loc_34
@@ -10175,47 +10175,47 @@ model=model_loc_1818
 mirror=yes
 sharelight=yes
 
-[loc_1820]
+[lever_inactive_down]
 model=model_loc_33_q
 active=no
 
-[loc_1821]
+[window]
 model=model_loc_1821
 ambient=50
 
-[loc_1822]
+[curtainedwindow]
 model=model_loc_1822
 ambient=50
 
-[loc_1823]
+[poshwindow]
 model=model_loc_1823
 ambient=50
 
-[loc_1824]
+[curtainedposhwindow]
 model=model_loc_1824
 ambient=50
 
-[loc_1825]
+[bordedupwindow]
 model=model_loc_1825
 ambient=50
 
-[loc_1826]
+[bigwindow]
 model=model_loc_1826
 ambient=50
 
-[loc_1827]
+[curtainedbigwindow]
 model=model_loc_1827
 ambient=50
 
-[loc_1828]
+[poshbigwindow]
 model=model_loc_1828
 ambient=50
 
-[loc_1829]
+[curtainedposhbigwindow]
 model=model_loc_1829
 ambient=50
 
-[loc_1830]
+[redcurtainedposhbigwindow]
 model=model_loc_1829
 ambient=50
 recol1s=23073
@@ -10223,7 +10223,7 @@ recol1d=15855
 recol2s=16808
 recol2d=16419
 
-[loc_1831]
+[orangecurtainedposhbigwindow]
 model=model_loc_1829
 ambient=50
 recol1s=13472
@@ -10231,7 +10231,7 @@ recol1d=2528
 recol2s=16808
 recol2d=31201
 
-[loc_1832]
+[greencurtainedposhbigwindow]
 model=model_loc_1829
 ambient=50
 recol1s=23073
@@ -10239,7 +10239,7 @@ recol1d=15855
 recol2s=16808
 recol2d=10723
 
-[loc_1833]
+[pinkcurtainedposhbigwindow]
 model=model_loc_1829
 ambient=50
 recol1s=23073
@@ -10247,7 +10247,7 @@ recol1d=15855
 recol2s=16808
 recol2d=28213
 
-[loc_1834]
+[bluecurtainedposhbigwindow]
 model=model_loc_1829
 ambient=50
 recol1s=23073
@@ -10255,7 +10255,7 @@ recol1d=15855
 recol2s=16808
 recol2d=6256
 
-[loc_1835]
+[blackcurtainedposhbigwindow]
 model=model_loc_1829
 ambient=50
 recol1s=23073
@@ -10263,7 +10263,7 @@ recol1d=15855
 recol2s=16808
 recol2d=3171
 
-[loc_1836]
+[whitecurtainedposhbigwindow]
 model=model_loc_1829
 ambient=50
 recol1s=23073
@@ -10271,84 +10271,84 @@ recol1d=15855
 recol2s=16808
 recol2d=21147
 
-[loc_1837]
+[bordedupbigwindow]
 model=model_loc_1837
 ambient=50
 
-[loc_1838]
+[shutterwindow]
 model=model_loc_1838
 ambient=50
 
-[loc_1839]
+[shutterwindow2]
 model=model_loc_1839
 ambient=50
 
-[loc_1840]
+[shutterwindow3]
 model=model_loc_1840
 ambient=50
 
-[loc_1841]
+[prisonwindow]
 model=model_loc_1841
 ambient=50
 
-[loc_1842]
+[brokenelfwindow]
 model=model_loc_1842
 ambient=50
 
-[loc_1843]
+[brokenwindow]
 model=model_loc_1843
 ambient=50
 
-[loc_1844]
+[brokenshutterwindow1]
 model=model_loc_1844
 ambient=50
 
-[loc_1845]
+[brokenshutterwindow2]
 model=model_loc_1845
 ambient=50
 
-[loc_1846]
+[churchwindow]
 model=model_loc_1846
 ambient=100
 
-[loc_1847]
+[roundchurchwindow]
 model=model_loc_1847
 ambient=100
 
-[loc_1848]
+[desertwindow]
 model=model_loc_1848
 ambient=10
 
-[loc_1849]
+[elfchurchwindow]
 model=model_loc_1849
 ambient=100
 
-[loc_1850]
+[elfwindow]
 model=model_loc_1850
 ambient=50
 
-[loc_1851]
+[woodenwindow]
 model=model_loc_1851
 ambient=50
 
-[loc_1852]
+[bay_window]
 name=Bay window
 desc=This lets in more light.
 model=model_loc_1852
 length=3
 
-[loc_1853]
+[shopwindowwall]
 model=model_loc_1853
 sharelight=yes
 
-[loc_1854]
+[shopwindowwall2]
 model=model_loc_1854
 sharelight=yes
 
-[loc_1855]
+[bamboo_window]
 model=model_loc_1855
 
-[loc_1856]
+[curtainedposhbigwindow_blue]
 model=model_loc_1829
 ambient=50
 recol1s=13472
@@ -10358,23 +10358,23 @@ recol2d=8430
 recol3s=23073
 recol3d=8387
 
-[loc_1857]
+[egypt_column]
 model=model_loc_1857
 active=no
 
-[loc_1858]
+[egypt_column2]
 model=model_loc_1858
 active=no
 
-[loc_1859]
+[egypt_column3]
 model=model_loc_1859
 active=no
 
-[loc_1860]
+[egypt_column4]
 model=model_loc_1860
 active=no
 
-[loc_1861]
+[stoneporchroof]
 model=model_loc_1861
 sharelight=yes
 active=no
@@ -10384,14 +10384,14 @@ model=model_loc_1862
 hillskew=yes
 sharelight=yes
 
-[loc_1863]
+[skewsteps1_lbrown]
 model=model_loc_1862
 hillskew=yes
 sharelight=yes
 recol1s=15855
 recol1d=15717
 
-[loc_1864]
+[timberdefence_new]
 name=Timber defence
 desc=These obviously mean keep out!
 model=model_loc_830_1
@@ -10399,20 +10399,20 @@ sharelight=yes
 hillskew=yes
 blockrange=no
 
-[loc_1865]
+[straightledge]
 model=model_loc_717
 forcedecor=yes
 sharelight=yes
 
-[loc_1866]
+[brokenpillar]
 model=model_loc_1866
 active=no
 
-[loc_1867]
+[stonepillar]
 model=model_loc_1867
 active=no
 
-[loc_1868]
+[marblearch]
 model=model_loc_1868
 width=2
 active=no
@@ -10421,11 +10421,11 @@ active=no
 model=model_loc_1869
 active=no
 
-[loc_1870]
+[woodensupport1]
 model=model_loc_1870
 active=no
 
-[loc_1871]
+[wallpost]
 model=model_loc_1871
 active=no
 
@@ -10434,50 +10434,50 @@ model=model_loc_1872
 ambient=20
 active=no
 
-[loc_1873]
+[wallgrill]
 model=model_loc_1873
 
-[loc_1874]
+[mousehole]
 model=model_loc_1874
 
-[loc_1875]
+[woodensupportpole]
 model=model_loc_1875
 active=no
 
-[loc_1876]
+[altar_slab]
 name=Altar slab
 desc=I shudder to think what has taken place here.
 model=model_loc_1876
 width=2
 length=2
 
-[loc_1877]
+[cornersupportpole]
 model=model_loc_1877
 active=no
 
-[loc_1878]
+[archedcage_r]
 model=model_loc_1878
 sharelight=yes
 
-[loc_1879]
+[archedcage_l]
 model=model_loc_1878
 mirror=yes
 sharelight=yes
 
-[loc_1880]
+[archedcage_blackbacka_l]
 model=model_loc_1880
 sharelight=yes
 
-[loc_1881]
+[archedcage_blackbacka_r]
 model=model_loc_1880
 sharelight=yes
 mirror=yes
 
-[loc_1882]
+[archedcage_blackbackb_l]
 model=model_loc_1882
 sharelight=yes
 
-[loc_1883]
+[archedcage_blackbackb_r]
 model=model_loc_1882
 sharelight=yes
 mirror=yes
@@ -10492,7 +10492,7 @@ model=model_loc_1885
 width=3
 length=3
 
-[loc_1886]
+[runetemple_pillar]
 model=model_loc_1886
 active=no
 
@@ -10508,14 +10508,14 @@ model=model_loc_1888
 width=3
 length=3
 
-[loc_1889]
+[collapsed_floor_l]
 model=model_loc_1889
 sharelight=yes
 hillskew=yes
 blockwalk=no
 blockrange=no
 
-[loc_1890]
+[collapsed_floor_r]
 model=model_loc_1889
 sharelight=yes
 mirror=yes
@@ -10523,14 +10523,14 @@ hillskew=yes
 blockwalk=no
 blockrange=no
 
-[loc_1891]
+[collapsed_floor2_l]
 model=model_loc_1891
 sharelight=yes
 hillskew=yes
 blockwalk=no
 blockrange=no
 
-[loc_1892]
+[collapsed_floor2_r]
 model=model_loc_1891
 mirror=yes
 sharelight=yes
@@ -10538,49 +10538,49 @@ hillskew=yes
 blockwalk=no
 blockrange=no
 
-[loc_1893]
+[skewsteps2]
 model=model_loc_1862
 hillskew=yes
 sharelight=yes
 
-[loc_1894]
+[skewsteps2_side_left]
 model=model_loc_1894
 hillskew=yes
 sharelight=yes
 
-[loc_1895]
+[skewsteps2_side_right]
 model=model_loc_1895
 hillskew=yes
 sharelight=yes
 
-[loc_1896]
+[oldthrone]
 name=Throne
 desc=This hasn't seen a duster for a while.
 model=model_loc_1896
 
-[loc_1897]
+[oldcandles]
 name=Candlestick holder
 desc=Not as nice as some.
 model=model_loc_1897
 
-[loc_1898]
+[oldchair]
 name=Chair
 desc=This needs dusting before I'll sit on it.
 model=model_loc_1898
 blockrange=no
 
-[loc_1899]
+[oldchair2]
 name=Chair
 desc=This needs dusting before I'll sit on it.
 model=model_loc_1899
 blockrange=no
 
-[loc_1900]
+[oldsuitofarmour]
 name=Suit of armour
 desc=This could do with a bit of a spit and polish.
 model=model_loc_1900
 
-[loc_1901]
+[oldlongtable]
 name=Table
 desc=This clearly isn't used for dining very often.
 model=model_loc_1901
@@ -10592,50 +10592,50 @@ model=model_loc_3
 sharelight=yes
 occlude=yes
 
-[loc_1903]
+[brickwallskew]
 model=model_loc_1903
 sharelight=yes
 occlude=yes
 hillskew=yes
 
-[loc_1904]
+[paintedbrickwall_1]
 model=model_loc_1904
 sharelight=yes
 occlude=yes
 
-[loc_1905]
+[paintedbrickwall_2]
 model=model_loc_1905
 sharelight=yes
 occlude=yes
 
-[loc_1906]
+[paintedbrickwall_2_skew]
 model=model_loc_1905
 sharelight=yes
 occlude=yes
 hillskew=yes
 
-[loc_1907]
+[bluepaintedbrickwall_1]
 model=model_loc_1904
 sharelight=yes
 occlude=yes
 recol1s=26423
 recol1d=21279
 
-[loc_1908]
+[bluepaintedbrickwall_2]
 model=model_loc_1905
 sharelight=yes
 occlude=yes
 recol1s=26423
 recol1d=21279
 
-[loc_1909]
+[blackpaintedbrickwall_1]
 model=model_loc_1904
 sharelight=yes
 occlude=yes
 recol1s=26423
 recol1d=4226
 
-[loc_1910]
+[blackpaintedbrickwall_2]
 model=model_loc_1905
 sharelight=yes
 occlude=yes
@@ -10648,58 +10648,58 @@ sharelight=yes
 wallwidth=32
 occlude=yes
 
-[loc_1912]
+[bigstone_castlewall]
 model=model_loc_1621
 sharelight=yes
 wallwidth=32
 occlude=yes
 
-[loc_1913]
+[castlebattlements]
 model=model_loc_1622
 sharelight=yes
 blockrange=no
 
-[loc_1914]
+[castlebattlements_wiztorch]
 model=model_loc_1914
 anim=wiztorch
 hasalpha=yes
 active=no
 
-[loc_1915]
+[castleedgewall]
 model=model_loc_1915
 sharelight=yes
 active=no
 
-[loc_1916]
+[castleedge_brickbattlements_l]
 model=model_loc_1916
 sharelight=yes
 active=no
 
-[loc_1917]
+[castleedge_brickbattlements_r]
 model=model_loc_1916
 sharelight=yes
 mirror=yes
 active=no
 
-[loc_1918]
+[castleedge_brickbattlements2_l]
 model=model_loc_1918
 sharelight=yes
 active=no
 
-[loc_1919]
+[castleedge_brickbattlements2_r]
 model=model_loc_1918
 sharelight=yes
 mirror=yes
 active=no
 
-[loc_1920]
+[castlewall_with_battlements_a]
 model=model_loc_1623
 sharelight=yes
 wallwidth=32
 occlude=yes
 active=no
 
-[loc_1921]
+[castlewall_with_battlements_b]
 model=model_loc_1921
 sharelight=yes
 wallwidth=32
@@ -10707,7 +10707,7 @@ occlude=yes
 width=2
 active=no
 
-[loc_1922]
+[castlewall_with_battlements_b2]
 model=model_loc_1922
 sharelight=yes
 occlude=yes
@@ -10715,67 +10715,67 @@ length=2
 width=2
 active=no
 
-[loc_1923]
+[roofwallfiller]
 model=model_loc_1644
 sharelight=yes
 
-[loc_1924]
+[roof_redslate]
 model=model_loc_1640
 sharelight=yes
 
-[loc_1925]
+[roof_greyslate]
 model=model_loc_1640
 sharelight=yes
 retex1s=roof
 retex1d=roof2
 
-[loc_1926]
+[roof_thatched]
 model=model_loc_1640
 sharelight=yes
 retex1s=roof
 retex1d=thatched
 
-[loc_1927]
+[roof_chimney_redslate]
 model=model_loc_1632
 sharelight=yes
 
-[loc_1928]
+[roof_chimney_greyslate]
 model=model_loc_1632
 sharelight=yes
 retex1s=roof
 retex1d=roof2
 
-[loc_1929]
+[roof_chimney_thatched]
 model=model_loc_1632
 sharelight=yes
 retex1s=roof
 retex1d=thatched
 
-[loc_1930]
+[roofoutsidewall_thatched]
 model=model_loc_1637
 sharelight=yes
 retex1s=roof
 retex1d=thatched
 
-[loc_1931]
+[roofoutsidewalll_thatched]
 model=model_loc_1638
 sharelight=yes
 retex1s=roof
 retex1d=thatched
 
-[loc_1932]
+[roofoutsidewallr_thatched]
 model=model_loc_1638
 sharelight=yes
 retex1s=roof
 retex1d=thatched
 
-[loc_1933]
+[roof_wooden]
 model=model_loc_1640
 sharelight=yes
 retex1s=roof
 retex1d=wood2
 
-[loc_1934]
+[ardoungewall]
 model=model_loc_1934
 active=no
 sharelight=yes
@@ -10784,7 +10784,7 @@ mapscene=21
 retex1s=wall
 retex1d=mossybricks
 
-[loc_1935]
+[ardoungewallinsidecorner]
 model=model_loc_1935
 active=no
 sharelight=yes
@@ -10793,7 +10793,7 @@ mapscene=21
 retex1s=wall
 retex1d=mossybricks
 
-[loc_1936]
+[ardoungewalloutsidecorner]
 model=model_loc_1936
 active=no
 sharelight=yes
@@ -10802,7 +10802,7 @@ mapscene=21
 retex1s=wall
 retex1d=mossybricks
 
-[loc_1937]
+[castletower_ardounge]
 model=model_loc_1937
 width=2
 length=2
@@ -10812,7 +10812,7 @@ active=no
 model=model_loc_1646
 ambient=20
 
-[loc_1939]
+[oldwall_castletower]
 name=Tower
 model=model_loc_1937
 width=2
@@ -10820,7 +10820,7 @@ length=2
 retex1s=wall
 retex1d=mossybricks
 
-[loc_1940]
+[cross_oldcastleedge]
 model=model_loc_1651
 sharelight=yes
 retex1s=wall
@@ -10835,138 +10835,138 @@ model=model_loc_1941
 sharelight=yes
 mirror=yes
 
-[loc_1943]
+[castlecrumbly_l]
 model=model_loc_1943
 sharelight=yes
 
-[loc_1944]
+[castlecrumbly_r]
 model=model_loc_1943
 sharelight=yes
 mirror=yes
 
-[loc_1945]
+[oldcastlecrumbly_l]
 model=model_loc_1943
 sharelight=yes
 retex1s=wall
 retex1d=mossybricks
 
-[loc_1946]
+[oldcastlecrumbly_r]
 model=model_loc_1943
 sharelight=yes
 mirror=yes
 retex1s=wall
 retex1d=mossybricks
 
-[loc_1949]
+[pileofbricks_l]
 name=Bricks
 desc=A pile of bricks.
 model=model_loc_1661
 
-[loc_1950]
+[pileofbricks]
 name=Bricks
 desc=A pile of bricks.
 model=model_loc_1662
 
-[loc_1951]
+[pileofbricks_r]
 name=Bricks
 desc=A pile of bricks.
 model=model_loc_1661
 mirror=yes
 
-[loc_1952]
+[bricks_1]
 model=model_loc_1629
 blockwalk=no
 blockrange=no
 retex1s=mossybricks
 retex1d=wall
 
-[loc_1953]
+[bricks_2]
 model=model_loc_1630
 blockwalk=no
 blockrange=no
 retex1s=mossybricks
 retex1d=wall
 
-[loc_1954]
+[brickwall_blackback_a]
 model=model_loc_1659
 sharelight=yes
 occlude=yes
 
-[loc_1955]
+[brickwall_blackback_b]
 model=model_loc_1658
 sharelight=yes
 occlude=yes
 
-[loc_1956]
+[treewall1_lvl1]
 model=model_loc_1956
 sharelight=yes
 active=no
 
-[loc_1957]
+[treewall1b_lvl1]
 model=model_loc_1957
 sharelight=yes
 length=2
 active=no
 
-[loc_1958]
+[treewall5a_lvl1]
 model=model_loc_1958
 sharelight=yes
 active=no
 
-[loc_1959]
+[treewall5b_lvl1]
 model=model_loc_1959
 sharelight=yes
 active=no
 
-[loc_1960]
+[treewall5_lvl1]
 model=model_loc_1960
 sharelight=yes
 length=2
 width=2
 active=no
 
-[loc_1961]
+[treewall1_lvl2]
 model=model_loc_1961
 sharelight=yes
 length=2
 active=no
 
-[loc_1962]
+[treewall1b_lvl2]
 model=model_loc_1962
 sharelight=yes
 length=2
 active=no
 
-[loc_1963]
+[treewall5a_lvl2]
 model=model_loc_1963
 sharelight=yes
 length=2
 active=no
 
-[loc_1964]
+[treewall5b_lvl2]
 model=model_loc_1964
 sharelight=yes
 length=2
 active=no
 
-[loc_1965]
+[treewall5_lvl2]
 model=model_loc_1965
 sharelight=yes
 active=no
 
-[loc_1966]
+[treewall5_lvl3]
 model=model_loc_1966
 sharelight=yes
 active=no
 
-[loc_1967]
+[treedoorl]
 name=Tree Door
 desc=A grand door for a grand tree.
 model=model_loc_1967
 width=2
 op1=Open
 
-[loc_1968]
+[treedoorr]
 name=Tree Door
 desc=A grand door for a grand tree.
 model=model_loc_1967
@@ -10974,80 +10974,80 @@ mirror=yes
 width=2
 op1=Open
 
-[loc_1969]
+[treedoorl_open]
 model=model_loc_1969
 width=2
 active=no
 
-[loc_1970]
+[treedoorr_open]
 model=model_loc_1969
 mirror=yes
 width=2
 active=no
 
-[loc_1971]
+[treedoorroof]
 model=model_loc_1971
 sharelight=yes
 length=3
 width=4
 active=no
 
-[loc_1972]
+[treewall1_lvl4]
 model=model_loc_1972
 sharelight=yes
 active=no
 
-[loc_1973]
+[treewall5a_lvl4]
 model=model_loc_1973
 sharelight=yes
 active=no
 
-[loc_1974]
+[treewall5b_lvl4]
 model=model_loc_1974
 sharelight=yes
 active=no
 
-[loc_1975]
+[treewall5_lvl4]
 model=model_loc_1975
 sharelight=yes
 active=no
 
-[loc_1976]
+[treewallbranch1_lvl4]
 model=model_loc_1976
 sharelight=yes
 width=3
 length=4
 active=no
 
-[loc_1977]
+[treewallbranch2_lvl4]
 model=model_loc_1977
 sharelight=yes
 width=3
 length=5
 active=no
 
-[loc_1978]
+[treewallbranch3_lvl4]
 model=model_loc_1978
 sharelight=yes
 width=2
 length=3
 active=no
 
-[loc_1979]
+[treewallbranch4_lvl4]
 model=model_loc_1979
 sharelight=yes
 width=2
 length=7
 active=no
 
-[loc_1980]
+[treewall1_lvl1door]
 model=model_loc_1980
 sharelight=yes
 op1=Open
 blockwalk=no
 active=no
 
-[loc_1981]
+[treewall1_lvl2door]
 model=model_loc_1980
 sharelight=yes
 length=2
@@ -11055,55 +11055,55 @@ op1=Open
 blockwalk=no
 active=no
 
-[loc_1982]
+[gnomefence]
 model=model_loc_1982
 hillskew=yes
 blockrange=no
 active=no
 
-[loc_1983]
+[watchtower_wall]
 model=model_loc_1983
 blockrange=no
 active=no
 
-[loc_1984]
+[watchtower_cornerwall]
 model=model_loc_1984
 active=no
 
-[loc_2007]
+[waterfall_ledge_left]
 model=model_loc_2007
 active=no
 sharelight=yes
 
-[loc_2008]
+[waterfall_ledge_middle]
 model=model_loc_2008
 active=no
 sharelight=yes
 
-[loc_2009]
+[waterfall_ledge_right]
 model=model_loc_2009
 active=no
 sharelight=yes
 
-[loc_2010]
+[waterfall_ledge_door]
 name=Ledge
 model=model_loc_2010
 sharelight=yes
 op1=Open
 
-[loc_2011]
+[waterfall_ledge_door_left]
 name=Ledge
 model=model_loc_2011
 sharelight=yes
 op1=Open
 
-[loc_2012]
+[waterfall_ledge_door_right]
 name=Ledge
 model=model_loc_2012
 sharelight=yes
 op1=Open
 
-[loc_2013]
+[red_worm_corner]
 name=Vine
 desc=Known commonly as Red worm vine.
 model=model_loc_1214
@@ -11116,7 +11116,7 @@ recol2s=16417
 recol2d=9281
 category=red_vine
 
-[loc_2014]
+[baxtorian_chalice_waterfall_quest]
 name=Chalice of eternity
 desc=A magically elevated chalice full of tears.
 model=model_loc_2014
@@ -11124,7 +11124,7 @@ op1=Take treasure
 width=2
 length=2
 
-[loc_2015]
+[baxtorian_chalice_waterfall_quest_ash]
 name=Chalice of eternity
 desc=A magically elevated chalice full of ash.
 model=model_loc_2014
@@ -11134,7 +11134,7 @@ length=2
 recol1s=14800
 recol1d=7399
 
-[loc_2016]
+[waterfall_foam]
 model=model_loc_2016
 width=2
 ambient=80
@@ -11144,7 +11144,7 @@ anim=water_foam
 hasalpha=yes
 active=no
 
-[loc_2017]
+[waterfall_foam_big]
 model=model_loc_2016
 width=4
 length=2
@@ -11158,7 +11158,7 @@ anim=water_foam
 hasalpha=yes
 active=no
 
-[loc_2018]
+[waterfall_foam_small]
 model=model_loc_2016
 resizex=64
 resizey=64
@@ -11170,7 +11170,7 @@ anim=water_foam
 hasalpha=yes
 active=no
 
-[loc_2019]
+[whirlpool]
 name=Whirlpool
 model=model_loc_2019
 width=3
@@ -11179,7 +11179,7 @@ anim=whirlpool
 hasalpha=yes
 resizey=1
 
-[loc_2020]
+[overhanging_tree1_waterfall_quest]
 name=Dead tree
 desc=It's to wet for firewood.
 model=model_loc_1286
@@ -11190,7 +11190,7 @@ recol1d=4194
 recol2s=6240
 recol2d=4194
 
-[loc_2021]
+[overhanging_tree2_waterfall_quest]
 model=model_loc_1286
 active=no
 recol1s=7296
@@ -11198,13 +11198,13 @@ recol1d=4194
 recol2s=6240
 recol2d=4194
 
-[loc_2022]
+[barrel_waterfall_quest]
 name=Barrel
 desc=A wooden barrel, maybe a way off this rock.
 model=model_loc_362
 op1=Get in
 
-[loc_2024]
+[hettycauldron]
 name=Cauldron
 desc=A large bubbling cauldron, smells... Ugh!
 model=model_loc_692
@@ -11221,7 +11221,7 @@ retex1s=wall
 retex1d=door2
 recol2s=6342
 recol2d=11458
-param=next_loc_stage,loc_1535
+param=next_loc_stage,poordoor
 
 [loc_2026]
 name=Fishing spot
@@ -11273,7 +11273,7 @@ op2=Harpoon
 op3=hidden
 op4=hidden
 
-[loc_2032]
+[guidordoor]
 name=Door
 desc=It's closed.
 model=model_loc_3
@@ -11283,9 +11283,9 @@ retex1s=wall
 retex1d=door
 recol2s=6342
 recol2d=11458
-param=next_loc_stage,loc_2033
+param=next_loc_stage,guidordooropen
 
-[loc_2033]
+[guidordooropen]
 name=Door
 desc=It's open.
 model=model_loc_3
@@ -11295,7 +11295,7 @@ retex1d=door
 recol2s=6342
 recol2d=11458
 
-[loc_2065]
+[bioladder]
 name=Rope Ladder
 desc=Used for climbing.
 model=model_loc_2065
@@ -11304,7 +11304,7 @@ mapscene=21
 retex1s=wall
 retex1d=mossybricks
 
-[loc_2066]
+[bioladderwall]
 name=Wall
 model=model_loc_1934
 mapscene=21
@@ -11317,7 +11317,7 @@ model=model_loc_2067
 hillskew=yes
 op1=Investigate
 
-[loc_2070]
+[wydindooropen]
 model=model_loc_3
 active=no
 retex1s=wall
@@ -11340,7 +11340,7 @@ retex1s=wall
 retex1d=door
 recol2s=6342
 recol2d=11458
-param=next_loc_stage,loc_1532
+param=next_loc_stage,desertdoor_inactive
 
 [loc_2113]
 name=Ladder
@@ -11350,7 +11350,7 @@ active=yes
 op1=Climb-down
 mapscene=7
 
-[loc_2117]
+[scorpionwall]
 name=Old wall
 desc=It's an old wall.
 model=model_loc_3
@@ -11385,7 +11385,7 @@ blockrange=no
 recol1s=15855
 recol1d=17030
 
-[loc_2145]
+[shutghostcoffin]
 name=Coffin
 desc=Ooooh! Spooky!
 model=model_loc_398
@@ -11394,7 +11394,7 @@ length=2
 op1=Open
 op2=Search
 
-[loc_2146]
+[restless_ghost_altar]
 name=Coffin
 desc=Ooooh! Spooky!
 model=model_loc_399
@@ -11403,14 +11403,14 @@ length=2
 op1=Close
 op2=Search
 
-[loc_2147]
+[wizards_tower_laddertop]
 name=Ladder
 model=model_loc_133
 active=yes
 op1=Climb-down
 mapscene=7
 
-[loc_2148]
+[wizards_tower_ladder]
 name=Ladder
 model=model_loc_11
 active=yes
@@ -11422,7 +11422,7 @@ name=Obelisk
 desc=An imposing stone structure.
 model=model_loc_2149
 
-[loc_2150]
+[obelisk_earth]
 name=Obelisk of Earth
 desc=A column of elemental power.
 model=model_loc_2150
@@ -11430,7 +11430,7 @@ width=3
 length=3
 param=charge_orb_name,earth obelisk
 
-[loc_2151]
+[obelisk_water]
 name=Obelisk of Water
 desc=A column of elemental power.
 model=model_loc_2151
@@ -11438,13 +11438,13 @@ width=2
 length=2
 param=charge_orb_name,water obelisk
 
-[loc_2152]
+[obelisk_air]
 name=Obelisk of Air
 desc=A column of elemental power.
 model=model_loc_2152
 param=charge_orb_name,air obelisk
 
-[loc_2153]
+[obelisk_fire]
 name=Obelisk of Fire
 desc=A column of elemental power.
 model=model_loc_2153
@@ -11453,7 +11453,7 @@ length=2
 ambient=50
 param=charge_orb_name,fire obelisk
 
-[loc_2154]
+[lockedguildgatel]
 name=Gate
 desc=A wrought iron gate.
 model=model_loc_52
@@ -11462,7 +11462,7 @@ active=yes
 blockrange=no
 category=magic_guild_dungeon_door
 
-[loc_2155]
+[lockedguildgater]
 name=Gate
 desc=A wrought iron gate.
 model=model_loc_52
@@ -11472,7 +11472,7 @@ active=yes
 blockrange=no
 category=magic_guild_dungeon_door
 
-[loc_2156]
+[wiztowerportal]
 name=Magic Portal
 desc=A magical portal of teleportation.
 model=model_loc_739
@@ -11480,7 +11480,7 @@ length=2
 active=yes
 op1=Enter
 
-[loc_2157]
+[darkwizportal]
 name=Magic Portal
 desc=A magical portal of teleportation.
 model=model_loc_739
@@ -11488,7 +11488,7 @@ length=2
 active=yes
 op1=Enter
 
-[loc_2158]
+[thormacportal]
 name=Magic Portal
 desc=A magical portal of teleportation.
 model=model_loc_739
@@ -11496,7 +11496,7 @@ length=2
 active=yes
 op1=Enter
 
-[loc_2180]
+[treegnomecatapult]
 name=Catapult
 desc=It's a war machine.
 model=model_loc_671
@@ -11505,7 +11505,7 @@ length=3
 hasalpha=yes
 active=yes
 
-[loc_2186]
+[treegnomelooserailing]
 name=Loose Railing
 desc=Hmmm... I wonder if it's loose enough to get through.
 model=model_loc_14
@@ -11519,7 +11519,7 @@ desc=It's a sack!
 model=model_loc_23
 op1=Search
 
-[loc_2265]
+[shilocart]
 name=Travel cart
 desc=A sturdy cart for travelling in.
 model=model_loc_307
@@ -11554,13 +11554,13 @@ retex1d=door
 recol2s=6342
 recol2d=11458
 
-[loc_2268]
+[paramayaladderup]
 name=Ladder
 desc=This leads up to the sleeping area.
 model=model_loc_11
 op1=Climb-up
 
-[loc_2269]
+[paramayaladderdown]
 name=Ladder
 desc=This leads downwards.
 model=model_loc_10
@@ -11761,13 +11761,13 @@ forcedecor=yes
 recol1s=12580
 recol1d=5285
 
-[blackknight_hole]
+[blackknighthole]
 name=Hole
 desc=You can see a cauldron directly below.
 model=model_loc_696
 active=yes
 
-[blackknight_front_door]
+[bkfortressdoor1]
 name=Sturdy door
 desc=This door is very sturdy looking.
 model=model_loc_1512
@@ -11778,9 +11778,9 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 category=door_open_and_close
-param=next_loc_stage,loc_1535
+param=next_loc_stage,poordoor
 
-[blackknight_banquet_hall_door]
+[bkfortressdoor2]
 name=Door
 desc=This door is closed.
 model=model_loc_3
@@ -11791,9 +11791,9 @@ retex1d=door
 recol2s=6342
 recol2d=11458
 category=door_open_and_close
-param=next_loc_stage,loc_1532
+param=next_loc_stage,desertdoor_inactive
 
-[blackknight_door_to_grill]
+[bkfortressdoor3]
 name=Sturdy door
 desc=This door is very sturdy looking.
 model=model_loc_1512
@@ -11804,9 +11804,9 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 category=door_open_and_close
-param=next_loc_stage,loc_1535
+param=next_loc_stage,poordoor
 
-[blackknight_potion_room_door]
+[inacbkfortressdoor]
 name=Sturdy door
 desc=This door is very sturdy looking.
 model=model_loc_1512
@@ -11817,7 +11817,7 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[blackknight_pushable_wall]
+[bksecretdoor]
 name=Wall
 desc=There is something strange about this wall...
 model=model_loc_3
@@ -11826,120 +11826,120 @@ op1=Push
 retex1s=wall
 retex1d=mossybricks
 category=door_open_and_close
-param=next_loc_stage,loc_1588
+param=next_loc_stage,inactivesecretdoor2
 
-[blackknight_grate]
+[witchgrill]
 name=Grill
 desc=Looks like a ventilation grill.
 model=model_loc_1873
 active=yes
 op1=Listen-at
 
-[loc_2343]
+[lightbrick_1x1]
 name=Brick
 desc=A large stone block.
 model=model_loc_2343
 
-[loc_2344]
+[lightbrick_1x3]
 name=Brick
 desc=A large stone block.
 model=model_loc_2344
 width=3
 
-[loc_2345]
+[lightbrick_2x1]
 name=Brick
 desc=A large stone block.
 model=model_loc_2345
 
-[loc_2346]
+[lightbrick_2x2]
 name=Brick
 desc=A large stone block.
 model=model_loc_2346
 width=2
 length=2
 
-[loc_2347]
+[darkbrick_1x1]
 name=Brick
 desc=A large stone block.
 model=model_loc_2347
 
-[loc_2348]
+[darkbrick_1x3]
 name=Brick
 desc=A large stone block.
 model=model_loc_2348
 width=3
 
-[loc_2349]
+[darkbrick_2x2]
 name=Brick
 desc=A large stone block.
 model=model_loc_2349
 width=2
 length=2
 
-[digsite_winch]
+[digwinch1]
 name=Winch
 desc=Used to move earth to, and from, the dig shaft.
 model=model_loc_2350
 op1=Operate
 length=2
 
-[digsite_private_dig_winch]
+[digwinch2]
 name=Winch
 desc=Used to move earth to, and from, the dig shaft.
 model=model_loc_2350
 op1=Operate
 length=2
 
-[digsite_private_dig_exit_rope]
+[winchladder1]
 name=Rope
 desc=This leads back up the dig shaft.
 model=model_loc_1762
 op1=Climb-up
 
-[digsite_blocked_altar_exit_rope]
+[winchladder2]
 name=Rope
 desc=This leads back up the dig shaft.
 model=model_loc_1762
 op1=Climb-up
 
-[digsite_sacks_empty]
+[digsitesacks]
 name=Sacks
 desc=Yep, they're sacks!
 model=model_loc_23
 op1=Search
 
-[loc_2355]
+[digsitesackkey]
 name=Sacks
 desc=Yep, they're sacks!
 model=model_loc_23
 op1=Search
 
-[digsite_sacks_specimen_jars]
+[digsamplesacks]
 name=Sacks
 desc=Yep, they're sacks!
 model=model_loc_23
 op1=Search
 
-[digsite_bush_empty]
+[digsitebush]
 name=Bush
 desc=A leafy bush.
 model=model_loc_1124
 op1=Search
 
-[digsite_bush_rock_sample]
+[digsitebushsample]
 name=Bush
 desc=A leafy bush.
 model=model_loc_1124
 op1=Search
 
-[digsite_sealed_barrel]
+[digbarrelclosed]
 name=Barrel
 desc=A sealed barrel with a warning sign on it.
 model=model_loc_2359
 op1=Open
 op2=Search
 
-[digsite_chest_open]
+[digchestopen]
 name=Chest
 desc=I wonder what's inside...
 model=model_loc_76
@@ -11947,86 +11947,86 @@ op1=Search
 op2=Close
 forceapproach=north
 
-[digsite_chest]
+[digchestclosed]
 name=Chest
 desc=A sturdy chest to keep things in.
 model=wooden_chest
 op1=Open
 forceapproach=north
 
-[digsite_blocked_altar_brick]
+[digblastbrick]
 name=Brick
 desc=A large stone block.
 model=model_loc_2343
 op1=Search
 
-[digsite_panning_point]
+[panning_point]
 name=Panning point
 desc=A place where you can pan for gold.
 model=model_loc_42
 op1=Look
 
-[loc_2364]
+[digcrate1]
 name=Crate
 desc=A wooden container.
 model=model_loc_63
 
-[loc_2365]
+[digcrate2]
 name=Crate
 desc=A wooden container.
 model=model_loc_63
 
-[digsite_signpost_training_site]
+[digsigntrain]
 name=Signpost
 desc=A signpost!
 model=model_loc_1034
 op1=Read
 
-[digsite_signpost_level_1_site]
+[digsign1]
 name=Signpost
 desc=A signpost!
 model=model_loc_1034
 op1=Read
 
-[digsite_signpost_level_2_site]
+[digsign2]
 name=Signpost
 desc=A signpost!
 model=model_loc_1034
 op1=Read
 
-[digsite_signpost_level_3_site]
+[digsign3]
 name=Signpost
 desc=A signpost!
 model=model_loc_1034
 op1=Read
 
-[digsite_signpost_private_site]
+[digsignprivate]
 name=Signpost
 desc=A signpost!
 model=model_loc_1034
 op1=Read
 
-[loc_2371]
+[digcentresign]
 name=Signpost
 desc=A signpost!
 model=model_loc_1033
 op1=Read
 
-[exam_centre_bookcase_chemicals]
+[digbookcase]
 name=Bookcase
 desc=Shelves filled with interesting books.
 model=model_loc_380
 length=2
 op1=Search
 
-[exam_centre_cupboard_rock_pick]
+[samplecupboardshut]
 name=Cupboard
 desc=A cupboard.
 model=model_loc_367
 op1=Open
 forceapproach=east
 
-[exam_centre_cupboard_rock_pick_open]
+[samplecupboardopen]
 name=Cupboard
 desc=A cupboard.
 model=model_loc_370
@@ -12042,7 +12042,7 @@ length=2
 width=2
 op2=Search
 
-[loc_2376]
+[digdugupsoil1]
 name=Soil
 desc=Soil - dug up!
 model=model_loc_184
@@ -12051,7 +12051,7 @@ active=yes
 blockwalk=no
 category=digsite_soil
 
-[loc_2377]
+[digdugupsoil2]
 name=Soil
 desc=Soil - dug up!
 model=model_loc_185
@@ -12060,7 +12060,7 @@ active=yes
 blockwalk=no
 category=digsite_soil
 
-[loc_2378]
+[digdugupsoil3]
 name=Soil
 desc=Soil - dug up!
 model=model_loc_186
@@ -12069,13 +12069,13 @@ active=yes
 blockwalk=no
 category=digsite_soil
 
-[loc_2379]
+[campsite_bed]
 name=Campsite bed
 desc=Technically a bed.
 model=model_loc_422
 length=2
 
-[loc_2380]
+[brokensamplechestclosed]
 name=Chest
 desc=I wonder what's inside...
 model=model_loc_76
@@ -12083,7 +12083,7 @@ op1=Search
 op2=Close
 forceapproach=north
 
-[loc_2381]
+[swamp_digdugupsoil1]
 name=Soil
 desc=Swampy dirt.
 model=model_loc_184
@@ -12099,7 +12099,7 @@ recol3d=4324
 recol4s=14594
 recol4d=2210
 
-[loc_2382]
+[swamp_digdugupsoil2]
 name=Soil
 desc=Swampy dirt.
 model=model_loc_185
@@ -12113,7 +12113,7 @@ recol2d=4324
 recol3s=15586
 recol3d=4324
 
-[loc_2383]
+[swamp_digdugupsoil3]
 name=Soil
 desc=Swampy dirt.
 model=model_loc_186
@@ -12127,7 +12127,7 @@ recol2d=4324
 recol3s=15586
 recol3d=4325
 
-[loc_2384]
+[digsite_decking]
 model=model_loc_498
 sharelight=yes
 hillskew=yes
@@ -12137,7 +12137,7 @@ recol1d=13537
 recol2s=12614
 recol2d=11425
 
-[loc_2385]
+[digsite_decking_2]
 model=model_loc_499
 sharelight=yes
 hillskew=yes
@@ -12147,7 +12147,7 @@ recol1d=13537
 recol2s=12614
 recol2d=11425
 
-[loc_2386]
+[digsite_decking_broken]
 model=model_loc_502
 sharelight=yes
 hillskew=yes
@@ -12157,7 +12157,7 @@ recol1d=13537
 recol2s=12614
 recol2d=11425
 
-[loc_2387]
+[digsite_decking_corner_a]
 model=model_loc_503
 sharelight=yes
 hillskew=yes
@@ -12167,7 +12167,7 @@ recol1d=13537
 recol2s=12614
 recol2d=11425
 
-[loc_2388]
+[digsite_decking_corner_b]
 model=model_loc_504
 sharelight=yes
 hillskew=yes
@@ -12177,7 +12177,7 @@ recol1d=13537
 recol2s=12614
 recol2d=11425
 
-[loc_2389]
+[digsite_decking_corner_c]
 model=model_loc_505
 sharelight=yes
 hillskew=yes
@@ -12187,7 +12187,7 @@ recol1d=13537
 recol2s=12614
 recol2d=11425
 
-[loc_2390]
+[digsite_decking_corner_d]
 model=model_loc_506
 sharelight=yes
 hillskew=yes
@@ -12197,11 +12197,11 @@ recol1d=13537
 recol2s=12614
 recol2d=11425
 
-[loc_2395]
+[gate_open_gnomeball_game]
 model=model_loc_193
 blockrange=no
 
-[loc_2396]
+[bigpinkbed]
 name=Bed
 desc=Distinctly feminine.
 model=model_loc_424
@@ -12212,7 +12212,7 @@ recol1d=28213
 recol2s=25224
 recol2d=22700
 
-[loc_2405]
+[phoenixladder]
 name=Ladder
 desc=I can climb this.
 model=model_loc_11
@@ -12220,7 +12220,7 @@ active=yes
 op1=Climb-up
 mapscene=7
 
-[loc_2406]
+[zanarisdoor]
 name=Door
 desc=The door is closed.
 model=model_loc_3
@@ -12231,7 +12231,7 @@ retex1d=door
 recol2s=6342
 recol2d=11458
 
-[loc_2407]
+[zanarismagicdoor]
 name=Magic door
 desc=The door is closed.
 model=model_loc_3
@@ -12242,7 +12242,7 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[loc_2408]
+[entranaladdertop]
 name=Ladder
 desc=I can climb down this.
 model=model_loc_1759
@@ -12250,7 +12250,7 @@ active=yes
 op1=Climb-down
 mapscene=7
 
-[loc_2409]
+[leprechauntree]
 name=Tree
 desc=A commonly found tree.
 model=model_loc_1278
@@ -12259,7 +12259,7 @@ length=2
 mapscene=1
 op1=Chop
 
-[loc_2410]
+[zanarisladderout]
 name=Ladder
 desc=I can climb this.
 model=model_loc_11
@@ -12267,7 +12267,7 @@ active=yes
 op1=Climb-up
 mapscene=7
 
-[loc_2411]
+[zanarismarketdoor]
 name=Sturdy door
 desc=The door is closed.
 model=model_loc_3
@@ -12278,11 +12278,11 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[loc_2419]
+[blue_icon]
 model=model_loc_771
 mapscene=44
 
-[loc_2420]
+[white_icon]
 model=model_loc_771
 mapscene=45
 
@@ -12398,26 +12398,26 @@ name=Rubble
 desc=Broken parts of an old temple.
 model=model_loc_2510
 
-[loc_2515]
+[rowboat]
 name=Row boat
 desc=I hope it doesn't sink.
 model=model_loc_2515
 width=3
 length=3
 
-[loc_2516]
+[rowboatsinking]
 name=Row boat
 desc=It's sinking!
 model=model_loc_2516
 width=3
 length=2
 
-[loc_2517]
+[slugladder]
 name=Ladder
 model=model_loc_11
 op1=Climb-up
 
-[loc_2518]
+[loosepanel]
 name=Loose panel
 desc=Typical shoddy workmanship.
 model=model_loc_3
@@ -12429,13 +12429,13 @@ retex1d=elfwood
 recol2s=6342
 recol2d=23020
 
-[loc_2519]
+[kennithwall]
 name=Crates
 desc=Crates of packed fish.
 model=model_loc_355
 op1=Shout-across
 
-[loc_2520]
+[fishingcrane]
 name=Crane
 desc=It's used for loading and unloading fishing boats.
 model=model_loc_2520
@@ -12443,7 +12443,7 @@ width=4
 length=4
 op1=Rotate
 
-[loc_2521]
+[fishingcrane_noscript]
 name=Crane
 desc=It's used for loading and unloading fishing boats.
 model=model_loc_2521
@@ -12690,7 +12690,7 @@ retex1s=wall
 retex1d=door2
 recol2s=6342
 recol2d=11458
-param=next_loc_stage,loc_1535
+param=next_loc_stage,poordoor
 
 [loc_2611]
 name=Ladder
@@ -12699,7 +12699,7 @@ active=yes
 op1=Climb-down
 mapscene=7
 
-[loc_2623]
+[deepdungeondoor]
 name=Door
 model=model_loc_37
 active=yes
@@ -12718,18 +12718,18 @@ shadow=no
 op1=Bait
 op3=hidden
 
-[loc_2631]
+[dungeonjail]
 name=Door
 model=model_loc_37
 active=yes
 active=yes
 op1=Open
 
-[loc_2637]
+[snipable_wall]
 model=model_loc_3
 blockrange=no
 
-[loc_2639]
+[inviswall_no_blockrange]
 model=model_loc_83
 width=2
 length=2
@@ -12742,7 +12742,7 @@ sharelight=yes
 model=model_loc_2649
 sharelight=yes
 
-[loc_2667]
+[ropepullthingy]
 name=Winch
 desc=Slaves are using this to pull up barrels of rocks from down below.
 model=model_loc_2350
@@ -12750,7 +12750,7 @@ length=2
 op1=Look at
 op2=Use
 
-[loc_2668]
+[ropepullthingy2]
 name=Winch bucket
 desc=Slaves are placing barrels on this to haul them to the surface.
 model=model_loc_2668
@@ -12767,13 +12767,13 @@ mapscene=14
 op1=Go-through
 op2=Look-at
 
-[loc_2672]
+[experimental_anvil]
 name=An experimental anvil
 desc=I can try to make new items on this.
 model=model_loc_2672
 op1=Use
 
-[loc_2673]
+[miningcampgateclosedl]
 name=Gate
 model=model_loc_52
 active=yes
@@ -12782,7 +12782,7 @@ op2=Search
 category=double_door_open_and_close_left
 param=next_loc_stage,loc_1562
 
-[loc_2674]
+[miningcampgateclosedr]
 name=Gate
 model=model_loc_52
 mirror=yes
@@ -12792,14 +12792,14 @@ op2=Search
 category=double_door_open_and_close_right
 param=next_loc_stage,loc_1563
 
-[loc_2675]
+[thttmineentrancel]
 name=Mine door entrance
 desc=Large solid, thick set oak doors.
 model=model_loc_71
 op1=Open
 op2=Watch
 
-[loc_2676]
+[thttmineentrancer]
 name=Mine door entrance
 desc=Large solid, thick set oak doors.
 model=model_loc_71
@@ -12807,14 +12807,14 @@ mirror=yes
 op1=Open
 op2=Watch
 
-[loc_2677]
+[captain_siads_chest_closed]
 name=Chest
 desc=A solid looking chest, it belongs to Captain Siad.
 model=wooden_chest
 op1=Open
 forceapproach=north
 
-[loc_2678]
+[capt_siad_bookcase]
 name=Bookcase
 desc=A selection of Captain Siad's Books.
 model=model_loc_380
@@ -12833,14 +12833,14 @@ retex1d=wood2
 retex2s=elfwood
 retex2d=wood2
 
-[loc_2680]
+[thminebarrel_full]
 name=Barrel
 desc=A barrel containing rocks and mining debris.
 model=model_loc_362
 op1=Look-in
 op2=Search
 
-[loc_2681]
+[thminebarrel_empty]
 name=Barrel
 desc=An empty mining barrel.
 model=model_loc_362
@@ -12856,21 +12856,21 @@ length=3
 op1=Look at
 op2=Search
 
-[loc_2683]
+[cell_escape_window]
 name=Window
 model=model_loc_1848
 ambient=10
 active=yes
 op2=Search
 
-[loc_2684]
+[touristtrap_minecart]
 name=Mine Cart
 desc=It seems to be used for moving rocks into and out of this area.
 model=model_loc_637
 op1=Look at
 op2=Search
 
-[loc_2685]
+[undergroundcellgatel]
 name=Gate
 model=model_loc_52
 active=yes
@@ -12879,7 +12879,7 @@ op2=Search
 category=double_door_open_and_close_left
 param=next_loc_stage,loc_1562
 
-[loc_2686]
+[undergroundcellgater]
 name=Gate
 model=model_loc_52
 mirror=yes
@@ -12889,7 +12889,7 @@ op2=Search
 category=double_door_open_and_close_right
 param=next_loc_stage,loc_1563
 
-[loc_2687]
+[undergroundniceminel]
 name=Gate
 model=model_loc_52
 active=yes
@@ -12898,7 +12898,7 @@ op2=Search
 category=double_door_open_and_close_left
 param=next_loc_stage,loc_1562
 
-[loc_2688]
+[undergroundniceminer]
 name=Gate
 model=model_loc_52
 mirror=yes
@@ -12908,23 +12908,23 @@ op2=Search
 category=double_door_open_and_close_right
 param=next_loc_stage,loc_1563
 
-[loc_2689]
+[capt_siad_cell_door]
 name=Prison door
 desc=There's no getting around it, it's a fairly sturdy prison cell door.
 model=model_loc_37
 op1=Open
 active=yes
 
-[loc_2690]
+[thttmineexitl]
 name=Mine door entrance
 desc=Large solid, thick set oak doors - they lead outside.
 model=model_loc_71
 op1=Open
 op2=Search
 category=double_door_open_and_close_left
-param=next_loc_stage,loc_1522
+param=next_loc_stage,opencastledoubledoorl
 
-[loc_2691]
+[thttmineexitr]
 name=Mine door entrance
 desc=Large solid, thick set oak doors - they lead outside.
 model=model_loc_71
@@ -12932,9 +12932,9 @@ mirror=yes
 op1=Open
 op2=Search
 category=double_door_open_and_close_right
-param=next_loc_stage,loc_1523
+param=next_loc_stage,doubledoorhingel
 
-[loc_2694]
+[ttcellclimbrock1]
 name=Rock
 model=plainrock2
 op2=Climb-to
@@ -12942,7 +12942,7 @@ blockrange=no
 recol1s=6342
 recol1d=15749
 
-[loc_2695]
+[ttcellclimbrock2]
 name=Rock
 model=model_loc_453
 op2=Climb-to
@@ -12950,7 +12950,7 @@ blockrange=no
 recol1s=6342
 recol1d=15749
 
-[loc_2696]
+[ttcellclimbrock3]
 name=Rock
 model=plainrock2
 op2=Climb-to
@@ -12958,7 +12958,7 @@ blockrange=no
 recol1s=6342
 recol1d=15749
 
-[loc_2697]
+[ttcellclimbrock4]
 name=Rock
 model=model_loc_453
 op2=Climb down
@@ -12966,7 +12966,7 @@ blockrange=no
 recol1s=6342
 recol1d=15749
 
-[loc_2698]
+[thminecaver]
 name=Mine cave
 model=model_loc_1423
 sharelight=yes
@@ -12974,7 +12974,7 @@ hillskew=yes
 op1=Walk through
 category=desertrescue_minecave
 
-[loc_2699]
+[thminecavel]
 name=Mine cave
 model=model_loc_1423
 sharelight=yes
@@ -12983,7 +12983,7 @@ mirror=yes
 op1=Walk through
 category=desertrescue_minecave
 
-[loc_2700]
+[bedabin_tentdoor]
 name=Tent door
 desc=The entrance to the tent.
 model=model_loc_1526
@@ -12994,14 +12994,14 @@ recol1d=13741
 recol2s=16481
 recol2d=16878
 
-[loc_2701]
+[bedabin_tentdoor_open]
 model=model_loc_1527
 recol1s=14400
 recol1d=13741
 recol2s=16481
 recol2d=16878
 
-[loc_2702]
+[anatracks1]
 name=Tracks
 desc=Tracks in the sand.
 model=model_loc_2702
@@ -13011,7 +13011,7 @@ op1=Look at
 op2=Search
 shadow=no
 
-[loc_2703]
+[anatracks2]
 name=Tracks
 desc=Tracks in the sand.
 model=model_loc_2702
@@ -13021,7 +13021,7 @@ op1=Look at
 op2=Search
 shadow=no
 
-[loc_2704]
+[punishrocks]
 name=Rocks.
 desc=Stoney!
 model=model_loc_453
@@ -13033,7 +13033,7 @@ recol1d=7400
 category=mining_rock_normal
 param=next_loc_stage_mining,plainrock1
 
-[loc_2705]
+[combodoor]
 name=Door
 model=model_loc_3
 active=yes
@@ -13043,7 +13043,7 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[loc_2706]
+[tribaltotemdoor]
 name=Door
 desc=A nicely fitted door.
 model=model_loc_3
@@ -13054,26 +13054,26 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[loc_2707]
+[horncrate]
 name=Crate
 desc=A wooden crate for storage.
 model=model_loc_355
 op2=Investigate
 
-[loc_2708]
+[teleportcrate]
 name=Crate
 desc=A wooden crate for storage.
 model=model_loc_63
 op2=Investigate
 
-[loc_2709]
+[totemshutchest]
 name=Chest
 desc=I wonder what's inside?
 model=wooden_chest
 op1=Open
 forceapproach=north
 
-[loc_2710]
+[totemopenchest]
 name=Chest
 desc=It's open.
 model=model_loc_76
@@ -13081,7 +13081,7 @@ op1=Search
 op2=Close
 forceapproach=north
 
-[loc_2711]
+[totemtrapstairs]
 name=Stairs
 desc=It's a flight of stairs.
 model=model_loc_54
@@ -13095,32 +13095,32 @@ name=Kebab
 desc=A Spicy meat kebab is cooking here.
 model=model_loc_2723
 
-[loc_2733]
+[general_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=0
 
-[loc_2734]
+[sword_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=1
 
-[loc_2735]
+[magic_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=2
 
-[loc_2736]
+[axe_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=3
 
-[loc_2737]
+[helmet_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=4
 
-[loc_2738]
+[bank_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=5
@@ -13130,261 +13130,261 @@ model=model_loc_2733
 forcedecor=yes
 mapfunction=6
 
-[loc_2740]
+[amulet_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=7
 
-[loc_2741]
+[mining_site_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=8
 
-[loc_2742]
+[furnace_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=9
 
-[loc_2743]
+[anvil_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=10
 
-[loc_2744]
+[combattraining_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=11
 
-[loc_2745]
+[dungeonentrance_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=12
 
-[loc_2746]
+[staff_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=13
 
-[loc_2747]
+[plate_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=14
 
-[loc_2748]
+[platelegs_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=15
 
-[loc_2749]
+[scimitar_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=16
 
-[loc_2750]
+[archery_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=17
 
-[loc_2751]
+[shield_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=18
 
-[loc_2752]
+[altar_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=19
 
-[loc_2753]
+[herbalist_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=20
 
-[loc_2754]
+[jewlery_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=21
 
-[loc_2755]
+[gem_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=22
 
-[loc_2756]
+[crafting_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=23
 
-[loc_2757]
+[candle_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=24
 
-[loc_2758]
+[fishing_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=25
 
-[loc_2759]
+[fishing_point_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=26
 blockwalk=no
 
-[loc_2760]
+[clothing_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=27
 
-[loc_2761]
+[potions_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=28
 
-[loc_2762]
+[silk_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=29
 
-[loc_2763]
+[kebab_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=30
 
-[loc_2764]
+[beer_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=31
 
-[loc_2765]
+[mace_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=32
 
-[loc_2766]
+[tanner_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=33
 
-[loc_2767]
+[rare_trees_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=34
 
-[loc_2768]
+[spinningwheel_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=35
 
-[loc_2769]
+[food_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=36
 
-[loc_2770]
+[cooking_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=37
 
-[loc_2771]
+[water_source_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=39
 
-[loc_2772]
+[range_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=40
 
-[loc_2773]
+[skirts_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=41
 
-[loc_2774]
+[pottery_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=42
 
-[loc_2775]
+[flour_mill_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=43
 
-[loc_2776]
+[mining_shop_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=44
 
-[loc_2777]
+[chain_shop_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=45
 
-[loc_2778]
+[silver_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=46
 
-[loc_2779]
+[fur_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=47
 
-[loc_2780]
+[spice_store_icon]
 model=model_loc_2733
 forcedecor=yes
 mapfunction=48
 
-[loc_2836]
+[darkcaverock2]
 name=Rock
 model=plainrock2
 op1=Search
 
-[loc_2837]
+[darkcaverock3]
 name=Rock
 model=model_loc_453
 op1=Search
 
-[loc_2838]
+[stone_stand_crystal_cyan]
 model=model_loc_2838
 active=no
 recol1s=22292
 recol1d=3764
 
-[loc_2839]
+[stone_stand_crystal_yellow]
 model=model_loc_2838
 active=no
 recol1s=22292
 recol1d=27361
 
-[loc_2840]
+[stone_stand_crystal_magenta]
 model=model_loc_2838
 active=no
 recol1s=22292
 recol1d=31070
 
-[loc_2841]
+[stone_stand_crystal_white]
 model=model_loc_2838
 active=no
 recol1s=2978
 recol1d=32767
 
-[loc_2842]
+[magicalshield]
 name=Magical shield
 model=model_loc_2842
 anim=magicwall
 hasalpha=yes
 length=2
 
-[varrock_palace_sewer_drain]
+[questdrain]
 name=Drain
 desc=This drain leads from the sink to the sewers below.
 model=model_loc_876
 active=yes
 op1=Search
 
-[loc_2861]
+[witchhousedoor]
 name=Door
 model=model_loc_3
 active=yes
@@ -13394,7 +13394,7 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[loc_2862]
+[witchbackdoor]
 name=Door
 model=model_loc_3
 active=yes
@@ -13404,7 +13404,7 @@ retex1d=door2
 recol2s=6342
 recol2d=11458
 
-[loc_2863]
+[witchsheddoor]
 name=Door
 desc=The door is closed.
 model=model_loc_3
@@ -13415,7 +13415,7 @@ retex1d=door
 recol2s=6342
 recol2d=11458
 
-[loc_2864]
+[witchfountain]
 name=Fountain
 desc=A water feature.
 model=model_loc_153
@@ -13424,7 +13424,7 @@ length=2
 mapscene=8
 op2=Check
 
-[loc_2865]
+[shockgatel]
 name=Gate
 model=model_loc_52
 active=yes
@@ -13436,7 +13436,7 @@ recol2d=11458
 category=ball_irongate
 param=next_loc_stage,loc_1562
 
-[loc_2866]
+[shockgater]
 name=Gate
 model=model_loc_52
 active=yes
@@ -13449,20 +13449,20 @@ recol2d=11458
 category=ball_irongate
 param=next_loc_stage,loc_1563
 
-[loc_2867]
+[witchpot]
 name=Pot plant
 model=model_loc_1155
 active=yes
 op1=Look-under
 
-[loc_2868]
+[magnetcbshut]
 name=Cupboard
 model=model_loc_368
 length=2
 op1=Open
 forceapproach=east
 
-[loc_2869]
+[magnetcbopen]
 name=Cupboard
 model=model_loc_371
 length=2
@@ -13470,14 +13470,14 @@ op1=Search
 op2=Shut
 forceapproach=east
 
-[loc_2870]
+[witchmousehole]
 name=Mouse hole
 desc=The mouse equivalent of a door.
 model=model_loc_1874_q
 active=yes
 op1=Examine
 
-[loc_2871]
+[magearena_ladder_to_cellar]
 name=Ladder
 desc=I can climb down this.
 model=model_loc_1759
@@ -13497,7 +13497,7 @@ recol5d=4228
 recol6s=6208
 recol6d=3171
 
-[loc_2872]
+[magearena_ladder_from_cellar]
 name=Ladder
 desc=I can climb this.
 model=model_loc_11
@@ -13505,28 +13505,28 @@ active=yes
 op1=Climb-up
 mapscene=7
 
-[loc_2873]
+[magearena_statue_saradomin]
 name=Statue of Saradomin
 desc=What a good likeness!
 model=model_loc_586
 op1=Pray at
 forceapproach=south
 
-[loc_2874]
+[magearena_statue_zamorak]
 name=Statue of Zamorak
 desc=A depiction that chills one to the bone.
 model=model_loc_587
 op1=Pray at
 forceapproach=south
 
-[loc_2875]
+[magearena_statue_guthix]
 name=Statue of Guthix
 desc=I wonder how accurate a representation this is.
 model=model_loc_2875
 op1=Pray at
 forceapproach=south
 
-[loc_2876]
+[rockcounter_grey]
 name=Counter
 desc=A counter made from a stone block.
 model=model_loc_2791
@@ -13535,12 +13535,12 @@ hillskew=yes
 recol1s=10400
 recol1d=9513
 
-[loc_2877]
+[barrel_staffs]
 name=Barrel
 desc=A barrel full of staffs...
 model=model_loc_2877
 
-[loc_2878]
+[magearena_waterportal1]
 name=Sparkling pool
 desc=Patterns of light dance hypnotically across the pool's surface.
 model=model_loc_2878
@@ -13550,7 +13550,7 @@ op1=Step-into
 resizex=196
 resizez=196
 
-[loc_2879]
+[magearena_waterportal2]
 name=Sparkling pool
 desc=Patterns of light dance hypnotically across the pool's surface.
 model=model_loc_2878
@@ -13560,7 +13560,7 @@ op1=Step-into
 resizex=196
 resizez=196
 
-[loc_2880]
+[magearena_scan]
 name=Mystic portal
 model=model_loc_2880
 ambient=100
@@ -13568,7 +13568,7 @@ contrast=100
 active=yes
 op1=Walk-through
 
-[loc_2881]
+[alidoor]
 name=Prison Door
 desc=It's closed.
 model=model_loc_37
@@ -13624,13 +13624,13 @@ op1=Look
 recol1s=6273
 recol1d=23145
 
-[loc_2995]
+[chestlocked]
 name=Closed chest
 desc=I wonder what's inside.
 model=wooden_chest
 op1=Open
 
-[loc_2996]
+[chestlockedgold]
 name=Closed chest
 desc=I wonder what's inside.
 model=wooden_chest

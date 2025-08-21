@@ -85,9 +85,9 @@ if(%prince_keystatus = ^prince_keyclaimed & ~obj_gettotal(princeskey) = 0) { // 
     inv_del(inv, coins, 15);
     %prince_keystatus = ^prince_keymade;
     ~mesbox("That is good. I will have another key made. You may collect it from Leela.");
-} else if(%prince_keystatus = 0 & inv_total(inv, key_print) >= 1 & inv_total(inv, bronze_bar) >= 1) {
+} else if(%prince_keystatus = 0 & inv_total(inv, keyprint) >= 1 & inv_total(inv, bronze_bar) >= 1) {
     ~chatnpc("<p,shifty>Well done; we can make the key now.");
-    inv_del(inv, key_print, 1);
+    inv_del(inv, keyprint, 1);
     inv_del(inv, bronze_bar, 1);
     %prince_keystatus = ^prince_keymade;
     ~mesbox("Osman takes the key imprint and the bronze bar.");
@@ -136,7 +136,7 @@ if(inv_total(inv, rope) >= 1) {
 ~chatplayer("<p,neutral>Thank you. I will try to find the other items.");
 
 [opnpcu,osman]
-if(%prince_progress = ^prince_spoken_osman & (last_useitem = bronze_bar | last_useitem = key_print)) {
+if(%prince_progress = ^prince_spoken_osman & (last_useitem = bronze_bar | last_useitem = keyprint)) {
     @osman_items;
 }
 ~displaymessage(^dm_default);
