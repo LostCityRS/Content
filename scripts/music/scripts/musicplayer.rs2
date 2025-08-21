@@ -1,0 +1,16 @@
+[if_button,music:com_180]
+%musicplay = 1;
+@music_playbyregion(coord);
+
+[if_button,music:com_181]
+%musicplay = 0;
+
+// ----
+
+[if_button,music:newbie_melody] ~music_playbybutton(music:newbie_melody);
+[if_button,music:ground_scape] ~music_playbybutton(music:ground_scape);
+[if_button,music:harmony] ~music_playbybutton(music:harmony);
+[if_button,music:scape_main] ~music_playbybutton(music:scape_main);
+[if_button,music:scape_original] ~music_playbybutton(music:scape_original);
+[if_button,music:scape_santa] ~music_playbybutton(music:scape_santa);
+[if_button,music:scape_scared] ~music_playbybutton(music:scape_scared);

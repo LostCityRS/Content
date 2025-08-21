@@ -1,6 +1,8 @@
 [login,_]
 mes("Welcome to RuneScape.");
 
+%musicplay = 1; // set to auto on login
+
 bas_readyanim(human_ready);
 bas_turnonspot(human_turnonspot);
 bas_walk_f(human_walk_f);
