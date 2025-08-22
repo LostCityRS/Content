@@ -19162,16 +19162,15 @@ op1=Search
 op2=Close
 forceapproach=north
 
-[loc_2712]
-name=Door
-desc=The door is closed.
-model=door1
-retex1s=wall
-retex1d=door2
-recol2s=6342
-recol2d=11458
-active=yes
-op1=Open
+[totemtrapstairs]
+name=Stairs
+desc=It's a flight of stairs.
+model=ikov_darkstairs
+width=2
+length=3
+op1=Climb-up
+op2=Investigate
+forceapproach=south
 
 // todo: name used from 244
 [hopper_full]
@@ -19274,66 +19273,6 @@ model=loc_2722
 name=Kebab
 desc=A spicy meat kebab is cooking here.
 model=loc_2723
-
-[loc_2724]
-name=Fireplace
-desc=A fire burns brightly here.
-model=loc_2724
-anim=fireplace
-
-[loc_2725]
-name=Fireplace
-desc=A grand old fireplace.
-model=loc_2725
-length=3
-anim=grandfireplace
-
-[loc_2726]
-name=Fireplace
-desc=A grand old fireplace.
-model=loc_2725
-retex1s=wall
-retex1d=mossybricks
-length=3
-anim=grandfireplace
-
-[loc_2727]
-name=Cooking pot
-desc=Something is cooking nicely here.
-model=loc_2727
-anim=fireplace
-
-[loc_2728]
-name=Range
-desc=Ideal for cooking on.
-model=loc_2728
-length=2
-forceapproach=east
-
-[loc_2729]
-name=Range
-desc=Ideal for cooking on.
-model=loc_2728
-
-[loc_2730]
-name=Range
-desc=Ideal for cooking on.
-model=loc_2728
-
-[loc_2731]
-name=Range
-desc=Ideal for cooking on.
-model=loc_2728
-
-[loc_2732]
-name=Fire
-desc=Hot!
-model=loc_2732
-anim=fire
-blockwalk=no
-blockrange=no
-ambient=75
-contrast=75
 
 [general_store_icon]
 model=minigame_start_icon

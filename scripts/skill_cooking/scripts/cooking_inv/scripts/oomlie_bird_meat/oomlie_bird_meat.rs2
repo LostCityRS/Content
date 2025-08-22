@@ -1,0 +1,30 @@
+[opheldu,palm_leaf]
+switch_obj (last_useitem) {
+    case raw_oomlie : @make_oomlie_wrap;
+};
+
+[opheldu,raw_oomlie]
+switch_obj (last_useitem) {
+    case palm_leaf : @make_oomlie_wrap;
+};
+
+[label,make_oomlie_wrap]
+if (map_members = ^false) {
+    mes("You can only make that on a members' server.");
+    return;
+}
+// this is a guess
+if (stat(cooking) < 50) {
+    mes("You need a Cooking level of 50 to make wrapped oomlie meat.");
+    return;
+}
+// delete leaf and raw oomlie
+inv_del(inv, palm_leaf, 1);
+inv_del(inv, raw_oomlie, 1);
+// add wrapped oomlie
+inv_add(inv, wrapped_oomlie, 1);
+// display messages
+mes("You carefully construct a small parcel out of the palm leaf.");
+mes("The palm leaf should protect the meat from being burnt.");
+
+stat_advance(cooking, 100);

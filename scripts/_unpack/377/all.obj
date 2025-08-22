@@ -21722,582 +21722,125 @@ members=yes
 2dxan=244
 weight=10g
 
-[raw_ugthanki_meat]
-name=Raw ugthanki meat
-desc=I need to cook this first.
-cost=2
-model=obj_enchanted_beef
-2dxof=1
-2dyof=3
-2dzoom=560
-2dyan=176
-2dxan=308
-members=yes
-weight=800g
-
 [cert_raw_ugthanki_meat]
 certlink=raw_ugthanki_meat
 certtemplate=template_for_cert
-
-[cooked_ugthanki_meat]
-name=Ugthanki meat
-desc=Freshly cooked ugthanki meat.
-recol1s=24609
-recol1d=16609
-recol2s=32767
-recol2d=20774
-cost=5
-model=obj_enchanted_beef
-2dxof=1
-2dyof=3
-2dzoom=560
-2dyan=176
-2dxan=308
-members=yes
-iop1=Eat
-weight=600g
 
 [cert_cooked_ugthanki_meat]
 certlink=cooked_ugthanki_meat
 certtemplate=template_for_cert
 
-[uncooked_pitta_bread]
-name=Pitta dough
-desc=I need to cook this.
-recol1s=21135
-recol1d=29595
-cost=4
-model=obj_uncooked_pitta_bread
-2dzoom=980
-2dyan=108
-2dxan=248
-members=yes
-weight=120g
-
 [cert_uncooked_pitta_bread]
 certlink=uncooked_pitta_bread
 certtemplate=template_for_cert
-
-[pitta_bread]
-name=Pitta bread
-desc=Nicely baked pitta bread. Needs more ingredients to make a kebab.
-recol1s=21135
-recol1d=30547
-cost=10
-model=obj_uncooked_pitta_bread
-2dzoom=980
-2dyan=108
-2dxan=248
-members=yes
-weight=100g
 
 [cert_pitta_bread]
 certlink=pitta_bread
 certtemplate=template_for_cert
 
-[burnt_pitta_bread]
-name=Burnt pitta bread
-desc=It's all burnt.
-recol1s=21135
-recol1d=5285
-cost=1
-model=obj_uncooked_pitta_bread
-2dzoom=980
-2dyan=108
-2dxan=248
-members=yes
-weight=80g
-
 [cert_burnt_pitta_bread]
 certlink=burnt_pitta_bread
 certtemplate=template_for_cert
-
-[bowl_tomato]
-name=Chopped tomato
-desc=A mixture of tomatoes in a bowl.
-model=obj_bowl_tomato
-2dyof=4
-2dzoom=890
-2dyan=36
-2dxan=156
-cost=3
-members=yes
-iop1=Eat
-weight=200g
 
 [cert_bowl_tomato]
 certlink=bowl_tomato
 certtemplate=template_for_cert
 
-[bowl_onion]
-name=Chopped onion
-desc=A mixture of onions in a bowl.
-model=obj_bowl_onion
-2dyof=4
-2dzoom=890
-2dyan=36
-2dxan=156
-cost=3
-members=yes
-iop1=Eat
-weight=200g
-
 [cert_bowl_onion]
 certlink=bowl_onion
 certtemplate=template_for_cert
-
-[bowl_ugthanki]
-name=Chopped ugthanki
-desc=Strips of ugthanki meat in a bowl.
-model=obj_bowl_ugthanki
-2dyof=4
-2dzoom=890
-2dyan=36
-2dxan=156
-cost=5
-members=yes
-weight=200g
 
 [cert_bowl_ugthanki]
 certlink=bowl_ugthanki
 certtemplate=template_for_cert
 
-[bowl_oniontomato]
-name=Onion & tomato
-desc=A mixture of chopped onions and tomatoes in a bowl.
-model=obj_bowl_ugthanki
-2dyof=4
-2dzoom=890
-2dyan=36
-2dxan=156
-cost=5
-members=yes
-iop1=Eat
-weight=300g
-
 [cert_bowl_oniontomato]
 certlink=bowl_oniontomato
 certtemplate=template_for_cert
-
-[bowl_ugthankionion]
-name=Ugthanki & onion
-desc=A mixture of chopped onions and ugthanki meat in a bowl.
-model=obj_bowl_ugthanki
-2dyof=4
-2dzoom=890
-2dyan=36
-2dxan=156
-cost=7
-members=yes
-weight=300g
 
 [cert_bowl_ugthankionion]
 certlink=bowl_ugthankionion
 certtemplate=template_for_cert
 
-[bowl_ugthankitomato]
-name=Ugthanki & tomato
-desc=A mixture of chopped tomatoes and ugthanki meat in a bowl.
-model=obj_bowl_ugthanki
-2dyof=4
-2dzoom=890
-2dyan=36
-2dxan=156
-cost=7
-members=yes
-weight=300g
-
 [cert_bowl_ugthankitomato]
 certlink=bowl_ugthankitomato
 certtemplate=template_for_cert
-
-[bowl_oniontomugthanki]
-name=Kebab mix
-desc=A mixture of chopped tomatoes, onions and ugthanki meat in a bowl.
-model=obj_bowl_ugthanki
-2dyof=4
-2dzoom=890
-2dyan=36
-2dxan=156
-cost=9
-members=yes
-weight=400g
 
 [cert_bowl_oniontomugthanki]
 certlink=bowl_oniontomugthanki
 certtemplate=template_for_cert
 
-[ugthanki_kebab_bad]
-name=Ugthanki kebab
-desc=A strange smelling kebab made from ugthanki meat.
-model=obj_ugthanki_kebab_bad
-2dxof=4
-2dyof=1
-2dzoom=700
-2dyan=1844
-2dzan=176
-2dxan=1876
-cost=20
-members=yes
-iop1=Eat
-weight=500g
-
 [cert_ugthanki_kebab_bad]
 certlink=ugthanki_kebab_bad
 certtemplate=template_for_cert
-
-[ugthanki_kebab]
-name=Ugthanki kebab
-desc=A fresh kebab made from ugthanki meat.
-model=obj_ugthanki_kebab_bad
-2dxof=4
-2dyof=1
-2dzoom=700
-2dyan=1844
-2dzan=176
-2dxan=1876
-cost=20
-members=yes
-iop1=Eat
-weight=500g
 
 [cert_ugthanki_kebab]
 certlink=ugthanki_kebab
 certtemplate=template_for_cert
 
-[cake_tin]
-name=Cake tin
-desc=Useful for baking cakes.
-model=obj_cake_tin
-2dzoom=770
-2dyan=144
-2dxan=172
-cost=10
-weight=100g
-
 [cert_cake_tin]
 certlink=cake_tin
 certtemplate=template_for_cert
-
-[uncooked_cake]
-name=Uncooked cake
-desc=Now all I need to do is cook it.
-model=obj_uncooked_cake
-2dzoom=770
-2dyan=144
-2dxan=172
-cost=20
-weight=500g
 
 [cert_uncooked_cake]
 certlink=uncooked_cake
 certtemplate=template_for_cert
 
-[cake]
-name=Cake
-desc=A plain sponge cake.
-iop1=Eat
-cost=50
-model=obj_cake
-2dyof=-8
-2dzoom=670
-2dyan=120
-2dxan=164
-weight=300g
-
 [cert_cake]
 certlink=cake
 certtemplate=template_for_cert
-
-[partial_cake]
-name=2/3 cake
-desc=Someone has eaten a big chunk of this cake.
-recol1s=10400
-recol1d=30615
-recol2s=15680
-recol2d=21921
-iop1=Eat
-cost=30
-model=obj_partial_cake
-2dyof=-7
-2dzoom=690
-2dyan=1840
-2dxan=180
-weight=200g
 
 [cert_partial_cake]
 certlink=partial_cake
 certtemplate=template_for_cert
 
-[cake_slice]
-name=Slice of cake
-desc=I'd rather have a whole cake.
-recol1s=10400
-recol1d=30615
-recol2s=15680
-recol2d=21921
-iop1=Eat
-cost=10
-model=obj_cake_slice
-2dxof=5
-2dyof=-10
-2dzoom=600
-2dyan=1760
-2dxan=160
-weight=100g
-
 [cert_cake_slice]
 certlink=cake_slice
 certtemplate=template_for_cert
-
-[chocolate_cake]
-name=Chocolate cake
-desc=This looks very tasty.
-recol1s=32767
-recol1d=10432
-recol2s=15680
-recol2d=8288
-recol3s=19489
-recol3d=10432
-iop1=Eat
-cost=70
-model=obj_cake
-2dyof=-8
-2dzoom=670
-2dyan=120
-2dxan=164
-weight=300g
 
 [cert_chocolate_cake]
 certlink=chocolate_cake
 certtemplate=template_for_cert
 
-[partial_chocolate_cake]
-name=2/3 chocolate cake
-desc=Someone has eaten a big chunk of this cake.
-recol1s=32767
-recol1d=10432
-recol2s=15680
-recol2d=8288
-recol3s=19489
-recol3d=10432
-iop1=Eat
-model=obj_partial_cake
-2dyof=-7
-2dzoom=690
-2dyan=1840
-2dxan=180
-cost=50
-weight=200g
-
 [cert_partial_chocolate_cake]
 certlink=partial_chocolate_cake
 certtemplate=template_for_cert
-
-[chocolate_slice]
-name=Chocolate slice
-desc=I'd rather have a whole cake.
-recol1s=32767
-recol1d=10432
-recol2s=15680
-recol2d=8288
-recol3s=19489
-recol3d=10432
-iop1=Eat
-model=obj_cake_slice
-2dxof=5
-2dyof=-10
-2dzoom=600
-2dyan=1760
-2dxan=160
-cost=30
-weight=100g
 
 [cert_chocolate_slice]
 certlink=chocolate_slice
 certtemplate=template_for_cert
 
-[burnt_cake]
-name=Burnt cake
-desc=Argh what a mess!
-recol1s=10400
-recol1d=2114
-recol2s=15680
-recol2d=7399
-model=obj_cake
-2dyof=-8
-2dzoom=670
-2dyan=120
-2dxan=164
-cost=1
-weight=150g
-
 [cert_burnt_cake]
 certlink=burnt_cake
 certtemplate=template_for_cert
-
-[asgarnian_ale]
-name=Asgarnian ale
-desc=Probably the finest ale in Asgarnia.
-recol1s=25025
-recol1d=20801
-recol2s=31367
-recol2d=24995
-cost=2
-iop1=Drink
-model=obj_asgarnian_ale
-2dxof=-3
-2dyof=2
-2dzoom=660
-2dyan=1904
-2dxan=140
-weight=550g
 
 [cert_asgarnian_ale]
 certlink=asgarnian_ale
 certtemplate=template_for_cert
 
-[wizards_mind_bomb]
-name=Wizard's mind bomb
-desc=It's got strange bubbles in it.
-recol1s=25025
-recol1d=15860
-recol2s=31367
-recol2d=17974
-cost=2
-iop1=Drink
-model=obj_asgarnian_ale
-2dxof=-3
-2dyof=2
-2dzoom=660
-2dyan=1904
-2dxan=140
-weight=550g
-
 [cert_wizards_mind_bomb]
 certlink=wizards_mind_bomb
 certtemplate=template_for_cert
-
-[greenmans_ale]
-name=Greenman's ale
-desc=A glass of frothy ale.
-recol1s=25025
-recol1d=22979
-recol2s=31367
-recol2d=25093
-cost=2
-iop1=Drink
-members=yes
-model=obj_asgarnian_ale
-2dxof=-3
-2dyof=2
-2dzoom=660
-2dyan=1904
-2dxan=140
-weight=550g
 
 [cert_greenmans_ale]
 certlink=greenmans_ale
 certtemplate=template_for_cert
 
-[dragon_bitter]
-name=Dragon bitter
-desc=A glass of bitter.
-recol1s=25025
-recol1d=17441
-recol2s=31367
-recol2d=18465
-cost=2
-iop1=Drink
-members=yes
-model=obj_asgarnian_ale
-2dxof=-3
-2dyof=2
-2dzoom=660
-2dyan=1904
-2dxan=140
-weight=550g
-
 [cert_dragon_bitter]
 certlink=dragon_bitter
 certtemplate=template_for_cert
-
-[dwarven_stout]
-name=Dwarven stout
-desc=A pint of thick dark beer.
-recol1s=25025
-recol1d=4228
-recol2s=31367
-recol2d=10570
-cost=2
-iop1=Drink
-model=obj_asgarnian_ale
-2dxof=-3
-2dyof=2
-2dzoom=660
-2dyan=1904
-2dxan=140
-weight=550g
 
 [cert_dwarven_stout]
 certlink=dwarven_stout
 certtemplate=template_for_cert
 
-[grog]
-name=Grog
-desc=A murky glass of some sort of drink.
-recol1s=25025
-recol1d=10698
-recol2s=31367
-recol2d=11819
-cost=3
-iop1=Drink
-members=yes
-model=obj_asgarnian_ale
-2dxof=-3
-2dyof=2
-2dzoom=660
-2dyan=1904
-2dxan=140
-weight=550g
-
 [cert_grog]
 certlink=grog
 certtemplate=template_for_cert
 
-[beer]
-name=Beer
-desc=A glass of frothy ale.
-cost=2
-iop1=Drink
-model=obj_asgarnian_ale
-2dxof=-3
-2dyof=2
-2dzoom=660
-2dyan=1904
-2dxan=140
-manwear=obj_beer_manwear,0
-womanwear=obj_beer_manwear,6
-weight=550g
-wearpos=righthand
-
 [cert_beer]
 certlink=beer
 certtemplate=template_for_cert
-
-[beer_glass]
-name=Beer glass
-desc=I need to fill this with beer.
-cost=2
-model=obj_beer_glass
-2dxof=-3
-2dyof=2
-2dzoom=660
-2dyan=1904
-2dxan=140
-manwear=obj_beer_glass_manwear,0
-womanwear=obj_beer_glass_manwear,0
-weight=50g
 
 [cert_beer_glass]
 certlink=beer_glass
@@ -22349,20 +21892,6 @@ weight=1kg
 certlink=bucket_empty
 certtemplate=template_for_cert
 
-[bucket_milk]
-name=Bucket of milk
-desc=It's a bucket of milk.
-recol1s=173
-recol1d=32767
-cost=6
-model=obj_bucket_wax
-2dyof=-18
-2dzoom=1020
-2dyan=1660
-2dxan=204
-iop4=Empty
-weight=2200g
-
 [cert_bucket_milk]
 certlink=bucket_milk
 certtemplate=template_for_cert
@@ -22385,36 +21914,9 @@ weight=3kg
 certlink=bucket_water
 certtemplate=template_for_cert
 
-[pot_empty]
-name=Pot
-desc=This pot is empty.
-model=obj_pot_unfired
-2dxof=-1
-2dyof=2
-2dzoom=990
-2dyan=8
-2dxan=112
-manwear=obj_pot_empty_manwear,0
-womanwear=obj_pot_empty_manwear,6
-cost=1
-weight=1lb
-
 [cert_pot_empty]
 certlink=pot_empty
 certtemplate=template_for_cert
-
-[pot_flour]
-name=Pot of flour
-desc=There is flour in this pot.
-model=obj_pot_flour
-2dxof=-1
-2dyof=2
-2dzoom=990
-2dyan=8
-2dxan=112
-cost=10
-iop4=Empty
-weight=3lb
 
 [cert_pot_flour]
 certlink=pot_flour
@@ -22457,3967 +21959,781 @@ weight=1kg
 certlink=jug_water
 certtemplate=template_for_cert
 
-[swamp_tar]
-name=Swamp tar
-desc=A foul smelling thick tar-like substance.
-cost=1
-model=obj_swamp_tar
-2dxof=1
-2dyof=-22
-2dzoom=710
-2dyan=148
-2dxan=224
-members=yes
-stackable=yes
-weight=1lb
-
-[rawswamppaste]
-name=Raw swamp paste
-desc=A thick tar-like substance mixed with flour.
-recol1s=4228
-recol1d=7399
-cost=1
-model=obj_swamp_tar
-2dxof=1
-2dyof=-22
-2dzoom=710
-2dyan=148
-2dxan=224
-members=yes
-stackable=yes
-weight=18oz
-
-[swamppaste]
-name=Swamp paste
-desc=A tar-like substance mixed with flour and warmed.
-cost=30
-model=obj_swamppaste
-2dxof=1
-2dyof=-22
-2dzoom=710
-2dyan=148
-2dxan=224
-members=yes
-stackable=yes
-weight=18oz
-
-[potato]
-name=Potato
-desc=This could be used to make a good stew.
-recol1s=10464
-recol1d=16805
-cost=1
-model=obj_potato
-2dxof=1
-2dyof=-6
-2dzoom=860
-2dyan=1856
-2dxan=208
-iop1=Eat
-weight=500g
-
 [cert_potato]
 certlink=potato
 certtemplate=template_for_cert
-
-[egg]
-name=Egg
-desc=A nice fresh egg.
-cost=4
-model=obj_egg
-2dxof=1
-2dzoom=630
-2dyan=68
-2dxan=144
-weight=20g
 
 [cert_egg]
 certlink=egg
 certtemplate=template_for_cert
 
-[flour]
-name=Flour
-desc=A little heap of flour.
-recol1s=21140
-recol1d=28539
-cost=2
-model=obj_unicorn_horn_dust
-2dxof=-6
-2dzoom=1210
-2dyan=1892
-2dxan=264
-weight=500g
-
-[grain]
-name=Grain
-desc=Some wheat heads.
-cost=2
-model=obj_grain
-2dxof=-1
-2dyof=9
-2dzoom=830
-2dyan=88
-2dxan=292
-weight=600g
-
 [cert_grain]
 certlink=grain
 certtemplate=template_for_cert
-
-[chefs_hat]
-name=Chef's hat
-desc=What a silly hat.
-recol1s=15855
-recol1d=32767
-cost=2
-model=obj_chefs_hat
-2dxof=-4
-2dyof=3
-2dzoom=580
-2dxan=668
-manwear=obj_chefs_hat_manwear,0
-womanwear=obj_chefs_hat_womanwear,0
-manhead=obj_chefs_hat_manhead
-womanhead=obj_chefs_hat_womanhead
-iop2=Wear
-wearpos=hat
-weight=2lb
 
 [cert_chefs_hat]
 certlink=chefs_hat
 certtemplate=template_for_cert
 
-[redberries]
-name=Redberries
-desc=Very bright red berries.
-cost=3
-model=obj_white_berries
-2dxof=1
-2dyof=4
-2dzoom=970
-2dyan=668
-2dxan=404
-weight=7g
-
 [cert_redberries]
 certlink=redberries
 certtemplate=template_for_cert
-
-[pastry_dough]
-name=Pastry dough
-desc=Potentially pastry.
-cost=1
-model=obj_pastry_dough
-2dzoom=1210
-2dyan=116
-2dxan=220
-weight=6oz
 
 [cert_pastry_dough]
 certlink=pastry_dough
 certtemplate=template_for_cert
 
-[cooking_apple]
-name=Cooking apple
-desc=Keeps the doctor away.
-model=obj_cooking_apple
-2dzoom=940
-2dyan=80
-2dxan=212
-cost=1
-weight=3oz
-
 [cert_cooking_apple]
 certlink=cooking_apple
 certtemplate=template_for_cert
-
-[onion]
-name=Onion
-desc=A strong smelling onion.
-recol1s=31674
-recol1d=24108
-cost=3
-model=onion_offset_8
-2dzoom=670
-2dyan=116
-2dxan=116
-iop1=Eat
-weight=150g
 
 [cert_onion]
 certlink=onion
 certtemplate=template_for_cert
 
-[pumpkin]
-name=Pumpkin
-desc=Happy Halloween.
-cost=30
-iop1=Eat
-model=obj_pumpkin
-2dxof=3
-2dyof=-1
-2dzoom=1040
-2dyan=104
-2dxan=132
-weight=500g
-
 [cert_pumpkin]
 certlink=pumpkin
 certtemplate=template_for_cert
-
-[easter_egg]
-name=Easter egg
-desc=Happy Easter.
-cost=10
-iop1=Eat
-model=obj_easter_egg
-2dzoom=1080
-2dyan=20
-2dxan=2044
-weight=3oz
 
 [cert_easter_egg]
 certlink=easter_egg
 certtemplate=template_for_cert
 
-[banana]
-name=Banana
-desc=Mmm this looks tasty.
-cost=2
-iop1=Eat
-model=obj_banana
-2dxof=9
-2dyof=10
-2dzoom=930
-2dyan=1944
-2dxan=280
-manwear=obj_banana_manwear,0
-womanwear=obj_banana_manwear,6
-weight=1oz
-wearpos=righthand
-
 [cert_banana]
 certlink=banana
 certtemplate=template_for_cert
-
-[cabbage]
-name=Cabbage
-desc=Yuck I don't like cabbage.
-model=cabbage_fullygrown_8
-2dxof=1
-2dyof=27
-2dzoom=1730
-2dyan=1800
-2dxan=284
-iop1=Eat
-cost=1
-ambient=17
-weight=1lb
 
 [cert_cabbage]
 certlink=cabbage
 certtemplate=template_for_cert
 
-[magic_cabbage]
-name=Cabbage
-desc=Yuck I don't like cabbage.
-model=cabbage_fullygrown_8
-2dxof=1
-2dyof=27
-2dzoom=1730
-2dyan=1800
-2dxan=284
-iop1=Eat
-cost=1
-weight=350g
-
 [cert_magic_cabbage]
 certlink=magic_cabbage
 certtemplate=template_for_cert
-
-[spinach_roll]
-name=Spinach roll
-desc=A home made spinach thing.
-iop1=Eat
-model=obj_spinach_roll
-2dzoom=790
-2dyan=164
-2dxan=376
-cost=1
-weight=100g
 
 [cert_spinach_roll]
 certlink=spinach_roll
 certtemplate=template_for_cert
 
-[kebab]
-name=Kebab
-desc=A meaty kebab.
-cost=3
-iop1=Eat
-model=obj_ugthanki_kebab_bad
-2dxof=4
-2dyof=1
-2dzoom=700
-2dyan=1844
-2dzan=176
-2dxan=1876
-weight=250g
-
 [cert_kebab]
 certlink=kebab
 certtemplate=template_for_cert
-
-[chocolate_bar]
-name=Chocolate bar
-desc=Mmmmmmm chocolate.
-iop1=Eat
-cost=10
-model=obj_chocolate_bar
-2dxof=1
-2dyof=41
-2dzoom=950
-2dyan=208
-2dxan=276
-manwear=obj_chocolate_bar_manwear,0
-womanwear=obj_chocolate_bar_manwear,6
-weight=150g
-wearpos=lefthand
 
 [cert_chocolate_bar]
 certlink=chocolate_bar
 certtemplate=template_for_cert
 
-[chocolate_dust]
-name=Chocolate dust
-desc=It's ground up chocolate.
-recol1s=21140
-recol1d=11426
-cost=2
-model=obj_unicorn_horn_dust
-2dxof=-6
-2dzoom=1210
-2dyan=1892
-2dxan=264
-weight=150g
-
 [cert_chocolate_dust]
 certlink=chocolate_dust
 certtemplate=template_for_cert
-
-[chocolaty_milk]
-name=Chocolatey milk
-desc=Milk with chocolate in it.
-recol1s=173
-recol1d=13540
-iop1=Drink
-cost=2
-members=yes
-model=obj_bucket_wax
-2dyof=-18
-2dzoom=1020
-2dyan=1660
-2dxan=204
-weight=2kg
-
-[cup_of_tea]
-name=Cup of tea
-desc=A nice cup of tea.
-cost=10
-iop1=Drink
-model=obj_display_tea
-2dxof=-1
-2dyof=-2
-2dzoom=500
-2dyan=1980
-2dxan=156
-members=yes
-weight=150g
 
 [cert_cup_of_tea]
 certlink=cup_of_tea
 certtemplate=template_for_cert
 
-[cup_empty]
-name=Empty cup
-desc=An empty cup.
-recol1s=18991
-recol1d=32767
-recol2s=14764
-recol2d=21140
-recol3s=15821
-recol3d=27482
-cost=2
-model=obj_murdercup
-2dxof=-1
-2dyof=-2
-2dzoom=500
-2dyan=1980
-2dxan=156
-members=yes
-weight=50g
-
 [cert_cup_empty]
 certlink=cup_empty
 certtemplate=template_for_cert
-
-[tomato]
-name=Tomato
-desc=This would make good ketchup.
-cost=4
-iop1=Eat
-model=obj_tomato
-2dyof=-4
-2dzoom=550
-2dyan=1900
-2dxan=208
-weight=80g
 
 [cert_tomato]
 certlink=tomato
 certtemplate=template_for_cert
 
-[rottenapples]
-name=Rotten apple
-desc=Rotten to the core!
-recol1s=12033
-recol1d=13506
-recol2s=352
-recol2d=16871
-recol3s=5504
-recol3d=13506
-recol4s=7809
-recol4d=5504
-model=obj_cooking_apple
-2dzoom=940
-2dyan=80
-2dxan=212
-iop1=Eat
-members=yes
-cost=1
-weight=120g
-
-[cheese]
-name=Cheese
-desc=It's got holes in it.
-cost=4
-iop1=Eat
-model=obj_cheese
-2dzoom=1110
-2dyan=1812
-2dxan=116
-weight=200g
-
 [cert_cheese]
 certlink=cheese
 certtemplate=template_for_cert
-
-[grapes]
-name=Grapes
-desc=Good grapes for wine making.
-recol1s=30753
-recol1d=17451
-model=obj_white_berries
-2dxof=1
-2dyof=4
-2dzoom=970
-2dyan=668
-2dxan=404
-cost=1
-weight=250g
 
 [cert_grapes]
 certlink=grapes
 certtemplate=template_for_cert
 
-[half_full_wine_jug]
-name=Half full wine jug
-desc=An optimist would say it's half full.
-recol1s=32767
-recol1d=25765
-cost=1
-model=obj_wine_of_zamorak
-2dxof=1
-2dyof=100
-2dzoom=600
-2dyan=84
-2dxan=260
-iop1=Drink
-weight=1kg
-
 [cert_half_full_wine_jug]
 certlink=half_full_wine_jug
 certtemplate=template_for_cert
-
-[jug_bad_wine]
-name=Jug of bad wine
-desc=Oh dear, this wine is terrible!
-recol1s=32767
-recol1d=25765
-iop1=Drink
-model=obj_wine_of_zamorak
-2dxof=1
-2dyof=100
-2dzoom=600
-2dyan=84
-2dxan=260
-cost=1
-weight=1500g
 
 [cert_jug_bad_wine]
 certlink=jug_bad_wine
 certtemplate=template_for_cert
 
-[jug_wine]
-name=Jug of wine
-desc=It's full of wine.
-recol1s=32767
-recol1d=25765
-cost=1
-iop1=Drink
-model=obj_wine_of_zamorak
-2dxof=1
-2dyof=100
-2dzoom=600
-2dyan=84
-2dxan=260
-weight=1500g
-
 [cert_jug_wine]
 certlink=jug_wine
 certtemplate=template_for_cert
-
-[jug_unfermented_wine]
-name=Unfermented wine
-desc=This wine needs to ferment before it can be drunk.
-recol1s=32767
-recol1d=25765
-cost=10
-model=obj_wine_of_zamorak
-2dxof=1
-2dyof=100
-2dzoom=600
-2dyan=84
-2dxan=260
-weight=1500g
 
 [cert_jug_unfermented_wine]
 certlink=jug_unfermented_wine
 certtemplate=template_for_cert
 
-[stew1]
-name=Incomplete stew
-desc=I need to add some meat too.
-recol1s=21119
-recol1d=14800
-cost=4
-model=obj_goldbowl_water
-2dzoom=910
-2dyan=1856
-2dxan=204
-weight=1kg
-
 [cert_stew1]
 certlink=stew1
 certtemplate=template_for_cert
-
-[stew2]
-name=Incomplete stew
-desc=I need to add some potato too.
-recol1s=21119
-recol1d=14800
-cost=4
-model=obj_goldbowl_water
-2dzoom=910
-2dyan=1856
-2dxan=204
-weight=1200g
 
 [cert_stew2]
 certlink=stew2
 certtemplate=template_for_cert
 
-[uncooked_stew]
-name=Uncooked stew
-desc=I need to cook this.
-recol1s=21119
-recol1d=19974
-cost=10
-model=obj_goldbowl_water
-2dzoom=910
-2dyan=1856
-2dxan=204
-weight=1500g
-
 [cert_uncooked_stew]
 certlink=uncooked_stew
 certtemplate=template_for_cert
-
-[stew]
-name=Stew
-desc=It's a meat and potato stew.
-recol1s=21119
-recol1d=11488
-iop1=Eat
-cost=20
-model=obj_goldbowl_water
-2dzoom=910
-2dyan=1856
-2dxan=204
-weight=1500g
 
 [cert_stew]
 certlink=stew
 certtemplate=template_for_cert
 
-[burnt_stew]
-name=Burnt stew
-desc=Eew, it's horribly burnt.
-recol1s=21119
-recol1d=4228
-cost=1
-model=obj_goldbowl_water
-2dzoom=910
-2dyan=1856
-2dxan=204
-iop1=Empty Bowl
-weight=1300g
-
 [cert_burnt_stew]
 certlink=burnt_stew
 certtemplate=template_for_cert
-
-[spicespot]
-name=Spice
-desc=This could liven up an otherwise bland stew.
-cost=230
-model=obj_spicespot
-2dyof=-1
-2dzoom=710
-2dyan=160
-2dxan=136
-members=yes
-weight=200g
 
 [cert_spicespot]
 certlink=spicespot
 certtemplate=template_for_cert
 
-[uncooked_curry]
-name=Uncooked curry
-desc=I need to cook this.
-recol1s=21119
-recol1d=31201
-cost=10
-model=obj_goldbowl_water
-2dzoom=910
-2dyan=1856
-2dxan=204
-members=yes
-weight=1500g
-
 [cert_uncooked_curry]
 certlink=uncooked_curry
 certtemplate=template_for_cert
-
-[curry]
-name=Curry
-desc=It's a spicy hot curry.
-recol1s=21119
-recol1d=22881
-iop1=Eat
-cost=20
-model=obj_goldbowl_water
-2dzoom=910
-2dyan=1856
-2dxan=204
-members=yes
-weight=1500g
 
 [cert_curry]
 certlink=curry
 certtemplate=template_for_cert
 
-[burnt_curry]
-name=Burnt curry
-desc=Eew, it's horribly burnt.
-recol1s=21119
-recol1d=4228
-cost=1
-model=obj_goldbowl_water
-2dzoom=910
-2dyan=1856
-2dxan=204
-members=yes
-iop1=Empty Bowl
-weight=1300g
-
 [cert_burnt_curry]
 certlink=burnt_curry
 certtemplate=template_for_cert
-
-[vodka]
-name=Vodka
-desc=A strong spirit.
-cost=5
-iop1=Drink
-members=yes
-model=obj_vodka
-2dyof=-1
-2dzoom=970
-2dyan=1888
-2dxan=104
-weight=1kg
 
 [cert_vodka]
 certlink=vodka
 certtemplate=template_for_cert
 
-[whisky]
-name=Whisky
-desc=A bottle of Draynor Malt.
-cost=5
-iop1=Drink
-members=yes
-model=obj_khali_brew
-2dyof=-1
-2dzoom=970
-2dyan=1888
-2dxan=104
-weight=1kg
-
 [cert_whisky]
 certlink=whisky
 certtemplate=template_for_cert
-
-[gin]
-name=Gin
-desc=A strong spirit.
-recol1s=11328
-recol1d=352
-cost=5
-iop1=Drink
-members=yes
-model=obj_khali_brew
-2dyof=-1
-2dzoom=970
-2dyan=1888
-2dxan=104
-weight=1kg
 
 [cert_gin]
 certlink=gin
 certtemplate=template_for_cert
 
-[brandy]
-name=Brandy
-desc=A strong spirit.
-cost=5
-iop1=Drink
-members=yes
-model=obj_murderbottle
-2dzoom=1030
-2dyan=1808
-2dxan=76
-weight=1kg
-
 [cert_brandy]
 certlink=brandy
 certtemplate=template_for_cert
-
-[cocktail_guide]
-name=Cocktail guide
-desc=A book on tree gnome cocktails.
-recol1s=13472
-recol1d=7427
-cost=2
-iop1=Read
-members=yes
-model=obj_mcannonbook
-2dzoom=840
-2dyan=152
-2dxan=256
-weight=18oz
 
 [cert_cocktail_guide]
 certlink=cocktail_guide
 certtemplate=template_for_cert
 
-[cocktail_shaker]
-name=Cocktail shaker
-desc=Used for mixing cocktails.
-cost=2
-members=yes
-model=obj_cocktail_shaker
-2dyof=-1
-2dzoom=1000
-2dyan=116
-2dxan=92
-iop1=Inspect
-weight=150g
-
-[cocktail_glass_empty]
-name=Cocktail glass
-desc=For sipping cocktails.
-model=obj_cocktail_glass_empty
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-cost=1
-members=yes
-weight=100g
-
 [cert_cocktail_glass_empty]
 certlink=cocktail_glass_empty
 certtemplate=template_for_cert
-
-[premade_blurberry_special]
-name=Blurberry special
-desc=Looks good... smells strong.
-recol1s=31649
-recol1d=31297
-cost=30
-iop1=Drink
-members=yes
-model=obj_premade_blurberry_special
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=450g
 
 [cert_premade_blurberry_special]
 certlink=premade_blurberry_special
 certtemplate=template_for_cert
 
-[premade_choc_saturday]
-name=Choc saturday
-desc=A warm creamy alcoholic beverage.
-recol1s=473
-recol1d=16705
-cost=30
-iop1=Drink
-members=yes
-model=obj_premade_choc_saturday
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=450g
-
 [cert_premade_choc_saturday]
 certlink=premade_choc_saturday
 certtemplate=template_for_cert
-
-[premade_drunk_dragon]
-name=Drunk dragon
-desc=A warm creamy alcoholic beverage.
-cost=30
-iop1=Drink
-members=yes
-model=obj_premade_choc_saturday
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=450g
 
 [cert_premade_drunk_dragon]
 certlink=premade_drunk_dragon
 certtemplate=template_for_cert
 
-[premade_fruit_blast]
-name=Fruit blast
-desc=A cool refreshing fruit mix.
-recol1s=31649
-recol1d=31393
-recol2s=19442
-recol2d=30640
-recol3s=992
-recol3d=31553
-cost=30
-iop1=Drink
-members=yes
-model=obj_premade_blurberry_special
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=450g
-
 [cert_premade_fruit_blast]
 certlink=premade_fruit_blast
 certtemplate=template_for_cert
-
-[premade_pineapple_punch]
-name=Pineapple punch
-desc=A fresh healthy fruit mix.
-recol1s=31649
-recol1d=31589
-recol2s=19442
-recol2d=31297
-recol3s=992
-recol3d=31201
-cost=30
-iop1=Drink
-members=yes
-model=obj_premade_blurberry_special
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=450g
 
 [cert_premade_pineapple_punch]
 certlink=premade_pineapple_punch
 certtemplate=template_for_cert
 
-[premade_sgg]
-name=Short green guy
-desc=A Short Green Guy... looks good.
-recol1s=31649
-recol1d=17353
-cost=30
-iop1=Drink
-members=yes
-model=obj_premade_blurberry_special
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=450g
-
 [cert_premade_sgg]
 certlink=premade_sgg
 certtemplate=template_for_cert
-
-[premade_wizard_blizzard]
-name=Wizard blizzard
-desc=This looks like a strange mix.
-recol1s=31649
-recol1d=26517
-cost=30
-iop1=Drink
-members=yes
-model=obj_premade_blurberry_special
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=450g
 
 [cert_premade_wizard_blizzard]
 certlink=premade_wizard_blizzard
 certtemplate=template_for_cert
 
-[unfinished_pineapple_punch1]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=473
-recol1d=31589
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch1
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
-
 [cert_unfinished_pineapple_punch1]
 certlink=unfinished_pineapple_punch1
 certtemplate=template_for_cert
-
-[unfinished_pineapple_punch2]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=31649
-recol1d=31589
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch2
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
 
 [cert_unfinished_pineapple_punch2]
 certlink=unfinished_pineapple_punch2
 certtemplate=template_for_cert
 
-[unfinished_pineapple_punch3]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=31649
-recol1d=31589
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch2
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
-
 [cert_unfinished_pineapple_punch3]
 certlink=unfinished_pineapple_punch3
 certtemplate=template_for_cert
-
-[pineapple_punch]
-name=Pineapple punch
-desc=A fresh healthy fruit mix.
-recol1s=31649
-recol1d=31589
-recol2s=19442
-recol2d=31297
-recol3s=992
-recol3d=31201
-cost=30
-iop1=Drink
-members=yes
-model=obj_premade_blurberry_special
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=500g
 
 [cert_pineapple_punch]
 certlink=pineapple_punch
 certtemplate=template_for_cert
 
-[unfinished_wizard_blizzard1]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=473
-recol1d=26517
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch1
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
-
 [cert_unfinished_wizard_blizzard1]
 certlink=unfinished_wizard_blizzard1
 certtemplate=template_for_cert
-
-[unfinished_wizard_blizzard2]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=31649
-recol1d=26517
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch2
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
 
 [cert_unfinished_wizard_blizzard2]
 certlink=unfinished_wizard_blizzard2
 certtemplate=template_for_cert
 
-[wizard_blizzard]
-name=Wizard blizzard
-desc=This looks like a strange mix.
-recol1s=31649
-recol1d=26517
-cost=30
-iop1=Drink
-members=yes
-model=obj_premade_blurberry_special
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=500g
-
 [cert_wizard_blizzard]
 certlink=wizard_blizzard
 certtemplate=template_for_cert
-
-[unfinished_blurberry_special1]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=473
-recol1d=31297
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch1
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
 
 [cert_unfinished_blurberry_special1]
 certlink=unfinished_blurberry_special1
 certtemplate=template_for_cert
 
-[unfinished_blurberry_special2]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=31649
-recol1d=31297
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch2
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
-
 [cert_unfinished_blurberry_special2]
 certlink=unfinished_blurberry_special2
 certtemplate=template_for_cert
-
-[unfinished_blurberry_special3]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=31649
-recol1d=31297
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch2
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
 
 [cert_unfinished_blurberry_special3]
 certlink=unfinished_blurberry_special3
 certtemplate=template_for_cert
 
-[unfinished_blurberry_special4]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=31649
-recol1d=31297
-cost=2
-iop1=Drink
-members=yes
-model=obj_premade_blurberry_special
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
-
 [cert_unfinished_blurberry_special4]
 certlink=unfinished_blurberry_special4
 certtemplate=template_for_cert
-
-[blurberry_special]
-name=Blurberry special
-desc=Looks good... smells strong.
-recol1s=31649
-recol1d=31297
-cost=30
-iop1=Drink
-members=yes
-model=obj_premade_blurberry_special
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=500g
 
 [cert_blurberry_special]
 certlink=blurberry_special
 certtemplate=template_for_cert
 
-[unfinished_chocolate_saturday1]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=473
-recol1d=25199
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch1
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
-
 [cert_unfinished_chocolate_saturday1]
 certlink=unfinished_chocolate_saturday1
 certtemplate=template_for_cert
-
-[unfinished_chocolate_saturday2]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=473
-recol1d=16705
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch1
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
 
 [cert_unfinished_chocolate_saturday2]
 certlink=unfinished_chocolate_saturday2
 certtemplate=template_for_cert
 
-[unfinished_chocolate_saturday3]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=473
-recol1d=16705
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch1
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
-
 [cert_unfinished_chocolate_saturday3]
 certlink=unfinished_chocolate_saturday3
 certtemplate=template_for_cert
-
-[unfinished_chocolate_saturday4]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=473
-recol1d=16705
-cost=2
-iop1=Drink
-members=yes
-model=obj_premade_choc_saturday
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
 
 [cert_unfinished_chocolate_saturday4]
 certlink=unfinished_chocolate_saturday4
 certtemplate=template_for_cert
 
-[chocolate_saturday]
-name=Choc saturday
-desc=A warm creamy alcoholic beverage.
-recol1s=473
-recol1d=16705
-cost=30
-iop1=Drink
-members=yes
-model=obj_premade_choc_saturday
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=500g
-
 [cert_chocolate_saturday]
 certlink=chocolate_saturday
 certtemplate=template_for_cert
-
-[unfinished_sgg1]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=473
-recol1d=17353
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch1
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
 
 [cert_unfinished_sgg1]
 certlink=unfinished_sgg1
 certtemplate=template_for_cert
 
-[unfinished_sgg2]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=473
-recol1d=17353
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch1
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
-
 [cert_unfinished_sgg2]
 certlink=unfinished_sgg2
 certtemplate=template_for_cert
-
-[sgg]
-name=Short green guy
-desc=A Short Green Guy... looks good.
-recol1s=31649
-recol1d=17353
-cost=30
-iop1=Drink
-members=yes
-model=obj_premade_blurberry_special
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=500g
 
 [cert_sgg]
 certlink=sgg
 certtemplate=template_for_cert
 
-[unfinished_fruit_blast1]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=473
-recol1d=31393
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch1
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
-
 [cert_unfinished_fruit_blast1]
 certlink=unfinished_fruit_blast1
 certtemplate=template_for_cert
-
-[fruit_blast]
-name=Fruit blast
-desc=A cool refreshing fruit mix.
-recol1s=31649
-recol1d=31393
-recol2s=19442
-recol2d=30640
-recol3s=992
-recol3d=31553
-cost=30
-iop1=Drink
-members=yes
-model=obj_premade_blurberry_special
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=500g
 
 [cert_fruit_blast]
 certlink=fruit_blast
 certtemplate=template_for_cert
 
-[unfinished_drunk_dragon1]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch1
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
-
 [cert_unfinished_drunk_dragon1]
 certlink=unfinished_drunk_dragon1
 certtemplate=template_for_cert
-
-[unfinished_drunk_dragon2]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-recol1s=31649
-recol1d=473
-cost=2
-iop1=Drink
-members=yes
-model=obj_unfinished_pineapple_punch2
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
 
 [cert_unfinished_drunk_dragon2]
 certlink=unfinished_drunk_dragon2
 certtemplate=template_for_cert
 
-[unfinished_drunk_dragon3]
-name=Unfinished cocktail
-desc=This cocktail is just missing those little finishing touches.
-cost=2
-iop1=Drink
-members=yes
-model=obj_premade_choc_saturday
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
-
 [cert_unfinished_drunk_dragon3]
 certlink=unfinished_drunk_dragon3
 certtemplate=template_for_cert
-
-[drunk_dragon]
-name=Drunk dragon
-desc=A warm creamy alcoholic beverage.
-cost=30
-iop1=Drink
-members=yes
-model=obj_premade_choc_saturday
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=500g
 
 [cert_drunk_dragon]
 certlink=drunk_dragon
 certtemplate=template_for_cert
 
-[spoilt_cocktail]
-name=Odd cocktail
-desc=I'm not completely sure what this contains.
-recol1s=473
-recol1d=16912
-cost=2
-iop1=Empty
-iop3=Drink
-members=yes
-model=obj_unfinished_pineapple_punch1
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
-
 [cert_spoilt_cocktail]
 certlink=spoilt_cocktail
 certtemplate=template_for_cert
-
-[spoilt_cocktail_fruity]
-name=Odd cocktail
-desc=I'm not completely sure what this contains.
-recol1s=31649
-recol1d=16912
-cost=2
-iop1=Empty
-iop3=Drink
-members=yes
-model=obj_unfinished_pineapple_punch2
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
 
 [cert_spoilt_cocktail_fruity]
 certlink=spoilt_cocktail_fruity
 certtemplate=template_for_cert
 
-[spoilt_cocktail_creamy]
-name=Odd cocktail
-desc=I'm not completely sure what this contains.
-recol1s=473
-recol1d=16912
-cost=2
-iop1=Empty
-iop3=Drink
-members=yes
-model=obj_premade_choc_saturday
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
-
 [cert_spoilt_cocktail_creamy]
 certlink=spoilt_cocktail_creamy
 certtemplate=template_for_cert
-
-[spoilt_cocktail_slice]
-name=Odd cocktail
-desc=I'm not completely sure what this contains.
-recol1s=31649
-recol1d=16912
-recol2s=19442
-recol2d=19026
-recol3s=992
-recol3d=15855
-cost=2
-iop1=Empty
-iop3=Drink
-members=yes
-model=obj_premade_blurberry_special
-2dyof=1
-2dzoom=700
-2dyan=1988
-2dxan=104
-weight=400g
 
 [cert_spoilt_cocktail_slice]
 certlink=spoilt_cocktail_slice
 certtemplate=template_for_cert
 
-[lemon]
-name=Lemon
-desc=A fresh lemon.
-cost=2
-iop1=Eat
-members=yes
-model=obj_lemon
-2dzoom=1080
-2dyan=716
-2dxan=700
-weight=100g
-
 [cert_lemon]
 certlink=lemon
 certtemplate=template_for_cert
-
-[lemon_chunks]
-name=Lemon chunks
-desc=Fresh chunks of lemon.
-recol1s=31201
-recol1d=31660
-cost=2
-iop1=Eat
-members=yes
-model=obj_lemon_chunks
-2dxof=1
-2dyof=96
-2dzoom=870
-2dyan=2004
-2dzan=36
-2dxan=244
-weight=80g
 
 [cert_lemon_chunks]
 certlink=lemon_chunks
 certtemplate=template_for_cert
 
-[lemon_slices]
-name=Lemon slices
-desc=Fresh lemon slices.
-recol1s=31201
-recol1d=31393
-recol2s=30646
-recol2d=31637
-cost=2
-iop1=Eat
-members=yes
-model=obj_lemon_slices
-2dzoom=1090
-2dyan=336
-2dxan=284
-weight=80g
-
 [cert_lemon_slices]
 certlink=lemon_slices
 certtemplate=template_for_cert
-
-[orange]
-name=Orange
-desc=A fresh orange.
-cost=2
-iop1=Eat
-members=yes
-model=obj_orange
-2dzoom=910
-2dyan=120
-2dxan=308
-weight=110g
 
 [cert_orange]
 certlink=orange
 certtemplate=template_for_cert
 
-[orange_chunks]
-name=Orange chunks
-desc=Fresh chunks of orange.
-cost=2
-iop1=Eat
-members=yes
-model=obj_lemon_chunks
-2dxof=1
-2dyof=96
-2dzoom=870
-2dyan=2004
-2dzan=36
-2dxan=244
-weight=90g
-
 [cert_orange_chunks]
 certlink=orange_chunks
 certtemplate=template_for_cert
-
-[orange_slices]
-name=Orange slices
-desc=Fresh orange slices.
-recol1s=30646
-recol1d=31435
-cost=2
-iop1=Eat
-members=yes
-model=obj_lemon_slices
-2dzoom=1090
-2dyan=336
-2dxan=284
-weight=90g
 
 [cert_orange_slices]
 certlink=orange_slices
 certtemplate=template_for_cert
 
-[pineapple]
-name=Pineapple
-desc=It can be cut up into something more manageable with a knife.
-cost=1
-iop1=Eat
-members=yes
-model=obj_tentipineapple
-2dyof=1
-2dzoom=1290
-2dyan=100
-2dxan=172
-weight=150g
-
 [cert_pineapple]
 certlink=pineapple
 certtemplate=template_for_cert
-
-[pineapple_chunks]
-name=Pineapple chunks
-desc=Fresh chunks of pineapple.
-recol1s=31201
-recol1d=31429
-cost=1
-iop1=Eat
-members=yes
-model=obj_lemon_chunks
-2dxof=1
-2dyof=96
-2dzoom=870
-2dyan=2004
-2dzan=36
-2dxan=244
-weight=120g
 
 [cert_pineapple_chunks]
 certlink=pineapple_chunks
 certtemplate=template_for_cert
 
-[pineapple_ring]
-name=Pineapple ring
-desc=Exotic fruit.
-cost=1
-iop1=Eat
-members=yes
-model=obj_pineapple_ring
-2dxof=1
-2dzoom=650
-2dyan=416
-2dxan=248
-weight=30g
-
 [cert_pineapple_ring]
 certlink=pineapple_ring
 certtemplate=template_for_cert
-
-[lime]
-name=Lime
-desc=A fresh lime.
-cost=2
-iop1=Eat
-members=yes
-model=obj_lime
-2dzoom=1160
-2dyan=744
-2dxan=596
-weight=100g
 
 [cert_lime]
 certlink=lime
 certtemplate=template_for_cert
 
-[lime_chunks]
-name=Lime chunks
-desc=Fresh chunks of lime.
-recol1s=31201
-recol1d=23539
-cost=1
-iop1=Eat
-members=yes
-model=obj_lemon_chunks
-2dxof=1
-2dyof=96
-2dzoom=870
-2dyan=2004
-2dzan=36
-2dxan=244
-weight=80g
-
 [cert_lime_chunks]
 certlink=lime_chunks
 certtemplate=template_for_cert
-
-[lime_slices]
-name=Lime slices
-desc=Fresh lime slices.
-recol1s=30646
-recol1d=19443
-recol2s=31201
-recol2d=544
-cost=2
-iop1=Eat
-members=yes
-model=obj_lemon_slices
-2dzoom=1090
-2dyan=336
-2dxan=284
-weight=80g
 
 [cert_lime_slices]
 certlink=lime_slices
 certtemplate=template_for_cert
 
-[dwellberries]
-name=Dwellberries
-desc=Some rather pretty blue berries.
-cost=4
-iop1=Eat
-members=yes
-model=obj_dwellberries
-2dxof=6
-2dyof=-3
-2dzoom=1100
-2dyan=1856
-2dxan=180
-weight=14g
-
 [cert_dwellberries]
 certlink=dwellberries
 certtemplate=template_for_cert
-
-[equa_leaves]
-name=Equa leaves
-desc=Small sweet smelling leaves.
-cost=2
-iop1=Eat
-members=yes
-model=obj_equa_leaves
-2dxof=1
-2dzoom=730
-2dyan=644
-2dxan=664
-weight=14g
 
 [cert_equa_leaves]
 certlink=equa_leaves
 certtemplate=template_for_cert
 
-[pot_of_cream]
-name=Pot of cream
-desc=Fresh cream.
-cost=2
-iop1=Eat
-members=yes
-model=obj_pot_of_cream
-2dxof=1
-2dyof=-1
-2dzoom=580
-2dyan=1900
-2dxan=128
-weight=200g
-
 [cert_pot_of_cream]
 certlink=pot_of_cream
 certtemplate=template_for_cert
-
-[raw_beef]
-name=Raw beef
-desc=I need to cook this first.
-model=obj_enchanted_beef
-2dxof=1
-2dyof=3
-2dzoom=560
-2dyan=176
-2dxan=308
-cost=1
-weight=12oz
 
 [cert_raw_beef]
 certlink=raw_beef
 certtemplate=template_for_cert
 
-[raw_rat_meat]
-name=Raw rat meat
-desc=I need to cook this first.
-model=obj_enchanted_beef
-2dxof=1
-2dyof=3
-2dzoom=560
-2dyan=176
-2dxan=308
-cost=1
-weight=5oz
-
 [cert_raw_rat_meat]
 certlink=raw_rat_meat
 certtemplate=template_for_cert
-
-[raw_bear_meat]
-name=Raw bear meat
-desc=I need to cook this first.
-model=obj_enchanted_beef
-2dxof=1
-2dyof=3
-2dzoom=560
-2dyan=176
-2dxan=308
-cost=1
-weight=15oz
 
 [cert_raw_bear_meat]
 certlink=raw_bear_meat
 certtemplate=template_for_cert
 
-[raw_chicken]
-name=Raw chicken
-desc=I need to cook this first.
-recol1s=15619
-recol1d=22098
-model=obj_enchanted_chicken
-2dxof=-3
-2dzoom=870
-2dyan=1748
-2dxan=88
-cost=1
-weight=6oz
-
 [cert_raw_chicken]
 certlink=raw_chicken
 certtemplate=template_for_cert
-
-[cooked_chicken]
-name=Cooked chicken
-desc=Mmm this looks tasty.
-recol1s=15619
-recol1d=13472
-iop1=Eat
-cost=4
-model=obj_enchanted_chicken
-2dxof=-3
-2dzoom=870
-2dyan=1748
-2dxan=88
-weight=5oz
 
 [cert_cooked_chicken]
 certlink=cooked_chicken
 certtemplate=template_for_cert
 
-[cooked_meat]
-name=Cooked meat
-desc=Mmm this looks tasty.
-recol1s=24609
-recol1d=16609
-recol2s=32767
-recol2d=20774
-iop1=Eat
-cost=4
-model=obj_enchanted_beef
-2dxof=1
-2dyof=3
-2dzoom=560
-2dyan=176
-2dxan=308
-weight=10oz
-
 [cert_cooked_meat]
 certlink=cooked_meat
 certtemplate=template_for_cert
-
-[burnt_chicken]
-name=Burnt chicken
-desc=Oh dear, it's totally burnt!
-recol1s=15619
-recol1d=5285
-cost=1
-model=obj_enchanted_chicken
-2dxof=-3
-2dzoom=870
-2dyan=1748
-2dxan=88
-weight=4oz
 
 [cert_burnt_chicken]
 certlink=burnt_chicken
 certtemplate=template_for_cert
 
-[burnt_meat]
-name=Burnt meat
-desc=Oh dear, it's totally burnt!
-recol1s=24609
-recol1d=2114
-recol2s=32767
-recol2d=7399
-model=obj_enchanted_beef
-2dxof=1
-2dyof=3
-2dzoom=560
-2dyan=176
-2dxan=308
-cost=1
-weight=8oz
-
 [cert_burnt_meat]
 certlink=burnt_meat
 certtemplate=template_for_cert
-
-[raw_lava_eel]
-name=Raw lava eel
-desc=A very strange eel.
-recol1s=15855
-recol1d=31393
-recol2s=11628
-recol2d=31041
-cost=150
-members=yes
-model=obj_raw_lava_eel
-2dxof=17
-2dyof=25
-2dzoom=1270
-2dyan=1936
-2dxan=312
-weight=8oz
-
-[lava_eel]
-name=Lava eel
-desc=Strange, it looks cooler now it's been cooked.
-recol1s=15855
-recol1d=15616
-recol2s=11628
-recol2d=18785
-cost=150
-members=yes
-model=obj_raw_lava_eel
-2dxof=17
-2dyof=25
-2dzoom=1270
-2dyan=1936
-2dxan=312
-iop1=Eat
-weight=7oz
-
-[swamp_toad]
-name=Swamp toad
-desc=A slippery little blighter.
-iop1=Remove-legs
-members=yes
-cost=2
-model=obj_swamp_toad
-2dxof=-1
-2dyof=3
-2dzoom=470
-2dyan=128
-2dxan=352
-weight=500g
 
 [cert_swamp_toad]
 certlink=swamp_toad
 certtemplate=template_for_cert
 
-[toads_legs]
-name=Toad's legs
-desc=They're a gnome delicacy apparently.
-iop1=Eat
-members=yes
-cost=2
-model=obj_toads_legs
-2dxof=-10
-2dyof=14
-2dzoom=440
-2dyan=1960
-2dxan=340
-weight=150g
-
 [cert_toads_legs]
 certlink=toads_legs
 certtemplate=template_for_cert
-
-[equa_toads_legs]
-name=Equa toad's legs
-desc=They're a gnome delicacy apparently.
-iop1=Eat
-members=yes
-cost=2
-model=obj_toads_legs
-2dxof=-10
-2dyof=14
-2dzoom=440
-2dyan=1960
-2dxan=340
-weight=150g
 
 [cert_equa_toads_legs]
 certlink=equa_toads_legs
 certtemplate=template_for_cert
 
-[spicy_toads_legs]
-name=Spicy toad's legs
-desc=They're a gnome delicacy apparently.
-iop1=Eat
-members=yes
-cost=2
-model=obj_toads_legs
-2dxof=-10
-2dyof=14
-2dzoom=440
-2dyan=1960
-2dxan=340
-weight=150g
-
 [cert_spicy_toads_legs]
 certlink=spicy_toads_legs
 certtemplate=template_for_cert
-
-[seasoned_toads_legs]
-name=Seasoned legs
-desc=They're a gnome delicacy apparently.
-iop1=Eat
-members=yes
-cost=2
-model=obj_toads_legs
-2dxof=-10
-2dyof=14
-2dzoom=440
-2dyan=1960
-2dxan=340
-weight=150g
 
 [cert_seasoned_toads_legs]
 certlink=seasoned_toads_legs
 certtemplate=template_for_cert
 
-[spicy_worm]
-name=Spicy worm
-desc=They're a gnome delicacy apparently.
-iop1=Eat
-members=yes
-cost=2
-model=obj_red_vine_worm
-2dxof=-3
-2dyof=14
-2dzoom=1110
-2dyan=1748
-2dxan=404
-weight=100g
-
 [cert_spicy_worm]
 certlink=spicy_worm
 certtemplate=template_for_cert
-
-[king_worm]
-name=King worm
-desc=They're a gnome delicacy apparently.
-iop1=Eat
-members=yes
-cost=2
-model=obj_red_vine_worm
-2dxof=-3
-2dyof=14
-2dzoom=1110
-2dyan=1748
-2dxan=404
-weight=120g
 
 [cert_king_worm]
 certlink=king_worm
 certtemplate=template_for_cert
 
-[batta_tin]
-name=Batta tin
-desc=A deep tin used for baking gnome battas in.
-members=yes
-model=obj_batta_tin
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-weight=100g
-
-[crunchy_tray]
-name=Crunchy tray
-desc=A shallow tray used for baking crunchies in.
-members=yes
-model=obj_crunchy_tray
-2dxof=2
-2dyof=11
-2dzoom=1520
-2dyan=1664
-2dxan=252
-weight=100g
-
-[gnomebowl_mould]
-name=Gnomebowl mould
-desc=A large ovenproof bowl.
-members=yes
-model=obj_gnomebowl_mould
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-weight=150g
-
-[giannes_cook_book]
-name=Gianne's cook book
-desc=Aluft Gianne's favorite dishes.
-cost=2
-iop1=Read
-members=yes
-model=obj_mcannonbook
-2dzoom=840
-2dyan=152
-2dxan=256
-weight=18oz
-
 [cert_giannes_cook_book]
 certlink=giannes_cook_book
 certtemplate=template_for_cert
-
-[gnome_spice]
-name=Gnome spice
-desc=It's Aluft Gianne's secret mix of spices.
-model=obj_spicespot
-2dyof=-1
-2dzoom=710
-2dyan=160
-2dxan=136
-cost=2
-members=yes
-weight=150g
 
 [cert_gnome_spice]
 certlink=gnome_spice
 certtemplate=template_for_cert
 
-[gianne_dough]
-name=Gianne dough
-desc=It's made from a secret recipe.
-recol1s=21135
-recol1d=23146
-model=obj_pastry_dough
-2dxof=1
-2dyof=129
-2dzoom=440
-2dyan=92
-2dxan=264
-cost=2
-members=yes
-weight=500g
-
 [cert_gianne_dough]
 certlink=gianne_dough
 certtemplate=template_for_cert
-
-[spoilt_gnomebowl]
-name=Odd gnomebowl
-desc=This gnome bowl doesn't look very appetising.
-recol1s=19841
-recol1d=14688
-recol2s=16705
-recol2d=15745
-cost=2
-members=yes
-model=obj_spoilt_gnomebowl
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-iop1=Eat
-weight=250g
 
 [cert_spoilt_gnomebowl]
 certlink=spoilt_gnomebowl
 certtemplate=template_for_cert
 
-[burnt_gnomebowl]
-name=Burnt gnomebowl
-desc=This gnome bowl has been burnt to a cinder.
-recol1s=19841
-recol1d=5285
-recol2s=16705
-recol2d=10570
-cost=1
-members=yes
-model=obj_spoilt_gnomebowl
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-weight=220g
-
 [cert_burnt_gnomebowl]
 certlink=burnt_gnomebowl
 certtemplate=template_for_cert
-
-[half_baked_bowl]
-name=Half baked bowl
-desc=This gnome bowl is in the early stages of preparation.
-iop1=Inspect
-cost=2
-members=yes
-model=obj_half_baked_bowl
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-weight=275g
-
-[raw_gnomebowl]
-name=Raw gnomebowl
-desc=This gnome bowl needs cooking.
-recol1s=19841
-recol1d=22089
-recol2s=16705
-recol2d=26315
-cost=2
-members=yes
-model=obj_half_baked_bowl
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-weight=300g
-
-[unfinished_chocolate_bomb1]
-name=Unfinished bowl
-desc=This dish is just missing those little finishing touches.
-recol1s=6208
-recol1d=11426
-recol2s=30652
-recol2d=11426
-recol3s=3104
-recol3d=11426
-model=obj_unfinished_chocolate_bomb1
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-members=yes
-iop1=Eat
-weight=300g
 
 [cert_unfinished_chocolate_bomb1]
 certlink=unfinished_chocolate_bomb1
 certtemplate=template_for_cert
 
-[unfinished_chocolate_bomb2]
-name=Unfinished bowl
-desc=This dish is just missing those little finishing touches.
-recol1s=6208
-recol1d=11426
-recol2s=3104
-recol2d=30652
-model=obj_unfinished_chocolate_bomb1
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-iop1=Eat
-members=yes
-weight=300g
-
 [cert_unfinished_chocolate_bomb2]
 certlink=unfinished_chocolate_bomb2
 certtemplate=template_for_cert
-
-[unfinished_chocolate_bomb3]
-name=Unfinished bowl
-desc=This dish is just missing those little finishing touches.
-recol1s=6208
-recol1d=11426
-recol2s=3104
-recol2d=30652
-model=obj_unfinished_chocolate_bomb1
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-iop1=Eat
-members=yes
-weight=300g
 
 [cert_unfinished_chocolate_bomb3]
 certlink=unfinished_chocolate_bomb3
 certtemplate=template_for_cert
 
-[chocolate_bomb]
-name=Chocolate bomb
-desc=Looks great!
-recol1s=6208
-recol1d=11426
-cost=2
-model=obj_unfinished_chocolate_bomb1
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-iop1=Eat
-members=yes
-weight=350g
-weight=350g
-
 [cert_chocolate_bomb]
 certlink=chocolate_bomb
 certtemplate=template_for_cert
-
-[tangled_toads_legs]
-name=Tangled toad's legs
-desc=It actually smells quite good.
-cost=2
-model=obj_tangled_toads_legs
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-iop1=Eat
-members=yes
-weight=350g
 
 [cert_tangled_toads_legs]
 certlink=tangled_toads_legs
 certtemplate=template_for_cert
 
-[unfinished_worm_hole]
-name=Unfinished bowl
-desc=This dish is just missing those little finishing touches.
-model=obj_unfinished_worm_hole
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-iop1=Eat
-members=yes
-weight=300g
-
 [cert_unfinished_worm_hole]
 certlink=unfinished_worm_hole
 certtemplate=template_for_cert
-
-[worm_hole]
-name=Worm hole
-desc=It actually smells quite good.
-cost=2
-model=obj_unfinished_worm_hole
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-iop1=Eat
-members=yes
-weight=350g
 
 [cert_worm_hole]
 certlink=worm_hole
 certtemplate=template_for_cert
 
-[unfinished_veg_ball]
-name=Unfinished bowl
-desc=This dish is just missing those little finishing touches.
-recol1s=5729
-recol1d=21072
-model=obj_unfinished_veg_ball
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-members=yes
-iop1=Eat
-weight=300g
-
 [cert_unfinished_veg_ball]
 certlink=unfinished_veg_ball
 certtemplate=template_for_cert
-
-[veg_ball]
-name=Veg ball
-desc=This looks pretty healthy.
-cost=2
-model=obj_unfinished_veg_ball
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-iop1=Eat
-members=yes
-weight=350g
 
 [cert_veg_ball]
 certlink=veg_ball
 certtemplate=template_for_cert
 
-[spoilt_crunchies]
-name=Odd crunchies
-desc=These crunchies don't look very appetising.
-recol1s=23146
-recol1d=12576
-iop1=Eat
-cost=2
-members=yes
-model=obj_spoilt_crunchies
-2dxof=-2
-2dzoom=650
-2dxan=220
-weight=300g
-
 [cert_spoilt_crunchies]
 certlink=spoilt_crunchies
 certtemplate=template_for_cert
-
-[burnt_crunchies]
-name=Burnt crunchies
-desc=These crunchies have been burnt to a cinder.
-recol1s=23146
-recol1d=5285
-cost=1
-members=yes
-model=obj_spoilt_crunchies
-2dxof=-2
-2dzoom=650
-2dxan=220
-weight=250g
 
 [cert_burnt_crunchies]
 certlink=burnt_crunchies
 certtemplate=template_for_cert
 
-[half_baked_crunchy]
-name=Half baked crunchy
-desc=This crunchy is in the early stages of preparation.
-recol1s=23146
-recol1d=18820
-iop1=Inspect
-cost=2
-members=yes
-model=obj_half_baked_crunchy
-2dxof=2
-2dyof=11
-2dzoom=1520
-2dyan=1664
-2dxan=252
-weight=350g
-
-[raw_crunchies]
-name=Raw crunchies
-desc=These crunchies need cooking.
-cost=2
-members=yes
-model=obj_half_baked_crunchy
-2dxof=2
-2dyof=11
-2dzoom=1520
-2dyan=1664
-2dxan=252
-weight=400g
-
-[unfinished_worm_crunchies]
-name=Unfinished crunchy
-desc=These crunchies are just missing those little finishing touches.
-recol1s=3104
-recol1d=29459
-model=obj_unfinished_worm_crunchies
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-weight=300g
-
 [cert_unfinished_worm_crunchies]
 certlink=unfinished_worm_crunchies
 certtemplate=template_for_cert
-
-[worm_crunchies]
-name=Worm crunchies
-desc=It actually smells quite good.
-recol1s=3104
-recol1d=29459
-cost=2
-model=obj_unfinished_worm_crunchies
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-weight=250g
 
 [cert_worm_crunchies]
 certlink=worm_crunchies
 certtemplate=template_for_cert
 
-[unfinished_chocchip_crunchies]
-name=Unfinished crunchy
-desc=These crunchies are just missing those little finishing touches.
-model=obj_unfinished_worm_crunchies
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-weight=300g
-
 [cert_unfinished_chocchip_crunchies]
 certlink=unfinished_chocchip_crunchies
 certtemplate=template_for_cert
-
-[chocchip_crunchies]
-name=Chocchip crunchies
-desc=Yum... smells good.
-cost=2
-model=obj_unfinished_worm_crunchies
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-weight=250g
-weight=250g
 
 [cert_chocchip_crunchies]
 certlink=chocchip_crunchies
 certtemplate=template_for_cert
 
-[unfinished_spicy_crunchies]
-name=Unfinished crunchy
-desc=These crunchies are just missing those little finishing touches.
-recol1s=3104
-recol1d=31105
-model=obj_unfinished_worm_crunchies
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-weight=300g
-
 [cert_unfinished_spicy_crunchies]
 certlink=unfinished_spicy_crunchies
 certtemplate=template_for_cert
-
-[spicy_crunchies]
-name=Spicy crunchies
-desc=Yum... smells good.
-recol1s=3104
-recol1d=31105
-cost=2
-model=obj_unfinished_worm_crunchies
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-weight=250g
 
 [cert_spicy_crunchies]
 certlink=spicy_crunchies
 certtemplate=template_for_cert
 
-[unfinished_toad_crunchies]
-name=Unfinished crunchy
-desc=These crunchies are just missing those little finishing touches.
-recol1s=3104
-recol1d=512
-model=obj_unfinished_worm_crunchies
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-weight=300g
-
 [cert_unfinished_toad_crunchies]
 certlink=unfinished_toad_crunchies
 certtemplate=template_for_cert
-
-[toad_crunchies]
-name=Toad crunchies
-desc=It actually smells quite good.
-recol1s=3104
-recol1d=512
-cost=2
-model=obj_unfinished_worm_crunchies
-2dxof=-2
-2dzoom=650
-2dxan=220
-members=yes
-iop1=Eat
-weight=250g
 
 [cert_toad_crunchies]
 certlink=toad_crunchies
 certtemplate=template_for_cert
 
-[premade_worm_batta]
-name=Worm batta
-desc=It actually smells quite good.
-recol1s=15360
-recol1d=25096
-recol2s=16129
-recol2d=30385
-cost=120
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
-
 [cert_premade_worm_batta]
 certlink=premade_worm_batta
 certtemplate=template_for_cert
-
-[premade_toad_batta]
-name=Toad batta
-desc=It actually smells quite good.
-recol1s=15360
-recol1d=224
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-cost=120
-weight=250g
 
 [cert_premade_toad_batta]
 certlink=premade_toad_batta
 certtemplate=template_for_cert
 
-[premade_cheese+tom_batta]
-name=Cheese+tom batta
-desc=This smells really good.
-recol1s=16129
-recol1d=31649
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-cost=120
-weight=250g
-
 [cert_premade_cheese+tom_batta]
 certlink=premade_cheese+tom_batta
 certtemplate=template_for_cert
-
-[premade_fruit_batta]
-name=Fruit batta
-desc=It actually smells quite good.
-recol1s=15360
-recol1d=31201
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-cost=120
-weight=250g
 
 [cert_premade_fruit_batta]
 certlink=premade_fruit_batta
 certtemplate=template_for_cert
 
-[premade_vegetable_batta]
-name=Vegetable batta
-desc=Well... it looks healthy.
-recol1s=15360
-recol1d=24609
-recol2s=16129
-recol2d=27567
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-cost=120
-weight=250g
-
 [cert_premade_vegetable_batta]
 certlink=premade_vegetable_batta
 certtemplate=template_for_cert
-
-[premade_chocolate_bomb]
-name=Chocolate bomb
-desc=Looks great!
-recol1s=6208
-recol1d=11426
-model=obj_unfinished_chocolate_bomb1
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-iop1=Eat
-members=yes
-cost=160
-weight=350g
 
 [cert_premade_chocolate_bomb]
 certlink=premade_chocolate_bomb
 certtemplate=template_for_cert
 
-[premade_tangled_toads_legs]
-name=Tangled toad's legs
-desc=It actually smells quite good.
-model=obj_tangled_toads_legs
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-iop1=Eat
-members=yes
-cost=160
-weight=350g
-
 [cert_premade_tangled_toads_legs]
 certlink=premade_tangled_toads_legs
 certtemplate=template_for_cert
-
-[premade_worm_hole]
-name=Worm hole
-desc=It actually smells quite good.
-model=obj_unfinished_worm_hole
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-iop1=Eat
-members=yes
-cost=150
-weight=350g
 
 [cert_premade_worm_hole]
 certlink=premade_worm_hole
 certtemplate=template_for_cert
 
-[premade_veg_ball]
-name=Veg ball
-desc=This looks pretty healthy.
-model=obj_unfinished_veg_ball
-2dxof=1
-2dzoom=850
-2dyan=1888
-2dxan=192
-iop1=Eat
-members=yes
-cost=150
-weight=350g
-
 [cert_premade_veg_ball]
 certlink=premade_veg_ball
 certtemplate=template_for_cert
-
-[premade_worm_crunchies]
-name=Worm crunchies
-desc=It actually smells quite good.
-recol1s=3104
-recol1d=29459
-model=obj_unfinished_worm_crunchies
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-cost=85
-weight=250g
 
 [cert_premade_worm_crunchies]
 certlink=premade_worm_crunchies
 certtemplate=template_for_cert
 
-[premade_chocchip_crunchies]
-name=Chocchip crunchies
-desc=Yum... smells good.
-model=obj_unfinished_worm_crunchies
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-cost=85
-weight=250g
-
 [cert_premade_chocchip_crunchies]
 certlink=premade_chocchip_crunchies
 certtemplate=template_for_cert
-
-[premade_spicy_crunchies]
-name=Spicy crunchies
-desc=Yum... smells good.
-recol1s=3104
-recol1d=31105
-model=obj_unfinished_worm_crunchies
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-cost=85
-weight=250g
 
 [cert_premade_spicy_crunchies]
 certlink=premade_spicy_crunchies
 certtemplate=template_for_cert
 
-[premade_toad_crunchies]
-name=Toad crunchies
-desc=It actually smells quite good.
-recol1s=3104
-recol1d=512
-model=obj_unfinished_worm_crunchies
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-cost=85
-weight=250g
-
 [cert_premade_toad_crunchies]
 certlink=premade_toad_crunchies
 certtemplate=template_for_cert
-
-[spoilt_batta]
-name=Odd batta
-desc=This batta doesn't look very appetising.
-recol1s=15360
-recol1d=15680
-recol2s=16129
-recol2d=15841
-recol3s=15648
-recol3d=15744
-cost=2
-members=yes
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-weight=250g
 
 [cert_spoilt_batta]
 certlink=spoilt_batta
 certtemplate=template_for_cert
 
-[burnt_batta]
-name=Burnt batta
-desc=This batta has been burnt to a cinder.
-recol1s=23146
-recol1d=5285
-cost=1
-members=yes
-model=obj_burnt_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-weight=200g
-
 [cert_burnt_batta]
 certlink=burnt_batta
 certtemplate=template_for_cert
-
-[half_baked_batta]
-name=Half baked batta
-desc=This gnome batta is in the early stages of preparation.
-recol1s=23146
-recol1d=18820
-iop1=Inspect
-cost=2
-members=yes
-model=obj_half_baked_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-weight=250g
-
-[raw_batta]
-name=Raw batta
-desc=This gnome batta needs cooking.
-cost=2
-members=yes
-model=obj_half_baked_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-weight=250g
-
-[unfinished_worm_batta]
-name=Unfinished batta
-desc=This batta is just missing those little finishing touches.
-recol1s=15360
-recol1d=25096
-recol2s=16129
-recol2d=30385
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
 
 [cert_unfinished_worm_batta]
 certlink=unfinished_worm_batta
 certtemplate=template_for_cert
 
-[worm_batta]
-name=Worm batta
-desc=It actually smells quite good.
-recol1s=15360
-recol1d=25096
-recol2s=16129
-recol2d=30385
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
-
 [cert_worm_batta]
 certlink=worm_batta
 certtemplate=template_for_cert
-
-[toad_batta]
-name=Toad batta
-desc=It actually smells quite good.
-recol1s=15360
-recol1d=224
-cost=2
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
 
 [cert_toad_batta]
 certlink=toad_batta
 certtemplate=template_for_cert
 
-[unfinished_cheese+tom_batta]
-name=Unfinished batta
-desc=This batta is just missing those little finishing touches.
-recol1s=16129
-recol1d=31649
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
-
 [cert_unfinished_cheese+tom_batta]
 certlink=unfinished_cheese+tom_batta
 certtemplate=template_for_cert
-
-[cheese+tom_batta]
-name=Cheese+tom batta
-desc=This smells really good.
-recol1s=16129
-recol1d=31649
-cost=2
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
 
 [cert_cheese+tom_batta]
 certlink=cheese+tom_batta
 certtemplate=template_for_cert
 
-[fruitless_batta]
-name=Unfinished batta
-desc=This batta is just missing those little finishing touches.
-recol1s=15360
-recol1d=480
-recol2s=16129
-recol2d=352
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
-
 [cert_fruitless_batta]
 certlink=fruitless_batta
 certtemplate=template_for_cert
-
-[fruit_batta_lime]
-name=Unfinished batta
-desc=This batta is just missing those little finishing touches.
-recol1s=15360
-recol1d=832
-recol2s=16129
-recol2d=352
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
 
 [cert_fruit_batta_lime]
 certlink=fruit_batta_lime
 certtemplate=template_for_cert
 
-[fruit_batta_orange]
-name=Unfinished batta
-desc=This batta is just missing those little finishing touches.
-recol1s=15360
-recol1d=31201
-recol2s=16129
-recol2d=352
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
-
 [cert_fruit_batta_orange]
 certlink=fruit_batta_orange
 certtemplate=template_for_cert
-
-[fruit_batta_pineapple]
-name=Unfinished batta
-desc=This batta is just missing those little finishing touches.
-recol1s=15360
-recol1d=31393
-recol2s=16129
-recol2d=352
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
 
 [cert_fruit_batta_pineapple]
 certlink=fruit_batta_pineapple
 certtemplate=template_for_cert
 
-[fruit_batta_limeorange]
-name=Unfinished batta
-desc=This batta is just missing those little finishing touches.
-recol1s=15360
-recol1d=832
-recol2s=16129
-recol2d=31201
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
-
 [cert_fruit_batta_limeorange]
 certlink=fruit_batta_limeorange
 certtemplate=template_for_cert
-
-[fruit_batta_limepineapple]
-name=Unfinished batta
-desc=This batta is just missing those little finishing touches.
-recol1s=15360
-recol1d=832
-recol2s=16129
-recol2d=31393
-members=yes
-2dzoom=780
-2dxan=236
-2dyan=136
-2dyof=32
-2dxof=1
-model=obj_premade_worm_batta
-iop1=Eat
-weight=250g
 
 [cert_fruit_batta_limepineapple]
 certlink=fruit_batta_limepineapple
 certtemplate=template_for_cert
 
-[fruit_batta_orangepineapple]
-name=Unfinished batta
-desc=This batta is just missing those little finishing touches.
-recol1s=15360
-recol1d=31201
-recol2s=16129
-recol2d=31393
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
-
 [cert_fruit_batta_orangepineapple]
 certlink=fruit_batta_orangepineapple
 certtemplate=template_for_cert
-
-[unfinished_fruit_batta]
-name=Unfinished batta
-desc=This batta is just missing those little finishing touches.
-recol1s=15360
-recol1d=31201
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
 
 [cert_unfinished_fruit_batta]
 certlink=unfinished_fruit_batta
 certtemplate=template_for_cert
 
-[fruit_batta]
-name=Fruit batta
-desc=It actually smells quite good.
-recol1s=15360
-recol1d=31201
-cost=2
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
-
 [cert_fruit_batta]
 certlink=fruit_batta
 certtemplate=template_for_cert
-
-[unfinished_vegetable_batta]
-name=Unfinished batta
-desc=This batta is just missing those little finishing touches.
-recol1s=15360
-recol1d=24609
-recol2s=16129
-recol2d=27567
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
 
 [cert_unfinished_vegetable_batta]
 certlink=unfinished_vegetable_batta
 certtemplate=template_for_cert
 
-[vegetable_batta]
-name=Vegetable batta
-desc=Well... it looks healthy.
-recol1s=15360
-recol1d=24609
-recol2s=16129
-recol2d=27567
-cost=2
-model=obj_premade_worm_batta
-2dxof=1
-2dyof=32
-2dzoom=780
-2dyan=136
-2dxan=236
-iop1=Eat
-members=yes
-weight=250g
-
 [cert_vegetable_batta]
 certlink=vegetable_batta
 certtemplate=template_for_cert
-
-[pizza_base]
-name=Pizza base
-desc=I need to add some tomato next.
-recol1s=14790
-recol1d=29492
-cost=4
-model=obj_uncooked_pitta_bread
-2dyof=1
-2dzoom=990
-2dyan=176
-2dxan=260
-weight=100g
 
 [cert_pizza_base]
 certlink=pizza_base
 certtemplate=template_for_cert
 
-[incomplete_pizza]
-name=Incomplete pizza
-desc=I need to add some cheese next.
-recol1s=14790
-recol1d=29492
-recol2s=15360
-recol2d=19489
-cost=10
-model=obj_incomplete_pizza
-2dyof=1
-2dzoom=990
-2dyan=176
-2dxan=260
-weight=600g
-
 [cert_incomplete_pizza]
 certlink=incomplete_pizza
 certtemplate=template_for_cert
-
-[uncooked_pizza]
-name=Uncooked pizza
-desc=This needs cooking.
-recol1s=14790
-recol1d=29492
-recol2s=15360
-recol2d=19489
-cost=25
-model=obj_uncooked_pizza
-2dyof=1
-2dzoom=990
-2dyan=176
-2dxan=260
-weight=800g
 
 [cert_uncooked_pizza]
 certlink=uncooked_pizza
 certtemplate=template_for_cert
 
-[plain_pizza]
-name=Plain pizza
-desc=A cheese and tomato pizza.
-recol1s=14790
-recol1d=21035
-recol2s=15360
-recol2d=19489
-iop1=Eat
-model=obj_uncooked_pizza
-2dyof=1
-2dzoom=990
-2dyan=176
-2dxan=260
-cost=40
-weight=800g
-
 [cert_plain_pizza]
 certlink=plain_pizza
 certtemplate=template_for_cert
-
-[half_plain_pizza]
-name=1/2 plain pizza
-desc=Half of this pizza has been eaten.
-recol1s=14790
-recol1d=21035
-recol2s=15360
-recol2d=19489
-iop1=Eat
-cost=20
-model=obj_half_plain_pizza
-2dxof=8
-2dyof=14
-2dzoom=880
-2dyan=1848
-2dxan=272
-weight=400g
 
 [cert_half_plain_pizza]
 certlink=half_plain_pizza
 certtemplate=template_for_cert
 
-[meat_pizza]
-name=Meat pizza
-desc=A pizza with bits of meat on it.
-recol1s=14790
-recol1d=21035
-recol2s=21140
-recol2d=26017
-recol3s=15360
-recol3d=19489
-iop1=Eat
-cost=50
-model=obj_meat_pizza
-2dyof=1
-2dzoom=990
-2dyan=176
-2dxan=260
-weight=900g
-
 [cert_meat_pizza]
 certlink=meat_pizza
 certtemplate=template_for_cert
-
-[half_meat_pizza]
-name=1/2 meat pizza
-desc=Half of this pizza has been eaten.
-recol1s=14790
-recol1d=21035
-recol2s=21140
-recol2d=26017
-recol3s=15360
-recol3d=19489
-iop1=Eat
-cost=25
-model=obj_half_meat_pizza
-2dxof=8
-2dyof=14
-2dzoom=880
-2dyan=1848
-2dxan=272
-weight=450g
 
 [cert_half_meat_pizza]
 certlink=half_meat_pizza
 certtemplate=template_for_cert
 
-[anchovie_pizza]
-name=Anchovy pizza
-desc=A pizza with anchovies.
-recol1s=14790
-recol1d=21035
-recol2s=21140
-recol2d=26425
-recol3s=15360
-recol3d=19489
-iop1=Eat
-cost=60
-model=obj_meat_pizza
-2dyof=1
-2dzoom=990
-2dyan=176
-2dxan=260
-weight=900g
-
 [cert_anchovie_pizza]
 certlink=anchovie_pizza
 certtemplate=template_for_cert
-
-[half_anchovie_pizza]
-name=1/2 anchovy pizza
-desc=Half of this pizza has been eaten.
-recol1s=14790
-recol1d=21035
-recol2s=21140
-recol2d=26425
-recol3s=15360
-recol3d=19489
-iop1=Eat
-cost=30
-model=obj_half_meat_pizza
-2dxof=8
-2dyof=14
-2dzoom=880
-2dyan=1848
-2dxan=272
-weight=450g
 
 [cert_half_anchovie_pizza]
 certlink=half_anchovie_pizza
 certtemplate=template_for_cert
 
-[pineapple_pizza]
-name=Pineapple pizza
-desc=A tropicana pizza.
-recol1s=14790
-recol1d=21035
-recol2s=21140
-recol2d=31457
-recol3s=15360
-recol3d=19489
-iop1=Eat
-cost=100
-model=obj_meat_pizza
-2dyof=1
-2dzoom=990
-2dyan=176
-2dxan=260
-members=yes
-weight=900g
-
 [cert_pineapple_pizza]
 certlink=pineapple_pizza
 certtemplate=template_for_cert
-
-[half_pineapple_pizza]
-name=1/2pineapple pizza
-desc=Half of this pizza has been eaten.
-recol1s=14790
-recol1d=21035
-recol2s=21140
-recol2d=31457
-recol3s=15360
-recol3d=19489
-iop1=Eat
-cost=50
-model=obj_half_meat_pizza
-2dxof=8
-2dyof=14
-2dzoom=880
-2dyan=1848
-2dxan=272
-members=yes
-weight=450g
 
 [cert_half_pineapple_pizza]
 certlink=half_pineapple_pizza
 certtemplate=template_for_cert
 
-[burnt_pizza]
-name=Burnt pizza
-desc=Oh dear!
-recol1s=14790
-recol1d=7399
-recol2s=15360
-recol2d=8192
-recol3s=31649
-recol3d=3171
-cost=1
-model=obj_uncooked_pizza
-2dyof=1
-2dzoom=990
-2dyan=176
-2dxan=260
-weight=700g
-
 [cert_burnt_pizza]
 certlink=burnt_pizza
 certtemplate=template_for_cert
-
-[bread_dough]
-name=Bread dough
-desc=Some uncooked dough.
-model=obj_pastry_dough
-2dxof=1
-2dyof=129
-2dzoom=440
-2dyan=92
-2dxan=264
-cost=4
-weight=600g
 
 [cert_bread_dough]
 certlink=bread_dough
 certtemplate=template_for_cert
 
-[bread]
-name=Bread
-desc=Nice crispy bread.
-cost=12
-iop1=Eat
-model=obj_bread
-2dyof=5
-2dzoom=830
-2dyan=268
-2dxan=392
-weight=500g
-
 [cert_bread]
 certlink=bread
 certtemplate=template_for_cert
-
-[burnt_bread]
-name=Burnt bread
-desc=Nice crispy bread.  Possibly too crispy.
-recol1s=20929
-recol1d=3171
-recol2s=27271
-recol2d=5285
-model=obj_bread
-2dyof=5
-2dzoom=830
-2dyan=268
-2dxan=392
-cost=1
-weight=350g
 
 [cert_burnt_bread]
 certlink=burnt_bread
 certtemplate=template_for_cert
 
-[piedish]
-name=Pie dish
-desc=Deceptively pie shaped.
-recol1s=7399
-recol1d=19878
-recol2s=10570
-recol2d=18858
-recol3s=15855
-recol3d=20971
-model=obj_piedish_unfired
-2dyof=-9
-2dzoom=950
-2dyan=104
-2dxan=192
-cost=3
-weight=100g
-
 [cert_piedish]
 certlink=piedish
 certtemplate=template_for_cert
-
-[pie_shell]
-name=Pie shell
-desc=I need to find a filling for this pie.
-recol1s=7399
-recol1d=28368
-recol2s=10570
-recol2d=28368
-recol3s=15855
-recol3d=20971
-model=obj_piedish_unfired
-2dyof=-9
-2dzoom=950
-2dyan=104
-2dxan=192
-cost=4
-weight=250g
 
 [cert_pie_shell]
 certlink=pie_shell
 certtemplate=template_for_cert
 
-[uncooked_apple_pie]
-name=Uncooked apple pie
-desc=This would be much tastier cooked.
-recol1s=30545
-recol1d=28368
-recol2s=7264
-recol2d=17834
-recol3s=15855
-recol3d=20971
-model=obj_uncooked_apple_pie
-2dyof=-9
-2dzoom=950
-2dyan=104
-2dxan=192
-cost=16
-weight=500g
-
 [cert_uncooked_apple_pie]
 certlink=uncooked_apple_pie
 certtemplate=template_for_cert
-
-[uncooked_meat_pie]
-name=Uncooked meat pie
-desc=This would be much healthier cooked.
-recol1s=30545
-recol1d=28368
-recol2s=7264
-recol2d=17834
-recol3s=15855
-recol3d=20971
-model=obj_uncooked_apple_pie
-2dyof=-9
-2dzoom=950
-2dyan=104
-2dxan=192
-cost=8
-weight=500g
 
 [cert_uncooked_meat_pie]
 certlink=uncooked_meat_pie
 certtemplate=template_for_cert
 
-[uncooked_redberry_pie]
-name=Uncooked berry pie
-desc=This would be much more appetising cooked.
-recol1s=30545
-recol1d=28368
-recol2s=7264
-recol2d=17834
-recol3s=15855
-recol3d=20971
-model=obj_uncooked_apple_pie
-2dyof=-9
-2dzoom=950
-2dyan=104
-2dxan=192
-cost=6
-weight=500g
-
 [cert_uncooked_redberry_pie]
 certlink=uncooked_redberry_pie
 certtemplate=template_for_cert
-
-[apple_pie]
-name=Apple pie
-desc=Mmm Apple pie.
-recol1s=30545
-recol1d=22982
-recol2s=7264
-recol2d=15620
-recol3s=15855
-recol3d=20971
-iop1=Eat
-cost=30
-model=obj_uncooked_apple_pie
-2dyof=-9
-2dzoom=950
-2dyan=104
-2dxan=192
-weight=450g
 
 [cert_apple_pie]
 certlink=apple_pie
 certtemplate=template_for_cert
 
-[redberry_pie]
-name=Redberry pie
-desc=Looks tasty.
-recol1s=30545
-recol1d=22982
-recol2s=7264
-recol2d=15620
-recol3s=15855
-recol3d=20971
-iop1=Eat
-cost=12
-model=obj_uncooked_apple_pie
-2dyof=-9
-2dzoom=950
-2dyan=104
-2dxan=192
-weight=450g
-
 [cert_redberry_pie]
 certlink=redberry_pie
 certtemplate=template_for_cert
-
-[meat_pie]
-name=Meat pie
-desc=Not for vegetarians.
-recol1s=30545
-recol1d=22982
-recol2s=7264
-recol2d=15620
-recol3s=15855
-recol3d=20971
-iop1=Eat
-cost=15
-model=obj_uncooked_apple_pie
-2dyof=-9
-2dzoom=950
-2dyan=104
-2dxan=192
-weight=450g
 
 [cert_meat_pie]
 certlink=meat_pie
 certtemplate=template_for_cert
 
-[burnt_pie]
-name=Burnt pie
-desc=I think I left it on the stove too long.
-recol1s=30545
-recol1d=6342
-recol2s=7264
-recol2d=3171
-recol3s=15855
-recol3d=20971
-iop1=Empty Dish
-model=obj_uncooked_apple_pie
-2dyof=-9
-2dzoom=950
-2dyan=104
-2dxan=192
-cost=1
-weight=350g
-
 [cert_burnt_pie]
 certlink=burnt_pie
 certtemplate=template_for_cert
-
-[half_a_meat_pie]
-name=Half a meat pie
-desc=Half of it is suitable for vegetarians.
-recol1s=30545
-recol1d=22982
-recol2s=7264
-recol2d=15620
-recol3s=15855
-recol3d=20971
-recol4s=7399
-recol4d=19878
-recol5s=10570
-recol5d=18858
-recol6s=15554
-recol6d=9315
-iop1=Eat
-cost=8
-model=obj_half_a_meat_pie
-2dyof=-9
-2dzoom=950
-2dyan=104
-2dxan=192
-weight=225g
 
 [cert_half_a_meat_pie]
 certlink=half_a_meat_pie
 certtemplate=template_for_cert
 
-[half_a_redberry_pie]
-name=Half a redberry pie
-desc=So tasty I kept some for later.
-recol1s=30545
-recol1d=22982
-recol2s=7264
-recol2d=15620
-recol3s=15855
-recol3d=20971
-recol4s=7399
-recol4d=19878
-recol5s=10570
-recol5d=18858
-recol6s=15554
-recol6d=18564
-iop1=Eat
-cost=6
-model=obj_half_a_meat_pie
-2dyof=-9
-2dzoom=950
-2dyan=104
-2dxan=192
-weight=225g
-
 [cert_half_a_redberry_pie]
 certlink=half_a_redberry_pie
 certtemplate=template_for_cert
-
-[half_an_apple_pie]
-name=Half an apple pie
-desc=Mmm half an apple pie.
-recol1s=30545
-recol1d=22982
-recol2s=7264
-recol2d=15620
-recol3s=15855
-recol3d=20971
-recol4s=7399
-recol4d=19878
-recol5s=10570
-recol5d=18858
-recol6s=15554
-recol6d=22384
-iop1=Eat
-cost=15
-model=obj_half_a_meat_pie
-2dyof=-9
-2dzoom=950
-2dyan=104
-2dxan=192
-weight=225g
 
 [cert_half_an_apple_pie]
 certlink=half_an_apple_pie
 certtemplate=template_for_cert
 
-[raw_oomlie]
-name=Raw oomlie
-desc=Raw meat from the oomlie bird.
-recol1s=15619
-recol1d=22098
-model=obj_enchanted_chicken
-2dxof=-3
-2dzoom=870
-2dyan=1748
-2dxan=88
-members=yes
-cost=10
-weight=225g
-
 [cert_raw_oomlie]
 certlink=raw_oomlie
 certtemplate=template_for_cert
-
-[palm_leaf]
-name=Palm leaf
-desc=A thick green palm leaf used by natives to cook meat in.
-cost=5
-model=obj_palm_leaf
-2dxof=2
-2dyof=11
-2dzoom=1290
-2dyan=156
-2dxan=292
-members=yes
-weight=100g
 
 [cert_palm_leaf]
 certlink=palm_leaf
 certtemplate=template_for_cert
 
-[wrapped_oomlie]
-name=Wrapped oomlie
-desc=Oomlie meat in a palm leaf pouch.  It just needs to be cooked.
-model=obj_wrapped_oomlie
-2dxof=2
-2dyof=-103
-2dzoom=1110
-2dyan=176
-2dxan=236
-cost=16
-members=yes
-weight=325g
-
 [cert_wrapped_oomlie]
 certlink=wrapped_oomlie
 certtemplate=template_for_cert
 
-[cooked_oomlie]
-name=Cooked oomlie wrap
-desc=Deliciously cooked oomlie meat in a palm leaf pouch.
-recol1s=15364
-recol1d=16609
-recol2s=30320
-recol2d=16643
-recol3s=7557
-recol3d=3298
-recol4s=10629
-recol4d=160
-iop1=Eat
-model=obj_wrapped_oomlie
-2dxof=2
-2dyof=-103
-2dzoom=1110
-2dyan=176
-2dxan=236
-members=yes
-cost=35
-weight=300g
-
 [cert_cooked_oomlie]
 certlink=cooked_oomlie
 certtemplate=template_for_cert
-
-[burnt_oomlie]
-name=Burnt oomlie wrap
-desc=Burnt oomlie meat in a palm leaf pouch.
-recol1s=15364
-recol1d=3171
-recol2s=30320
-recol2d=5285
-recol3s=7557
-recol3d=9513
-recol4s=10629
-recol4d=8456
-model=obj_wrapped_oomlie
-2dxof=2
-2dyof=-103
-2dzoom=1110
-2dyan=176
-2dxan=236
-cost=1
-members=yes
-weight=275g
 
 [cert_burnt_oomlie]
 certlink=burnt_oomlie
@@ -27454,20 +23770,6 @@ model=obj_priest_robe
 2dyof=1
 2dzoom=1940
 2dxan=572
-
-[burnt_uw_oomlie]
-name=Burnt oomlie
-desc=Oh dear, it's totally burnt!
-recol1s=15619
-recol1d=5285
-cost=1
-members=yes
-model=obj_enchanted_chicken
-2dxof=-3
-2dzoom=870
-2dyan=1748
-2dxan=88
-weight=4oz
 
 [cert_burnt_uw_oomlie]
 certlink=burnt_uw_oomlie

@@ -1,0 +1,98 @@
+[stew1]
+name=Incomplete stew
+desc=I need to add some meat too.
+recol1s=21119
+recol1d=14800
+cost=4
+model=obj_goldbowl_water
+2dzoom=910
+2dyan=1856
+2dxan=204
+weight=1kg
+
+[stew2]
+name=Incomplete stew
+desc=I need to add some potato too.
+recol1s=21119
+recol1d=14800
+cost=4
+model=obj_goldbowl_water
+2dzoom=910
+2dyan=1856
+2dxan=204
+weight=1200g
+
+[burnt_stew]
+name=Burnt stew
+desc=Eew, it's horribly burnt.
+recol1s=21119
+recol1d=4228
+cost=1
+model=obj_goldbowl_water
+2dzoom=910
+2dyan=1856
+2dxan=204
+iop1=Empty Bowl
+weight=1300g
+
+[burnt_curry]
+name=Burnt curry
+desc=Eew, it's horribly burnt.
+recol1s=21119
+recol1d=4228
+cost=1
+model=obj_goldbowl_water
+2dzoom=910
+2dyan=1856
+2dxan=204
+members=yes
+iop1=Empty Bowl
+weight=1300g
+
+[potato]
+name=Potato
+desc=This could be used to make a good stew.
+recol1s=10464
+recol1d=16805
+cost=1
+model=obj_potato
+2dxof=1
+2dyof=-6
+2dzoom=860
+2dyan=1856
+2dxan=208
+iop1=Eat
+weight=500g
+category=category_131
+param=gnome_cooking_ingredient,^true
+
+[stew]
+name=Stew
+desc=It's a meat and potato stew.
+recol1s=21119
+recol1d=11488
+iop1=Eat
+cost=20
+model=obj_goldbowl_water
+2dzoom=910
+2dyan=1856
+2dxan=204
+weight=1500g
+category=category_59
+param=next_obj_stage,bowl_empty
+
+[curry]
+name=Curry
+desc=It's a spicy hot curry.
+recol1s=21119
+recol1d=22881
+iop1=Eat
+cost=20
+model=obj_goldbowl_water
+2dzoom=910
+2dyan=1856
+2dxan=204
+weight=1500g
+category=category_59
+members=yes
+param=next_obj_stage,bowl_empty
