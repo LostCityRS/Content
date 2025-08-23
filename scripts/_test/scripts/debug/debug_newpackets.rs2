@@ -3,3 +3,10 @@ if_openoverlay($interface);
 
 [debugproc,minimap](int $type)
 minimap_toggle($type);
+
+[debugproc,speen](int $xSpeed, int $ySpeed)
+if (p_finduid(uid) = false) {
+    return;
+}
+if_openmain(inter_60);
+if_setangle(inter_60:com_92, $xSpeed, $ySpeed);

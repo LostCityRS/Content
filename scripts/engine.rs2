@@ -272,6 +272,8 @@
 [command,.if_setobject](component $component, obj $obj, int $scale)
 // info: Set a component's model
 [command,if_setmodel](component $component, int $model)
+// info: Set a model component's x and y angular velocity. 
+[command,if_setangle](component $component, int $xAngleSpeed, int $yAngleSpeed)
 // info: Recolor a component's model
 [command,if_setrecol](component $component, int $src, int $dest)
 // info: Open the tutorial modal mode ("sticky" interface)
