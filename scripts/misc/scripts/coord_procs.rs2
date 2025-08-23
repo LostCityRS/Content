@@ -1,0 +1,22 @@
+[proc,coord_unpack](coord $coord)(int, int, int, int, int)
+def_int $x = coordx($coord);
+def_int $z = coordz($coord);
+def_int $y = coordy($coord);
+def_int $coordX = calc(coordx($coord) / 64);
+def_int $coordZ = calc(coordz($coord) / 64);
+def_int $localX = sub($x, calc($coordX * 64));
+def_int $localZ = sub($z, calc($coordZ * 64));
+return($y, $coordX, $coordZ, $localX, $localZ);
+
+[proc,coord_tostring](coord $coord)(string)
+def_int $x = coordx($coord);
+def_int $z = coordz($coord);
+
+def_int $y;
+def_int $cx;
+def_int $cz;
+def_int $lx;
+def_int $lz;
+$y, $cx, $cz, $lx, $lz = ~coord_unpack($coord);
+
+return("x: <tostring($x)> z: <tostring($z)> level: <tostring($y)> jcoord: <tostring($y)>_<tostring($cx)>_<tostring($cz)>_<tostring($lx)>_<tostring($lz)>");
