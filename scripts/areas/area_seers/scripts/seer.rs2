@@ -16,7 +16,9 @@ switch_int (%scorpcatcher_progress) {
             @multi2("Where did you say that scorpion was again?", seer_where_scorp, "I seek knowledge and power!", seer_knowledge_and_power);
         } 
     case ^scorpcatcher_second_hint :
-        if(inv_total(inv, scorpioncagea) > 0 | inv_total(inv, scorpioncageac) > 0) {
+        if(inv_total(inv, scorpioncageab) > 0) {
+            @seer_second_scorp;
+        } else if(inv_total(inv, scorpioncagea) > 0 | inv_total(inv, scorpioncageac) > 0) {
             @seer_first_scorp;
         } else {
             ~seers_greetings;
@@ -72,7 +74,7 @@ p_delay(3);
 [label,seer_first_scorp]
 ~chatplayer("<p,happy>Hi, I've retrieved the scorpion from near the spiders.");
 ~chatnpc("<p,confused>Well, I've checked my looking glass.|There seems to be a kharid scorpion in a little village in the east,|surrounded by lots of uncivilised-looking warriors.|Some kind of merchant there seems to have picked it up.");
-~chatnpc("<p,neutral>That's all I can tell you about that scorpion.");
+~chatnpc("<p,confused>That's all I can tell you about that scorpion.");
 %scorpcatcher_progress = ^scorpcatcher_second_hint;
 ~chatplayer("<p,happy>Any more scorpions?");
 ~chatnpc("<p,neutral>It's good that you should ask.|I have information on the last scorpion for you.");
