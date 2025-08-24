@@ -738,8 +738,10 @@
 [command,nc_debugname](npc $npc)(string)
 // info: Get the display name from a npc config
 [command,nc_op](npc $npc, int $op)(string)
-// info: Get size form a npc config
+// info: Get size from a npc config
 [command,nc_size](npc $npc)(int)
+// info: Get the visible level from a npc config
+[command,nc_vislevel](npc $npc)(int)
 
 // Loc config ops (4100-4199)
 // info: Get the name from a loc config
