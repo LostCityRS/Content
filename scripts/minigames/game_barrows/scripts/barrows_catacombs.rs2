@@ -1,0 +1,379 @@
+// Friendly catacombs map :)
+// Chambers and corridors (doors) are named separately
+//         ┌─────────────────────────────┐        
+//         │              a              │        
+//         │   ┌─────────────────────┐   │        
+//       ┌─┴───┴─┐    ┌───────┐    ┌─┴───┴─┐      
+// ┌─────┤       ├────┤       ├────┤       ├─────┐
+// │     │   a   │ d  │   b   │  f │   c   │     │
+// │   ┌─┤       ├────┤       ├────┤       ├─┐   │
+// │   │ └─┬───┬─┘    └─┬───┬─┘    └─┬───┬─┘ │   │
+// │   │   │ c │        │ e │        │ g │   │   │
+// │   │   │   │        │   │        │   │   │   │
+// │   │ ┌─┴───┴─┐    ┌─┴───┴─┐    ┌─┴───┴─┐ │   │
+// │   │ │       │────┤       ├────┤       │ │   │
+// │ b │ │   d   │  i │   e   │  j │   f   │ │ h │
+// │   │ │       │────┤       ├────┤       │ │   │
+// │   │ └───────┘    └─┬───┬─┘    └─┬───┬─┘ │   │
+// │   │   │   │        │   │        │   │   │   │
+// │   │   │ k │        │ l │        │ m │   │   │
+// │   │ ┌─┴───┴─┐    ┌─┴───┴─┐    ┌─┴───┴─┐ │   │
+// │   └─┤       ├────┤       ├────┤       ├─┘   │
+// │     │   g   │ n  │   h   │  o │   i   │     │
+// └─────┤       ├────┤       ├────┤       ├─────┘
+//       └─┬───┬─┘    └───────┘    └─┬───┬─┘      
+//         │   └─────────────────────┘   │        
+//         │              p              │        
+//         └─────────────────────────────┘        
+
+[proc,barrows_catacombs_randomize]
+// reset chamber
+%barrows = clearbit_range(%barrows, 6, 9);
+// reset doors
+%barrows = clearbit_range(%barrows, 10, 25);
+
+// Lock the chest chamber doors
+%barrows_door_e = 1;
+%barrows_door_i = 1;
+%barrows_door_j = 1;
+%barrows_door_l = 1;
+
+def_int $rand = random(4);
+
+// Unlock a random chest chamber door
+switch_int (random(4)) {
+    case 0 : %barrows_door_e = 0;
+    case 1 : %barrows_door_i = 0;
+    case 2 : %barrows_door_j = 0;
+    case default : %barrows_door_l = 0;
+}
+
+$rand = random(4);
+
+// Pick a random entrance chamber (a, c, g, i), lock it's doors and unlock a random one
+if ($rand = 0) {
+    %barrows_chamber_a = 1; %barrows_door_a = 1; %barrows_door_b = 1; %barrows_door_c = 1; %barrows_door_d = 1;
+
+    switch_int (random(4)) {
+        case 0 : %barrows_door_a = 0;
+        case 1 : %barrows_door_b = 0;
+        case 2 : %barrows_door_c = 0;
+        case default : %barrows_door_d = 0;
+    }
+} else if ($rand = 1) {
+    %barrows_chamber_c = 1; %barrows_door_a = 1; %barrows_door_f = 1; %barrows_door_g = 1; %barrows_door_h = 1;
+
+    switch_int (random(4)) {
+        case 0 : %barrows_door_a = 0;
+        case 1 : %barrows_door_f = 0;
+        case 2 : %barrows_door_g = 0;
+        case default : %barrows_door_h = 0;
+    }
+} else if ($rand = 2) {
+    %barrows_chamber_g = 1; %barrows_door_b = 1; %barrows_door_k = 1; %barrows_door_n = 1; %barrows_door_p = 1;
+
+    switch_int (random(4)) {
+        case 0 : %barrows_door_b = 0;
+        case 1 : %barrows_door_k = 0;
+        case 2 : %barrows_door_n = 0;
+        case default : %barrows_door_p = 0;
+    }
+} else {
+    %barrows_chamber_i = 1; %barrows_door_h = 1; %barrows_door_m = 1; %barrows_door_o = 1; %barrows_door_p = 1;
+
+    switch_int (random(4)) {
+        case 0 : %barrows_door_h = 0;
+        case 1 : %barrows_door_m = 0;
+        case 2 : %barrows_door_o = 0;
+        case default : %barrows_door_p = 0;
+    }
+}
+
+[label,barrows_catacombs_enter]
+~mesbox("You've found a hidden tunnel, do you want to enter?");
+
+if (~p_choice2("Yeah I'm fearless!", 1, "No way, that looks scary!", 2) = 1) {
+    if (p_finduid(uid) = false) return;
+    
+    if (%barrows_chamber_a = 1) {
+        p_telejump(map_findsquare(0_55_151_17_47, 0, 2, ^map_findsquare_lineofwalk));
+    } else if (%barrows_chamber_c = 1) {
+        p_telejump(map_findsquare(0_55_151_48_47, 0, 2, ^map_findsquare_lineofwalk));
+    } else if (%barrows_chamber_g = 1) {
+        p_telejump(map_findsquare(0_55_151_14_13, 0, 2, ^map_findsquare_lineofwalk));
+    } else if (%barrows_chamber_i = 1) {
+        p_telejump(map_findsquare(0_55_151_48_13, 0, 2, ^map_findsquare_lineofwalk));
+    }
+}
+
+[oploc1,barrows_ladder_a]
+@barrows_catacombs_exit;
+
+[oploc1,barrows_ladder_c]
+@barrows_catacombs_exit;
+
+[oploc1,barrows_ladder_g]
+@barrows_catacombs_exit;
+
+[oploc1,barrows_ladder_i]
+@barrows_catacombs_exit;
+
+[label,barrows_catacombs_exit]
+if (p_finduid(uid) = false) return;
+
+switch_int (~barrows_entrance_get) {
+    case ^barrows_entrance_ahrim : p_telejump(3_55_151_35_33);
+    case ^barrows_entrance_dharok : p_telejump(3_55_151_37_50);
+    case ^barrows_entrance_guthan : p_telejump(3_55_151_17_39);
+    case ^barrows_entrance_karil : p_telejump(3_55_151_30_17);
+    case ^barrows_entrance_torag : p_telejump(3_55_151_49_20);
+    case ^barrows_entrance_verac : p_telejump(3_55_151_53_40);
+}
+
+////////////////////////////////
+// DOORS
+////////////////////////////////
+
+[oploc1,barrows_door_a_l]
+if (%barrows_door_a = 1) return;
+@barrows_catacombs_open_door(^left, barrows_door_a_r);
+
+[oploc1,barrows_door_b_l]
+if (%barrows_door_b = 1) return;
+@barrows_catacombs_open_door(^left, barrows_door_b_r);
+
+[oploc1,barrows_door_c_l]
+if (%barrows_door_c = 1) return;
+@barrows_catacombs_open_door(^left, barrows_door_c_r);
+
+[oploc1,barrows_door_d_l]
+if (%barrows_door_d = 1) return;
+@barrows_catacombs_open_door(^left, barrows_door_d_r);
+
+[oploc1,barrows_door_e_l]
+if (%barrows_door_e = 1) return;
+if (%barrows_puzzle ! ^barrows_puzzle_completed) @barrows_open_puzzle;
+@barrows_catacombs_open_door(^left, barrows_door_e_r);
+
+[oploc1,barrows_door_f_l]
+if (%barrows_door_f = 1) return;
+@barrows_catacombs_open_door(^left, barrows_door_f_r);
+
+[oploc1,barrows_door_g_l]
+if (%barrows_door_g = 1) return;
+@barrows_catacombs_open_door(^left, barrows_door_g_r);
+
+[oploc1,barrows_door_h_l]
+if (%barrows_door_h = 1) return;
+@barrows_catacombs_open_door(^left, barrows_door_h_r);
+
+[oploc1,barrows_door_i_l]
+if (%barrows_door_i = 1) return;
+if (%barrows_puzzle ! ^barrows_puzzle_completed) @barrows_open_puzzle;
+@barrows_catacombs_open_door(^left, barrows_door_i_r);
+
+[oploc1,barrows_door_j_l]
+if (%barrows_door_j = 1) return;
+if (%barrows_puzzle ! ^barrows_puzzle_completed) @barrows_open_puzzle;
+@barrows_catacombs_open_door(^left, barrows_door_j_r);
+
+[oploc1,barrows_door_k_l]
+if (%barrows_door_k = 1) return;
+@barrows_catacombs_open_door(^left, barrows_door_k_r);
+
+[oploc1,barrows_door_l_l]
+if (%barrows_door_l = 1) return;
+if (%barrows_puzzle ! ^barrows_puzzle_completed) @barrows_open_puzzle;
+@barrows_catacombs_open_door(^left, barrows_door_l_r);
+
+[oploc1,barrows_door_m_l]
+if (%barrows_door_m = 1) return;
+@barrows_catacombs_open_door(^left, barrows_door_m_r);
+
+[oploc1,barrows_door_n_l]
+if (%barrows_door_n = 1) return;
+@barrows_catacombs_open_door(^left, barrows_door_n_r);
+
+[oploc1,barrows_door_o_l]
+if (%barrows_door_o = 1) return;
+@barrows_catacombs_open_door(^left, barrows_door_o_r);
+
+[oploc1,barrows_door_p_l]
+if (%barrows_door_p = 1) return;
+@barrows_catacombs_open_door(^left, barrows_door_p_r);
+
+
+[oploc1,barrows_door_a_r]
+if (%barrows_door_a = 1) return;
+@barrows_catacombs_open_door(^right, barrows_door_a_l);
+
+[oploc1,barrows_door_b_r]
+if (%barrows_door_b = 1) return;
+@barrows_catacombs_open_door(^right, barrows_door_b_l);
+
+[oploc1,barrows_door_c_r]
+if (%barrows_door_c = 1) return;
+@barrows_catacombs_open_door(^right, barrows_door_c_l);
+
+[oploc1,barrows_door_d_r]
+if (%barrows_door_d = 1) return;
+@barrows_catacombs_open_door(^right, barrows_door_d_l);
+
+[oploc1,barrows_door_e_r]
+if (%barrows_door_e = 1) return;
+if (%barrows_puzzle ! ^barrows_puzzle_completed) @barrows_open_puzzle;
+@barrows_catacombs_open_door(^right, barrows_door_e_l);
+
+[oploc1,barrows_door_f_r]
+if (%barrows_door_f = 1) return;
+@barrows_catacombs_open_door(^right, barrows_door_f_l);
+
+[oploc1,barrows_door_g_r]
+if (%barrows_door_g = 1) return;
+@barrows_catacombs_open_door(^right, barrows_door_g_l);
+
+[oploc1,barrows_door_h_r]
+if (%barrows_door_h = 1) return;
+@barrows_catacombs_open_door(^right, barrows_door_h_l);
+
+[oploc1,barrows_door_i_r]
+if (%barrows_door_k = 1) return;
+if (%barrows_puzzle ! ^barrows_puzzle_completed) @barrows_open_puzzle;
+@barrows_catacombs_open_door(^right, barrows_door_i_l);
+
+[oploc1,barrows_door_j_r]
+if (%barrows_door_j = 1) return;
+if (%barrows_puzzle ! ^barrows_puzzle_completed) @barrows_open_puzzle;
+@barrows_catacombs_open_door(^right, barrows_door_j_l);
+
+[oploc1,barrows_door_k_r]
+if (%barrows_door_k = 1) return;
+@barrows_catacombs_open_door(^right, barrows_door_k_l);
+
+[oploc1,barrows_door_l_r]
+if (%barrows_door_l = 1) return;
+if (%barrows_puzzle ! ^barrows_puzzle_completed) @barrows_open_puzzle;
+@barrows_catacombs_open_door(^right, barrows_door_l_l);
+
+[oploc1,barrows_door_m_r]
+if (%barrows_door_m = 1) return;
+@barrows_catacombs_open_door(^right, barrows_door_m_l);
+
+[oploc1,barrows_door_n_r]
+if (%barrows_door_n = 1) return;
+@barrows_catacombs_open_door(^right, barrows_door_n_l);
+
+[oploc1,barrows_door_o_r]
+if (%barrows_door_o = 1) return;
+@barrows_catacombs_open_door(^right, barrows_door_o_l);
+
+[oploc1,barrows_door_p_r]
+if (%barrows_door_p = 1) return;
+@barrows_catacombs_open_door(^right, barrows_door_p_l);
+
+[label,barrows_catacombs_open_door](int $side, loc $other)
+if (p_finduid(uid) = false) return;
+def_coord $other_coord = ~barrows_other_door_coord($side, loc_angle, loc_coord);
+
+if (.loc_find($other_coord, $other) = false) {
+    return;
+}
+def_coord $original_coord = loc_coord;
+def_coord $door_open_coord = ~barrows_door_movecoord(loc_coord);
+def_coord $other_door_open_coord = ~barrows_door_movecoord($other_coord);
+
+loc_change(inviswall, 3);
+.loc_change(inviswall, 3);
+
+if ($side = ^right) {
+    loc_add($door_open_coord, barrows_door_inactive_r, calc((loc_angle + 1) % 4), loc_shape, 3);
+    loc_add($other_door_open_coord, barrows_door_inactive_l, calc((loc_angle + 2) % 4), loc_shape, 3);
+} else {
+    loc_add($door_open_coord, barrows_door_inactive_l, calc((loc_angle + 3) % 4), loc_shape, 3);
+    loc_add($other_door_open_coord, barrows_door_inactive_r, calc((loc_angle + 2) % 4), loc_shape, 3);
+}
+
+sound_synth(barrows_door_open, 0, 0);
+
+if (coord = $door_open_coord | coord = $other_door_open_coord) {
+    p_teleport($original_coord);
+} else {
+    p_teleport($door_open_coord);
+}
+~barrows_door_spawn_monster;
+
+[proc,barrows_door_movecoord](coord $coord)(coord)
+switch_int (loc_angle) {
+    case ^loc_west : return (movecoord($coord, -1, 0, 0));
+    case ^loc_north : return (movecoord($coord, 0, 0, 1));
+    case ^loc_east : return (movecoord($coord, 1, 0, 0));
+    case ^loc_south : return (movecoord($coord, 0, 0, -1));
+    case default : error("Eep Eep! bad loc angle: <tostring(loc_angle)>");
+}
+
+[proc,barrows_other_door_coord](int $side, int $angle, coord $base_coord)(coord)
+if ($side = ^left) {
+    switch_int ($angle) {
+        case ^loc_west : return (~movecoord_loc_return(0, 1));
+        case ^loc_north : return (~movecoord_loc_return(1, 0));
+        case ^loc_east : return (~movecoord_loc_return(0, -1));
+        case ^loc_south : return (~movecoord_loc_return(-1, 0));
+        case default : error("Eep Eep! bad loc angle: <tostring($angle)>");
+    }
+} else {
+    switch_int ($angle) {
+        case ^loc_west : return (~movecoord_loc_return(0, -1));
+        case ^loc_north : return (~movecoord_loc_return(-1, 0));
+        case ^loc_east : return (~movecoord_loc_return(0, 1));
+        case ^loc_south : return (~movecoord_loc_return(1, 0));
+        case default : error("Eep Eep! bad loc angle: <tostring($angle)>");
+    }
+}
+
+[proc,barrows_door_spawn_monster]
+def_int $count = 0;
+
+npc_huntall(coord, 5, ^vis_off);
+
+// check if there are more than 11 npcs nearby, if so, do not spawn anything
+while (npc_huntnext = true & $count < 12) {
+    $count = calc($count + 1);
+}
+if ($count >= 12) return;
+
+def_int $rand = random(128);
+def_coord $coord = map_findsquare(coord, 0, 2, ^map_findsquare_lineofwalk);
+
+if ($rand < 12) {
+    // here we go abusing inventories again!
+    inv_clear(trail_puzzleinv);
+
+    if (%barrows_killed_ahrim = 0) inv_add(trail_puzzleinv, barrows_interface_ahrim, 1);
+    if (%barrows_killed_dharok = 0) inv_add(trail_puzzleinv, barrows_interface_dharok, 1);
+    if (%barrows_killed_guthan = 0) inv_add(trail_puzzleinv, barrows_interface_guthan, 1);
+    if (%barrows_killed_karil = 0) inv_add(trail_puzzleinv, barrows_interface_karil, 1);
+    if (%barrows_killed_torag = 0) inv_add(trail_puzzleinv, barrows_interface_torag, 1);
+    if (%barrows_killed_verac = 0) inv_add(trail_puzzleinv, barrows_interface_verac, 1);
+
+    def_int $possibilities = calc(inv_size(trail_puzzleinv) - inv_freespace(trail_puzzleinv));
+    def_obj $random_brother = inv_getobj(trail_puzzleinv, random($possibilities));
+    inv_clear(trail_puzzleinv);
+
+    switch_obj ($random_brother) {
+        case barrows_interface_ahrim : ~barrows_spawn_brother(barrows_ahrim, null);
+        case barrows_interface_dharok : ~barrows_spawn_brother(barrows_dharok, null);
+        case barrows_interface_guthan : ~barrows_spawn_brother(barrows_guthan, null);
+        case barrows_interface_karil : ~barrows_spawn_brother(barrows_karil, null);
+        case barrows_interface_torag : ~barrows_spawn_brother(barrows_torag, null);
+        case barrows_interface_verac : ~barrows_spawn_brother(barrows_verac, null);
+        case default : ~barrows_spawn_npc(barrows_rat, ^barrows_npc_lifetime, opplayer2);
+    }
+} else if ($rand < 32) {
+    ~barrows_spawn_npc(barrows_skeleton_armed, ^barrows_npc_lifetime, opplayer2);
+} else if ($rand < 64) {
+    ~barrows_spawn_npc(barrows_skeleton_unarmed, ^barrows_npc_lifetime, opplayer2);
+} else if ($rand < 96) {
+    ~barrows_spawn_npc(barrows_bloodworm, ^barrows_npc_lifetime, opplayer2);
+} else {
+    ~barrows_spawn_npc(barrows_rat, ^barrows_npc_lifetime, opplayer2);
+}

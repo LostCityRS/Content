@@ -10,7 +10,7 @@
 //    mes("It would be seriously unwise for you to drop your items in the sea."); // osrs
 //    return;
 //}
-
+~replace_on_drop(inv, $last);
 inv_dropslot(inv, coord, $last, ^dropslot_duration);
 anim(null, 0); // https://youtu.be/QvDYolBZNjY?t=164, https://youtu.be/DVHCP2JhQE0?t=142
 sound_synth(put_down, 0, 0);

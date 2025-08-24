@@ -1,0 +1,312 @@
+[label,barrows_equip_repair]
+def_obj $item = last_useitem;
+
+if (oc_param($item, barrows_equip_state_pristine) = null) {
+    ~chatnpc("<p,confused>Sorry friend, but I can't do anything with that.");
+    return;
+}
+
+~p_choice3_header("Repair that item: 60 coins.", 1, "Repair all items: 160 coins.", 2, "Cancel.", 3, "What would you like to do?");
+
+
+~chatnpc("<p,happy>There you go, happy doing business with you!");
+
+[proc,barrows_equip_total_repair_cost]()(int)
+def_int $i = inv_size(inv);
+
+while ($i >= 0) {
+    def_obj $obj = inv_getobj(inv, $i);
+    if ($obj ! null) {
+
+    }
+    $i = calc($i - 1);
+}
+
+[proc,barrows_equip_repair_cost](obj $obj)(int)
+def_int $equip_type = oc_param($obj, barrows_equip_type);
+def_int $cost = oc_param($obj, barrows_equip_repair_cost);
+def_int $multiplier = oc_param($obj, barrows_equip_degradation_multiplier);
+
+if ($equip_type = null) return (0);
+
+def_int $degradation_points = ~barrows_equip_degrade_var_get($equip_type);
+
+// Cap multiplier at 4 (fully broken)
+$multiplier = min($multiplier, 4);
+
+if ($multiplier = 4) {
+    return (calc((^barrows_equip_max_degrade_state * 4) * $cost));
+} else {
+    return (calc((^barrows_equip_max_degrade_state * $multiplier) + (^barrows_equip_max_degrade_state - $degradation_points) * $cost));
+}
+
+[proc,barrows_equip_degrade_var_get](int $equip_type)(int) {
+    switch_int ($equip_type) {
+        case ^barrows_equip_type_ahrim_head : return(%barrows_degrade_ahrim_head);
+        case ^barrows_equip_type_ahrim_weapon : return(%barrows_degrade_ahrim_weapon);
+        case ^barrows_equip_type_ahrim_body : return(%barrows_degrade_ahrim_body);
+        case ^barrows_equip_type_ahrim_legs : return(%barrows_degrade_ahrim_legs);
+
+        case ^barrows_equip_type_dharok_head : return(%barrows_degrade_dharok_head);
+        case ^barrows_equip_type_dharok_weapon : return(%barrows_degrade_dharok_weapon);
+        case ^barrows_equip_type_dharok_body : return(%barrows_degrade_dharok_body);
+        case ^barrows_equip_type_dharok_legs : return(%barrows_degrade_dharok_legs);
+
+        case ^barrows_equip_type_guthan_head : return(%barrows_degrade_guthan_head);
+        case ^barrows_equip_type_guthan_weapon : return(%barrows_degrade_guthan_weapon);
+        case ^barrows_equip_type_guthan_body : return(%barrows_degrade_guthan_body);
+        case ^barrows_equip_type_guthan_legs : return(%barrows_degrade_guthan_legs);
+
+        case ^barrows_equip_type_karil_head : return(%barrows_degrade_karil_head);
+        case ^barrows_equip_type_karil_weapon : return(%barrows_degrade_karil_weapon);
+        case ^barrows_equip_type_karil_body : return(%barrows_degrade_karil_body);
+        case ^barrows_equip_type_karil_legs : return(%barrows_degrade_karil_legs);
+
+        case ^barrows_equip_type_torag_head : return(%barrows_degrade_torag_head);
+        case ^barrows_equip_type_torag_weapon : return(%barrows_degrade_torag_weapon);
+        case ^barrows_equip_type_torag_body : return(%barrows_degrade_torag_body);
+        case ^barrows_equip_type_torag_legs : return(%barrows_degrade_torag_legs);
+
+        case ^barrows_equip_type_verac_head : return(%barrows_degrade_verac_head);
+        case ^barrows_equip_type_verac_weapon : return(%barrows_degrade_verac_weapon);
+        case ^barrows_equip_type_verac_body : return(%barrows_degrade_verac_body);
+        case ^barrows_equip_type_verac_legs : return(%barrows_degrade_verac_legs);
+    }
+}
+
+[proc,barrows_equip_degrade_var_set](int $equip_type, int $value) {
+    switch_int ($equip_type) {
+        case ^barrows_equip_type_ahrim_head : %barrows_degrade_ahrim_head = $value;
+        case ^barrows_equip_type_ahrim_weapon : %barrows_degrade_ahrim_weapon = $value;
+        case ^barrows_equip_type_ahrim_body : %barrows_degrade_ahrim_body = $value;
+        case ^barrows_equip_type_ahrim_legs : %barrows_degrade_ahrim_legs = $value;
+
+        case ^barrows_equip_type_dharok_head : %barrows_degrade_dharok_head = $value;
+        case ^barrows_equip_type_dharok_weapon : %barrows_degrade_dharok_weapon = $value;
+        case ^barrows_equip_type_dharok_body : %barrows_degrade_dharok_body = $value;
+        case ^barrows_equip_type_dharok_legs : %barrows_degrade_dharok_legs = $value;
+
+        case ^barrows_equip_type_guthan_head : %barrows_degrade_guthan_head = $value;
+        case ^barrows_equip_type_guthan_weapon : %barrows_degrade_guthan_weapon = $value;
+        case ^barrows_equip_type_guthan_body : %barrows_degrade_guthan_body = $value;
+        case ^barrows_equip_type_guthan_legs : %barrows_degrade_guthan_legs = $value;
+
+        case ^barrows_equip_type_karil_head : %barrows_degrade_karil_head = $value;
+        case ^barrows_equip_type_karil_weapon : %barrows_degrade_karil_weapon = $value;
+        case ^barrows_equip_type_karil_body : %barrows_degrade_karil_body = $value;
+        case ^barrows_equip_type_karil_legs : %barrows_degrade_karil_legs = $value;
+
+        case ^barrows_equip_type_torag_head : %barrows_degrade_torag_head = $value;
+        case ^barrows_equip_type_torag_weapon : %barrows_degrade_torag_weapon = $value;
+        case ^barrows_equip_type_torag_body : %barrows_degrade_torag_body = $value;
+        case ^barrows_equip_type_torag_legs : %barrows_degrade_torag_legs = $value;
+
+        case ^barrows_equip_type_verac_head : %barrows_degrade_verac_head = $value;
+        case ^barrows_equip_type_verac_weapon : %barrows_degrade_verac_weapon = $value;
+        case ^barrows_equip_type_verac_body : %barrows_degrade_verac_body = $value;
+        case ^barrows_equip_type_verac_legs : %barrows_degrade_verac_legs = $value;
+    }
+}
+
+
+[proc,barrows_equip_degrade](int $slot)
+def_obj $obj = inv_getobj(worn, $slot);
+if ($obj = null) return;
+
+def_namedobj $next = oc_param($obj, barrows_equip_state_next);
+if ($next = null) return;
+
+switch_obj ($obj) {
+    case barrows_ahrim_head, barrows_ahrim_head_100, barrows_ahrim_head_75, barrows_ahrim_head_50, barrows_ahrim_head_25 :
+        if ($obj = barrows_ahrim_head | %barrows_degrade_ahrim_head = 0) {
+            %barrows_degrade_ahrim_head = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Ahrim's hood has degraded slightly!");
+        } else {
+            %barrows_degrade_ahrim_head = calc(%barrows_degrade_ahrim_head - 1);
+        }
+    case barrows_ahrim_weapon, barrows_ahrim_weapon_100, barrows_ahrim_weapon_75, barrows_ahrim_weapon_50, barrows_ahrim_weapon_25 : 
+        if ($obj = barrows_ahrim_weapon | %barrows_degrade_ahrim_weapon = 0) {
+            %barrows_degrade_ahrim_weapon = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Ahrim's weapon has degraded slightly!");
+        } else {
+            %barrows_degrade_ahrim_weapon = calc(%barrows_degrade_ahrim_weapon - 1);
+        }
+    case barrows_ahrim_body, barrows_ahrim_body_100, barrows_ahrim_body_75, barrows_ahrim_body_50, barrows_ahrim_body_25 : 
+        if ($obj = barrows_ahrim_body | %barrows_degrade_ahrim_body = 0) {
+            %barrows_degrade_ahrim_body = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Ahrim's body has degraded slightly!");
+        } else {
+            %barrows_degrade_ahrim_body = calc(%barrows_degrade_ahrim_body - 1);
+        }
+    case barrows_ahrim_legs, barrows_ahrim_legs_100, barrows_ahrim_legs_75, barrows_ahrim_legs_50, barrows_ahrim_legs_25 : 
+        if ($obj = barrows_ahrim_legs | %barrows_degrade_ahrim_legs = 0) {
+            %barrows_degrade_ahrim_legs = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Ahrim's skirt has degraded slightly!");
+        } else {
+            %barrows_degrade_ahrim_legs = calc(%barrows_degrade_ahrim_legs - 1);
+        }
+    case barrows_dharok_head, barrows_dharok_head_100, barrows_dharok_head_75, barrows_dharok_head_50, barrows_dharok_head_25 :
+        if ($obj = barrows_dharok_head | %barrows_degrade_dharok_head = 0) {
+            %barrows_degrade_dharok_head = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Dharok's helmet has degraded slightly!");
+        } else {
+            %barrows_degrade_dharok_head = calc(%barrows_degrade_dharok_head - 1);
+        }
+    case barrows_dharok_weapon, barrows_dharok_weapon_100, barrows_dharok_weapon_75, barrows_dharok_weapon_50, barrows_dharok_weapon_25 :
+        if ($obj = barrows_dharok_weapon | %barrows_degrade_dharok_weapon = 0) {
+            %barrows_degrade_dharok_weapon = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Dharok's weapon has degraded slightly!");
+        } else {
+            %barrows_degrade_dharok_weapon = calc(%barrows_degrade_dharok_weapon - 1);
+        }
+    case barrows_dharok_body, barrows_dharok_body_100, barrows_dharok_body_75, barrows_dharok_body_50, barrows_dharok_body_25 : 
+        if ($obj = barrows_dharok_body | %barrows_degrade_dharok_body = 0) {
+            %barrows_degrade_dharok_body = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Dharok's body has degraded slightly!");
+        } else {
+            %barrows_degrade_dharok_body = calc(%barrows_degrade_dharok_body - 1);
+        }
+    case barrows_dharok_legs, barrows_dharok_legs_100, barrows_dharok_legs_75, barrows_dharok_legs_50, barrows_dharok_legs_25 : 
+        if ($obj = barrows_dharok_legs | %barrows_degrade_dharok_legs = 0) {
+            %barrows_degrade_dharok_legs = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+        mes("Dharok's legs has degraded slightly!");
+        } else {
+            %barrows_degrade_dharok_legs = calc(%barrows_degrade_dharok_legs - 1);
+        }
+    case barrows_guthan_head, barrows_guthan_head_100, barrows_guthan_head_75, barrows_guthan_head_50, barrows_guthan_head_25 : 
+        if ($obj = barrows_guthan_head | %barrows_degrade_guthan_head = 0) {
+            %barrows_degrade_guthan_head = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Guthans's helmet has degraded slightly!");
+        } else {
+            %barrows_degrade_guthan_head = calc(%barrows_degrade_guthan_head - 1);
+        }
+    case barrows_guthan_weapon, barrows_guthan_weapon_100, barrows_guthan_weapon_75, barrows_guthan_weapon_50, barrows_guthan_weapon_25 : 
+        if ($obj = barrows_guthan_weapon | %barrows_degrade_guthan_weapon = 0) {
+            %barrows_degrade_guthan_weapon = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Guthans's weapon has degraded slightly!");
+        } else {
+            %barrows_degrade_guthan_weapon = calc(%barrows_degrade_guthan_weapon - 1);
+        }
+    case barrows_guthan_body, barrows_guthan_body_100, barrows_guthan_body_75, barrows_guthan_body_50, barrows_guthan_body_25 : 
+        if ($obj = barrows_guthan_body | %barrows_degrade_guthan_body = 0) {
+            %barrows_degrade_guthan_body = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Guthans's body has degraded slightly!");
+        } else {
+            %barrows_degrade_guthan_body = calc(%barrows_degrade_guthan_body - 1);
+        }
+    case barrows_guthan_legs, barrows_guthan_legs_100, barrows_guthan_legs_75, barrows_guthan_legs_50, barrows_guthan_legs_25 : 
+        if ($obj = barrows_guthan_legs | %barrows_degrade_guthan_legs = 0) {
+            %barrows_degrade_guthan_legs = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Guthans's skirt has degraded slightly!");
+        } else {
+            %barrows_degrade_guthan_legs = calc(%barrows_degrade_guthan_legs - 1);
+        }
+    case barrows_karil_head, barrows_karil_head_100, barrows_karil_head_75, barrows_karil_head_50, barrows_karil_head_25 : 
+        if ($obj = barrows_karil_head | %barrows_degrade_karil_head = 0) {
+            %barrows_degrade_karil_head = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Karil's coif has degraded slightly!");
+        } else {
+            %barrows_degrade_karil_head = calc(%barrows_degrade_karil_head - 1);
+        }
+    case barrows_karil_weapon, barrows_karil_weapon_100, barrows_karil_weapon_75, barrows_karil_weapon_50, barrows_karil_weapon_25 : 
+        if ($obj = barrows_karil_weapon | %barrows_degrade_karil_weapon = 0) {
+            %barrows_degrade_karil_weapon = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Karil's weapon has degraded slightly!");
+        } else {
+            %barrows_degrade_karil_weapon = calc(%barrows_degrade_karil_weapon - 1);
+        }
+    case barrows_karil_body, barrows_karil_body_100, barrows_karil_body_75, barrows_karil_body_50, barrows_karil_body_25 : 
+        if ($obj = barrows_karil_body | %barrows_degrade_karil_body = 0) {
+            %barrows_degrade_karil_body = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Karil's body has degraded slightly!");
+        } else {
+            %barrows_degrade_karil_body = calc(%barrows_degrade_karil_body - 1);
+        }
+    case barrows_karil_legs, barrows_karil_legs_100, barrows_karil_legs_75, barrows_karil_legs_50, barrows_karil_legs_25 : 
+        if ($obj = barrows_karil_legs | %barrows_degrade_karil_legs = 0) {
+            %barrows_degrade_karil_legs = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Karil's skirt has degraded slightly!");
+        } else {
+            %barrows_degrade_karil_legs = calc(%barrows_degrade_karil_legs - 1);
+        }
+    case barrows_torag_head, barrows_torag_head_100, barrows_torag_head_75, barrows_torag_head_50, barrows_torag_head_25 :
+        if ($obj = barrows_torag_head | %barrows_degrade_torag_head = 0) {
+            %barrows_degrade_torag_head = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Torag's helmet has degraded slightly!");
+        } else {
+            %barrows_degrade_torag_head = calc(%barrows_degrade_torag_head - 1);
+        }
+    case barrows_torag_weapon, barrows_torag_weapon_100, barrows_torag_weapon_75, barrows_torag_weapon_50, barrows_torag_weapon_25 :
+        if ($obj = barrows_torag_weapon | %barrows_degrade_torag_weapon = 0) {
+            %barrows_degrade_torag_weapon = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Torag's weapon has degraded slightly!");
+        } else {
+            %barrows_degrade_torag_weapon = calc(%barrows_degrade_torag_weapon - 1);
+        }
+    case barrows_torag_body, barrows_torag_body_100, barrows_torag_body_75, barrows_torag_body_50, barrows_torag_body_25 :
+        if ($obj = barrows_torag_body | %barrows_degrade_torag_body = 0) {
+            %barrows_degrade_torag_body = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Torag's body has degraded slightly!");
+        } else {
+            %barrows_degrade_torag_body = calc(%barrows_degrade_torag_body - 1);
+        }
+    case barrows_torag_legs, barrows_torag_legs_100, barrows_torag_legs_75, barrows_torag_legs_50, barrows_torag_legs_25 :
+        if ($obj = barrows_torag_legs | %barrows_degrade_torag_legs = 0) {
+            %barrows_degrade_torag_legs = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Torag's legs has degraded slightly!");
+        } else {
+            %barrows_degrade_torag_legs = calc(%barrows_degrade_torag_legs - 1);
+        }
+    case barrows_verac_head, barrows_verac_head_100, barrows_verac_head_75, barrows_verac_head_50, barrows_verac_head_25 :
+        if ($obj = barrows_verac_head | %barrows_degrade_verac_head = 0) {
+            %barrows_degrade_verac_head = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Verac's helmet has degraded slightly!");
+        } else {
+            %barrows_degrade_verac_head = calc(%barrows_degrade_verac_head - 1);
+        }
+    case barrows_verac_weapon, barrows_verac_weapon_100, barrows_verac_weapon_75, barrows_verac_weapon_50, barrows_verac_weapon_25 :
+        if ($obj = barrows_verac_weapon | %barrows_degrade_verac_weapon = 0) {
+            %barrows_degrade_verac_weapon = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Verac's weapon has degraded slightly!");
+        } else {
+            %barrows_degrade_verac_weapon = calc(%barrows_degrade_verac_weapon - 1);
+        }
+    case barrows_verac_body, barrows_verac_body_100, barrows_verac_body_75, barrows_verac_body_50, barrows_verac_body_25 :
+        if ($obj = barrows_verac_body | %barrows_degrade_verac_body = 0) {
+            %barrows_degrade_verac_body = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Verac's body has degraded slightly!");
+        } else {
+            %barrows_degrade_verac_body = calc(%barrows_degrade_verac_body - 1);
+        }
+    case barrows_verac_legs, barrows_verac_legs_100, barrows_verac_legs_75, barrows_verac_legs_50, barrows_verac_legs_25 :
+        if ($obj = barrows_verac_legs | %barrows_degrade_verac_legs = 0) {
+            %barrows_degrade_verac_legs = ^barrows_equip_base_degrade_state;
+            inv_setslot(worn, $slot, $next, inv_getnum(worn, $slot));
+            mes("Verac's skirt has degraded slightly!");
+        } else {
+            %barrows_degrade_verac_legs = calc(%barrows_degrade_verac_legs - 1);
+        }
+}

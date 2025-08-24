@@ -1,0 +1,12 @@
+// Use for things like barrows where whenever the obj is dropped it is converted into another
+[proc,replace_on_drop](inv $inv, int $slot)
+def_obj $obj = inv_getobj($inv, $slot);
+
+if ($obj = null) return;
+
+def_int $count = inv_getnum($inv, $slot);
+def_namedobj $replacement = oc_param($obj, replace_on_drop);
+
+if ($replacement = null) return;
+
+inv_setslot($inv, $slot, $replacement, $count);

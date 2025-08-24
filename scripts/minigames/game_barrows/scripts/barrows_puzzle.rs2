@@ -1,0 +1,87 @@
+[label,barrows_open_puzzle]
+if (p_finduid(uid) = false) return;
+
+def_int $sequence_a; def_int $sequence_b; def_int $sequence_c;
+def_int $pic_a; def_int $pic_b; def_int $pic_c;
+def_int $answer;
+
+def_int $rand = random(4);
+
+if ($rand = 0) {
+    // arrows
+    $sequence_a = 6716; $sequence_b = 6717; $sequence_c = 6718;
+    $answer, $pic_a, $pic_b, $pic_c = ~barrows_puzzle_rand_pics(6713, 6714, 6715);
+} else if ($rand = 1) {
+    // squares
+    $sequence_a = 6722; $sequence_b = 6723; $sequence_c = 6724;
+    $answer, $pic_a, $pic_b, $pic_c = ~barrows_puzzle_rand_pics(6719, 6720, 6721);
+} else if ($rand = 1) {
+    // bars
+    $sequence_a = 6728; $sequence_b = 6729; $sequence_c = 6730;
+    $answer, $pic_a, $pic_b, $pic_c = ~barrows_puzzle_rand_pics(6725, 6726, 6727);
+} else {
+    // polygons
+    $sequence_a = 6734; $sequence_b = 6735; $sequence_c = 6736;
+    $answer, $pic_a, $pic_b, $pic_c = ~barrows_puzzle_rand_pics(6731, 6732, 6733);
+}
+if_setmodel(barrows_puzzle:sequence_a, $sequence_a);
+if_setmodel(barrows_puzzle:sequence_b, $sequence_b);
+if_setmodel(barrows_puzzle:sequence_c, $sequence_c);
+
+if_setmodel(barrows_puzzle:pic_a, $pic_a);
+if_setmodel(barrows_puzzle:pic_b, $pic_b);
+if_setmodel(barrows_puzzle:pic_c, $pic_c);
+
+%barrows_puzzle = $answer;
+
+if_openmain(barrows_puzzle);
+mes("The door is locked with a strange puzzle.");
+
+// Returns a permutation of the given pics. $pic_a should always be the correct puzzle answer.
+// Return values: $correct_idx, $pic_a, $pic_b, $pic_c
+[proc,barrows_puzzle_rand_pics](int $pic_a, int $pic_b, int $pic_c)(int, int, int, int)
+switch_int (random(6)) {
+    case 0 : return (0, $pic_a, $pic_b, $pic_c);
+    case 1 : return (1, $pic_c, $pic_a, $pic_b);
+    case 2 : return (2, $pic_b, $pic_c, $pic_a);
+    case 3 : return (0, $pic_a, $pic_c, $pic_b);
+    case 4 : return (1, $pic_b, $pic_a, $pic_c);
+    case 5 : return (2, $pic_c, $pic_b, $pic_a);
+}
+
+[if_button,barrows_puzzle:pic_a]
+if (p_finduid(uid) = false) return;
+
+if (%barrows_puzzle = 0) {
+    mes("You hear the doors' locking mechanism grind open.");
+    %barrows_puzzle = ^barrows_puzzle_completed;
+} else {
+    mes("You got the puzzle wrong! You can hear the catacombs moving around you.");
+    ~barrows_catacombs_randomize;
+}
+if_close;
+
+[if_button,barrows_puzzle:pic_b]
+if (p_finduid(uid) = false) return;
+
+if (%barrows_puzzle = 1) {
+    mes("You hear the doors' locking mechanism grind open.");
+    %barrows_puzzle = ^barrows_puzzle_completed;
+    sound_synth(barrows_door_unlock, 0, 0);
+} else {
+    mes("You got the puzzle wrong! You can hear the catacombs moving around you.");
+    ~barrows_catacombs_randomize;
+}
+if_close;
+
+[if_button,barrows_puzzle:pic_c]
+if (p_finduid(uid) = false) return;
+
+if (%barrows_puzzle = 2) {
+    mes("You hear the doors' locking mechanism grind open.");
+    %barrows_puzzle = ^barrows_puzzle_completed;
+} else {
+    mes("You got the puzzle wrong! You can hear the catacombs moving around you.");
+    ~barrows_catacombs_randomize;
+}
+if_close;

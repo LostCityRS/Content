@@ -1,0 +1,131 @@
+[oploc1,barrow_ahrim_sarcophagus]
+mes("You don't find anything.");
+
+if (~barrows_entrance_get = ^barrows_entrance_ahrim) {
+    @barrows_catacombs_enter;
+} else if (%barrows_killed_ahrim = 0 & ~barrows_hunt_brother(barrows_ahrim) = false) {
+    ~barrows_spawn_brother(barrows_ahrim, ^barrows_speech_disturb);
+}
+
+[oploc1,barrow_dharok_sarcophagus]
+mes("You don't find anything.");
+
+if (~barrows_entrance_get = ^barrows_entrance_dharok) {
+    @barrows_catacombs_enter;
+} else if (%barrows_killed_dharok = 0 & ~barrows_hunt_brother(barrows_dharok) = false) {
+    ~barrows_spawn_brother(barrows_dharok, ^barrows_speech_disturb);
+}
+
+[oploc1,barrow_guthan_sarcophagus]
+mes("You don't find anything.");
+
+if (~barrows_entrance_get = ^barrows_entrance_guthan) {
+    @barrows_catacombs_enter;
+} else if (%barrows_killed_guthan = 0 & ~barrows_hunt_brother(barrows_guthan) = false) {
+    ~barrows_spawn_brother(barrows_guthan, ^barrows_speech_disturb);
+}
+
+[oploc1,barrow_karil_sarcophagus]
+mes("You don't find anything.");
+
+if (~barrows_entrance_get = ^barrows_entrance_karil) {
+    @barrows_catacombs_enter;
+} else if (%barrows_killed_karil = 0 & ~barrows_hunt_brother(barrows_karil) = false) {
+    ~barrows_spawn_brother(barrows_karil, ^barrows_speech_disturb);
+}
+
+[oploc1,barrow_torag_sarcophagus]
+mes("You don't find anything.");
+
+if (~barrows_entrance_get = ^barrows_entrance_torag) {
+    @barrows_catacombs_enter;
+} else if (%barrows_killed_torag = 0 & ~barrows_hunt_brother(barrows_torag) = false) {
+    ~barrows_spawn_brother(barrows_torag, ^barrows_speech_disturb);
+}
+
+[oploc1,barrow_verac_sarcophagus]
+mes("You don't find anything.");
+
+if (~barrows_entrance_get = ^barrows_entrance_verac) {
+    @barrows_catacombs_enter;
+} else if (%barrows_killed_verac = 0 & ~barrows_hunt_brother(barrows_verac) = false) {
+    ~barrows_spawn_brother(barrows_verac, ^barrows_speech_disturb);
+}
+
+[proc,barrows_hunt_brother](npc $npc)(boolean)
+npc_huntall(coord, 10, ^vis_off);
+while (npc_huntnext = true) {
+    // there's a brother already spawned and targeting us
+    if (npc_type = $npc & %npc_aggressive_player = uid) {
+        return (true);
+    }
+}
+return (false);
+
+[oploc1,barrows_stairs_ahrim]
+@barrows_crypt_exit(0_55_51_43_25);
+
+[oploc1,barrows_stairs_dharok]
+@barrows_crypt_exit(0_55_51_54_33);
+
+[oploc1,barrows_stairs_guthan]
+@barrows_crypt_exit(0_55_51_57_18);
+
+[oploc1,barrows_stairs_karil]
+@barrows_crypt_exit(0_55_51_45_10);
+
+[oploc1,barrows_stairs_torag]
+@barrows_crypt_exit(0_55_51_34_18);
+
+[oploc1,barrows_stairs_verac]
+@barrows_crypt_exit(0_55_51_37_33);
+
+[label,barrows_dig]
+if (p_finduid(uid) = false) return;
+def_coord $crypt = null;
+
+if (inzone(0_55_51_42_22, 0_55_51_47_28, coord) = true) {
+    // ahrims
+    $crypt = 3_55_151_37_39;
+} else if (inzone(0_55_51_52_31, 0_55_51_57_36, coord) = true) {
+    // dharok
+    $crypt = 3_55_151_36_54;
+} else if (inzone(0_55_51_54_16, 0_55_51_60_20, coord) = true) {
+    // guthan
+    $crypt = 3_55_151_14_40;
+} else if (inzone(0_55_51_43_9, 0_55_51_49_15, coord) = true) {
+    // karil
+    $crypt = 3_55_151_26_20;
+} else if (inzone(0_55_51_32_17, 0_55_51_36_20, coord) = true) {
+    // torag
+    $crypt = 3_55_151_48_19;
+} else if (inzone(0_55_51_35_31, 0_55_51_39_36, coord) = true) {
+    // verac
+    $crypt = 3_55_151_58_42;
+}
+
+if ($crypt ! null) {
+    mes("You've broken into a crypt!");
+    p_arrivedelay;
+    p_stopaction;
+    anim(human_dig, 0);
+    p_delay(0);
+    @barrows_crypt_enter($crypt);
+} else {
+    // If we dig somewhere within the barrows area that isn't a crypt we just get NIH
+    mes("Nothing interesting happens.");
+}
+
+[label,barrows_crypt_enter](coord $coord)
+if (%barrows = 0 | ~barrows_collapsing = true) {
+    ~barrows_full_reset;
+}
+minimap_toggle(^minimap_hidden);
+if_openoverlay(barrows_overlay);
+p_telejump($coord);
+
+[label,barrows_crypt_exit](coord $coord)
+if (p_finduid(uid) = false) return;
+minimap_toggle(^minimap_visible);
+if_openoverlay(null);
+p_telejump(map_findsquare($coord, 0, 2, ^map_findsquare_lineofwalk));
