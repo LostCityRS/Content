@@ -34,3 +34,12 @@ if (lowmemory = false) {
     if_settab(options_ld, ^tab_options);
     if_settab(music_ld, ^tab_music);
 }
+
+if (map_production = true) {
+    if_openfull(inter_353, inter_313);
+    if_settext(inter_353:com_1,"Did you know, all the weapon stats are listed on our new");
+    if_settext(inter_353:com_2,"Knowledge Base?");
+    // todo: Set if player has pin? 
+    if_settext(inter_313:com_19,"You do not have a Bank PIN. Please visit a bank\\nif you would like one.");
+    last_login_info;
+}

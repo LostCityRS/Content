@@ -302,6 +302,8 @@
 [command,.if_openoverlay](interface $interface)
 // info: Open a modal in the side tab
 [command,if_openside](interface $interface)
+// info: Open a fullscreen interface
+[command,if_openfull](interface $overlayInterface, interface $mainInterface)
 // info: Set a component's model to the local player's chat head
 [command,if_setplayerhead](component $component)
 // info: Set a component's text
