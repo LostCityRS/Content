@@ -82,15 +82,15 @@ if (%book_page > $max_page) {
 }
 
 if (%book_page = $min_page) {
-    if_sethide(book:com_1, true);
+    if_sethide(book:com_2, true);
 } else {
-    if_sethide(book:com_1, false);
+    if_sethide(book:com_2, false);
 }
 
 if (%book_page = $max_page) {
-    if_sethide(book:com_3, true);
+    if_sethide(book:com_4, true);
 } else {
-    if_sethide(book:com_3, false);
+    if_sethide(book:com_4, false);
 }
 
 gosub($proc);
