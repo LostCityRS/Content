@@ -252,6 +252,8 @@
 [command,p_preventlogout](string $message, int $duration)
 // info: Prevent logout for a duration on the secondary pointer
 [command,.p_preventlogout](string $message, int $duration)
+// info: Set a model component's xan, yan, and zoom. 
+[command,if_setangle](component $component, int $xan, int $yan, int $zoom)
 // info: Set a component's colour
 [command,if_setcolour](component $component, int $colour)
 // info: Open a modal in the chat box
@@ -273,7 +275,7 @@
 // info: Set a component's model
 [command,if_setmodel](component $component, int $model)
 // info: Set a model component's x and y angular velocity. 
-[command,if_setangle](component $component, int $xAngleSpeed, int $yAngleSpeed)
+[command,if_setrotation](component $component, int $xAngleSpeed, int $yAngleSpeed)
 // info: Recolor a component's model
 [command,if_setrecol](component $component, int $src, int $dest)
 // info: Open the tutorial modal mode ("sticky" interface)

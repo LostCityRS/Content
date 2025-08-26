@@ -9,4 +9,11 @@ if (p_finduid(uid) = false) {
     return;
 }
 if_openmain(inter_60);
-if_setangle(inter_60:com_92, $xSpeed, $ySpeed);
+if_setrotation(inter_60:com_92, $xSpeed, $ySpeed);
+
+[debugproc,angle](int $xan, int $yan, int $zoom)
+if (p_finduid(uid) = false) {
+    return;
+}
+if_openmain(inter_60);
+if_setangle(inter_60:com_92, $xan, $yan, $zoom);
