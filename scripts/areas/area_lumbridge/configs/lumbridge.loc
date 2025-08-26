@@ -1,0 +1,36 @@
+[qip_sheep_shearer_poordoor]
+name=Door
+desc=The door is closed.
+model=door
+recol1s=12512
+recol1d=10434
+recol2s=13569
+recol2d=7297
+recol3s=14626
+recol3d=13605
+recol4s=11456
+recol4d=11491
+active=yes
+op1=Open
+raiseobject=no
+raiseobject=no
+category=door_closed
+param=next_loc_stage,qip_sheep_shearer_poordooropen
+
+[qip_sheep_shearer_poordooropen]
+name=Door
+desc=The door is open.
+model=door
+recol1s=12512
+recol1d=10434
+recol2s=13569
+recol2d=7297
+recol3s=14626
+recol3d=13605
+recol4s=11456
+recol4d=11491
+active=yes
+op1=Close
+raiseobject=no
+category=door_opened
+param=next_loc_stage,qip_sheep_shearer_poordoor
