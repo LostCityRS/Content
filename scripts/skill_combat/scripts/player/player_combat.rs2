@@ -68,9 +68,36 @@ switch_int ($damagetype) {
 if (map_multiway(npc_coord) = false) {
     // player has been attacked in the last 8 ticks, and not by the current npc
     // or player has been attacked in the last 8 ticks, and %aggressive_npc is null (for pvp)
-    // https://cdn.discordapp.com/attachments/1126857544523063367/1332910417856565249/found-old-drive-with-rsdemon-and-some-screenshots-v0-36uacu7glqzd1.png?ex=67999c0f&is=67984a8f&hm=a4c34a40791a120dba06adebb15a652a722e486fddd6d5a9e47ee9aa2c329fb3&
-    // 2006 year / osrs mes I'm already under attack.
-    // here's one from 2004: https://youtu.be/IC2n8t76DDY?t=34
+    // "I'm already under attack!" probably existed for op2'ing an npc
+    // - 2004: https://storage.googleapis.com/tannerdino/images/Old%20Runescape%202004%20screenshots%20(%20From%20December%202004%20to%20January%202005%20)%20(7).jpeg
+    // - 2004: https://storage.googleapis.com/tannerdino/images/115combat.jpg
+    // - 2006: https://storage.googleapis.com/tannerdino/images/MyTrainingSpot.jpg
+    // - may 2006: https://www.youtube.com/watch?v=4uVvAwcJd9M&t=307s
+    if (add(%lastcombat_pvp, 8) > map_clock) {
+        mes("I'm already under attack!");
+        return(false);
+    }
+    if (add(%lastcombat, 8) > map_clock & (%aggressive_npc ! npc_uid & %aggressive_npc ! null)) {
+        mes("I'm already under attack!");
+        return(false);
+    }
+    // npc has been attacked in the last 8 ticks, and not by the current player
+    if ((add(%npc_lastcombat, 8) > map_clock & %npc_aggressive_player ! uid)) {
+        mes("Someone else is fighting that.");
+        return(false);
+    }
+}
+if (%npc_macro_event_target ! null & %npc_macro_event_target ! uid) {
+    mes("It's not after you."); // https://youtu.be/y58EFTJNIH8
+    return(false);
+}
+return(true);
+
+// version of this has no period, used for crumble undead?
+[proc,player_in_combat_check2]()(boolean)
+if (map_multiway(npc_coord) = false) {
+    // "I'm already under attack" with no period:
+    // - 2004: https://web.archive.org/web/20130303093547/http://img86.exs.cx/img86/271/80mage.jpg
     if (add(%lastcombat_pvp, 8) > map_clock) {
         mes("I'm already under attack");
         return(false);
