@@ -1,0 +1,30 @@
+// since their config timer=1, when they defaultMode() their timer 'threshold' will reset back to their config default
+// https://youtu.be/597gMc5j14E?si=oXUOSwc7dvzmwOMl&t=237 this video shows sheep baa!'ing after ~objbox is called, so its defintely not baaing from the opnpcu script.
+// Also here: https://www.youtube.com/watch?v=597gMc5j14E&t=323s, the sheep baa!'s after finishing its retreat (defaultMode is called)
+
+[opnpcu,sheepunsheered]
+if(last_useitem ! shears) {
+    ~displaymessage(^dm_default);
+    return;
+}
+anim(human_shearing, 0);
+if(random(4) = 0) { // confirm this chance?
+    mes("The sheep manages to get away from you!");
+    npc_setmode(playerescape);
+    return;
+}
+npc_setmode(playerfaceclose);
+p_delay(0);
+npc_setmode(null);
+p_delay(0);
+npc_changetype_keepall(sheepsheered, 100);
+inv_add(inv, wool, 1);
+mes("You get some wool.");
+~objbox(wool, "You get some wool.", 250, 0, divide(^objbox_height, 2));
+
+[opnpcu,sheepsheered]
+if(last_useitem = shears) {
+    mes("This sheep has already been shorn.");
+    return;
+}
+~displaymessage(^dm_default);
