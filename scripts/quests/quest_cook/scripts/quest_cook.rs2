@@ -30,7 +30,7 @@ def_int $option = ~p_choice2("Yes, I'll help you.", 1, "No, I don't feel like it
 
 if($option = 1) {
     %cookquest = 1;
-    ~send_quest_progress(questlist:com_26, %cookquest, ^cook_complete);
+    ~send_quest_progress(questlist:cook, %cookquest, ^cook_complete);
     ~chatplayer("<p,happy>Yes, I'll help you.");
     // https://storage.googleapis.com/tannerdino/images/cook2.jpg
     ~chatnpc("<p,happy>Oh thank you, thank you. I need milk, an egg and flour.|I'd be very grateful if you can get them to me."); // auto break will break the line early
@@ -88,7 +88,7 @@ queue(cooks_quest_complete, 0);
 %cookquest = ^cook_complete;
 stat_advance(cooking, 3000);
 session_log(^log_adventure, "Quest complete: Cook's Assistant");
-~send_quest_complete(questlist:com_26, cake, 250, ^cook_questpoints, "You have completed the Cooks' Quest!");
+~send_quest_complete(questlist:cook, cake, 250, ^cook_questpoints, "You have completed the Cooks' Quest!");
 
 [oplocu,cooksquestrange]
 if (%cookquest < ^cook_complete) {
