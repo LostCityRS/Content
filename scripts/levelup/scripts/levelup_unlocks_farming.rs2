@@ -1,0 +1,8 @@
+[label,levelup_farming]
+switch_int(stat_base(farming)) {
+    case 3 : ~objbox(barley, "You can now grow @dbl@Barley@bla@.", 250, 0, 0);
+    case 50 : ~objbox(avantoe, "You can now grow @dbl@Avantoe@bla@.", 250, 0, 0);
+    case 63 : ~objbox(nightshade, "You can now grow @dbl@Belladonna@bla@.", 250, 0, ^objbox_height);
+    case 68 : ~objbox(coconut, "You can now grow @dbl@Palm Trees@bla@.", 250, 0, ^objbox_height);
+    case 75 : ~objbox(magic_logs, "You can now grow @dbl@Magic Trees@bla@.", 250, 0, ^objbox_height);
+}

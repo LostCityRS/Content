@@ -1,0 +1,26 @@
+[label,levelup_slayer]
+switch_int(stat_base(slayer)) {
+    case 5 : ~objbox(slayerguide_crawlinghand,"You can now kill @dbl@Crawling Hands@bla@!", 250, 0, ^objbox_height);
+    case 7 : ~objbox(swamp_cave_bug,"You can now kill @dbl@Cave bugs@bla@!", 250, 0, ^objbox_height);
+    case 10 : ~objbox(slayerguide_cavecrawler,"You can now kill @dbl@Cave crawlers@bla@!", 250, 0, ^objbox_height);
+    case 15 : ~objbox(slayerguide_banshee,"You can now kill @dbl@Banshees@bla@!", 250, 0, ^objbox_height);
+    case 17 : ~objbox(swamp_cave_slime,"You can now kill @dbl@Cave slimes@bla@!", 250, 0, ^objbox_height);
+    case 20 : ~objbox(slayerguide_rockslug,"You can now kill @dbl@Rockslugs@bla@!", 250, 0, ^objbox_height);
+    case 25 : ~objbox(slayerguide_cockatrice,"You can now kill @dbl@Cockatrice@bla@!", 250, 0, ^objbox_height);
+    case 30 : ~objbox(slayerguide_pyrfiend,"You can now kill @dbl@Pyrefiends@bla@!", 250, 0, ^objbox_height);
+    case 32 : ~objbox(slayerguide_mogre,"You can now kill @dblMogres@bla@!", 250, 0, ^objbox_height);
+    case 35 : ~objbox(swamp_wallbeast, "You can now kill @dbl@Wall Beasts@bla@!", 250, 0, ^objbox_height);
+    case 37 : ~objbox(slayerguide_killerwatt, "You can now kill @dbl@Killerwatts@bla@!", 250, 0, ^objbox_height);
+    case 40 : ~objbox(slayerguide_basilisk, "You can now kill @dbl@Basilisks@bla@!", 250, 0, ^objbox_height);
+    case 45 : ~objbox(slayerguide_infernalmage, "You can now kill @dbl@Infernal Mages@bla@!", 250, 0, ^objbox_height);
+    case 50 : ~objbox(slayerguide_bloodveld, "You can now kill @dbl@Bloodvelds@bla@!", 250, 0, ^objbox_height);
+    case 52 : ~objbox(slayerguide_jelly, "You can now kill @dbl@Jellies@bla@!", 250, 0, ^objbox_height);
+    case 55 : ~objbox(slayerguide_turoth, "You can now kill @dbl@Turoths@bla@!", 250, 0, ^objbox_height);
+    case 60 : ~objbox(slayerguide_aberrantspecter, "You can now kill @dbl@aberrant spectres@bla@!", 250, 0, ^objbox_height);
+    case 65 : ~objbox(slayerguide_dustdevil,"You can now kill @dbl@Dust Devils@bla@!", 250, 0, ^objbox_height);
+    case 70 : ~objbox(slayerguide_kurask,"You can now kill @dbl@Kurasks@bla@!", 250, 0, ^objbox_height);
+    case 72 : ~objbox(slayerguide_skeletalwyvern,"You can now kill @dbl@Skeletal Wyverns@bla@!", 250, 0, ^objbox_height);
+    case 75 : ~objbox(slayerguide_gargoyle,"You can now kill @dbl@Gargoyles@bla@!", 250, 0, ^objbox_height);
+    case 80 : ~objbox(slayerguide_nechryael,"You can now kill @dbl@Nechryael@bla@!", 250, 0, ^objbox_height);
+    case 85 : ~objbox(slayerguide_abyssaldemon,"You can now kill @dbl@Abyssal Demons@bla@!", 250, 0, ^objbox_height);
+}
