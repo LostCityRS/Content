@@ -1244,26 +1244,31 @@ switch_coord (loc_coord) {
 }
 
 [oploc1,fai_wiztower_spiralstairs]
-// arrive delay?
 switch_coord (loc_coord) {
+    case 0_48_49_31_23 : p_telejump(1_48_49_32_25); // Wizard's Tower - Ground Floor -> Level 1
     case default : @unhandled_stairs(loc_coord);
 }
 
 [oploc1,fai_wiztower_spiralstairs_middle]
-// arrive delay?
 switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
+    case 1_48_49_31_23 : @stair_options(2_48_49_32_25, 0_48_49_32_25); // Wizard's Tower - Choose up or down
 }
 
 [oploc2,fai_wiztower_spiralstairs_middle]
-// arrive delay?
 switch_coord (loc_coord) {
+    case 1_48_49_31_23 : p_telejump(2_48_49_32_25); // Wizard's Tower - Level 1 -> Level 2
     case default : @unhandled_stairs(loc_coord);
 }
 
 [oploc3,fai_wiztower_spiralstairs_middle]
-// arrive delay?
 switch_coord (loc_coord) {
+    case 1_48_49_31_23 : p_telejump(0_48_49_32_25); // Wizard's Tower - Level 1 -> Ground Floor
+    case default : @unhandled_stairs(loc_coord);
+}
+
+[oploc1,fai_wiztower_spiralstairstop]
+switch_coord (loc_coord) {
+    case 2_48_49_32_24 : p_telejump(1_48_49_32_25); // Wizard's Tower - Level 2 -> Level 1
     case default : @unhandled_stairs(loc_coord);
 }
 
