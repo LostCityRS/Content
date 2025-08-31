@@ -61,11 +61,11 @@ def_int $questpoints = 0;
 }
 if (%doric_progress = ^doric_complete) {
     $questpoints = add($questpoints, ^doric_questpoints); 
-}
-if (%cook_progress = ^cook_complete) {
+}*/
+if (%cookquest = ^cook_complete) {
     $questpoints = add($questpoints, ^cook_questpoints); 
 }
-if (%romeojuliet_progress = ^romeojuliet_complete) {
+/*if (%romeojuliet_progress = ^romeojuliet_complete) {
     $questpoints = add($questpoints, ^romeojuliet_questpoints); 
 }
 if (%hetty_progress = ^hetty_complete) {
@@ -88,11 +88,11 @@ if (%druid_progress = ^druid_complete) {
 }
 if (%gobdip_progress = ^gobdip_complete) {
     $questpoints = add($questpoints, ^gobdip_questpoints); 
-}
-if (%sheep_progress = ^sheep_complete) {
+}*/
+if (%sheep = ^sheep_complete) {
     $questpoints = add($questpoints, ^sheep_questpoints); 
 }
-if (%fluffs_progress = ^fluffs_complete) {
+/*if (%fluffs_progress = ^fluffs_complete) {
     $questpoints = add($questpoints, ^fluffs_questpoints); 
 }
 if (%demon_progress = ^demon_complete) {
@@ -220,18 +220,18 @@ return ($questpoints);
 [proc,update_questlist]
 ~update_questpoints;
 /*~send_quest_progress_colour(questlist:runemysteries, %runemysteries_progress, ^runemysteries_complete);
-~send_quest_progress_colour(questlist:doric, %doric_progress, ^doric_complete);
-~send_quest_progress_colour(questlist:cook, %cook_progress, ^cook_complete);
-~send_quest_progress_colour(questlist:romeojuliet, %romeojuliet_progress, ^romeojuliet_complete);
+~send_quest_progress_colour(questlist:doric, %doric_progress, ^doric_complete);*/
+~send_quest_progress_colour(questlist:cook, %cookquest, ^cook_complete);
+/*~send_quest_progress_colour(questlist:romeojuliet, %romeojuliet_progress, ^romeojuliet_complete);
 ~send_quest_progress_colour(questlist:hetty, %hetty_progress, ^hetty_complete);
 ~send_quest_progress_colour(questlist:chompybird, %chompybird_progress, ^chompybird_complete);
 ~send_quest_progress_colour(questlist:priest, %priest_progress, ^priest_complete);
 ~send_quest_progress_colour(questlist:squire, %squire_progress, ^squire_complete);
 ~send_quest_progress_colour(questlist:imp, %imp_progress, ^imp_complete);
 ~send_quest_progress_colour(questlist:druid, %druid_progress, ^druid_complete);
-~send_quest_progress_colour(questlist:gobdip, %gobdip_progress, ^gobdip_complete);
-~send_quest_progress_colour(questlist:sheep, %sheep_progress, ^sheep_complete);
-~send_quest_progress_colour(questlist:fluffs, %fluffs_progress, ^fluffs_complete);
+~send_quest_progress_colour(questlist:gobdip, %gobdip_progress, ^gobdip_complete);*/
+~send_quest_progress_colour(questlist:sheep, %sheep, ^sheep_complete);
+/*~send_quest_progress_colour(questlist:fluffs, %fluffs_progress, ^fluffs_complete);
 ~send_quest_progress_colour(questlist:demon, %demon_progress, ^demon_complete);
 ~send_quest_progress_colour(questlist:prince, %prince_progress, ^prince_complete);
 ~send_quest_progress_colour(questlist:fortress, %blackknight_progress, ^blackknight_complete);
