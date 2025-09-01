@@ -9437,6 +9437,21 @@ womanwear=obj_iron_knife_manwear,6
 2dxan=204
 iop2=Wield
 stackable=yes
+wearpos=righthand
+category=weapon_thrown
+weight=12oz
+param=rangeattack,25
+param=rangebonus,24
+param=levelrequire,40
+param=attackrate,3
+param=attackrange,4
+param=rangeattack_anim,human_throw
+param=defend_anim,human_unarmedblock
+param=rangeattack_sound,throwingknife
+param=proj_launch,rune_tknife_launch
+param=proj_travel,rune_tknife_travel
+param=weapon_poisoned,rune_knife_p
+param=weapon_poisoned_message,You poison some knives.
 
 [black_knife]
 name=Black knife
@@ -45825,6 +45840,15 @@ members=yes
 2dzoom=770
 2dyan=156
 2dxan=164
+weight=3lb
+wearpos=feet
+category=armour_feet
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,12
+param=slashdefence,13
+param=crushdefence,14
+param=strengthbonus,2
 
 [cert_rune_armoured_boots]
 certlink=rune_armoured_boots
@@ -46853,6 +46877,15 @@ womanwear=obj_roving_crystal_shield_new_manwear,6
 2dxan=232
 members=yes
 cost=800000
+category=armour_shield
+wearpos=lefthand
+weight=6lb
+param=magicattack,-10
+param=rangeattack,-10
+param=stabdefence,51
+param=slashdefence,54
+param=crushdefence,53
+param=rangedefence,80
 
 [roving_crystal_shield_1000]
 name=Crystal shield full
@@ -46868,6 +46901,17 @@ womanwear=obj_roving_crystal_shield_new_manwear,6
 2dxan=232
 members=yes
 cost=750000
+category=armour_shield
+wearpos=lefthand
+weight=6lb
+param=magicattack,-10
+param=rangeattack,-10
+param=stabdefence,51
+param=slashdefence,54
+param=crushdefence,53
+param=rangedefence,80
+param=defend_anim,human_shield_defence
+
 
 [roving_crystal_shield_900]
 name=Crystal shield 9/10
@@ -46883,6 +46927,15 @@ womanwear=obj_roving_crystal_shield_new_manwear,6
 2dxan=232
 members=yes
 cost=670000
+category=armour_shield
+wearpos=lefthand
+weight=6lb
+param=magicattack,-10
+param=rangeattack,-10
+param=stabdefence,49
+param=slashdefence,52
+param=crushdefence,51
+param=rangedefence,78
 
 [roving_crystal_shield_800]
 name=Crystal shield 8/10
@@ -46898,6 +46951,15 @@ womanwear=obj_roving_crystal_shield_new_manwear,6
 2dxan=232
 members=yes
 cost=590000
+category=armour_shield
+wearpos=lefthand
+weight=6lb
+param=magicattack,-10
+param=rangeattack,-10
+param=stabdefence,47
+param=slashdefence,50
+param=crushdefence,49
+param=rangedefence,76
 
 [roving_crystal_shield_700]
 name=Crystal shield 7/10
@@ -46913,6 +46975,15 @@ womanwear=obj_roving_crystal_shield_new_manwear,6
 2dxan=232
 members=yes
 cost=510000
+category=armour_shield
+wearpos=lefthand
+weight=6lb
+param=magicattack,-10
+param=rangeattack,-10
+param=stabdefence,45
+param=slashdefence,48
+param=crushdefence,47
+param=rangedefence,74
 
 [roving_crystal_shield_600]
 name=Crystal shield 6/10
@@ -46928,6 +46999,15 @@ womanwear=obj_roving_crystal_shield_new_manwear,6
 2dxan=232
 members=yes
 cost=430000
+category=armour_shield
+wearpos=lefthand
+weight=6lb
+param=magicattack,-10
+param=rangeattack,-10
+param=stabdefence,43
+param=slashdefence,46
+param=crushdefence,45
+param=rangedefence,72
 
 [roving_crystal_shield_500]
 name=Crystal shield 5/10
@@ -46943,6 +47023,15 @@ womanwear=obj_roving_crystal_shield_new_manwear,6
 2dxan=232
 members=yes
 cost=350000
+category=armour_shield
+wearpos=lefthand
+weight=6lb
+param=magicattack,-10
+param=rangeattack,-10
+param=stabdefence,41
+param=slashdefence,44
+param=crushdefence,43
+param=rangedefence,70
 
 [roving_crystal_shield_400]
 name=Crystal shield 4/10
@@ -46958,6 +47047,15 @@ womanwear=obj_roving_crystal_shield_new_manwear,6
 2dxan=232
 members=yes
 cost=270000
+category=armour_shield
+wearpos=lefthand
+weight=6lb
+param=magicattack,-10
+param=rangeattack,-10
+param=stabdefence,39
+param=slashdefence,42
+param=crushdefence,41
+param=rangedefence,68
 
 [roving_crystal_shield_300]
 name=Crystal shield 3/10
@@ -46973,6 +47071,15 @@ womanwear=obj_roving_crystal_shield_new_manwear,6
 2dxan=232
 members=yes
 cost=190000
+category=armour_shield
+wearpos=lefthand
+weight=6lb
+param=magicattack,-10
+param=rangeattack,-10
+param=stabdefence,37
+param=slashdefence,40
+param=crushdefence,39
+param=rangedefence,66
 
 [roving_crystal_shield_200]
 name=Crystal shield 2/10
@@ -46988,6 +47095,15 @@ womanwear=obj_roving_crystal_shield_new_manwear,6
 2dxan=232
 members=yes
 cost=100000
+category=armour_shield
+wearpos=lefthand
+weight=6lb
+param=magicattack,-10
+param=rangeattack,-10
+param=stabdefence,35
+param=slashdefence,38
+param=crushdefence,37
+param=rangedefence,64
 
 [roving_crystal_shield_100]
 name=Crystal shield 1/10
@@ -47003,6 +47119,15 @@ womanwear=obj_roving_crystal_shield_new_manwear,6
 2dxan=232
 members=yes
 cost=25000
+category=armour_shield
+wearpos=lefthand
+weight=6lb
+param=magicattack,-10
+param=rangeattack,-10
+param=stabdefence,33
+param=slashdefence,36
+param=crushdefence,35
+param=rangedefence,62
 
 [cert_roving_crystal_shield_new]
 certlink=roving_crystal_shield_new
@@ -53129,6 +53254,22 @@ model=obj_barrows_verac_weapon
 2dzoom=1440
 2dyan=352
 2dxan=272
+wearpos=righthand
+wearpos2=lefthand
+category=weapon_spiked
+param=stabattack,68
+param=slashattack,-2
+param=crushattack,82
+param=strengthbonus,72
+param=prayerbonus,6
+param=attackrate,5
+param=crushattack_anim,barrow_dharok_crush
+param=stabattack_anim,barrow_dharok_crush
+param=defend_anim,human_axe_block
+param=stab_sound,flail_stab
+param=crush_sound,flail_crush
+
+
 
 [cert_barrows_verac_weapon]
 certlink=barrows_verac_weapon
@@ -56695,6 +56836,20 @@ model=obj_barrows_verac_weapon
 2dzoom=1440
 2dyan=352
 2dxan=272
+wearpos=righthand
+wearpos2=lefthand
+category=weapon_spiked
+param=stabattack,68
+param=slashattack,-2
+param=crushattack,82
+param=strengthbonus,72
+param=prayerbonus,6
+param=attackrate,5
+param=crushattack_anim,barrow_dharok_crush
+param=stabattack_anim,barrow_dharok_crush
+param=defend_anim,human_axe_block
+param=stab_sound,flail_stab
+param=crush_sound,flail_crush
 
 [barrows_verac_weapon_75]
 name=Veracs flail 75
@@ -56709,6 +56864,20 @@ model=obj_barrows_verac_weapon
 2dzoom=1440
 2dyan=352
 2dxan=272
+wearpos=righthand
+wearpos2=lefthand
+category=weapon_spiked
+param=stabattack,68
+param=slashattack,-2
+param=crushattack,82
+param=strengthbonus,72
+param=prayerbonus,6
+param=attackrate,5
+param=crushattack_anim,barrow_dharok_crush
+param=stabattack_anim,barrow_dharok_crush
+param=defend_anim,human_axe_block
+param=stab_sound,flail_stab
+param=crush_sound,flail_crush
 
 [barrows_verac_weapon_50]
 name=Veracs flail 50
@@ -56723,6 +56892,20 @@ model=obj_barrows_verac_weapon
 2dzoom=1440
 2dyan=352
 2dxan=272
+wearpos=righthand
+wearpos2=lefthand
+category=weapon_spiked
+param=stabattack,68
+param=slashattack,-2
+param=crushattack,82
+param=strengthbonus,72
+param=prayerbonus,6
+param=attackrate,5
+param=crushattack_anim,barrow_dharok_crush
+param=stabattack_anim,barrow_dharok_crush
+param=defend_anim,human_axe_block
+param=stab_sound,flail_stab
+param=crush_sound,flail_crush
 
 [barrows_verac_weapon_25]
 name=Veracs flail 25
@@ -56737,6 +56920,20 @@ model=obj_barrows_verac_weapon
 2dzoom=1440
 2dyan=352
 2dxan=272
+wearpos=righthand
+wearpos2=lefthand
+category=weapon_spiked
+param=stabattack,68
+param=slashattack,-2
+param=crushattack,82
+param=strengthbonus,72
+param=prayerbonus,6
+param=attackrate,5
+param=crushattack_anim,barrow_dharok_crush
+param=stabattack_anim,barrow_dharok_crush
+param=defend_anim,human_axe_block
+param=stab_sound,flail_stab
+param=crush_sound,flail_crush
 
 [barrows_verac_weapon_broken]
 name=Veracs flail 0
@@ -74308,6 +74505,22 @@ model=obj_tzhaar_cape_fire
 2dxan=400
 manwear=obj_tzhaar_cape_fire_manwear,0
 womanwear=obj_tzhaar_cape_fire_womanwear,0
+category=armour_cape
+wearpos=back
+weight=4lb
+param=stabattack,1
+param=slashattack,1
+param=crushattack,1
+param=magicattack,1
+param=rangeattack,1
+param=stabdefence,11
+param=slashdefence,11
+param=crushdefence,11
+param=magicdefence,11
+param=rangedefence,11
+param=strengthbonus,4
+param=prayerbonus,2
+tradeable=no
 
 [uncut_onyx]
 name=Uncut onyx
@@ -74474,6 +74687,20 @@ iop2=Wear
 manwear=obj_strung_onyx_amulet_manwear,0
 womanwear=obj_strung_onyx_amulet_womanwear,0
 cost=202000
+wearpos=front
+weight=10g
+param=stabattack,10
+param=slashattack,10
+param=crushattack,10
+param=magicattack,10
+param=rangeattack,10
+param=stabdefence,15
+param=slashdefence,15
+param=crushdefence,15
+param=magicdefence,15
+param=rangedefence,15
+param=strengthbonus,8
+param=prayerbonus,5
 
 [cert_enchanted_onyx_amulet]
 certlink=enchanted_onyx_amulet
@@ -76194,6 +76421,9 @@ members=yes
 2dzoom=620
 2dyan=1940
 2dxan=340
+weight=4g
+param=magicattack,4
+param=magicdefence,4
 
 [cert_seer_ring]
 certlink=seer_ring
@@ -76211,6 +76441,10 @@ members=yes
 2dzoom=630
 2dyan=1904
 2dxan=332
+wearpos=ring
+weight=4g
+param=rangeattack,4
+param=rangedefence,4
 
 [cert_ranger_ring]
 certlink=ranger_ring
@@ -76228,6 +76462,10 @@ members=yes
 2dzoom=570
 2dyan=1776
 2dxan=348
+wearpos=ring
+weight=4g
+param=slashattack,4
+param=slashdefence,4
 
 [cert_warrior_ring]
 certlink=warrior_ring
@@ -76245,6 +76483,9 @@ members=yes
 2dzoom=600
 2dyan=1916
 2dxan=324
+wearpos=ring
+weight=4g
+param=strengthbonus,4
 
 [cert_berzerker_ring]
 certlink=berzerker_ring
@@ -84329,6 +84570,19 @@ iop2=Wear
 manwear=obj_hundred_gauntlets_level_1_manwear,0
 womanwear=obj_hundred_gauntlets_level_1_womanwear,0
 cost=100000
+wearpos=hands
+category=armour_hands
+param=stabattack,12
+param=slashattack,12
+param=crushattack,12
+param=magicattack,12
+param=rangeattack,12
+param=stabdefence,12
+param=slashdefence,12
+param=crushdefence,12
+param=magicdefence,12
+param=rangedefence,12
+param=strengthbonus,12
 
 [cornflour]
 name=Cornflour
