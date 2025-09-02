@@ -1,4 +1,4 @@
-[npc_1017]
+[chicken_brown]
 desc=Yep, definitely a chicken.
 walkanim=chicken_walk
 readyanim=chicken_ready
@@ -14,8 +14,28 @@ recol4s=15855
 recol4d=11490
 name=Chicken
 model1=model_2849_npc
+//respawnrate=TODO
+hitpoints=3
+param=attackbonus,-47
+param=strengthbonus,-42
+param=stabdefence,-42
+param=slashdefence,-42
+param=crushdefence,-42
+param=magicdefence,-42
+param=rangedefence,-42
+param=damagetype,^stab_style
+param=attack_anim,chicken_attack
+param=defend_anim,chicken_block
+param=death_anim,chicken_death
+param=attack_sound,chicken_attack
+param=defend_sound,chicken_hit
+param=death_sound,chicken_death
+param=retreat,1
+category=chicken
+// osrs stats and Vislvl match 1:1
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1174
 
-[npc_1018]
+[rooster]
 desc=He rules the...er...roost.
 walkanim=chicken_walk
 readyanim=chicken_ready
@@ -33,4 +53,25 @@ recol4s=15855
 recol4d=11328
 name=Rooster
 model1=model_2849_npc
-
+//respawnrate=TODO
+hitpoints=7
+attack=2
+strength=2
+param=attackbonus,-20
+param=strengthbonus,-20
+param=stabdefence,-42
+param=slashdefence,-42
+param=crushdefence,-42
+param=magicdefence,-42
+param=rangedefence,-42
+param=damagetype,^stab_style
+param=attack_anim,chicken_attack
+param=defend_anim,chicken_block
+param=death_anim,chicken_death
+param=attack_sound,chicken_attack
+param=defend_sound,chicken_hit
+param=death_sound,chicken_death
+param=retreat,1
+// category=chicken
+// Stats match osrs version but our version Vislvl is different.
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1175
