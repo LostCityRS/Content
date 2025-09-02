@@ -28383,7 +28383,7 @@ recol3s=15586
 recol3d=8458
 hillskew=yes
 
-[harmless_cave_filler_right]
+[runetemple_standingstone_glow_law]
 name=Mysterious glow
 desc=Unusual energy is gathered here.
 model=loc_2498
@@ -28393,7 +28393,7 @@ anim=stoneglow
 ambient=60
 contrast=60
 
-[harmless_cave_rocks_left]
+[lawtemple_cavewall_face1]
 model=cavewall_face1
 recol1s=12580
 recol1d=6345
@@ -28401,7 +28401,7 @@ sharelight=yes
 hillskew=yes
 active=no
 
-[harmless_cave_rocks_right]
+[lawtemple_cavewall_top]
 model=cavewall_top
 recol1s=12580
 recol1d=6345
@@ -28410,7 +28410,7 @@ hillskew=yes
 active=no
 active=no
 
-[harmless_cave_ruins]
+[lawtemple_cavewall_top5]
 model=cavewall_top5
 recol1s=12580
 recol1d=6345
@@ -28419,7 +28419,7 @@ hillskew=yes
 active=no
 active=no
 
-[harmless_black_slab]
+[lawtemple_cavewall_top_higher]
 model=cavewall_top_higher
 recol1s=12580
 recol1d=6345
@@ -41653,10 +41653,10 @@ blockwalk=no
 blockrange=no
 op1=Pick
 
-[harmless_dead_palm_uppermid]
+[ahoy_town_barrier]
 name=Energy Barrier
 desc=A ghostly barrier.
-model=harmless_dead_palm_uppermid
+model=ahoy_town_barrier
 recol1s=15855
 recol1d=11914
 length=2
@@ -41667,18 +41667,18 @@ ambient=100
 contrast=100
 op1=Pass
 
-[harmless_dead_palm_top]
-model=harmless_dead_palm_top
+[ahoy_town_walldoor_left_open]
+model=ahoy_town_walldoor
 ambient=70
 contrast=30
 
-[harmless_dead_palm_leaning_base]
-model=harmless_dead_palm_top
+[ahoy_town_walldoor_right_open]
+model=ahoy_town_walldoor
 mirror=yes
 ambient=70
 contrast=30
 
-[harmless_dead_grass1]
+[ahoy_ladder_from_cellar]
 name=Ladder
 desc=I can climb this.
 model=puzzle_ladder
@@ -41693,7 +41693,7 @@ op1=Climb-up
 mapscene=7
 forceapproach=south
 
-[harmless_dead_grass2]
+[ahoy_ghostship_ladder]
 name=Ship's ladder
 desc=I can climb up here.
 model=ship_ladder
@@ -41701,14 +41701,14 @@ op1=Climb-up
 forceapproach=south
 mapscene=7
 
-[harmless_dead_grass3]
+[ahoy_ghostship_laddertop]
 name=Ship's ladder
 desc=I can go below decks with this ladder.
 model=ship_laddertop
 op1=Climb-down
 forceapproach=north
 
-[harmless_dead_palm_leaves]
+[ahoy_trapdoor]
 name=Trapdoor
 desc=I wonder what's under it.
 model=ikov_trapdoor
@@ -41720,7 +41720,7 @@ active=yes
 op1=Open
 raiseobject=no
 
-[harmless_dead_palm_leaves_bits]
+[ahoy_trapdoor_open]
 name=Trapdoor
 desc=I wonder what's down there.
 model=metalgatetop
@@ -41737,7 +41737,7 @@ op1=Climb-down
 op2=Close
 raiseobject=no
 
-[harmless_black_spiral_stairs]
+[ahoy_rock_invisible]
 name=Rock
 desc=I can't see a rock!
 model=regicide_tar_collection
@@ -41746,35 +41746,35 @@ op1=Jump-To
 blockwalk=no
 blockrange=no
 
-[harmless_spiral_steps_hole]
+[ahoy_chest_locked]
 name=Closed chest
 desc=I wonder what's inside.
-model=harmless_spiral_steps_hole
+model=ahoy_chest_closed
 op1=Open
 
-[harmless_dugupsoil_squished1]
+[ahoy_chest_locked_active]
 name=Open chest
 desc=I wonder what's inside.
-model=harmless_dugupsoil_squished1
+model=ahoy_chest_open
 
-[harmless_dugupsoil_squished2]
+[ahoy_chest_closed]
 name=Closed chest
 desc=I wonder what's inside.
-model=harmless_spiral_steps_hole
+model=ahoy_chest_closed
 op1=Open
 forceapproach=north
 
-[harmless_dugupsoil_squished3]
+[ahoy_chest_open]
 name=Open chest
 desc=Perhaps I should search it.
-model=harmless_dugupsoil_squished1
+model=ahoy_chest_open
 recol1s=10570
 recol1d=17921
 op1=Search
 op2=Close
 forceapproach=north
 
-[harmless_dugupsoil1]
+[ahoy_mast]
 name=Mast
 desc=High above here is a tattered flag, blowing in the wind.
 model=mast1
@@ -41786,7 +41786,7 @@ recol3s=13741
 recol3d=11690
 op1=Search
 
-[harmless_dugupsoil2]
+[ahoy_range]
 name=Cooking range
 desc=An appliance for cooking with.
 model=cooksquestrange
@@ -41799,44 +41799,44 @@ recol3d=10496
 length=2
 forceapproach=east
 
-[harmless_dugupsoil3]
+[ahoy_bankbooth]
 name=Bank booth
 desc=The bank teller will serve you from here.
-model=harmless_dugupsoil3
+model=ahoy_bankbooth
 op1=Use
 op2=Use-quickly
 blockrange=no
 
-[harmless_mine_wall]
+[ahoy_bankboothclosed]
 name=Closed bank booth
 desc=This booth is closed.
-model=harmless_mine_wall
+model=ahoy_bankboothclosed
 blockrange=no
 
-[harmless_mine_wall_rocky]
+[ahoy_coffin]
 name=Coffin
 desc=The resting place of Necrovarus' mortal body.
-model=harmless_mine_wall_rocky
+model=ahoy_coffin
 width=2
 length=2
 op1=Open
 blockrange=no
 
-[harmless_mine_wall_end]
+[ahoy_coffin_open]
 name=Coffin
 desc=The resting place of Necrovarus' mortal body.
-model=harmless_mine_wall_end
+model=ahoy_coffin_open
 width=2
 length=2
 op1=Search
 op2=Close
 blockrange=no
 
-[harmless_mine_wall_support_left]
+[ahoy_ectofunctus]
 name=Ectofuntus
 desc=A ghastly fountain filled with slime and bones, the source of Necrovarus' power.
-model=harmless_mine_wall_support_left
-model2=harmless_mine_wall_support_lefti2
+model=ahoy_ectofunctus
+model2=ahoy_ectofunctus2
 recol1s=992
 recol1d=11914
 recol2s=18922
@@ -41856,11 +41856,11 @@ ambient=70
 contrast=30
 op1=Worship
 
-[harmless_mine_wall_support_right]
+[ahoy_ectofuntus_small]
 name=Ectofuntus
 desc=It's a small Ectofuntus.
-model=harmless_mine_wall_support_left
-model2=harmless_mine_wall_support_lefti2
+model=ahoy_ectofunctus
+model2=ahoy_ectofunctus2
 recol1s=992
 recol1d=11914
 recol2s=18922
@@ -41880,10 +41880,10 @@ resizez=48
 ambient=70
 contrast=30
 
-[harmless_mine_wall_support_mid]
+[ahoy_grinder]
 name=Bone grinder
 desc=A big grinding thing.
-model=harmless_mine_wall_support_mid
+model=ahoy_grinder
 length=3
 width=2
 op1=Wind
@@ -41891,7 +41891,7 @@ op2=Empty
 op3=Status
 forceapproach=east
 
-[harmless_mine_wall_for_mining]
+[ahoy_gangplank_shipwreck_on]
 name=Gangplank
 desc=The tatty gangplank of a tatty ship.
 model=gangplank
@@ -41908,7 +41908,7 @@ hillskew=yes
 sharelight=yes
 op1=Cross
 
-[harmless_mine_wall_skulls]
+[ahoy_gangplank_shipwreck_off]
 name=Gangplank
 desc=The tatty gangplank of a tatty ship.
 model=gangplank
@@ -41925,12 +41925,12 @@ hillskew=yes
 sharelight=yes
 op1=Cross
 
-[harmless_mine_stalagtite_01]
+[ahoy_skull_captain]
 name=Pirate Captain
 desc=Seen better days.
-model=harmless_mine_stalagtite_01
-model2=harmless_mine_stalagtite_01i2
-model3=harmless_mine_stalagtite_01i3
+model=ahoy_skull_captain
+model2=ahoy_skull_captain2
+model3=ahoy_skull_captain3
 recol1s=14724
 recol1d=15590
 recol2s=7328
@@ -43691,14 +43691,14 @@ resizey=192
 [ahoy_town_walldoor_left]
 name=Door
 desc=It's a door.
-model=harmless_dead_palm_top
+model=ahoy_town_walldoor
 op1=Open
 ambient=50
 
 [ahoy_town_walldoor_right]
 name=Door
 desc=It's a door.
-model=harmless_dead_palm_top
+model=ahoy_town_walldoor
 op1=Open
 mirror=yes
 ambient=50
@@ -61065,7 +61065,7 @@ op1=Search
 [rd_chest_closed]
 name=Closed chest
 desc=I wonder what's inside.
-model=harmless_spiral_steps_hole
+model=ahoy_chest_closed
 recol1s=9543
 recol1d=14696
 recol2s=8484
@@ -61081,7 +61081,7 @@ ambient=10
 [rd_chest_open]
 name=Open chest
 desc=Perhaps I should search it.
-model=harmless_dugupsoil_squished1
+model=ahoy_chest_open
 recol1s=9543
 recol1d=14694
 recol2s=8484
@@ -107510,7 +107510,7 @@ length=2
 [elid_bankbooth]
 name=Bank booth
 desc=The bank teller will serve you from here.
-model=harmless_dugupsoil3
+model=ahoy_bankbooth
 recol1s=10598
 recol1d=13605
 recol2s=8484
@@ -107527,7 +107527,7 @@ ambient=30
 [elid_bankboothclosed]
 name=Closed bank booth
 desc=This booth is closed.
-model=harmless_mine_wall
+model=ahoy_bankboothclosed
 recol1s=10598
 recol1d=13605
 recol2s=8484
@@ -108019,7 +108019,7 @@ active=no
 [champions_bankchest]
 name=Bank chest
 desc=It's open.
-model=harmless_dugupsoil_squished1
+model=ahoy_chest_open
 recol1s=4256
 recol1d=13670
 recol2s=6370
@@ -110632,7 +110632,7 @@ wallwidth=8
 ambient=20
 contrast=50
 
-[loc_10817]
+[prisonpete_lever]
 name=Lever
 desc=Pull me!
 model=loc_2416
@@ -110640,7 +110640,7 @@ active=yes
 op1=Pull
 forceapproach=south
 
-[loc_10818]
+[prisonpete_fakedoor_r]
 name=Locked door
 desc=Doesn't look like the way out.
 model=ctratgatea
@@ -110649,7 +110649,7 @@ blockrange=no
 raiseobject=no
 op1=Open
 
-[loc_10819]
+[prisonpete_fakedoor_l]
 name=Locked door
 desc=Doesn't look like the way out.
 model=ctratgatea
@@ -110659,10 +110659,10 @@ blockrange=no
 raiseobject=no
 op1=Open
 
-[loc_10820]
+[prisonpete_energybarrier]
 name=Energy Barrier
 desc=A glowing barrier of energy prevents your escape.
-model=harmless_dead_palm_uppermid
+model=ahoy_town_barrier
 recol1s=15855
 recol1d=12684
 length=2
@@ -110672,26 +110672,26 @@ anim=castlewars_portalglow
 ambient=100
 contrast=100
 
-[loc_10821]
+[prisonpete_door_1]
 active=yes
 length=2
 multivar=varbit_1547
-multiloc=0,loc_10820
-multiloc=1,loc_10820
-multiloc=2,loc_10820
+multiloc=0,prisonpete_energybarrier
+multiloc=1,prisonpete_energybarrier
+multiloc=2,prisonpete_energybarrier
 
-[loc_10822]
+[prisonpete_door_2]
 active=yes
 length=2
 multivar=varbit_1547
-multiloc=0,loc_10820
-multiloc=1,loc_10820
+multiloc=0,prisonpete_energybarrier
+multiloc=1,prisonpete_energybarrier
 
-[loc_10823]
+[prisonpete_door_3]
 active=yes
 length=2
 multivar=varbit_1547
-multiloc=0,loc_10820
+multiloc=0,prisonpete_energybarrier
 
 [draynor_fireplace]
 name=Fireplace
@@ -114272,28 +114272,28 @@ ambient=35
 hillskew=yes
 active=no
 
-[loc_11162]
+[ahoy_grinder_loader]
 name=Loader
 desc=A big grinding thing.
-model=loc_11162
+model=ahoy_grinder_loader
 width=2
 forceapproach=east
 sharelight=yes
 
-[loc_11163]
+[ahoy_grinder_handle]
 name=Bone grinder
 desc=A big grinding thing.
-model=loc_11163
+model=ahoy_grinder_handle
 width=2
 op1=Wind
 op2=Status
 forceapproach=east
 sharelight=yes
 
-[loc_11164]
+[ahoy_grinder_chute]
 name=Bin
 desc=A big grinding thing.
-model=loc_11164
+model=ahoy_grinder_chute
 width=2
 op1=Empty
 forceapproach=east
@@ -116398,7 +116398,7 @@ blockrange=no
 [fever_bank_chest]
 name=Open chest
 desc=Shake that booty!
-model=harmless_dugupsoil_squished1
+model=ahoy_chest_open
 model2=fever_bank_chest
 recol1s=9543
 recol1d=20968
@@ -121245,7 +121245,7 @@ op1=Read
 [loc_11757]
 name=Chest
 desc=This chest contains an impressive amount of Gold!!
-model=harmless_dugupsoil_squished1
+model=ahoy_chest_open
 model2=fever_bank_chest
 recol1s=9543
 recol1d=14662
@@ -125001,7 +125001,7 @@ blockwalk=no
 [fairy_chest_closed]
 name=Closed chest
 desc=I wonder what's inside.
-model=harmless_spiral_steps_hole
+model=ahoy_chest_closed
 recol1s=14695
 recol1d=6272
 recol2s=12615
@@ -125020,7 +125020,7 @@ forceapproach=north
 [fairy_chest_open]
 name=Open chest
 desc=Perhaps I should search it.
-model=harmless_dugupsoil_squished1
+model=ahoy_chest_open
 recol1s=14695
 recol1d=6272
 recol2s=4256
@@ -131487,7 +131487,7 @@ op1=Search
 [burgh_quest_food_chest_closed]
 name=Closed chest
 desc=I wonder what's inside.
-model=harmless_spiral_steps_hole
+model=ahoy_chest_closed
 recol1s=9543
 recol1d=5282
 recol2s=8484
@@ -131502,7 +131502,7 @@ op1=Open
 [burgh_quest_food_chest_open]
 name=Open chest
 desc=Perhaps I should search it.
-model=harmless_dugupsoil_squished1
+model=ahoy_chest_open
 recol1s=9543
 recol1d=5282
 recol2s=8484
@@ -131799,7 +131799,7 @@ active=yes
 [burgh_chest_closed]
 name=Closed chest
 desc=I wonder what's inside.
-model=harmless_spiral_steps_hole
+model=ahoy_chest_closed
 recol1s=9543
 recol1d=10599
 recol2s=8484
@@ -131816,7 +131816,7 @@ forceapproach=north
 [burgh_chest_open]
 name=Open chest
 desc=Perhaps I should search it.
-model=harmless_dugupsoil_squished1
+model=ahoy_chest_open
 recol1s=9543
 recol1d=10599
 recol2s=8484
@@ -146359,7 +146359,7 @@ ambient=25
 [pest_bankbooth]
 name=Bank booth
 desc=The bank teller will serve you from here.
-model=harmless_dugupsoil3
+model=ahoy_bankbooth
 recol1s=10598
 recol1d=16811
 recol2s=8484
@@ -146376,7 +146376,7 @@ ambient=30
 [pest_bankbooth_closed]
 name=Bank booth
 desc=The bank teller will not serve you from here.
-model=harmless_mine_wall
+model=ahoy_bankboothclosed
 recol1s=10598
 recol1d=16811
 recol2s=8484
@@ -146596,7 +146596,7 @@ ambient=7
 [pest_bank_chest]
 name=Bank chest
 desc=Objects are stored in here.
-model=harmless_dugupsoil_squished1
+model=ahoy_chest_open
 model2=fever_bank_chest
 recol1s=9543
 recol1d=12614
@@ -151356,7 +151356,7 @@ length=2
 [wild_chest_closed]
 name=Chest
 desc=Might be worth opening?
-model=harmless_spiral_steps_hole
+model=ahoy_chest_closed
 recol1s=14695
 recol1d=10499
 recol2s=12615
@@ -151375,7 +151375,7 @@ forceapproach=north
 [wild_chest_open]
 name=Chest
 desc=Might be worth searching?
-model=harmless_dugupsoil_squished1
+model=ahoy_chest_open
 recol1s=9543
 recol1d=9442
 recol2s=8484
