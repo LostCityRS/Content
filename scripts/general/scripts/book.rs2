@@ -74,6 +74,8 @@ if_settext(book:com_107, split_get($page, 19));
 if_settext(book:com_108, split_get($page, 20));
 if_settext(book:com_109, split_get($page, 21));
 if_settext(book:book_title, $title);
+if_settext(book:com_110, ""); // Set page number to blank (left side) - Not used until way past 377
+if_settext(book:com_111, ""); // Set page number to blank (right side) - Not used until way past 377
 if_openmain(book);
 
 [label,book_flip_page](int $page_direction, int $min_page, int $max_page, proc $proc)
