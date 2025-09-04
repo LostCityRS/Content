@@ -119,7 +119,7 @@ if(last_useitem = woodplank | last_useitem = molten_glass | last_useitem = bronz
     } else if(last_useitem = bronze_bar & %itgronigen_progress = ^itgronigen_given_planks) {
         @professor_bronze;
     } else if(last_useitem = molten_glass & %itgronigen_progress = ^itgronigen_given_bronze) {
-        @professor_bronze;
+        @professor_glass;
     } else if(last_useitem = lens_mould & %itgronigen_progress = ^itgronigen_given_glass) {
         @professor_mould;
     } else if(last_useitem = lens & %itgronigen_progress = ^itgronigen_given_mould) {
