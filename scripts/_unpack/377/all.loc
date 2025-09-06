@@ -25795,12 +25795,16 @@ name=Gate
 desc=A sturdy metal gate.
 model=ctratgatea
 op1=Open
+category=door_open_and_close
+param=next_loc_stage,inacpip_underground_door
 
 [pip_underground_door2]
 name=Gate
 desc=A sturdy metal gate.
 model=ctratgatea
 op1=Open
+category=door_open_and_close
+param=next_loc_stage,inacpip_underground_door
 
 [inacpip_underground_door]
 model=ctratgatea
@@ -26080,6 +26084,8 @@ recol2s=8353
 recol2d=5250
 op1=Open
 op2=Knock-at
+category=double_door_open_and_close_left
+param=next_loc_stage,inactivetempledoorl
 
 [priestperiltempledoorr]
 name=Large door
@@ -26092,6 +26098,8 @@ recol2d=5250
 mirror=yes
 op1=Open
 op2=Knock-at
+category=double_door_open_and_close_right
+param=next_loc_stage,inactivetempledoorr
 
 [inactivetempledoorl]
 model=priestperiltempledoorl
