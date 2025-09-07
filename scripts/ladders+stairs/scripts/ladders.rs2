@@ -47,12 +47,13 @@ switch_coord (loc_coord) {
 }
 
 // TODO 377 enable after Dwarf Cannon is ported
-/*[oploc1,loc_1747]
+[oploc1,loc_1747]
 p_arrivedelay;
 switch_coord (loc_coord) {
-    case 0_40_53_10_49 : @ladder_to_dwarf_remains; // Ladder to Dwarf Guard Tower
+    // TODO 377 enable after Dwarf Cannon is ported
+    //case 0_40_53_10_49 : @ladder_to_dwarf_remains; // Ladder to Dwarf Guard Tower
     case default : ~climb_ladder(movecoord(coord(), 0, 1, 0), true);
-}*/
+}
 
 [oploc1,loc_1748]
 p_arrivedelay;

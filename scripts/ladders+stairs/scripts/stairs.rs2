@@ -226,6 +226,8 @@ switch_coord (loc_coord) {
     case 0_41_73_24_11 : p_telejump(1_41_73_25_13); // Grail castle- ground floor
     case 0_48_48_43_35 : p_telejump(1_48_48_45_35); // Tutorial Church - ground floor
     case 2_50_54_21_16 : p_telejump(3_50_54_23_16); // Varrock castle east tower - level 2
+    case 0_53_54_25_36 : p_telejump(1_53_54_24_37); // Paterdomus Temple - Ground Floor (North)
+    case 0_53_54_25_28 : p_telejump(1_53_54_24_29); // Paterdomus Temple - Ground Floor (South)
     case default : @unhandled_stairs(loc_coord);
 }
 
@@ -326,6 +328,8 @@ switch_coord (loc_coord) {
     case 1_48_48_11_52 : p_telejump(0_48_48_12_52); // Tutorial island Quest Guide house - 1st floor
     case 1_48_48_44_35 : p_telejump(0_48_48_45_35); // Tutorial Church - upper floor
     case 3_50_54_22_16 : p_telejump(2_50_54_22_15); // Varrock castle east tower - level 3
+    case 1_53_54_25_37 : p_telejump(0_53_54_25_38); // Paterdomus Temple - Level 1 (North)
+    case 1_53_54_25_29 : p_telejump(0_53_54_25_30); // Paterdomus Temple - Level 1 (South)
     case default : @unhandled_stairs(loc_coord);
 }
 
