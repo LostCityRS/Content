@@ -1,6 +1,5 @@
 [proc,damage_self](int $amount)
 if (stat(hitpoints) = 0) {
-    ~player_die;
     return;
 }
 if_close;
@@ -12,7 +11,7 @@ if ($amount > 0) {
 }
 
 if (stat(hitpoints) = 0){
-    ~player_die;
+    queue(player_death, 0);
     return;
 }
 

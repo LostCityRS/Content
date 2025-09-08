@@ -1,23 +1,23 @@
-[queue,player_death_duel]
-if (%duelstatus < ^duelstatus_lost) { // in a duel
+[label,player_death_duel]
+if (~in_duel_arena(coord) = true & %duelstatus < ^duelstatus_lost) {
     %duelstatus = ^duelstatus_lost;
-}
-if (~in_duel_arena(coord) = true) {
     ~player_death;
-}
-clearqueue(duel_finish);
-queue(duel_finish, 0);
 
-if (%duelstatus = ^duelstatus_lost & .finduid(%duelpartner) = true) {
-    session_log(^log_moderator, "Lost a duel against <.name>");
-    .if_close;
-    .%duelstatus = ^duelstatus_victory;
-    both_moveinv(dueloffer, duelwinnings);
-    .clearqueue(duel_finish);
-    .queue(duel_finish, 0);
+    clearqueue(duel_finish);
+    queue(duel_finish, 0);
+
+    if (%duelstatus = ^duelstatus_lost & .finduid(%duelpartner) = true) {
+        session_log(^log_moderator, "Lost a duel against <.name>");
+        .if_close;
+        .%duelstatus = ^duelstatus_victory;
+        both_moveinv(dueloffer, duelwinnings);
+        .clearqueue(duel_finish);
+        .queue(duel_finish, 0);
+    }
+    // ur able to get double mes if opponent kills u with knives: https://youtu.be/KRDZJKa1whI?list=PLn23LiLYLb1bQ7Hwp77KoNBjKvpZQTfJT&t=12
+    midi_jingle(^death_jingle_2, ^death_jingle_2_millis);
 }
-// ur able to get double mes if opponent kills u with knives: https://youtu.be/KRDZJKa1whI?list=PLn23LiLYLb1bQ7Hwp77KoNBjKvpZQTfJT&t=12
-midi_jingle(^death_jingle_2, ^death_jingle_2_millis);
+
 // https://storage.googleapis.com/tannerdino/images/6543.jpg
 // https://youtu.be/gWmwSYxzUfo
 mes("Oh dear you are dead!");
@@ -78,7 +78,7 @@ p_stopaction;
 ~stat_reset_all;
 healenergy(10000);
 ~combat_clearqueue;
-clearqueue(player_death_default);
+clearqueue(player_death);
 ~clear_pk_skull;
 ~clear_poison;
 ~update_all(inv_getobj(worn, ^wearpos_rhand));

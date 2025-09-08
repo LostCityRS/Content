@@ -4,6 +4,9 @@ clearqueue(combat_damage_player);
 clearqueue(pvp_damage);
 clearqueue(damage_player);
 clearqueue(pvp_retaliate);
+// todo: verify these in osrs
+clearqueue(recoil_damage);
+clearqueue(poison_damage);
 
 [proc,.combat_clearqueue]
 .clearqueue(playerhit_n_retaliate);
@@ -11,3 +14,5 @@ clearqueue(pvp_retaliate);
 .clearqueue(pvp_damage);
 .clearqueue(damage_player);
 .clearqueue(pvp_retaliate);
+.clearqueue(recoil_damage);
+.clearqueue(poison_damage);

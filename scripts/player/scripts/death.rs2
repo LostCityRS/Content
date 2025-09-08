@@ -1,12 +1,3 @@
-[proc,player_die]
-if (.finduid(%duelpartner) = true) {
-    if (~.in_duel_arena(.coord) = true & ~in_duel_arena(coord) = true) {
-        queue(player_death_duel, 0);
-        return;
-    }
-}
-queue(player_death_default, 0);
-
 [proc,player_death]
 %death = ^true;
 p_delay(1);
@@ -16,7 +7,10 @@ anim(human_death, 0);
 p_delay(3);
 %death = ^false;
 
-[queue,player_death_default]
+[queue,player_death]
+if (.finduid(%duelpartner) = true & ~.in_duel_arena(.coord) = true) {
+    @player_death_duel;
+}
 ~player_death;
 midi_jingle(^death_jingle_2, ^death_jingle_2_millis);
 // https://storage.googleapis.com/tannerdino/images/6543.jpg
@@ -24,7 +18,7 @@ midi_jingle(^death_jingle_2, ^death_jingle_2_millis);
 mes("Oh dear you are dead!");
 
 ~combat_clearqueue;
-clearqueue(player_death_default);
+clearqueue(player_death);
 
 def_obj $prev_wep = inv_getobj(worn, ^wearpos_rhand);
 if (findhero = true) {
