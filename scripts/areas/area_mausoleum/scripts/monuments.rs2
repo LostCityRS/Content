@@ -9,7 +9,7 @@
 
 [label,study_monument](loc $loc)
 if(%priestperil >= ^priestperil_meet_in_mausoleum) {
-    ~mesbox("A monument dedicated to the fallen.");
+    mes("A monument dedicated to the fallen.");
     return;
 }
 
@@ -43,7 +43,7 @@ def_int $layout_seed = random(100);
 
 [label,switch_monument_item](loc $loc)
 if(%priestperil >= ^priestperil_meet_in_mausoleum) {
-    ~mesbox("It would be wrong to dishonour this monument.");
+    mes("It would be wrong to dishonour this monument.");
     return;
 }
 
@@ -97,7 +97,7 @@ if($is_swapped = 0) {
 
 [label,take_from_monument](loc $loc)
 if (%priestperil >= ^priestperil_meet_in_mausoleum) {
-    ~mesbox("It would be wrong to dishonour this monument.");
+    mes("It would be wrong to dishonour this monument.");
 } else {
     def_int $grave_no = enum(loc, int, monument_graves_locs, $loc);
     def_int $seed = add(getbit_range(%priestperil_mausoleum, 22, 28), multiply($grave_no, 17));
