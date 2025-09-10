@@ -1,0 +1,149 @@
+[opnpc1,priestperiltrappedmonk]
+if (%priestperil = ^priestperil_unlocked_drezel) {
+    ~chatplayer("<p,neutral>The key fitted the lock! You're free to leave now!"); // "fitted" - https://youtu.be/_YOX1OcqCvI?si=8_1WGv01-WDzYHVU&t=238
+    ~chatnpc("<p,happy>Well excellent work adventurer! Unfortunately, as you know, I cannot risk waking that vampire in the coffin.");
+    if (inv_total(inv, bucket_blessedwater) >= 1) {
+        ~chatplayer("<p,quiz>I have some blessed water from the Salve in this bucket. Do you think it would help against that vampire?");
+        ~chatnpc("<p,neutral>Yes! Great idea! If his coffin is doused in the blessed water he will be unable to leave it! Use it on his coffin, quickly!");
+        return;
+    }
+    if (inv_total(inv, bucket_murkywater) >= 1) {
+        @drezel_bless_water;
+    }
+    ~chatplayer("<p,neutral>Do you have any ideas about dealing with the vampire?");
+    ~chatnpc("<p,neutral>Well, the water of the Salve should still have enough power to work against the vampyre despite what those Zamorakians might have done to it...");
+    ~chatnpc("<p,neutral>Maybe you should try and get hold of some from somewhere?");
+} else if (%priestperil = ^priestperil_poured_blessed_water) {
+    ~chatplayer("<p,neutral>I poured the blessed water over the vampires coffin. I think that should trap him in there long enough for you to escape.");
+    %priestperil = ^priestperil_meet_in_mausoleum;
+    ~chatnpc("<p,neutral>Excellent work adventurer! I am free at last! Let me ensure that evil vampire is trapped for good. I will meet you down by the monument.");
+    ~chatnpc("<p,neutral>Look for me down there. I need to assess what damage has been done to our holy barrier by those evil Zamorakians!");
+} else if (%priestperil >= ^priestperil_meet_in_mausoleum) {
+    ~chatnpc("<p,neutral>I will meet you downstairs by the monuments. I must see what damage has been done. Meet me there, I fear I may require more of your assistance.");
+    ~chatplayer("<p,neutral>Okay.");
+}
+
+[opnpcu,priestperiltrappedmonk]
+if(last_useitem = bucket_murkywater) {
+    @drezel_bless_water;
+}
+~displaymessage(^dm_default);
+
+[oploc1,pip_prisondoor]
+if (%priestperil >= ^priestperil_unlocked_drezel) {
+    ~open_and_close_metal_gate(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), false);
+} else {
+    mes("The cell door is locked shut.");
+}
+
+[oplocu,pip_prisondoor]
+if(last_useitem = pipkey_iron) {
+    if (npc_find(coord, priestperiltrappedmonk, 5, 0) = true) {
+        %priestperil = ^priestperil_unlocked_drezel;
+        inv_del(inv, pipkey_iron, 1);
+        mes("You unlock the cell door.");
+        ~chatnpc("<p,happy >Oh! Thank you! You have found the key!");
+        ~open_and_close_metal_gate(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), false);
+        return;
+    }
+} else if (last_useitem = pipkey_gold) {
+    ~mesbox("The key is a similar size to the lock, but does not fit.");
+    return;
+}
+~displaymessage(^dm_default);
+
+[oploc2,pip_prisondoor]
+if (npc_find(coord, priestperiltrappedmonk, 5, 0) = true) {
+    if (%priestperil = ^priestperil_return_to_drezel) {
+        ~chatplayer("<p,neutral>Hello.");
+        ~chatnpc("<p,shock>Oh! You do not appear to be one of those Zamorakians who imprisoned me here! Who are you and why are you here?");
+        ~chatplayer("<p,neutral>My name's <displayname>. King Roald sent me to find out what was going on at the temple. I take it you are Drezel?");
+        ~chatnpc("<p,happy>That is right! Oh, praise be to Saradomin! All is not yet lost! I feared that when those Zamorakians attack this place and imprisoned");
+        ~chatnpc("<p,happy>me up here, Misthalin would be doomed! If they should manage to desecrate the holy river Salve, we would be defenceless against Morytania!");
+        ~chatplayer("<p,neutral>How is a river a good defence then?");
+        ~chatnpc("<p,happy>Well. it is a long tale, and I am not sure we have time!");
+        @multi2("Tell me anyway.", drezel_tell_me_anyway, "You're right, we don't.", drezel_right_we_dont);
+
+    } else if (%priestperil = ^priestperil_find_drezel_key) {
+        ~chatnpc("<p,neutral>How goes it adventurer? Any luck in finding the key to the cell or a way of stopping the vampire yet?");
+        if (inv_total(inv, pipkey_iron) >= 1) {
+            ~chatplayer("<p,neutral>I have this key I took from one of the monuments underground.");
+            ~chatnpc("<p,happy>Excellent work adventurer! Quickly, try it on the door, and see if it will free me!");
+        } else if(inv_total(inv, pipkey_gold) >= 1) {
+            ~chatplayer("<p,neutral>I have this key I took from one of those Zamorakian monks!");
+            ~chatnpc("<p,happy>Excellent work adventurer! Quickly, try it on the door, and see if it will free me!");
+        } else {
+            ~chatplayer("<p,neutral>No, not yet...");
+            ~chatnpc("<p,happy>Well don't give up adventurer! That key MUST be around here somewhere! I know none of those Zamorakians ever got very far from this building!");
+            ~chatplayer("<p,neutral>How do you know that?");
+            ~chatnpc("<p,happy>I could hear them laughing about some gullible fool that they tricked into killing the guard dog at the monument.");
+            ~chatplayer("<p,neutral>Oh.");
+            ~chatnpc("<p,happy>Honestly, what kind of idiot would go around killing things just because a stranger told them to? What kind of oafish, numb-skulled, dim-witted,");
+            ~chatplayer("<p,neutral>Okay, OKAY, I get the picture!");
+        }
+    } else if (%priestperil >= ^priestperil_unlocked_drezel) {
+        ~open_and_close_metal_gate(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), false);
+    } else {
+        ~displaymessage(^dm_default);
+    }
+}
+
+[label,drezel_tell_me_anyway]
+~chatplayer("<p,neutral>Tell me anyway. I'd like to know the full facts before acting any further.");
+~chatnpc("<p,neutral>Ah, Saradomin has granted you wisdom I see. Well, the story of the river Salve and of how it protects Misthalin is the story of this temple,");
+~chatnpc("<p,neutral>and of the seven warrior priests who died here long ago, from whom I am descended. Once long ago Misthalin did not have the borders that");
+~chatnpc("<p,neutral>it currently does. This entire area, as far West as Varrock itself was under the control of an evil god. There was frequent skirmishing");
+~chatnpc("<p,neutral>along the borders, as the brave heroes of Varrock fought to keep the evil creatures that now are trapped on the eastern side of the River Salve from over running");
+~chatnpc("<p,neutral>the human encampments, who worshipped Saradomin. Then one day, Saradomin himself appeared to one of our mighty heroes, whose name has been forgotten by history,");
+~chatnpc("<p,neutral>and told him that should we be able to take the pass that this temple now stands in, Saradomin would use his power to bless this river, and make it");
+~chatnpc("<p,neutral>impassable to all creatures with evil in their hearts. This unknown hero grouped together all of the mightiest fighters whose hearts were pure");
+~chatnpc("<p,neutral>that he could find, and the seven of them rode here to make a final stand. The enemies swarmed across the Salve but they did not yield.");
+~chatnpc("<p,neutral>For ten days and nights they fought, never sleeping, never eating, fuelled by their desire to make the world a better place for humans to live.");
+~chatnpc("<p,neutral>On the eleventh day they were to be joined by reinforcements from a neighbouring encampment, but when those reinforcements arrived all they found");
+~chatnpc("<p,neutral>were the bodies of these seven brave but unknown heroes, surrounded by the piles of the dead creatures of evil that had tried to defeat them.");
+~chatnpc("<p,neutral>The men were saddened at the loss of such pure and mighty warriors, yet their sacrifice had not been in vain; for the water of the Salve");
+~chatnpc("<p,neutral>had indeed been filled with the power of Saradomin, and the evil creatures of Morytania were trapped beyond the river banks forever, by their own evil.");
+~chatnpc("<p,neutral>In memory of this brave sacrifice my ancestors build this temple so that the land would always be free of the evil creatures");
+~chatnpc("<p,neutral>who wish to destroy it, and laid the bodies of those brave warriors in the tombs of honour below this temple with golden gifts on the tombs as marks of respect.");
+~chatnpc("<p,neutral>They also built a statue on the river source so that all who might try and cross into Misthalin from Morytania would know that these lands are protected");
+~chatnpc("<p,neutral>by the glory of Saradomin and that good will always defeat evil, no matter how the odds are stacked against them.");
+~chatplayer("<p,quiz>Ok. I can see how the river protects the border, but I can't see how anything could affect that from this temple.");
+~chatnpc("<p,neutral>Well, as much as it saddens me to say so adventurer, Lord Saradomin's prescence has not been felt on the land for many years now, and even");
+~chatnpc("<p,neutral>though all true Saradominists know that he watches over us, his power upon the land is not as strong as it once was.");
+~chatnpc("<p,neutral>I fear that should those Zamorakians somehow pollute the Salve and desecrate his blessings, his power might not be able to stop");
+~chatnpc("<p,neutral>the army of evil that lurks to the east, longing for the opportunity to invade and destroy us all!");
+~chatnpc("<p,quiz>So, what do you say adventurer? Will you aid me and all of Misthalin in foiling this Zamorakian plot?");
+@multi2("Yes.", drezel_yes_of_course, "No.", drezel_no);
+
+[label,drezel_right_we_dont]
+~chatplayer("<p,neutral>You're right, we don't. It doesn't matter anyway.");
+~chatnpc("<p,neutral>Well, let's just say if we cannot undo whatever damage has been done here, the entire land is in grave peril!");
+
+[label,drezel_yes_of_course]
+~chatplayer("<p,neutral>Yes, of course. Any threat to Misthalin must be neutralised immediately. So what can I do to help?");
+~chatnpc("<p,neutral>Well, the immediate problem is that I am trapped in this cell. I know that the key to free me is nearby, for none of the Zamorakians");
+~chatnpc("<p,neutral>who imprisoned me here were ever gone for long periods of time. Should you find the key however, as you may have noticed,");
+~chatnpc("<p,neutral>there is a vampire in that coffin over there. I do not know how they managed to find it, but it is one of the ones that somehow");
+~chatnpc("<p,neutral>survived the battle here all those years ago, and is by now quite, quite, mad. It has been trapped on this side of the river for centuries,");
+~chatnpc("<p,neutral>and as those fiendish Zamorakians pointed out to me with delight, as a descendant of one of those who trapped it here, it will recognise");
+~chatnpc("<p,neutral>the smell of my blood should I come anywhere near it. It will of course then wake up and kill me, very probably slowly and painfully.");
+~chatplayer("<p,quiz>Maybe I could kill it somehow then while it is asleep?");
+~chatnpc("<p,neutral>No adventurer, I do not think it would be wise for you to wake it at all. As I say, it is little mroe than a wild animal, and must");
+~chatnpc("<p,neutral>be extremely powerful to have survived until today. I suspect your best chance would be to incapacitate it somehow.");
+%priestperil = ^priestperil_find_drezel_key;
+~chatplayer("<p,neutral>Okay, find the key to your cell, and do something about the vampire.");
+~chatnpc("<p,neutral>When you have done both of those I will be able to inspect the damage which those Zamorakians have done to the purity of the Salve.");
+~chatnpc("<p,neutral>Depending on the severity of the damage, I may require further assistance from you in restoring its purity.");
+~chatplayer("<p,neutral>Okay, well first thing's first; let's get you out of here.");
+
+[label,drezel_no]
+~chatplayer("<p,neutral>No.");
+~chatnpc("<p,sad>Oooooh... I knew it was too good to be true... Then leave me to my fate villain, there's no need to taunt me as well as keeping me imprisoned.");
+
+[label,drezel_bless_water]
+~chatplayer("<p,neutral>I have some water from the Salve. It seems to have been desecrated though. Do you think you could bless it for me?");
+~chatnpc("<p,neutral>Yes, good thinking adventurer! Give it to me, I will bless it!");
+mes("The priest blesses the water for you.");
+inv_del(inv, bucket_murkywater, 1);
+inv_add(inv, bucket_blessedwater, 1);
+return;

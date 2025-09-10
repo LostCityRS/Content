@@ -1,0 +1,45 @@
+[priestperilguarddog]
+name=Temple guardian
+desc=Looks like a big ugly dog.
+model1=obj_slayerguide_dark_beast
+recol1s=15648
+recol1d=8455
+recol2s=8192
+recol2d=26657
+recol3s=32767
+recol3d=24311
+vislevel=30
+size=2
+walkanim=dm_walk
+readyanim=dm_ready
+op2=Attack
+attack=20
+defence=20
+strength=20
+hitpoints=45
+param=damagetype,^stab_style
+param=attack_anim,dark_beast_update_death
+param=defend_anim,dark_beast_update_ready
+param=death_anim,dark_beast_update_defend
+param=death_drop,null
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc
+
+[priestperiltrappedmonk2]
+name=Drezel
+desc=A holy man.
+model1=obj_feud_desert_disguise_manwear
+model2=idk_42
+model3=idk_man_jaw_none
+model4=obj_priest_gown_manwear
+model5=obj_priest_gown_manwear2
+model6=obj_cert_drill_top_manwear3
+model7=npc_druid
+recol1s=2340
+recol1d=13539
+recol2s=14724
+recol2d=13539
+vislevel=hide
+walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
+readyanim=human_ready
+op1=Talk-to
+head1=obj_leather_cowl_manhead2

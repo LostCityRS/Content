@@ -1,0 +1,43 @@
+[monument_graves_locs]
+inputtype=loc
+outputtype=int
+val=priestperil_grave_base1,1
+val=priestperil_grave_base2,2
+val=priestperil_grave_base3,3
+val=priestperil_grave_base4,4
+val=priestperil_grave_base5,5
+val=priestperil_grave_base6,6
+val=priestperil_grave_base7,7
+
+[monument_graves_texts]
+inputtype=int
+outputtype=string
+val=1,Saradomin is the\nneedle that binds\nour lives\ntogether.
+val=2,Saradomin is the\ndelicate touch\nthat brushes us\nwith love.
+val=3,Saradomin is the\nkey that unlocks\nthe mysteries\nof life.
+val=4,Saradomin is the\nvessel that\nkeeps us safe\nfrom harm.
+val=5,Saradomin is the\nspark that lights\nthe fire in\nour hearts.
+val=6,Saradomin is the\nhammer that\ncrushes evil\neverywhere.
+val=7,Saradomin is the\nlight that shines\nthoughout\nour lives.
+
+[monument_graves_models]
+inputtype=int
+outputtype=namedobj
+val=1,pipneedle_gold
+val=2,pipfeather_gold
+val=3,pipkey_iron
+val=4,pippot_gold
+val=5,piptinderbox_gold
+val=6,piphammer_gold
+val=7,pipcandle_gold
+
+[monument_graves_objs]
+inputtype=namedobj
+outputtype=obj
+val=pipkey_iron,pipkey_gold
+val=pipneedle_gold,needle
+val=pipfeather_gold,feather
+val=pippot_gold,pot_empty
+val=piptinderbox_gold,tinderbox
+val=piphammer_gold,hammer
+val=pipcandle_gold,unlit_candle

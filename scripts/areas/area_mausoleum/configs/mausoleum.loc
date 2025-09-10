@@ -1,0 +1,111 @@
+[priestperil_grave_base1]
+name=Monument
+desc=A monument to a fallen priest.
+model=priestperil_grave_base1
+anim=priestperil_gravemonument
+length=2
+active=yes
+op1=Study
+op2=Take-from
+category=priestperil_monument
+
+[priestperil_grave_base2]
+name=Monument
+desc=A monument to a fallen priest.
+model=priestperil_grave_base1
+anim=priestperil_gravemonument
+length=2
+active=yes
+op1=Study
+op2=Take-from
+category=priestperil_monument
+
+[priestperil_grave_base3]
+name=Monument
+desc=A monument to a fallen priest.
+model=priestperil_grave_base1
+anim=priestperil_gravemonument
+length=2
+active=yes
+op1=Study
+op2=Take-from
+category=priestperil_monument
+
+[priestperil_grave_base4]
+name=Monument
+desc=A monument to a fallen priest.
+model=priestperil_grave_base1
+anim=priestperil_gravemonument
+length=2
+active=yes
+op1=Study
+op2=Take-from
+category=priestperil_monument
+
+[priestperil_grave_base5]
+name=Monument
+desc=A monument to a fallen priest.
+model=priestperil_grave_base5
+anim=priestperil_gravemonument
+width=2
+length=2
+active=yes
+op1=Study
+op2=Take-from
+category=priestperil_monument
+
+[priestperil_grave_base6]
+name=Monument
+desc=A monument to a fallen priest.
+model=priestperil_grave_base5
+anim=priestperil_gravemonument
+width=2
+length=2
+active=yes
+op1=Study
+op2=Take-from
+category=priestperil_monument
+
+[priestperil_grave_base7]
+name=Monument
+desc=A monument to a fallen priest.
+model=priestperil_grave_base5
+anim=priestperil_gravemonument
+width=2
+length=2
+active=yes
+op1=Study
+op2=Take-from
+category=priestperil_monument
+
+[pip_underground_wall_side_withportal]
+name=Holy barrier
+desc=A holy barrier blocking evil forces.
+model=pip_underground_wall_side_withportal
+retex1s=wood2
+retex1d=darkwood
+recol2s=8353
+recol2d=5250
+sharelight=yes
+hillskew=yes
+op1=Pass-through
+
+[pip_underground_door1]
+name=Gate
+desc=A sturdy metal gate.
+model=ctratgatea
+op1=Open
+category=door_open_and_close
+param=next_loc_stage,inacpip_underground_door
+
+[pip_underground_door2]
+name=Gate
+desc=A sturdy metal gate.
+model=ctratgatea
+op1=Open
+category=door_open_and_close
+param=next_loc_stage,inacpip_underground_door
+
+[inacpip_underground_door]
+model=ctratgatea
+active=no

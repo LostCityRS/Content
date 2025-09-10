@@ -1,0 +1,28 @@
+[oploc1,pip_underground_wall_side_withportal]
+if (%priestperil = ^priestperil_complete) {
+    if (p_finduid(uid) = true) {
+        p_telejump(0_53_54_31_29);
+    }
+} else {
+    if (npc_find(coord, priestperiltrappedmonk2, 20, 0) = true) {
+        ~chatnpc("<p,angry>STOP!");
+        ~chatplayer("<p,quiz>Can't I go through here?");
+        ~chatnpc("<p,neutral>No, you cannot! It is taking all of my willpower to hold that barrier in place. You must restore the sanctity of the Salve as soon as possible!");
+    }
+}
+
+[oploc1,pipeastsidetrapdoor]
+mes("The trapdoor opens...");
+sound_synth(door_open, 0, 0);
+loc_change(pipeastsidetrapdoor_open, 500);
+
+[oploc1,pipeastsidetrapdoor_open]
+mes("You climb down through the trapdoor...");
+anim(human_pickupfloor, 0);
+p_delay(0);
+p_telejump(0_53_154_48_31);
+
+[oploc2,pipeastsidetrapdoor_open]
+mes("You close the trapdoor.");
+sound_synth(door_close, 0,0 );
+loc_change(pipeastsidetrapdoor, 500);

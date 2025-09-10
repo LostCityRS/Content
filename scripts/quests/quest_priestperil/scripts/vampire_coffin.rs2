@@ -1,0 +1,21 @@
+[oploc1,priestperil_coffin_noanim]
+if (%priestperil >= ^priestperil_poured_blessed_water) {
+    ~chatplayer("<p,confused>The vampire should be dealt with. I'd still best not risk it though.");
+} else {
+    ~chatplayer("<p,confused>It sounds like there's something alive inside it. I don't think it would be a very good idea to open it...");
+}
+
+[oplocu,priestperil_coffin_noanim]
+if(last_useitem = bucket_blessedwater) {
+    %priestperil = ^priestperil_poured_blessed_water;
+    mes("You pour the blessed water over the coffin...");
+    anim(throw_bucketofwater, 0);
+    inv_del(inv, bucket_blessedwater, 1);
+    inv_add(inv, bucket_empty, 1);
+    return;
+} else if (last_useitem = bucket_water) {
+    ~chatplayer("<p,neutral>I don't think pouring normal water on the coffin is going to help...");
+} else if (last_useitem = bucket_murkywater) {
+    ~chatplayer("<p,neutral>This water doesn't look particularly holy to me... I think I'd better check with Drezel first.");
+}
+~displaymessage(^dm_default);

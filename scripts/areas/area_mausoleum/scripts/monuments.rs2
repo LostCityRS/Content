@@ -1,0 +1,140 @@
+[oploc1,_priestperil_monument]
+@study_monument(loc_type);
+
+[oploc2,_priestperil_monument]
+@take_from_monument(loc_type);
+
+[oplocu,_priestperil_monument]
+@switch_monument_item(loc_type);
+
+[label,study_monument](loc $loc)
+if(%priestperil >= ^priestperil_meet_in_mausoleum) {
+    ~mesbox("A monument dedicated to the fallen.");
+    return;
+}
+
+def_int $grave_no = enum(loc, int, monument_graves_locs, $loc);
+
+if(testbit(%priestperil_mausoleum, 21) = 0) {
+    ~generate_monument_layout;
+    %priestperil_mausoleum = setbit(%priestperil_mausoleum, 21);
+}
+
+def_int $seed = add(getbit_range(%priestperil_mausoleum, 22, 28), multiply($grave_no, 17));
+def_int $content_id = add(modulo($seed, 7), 1);
+def_namedobj $gold_item = enum(int, namedobj, monument_graves_models, $content_id);
+
+def_int $swap_bit = sub($grave_no, 1);
+def_int $is_swapped = testbit(%priestperil_mausoleum, $swap_bit);
+
+if($is_swapped = 1) {
+    def_obj $regular_item = enum(namedobj, obj, monument_graves_objs, $gold_item);
+    if_setobject(priestperil_gravemonument:monumentmodel, $regular_item, 250);
+} else {
+    if_setobject(priestperil_gravemonument:monumentmodel, $gold_item, 250);
+}
+
+if_settext(priestperil_gravemonument:monumenttext, enum(int, string, monument_graves_texts, $content_id));
+if_openmain(priestperil_gravemonument);
+
+[proc,generate_monument_layout]
+def_int $layout_seed = random(100);
+%priestperil_mausoleum = setbit_range_toint(%priestperil_mausoleum, $layout_seed, 22, 28);
+
+[label,switch_monument_item](loc $loc)
+if(%priestperil >= ^priestperil_meet_in_mausoleum) {
+    ~mesbox("It would be wrong to dishonour this monument.");
+    return;
+}
+
+def_int $grave_no = enum(loc, int, monument_graves_locs, $loc);
+
+def_int $seed = add(getbit_range(%priestperil_mausoleum, 22, 28), multiply($grave_no, 17));
+def_int $content_id = add(modulo($seed, 7), 1);
+def_namedobj $grave_item = enum(int, namedobj, monument_graves_models, $content_id);
+
+def_int $swap_bit = sub($grave_no, 1);
+def_int $is_swapped = testbit(%priestperil_mausoleum, $swap_bit);
+
+if($is_swapped = 0) {
+    def_obj $required_item = enum(namedobj, obj, monument_graves_objs, $grave_item);
+    if(last_useitem = $required_item) {
+        def_string $item_name = oc_name($grave_item);
+        mes("You swap the <oc_name(last_useitem)> for the <$item_name>.");
+        anim(human_opencupboard, 0);
+        inv_del(inv, last_useitem, 1);
+        inv_add(inv, $grave_item, 1);
+        %priestperil_mausoleum = setbit(%priestperil_mausoleum, $swap_bit);
+        return;
+    }
+} else {
+    if(last_useitem = pipneedle_gold & $grave_item = pipneedle_gold) {
+        mes("You know... I think I'd rather keep the valuable solid gold needle.");
+        return;
+    }
+    if(last_useitem = pipfeather_gold & $grave_item = pipfeather_gold) {
+        mes("You know... I think I'd rather keep the valuable solid gold feather.");
+        return;
+    }
+    if(last_useitem = pippot_gold & $grave_item = pippot_gold) {
+        mes("You know... I think I'd rather keep the valuable solid gold pot.");
+        return;
+    }
+    if(last_useitem = piptinderbox_gold & $grave_item = piptinderbox_gold) {
+        mes("You know... I think I'd rather keep the valuable solid gold tinderbox.");
+        return;
+    }
+    if(last_useitem = piphammer_gold & $grave_item = piphammer_gold) {
+        mes("You know... I think I'd rather keep the valuable solid gold hammer.");
+        return;
+    }
+    if(last_useitem = pipcandle_gold & $grave_item = pipcandle_gold) {
+        mes("You know... I think I'd rather keep the valuable solid gold candle.");
+        return;
+    }
+}
+~displaymessage(^dm_default);
+
+[label,take_from_monument](loc $loc)
+if (%priestperil >= ^priestperil_meet_in_mausoleum) {
+    ~mesbox("It would be wrong to dishonour this monument.");
+} else {
+    def_int $grave_no = enum(loc, int, monument_graves_locs, $loc);
+    def_int $seed = add(getbit_range(%priestperil_mausoleum, 22, 28), multiply($grave_no, 17));
+    def_int $content_id = add(modulo($seed, 7), 1);
+    def_namedobj $grave_item = enum(int, namedobj, monument_graves_models, $content_id);
+    
+    def_int $swap_bit = sub($grave_no, 1);
+    def_int $is_swapped = testbit(%priestperil_mausoleum, $swap_bit);
+    
+    def_string $item_name;
+    if($is_swapped = 1) {
+        def_obj $regular_item = enum(namedobj, obj, monument_graves_objs, $grave_item);
+        $item_name = oc_name($regular_item);
+    } else {
+        def_string $full_name = oc_name($grave_item);
+        if($grave_item = pipneedle_gold) {
+            $item_name = "needle";
+        } else if($grave_item = pipfeather_gold) {
+            $item_name = "feather";
+        } else if($grave_item = pipkey_iron) {
+            $item_name = "key";
+        } else if($grave_item = pipkey_gold) {
+            $item_name = "key";
+        } else if($grave_item = pippot_gold) {
+            $item_name = "pot";
+        } else if($grave_item = piptinderbox_gold) {
+            $item_name = "tinderbox";
+        } else if($grave_item = piphammer_gold) {
+            $item_name = "hammer";
+        } else if($grave_item = pipcandle_gold) {
+            $item_name = "candle";
+        } else {
+            $item_name = $full_name;
+        }
+    }
+    
+    mes("You try and take the <lowercase($item_name)> from the monument...");
+    mes("A holy power prevents you stealing from the monument!");
+    ~damage_self(add(random(5), 1));
+}

@@ -1,0 +1,12 @@
+[pip_prisondoor]
+name=Cell door
+desc=A hastily constructed yet sturdy prison door.
+model=ctratgatea
+op1=Open
+op2=Talk-through
+category=door_open_and_close
+param=next_loc_stage,inactive_pipprisondoor
+
+[inactive_pipprisondoor]
+model=ctratgatea
+active=no

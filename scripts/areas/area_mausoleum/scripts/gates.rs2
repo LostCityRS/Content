@@ -1,0 +1,12 @@
+[oploc1,pip_underground_door1]
+~check_priest_peril_gate(^priestperil_find_drezel_key);
+
+[oploc1,pip_underground_door2]
+~check_priest_peril_gate(^priestperil_meet_in_mausoleum);
+
+[proc,check_priest_peril_gate](int $required_progress)
+if (%priestperil >= $required_progress) {
+    ~open_and_close_metal_gate(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), false);
+} else {
+    mes("The gate is securely locked.");
+}

@@ -1,0 +1,23 @@
+[ai_queue3,priestperilguarddog]
+gosub(npc_death);
+if(npc_findhero = ^true) {
+    if_close;
+    if(p_finduid(uid) = true) { // get protected access, if not then queue
+        @defeat_guard_dog;
+    }
+    queue(queue_defeat_guard_dog, 0);
+}
+
+[queue,queue_defeat_guard_dog] @defeat_guard_dog;
+[label,defeat_guard_dog]
+%priestperil = ^priestperil_killed_dog;
+
+[proc,priestperilguarddog_attack]()(boolean)
+if (%priestperil < ^priestperil_agree_to_kill_dog | %priestperil = ^priestperil_killed_dog) {
+    mes("You have no reason to attack a helpless dog!");
+    return(false);
+} else if (%priestperil > ^priestperil_killed_dog) {
+    mes("I'd better not make the King mad at me again.");
+    return(false);
+}
+return(true);

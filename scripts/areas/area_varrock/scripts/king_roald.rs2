@@ -1,0 +1,125 @@
+[opnpc1,king_roald]
+if (%priestperil >= ^priestperil_not_started & %priestperil <= ^priestperil_complete) {
+    @roald_priestperil_dialogue;
+}
+
+[opnpcu,king_roald]
+if(last_useitem = arravcertificate) {
+    @roald_soa_dialogue;
+}
+~displaymessage(^dm_default);
+
+// copying rsc logic here, no dialogue without both shield pieces or the certificate
+[label,roald_soa_dialogue]
+~chatplayer("<p,happy>Greetings, your majesty.");
+/*if(inv_total(inv, arravcertificate) > 0) {
+    ~chatplayer("<p,happy>Your majesty.|I have come to claim the reward|for the return of the Shield Of Arrav.");
+    if(%phoenixgang < ^phoenixgang_joined & %blackarmgang < ^blackarmgang_joined) {
+        ~chatnpc("<p,confused>The name on this certificate isn't yours!|I can't give you the reward|unless you do the quest yourself!");
+        return;
+    }
+    if(%phoenixgang = ^phoenixgang_complete | %blackarmgang = ^blackarmgang_complete) {
+        ~chatnpc("<p,confused>You have already claimed the reward.|You can't claim it twice!");
+        ~mesbox("Why don't you give this certificate|to the person who helped you get the shield?");
+        return;
+    }
+    ~objbox(arravcertificate, "You show the certificate to the king.", 250, 0, divide(^objbox_height, 2));
+    ~chatnpc("<p,happy>My goodness! This claim is for the reward offered by my father many years ago!");
+    ~chatnpc("<p,happy>I never thought I'd see anyone claim this reward!");
+    ~chatnpc("<p,happy>I see you are claiming half the reward,|so I will give you half of the bounty.|That comes to exactly 600 gold coins!");
+    ~objbox(coins_250, "You hand over a certificate.|The king gives you 600 gold coins.", 250, 0, divide(^objbox_height, 2));
+    queue(blackarmgang_quest_complete, 0);
+    return;
+}
+if(inv_total(inv, arravshield1) > 0 & inv_total(inv, arravshield2) > 0) {
+    ~chatplayer("<p,happy>Your majesty,|I have recovered the Shield Of Arrav;|I would like to claim the reward.");
+    ~chatnpc("<p,neutral>The Shield of Arrav, eh? Yes, I do recall my father, King Roald, put a reward out for that.");
+    ~chatnpc("<p,neutral>Very well.");
+    ~chatnpc("<p,neutral>If you get the authenticity of the shield verified|by the curator at the museum|and then return here with authentication,|I will grant you your reward.");
+    return;
+}
+~chatnpc("<p,neutral>Do you have anything of importance to say?");
+~chatplayer("<p,neutral>...Not really.");
+~chatnpc("<p,neutral>You will have to excuse me, then.|I am very busy|as I have a kingdom to run!");*/
+
+
+[label,roald_priestperil_dialogue]
+~chatplayer("<p,happy>Greetings, your majesty.");
+
+if(%priestperil = ^priestperil_not_started) {
+    ~chatnpc("<p,quiz>Well hello there. What do you want?");
+    ~chatplayer("<p,neutral>I'm looking for a quest!");
+    ~chatnpc("<p,neutral>A quest you say? Hmm, what an odd request to make of the king. It's funny you should mention it though, as there is something you can do for me.");
+    ~chatnpc("<p,quiz>Are you aware of the temple east of here. It stands on the River Salve and guards the entrance to the lands of Morytania?");
+    ~chatplayer("<p,confused>No, I don't think I know it...");
+    ~chatnpc("<p,neutral>Hmm, how strange that you don't. Well anyway, it has been some days since last I heard from Drezel, the priest who lives there.");
+    ~chatnpc("<p,neutral>Be a sport and go make sure that nothing untoward has happened to the silly old codger for me, would you?");
+    @multi2("Sure.", start_priestperil, "No, that sounds boring.", abandon_priestperil);
+
+} else if (%priestperil > ^priestperil_not_started & %priestperil < ^priestperil_killed_dog) {
+    ~chatnpc("<p,quiz>Well hello there. What do you want?");
+    ~chatnpc("<p,neutral>You have news of Drezel for me?");
+    ~chatplayer("<p,quiz>Where am I supposed to go again?");
+    ~chatnpc("<p,neutral>The temple east of here where Drezel lives. It lies south of the cliffs, at the source of the River Salve.");
+    ~chatnpc("<p,neutral>Don't worry, you can't miss it.");
+
+} else if (%priestperil = ^priestperil_killed_dog) {
+    ~chatnpc("<p,quiz>Well hello there. What do you want?");
+    ~chatnpc("<p,neutral>You have news of Drezel for me?");
+    ~chatplayer("<p,happy>Yeah, I spoke to the guys at the temple and they said they were being bothered by that dog in the crypt, so I went and killed it for them. No problem.");
+    ~chatnpc("<p,shock>YOU DID WHAT???");
+    ~chatnpc("<p,angry>Are you mentally deficient??? That guard dog was protecting the route to Morytania! Without it we could be in severe peril of attack!");
+    ~chatplayer("<p,sad>Did I make a mistake?");
+    ~chatnpc("<p,angry>YES YOU DID!!!!! You need to get there right now and find out what is happening! Before it is too late for us all!");
+    ~chatplayer("<p,sad>B-but Drezel TOLD me to...!");
+    ~chatnpc("<p,angry>No, you absolute cretin! Obviously some|fiend has done something to Drezel and|tricked your feeble intellect into helping|them kill that guard dog!"); // https://web.archive.org/web/20070611202228/http://www.runeweb.net:80/index.php?page=rs2-quest-priestinperil
+    %priestperil = ^priestperil_return_to_drezel;
+    ~chatnpc("<p,angry>You get back there and do whatever is necessary to safeguard my kingdom from attack, or I will see you beheaded for high treason!");
+    ~chatplayer("<p,sad>Y-yes your highness.");
+
+} else if (%priestperil = ^priestperil_return_to_drezel) {
+    ~chatnpc("<p,angry>YOU! Why haven't you ensured the border with Morytania is secure yet?");
+    ~chatplayer("<p,sad>Okay, okay... I'm going, I'm going... There's no need to shout...");
+    ~chatnpc("<p,angry>NO NEED TO SHOUT???");
+    ~chatnpc("<p,angry>Listen, and listen well, and see if your puny mind can comprehend this: if the border is not protected, then we are all at the mercy of the vampires!");
+    ~chatnpc("<p,angry>I would say that me shouting at you for your incompetence is the LEAST of your worries right now. NOW GO!");
+
+} else if (%priestperil = ^priestperil_find_drezel_key) {
+    ~chatnpc("<p,quiz>You have news of Drezel for me?");
+    ~chatplayer("<p,sad>I do indeed, sire. He has been imprisoned by some Zamorakian monks.");
+    ~chatnpc("<p,angry>What? This is wholly unacceptable! I order you to do all that you can to free Drezel immediately!");
+    ~chatplayer("<p,neutral>I was doing that anyway.");
+    ~chatnpc("<p,neutral>Ah, I see. In that case keep up the good work.");
+
+} else if(%priestperil = ^priestperil_unlocked_drezel) {
+    ~chatnpc("<p,quiz>Have you freed Drezel yet?");
+    ~chatplayer("<p,neutral>Well, I found the key to his cell and unlocked it, but there's a vampire in there stopping him leaving.");
+    ~chatnpc("<p,shock>A vampire? Well, I order you to do something about it at once!");
+    ~chatplayer("<p,neutral>Yeah, I was planning on doing that anyway.");
+    ~chatnpc("<p,neutral>Good work! Always a place for quick thinkers in my kingdom!");
+
+} else if(%priestperil = ^priestperil_poured_blessed_water) {
+    ~chatnpc("<p,quiz>Have you freed Drezel yet?");
+    ~chatplayer("<p,neutral>Yes sire.");
+    ~chatnpc("<p,quiz>Aha! Good work adventurer! What news of the border defences against Morytania?");
+    ~chatplayer("<p,confused>I, uh, don't know about that...");
+    ~chatnpc("<p,angry>Well get back and find out at once! This is a matter of national security and if I find out we are vulnerable I will hold you personally responsible!");
+    ~chatplayer("<p,neutral>Yes sire.");
+
+} else if(%priestperil >= ^priestperil_meet_in_mausoleum & %priestperil <= ^priestperil_end_bring_essence) {
+    ~chatnpc("<p,quiz>Have you ensured Misthalin's border is fully secured?");
+    ~chatplayer("<p,neutral>Not yet. I'm working on it though.");
+    ~chatnpc("<p,neutral>Good, good.");
+
+} else {
+    @end_chat;
+}
+
+[label,abandon_priestperil]
+~chatplayer("<p,neutral>No. That sounds boring.");
+~chatnpc("<p,neutral>Yes, I dare say it does. I wouldn't even have mentioned it had you not seemed to be looking for something to do anyway.");
+
+[label,end_chat]
+~chatnpc("<p,neutral>Do you have anything of importance to say?");
+~chatplayer("<p,neutral>...Not really.");
+~chatnpc("<p,neutral>You will have to excuse me, then.|I am very busy|as I have a kingdom to run!");
