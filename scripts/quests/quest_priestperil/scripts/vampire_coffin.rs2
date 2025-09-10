@@ -16,6 +16,6 @@ if(last_useitem = bucket_blessedwater) {
 } else if (last_useitem = bucket_water) {
     ~chatplayer("<p,neutral>I don't think pouring normal water on the coffin is going to help...");
 } else if (last_useitem = bucket_murkywater) {
-    ~chatplayer("<p,neutral>This water doesn't look particularly holy to me... I think I'd better check with Drezel first.");
+    ~chatplayer("<p,neutral>This water doesn't look particularly holy to me... I think I'd better check with the priest first."); // https://youtu.be/wdUTtS7KzTI?si=qQkqUq_3kwOOncL1&t=497
 }
 ~displaymessage(^dm_default);
