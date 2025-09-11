@@ -1,6 +1,10 @@
 [opnpc1,priestperiltrappedmonk2]
-if (%priestperil >= ^priestperil_meet_in_mausoleum & %priestperil < ^priestperil_complete) {
-    @priestperil_drezel;
+if (%priestperil = ^priestperil_meet_in_mausoleum) {
+    @priestperil_drezel_meet_in_mausoleum;
+} else if (%priestperil = ^priestperil_begin_bring_essence) {
+    @priestperil_drezel_begin_bring_essence;
+} else if (%priestperil > ^priestperil_begin_bring_essence & %priestperil < ^priestperil_end_bring_essence) {
+    @priestperil_drezel_bring_more_essence;
 } else if (%priestperil = ^priestperil_complete) {
     if (inv_total(inv, dagger_wolfbane) = 0 & inv_total(bank, dagger_wolfbane) = 0 & inv_total(worn, dagger_wolfbane) = 0) {
         @reclaim_wolfbane_dagger;
@@ -9,72 +13,74 @@ if (%priestperil >= ^priestperil_meet_in_mausoleum & %priestperil < ^priestperil
     }
 }
 
-[label,priestperil_drezel]
-if (%priestperil = ^priestperil_meet_in_mausoleum) {
-    ~chatnpc("<p,neutral>Ah, <displayname>. I see you finally made it down here. Things are worse than I feared. I'm not sure if I will be able to repair the damage.");
+[label,priestperil_drezel_meet_in_mausoleum]
+~chatnpc("<p,neutral>Ah, <displayname>. I see you finally made it down here. Things are worse than I feared. I'm not sure if I will be able to repair the damage.");
     ~chatplayer("<p,quiz>Why, what's happened?");
     ~chatnpc("<p,sad>From what I can tell, after you killed the guard dog who protected the entrance to the monuments, those Zamorakians force the door into the main chamber");
     ~chatnpc("<p,sad>and have used some kind of evil potion upon the well which leads to the source of the river Salve. As they have done this at the very mouth of the river");
-    ~chatnpc("<p,sad>it will spread along the entire reiver, disrupting the blessing placed upon it and allowing the evil creatures of Morytania to invade at their leisure.");
+    ~chatnpc("<p,sad>it will spread along the entire river, disrupting the blessing placed upon it and allowing the evil creatures of Morytania to invade at their leisure.");
     ~chatplayer("<p,shock>What can we do to prevent that?");
     ~chatnpc("<p,neutral>Well, as you can see, I have placed a holy barrier on the entrance to this room from the South, but it is not very powerful and requires me to remain");
     ~chatnpc("<p,neutral>here focussing upon it to keep it intact. Should an attack come, they would be able to break this defence very quickly indeed. What we need to do is");
     ~chatnpc("<p,neutral>find some kind of way of removing or counteracting the evil magic that has been put into the river source at the well, so that the river will flow pure once again.");
     ~chatplayer("<p,quiz>Couldn't you bless the river to purify it? Like you did with the water I took from the well?");
     ~chatnpc("<p,sad>No, that would not work, the power I have from Saradomin is not great enough to cleanse an entire river of this foul Zamorakian pollutant.");
-    ~chatnpc("<p,neutral>I have only one idea how we could possibly cleanse the river?");
+    ~chatnpc("<p,neutral>I have only one idea how we could possibly cleanse the river.");
     ~chatplayer("<p,quiz>What's that?");
     ~chatnpc("<p,neutral>I have heard rumours recently that Mages have found some secret ore that absorbs magic into it and allows them to create runes.");
     ~chatnpc("<p,neutral>Should you be able to collect enough of this ore, it is possible it will soak up the evil potion that has been poured into the river, and purify it.");
     ~chatplayer("<p,quiz>Kind of like a filter? Okay, I guess it's worth a try. How many should I get?");
     %priestperil = ^priestperil_begin_bring_essence;
     ~chatnpc("<p,neutral>Well I have no knowledge of these ores other than speculation and gossip, but if the things I hear are true around fifty should be sufficient for the task.");
-} else if (%priestperil = ^priestperil_begin_bring_essence) {
-    if (inv_total(inv, blankrune) > 0) {
-        ~chatplayer("<p,happy>I brought you some Rune Essence.");
-        ~chatnpc("<p,neutral>Quickly, give it to me!");
-        @drezel_give_blankrunes;
-    } else if (inv_total(inv, cert_blankrune) > 0) { 
-        ~chatplayer("<p,happy>I brought you some Rune Essence.");
-        ~chatnpc("<p,neutral>You have brought me notes saying 'I promise to pay the bearer on demand the listed number of Rune Essence.' How is that supposed to help me?");
-    } else { 
-        ~chatplayer("<p,quiz>What am I supposed to do again?");
-        ~chatnpc("<p,neutral>Bring me fifty Rune Essence so that I can undo the damage done by those Zamorakians.");
-    }
-} else if (%priestperil > ^priestperil_begin_bring_essence & %priestperil < ^priestperil_end_bring_essence) {
-    if (inv_total(inv, blankrune) > 0) {
-        ~chatplayer("<p,happy>I brought you some more essences.");
-        ~chatnpc("<p,neutral>Quickly, give them to me!");
-        @drezel_give_blankrunes;
-    } else if (inv_total(inv, cert_blankrune) > 0) { 
-        ~chatplayer("<p,happy>I brought you some Rune Essence.");
-        ~chatnpc("<p,neutral>You have brought me notes saying 'I promise to pay the bearer on demand the listed number of Rune Essence.' How is that supposed to help me?");
-    } else { 
-        ~chatplayer("<p,quiz>How many more essences do I need to bring you?");
-        ~chatnpc("<p,neutral>I need <~drezel_essence_remaining>.");
-    }
+
+[label,priestperil_drezel_begin_bring_essence]
+if (inv_total(inv, blankrune) > 0) {
+    ~chatplayer("<p,happy>I brought you some Rune Essence.");
+    ~chatnpc("<p,neutral>Quickly, give it to me!");
+    @drezel_give_blankrunes;
+} else if (inv_total(inv, cert_blankrune) > 0) { 
+    ~chatplayer("<p,happy>I brought you some Rune Essence.");
+    ~chatnpc("<p,neutral>You have brought me notes saying 'I promise to pay the bearer on demand the listed number of Rune Essence.' How is that supposed to help me?");
+} else { 
+ ~chatplayer("<p,quiz>What am I supposed to do again?");
+    ~chatnpc("<p,neutral>Bring me fifty Rune Essence so that I can undo the damage done by those Zamorakians.");
+}
+
+[label,priestperil_drezel_bring_more_essence]
+if (inv_total(inv, blankrune) > 0) {
+    ~chatplayer("<p,happy>I brought you some more essences.");
+    ~chatnpc("<p,neutral>Quickly, give them to me!");
+    @drezel_give_blankrunes;
+} else if (inv_total(inv, cert_blankrune) > 0) { 
+    ~chatplayer("<p,happy>I brought you some Rune Essence.");
+    ~chatnpc("<p,neutral>You have brought me notes saying 'I promise to pay the bearer on demand the listed number of Rune Essence.' How is that supposed to help me?");
+} else { 
+    ~chatplayer("<p,quiz>How many more essences do I need to bring you?");
+    ~chatnpc("<p,neutral>I need <~drezel_essence_remaining>.");
 }
 
 [label,drezel_give_blankrunes]
-if(inv_total(inv, blankrune) > 0 & %priestperil ! ^priestperil_end_bring_essence) {
-    if_close;
-    def_int $essence_needed = calc(60 - %priestperil);
-    def_int $essence_have = inv_total(inv, blankrune);
-    def_int $essence_to_give = min($essence_needed, $essence_have);
-    
-    inv_del(inv, blankrune, $essence_to_give);
-    
-    if($essence_to_give = 1) {
-        mes("You give the priest your blank rune.");
-    } else {
-        mes("You give the priest your blank runes.");
-    }
-    
-    %priestperil = calc(%priestperil + $essence_to_give);
+if(inv_total(inv, blankrune) <= 0 | %priestperil = ^priestperil_end_bring_essence) {
+    return; 
+}
 
-    if(%priestperil = ^priestperil_end_bring_essence) {
-        @drezel_finish_blankrunes;
-    }
+if_close;
+def_int $essence_needed = calc(60 - %priestperil);
+def_int $essence_have = inv_total(inv, blankrune);
+def_int $essence_to_give = min($essence_needed, $essence_have);
+
+inv_del(inv, blankrune, $essence_to_give);
+
+if($essence_to_give = 1) {
+    mes("You give the priest your blank rune.");
+} else {
+    mes("You give the priest your blank runes.");
+}
+
+%priestperil = calc(%priestperil + $essence_to_give);
+
+if(%priestperil = ^priestperil_end_bring_essence) {
+    @drezel_finish_blankrunes;
 }
 
 [proc,drezel_essence_remaining]()(string)
@@ -95,7 +101,10 @@ queue(priestperil_complete, 0);
 ~chatnpc("<p,neutral>In many ways Werewolves are like you and me, except never forget that they are evil vicious beasts at heart. The dagger I have given you is named 'Wolfbane'");
 ~chatnpc("<p,neutral>and it is a holy relic that prevents the werewolf people from changing form. I suggest if you battle with them that you keep it always equipped, for their");
 ~chatnpc("<p,neutral>wolf form is incredibly powerful, and would savage you very quickly. Please adventurer, promise me this: I should hate for you to die foolishly.");
-~chatplayer("<p,neutral>Okay, I will keep it equipped whenever I fight werewolves.");   
+~chatplayer("<p,neutral>Okay, I will keep it equipped whenever I fight werewolves.");
+// Sources used for this dialogue, althought they're from 2011.
+// https://youtu.be/wdUTtS7KzTI?si=gKdrWEcXykzYWpsc&t=562 & https://youtu.be/jw4XYrDFKGE?si=-Cbd2rLZcACS52wO&t=671
 
 [label,reclaim_wolfbane_dagger]
-//TODO: Dialogue for reclaiming Wolfbane dagger. Unable to find any sources yet.
+// TODO: Dialogue for reclaiming Wolfbane dagger. Unable to find any sources yet.
+// https://runescape.wiki/w/Transcript:Priest_in_Peril#Post-Quest_Dialogue doesn't seem to contain this dialogue either.
