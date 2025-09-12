@@ -9,7 +9,13 @@ if (%priestperil = ^priestperil_meet_in_mausoleum) {
     if (inv_total(inv, dagger_wolfbane) = 0 & inv_total(bank, dagger_wolfbane) = 0 & inv_total(worn, dagger_wolfbane) = 0) {
         @reclaim_wolfbane_dagger;
     } else {
-        @drezel_dialogue;
+        @drezel_access_holy_barrier;
+    }
+} else if (%priestperil = ^priestperil_access_holy_barrier) {
+    if (inv_total(inv, dagger_wolfbane) = 0 & inv_total(bank, dagger_wolfbane) = 0 & inv_total(worn, dagger_wolfbane) = 0) {
+        @reclaim_wolfbane_dagger;
+    } else {
+        @drezel_post_priestperil_dialogue;
     }
 }
 
@@ -93,7 +99,20 @@ return ("<tostring($essence_needed)> more");
 ~chatnpc("<p,happy>it has the power to prevent werewolves from adopting their wolf form in combat as long as you have it equipped.");
 queue(priestperil_complete, 0);
 
-[label,drezel_dialogue]
+[label,drezel_cant_access_holy_barrier]
+if (%priestperil < ^priestperil_complete) {
+    if (npc_find(coord, priestperiltrappedmonk2, 20, 0) = true) {
+        ~chatnpc("<p,angry>STOP!");
+        ~chatplayer("<p,quiz>Can't I go through here?");
+        ~chatnpc("<p,neutral>No, you cannot! It is taking all of my willpower to hold that barrier in place. You must restore the sanctity of the Salve as soon as possible!");
+    }
+} else {
+    if (npc_find(coord, priestperiltrappedmonk2, 20, 0) = true) {
+        @drezel_access_holy_barrier;
+    }
+}
+
+[label,drezel_access_holy_barrier]
 ~chatplayer("<p,quiz>So can I pass through that barrier now?");
 ~chatnpc("<p,neutral>Ah, <displayname>. For all the assistance you have given both myself and Misthalin in your actions, I cannot let you pass without warning you.");
 ~chatnpc("<p,neutral>Morytania is an evil land, filled with creatures and monsters more terrifying than any you have yet encountered. Although I will pray for you,");
@@ -102,7 +121,8 @@ queue(priestperil_complete, 0);
 ~chatnpc("<p,neutral>and it is a holy relic that prevents the werewolf people from changing form. I suggest if you battle with them that you keep it always equipped, for their");
 ~chatnpc("<p,neutral>wolf form is incredibly powerful, and would savage you very quickly. Please adventurer, promise me this: I should hate for you to die foolishly.");
 ~chatplayer("<p,neutral>Okay, I will keep it equipped whenever I fight werewolves.");
-// Sources used for this dialogue, althought they're from 2011.
+%priestperil = ^priestperil_access_holy_barrier;
+// Sources used for this dialogue, although they're from 2011.
 // https://youtu.be/wdUTtS7KzTI?si=gKdrWEcXykzYWpsc&t=562 & https://youtu.be/jw4XYrDFKGE?si=-Cbd2rLZcACS52wO&t=671
 
 [label,reclaim_wolfbane_dagger]
@@ -112,4 +132,34 @@ queue(priestperil_complete, 0);
 inv_add(inv, dagger_wolfbane, 1);
 ~chatnpc("<p,neutral>Yes, I know! Luckily for you it washed up on the banks of the Salve earlier! Here, take it again, but please try and be more careful this time.");
 ~chatnpc("<p,neutral>It's a family heirloom after all!");
-~chatplayer("Thanks for that!");
+~chatplayer("<p,neutral>Thanks for that!");
+
+[label,drezel_post_priestperil_dialogue]
+~chatnpc("<p,neutral>Greetings again adventurer. How go your travels in Moryania? Is it as evil as I have heard?");
+@multi2("Well, I'm going to look around a bit more.", drezel_look_around, "Is there anything else interesting to do around here?", drezel_anything_interesting);
+
+[label,drezel_look_around]
+~chatplayer("<p,neutral>Well, I'm going to look around a bit more.");
+~chatnpc("<p,neutral>Well, that sounds like a good idea. Don't get into any trouble though!");
+
+[label,drezel_anything_interesting]
+~chatplayer("<p,quiz>Is there anything else interesting to do around here?");
+// ToDo: Re-enable check for The Restless Ghost quest in pre-req for Nature Spirit.
+if (%priestperil >= ^priestperil_complete /*& %priest_progress >= ^priest_complete*/) {
+    @drezel_start_druidspirit;
+} else {
+    ~chatnpc("<p,neutral>Well... I don't think so. There's not much to do in that place.");
+}
+
+[label,drezel_start_druidspirit]
+~chatnpc("<p,neutral>Well, not a great deal... but there is something you could do for me if you're interested. Though it is quite dangerous.");
+@multi2("Sorry, not interested...", drezel_druidspirit_not_interested, "Well, what is it, I may be able to help?", drezel_druidspirit_what_is_it);
+
+[label,drezel_druidspirit_not_interested]
+~chatplayer("<p,neutral>Sorry, not interested.");
+~chatnpc("<p,neutral>Well, I understand. You must be busy.");
+
+[label,drezel_druidspirit_what_is_it]
+~chatplayer("<p,neutral>Well, what is it, I may be able to help?");
+~chatnpc("<p,neutral>There's a man called Filliman who lives in Mort Myre, I wonder if you could look for him? The swamps of Mort Myre are dangerous though, they're infested with Ghasts!"); // https://youtu.be/gkw959x8Q6s?si=Pv6XBSiFlNXPSPuO&t=63
+// ToDo: Nature Spirit.

@@ -1,14 +1,10 @@
 [oploc1,pip_underground_wall_side_withportal]
-if (%priestperil = ^priestperil_complete) {
+if (%priestperil = ^priestperil_access_holy_barrier) {
     if (p_finduid(uid) = true) {
         p_telejump(0_53_54_31_29);
     }
 } else {
-    if (npc_find(coord, priestperiltrappedmonk2, 20, 0) = true) {
-        ~chatnpc("<p,angry>STOP!");
-        ~chatplayer("<p,quiz>Can't I go through here?");
-        ~chatnpc("<p,neutral>No, you cannot! It is taking all of my willpower to hold that barrier in place. You must restore the sanctity of the Salve as soon as possible!");
-    }
+    @drezel_cant_access_holy_barrier;
 }
 
 [oploc1,pipeastsidetrapdoor]
