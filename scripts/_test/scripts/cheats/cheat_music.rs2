@@ -1,0 +1,39 @@
+[debugproc,lockalltracks]
+if (p_finduid(uid) = true) {
+    %musicmulti_1 = 0;
+    %musicmulti_2 = 0;
+    %musicmulti_3 = 0;
+    %musicmulti_4 = 0;
+    %musicmulti_5 = 0;
+    %musicmulti_6 = 0;
+    %musicmulti_7 = 0;
+    %musicmulti_8 = 0;
+    %musicmulti_9 = 0;
+    %musicmulti_10 = 0;
+    %musicmulti_11 = 0;
+    %musicmulti_12 = 0;
+    %musicmulti_13 = 0;
+    %musicmulti_14 = 0;
+} else {
+    @please_finish;
+}
+
+[debugproc,unlockalltracks]
+if (p_finduid(uid) = true) {
+    %musicmulti_1 = 0xFFFFFFFF;
+    %musicmulti_2 = 0xFFFFFFFF;
+    %musicmulti_3 = 0xFFFFFFFF;
+    %musicmulti_4 = 0xFFFFFFFF;
+    %musicmulti_5 = 0xFFFFFFFF;
+    %musicmulti_6 = 0xFFFFFFFF;
+    %musicmulti_7 = 0xFFFFFFFF;
+    %musicmulti_8 = 0xFFFFFFFF;
+    %musicmulti_9 = 0xFFFFFFFF;
+    %musicmulti_10 = 0xFFFFFFFF;
+    %musicmulti_11 = 0xFFFFFFFF;
+    %musicmulti_12 = 0xFFFFFFFF;
+    %musicmulti_13 = 0xFFFFFFFF;
+    %musicmulti_14 = 0xFFFFFFFF;
+} else {
+    @please_finish;
+}

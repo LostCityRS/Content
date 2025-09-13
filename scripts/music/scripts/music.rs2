@@ -97,12 +97,7 @@ if ($region = null) {
 }
 
 // now that we have the region, we can grab info on the song
-db_find(music:name, db_getfield($region, musicregion:name, 0));
-def_dbrow $song = db_findnext;
-if ($song = null) {
-    return;
-}
-
+def_dbrow $song = db_getfield($region, musicregion:musicdata, 0);
 def_int $unlock;
 def_int $bit;
 $unlock, $bit = db_getfield($song, music:unlock, 0);
