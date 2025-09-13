@@ -103,8 +103,8 @@ p_delay(3);
 p_teleport(0_38_51_4_51);
 
 [label,open_randas_diary]
-if_sethide(book:com_1, true);
-if_sethide(book:com_3, true);
+if_sethide(book:com_2, true);
+if_sethide(book:com_4, true);
 ~book("The Diary of Randas", "It began as a whisper in my ears. Dismissing the sounds as the whistling of the wind, I steeled myself against these forces, and continued on my way.||But the whispers became|moans...|||At once fearsome and enticing like the call of some beautiful siren.|||Join us!||Our greatness lies within you, but only Zamorak can unlock your potential...");
 
 [label,destroy_orboflight](obj $orb)

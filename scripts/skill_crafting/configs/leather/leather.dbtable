@@ -3,10 +3,10 @@ column=members,boolean
 column=levelrequired,int
 column=name,string
 column=leather,namedobj,int
-column=product,namedobj
+column=product,namedobj,INDEXED,REQUIRED
 column=productexp,int
 
 [dhide_interface_table]
 column=color,string
-column=leather,obj
+column=leather,obj,INDEXED,REQUIRED
 column=interface_items,namedobj,namedobj,namedobj

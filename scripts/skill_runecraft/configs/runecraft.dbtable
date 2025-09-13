@@ -1,5 +1,5 @@
 [runecraft_table]
-column=type,int
+column=type,int,INDEXED,REQUIRED
 column=members,int
 column=level,int
 column=experience,int
@@ -8,5 +8,5 @@ column=talisman,obj
 column=name,string
 column=multiplier,int
 column=altar_coord,coord
-column=enter_coord,coord,int,int,int
-column=exit_coord,coord,int,int,int
+column=enter_coord,coord,int,int,int,LIST
+column=exit_coord,coord,int,int,int,LIST

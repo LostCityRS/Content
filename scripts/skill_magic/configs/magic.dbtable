@@ -1,9 +1,9 @@
 [magic_staff_table]
-column=staff,obj
+column=staff,obj,LIST,INDEXED,REQUIRED
 column=rune,namedobj
 
 [magic_spell_table]
-column=spell,int
+column=spell,int,INDEXED,REQUIRED
 column=spellcom,component
 column=name,string
 column=members,boolean
@@ -13,11 +13,11 @@ column=wornrequired,namedobj
 column=worn_reqmessage,string
 column=experience,int
 column=loc_type,loc
-column=convertobj,obj,namedobj,seq,spotanim,synth
+column=convertobj,obj,namedobj,seq,spotanim,synth,LIST
 column=tele_coord,coord
 column=additional_reqmessage,string
 column=specificobj_reqmessage,obj,string
-column=stat_change,stat,int,int
+column=stat_change,stat,int,int,LIST
 column=freeze_time,int
 column=anim,seq
 column=spotanim_proj,spotanim,int,int,int,int,int,int,int
