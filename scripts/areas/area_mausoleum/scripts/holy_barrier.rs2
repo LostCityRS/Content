@@ -2,6 +2,7 @@
 if (%priestperil = ^priestperil_access_holy_barrier) {
     if (p_finduid(uid) = true) {
         p_telejump(0_53_54_31_29);
+        mes("You pass through the holy barrier.");
     }
 } else {
     @drezel_cant_access_holy_barrier;
