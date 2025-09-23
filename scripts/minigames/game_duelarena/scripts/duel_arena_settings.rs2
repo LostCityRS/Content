@@ -158,7 +158,7 @@ if (oc_category($obj) = category_69 & testbit(%duel_settings, ^no_potions) = ^tr
     mes("Use of potions has been turned off for this duel."); // guess based on no food
     return(false);
 }
-if (testbit(%duel_settings, ^no_food) = ^true) {
+if (oc_category($obj) ! category_69 & testbit(%duel_settings, ^no_food) = ^true) {
     mes("Use of food has been turned off for this duel."); // https://imgur.com/E0l52P2
     return(false);
 }
