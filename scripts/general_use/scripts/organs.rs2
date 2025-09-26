@@ -1,0 +1,7 @@
+// Paterdomus Temple
+[oploc1,smallchurchorgan]
+if(random(2) = 0) {
+    midi_song("organ_music_1");
+} else {
+    midi_song("organ_music_2");
+}
