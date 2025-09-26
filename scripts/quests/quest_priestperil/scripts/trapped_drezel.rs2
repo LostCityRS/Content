@@ -41,9 +41,8 @@ if(last_useitem = pipkey_iron) {
     if (npc_find(coord, priestperiltrappedmonk, 15, 0) = true) {
         %priestperil = ^priestperil_unlocked_drezel;
         inv_del(inv, pipkey_iron, 1);
-        mes("You unlock the cell door.");
         ~chatnpc("<p,happy >Oh! Thank you! You have found the key!");
-        ~open_and_close_metal_gate(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), false);
+        mes("You unlock the cell door.");
         return;
     }
 } else if (last_useitem = pipkey_gold) {
