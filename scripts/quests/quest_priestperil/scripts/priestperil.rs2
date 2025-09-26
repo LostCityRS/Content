@@ -7,6 +7,6 @@
 [queue,priestperil_complete]
 %priestperil = ^priestperil_complete;
 inv_add(inv, dagger_wolfbane, 1);
-stat_advance(prayer, 1406);
+stat_advance(prayer, 14060);
 session_log(^log_adventure, "Quest complete: Priest in Peril");
 ~send_quest_complete(questlist:priestperil, dagger_wolfbane, 250, ^priestperil_questpoints, "You have completed the\\nPriest In Peril Quest!");
