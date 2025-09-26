@@ -96,10 +96,10 @@ def_int $essence_needed = calc(60 - %priestperil);
 return ("<tostring($essence_needed)> more");
 
 [label,drezel_finish_blankrunes]
+queue(priestperil_complete, 0);
 ~chatnpc("<p,happy>Excellent! That should do it! I will bless these stones and place them within the well, and Misthalin should be protected once more!");
 ~chatnpc("<p,happy>Please take this dagger; it has been handed down within my family for generations and is filled with the power of Saradomin. You will find that");
 ~chatnpc("<p,happy>it has the power to prevent werewolves from adopting their wolf form in combat as long as you have it equipped.");
-queue(priestperil_complete, 0);
 
 [label,drezel_cant_access_holy_barrier]
 if (%priestperil < ^priestperil_complete) {
