@@ -313,3 +313,34 @@ if (p_finduid(uid) = true) {
 } else {
   @please_finish;
 }
+
+
+[debugproc,pp1] if (p_finduid(uid) = true) p_telejump(0_53_54_15_33);
+
+[debugproc,pp2] if (p_finduid(uid) = true) p_telejump(0_50_54_22_16);
+
+[debugproc,pp3] if (p_finduid(uid) = true) p_telejump(0_53_154_13_49);
+
+[debugproc,pp4] if (p_finduid(uid) = true) p_telejump(0_53_154_13_37);
+
+
+[debugproc,setpp](int $var)
+if (p_finduid(uid) = true)
+%priestperil = $var;
+mes("Set Priest in Peril to: <tostring($var)>.");
+~send_quest_progress(questlist:priestperil, %priestperil, ^priestperil_complete);
+
+[debugproc,setppm](int $var)
+if (p_finduid(uid) = true)
+%priestperil_mausoleum = $var;
+mes("Set Priest in Peril to: <tostring($var)>.");
+
+
+[debugproc,getpp]
+if (p_finduid(uid) = true)
+mes("Priest in Peril is currently set to: <tostring(%priestperil)>.");
+
+
+[debugproc,getppm]
+if (p_finduid(uid) = true)
+mes("PIPMausoleum is currently set to: <tostring(%priestperil_mausoleum)>.");

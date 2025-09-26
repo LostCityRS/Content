@@ -38,7 +38,7 @@ if (%priestperil >= ^priestperil_unlocked_drezel) {
 
 [oplocu,pip_prisondoor]
 if(last_useitem = pipkey_iron) {
-    if (npc_find(coord, priestperiltrappedmonk, 5, 0) = true) {
+    if (npc_find(coord, priestperiltrappedmonk, 15, 0) = true) {
         %priestperil = ^priestperil_unlocked_drezel;
         inv_del(inv, pipkey_iron, 1);
         mes("You unlock the cell door.");
@@ -53,7 +53,7 @@ if(last_useitem = pipkey_iron) {
 ~displaymessage(^dm_default);
 
 [oploc2,pip_prisondoor]
-if (npc_find(coord, priestperiltrappedmonk, 5, 0) = true) {
+if (npc_find(coord, priestperiltrappedmonk, 15, 0) = true) {
     if (%priestperil = ^priestperil_return_to_drezel) {
         ~chatplayer("<p,neutral>Hello.");
         ~chatnpc("<p,shock>Oh! You do not appear to be one of those Zamorakians who imprisoned me here! Who are you and why are you here?");
@@ -128,7 +128,7 @@ if (npc_find(coord, priestperiltrappedmonk, 5, 0) = true) {
 ~chatnpc("<p,neutral>and as those fiendish Zamorakians pointed out to me with delight, as a descendant of one of those who trapped it here, it will recognise");
 ~chatnpc("<p,neutral>the smell of my blood should I come anywhere near it. It will of course then wake up and kill me, very probably slowly and painfully.");
 ~chatplayer("<p,quiz>Maybe I could kill it somehow then while it is asleep?");
-~chatnpc("<p,neutral>No adventurer, I do not think it would be wise for you to wake it at all. As I say, it is little mroe than a wild animal, and must");
+~chatnpc("<p,neutral>No adventurer, I do not think it would be wise for you to wake it at all. As I say, it is little more than a wild animal, and must");
 ~chatnpc("<p,neutral>be extremely powerful to have survived until today. I suspect your best chance would be to incapacitate it somehow.");
 %priestperil = ^priestperil_find_drezel_key;
 ~chatplayer("<p,neutral>Okay, find the key to your cell, and do something about the vampire.");

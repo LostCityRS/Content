@@ -159,6 +159,7 @@ if (p_finduid(uid) = true) {
                 case 50 : queue(waterfall_quest_complete, 0);
                 case 51 : queue(ball_quest_complete, 0);
                 case 52 : queue(elemental_workshop_quest_complete, 0);
+                case 53 : queue(priestperil_complete, 0);
                 case default : mes("Quest not found.");
             }
         } else if ($choice3 = 1) {
@@ -268,6 +269,7 @@ if (p_finduid(uid) = true) {
                     %waterfall_quest = 0;
                 case 51 : %ballquest = 0;
                 case 52 : %elemental_workshop_bits = 0;
+                case 53 : %priestperil = 0;
                 case default : mes("Quest not found.");
             }
             ~update_questlist;
@@ -371,6 +373,7 @@ if ($arrav_choice = 0) {
     %blackarmgang = 0;
 }
 queue(elemental_workshop_quest_complete, 0);
+queue(priestperil_complete, 0);
 
 ~update_questlist;
 mes("All quests have been completed.");
@@ -465,6 +468,7 @@ return;
 %waterfall_quest = 0;
 %ballquest = 0;
 %elemental_workshop_bits = 0;
+%priestperil = 0;
 ~update_questlist;
 mes("All quests have been reset.");
 return;
