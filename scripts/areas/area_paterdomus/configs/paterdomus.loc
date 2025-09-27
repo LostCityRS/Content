@@ -1,0 +1,22 @@
+[loc_1598]
+name=Gate
+desc=A wooden gate.
+model=model_loc_47
+op1=Open
+active=yes
+blockrange=no
+category=gate_main_closed
+// todo: what is the intended next state?
+param=next_loc_stage,loc_1552
+
+[loc_1599]
+name=Gate
+desc=A wooden gate.
+model=model_loc_47
+mirror=yes
+op1=Open
+active=yes
+blockrange=no
+category=gate_outer_closed
+// todo: what is the intended next state?
+param=next_loc_stage,loc_1556
