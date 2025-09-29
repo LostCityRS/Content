@@ -1,0 +1,41 @@
+[debugproc,barrowsreset]
+if (p_finduid(uid) = false) return;
+~barrows_full_reset;
+def_int $barrows_entrance = ~barrows_entrance_get;
+mes("Randomized barrows, entrance: <tostring($barrows_entrance)>");
+
+[debugproc,barrowsloot]
+if (p_finduid(uid) = false) return;
+
+def_int $roll = 1;
+
+while ($roll < 50) {
+    ~barrows_loot;
+    midi_jingle(^grave_robber_jingle, ^grave_robber_jingle_millis);
+    p_delay(1);
+    $roll = calc($roll + 1);
+
+    def_int $slot = 0;
+
+    while ($slot < 8) {
+        def_obj $obj = inv_getobj(inv, $slot);
+
+        if ($obj ! null) {
+            ~bank_deposit_request(inv, $obj, inv_getnum(inv, $slot), $slot);
+        }
+        $slot = calc($slot + 1);
+    }
+}
+
+[debugproc,barrowsequip]
+inv_add(inv, barrows_ahrim_head, 1);
+inv_add(inv, barrows_ahrim_weapon, 1);
+inv_add(inv, barrows_ahrim_body, 1);
+inv_add(inv, barrows_ahrim_legs, 1);
+
+[debugproc,barrowsdegrade]
+if (p_finduid(uid) = false) return;
+~barrows_equip_degrade(^wearpos_rhand);
+~barrows_equip_degrade(^wearpos_head);
+~barrows_equip_degrade(^wearpos_torso);
+~barrows_equip_degrade(^wearpos_legs);

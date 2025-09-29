@@ -1,0 +1,43 @@
+[opnpc1,barrows_oldman]
+def_int $rand = random(5);
+
+switch_int (random(5)) {
+    case 0 : @barrows_oldman_dialogue1;
+    case 1 : @barrows_oldman_dialogue2;
+    case 2 : @barrows_oldman_dialogue3;
+    case 3 : @barrows_oldman_dialogue4;
+    case 4 : @barrows_oldman_dialogue5;
+}
+
+[label,barrows_oldman_dialogue1]
+~chatnpc("<p,neutral>AAAAAAAAARRRRRRGGGGGHHHHHHHH!");
+
+if (~p_choice2("What's wrong?", 1, "I'll leave you to it then...", 2) = 1) {
+    ~chatplayer("<p,quiz>What's wrong?");
+    @barrows_oldman_dialogue1;
+} else {
+    ~chatplayer("<p,quiz>I'll leave you to it then...");
+}
+
+[label,barrows_oldman_dialogue2]
+~chatnpc("<p,neutral>Pst, wanna hear a secret?");
+
+if (~p_choice2("Sure!", 1, "No thanks. ", 2) = 1) {
+    ~chatplayer("<p,normal>Sure!");
+    ~chatnpc("<p,neutral>They're not normal!");
+} else {
+    ~chatplayer("<p,normal>No thanks.");
+}
+
+[label,barrows_oldman_dialogue3]
+~chatnpc("<p,neutral>What? I didn't ask for a book!");
+inv_add(inv, barrows_book_history, 1);
+
+[label,barrows_oldman_dialogue4]
+~chatnpc("<p,neutral>Knock knock.");
+~chatplayer("<p,normal>Who's there?");
+~chatnpc("<p,neutral>A big scary monster HAHAHAHAHAHAHAHAHAHA!");
+~chatplayer("<p,normal>Okay...");
+
+[label,barrows_oldman_dialogue5]
+~chatnpc("<p,neutral>Dig, dig, dig.");

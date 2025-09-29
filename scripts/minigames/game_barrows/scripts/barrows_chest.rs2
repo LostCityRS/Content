@@ -1,0 +1,177 @@
+[oploc1,barrows_stone_chest]
+if (p_finduid(uid) = false) return;
+
+if (%barrows_chest_open = 0) {
+    ~barrows_chest_check_brother;
+    %barrows_chest_open = 1;
+} else {
+    if (~barrows_collapsing = true) {
+        mes("The chest is empty.");
+        return;
+    }
+    cam_shake(0, 5, 0, 0);
+    %barrows = setbit(%barrows, ^barrows_collapsing_bit);
+    midi_jingle(^grave_robber_jingle, ^grave_robber_jingle_millis);
+    ~barrows_loot;
+}
+
+[proc,barrows_chest_check_brother]
+switch_int (~barrows_entrance_get) {
+    case ^barrows_entrance_ahrim : if (%barrows_killed_ahrim = 0) ~barrows_spawn_brother(barrows_ahrim, ^barrows_speech_steal_chest);
+    case ^barrows_entrance_dharok : if (%barrows_killed_dharok = 0) ~barrows_spawn_brother(barrows_dharok, ^barrows_speech_steal_chest);
+    case ^barrows_entrance_guthan : if (%barrows_killed_guthan = 0) ~barrows_spawn_brother(barrows_guthan, ^barrows_speech_steal_chest);
+    case ^barrows_entrance_karil : if (%barrows_killed_karil = 0) ~barrows_spawn_brother(barrows_karil, ^barrows_speech_steal_chest);
+    case ^barrows_entrance_torag : if (%barrows_killed_torag = 0) ~barrows_spawn_brother(barrows_torag, ^barrows_speech_steal_chest);
+    case ^barrows_entrance_verac : if (%barrows_killed_verac = 0) ~barrows_spawn_brother(barrows_verac, ^barrows_speech_steal_chest);
+}
+
+[proc,barrows_loot]
+def_int $killed_brothers = 0;
+
+if (%barrows_killed_ahrim = 1) {
+    $killed_brothers = calc($killed_brothers + 1);
+}
+
+if (%barrows_killed_dharok = 1) {
+    $killed_brothers = calc($killed_brothers + 1);
+}
+
+if (%barrows_killed_guthan = 1) {
+    $killed_brothers = calc($killed_brothers + 1);
+}
+
+if (%barrows_killed_karil = 1) {
+    $killed_brothers = calc($killed_brothers + 1);
+}
+
+if (%barrows_killed_torag = 1) {
+    $killed_brothers = calc($killed_brothers + 1);
+}
+
+if (%barrows_killed_verac = 1) {
+    $killed_brothers = calc($killed_brothers + 1);
+}
+def_int $table_rolls = calc(1 + $killed_brothers);
+def_int $reward_potential = calc(%barrows_killed_monster + $killed_brothers * 2);
+def_int $unique_chance = calc(450 - 58 * $killed_brothers);
+
+mes("[debug] $killed_brothers=<tostring($killed_brothers)> $table_rows=<tostring($table_rolls)> $reward_potential=<tostring($reward_potential)>");
+mes("[debug] $unique_chance=<tostring($unique_chance)>");
+
+def_int $remaining_unique_loot = ~barrows_loot_populate_temp_inv;
+
+while ($table_rolls > 0) {
+    if (random($unique_chance) = 0) {
+        if ($remaining_unique_loot > 0) {
+            ~barrows_loot_give_unique($remaining_unique_loot);
+            $remaining_unique_loot = calc($remaining_unique_loot - 1);
+        } else {
+            ~barrows_loot_default($reward_potential);
+        }
+    } else {
+        ~barrows_loot_default($reward_potential);
+    }
+    $table_rolls = calc($table_rolls - 1);
+}
+inv_clear(trail_puzzleinv);
+
+[proc,barrows_loot_give_unique](int $inv_total)
+// Pick a random unique from the pre-populated trail_puzzleinv...
+def_int $random_slot = random($inv_total);
+def_obj $unique = inv_getobj(trail_puzzleinv, $random_slot);
+
+// Remove from the temp inv and add to the player's inventory...
+inv_movefromslot(trail_puzzleinv, inv, $random_slot);
+
+// Shuffle all the items so no empty slots are available...
+~reorganize_inv(trail_puzzleinv);
+
+// Populates the trail_puzzleinv containing all the possible barrows loot.
+// Returns how many items were added to the trail_puzzleinv temp inv.
+[proc,barrows_loot_populate_temp_inv]()(int)
+// Clear the temp inv, just in case...
+inv_clear(trail_puzzleinv);
+
+def_int $item_count = 0;
+if (%barrows_killed_ahrim = 1) {
+    // This shouldn't be possible as this inv is flagged as a dummyinv, meaning that it shouldn't be possible to add real items to it. Engine bug.
+    inv_add(trail_puzzleinv, barrows_ahrim_head, 1);
+    inv_add(trail_puzzleinv, barrows_ahrim_weapon, 1);
+    inv_add(trail_puzzleinv, barrows_ahrim_body, 1);
+    inv_add(trail_puzzleinv, barrows_ahrim_legs, 1);
+    $item_count = calc($item_count + 4);
+}
+
+if (%barrows_killed_dharok = 1) {
+    inv_add(trail_puzzleinv, barrows_dharok_head, 1);
+    inv_add(trail_puzzleinv, barrows_dharok_weapon, 1);
+    inv_add(trail_puzzleinv, barrows_dharok_body, 1);
+    inv_add(trail_puzzleinv, barrows_dharok_legs, 1);
+    $item_count = calc($item_count + 4);
+}
+
+if (%barrows_killed_guthan = 1) {
+    inv_add(trail_puzzleinv, barrows_guthan_head, 1);
+    inv_add(trail_puzzleinv, barrows_guthan_weapon, 1);
+    inv_add(trail_puzzleinv, barrows_guthan_body, 1);
+    inv_add(trail_puzzleinv, barrows_guthan_legs, 1);
+    $item_count = calc($item_count + 4);
+}
+
+if (%barrows_killed_karil = 1) {
+    inv_add(trail_puzzleinv, barrows_karil_head, 1);
+    inv_add(trail_puzzleinv, barrows_karil_weapon, 1);
+    inv_add(trail_puzzleinv, barrows_karil_body, 1);
+    inv_add(trail_puzzleinv, barrows_karil_legs, 1);
+    $item_count = calc($item_count + 4);
+}
+
+if (%barrows_killed_torag = 1) {
+    inv_add(trail_puzzleinv, barrows_torag_head, 1);
+    inv_add(trail_puzzleinv, barrows_torag_weapon, 1);
+    inv_add(trail_puzzleinv, barrows_torag_body, 1);
+    inv_add(trail_puzzleinv, barrows_torag_legs, 1);
+    $item_count = calc($item_count + 4);
+}
+
+if (%barrows_killed_verac = 1) {
+    inv_add(trail_puzzleinv, barrows_verac_head, 1);
+    inv_add(trail_puzzleinv, barrows_verac_weapon, 1);
+    inv_add(trail_puzzleinv, barrows_verac_body, 1);
+    inv_add(trail_puzzleinv, barrows_verac_legs, 1);
+    $item_count = calc($item_count + 4);
+}
+return ($item_count);
+
+[proc,barrows_loot_default](int $reward_potential)
+def_int $rand = randominc($reward_potential);
+
+if ($rand = 1012) {
+    inv_add(inv, dragon_med_helm, 1);
+} else if ($rand > 1005) {
+    if (random(2) = 0) {
+        inv_add(inv, keyhalf1, 1);
+    } else {
+        inv_add(inv, keyhalf2, 1);
+    }
+} else if ($rand > 880) {
+    ~barrows_loot_scaled(barrows_karil_ammo, 40, 881, 1005, $reward_potential);
+} else if ($rand > 755) {
+    ~barrows_loot_scaled(bloodrune, 43, 756, 880, $reward_potential);
+} else if ($rand > 630) {
+    ~barrows_loot_scaled(deathrune, 83, 631, 755, $reward_potential);
+} else if ($rand > 505) {
+    ~barrows_loot_scaled(chaosrune, 139, 506, 630, $reward_potential);
+} else if ($rand > 380) {
+    ~barrows_loot_scaled(mindrune, 336, 381, 505, $reward_potential);
+} else if ($rand > 0) {
+    ~barrows_loot_scaled(coins, 774, 1, 380, $reward_potential);
+}
+
+
+[proc,barrows_loot_scaled](namedobj $obj, int $max_qty, int $min, int $max, int $reward_potential)
+def_int $min_qty = scale($max_qty, $max, $min);
+def_int $scaled_max_qty = scale($max_qty, $max, min($max, $reward_potential));
+mes("<oc_name($obj)> min: <tostring($min_qty)> scaled_max_qty: <tostring($scaled_max_qty)>");
+def_int $random_qty = randominc(calc($scaled_max_qty - $min_qty));
+inv_add(inv, $obj, calc($min_qty + $random_qty));

@@ -75,6 +75,7 @@ while ($i < $size) {
         if (oc_category(inv_getobj(inv, $i)) = armour_godcape) {
             mes(oc_param(inv_getobj(inv, $i), lose_cape_message));
         }
+        ~replace_on_drop(inv, $i);
     }
     $i = calc($i + 1);
 }
@@ -86,6 +87,7 @@ while ($i < $size) {
         if (oc_category(inv_getobj(worn, $i)) = armour_godcape) {
             mes(oc_param(inv_getobj(worn, $i), lose_cape_message));
         }
+        ~replace_on_drop(worn, $i);
     }
     $i = calc($i + 1);
 }
@@ -123,6 +125,7 @@ while ($i < $size) {
             mes(oc_param(inv_getobj(inv, $i), lose_cape_message));
             inv_delslot(inv, $i);
         } else {
+            ~replace_on_drop(inv, $i);
             both_dropslot(inv, coord, $i, ^lootdrop_duration);
         }
     }
@@ -137,6 +140,7 @@ while ($i < $size) {
             mes(oc_param(inv_getobj(worn, $i), lose_cape_message));
             inv_delslot(worn, $i);
         } else {
+            ~replace_on_drop(worn, $i);
             both_dropslot(worn, coord, $i, ^lootdrop_duration);
         }
     }

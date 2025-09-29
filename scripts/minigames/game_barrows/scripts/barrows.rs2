@@ -1,0 +1,164 @@
+[timer,barrows_drain_timer]
+if (~barrows_at_catacombs(true) = false) {
+    cleartimer(barrows_drain_timer);
+    return;
+}
+// TODO: I'm not sure if this is queued or not, on osrs you can get drained after leaving the crypt but i'm not sure if it is just the timer running late
+// or the queue running
+queue(barrows_drain, 0);
+
+[queue,barrows_drain]
+// we're abusing inventories here to pick a random entry from a dynamically built list of entries, like we're doing with the chest rolls...
+inv_clear(trail_puzzleinv);
+def_int $killed_brothers = 0;
+def_boolean $at_catacombs = ~barrows_at_catacombs(false);
+
+if (%barrows_killed_ahrim = 1) {
+    if ($at_catacombs = true) {
+        inv_add(trail_puzzleinv, barrows_interface_ahrim_green, 1);
+    } else {
+        inv_add(trail_puzzleinv, barrows_interface_ahrim, 1);
+    }
+    $killed_brothers = calc($killed_brothers + 1);
+}
+if (%barrows_killed_dharok = 1) {
+    if ($at_catacombs = true) {
+        inv_add(trail_puzzleinv, barrows_interface_dharok_green, 1);
+    } else {
+        inv_add(trail_puzzleinv, barrows_interface_dharok, 1);
+    }
+    $killed_brothers = calc($killed_brothers + 1);
+}
+if (%barrows_killed_guthan = 1) {
+    if ($at_catacombs = true) {
+        inv_add(trail_puzzleinv, barrows_interface_guthan_green, 1);
+    } else {
+        inv_add(trail_puzzleinv, barrows_interface_guthan, 1);
+    }
+    $killed_brothers = calc($killed_brothers + 1);
+}
+if (%barrows_killed_karil = 1) {
+    if ($at_catacombs = true) {
+        inv_add(trail_puzzleinv, barrows_interface_karil_green, 1);
+    } else {
+        inv_add(trail_puzzleinv, barrows_interface_karil, 1);
+    }
+    $killed_brothers = calc($killed_brothers + 1);
+}
+if (%barrows_killed_torag = 1) {
+    if ($at_catacombs = true) {
+        inv_add(trail_puzzleinv, barrows_interface_torag_green, 1);
+    } else {
+        inv_add(trail_puzzleinv, barrows_interface_torag, 1);
+    }
+    $killed_brothers = calc($killed_brothers + 1);
+}
+if (%barrows_killed_verac = 1) {
+    if ($at_catacombs = true) {
+        inv_add(trail_puzzleinv, barrows_interface_verac_green, 1);
+    } else {
+        inv_add(trail_puzzleinv, barrows_interface_verac, 1);
+    }
+    $killed_brothers = calc($killed_brothers + 1);
+}
+stat_sub(prayer, calc(8 + $killed_brothers), 0);
+
+// pick a random brother head obj then play the 'nodnod' effect if we're on highmemory
+def_int $random_slot = random($killed_brothers);
+def_obj $random_head = inv_getobj(trail_puzzleinv, $random_slot);
+
+inv_clear(trail_puzzleinv);
+
+// nodnod does not play for lowmemory users
+// highmemory (grass on): https://youtu.be/YMVHXp1WRqI?feature=shared&t=51
+// lowmemory (grass off): https://youtu.be/qwho4bNFMds?feature=shared&t=31
+if (lowmemory = true | $random_head = null) return;
+
+def_component $target = null;
+
+switch_obj ($random_head) {
+    case barrows_interface_ahrim_green, barrows_interface_ahrim : $target = barrows_overlay:ahrim;
+    case barrows_interface_dharok_green, barrows_interface_dharok : $target = barrows_overlay:dharok;
+    case barrows_interface_guthan_green, barrows_interface_guthan : $target = barrows_overlay:guthan;
+    case barrows_interface_karil_green, barrows_interface_karil : $target = barrows_overlay:karil;
+    case barrows_interface_torag_green, barrows_interface_torag : $target = barrows_overlay:torag;
+    case barrows_interface_verac_green, barrows_interface_verac : $target = barrows_overlay:verac;
+    case default : error("Eep Eep! unknown nodnod obj: <oc_name($random_head)>");
+}
+
+// setanim to null to reset the clientside anim fields
+if_setanim($target, null);
+if_setobject($target, $random_head, 100);
+if_setanim($target, barrows_chathead_fade);
+
+[mapzone,0_55_151]
+// even though we toggle/open the overlay when going in we need these in case the player logs in
+minimap_toggle(^minimap_hidden);
+if_openoverlay(barrows_overlay);
+settimer(barrows_drain_timer, ^barrows_drain_timer_interval);
+
+if (~barrows_collapsing = true & ~barrows_at_catacombs(true) = true) {
+    cam_shake(0, 5, 0, 0);
+}
+@music_playbyregion(coord);
+
+[mapzoneexit,0_55_151]
+minimap_toggle(^minimap_visible);
+if_openoverlay(null);
+cleartimer(barrows_drain_timer);
+cam_reset;
+
+[proc,barrows_full_reset]
+// OSRS resets by writing to the barrows varp 6 times in a row (likely a result of setting multiple varbits to 0), 
+// we'll just be a tad be smarter and set the basevar to 0
+%barrows = 0;
+// osrs writes to this varp 9 times
+%barrows_kills = 0;
+~barrows_catacombs_randomize;
+~barrows_entrance_randomize;
+
+[proc,barrows_at_catacombs](boolean $include_crypts)(boolean)
+if ($include_crypts = true) {
+    return (inzone(0_55_151_0_0, 3_55_151_63_63, coord));
+} else {
+    return (inzone(0_55_151_0_0, 0_55_151_63_63, coord));
+}
+
+[proc,barrows_collapsing]()(boolean)
+if (testbit(%barrows, ^barrows_collapsing_bit) = 1) {
+    return (true);
+} else {
+    return (false);
+}
+
+[proc,barrows_entrance_get]()(int)
+return (getbit_range(%barrows, ^barrows_entrance_startbit, ^barrows_entrance_endbit));
+
+[proc,barrows_entrance_randomize]
+%barrows = setbit_range_toint(%barrows, random(6), ^barrows_entrance_startbit, ^barrows_entrance_endbit);
+
+[proc,barrows_spawn_brother](npc $npc, string $say)
+if ($npc = barrows_ahrim | $npc = barrows_karil) {
+    ~barrows_spawn_npc($npc, ^barrows_brother_lifetime, applayer2);
+} else {
+    ~barrows_spawn_npc($npc, ^barrows_brother_lifetime, opplayer2);
+}
+hint_npc(npc_uid);
+
+if (~string_isnullorempty($say) = false) {
+    npc_say($say);
+}
+
+[proc,barrows_spawn_npc](npc $npc, int $duration, npc_mode $mode)
+npc_add(map_findsquare(coord, 0, 2, ^map_findsquare_lineofwalk), $npc, $duration);
+%aggressive_npc = npc_uid;
+%npc_aggressive_player = uid;
+npc_setmode($mode);
+
+[proc,barrows_increment_kc]
+if (npc_findhero = ^false | p_finduid(uid) = false) return;
+
+// Capped at 1000, all brothers total up to 656
+%barrows_killed_monster = min(1000, calc(%barrows_killed_monster + nc_vislevel(npc_type)));
+// Capped at 65535 by the varbit
+%barrows_killed_count = min(0xFFFF, calc(%barrows_killed_count + 1));
