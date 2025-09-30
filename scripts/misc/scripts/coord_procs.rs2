@@ -1,3 +1,13 @@
+[proc,inmap](coord $coord1, coord $coord2)(boolean)
+def_int $mapx1 = divide(coordx($coord1), 64);
+def_int $mapz1 = divide(coordz($coord1), 64);
+def_int $mapx2 = divide(coordx($coord2), 64);
+def_int $mapz2 = divide(coordz($coord2), 64);
+if ($mapx1 = $mapx2 & $mapz1 = $mapz2) {
+    return(true);
+}
+return(false);
+
 [proc,coord_unpack](coord $coord)(int, int, int, int, int)
 def_int $x = coordx($coord);
 def_int $z = coordz($coord);
