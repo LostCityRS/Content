@@ -32,7 +32,7 @@ if (p_finduid(uid) = true) {
     //     mes("gnomeball pitch");
     //     return;
     // }
-    def_obj $previous = inv_getobj(worn, ^wearpos_rhand);
+    def_obj $previous_weapon = inv_getobj(worn, ^wearpos_rhand);
     if (~try_equip($slot) = false) {
         mes("You don't have enough free space to do that.");
         return;
@@ -61,7 +61,7 @@ if (p_finduid(uid) = true) {
         mes("You equip the staff of Iban.");
     }
 
-    ~update_all($previous);
+    ~update_all($previous_weapon);
 }
 
 [proc,unequip](int $slot)
@@ -88,7 +88,13 @@ if (p_finduid(uid) = true) {
     }
     inv_moveitem(worn, inv, $obj, sub($count, $overflow));
     ~update_all($obj);
+    ~on_unequip($obj);
 }
+
+// Called whenever an obj is removed from the 'worn' inv, intented to be used as a central hook point for
+// handling unequipping effects
+[proc,on_unequip](obj $obj)
+~runecraft_unset_no_tally($obj);
 
 // used for duel arena, no weapon/no armour
 [proc,try_unequip](int $slot)
@@ -367,13 +373,16 @@ if (~unequip_conflicts_space($equip_obj) = false) { // check if enough space
     return(false);
 }
 
+def_obj $previous_equip = inv_getobj(worn, $worn_slot);
 inv_movetoslot(inv, worn, $inv_slot, $worn_slot); // equip item! this performs a swap
+
 if (inv_getobj(inv, $inv_slot) ! null) {
     // presumably, they added this as an easy way for stackable objs to stack in the inv (instead of directly swapping)
     // seems like in late 2006 they removed this line of code and it produced this bug: https://youtu.be/EYXp7GMFWEw, https://youtu.be/DwzDt3yw6k4
     inv_movefromslot(inv, inv, $inv_slot); // moves item to the first available slot in the inv...
 }
 ~unequip_conflicts($equip_obj);
+~on_unequip($previous_equip);
 
 return(true);
 

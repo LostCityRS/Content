@@ -23,6 +23,23 @@ if (oc_category(last_useitem) = talismans) {
     ~displaymessage(^dm_default);
 }
 
+[oploc1,_rc_ruins]
+switch_loc (loc_type) {
+    case airtemple_ruined : if (%rc_no_tally_required_air = 1) @quick_teleport_to_ruins;
+    case mindtemple_ruined : if (%rc_no_tally_required_mind = 1) @quick_teleport_to_ruins;
+    case watertemple_ruined : if (%rc_no_tally_required_water = 1) @quick_teleport_to_ruins;
+    case earthtemple_ruined : if (%rc_no_tally_required_earth = 1) @quick_teleport_to_ruins;
+    case firetemple_ruined : if (%rc_no_tally_required_fire = 1) @quick_teleport_to_ruins;
+    case bodytemple_ruined : if (%rc_no_tally_required_body = 1) @quick_teleport_to_ruins;
+    case cosmictemple_ruined : if (%rc_no_tally_required_cosmic = 1) @quick_teleport_to_ruins;
+    case lawtemple_ruined : if (%rc_no_tally_required_law = 1) @quick_teleport_to_ruins;
+    case naturetemple_ruined : if (%rc_no_tally_required_nature = 1) @quick_teleport_to_ruins;
+    case chaostemple_ruined : if (%rc_no_tally_required_chaos = 1) @quick_teleport_to_ruins;
+    case deathtemple_ruined : if (%rc_no_tally_required_death = 1) @quick_teleport_to_ruins;
+    case soultemple_ruined : if (%rc_no_tally_required_soul = 1) @quick_teleport_to_ruins;
+    case bloodtemple_ruined : if (%rc_no_tally_required_blood = 1) @quick_teleport_to_ruins;
+    case default : return;
+}
 
 [label,teleport_to_ruins]
 def_dbrow $data = ~get_runecraft_data(loc_param(rune_type));
@@ -41,6 +58,21 @@ sound_synth(teleport_all, 0, 0);
 mes("You hold the <oc_name(last_useitem)> towards the mysterious ruins.");
 mes("You feel a powerful force take hold of you...");
 p_delay(1);
+p_telejump(map_findsquare(db_getfield($data, runecraft_table:enter_coord, random(db_getfieldcount($data, runecraft_table:enter_coord)))));
+
+[label,quick_teleport_to_ruins]
+def_dbrow $data = ~get_runecraft_data(loc_param(rune_type));
+if ($data = null) return;
+
+if (db_getfield($data, runecraft_table:members, 0) = ^true) {
+    if (map_members = ^false) {
+        mes(^mes_members_do_that); // guess
+        return;
+    }
+}
+p_arrivedelay;
+sound_synth(teleport_all, 0, 0);
+mes("You feel a powerful force take hold of you...");
 p_telejump(map_findsquare(db_getfield($data, runecraft_table:enter_coord, random(db_getfieldcount($data, runecraft_table:enter_coord)))));
 
 
@@ -64,11 +96,18 @@ if ($level < $levelreq) {
     return;
 }
 
-def_int $total_ess = inv_total(inv, blankrune);
+def_boolean $require_runestone_high = db_getfield($data, runecraft_table:require_blankrune_high, 0);
+def_namedobj $blankrune_type;
+def_int $total_ess;
+
+$blankrune_type, $total_ess = ~runecraft_count_essence($require_runestone_high);
+
 if ($total_ess = 0) {
-    // osrs has rune essences. But when mining rune ess in this version it says rune stones
-    // so this is just a guess
-    ~mesbox("You do not have any rune stones to bind.");
+    if ($require_runestone_high = true) {
+        ~mesbox("You do not have any pure essences to bind.");
+    } else {
+        ~mesbox("You do not have any rune essences to bind.");
+    }
     return;
 }
 
@@ -90,13 +129,25 @@ if(sub(^max_32bit_int, inv_total(inv, $rune)) < $craft_count) {
 // if $craft_count uses free_space as the value, it may not round exactly to $rune_count_per_ess
 $total_ess = calc($craft_count / $rune_count_per_ess);
 
-inv_del(inv, blankrune, $total_ess);
+inv_del(inv, $blankrune_type, $total_ess);
 stat_advance(runecraft, calc($total_ess * db_getfield($data, runecraft_table:experience, 0)));
 // later revs they just use oc_name($rune), i think after 2007 or so
 mes("You bind the temple's power into <db_getfield($data, runecraft_table:name, 0)> Runes.");
 inv_add(inv, $rune, calc($total_ess * $rune_count_per_ess));
 p_delay(3);
 
+[proc,runecraft_count_essence](boolean $require_blankrune_high)(namedobj, int)
+if ($require_blankrune_high = true) {
+    return (blankrune_high, inv_total(inv, blankrune_high));
+} else {
+    // osrs priorizes blankrune, then blankrune_high, it does not use both at the same time
+    def_int $blankrune_count = inv_total(inv, blankrune);
+
+    if ($blankrune_count = 0) {
+        return (blankrune_high, inv_total(inv, blankrune_high));
+    }
+    return (blankrune, $blankrune_count);
+}
 
 [opheld4,_talismans]
 def_obj $last_item = last_item;
@@ -105,6 +156,7 @@ if ($data = null) {
     ~displaymessage(^dm_default);
     return;
 }
+
 // if they're already in the temple
 if ($last_item = db_getfield($data, runecraft_table:talisman, 0)) {
     if (~inmap(map_findsquare(db_getfield($data, runecraft_table:enter_coord, 0)), coord) = true) {
@@ -117,6 +169,9 @@ if ($last_item = db_getfield($data, runecraft_table:talisman, 0)) {
     }
     ~talisman_locate_coord(db_getfield($data, runecraft_table:altar_coord, 0), coord);
 }
+
+[opheld4,death_talisman]
+mes("The talisman doesn't seem to work. Maybe the ruins are deep underground.");
 
 [opheld4,cosmic_talisman]
 def_obj $last_item = last_item;
@@ -173,3 +228,11 @@ if ($delta_x < 0 & $delta_z > 0) {
 db_find(runecraft_table:type, $rune_type);
 def_dbrow $data = db_findnext;
 return ($data);
+
+// Replaces blankrune for blankrune_high in the player's bank & inventory as long as the player has level 30 mining or runecrafting.
+// Update blogpost: https://oldschool.runescape.wiki/w/Update:Rune_Essence_adjustment
+[label,runecraft_replace_blankrune_to_high]
+if (stat_base(mining) < 30 & stat_base(runecraft) < 30) return;
+
+inv_changeslot(inv, blankrune, blankrune_high, inv_total(inv, blankrune));
+inv_changeslot(bank, blankrune, blankrune_high, inv_total(bank, blankrune));

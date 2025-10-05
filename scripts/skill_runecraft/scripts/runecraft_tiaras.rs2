@@ -1,0 +1,41 @@
+[opheld2,_runecraft_tiaras]
+if (p_finduid(uid) = false) return;
+
+~runecraft_set_no_tally(inv_getobj(inv, last_slot));
+~equip(last_slot);
+
+[proc,runecraft_set_no_tally](obj $obj)
+switch_obj ($obj) {
+    case tiara_air : %rc_no_tally_required_air = 1;
+    case tiara_mind : %rc_no_tally_required_mind = 1;
+    case tiara_water : %rc_no_tally_required_water = 1;
+    case tiara_earth : %rc_no_tally_required_earth = 1;
+    case tiara_fire : %rc_no_tally_required_fire = 1;
+    case tiara_body : %rc_no_tally_required_body = 1;
+    case tiara_cosmic : %rc_no_tally_required_cosmic = 1;
+    case tiara_chaos : %rc_no_tally_required_chaos = 1;
+    case tiara_nature : %rc_no_tally_required_nature = 1;
+    case tiara_law : %rc_no_tally_required_law = 1;
+    case tiara_death : %rc_no_tally_required_death = 1;
+    case tiara_soul : %rc_no_tally_required_soul = 1;
+    case tiara_blood : %rc_no_tally_required_blood = 1;
+}
+
+[proc,runecraft_unset_no_tally](obj $obj)
+if (p_finduid(uid) = false | $obj = null) return;
+
+switch_obj ($obj) {
+    case tiara_air : %rc_no_tally_required_air = 0;
+    case tiara_mind : %rc_no_tally_required_mind = 0;
+    case tiara_water : %rc_no_tally_required_water = 0;
+    case tiara_earth : %rc_no_tally_required_earth = 0;
+    case tiara_fire : %rc_no_tally_required_fire = 0;
+    case tiara_body : %rc_no_tally_required_body = 0;
+    case tiara_cosmic : %rc_no_tally_required_cosmic = 0;
+    case tiara_chaos : %rc_no_tally_required_chaos = 0;
+    case tiara_nature : %rc_no_tally_required_nature = 0;
+    case tiara_law : %rc_no_tally_required_law = 0;
+    case tiara_death : %rc_no_tally_required_death = 0;
+    case tiara_soul : %rc_no_tally_required_soul = 0;
+    case tiara_blood : %rc_no_tally_required_blood = 0;
+}

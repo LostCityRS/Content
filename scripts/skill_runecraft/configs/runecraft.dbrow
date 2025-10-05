@@ -1,6 +1,6 @@
 [runecraft_air]
 table=runecraft_table
-data=type,1
+data=type,^air
 data=members,0
 data=level,1
 data=experience,50
@@ -14,7 +14,7 @@ data=exit_coord,0_46_51_39_24,0,0,0
 
 [runecraft_mind]
 table=runecraft_table
-data=type,2
+data=type,^mind
 data=members,0
 data=level,2
 data=experience,55
@@ -28,7 +28,7 @@ data=exit_coord,0_46_54_36_55,0,0,0
 
 [runecraft_water]
 table=runecraft_table
-data=type,3
+data=type,^water
 data=members,0
 data=level,5
 data=experience,60
@@ -42,7 +42,7 @@ data=exit_coord,0_49_49_46_26,0,0,0
 
 [runecraft_earth]
 table=runecraft_table
-data=type,4
+data=type,^earth
 data=members,0
 data=level,9
 data=experience,65
@@ -56,7 +56,7 @@ data=exit_coord,0_51_54_39_21,0,0,0
 
 [runecraft_fire]
 table=runecraft_table
-data=type,5
+data=type,^fire
 data=members,0
 data=level,14
 data=experience,70
@@ -70,7 +70,7 @@ data=exit_coord,0_51_50_46_52,0,0,0
 
 [runecraft_body]
 table=runecraft_table
-data=type,6
+data=type,^body
 data=members,0
 data=level,20
 data=experience,75
@@ -84,7 +84,7 @@ data=exit_coord,0_47_53_42_50,0,2,0
 
 [runecraft_cosmic]
 table=runecraft_table
-data=type,7
+data=type,^cosmic
 data=members,1
 data=level,27
 data=experience,80
@@ -92,6 +92,7 @@ data=rune,cosmicrune
 data=name,Cosmic
 data=talisman,cosmic_talisman
 data=multiplier,59
+data=require_blankrune_high,true
 data=altar_coord,0_49_148_40_25
 data=enter_coord,0_33_75_30_13,0,0,0
 data=enter_coord,0_33_75_50_33,0,0,0
@@ -101,7 +102,7 @@ data=exit_coord,0_49_148_37_29,0,0,0
 
 [runecraft_chaos]
 table=runecraft_table
-data=type,8
+data=type,^chaos
 data=members,1
 data=level,35
 data=experience,85
@@ -109,6 +110,7 @@ data=rune,chaosrune
 data=name,Chaos
 data=talisman,chaos_talisman
 data=multiplier,74
+data=require_blankrune_high,true
 data=altar_coord,0_47_56_52_7
 data=enter_coord,3_35_75_35_47,0,0,0
 data=exit_coord,0_47_56_52_1,0,0,0
@@ -123,7 +125,7 @@ data=exit_coord,0_47_56_47_4,0,0,0
 
 [runecraft_nature]
 table=runecraft_table
-data=type,9
+data=type,^nature
 data=members,1
 data=level,44
 data=experience,90
@@ -131,32 +133,35 @@ data=rune,naturerune
 data=name,Nature
 data=talisman,nature_talisman
 data=multiplier,91
+data=require_blankrune_high,true
 data=altar_coord,0_44_47_53_11
 data=enter_coord,0_37_75_32_35,0,0,0
 data=exit_coord,0_44_47_49_14,0,0,0
 
 [runecraft_law]
 table=runecraft_table
-data=type,10
+data=type,^law
 data=members,1
 data=level,54
 data=experience,95
 data=rune,lawrune
 data=name,Law
 data=talisman,law_talisman
-data=altar_coord,0_50_50_21_18
-data=enter_coord,0_50_50_21_18,0,2,0
-data=exit_coord,0_50_50_21_18,0,2,0
+data=multiplier,110
+data=require_blankrune_high,true
+data=altar_coord,0_44_52_42_53
+data=enter_coord,0_38_75_32_19,0,0,0
+data=exit_coord,0_44_52_42_50,0,0,0
 
 [runecraft_death]
 table=runecraft_table
-data=type,11
+data=type,^death
 data=members,1
 data=level,65
 data=experience,100
 data=rune,deathrune
 data=name,Death
 data=talisman,death_talisman
-data=altar_coord,0_50_50_21_18
-data=enter_coord,0_50_50_21_18,0,2,0
-data=exit_coord,0_50_50_21_18,0,2,0
+data=multiplier,131
+data=enter_coord,0_34_75_32_29,0,0,0
+data=exit_coord,0_29_72_6_31,0,0,0
