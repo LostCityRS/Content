@@ -39,3 +39,45 @@ switch_obj ($obj) {
     case tiara_soul : %rc_no_tally_required_soul = 0;
     case tiara_blood : %rc_no_tally_required_blood = 0;
 }
+
+[label,runecraft_craft_tiaras](loc $loc, obj $useitem, int $useslot)
+switch_loc ($loc) {
+    case air_altar : @runecraft_craft_tiara($useitem, $useslot, air_talisman, tiara_air, 250);
+    case mind_altar : @runecraft_craft_tiara($useitem, $useslot, mind_talisman, tiara_mind, 275);
+    case water_altar : @runecraft_craft_tiara($useitem, $useslot, water_talisman, tiara_water, 300);
+    case earth_altar : @runecraft_craft_tiara($useitem, $useslot, earth_talisman, tiara_earth, 325);
+    case fire_altar : @runecraft_craft_tiara($useitem, $useslot, fire_talisman, tiara_fire, 350);
+    case body_altar : @runecraft_craft_tiara($useitem, $useslot, body_talisman, tiara_body, 375);
+    case cosmic_altar : @runecraft_craft_tiara($useitem, $useslot, cosmic_talisman, tiara_cosmic, 400);
+    case chaos_altar : @runecraft_craft_tiara($useitem, $useslot, chaos_talisman, tiara_chaos, 425);
+    case nature_altar : @runecraft_craft_tiara($useitem, $useslot, nature_talisman, tiara_nature, 450);
+    case law_altar : @runecraft_craft_tiara($useitem, $useslot, law_talisman, tiara_law, 475);
+    case death_altar : @runecraft_craft_tiara($useitem, $useslot, death_talisman, tiara_death, 500);
+    case blood_altar : @runecraft_craft_tiara($useitem, $useslot, blood_talisman, tiara_blood, 525);
+}
+
+[label,runecraft_craft_tiara](obj $useitem, int $useslot, namedobj $required_talisman, namedobj $crafted_tiara, int $experience)
+if ($useitem ! $required_talisman & $useitem ! tiara) {
+    ~displaymessage(^dm_default);
+    return;
+} else if ($useitem = tiara & inv_total(inv, $required_talisman) = 0) {
+    switch_obj ($required_talisman) {
+        case air_talisman, earth_talisman : mes("You need an <oc_name($required_talisman)> to bind a <oc_name(tiara)> here.");
+        case default : mes("You need a <oc_name($required_talisman)> to bind a <oc_name(tiara)> here.");
+    }
+    return;
+} else if (inv_total(inv, tiara) = 0) {
+    mes("You need a <oc_name(tiara)> to bind your talisman.");
+    return;
+}
+
+// TODO: Is there a delay between crafting tiaras or can you spam it?
+if ($useitem = tiara) {
+    inv_del(inv, $required_talisman, 1);
+} else {
+    inv_del(inv, tiara, 1);
+}
+inv_setslot(inv, $useslot, $crafted_tiara, 1);
+stat_advance(runecraft, $experience);
+mes("You bind the power of the talisman into your Tiara.");
+
