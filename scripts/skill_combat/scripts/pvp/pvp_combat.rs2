@@ -160,7 +160,7 @@ stat_advance(hitpoints, scale($multiplier, 1000, scale(133, 100, $base)));
 [proc,.pvp_damage](int $delay, int $damage)
 .if_close;
 if (.p_finduid(.uid) = true) {
-    .p_preventlogout("You can't log out until 10 seconds after the end of combat.", 16);
+    ~.combat_preventlogout;
 }
 if ($damage < 0) {
     return;
