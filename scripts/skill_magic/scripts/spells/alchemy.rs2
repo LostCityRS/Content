@@ -67,6 +67,10 @@ if (afk_event = ^true) {
 p_delay(1);
 
 [proc,is_alchable](obj $item, dbrow $spell_data)(boolean)
+if (~inzone_coord_pair_table(trawler_game_zones, coord) = true) {
+    mes("The boat movements are distracting you too much to use this spell."); //osrs
+    return(false);
+}
 def_namedobj $rune1;
 def_int $rune_count1;
 def_namedobj $rune2;
