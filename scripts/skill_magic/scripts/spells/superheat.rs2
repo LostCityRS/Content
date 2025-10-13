@@ -1,6 +1,7 @@
 [opheldt,magic:superheat_item]@magic_spell_superheat(^superheat_item, last_item);
 
 [label,magic_spell_superheat](int $spell, obj $ore1)
+if_settabactive(^tab_magic); // osrs sets tab back no matter what
 // look for spell in db
 def_dbrow $spell_data = ~get_spell_data($spell);
 if (~check_spell_requirements($spell_data)= false) {
@@ -60,7 +61,6 @@ if ($ore2 ! null) {
     inv_del(inv, $ore2, struct_param($bar_struct, ingredient_secondary_count));
 }
 inv_add(inv, $bar, 1);
-if_settabactive(^tab_magic);
 p_delay(1);
 
 if (afk_event = ^true) {

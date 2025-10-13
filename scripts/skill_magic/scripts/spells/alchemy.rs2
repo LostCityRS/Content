@@ -2,6 +2,7 @@
 [opheldt,magic:lowlvl_alchemy]@magic_spell_low_alch(^lowlvl_alchemy, last_item);
 
 [label,magic_spell_high_alch](int $spell, obj $item)
+if_settabactive(^tab_magic);
 if_close;
 // look for spell in db
 def_dbrow $spell_data = ~get_spell_data($spell);
@@ -32,11 +33,11 @@ if (afk_event = ^true) {
 // https://www.neoseeker.com/forums/2410/t960058-useless-rs-facts/2.htm
 // > When you high alch while your cannon is spinning, it stops spinning until you finish alching
 // Also this video: https://www.youtube.com/watch?v=P_o3Cxg73Tg&t=91s
-if_settabactive(^tab_magic);
 p_delay(3);
 
 
 [label,magic_spell_low_alch](int $spell, obj $item)
+if_settabactive(^tab_magic); // osrs always sets tab back
 if_close;
 // look for spell in db
 def_dbrow $spell_data = ~get_spell_data($spell);
@@ -59,7 +60,6 @@ def_int $profit = max(scale(4, 10, oc_cost($item)), 1);
 wealth_event(^wealth_low_alch, oc_debugname($item), 1, $profit);
 inv_del(inv, $item, 1);
 inv_add(inv, coins, $profit);
-if_settabactive(^tab_magic);
 if (afk_event = ^true) {
     ~macro_event_general_spawn(~macro_event_set_random);
 }
@@ -97,7 +97,7 @@ switch_obj($item) {
             return(false);
         }
         if(oc_category($item) = cat) { // you can alch witches cat (RS3)
-            mes("You can't do that to a defenceless cat!");
+            mes("You can't do that to a defenceless cat!"); // https://youtu.be/jZUswQjpW4A?t=93
             return(false);
         }
         if (oc_param($item, no_alchemy) = ^true) {
