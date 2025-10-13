@@ -22,6 +22,9 @@ npc_delay(4); // 5t delay
 
 
 [proc,dragon_spear_push](int $dir, coord $target_coord)(coord)
+if (map_blocked($target_coord) = true) {
+    return ($target_coord);
+}
 def_coord $end_coord = $target_coord;
 switch_int ($dir) {
     case ^exact_west : 
