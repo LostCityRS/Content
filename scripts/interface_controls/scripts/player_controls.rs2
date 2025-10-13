@@ -69,6 +69,10 @@ if (p_finduid(uid) = false) {
     // mes("You're already doing an emote!");
     return;
 }
+if (~inzone_coord_pair_table(trawler_wreck_zones, coord) = true) {
+    mes("You cannot perform that emote whilst swimming."); // osrs
+    return;
+}
 p_stopaction;
 anim($anim, 20);
 // p_delay(~seqlength20ms($anim));
