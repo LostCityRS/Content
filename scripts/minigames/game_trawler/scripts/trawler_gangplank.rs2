@@ -1,12 +1,4 @@
 [oploc1,game_trawler_gangplank1]
-if (npc_finduid(%follower_uid) = true) {
-    mes("You cannot take that cat out on the trawler. What if it were to fall in the sea?"); // osrs
-    return;
-}
-if (inv_totalcat(inv, kitten) > 0 | inv_totalcat(inv, cat) > 0 | inv_totalcat(inv,overgrown) > 0) {
-    mes("You cannot take a cat out on the trawler. What if it were to fall in the sea?"); // osrs
-    return;
-}
 // osrs has a warning for if u have items in a trawler catch, but rs3 doesnt.
 // I think the warning was added to osrs at some point. Rs3 fishing trawler is largely unchanged
 def_int $dir_mod = ~gangplank_dir_mod;
