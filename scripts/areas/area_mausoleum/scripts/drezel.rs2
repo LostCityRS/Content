@@ -122,7 +122,7 @@ if (%priestperil < ^priestperil_complete) {
         ~chatplayer("<p,quiz>Can't I go through here?");
         ~chatnpc("<p,neutral>No, you cannot! It is taking all of my willpower to hold that barrier in place. You must restore the sanctity of the Salve as soon as possible!");
     }
-} else if (%priestperil < ^priestperil_complete) {
+} else if (%priestperil < ^priestperil_access_holy_barrier) {
     if (npc_find(coord, priestperiltrappedmonk2, 20, 0) = true) {
         ~chatnpc("<p,angry>STOP!");
         ~chatplayer("<p,quiz>Can't I go through here?");
