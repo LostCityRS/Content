@@ -8,19 +8,6 @@ sound_synth(teleport_all, 0, 0);
 mes("You step through the portal...");
 p_telejump(map_findsquare(db_getfield($data, runecraft_table:exit_coord, random(db_getfieldcount($data, runecraft_table:exit_coord)))));
 
-[oplocu,_rc_altar]
-if (oc_category(last_useitem) = talismans) {
-    @runecraft_craft_tiaras(loc_type, last_useitem, last_useslot);
-} else {
-    switch_obj (last_useitem) {
-        case blankrune, blankrune_high : @runecraft_runes;
-        case tiara : @runecraft_craft_tiaras(loc_type, last_useitem, last_useslot);
-        case default : ~displaymessage(^dm_default);
-    }
-}
-
-[oploc1,_rc_altar] @runecraft_runes;
-
 [oplocu,_rc_ruins]
 if (oc_category(last_useitem) = talismans) {
     @teleport_to_ruins;

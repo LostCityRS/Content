@@ -1,0 +1,83 @@
+[proc,runecraft_combo_rune](namedobj $required_rune, namedobj $required_talisman, namedobj $combined_rune, int $levelrequire, int $experience)
+
+if (stat_base(runecraft) < $levelrequire) {
+    mes("You need a Runecrafting level of <tostring($levelrequire)> to bind <oc_name($combined_rune)>.");
+    return;
+}
+
+def_int $essence_count = inv_total(inv, blankrune_high);
+def_int $rune_count = inv_total(inv, $required_rune);
+
+def_namedobj $missing_obj = null;
+
+if (last_useitem = $required_rune & inv_total(inv, $required_talisman) <= 0) {
+    $missing_obj = $required_talisman;
+} else if (last_useitem = $required_talisman & $rune_count <= 0) {
+    $missing_obj = $required_rune;
+} else if ($essence_count <= 0) {
+    $missing_obj = blankrune_high;
+}
+
+if ($missing_obj ! null) {
+    mes("You need <oc_name($missing_obj)> to bind <oc_name($combined_rune)>.");
+    return;
+}
+
+def_int $runes_to_craft = min($essence_count, $rune_count);
+def_int $runes_to_fail = 0;
+
+def_boolean $use_binding_necklace = false;
+
+if (inv_getobj(worn, ^wearpos_front) = magic_emerald_necklace) {
+    $use_binding_necklace = true;
+
+    // First time using a necklace, set to max charges - 1
+    if (%necklace_of_binding = 0) {
+        %necklace_of_binding = calc(^binding_necklace_max_charges - 1);
+    } else if (%necklace_of_binding = 1) {
+        inv_delslot(worn, ^wearpos_front);
+        %necklace_of_binding = ^binding_necklace_max_charges;
+        mes("Your Binding necklace has disintegrated.");
+    } else {
+        %necklace_of_binding = calc(%necklace_of_binding - 1);
+    }
+}
+
+// If we're not using a binding necklace charge then roll each rune_to_craft on a 50% roll failure
+if ($use_binding_necklace = false) {
+    def_int $i = 0;
+
+    while ($i < $runes_to_craft) {
+        if (randominc(1) = 0) {
+            $runes_to_fail = calc($runes_to_fail + 1);
+        }
+        $i = calc($i + 1);
+    }
+}
+def_int $runes_crafted = calc($runes_to_craft - $runes_to_fail);
+
+anim(human_runecraft, 0);
+spotanim_pl(runecrafting, 96, 0);
+sound_synth(bind_runes, 0, 0);
+
+inv_del(inv, blankrune_high, $runes_to_craft);
+inv_del(inv, $required_rune, $runes_to_craft);
+
+if (last_useitem = $required_talisman) {
+    inv_delslot(inv, last_useslot);
+} else {
+    inv_del(inv, $required_talisman, 1);
+}
+
+if ($runes_crafted > 0) {
+    inv_add(inv, $combined_rune, $runes_crafted);
+    stat_advance(runecraft, calc($runes_crafted * $experience));
+}
+
+if ($runes_crafted = $runes_to_craft) {
+    mes("You bind the temple's power into <oc_name($combined_rune)>.");
+} else if ($runes_crafted = 0) {
+    mes("You fail to bind the runes.");
+} else {
+    mes("You partially succeed to bind the temple's power into <oc_name($combined_rune)>.");
+}

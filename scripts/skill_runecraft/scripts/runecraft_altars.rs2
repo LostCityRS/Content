@@ -1,0 +1,53 @@
+[oploc1,_rc_altar] @runecraft_runes;
+
+[oplocu,_rc_altar]
+if (oc_category(last_useitem) = talismans) {
+    @runecraft_craft_tiaras(loc_type, last_useitem, last_useslot);
+} else {
+    switch_obj (last_useitem) {
+        case blankrune, blankrune_high : @runecraft_runes;
+        case tiara : @runecraft_craft_tiaras(loc_type, last_useitem, last_useslot);
+        case default : ~displaymessage(^dm_default);
+    }
+}
+
+// Use specific oplocu's for elemental altars due to combo rune runecrafting
+[oplocu,air_altar]
+switch_obj (last_useitem) {
+    case blankrune, blankrune_high : @runecraft_runes;
+    case waterrune, water_talisman : ~runecraft_combo_rune(waterrune, water_talisman, mistrune, 6, 80);
+    case earthrune, earth_talisman : ~runecraft_combo_rune(earthrune, earth_talisman, dustrune, 10, 83);
+    case firerune, fire_talisman : ~runecraft_combo_rune(firerune, fire_talisman, smokerune, 15, 85);
+    case tiara : @runecraft_craft_tiaras(loc_type, last_useitem, last_useslot);
+    case default : ~displaymessage(^dm_default);
+}
+
+[oplocu,water_altar]
+switch_obj (last_useitem) {
+    case blankrune, blankrune_high : @runecraft_runes;
+    case airrune, air_talisman : ~runecraft_combo_rune(airrune, air_talisman, mistrune, 6, 85);
+    case earthrune, earth_talisman : ~runecraft_combo_rune(earthrune, earth_talisman, mudrune, 13, 93);
+    case firerune, fire_talisman : ~runecraft_combo_rune(firerune, fire_talisman, steamrune, 19, 93);
+    case tiara : @runecraft_craft_tiaras(loc_type, last_useitem, last_useslot);
+    case default : ~displaymessage(^dm_default);
+}
+
+[oplocu,earth_altar]
+switch_obj (last_useitem) {
+    case blankrune, blankrune_high : @runecraft_runes;
+    case airrune, air_talisman : ~runecraft_combo_rune(airrune, air_talisman, dustrune, 10, 90);
+    case waterrune, water_talisman : ~runecraft_combo_rune(waterrune, water_talisman, mudrune, 13, 95);
+    case firerune, fire_talisman : ~runecraft_combo_rune(firerune, fire_talisman, lavarune, 23, 100);
+    case tiara : @runecraft_craft_tiaras(loc_type, last_useitem, last_useslot);
+    case default : ~displaymessage(^dm_default);
+}
+
+[oplocu,fire_altar]
+switch_obj (last_useitem) {
+    case blankrune, blankrune_high : @runecraft_runes;
+    case airrune, air_talisman : ~runecraft_combo_rune(airrune, air_talisman, smokerune, 15, 85);
+    case waterrune, water_talisman : ~runecraft_combo_rune(waterrune, water_talisman, steamrune, 19, 100);
+    case earthrune, earth_talisman : ~runecraft_combo_rune(earthrune, earth_talisman, lavarune, 23, 105);
+    case tiara : @runecraft_craft_tiaras(loc_type, last_useitem, last_useslot);
+    case default : ~displaymessage(^dm_default);
+}
