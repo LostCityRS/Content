@@ -65,7 +65,7 @@ if (npc_find(coord, priestperiltrappedmonk, 15, 0) = true) {
         ~chatnpc("<p,happy>That is right! Oh, praise be to Saradomin! All is not yet lost! I feared that when those Zamorakians attack this place and imprisoned");
         ~chatnpc("<p,happy>me up here, Misthalin would be doomed! If they should manage to desecrate the holy river Salve, we would be defenceless against Morytania!");
         ~chatplayer("<p,neutral>How is a river a good defence then?");
-        ~chatnpc("<p,happy>Well. it is a long tale, and I am not sure we have time!");
+        ~chatnpc("<p,happy>Well, it is a long tale, and I am not sure we have time!");
         @multi2("Tell me anyway.", drezel_tell_me_anyway, "You're right, we don't.", drezel_right_we_dont);
 
     } else if (%priestperil = ^priestperil_find_drezel_key) {
