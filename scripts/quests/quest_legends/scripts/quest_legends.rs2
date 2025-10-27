@@ -117,7 +117,7 @@ else {
 mes("It looks like a crevice, you could possibly squeeze through.");
 
 [oploc2,shaman_cave_crevice]
-~mesbox("You search the the crevice. It looks as if you might be able to squeeze through, would you like to try?");
+~mesbox("You search the crevice. It looks as if you might be able to squeeze through, would you like to try?");
 if (~p_choice2_header("Yes please!", 1, "No thanks.", 2, "Squeeze through incredibly tight crevice?") = 1) {
     if_close;
     mes("You squeeze your way through the crevice.");
