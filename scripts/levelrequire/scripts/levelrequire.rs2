@@ -52,7 +52,7 @@ if (stat_base(ranged) < $level) {
 ~equip($slot);
 
 [label,levelrequire_magic](int $level, int $slot)
-if (stat_base(ranged) < $level) {
+if (stat_base(magic) < $level) {
     mes("You are not a high enough level to use this item.");
     mes("You need to have a Magic level of <tostring($level)>.");
     return;
