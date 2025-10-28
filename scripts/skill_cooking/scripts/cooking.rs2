@@ -11,8 +11,6 @@
 
 
 [label,attempt_cook_item](obj $uncooked_item)
-//not sure if this is used
-p_arrivedelay();
 // get item data from db
 db_find(cooking_generic:uncooked, $uncooked_item);
 def_dbrow $data = db_findnext;
@@ -49,14 +47,13 @@ if (stat(cooking) < $levelrequired) {
 //     return;
 // }
 // def variables
-def_string $cookmessage;
 def_string $succesmessage = db_getfield($data,cooking_generic:successmessage,0);
 def_string $burnmessage = db_getfield($data,cooking_generic:burnmessage,0);
 def_seq $anim;
 // field can specify "0" to not show any message at all. Only applies to heating up cocktails AFAIK
 // else if not specified at all it just shows the default message below.
 if (string_length($succesmessage) < 1 & compare($succesmessage, "0") ! 0) {
-    $succesmessage = "The <lowercase(oc_name($cooked_item))> is now nicely cooked.";
+    $succesmessage = "You successfully cook <~add_article(lowercase(oc_name($cooked_item)))>.";
 }
 if (string_length($burnmessage) < 1 & compare($burnmessage, "0") ! 0) {
     $burnmessage = "You accidentally burn the <lowercase(oc_name($cooked_item))>.";
@@ -77,21 +74,13 @@ $low_cookomatic, $high_cookomatic = db_getfield($data,cooking_generic:successcha
 
 def_category $cooking_source = lc_category(loc_type);
 if ($cooking_source = cooking_oven) {
-    $cookmessage = db_getfield($data,cooking_generic:cookmessage_range,0);
     if ($low_range > null | $high_range > null) {
         $low = $low_range;
         $high = $high_range;
     }
     $anim = human_potterywheel;
-    if (string_length($cookmessage) < 1 & compare($cookmessage, "0") ! 0) {
-        $cookmessage = "You put the <lowercase(oc_name($cooked_item))> on the stove.";
-    }
 } else if ($cooking_source = cooking_fire) {
-    $cookmessage = db_getfield($data,cooking_generic:cookmessage_fire,0);
     $anim = human_firecooking;
-    if (string_length($cookmessage) < 1 & compare($cookmessage, "0") ! 0) {
-        $cookmessage = "You cook the <lowercase(oc_name($cooked_item))> on the fire..."; // imgur.com/ESssj2u
-    }
 }
 // cooking gauntlets prioritize over cook o matic it seems
 if (inv_total(worn, gauntlets_of_cooking) > 0 & ($low_gauntlets > null | $high_gauntlets > null)) {
@@ -100,6 +89,25 @@ if (inv_total(worn, gauntlets_of_cooking) > 0 & ($low_gauntlets > null | $high_g
 } else if (loc_type = cooksquestrange & ($low_cookomatic > null | $high_cookomatic > null)) { // lumbridge cook-o-matic 100
     $low = $low_cookomatic;
     $high = $high_cookomatic;
+}
+def_namedobj $burnt_item = db_getfield($data,cooking_generic:burnt,0);
+def_namedobj $additional_item = db_getfield($data,cooking_generic:additional,0);
+def_int $experience = db_getfield($data,cooking_generic:experience,0);
+if (inv_total(inv, $uncooked_item) = 1) {
+    @cook_item($low, $high, $anim, $succesmessage, $burnmessage, $uncooked_item, $cooked_item, $burnt_item, $additional_item, $experience);
+    return;
+}
+def_int $count = ~cookx($uncooked_item);
+weakqueue(cook_generic, 3, sub($count, 1), $low, $high, $anim, $succesmessage, $burnmessage, $uncooked_item, $cooked_item, $burnt_item, $additional_item, $experience);
+@cook_item($low, $high, $anim, $succesmessage, $burnmessage, $uncooked_item, $cooked_item, $burnt_item, $additional_item, $experience);
+
+[label,cook_item](int $low, int $high, seq $anim, string $succesmessage, string $burnmessage, obj $uncooked_item, namedobj $cooked_item, namedobj $burnt_item, namedobj $additional_item, int $experience)
+anim($anim, 0);
+sound_synth(fry, 0, 0);
+switch_obj($uncooked_item) {
+    case half_baked_batta : $cooked_item = ~gnome_batta;
+    case half_baked_bowl : $cooked_item = ~gnome_bowl;
+    case half_baked_crunchy : $cooked_item = ~gnome_crunchies;
 }
 def_boolean $passes_roll;
 // field can specify 0 to always burn, or 1 to always cook
@@ -110,26 +118,6 @@ if ($low = 0 & $high = 0) {
 } else {
     $passes_roll = stat_random(cooking, $low, $high);
 }
-def_namedobj $burnt_item = db_getfield($data,cooking_generic:burnt,0);
-def_namedobj $additional_item = db_getfield($data,cooking_generic:additional,0);
-def_int $experience = db_getfield($data,cooking_generic:experience,0);
-@cook_item($passes_roll, $anim, $cookmessage, $succesmessage, $burnmessage, $uncooked_item, $cooked_item, $burnt_item, $additional_item, $experience);
-
-
-// i put this in a label so its easier to transition to weak queues later on
-[label,cook_item](boolean $passes_roll, seq $anim, string $cookmessage, string $succesmessage, string $burnmessage, obj $uncooked_item, namedobj $cooked_item, namedobj $burnt_item, namedobj $additional_item, int $experience)
-mes($cookmessage);
-anim($anim, 0);
-sound_synth(sound_357, 0, 0);
-switch_obj($uncooked_item) {
-    case half_baked_batta : $cooked_item = ~gnome_batta;
-    case half_baked_bowl : $cooked_item = ~gnome_bowl;
-    case half_baked_crunchy : $cooked_item = ~gnome_crunchies;
-}
-// rsc delays for about 3 ticks.
-// This post says they removed unnecessary delays and "None of the above no longer take any more time than in Runescape 1."
-// https://oldschool.runescape.wiki/w/Update:Huge_Runescape_2_update
-p_delay(1);
 inv_del(inv, $uncooked_item, 1);
 
 if ($passes_roll = true) {
@@ -153,3 +141,39 @@ if ($passes_roll = true) {
         inv_add(inv, $additional_item, 1);
     }
 }
+
+[proc,cookx](obj $obj)(int)
+p_delay(0);
+if_openchat(cookx);
+if_setobject(cookx:com_2, $obj, 200);
+
+if_setresumebuttons(cookx:com_3, cookx:com_4, cookx:com_5, cookx:com_6, null);
+p_pausebutton;
+switch_component(last_com) {
+    case cookx:com_3 : return(inv_total(inv, $obj)); // all option does exact amount https://youtu.be/upmpbF8tLVA?list=PLn23LiLYLb1adxeMknKdwA6dBnehuEMeT&t=201
+    case cookx:com_4 :
+        p_countdialog;
+        return(last_int);
+    case cookx:com_5 : return(5);
+    case cookx:com_6 : return(1);
+}
+return(0);
+
+[queue,cook_generic](int $count, int $low, int $high, seq $anim, string $succesmessage, string $burnmessage, obj $uncooked_item, namedobj $cooked_item, namedobj $burnt_item, namedobj $additional_item, int $experience)
+if ($count < 1) {
+    return;
+}
+if (inv_total(inv, $uncooked_item) < 1) {
+    mes("You don't have any more <lowercase(oc_name($cooked_item))> to cook."); // https://youtu.be/Pa_BfSX1qmI?t=91
+    return;
+}
+weakqueue(cook_generic, 3, sub($count, 1), $low, $high, $anim, $succesmessage, $burnmessage, $uncooked_item, $cooked_item, $burnt_item, $additional_item, $experience);
+@cook_item($low, $high, $anim, $succesmessage, $burnmessage, $uncooked_item, $cooked_item, $burnt_item, $additional_item, $experience);
+
+[debugproc,home]
+if (p_finduid(uid) = true) {
+    p_teleport(0_50_50_22_22);
+}
+
+[debugproc,c]
+inv_clear(inv);

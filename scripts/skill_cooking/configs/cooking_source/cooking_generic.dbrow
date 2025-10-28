@@ -9,8 +9,7 @@ data=levelrequired,1
 data=experience,400
 data=successchance,40,252
 data=successchance_range,30,253
-data=cookmessage_fire,You cook the camel meat on the fire...
-data=cookmessage_range,You cook the camel meat on the stove...
+// osrs
 data=successmessage,You cook the camel meat perfectly.
 data=burnmessage,You accidentally burn the camel meat.
 
@@ -23,6 +22,8 @@ data=levelrequired,25
 data=experience,900
 data=successchance,68,392
 data=successchance_cookomatic,78,412
+// https://youtu.be/usqNS5tmqg8?t=283
+data=successmessage,You cook some stew.
 
 [cooking_generic_curry]
 table=cooking_generic
@@ -32,6 +33,8 @@ data=burnt,burnt_curry
 data=levelrequired,60
 data=experience,1250
 data=successchance,38,332
+// osrs
+data=successmessage,You cook some curry.
 
 [cooking_generic_beef]
 table=cooking_generic
@@ -42,9 +45,8 @@ data=levelrequired,1
 data=experience,300
 data=successchance,128,512
 data=successchance_cookomatic,138,532
-data=cookmessage_fire,You cook the meat on the fire...
-data=cookmessage_range,You cook the meat on the stove...
-data=successmessage,The meat is now nicely cooked.
+// https://youtu.be/usqNS5tmqg8?t=165
+data=successmessage,You cook a piece of beef.
 data=burnmessage,You accidentally burn the meat.
 
 [cooking_burn_meat]
@@ -54,10 +56,8 @@ data=cooked,burnt_meat
 data=levelrequired,0
 data=experience,0
 data=successchance,1,1
-// messages are from rsc
-data=cookmessage_fire,You cook the meat on the fire...
-data=cookmessage_range,You cook the meat on the stove...
-data=successmessage,You burn the meat.
+// osrs
+data=successmessage,You deliberately burn the nicely cooked meat.
 
 [cooking_generic_rat_meat]
 table=cooking_generic
@@ -68,10 +68,8 @@ data=levelrequired,1
 data=experience,300
 data=successchance,128,512
 data=successchance_cookomatic,138,532
-// https://youtu.be/LWfcA_C2bJY?t=141
-data=cookmessage_fire,You cook the rat meat on the fire...
-data=cookmessage_range,You cook the rat meat on the stove...
-data=successmessage,The rat meat is now nicely cooked.
+// guess
+data=successmessage,You cook a piece of rat meat.
 data=burnmessage,You accidentally burn the rat meat.
 
 [cooking_generic_bear_meat]
@@ -83,10 +81,8 @@ data=levelrequired,1
 data=experience,300
 data=successchance,128,512
 data=successchance_cookomatic,138,532
-// guess based on rat meat
-data=cookmessage_fire,You cook the bear meat on the fire...
-data=cookmessage_range,You cook the bear meat on the stove...
-data=successmessage,The bear meat is now nicely cooked.
+// guess
+data=successmessage,You cook a piece of bear meat.
 data=burnmessage,You accidentally burn the bear meat.
 
 [cooking_generic_chicken]
@@ -97,10 +93,7 @@ data=burnt,burnt_chicken
 data=levelrequired,1
 data=experience,300
 data=successchance,128,512
-data=cookmessage_fire,You cook the chicken on the fire...
-data=cookmessage_range,You cook the chicken on the stove...
-data=successmessage,The chicken is now nicely cooked.
-data=burnmessage,You accidentally burn the chicken.
+data=successmessage,You cook some chicken.
 
 [cooking_generic_lava_eel]
 table=cooking_generic
@@ -120,6 +113,8 @@ data=levelrequired,50
 data=experience,300
 data=successchance,106,450
 data=successchance_range,112,476
+// osrs
+data=successmessage,You cook the wrapped oomlie meat.
 
 [cooking_generic_raw_oomlie]
 table=cooking_generic
@@ -146,7 +141,6 @@ data=additional,cake_tin
 data=levelrequired,40
 data=experience,1200
 data=successchance,38,332
-data=cookmessage_range,You cook the cake in the oven...
 data=cantcookmessage_fire,You need a proper oven to cook that.
 data=successmessage,You remove the cake from the oven.
 
@@ -158,9 +152,8 @@ data=burnt,burnt_pizza
 data=levelrequired,35
 data=experience,1100
 data=successchance,48,352
-data=cookmessage_range,You cook the pizza in the oven...
 data=cantcookmessage_fire,You need a proper oven to cook that.
-data=successmessage,You remove the pizza from the oven.
+data=successmessage,You successfully bake a pizza.
 
 [cooking_generic_bread]
 table=cooking_generic
@@ -171,6 +164,7 @@ data=levelrequired,1
 data=experience,400
 data=successchance,118,492
 data=cantcookmessage_fire,You need a proper oven to cook that.
+data=successmessage,You successfully bake some bread.
 
 [cooking_generic_apple_pie]
 table=cooking_generic
@@ -180,9 +174,11 @@ data=burnt,burnt_pie
 data=levelrequired,30
 data=experience,1000
 data=successchance,58,372
-data=cookmessage_range,You cook the apple pie in the oven...
 data=cantcookmessage_fire,You need a proper oven to cook that.
-data=successmessage,You remove the apple pie from the oven.
+// osrs
+data=successmessage,You successfully bake a traditional apple pie.
+// https://youtu.be/kAOFpkKOjQo?t=103
+data=burnmessage,You accidentally burn the pie.
 
 [cooking_generic_meat_pie]
 table=cooking_generic
@@ -193,9 +189,10 @@ data=levelrequired,20
 data=experience,800
 data=successchance,78,412
 data=successchance_cookomatic,88,432
-data=cookmessage_range,You cook the meat pie in the oven...
 data=cantcookmessage_fire,You need a proper oven to cook that.
-data=successmessage,You remove the meat pie from the oven.
+data=successmessage,You successfully bake a tasty meat pie.
+// guess
+data=burnmessage,You accidentally burn the pie.
 
 [cooking_generic_redberry_pie]
 table=cooking_generic
@@ -206,9 +203,11 @@ data=levelrequired,10
 data=experience,600
 data=successchance,98,452
 data=successchance_cookomatic,108,462
-data=cookmessage_range,You cook the redberry pie in the oven...
 data=cantcookmessage_fire,You need a proper oven to cook that.
-data=successmessage,You remove the redberry pie from the oven.
+// osrs
+data=successmessage,You successfully bake a delicious redberry pie.
+// guess
+data=burnmessage,You accidentally burn the pie.
 
 [cooking_generic_shrimp]
 table=cooking_generic
@@ -219,7 +218,7 @@ data=levelrequired,1
 data=experience,300
 data=successchance,128,512
 data=successchance_cookomatic,138,532
-data=successmessage,The shrimps are now nicely cooked.
+data=successmessage,You successfully cook some shrimps.
 
 [cooking_generic_anchovies]
 table=cooking_generic
@@ -230,7 +229,7 @@ data=levelrequired,1
 data=experience,300
 data=successchance,128,512
 data=successchance_cookomatic,138,532
-data=successmessage,The anchovies are now nicely cooked.
+data=successmessage,You successfully cook some anchovies.
 
 [cooking_generic_sardine]
 table=cooking_generic
@@ -350,6 +349,7 @@ data=levelrequired,40
 data=experience,1200
 data=successchance,38,332
 data=successchance_gauntlets,55,368
+data=successmessage,You roast a lobster.
 
 [cooking_generic_shark]
 table=cooking_generic
@@ -391,8 +391,6 @@ data=levelrequired,1
 data=experience,0
 data=successchance,1,1
 data=successchance_range,1,1
-data=cookmessage_fire,You cook the seaweed on the fire.
-data=cookmessage_range,You put the seaweed on the stove.
 data=successmessage,The seaweed burns to ashes.
 data=burnmessage,0
 
@@ -405,9 +403,9 @@ data=additional,gnomebowl_mould
 data=levelrequired,1
 data=experience,30
 data=successchance,118,492
-data=cookmessage_range,You briefly warm the gnome bowl in the oven...
 data=cantcookmessage_fire,You need a proper oven to cook that.
-data=successmessage,You remove the half baked gnome bowl.
+// osrs
+data=successmessage,You half-cook the gnome bowl.
 data=burnmessage,You accidentally burn the gnome bowl.
 
 [cooking_generic_half_baked_crunchy]
@@ -419,9 +417,9 @@ data=additional,crunchy_tray
 data=levelrequired,1
 data=experience,30
 data=successchance,118,492
-data=cookmessage_range,You briefly warm the crunchies in the oven...
 data=cantcookmessage_fire,You need a proper oven to cook that.
-data=successmessage,You remove the half baked crunchies.
+// osrs
+data=successmessage,You half-cook the crunchies.
 data=burnmessage,You accidentally burn the crunchies.
 
 [cooking_generic_half_baked_batta]
@@ -433,9 +431,9 @@ data=additional,batta_tin
 data=levelrequired,1
 data=experience,30
 data=successchance,118,492
-data=cookmessage_range,You briefly warm the batta in the oven...
 data=cantcookmessage_fire,You need a proper oven to cook that.
-data=successmessage,You remove the half baked batta.
+// osrs
+data=successmessage,You half-cook the batta.
 data=burnmessage,You accidentally burn the batta.
 
 [cooking_generic_chocolate_saturday]
@@ -446,9 +444,9 @@ data=burnt,null
 data=levelrequired,1
 data=experience,0
 data=successchance,1,1
-data=cookmessage_range,You briefly warm the drink in the oven...
 data=cantcookmessage_fire,You need a proper oven to cook that.
-data=successmessage,You remove the warm drink.
+// osrs
+data=successmessage,You briefly warm the drink in the oven.
 
 [cooking_generic_drunk_dragon]
 table=cooking_generic
@@ -458,9 +456,9 @@ data=burnt,null
 data=levelrequired,1
 data=experience,600
 data=successchance,1,1
-data=cookmessage_range,You briefly warm the drink in the oven...
 data=cantcookmessage_fire,You need a proper oven to cook that.
-data=successmessage,You remove the warm drink.
+// osrs
+data=successmessage,You briefly warm the drink in the oven.
 
 [cooking_generic_unfinished_gnome_batta]
 table=cooking_generic
@@ -471,9 +469,9 @@ data=burnt,null
 data=levelrequired,1
 data=experience,0
 data=successchance,1,1
-data=cookmessage_range,You put the batta in the oven...
 data=cantcookmessage_fire,You need a proper oven to cook that.
-data=successmessage,You remove the batta from the oven.
+// guess
+data=successmessage,You put the batta in the oven.
 
 [cooking_generic_unfinished_gnome_crunchies]
 table=cooking_generic
@@ -484,9 +482,9 @@ data=burnt,null
 data=levelrequired,1
 data=experience,0
 data=successchance,1,1
-data=cookmessage_range,You put the crunchies in the oven...
 data=cantcookmessage_fire,You need a proper oven to cook that.
-data=successmessage,You remove the crunchies from the oven.
+// guess
+data=successmessage,You put the crunchies in the oven.
 
 [cooking_generic_unfinished_gnomebowl]
 table=cooking_generic
@@ -497,9 +495,9 @@ data=burnt,null
 data=levelrequired,1
 data=experience,0
 data=successchance,1,1
-data=cookmessage_range,You put the gnome bowl in the oven...
 data=cantcookmessage_fire,You need a proper oven to cook that.
-data=successmessage,You remove the gnome bowl from the oven.
+// guess
+data=successmessage,You put the gnome bowl in the oven.
 
 [cooking_generic_raw_swamp_paste]
 table=cooking_generic
