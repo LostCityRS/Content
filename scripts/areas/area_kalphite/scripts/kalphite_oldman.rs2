@@ -1,0 +1,26 @@
+[opnpc1,kalphite_oldman]
+switch_int(random(4)) {
+    case 0 :
+        ~chatnpc("<p,laugh>She likes to be tickled hehehehe.");
+        ~chatplayer("<p,confused>Okay...");
+    case 1 :
+        ~chatnpc("<p,neutral>No thanks, I don't want any.");
+    case 2 :
+        ~chatnpc("<p,shifty>Pst, wanna hear a secret?");
+        if (~p_choice2("Sure!", 0, "No thanks.", 1) = 1) {
+            ~chatplayer("<p,neutral>No thanks.");
+            return;
+        }
+        ~chatplayer("<p,happy>Sure!");
+        ~chatnpc("<p,shock>They've got six legs... SIX!");
+    case 3 :
+        @kalphite_oldman_scream;
+}
+[label,kalphite_oldman_scream]
+~chatnpc("<p,scared>AAAAAAAAARRRRRRGGGGGHHHHHHHH!");
+if (~p_choice2("What's wrong?", 0, "I'll leave you to it then...", 1) = 1) {
+    ~chatplayer("<p,confused>I'll leave you to it then...");
+    return;
+}
+~chatplayer("<p,quiz>What's wrong?");
+@kalphite_oldman_scream;
