@@ -1,0 +1,165 @@
+// Sources:
+// [1]-rsprox on 5 profiles in osrs
+// [2]-rs3 on 1 profile
+// [3]-december 2007 - https://www.youtube.com/watch?v=TvalMDEfVFE
+// [4]-october 2009 - https://www.youtube.com/watch?v=HlZRwIcXQIc journal 4:34
+// [5]-oplocu golem_displaycase - https://web.archive.org/web/20090705132153/http://www.global-rs.com/quests/golem/
+// [6]-runehq november 2005 - https://web.archive.org/web/20051130070312/http://runehq.com/RHQQuestsView.php?id=00478 - golem_letter, quest complete interface
+
+// TODO:
+// chatnpc_specific face the player, does so in actual rs
+// verify objbox scale/positionings
+// fix up respective code areas that are waiting behind porting efforts once ported
+// - shield of arrav / curator
+// - skill_thieving / golem_phoenix
+
+[oploc1,golem_insidestairs_base]
+p_arrivedelay;
+p_teleport(0_54_48_35_18);
+
+[oploc1,golem_insidestairs_top]
+%golem_seen_underground = 1;
+p_arrivedelay;
+p_teleport(0_42_76_33_22);
+
+[oploc1,golem_black_mushrooms]
+anim(human_pickuptable, 0);
+sound_synth(pick, 0, 0);
+inv_add(inv, golem_mushroom, 1);
+~objbox(golem_mushroom, "You pick a mushroom.", 250, 0, ^objbox_height);
+
+[oploc1,golem_portal]
+if(%golem_a < ^golem_doors_open) {
+    mes("You can't find any way to open the door.");
+    return;
+}
+mes("You step into the portal.");
+p_arrivedelay;
+p_teleport(2_42_76_32_20);
+if(%golem_a = ^golem_doors_open) {
+    %golem_a = ^golem_entered_portal;
+    mes("This room is dominated by a colossal horned skeleton!");
+}
+@music_playbyregionplane(coord);
+
+[oploc1,golem_demon_portal]
+mes("You step into the portal.");
+p_arrivedelay;
+p_teleport(0_42_76_25_49);
+@music_playbyregionplane(coord);
+
+[oploc1,golem_displaycase]
+// message from osrs. need a source before museum was reworked.
+mes("The cabinet is locked.");
+
+[oplocu,golem_displaycase]
+if(last_useitem ! golem_statuettekey) {
+    ~displaymessage(^dm_default);
+    return;
+}
+if(inv_total(inv, golem_statuette) ! 0 | %golem_a >= ^golem_statuette_inserted) {
+    mes("You have already taken the statuette.");
+    return;
+}
+%golem_retrieved_statuette = 1;
+inv_add(inv, golem_statuette, 1);
+p_delay(1);
+~objbox(golem_statuette, "You open the cabinet and retrieve the statuette.", 200, 0, ^objbox_height);
+
+[oplocu,golem_demon_throne]
+def_obj $used_with = inv_getobj(inv, last_useslot);
+if($used_with ! hammer & $used_with ! chisel) {
+    ~displaymessage(^dm_default);
+    return;
+}
+
+if(%golem_throne_gems = 1) {
+    mes("You have already removed the gems from the throne.");
+    return;
+}
+
+if($used_with = hammer & inv_total(inv, chisel) = 0) {
+    mes("You'll need a chisel as well as a hammer to get the gems.");
+    return;
+} else if($used_with = chisel & inv_total(inv, hammer) = 0) {
+    mes("You'll need a hammer as well as a chisel to get the gems.");
+    return;
+}
+
+if(inv_freespace(inv) < 6) {
+    mes("You don't have enough free space to remove all six gems.");
+    return;
+}
+
+%golem_throne_gems = 1;
+sound_synth(pick, 0, 0);
+inv_add(inv, ruby, 2);
+inv_add(inv, emerald, 2);
+inv_add(inv, sapphire, 2);
+~objbox(ruby, "You prise the gems from the demon's throne.", 200, 0, divide(^objbox_height, 3));
+
+
+[opheld1,golem_mushroom]
+// rs3: no eat anim, osrs: no iop1
+mes("Eugh! It tastes horrible, and stains your fingers black.");
+inv_del(inv, golem_mushroom, 1);
+
+[opheldu,golem_mushroom]
+def_obj $used_with = inv_getobj(inv, last_useslot);
+
+// Using with empty vial works in osrs as well, but not in rs3, assume it's a "QoL change" done for osrs at some point.
+if($used_with ! pestle_and_mortar) {
+    ~displaymessage(^dm_default);
+    return;
+}
+
+if(inv_total(inv, vial_empty) = 0) {
+    ~mesbox("You crush the mushroom, but you have no vial to put the dye in and it goes everywhere!");
+    return;
+}
+
+inv_del(inv, golem_mushroom, 1);
+inv_del(inv, vial_empty, 1);
+inv_add(inv, golem_ink, 1);
+~objbox(golem_ink, "You crush the mushroom and create some black dye.", 250, 0, ^objbox_height);
+
+[opheldu,golem_phoenixfeather]
+def_obj $used_with = inv_getobj(inv, last_useslot);
+
+if($used_with = papyrus) {
+    mes("You will need some kind of ink to write with.");
+    return;
+}
+if($used_with ! golem_ink) {
+    ~displaymessage(^dm_default);
+    return;
+}
+
+inv_setslot(inv, last_slot, golem_pen, 1);
+~objbox(golem_pen, "You dip the phoenix feather into the dye.", 250, 0, 0);
+
+[opheldu,golem_pen]
+def_obj $used_with = inv_getobj(inv, last_useslot);
+
+if($used_with ! papyrus) {
+    ~displaymessage(^dm_default);
+    return;
+}
+
+if(%golem_a = ^golem_informed_golem) {
+    inv_setslot(inv, last_useslot, golem_program, 1);
+    ~objbox(golem_program, "You write on the papyrus:|YOUR TASK IS DONE", 250, 0, 0);
+} else {
+    mes("You don't know what to write.");
+}
+
+[opheld4,golem_ink]
+mes("You empty the dye out onto the ground.");
+inv_setslot(inv, last_slot, vial_empty, 1);
+
+[queue,golem_complete]
+%golem_a = ^golem_complete;
+stat_advance(crafting, 10000);
+stat_advance(thieving, 10000);
+session_log(^log_adventure, "Quest complete: The Golem");
+~send_quest_complete(questlist:golem, golem_statuette, 250, ^golem_questpoints, "You have completed the Golem quest!", "1000 Crafting XP|1000 Thieving XP");

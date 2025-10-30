@@ -1,0 +1,52 @@
+[opnpc1,golem_elissa]
+~chatnpc("<p,happy>Hello there.");
+if (%golem_b = ^golem_b_read_letter) {
+    @multi4("What do you do here?", golem_elissa_ask_generic, "What is this place?", golem_elissa_ask_about_digsite, "I found a letter in the desert with your name on.", golem_elissa_ask_about_letter, "Sorry, I need to go.", golem_elissa_exit);
+} else if (%golem_b = ^golem_b_spoke_elissa) {
+    @multi4("What do you do here?", golem_elissa_ask_generic, "What is this place?", golem_elissa_ask_about_digsite, "Where did you say the notes were?", golem_elissa_remind_notes, "Sorry, I need to go.", golem_elissa_exit);
+} else if (%golem_b = ^golem_b_read_varmen_notes & %golem_a = ^golem_repaired & %golem_retrieved_statuette = 0) {
+    @multi4("What do you do here?", golem_elissa_ask_generic, "What is this place?", golem_elissa_ask_about_digsite, "Where is the statuette that Varmen took back from Uzer?", golem_elissa_ask_about_statuette, "Sorry, I need to go.", golem_elissa_exit);
+} else {
+    @multi3("What do you do here?", golem_elissa_ask_generic, "What is this place?", golem_elissa_ask_about_digsite, "Sorry, I need to go.", golem_elissa_exit);
+}
+
+[label,golem_elissa_ask_generic]
+~chatplayer("<p,neutral>What do you do here?");
+~chatnpc("<p,neutral>I'm helping with the dig. I'm an expert on Third Age architecture.");
+
+[label,golem_elissa_ask_about_digsite]
+~chatplayer("<p,neutral>What is this place?");
+~chatnpc("<p,shifty>In the Third Age, this was a great city. Look at these giant walls! They put Varrock to shame!");
+switch_int(~p_choice2("I don't know, Varrock is pretty impressive.", 1, "What happened to the city?", 2)) {
+    case 1 :
+        ~chatplayer("<p,neutral>I don't know, Varrock palace is impressive.");
+        ~chatnpc("<p,angry>Hmph. I don't think it will look this good when it's been buried in the ground for three thousand years!");
+    case 2 :
+        ~chatplayer("<p,quiz>What happened to the city?");
+        ~chatnpc("<p,shifty>No one knows for sure.");
+        ~chatnpc("<p,neutral>But the Third Age was a time of destruction, when the gods were violently at war.");
+        ~chatnpc("<p,sad>Many great civilizations were destroyed then.");
+}
+
+[label,golem_elissa_exit]
+~chatplayer("<p,neutral>Sorry, I need to go.");
+
+[label,golem_elissa_ask_about_letter]
+~chatplayer("<p,quiz>I found a letter in the desert with your name on.");
+~chatnpc("<p,neutral>Ah, so you've found the ruins of Uzer.");
+~chatnpc("<p,sad>I wrote that letter to my late husband when he was exploring there.");
+~chatnpc("<p,sad>That was a great city as well, but the museum could only fund one excavation and this one was closer to home.");
+~chatnpc("<p,neutral>If you're interested in his expedition, the notes he made are in the library in the Exam Centre.");
+%golem_b = ^golem_b_spoke_elissa;
+
+[label,golem_elissa_remind_notes]
+~chatplayer("<p,quiz>Where did you say the notes were?");
+~chatnpc("<p,neutral>They're on a bookcase in the Exam Centre."); // verify expression
+
+[label,golem_elissa_ask_about_statuette]
+~chatplayer("<p,quiz>Where is the statuette that Varmen took back from Uzer?");
+~chatnpc("<p,neutral>The statuette? Oh, yes...");
+~chatnpc("<p,sad>That statuette was the only thing we had to show from that expedition.");
+~chatnpc("<p,neutral>It was very worn, but you can still make out a lot of detail. The Uzerians were expert sculptors. It's a pity we only have that small example.");
+~chatnpc("<p,neutral>Now it's on display in the Varrock museum.");
+%golem_a = ^golem_finished_b;

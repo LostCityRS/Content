@@ -1,0 +1,97 @@
+[if_button,questlist:golem]
+// Sourced from osrs 30/Oct/2025
+def_string $text;
+if(%golem_a = ^golem_complete) {
+    $text = "@str@I have spoken to the golem.|";
+    $text = append($text, "@str@I have repaired the golem.|");
+    $text = append($text, "@str@The golem asked me to open the portal so it could defeat a|@str@demon.|");
+    $text = append($text, "@str@I talked to Elissa about the letter from the desert.|");
+    $text = append($text, "@str@I took Varmen's notes from the Digsite Exam Centre.|");
+    $text = append($text, "@str@I have retrieved the missing statuette from the Varrock|");
+    $text = append($text, "@str@Museum and repaired the puzzle in the temple.|");
+    $text = append($text, "@str@I have opened the portal.|");
+    $text = append($text, "@str@I have visited the demon's lair and seen its skeleton.|");
+    $text = append($text, "@str@I told the golem that the demon was dead, but it did not|@str@believe me!|");
+    $text = append($text, "@str@I reprogrammed the golem so that it knows its task is|@str@complete.|");
+    $text = append($text, "@red@QUEST COMPLETE!");
+    ~quest_journal("The Golem", $text);
+    return;
+}
+
+if(%golem_a = ^golem_not_started) {
+    // Sourced from rs3 30/Oct/2025
+    $text = "@dbl@I can start this quest by speaking to the golem who is in the|@dbl@ruined city of @dre@Uzer@dbl@, which is in the desert to the east of @dre@Shantay Pass@dbl@.";
+    // golem_b journals should still show, so we won't return here. source: rs3
+}
+
+if(%golem_a > ^golem_not_started) {
+    $text = "@str@I have spoken to the golem.";
+    if(%golem_a >= ^golem_repaired) {
+        $text = append($text, "|@str@I have repaired the golem.");
+        if(%golem_a < ^golem_doors_open) {
+            $text = append($text, "|@dbl@The golem asked me to open the @dre@portal@dbl@ so it can defeat a|@dbl@@dre@demon@dbl@.");
+            if(%golem_retrieved_statuette = 0) {
+                if(%golem_seen_underground = 0) {
+                    $text = append($text, "|@dbl@I should go down the stairs in @dre@Uzer@dbl@ and work out how to open|@dbl@the @dre@portal@dbl@.");
+                } else {
+                    $text = append($text, "|@dbl@To open the portal I will need to find a missing @dre@statuette@dbl@.");
+                }
+            }
+        } else {
+            $text = append($text, "|@str@The golem asked me to open the portal so it could defeat a|@str@demon.");
+        }
+    } else {
+        $text = append($text, "|@dbl@The @dre@golem@dbl@ asked me to repair him.");
+    }
+}
+
+if(%golem_a < ^golem_finished_b) {
+    if(%golem_b = ^golem_b_read_letter) {
+        $text = append($text, "|@dbl@Maybe I should speak to @dre@Elissa@dbl@ at the @dre@Digsite@dbl@ about the letter I|@dbl@found in Uzer.");
+    } else if(%golem_b > ^golem_b_read_letter) {
+        $text = append($text, "|@str@I talked to Elissa about the letter from the desert.");
+        if(%golem_b = ^golem_b_read_varmen_notes) {
+            $text = append($text, "|@str@I took Varmen's notes from the Digsite Exam Centre.");
+            if (%golem_a = ^golem_repaired) {
+                $text = append($text, "|@dbl@According to @dre@Varmen's notes@dbl@, he removed the @dre@statuette@dbl@");
+                $text = append($text, "|@dbl@during his expedition.");
+            }
+        } else {
+            $text = append($text, "|@dbl@Elissa told me that @dre@Varmen's expedition notes@dbl@ are in the");
+            $text = append($text, "|@dbl@library in the @dre@Exam Centre@dbl@.");
+        }
+    }
+} else {
+    $text = append($text, "|@str@I talked to Elissa about the letter from the desert.");
+    $text = append($text, "|@str@I took Varmen's notes from the Digsite Exam Centre.");
+
+    if(%golem_a < ^golem_statuette_inserted) {
+        if(%golem_retrieved_statuette = 1) {
+            $text = append($text, "|@str@I have retrieved the missing statuette from the Varrock|@str@Museum.");
+            $text = append($text, "|@dbl@I should take the @dre@statuette@dbl@ to Uzer and put it back in the|@dbl@temple.");
+        } else if(%golem_seen_underground = 1) {
+            $text = append($text, "|@dbl@To open the portal I will need the missing statuette which is in");
+            $text = append($text, "|@dbl@the @dre@Varrock Museum@dbl@.");
+        }
+    } else {
+        $text = append($text, "|@str@I have retrieved the missing statuette from the Varrock");
+        $text = append($text, "|@str@Museum and repaired the puzzle in the temple.");
+        if(%golem_a = ^golem_doors_open) {
+            $text = append($text, "|@str@I have opened the portal.");
+            $text = append($text, "|@dbl@I should find out what happened to the @dre@demon@dbl@.");
+        } else if(%golem_a >= ^golem_entered_portal) {
+            $text = append($text, "|@str@I have visited the demon's lair and seen its skeleton.");
+            if(%golem_a < ^golem_informed_golem) {
+                $text = append($text, "|@dbl@I should inform the @dre@golem@dbl@|@dbl@that the @dre@demon@dbl@ is dead.");
+            } else {
+                $text = append($text, "|@str@I told the golem that the demon was dead, but it did not|@str@believe me!");
+                $text = append($text, "|@dbl@I should find some way to convince the @dre@golem@dbl@ that its task is|@dbl@done.");
+            }
+        } else {
+            $text = append($text, "|@dbl@I should turn the @dre@statuettes@dbl@ to the correct sequence to open");
+            $text = append($text, "|@dbl@the @dre@portal@dbl@.");
+        }
+    }
+}
+
+~quest_journal("The Golem", $text);

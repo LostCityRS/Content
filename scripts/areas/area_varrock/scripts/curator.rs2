@@ -1,0 +1,51 @@
+[opnpc1,curator]
+~chatnpc("<p,neutral>Welcome to the museum of Varrock.");
+// TODO: Add back rest of curator dialogue when shield of arrav and digsite respectively is ported.
+if(%golem_a > ^golem_started & %golem_b = ^golem_b_read_varmen_notes & %golem_retrieved_statuette = 0) {
+    @multi3("I'm looking for a statuette recovered from the city of Uzer.", golem_curator_statuette, "Have you any interesting news?", curator_news, "Do you know where I could find any treasure?", curator_treasures);
+} else {
+    @multi2("Have you any interesting news?", curator_news, "Do you know where I could find any treasure?", curator_treasures);
+}
+
+[opnpc3,curator]
+if(stat(thieving) < 25) {
+    ~mesbox("You need a Thieving level of 25 to do that.");
+    return;
+}
+anim(human_pickpocket, 0);
+if(%golem_a > ^golem_finished_b & %golem_retrieved_statuette = 0 & inv_total(inv, golem_statuettekey) = 0) {
+    sound_synth(pick, 0, 0);
+    inv_add(inv, golem_statuettekey, 1);
+    ~objbox(golem_statuettekey, "You steal a tiny key.", 250, 0, 0);
+    return;
+}
+mes("You attempt to pick the curator's pocket, but he doesn't have anything of note.");
+
+[label,golem_curator_statuette]
+~chatplayer("<p,neutral>I'm looking for a statuette recovered from the city of Uzer.");
+// alternative path to progress. other way to get this var state is to talk with Elissa.
+if(%golem_a < ^golem_finished_b) {
+    %golem_a = ^golem_finished_b;
+}
+~chatnpc("<p,happy>Ah yes, a very impressive artefact. The people of that city were excellent sculptors.");
+~chatnpc("<p,neutral>It's in the display case upstairs.");
+~chatplayer("<p,neutral>No, I need to take it away with me.");
+~chatnpc("<p,quiz>What do you want it for?");
+switch_int(~p_choice2("I want to open a portal to the lair of an elder-demon", 1, "Well, I, er, just want it.", 2)) {
+    case 1 :
+        ~chatplayer("<p,neutral>I want to open a portal to the lair of an elder-demon.");
+        ~chatnpc("<p,shock>Good heavens! I'd never let you do such a dangerous thing.");
+    case 2 :
+        ~chatplayer("<p,confused>Well, I, er, just want it.");
+        ~chatnpc("<p,angry>Well, you can't have it! This museum never lets go of its treasures.");
+}
+
+[label,curator_news]
+~chatplayer("<p,quiz>Have you any interesting news?");
+~chatnpc("<p,neutral>No, I'm only interested in old stuff.");
+
+[label,curator_treasures]
+~chatplayer("<p,quiz>Do you know where I could find any treasure?");
+~chatnpc("<p,neutral>Look around you! This museum is full of treasures!");
+~chatplayer("<p,sad>No, I meant treasures for ME.");
+~chatnpc("<p,neutral>Any treasures this museum knows about it goes to great lengths to acquire.");

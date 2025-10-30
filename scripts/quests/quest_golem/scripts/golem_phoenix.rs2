@@ -1,0 +1,40 @@
+[opnpc3,golem_phoenix]
+if(inv_total(inv, golem_phoenixfeather) = 0 & inv_total(inv, golem_pen) = 0) {
+    if(stat(thieving) < 25) {
+        ~mesbox("You need to be a level 25 thief to grab the phoenix's tail-feather.");
+        return;
+    }
+    mes("You attempt to grab the phoenix's tail-feather.");
+    p_delay(0);
+
+    // success rates unknown, took warrior's chance as a base.
+    // TODO: revisit & move to skill_thieving when its implemented.
+    if(stat_random(thieving, 100, 240) = false) {
+        npc_say("Squawk!");
+        mes("You fail to grab the feather.");
+        npc_setmode(playerface);
+        p_delay(0);
+        spotanim_pl(stunned_thieving, 124, 0);
+        anim(%com_defendanim, 0);
+        npc_anim(firebird_attack, 0);
+        if (npc_param(attack_sound) ! null) {
+            sound_synth(npc_param(attack_sound), 0, 0);
+        }
+        sound_synth(stunned, 0, 0);
+        p_delay(0);
+        ~damage_self(1);
+        npc_setmode(null);
+
+        mes("You've been stunned!");
+        // stun timer isn't implemented.
+        return;
+    }
+
+    inv_add(inv, golem_phoenixfeather, 1);
+    anim(human_pickpocket, 1);
+    stat_advance(thieving, 260);
+    sound_synth(pick, 0, 0);
+    mes("You grab a tail-feather.");
+} else {
+    mes("You already have a phoenix tail-feather.");
+}

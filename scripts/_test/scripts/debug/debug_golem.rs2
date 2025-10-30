@@ -1,0 +1,55 @@
+[debugproc,golem_puzzle]
+if (p_finduid(uid) = true) {
+    %golem_clay = 4;
+    %golem_a = ^golem_statuette_inserted;
+    %golem_b = ^golem_b_read_varmen_notes;
+    %golem_seen_underground = 1;
+    %golem_retrieved_statuette = 1;
+    %golem_statuettestatusa = 0;
+    %golem_statuettestatusb = 0;
+    %golem_statuettestatusc = 0;
+    %golem_statuettestatusd = 1;
+    ~send_quest_progress_colour(questlist:golem, %golem_a, ^golem_complete);
+    p_telejump(0_42_76_33_33);
+}
+
+[debugproc,golem_heist]
+if (p_finduid(uid) = true) {
+    %golem_clay = 4;
+    %golem_a = ^golem_finished_b;
+    %golem_b = ^golem_b_read_varmen_notes;
+    %golem_seen_underground = 1;
+    %golem_retrieved_statuette = 0;
+    %golem_statuettestatusa = 0;
+    %golem_statuettestatusb = 0;
+    %golem_statuettestatusc = 0;
+    %golem_statuettestatusd = 0;
+    ~send_quest_progress_colour(questlist:golem, %golem_a, ^golem_complete);
+    p_telejump(0_50_53_54_56);
+}
+
+[debugproc,golem_reset_throne]
+if (p_finduid(uid) = true) {
+    %golem_throne_gems = 0;
+}
+
+[debugproc,golem_reset]
+if (p_finduid(uid) = true) {
+    %golem_clay = 0;
+    %golem_a = ^golem_not_started;
+    %golem_b = ^golem_b_unread_letter;
+    %golem_seen_underground = 0;
+    %golem_retrieved_statuette = 0;
+    %golem_statuettestatusa = 0;
+    %golem_statuettestatusb = 0;
+    %golem_statuettestatusc = 0;
+    %golem_statuettestatusd = 0;
+    %golem_throne_gems = 0;
+    ~send_quest_progress_colour(questlist:golem, %golem_a, ^golem_complete);
+    p_telejump(0_54_48_30_19);
+}
+
+[debugproc,gol1] if (p_finduid(uid) = true) p_telejump(0_54_48_30_19);
+[debugproc,gol2] if (p_finduid(uid) = true) p_telejump(0_52_53_47_38);
+[debugproc,gol3] if (p_finduid(uid) = true) p_telejump(0_52_52_38_5);
+[debugproc,gol4] if (p_finduid(uid) = true) p_telejump(0_50_53_55_58);

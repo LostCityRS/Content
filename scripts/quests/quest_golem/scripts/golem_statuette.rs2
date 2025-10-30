@@ -1,0 +1,77 @@
+[oplocu,golem_statuetted]
+// todo: check anim/synth
+if(%golem_a ! ^golem_finished_b | last_useitem ! golem_statuette) {
+    ~displaymessage(^dm_default);
+    return;
+}
+%golem_a = ^golem_statuette_inserted;
+%golem_statuettestatusd = 1;
+mes("You insert the statuette into the alcove.");
+inv_del(inv, golem_statuette, 1);
+
+[oploc1,golem_statuettea]
+if(%golem_a > ^golem_statuette_inserted) {
+    mes("The statuette is now locked in place.");
+    return;
+}
+if(%golem_statuettestatusa = 0) {
+    mes("You turn the statuette to the left.");
+    %golem_statuettestatusa = 1;
+} else {
+    mes("You turn the statuette to the right.");
+    %golem_statuettestatusa = 0;
+}
+@golem_check_statues;
+
+[oploc1,golem_statuetteb]
+if(%golem_a > ^golem_statuette_inserted) {
+    mes("The statuette is now locked in place.");
+    return;
+}
+if(%golem_statuettestatusb = 0) {
+    mes("You turn the statuette to the left.");
+    %golem_statuettestatusb = 1;
+} else {
+    mes("You turn the statuette to the right.");
+    %golem_statuettestatusb = 0;
+}
+@golem_check_statues;
+
+[oploc1,golem_statuettec]
+if(%golem_a > ^golem_statuette_inserted) {
+    mes("The statuette is now locked in place.");
+    return;
+}
+if(%golem_statuettestatusc = 0) {
+    mes("You turn the statuette to the left.");
+    %golem_statuettestatusc = 1;
+} else {
+    mes("You turn the statuette to the right.");
+    %golem_statuettestatusc = 0;
+}
+@golem_check_statues;
+
+[oploc1,golem_statuetted]
+if(%golem_a > ^golem_statuette_inserted) {
+    mes("The statuette is now locked in place.");
+    return;
+}
+if(%golem_statuettestatusd = 1) {
+    mes("You turn the statuette to the right.");
+    %golem_statuettestatusd = 2;
+} else {
+    mes("You turn the statuette to the left.");
+    %golem_statuettestatusd = 1;
+}
+@golem_check_statues;
+
+[label,golem_check_statues]
+sound_synth(turn_statue, 0, 0);
+if (%golem_statuettestatusa = 1 & %golem_statuettestatusb = 1 & %golem_statuettestatusc = 0 & %golem_statuettestatusd = 2) {
+    mes("The door grinds open.");
+    if (loc_find(0_42_76_32_48, golem_portal) = true) {
+        loc_anim(golem_door_open);
+    }
+    %golem_a = ^golem_doors_open;
+    sound_synth(golem_demondoor, 0, 0);
+}

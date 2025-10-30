@@ -1,0 +1,91 @@
+[golem_golem]
+readyanim=clay_golem_ready
+walkanim=clay_golem_walk
+vislevel=1
+multivar=golem_clay
+multinpc=0,golem_broken_golem
+multinpc=1,golem_broken_golem
+multinpc=2,golem_partially_broken_golem
+multinpc=3,golem_partially_broken_golem
+multinpc=4,golem_fixed_golem
+
+[golem_broken_golem]
+name=Broken clay golem
+desc=An animated clay statue with a lot of clay missing.
+model1=npc_1908
+model2=npc_1908i2
+model3=npc_1908i3
+readyanim=clay_golem_ready
+walkanim=clay_golem_walk
+op1=Talk-to
+alwaysontop=yes
+vislevel=hide
+head1=npc_1908_head
+
+[golem_partially_broken_golem]
+name=Damaged clay golem
+desc=An animated clay statue with some clay missing.
+model1=npc_1908
+model2=npc_1908i2
+model3=npc_1909
+readyanim=clay_golem_ready
+walkanim=clay_golem_walk
+op1=Talk-to
+alwaysontop=yes
+vislevel=hide
+head1=npc_1908_head
+
+[golem_fixed_golem]
+name=Clay golem
+desc=An animated clay statue.
+model1=npc_1908
+model2=npc_1910
+model3=npc_1909
+readyanim=clay_golem_ready
+walkanim=clay_golem_walk
+op1=Talk-to
+alwaysontop=yes
+vislevel=hide
+head1=npc_1908_head
+
+[golem_phoenix]
+name=Desert Phoenix
+desc=Definitely not a chicken.
+model1=npc_1911
+recol1s=15360
+recol1d=6241
+recol2s=21537
+recol2d=19777
+recol3s=27681
+recol3d=31365
+walkanim=firebird_walk
+readyanim=firebird_ready
+op3=Grab-feather
+vislevel=hide
+
+[golem_elissa]
+name=Elissa
+desc=An old archaeologist.
+model1=idk_woman_hair_bun
+model2=npc_examiner
+model3=obj_ikov_pendantoflucien_womanwear
+model4=idk_woman_torso_simple
+model5=obj_priest_gown_womanwear2
+model6=obj_leather_vambraces_womanwear
+model7=npc_ikov_winelda
+recol1s=14724
+recol1d=23177
+recol2s=2340
+recol2d=10532
+recol3s=24075
+recol3d=20937
+recol4s=4160
+recol4d=23177
+resizeh=115
+resizev=115
+walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
+readyanim=human_ready
+op1=Talk-to
+vislevel=hide
+head1=idk_woman_hair_bun_head
+head2=npc_frenita_head

@@ -226,6 +226,9 @@ if (%priestperil = ^priestperil_complete) {
 if (%death_equiproom = ^death_complete) {
     $questpoints = add($questpoints, ^death_questpoints); 
 }
+if (%golem_a = ^golem_complete) {
+    $questpoints = add($questpoints, ^golem_questpoints);
+}
 return ($questpoints);
 
 [proc,update_questlist]
@@ -293,6 +296,7 @@ if (testbit(%upass_map_mechanisms, ^upass_started_bit) = ^true & %upass_progress
 ~send_quest_progress_colour(questlist:elemental_workshop, %elemental_workshop_bits, sub(pow(2, ^elemental_workshop_complete), 1));*/
 ~send_quest_progress_colour(questlist:priestperil, %priestperil, ^priestperil_complete);
 ~send_quest_progress_colour(questlist:death, %death_equiproom, ^death_complete);
+~send_quest_progress_colour(questlist:golem, %golem_a, ^golem_complete);
 if_settab(questlist, ^tab_quest_journal);
 
 /*if (%drunkmonk_progress >= ^drunkmonk_spoken_to_omad) {

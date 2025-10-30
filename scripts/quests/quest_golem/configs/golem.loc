@@ -1,0 +1,215 @@
+[golem_demon_portal]
+name=Portal
+desc=A portal to another land?
+model=golem_demon_portal
+model2=golem_demon_portali2
+recol1s=12684
+recol1d=5285
+recol2s=10570
+recol2d=4228
+width=3
+anim=golem_portal_spin
+op1=Enter
+
+[golem_bookcase]
+name=Bookcase
+desc=Shelves filled with interesting books.
+model=bookcase
+length=2
+op1=Search
+
+[golem_displaycase]
+length=2
+active=yes
+multivar=golem_retrieved_statuette
+multiloc=0,golem_displaycase_full
+multiloc=1,golem_displaycase_empty
+
+[golem_displaycase_full]
+name=Display case
+desc=A locked display case for valuable artefacts.
+model=golem_displaycase_full
+recol1s=12610
+recol1d=31201
+recol2s=17969
+recol2d=23263
+length=2
+op1=Open
+
+[golem_displaycase_empty]
+name=Display case
+desc=One of the sculptures is missing. Oh yes, that was me!
+model=golem_displaycase_empty
+recol1s=12610
+recol1d=31201
+recol2s=17969
+recol2d=23263
+length=2
+
+[golem_demon_skeleton]
+name=Skeleton
+desc=It looks like the demon didn't survive after all.
+model=golem_demon_skeleton
+width=2
+length=2
+active=yes
+
+[golem_skeleton_1]
+name=Skeleton
+desc=He looks old, older than me anyway.
+model=corpse
+recol1s=27413
+recol1d=19022
+blockrange=no
+
+[golem_skeleton_2]
+name=Skeleton
+desc=I don't think he's going to make it.
+model=corpse2
+recol1s=27413
+recol1d=19022
+blockrange=no
+
+[golem_skeleton_3]
+name=Skeleton
+desc=I don't understand, why didn't he go back to Lumby?
+model=corpse3
+recol1s=27413
+recol1d=19022
+width=2
+blockrange=no
+
+[golem_demon_throne]
+width=3
+length=3
+active=yes
+multivar=golem_throne_gems
+multiloc=0,golem_throne_withgems
+multiloc=1,golem_throne_nogems
+
+[golem_throne_withgems]
+name=Throne
+desc=A throne encrusted with sparkling gems.
+model=golem_throne_withgems
+recol1s=14798
+recol1d=2114
+recol2s=12684
+recol2d=1090
+recol3s=10570
+recol3d=1057
+recol4s=10306
+recol4d=2
+width=3
+length=3
+
+[golem_throne_nogems]
+name=Throne
+desc=A throne from which you have removed the gems.
+model=golem_throne_nogems
+recol1s=14798
+recol1d=2114
+recol2s=12684
+recol2d=1090
+recol3s=10570
+recol3d=1057
+recol4s=10306
+recol4d=2
+width=3
+length=3
+
+[golem_statuettea]
+active=yes
+multivar=golem_statuettestatusa
+multiloc=0,golem_statuette_facing_right
+multiloc=1,golem_statuette_facing_left
+
+[golem_statuetteb]
+active=yes
+multivar=golem_statuettestatusb
+multiloc=0,golem_statuette_facing_right
+multiloc=1,golem_statuette_facing_left
+
+[golem_statuettec]
+active=yes
+multivar=golem_statuettestatusc
+multiloc=0,golem_statuette_facing_right
+multiloc=1,golem_statuette_facing_left
+
+[golem_statuetted]
+active=yes
+multivar=golem_statuettestatusd
+multiloc=0,golem_statuette_missing
+multiloc=1,golem_statuette_facing_left
+multiloc=2,golem_statuette_facing_right
+multiloc=3,golem_statuette_missing
+
+[golem_statuette_facing_right]
+name=Statuette in alcove
+desc=A statuette of a golem, facing right.
+model=golem_statuette_facing_right
+op1=Turn
+active=yes
+ambient=30
+contrast=30
+
+[golem_statuette_facing_left]
+name=Statuette in alcove
+desc=A statuette of a golem, facing left.
+model=golem_statuette_facing_left
+op1=Turn
+active=yes
+ambient=30
+contrast=30
+
+[golem_statuette_missing]
+name=Alcove
+desc=The statuette is missing from this alcove.
+model=golem_statuette_missing
+active=yes
+ambient=30
+contrast=30
+
+[golem_portal]
+active=yes
+width=4
+length=2
+multivar=golem_a
+multiloc=0,golem_demon_door
+multiloc=1,golem_demon_door
+multiloc=2,golem_demon_door
+multiloc=3,golem_demon_door
+multiloc=4,golem_demon_door
+multiloc=5,golem_demon_door_always_open
+multiloc=6,golem_demon_door_always_open
+multiloc=7,golem_demon_door_always_open
+multiloc=8,golem_demon_door_always_open
+multiloc=9,golem_demon_door_always_open
+multiloc=10,golem_demon_door_always_open
+
+[golem_black_mushrooms]
+name=Black mushrooms
+desc=Not good for eating.
+model=golem_black_mushrooms
+recol1s=32698
+recol1d=21136
+recol2s=29494
+recol2d=19018
+blockrange=no
+op1=Pick
+
+[golem_demon_door]
+name=Door
+desc=A very heavy stone door.
+model=golem_demon_door
+width=4
+length=2
+anim=golem_door_open
+op1=Open
+
+[golem_demon_door_always_open]
+name=Door
+desc=A door to a demon's lair?
+model=golem_demon_door_always_open
+width=4
+length=2
+op1=Enter

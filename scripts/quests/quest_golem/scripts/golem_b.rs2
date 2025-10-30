@@ -1,0 +1,32 @@
+[opheld1,golem_letter]
+if(%golem_b < ^golem_b_read_letter) {
+    %golem_b = ^golem_b_read_letter;
+}
+if_openmain(scroll);
+if_settext(scroll:com_1, "");
+if_settext(scroll:com_2, "");
+if_settext(scroll:com_3, "Dearest Varmen,");
+if_settext(scroll:com_4, "I hope this finds you well. Here are the books you asked for");
+if_settext(scroll:com_5, "There has been an exciting development closer to home --");
+if_settext(scroll:com_6, "another city from the same period has been discovered east");
+if_settext(scroll:com_7, "of Varrock, and we are starting a huge excavation project");
+if_settext(scroll:com_8, "here. I don't know if the museum will be able to finance your");
+if_settext(scroll:com_9, "expedition as well as this one, so I fear your current trip will be");
+if_settext(scroll:com_10, "the last.");
+if_settext(scroll:com_11, "May Saradomin grant you a safe journey home.");
+if_settext(scroll:com_12, "Your loving Elissa.");
+if_settext(scroll:com_13, "");
+
+[oploc1,golem_bookcase]
+mes("You search the bookcase...");
+p_delay(2);
+if (%golem_b < ^golem_b_spoke_elissa) {
+    mes("You find nothing of interest.");
+    return;
+}
+if(inv_total(inv, golem_notes) = 0) {
+    inv_add(inv, golem_notes, 1);
+    ~objbox(golem_notes, "You find Varmen's expedition notes.", 200, 0, divide(^objbox_height, 3));
+} else {
+    mes("You already have Varmen's expedition notes, so you find nothing of interest.");
+}

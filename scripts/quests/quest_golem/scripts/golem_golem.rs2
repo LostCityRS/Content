@@ -1,0 +1,139 @@
+[proc,get_golem_state]()(npc)
+if(%golem_clay < 2) {
+    return (golem_broken_golem);
+} else if(%golem_clay < 4) {
+    return (golem_partially_broken_golem);
+}
+return (golem_fixed_golem);
+
+[proc,get_golem_name]()(string)
+return (nc_name(~get_golem_state));
+
+[opnpc1,golem_golem]
+def_string $golem_name = ~get_golem_name;
+def_npc $golem_npc = ~get_golem_state;
+if(%golem_a = ^golem_not_started) {
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,sad>Damage... severe...|task... incomplete...");
+    switch_int(~p_choice2("Shall I try to repair you?", 1, "I'm not going to find a conversation here!", 2)) {
+        case 1 :
+            %golem_a = ^golem_started;
+            ~send_quest_progress_colour(questlist:golem, %golem_a, ^golem_complete);
+            ~chatplayer("<p,quiz>Shall I try to repair you?");
+            ~chatnpc_specific($golem_name, $golem_npc, "<p,happy>Repairs... needed...");
+        case 2 :
+            ~chatplayer("<p,bored>I'm not going to find a conversation here!");
+            ~chatnpc_specific($golem_name, $golem_npc, "<p,angry>Graar!");
+            ~chatnpc_specific($golem_name, $golem_npc, "<p,angry>Must... not... injure... human...");
+    }
+} else if(%golem_a = ^golem_started) {
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,sad>Damage... severe...");
+} else if(%golem_a < ^golem_statuette_inserted) {
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,sad>My task is incomplete. You must open the portal so I can defeat the great demon.");
+    switch_int(~p_choice3("How do I open the portal?", 1, "What makes you think you can defeat the demon?", 2, "I'll get right on it.", 3)) {
+        case 1 :
+            ~chatplayer("<p,quiz>How do I open the portal?");
+            ~chatnpc_specific($golem_name, $golem_npc, "<p,neutral>The four statuettes in the temple must be turned to the correct pattern.");
+            ~chatnpc_specific($golem_name, $golem_npc, "<p,neutral>I do not know the pattern. Golems are not permitted to open the portal.");
+        case 2 :
+            ~chatplayer("<p,quiz>What makes you think you can defeat the demon?");
+            ~chatnpc_specific($golem_name, $golem_npc, "<p,neutral>If not I, then who else?  No living being can destroy the demon. That is why the golems were created in the first place.");
+            ~chatnpc_specific($golem_name, $golem_npc, "<p,neutral>But the demon was badly wounded and elder-demons heal very slowly indeed. It was almost dead when it retreated to its own dimension.");
+            ~chatnpc_specific($golem_name, $golem_npc, "<p,neutral>Now that I am repaired, I will be able to destory it easily!");
+        case 3 :
+            ~chatplayer("<p,happy>I'll get right on it.");
+    }
+} else if(%golem_a = ^golem_doors_open) {
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,sad>My task is incomplete. You must open the portal so I can defeat the great demon.");
+    ~chatplayer("<p,neutral>I opened the portal.");
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,neutral>Golems cannot pass through the portal. But the demon will soon emerge. I must ready myself for combat!");
+} else if(%golem_a = ^golem_entered_portal) {
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,sad>My task is incomplete. You must open the portal so I can defeat the great demon.");
+    ~chatplayer("<p,happy>It's okay, the demon is dead!");
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,quiz>The demon must be defeated...");
+    ~chatplayer("<p,quiz>No, you don't understand. I saw the demon's skeleton. It must have died of its wounds.");
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,quiz>Demon must be defeated!  Task incomplete.");
+    %golem_a = ^golem_informed_golem;
+} else if(%golem_a = ^golem_informed_golem) {
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,sad>My task is incomplete. You must open the portal so I can defeat the great demon.");
+    ~chatplayer("<p,angry>I already told you, he's dead!");
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,sad>Task incomplete.");
+    ~chatplayer("<p,neutral>Oh, how am I going to convince you?");
+} else if(%golem_a = ^golem_complete) {
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,happy>Thank you for helping me. A golem can have no greater satisfaction than knowing that its task is complete.");
+    ~chatplayer("<p,quiz>But the whole city is destroyed! Doesn't that bother you?");
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,happy>I was never programmed to appreciate the city. My only purpose was the destruction of the demon, and that is achieved!");
+}
+
+[opnpcu,golem_golem]
+if(stat(crafting) < 20) {
+    mes("You need level 20 crafting to repair the golem.");
+    return;
+}
+if(last_useitem = softclay) {
+    if(%golem_a = ^golem_not_started) {
+        mes("Maybe you should ask the golem first!");
+        return;
+    }
+    switch_int(%golem_clay)
+    {
+        case 0 :
+            %golem_clay = 1;
+            anim(human_pickpocket, 0);
+            inv_del(inv, softclay, 1);
+            ~objbox(softclay, "You apply some clay to the golem's wounds. The clay begins to harden in the hot sun.", 200, 0, divide(^objbox_height, 3));
+        case 1 :
+            %golem_clay = 2;
+            anim(human_pickpocket, 0);
+            inv_del(inv, softclay, 1);
+            ~objbox(softclay, "You fix the golem's legs.", 200, 0, divide(^objbox_height, 3));
+        case 2 :
+            %golem_clay = 3;
+            anim(human_pickpocket, 0);
+            inv_del(inv, softclay, 1);
+            ~objbox(softclay, "The golem is nearly whole.", 200, 0, divide(^objbox_height, 3));
+        case 3 :
+            %golem_clay = 4;
+            %golem_a = ^golem_repaired;
+            def_string $golem_name = ~get_golem_name;
+            def_npc $golem_npc = ~get_golem_state;
+            anim(human_pickpocket, 0);
+            inv_del(inv, softclay, 1);
+            ~objbox(softclay, "You repair the golem with a final piece of clay.", 200, 0, divide(^objbox_height, 3));
+            ~chatnpc_specific($golem_name, $golem_npc, "<p,confused>Damage repaired...");
+            ~chatnpc_specific($golem_name, $golem_npc, "<p,happy>Thank you. My body and mind are fully healed.");
+            ~chatnpc_specific($golem_name, $golem_npc, "<p,neutral>Now I must complete my task by defeating the great enemy.");
+            ~chatnpc_specific($golem_name, $golem_npc, "<p,neutral>A great demon. It broke through from its dimension to attack the city.");
+            ~chatnpc_specific($golem_name, $golem_npc, "<p,neutral>The golem army was created to fight it. Many were destroyed, but we drove the demon back!");
+            ~chatnpc_specific($golem_name, $golem_npc, "<p,neutral>The demon is still wounded. You must open the portal so that I can strike the final blow and complete my task.");
+        case 4 :
+            mes("You have already repaired the golem.");
+    }
+} else if(last_useitem = clay) {
+    mes("The clay is not soft enough to stick to the golem.");
+} else if(last_useitem = golem_program) {
+    if (%golem_head_open = 0) {
+        mes("You can't see a way to put the instructions in the golem's skkull.");
+        return;
+    }
+    sound_synth(golem_program, 0, 0);
+    def_string $golem_name = ~get_golem_name;
+    def_npc $golem_npc = ~get_golem_state;
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,confused>New instructions...|Updating program....");
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,happy>Task complete!");
+    ~chatnpc_specific($golem_name, $golem_npc, "<p,happy>Thank you. Now my mind is at rest.");
+    queue(golem_complete, 0);
+} else if(last_useitem = golem_golemkey) {
+    if(%golem_head_open = 0) {
+        mes("You insert the key and the golem's skull hinges open.");
+        queue(golem_head_queue, 10);
+        %golem_head_open = 1;
+    } else {
+        mes("The golem's head is already open.");
+    }
+} else {
+    ~displaymessage(^dm_default);
+}
+
+[queue,golem_head_queue]
+%golem_head_open = 0;
+mes("The golem's skull shuts automatically.");
