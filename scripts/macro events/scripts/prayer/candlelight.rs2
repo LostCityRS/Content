@@ -1,0 +1,267 @@
+// https://runescape.wiki/w/Pious_Pete
+// https://runescape.fandom.com/wiki/Candlelight
+// https://youtu.be/B4txg4QMDWA?si=o1vjgpNkzynQPTEY&t=312
+// https://2007rshelp.com/misc.php?id=11
+// https://runescape.wiki/w/Background
+
+// TODO: set up with other random events once general scripts implemented. 
+// Login in randoms should disable tabs?
+// Should be f2p and p2p
+// General event but a very low chance..?
+[proc,macro_candlelight_spawn]
+if (p_finduid(uid) = true) {
+    npc_add(map_findsquare(coord, 1, 1, ^map_findsquare_lineofwalk), macro_priest, 5);
+    %npc_macro_event_target = uid;
+    spotanim_map(smokepuff, npc_coord, 124, 0);
+    sound_synth(smokepuff2, 0, 0);
+    npc_setmode(playerfollow);
+    npc_say("I'm sorry to drag you away from your tasks, but I need a little help with something.");
+    ~macro_candlelight_setup;
+    p_delay(2);
+    p_teleport(0_30_78_52_11);
+    %macro_transmit = 0;
+    if_settab(null, 0);
+    if_settab(null, 1);
+    if_settab(null, 2);
+    if_settab(null, 3);
+    if_settab(null, 4);
+    if_settab(null, 5);
+    if_settab(null, 6);
+    if_settab(null, 11);
+    if_settab(null, 12);
+}
+
+[opnpc1,macro_pious_pete]
+if(%macro_transmit = 0) {
+    ~chatplayer("<p,quiz>What's wrong?");
+    ~chatnpc("<p,neutral>Some of the candles have been blown out and I can't reach them in order to relight them all.");
+    ~chatnpc("<p,quiz>Could you light the candles that are not burnt down for me? I will handle the rest later.");
+    ~chatnpc("<p,neutral>I can give you a reward from the monastery's treasury for your troubles.");
+    ~chatplayer("<p,neutral>I'll do my best.");
+    ~mesbox("Pete hands you a lighter.");
+    %macro_transmit = 1;
+    ~macro_candlelight_start;
+} else if (%macro_transmit = 2) {
+    ~chatplayer("<p,quiz>My lighter has been extinguished.");
+    ~chatnpc("<p,neutral>No problem, I can relight it for you. Try again!");
+    ~mesbox("Pete hands you a new lighter.");
+    %macro_transmit = 1;
+    ~macro_candlelight_start;
+} else {
+    if(~macro_candlelight_finished_check = false) {
+        ~chatnpc("<p,angry>You aren't finished yet. There are still candles to light!");
+        ~macro_candlelight_start;
+    } else {
+        ~chatnpc("<p,happy>Thank you for your help! I'll send you back now.");
+        p_teleport(0_50_50_0_0); // todo: Teleport to where you started from
+        ~initalltabs;
+        inv_add(inv, ~macro_candlelight_reward);
+    }
+}
+
+[opnpc1,macro_priest]
+if (uid ! %npc_macro_event_target) {
+    ~chatnpc("<p,neutral>I don't need your help right now.");
+    return;
+}
+
+[oploc1,macro_candlelight_door]
+mes("You can't open this door.");
+
+[proc,macro_candlelight_setup]
+%macro_candlelight_1 = random(3);
+%macro_candlelight_2 = random(3);
+%macro_candlelight_3 = random(3);
+%macro_candlelight_4 = random(3);
+%macro_candlelight_5 = random(3);
+%macro_candlelight_6 = random(3);
+%macro_candlelight_7 = random(3);
+%macro_candlelight_8 = random(3);
+%macro_candlelight_9 = random(3);
+%macro_candlelight_10 = random(3);
+%macro_candlelight_11 = random(3);
+
+//No freebies!
+if(~macro_candlelight_finished_check = true) {
+    ~macro_candlelight_setup;
+}
+
+[proc,macro_candlelight_start]
+p_teleport(0_30_78_51_10);
+if_openmain(macro_candlelight_lighter);
+npc_add(movecoord(coord, -2, 0, 0), macro_candle_taper, 500);
+%macro_event_uid = npc_uid;
+cam_moveto(movecoord(coord, -1, 0, 0), 335, 254, 254);
+cam_lookat(movecoord(coord, -2, 0, 0), 315, 254, 254);
+
+[proc,macro_candlelight_fail]
+%macro_candlelight_1 = ~extinguish_if_lit(%macro_candlelight_1);
+%macro_candlelight_2 = ~extinguish_if_lit(%macro_candlelight_2);
+%macro_candlelight_3 = ~extinguish_if_lit(%macro_candlelight_3);
+%macro_candlelight_4 = ~extinguish_if_lit(%macro_candlelight_4);
+%macro_candlelight_5 = ~extinguish_if_lit(%macro_candlelight_5);
+%macro_candlelight_6 = ~extinguish_if_lit(%macro_candlelight_6);
+%macro_candlelight_7 = ~extinguish_if_lit(%macro_candlelight_7);
+%macro_candlelight_8 = ~extinguish_if_lit(%macro_candlelight_8);
+%macro_candlelight_9 = ~extinguish_if_lit(%macro_candlelight_9);
+%macro_candlelight_10 = ~extinguish_if_lit(%macro_candlelight_10);
+%macro_candlelight_11 = ~extinguish_if_lit(%macro_candlelight_11);
+
+mes("A strong gust of wind seems to blow out the candles.");
+%macro_transmit = 2;
+if (npc_finduid(%macro_event_uid) = true) {
+    npc_del;
+    %macro_event_uid = null;
+}
+
+[proc,extinguish_if_lit](int $candle_state)(int)
+if ($candle_state = ^macro_candlelight_lit) {
+    return (^macro_candlelight_unlit);
+}
+return ($candle_state);
+
+[proc,macro_candlelight_finished_check]()(boolean)
+if (%macro_candlelight_1 = ^macro_candlelight_unlit) {
+    return (false);
+}
+if (%macro_candlelight_2 = ^macro_candlelight_unlit) {
+    return (false);
+}
+if (%macro_candlelight_3 = ^macro_candlelight_unlit) {
+    return (false);
+}
+if (%macro_candlelight_4 = ^macro_candlelight_unlit) {
+    return (false);
+}
+if (%macro_candlelight_5 = ^macro_candlelight_unlit) {
+    return (false);
+}
+if (%macro_candlelight_6 = ^macro_candlelight_unlit) {
+    return (false);
+}
+if (%macro_candlelight_7 = ^macro_candlelight_unlit) {
+    return (false);
+}
+if (%macro_candlelight_8 = ^macro_candlelight_unlit) {
+    return (false);
+}
+if (%macro_candlelight_9 = ^macro_candlelight_unlit) {
+    return (false);
+}
+if (%macro_candlelight_10 = ^macro_candlelight_unlit) {
+    return (false);
+}
+if (%macro_candlelight_11 = ^macro_candlelight_unlit) {
+    return (false);
+}
+return (true);
+
+[if_close,macro_candlelight_lighter]
+if (npc_finduid(%macro_event_uid) = true) {
+    npc_del;
+    %macro_event_uid = null;
+}
+cam_reset;
+
+[if_button,macro_candlelight_lighter:close_button]
+if_close;
+
+[if_button,macro_candlelight_lighter:down_button]
+if(coordx(coord) < 1971) {
+    ~macro_candlelight_handle_movement(1, 0, 0);
+} else {
+    mes("You can't move any further that way.");
+}
+
+[if_button,macro_candlelight_lighter:up_button]
+if(coordx(coord) > 1970) {
+    ~macro_candlelight_handle_movement(-1, 0, 0);
+} else {
+    mes("You can't move any further that way.");
+}
+
+[if_button,macro_candlelight_lighter:left_button]
+if(coordz(coord) > 4997) {
+    ~macro_candlelight_handle_movement(0, 0, -1);
+} else {
+    mes("You can't move any further that way.");
+}
+
+[if_button,macro_candlelight_lighter:right_button]
+if(coordz(coord) < 5007) {
+    ~macro_candlelight_handle_movement(0, 0, 1);
+} else {
+    mes("You can't move any further that way.");
+}
+
+[proc,macro_candlelight_handle_movement](int $dx, int $dy, int $dz)
+p_teleport(movecoord(coord, $dx, $dy, $dz));
+
+if (npc_finduid(%macro_event_uid) = true) {
+    npc_tele(movecoord(coord, -2, 0, 0));
+}
+
+cam_moveto(movecoord(coord, -1, 0, 0), 335, 10, 10);
+cam_lookat(movecoord(coord, -2, 0, 0), 315, 10, 10);
+
+[if_button,macro_candlelight_lighter:light_button]
+if (npc_finduid(%macro_event_uid) = true) {
+    loc_findallzone(movecoord(coord, -3, 0, 0));
+    while (loc_findnext = true) {
+        if(loc_coord = movecoord(coord, -3, 0, 0)) {
+            ~macro_candlelight_check_pillar(loc_coord);
+            return;
+        }
+    }
+    mes("There is nothing to light here.");
+} else {
+    %macro_transmit = 2;
+    mes("Your lighter seems to have been extinguished. Talk to Pete for a new one.");
+}
+
+[proc,macro_candlelight_check_pillar](coord $loc_coord)
+switch_coord($loc_coord) {
+    case 0_30_78_47_5 : %macro_candlelight_1 = ~try_light_candle(%macro_candlelight_1);
+    case 0_30_78_48_6 : %macro_candlelight_2 = ~try_light_candle(%macro_candlelight_2);
+    case 0_30_78_47_7 : %macro_candlelight_3 = ~try_light_candle(%macro_candlelight_3);
+    case 0_30_78_48_8 : %macro_candlelight_4 = ~try_light_candle(%macro_candlelight_4);
+    case 0_30_78_47_9 : %macro_candlelight_5 = ~try_light_candle(%macro_candlelight_5);
+    case 0_30_78_48_10 : %macro_candlelight_6 = ~try_light_candle(%macro_candlelight_6);
+    case 0_30_78_47_11 : %macro_candlelight_7 = ~try_light_candle(%macro_candlelight_7);
+    case 0_30_78_48_12 : %macro_candlelight_8 = ~try_light_candle(%macro_candlelight_8);
+    case 0_30_78_47_13 : %macro_candlelight_9 = ~try_light_candle(%macro_candlelight_9);
+    case 0_30_78_48_14 : %macro_candlelight_10 = ~try_light_candle(%macro_candlelight_10);
+    case 0_30_78_47_15 : %macro_candlelight_11 = ~try_light_candle(%macro_candlelight_11);
+    case default : return;
+}
+
+[proc,try_light_candle](int $candle_state)(int)
+if($candle_state = ^macro_candlelight_unlit) {
+    mes("You light the candle.");
+    return (^macro_candlelight_lit);
+} else if($candle_state = ^macro_candlelight_lit) {
+    mes("This candle is already lit.");
+    return (^macro_candlelight_lit);
+} else {
+    ~macro_candlelight_fail;
+    return(^macro_candlelight_burnt);
+}
+
+[proc,macro_candlelight_reward]()(namedobj, int)
+def_int $random = random(150);
+if (map_members = ^false) {
+    $random = random(148);
+}
+//Guessing it is similar to MOM but says it can give big bones and normal logs
+//https://forum.tip.it/topic/41577-lighting-candles-random/#comment-698062
+//https://www.tip.it/runescape/pages/view/random_events.htm
+if ($random < 50) return(coins, multiply(pow(2, ~random_range(3, 6)), 10));
+if ($random < 82) return(uncut_sapphire, 1); // 32/150 uncut sapphire 
+if ($random < 98) return(cert_logs, ~random_range(5, 10)); // 16/150 logs guess
+if ($random < 114) return(uncut_emerald, 1); // 16/150 uncut emerald
+if ($random < 128) return(cert_big_bones, ~random_range(1, 5)); // 14/150 big bones guess
+if ($random < 136) return(uncut_ruby, 1); // 8/150 uncut ruby
+if ($random < 146) return(coins, 240); // 6/150 240 coins
+if ($random < 148) return(uncut_diamond, 1); // 2/150 uncut diamond
+if ($random < 149) return(keyhalf1, 1); // 1/150 half key
+if ($random < 150) return(keyhalf2, 1); // 1/150 half key

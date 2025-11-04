@@ -170,10 +170,5 @@ if (inv_total(inv, $uncooked_item) < 1) {
 weakqueue(cook_generic, 3, sub($count, 1), $low, $high, $anim, $succesmessage, $burnmessage, $uncooked_item, $cooked_item, $burnt_item, $additional_item, $experience);
 @cook_item($low, $high, $anim, $succesmessage, $burnmessage, $uncooked_item, $cooked_item, $burnt_item, $additional_item, $experience);
 
-[debugproc,home]
-if (p_finduid(uid) = true) {
-    p_teleport(0_50_50_22_22);
-}
-
 [debugproc,c]
 inv_clear(inv);
