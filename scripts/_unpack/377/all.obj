@@ -15587,12 +15587,14 @@ param=magicattack,-4
 param=rangedefence,-1
 param=strengthbonus,10
 param=attackrate,7
+param=ready_baseanim,human_dh_weapon_ready
+param=walk_f_baseanim,human_dh_weapon_walk
+param=running_baseanim,human_dh_weapon_run
 param=slashattack_anim,human_dhsword_slash
 param=crushattack_anim,human_dhsword_chop
-param=defend_anim,human_sword_def
+param=defend_anim,human_dhsword_block
 param=slash_sound,2H_slash
 param=crush_sound,2H_crush
-// osrs 2h sword defend human_dhsword_block
 
 [cert_bronze_2h_sword]
 certlink=bronze_2h_sword
@@ -15624,12 +15626,14 @@ param=magicattack,-4
 param=rangedefence,-1
 param=strengthbonus,14
 param=attackrate,7
+param=ready_baseanim,human_dh_weapon_ready
+param=walk_f_baseanim,human_dh_weapon_walk
+param=running_baseanim,human_dh_weapon_run
 param=slashattack_anim,human_dhsword_slash
 param=crushattack_anim,human_dhsword_chop
-param=defend_anim,human_sword_def
+param=defend_anim,human_dhsword_block
 param=slash_sound,2H_slash
 param=crush_sound,2H_crush
-// osrs 2h sword defend human_dhsword_block
 
 [cert_iron_2h_sword]
 certlink=iron_2h_sword
@@ -15659,12 +15663,14 @@ param=magicattack,-4
 param=rangedefence,-1
 param=strengthbonus,22
 param=attackrate,7
+param=ready_baseanim,human_dh_weapon_ready
+param=walk_f_baseanim,human_dh_weapon_walk
+param=running_baseanim,human_dh_weapon_run
 param=slashattack_anim,human_dhsword_slash
 param=crushattack_anim,human_dhsword_chop
-param=defend_anim,human_sword_def
+param=defend_anim,human_dhsword_block
 param=slash_sound,2H_slash
 param=crush_sound,2H_crush
-// osrs 2h sword defend human_dhsword_block
 
 [cert_steel_2h_sword]
 certlink=steel_2h_sword
@@ -15696,12 +15702,14 @@ param=magicattack,-4
 param=rangedefence,-1
 param=strengthbonus,26
 param=attackrate,7
+param=ready_baseanim,human_dh_weapon_ready
+param=walk_f_baseanim,human_dh_weapon_walk
+param=running_baseanim,human_dh_weapon_run
 param=slashattack_anim,human_dhsword_slash
 param=crushattack_anim,human_dhsword_chop
-param=defend_anim,human_sword_def
+param=defend_anim,human_dhsword_block
 param=slash_sound,2H_slash
 param=crush_sound,2H_crush
-// osrs 2h sword defend human_dhsword_block
 
 [cert_black_2h_sword]
 certlink=black_2h_sword
@@ -15733,12 +15741,14 @@ param=magicattack,-4
 param=rangedefence,-1
 param=strengthbonus,31
 param=attackrate,7
+param=ready_baseanim,human_dh_weapon_ready
+param=walk_f_baseanim,human_dh_weapon_walk
+param=running_baseanim,human_dh_weapon_run
 param=slashattack_anim,human_dhsword_slash
 param=crushattack_anim,human_dhsword_chop
-param=defend_anim,human_sword_def
+param=defend_anim,human_dhsword_block
 param=slash_sound,2H_slash
 param=crush_sound,2H_crush
-// osrs 2h sword defend human_dhsword_block
 
 [cert_mithril_2h_sword]
 certlink=mithril_2h_sword
@@ -15770,12 +15780,14 @@ param=magicattack,-4
 param=rangedefence,-1
 param=strengthbonus,44
 param=attackrate,7
+param=ready_baseanim,human_dh_weapon_ready
+param=walk_f_baseanim,human_dh_weapon_walk
+param=running_baseanim,human_dh_weapon_run
 param=slashattack_anim,human_dhsword_slash
 param=crushattack_anim,human_dhsword_chop
-param=defend_anim,human_sword_def
+param=defend_anim,human_dhsword_block
 param=slash_sound,2H_slash
 param=crush_sound,2H_crush
-// osrs 2h sword defend human_dhsword_block
 
 [cert_adamant_2h_sword]
 certlink=adamant_2h_sword
@@ -15807,12 +15819,14 @@ param=magicattack,-4
 param=rangedefence,-1
 param=strengthbonus,70
 param=attackrate,7
+param=ready_baseanim,human_dh_weapon_ready
+param=walk_f_baseanim,human_dh_weapon_walk
+param=running_baseanim,human_dh_weapon_run
 param=slashattack_anim,human_dhsword_slash
 param=crushattack_anim,human_dhsword_chop
-param=defend_anim,human_sword_def
+param=defend_anim,human_dhsword_block
 param=slash_sound,2H_slash
 param=crush_sound,2H_crush
-// osrs 2h sword defend human_dhsword_block
 
 [cert_rune_2h_sword]
 certlink=rune_2h_sword
@@ -36873,6 +36887,24 @@ womanwear=obj_bronze_halberd_manwear,6
 wearpos=righthand
 wearpos2=lefthand
 weight=7lb
+// category=
+param=stabattack,48
+param=slashattack,67
+param=magicattack,-4
+param=stabdefence,-1
+param=slashdefence,4
+param=crushdefence,5
+param=strengthbonus,68
+param=attackrate,7
+param=ready_baseanim,human_staffready
+param=walk_f_baseanim,human_halberdwalk_f
+param=running_baseanim,human_halberdrunning
+param=turnonspot_baseanim,human_halberdturnonspot
+param=stabattack_anim,human_spear_spike
+param=slashattack_anim,human_scythe_sweep
+param=defend_anim,human_spear_block
+// param=slash_sound,
+// param=stab_sound,
 
 [cert_rune_halberd]
 certlink=rune_halberd
@@ -36895,6 +36927,24 @@ womanwear=obj_dragon_halberd_manwear,6
 wearpos=righthand
 wearpos2=lefthand
 weight=7lb
+// category=
+param=stabattack,70
+param=slashattack,95
+param=magicattack,-4
+param=stabdefence,-1
+param=slashdefence,4
+param=crushdefence,9
+param=strengthbonus,89
+param=attackrate,7
+param=ready_baseanim,human_staffready
+param=walk_f_baseanim,human_halberdwalk_f
+param=running_baseanim,human_halberdrunning
+param=turnonspot_baseanim,human_halberdturnonspot
+param=stabattack_anim,human_spear_spike
+param=slashattack_anim,human_scythe_sweep
+param=defend_anim,human_spear_block
+param=slash_sound,scythe_slash
+param=stab_sound,staff_stab
 
 [cert_dragon_halberd]
 certlink=dragon_halberd
@@ -55941,6 +55991,21 @@ model=obj_barrows_dharok_weapon
 weight=7lb
 wearpos=righthand
 wearpos2=lefthand
+category=weapon_2h_axe
+param=stabattack,-4
+param=slashattack,103
+param=crushattack,95
+param=magicattack,-4
+param=rangedefence,-1
+param=strengthbonus,105
+param=attackrate,7
+param=ready_baseanim,barrow_dharok_ready
+param=walk_f_baseanim,barrow_dharok_walk
+param=slashattack_anim,barrow_dharok_slash
+param=crushattack_anim,barrow_dharok_crush
+param=defend_anim,human_unarmedblock
+param=slash_sound,dharok_axe_slash
+param=crush_sound,dharok_axe_crush
 
 [cert_barrows_dharok_weapon]
 certlink=barrows_dharok_weapon
@@ -79572,7 +79637,24 @@ womanwear=obj_bronze_2h_sword_manwear,6
 members=yes
 wearpos=righthand
 wearpos2=lefthand
+category=weapon_2h_sword
 weight=8lb
+param=stabattack,-4
+param=slashattack,27
+param=crushattack,21
+param=magicattack,-4
+param=rangedefence,-1
+param=strengthbonus,26
+param=prayerbonus,1
+param=attackrate,7
+param=ready_baseanim,human_dh_weapon_ready
+param=walk_f_baseanim,human_dh_weapon_walk
+param=running_baseanim,human_dh_weapon_run
+param=slashattack_anim,human_dhsword_slash
+param=crushattack_anim,human_dhsword_chop
+param=defend_anim,human_dhsword_block
+param=slash_sound,2H_slash
+param=crush_sound,2H_crush
 
 [cert_white_2h_sword]
 certlink=white_2h_sword
@@ -86065,7 +86147,23 @@ members=yes
 2dxan=636
 wearpos=righthand
 wearpos2=lefthand
+category=weapon_2h_sword
 weight=8lb
+param=stabattack,-4
+param=slashattack,92
+param=crushattack,80
+param=magicattack,-4
+param=rangedefence,-1
+param=strengthbonus,93
+param=attackrate,7
+param=ready_baseanim,human_dh_weapon_ready
+param=walk_f_baseanim,human_dh_weapon_walk
+param=running_baseanim,human_dh_weapon_run
+param=slashattack_anim,human_dhsword_slash
+param=crushattack_anim,human_dhsword_chop
+param=defend_anim,human_dhsword_block
+param=slash_sound,2H_slash
+param=crush_sound,2H_crush
 
 [slayer_boots]
 name=Slayer boots
