@@ -29,12 +29,13 @@ if_openoverlay(null);
 cleartimer(macro_maze);
 anim(emote_cheer, 20);
 p_delay(5);
+~macro_maze_reset_interface;
+p_delay(0);
 p_telejump(0_50_50_32_32);
 if (%macro_transmit > 0) {
     ~macro_maze_give_reward(~total_level, %macro_transmit);
 }
 %macro_transmit = 0;
-~macro_maze_reset_interface;
 
 [proc,update_macro_maze_progress]
 if_settext(inter_153:com_2, "<tostring(%macro_transmit)>%");
@@ -97,15 +98,15 @@ if ($should_open = true) {
     ~mesbox("I don't think that's the right way.");
 }
 
-[oploc1,loc_3634]
+[oploc1,loc_3634] // Maze finish statue
 if_close;
 ~end_macro_maze;
 
-[oploc1,loc_3635]
+[oploc1,loc_3635] // Open chest & loot it
 ~macro_maze_open_chest(loc_3636);
 
-[oploc1,loc_3636]
-~macro_maze_chest_loot;
+[oploc1,loc_3636] // Open chest search option
+~mesbox("Awww, it's empty!");
 
 [debugproc,maze]
 if (p_finduid(uid) = false) {
@@ -184,13 +185,11 @@ while ($i <= enum_getoutputcount(stats)) {
 return($total);
 
 [proc,macro_maze_chest_loot]
-// Sources used: https://www.youtube.com/watch?v=0end9ZuL3vI&t=1041s & https://www.youtube.com/watch?v=OdnmdmAXnSs&t=553s
+// Sources used: https://www.youtube.com/watch?v=0end9ZuL3vI&t=1041s - https://www.youtube.com/watch?v=OdnmdmAXnSs&t=553s
+// https://www.youtube.com/watch?v=yCBpihIGy68
 p_arrivedelay;
 
 if (%macro_transmit <= 0) {
-    ~mesbox("Awww, it's empty!");
-    return;
-} else if (map_clock <= %varp_532) {
     ~mesbox("Awww, it's empty!");
     return;
 }
@@ -213,5 +212,4 @@ switch_int($roll) {
     case 8 : { $loot_item = 2dose1strength; $loot_qty = 1;      ~objbox($loot_item, "You've found a strength potion!", 250, 0, ^objbox_height); }
     case 9 : { $loot_item = 2dose1defense;  $loot_qty = 1;      ~objbox($loot_item, "You've found a defence potion!", 250, 0, ^objbox_height); }
 }
-%varp_532 = calc(map_clock + ^macro_maze_chest_ticks);
 inv_add(inv, $loot_item, $loot_qty);
