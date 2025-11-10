@@ -106,6 +106,12 @@ if (~bank_find_obj_unbankable($obj) = true) {
     return(true);
 }
 
+// https://www.youtube.com/watch?v=W5iZgykts2A // No mes when creating boxes via actions
+if ($obj = macro_cube) {
+    ~try_add_macro_cube;
+    return(true);
+}
+
 if (playermember = ^false) {
     // check for f2p bank limits, use the player's membership status rather than world type
     if ((inv_total(bank, oc_uncert($obj)) = 0) & (sub(inv_size(bank), inv_freespace(bank)) >= ^bank_free_slots)) {

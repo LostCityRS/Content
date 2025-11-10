@@ -345,6 +345,12 @@ if (oc_members($obj) = true & map_members = ^false) {
     return;
 }
 
+// Guess it works like trying to bank it but unconfirmed
+if ($obj = macro_cube) {
+    ~try_add_macro_cube;
+    return;
+}
+
 def_int $total = inv_total(inv, $obj);
 if ($amount < $total) $total = $amount;
 inv_moveitem(inv, tradeoffer, $obj, $total);
