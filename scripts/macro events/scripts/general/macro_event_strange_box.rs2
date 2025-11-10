@@ -210,8 +210,8 @@ if_setmodel(macro_cube:side_number_model, $side_num_model);
 if_setmodel(macro_cube:top_shape_model, $top_shape_model);
 if_setmodel(macro_cube:top_number_model, $top_num_model);
 
-def_int $question_type = random(1);
-def_int $correct_answer = random(2);
+def_int $question_type = random(2);
+def_int $correct_answer = random(3);
 def_string $center_shape_name = ~get_shape_name($shape_1);
 def_string $side_shape_name = ~get_shape_name($shape_2);
 def_string $top_shape_name = ~get_shape_name($shape_3);
