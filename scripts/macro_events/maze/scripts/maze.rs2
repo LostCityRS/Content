@@ -160,6 +160,10 @@ $tmrmult = multiply($tmr, 10);
 $denominator = multiply(multiply(3, $divisor), 100);
 $reward_qty = divide($tmrmult, $denominator);
 
+if ($reward_qty < 1) {
+    $reward_qty = 1;
+}
+
 inv_add(inv, $reward_type, $reward_qty);
 
 [proc,macro_maze_give_reward](int $total_level, int $reward_potential_percent)
