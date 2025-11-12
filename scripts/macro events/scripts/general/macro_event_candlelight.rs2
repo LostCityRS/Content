@@ -4,12 +4,8 @@
 // https://2007rshelp.com/misc.php?id=11
 // https://runescape.wiki/w/Background
 
-// TODO: set up with other random events once general scripts implemented. 
-// Should be f2p and p2p
-// General event but a very low chance..?
 [proc,macro_candlelight_spawn]
 if (p_finduid(uid) = true) {
-    npc_add(map_findsquare(coord, 1, 1, ^map_findsquare_lineofwalk), macro_priest, 5);
     %npc_macro_event_target = uid;
     spotanim_map(smokepuff, npc_coord, 124, 0);
     sound_synth(smokepuff2, 0, 0);
@@ -20,6 +16,8 @@ if (p_finduid(uid) = true) {
     p_delay(2);
     p_teleport(0_30_78_52_11);
     %macro_transmit = 0;
+    // TODO: Does it "poof" with macro event disappear or not?
+    npc_del;
 }
 
 [mapzone,0_30_78] 
