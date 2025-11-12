@@ -74,79 +74,79 @@ if($space > 0) {
     }
 }
 
-[proc,get_center_number_model](int $number)(int)
+[proc,get_center_number_obj](int $number)(obj)
 switch_int($number) {
-    case 0 : return(11028);
-    case 1 : return(11031);
-    case 2 : return(11034);
-    case 3 : return(11037);
-    case 4 : return(11040);
-    case 5 : return(11043);
-    case 6 : return(11046);
-    case 7 : return(11049);
-    case 8 : return(11052);
-    case 9 : return(11055);
-    case default : return(11028);
+    case 0 : return(macro_cube_01);
+    case 1 : return(macro_cube_11);
+    case 2 : return(macro_cube_21);
+    case 3 : return(macro_cube_31);
+    case 4 : return(macro_cube_41);
+    case 5 : return(macro_cube_51);
+    case 6 : return(macro_cube_61);
+    case 7 : return(macro_cube_71);
+    case 8 : return(macro_cube_81);
+    case 9 : return(macro_cube_91);
+    case default : return(macro_cube_01);
 }
 
-[proc,get_center_shape_model](int $number)(int)
+[proc,get_side_number_obj](int $number)(obj)
 switch_int($number) {
-    case 0 : return(11058);
-    case 1 : return(11061);
-    case 2 : return(11064);
-    case 3 : return(11067);
-    case 4 : return(11070);
-    case default : return(11058);
+    case 0 : return(macro_cube_02);
+    case 1 : return(macro_cube_12);
+    case 2 : return(macro_cube_22);
+    case 3 : return(macro_cube_32);
+    case 4 : return(macro_cube_42);
+    case 5 : return(macro_cube_52);
+    case 6 : return(macro_cube_62);
+    case 7 : return(macro_cube_72);
+    case 8 : return(macro_cube_82);
+    case 9 : return(macro_cube_92);
+    case default : return(macro_cube_02);
 }
 
-[proc,get_side_number_model](int $number)(int)
+[proc,get_top_number_obj](int $number)(obj)
 switch_int($number) {
-    case 0 : return(11029);
-    case 1 : return(11032);
-    case 2 : return(11035);
-    case 3 : return(11038);
-    case 4 : return(11041);
-    case 5 : return(11044);
-    case 6 : return(11047);
-    case 7 : return(11050);
-    case 8 : return(11053);
-    case 9 : return(11056);
-    case default : return(11029);
+    case 0 : return(macro_cube_03);
+    case 1 : return(macro_cube_13);
+    case 2 : return(macro_cube_23);
+    case 3 : return(macro_cube_33);
+    case 4 : return(macro_cube_43);
+    case 5 : return(macro_cube_53);
+    case 6 : return(macro_cube_63);
+    case 7 : return(macro_cube_73);
+    case 8 : return(macro_cube_83);
+    case 9 : return(macro_cube_93);
+    case default : return(macro_cube_03);
 }
 
-[proc,get_side_shape_model](int $number)(int)
+[proc,get_center_shape_obj](int $number)(obj)
 switch_int($number) {
-    case 0 : return(11059);
-    case 1 : return(11062);
-    case 2 : return(11065);
-    case 3 : return(11068);
-    case 4 : return(11071);
-    case default : return(11059);
+    case 0 : return(macro_cube_circle1);
+    case 1 : return(macro_cube_square1);
+    case 2 : return(macro_cube_hexagon1);
+    case 3 : return(macro_cube_star1);
+    case 4 : return(macro_cube_triangle1);
+    case default : return(macro_cube_circle1);
 }
 
-[proc,get_top_number_model](int $number)(int)
+[proc,get_side_shape_obj](int $number)(obj)
 switch_int($number) {
-    case 0 : return(11030);
-    case 1 : return(11033);
-    case 2 : return(11036);
-    case 3 : return(11039);
-    case 4 : return(11042);
-    case 5 : return(11045);
-    case 6 : return(11048);
-    case 7 : return(11051);
-    case 8 : return(11054);
-    case 9 : return(11057);
-    case default : return(11030);
+    case 0 : return(macro_cube_circle2);
+    case 1 : return(macro_cube_square2);
+    case 2 : return(macro_cube_hexagon2);
+    case 3 : return(macro_cube_star2);
+    case 4 : return(macro_cube_triangle2);
+    case default : return(macro_cube_circle2);
 }
 
-[proc,get_top_shape_model](int $number)(int)
+[proc,get_top_shape_obj](int $number)(obj)
 switch_int($number) {
-    case 0 : return(11060);
-    case 1 : return(11063);
-    case 2 : return(11066);
-    case 3 : return(11069);
-    case 4 : return(11072);
-    case default : return(11060);
+    case 0 : return(macro_cube_circle3);
+    case 1 : return(macro_cube_square3);
+    case 2 : return(macro_cube_hexagon3);
+    case 3 : return(macro_cube_star3);
+    case 4 : return(macro_cube_triangle3);
+    case default : return(macro_cube_circle3);
 }
 
 [proc,get_shape_name](int $shape_value)(string)
@@ -193,22 +193,22 @@ while ($num_3 = $num_1 | $num_3 = $num_2) {
     $num_3 = random(10);
 }
 
-def_int $center_shape_model = ~get_center_shape_model($shape_1);
-def_int $side_shape_model = ~get_side_shape_model($shape_2);
-def_int $top_shape_model = ~get_top_shape_model($shape_3);
+def_obj $center_shape_model = ~get_center_shape_obj($shape_1);
+def_obj $side_shape_model = ~get_side_shape_obj($shape_2);
+def_obj $top_shape_model = ~get_top_shape_obj($shape_3);
 
-def_int $center_num_model = ~get_center_number_model($num_1);
-def_int $side_num_model = ~get_side_number_model($num_2);
-def_int $top_num_model = ~get_top_number_model($num_3);
+def_obj $center_num_model = ~get_center_number_obj($num_1);
+def_obj $side_num_model = ~get_side_number_obj($num_2);
+def_obj $top_num_model = ~get_top_number_obj($num_3);
 
-if_setmodel(macro_cube:center_shape_model, $center_shape_model);
-if_setmodel(macro_cube:center_number_model, $center_num_model);
+if_setobject(macro_cube:center_shape_model, $center_shape_model, 390);
+if_setobject(macro_cube:center_number_model, $center_num_model, 390);
 
-if_setmodel(macro_cube:side_shape_model, $side_shape_model);
-if_setmodel(macro_cube:side_number_model, $side_num_model);
+if_setobject(macro_cube:side_shape_model, $side_shape_model, 390);
+if_setobject(macro_cube:side_number_model, $side_num_model, 390);
 
-if_setmodel(macro_cube:top_shape_model, $top_shape_model);
-if_setmodel(macro_cube:top_number_model, $top_num_model);
+if_setobject(macro_cube:top_shape_model, $top_shape_model, 390);
+if_setobject(macro_cube:top_number_model, $top_num_model, 390);
 
 def_int $question_type = random(2);
 def_int $correct_answer = random(3);

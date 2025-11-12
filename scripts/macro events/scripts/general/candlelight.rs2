@@ -5,7 +5,6 @@
 // https://runescape.wiki/w/Background
 
 // TODO: set up with other random events once general scripts implemented. 
-// Login in randoms should disable tabs?
 // Should be f2p and p2p
 // General event but a very low chance..?
 [proc,macro_candlelight_spawn]
@@ -16,20 +15,20 @@ if (p_finduid(uid) = true) {
     sound_synth(smokepuff2, 0, 0);
     npc_setmode(playerfollow);
     npc_say("I'm sorry to drag you away from your tasks, but I need a little help with something.");
+    %macro_event_target_coord = coord;
     ~macro_candlelight_setup;
     p_delay(2);
     p_teleport(0_30_78_52_11);
     %macro_transmit = 0;
-    if_settab(null, 0);
-    if_settab(null, 1);
-    if_settab(null, 2);
-    if_settab(null, 3);
-    if_settab(null, 4);
-    if_settab(null, 5);
-    if_settab(null, 6);
-    if_settab(null, 11);
-    if_settab(null, 12);
 }
+
+[mapzone,0_30_78] 
+~macro_events_hide_tabs;
+@music_playbyregion(coord);
+
+[mapzoneexit,0_30_78]
+~macro_events_varps_reset;
+~initalltabs;
 
 [opnpc1,macro_pious_pete]
 if(%macro_transmit = 0) {
@@ -53,8 +52,7 @@ if(%macro_transmit = 0) {
         ~macro_candlelight_start;
     } else {
         ~chatnpc("<p,happy>Thank you for your help! I'll send you back now.");
-        p_teleport(0_50_50_0_0); // todo: Teleport to where you started from
-        ~initalltabs;
+        p_teleport(%macro_event_target_coord);
         inv_add(inv, ~macro_candlelight_reward);
     }
 }
