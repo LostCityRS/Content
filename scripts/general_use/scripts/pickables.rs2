@@ -61,12 +61,10 @@ if(inv_freespace(inv) = 0) {
 if(inv_freespace(inv) = 0) {
     mes("You can't carry any more flax.");
 } else {
-    // macro event
-    /* if (afk_event = ^true) {
+    if (afk_event = ^true) {
         ~macro_event_general_spawn(~macro_event_set_random);
         return;
-    }*/
-    // TODO 377 enable this after random events are ported
+    }
     anim(human_pickupfloor, 0);
     p_delay(0);
     sound_synth(pick, 0, 0);
