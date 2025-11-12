@@ -1,0 +1,48 @@
+[if_button,questlist:hetty]
+def_string $text;
+
+// https://www.youtube.com/watch?v=CAPfy7F-sPk 
+// https://www.youtube.com/watch?v=mNr8oBizSVM
+// https://www.youtube.com/watch?v=8oy3aAc0JvQ
+// https://www.youtube.com/watch?v=0xxDaNwq5js
+// https://www.youtube.com/watch?v=UaErjaM-ZvA
+// & Manpaint's OSRS sources used
+if(%hetty = ^hetty_not_started) {
+    $text = "@dbl@I can start this quest by talking to @dre@Hetty@dbl@ in her house in @dre@Rimmmington@dbl@.";
+} else if(%hetty = ^hetty_started) {
+    $text = "@str@I spoke to Hetty in her house in Rimmington. Hetty told me|@str@she could increase my magic power if I can bring her|@str@certain ingredients for a potion.||";
+    $text = append($text, "@dbl@Hetty needs me to bring her the following:|");
+
+    if(inv_total(inv, onion) > 0) {
+        $text = append($text, "@str@I have an onion with me|");
+    } else {
+        $text = append($text, "@dre@An onion|");
+    }
+
+    if(inv_total(inv, rats_tail) > 0) {
+        $text = append($text, "@str@I have a rat's tail with me|");
+    } else {
+        $text = append($text, "@dre@A rat's tail|");
+    }
+
+    if(inv_total(inv, burnt_meat) > 0) {
+        $text = append($text, "@str@I have a piece of burnt meat with me|");
+    } else {
+        $text = append($text, "@dre@A piece of burnt meat|");
+    }
+
+    if(inv_total(inv, eye_of_newt) > 0) {
+        $text = append($text, "@str@I have an eye of newt with me|");
+    } else {
+        $text = append($text, "@dre@An eye of newt|");
+    }
+
+} else if(%hetty = ^hetty_objects_given) {
+    $text = "@str@I brought her an onion, a rat's tail, a piece of burnt meat|@str@and an eye of newt which she used to make a potion.||";
+    $text = append($text, "@dbl@I should drink from the @dre@cauldron@dbl@ and improve my magic!");
+
+} else {
+    $text = "@str@I brought her an onion, a rat's tail, a piece of burnt meat|@str@and an eye of newt which she used to make a potion.||@str@I drank from the cauldron and my magic power increased!||@red@QUEST COMPLETE!";
+}
+
+~quest_journal("Witch's Potion", $text);
