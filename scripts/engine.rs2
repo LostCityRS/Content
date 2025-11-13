@@ -214,6 +214,8 @@
 [command,stat](stat $stat)(int)
 // info: Get the current level of $stat (different than base) for the secondary player
 [command,.stat](stat $stat)(int)
+// info: Get the total level of the player
+[command,stat_total]()(int)
 // info: Get the base level of $stat
 [command,stat_base](stat $stat)(int)
 // info: Get the base level of $stat for the secondary player

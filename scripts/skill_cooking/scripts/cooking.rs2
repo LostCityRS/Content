@@ -42,10 +42,10 @@ if (stat(cooking) < $levelrequired) {
     return;
 }
 // macro event
-// if (afk_event = ^true) {
-//     ~macro_event_general_spawn(~macro_event_set_random);
-//     return;
-// }
+if (afk_event = ^true) {
+    ~macro_event_general_spawn(~macro_event_set_random);
+    return;
+}
 // def variables
 def_string $succesmessage = db_getfield($data,cooking_generic:successmessage,0);
 def_string $burnmessage = db_getfield($data,cooking_generic:burnmessage,0);

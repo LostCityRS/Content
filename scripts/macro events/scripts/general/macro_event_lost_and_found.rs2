@@ -1,0 +1,87 @@
+// Noting here until gas chest macro event is added: 245.2 varp macro_chest_gas_coord is renamed to macro_event_target_coord
+// https://www.youtube.com/watch?v=Pc0gLKWblPQ (aug 2008)
+// https://www.youtube.com/watch?v=BX_WYBKR-MU (june 2007)
+//TODO Add this to teleport spells & ess mine teleportation (to and from?)
+
+[mapzone,0_36_74] 
+~macro_events_hide_tabs;
+//TODO: What music to play here?
+// @music_playbyregion(coord);
+
+[mapzoneexit,0_36_74]
+~macro_events_varps_reset;
+~initalltabs;
+
+[proc,macro_laf_start](coord $destination)
+%macro_event_target_coord = $destination;
+~randomize_appendages;
+def_coord $target = 0_36_74_34_11;
+if (coord ! $target) {
+    ~player_teleport_normal($target);
+}
+mes("There has been a fault in the teleportation matrix.");//no idea where this line break should go... doesn't fit like the video shows
+mes("Please operate the odd appendage out to be forwarded to your destination.");
+~mesbox("There has been a fault in the teleportation matrix. Please operate the|odd appendage out to be forwarded to your destination.");
+
+[proc,randomize_appendages]
+def_int $state1 = random(8);
+def_int $state2 = random(8);
+while ($state2 = $state1) { $state2 = random(8); }
+%macro_laf_appendage_1_state = $state1;
+%macro_laf_appendage_2_state = $state1;
+%macro_laf_appendage_3_state = $state1;
+%macro_laf_appendage_4_state = $state1;
+def_int $correct = random(4);
+switch_int ($correct) {
+    case 0 : %macro_laf_appendage_1_state = $state2;
+    case 1 : %macro_laf_appendage_2_state = $state2;
+    case 2 : %macro_laf_appendage_3_state = $state2;
+    case 3 : %macro_laf_appendage_4_state = $state2;
+}
+
+[oploc1,macro_laf_appendage_1] ~check_appendages(0);
+[oploc1,macro_laf_appendage_2] ~check_appendages(1);
+[oploc1,macro_laf_appendage_3] ~check_appendages(2);
+[oploc1,macro_laf_appendage_4] ~check_appendages(3);
+[proc,check_appendages](int $check)
+def_boolean $correct = false;
+switch_int ($check) {
+    case 0 :
+        if ((%macro_laf_appendage_1_state ! %macro_laf_appendage_2_state) &
+           (%macro_laf_appendage_1_state ! %macro_laf_appendage_3_state) &
+           (%macro_laf_appendage_1_state ! %macro_laf_appendage_4_state)) {
+            $correct = true;
+        }
+    case 1 :
+        if ((%macro_laf_appendage_2_state ! %macro_laf_appendage_1_state) &
+           (%macro_laf_appendage_2_state ! %macro_laf_appendage_3_state) &
+           (%macro_laf_appendage_2_state ! %macro_laf_appendage_4_state)) {
+            $correct = true;
+        }
+    case 2 :
+        if ((%macro_laf_appendage_3_state ! %macro_laf_appendage_1_state) &
+           (%macro_laf_appendage_3_state ! %macro_laf_appendage_2_state) &
+           (%macro_laf_appendage_3_state ! %macro_laf_appendage_4_state)) {
+            $correct = true;
+        }
+    case 3 :
+        if ((%macro_laf_appendage_4_state ! %macro_laf_appendage_1_state) &
+           (%macro_laf_appendage_4_state ! %macro_laf_appendage_2_state) &
+           (%macro_laf_appendage_4_state ! %macro_laf_appendage_3_state)) {
+            $correct = true;
+        }
+}
+if ($correct = false) {
+    //mes here?
+    stat_drain(magic, 10, 0);//drains magic by 10, no damage per RSW
+    p_delay(0);
+    ~randomize_appendages;
+} else {
+    ~macro_laf_complete;
+}
+
+[proc,macro_laf_complete]
+~player_teleport_normal(%macro_event_target_coord);
+//TODO: Give 2x runes of spell originally casted or 8-14 noted rune essence if teleporting to/from ess mine (based on macro_event_target_coord?)
+//~doubleobjbox(lawrune, airrune, "Abyssal Services apologise for any inconvenience. Please|accept these runes in way of recompense.", 150);
+~objbox(blankrune, "Abyssal Services apologise for any inconvenience. Please|accept these runes in way of recompense.", 150, 0, divide(^objbox_height, 2));

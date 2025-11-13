@@ -11,6 +11,16 @@ set_player_op("Follow", 3, ^false);
 set_player_op("Trade with", 4, ^false);
 set_player_op(null, 5, ^false);
 
+// random event timer
+settimer(general_macro_events, 500);
+
+// for logout out during a general macro event, they respawn when you log back in
+// queue: 
+// - https://youtu.be/T0ulsgorBkY?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT
+// - https://youtu.be/HwGAzcmvF9k?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT
+// npc spawns only after interface is closed
+queue(macro_event_login, 0);
+
 ~initalltabs;
 
 if (map_production = true) {
