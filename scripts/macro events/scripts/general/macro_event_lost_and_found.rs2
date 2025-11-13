@@ -22,15 +22,6 @@ if (coord ! $target) {
 mes("There has been a fault in the teleportation matrix.");//no idea where this line break should go... doesn't fit like the video shows
 mes("Please operate the odd appendage out to be forwarded to your destination.");
 ~mesbox("There has been a fault in the teleportation matrix. Please operate the|odd appendage out to be forwarded to your destination.");
-if_settab(null, 0);
-if_settab(null, 1);
-if_settab(null, 2);
-if_settab(null, 3);
-if_settab(null, 4);
-if_settab(null, 5);
-if_settab(null, 6);
-if_settab(null, 11);
-if_settab(null, 12);
 
 [proc,randomize_appendages]
 def_int $state1 = random(8);
