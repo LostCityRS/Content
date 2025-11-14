@@ -16,7 +16,7 @@ if($option = 1) {
     ~chatnpc("<p,neutral>You're after a quest, you say? Actually I could do with a bit of help.");
     ~chatnpc("<p,neutral>My sheep are getting mighty woolly. I'd be much obliged if you could shear them. And while you're at it spin the wool for me too.");
     ~chatnpc("<p,happy>Yes, that's it. Bring me 20 balls of wool. And I'm sure I could sort out some sort of payment. Of course, there's the small matter of The Thing.");
-    @multi3("Yes okay. I can do that.", fred_yes_okay, "That doesn't sound a very exciting quest.", fred_not_exciting, "What do you mean, The Thing?", fred_the_thing);
+    @multi3("Yes okay. I can do that.", fred_yes_okay, "That doesn't sound like a very exciting quest.", fred_not_exciting, "What do you mean, The Thing?", fred_the_thing);
 } else if($option = 2) {
     @fred_something_to_kill;
 } else if($option = 3) {
@@ -35,7 +35,7 @@ if($option = 1) {
 
 [label,fred_not_exciting]
 // 225 dialog
-~chatplayer("<p,neutral>That doesn't sound a very exciting quest.");
+~chatplayer("<p,neutral>That doesn't sound like a very exciting quest.");
 ~chatnpc("<p,neutral>Well what do you expect if you ask a farmer for a quest? Now are you going to help me or not?");
 @multi2("Yes okay. I can do that.", fred_yes_okay, "No, I'll give it a miss.", fred_no_miss);
 
@@ -203,7 +203,7 @@ if(%sheep = calc(^sheep_last_wool) & inv_total(inv, ball_of_wool) > 0) {
 // Other 2009 sources don't have this dialog when all 20 are handed in at once, so perhaps this means it was also there in 377
 // No way to tell as hardly anybody doing the quest on video ever hands in less than 20 balls of wool
 // However this mesbox is also present in OSRS transcript https://oldschool.runescape.wiki/w/Transcript:Sheep_Shearer#Handing_in_any_balls_of_wool
-~mesbox("You give Fred <tostring($balls)> balls of wool"); // no period
+~mesbox("You give Fred <~text_plural($balls, "ball", "balls")> of wool"); // no period
 ~chatplayer("<p,happy>That's all I've got so far.");
 ~chatnpc("<p,neutral>I need more before I can pay you.");
 ~chatplayer("<p,neutral>Ok, I'll work on it.");
