@@ -7,8 +7,9 @@ if(%sheep = ^sheep_not_started) {
     @fred_post_quest;
 }
 
+// Dialogue source: 2007 RS2 https://youtu.be/rMVyZP5Y4xQ?t=16
 [label,fred_start]
-~chatnpc("<p,angry>What are you doing on my land? You're not the one keeps leaving all my gates open and letting out all my sheep?");
+~chatnpc("<p,angry>What are you doing on my land? You're not the one who keeps leaving all my gates open and letting out all my sheep are you?");
 def_int $option = ~p_choice3("I'm looking for a quest.", 1, "I'm looking for something to kill.", 2, "I'm lost.", 3);
 if($option = 1) {
     ~chatplayer("<p,neutral>I'm looking for a quest.");
@@ -23,71 +24,203 @@ if($option = 1) {
 }
 
 [label,fred_something_to_kill]
+// 225 dialog, 2025 OSRS still matches
 ~chatplayer("<p,happy>I'm looking for something to kill.");
 ~chatnpc("<p,angry>What, on my land? Leave my livestock alone you scoundrel!");
 
 [label,fred_im_lost]
+// 225 dialog, 2025 OSRS still matches
 ~chatplayer("<p,sad>I'm lost.");
 ~chatnpc("<p,confused>How can you be lost? Just follow the road east and south. You'll end up in Lumbridge fairly quickly.");
 
 [label,fred_not_exciting]
+// 225 dialog
 ~chatplayer("<p,neutral>That doesn't sound a very exciting quest.");
 ~chatnpc("<p,neutral>Well what do you expect if you ask a farmer for a quest? Now are you going to help me or not?");
 @multi2("Yes okay. I can do that.", fred_yes_okay, "No, I'll give it a miss.", fred_no_miss);
 
+// Dialog source: 2008 RS2 https://youtu.be/SmomTYcvcS4?t=104
+// OSRS wiki transcript from September 2020 also lines up https://oldschool.runescape.wiki/w/Transcript:Sheep_Shearer?oldid=13311747
 [label,fred_the_thing]
 ~chatplayer("<p,quiz>What do you mean, The Thing?");
-~chatnpc("<p,shifty>I wouldn't worry about it. Something ate all the previous shearers. They probably got unlucky. So are you going to help me?");
-@multi2("Yes okay. I can do that.", fred_yes_okay, "Erm, I'm a bit worried about this thing.", fred_worried_thing);
+~chatnpc("<p,neutral>Well now, no one has ever seen The Thing. That's why we call it The Thing, 'cos we don't know what it is.");
+~chatnpc("<p,scared>Some say it's a black hearted shapeshifter, hungering for the souls of hard working decent folk like me. Others say it's just a sheep.");
+~chatnpc("<p,angry>Well I don't have all day to stand around and gossip. Are you going to shear my sheep or what!");
+
+// The dialog for this choice was reworked in OSRS between September and November 2020
+// according to this diff: https://oldschool.runescape.wiki/w/Transcript:Sheep_Shearer?diff=next&oldid=13311747
+@multi2("Yes okay. I can do that.", fred_yes_okay, "Erm I'm a bit worried about this thing.", fred_worried_thing);
 
 [label,fred_no_miss]
+// 225 dialog, 2025 OSRS has Fred say "Suit yourself." after this
 ~chatplayer("<p,neutral>No, I'll give it a miss.");
 
 [label,fred_worried_thing]
-~chatplayer("<p,confused>Erm, I'm a bit worried about this thing.");
+// 225 dialog
+~chatplayer("<p,confused>Erm I'm a bit worried about this thing.");
 ~chatnpc("<p,shifty>I'm sure it's nothing to worry about. It's possible the other shearers aren't dead at all. And are just hiding in the woods or something.");
 ~chatplayer("<p,neutral>I'm not convinced.");
 
+// Dialogue source: 2007 RS2 https://youtu.be/rMVyZP5Y4xQ?t=50
 [label,fred_yes_okay]
 ~chatplayer("<p,happy>Yes okay. I can do that.");
-~chatnpc("<p,neutral>Ok I'll see you when you have some wool.");
 %sheep = ^sheep_started;
 ~send_quest_progress_colour(questlist:sheep, %sheep, ^sheep_complete);
+~chatnpc("<p,happy>Good! Now one more thing, do you actually know how to shear a sheep?");
+@multi2("Of course!", fred_player_knows_shearing, "Err. No, I don't know actually.", fred_player_doesnt_know_shearing);
 
+// Dialogue source: 2007 RS2 https://youtu.be/rMVyZP5Y4xQ?t=50
+[label,fred_player_knows_shearing]
+~chatplayer("<p,happy>Of Course!"); // this becomes a lowercase C at some point before HD. April 2008 has it changed: https://youtu.be/t8F4G34c6UA?t=8
+~chatnpc("<p,neutral>And you know how to spin wool into balls?");
+@multi2("I'm something of an expert actually!", fred_player_knows_spinning, "I don't know how to spin wool, sorry.", fred_player_doesnt_know_spinning);
+
+[label,fred_player_doesnt_know_shearing]
+/* 2007 RS2 and 2013 OSRS both have a shears spawn on the table so I conjecture it was probably also there in 2006.
+This spawn was NOT present in 2005 (https://youtu.be/eQEYx8hwA_I?t=83) nor was any of the dialog about knowing how to shear/spin.
+
+The problem is determining the mechanics of how Fred should present the shears to the player.
+2025 OSRS does inv_add during dialog, and only references the table spawn if the player's inventory is full.
+
+However February and June 2008 sources (https://youtu.be/Qg1HOZAN6XY?t=95, https://youtu.be/MwBu5qhHpxA?t=15)
+always reference the table spawn in dialog, followed by an objbox demonstrating the general store's map icon.
+
+Mechanically, this suggests to me that the inv_add shears are an OSRS addition, and that RS2 would've been limited to only the table spawn and general store.
+Dialog-wise, which lines are more accurate to 377 is anyone's guess, but 2025 OSRS (and available transcripts) seem to have subtle changes so I'm sticking with RS2. */
+~chatplayer("<p,neutral>Err. No, I don't know actually.");
+if(inv_total(inv, shears) > 0) {
+    @fred_player_already_has_shears;
+} else {
+    @fred_player_doesnt_have_shears;
+}
+
+// Feb 2008 RS2 https://youtu.be/Qg1HOZAN6XY?t=93
+[label,fred_player_doesnt_have_shears]
+~chatnpc("<p,neutral>Well, first things first, you need a pair of shears, there's a pair in the house on the table.");
+~chatnpc("<p,neutral>Or you could buy your own pair from the General Store in Lumbridge.");
+~chatnpc("<p,neutral>To get to Lumbridge travel east on the road outside.");
+~objbox(general_store_icon_dummy, "General Stores are marked on the map by this symbol.", 250, 0, divide(^objbox_height, 2));
+~chatnpc("<p,neutral>Once you get some shears use them on the sheep in my field.");
+~chatplayer("<p,neutral>Sounds easy!");
+~chatnpc("<p,laugh>That's what they all say!");
+~chatnpc("<p,neutral>Some of the sheep don't like it and will run away from you. Persistence is the key.");
+~chatnpc("<p,neutral>Once you've collected some wool you can spin it into balls.");
+@fred_do_you_know_how_to_spin;
+
+// January 2009 RS2 https://youtu.be/_6vmKUvOEn4?t=163
+// April 2009 RS2 https://youtu.be/jKqdGGmptmU?t=54
+[label,fred_player_already_has_shears]
+~chatnpc("<p,happy>Well, you're halfway there already! You have a set of shears in your inventory. Just use those on a Sheep to shear it.");
+~chatplayer("<p,neutral>That's all I have to do?");
+~chatnpc("<p,neutral>Well once you've collected some wool you'll need to spin it into balls.");
+@fred_do_you_know_how_to_spin;
+
+// Feb 2008 RS2 https://youtu.be/Qg1HOZAN6XY?t=150
+[label,fred_do_you_know_how_to_spin]
+~chatnpc("<p,quiz>Do you know how to spin wool?");
+@multi2("I don't know how to spin wool, sorry.", fred_player_doesnt_know_spinning, "I'm something of an expert actually!", fred_player_knows_spinning);
+
+// 2007 RS2 https://youtu.be/rMVyZP5Y4xQ?t=65
+[label,fred_player_knows_spinning]
+~chatplayer("<p,happy>I'm something of an expert actually!");
+~chatnpc("<p,neutral>Well you can stop grinning and get to work then.");
+~chatnpc("<p,angry>I'm not paying you by the hour!");
+
+// Feb 2008 RS2 https://youtu.be/Qg1HOZAN6XY?t=157
+[label,fred_player_doesnt_know_spinning]
+~chatplayer("<p,neutral>I don't know how to spin wool, sorry.");
+~chatnpc("<p,neutral>Don't worry, it's quite simple!");
+~chatnpc("<p,neutral>The nearest Spinning Wheel can be found on the first floor of Lumbridge Castle.");
+~chatnpc("<p,neutral>To get to Lumbridge Castle just follow the road east.");
+~objbox(crafting_icon_dummy, "This icon denotes a Spinning Wheel on the world map.", 250, 0, divide(^objbox_height, 2));
+~chatplayer("<p,happy>Thank you!");
+
+// This dialog is different based on whether or not the player interacts with The Thing
+// June 2007: https://youtu.be/rMVyZP5Y4xQ?t=209 - The Thing not encountered, dialog starts "How are you doing getting those balls of wool?"
+// July 2007: https://youtu.be/gJkcYE-6luc?t=362 - tried to shear The Thing, dialog starts "What are you doing on my land?"
 [label,fred_progressed]
+switch_int(%the_thing_sheared) {
+    case 0 : @fred_how_are_you_doing;
+    case 1 :
+        ~chatnpc("<p,angry>What are you doing on my land?");
+        @multi2("I'm back!", fred_im_back, "Fred! Fred! I've seen The Thing!", fred_seen_the_thing);
+}
+
+// July 2007: https://youtu.be/gJkcYE-6luc?t=362
+[label,fred_im_back]
+~chatplayer("<p,neutral>I'm back!");
+@fred_how_are_you_doing;
+
+// OSRS wiki
+[label,fred_how_are_you_doing]
 ~chatnpc("<p,neutral>How are you doing getting those balls of wool?");
 if(inv_total(inv, ball_of_wool) > 0) {
     ~chatplayer("<p,happy>I have some.");
     ~chatnpc("<p,neutral>Give 'em here then.");
     @fred_give_wool;
+} else if(inv_total(inv, wool) > 0) {
+    ~chatplayer("<p,neutral>I've got some wool. I've not managed to make it into a ball though.");
+    ~chatnpc("<p,neutral>Well go find a spinning wheel then. You can find one on the first floor of Lumbridge Castle, just walk east on the road outside my house and you'll find Lumbridge.");
 } else {
-    ~chatplayer("<p,happy>I haven't got any at the moment.");
+    // No videos ever seem to trigger this dialog (without balls OR wool in inventory)
+    // So this one is from OSRS wiki https://oldschool.runescape.wiki/w/Transcript:Sheep_Shearer#Before_delivering_any_balls_of_wool
+    def_int $balls_left = calc(21 - %sheep);
+    ~chatplayer("<p,neutral>How many more do I need to give you?");
+    ~chatnpc("<p,neutral>You need to collect <~text_plural($balls_left, "more ball", "more balls")> of wool.");
+    ~chatplayer("<p,sad>I haven't got any at the moment.");
     ~chatnpc("<p,happy>Ah well at least you haven't been eaten.");
+    // OSRS has "You know what you're doing, right?" after this
+    // and loops back to the shearing/spinning explanation, but it smells inauthentic and I haven't found an RS2 source yet
 }
 
+[label,fred_seen_the_thing]
+// April 2008 https://youtu.be/tnITBfckYR4?t=127
+~chatplayer("<p,shock>Fred! Fred! I've seen The Thing!");
+~chatnpc("<p,scared>You ... you actually saw it?");
+// July 2008 https://youtu.be/JzFbdX0wztA?t=84
+~chatnpc("<p,scared>Run for the hills! <displayname> grab as many chickens as you can! We have to ...");
+~chatplayer("<p,shock>Fred!");
+~chatnpc("<p,scared>... flee! Oh, woe is me! The shapeshifter is coming! We're all ...");
+~chatplayer("<p,angry>FRED!");
+~chatnpc("<p,quiz>... doomed. What!");
+~chatplayer("<p,neutral>It's not a shapeshifter or any other kind of monster!");
+~chatnpc("<p,quiz>Well then what is it <text_gender("boy", "girl")>?");
+~chatplayer("<p,quiz>Well ... it's just two Penguins; Penguins disguised as a sheep.");
+~chatnpc("<p,quiz>...");
+~chatnpc("<p,shock>Have you been out in the sun too long?");
+
 [label,fred_give_wool]
-if(inv_total(inv, ball_of_wool) > 0 & %sheep ! ^sheep_last_wool) {
-    if_close;
-    inv_del(inv, ball_of_wool, 1);
-    mes("You give Fred a ball of wool.");
-    %sheep = calc(%sheep + 1);
-    p_delay(1);
-    @fred_give_wool;
-} else {
+if_close;
+def_int $balls = min(inv_total(inv, ball_of_wool), 19);
+inv_del(inv, ball_of_wool, $balls);
+
+%sheep = calc(%sheep + $balls);
+if(%sheep = calc(^sheep_last_wool) & inv_total(inv, ball_of_wool) > 0) {
     @fred_end_giving_wool;
 }
 
-[label,fred_end_giving_wool]
-if(%sheep = ^sheep_last_wool & inv_total(inv, ball_of_wool) > 0) {
-    ~chatplayer("<p,happy>I have your last ball of wool.");
-    ~chatnpc("<p,sad>I guess I'd better pay you then.");
-    queue(sheep_complete, 0);
-    return;
-}
+// 225 dialog, 2009 RS2 is the same except for a mesbox that says "You give Fred X balls of wool" when <20 are handed in: https://youtu.be/bSV7wJuFxfA?t=471
+// Other 2009 sources don't have this dialog when all 20 are handed in at once, so perhaps this means it was also there in 377
+// No way to tell as hardly anybody doing the quest on video ever hands in less than 20 balls of wool
+// However this mesbox is also present in OSRS transcript https://oldschool.runescape.wiki/w/Transcript:Sheep_Shearer#Handing_in_any_balls_of_wool
+~mesbox("You give Fred <tostring($balls)> balls of wool"); // no period
 ~chatplayer("<p,happy>That's all I've got so far.");
 ~chatnpc("<p,neutral>I need more before I can pay you.");
 ~chatplayer("<p,neutral>Ok, I'll work on it.");
 
+[label,fred_end_giving_wool]
+if(%sheep = calc(^sheep_last_wool) & inv_total(inv, ball_of_wool) > 0) {
+    // 225 dialog, 2025 OSRS still matches
+    ~chatplayer("<p,happy>That's the last of them.");
+    ~chatnpc("<p,sad>I guess I'd better pay you then.");
+    %sheep = ^sheep_last_wool;
+    // The last ball of wool is no longer taken separately in this June 2008 source: https://youtu.be/SmomTYcvcS4?t=214
+    // But is taken separately in Feburary 2008: https://youtu.be/Qg1HOZAN6XY?t=285
+    queue(sheep_complete, 0);
+    return;
+}
+
 [label,fred_post_quest]
+// 225 dialog, 2025 OSRS still matches
 ~chatnpc("<p,angry>What are you doing on my land?");
 @multi2("I'm looking for something to kill.", fred_something_to_kill, "I'm lost.", fred_im_lost);

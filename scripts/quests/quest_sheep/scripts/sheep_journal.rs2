@@ -1,0 +1,35 @@
+[if_button,questlist:sheep]
+def_string $text;
+
+if(%sheep = ^sheep_complete) {
+    // Journal source: 2013 OSRS https://youtu.be/xXyLBw70qBY?t=515
+    $text = "@str@I brought Farmer Fred 20 balls of wool, and he paid me for|@str@it!";
+    $text = append($text, "|@dre@QUEST COMPLETE!");
+    //~quest_journal("Sheep Shearer", $text);
+    //return;
+}
+
+if(%sheep < ^sheep_complete) {
+    // Journal source: 2013 OSRS https://youtu.be/xXyLBw70qBY?t=44
+    $text = "@str@I asked Farmer Fred, near Lumbridge, for a quest. Fred|@str@said he'd pay me for shearing his sheep for him!";
+    if(inv_total(inv, ball_of_wool) >= calc(21 - %sheep)) {
+        // Journal source: 2008 RS2 https://youtu.be/br9a7-z4Is8?t=86
+        // and this line is the same in 2025 OSRS according to manpaint's journals
+        $text = append($text, "|@dbl@I have enough @dre@balls of wool @dbl@to give @dre@Fred @dbl@and get my @dre@reward|@dre@money!");
+    } else {
+        def_int $remaining = calc(calc(21 - %sheep) - inv_total(inv, ball_of_wool));
+        // number of wool balls is blue until 2009
+        if($remaining > 1) {
+            $text = append($text, "|@dbl@I need to collect <tostring($remaining)> more @dre@balls of wool.");
+        } else {
+            $text = append($text, "|@dbl@I need to collect <tostring($remaining)> more @dre@ball of wool.");
+        }
+    }
+}
+
+if(%sheep = ^sheep_not_started) {
+    // Journal source: 2013 OSRS https://youtu.be/xXyLBw70qBY?t=5
+    $text = "@dbl@I can start this quest by speaking to @dre@Farmer Fred@dbl@ at his|@dre@farm@dbl@ just a little way @dre@North West of Lumbridge";
+}
+
+~quest_journal("Sheep Shearer", $text);
