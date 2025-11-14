@@ -21,7 +21,7 @@ p_delay(0);
 npc_changetype_keepall(sheepsheered, 100);
 inv_add(inv, wool, 1);
 mes("You get some wool.");
-~objbox(wool, "You get some wool.", 250, 0, divide(^objbox_height, 2));
+//~objbox(wool, "You get some wool.", 250, 0, divide(^objbox_height, 2)); //no objbox in 2013 OSRS or any of the RS2 sources
 
 [opnpcu,sheepsheered]
 if(last_useitem = shears) {

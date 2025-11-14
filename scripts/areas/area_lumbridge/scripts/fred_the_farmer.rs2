@@ -62,6 +62,7 @@ if($option = 1) {
 ~chatplayer("<p,neutral>I'm not convinced.");
 
 // Dialogue source: 2007 RS2 https://youtu.be/rMVyZP5Y4xQ?t=50
+// 2013 OSRS also agrees https://youtu.be/vumSuzusWOQ?t=26
 [label,fred_yes_okay]
 ~chatplayer("<p,happy>Yes okay. I can do that.");
 %sheep = ^sheep_started;
@@ -70,6 +71,7 @@ if($option = 1) {
 @multi2("Of course!", fred_player_knows_shearing, "Err. No, I don't know actually.", fred_player_doesnt_know_shearing);
 
 // Dialogue source: 2007 RS2 https://youtu.be/rMVyZP5Y4xQ?t=50
+// 2013 OSRS also agrees https://youtu.be/vumSuzusWOQ?t=26
 [label,fred_player_knows_shearing]
 ~chatplayer("<p,happy>Of Course!"); // this becomes a lowercase C at some point before HD. April 2008 has it changed: https://youtu.be/t8F4G34c6UA?t=8
 ~chatnpc("<p,neutral>And you know how to spin wool into balls?");
@@ -109,6 +111,7 @@ if(inv_total(inv, shears) > 0) {
 
 // January 2009 RS2 https://youtu.be/_6vmKUvOEn4?t=163
 // April 2009 RS2 https://youtu.be/jKqdGGmptmU?t=54
+// 2013 OSRS also agrees https://youtu.be/vumSuzusWOQ?t=26
 [label,fred_player_already_has_shears]
 ~chatnpc("<p,happy>Well, you're halfway there already! You have a set of shears in your inventory. Just use those on a Sheep to shear it.");
 ~chatplayer("<p,neutral>That's all I have to do?");
@@ -116,6 +119,7 @@ if(inv_total(inv, shears) > 0) {
 @fred_do_you_know_how_to_spin;
 
 // Feb 2008 RS2 https://youtu.be/Qg1HOZAN6XY?t=150
+// 2013 OSRS also agrees https://youtu.be/vumSuzusWOQ?t=26
 [label,fred_do_you_know_how_to_spin]
 ~chatnpc("<p,quiz>Do you know how to spin wool?");
 @multi2("I don't know how to spin wool, sorry.", fred_player_doesnt_know_spinning, "I'm something of an expert actually!", fred_player_knows_spinning);
@@ -205,7 +209,7 @@ if(%sheep = calc(^sheep_last_wool) & inv_total(inv, ball_of_wool) > 0) {
 // However this mesbox is also present in OSRS transcript https://oldschool.runescape.wiki/w/Transcript:Sheep_Shearer#Handing_in_any_balls_of_wool
 ~mesbox("You give Fred <~text_plural($balls, "ball", "balls")> of wool"); // no period
 ~chatplayer("<p,happy>That's all I've got so far.");
-~chatnpc("<p,neutral>I need more before I can pay you.");
+~chatnpc("<p,neutral>I need more before I can pay you."); // should probably specify the number here, 2009 source does
 ~chatplayer("<p,neutral>Ok, I'll work on it.");
 
 [label,fred_end_giving_wool]
