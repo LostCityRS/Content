@@ -16,7 +16,7 @@ if($option = 1) {
     ~chatnpc("<p,neutral>You're after a quest, you say? Actually I could do with a bit of help.");
     ~chatnpc("<p,neutral>My sheep are getting mighty woolly. I'd be much obliged if you could shear them. And while you're at it spin the wool for me too.");
     ~chatnpc("<p,happy>Yes, that's it. Bring me 20 balls of wool. And I'm sure I could sort out some sort of payment. Of course, there's the small matter of The Thing.");
-    @multi3("Yes okay. I can do that.", fred_yes_okay, "That doesn't sound like a very exciting quest.", fred_not_exciting, "What do you mean, The Thing?", fred_the_thing);
+    @multi3("Yes okay. I can do that.", fred_yes_okay, "That doesn't sound a very exciting quest.", fred_not_exciting, "What do you mean, The Thing?", fred_the_thing);
 } else if($option = 2) {
     @fred_something_to_kill;
 } else if($option = 3) {
@@ -34,8 +34,8 @@ if($option = 1) {
 ~chatnpc("<p,confused>How can you be lost? Just follow the road east and south. You'll end up in Lumbridge fairly quickly.");
 
 [label,fred_not_exciting]
-// 225 dialog
-~chatplayer("<p,neutral>That doesn't sound like a very exciting quest.");
+// 225 dialog, the typo (missing the word "like") is present in 2007 RS2: https://youtu.be/rMVyZP5Y4xQ?t=45
+~chatplayer("<p,neutral>That doesn't sound a very exciting quest.");
 ~chatnpc("<p,neutral>Well what do you expect if you ask a farmer for a quest? Now are you going to help me or not?");
 @multi2("Yes okay. I can do that.", fred_yes_okay, "No, I'll give it a miss.", fred_no_miss);
 
