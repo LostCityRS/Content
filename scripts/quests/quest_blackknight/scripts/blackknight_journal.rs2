@@ -1,0 +1,54 @@
+[if_button,questlist:fortress]
+def_string $x;
+if (%spy = 0) {
+    //https://youtu.be/1Z7QAs_ydIY?t=130 (Aug 2007)
+    $x = append($x, "@dbl@I can start this quest by speaking to @dre@Sir Amik Varze@dbl@ at the|");
+    $x = append($x, "@dre@White Knights' Castle@dbl@ in @dre@Falador.|");
+    if (%qp >= 12) {
+        $x = append($x, "@str@I have a total of at least 12 Quest Points|");
+    } else {
+        $x = append($x, "@dbl@I need a total of at least @dre@12@dbl@ Quest Points|");
+    }
+    $x = append($x, "@dbl@I would have an advantage if I could fight @dre@Level 33 Knights|");
+    $x = append($x, "@dbl@and if I had a smithing level of @dre@26.");
+} else if (%spy = 1) {
+    //https://youtu.be/vNPISjaWfvQ?t=33 (Nov 2007) & https://youtu.be/1Z7QAs_ydIY?t=175 (Aug 2007)
+    $x = append($x, "@dre@Sir Amik Varze @dbl@asked me to investigate the @dre@Black|");
+    $x = append($x, "@dre@Knights' Fortress @dbl@which is located on @dre@Ice Mountain.|");
+// } else if (%spy = ?) {//Per Indio this is may be a rework step?
+//     //https://www.youtube.com/watch?v=1Z7QAs_ydIY&t=267s
+//     $x = append($x, "@dre@Sir Amik Varze @dbl@asked me to investigate the @dre@Black|");
+//     $x = append($x, "@dre@Knights' Fortress @dbl@which is located on @dre@Ice Mountain@dbl@.|");//intentionally blue period here, see video
+//     $x = append($x, "@dbl@I need to disguise myself to gain entry to the @dre@Black|");
+//     $x = append($x, "@dre@Knights' Fortress.");
+} else if (%spy = 2) {
+    //https://www.youtube.com/watch?v=1Z7QAs_ydIY (Aug 2007)
+    $x = append($x, "@str@Sir Amik Varze asked me to investigate the Black Knights'|");
+    $x = append($x, "@str@Fortress. I sneaked inside disguised as a Guard.|");
+    $x = append($x, "@dbl@I eavesdropped on a Witch and the Black Knight Captain|");
+    $x = append($x, "@dbl@and discovered that their invincibility potion can be|");
+    $x = append($x, "@dbl@destroyed with a normal @dre@cabbage.");
+} else if (%spy = 3) {
+    //OSRS
+    $x = append($x, "@str@Sir Amik Varze asked me to investigate the Black Knights'|");
+    $x = append($x, "@str@Fortress. I sneaked inside disguised as a Guard.|");
+    $x = append($x, "@str@I eavesdropped on a Witch and the Black Knight Captain|");
+    $x = append($x, "@str@and discovered that their invincibility potion can be|");
+    $x = append($x, "@str@destroyed with a normal cabbage.|");
+    $x = append($x, "@dbl@Now that I have sabotaged the witch's potion, I can claim my|");
+    $x = append($x, "@dre@reward @dbl@from @dre@Sir Amik Varze @dbl@in the @dre@White Knights' Castle");//OSRS shows Falador Castle here
+} else if (%spy >= 4) {
+    //OSRS
+    $x = append($x, "@str@Sir Amik Varze asked me to investigate the Black Knights'|");
+    $x = append($x, "@str@Fortress. I sneaked inside disguised as a Guard.|");
+    $x = append($x, "@str@I eavesdropped on a Witch and the Black Knight Captain|");
+    $x = append($x, "@str@and discovered that their invincibility potion can be|");
+    $x = append($x, "@str@destroyed with a normal cabbage.|");
+    $x = append($x, "@str@I found a cabbage, and used it to destroy the potion, then|");
+    $x = append($x, "@str@claimed my reward for a job well done.||");
+    $x = append($x, "@red@QUEST COMPLETE!|");
+    $x = append($x, "@dre@Reward:|");
+    $x = append($x, "@dbl@3 Quest Points|");
+    $x = append($x, "@dbl@2500gp");
+}
+~quest_journal("Black Knights' Fortress", $x);
