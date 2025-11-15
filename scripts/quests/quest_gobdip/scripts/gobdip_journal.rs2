@@ -1,0 +1,59 @@
+[if_button,questlist:gobdip]
+def_string $text;
+
+// https://www.youtube.com/watch?v=FVdWI8uTVH8
+// https://www.youtube.com/watch?v=uHUL56EJ1IY
+// OSRS has a reworked version of this quest, which doesn't start in Port Sarim
+if(%goblinquest = ^gobdip_not_started) {
+    $text = "@dbl@I can start this quest by talking to the @dre@Bartender@dbl@ in|@dre@Port Sarim@dbl@.";
+} else if(%goblinquest = ^gobdip_started) {
+    $text = "@str@I spoke to the bartender in Port Sarim who heard a|@str@rumour that the goblins up by the mountain are arguing|@str@about the colour of their armour.|";
+    $text = append($text, "@dbl@I should @dre@investigate@dbl@ before it turns into a full blown war.");
+
+} else if(%goblinquest = ^gobdip_will_bring_armour) {
+    $text = "@str@I spoke to the bartender in Port Sarim who heard a|@str@rumour that the goblins up by the mountain are arguing|@str@about the colour of their armour.|";
+    $text = append($text, "@str@I spoke to Generals Wartface and Bentnoze in the Goblin|@str@Village and found that the goblins were on the brink of civil|");
+    $text = append($text, "@str@war over the colour of their armour. I offered to help the|@str@generals by finding another colour that they both like.||");
+    $text = append($text, "@dbl@I should bring the goblins some @dre@Orange Goblin Armour@dbl@.");
+
+} else if(%goblinquest = ^gobdip_gave_orange) {
+    $text = "@str@I spoke to the bartender in Port Sarim who heard a|@str@rumour that the goblins up by the mountain are arguing|@str@about the colour of their armour.|";
+    $text = append($text, "@str@I spoke to Generals Wartface and Bentnoze in the Goblin|@str@Village and found that the goblins were on the brink of civil|");
+    $text = append($text, "@str@war over the colour of their armour. I offered to help the|@str@generals by finding another colour that they both like.|");
+    $text = append($text, "@str@I gave some Orange Goblin Armour to General Wartface|@str@and General Bentnoze, but they didn't like it.||");
+    $text = append($text, "@dbl@They asked me to bring them some @dre@Blue Goblin Armour@dbl@|@dbl@to try out instead.");
+
+} else if(%goblinquest = ^gobdip_gave_blue) {
+    $text = "@str@I spoke to the bartender in Port Sarim who heard a|@str@rumour that the goblins up by the mountain are arguing|@str@about the colour of their armour.|";
+    $text = append($text, "@str@I spoke to Generals Wartface and Bentnoze in the Goblin|@str@Village and found that the goblins were on the brink of civil|");
+    $text = append($text, "@str@war over the colour of their armour. I offered to help the|@str@generals by finding another colour that they both like.|");
+    $text = append($text, "@str@I gave some Orange Goblin Armour to General Wartface|@str@and General Bentnoze, but they didn't like it.|");
+    $text = append($text, "@str@They asked me to bring them some Blue Goblin Armour to|@str@try out instead.|");
+    $text = append($text, "@str@I gave some Blue Goblin Armour to General Wartface|@str@and General Bentnoze, but they didn't like it.||");
+    $text = append($text, "@dbl@They asked me to bring them some of their original @dre@Brown|@dre@Goblin Armour@dbl@ to try out instead.");
+
+} else if(%goblinquest = ^gobdip_gave_brown) {
+    $text = "@str@I spoke to the bartender in Port Sarim who heard a|@str@rumour that the goblins up by the mountain are arguing|@str@about the colour of their armour.|";
+    $text = append($text, "@str@I spoke to Generals Wartface and Bentnoze in the Goblin|@str@Village and found that the goblins were on the brink of civil|");
+    $text = append($text, "@str@war over the colour of their armour. I offered to help the|@str@generals by finding another colour that they both like.|");
+    $text = append($text, "@str@I gave some Orange Goblin Armour to General Wartface|@str@and General Bentnoze, but they didn't like it.|");
+    $text = append($text, "@str@They asked me to bring them some Blue Goblin Armour to|@str@try out instead.|");
+    $text = append($text, "@str@I gave some Blue Goblin Armour to General Wartface|@str@and General Bentnoze, but they didn't like it.|");
+    $text = append($text, "@str@They asked me to bring them some of their original Brown|@str@Goblin Armour to try out instead.|");
+    $text = append($text, "@str@I gave General Wartface and General Bentnoze some of|@str@their original Brown Goblin Armour.||");
+    $text = append($text, "@dbl@I should see if they liked the @dre@Brown Goblin Armour@dbl@.");
+
+} else {
+    $text = "@str@I spoke to the bartender in Port Sarim who heard a|@str@rumour that the goblins up by the mountain are arguing|@str@about the colour of their armour.|";
+    $text = append($text, "@str@I spoke to Generals Wartface and Bentnoze in the Goblin|@str@Village and found that the goblins were on the brink of civil|");
+    $text = append($text, "@str@war over the colour of their armour. I offered to help the|@str@generals by finding another colour that they both like.|");
+    $text = append($text, "@str@I gave some Orange Goblin Armour to General Wartface|@str@and General Bentnoze, but they didn't like it.|");
+    $text = append($text, "@str@They asked me to bring them some Blue Goblin Armour to|@str@try out instead.|");
+    $text = append($text, "@str@I gave some Blue Goblin Armour to General Wartface|@str@and General Bentnoze, but they didn't like it.|");
+    $text = append($text, "@str@They asked me to bring them some of their original Brown|@str@Goblin Armour to try out instead.|");
+    $text = append($text, "@str@I gave General Wartface and General Bentnoze some of|@str@their original Brown Goblin Armour, and it turned out to be|");
+    $text = append($text, "@str@their favourite. They're clearly not the smartest, but that's|@str@goblins for you.||");
+    $text = append($text, "@red@QUEST COMPLETE!");
+}
+
+~quest_journal("Goblin Diplomacy", $text);
