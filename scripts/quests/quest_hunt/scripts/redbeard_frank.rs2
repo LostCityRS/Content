@@ -2,9 +2,9 @@
 // https://storage.googleapis.com/tannerdino/images/RedbeardFrank.jpg
 ~chatnpc("<p,laugh>Arrrh Matey!");
 
-if (%hunt = 1) {
+if (%hunt = ^hunt_fetch_rum) {
     @redboard_progress;
-} else if (%hunt = 2 & inv_total(inv, chest_key) = 0) {
+} else if (%hunt = ^hunt_received_key & inv_total(inv, chest_key) = 0) {
     ~chatplayer("<p,sad>I seem to have lost my chest key...");
     ~chatnpc("<p,neutral>Arr, silly you. Fortunately I took the precaution to have another one made.");
 
@@ -16,7 +16,7 @@ if (%hunt = 1) {
     @redbeard_options;
 }
 [label,redbeard_options]
-if (%hunt = 0) {
+if (%hunt = ^hunt_not_started) {
     @multi3("I'm in search of treasure.", redbeard_treasure, "Arr!", redbeard_arr, "Do you have anything for trade?", redbeard_trade);
 } else {
     @multi2("Arr!", redbeard_arr, "Do you have anything for trade?", redbeard_trade);
@@ -38,7 +38,7 @@ if (inv_total(inv, karamja_rum) >= 1) {
 ~chatnpc("<p,shifty>Hector were very successful and became very rich. But about a year ago we were boarded by the Customs and Excise Agents.");
 ~chatnpc("<p,sad>Hector were killed along with many of the crew, I were one of the few to escape and I escaped with this.");
 
-%hunt = 2;
+%hunt = ^hunt_received_key;
 
 inv_del(inv, karamja_rum, 1);
 inv_add(inv, chest_key, 1);
@@ -63,7 +63,7 @@ if ($option = 1) {
 ~chatnpc("<p,neutral>Well for example if you can get me a bottle of rum... Not just any rum mind...");
 ~chatnpc("<p,happy>I'd like some rum made on Karamja Island. There's no rum like Karamja Rum!");
 
-%hunt = 1;
+%hunt = ^hunt_fetch_rum;
 ~send_quest_progress(questlist:hunt, %hunt, ^hunt_complete);
 
 [label,redbeard_arr]
@@ -83,7 +83,7 @@ if (last_useitem ! karamja_rum) {
 
 // I'm unsure what happens if you attempt this when progress = 0,
 // but it shouldn't be possible anyway.
-if (%hunt = 1) {
+if (%hunt = ^hunt_fetch_rum) {
     ~chatplayer("<p,happy>Frank, I have some Karamja Rum.");
     @redbeard_hand_rum;
 } else {

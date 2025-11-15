@@ -4,9 +4,9 @@ if (testbit(%hunt_store_employed, 1) = ^true) {
 }
 
 ~chatnpc("<p,happy>Welcome to my food store! Would you like to buy anything?");
-if (%hunt = 0) {
+if (%hunt = ^hunt_not_started) {
     @multi3("Yes please.", wydin_open_shop, "No, thank you.", wydin_no, "What can you recommend?", wydin_recommend);
-} else if (%hunt = 1) {
+} else if (%hunt = ^hunt_fetch_rum) {
     @multi4("Yes please.", wydin_open_shop, "No, thank you.", wydin_no, "What can you recommend?", wydin_recommend, "Can I get a job here?", wydin_job);
 }
 
@@ -41,7 +41,7 @@ if (inv_total(inv, white_apron) = 0 & inv_total(worn, white_apron) = 0) {
 }
 
 ~chatplayer("<p,happy>Yes, I have one right here.");
-%hunt_store_employed = setbit(%hunt_store_employed, ^food_store);
+%hunt_store_employed = setbit(%hunt_store_employed, ^hunt_fetch_rum);
 ~chatnpc("<p,happy>Wow - you are well prepared! You're hired. Go through to the back and tidy up for me, please.");
 
 [label,wydin_open_shop]
