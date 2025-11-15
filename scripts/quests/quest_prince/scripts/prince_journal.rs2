@@ -1,0 +1,97 @@
+[if_button,questlist:prince]
+def_string $text;
+
+// https://github.com/Indio3/quest-journals/tree/master/quest_prince
+// https://www.youtube.com/watch?v=AL87Lc0GVaQ
+// https://www.youtube.com/watch?v=PaNzUDHr_JA
+// https://www.youtube.com/watch?v=92mn18XDgNc
+// https://www.youtube.com/watch?v=AYgahiNzRkw
+// https://www.youtube.com/watch?v=Hq1GPDMUemA
+if(%princequest = ^prince_not_started) {
+    $text = "@dbl@I can start this quest by speaking to @dre@Hassan@dbl@ in @dre@Al-Kharid|@dre@Palace@dbl@.";
+
+} else if(%princequest = ^prince_started) {
+    $text = "@str@I started this quest by speaking to Hassan in Al-Kharid|@str@Palace. He told me I should speak to Osman the spy master.|";
+    $text = append($text, "@dbl@I should go and speak to @dre@Osman@dbl@ for details on the quest.");
+
+} else if(%princequest = ^prince_spoken_osman) {
+    // Below is found on the source in Indio's repo
+    $text = "@str@Prince Ali has been kidnapped but luckily the spy Leela|@str@has found he is being held near draynor village. I will|";
+    $text = append($text, "@str@need to disguise the Prince and tie up his captor to free|@str@him from their clutches. To do this I should:||");
+    $text = append($text, "@dbl@Talk to @dre@Leela@dbl@ near @dre@Draynor Village@dbl@ for advice|");
+    if (inv_total(inv, princeskey) > 0) {
+        $text = append($text, "@str@I have a duplicate of the key with me|");
+    } else {
+        $text = append($text, "@dbl@Get a duplicate of the key that is imprisoning the prince|");
+    }
+    if (inv_total(inv, rope) > 0) {
+        $text = append($text, "@str@I have some rope with me|");
+    } else {
+        $text = append($text, "@dbl@Get some rope to tie up the Princes' kidnapper|");
+    }
+    if (inv_total(inv, skinpaste) > 0) {
+        $text = append($text, "@str@I have some skin paste with me|");
+    } else {
+        $text = append($text, "@dbl@Get something to colour the Princes' skin as disguise|");
+    }
+    if (inv_total(inv, pink_skirt) > 0) {
+        $text = append($text, "@str@I have a skirt suitable for a disguise with me|");
+    } else {
+        $text = append($text, "@dbl@Get a skirt similar to his kidnapper as disguise|");
+    }
+    if (inv_total(inv, blondwig) > 0) {
+        $text = append($text, "@str@I have a wig suitable for a disguise with me");
+    } else {
+        $text = append($text, "@dbl@Get a Wig to help disguise the prince");
+    }
+
+    // Below looks like a newer version, from the linked YouTube videos.
+    /*$text = "@str@I started this quest by speaking to Hassan in Al-Kharid|@str@Palace. He told me I should speak to Osman the spy master.|";
+    $text = append($text, "@str@I should go and speak to Osman for details on the quest.|");
+    $text = append($text, "@dre@Prince Ali@dbl@ has been @dre@kidnapped@dbl@ but luckily the spy @dre@Leela@dbl@ has|@dbl@found he is being held near @dre@draynor village@dbl@. I will need to|");
+    $text = append($text, "@dre@disguise@dbl@ the @dre@Prince@dbl@ and @dre@tie@dbl@ up his @dre@captor@dbl@ to @dre@free@dbl@ him from|@dbl@their @dre@clutches@dbl@.|");
+    $text = append($text, "@dbl@To do this I should:-|");
+    $text = append($text, "@dbl@Talk to @dre@Leela@dbl@ near @dre@Draynor Village@dbl@ for advice.|");
+    $text = append($text, "@dbl@Get a @dre@duplicate@dbl@ of the @dre@key@dbl@ that is @dre@imprisoning@dbl@ the @dre@prince@dbl@.|");
+    $text = append($text, "@dbl@Talk to @dre@Leela@dbl@ near @dre@Draynor Village@dbl@ for advice.|");*/
+
+} else if(%princequest = ^prince_prep_finished) {
+    $text = "@str@Prince Ali has been kidnapped but luckily the spy Leela|@str@has found he is being held near draynor village. I will|";
+    $text = append($text, "@str@need to disguise the Prince and tie up his captor to free|@str@him from their clutches.|");
+    $text = append($text, "@dbl@Before I can free @dre@Prince Ali@dbl@, I need to deal with the @dre@Guard@gbl@. @dre@Leela@dbl@ suggested I speak with the @dre@Guard@dbl@ to try and|@dbl@determine any weaknesses he might have.|");
+
+} else if(%princequest = ^prince_guard_drunk) {
+    $text = "@str@Prince Ali has been kidnapped but luckily the spy Leela|@str@has found he is being held near draynor village. I will|";
+    $text = append($text, "@str@need to disguise the Prince and tie up his captor to free|@str@him from their clutches.|");
+    $text = append($text, "@str@I also had to prevent the Guard from seeing what I was up|@str@to, by getting him drunk.|");
+    $text = append($text, "@dbl@The last thing I need to do is deal with @dre@Lady Keli@dbl@.|@dre@Leela@dbl@ suggested I use some @dre@Rope@dbl@ to tie her up.");
+
+} else if(%princequest = ^prince_tied_keli) {
+    $text = "@str@Prince Ali has been kidnapped but luckily the spy Leela|@str@has found he is being held near draynor village. I will|";
+    $text = append($text, "@str@need to disguise the Prince and tie up his captor to free|@str@him from their clutches.|");
+    $text = append($text, "@str@I also had to prevent the Guard from seeing what I was up|@str@to, by getting him drunk.|");
+    $text = append($text, "@str@With the guard disposed of, I used my rope to tie up Lady|@str@Keli in a cupboard, so I could disguise the Prince.|");
+    $text = append($text, "@dbl@I can now free @dre@Prince Ali@dbl@. I'll need to make sure I|@dbl@give him his disguise when I do.");
+
+} else if(%princequest = ^prince_saved) {
+    $text = "@str@Prince Ali has been kidnapped but luckily the spy Leela|@str@has found he is being held near draynor village. I will|";
+    $text = append($text, "@str@need to disguise the Prince and tie up his captor to free|@str@him from their clutches.|");
+    $text = append($text, "@str@I also had to prevent the Guard from seeing what I was up|@str@to, by getting him drunk.|");
+    $text = append($text, "@str@With the guard disposed of, I used my rope to tie up Lady|@str@Keli in a cupboard, so I could disguise the Prince.|");
+    $text = append($text, "@str@I then used a wig, a skirt and some skin paste to make the|@str@prince look like Lady Keli so he could escape to his|@str@freedom with Leela after unlocking his cell door.|");
+    $text = append($text, "@dbl@I should return to @dre@Hassan@dbl@ to claim my reward.");
+
+} else {
+    $text = "@str@I started this quest by speaking to Hassan in Al-Kharid|@str@Palace. He told me I should speak to Osman the spy master.|";
+    $text = append($text, "@str@I should go and speak to Osman for details on the quest.|");
+    $text = append($text, "@str@Prince Ali has been kidnapped but luckily the spy Leela|@str@has found he is being held near draynor village. I will|");
+    $text = append($text, "@str@need to disguise the Prince and tie up his captor to free|@str@him from their clutches.|");
+    $text = append($text, "@str@I also had to prevent the Guard from seeing what I was up|@str@to, by getting him drunk.|");
+    $text = append($text, "@str@With the guard disposed of, I used my rope to tie up Lady|@str@Keli in a cupboard, so I could disguise the Prince.|");
+    $text = append($text, "@str@I then used a wig, a skirt and some skin paste to make the|@str@prince look like Lady Keli so he could escape to his|@str@freedom with Leela after unlocking his cell door.|");
+    $text = append($text, "@str@I returned to Al-Kharid where Hassan rewarded me for|@str@my work.||");
+
+    $text = append($text, "@red@QUEST COMPLETE!");
+}
+
+~quest_journal("The Rescue of Prince Ali", $text);
