@@ -1,0 +1,74 @@
+[ai_timer,macro_mime]
+// To debug the timing:
+//console("hello <tostring(modulo(map_clock, 1))>");
+// if(.npc_find(0_31_74_27_26, macro_mime, 2, 0) = true) {
+// The mime at 0/40 ticks will face forward
+// Variable $count goes from 0 to 15, increasing by 1 every 2 ticks.
+def_int $count = divide(modulo(map_clock, multiply(16,2)), 2);
+// To "share" the anim across players, we use the map clock as a RNG.
+def_int $curr_emote = divide(modulo(map_clock, multiply(16,16)), 32);
+if($count = 0) {
+    npc_facesquare(movecoord(npc_coord, 0, 0, -1));
+    if (loc_find(0_31_74_23_25, loc_3644) = true) {
+        loc_anim(macro_spotlight_off);
+    }
+    if (loc_find(0_31_74_26_25, loc_3644) = true) {
+        loc_anim(macro_spotlight_on);
+    }
+    huntall(0_31_74_24_26, 1, 0);
+    while (huntnext = true) {
+        if_close();
+    }
+}
+if($count = 1) {
+    switch_int($curr_emote) {
+        case 0 : npc_anim(emote_cry, 0);
+        case 1 : npc_anim(emote_think, 0);
+        case 2 : npc_anim(emote_laugh, 0);
+        case 3 : npc_anim(emote_dance, 0);
+        case 4 : npc_anim(emote_climbing_rope, 0);
+        case 5 : npc_anim(emote_mime_lean, 0);
+        case 6 : npc_anim(emote_glass_box, 0);
+        case 7 : npc_anim(emote_glass_wall, 0);
+    }
+}
+if($count = 4) {
+    npc_anim(emote_bow, 0);
+    npc_facesquare(movecoord(npc_coord, -1, 0, 0));
+    if (loc_find(0_31_74_23_25, loc_3644) = true) {
+        loc_anim(macro_spotlight_on);
+    }
+    if (loc_find(0_31_74_26_25, loc_3644) = true) {
+        loc_anim(macro_spotlight_off);
+    }
+    huntall(0_31_74_24_26, 1, 0);
+    while (huntnext = true) {
+        if_openchat(inter_151);
+    }
+
+}
+
+// This timer gets called every 4 ticks
+npc_settimer(2);
+
+[if_button,inter_151:com_2] @mime_random_emote(emote_cry,0);
+[if_button,inter_151:com_3] @mime_random_emote(emote_think,1);
+[if_button,inter_151:com_4] @mime_random_emote(emote_laugh,2);
+[if_button,inter_151:com_5] @mime_random_emote(emote_dance,3);
+[if_button,inter_151:com_6] @mime_random_emote(emote_climbing_rope,4);
+[if_button,inter_151:com_7] @mime_random_emote(emote_mime_lean,5);
+[if_button,inter_151:com_8] @mime_random_emote(emote_glass_box,6);
+[if_button,inter_151:com_9] @mime_random_emote(emote_glass_wall,7);
+
+
+[label,mime_random_emote](seq $anim, int $num)
+if_close;
+anim($anim, 0);
+def_int $curr_emote = divide(modulo(map_clock, multiply(16,16)), 32);
+if ($num = $curr_emote) {
+    p_delay(4);
+    anim(emote_cheer, 0);
+} else {
+    p_delay(4);
+    anim(emote_cry, 0);
+}
