@@ -1,0 +1,36 @@
+/*^sheep_not_started = 0
+^sheep_started = 1
+^sheep_last_wool = 20
+^sheep_complete = 22
+*/
+[debugproc,sq](int $set)
+if (p_finduid(uid) = false) { return; }
+%sheep = $set;
+mes("new value: <tostring(%sheep)>");
+
+[if_button,questlist:sheep]
+def_string $x;
+switch_int (%sheep) {
+    case ^sheep_not_started ://OSRS
+        $x = append($x, "@dbl@I can start this quest by talking to @dre@Fred @dbl@at his farm|");
+        $x = append($x, "@dbl@in northern @dre@Lumbridge@dbl@.");
+    case ^sheep_started, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 :
+        $x = append($x, "@str@I asked Farmer Fred, near Lumbridge, for a quest.|");
+        $x = append($x, "@str@Fred said he'd pay me for shearing his sheep for him!|");
+        $x = append($x, "@dre@Farmer Fred @dbl@said there was a @dre@spinning wheel @dbl@in @dre@Lumbridge|");
+        $x = append($x, "@dre@castle @dbl@I could use to make the balls of wool.|");
+        def_int $ballsToGo = calc(20 - calc(%sheep - 1));
+        if ($ballsToGo > 0) {
+            $x = append($x, "@dbl@I need to collect <tostring($ballsToGo)> more @dre@balls of wool.");
+        } else {//This isn't currently reachable, but just in case
+            $x = append($x, "@dbl@I have collected all 20 @dre@balls of wool.|");
+        }
+    case ^sheep_complete :
+        $x = append($x, "@str@I asked Farmer Fred, near Lumbridge, for a quest.|");
+        $x = append($x, "@str@Fred said he'd pay me for shearing his sheep for him!|");
+        $x = append($x, "@str@I brought Farmer Fred 20 balls of wool, and he paid me|");
+        $x = append($x, "@str@for it!||");
+        $x = append($x, "@red@QUEST COMPLETE!");
+}
+
+~quest_journal("Sheep Shearer", $x);
