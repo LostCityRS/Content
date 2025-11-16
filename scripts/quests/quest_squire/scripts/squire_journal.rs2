@@ -1,0 +1,79 @@
+[if_button,questlist:squire]
+def_string $x;
+switch_int (%squire) {
+    case ^squire_not_started ://OSRS
+        $x = append($x, "@dbl@I can start this quest by talking to the @dre@Squire @dbl@in the|");
+        $x = append($x, "@dbl@courtyard of the @dre@White Knights's Castle@dbl@.|");
+        if (stat(mining) < 10) {
+            $x = append($x, "@dbl@I need a mining level of @dre@10|");
+        } else {
+            $x = append($x, "@str@I have a mining level of 10|");
+        }
+        $x = append($x, "@dbl@I would have an advantage if I had a combat level of @dre@20.");
+    case ^squire_started ://OSRS except lowercase "D" on dwarf in RS3
+        $x = append($x, "@str@I told the Squire I would help him to replace the sword he had|");
+        $x = append($x, "@str@lost. It could only be made by an Imcando dwarf.|");
+        $x = append($x, "@dbl@The Squire suggests I speak to @dre@Reldo @dbl@in the @dre@Varrock Palace|");
+        $x = append($x, "@dre@Library @dbl@for information about the @dre@Imcando Dwarves.");
+    case ^squire_spoken_reldo :
+        $x = append($x, "@str@I told the Squire I would help him to replace the sword he had|");
+        $x = append($x, "@str@lost. It could only be made by an Imcando dwarf.|");
+        $x = append($x, "@dbl@Reldo couldn't give me much information about the @dre@Imcando|");
+        $x = append($x, "@dbl@except a few live on the @dre@southern peninsula of Asgarnia,|");
+        $x = append($x, "@dbl@they dislike strangers, and LOVE @dre@redberry pies.");
+    case ^squire_given_pie :
+        $x = append($x, "@str@I told the Squire I would help him to replace the sword he had|");
+        $x = append($x, "@str@lost. It could only be made by an Imcando dwarf.|");
+        $x = append($x, "@str@I found an Imcando dwarf named Thurgo thanks to|");
+        $x = append($x, "@str@information provided by Reldo. He wasn't very talkative|");
+        $x = append($x, "@str@until I gave him a Redberry pie, which he gobbled up.|");
+        $x = append($x, "@dbl@He will help me now I have gained his trust through @dre@pie.");
+    case ^squire_spoken_thurgo :
+        $x = append($x, "@str@I told the Squire I would help him to replace the sword he had|");
+        $x = append($x, "@str@lost. It could only be made by an Imcando dwarf.|");
+        $x = append($x, "@str@I found an Imcando dwarf named Thurgo thanks to|");
+        $x = append($x, "@str@information provided by Reldo. He wasn't very talkative|");
+        $x = append($x, "@str@until I gave him a Redberry pie, which he gobbled up.|");
+        $x = append($x, "@dre@Thurgo @dbl@needs a @dre@picture of the sword @dbl@before he can help.|");
+        $x = append($x, "@dbl@I should probably ask the @dre@Squire @dbl@about obtaining one.");
+    case ^squire_looking_portrait ://RS3 + OSRS
+        $x = append($x, "@str@I told the Squire I would help him to replace the sword he had|");
+        $x = append($x, "@str@lost. It could only be made by an Imcando dwarf.|");
+        $x = append($x, "@str@I found an Imcando dwarf named Thurgo thanks to|");
+        $x = append($x, "@str@information provided by Reldo. He wasn't very talkative|");
+        $x = append($x, "@str@until I gave him a Redberry pie, which he gobbled up.|");
+        $x = append($x, "@str@Turgo needed a picture of the sword to replace.|");
+        $x = append($x, "@dbl@The Squire told me about a @dre@portrait @dbl@of Sir Vyvin's father|");
+        $x = append($x, "@dbl@which has a @dre@picture of the sword @dbl@in @dre@Sir Vyvin's room.|");
+    case ^squire_looking_blurite :
+        $x = append($x, "@str@I told the Squire I would help him to replace the sword he had|");
+        $x = append($x, "@str@lost. It could only be made by an Imcando dwarf.|");
+        $x = append($x, "@str@I found an Imcando dwarf named Thurgo thanks to|");
+        $x = append($x, "@str@information provided by Reldo. He wasn't very talkative|");
+        $x = append($x, "@str@until I gave him a Redberry pie, which he gobbled up.|");
+        $x = append($x, "@str@Turgo needed a picture of the sword before he could start|");
+        $x = append($x, "@str@work on a replacement. I took him a portrait of it.|");
+        if (inv_total(inv, faladian_sword) >= 1 | inv_total(bank, faladian_sword) >= 1 | inv_total(worn, faladian_sword) >= 1) {
+            $x = append($x, "@str@Thurgo has now smithed me a replica of Sir Vyvin's sword.|");
+            $x = append($x, "@dbl@I should return it to the @dre@Squire @dbl@for my @dre@reward.");
+        } else {
+            $x = append($x, "@dbl@According to @dre@Thurgo @dbl@to make a @dre@replica sword @dbl@he will need @dre@two|");
+            $x = append($x, "@dre@Iron Bars @dbl@and some @dre@Blurite Ore@dbl@. @dre@Blurite Ore @dbl@can only be|");
+            $x = append($x, "@dbl@found @dre@deep in the caves below Thurgo's house@dbl@. I should|");
+            $x = append($x, "@dbl@prepare myself to fend off Ice giants.");
+        }
+    case ^squire_complete :
+        $x = append($x, "@str@I told the Squire I would help him to replace the sword he had|");
+        $x = append($x, "@str@lost. It could only be made by an Imcando dwarf.|");
+        $x = append($x, "@str@I found an Imcando dwarf named Thurgo thanks to|");
+        $x = append($x, "@str@information provided by Reldo. He wasn't very talkative|");
+        $x = append($x, "@str@until I gave him a Redberry pie, which he gobbled up.|");
+        $x = append($x, "@str@Turgo needed a picture of the sword before he could start|");
+        $x = append($x, "@str@work on a replacement. I took him a portrait of it.|");
+        $x = append($x, "@str@After bringing Thurgo two iron bars and some blurite ore|");
+        $x = append($x, "@str@he made me a fine replica of Sir Vyvin's sword, which I|");
+        $x = append($x, "@str@returned to the Squire for a reward.||");
+        $x = append($x, "@red@QUEST COMPLETE!");
+}
+
+~quest_journal("The Knight's Sword", $x);
