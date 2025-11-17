@@ -168,40 +168,64 @@ settimer(move_ikovtrigger, 1);
 [mapzone,0_46_54] @music_playbyregion(coord);
 
 [mapzone,0_46_55]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_46_55]
+~wilderness_exit;
 
 [mapzone,0_46_56]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_46_56]
+~wilderness_exit;
 
 [mapzone,0_46_57]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_46_57]
+~wilderness_exit;
 
 [mapzone,0_46_58]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_46_58]
+~wilderness_exit;
 
 [mapzone,0_46_59]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_46_59]
+~wilderness_exit;
 
 [mapzone,0_46_60]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
 
+[mapzoneexit,0_46_60]
+~wilderness_exit;
+
 [mapzone,0_46_61]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_46_61]
+~wilderness_exit;
 
 [mapzone,0_46_149] @music_playbyregion(coord);
 [mapzone,0_46_152] @music_playbyregion(coord);
 [mapzone,0_46_153] @music_playbyregion(coord);
 
 [mapzone,0_46_161]
-%wilderness = ^true;
+~wilderness_underground_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_46_161]
+~wilderness_exit;
 
 [mapzone,0_47_47] @music_playbyregion(coord);
 [mapzone,0_47_48] @music_playbyregion(coord);
@@ -213,44 +237,71 @@ settimer(move_ikovtrigger, 1);
 [mapzone,0_47_54] @music_playbyregion(coord);
 
 [mapzone,0_47_55]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_47_55]
+~wilderness_exit;
 
 [mapzone,0_47_56]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_47_56]
+~wilderness_exit;
 
 [mapzone,0_47_57]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_47_57]
+~wilderness_exit;
 
 [mapzone,0_47_58]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_47_58]
+~wilderness_exit;
 
 [mapzone,0_47_59]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_47_59]
+~wilderness_exit;
 
 [mapzone,0_47_60]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
 
+[mapzoneexit,0_47_60]
+~wilderness_exit;
+
 [mapzone,0_47_61]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_47_61]
+~wilderness_exit;
 
 [mapzone,0_47_149] @music_playbyregion(coord);
 [mapzone,0_47_152] @music_playbyregion(coord);
 [mapzone,0_47_153] @music_playbyregion(coord);
 
 [mapzone,0_47_160]
-%wilderness = ^true;
+~wilderness_underground_enter;
 @music_playbyregion(coord);
 
+[mapzoneexit,0_47_160]
+~wilderness_exit;
+
 [mapzone,0_47_161]
-%wilderness = ^true;
+~wilderness_underground_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_47_161]
+~wilderness_exit;
 
 [mapzone,0_48_47] @music_playbyregion(coord);
 [mapzone,0_48_48] @music_playbyregion(coord);
@@ -262,32 +313,53 @@ settimer(move_ikovtrigger, 1);
 [mapzone,0_48_54] @music_playbyregion(coord);
 
 [mapzone,0_48_55]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_48_55]
+~wilderness_exit;
 
 [mapzone,0_48_56]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_48_56]
+~wilderness_exit;
 
 [mapzone,0_48_57]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_48_57]
+~wilderness_exit;
 
 [mapzone,0_48_58]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_48_58]
+~wilderness_exit;
 
 [mapzone,0_48_59]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_48_59]
+~wilderness_exit;
 
 [mapzone,0_48_60]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
 
+[mapzoneexit,0_48_60]
+~wilderness_exit;
+
 [mapzone,0_48_61]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_48_61]
+~wilderness_exit;
 
 [mapzone,0_48_148] @music_playbyregion(coord);
 [mapzone,0_48_149] @music_playbyregion(coord);
@@ -295,12 +367,18 @@ settimer(move_ikovtrigger, 1);
 [mapzone,0_48_154] @music_playbyregion(coord);
 
 [mapzone,0_48_155]
-%wilderness = ^true;
+~wilderness_underground_enter;
 @music_playbyregion(coord);
 
+[mapzoneexit,0_48_155]
+~wilderness_exit;
+
 [mapzone,0_48_156]
-%wilderness = ^true;
+~wilderness_underground_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_48_156]
+~wilderness_exit;
 
 [mapzone,0_49_46]
 ~start_desertheat_timer;
@@ -318,32 +396,53 @@ settimer(move_ikovtrigger, 1);
 [mapzone,0_49_54] @music_playbyregion(coord);
 
 [mapzone,0_49_55]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_49_55]
+~wilderness_exit;
 
 [mapzone,0_49_56]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_49_56]
+~wilderness_exit;
 
 [mapzone,0_49_57]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_49_57]
+~wilderness_exit;
 
 [mapzone,0_49_58]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_49_58]
+~wilderness_exit;
 
 [mapzone,0_49_59]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_49_59]
+~wilderness_exit;
 
 [mapzone,0_49_60]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
 
+[mapzoneexit,0_49_60]
+~wilderness_exit;
+
 [mapzone,0_49_61]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_49_61]
+~wilderness_exit;
 
 [mapzone,0_49_148] @music_playbyregion(coord);
 [mapzone,0_49_149] @music_playbyregion(coord);
@@ -369,32 +468,53 @@ settimer(move_ikovtrigger, 1);
 [mapzone,0_50_54] @music_playbyregion(coord);
 
 [mapzone,0_50_55]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_50_55]
+~wilderness_exit;
 
 [mapzone,0_50_56]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_50_56]
+~wilderness_exit;
 
 [mapzone,0_50_57]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_50_57]
+~wilderness_exit;
 
 [mapzone,0_50_58]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_50_58]
+~wilderness_exit;
 
 [mapzone,0_50_59]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_50_59]
+~wilderness_exit;
 
 [mapzone,0_50_60]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
 
+[mapzoneexit,0_50_60]
+~wilderness_exit;
+
 [mapzone,0_50_61]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_50_61]
+~wilderness_exit;
 
 [mapzone,0_50_149] @music_playbyregion(coord);
 [mapzone,0_50_150] @music_playbyregion(coord);
@@ -423,32 +543,53 @@ settimer(mercenary_check, 25);
 [mapzone,0_51_54] @music_playbyregion(coord);
 
 [mapzone,0_51_55]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_51_55]
+~wilderness_exit;
 
 [mapzone,0_51_56]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_51_56]
+~wilderness_exit;
 
 [mapzone,0_51_57]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_51_57]
+~wilderness_exit;
 
 [mapzone,0_51_58]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_51_58]
+~wilderness_exit;
 
 [mapzone,0_51_59]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_51_59]
+~wilderness_exit;
 
 [mapzone,0_51_60]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
 
+[mapzoneexit,0_51_60]
+~wilderness_exit;
+
 [mapzone,0_51_61]
-%wilderness = ^true;
+~wilderness_enter;
 @music_playbyregion(coord);
+
+[mapzoneexit,0_51_61]
+~wilderness_exit;
 
 [mapzone,0_51_147] 
 settimer(mercenary_check, 25);

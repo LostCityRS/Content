@@ -10,6 +10,23 @@ if (%option_brightness = 0) {
     %option_sounds = 2;
 }
 
+if(~wilderness_level(coord) > 0) {
+    set_player_op("Attack", 2, ^false);
+
+    if(coordz(coord) >= ^wilderness_starting_underground_z) {
+        if_openoverlay(wilderness_underground_overlay);
+    } else {
+        if_openoverlay(wilderness_overlay);
+    }
+
+} else {
+    set_player_op(null, 2, ^false);
+}
+
+set_player_op("Follow", 3, ^false);
+set_player_op("Trade with", 4, ^false);
+set_player_op(null, 5, ^false);
+
 // register the soft timer that handles replenishing stats
 settimer(stat_regen, 100);
 settimer(stat_boost_restore, 100);

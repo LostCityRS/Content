@@ -1,0 +1,13 @@
+[proc,wilderness_enter]
+if_openoverlay(wilderness_overlay);
+set_player_op("Attack", 2, ^false);
+%wilderness = ^true;
+
+[proc,wilderness_underground_enter]
+if_openoverlay(wilderness_underground_overlay);
+set_player_op("Attack", 2, ^false);
+%wilderness = ^true;
+
+[proc,wilderness_exit]
+if_openoverlay(null);
+set_player_op(null, 2, ^false);
