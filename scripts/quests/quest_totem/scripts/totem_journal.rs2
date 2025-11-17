@@ -1,0 +1,65 @@
+[if_button,questlist:totem]
+def_string $text;
+
+// Thanks to 'Quest Archive' Discord server from user bball.
+// https://www.youtube.com/watch?v=V1_T8-ZQnI4
+switch_int (%totemquest) {
+
+    // https://www.youtube.com/watch?v=Ltk3seMJwGo
+    case ^totem_not_started :
+        $text = "@dbl@I can start this quest by speaking to @dre@Kangai Mau@dbl@ in @dre@the|@dre@Shrimp & Parrot@dbl@ restaurant in @dre@Brimhaven|";
+        $text = append($text, "@dbl@To complete this quest I need:|");
+        if (stat(thieving) < 21) {
+            $text = append($text, "@dre@Level 21 Thieving");
+        } else {
+            $text = append($text, "@str@Level 21 Thieving");
+        }
+
+    // https://www.youtube.com/watch?v=Q7SxyBTA4Ak & https://www.youtube.com/watch?v=Dal2Ozmbyys
+    case ^totem_started :
+        $text = "@str@I agreed to help Kangai Mau on Brimhaven recover the|@str@tribal totem stolen from his village by Lord Handelmort.|";
+        $text = append($text, "@dbl@I need to get into @dre@Lord Handelmorts Mansion@dbl@ in|@dre@Ardougne");
+
+    case ^totem_crate_marked :
+        $text = "@str@I agreed to help Kangai Mau on Brimhaven recover the|@str@tribal totem stolen from his village by Lord Handelmort.|";
+        $text = append($text, "@str@I found a package due for delivery to Lord Handelmort at|@str@the R.P.D.T. depot, and swapped the label for the Wizard|");
+        $text = append($text, "@str@Cromperty's experimental teleport block.|");
+        $text = append($text, "@dbl@I should get the @dre@R.P.D.T. men@dbl@ to deliver the crate now.");
+
+    case ^totem_crate_delivered :
+        $text = "@str@I agreed to help Kangai Mau on Brimhaven recover the|@str@tribal totem stolen from his village by Lord Handelmort.|";
+        $text = append($text, "@str@I found a package due for delivery to Lord Handelmort at|@str@the R.P.D.T. depot, and swapped the label for the Wizard|");
+        $text = append($text, "@str@Cromperty's experimental teleport block.|");
+        $text = append($text, "@str@I got the R.P.D.T. men to deliver the teleport block.|");
+        $text = append($text, "@dbl@I should get @dre@Wizard Cromperty@dbl@ to teleport me inside now.");
+
+    // https://www.youtube.com/watch?v=JrsT--Rr0Kk&t=758s
+    case ^totem_teleported :
+        $text = "@str@I agreed to help Kangai Mau on Brimhaven recover the|@str@tribal totem stolen from his village by Lord Handelmort.|";
+        $text = append($text, "@str@I found a package due for delivery to Lord Handelmort at|@str@the R.P.D.T. depot, and swapped the label for the Wizard|");
+        $text = append($text, "@str@Cromperty's experimental teleport block.|");
+        $text = append($text, "@str@I got the R.P.D.T. men to deliver the teleport block to Lord|@str@Handelmort and teleported myself inside.|");
+        if(testbit(%handelmort_traps_disabled, 0) = ^false) {
+            $text = append($text, "@dbl@I need to find the combination for the @dre@security door@dbl@.|");
+        } else {
+            $text = append($text, "@str@I worked out the combination for the door.|");
+            if (inv_total(inv, tribal_totem) > 0 | inv_total(bank, tribal_totem) > 0) {
+                $text = append($text, "@dbl@I should take the @dre@tribal totem@dbl@ back to @dre@Kangai Mau in|@dre@Brimhaven@dbl@ and claim my @dre@reward@dbl@ for helping his tribe");
+            } else {
+                $text = append($text, "@dbl@I should find the @dre@Tribal Totem@dbl@ and return it!");
+            }
+        }
+
+    // https://i.imgur.com/Khp4yeK.png
+    case ^totem_complete :
+        $text = "@str@I agreed to help Kangai Mau on Brimhaven recover the|@str@tribal totem stolen from his village by Lord Handelmort.|";
+        $text = append($text, "@str@I found a package due for delivery to Lord Handelmort at|@str@the R.P.D.T. depot, and swapped the label for the Wizard|");
+        $text = append($text, "@str@Cromperty's experimental teleport block.|");
+        $text = append($text, "@str@I got the R.P.D.T. men to deliver the teleport block to Lord|@str@Handelmort and teleported myself inside.|");
+        $text = append($text, "@str@After bypassing the traps and security inside the|@str@mansion I was able to reclaim the totem, and take it|");
+        $text = append($text, "@str@back to Kangai Mau, who rewarded me for all of my help.||");
+        $text = append($text, "@red@QUEST COMPLETE!");
+
+}
+
+~quest_journal("Tribal Totem", $text);
