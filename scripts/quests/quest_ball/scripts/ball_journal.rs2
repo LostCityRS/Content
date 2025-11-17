@@ -1,0 +1,38 @@
+[if_button,questlist:ball]
+def_string $text;
+
+switch_int (%ballquest) {
+    case ^ball_not_started : // https://github.com/Indio3/quest-journals/blob/master/quest_ball/Screenshot%202025-04-30%20104930.png
+        $text = "@dbl@I can start this quest by speaking to the @dre@little boy|@dbl@standing by the long garden just @dre@north of taverley|";
+        $text = append($text, "@dbl@I must be able to defeat a @dre@level 53 enemy");
+
+    case ^ball_started : // https://www.youtube.com/watch?v=shvlpV7TWsI
+        $text = "@str@A small boy has kicked his ball over the fence into the|@str@nearby garden, and I have agreed to retrieve it for him.|";
+        $text = append($text, "@dbl@I should find a way into the @dre@garden@dbl@ where the @dre@ball@dbl@ is"); 
+
+    case ^ball_found_magnet : // Text hasn't changed much between 2004 & RS3, so taken this from RS3
+        $text = "@str@A small boy has kicked his ball over the fence into the|@str@nearby garden, and I have agreed to retrieve it for him.|";
+        $text = append($text, "@dbl@I have found a @dre@magnet@dbl@ in a cupboard in the basement");
+
+    // Text hasn't changed much between 2004 & RS3, so taken this from RS3.
+    // Removed the RS3 line about 'I should avoid the witch as I make my way to the shed, where the boy's ball is' as it felt too hand-holding
+    case ^ball_unlocked_mousedoor, ^ball_read_diary_after_door :
+        $text = "@str@A small boy has kicked his ball over the fence into the|@str@nearby garden, and I have agreed to retrieve it for him.|";
+        $text = append($text, "@str@I have found a magnet in a cupboard in the basement.|");
+        $text = append($text, "@dbl@I have worked out how to unlock the back door to the|@dre@garden");
+
+    case ^ball_defeated_experiment :
+        $text = "@str@A small boy has kicked his ball over the fence into the|@str@nearby garden, and I have agreed to retrieve it for him.|";
+        $text = append($text, "@dbl@Now the @dre@shapeshifter@dbl@ is dead I should return the boy's @dre@ball");
+
+    // Taken from OSRS, as text hasn't changed much between 2004 & OSRS for this quest
+    case ^ball_complete :
+        $text = "@str@A small boy has kicked his ball over the fence into the|@str@nearby garden, and I have agreed to retrieve it for him.|";
+        $text = append($text, "@str@After puzzling through the strangely elaborate security|");
+        $text = append($text, "@str@system, and defeating a very strange monster, I returned|");
+        $text = append($text, "@str@the child's ball to him, and he thanked me for my help.||");
+        $text = append($text, "@red@QUEST COMPLETE!");
+
+}
+
+~quest_journal("Witch's House", $text);
