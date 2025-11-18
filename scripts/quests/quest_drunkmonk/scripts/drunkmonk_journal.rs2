@@ -1,0 +1,53 @@
+[if_button,questlist:drunkmonk]
+def_string $text;
+
+// https://youtu.be/7B-jotoUB9E
+switch_int(%drunkmonkquest) {
+
+    // https://www.youtube.com/watch?v=32_yqa2Ud10
+    case ^drunkmonk_not_started :
+        $text = "@dbl@I can start this quest by speaking to @dre@Brother Omad@dbl@ in the|@dre@Monastery@dbl@ south of @dre@Ardougne";
+
+    // https://i.imgur.com/L0hYkHX.png
+    case ^drunkmonk_spoken_to_omad :
+        $text = "@dre@Brother Omad@dbl@ asked me to recover a @dre@child's blanket@dbl@.|@dbl@I need to find a @dre@secret cave@dbl@ that is hidden under a @dre@ring of";
+        $text = append($text, "|@dre@stones@dbl@ in the @dre@forest@dbl@ south of @dre@Ardougne");
+
+    // https://i.imgur.com/ShYzNLZ.png
+    case ^drunkmonk_retrieved_blanket :
+        $text = "@str@Brother Omad asked me to recover a child's blanket.|@str@I found the secret cave and gave back the blanket.";
+
+    // https://i.imgur.com/LgSyPh2.png
+    case ^drunkmonk_looking_cedric :
+        $text = "@str@Brother Omad asked me to recover a child's blanket.|@str@I found the secret cave and gave back the blanket.||";
+        $text = append($text, "@dbl@I agreed to find @dre@Brother Cedric@dbl@. He is somewhere in the|@dre@forest@dbl@ south of @dre@Ardougne");
+
+    // https://i.imgur.com/HKoTLdY.png
+    // https://i.imgur.com/NyaMI9y.png - RS3 comparison (same as OSRS as of Nov 2025)
+    case ^drunkmonk_finding_water :
+        $text = "@str@Brother Omad asked me to recover a child's blanket.|@str@I found the secret cave and gave back the blanket.||";
+        $text = append($text, "@str@I found Brother Cedric in the forest south of Ardougne.|");
+        $text = append($text, "@dbl@I need to take him a @dre@jug of water");
+
+    // https://i.imgur.com/7Bbrc4u.png
+    case ^drunkmonk_given_water, ^drunkmonk_fixing_cart :
+        $text = "@str@Brother Omad asked me to recover a child's blanket.|@str@I found the secret cave and gave back the blanket.||";
+        $text = append($text, "@str@I found Brother Cedric in the forest south of Ardougne. I|@str@sobered him up.|");
+        $text = append($text, "@dbl@He needs some @dre@wood@dbl@ for his cart");
+
+    // https://i.imgur.com/979ZWtV.png
+    case ^drunkmonk_fixed_cart :
+        $text = "@str@Brother Omad asked me to recover a child's blanket.|@str@I found the secret cave and gave back the blanket.||";
+        $text = append($text, "@str@I found Brother Cedric in the forest south of Ardougne. I|@str@sobered him up and I helped him fix his cart.|");
+        $text = append($text, "@dre@Brother Cedric@dbl@ said that I should tell @dre@Brother Omad@dbl@ that|@dbl@he is on the way.");
+
+    // https://i.imgur.com/ZqW3usU.png
+    case ^drunkmonk_complete :
+        $text = "@str@Brother Omad asked me to recover a child's blanket.|@str@I found the secret cave and gave back the blanket.||";
+        $text = append($text, "@str@I found Brother Cedric in the forest south of Ardougne. I|@str@sobered him up and I helped him fix his cart.||");
+        $text = append($text, "@str@I had a party with the Monks. There were party balloons|@str@and we danced the night away!||");
+        $text = append($text, "@red@QUEST COMPLETE!");
+
+}
+
+~quest_journal("Monk's Friend", $text);
