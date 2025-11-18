@@ -1,0 +1,85 @@
+[ai_timer,npc_1056]
+def_int $count = divide(modulo(map_clock, multiply(16,2)), 2);
+def_int $curr_emote = divide(modulo(map_clock, multiply(16,16)), 32);
+if($count = 0) {
+    npc_facesquare(movecoord(npc_coord, 0, 0, -1));
+    if (loc_find(0_31_74_23_25, loc_3644) = true) {
+        loc_anim(seq_1135);
+    }
+    if (loc_find(0_31_74_26_25, loc_3644) = true) {
+        loc_anim(seq_1136);
+    }
+    huntall(0_31_74_24_28, 1, 0);
+    while(huntnext = true) {
+        queue(mime_step_right_up, 0);
+    }
+    huntall(0_31_74_24_26, 1, 0);
+    while (huntnext = true) {
+        if_close();
+    }
+}
+if($count = 1) {
+    switch_int($curr_emote) {
+        case 0 : npc_anim(emote_cry, 0);
+        case 1 : npc_anim(emote_think, 0);
+        case 2 : npc_anim(emote_laugh, 0);
+        case 3 : npc_anim(emote_dance, 0);
+        case 4 : npc_anim(seq_1130, 0);
+        case 5 : npc_anim(seq_1129, 0);
+        case 6 : npc_anim(seq_1131, 0);
+        case 7 : npc_anim(seq_1128, 0);
+    }
+}
+if($count = 4) {
+    npc_anim(emote_bow, 0);
+    npc_facesquare(movecoord(npc_coord, -1, 0, 0));
+    if (loc_find(0_31_74_23_25, loc_3644) = true) {
+        loc_anim(seq_1136);
+    }
+    if (loc_find(0_31_74_26_25, loc_3644) = true) {
+        loc_anim(seq_1135);
+    }
+    huntall(0_31_74_24_26, 1, 0);
+    while (huntnext = true) {
+        if_openchat(macro_mime_emotes);
+    }
+
+}
+npc_settimer(2); // Called every 2 ticks
+
+
+[queue,mime_step_right_up]
+p_teleport(0_31_74_24_26);
+
+
+// Trigger: All the button clicks
+[if_button,macro_mime_emotes:com_2] @mime_random_emote(emote_cry,0);
+[if_button,macro_mime_emotes:com_3] @mime_random_emote(emote_think,1);
+[if_button,macro_mime_emotes:com_4] @mime_random_emote(emote_laugh,2);
+[if_button,macro_mime_emotes:com_5] @mime_random_emote(emote_dance,3);
+[if_button,macro_mime_emotes:com_6] @mime_random_emote(seq_1130,4);
+[if_button,macro_mime_emotes:com_7] @mime_random_emote(seq_1129,5);
+[if_button,macro_mime_emotes:com_8] @mime_random_emote(seq_1131,6);
+[if_button,macro_mime_emotes:com_9] @mime_random_emote(seq_1128,7);
+
+// Label to check if the right emote is selected
+[label,mime_random_emote](seq $anim, int $num)
+if_close;
+anim($anim, 0);
+def_int $curr_emote = divide(modulo(map_clock, multiply(16,16)), 32);
+if ($num = $curr_emote) {
+    p_delay(4);
+    anim(emote_cheer, 0);
+    switch_int(%macro_event) {
+        case ^macro_mime : %macro_event = ^macro_mime_solve_1;
+        case ^macro_mime_solve_1 : %macro_event = ^macro_mime_solve_2;
+        case ^macro_mime_solve_2 : %macro_event = ^macro_mime_solve_3;
+        case ^macro_mime_solve_3 : 
+        // Return where you are from
+        p_teleport(%macro_chest_gas_coord);
+        %macro_event = 0;
+    }
+} else {
+    p_delay(4);
+    anim(emote_cry, 0);
+}

@@ -69,6 +69,16 @@ if (%npc_int = ^mysterious_old_man_happy) {
     ~chatnpc("<p,neutral>Goodbye.");
     return;
 }
+// For 254, The old man can either give you a gift, a strange box, send you to the maze, send you to the mime
+def_int $random_old_man_event = random(4);
+if ($random_old_man_event = 2 | $random_old_man_event = 3) {
+    ~macro_event_disappear;
+    %macro_event = ^macro_mime;
+    %macro_chest_gas_coord = coord();
+    p_teleport(0_31_74_24_28);
+    return;
+}
+
 %npc_int = ^mysterious_old_man_happy;
 %macro_event = ^no_macro_event;
 inv_add(inv, ~macro_mysterious_old_man_reward);
