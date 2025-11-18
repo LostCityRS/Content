@@ -15,6 +15,10 @@ if($count = 0) {
     if (loc_find(0_31_74_26_25, loc_3644) = true) {
         loc_anim(macro_spotlight_on);
     }
+    huntall(0_31_74_24_28, 1, 0);
+    while(huntnext = true) {
+        queue(mime_step_right_up, 0);
+    }
     huntall(0_31_74_24_26, 1, 0);
     while (huntnext = true) {
         if_close();
@@ -51,6 +55,9 @@ if($count = 4) {
 // This timer gets called every 4 ticks
 npc_settimer(2);
 
+[queue,mime_step_right_up]
+p_teleport(0_31_74_24_26);
+
 [if_button,inter_151:com_2] @mime_random_emote(emote_cry,0);
 [if_button,inter_151:com_3] @mime_random_emote(emote_think,1);
 [if_button,inter_151:com_4] @mime_random_emote(emote_laugh,2);
@@ -66,6 +73,7 @@ if_close;
 anim($anim, 0);
 def_int $curr_emote = divide(modulo(map_clock, multiply(16,16)), 32);
 if ($num = $curr_emote) {
+    %macro_transmit = %macro_transmit + 1;
     p_delay(4);
     anim(emote_cheer, 0);
 } else {
