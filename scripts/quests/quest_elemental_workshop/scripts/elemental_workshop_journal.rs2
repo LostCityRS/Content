@@ -1,0 +1,88 @@
+[if_button,questlist:elemental_workshop]
+def_string $text;
+
+// Thanks to 'Quest Archive' Discord server from user bball.
+// https://youtu.be/zMLXkvsjGZE
+
+// https://i.imgur.com/ConoZ89.png
+if (testbit(%elemental_workshop_bits, ^elemental_workshop_complete) = ^true) {
+    $text = "@str@I have found a battered book in a house in Seers Village.|@str@It tells of magic ore and a workshop created to fashion it.||";
+    $text = append($text, "@str@After fixing up the old workshop machinery, collecting ore|@str@and smelting it I was able to create an Elemental Shield.||");
+    $text = append($text, "@red@QUEST COMPLETE!");
+
+} else if (testbit(%elemental_workshop_bits, ^elemental_workshop_entered) = ^true) {
+
+    // https://imgur.com/wnmyIFU - Player has gone through the 'odd looking wall', but not down stairs.
+    //We don't currently have this tracked, and unsure if it's an OSRS/RS3 change, so left it out.
+    
+    // https://i.imgur.com/3pWA3Ew.png - Entered workshop down spiral stairs
+    $text = "@str@I have found a battered book in a house in Seers Village.|@str@It tells of magic ore and a workshop created to fashion it.||";
+    $text = append($text, "@str@Cutting open the spine of the book with a blade,|@str@I found a key hidden under the leather binding.||");
+    $text = append($text, "@str@I have found a secret door in the Seers Village smithy.||");
+    $text = append($text, "@str@Where is this workshop and how do I get in?||");
+
+    // https://i.imgur.com/uiwYMUR.png - Fixed waterwheel
+    if (testbit(%elemental_workshop_bits, ^elemental_workshop_water_flowing) = ^true) {
+        $text = append($text, "@str@I managed to get the waterwheel in the northern water|@str@area going by turning some valves and pulling a lever.||");
+    }
+
+    // https://i.imgur.com/Rhlh5zG.png - Fixed bellows
+    if (testbit(%elemental_workshop_bits, ^elemental_workshop_bellows_repaired) = ^true) {
+        $text = append($text, "@str@The bellows in the eastern air area are now fixed,|@str@I just needed to stitch some leather over that hole.||");
+    }
+
+    // https://i.imgur.com/ACslUTu.png - Put lava into furnace
+    if (testbit(%elemental_workshop_bits, ^elemental_workshop_furnace_lit) = ^true) {
+        $text = append($text, "@str@I lit the furnace with lava taken from the trough,|@str@using the stone bowl I found.||");
+    }
+
+    // https://i.imgur.com/tqFZEdn.png - Player has elemental bar in inventory
+    if (inv_total(inv, elemental_workshop_bar) > 0) {
+        $text = append($text, "@str@I have made a bar from the elemental ore.|");
+        $text = append($text, "@dbl@Now I just need to make something from it.||");
+        $text = append($text, "@dbl@All I need to do now is make the shield.|");
+    } else {
+        $text = append($text, "@dbl@There is obviously lots to do here.");
+    }
+
+// https://i.imgur.com/5oGxbFO.png
+} else if (testbit(%elemental_workshop_bits, ^elemental_workshop_slashed_book) = ^true) {
+
+    $text = "@str@I have found a battered book in a house in Seers Village.|@str@It tells of magic ore and a workshop created to fashion it.||";
+    $text = append($text, "@str@Cutting open the spine of the book with a blade,|@str@I found a key hidden under the leather binding.||");
+    $text = append($text, "@dbl@Where is this workshop and how do I get in?");
+
+// https://i.imgur.com/vyl8f8l.png
+} else if (testbit(%elemental_workshop_bits, ^elemental_workshop_read_book) = ^true) {
+
+    $text = "@str@I have found a battered book in a house in Seers Village.|@str@It tells of magic ore and a workshop created to fashion it.||";
+    $text = append($text, "@dbl@Where is this workshop and how do I get in?");
+
+// https://i.imgur.com/yHiG9TP.png
+// https://i.imgur.com/RX8vZee.png
+} else if (testbit(%elemental_workshop_bits, ^elemental_workshop_read_book) = ^false) {
+
+    $text = "@dbl@I can start this quest by reading a|@dre@book@dbl@ found in @dre@Seers village@dbl@.||";
+    $text = append($text, "@dbl@Minimum requirements:|");
+
+    if (stat(mining) < 20) {
+        $text = append($text, "@dre@Level 20 Mining|");
+    } else {
+        $text = append($text, "@str@Level 20 Mining|");
+    }
+
+    if (stat(smithing) < 20) {
+        $text = append($text, "@dre@Level 20 Smithing|");
+    } else {
+        $text = append($text, "@str@Level 20 Smithing|");
+    }
+
+    if (stat(crafting) < 20) {
+        $text = append($text, "@dre@Level 20 Crafting");
+    } else {
+        $text = append($text, "@str@Level 20 Crafting");
+    }
+
+}
+
+~quest_journal("Elemental Workshop", $text);
