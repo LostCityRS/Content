@@ -1,6 +1,5 @@
 [ai_timer,npc_1056]
 def_int $count = divide(modulo(map_clock, multiply(16,2)), 2);
-def_int $curr_emote = divide(modulo(map_clock, multiply(16,16)), 32);
 if($count = 0) {
     npc_facesquare(movecoord(npc_coord, 0, 0, -1));
     if (loc_find(0_31_74_23_25, loc_3644) = true) {
@@ -19,7 +18,8 @@ if($count = 0) {
     }
 }
 if($count = 1) {
-    switch_int($curr_emote) {
+    %npc_int = random(8);
+    switch_int(%npc_int) {
         case 0 : npc_anim(emote_cry, 0);
         case 1 : npc_anim(emote_think, 0);
         case 2 : npc_anim(emote_laugh, 0);
@@ -66,7 +66,12 @@ p_teleport(0_31_74_24_26);
 [label,mime_random_emote](seq $anim, int $num)
 if_close;
 anim($anim, 0);
-def_int $curr_emote = divide(modulo(map_clock, multiply(16,16)), 32);
+
+def_int $curr_emote = random(8);
+if (npc_find(0_31_74_27_26, npc_1056, 1, 0) = true) {
+    $curr_emote = %npc_int;
+}
+
 if ($num = $curr_emote) {
     p_delay(4);
     anim(emote_cheer, 0);
@@ -76,6 +81,7 @@ if ($num = $curr_emote) {
         case ^macro_mime_solve_2 : %macro_event = ^macro_mime_solve_3;
         case ^macro_mime_solve_3 : 
         // Return where you are from
+        p_delay(4);
         p_teleport(%macro_chest_gas_coord);
         %macro_event = 0;
     }
