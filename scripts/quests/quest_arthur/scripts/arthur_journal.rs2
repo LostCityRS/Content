@@ -1,0 +1,110 @@
+[if_button,questlist:arthur]
+def_string $text;
+
+// https://youtu.be/LF0-_wWsauQ
+switch_int(%arthur) {
+
+    // https://www.youtube.com/watch?v=Xx9T6A1Q9pA
+    case ^arthur_not_started :
+        $text = "@dbl@I can start this quest by speaking to @dre@King Arthur@dbl@ at|@dre@Camelot Castle@dbl@, just @dre@North West of Catherby|";
+        $text = append($text, "@dbl@I must be able to defeat a @dre@level 39 enemy");
+
+    // https://i.imgur.com/J1LUyO3.png
+    case ^arthur_started :
+        $text = "@str@I spoke to King Arthur and he said I would be worth of|@str@becoming a Knight of the Round Table if I could free Merlin|";
+        $text = append($text, "@str@from a giant crystal that he has been trapped in.||");
+        $text = append($text, "@dbl@I should ask the @dre@other Knights@dbl@ if they have any @dre@advice@dbl@ for|@dbl@me on how I should go about doing this.");
+
+    // https://i.imgur.com/5PiO2j1.png
+    case ^arthur_spoken_gawain :
+        $text = "@str@I spoke to King Arthur and he said I would be worth of|@str@becoming a Knight of the Round Table if I could free Merlin|";
+        $text = append($text, "@str@from a giant crystal that he has been trapped in.|");
+        $text = append($text, "@dre@Gawain@dbl@ think this was the work of @dre@Morgan Le Faye|@dbl@who lives in an @dre@impenetrable fortress@dbl@ south of here full|");
+        $text = append($text, "@dbl@of @dre@renegade knights@dbl@ led by the evil @dre@Sir Mordred");
+
+    // https://i.imgur.com/ituTJ53.png
+    case ^arthur_spoken_lancelot :
+        $text = "@str@I spoke to King Arthur and he said I would be worth of|@str@becoming a Knight of the Round Table if I could free Merlin|";
+        $text = append($text, "@str@from a giant crystal that he has been trapped in.|");
+        $text = append($text, "@str@Gawain told me it was the work of Morgan Le Faye.|");
+        $text = append($text, "@str@I told Lancelot of Gawain's suspicions, and he told me that|@str@Mordred's Fortress is not completely impenetrable.|");
+        $text = append($text, "@dbl@There might be a way to enter with a @dre@delivery by sea@dbl@...");
+
+    // https://www.youtube.com/watch?v=pgo3FhtwhQg
+    // https://i.imgur.com/1YII1rU.png
+    case ^arthur_spoken_morgan_lefaye :
+        $text = "@str@I spoke to King Arthur and he said I would be worth of|@str@becoming a Knight of the Round Table if I could free Merlin|";
+        $text = append($text, "@str@from a giant crystal that he has been trapped in.|");
+        $text = append($text, "@str@Gawain told me it was the work of Morgan Le Faye.|");
+        $text = append($text, "@str@I told Lancelot of Gawain's suspicions, and he told me that|@str@Mordred's Fortress is not completely impenetrable.|");
+        $text = append($text, "@str@I stowed away in a shipment of candles and reached the|@str@Stronghold of Sir Mordred, and bested him in combat.|");
+        $text = append($text, "@str@In return for sparing her son, Morgan Le Faye told me|@str@how I could break the spell that had imprisoned Merlin.|");
+        $text = append($text, "@dbl@I need to summon the spirit @dre@Thrantax@dbl@ at a @dre@magic symbol@dbl@ as|@dbl@close to the Crystal as I can possibly find.|");
+        $text = append($text, "@dbl@To bind @dre@Thrantax@dbl@ to my will I will need the following:|");
+
+        if (testbit(%excalibur_components_progress, ^chaosaltar_index) = ^true) {
+            $text = append($text, "@str@I have the magic words from the Chaos Altar memorised|");
+        } else {
+            $text = append($text, "@dbl@Some @dre@magic words@dbl@ from a @dre@Chaos Altar|");
+        }
+        if (inv_total(inv, lit_black_candle) > 0) {
+            $text = append($text, "@str@I have a lit black candle with me|");
+        } else {
+            $text = append($text, "@dbl@A @dre@lit Black Candle|");
+        }
+        if (inv_total(inv, excalibur) > 0) {
+            $text = append($text, "@str@I have the Holy Sword Excalibur with me|");
+        } else {
+            $text = append($text, "@dbl@The @dre@Holy Sword Excalibur@dbl@ from the @dre@Lady of the Lake|");
+        }
+        if (inv_total(inv, bat_bones) > 0) {
+            $text = append($text, "@str@I have some bat bones with me");
+        } else {
+            $text = append($text, "@dbl@Some @dre@bat bones");
+        }
+
+    // https://i.imgur.com/42NI6PB.png
+    case ^arthur_excalibur_bound :
+        $text = "@str@I spoke to King Arthur and he said I would be worth of|@str@becoming a Knight of the Round Table if I could free Merlin|";
+        $text = append($text, "@str@from a giant crystal that he has been trapped in.|");
+        $text = append($text, "@str@Gawain told me it was the work of Morgan Le Faye.|");
+        $text = append($text, "@str@I told Lancelot of Gawain's suspicions, and he told me that|@str@Mordred's Fortress is not completely impenetrable.|");
+        $text = append($text, "@str@I stowed away in a shipment of candles and reached the|@str@Stronghold of Sir Mordred, and bested him in combat.|");
+        $text = append($text, "@str@In return for sparing her son, Morgan Le Faye told me|@str@how I could break the spell that had imprisoned Merlin.|");
+        $text = append($text, "@str@I need to summon the spirit Thrantax at a magic symbol as|@str@close to the Crystal as I can possibly find.|");
+        $text = append($text, "@str@I summoned the Spirit Thrantax and forced him to aid me in|@str@breaking Morgan Le Fayes curse upon Merlin. He used his|");
+        $text = append($text, "@str@magic to weaken the crystal so that a blow from Excalibur|@str@would be able to shatter it for good.|");
+        $text = append($text, "@dbl@I should free @dre@Merlin@dbl@ by using @dre@Excalibur@dbl@ on the @dre@crystal");
+
+    // https://i.imgur.com/c4juDYS.png
+    case ^arthur_freed_merlin :
+        $text = "@str@I spoke to King Arthur and he said I would be worth of|@str@becoming a Knight of the Round Table if I could free Merlin|";
+        $text = append($text, "@str@from a giant crystal that he has been trapped in.|");
+        $text = append($text, "@str@Gawain told me it was the work of Morgan Le Faye.|");
+        $text = append($text, "@str@I told Lancelot of Gawain's suspicions, and he told me that|@str@Mordred's Fortress is not completely impenetrable.|");
+        $text = append($text, "@str@I stowed away in a shipment of candles and reached the|@str@Stronghold of Sir Mordred, and bested him in combat.|");
+        $text = append($text, "@str@In return for sparing her son, Morgan Le Faye told me|@str@how I could break the spell that had imprisoned Merlin.|");
+        $text = append($text, "@str@I need to summon the spirit Thrantax at a magic symbol as|@str@close to the Crystal as I can possibly find.|");
+        $text = append($text, "@str@I summoned the Spirit Thrantax and forced him to aid me in|@str@breaking Morgan Le Fayes curse upon Merlin. He used his|");
+        $text = append($text, "@str@magic to weaken the crystal so that a blow from Excalibur|@str@would be able to shatter it for good.|");
+        $text = append($text, "@str@I freed Merlin by shattering the Crystal that trapped him|");
+        $text = append($text, "@dbl@Now that @dre@Merlin@dbl@ is freed I should speak to @dre@King Arthur@dbl@ to|@dbl@claim my @dre@reward@dbl@ and become a @dre@Knight of the Round|@dre@Table");
+
+    // https://i.imgur.com/ujKBq0P.png
+    case ^arthur_complete :
+        $text = "@str@I spoke to King Arthur and he said I would be worth of|@str@becoming a Knight of the Round Table if I could free Merlin|";
+        $text = append($text, "@str@from a giant crystal that he has been trapped in.|");
+        $text = append($text, "@str@Gawain told me it was the work of Morgan Le Faye.|");
+        $text = append($text, "@str@I told Lancelot of Gawain's suspicions, and he told me that|@str@Mordred's Fortress is not completely impenetrable.|");
+        $text = append($text, "@str@I stowed away in a shipment of candles and reached the|@str@Stronghold of Sir Mordred, and bested him in combat.|");
+        $text = append($text, "@str@In return for sparing her son, Morgan Le Faye told me|@str@how I could break the spell that had imprisoned Merlin.|");
+        $text = append($text, "@str@I need to summon the spirit Thrantax at a magic symbol as|@str@close to the Crystal as I can possibly find.|");
+        $text = append($text, "@str@I summoned the Spirit Thrantax and forced him to aid me in|@str@breaking Morgan Le Fayes curse upon Merlin. He used his|");
+        $text = append($text, "@str@magic to weaken the crystal so that a blow from Excalibur|@str@would be able to shatter it for good.|");
+        $text = append($text, "@str@I freed Merlin by shattering the Crystal that trapped him|@str@and when I told King Arthur how I had singlehandedly freed|");
+        $text = append($text, "@str@Merlin from his prison when his other Knights had failed|@str@he immediately made me a Knight of the Round Table||");
+        $text = append($text, "@red@QUEST COMPLETE!");
+
+}
+
+~quest_journal("Merlin's Crystal", $text);
