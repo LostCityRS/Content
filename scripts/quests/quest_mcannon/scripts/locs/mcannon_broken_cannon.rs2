@@ -7,7 +7,7 @@ if (%mcannon = ^mcannon_tasked_with_fixing_cannon) {
     if (getbit_range(%mcannonmulti, 0, 3) = 15) {
         %mcannon = ^mcannon_has_repaired_cannon;
         p_delay(2);
-        ~chatplayer("<p,happy>The Cannon seems to be in working order.|Lawgof will be pleased.");
+        ~chatplayer("<p,happy>The Cannon seems to be in working order,|The Commander will be pleased."); // https://web.archive.org/web/20120415194048im_/http://www.runeweb.net/fireball/Dwarf%20Cannon%20Images/DwarfCannon10.PNG
     } else {
         @inspect_cannon_and_repair;
     }
