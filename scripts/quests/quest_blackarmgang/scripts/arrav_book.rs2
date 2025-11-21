@@ -5,8 +5,8 @@
 @open_arrav_book;
 
 [label,open_arrav_book]
-if(%phoenixgang = 1) {
-    %phoenixgang = 2;
+if(%phoenixgang = ^phoenixgang_started) {
+    %phoenixgang = ^phoenixgang_read_book;
 }
 @book_flip_page(0, 0, 2, shieldofarrav_book);
 

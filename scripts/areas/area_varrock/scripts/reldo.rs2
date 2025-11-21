@@ -3,11 +3,11 @@ if(%phoenixgang = ^phoenixgang_read_book) {
     @reldo_read_book;
 }
 ~chatnpc("<p,neutral>Hello stranger.");
-if(%squire = ^squire_started & %phoenixgang = 0) { // knights sword started and arrav not started
+if(%squire = ^squire_started & %phoenixgang = ^phoenixgang_not_started) { // knights sword started and arrav not started
     @multi4("I'm in search of a quest.", reldo_phoenixstart, "Do you have anything to trade?", reldo_trade, "What do you do?", reldo_what_do, "What do you know about the Imcando dwarves?", reldo_imcando_dwaves);
 } else if(%squire = ^squire_started) { // knights sword started and arrav in progress
     @multi3("Do you have anything to trade?", reldo_trade, "What do you do?", reldo_what_do, "What do you know about the Imcando dwarves?", reldo_imcando_dwaves);
-} else if(%phoenixgang = 0) { // knights sword started and arrav not started
+} else if(%phoenixgang = ^phoenixgang_not_started) { // knights sword started and arrav not started
     @multi3("I'm in search of a quest.", reldo_phoenixstart, "Do you have anything to trade?", reldo_trade, "What do you do?", reldo_what_do);
 } else {
     @multi2("Do you have anything to trade?", reldo_trade, "What do you do?", reldo_what_do);
@@ -39,6 +39,6 @@ if(%squire = ^squire_started & %phoenixgang = 0) { // knights sword started and 
 [label,reldo_read_book]
 ~chatplayer("<p,quiz>Ok. I've read the book.|Do you know where I can find the Phoenix Gang?");
 ~chatnpc("<p,neutral>No, I don't.|I think I know someone who might however.");
-%phoenixgang = 3;
+%phoenixgang = ^phoenixgang_spoken_reldo;
 ~chatnpc("<p,neutral>If I were you I would talk to|Baraek, the fur trader in the market place.|I've heard he has connections with the Phoenix Gang.");
 ~chatplayer("<p,happy>Thanks, I'll try that!");

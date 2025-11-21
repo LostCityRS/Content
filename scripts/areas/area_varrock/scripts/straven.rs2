@@ -24,7 +24,7 @@ if(last_useitem = intelligence_report) {
 [label,straven_cant_enter]
 ~chatnpc("<p,neutral>Hey! You can't go in there. Only authorised personnel of the VTAM Corporation are allowed beyond this point.");
 def_int $option;
-if(%phoenixgang = 4) {
+if(%phoenixgang = ^phoenixgang_spoken_baraek) {
     $option = ~p_choice3("I know who you are!", 1, "How do I get a job with the VTAM corporation?", 2, "Why not?", 3);
 } else {
     $option = ~p_choice2("How do I get a job with the VTAM corporation?", 2, "Why not?", 3);
@@ -45,7 +45,7 @@ switch_int ($option) {
             ~chatplayer("<p,quiz>How would I go about doing that?");
             ~chatnpc("<p,neutral>Let me think...|I have an idea.");
             ~chatnpc("<p,neutral>A rival gang of ours,|called the Black Arm Gang|is supposedly meeting a contact from Port Sarim today.|In the Blue Moon Inn");
-            %phoenixgang = 8;
+            %phoenixgang = ^phoenixgang_spoken_straven;
             ~chatnpc("<p,neutral>by the south entrance to this city.|The name of the contact is Jonny the Beard.|Kill him and bring back his intelligence report.");
             ~chatplayer("<p,happy>Ok, I'll get right on it.");
         } else if($option = 2) {
@@ -70,7 +70,7 @@ if(inv_total(inv, intelligence_report) > 0) {
     ~chatnpc("<p,happy>Ok! You can join the Phoenix Gang!|I am Straven, one of the gang leaders.");
     ~chatplayer("<p,neutral>Nice to meet you.");
     ~chatnpc("<p,neutral>Take this key.");
-    %phoenixgang = 9;
+    %phoenixgang = ^phoenixgang_joined;
     inv_del(inv, intelligence_report, 1);
     inv_add(inv, phoenixkey2, 1);
     ~objbox(phoenixkey2, "Straven hands you a key.", 250, 0, divide(^objbox_height, 2));

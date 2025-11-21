@@ -69,7 +69,7 @@ switch_int (~p_choice2("Well, you can give me a try can't you?", 1, "Well, peopl
 switch_int (~p_choice2("Ok, no problem.", 1, "Sounds a little tricky. Got anything easier?", 2)) {
     case 1 :
         ~chatplayer("<p,happy>Ok, no problem.");
-        %blackarmgang = 2;
+        %blackarmgang = ^blackarmgang_spoken_katrine;
         ~chatnpc("<p,neutral>Great! You'll find the Phoenix gang's weapon stash just next to a temple, due east of here.");
     case 2 :
         ~chatplayer("<p,confused>Sounds a little tricky...");

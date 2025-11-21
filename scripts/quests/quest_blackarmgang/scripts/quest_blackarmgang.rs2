@@ -1,5 +1,5 @@
 [oploc2,questbookcase] // palace bookcase
-if(%phoenixgang ! 1) {
+if(%phoenixgang ! ^phoenixgang_started) {
     mes("A large collection of books.");
     return;
 }

@@ -1,5 +1,5 @@
 [opnpc1,baraek]
-if(%phoenixgang = 3) { // you wont get options for selling both furs while doing the quest, grey is prio'd
+if(%phoenixgang = ^phoenixgang_spoken_reldo) { // you wont get options for selling both furs while doing the quest, grey is prio'd
     if(inv_total(inv, grey_wolf_fur) > 0) {
         @multi4("Can you tell me where I can find the Phoenix Gang?", baraek_phoenixgang, "Can you sell me some furs?", baraek_sell_fur, "Hello. I am in search of a quest.", baraek_quest, "Would you like to buy my grey wolf fur?", baraek_grey_wolf_fur);
     } else if(inv_total(inv, fur) > 0) {
@@ -111,7 +111,7 @@ switch_int(~p_choice3("Okay. Have 20 gold coins.", 1, "No. I don't like things l
             return;
         }
         inv_del(inv, coins, 20);
-        %phoenixgang = 4;
+        %phoenixgang = ^phoenixgang_spoken_baraek;
         ~chatnpc("<p,neutral>Ok, to get to the gang hideout, enter Varrock through the south gate. Then, if you take the first turning east, somewhere along there is an alleyway to the south. The door at the end of there is the entrance to the Phoenix");
         ~chatnpc("<p,neutral>Gang. They're operating there under the name of the VTAM Corporation. Be careful. The Phoenixes ain't the types to be messed about.");
         ~chatplayer("<p,happy>Thanks!");

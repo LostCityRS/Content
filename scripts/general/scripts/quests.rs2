@@ -250,7 +250,7 @@ return ($questpoints);
 ~send_quest_progress_colour(questlist:scorpcatcher, %scorpcatcher, ^scorpcatcher_complete);
 ~send_quest_progress_colour(questlist:zanaris, %zanaris, ^zanaris_complete);
 ~send_quest_progress_colour(questlist:dragon, %dragonquest, ^dragon_complete);
-if (%phoenixgang > 0 & %blackarmgang ! ^blackarmgang_complete) { // shield of arrav
+if (%phoenixgang > ^phoenixgang_not_started & %blackarmgang ! ^blackarmgang_complete) { // shield of arrav
     ~send_quest_progress_colour(questlist:blackarmgang, %phoenixgang, ^phoenixgang_complete);
 } else {
     ~send_quest_progress_colour(questlist:blackarmgang, %blackarmgang, ^blackarmgang_complete);

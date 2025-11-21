@@ -39,8 +39,8 @@ switch_int(~p_choice4("Sorry, I haven't got any.", 1, "Go get a job!", 2, "Ok. H
             if(%phoenixgang >= ^phoenixgang_joined) { // In phoenix
                 @tramp_phoenixmember;
             }
-            if(%blackarmgang = 0) {
-                %blackarmgang = 1;
+            if(%blackarmgang = ^blackarmgang_not_started) {
+                %blackarmgang = ^blackarmgang_started;
                 ~send_quest_progress(questlist:blackarmgang, %blackarmgang, ^blackarmgang_complete);
             }
             ~chatnpc("<p,neutral>You never know.|You'll find a lady down there called Katrine.|Speak to her.");
