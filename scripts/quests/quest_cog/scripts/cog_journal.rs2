@@ -10,25 +10,25 @@ switch_int (%cogquest) {
         $text = "@str@I spoke to Brother Kojo at the Clock Tower South of|@str@Argougne and agreed to help him repair the clock.|";
         $text = append($text, "@dbl@To repair the clock I need to find the four coloured cogs|@dbl@and place them on the four correctly coloured spindles.|");
 
-        if(testbit(%cog_cooled, ^quest_cog_blue) = ^false) {
+        if(testbit(%cog_bits, ^quest_cog_blue) = ^false) {
             $text = append($text, "@dbl@I haven't placed the @dre@Blue Cog@dbl@ on its @dre@spindle@dbl@ yet|");
         } else {
             $text = append($text, "@str@I have successfully placed the Blue Cog on its spindle|");
         }
 
-        if(testbit(%cog_cooled, ^quest_cog_black) = ^false) {
+        if(testbit(%cog_bits, ^quest_cog_black) = ^false) {
             $text = append($text, "@dbl@I haven't placed the @dre@Black Cog@dbl@ on its @dre@spindle@dbl@ yet|");
         } else {
             $text = append($text, "@str@I have successfully placed the Black Cog on its spindle|");
         }
 
-        if(testbit(%cog_cooled, ^quest_cog_white) = ^false) {
+        if(testbit(%cog_bits, ^quest_cog_white) = ^false) {
             $text = append($text, "@dbl@I haven't placed the @dre@White Cog@dbl@ on its @dre@spindle@dbl@ yet|");
         } else {
             $text = append($text, "@str@I have successfully placed the White Cog on its spindle|");
         }
 
-        if(testbit(%cog_cooled, ^quest_cog_red) = ^false) {
+        if(testbit(%cog_bits, ^quest_cog_red) = ^false) {
             $text = append($text, "@dbl@I haven't placed the @dre@Red Cog@dbl@ on its @dre@spindle@dbl@ yet");
         } else {
             $text = append($text, "@str@I have successfully placed the Red Cog on its spindle");

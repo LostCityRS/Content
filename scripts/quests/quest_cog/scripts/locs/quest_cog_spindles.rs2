@@ -1,7 +1,7 @@
 [oplocu,brokeclockpole_black]
 if(last_useitem = blackcog) {
-    if(testbit(%cog_cooled, ^quest_cog_black) = ^false) {
-        %cog_cooled = setbit(%cog_cooled, ^quest_cog_black);
+    if(testbit(%cog_bits, ^quest_cog_black) = ^false) {
+        %cog_bits = setbit(%cog_bits, ^quest_cog_black);
     } else {
         mes("You have already placed a cog here.");
         return;
@@ -19,8 +19,8 @@ if(last_useitem = blackcog) {
 
 [oplocu,brokeclockpole_red]
 if(last_useitem = redcog) {
-    if(testbit(%cog_cooled, ^quest_cog_red) = ^false) {
-        %cog_cooled = setbit(%cog_cooled, ^quest_cog_red);
+    if(testbit(%cog_bits, ^quest_cog_red) = ^false) {
+        %cog_bits = setbit(%cog_bits, ^quest_cog_red);
     } else {
         mes("You have already placed a cog here.");
         return;
@@ -38,8 +38,8 @@ if(last_useitem = redcog) {
 
 [oplocu,brokeclockpole_white]
 if(last_useitem = whitecog) {
-    if(testbit(%cog_cooled, ^quest_cog_white) = ^false) {
-        %cog_cooled = setbit(%cog_cooled, ^quest_cog_white);
+    if(testbit(%cog_bits, ^quest_cog_white) = ^false) {
+        %cog_bits = setbit(%cog_bits, ^quest_cog_white);
     } else {
         mes("You have already placed a cog here.");
         return;
@@ -57,8 +57,8 @@ if(last_useitem = whitecog) {
 
 [oplocu,brokeclockpole_blue]
 if(last_useitem = bluecog) {
-    if(testbit(%cog_cooled, ^quest_cog_blue) = ^false) {
-        %cog_cooled = setbit(%cog_cooled, ^quest_cog_blue);
+    if(testbit(%cog_bits, ^quest_cog_blue) = ^false) {
+        %cog_bits = setbit(%cog_bits, ^quest_cog_blue);
     } else {
         mes("You have already placed a cog here.");
         return;
