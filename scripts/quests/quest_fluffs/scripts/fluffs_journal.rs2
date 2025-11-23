@@ -1,0 +1,41 @@
+[if_button,questlist:fluffs]
+def_string $text;
+
+// https://www.youtube.com/watch?v=Nl-tT4d5wJY
+switch_int(%fluffs) {
+    case ^fluffs_not_started : // https://www.youtube.com/watch?v=68LT97Wx7aM
+        $text = "@dbl@I can start this quest by talking to @dre@Gertrude@dbl@.|@dbl@She can be found in a house south of the road leading|";
+        $text = append($text, "@dre@west out of Varrock@dbl@.");
+    case ^fluffs_started :
+        $text = "@str@I accepted the challenge of finding Gertrude's lost cat.||";
+        $text = append($text, "@dbl@I need to @dre@speak to Shilop and Wilough@dbl@ at the @dre@marketplace@dbl@.");
+    case ^fluffs_paid_boy :
+        $text = "@str@I accepted the challenge of finding Gertrude's lost cat.|";
+        $text = append($text, "@str@I spoke to Shilop, Gertrude's Son.||");
+        $text = append($text, "@dbl@I need to @dre@go to their play area@dbl@ and @dre@find the lost cat and|@dre@return it to Gertrude@dbl@.");
+    case ^fluffs_gave_milk :
+        $text = "@str@I accepted the challenge of finding Gertrude's lost cat.|";
+        $text = append($text, "@str@I spoke to Shilop, Gertrude's Son.|");
+        $text = append($text, "@str@I found the lost cat but it won't come back.||");
+        $text = append($text, "@dbl@I still need to @dre@get her to follow me home@dbl@.");
+    case ^fluffs_gave_sardine :
+        $text = "@str@I accepted the challenge of finding Gertrude's lost cat.|";
+        $text = append($text, "@str@I spoke to Shilop, Gertrude's Son.|");
+        $text = append($text, "@str@I found the lost cat but it won't come back.|");
+        $text = append($text, "@str@I gave the cat milk and sardines.||");
+        $text = append($text, "@dbl@I still need to @dre@get her to follow me home@dbl@.");
+    case ^fluffs_rescued :
+        $text = "@str@I accepted the challenge of finding Gertrude's lost cat.|";
+        $text = append($text, "@str@I spoke to Shilop, Gertrude's Son.|");
+        $text = append($text, "@str@The cat didn't follow me back.|");
+        $text = append($text, "@str@I gave the cat milk and sardines.|");
+        $text = append($text, "@str@I gave Fluffs her kitten back.||");
+        $text = append($text, "@dbl@She ran off home.");
+    case ^fluffs_complete :
+        $text = "@str@I helped Gertrude to find her lost cat,|";
+        $text = append($text, "@str@I fed it and returned her missing kitten,|");
+        $text = append($text, "@str@Gertrude gave me my very own pet for a reward.||");
+        $text = append($text, "@red@QUEST COMPLETE!");
+}
+
+~quest_journal("Gertrude's Cat", $text);
