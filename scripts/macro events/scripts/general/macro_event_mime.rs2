@@ -5,6 +5,24 @@
 // ai_timer - the mime npc has a state timer that globally shows the emote to follow
 // if_button - the buttons when you click on the interface with all the emotes
 
+// Mysterious Old Man:
+[proc,mime_entry_point]()
+~macro_event_disappear;
+%macro_event = ^macro_mime;
+%macro_chest_gas_coord = coord();
+p_teleport(0_31_74_24_28);
+if_settab(null, 0);
+if_settab(null, 1);
+if_settab(null, 2);
+if_settab(null, 3);
+if_settab(null, 4);
+if_settab(null, 5);
+if_settab(null, 6);
+if_settab(null, 11);
+if_settab(null, 12);
+~chatnpc("<p,neutral>You need to copy the mime's performance, then you'll be returned to where you were.");
+
+
 // Enter map trigger: 
 [mapzone,0_31_74]
 def_int $count = divide(modulo(map_clock, multiply(16,2)), 2);
@@ -25,15 +43,6 @@ if ($count < 4) {
 }
 mes("You need to copy the mime's performance, then you'll return to");
 mes("where you were.");
-if_settab(null, 0);
-if_settab(null, 1);
-if_settab(null, 2);
-if_settab(null, 3);
-if_settab(null, 4);
-if_settab(null, 5);
-if_settab(null, 6);
-if_settab(null, 11);
-if_settab(null, 12);
 
 // Exit map trigger: restore tabs
 [mapzoneexit,0_31_74]
@@ -136,7 +145,6 @@ if ($num = $curr_emote) {
 
 
 [proc,macro_mime_reward]()(namedobj, int)
-//  
 if(inv_total(inv, obj_3057) = 0 & inv_total(worn, obj_3057) = 0 & inv_total(bank, obj_3057) = 0) {
     return(obj_3057, 1);
 } else if(inv_total(inv, obj_3058) = 0 & inv_total(worn, obj_3058) = 0 & inv_total(bank, obj_3058) = 0) {
