@@ -1,3 +1,44 @@
+// MIME RANDOM EVENT
+// Entry points:
+// macro_mysterious_old_man - the man who will abduct you
+// mapzone - when you enter the mime area, or log into the mime area
+// ai_timer - the mime npc has a state timer that globally shows the emote to follow
+// if_button - the buttons when you click on the interface with all the emotes
+
+// Enter map trigger: 
+[mapzone,0_31_74]
+def_int $count = divide(modulo(map_clock, multiply(16,2)), 2);
+if ($count < 4) {
+    if (loc_find(0_31_74_23_25, loc_3644) = true) {
+        loc_anim(seq_1135);
+    }
+    if (loc_find(0_31_74_26_25, loc_3644) = true) {
+        loc_anim(seq_1136);
+    }
+} else {
+    if (loc_find(0_31_74_23_25, loc_3644) = true) {
+        loc_anim(seq_1136);
+    }
+    if (loc_find(0_31_74_26_25, loc_3644) = true) {
+        loc_anim(seq_1135);
+    }
+}
+mes("You need to copy the mime's performance, then you'll return to");
+mes("where you were.");
+if_settab(null, 0);
+if_settab(null, 1);
+if_settab(null, 2);
+if_settab(null, 3);
+if_settab(null, 4);
+if_settab(null, 5);
+if_settab(null, 6);
+if_settab(null, 11);
+if_settab(null, 12);
+
+// Exit map trigger: restore tabs
+[mapzoneexit,0_31_74]
+~initalltabs;
+
 [ai_timer,npc_1056]
 def_int $count = divide(modulo(map_clock, multiply(16,2)), 2);
 if($count = 0) {
@@ -10,6 +51,7 @@ if($count = 0) {
     }
     huntall(0_31_74_24_28, 1, 0);
     while(huntnext = true) {
+        if_close();
         queue(mime_step_right_up, 0);
     }
     huntall(0_31_74_24_26, 1, 0);
@@ -83,9 +125,27 @@ if ($num = $curr_emote) {
         // Return where you are from
         p_delay(4);
         p_teleport(%macro_chest_gas_coord);
+        inv_add(inv, ~macro_mime_reward);
+        ~initalltabs;
         %macro_event = 0;
     }
 } else {
     p_delay(4);
     anim(emote_cry, 0);
 }
+
+
+[proc,macro_mime_reward]()(namedobj, int)
+//  
+if(inv_total(inv, obj_3057) = 0 & inv_total(worn, obj_3057) = 0 & inv_total(bank, obj_3057) = 0) {
+    return(obj_3057, 1);
+} else if(inv_total(inv, obj_3058) = 0 & inv_total(worn, obj_3058) = 0 & inv_total(bank, obj_3058) = 0) {
+    return(obj_3058, 1); // Mime top
+} else if(inv_total(inv, obj_3059) = 0 & inv_total(worn, obj_3059) = 0 & inv_total(bank, obj_3059) = 0) {
+    return(obj_3059, 1); // Mime legs
+} else if(inv_total(inv, obj_3060) = 0 & inv_total(worn, obj_3060) = 0 & inv_total(bank, obj_3060) = 0) {
+    return(obj_3060, 1); // Mime gloves
+} else if(inv_total(inv, obj_3061) = 0 & inv_total(worn, obj_3061) = 0 & inv_total(bank, obj_3061) = 0) {
+    return(obj_3061, 1); // Mime boots
+}
+// Emotes were not unlockables in 254

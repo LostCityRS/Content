@@ -62,6 +62,10 @@ if (p_finduid(uid) = true) {
 [if_button,controls:com_22] @controls_emote(emote_laugh);
 [if_button,controls:com_23] @controls_emote(emote_cheer);
 [if_button,controls:com_24] @controls_emote(emote_clap);
+[if_button,controls:com_41] @controls_emote(seq_1128);
+[if_button,controls:com_42] @controls_emote(seq_1131);
+[if_button,controls:com_43] @controls_emote(seq_1130);
+[if_button,controls:com_44] @controls_emote(seq_1129);
 
 [label,controls_emote](seq $anim)
 if_close;
