@@ -723,47 +723,62 @@ op1=Open
 model=loc_3627
 sharelight=yes
 
-[loc_3628]
+[macro_maze_both_dir_wall]
 name=Wall
 desc=It looks very sturdy.
 model=model_3334
 recol1s=9513
 recol1d=15855
 op1=Open
+param=next_loc_stage,macro_maze_opened_wall
+param=approach_direction,0
+category=macro_maze_wall_door
 
-[loc_3629]
+[macro_maze_east_wall]
 name=Wall
 desc=It looks very sturdy.
 model=model_3334
 recol1s=9513
 recol1d=15855
 op1=Open
+param=next_loc_stage,macro_maze_opened_wall
+param=approach_direction,1
+category=macro_maze_wall_door
 
-[loc_3630]
+[macro_maze_west_wall]
 name=Wall
 desc=It looks very sturdy.
 model=model_3334
 recol1s=9513
 recol1d=15855
 op1=Open
+param=next_loc_stage,macro_maze_opened_wall
+param=approach_direction,2
+category=macro_maze_wall_door
 
-[loc_3631]
+[macro_maze_north_wall]
 name=Wall
 desc=It looks very sturdy.
 model=model_3334
 recol1s=9513
 recol1d=15855
 op1=Open
+param=next_loc_stage,macro_maze_opened_wall
+param=approach_direction,2
+category=macro_maze_wall_door
 
-[loc_3632]
+[macro_maze_west2_wall]
 name=Wall
 desc=It looks very sturdy.
 model=model_3334
 recol1s=9513
 recol1d=15855
 op1=Open
+param=next_loc_stage,macro_maze_opened_wall
+param=approach_direction,1
+category=macro_maze_wall_door
 
-[loc_3633]
+[macro_maze_opened_wall]
 model=model_3334
 recol1s=9513
 recol1d=15855
