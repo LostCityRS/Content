@@ -23,6 +23,8 @@ def_coord $coord = enum(int, coord, essence_mine_teleports, random(enum_getoutpu
 // select random coord at a radius of 1
 $coord = map_findsquare($coord, 0, 1, ^map_findsquare_lineofsight);
 p_telejump($coord);
+// abyssal_miniquest fill scrying orb
+~rcu_check_scrying_orb($tele_back_coord);
 
 // portal
 [oploc1,essencemine_portal]
@@ -32,9 +34,9 @@ spotanim_pl(curse_impact, 124, 30);
 sound_synth(teleport_all, 0, 0);
 p_delay(1);
 if (%essencemine_exit_coord = null) {
-    %essencemine_exit_coord = ^essence_mine_to_sedridor;
-} else if (%essencemine_exit_coord ! ^essence_mine_to_aubury & %essencemine_exit_coord ! ^essence_mine_to_sedridor & map_members = ^false) {
-    %essencemine_exit_coord = ^essence_mine_to_sedridor; // in osrs, if you hop to a f2p world from f2p when inside the ess mine, if your exit coord is in a p2p area it reset to sedridor!
+    %essencemine_exit_coord = ^essence_mine_to_wizardstower;
+} else if (%essencemine_exit_coord ! ^essence_mine_to_aubury & %essencemine_exit_coord ! ^essence_mine_to_wizardstower & map_members = ^false) {
+    %essencemine_exit_coord = ^essence_mine_to_wizardstower; // in osrs, if you hop to a f2p world from f2p when inside the ess mine, if your exit coord is in a p2p area it reset to sedridor!
 }
 def_coord $coord = map_findsquare(%essencemine_exit_coord, 0, 2, ^map_findsquare_lineofwalk);
 p_telejump($coord);

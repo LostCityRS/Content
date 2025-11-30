@@ -37,12 +37,12 @@ if(%runemysteries = ^runemysteries_not_started) {
     }
     if ($option = 2) {
         ~chatplayer("<p,quiz>Can you teleport me to the Rune Essence?");
-        @teleport_to_essence_mine(^essence_mine_to_sedridor);
+        @teleport_to_essence_mine(^essence_mine_to_wizardstower);
     }
 }
 
 [opnpc3,head_wizard]
-@teleport_to_essence_mine(^essence_mine_to_sedridor);
+@teleport_to_essence_mine(^essence_mine_to_wizardstower);
 
 [opnpcu,head_wizard]
 // no air talisman interaction i'm assuming since osrs dialogue is streamlined here (it starts from beginning in osrs)
