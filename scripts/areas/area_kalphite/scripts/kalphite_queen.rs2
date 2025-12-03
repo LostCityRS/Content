@@ -223,32 +223,30 @@ def_int $random = random(128);
 // https://web.archive.org/web/20060412010923/http://www.runehq.com/RHQMonsterView.php?id=244
 // https://web.archive.org/web/20060519005015/http://www.runescapecommunity.com/index.php?showtopic=487780
 // from 201 drops
-//  Laws - 20	8
-//  Rune warhammer	5
-//  Natures - 75	22
-//  Fire rune - 600	18
-// Rune chainbody	26
-//  zammy wine - 20	17
-//  Rune axe	3
-//  Power ammy	13
-//  Bloods - 19	34
-//  Death rune - 30	4
-//  Half key (loop)	1
-//  Bloods rune - 19	2
-//  Adamant spear	14
-//  Addy Javs - 20	1
-//  Lava staff	1
-//  Rune arrows - 100	3
-//  Emrald	3
-//  Nothing	5
-//  Mithril arrow - 500	12
-//  Lobster - 7	4
-//  Rune kite	1
-//  Bloods - 15	1
-//  Coins - 3k	1
-//  Deaths - 30	1
-// D CHAIN	1
-// RDT	11?
+//  Laws - 20, 8
+//  Rune warhammer, 5
+//  Natures - 75, 22
+//  Fire rune - 600, 18
+//  Rune chainbody, 26
+//  zammy wine - 20, 17
+//  Rune axe, 3
+//  Power ammy, 13
+//  Bloods - 19, 36
+//  Death rune - 30, 5
+//  Half key (loop), 1
+//  Adamant spear, 14
+//  Addy Javs - 20, 1
+//  Lava staff, 1
+//  Rune arrows - 100, 3
+//  Emrald, 3
+//  Nothing, 5
+//  Mithril arrow - 500, 12
+//  Lobster - 7, 4
+//  Rune kite, 1
+//  Bloods - 15, 1
+//  Coins - 3k, 1
+//  D CHAIN, 1
+//  RDT, 17
 
 // osrs wiki descriptions
 // - runeaxe common
@@ -270,17 +268,19 @@ def_int $random = random(128);
 // - emerald uncommon
 // - ruby uncommon
 // - oyster pearls uncommon
-// blood runes common
-// nature runes common
-// fire runes common
-// law runes uncommon
-// death runes uncommon
-// wine of zamorak common
-// amulet of power common
-// coins uncommon
-// lobster uncommon
-// runite bar uncommon
-// hard clue rare
+// - blood runes common
+// - nature runes common
+// - fire runes common
+// - law runes uncommon
+// - death runes uncommon
+// - wine of zamorak common
+// - amulet of power common
+// - coins uncommon
+// - lobster uncommon
+// - runite bar uncommon
+// - hard clue rare
+
+// ~trail_hardcluedrop(128, npc_coord); // todo
 
 // rates are a WIP
 if ($random < 14) { // 14/128 guess: drop log 16/128, 4/128 osrs
