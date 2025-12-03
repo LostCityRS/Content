@@ -219,7 +219,38 @@ if (npc_findhero = ^false) {
 }
 
 def_int $random = random(128);
-// drops
+
+// https://web.archive.org/web/20060412010923/http://www.runehq.com/RHQMonsterView.php?id=244
+// https://web.archive.org/web/20060519005015/http://www.runescapecommunity.com/index.php?showtopic=487780
+// from 201 drops
+//  Laws - 20	8
+//  Rune warhammer	5
+//  Natures - 75	22
+//  Fire rune - 600	18
+// Rune chainbody	26
+//  zammy wine - 20	17
+//  Rune axe	3
+//  Power ammy	13
+//  Bloods - 19	34
+//  Death rune - 30	4
+//  Half key (loop)	1
+//  Bloods rune - 19	2
+//  Adamant spear	14
+//  Addy Javs - 20	1
+//  Lava staff	1
+//  Rune arrows - 100	3
+//  Emrald	3
+//  Nothing	5
+//  Mithril arrow - 500	12
+//  Lobster - 7	4
+//  Rune kite	1
+//  Bloods - 15	1
+//  Coins - 3k	1
+//  Deaths - 30	1
+// D CHAIN	1
+// RDT	11?
+
+// osrs wiki descriptions
 // - runeaxe common
 // - adamant spear common
 // - rune chainbody common
@@ -251,72 +282,44 @@ def_int $random = random(128);
 // runite bar uncommon
 // hard clue rare
 
-
-if ($random < 4) { // 4/128, 4 rolls in osrs
+// rates are a WIP
+if ($random < 14) { // 14/128 guess: drop log 16/128, 4/128 osrs
     obj_add(npc_coord, rune_chainbody, 1, ^lootdrop_duration);
-} else if ($random < 6) { // 2/128, 2 rolls in osrs
+} else if ($random < 16) { // 2/128 guess: drop log 0.63/128, 2/128 osrs
     obj_add(npc_coord, lava_battlestaff, 1, ^lootdrop_duration);
-} else if ($random < 9) { // 3/128, guess
-    obj_add(npc_coord, rune_2h_sword, 1, ^lootdrop_duration);
-} else if ($random < 12) { // 3/128, guess
-    obj_add(npc_coord, rune_battleaxe, 1, ^lootdrop_duration);
-} else if ($random < 15) { // 3/128, guess
+} else if ($random < 19) { // 3/128: drop log 3/128
     obj_add(npc_coord, rune_warhammer, 1, ^lootdrop_duration);
-} else if ($random < 18) { // 3/128, guess
-    obj_add(npc_coord, adamant_longsword, 1, ^lootdrop_duration);
-} else if ($random < 21) { // 3/128, guess
-    obj_add(npc_coord, rune_sq_shield, 1, ^lootdrop_duration);
-} else if ($random < 25) { // 4/128, guess
+} else if ($random < 22) { // 3/128 guess: drop log 2/128
     obj_add(npc_coord, rune_axe, 1, ^lootdrop_duration);
-} else if ($random < 29) { // 4/128 guess
+} else if ($random < 32) { // 10/128 guess: drop log 9/128
     obj_add(npc_coord, adamant_spear, 1, ^lootdrop_duration);
-} else if ($random < 33) { // 4/128 guess
+} else if ($random < 42) { // 10/128 guess: drop log 8/128
     obj_add(npc_coord, mithril_arrow, 500, ^lootdrop_duration);
-} else if ($random < 36) { // 3/128 guess
+} else if ($random < 45) { // 3/128 guess: missing from drop log
     obj_add(npc_coord, iron_arrow, add(random(335), 1), ^lootdrop_duration);
-} else if ($random < 39) { // 3/128 guess
-    obj_add(npc_coord, steel_arrow, add(random(150), 1), ^lootdrop_duration);
-} else if ($random < 42) { // 3/128 guess
+} else if ($random < 47) { // 2/128: drop log 2/128
     obj_add(npc_coord, rune_arrow, 100, ^lootdrop_duration);
-} else if ($random < 45) { // 3/128 guess
-    obj_add(npc_coord, rune_javelin, add(random(5), 1), ^lootdrop_duration);
-} else if ($random < 50) { // 5/128 guess
-    obj_add(npc_coord, diamond, 1, ^lootdrop_duration);
-} else if ($random < 53) { // 3/128 guess
-    obj_add(npc_coord, emerald, 1, ^lootdrop_duration);
-} else if ($random < 56) { // 3/128 guess
-    obj_add(npc_coord, ruby, 1, ^lootdrop_duration);
-} else if ($random < 59) { // 3/128 guess
-    obj_add(npc_coord, sapphire, 1, ^lootdrop_duration);
-} else if ($random < 62) { // 3/128 guess
+} else if ($random < 50) { // 3/128 guess: missing from drop log
     obj_add(npc_coord, bigoysterpearls, 40, ^lootdrop_duration);
-} else if ($random < 68) { // 6/128, 6 rolls in osrs
+} else if ($random < 70) { // 20/128 guess: drop log 23/128, 6/128 osrs
     obj_add(npc_coord, bloodrune, 19, ^lootdrop_duration);
-} else if ($random < 71) { // 3/128, guess
-    obj_add(npc_coord, naturerune, 69, ^lootdrop_duration);
-} else if ($random < 74) { // 3/128, guess
+} else if ($random < 84) { // 14/128: drop log 14/128
     obj_add(npc_coord, naturerune, 75, ^lootdrop_duration);
-} else if ($random < 80) { // 3/128, guess
+} else if ($random < 94) { // 10/128 guess: drop log 11/128
     obj_add(npc_coord, firerune, 600, ^lootdrop_duration);
-} else if ($random < 81) { // 1/128, guess
+} else if ($random < 99) { // 5/128: drop log 5/128
     obj_add(npc_coord, lawrune, 20, ^lootdrop_duration);
-}  else if ($random < 82) { // 1/128, guess
-    obj_add(npc_coord, lawrune, 45, ^lootdrop_duration);
-}  else if ($random < 85) { // 3/128, guess
-    obj_add(npc_coord, deathrune, add(random(54), 1), ^lootdrop_duration);
-}  else if ($random < 95) { // 10/128, 10 rolls in osrs
+}  else if ($random < 102) { // 3/128: drop log 3/128
+    obj_add(npc_coord, deathrune, 30, ^lootdrop_duration);
+}  else if ($random < 112) { // 10/128 guess: drop log 11/128, 10/128 osrs
     obj_add(npc_coord, cert_wine_of_zamorak, 20, ^lootdrop_duration);
-}  else if ($random < 102) { // 7/128, guess based on kbd's amulet of power/str
+}  else if ($random < 119) { // 7/128: drop log 8/128, guess based on kbd's amulet of power/str 7/128
     obj_add(npc_coord, amulet_of_power, 1, ^lootdrop_duration);
-} else if ($random < 105) { // 3/128, guess
+} else if ($random < 121) { // 2/128 guess: drop log 2.55/128
     obj_add(npc_coord, lobster, 7, ^lootdrop_duration);
-} else if ($random < 108) { // 3/128, guess
-    obj_add(npc_coord, runite_bar, 7, ^lootdrop_duration);
-} else if ($random < 111) { // 3/128, guess
-    obj_add(npc_coord, coins, 3, ^lootdrop_duration);
-} else if ($random < 112) { // 1/128, 1 roll in osrs
+} else if ($random < 122) { // 1/128, 1 roll in osrs
     obj_add(npc_coord, dragon_chainbody, 7, ^lootdrop_duration);
-} else if ($random < 113) { // 1/128, guess
+} else if ($random < 128) { // 7/128 guess, drop log suggests 11/128
     obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
 }
 
