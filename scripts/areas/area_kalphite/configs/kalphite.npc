@@ -80,8 +80,26 @@ readyanim=kalphite_ready
 op2=Attack
 headicon=6
 vislevel=333
+huntmode=kalphite_queen
+huntrange=15
+attackrange=15
+// confirm maxrange
+maxrange=15
+hitpoints=255
+attack=300
+strength=300
+defence=300
+magic=150
+param=stabdefence,50
+param=slashdefence,50
+param=crushdefence,10
+param=magicdefence,100
+param=rangedefence,100
+param=defend_anim,kalphite_block
+param=death_anim,kalphite_death
+param=defend_sound,kalthite_queen_hit
 
-[npc_1159]
+[kalphite_queen_form_swap]
 name=Kalphite Queen
 desc=I don't think insect repellent will work...
 model1=npc_1158
@@ -89,6 +107,7 @@ vislevel=333
 size=5
 walkanim=kalphite_walk
 readyanim=kalphite_ready
+defaultmode=none
 
 [kalphite_flyingqueen]
 name=Kalphite Queen
@@ -102,6 +121,25 @@ resizev=256
 op2=Attack
 headicon=0
 vislevel=333
+huntmode=kalphite_queen
+huntrange=10
+attackrange=10
+maxrange=10
+hitpoints=255
+attack=300
+strength=300
+defence=300
+magic=150
+param=stabdefence,100
+param=slashdefence,100
+param=crushdefence,100
+param=magicdefence,10
+param=rangedefence,10
+param=defend_anim,kalphite_queen_block
+param=death_anim,kalphite_queen_death
+param=death_sound,kalphite_flyingqueen_death
+param=defend_sound,kalphite_flyingqueen_hit
+
 
 [kalphite_larva]
 name=Kalphite Larva
