@@ -266,3 +266,14 @@ if (npc_find($coord, kalphite_queen, 20, 0) = true) {
 if (p_finduid(uid) = true) {
     p_teleport(0_54_148_52_21);
 }
+
+[debugproc,kqstun]
+if (npc_find(coord, kalphite_queen, 20, 0) = true) {
+    %npc_stunned = add(map_clock, 10000);
+    npc_walktrigger(8, 0);
+}
+
+[debugproc,kqtele]
+if (npc_find(coord, kalphite_queen, 20, 0) = true) {
+    npc_tele(movecoord(coord, 0, 0, 1));
+}
