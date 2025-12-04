@@ -1,0 +1,110 @@
+[if_button,questlist:scorpcatcher]
+def_string $text;
+
+// Source for not_started stage: https://imgur.com/UbZkoqe
+if (%scorpcatcher = ^scorpcatcher_not_started) {
+
+    $text = "@dbl@I can start this quest by speaking to @dre@Thormac@dbl@ who is in the|";
+    $text = append($text, "@dre@Sorcerer's Tower@dbl@ south-west of @dre@Catherby@dbl@.||");
+
+    $text = append($text, "@dbl@Requirements:|");
+    if (stat(prayer) >= 31) {
+        $text = append($text, "@str@Level 31 Prayer|");
+    } else {
+        $text = append($text, "@dre@Level 31 Prayer|");
+    }
+
+    ~quest_journal("Scorpion Catcher", $text);
+    return;
+}
+
+def_int $hasA = ^false;
+def_int $hasB = ^false;
+def_int $hasC = ^false;
+
+if (inv_total(inv, scorpioncagea) > 0 |
+    inv_total(inv, scorpioncageab) > 0 |
+    inv_total(inv, scorpioncageac) > 0 |
+    inv_total(inv, scorpioncagefull) > 0 |
+    %scorpcatcher = ^scorpcatcher_complete) {
+    $hasA = ^true;
+}
+if (inv_total(inv, scorpioncageb) > 0 |
+    inv_total(inv, scorpioncageab) > 0 |
+    inv_total(inv, scorpioncagebc) > 0 |
+    inv_total(inv, scorpioncagefull) > 0 |
+    %scorpcatcher = ^scorpcatcher_complete) {
+    $hasB = ^true;
+}
+if (inv_total(inv, scorpioncagec) > 0 |
+    inv_total(inv, scorpioncageac) > 0 |
+    inv_total(inv, scorpioncagebc) > 0 |
+    inv_total(inv, scorpioncagefull) > 0 |
+    %scorpcatcher = ^scorpcatcher_complete) {
+    $hasC = ^true;
+}
+
+$text = "@str@I've spoken to Thormac in the Sorcerer's Tower south-west|";
+$text = append($text, "@str@of Catherby. He's lost his pet Kharid Scorpions and needs|");
+$text = append($text, "@str@my help to find them.");
+
+if (%scorpcatcher = ^scorpcatcher_started) {
+    $text = append($text, "||@dbl@I need to go to the @dre@Seers' Village@dbl@ and talk to the @dre@Seers@dbl@|");
+    $text = append($text, "@dbl@about the lost @dre@Kharid Scorpions@dbl@.");
+} else if (%scorpcatcher > ^scorpcatcher_started) {
+    $text = append($text, "||@str@I've spoken to a Seer and been given the location of one|@str@of the Kharid Scorpions.");
+}
+
+if (%scorpcatcher >= ^scorpcatcher_first_hint) {
+
+    // Source for first scorpion: https://www.youtube.com/watch?v=rulbDoHlgQg
+    if ($hasA = ^true) {
+        $text = append($text, "||@str@The first Kharid Scorpion is in a secret room near some|");
+        $text = append($text, "@str@nasty spiders with two coffins nearby.");
+    } else {
+        $text = append($text, "||@dbl@The first @dre@Kharid Scorpion@dbl@ is in a secret room near some|");
+        $text = append($text, "@dre@nasty spiders@dbl@ with two @dre@coffins@dbl@ nearby.");
+    }
+
+    if (%scorpcatcher = ^scorpcatcher_first_hint) {
+        if ($hasA = ^true) {
+            $text = append($text, "||@dbl@I'll need to talk to a @dre@Seer@dbl@ again now I've caught the first|@dre@Kharid Scorpion@dbl@.");
+        } else {
+            $text = append($text, "||@dbl@I'll need to talk to a @dre@Seer@dbl@ again once I've caught the first|@dre@Kharid Scorpion@dbl@.");
+        }
+    }
+}
+
+if (%scorpcatcher >= ^scorpcatcher_second_hint) {
+
+    // Source for second scorpion: https://www.youtube.com/watch?v=rk8N48dUG4Y & https://www.youtube.com/watch?v=rulbDoHlgQg
+    if ($hasB = ^true) {
+        $text = append($text, "||@str@The second Kharid Scorpion has been in a village of|");
+        $text = append($text, "@str@uncivilised-looking warriors in the east. It's been picked up|");
+        $text = append($text, "@str@by some sort of merchant.");
+    } else {
+        $text = append($text, "||@dbl@The second @dre@Kharid Scorpion@dbl@ has been in a @dre@village of|");
+        $text = append($text, "@dre@uncivilised-looking warriors in the east@dbl@. It's been picked up|");
+        $text = append($text, "@dbl@by some sort of @dre@merchant@dbl@.");
+    }
+
+    // Source for third scorpion: https://www.youtube.com/watch?v=rk8N48dUG4Y & https://www.youtube.com/watch?v=rulbDoHlgQg
+    if ($hasC = ^true) {
+        $text = append($text, "||@str@The third Kharid Scorpion is in some sort of upstairs room|");
+        $text = append($text, "@str@with brown clothing on a table.");
+    } else {
+        $text = append($text, "||@dbl@The third @dre@Kharid Scorpion@dbl@ is in some sort of @dre@upstairs room|"); // Assuming dark-red text on upstairs room; only seen it with strike-through on sources. RS3 has it in dark-red though.
+        $text = append($text, "@dbl@with @dre@brown clothing@dbl@ on a table.");
+    }
+
+    if ($hasA = ^true & $hasB = ^true & $hasC = ^true & %scorpcatcher < ^scorpcatcher_complete) {
+        $text = append($text, "||@dbl@I need to take the @dre@Kharid Scorpions@dbl@ to @dre@Thormac@dbl@."); // https://imgur.com/2FqULs1
+    }
+}
+
+if (%scorpcatcher = ^scorpcatcher_complete) {
+    $text = append($text, "||@str@I've spoken to Thormac and he thanked me for finding his|@str@pet Kharid Scorpions.");
+    $text = append($text, "||@red@QUEST COMPLETE!");
+}
+
+~quest_journal("Scorpion Catcher", $text);
