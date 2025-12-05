@@ -1,0 +1,62 @@
+[if_button,questlist:murder]
+def_string $text;
+
+// Source for not_started stage: https://www.youtube.com/watch?v=Ta1YvFnLA9w
+if (%murderquest = ^murder_not_started) {
+
+    $text = "@dbl@I can start this quest by speaking to one of the @dre@Guards@dbl@ at|";
+    $text = append($text, "@dbl@the @dre@Sinclair Mansion@dbl@, North of the @dre@Seer's Village@dbl@");
+
+    ~quest_journal("Murder Mystery", $text);
+    return;
+}
+
+if (%murderquest = ^murder_started) {
+    $text = "@str@Lord Sinclair, a prominent nobleman, had been horribly|";
+    $text = append($text, "@str@murdered at his mansion. The guards had been sent to|");
+    $text = append($text, "@str@investigate his murder, but have been completely stuck.|");
+
+    if (%murder_poisonproof_progress < ^poisonproof_searched_loc) {
+        $text = append($text, "@dbl@One of the @dre@guards@dbl@ has asked me for my help in solving the|");
+        $text = append($text, "@dbl@murder. I should @dre@examine the crime scene@dbl@ very closely for|");
+        $text = append($text, "@dbl@evidence, and @dre@investigate everybody@dbl@ in the area carefully||");
+
+        if(testbit(%murder_evidence, ^murder_found_thread) = ^true) {
+            $text = append($text, "@dbl@I have found some @dre@coloured thread@dbl@. It might be useful.|");
+        } else {
+            $text = append($text, "|"); // https://i.imgur.com/KLl6iQV.png
+        }
+
+        if (inv_total(inv, murderweapon) > 0 | inv_total(bank, murderweapon) > 0) {
+            $text = append($text, "@dbl@I have taken the @dre@murder weapon@dbl@. I think it might help me.|");
+        } else {
+            $text = append($text, "|"); // https://i.imgur.com/KLl6iQV.png
+        }
+
+        if (inv_total(inv, murderpot2) > 0 | inv_total(bank, murderpot2) > 0) {
+            $text = append($text, "@dbl@I have a @dre@strange smelling pot@dbl@. It seems like a clue.");
+        }
+
+    } else {
+        // Source for when evidence has been gathered: https://i.imgur.com/TcmOBoH.png
+        $text = append($text, "@str@One of the guards asked me for my help in solving the|");
+        $text = append($text, "@str@murder. After careful examination of the crime scene and|");
+        $text = append($text, "@str@interrogating all suspects, I worked out who was guilty.|");
+        $text = append($text, "@dbl@I have @dre@indisputable evidence@dbl@ of who the murderer must be.|");
+        $text = append($text, "@dbl@I should take it to one of the @dre@Guards@dbl@ immediately.");
+    }
+}
+
+// Source for completion: https://i.imgur.com/OR5vhcI.png
+if (%murderquest = ^murder_complete) {
+    $text = append($text, "@str@One of the guards asked me for my help in solving the|");
+    $text = append($text, "@str@murder. After careful examination of the crime scene and|");
+    $text = append($text, "@str@interrogating all suspects, I worked out who was guilty. I|");
+    $text = append($text, "@str@took the evidence I had collected to the Guards and|");
+    $text = append($text, "@str@explained how it could identify the killer. Impressed with|");
+    $text = append($text, "@str@my deductions, the killer was arrested and I was given a|");
+    $text = append($text, "@str@fair reward for my help in solving the crime.||");
+    $text = append($text, "@red@QUEST COMPLETE!");
+}
+
+~quest_journal("Murder Mystery", $text);
