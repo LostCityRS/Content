@@ -11,7 +11,7 @@ if (%priestperil = ^priestperil_unlocked_drezel) {
         @drezel_bless_water;
     }
     ~chatplayer("<p,neutral>Do you have any ideas about dealing with the vampire?");
-    ~chatnpc("<p,neutral>Well, the water of the Salve should still have enough power to work against the vampyre despite what those Zamorakians might have done to it...");
+    ~chatnpc("<p,neutral>Well, the water of the Salve should still have enough power to work against the vampire despite what those Zamorakians might have done to it...");
     ~chatnpc("<p,neutral>Maybe you should try and get hold of some from somewhere?");
 } else if (%priestperil = ^priestperil_poured_blessed_water) {
     ~chatplayer("<p,neutral>I poured the blessed water over the vampires coffin. I think that should trap him in there long enough for you to escape.");
