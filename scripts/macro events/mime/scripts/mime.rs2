@@ -73,7 +73,7 @@ if_close;
 anim($anim, 0);
 def_int $curr_emote = divide(modulo(map_clock, multiply(16,16)), 32);
 if ($num = $curr_emote) {
-    %macro_transmit = %macro_transmit + 1;
+    %macro_transmit = add(%macro_transmit, 1);
     p_delay(4);
     anim(emote_cheer, 0);
 } else {
