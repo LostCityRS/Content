@@ -534,7 +534,7 @@ width=36
 height=36
 graphic=steelborder2,0
 
-[com_67]
+[p1_name]
 type=text
 x=25
 y=60
@@ -613,7 +613,7 @@ shadowed=yes
 text=vs
 colour=0xAAAAAA
 
-[com_76]
+[p2_name]
 type=text
 x=25
 y=90
@@ -715,14 +715,13 @@ graphic=steelborder2,0
 
 [com_88]
 type=text
-x=50
-y=122
-width=27
+x=21
+y=29
+width=60
 height=14
-center=yes
-font=p12_full
+font=b12_full
 shadowed=yes
-text=Turn:
+text=Draughts
 colour=0xFFAA44
 
 [com_89]
@@ -730,9 +729,9 @@ type=layer
 x=26
 y=265
 width=78
-height=42
+height=43
 
-[com_92]
+[com_97]
 layer=com_89
 type=rect
 x=6
@@ -742,20 +741,20 @@ width=66
 height=31
 fill=yes
 
-[com_93]
+[com_98]
 layer=com_89
 type=text
-x=21
+x=24
 y=14
-width=38
+width=31
 height=14
 font=p12_full
 shadowed=yes
-text=Resign
-colour=0x800000
+text=Close
+colour=0x880000
 overcolour=0xFF0000
 
-[com_96]
+[com_99]
 layer=com_89
 type=graphic
 x=21
@@ -765,6 +764,15 @@ height=36
 graphic=steelborder2,0
 
 [com_100]
+layer=com_89
+type=graphic
+x=22
+y=21
+width=36
+height=36
+graphic=miscgraphics,3
+
+[com_101]
 layer=com_89
 type=graphic
 x=0
@@ -782,141 +790,25 @@ width=25
 height=30
 graphic=steelborder,1
 
+[com_103]
+layer=com_89
+type=graphic
+x=0
+y=12
+width=25
+height=30
+graphic=steelborder,2
+
 [com_104]
 layer=com_89
 type=graphic
-x=0
-y=12
-width=25
-height=30
-graphic=steelborder,2
-
-[com_106]
-layer=com_89
-type=graphic
 x=53
 y=12
 width=25
 height=30
 graphic=steelborder,3
-
-[com_107]
-layer=com_89
-type=graphic
-x=21
-y=21
-width=36
-height=36
-graphic=miscgraphics,3
 
 [com_90]
-type=layer
-x=26
-y=215
-width=78
-height=43
-
-[com_94]
-layer=com_90
-type=rect
-x=6
-y=6
-buttontype=normal
-width=66
-height=31
-fill=yes
-option=Offer your opponent a draw
-
-[com_95]
-layer=com_90
-type=text
-x=9
-y=14
-width=61
-height=14
-font=p12_full
-shadowed=yes
-text=Offer draw
-colour=0x888800
-overcolour=0xFFFF00
-
-[com_97]
-layer=com_90
-type=graphic
-x=21
-y=-15
-width=36
-height=36
-graphic=steelborder2,0
-
-[com_99]
-layer=com_90
-type=graphic
-x=22
-y=21
-width=36
-height=36
-graphic=miscgraphics,3
-
-[com_101]
-layer=com_90
-type=graphic
-x=0
-y=0
-width=25
-height=30
-graphic=steelborder,0
-
-[com_103]
-layer=com_90
-type=graphic
-x=53
-y=0
-width=25
-height=30
-graphic=steelborder,1
-
-[com_105]
-layer=com_90
-type=graphic
-x=0
-y=12
-width=25
-height=30
-graphic=steelborder,2
-
-[com_108]
-layer=com_90
-type=graphic
-x=53
-y=12
-width=25
-height=30
-graphic=steelborder,3
-
-[com_91]
-type=text
-x=21
-y=29
-width=60
-height=14
-font=b12_full
-shadowed=yes
-text=Draughts
-colour=0xFFAA44
-
-[com_98]
-type=text
-x=85
-y=122
-width=97
-height=14
-font=p12_full
-shadowed=yes
-text=A very long name
-colour=0xAAAAAA
-
-[com_109]
 type=model
 x=332
 y=154
@@ -926,45 +818,21 @@ model=com_i324
 zoom=400
 xan=512
 
-[com_110]
+[com_91]
 type=rect
 x=219
 y=41
 width=258
 height=258
 
-[com_111]
-type=text
-x=23
-y=185
-width=169
-height=11
-center=yes
-font=p11_full
-shadowed=yes
-text=Blah blah blah blah blah blah blah!
-colour=0xAAAAAA
-
-[com_112]
-type=model
-x=220
-y=42
-width=32
-height=32
-model=runeflash_8
-anim=runeflash_off
-zoom=768
-xan=512
-
-[com_113]
+[boardinv]
 type=inv
 x=220
 y=42
 width=8
 height=8
-swappable=yes
 
-[com_114]
+[com_93]
 type=graphic
 x=183
 y=206
@@ -972,7 +840,7 @@ width=36
 height=36
 graphic=miscgraphics,2
 
-[com_115]
+[com_94]
 type=graphic
 x=183
 y=242
@@ -980,7 +848,7 @@ width=36
 height=36
 graphic=miscgraphics,2
 
-[com_116]
+[com_95]
 type=graphic
 x=183
 y=278
@@ -988,19 +856,7 @@ width=36
 height=36
 graphic=miscgraphics,2
 
-[com_117]
-type=text
-x=23
-y=160
-width=169
-height=11
-center=yes
-font=p11_full
-shadowed=yes
-text=Blah blah blah blah blah blah blah!
-colour=0xAAAAAA
-
-[com_118]
+[winner]
 type=text
 x=27
 y=157
@@ -1012,7 +868,7 @@ shadowed=yes
 text=Blah blah blah blah blah!
 colour=0xAAAAAA
 
-[com_119]
+[p1_rune]
 type=model
 x=20
 y=57
@@ -1023,7 +879,7 @@ zoom=1024
 xan=512
 yan=1024
 
-[com_120]
+[p2_rune]
 type=model
 x=20
 y=87
@@ -1034,11 +890,26 @@ zoom=1024
 xan=512
 yan=1024
 
-[com_121]
-type=model
-x=135
-y=289
-width=32
-height=32
-model=com_i325
-zoom=2048
+[status1]
+type=text
+x=23
+y=185
+width=169
+height=12
+center=yes
+font=p11_full
+shadowed=yes
+text=Blah blah blah blah blah blah blah!
+colour=0xAAAAAA
+
+[status2]
+type=text
+x=23
+y=208
+width=169
+height=12
+center=yes
+font=p11_full
+shadowed=yes
+text=Blah blah blah blah blah blah blah!
+colour=0xAAAAAA

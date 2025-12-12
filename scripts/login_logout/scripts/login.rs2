@@ -11,6 +11,8 @@ set_player_op("Follow", 3, ^false);
 set_player_op("Trade with", 4, ^false);
 set_player_op(null, 5, ^false);
 
+minimap_toggle(0); //reset minimap state on login
+
 // random event timer
 settimer(general_macro_events, 500);
 

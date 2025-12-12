@@ -587,6 +587,8 @@ transmit=yes
 [varp_283]
 
 [duel2accept]
+type=player_uid
+protect=no
 
 [varp_285]
 
@@ -717,14 +719,19 @@ transmit=yes
 
 [boardgames_runelink_rank]
 transmit=yes
+scope=perm
 
 [boardgames_draughts_rank]
+protect=no
 transmit=yes
+scope=perm
 
 [boardgames_varbit]
+protect=no
 transmit=yes
 
 [boardgames_varbit2]
+protect=no
 transmit=yes
 
 [varp_357]
@@ -1408,9 +1415,11 @@ transmit=yes
 
 [boardgames_runesquares_rank]
 transmit=yes
+scope=perm
 
 [boardgames_runeversi_rank]
 transmit=yes
+scope=perm
 
 [varp_650]
 
