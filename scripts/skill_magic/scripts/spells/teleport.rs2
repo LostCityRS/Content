@@ -87,7 +87,7 @@ if (~inzone_coord_pair_table(trawler_game_zones, $coord) = true) {
     return(false);
 }
 if (~inzone_coord_pair_table(random_event_mime_zones, $coord) = true) {
-    ~mesbox("I need to finish my performance!"); // https://www.youtube.com/watch?v=aGIPPPlADys&t=92s
+    say("I need to finish my performance!"); // https://www.youtube.com/watch?v=aGIPPPlADys&t=92s
     return(false);
 }
 if (~in_duel_arena($coord) = true) {
