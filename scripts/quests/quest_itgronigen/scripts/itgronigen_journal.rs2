@@ -10,28 +10,56 @@ if (%itgronigen = ^itgronigen_not_started) {
 
 $x = append($x, "@str@I can start this quest by talking to the professor, in the|");
 $x = append($x, "@str@Observatory reception, south-west of Ardougne.|");
-if ((%itgronigen >= ^itgronigen_started) & (%itgronigen <= ^itgronigen_given_glass)) {
+if (%itgronigen = ^itgronigen_started) {
+    //RS3 & OSRS both say "plain wooden planks", assuming this is after construction
+    //strike through if the step is completed OR if the item is in player's inventory
     $x = append($x, "@dbl@Seems the observatory telescope needs repairing, due to|");
     $x = append($x, "@dbl@the nearby goblins. The @dre@professor@dbl@ wants me to help by|");
     $x = append($x, "@dbl@getting the following, with the help of his @dre@assistant:||");
-    //strike through if the step is completed OR if the item is in player's inventory
-    //RS3 & OSRS both say "plain wooden planks", assuming this is after construction
-    if ((%itgronigen = ^itgronigen_started) & (inv_total(inv, woodplank) < 3)) {
+    if (inv_total(inv, woodplank) < 3) {
         $x = append($x, "@dre@3 wooden planks|");
     } else {
         $x = append($x, "@str@3 wooden planks|");
     }
-    if ((%itgronigen = ^itgronigen_given_planks) & (inv_total(inv, bronze_bar) < 1)) {
+    ~quest_journal("Observatory Quest", $x);
+    return;
+}
+if (%itgronigen = ^itgronigen_given_planks) {
+    $x = append($x, "@dbl@Seems the observatory telescope needs repairing, due to|");
+    $x = append($x, "@dbl@the nearby goblins. The @dre@professor@dbl@ wants me to help by|");
+    $x = append($x, "@dbl@getting the following, with the help of his @dre@assistant:||");
+    $x = append($x, "@str@3 wooden planks|");
+    if (inv_total(inv, bronze_bar) < 1) {
         $x = append($x, "@dre@1 bronze bar|");
     } else {
         $x = append($x, "@str@1 bronze bar|");
     }
-    if ((%itgronigen = ^itgronigen_given_bronze) & (inv_total(inv, molten_glass) < 1)) {
+    ~quest_journal("Observatory Quest", $x);
+    return;
+}
+if (%itgronigen = ^itgronigen_given_bronze) {
+    $x = append($x, "@dbl@Seems the observatory telescope needs repairing, due to|");
+    $x = append($x, "@dbl@the nearby goblins. The @dre@professor@dbl@ wants me to help by|");
+    $x = append($x, "@dbl@getting the following, with the help of his @dre@assistant:||");
+    $x = append($x, "@str@3 wooden planks|");
+    $x = append($x, "@str@1 bronze bar|");
+    if (inv_total(inv, molten_glass) < 1) {
         $x = append($x, "@dre@1 molten glass|");
     } else {
         $x = append($x, "@str@1 molten glass|");
     }
-    if ((%itgronigen = ^itgronigen_given_glass) & (inv_total(inv, lens_mould) < 1)) {
+    ~quest_journal("Observatory Quest", $x);
+    return;
+}
+if (%itgronigen = ^itgronigen_given_glass) {
+    //no commas here intentionally
+    $x = append($x, "@dbl@Seems the observatory telescope needs repairing due to|");
+    $x = append($x, "@dbl@the nearby goblins. The @dre@professor@dbl@ wants me to help by|");
+    $x = append($x, "@dbl@getting the following with the help of his @dre@assistant:||");
+    $x = append($x, "@str@3 wooden planks|");
+    $x = append($x, "@str@1 bronze bar|");
+    $x = append($x, "@str@1 molten glass|");
+    if (inv_total(inv, lens_mould) < 1) {
         $x = append($x, "@dre@1 lens mould|");
     } else {
         $x = append($x, "@str@1 lens mould|");
@@ -39,6 +67,7 @@ if ((%itgronigen >= ^itgronigen_started) & (%itgronigen <= ^itgronigen_given_gla
     ~quest_journal("Observatory Quest", $x);
     return;
 }
+
 $x = append($x, "@str@Seems the observatory telescope needs repairing, due to|");
 $x = append($x, "@str@the nearby goblins. The professor wants me to help by|");
 $x = append($x, "@str@getting the following, with the help of his assistant:||");
