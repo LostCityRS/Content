@@ -12,6 +12,7 @@ cost=1
 2dxan=308
 members=yes
 stackable=yes
+weight=5g
 tradeable=no
 
 [piratehook]
@@ -27,12 +28,13 @@ model=obj_2997
 manwear=obj_2997_manwear,0
 womanwear=obj_2997_womanwear,0
 iop2=Wear
+weight=300g
+wearpos=hands
+param=stabdefence,1
+param=slashdefence,5
+param=crushdefence,3
 
-[obj_3048]
-certlink=piratehook
-certtemplate=template_for_cert
-
-[obj_3057]
+[macro_mime_mask]
 name=Mime mask
 desc=A mime would wear this.
 model=obj_3057
@@ -45,9 +47,12 @@ manwear=model_3598,0
 womanwear=obj_3057_womanwear,0
 manhead=model_3548
 womanhead=model_3548
+wearpos=hat
+wearpos2=jaw
+weight=1g
 tradeable=no
 
-[obj_3058]
+[macro_mime_top]
 name=Mime top
 recol1s=8384
 recol1d=23263
@@ -65,9 +70,12 @@ manwear3=obj_3058_manwear3
 womanwear=model_456_idk,0
 womanwear2=model_348_idk
 womanwear3=obj_3058_womanwear3
+wearpos=torso
+wearpos2=arms
+weight=1g
 tradeable=no
 
-[obj_3059]
+[macro_mime_legs]
 name=Mime legs
 recol1s=2340
 recol1d=2114
@@ -82,9 +90,11 @@ iop2=Wear
 2dyan=2044
 2dzan=32
 2dxan=620
+wearpos=legs
+weight=1g
 tradeable=no
 
-[obj_3060]
+[macro_mime_gloves]
 name=Mime gloves
 recol1s=9473
 recol1d=23263
@@ -98,9 +108,11 @@ womanwear=model_356_obj_wear,0
 2dzoom=930
 2dyan=828
 2dxan=420
+wearpos=hands
+weight=1g
 tradeable=no
 
-[obj_3061]
+[macro_mime_boots]
 name=Mime boots
 recol1s=7298
 recol1d=2114
@@ -114,6 +126,8 @@ iop2=Wear
 2dzoom=770
 2dyan=160
 2dxan=152
+wearpos=feet
+weight=12oz
 tradeable=no
 
 [macro_cube]
@@ -127,6 +141,7 @@ model=obj_3062
 iop1=Open
 desc=It seems to be humming...
 stackable=yes
+weight=5kg
 tradeable=no
 
 [macro_cube_redtriangle]
@@ -136,20 +151,12 @@ recol1d=16547
 model=obj_3063
 2dzoom=1500
 
-[cert_macro_cube_redtriangle]
-certlink=macro_cube_redtriangle
-certtemplate=template_for_cert
-
 [macro_cube_bluetriangle]
 name=Cube part
 recol1s=29596
 recol1d=5293
 model=obj_3063
 2dzoom=1500
-
-[cert_macro_cube_bluetriangle]
-certlink=macro_cube_bluetriangle
-certtemplate=template_for_cert
 
 [macro_cube_yellowtriangle]
 name=Cube part
@@ -158,20 +165,12 @@ recol1d=17893
 model=obj_3063
 2dzoom=1500
 
-[cert_macro_cube_yellowtriangle]
-certlink=macro_cube_yellowtriangle
-certtemplate=template_for_cert
-
 [macro_cube_redsquare]
 name=Cube part
 recol1s=29596
 recol1d=16547
 model=obj_3069
 2dzoom=1500
-
-[cert_macro_cube_redsquare]
-certlink=macro_cube_redsquare
-certtemplate=template_for_cert
 
 [macro_cube_bluesquare]
 name=Cube part
@@ -180,20 +179,12 @@ recol1d=5293
 model=obj_3069
 2dzoom=1500
 
-[cert_macro_cube_bluesquare]
-certlink=macro_cube_bluesquare
-certtemplate=template_for_cert
-
 [macro_cube_yellowsquare]
 name=Cube part
 recol1s=29596
 recol1d=17893
 model=obj_3069
 2dzoom=1500
-
-[cert_macro_cube_yellowsquare]
-certlink=macro_cube_yellowsquare
-certtemplate=template_for_cert
 
 [macro_cube_redcircle]
 name=Cube part
@@ -202,20 +193,12 @@ recol1d=16547
 model=obj_3075
 2dzoom=1500
 
-[cert_macro_cube_redcircle]
-certlink=macro_cube_redcircle
-certtemplate=template_for_cert
-
 [macro_cube_bluecircle]
 name=Cube part
 recol1s=29596
 recol1d=5293
 model=obj_3075
 2dzoom=1500
-
-[cert_macro_cube_bluecircle]
-certlink=macro_cube_bluecircle
-certtemplate=template_for_cert
 
 [macro_cube_yellowcircle]
 name=Cube part
@@ -224,20 +207,12 @@ recol1d=17893
 model=obj_3075
 2dzoom=1500
 
-[cert_macro_cube_yellowcircle]
-certlink=macro_cube_yellowcircle
-certtemplate=template_for_cert
-
 [macro_cube_redstar]
 name=Cube part
 recol1s=29596
 recol1d=16547
 model=obj_3081
 2dzoom=1500
-
-[cert_macro_cube_redstar]
-certlink=macro_cube_redstar
-certtemplate=template_for_cert
 
 [macro_cube_bluestar]
 name=Cube part
@@ -246,20 +221,12 @@ recol1d=5293
 model=obj_3081
 2dzoom=1500
 
-[cert_macro_cube_bluestar]
-certlink=macro_cube_bluestar
-certtemplate=template_for_cert
-
 [macro_cube_yellowstar]
 name=Cube part
 recol1s=29596
 recol1d=17893
 model=obj_3081
 2dzoom=1500
-
-[cert_macro_cube_yellowstar]
-certlink=macro_cube_yellowstar
-certtemplate=template_for_cert
 
 [macro_cube_redhalfmoon]
 name=Cube part
@@ -268,20 +235,12 @@ recol1d=16547
 model=obj_3087
 2dzoom=1500
 
-[cert_macro_cube_redhalfmoon]
-certlink=macro_cube_redhalfmoon
-certtemplate=template_for_cert
-
 [macro_cube_bluehalfmoon]
 name=Cube part
 recol1s=29596
 recol1d=5293
 model=obj_3087
 2dzoom=1500
-
-[cert_macro_cube_bluehalfmoon]
-certlink=macro_cube_bluehalfmoon
-certtemplate=template_for_cert
 
 [macro_cube_yellowhalfmoon]
 name=Cube part
@@ -290,11 +249,7 @@ recol1d=17893
 model=obj_3087
 2dzoom=1500
 
-[cert_macro_cube_yellowhalfmoon]
-certlink=macro_cube_yellowhalfmoon
-certtemplate=template_for_cert
-
-[obj_3093]
+[black_dart]
 name=Black dart
 recol1s=21140
 recol1d=0
@@ -311,8 +266,24 @@ model=model_2379_obj
 manwear=model_492_obj_wear,0
 womanwear=model_492_obj_wear,6
 iop2=Wield
+wearpos=righthand
+weight=10g
+category=weapon_thrown
+param=rangeattack,7
+param=rangebonus,6
+param=levelrequire,10
+param=attackrate,3
+param=attackrange,3
+param=rangeattack_anim,human_stake2
+param=defend_anim,human_unarmedblock
+param=rangeattack_sound,dart
+// todo: no graphic?
+param=proj_launch,bronze_dart_launch
+param=proj_travel,bronze_dart_travel
+param=weapon_poisoned,black_dart_p
+param=weapon_poisoned_message,You poison some darts.
 
-[obj_3094]
+[black_dart_p]
 name=Black dart(p)
 recol1s=21140
 recol1d=0
@@ -331,6 +302,21 @@ model=model_2454_obj
 manwear=model_500_obj_wear,0
 womanwear=model_500_obj_wear,6
 iop2=Wield
+wearpos=righthand
+weight=10g
+category=weapon_thrown
+param=rangeattack,7
+param=rangebonus,6
+param=levelrequire,10
+param=attackrate,3
+param=attackrange,3
+param=rangeattack_anim,human_stake2
+param=defend_anim,human_unarmedblock
+param=rangeattack_sound,dart
+// todo: no graphic?
+param=proj_launch,bronze_dart_launch
+param=proj_travel,bronze_dart_travel
+param=poison_severity,20
 
 [granite_shield]
 name=Granite shield
@@ -356,7 +342,7 @@ param=crushdefence,38
 param=magicdefence,-2
 param=rangedefence,65
 
-[obj_3123]
+[tbwt_beast_bones]
 name=Shaikahan bones
 desc=Large glistening bones which glow with a pale yellow aura.
 members=yes
@@ -365,12 +351,9 @@ model=model_2768_obj
 2dyan=648
 2dxan=216
 iop1=Bury
+weight=800g
 
-[obj_3124]
-certlink=obj_3123
-certtemplate=template_for_cert
-
-[obj_3125]
+[tbwt_jogre_bones]
 name=Jogre bones
 desc=Fairly big bones which smell distinctly of Jogre.
 members=yes
@@ -379,12 +362,9 @@ model=model_222_obj
 2dyan=648
 2dxan=216
 iop1=Bury
+weight=800g
 
-[obj_3126]
-certlink=obj_3125
-certtemplate=template_for_cert
-
-[obj_3127]
+[tbwt_burnt_jogre_bones]
 name=Burnt jogre bones
 recol1s=32767
 recol1d=7399
@@ -395,8 +375,9 @@ model=model_222_obj
 2dyan=648
 2dxan=216
 iop1=Bury
+weight=800g
 
-[obj_3128]
+[tbwt_burnt_jogre_bones_in_raw_karambwanji_paste]
 name=Pasty jogre bones
 recol1s=32767
 recol1d=7399
@@ -411,8 +392,9 @@ model=model_2928_npc
 2dyan=1980
 2dxan=320
 iop1=Bury
+weight=800g
 
-[obj_3129]
+[tbwt_burnt_jogre_bones_in_cooked_karambwanji_paste]
 name=Pasty jogre bones
 recol1s=32767
 recol1d=7399
@@ -427,8 +409,9 @@ model=model_2928_npc
 2dyan=1980
 2dxan=320
 iop1=Bury
+weight=800g
 
-[obj_3130]
+[tbwt_burnt_jogre_bones_marinated_in_karambwanji]
 name=Marinated j' bones
 recol1s=32767
 recol1d=16175
@@ -441,8 +424,9 @@ model=model_222_obj
 2dyan=132
 2dxan=396
 iop1=Bury
+weight=800g
 
-[obj_3131]
+[tbwt_jogre_bones_in_raw_karambwanji_paste]
 name=Pasty jogre bones
 recol1s=10566
 recol1d=10857
@@ -455,8 +439,9 @@ model=model_2928_npc
 2dyan=132
 2dxan=396
 iop1=Bury
+weight=800g
 
-[obj_3132]
+[tbwt_jogre_bones_in_cooked_karambwanji_paste]
 name=Pasty jogre bones
 recol1s=10566
 recol1d=20082
@@ -469,8 +454,9 @@ model=model_2928_npc
 2dyan=1980
 2dxan=320
 iop1=Bury
+weight=800g
 
-[obj_3133]
+[tbwt_jogre_bones_marinated_in_karambwanji]
 name=Marinated j' bones
 recol1s=32767
 recol1d=26617
@@ -481,12 +467,9 @@ model=model_222_obj
 2dyan=648
 2dxan=216
 iop1=Bury
+weight=800g
 
-[cert_granite_shield]
-certlink=granite_shield
-certtemplate=template_for_cert
-
-[obj_3135]
+[troll_key_prison]
 name=Prison key
 recol1s=14798
 recol1d=30513
@@ -501,8 +484,9 @@ model=obj_3135
 2dzoom=860
 2dyan=20
 2dxan=460
+weight=55g
 
-[obj_3136]
+[troll_key_godric]
 name=Cell key 1
 recol1s=14798
 recol1d=18990
@@ -517,8 +501,9 @@ model=obj_3135
 2dzoom=860
 2dyan=20
 2dxan=460
+weight=55g
 
-[obj_3137]
+[troll_key_eadgar]
 name=Cell key 2
 recol1s=14798
 recol1d=16942
@@ -533,6 +518,7 @@ model=obj_3135
 2dzoom=860
 2dyan=20
 2dxan=460
+weight=55g
 
 [cactus_potato]
 name=Potato cactus
@@ -543,13 +529,10 @@ model=obj_3138
 2dyan=300
 2dxan=348
 members=yes
+weight=500g
 param=brew_potion_struct,3dose1magic
 
-[cert_cactus_potato]
-certlink=cactus_potato
-certtemplate=template_for_cert
-
-[obj_3140]
+[dragon_chainbody]
 name=Dragon chainbody
 recol1s=15855
 recol1d=15360
@@ -565,8 +548,13 @@ manwear2=model_156_npc
 womanwear=obj_3140_womanwear,0
 womanwear2=model_337_npc
 members=yes
-
-[obj_3141]
-certlink=obj_3140
-certtemplate=template_for_cert
-
+wearpos=torso
+wearpos2=arms
+weight=15lb
+category=armour_body
+param=magicattack,-15
+param=stabdefence,81
+param=slashdefence,93
+param=crushdefence,98
+param=magicdefence,-3
+param=rangedefence,82
