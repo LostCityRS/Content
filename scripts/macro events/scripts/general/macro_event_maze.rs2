@@ -1,26 +1,26 @@
 [mapzoneexit,0_45_71]
 ~macro_maze_cleanup;
+~macro_events_varps_reset;
+~initalltabs;
+
+[mapzone,0_45_71]
+if (%macro_event ! ^macro_maze) {
+    %macro_event = ^macro_maze;
+    settimer(macro_maze, 5);
+    ~update_macro_maze_progress;
+    if_openoverlay(mazetimer);
+    //https://youtu.be/yCBpihIGy68?si=CsTkheu7cAfGpjHa&t=13 login inside maze
+}
+~macro_events_set_tabs;
+@music_playbyregion(coord);
 
 [proc,start_macro_maze]
 def_coord $coord = enum(int, coord, macro_maze_teleports, random(enum_getoutputcount(macro_maze_teleports)));
 %xplamp = 100;
+%macro_event_target_coord = coord;
 p_telejump($coord);
 ~chatnpc_specific("Mysterious Old Man", macro_mysterious_old_man, "<p,neutral>You need to reach the maze centre, then you'll be returned to where you were.");
 mes("You need to reach the maze centre, then you'll be returned to where you were.");
-if_settabactive(^tab_friends);
-if_settab(null, ^tab_combat_options);
-if_settab(null, ^tab_skills);
-if_settab(null, ^tab_quest_journal);
-if_settab(null, ^tab_inventory);
-if_settab(null, ^tab_wornitems);
-if_settab(null, ^tab_prayer);
-if_settab(null, ^tab_magic);
-if_settab(friends, ^tab_friends);
-if_settab(ignore, ^tab_ignore);
-if_settab(logout, ^tab_logout);
-if_settab(null, ^tab_game_options);
-if_settab(null, ^tab_player_controls);
-if_settab(music, ^tab_musicplayer);
 settimer(macro_maze, 5);
 ~update_macro_maze_progress;
 if_openoverlay(mazetimer);
@@ -30,13 +30,10 @@ if_openoverlay(null);
 cleartimer(macro_maze);
 anim(emote_cheer, 20);
 p_delay(5);
-~macro_maze_reset_interface;
-p_delay(0);
-p_telejump(0_50_50_32_32);
 if (%xplamp > 0) {
     ~macro_maze_give_reward(~total_level, %xplamp);
 }
-%xplamp = 0;
+p_telejump(%macro_event_target_coord);
 
 [proc,update_macro_maze_progress]
 if_settext(mazetimer:com_2, "<tostring(%xplamp)>%");
@@ -44,7 +41,6 @@ if_settext(mazetimer:com_2, "<tostring(%xplamp)>%");
 [proc,macro_maze_cleanup]
 cleartimer(macro_maze);
 if_openoverlay(null);
-~macro_maze_reset_interface;
 %xplamp = 0;
 
 [timer,macro_maze]
@@ -52,29 +48,6 @@ if (%xplamp > 0) {
     %xplamp = sub(%xplamp, 1);
 }
 ~update_macro_maze_progress;
-
-[proc,macro_maze_reset_interface]
-~update_weapon_category(inv_getobj(worn, ^wearpos_rhand));
-if_settab(stats, ^tab_skills);
-if_settab(questlist, ^tab_quest_journal);
-if_settab(inventory, ^tab_inventory);
-if_settab(wornitems, ^tab_wornitems);
-if_settab(prayer, ^tab_prayer);
-if_settab(magic, ^tab_magic);
-if_settab(friends, ^tab_friends);
-if_settab(ignore, ^tab_ignore);
-if_settab(logout, ^tab_logout);
-if (lowmemory = true) {
-    if_settab(options_ld, ^tab_game_options);
- } else {
-    if_settab(options, ^tab_game_options);
-}
-if_settab(controls, ^tab_player_controls);
-if (lowmemory = true) {
-    if_settab(music_ld, ^tab_musicplayer);
-} else {
-    if_settab(music, ^tab_musicplayer);
-}
 
 [oploc1,loc_3626]
 ~mesbox("I can't open that.");

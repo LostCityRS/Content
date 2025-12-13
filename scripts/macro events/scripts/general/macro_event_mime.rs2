@@ -6,25 +6,17 @@
 // if_button - the buttons when you click on the interface with all the emotes
 
 // Mysterious Old Man:
-[proc,mime_entry_point]()
-~macro_event_disappear;
-%macro_event = ^macro_mime;
-%macro_chest_gas_coord = coord();
+[proc,mime_entry_point]
+%macro_event_target_coord = coord;
 p_teleport(0_31_74_24_28);
-if_settab(null, 0);
-if_settab(null, 1);
-if_settab(null, 2);
-if_settab(null, 3);
-if_settab(null, 4);
-if_settab(null, 5);
-if_settab(null, 6);
-if_settab(null, 11);
-if_settab(null, 12);
+~macro_events_set_tabs; //Was not originally in mapzone trigger I think. https://www.youtube.com/watch?v=ROQJPpb7Qrc
 ~chatnpc("<p,neutral>You need to copy the mime's performance, then you'll be returned to where you were.");
-
 
 // Enter map trigger: 
 [mapzone,0_31_74]
+%macro_event = ^macro_mime;
+midi_song("artistry"); // Todo: In cache but was it played here without being unlockable?
+if_settext(music:com_177, "Artistry");
 def_int $count = divide(modulo(map_clock, multiply(16,2)), 2);
 if ($count < 4) {
     if (loc_find(0_31_74_23_25, loc_3644) = true) {
@@ -47,6 +39,7 @@ mes("where you were.");
 // Exit map trigger: restore tabs
 [mapzoneexit,0_31_74]
 ~initalltabs;
+~macro_events_varps_reset;
 
 [ai_timer,npc_1056]
 def_int $count = divide(modulo(map_clock, multiply(16,2)), 2);
@@ -77,8 +70,8 @@ if($count = 1) {
         case 3 : npc_anim(emote_dance, 0);
         case 4 : npc_anim(seq_1130, 0);
         case 5 : npc_anim(seq_1129, 0);
-        case 6 : npc_anim(seq_1131, 0);
-        case 7 : npc_anim(seq_1128, 0);
+        case 6 : npc_anim(seq_1128, 0);
+        case 7 : npc_anim(seq_1131, 0);
     }
 }
 if($count = 4) {
@@ -110,8 +103,8 @@ p_teleport(0_31_74_24_26);
 [if_button,macro_mime_emotes:com_5] @mime_random_emote(emote_dance,3);
 [if_button,macro_mime_emotes:com_6] @mime_random_emote(seq_1130,4);
 [if_button,macro_mime_emotes:com_7] @mime_random_emote(seq_1129,5);
-[if_button,macro_mime_emotes:com_8] @mime_random_emote(seq_1131,6);
-[if_button,macro_mime_emotes:com_9] @mime_random_emote(seq_1128,7);
+[if_button,macro_mime_emotes:com_8] @mime_random_emote(seq_1128,6);
+[if_button,macro_mime_emotes:com_9] @mime_random_emote(seq_1131,7);
 
 // Label to check if the right emote is selected
 [label,mime_random_emote](seq $anim, int $num)
@@ -126,23 +119,23 @@ if (npc_find(0_31_74_27_26, npc_1056, 1, 0) = true) {
 if ($num = $curr_emote) {
     p_delay(4);
     anim(emote_cheer, 0);
+    // https://www.youtube.com/watch?v=Y0AsFEr6sxY 4 correct in a row to leave
+    // https://www.youtube.com/watch?v=yWcG5T3KEUQ 4 correct in a row to leave
     switch_int(%macro_event) {
         case ^macro_mime : %macro_event = ^macro_mime_solve_1;
         case ^macro_mime_solve_1 : %macro_event = ^macro_mime_solve_2;
         case ^macro_mime_solve_2 : %macro_event = ^macro_mime_solve_3;
-        case ^macro_mime_solve_3 : 
+        case ^macro_mime_solve_3 :
         // Return where you are from
         p_delay(4);
-        p_teleport(%macro_chest_gas_coord);
+        p_teleport(%macro_event_target_coord);
         inv_add(inv, ~macro_mime_reward);
-        ~initalltabs;
-        %macro_event = 0;
     }
 } else {
     p_delay(4);
     anim(emote_cry, 0);
+    %macro_event = ^macro_mime;
 }
-
 
 [proc,macro_mime_reward]()(namedobj, int)
 if(inv_total(inv, obj_3057) = 0 & inv_total(worn, obj_3057) = 0 & inv_total(bank, obj_3057) = 0) {

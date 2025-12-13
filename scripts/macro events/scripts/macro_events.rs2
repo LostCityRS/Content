@@ -202,3 +202,20 @@ while ($i < 50) {
     $i = calc($i + 1);
 }
 return(null);
+
+[proc,macro_events_set_tabs]
+if_settab(null, 0);
+if_settab(null, 1);
+if_settab(null, 2);
+if_settab(null, 3);
+if_settab(null, 4);
+if_settab(null, 5);
+if_settab(null, 6);
+if_settab(null, 11);
+if_settab(null, 12);
+if_settabactive(^tab_friends);
+
+[proc,macro_events_varps_reset]
+%macro_event = ^no_macro_event;
+%macro_event_target_coord = null;
+%macro_event_uid = null;

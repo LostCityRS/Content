@@ -1,12 +1,48 @@
 [proc,macro_mysterious_old_man_spawn]
+def_int $random_old_man_event = random(4);
 spotanim_map(smokepuff, npc_coord, 124, 0);
 sound_synth(smokepuff, 0, 0);
-npc_anim(emote_bow, 20);
-npc_say("Greetings <displayname>!");
-%npc_macro_event_target = uid;
-
 // to match genie in this video: https://www.youtube.com/watch?v=el-h9hbSH80&t=293s
 npc_setmode(playerfollow);
+
+if ($random_old_man_event = 0) {
+    npc_say("Aha, you're required <displayname>!"); //https://www.youtube.com/watch?v=aqNlh2YPezM&t=49s No bow or greetings. Unsure if mime or maze
+    p_delay(1);
+    npc_del;
+    %macro_event = ^macro_mime;
+    ~mime_entry_point;
+    npc_del;
+} else {
+    npc_anim(emote_bow, 20);
+    npc_say("Greetings <displayname>!");
+    p_delay(1);
+    // For 254, The old man can either give you a gift, a strange box, send you to the maze, send you to the mime
+    switch_int ($random_old_man_event) {
+            case 1 : // https://www.youtube.com/watch?v=39XCOOLY-kM // Part of MOM spawn - Strange Box
+                    //You can only get this event if your inv is not full, otherwise he always sends you to a maze (maybe mime too?) on a full inv. 
+                    if(inv_freespace(inv) = 0) {
+                        npc_say("Hey, <displayname>, come and solve a maze for me!"); // Not sure. Roughly taken from OSRS
+                        p_delay(1);
+                        npc_del;
+                        %macro_event = ^macro_maze;
+                        ~start_macro_maze;
+                    } else {
+                        npc_say("Here you go <displayname>, it's all yours!");
+                        p_delay(1);
+                        npc_del;
+                        ~macro_events_varps_reset;
+                        ~give_strange_box;
+                    }
+            case 2 : 
+                    npc_say("Hey, <displayname>, come and solve a maze for me!"); // Not sure. Roughly taken from OSRS
+                    p_delay(1);
+                    npc_del;
+                    %macro_event = ^macro_maze;
+                    ~start_macro_maze;
+            case 3 : %npc_macro_event_target = uid; // gift
+            case default : return;
+    }
+}
 
 // other videos:
 // https://youtu.be/_PPxvNjIgq4?t=63
@@ -67,16 +103,6 @@ if (uid ! %npc_macro_event_target) {
 }
 if (%npc_int = ^mysterious_old_man_happy) {
     ~chatnpc("<p,neutral>Goodbye.");
-    return;
-}
-// For 254, The old man can either give you a gift, a strange box, send you to the maze, send you to the mime
-def_int $random_old_man_event = random(4);
-if ($random_old_man_event = 2 | $random_old_man_event = 3) {
-    ~mime_entry_point;
-    return;
-}
-if ($random_old_man_event = 1 | $random_old_man_event = 0) {
-    ~start_macro_maze;
     return;
 }
 

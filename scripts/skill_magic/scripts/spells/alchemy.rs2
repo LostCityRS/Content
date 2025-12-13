@@ -14,11 +14,6 @@ if (~is_alchable($item, $spell_data) = false) {
     return;
 }
 
-if ($item = macro_cube) {
-    ~try_add_macro_cube;
-    return;
-}
-
 // play sound and anim
 sound_synth(high_alchemy, 0, 0);
 anim(human_casthighlvlalchemy, 0);
@@ -52,11 +47,6 @@ if (~check_spell_requirements($spell_data) = false) {
 }
 // prevent alchemy
 if (~is_alchable($item, $spell_data) = false) {
-    return;
-}
-
-if ($item = macro_cube) {
-    ~try_add_macro_cube;
     return;
 }
 
@@ -102,6 +92,9 @@ switch_obj($item) {
         return(false);
     case coins :
         mes("Coins are already made of gold.");
+        return(false);
+    case macro_cube :
+        ~try_add_macro_cube;
         return(false);
     case default :
         if(oc_category($item) = kitten) {

@@ -72,52 +72,6 @@ if($space > 0) {
     }
 }
 
-// Not used in 254. Colors + objs instead of numbers + models
-// [proc,get_center_number_model](int $number)(int)
-// switch_int($number) {
-//     case 0 : return(11028);
-//     case 1 : return(11031);
-//     case 2 : return(11034);
-//     case 3 : return(11037);
-//     case 4 : return(11040);
-//     case 5 : return(11043);
-//     case 6 : return(11046);
-//     case 7 : return(11049);
-//     case 8 : return(11052);
-//     case 9 : return(11055);
-//     case default : return(11028);
-// }
-
-// [proc,get_side_number_model](int $number)(int)
-// switch_int($number) {
-//     case 0 : return(11029);
-//     case 1 : return(11032);
-//     case 2 : return(11035);
-//     case 3 : return(11038);
-//     case 4 : return(11041);
-//     case 5 : return(11044);
-//     case 6 : return(11047);
-//     case 7 : return(11050);
-//     case 8 : return(11053);
-//     case 9 : return(11056);
-//     case default : return(11029);
-// }
-
-// [proc,get_top_number_model](int $number)(int)
-// switch_int($number) {
-//     case 0 : return(11030);
-//     case 1 : return(11033);
-//     case 2 : return(11036);
-//     case 3 : return(11039);
-//     case 4 : return(11042);
-//     case 5 : return(11045);
-//     case 6 : return(11048);
-//     case 7 : return(11051);
-//     case 8 : return(11054);
-//     case 9 : return(11057);
-//     case default : return(11030);
-// }
-
 [proc,get_shape_name](int $shape_value)(string)
 switch_int($shape_value) {
     case 0 : return("Triangle");
@@ -211,15 +165,6 @@ while ($num_3 = $num_1 | $num_3 = $num_2) {
     $num_3 = random(3);
 }
 
-
-// def_int $center_shape_model = ~get_center_shape_model($shape_1);
-// def_int $side_shape_model = ~get_side_shape_model($shape_2);
-// def_int $top_shape_model = ~get_top_shape_model($shape_3);
-
-// def_int $center_num_model = ~get_center_number_model($num_1);
-// def_int $side_num_model = ~get_side_number_model($num_2);
-// def_int $top_num_model = ~get_top_number_model($num_3);
-
 def_obj $center_shape_obj = ~get_shape_colour_obj($shape_1, $num_1);
 def_obj $side_shape_obj = ~get_shape_colour_obj($shape_2, $num_2);
 def_obj $top_shape_obj = ~get_shape_colour_obj($shape_3, $num_3);
@@ -229,13 +174,10 @@ def_string $side_shape_colour = ~get_shape_colour_name($num_2);
 def_string $top_shape_colour = ~get_shape_colour_name($num_3);
 
 if_setobject(macro_cube:center_shape_model, $center_shape_obj, 390);
-// if_setmodel(macro_cube:center_number_model, $center_num_model);
 
 if_setobject(macro_cube:side_shape_model, $side_shape_obj, 390);
-// if_setmodel(macro_cube:side_number_model, $side_num_model);
 
 if_setobject(macro_cube:top_shape_model, $top_shape_obj, 390);
-// if_setmodel(macro_cube:top_number_model, $top_num_model);
 
 def_int $question_type = random(2);
 def_int $correct_answer = random(3);
@@ -243,24 +185,20 @@ def_string $center_shape_name = ~get_shape_name($shape_1);
 def_string $side_shape_name = ~get_shape_name($shape_2);
 def_string $top_shape_name = ~get_shape_name($shape_3);
 def_string $correct_shape = "";
-// def_int $correct_number = 0;
 def_string $correct_colour = "";
 
 switch_int($correct_answer) {
     case 0 :
         %xplamp = 0;
         $correct_shape = $center_shape_name;
-        // $correct_number = $num_1;
         $correct_colour = $center_shape_colour;
     case 1 :
         %xplamp = 1;
         $correct_shape = $side_shape_name;
-        // $correct_number = $num_2;
         $correct_colour = $side_shape_colour;
     case 2 :
         %xplamp = 2;
         $correct_shape = $top_shape_name;
-        // $correct_number = $num_3;
         $correct_colour = $top_shape_colour;
 }
 
@@ -378,14 +316,11 @@ p_delay(0);
 // https://www.youtube.com/watch?v=Tq1t2hq5mT0 // pickup mes
 mes("The mystical powers surrounding this cube prevent you from taking it.");
 
-[debugproc,mom]
+[proc,give_strange_box]
 if (p_finduid(uid) = false) {
     return;
 }
-// https://www.youtube.com/watch?v=39XCOOLY-kM // TODO: Part of MOM spawn
-//You can only get this event if your inv is not full, otherwise he always sends you to a maze (maybe mime too?) on a full inv. 
-//Greetings, playername!
-//Here you go playername, it's all yours!
+
 inv_add(inv, macro_cube, 1);
 ~objbox(macro_cube, "You have been given a Mysterious box! Click on it and answer the question correctly to get the prize inside!", 200, 0, -16);
 mes("You have been given a Mysterious box! Click on it and answer the question");
