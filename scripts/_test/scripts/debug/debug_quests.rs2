@@ -344,3 +344,140 @@ mes("Priest in Peril is currently set to: <tostring(%priestperil)>.");
 [debugproc,getppm]
 if (p_finduid(uid) = true)
 mes("PIPMausoleum is currently set to: <tostring(%priestperil_mausoleum)>.");
+
+//Watchtower Quest
+[debugproc,wtu]
+if (p_finduid(uid) = false) { return; }
+%itwatchtower = calc(%itwatchtower + 1);
+mes("Watchtower increased to <tostring(%itwatchtower)>");
+~send_quest_progress(questlist:itwatchtower, %itwatchtower, ^itwatchtower_complete);
+
+[debugproc,wtd]
+if (p_finduid(uid) = false) { return; }
+%itwatchtower = calc(%itwatchtower - 1);
+mes("Watchtower decreased to <tostring(%itwatchtower)>");
+~send_quest_progress(questlist:itwatchtower, %itwatchtower, ^itwatchtower_complete);
+
+[debugproc,wtb](int $bit)
+if (p_finduid(uid) = false) { return; }
+switch_int ($bit) {
+    case 0 :
+        if (testbit(%itwatchtower_bits, ^itwatchtower_spoken_og) = ^true) {
+            %itwatchtower_bits = clearbit(%itwatchtower_bits, ^itwatchtower_spoken_og);
+            mes("itwatchtower_spoken_og bit cleared.");
+        } else {
+            %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_spoken_og);
+            mes("itwatchtower_spoken_og bit set.");
+        }
+    case 1 :
+        if (testbit(%itwatchtower_bits, ^itwatchtower_spoken_grew) = ^true) {
+            %itwatchtower_bits = clearbit(%itwatchtower_bits, ^itwatchtower_spoken_grew);
+            mes("itwatchtower_spoken_grew bit cleared.");
+        } else {
+            %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_spoken_grew);
+            mes("itwatchtower_spoken_grew bit set.");
+        }
+    case 2 :
+        if (testbit(%itwatchtower_bits, ^itwatchtower_spoken_toban) = ^true) {
+            %itwatchtower_bits = clearbit(%itwatchtower_bits, ^itwatchtower_spoken_toban);
+            mes("itwatchtower_spoken_toban bit cleared.");
+        } else {
+            %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_spoken_toban);
+            mes("itwatchtower_spoken_toban bit set.");
+        }
+    case 3 :
+        if (testbit(%itwatchtower_bits, ^itwatchtower_helped_og) = ^true) {
+            %itwatchtower_bits = clearbit(%itwatchtower_bits, ^itwatchtower_helped_og);
+            mes("itwatchtower_helped_og bit cleared.");
+        } else {
+            %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_helped_og);
+            mes("itwatchtower_helped_og bit set.");
+        }
+    case 4 :
+        if (testbit(%itwatchtower_bits, ^itwatchtower_helped_grew) = ^true) {
+            %itwatchtower_bits = clearbit(%itwatchtower_bits, ^itwatchtower_helped_grew);
+            mes("itwatchtower_helped_grew bit cleared.");
+        } else {
+            %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_helped_grew);
+            mes("itwatchtower_helped_grew bit set.");
+        }
+    case 5 :
+        if (testbit(%itwatchtower_bits, ^itwatchtower_helped_toban) = ^true) {
+            %itwatchtower_bits = clearbit(%itwatchtower_bits, ^itwatchtower_helped_toban);
+            mes("itwatchtower_helped_toban bit cleared.");
+        } else {
+            %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_helped_toban);
+            mes("itwatchtower_helped_toban bit set.");
+        }
+    case 6 :
+        if (testbit(%itwatchtower_bits, ^itwatchtower_looking_relic) = ^true) {
+            %itwatchtower_bits = clearbit(%itwatchtower_bits, ^itwatchtower_looking_relic);
+            mes("itwatchtower_looking_relic bit cleared.");
+        } else {
+            %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_looking_relic);
+            mes("itwatchtower_looking_relic bit set.");
+        }
+    case 7 :
+        if (testbit(%itwatchtower_bits, ^itwatchtower_learning_skavid) = ^true) {
+            %itwatchtower_bits = clearbit(%itwatchtower_bits, ^itwatchtower_learning_skavid);
+            mes("itwatchtower_learning_skavid bit cleared.");
+        } else {
+            %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_learning_skavid);
+            mes("itwatchtower_learning_skavid bit set.");
+        }
+    case 8 :
+        if (testbit(%itwatchtower_bits, ^itwatchtower_learned_ig) = ^true) {
+            %itwatchtower_bits = clearbit(%itwatchtower_bits, ^itwatchtower_learned_ig);
+            mes("itwatchtower_learned_ig bit cleared.");
+        } else {
+            %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_learned_ig);
+            mes("itwatchtower_learned_ig bit set.");
+        }
+    case 9 :
+        if (testbit(%itwatchtower_bits, ^itwatchtower_learned_ar) = ^true) {
+            %itwatchtower_bits = clearbit(%itwatchtower_bits, ^itwatchtower_learned_ar);
+            mes("itwatchtower_learned_ar bit cleared.");
+        } else {
+            %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_learned_ar);
+            mes("itwatchtower_learned_ar bit set.");
+        }
+    case 10 :
+        if (testbit(%itwatchtower_bits, ^itwatchtower_learned_cur) = ^true) {
+            %itwatchtower_bits = clearbit(%itwatchtower_bits, ^itwatchtower_learned_cur);
+            mes("itwatchtower_learned_cur bit cleared.");
+        } else {
+            %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_learned_cur);
+            mes("itwatchtower_learned_cur bit set.");
+        }
+    case 11 :
+        if (testbit(%itwatchtower_bits, ^itwatchtower_learned_nod) = ^true) {
+            %itwatchtower_bits = clearbit(%itwatchtower_bits, ^itwatchtower_learned_nod);
+            mes("itwatchtower_learned_nod bit cleared.");
+        } else {
+            %itwatchtower_bits = setbit(%itwatchtower_bits, ^itwatchtower_learned_nod);
+            mes("itwatchtower_learned_nod bit set.");
+        }
+    case 12 :
+        def_int $kills = getbit_range(%itwatchtower_bits, ^itwatchtower_shaman_kills_lower, ^itwatchtower_shaman_kills_upper);
+        if ($kills > 0) {
+            $kills = calc($kills - 1);
+            %itwatchtower_bits = setbit_range_toint(%itwatchtower_bits, $kills, ^itwatchtower_shaman_kills_lower, ^itwatchtower_shaman_kills_upper);
+            mes("Decreased shaman kills to <tostring($kills)>");
+        } else {
+            $kills = 6;
+            %itwatchtower_bits = setbit_range_toint(%itwatchtower_bits, $kills, ^itwatchtower_shaman_kills_lower, ^itwatchtower_shaman_kills_upper);
+            mes("Reset shaman kills to 6");
+        }
+    case 13 :
+        def_int $market = getbit_range(%itwatchtower_bits, ^itwatchtower_market_lower, ^itwatchtower_market_upper);
+        if ($market = 1) {
+            %itwatchtower_bits = setbit_range_toint(%itwatchtower_bits, 2, ^itwatchtower_market_lower, ^itwatchtower_market_upper);
+            mes("itwatchtower_market bit set to 2.");
+        } else if ($market = 0) {
+            %itwatchtower_bits = setbit_range_toint(%itwatchtower_bits, 1, ^itwatchtower_market_lower, ^itwatchtower_market_upper);
+            mes("itwatchtower_market bit set to 1.");
+        } else {
+            %itwatchtower_bits = setbit_range_toint(%itwatchtower_bits, 0, ^itwatchtower_market_lower, ^itwatchtower_market_upper);
+            mes("itwatchtower_market bit set to 0.");
+        }
+}
