@@ -189,8 +189,8 @@ if (%itwatchtower = ^itwatchtower_made_potion) {
     $x = append($x, "@str@He infused it into a magic ogre potion.|");
     $x = append($x, "@str@I need to defeat the ogre shamans.|");
     def_int $current_kills = getbit_range(%itwatchtower_bits, ^itwatchtower_shaman_kills_lower, ^itwatchtower_shaman_kills_upper);
-    if ($current_kills > 0) {
-        $x = append($x, "|@dbl@Now I need to @dre@kill <tostring($current_kills)> ogre shaman(s).|");
+    if ($current_kills < 6) {
+        $x = append($x, "|@dbl@Now I need to @dre@kill <tostring(calc(6 - $current_kills))> ogre shaman(s).|");
     } else {
         $x = append($x, "|@str@I killed all the ogre shamans.||");
         //this doesn't match rs3& osrs, even if you destroy the crystal the text says you have mined it
