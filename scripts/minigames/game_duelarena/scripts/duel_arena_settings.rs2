@@ -1,98 +1,98 @@
-// [if_button,duel_select_type:no_forfeit]
-// if (testbit(%dueloptions, ^no_melee) = ^true) {
-//     mes("You can't have No Forfeit and No Melee - you could run out of ammo."); // RS3 message https://archive.org/details/runelibris
-//     return;
-// }
-// ~toggle_duel_setting(^no_forfeit);
+[if_button,duel_select_type:no_forfeit]
+if (testbit(%dueloptions, ^no_melee) = ^true) {
+    mes("You can't have No Forfeit and No Melee - you could run out of ammo."); // RS3 message https://archive.org/details/runelibris
+    return;
+}
+~toggle_duel_setting(^no_forfeit);
 
-// [if_button,duel_select_type:no_movement]
-// if (testbit(%dueloptions, ^no_melee) = ^true) {
-//     mes("You can't have No Movement and No Melee - you could run out of ammo."); // RS3 message https://archive.org/details/runelibris
-//     return;
-// }
-// ~toggle_duel_setting(^no_movement);
+[if_button,duel_select_type:no_movement]
+if (testbit(%dueloptions, ^no_melee) = ^true) {
+    mes("You can't have No Movement and No Melee - you could run out of ammo."); // RS3 message https://archive.org/details/runelibris
+    return;
+}
+~toggle_duel_setting(^no_movement);
 
-// [if_button,duel_select_type:no_weapons]
-// if (testbit(%dueloptions, ^flower_power) = ^true) {
-//     mes("You can't have No Weapons and Flower Power."); // guess based on osrs pvp arena
-//     return;
-// }
-// ~toggle_duel_setting(^no_weapons);
+[if_button,duel_select_type:no_weapons]
+if (testbit(%dueloptions, ^flower_power) = ^true) {
+    mes("You can't have No Weapons and Flower Power."); // guess based on osrs pvp arena
+    return;
+}
+~toggle_duel_setting(^no_weapons);
 
-// [if_button,duel_select_type:no_armour]
-// ~toggle_duel_setting(^no_armour);
+[if_button,duel_select_type:no_armour]
+~toggle_duel_setting(^no_armour);
 
-// [if_button,duel_select_type:no_potions]
-// ~toggle_duel_setting(^no_potions);
+[if_button,duel_select_type:no_potions]
+~toggle_duel_setting(^no_potions);
 
-// [if_button,duel_select_type:no_jewelry]
-// ~toggle_duel_setting(^no_jewelry);
+[if_button,duel_select_type:no_jewelry]
+~toggle_duel_setting(^no_jewelry);
 
-// [if_button,duel_select_type:no_ranged]
-// if (testbit(%dueloptions, ^no_melee) = ^true & testbit(%dueloptions, ^no_magic) = ^true) {
-//     mes("You can't have No Ranged, No Melee and No Magic - how would you fight?"); // RS3 message: https://archive.org/details/runelibris
-//     return;
-// }
-// ~toggle_duel_setting(^no_ranged);
+[if_button,duel_select_type:no_ranged]
+if (testbit(%dueloptions, ^no_melee) = ^true & testbit(%dueloptions, ^no_magic) = ^true) {
+    mes("You can't have No Ranged, No Melee and No Magic - how would you fight?"); // RS3 message: https://archive.org/details/runelibris
+    return;
+}
+~toggle_duel_setting(^no_ranged);
 
-// [if_button,duel_select_type:no_melee]
-// if (testbit(%dueloptions, ^flower_power) = ^true) {
-//     mes("You can't have No Melee and Flower Power."); // guess based on osrs pvp arena
-//     return;
-// }
-// if (testbit(%dueloptions, ^no_forfeit) = ^true) {
-//     mes("You can't have No Forfeit and No Melee - you could run out of ammo."); // RS3 message: https://archive.org/details/runelibris
-//     return;
-// }
-// if (testbit(%dueloptions, ^no_movement) = ^true) {
-//     mes("You can't have No Movement and No Melee, you could run out of ammo."); // guess based on osrs pvp arena
-//     return;
-// }
-// if (testbit(%dueloptions, ^no_ranged) = ^true & testbit(%dueloptions, ^no_magic) = ^true) {
-//     mes("You can't have No Ranged, No Melee and No Magic - how would you fight?"); // RS3 message: https://archive.org/details/runelibris
-//     return;
-// }
-// ~toggle_duel_setting(^no_melee);
+[if_button,duel_select_type:no_melee]
+if (testbit(%dueloptions, ^flower_power) = ^true) {
+    mes("You can't have No Melee and Flower Power."); // guess based on osrs pvp arena
+    return;
+}
+if (testbit(%dueloptions, ^no_forfeit) = ^true) {
+    mes("You can't have No Forfeit and No Melee - you could run out of ammo."); // RS3 message: https://archive.org/details/runelibris
+    return;
+}
+if (testbit(%dueloptions, ^no_movement) = ^true) {
+    mes("You can't have No Movement and No Melee, you could run out of ammo."); // guess based on osrs pvp arena
+    return;
+}
+if (testbit(%dueloptions, ^no_ranged) = ^true & testbit(%dueloptions, ^no_magic) = ^true) {
+    mes("You can't have No Ranged, No Melee and No Magic - how would you fight?"); // RS3 message: https://archive.org/details/runelibris
+    return;
+}
+~toggle_duel_setting(^no_melee);
 
-// [if_button,duel_select_type:no_magic]
-// if (testbit(%dueloptions, ^no_ranged) = ^true & testbit(%dueloptions, ^no_melee) = ^true) {
-//     mes("You can't have No Ranged, No Melee and No Magic - how would you fight?"); // RS3 message: https://archive.org/details/runelibris
-//     return;
-// }
-// ~toggle_duel_setting(^no_magic);
+[if_button,duel_select_type:no_magic]
+if (testbit(%dueloptions, ^no_ranged) = ^true & testbit(%dueloptions, ^no_melee) = ^true) {
+    mes("You can't have No Ranged, No Melee and No Magic - how would you fight?"); // RS3 message: https://archive.org/details/runelibris
+    return;
+}
+~toggle_duel_setting(^no_magic);
 
-// [if_button,duel_select_type:no_prayer]
-// ~toggle_duel_setting(^no_prayer);
+[if_button,duel_select_type:no_prayer]
+~toggle_duel_setting(^no_prayer);
 
-// [if_button,duel_select_type:no_food]
-// ~toggle_duel_setting(^no_food);
+[if_button,duel_select_type:no_food]
+~toggle_duel_setting(^no_food);
 
-// [if_button,duel_select_type:flower_power]
-// if (~duel_arena_flower_power_check = true) {
-//     if (testbit(%dueloptions, ^no_melee) = ^true) {
-//         mes("You can't have No Melee and Flower Power."); // guess based on osrs pvp arena
-//         return;
-//     }
-//     ~toggle_duel_setting(^flower_power);
-// }
-
-
-// [if_button,duel_select_type:obstacles]
-// ~toggle_duel_setting(^obstacles);
-
-// [if_button,duel_select_type:no_specs]
-// ~toggle_duel_setting(^no_specs);
+[if_button,duel_select_type:flower_power]
+if (~duel_arena_flower_power_check = true) {
+    if (testbit(%dueloptions, ^no_melee) = ^true) {
+        mes("You can't have No Melee and Flower Power."); // guess based on osrs pvp arena
+        return;
+    }
+    ~toggle_duel_setting(^flower_power);
+}
 
 
-// [proc,toggle_duel_setting](int $setting)
-// %dueloptions = togglebit(%dueloptions, $setting);
-// if (.finduid(%duel2accept) = true) {
-//     .%dueloptions = %dueloptions;
-//     .%duelstatus = ^duelstatus_reset;
-//     .if_settext(duel_select_type:status, "");
-// }
-// %duelstatus = ^duelstatus_reset;
-// if_settext(duel_select_type:status, "");
+[if_button,duel_select_type:obstacles]
+~toggle_duel_setting(^obstacles);
+
+[if_button,duel_select_type:no_specs]
+~toggle_duel_setting(^no_specs);
+
+
+[proc,toggle_duel_setting](int $setting)
+%dueloptions = togglebit(%dueloptions, $setting);
+if (.finduid(%duel2accept) = true) {
+    .%dueloptions = %dueloptions;
+    .%duelstatus = ^duelstatus_reset;
+    .if_settext(duel_select_type:status, "");
+}
+%duelstatus = ^duelstatus_reset;
+if_settext(duel_select_type:status, "");
 
 [proc,unequip_duel](enum $enum)
 def_int $i = 0;
