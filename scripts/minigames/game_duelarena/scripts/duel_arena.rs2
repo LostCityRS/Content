@@ -131,9 +131,6 @@ if (.finduid(%duel2accept) = true & ~enough_duel_space = true) { // https://yout
         if_settext(duel_confirm:status, "");
         .if_settext(duel_confirm:status, "");
 
-        if_settext(duel_confirm:com_97, "Are you sure you want to fight this duel?");
-        .if_settext(duel_confirm:com_97, "Are you sure you want to fight this duel?");
-
         %duelstatus = ^duelstatus_accept;
         .%duelstatus = ^duelstatus_accept;
     } else {
