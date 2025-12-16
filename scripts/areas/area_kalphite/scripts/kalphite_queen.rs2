@@ -17,7 +17,7 @@ def_int $random = random(2);
 if (npc_range(coord) <= 1) {
     $random = random(3);
 }
-switch_int(random($random)) {
+switch_int($random) {
     case 0 : ~kalphite_queen_mage_attack;
     case 1 : ~kalphite_queen_ranged_attack;
     case 2 : ~kalphite_melee_attack;
@@ -151,15 +151,11 @@ if (~npc_check_notcombat = false) {
 if (~npc_check_notcombat_self = false) {
     return;
 }
-if (npc_range(coord) <= 1) {
-    npc_setmode(opplayer2);
-    return;
-}
 def_int $random = random(2);
 if (npc_range(coord) <= 1) {
     $random = random(3);
 }
-switch_int(random($random)) {
+switch_int($random) {
     case 0 : ~kalphite_flyingqueen_mage_attack;
     case 1 : ~kalphite_flyingqueen_ranged_attack;
     case 2 : ~kalphite_flyingqueen_melee_attack;
