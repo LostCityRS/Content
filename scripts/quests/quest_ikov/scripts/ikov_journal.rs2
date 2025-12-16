@@ -18,9 +18,13 @@ mes("Ikov stage decreased to <tostring(%ikov)>");
 def_string $x;
 def_string $n = "Temple of Ikov";
 
-if (%ikov = ^ikov_not_started) {//OSRS
+if (%ikov = ^ikov_not_started) {
     $x = append($x, "@dbl@I can start this quest at the @dre@Flying Horse Inn@dbl@ in|");
-    $x = append($x, "@dre@Ardougne@dbl@ by speaking to @dbl@Lucien|");//end phrase
+    $x = append($x, "@dre@Ardougne@dbl@ by speaking to @dbl@Lucien||");//end phrase
+    $x = append($x, "@dbl@I must have:|");
+    // Not sure if these are checked or not for @str@
+    $x = append($x, "@dre@Level 42 thieving|");
+    $x = append($x, "@dre@Level 40 ranged|");
     ~quest_journal($n, $x);
     return;
 }
@@ -46,7 +50,7 @@ if ((%ikov = ^ikov_disabled_trap) | (%ikov = ^ikov_pulled_lever)) {//OSRS
 }
 
 if (%ikov < ^ikov_completed_armadyl) {
-    if (%ikov >= ^ikov_defeated_fire_warrior) {//OSRS
+    if (%ikov >= ^ikov_defeated_fire_warrior) {//OSRS & RS3
         $x = append($x, "@str@I have entered the chamber of fear. I found a trap on a|");
         $x = append($x, "@str@lever and have disabled it. I pulled the lever; I went into|");
         $x = append($x, "@str@another chamber and was attacked by a Fire Warrior! I|");
@@ -56,35 +60,35 @@ if (%ikov < ^ikov_completed_armadyl) {
         ~quest_journal($n, $x);
         return;
     }
-    if (%ikov = ^ikov_spoken_winelda) {//RS3
-        $x = append($x, "@dbl@My path is blocked by lava. @dre@Winelda@dbl@ will teleport me across|");
+    if (%ikov = ^ikov_spoken_winelda) {//OSRS & RS3
+        $x = append($x, "|@dbl@My path is blocked by lava. @dre@Winelda@dbl@ will teleport me across|");
         $x = append($x, "@dbl@if I first get her @dre@twenty limpwurt roots");//end phrase
         ~quest_journal($n, $x);
         return;
     }
     if (%ikov = ^ikov_paid_winelda) {//OSRS (minus extra line break not in RS3)
-        $x = append($x, "@str@My path was blocked by lava. Winelda teleported me across|");
+        $x = append($x, "|@str@My path was blocked by lava. Winelda teleported me across|");
         $x = append($x, "@str@after I got her twenty limpwurt roots.|");//end phrase
     }
-    if (%ikov = ^ikov_helping_armadyl) {//RS3
-        $x = append($x, "@dbl@I agreed to help the @dre@Guardians of Armadyl@dbl@, so I will fight|");
+    if (%ikov = ^ikov_helping_armadyl) {//OSRS
+        $x = append($x, "|@dbl@I agreed to help the @dre@Guardians of Armadyl@dbl@, I will kill|");
         $x = append($x, "@dre@Lucien@dbl@. The guardians gave me a @dre@pendant@dbl@ that I will need|");
         $x = append($x, "@dbl@to enable me to attack him");//end phrase
-    } else if (~obj_gettotal(ikov_staffofarmardyl) > 0) {//Guessed here, since RS3 mentions Grand Exchange
-        $x = append($x, "@dbl@I now have the staff. @dre@Lucien@dbl@ said that he would be staying|");
-        $x = append($x, "@dbl@in his @dre@house west of Varrock");//end phrase
+    } else if (~obj_gettotal(ikov_staffofarmardyl) > 0) {
+        $x = append($x, "|@dbl@I now have the staff. @dre@Lucien@dbl@ said that he would be staying|");
+        $x = append($x, "@dbl@in his @dre@house north of Varrock");//end phrase
     }
     ~quest_journal($n, $x);
     return;
 }
 
 if (%ikov = ^ikov_completed_armadyl) {
-    $x = append($x, "@str@I agreed to help the Guardians of Armadyl. I attacked|");
-    $x = append($x, "@str@Lucien but he just teleported away.|");//end phrase
+    $x = append($x, "|@str@I agreed to help the Guardians of Armadyl. I killed|");
+    $x = append($x, "@str@Lucien and banished him from this plane!|");//end phrase
 } else if (%ikov = ^ikov_completed_lucien) {
-    $x = append($x, "@str@I recovered the Staff of Armadyl from the Temple of Ikov.|");
-    $x = append($x, "@str@Lucien was staying at his house west of Varrock. He said|");
+    $x = append($x, "|@str@I recovered the Staff of Armadyl from the Temple of Ikov.|");
+    $x = append($x, "@str@Lucien was staying at his house north of Varrock. He said|");
     $x = append($x, "@str@that the staff had made him more powerful!|");//end phrase
 }
-$x = append($x, "@dre@QUEST COMPLETE!");
+$x = append($x, "|@dre@QUEST COMPLETE!");
 ~quest_journal($n, $x);
