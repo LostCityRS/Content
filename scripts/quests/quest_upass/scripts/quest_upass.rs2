@@ -332,6 +332,9 @@ p_delay(0);
 mes("On the side you find an old inscription,");
 mes("It reads...");
 p_delay(1);
+if (testbit(%ibanmulti, ^upass_read_well_inscription) = ^false) {
+    %ibanmulti = setbit(%ibanmulti, ^upass_read_well_inscription);
+}
 @upass_well_inscription;
 
 [proc,upass_unicorn_door_unlocked]()(boolean)
