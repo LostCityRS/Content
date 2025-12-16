@@ -1,4 +1,8 @@
-[ai_queue1,kalphite_queen] ~npc_default_retaliate_ap;
+[ai_queue1,kalphite_queen]
+if (random(^kalphite_worker_spawn_rate) = 0 & npc_stat(hitpoints) < 175) { // doesnt spawn until boss is under 175 ish hp https://youtu.be/ZHaxxMq3nVI?list=PLn23LiLYLb1YiomJ3wnXokdbgjE7-Lgt5&t=87
+    ~kalphite_worker_spawn;
+}
+~npc_default_retaliate_ap;
 
 [ai_opplayer2,kalphite_queen] npc_setmode(applayer2);
 
@@ -107,7 +111,7 @@ if ($duration = 0) { // first target
     $queue_delay = divide($total_distance, 5);
     $total_distance = add(add($total_distance, distance(coord, $prev_coord)), 1);
 }
-mes("Distance: <tostring($total_distance)>, delay: <tostring($queue_delay)>");
+// mes("Distance: <tostring($total_distance)>, delay: <tostring($queue_delay)>");
 anim(%com_defendanim, $duration);
 queue(combat_damage_player, $queue_delay, $damage);
 queue(playerhit_n_retaliate, $queue_delay, npc_uid);
@@ -138,7 +142,11 @@ while (huntnext = true & $i < 5) { // up to 5? https://youtu.be/ZHaxxMq3nVI?list
     $i = add($i, 1);
 }
 
-[ai_queue1,kalphite_flyingqueen] ~npc_default_retaliate_ap;
+[ai_queue1,kalphite_flyingqueen]
+if (random(^kalphite_worker_spawn_rate) = 0) {
+    ~kalphite_worker_spawn;
+}
+~npc_default_retaliate_ap;
 
 [ai_applayer2,kalphite_flyingqueen]
 if (%npc_action_delay > map_clock) {
