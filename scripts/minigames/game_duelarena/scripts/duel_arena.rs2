@@ -349,6 +349,9 @@ set_player_op(null, 2, ^false);
 if_openoverlay(null);
 set_player_op(null, 1, ^false);
 
+// Messages are taken from a variety of old sources and are always in the same order
+// https://imgur.com/ETH1z4L
+// https://youtu.be/1H3z0Qj7rKE?si=_CGn8vmULeJdKQ3B&t=102
 [proc,update_duel_confirm_rules]
 // defaults
 if_settext(duel_confirm:before_rule_line1, "Nothing will be changed.");
@@ -375,14 +378,24 @@ def_int $current_during_rule_line = 0;
 def_int $dueloptions_bit_count = 13;
 def_string $text = "";
 
+if (testbit(%dueloptions, ^no_weapons) = ^true | testbit(%dueloptions, ^no_armour) = ^true | testbit(%dueloptions, ^no_jewelry) = ^true) {
+    $text = "Some worn items will be taken off.";
+    if_settext(~get_before_duel_rule_com($current_before_rule_line), $text);
+    $current_before_rule_line = add($current_before_rule_line, 1);
+}
+
 while ($i <=  $dueloptions_bit_count) {
+        //Spec message shows up after no magic mes in all the old sources
+    if ($i = 7 & testbit(%dueloptions, ^no_specs) = ^true) {
+        $text = "You can not use special attacks."; 
+        if_settext(~get_during_duel_rule_com($current_during_rule_line), $text);
+        $current_during_rule_line = add($current_during_rule_line, 1);
+    }
     if (testbit(%dueloptions, $i) = ^true) {
         $text = ~is_before_duel_rule($i);
         if (string_length($text) > 0) {
-            if (($i ! ^no_armour & $i ! ^no_jewelry) | $current_before_rule_line = 0) {
-                if_settext(~get_before_duel_rule_com($current_before_rule_line), $text);
-                $current_before_rule_line = add($current_before_rule_line, 1);
-            }
+            if_settext(~get_before_duel_rule_com($current_before_rule_line), $text);
+            $current_before_rule_line = add($current_before_rule_line, 1);
         }
 
         $text = ~is_during_duel_rule($i);
@@ -420,14 +433,25 @@ def_int $current_during_rule_line = 0;
 def_int $dueloptions_bit_count = 13;
 def_string $text = "";
 
+if (testbit(%dueloptions, ^no_weapons) = ^true | testbit(%dueloptions, ^no_armour) = ^true | testbit(%dueloptions, ^no_jewelry) = ^true) {
+    $text = "Some worn items will be taken off.";
+    .if_settext(~get_before_duel_rule_com($current_before_rule_line), $text);
+    $current_before_rule_line = add($current_before_rule_line, 1);
+}
+
 while ($i <=  $dueloptions_bit_count) {
+    //Spec message shows up after no magic mes in all the old sources
+    if ($i = 7 & testbit(%dueloptions, ^no_specs) = ^true) {
+        $text = "You can not use special attacks."; 
+        .if_settext(~get_during_duel_rule_com($current_during_rule_line), $text);
+        $current_during_rule_line = add($current_during_rule_line, 1);
+    }
+
     if (testbit(%dueloptions, $i) = ^true) {
         $text = ~is_before_duel_rule($i);
         if (string_length($text) > 0) {
-            if (($i ! ^no_armour & $i ! ^no_jewelry) | $current_before_rule_line = 0) {
-                .if_settext(~get_before_duel_rule_com($current_before_rule_line), $text);
-                $current_before_rule_line = add($current_before_rule_line, 1);
-            }
+            .if_settext(~get_before_duel_rule_com($current_before_rule_line), $text);
+            $current_before_rule_line = add($current_before_rule_line, 1);
         }
 
         $text = ~is_during_duel_rule($i);
@@ -439,14 +463,8 @@ while ($i <=  $dueloptions_bit_count) {
     $i = add($i, 1);
 }
 
-// Messages are taken from a variety of old sources and are always in the same order
-// https://imgur.com/ETH1z4L
-// https://youtu.be/1H3z0Qj7rKE?si=_CGn8vmULeJdKQ3B&t=102
 [proc,is_before_duel_rule](int $value)(string)
 switch_int($value) {
-    case ^no_weapons : return("Some worn items will be taken off.");
-    case ^no_armour : return("Some worn items will be taken off.");
-    case ^no_jewelry : return("Some worn items will be taken off."); //Guessing these all have same text currently
     case ^no_potions : return("Boosted stats will be restored.");
     case ^no_prayer : return("Existing prayers will be stopped.");
     case default : return("");
@@ -459,7 +477,6 @@ switch_int($value) {
     case ^no_ranged : return("You can not use ranged attacks.");
     case ^no_melee : return("You can not use melee attacks.");
     case ^no_magic : return("You can not use magic attacks.");
-    case ^no_specs : return("You can not use special attacks.");
     case ^no_potions : return("You can not use drinks.");
     case ^no_food : return("You can not use food.");
     case ^no_prayer : return("You can not use prayer.");
