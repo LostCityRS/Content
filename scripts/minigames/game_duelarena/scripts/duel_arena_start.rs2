@@ -10,6 +10,8 @@ if (.finduid(%duel2accept) = true) {
         return;
     }
     p_telejump($random_coord1);
+    if_openoverlay(null); //No overlay skull in arena yet. Added around '07
+    set_player_op("Fight", 2, ^true); // https://youtu.be/64GEUr-lgS8?si=zEuQXIc5_ZN-nvHN&t=12 Fight has primary option
     def_int $i = 0;
     if (testbit(%dueloptions, ^no_movement) = ^true & .p_finduid(.uid) = true) {
         while (map_blocked($random_coord2) = true | $random_coord2 = $random_coord1 | lineofwalk($random_coord1, $random_coord2) = false & $i < 50){

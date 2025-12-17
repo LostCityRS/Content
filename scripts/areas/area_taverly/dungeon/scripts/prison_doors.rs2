@@ -17,10 +17,10 @@ if($inside = false) {
         ~npc_retaliate(0);
         return;
     }
-    ~open_and_close_double_door2($inside, $side, grate_open); // iron_door_open 
+    ~open_and_close_double_door2($inside, $side, iron_door_open);
     return;
 }
-~open_and_close_double_door2($inside, $side, grate_open);
+~open_and_close_double_door2($inside, $side, iron_door_open);
 
 [oploc1,cauldrondoor] @taverley_dungeon_open_doors(^right);
 [oploc1,cauldrondoor_l] @taverley_dungeon_open_doors(^left);

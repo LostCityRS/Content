@@ -279,7 +279,7 @@ if(($guard = ogre_guard1 & %gutanoth_gold < ^gutanoth_found_gold) |  ($guard = o
     }
     return;
 }
-~open_and_close_double_door2(~check_axis(coord, loc_coord, loc_angle), $side, grate_open); // iron_door_open
+~open_and_close_double_door2(~check_axis(coord, loc_coord, loc_angle), $side, iron_door_open);
 
 [oploc1,tobanblock]
 ~chatplayer("<p,confused>What's this? The bridge is out - I'll need to find another way in. I can see a ladder up there coming out of a hole; there must be a tunnel that leads here...");

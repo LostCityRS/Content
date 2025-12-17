@@ -9,7 +9,7 @@ if(%death_equiproom = ^death_complete) {
     $text = append($text, " I @str@gambled with the guard until he ran out of money. He wrote @str@me an IOU.|");
     $text = append($text, "|@str@It turned out the IOU was written on the back of the|@str@combination!");
     $text = append($text, " I put the stone balls in the right places on the|@str@@str@stone mechanism and unlocked the door.");
-    $text = append($text, "@str@I found the|@str@sherpa's house. I gave Tenzing the ten loavesof bread,|@str@ten cooked trout and the Spiked boots. Tenzing has given|@str@me a map of the secret way. I checked the|@str@secret way and it is safe for the Imperial Guard to use.");
+    $text = append($text, "@str@I found the|@str@sherpa's house. I gave Tenzing the ten loaves of bread,|@str@ten cooked trout and the Spiked boots. Tenzing has given|@str@me a map of the secret way. I checked the|@str@secret way and it is safe for the Imperial Guard to use.");
     $text = append($text, "||@str@I have given Dunstan the certificate to prove that his son|@str@has been signed up for the Imperial Guard. Dunstan|@str@made me the Spiked boots.");
     $text = append($text, "||@str@I gave Denulth the secret way map and the combination.|@str@Denulth gave me some Steel claws and trained me in attack.|@str@I'm now an honorary member of the Imperial Guard!||@red@QUEST COMPLETE!");
     ~quest_journal("Death Plateau", $text);

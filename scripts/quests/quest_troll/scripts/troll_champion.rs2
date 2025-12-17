@@ -1,0 +1,206 @@
+[opnpc1,troll_champion]
+if(%troll_accepted_challenge = ^true | npc_getmode = opplayer2 | npc_getmode = applayer2) {
+    mes("He doesn't seem interested in talking right now.");
+    return;
+}
+// https://web.archive.org/web/20060907161239im_/http://www.runeweb.net/fireball/Troll%20Stronghold%20Images/trollstr5.PNG
+~chatnpc("<p,neutral>What tiny human do in troll arena?|Dad challenge human to fight!");
+switch_int(~p_choice3("Why are you called Dad?", 1, "I accept your challenge!", 2, "Eek! No thanks.", 3)) {
+    case 1 :
+        ~chatplayer("<p,confused>Why are you called Dad?");
+        ~chatnpc("<p,happy>Troll named after first thing try to eat!");
+    case 2 :
+        %troll_accepted_challenge = ^true;
+        %npc_aggressive_player = uid;
+        %npc_lastcombat = sub(^max_32bit_int, 8);
+        queue*(troll_champion_challenge, 0)(npc_uid);
+        ~chatplayer("<p,happy>I accept your challenge!");
+        ~chatnpc("<p,happy>Tiny human brave. Dad squish!");
+    case 3 :
+        ~chatplayer("<p,scared>Eek! No thanks.");
+        ~chatnpc("<p,angry>Coward. Dad wait for braver fighter.");
+}
+
+[ai_opplayer2,troll_champion]
+if (%death = ^true) {
+    npc_setmode(null);
+    return;
+}
+if (%npc_action_delay > map_clock) return;
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) { // Doesnt change mode! Keeps trying!
+    return;
+}
+def_coord $dest;
+def_coord $npc_center;
+def_int $dir;
+if(random(3) = 0) {
+    anim(%com_defendanim, 0);
+    npc_anim(troll_treetrunk_attack, 0);
+    sound_synth(troll_champion_swing, 0, 0);
+    ~npc_meleeattack;
+    // doesnt queue, nothing will happen if no prot access
+    if(p_finduid(%npc_attacking_uid) = true) {
+        p_stopaction;
+        $dest = coord;
+        $npc_center = movecoord(npc_coord, 1, 0, 1);
+        if(coordx(coord) < coordx($npc_center) & coordz(coord) = coordz($npc_center)) {
+            // west
+            $dest = movecoord($npc_center, -7, 0, 0);
+            $dir = ^exact_east;
+        } else if(coordx(coord) > coordx($npc_center) & coordz(coord) = coordz($npc_center)) {
+            // east
+            $dest = movecoord($npc_center, 7, 0, 0);
+            $dir = ^exact_west;
+        } else if(coordz(coord) > coordz($npc_center) & coordz(coord) = coordz($npc_center)) {
+            // north
+            $dest = movecoord($npc_center, 0, 0, 7);
+            $dir = ^exact_south;
+        }  else if(coordz(coord) < coordz($npc_center) & coordz(coord) = coordz($npc_center)) {
+            // south
+            $dest = movecoord($npc_center, 0, 0, -7);
+            $dir = ^exact_south;
+        } if(coordx(coord) > coordx($npc_center) & coordz(coord) > coordz($npc_center)) {
+            // northeast
+            $dest = movecoord($npc_center, 7, 0, 7);
+            $dir = ^exact_south;
+        } else if(coordx(coord) < coordx($npc_center) & coordz(coord) > coordz($npc_center)) {
+            // northwest
+            $dest = movecoord($npc_center, -7, 0, 7);
+            $dir = ^exact_south;
+        } else if(coordx(coord) > coordx($npc_center) & coordz(coord) < coordz($npc_center)) {
+            // southeast
+            $dest = movecoord($npc_center, 7, 0, -7);
+            $dir = ^exact_north;
+        } else if(coordx(coord) < coordx($npc_center) & coordz(coord) < coordz($npc_center)) {
+            // southwest
+            $dest = movecoord($npc_center, -7, 0, -7);
+            $dir = ^exact_north;
+        }
+        anim(human_troll_flyback, 20);
+        if(lineofwalk(coord, $dest) = true & coord ! $dest) {
+            p_exactmove(coord, $dest, 20, 40, ^exact_east);
+        }
+        p_delay(1);
+    }
+    return;
+} 
+anim(%com_defendanim, 0);
+npc_anim(npc_param(attack_anim), 0);
+if (npc_param(attack_sound) ! null) {
+    sound_synth(npc_param(attack_sound), 0, 0);
+}
+~npc_meleeattack;
+
+[opnpc2,troll_champion] @trollchamp_combat_start;
+[apnpc2,troll_champion] @trollchamp_combat_start_ap;
+
+[ai_timer,troll_champion]
+// this is not checked in damage/loc interaction, as soon as the player logs or leaves, he will reset to full
+if(npc_getmode = opplayer2 | npc_getmode = applayer2) {
+    if(finduid(%npc_aggressive_player) = false | inzone(0_45_56_17_14, 0_45_56_44_44, coord) = false) {
+        %npc_aggressive_player = null; // after dad resets, no one can attack him w/manual cast because of this
+        npc_statheal(hitpoints, 0, 100);
+        npc_setmode(none); // none is correct here, dad stops moving
+    }
+}
+[ai_queue2,troll_champion]
+// hint is reapplied on damage (shown in packet logs), one good example of this is also
+// that you can leave the arena while a projectile is mid air. This'll clear the arrow, but
+// then reapply it once damage queue runs, and it doesnt apply on mage splash
+if(finduid(%npc_aggressive_player) = true) {
+    if_close; 
+    if(npc_stat(hitpoints) < 20 & p_finduid(%npc_aggressive_player) = true) { // should be correct, confirmed doesnt queue
+        @defeat_dad;
+    }
+    hint_npc(npc_uid);
+}
+~npc_default_damage(last_int);
+
+[label,defeat_dad]
+%troll_to_the_death = ^true;
+if(%troll_quest = ^troll_started) %troll_quest = ^troll_defeated_dad;
+%npc_aggressive_player = null;
+%npc_int = npc_stat(hitpoints);
+hint_stop();
+npc_statheal(hitpoints, 0, 100);
+npc_setmode(none);
+p_stopaction;
+~chatnpc("<p,scared>Stop! You win. Not hurt Dad.");
+switch_int(~p_choice2("I'll be going now.", 1, "I'm not done yet! Prepare to die!", 2)) {
+    case 1 :
+        ~chatplayer("<p,happy>I'll be going now.");
+    case 2 :
+        ~chatplayer("<p,angry>I'm not done yet! Prepare to die!");
+        // you still can't attack him after this
+        // https://youtu.be/8UhKCxKp9JE?si=w2nIZd_ZYhAD0uOt&t=206 (this is the same as osrs)
+        %npc_aggressive_player = uid;
+        npc_statsub(hitpoints, sub(npc_basestat(hitpoints), %npc_int), 0);
+        npc_setmode(opplayer2);
+}
+
+[ai_queue3,troll_champion]
+gosub(npc_death);
+if(p_finduid(%npc_aggressive_player) = true) {
+    if(%troll_quest = ^troll_started) %troll_quest = ^troll_defeated_dad;
+}
+npc_huntall(npc_coord, 16, 0);
+while (npc_huntnext = true) {
+    if (npc_category = troll_spectator) {
+        npc_setmode(opplayer2);
+    }
+}
+
+[queue,troll_champion_challenge](npc_uid $npc_uid)
+if(npc_finduid($npc_uid) = true) {
+    npc_setmode(opplayer2);
+    hint_npc(npc_uid);
+}
+
+[proc,trollchamp_in_combat_check]()(boolean)
+if(%troll_quest >= ^troll_defeated_dad) {
+    mes("You don't need to fight him again");
+    return (false);
+}
+if((npc_getmode = opplayer2 | npc_getmode = applayer2) & %npc_aggressive_player ! uid) {
+    mes("Someone else is already fighting that."); // this message is different compared to reg combat
+    return (false);
+}
+return (true);
+
+// no in combat check
+[label,trollchamp_combat_start_ap]
+def_int $attackrange = ~player_attackrange(inv_getobj(worn, ^wearpos_rhand));
+if (($attackrange <= 1 & ~trollchamp_in_combat_check = false) | npc_range(coord) > $attackrange) {
+    p_aprange($attackrange);
+    return;
+}
+@player_combat_start;
+
+[label,trollchamp_combat_start]
+if(~trollchamp_in_combat_check = false) {
+    return;
+}
+%npc_lastcombat = sub(^max_32bit_int, 8);
+%npc_aggressive_player = uid;
+if(%troll_accepted_challenge = ^false) {
+    %troll_accepted_challenge = ^true;
+    queue*(troll_champion_challenge, 0)(npc_uid);
+    ~chatnpc("<p,happy>Tiny human brave. Dad squish!");
+} else {
+    hint_npc(npc_uid);
+    npc_setmode(opplayer2);
+}
+if (~sa_enabled = true) {
+    @player_special_attack;
+}
+if (%damagetype = ^ranged_style) {
+    @player_ranged_attack;
+}
+if (~player_autocast_enabled = true) {
+     @player_magic_attack;
+}
+@player_melee_attack;

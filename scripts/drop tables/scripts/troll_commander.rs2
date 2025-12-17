@@ -1,4 +1,11 @@
 [ai_queue3,_troll_general]
+if (npc_findhero = ^true) { // this does check heropts
+    if(npc_type = troll_general | npc_type = troll_general2 | npc_type = troll_general3) {
+        if(%troll_quest < ^troll_entered_prison & ~obj_gettotal(troll_key_prison) = 0) {
+            obj_add(npc_coord, troll_key_prison, 1, ^lootdrop_duration);
+        }
+    }
+}
 gosub(npc_death);
 if (npc_findhero = ^false) {
     return;

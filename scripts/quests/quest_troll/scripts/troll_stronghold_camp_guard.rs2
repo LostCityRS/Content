@@ -1,0 +1,78 @@
+[ai_timer,troll_stronghold_camp_guard]
+~sound_area(troll_snore, 0, npc_coord, 4);
+npc_settimer(~random_range(8, 16)); // based off 51 samples from osrs, average is 11.88
+
+[ai_timer,troll_prison_guard1]
+if (add(%npc_action_delay, 4) >= map_clock | add(%npc_lastcombat, 11) > map_clock) {
+    npc_changetype_keepall(troll_prison_guard1_awake, 500);
+    if(finduid(%npc_aggressive_player) = true) {
+        %npc_attacking_uid = uid;
+        %aggressive_npc = npc_uid;
+    }
+}
+if(random(12) = 0) ~sound_area(troll_snore, 0, npc_coord, 4);
+
+[ai_timer,troll_prison_guard2]
+if (add(%npc_action_delay, 4) >= map_clock | add(%npc_lastcombat, 11) > map_clock) {
+    npc_changetype_keepall(troll_prison_guard2_awake, 500);
+    if(finduid(%npc_aggressive_player) = true) {
+        %npc_attacking_uid = uid;
+        %aggressive_npc = npc_uid;
+    }
+}
+if(random(12) = 0) ~sound_area(troll_snore, 0, npc_coord, 4);
+
+[ai_timer,troll_prison_guard1_awake]
+if (add(%npc_action_delay, 4) < map_clock & add(%npc_lastcombat, 11) <= map_clock) {
+    npc_changetype_keepall(troll_prison_guard1, 500);
+}
+
+[ai_timer,troll_prison_guard2_awake]
+if (add(%npc_action_delay, 4) < map_clock & add(%npc_lastcombat, 11) <= map_clock) {
+    npc_changetype_keepall(troll_prison_guard2, 500);
+}
+
+[opnpc3,troll_prison_guard1]
+~troll_prison_guard_steal(troll_key_godric, troll_prison_guard1_awake);
+
+[opnpc3,troll_prison_guard2]
+~troll_prison_guard_steal(troll_key_eadgar, troll_prison_guard2_awake);
+
+[proc,troll_prison_guard_steal](namedobj $key, npc $next_type)
+if (stat(thieving) < 30) {
+    // TODO: recheck this
+    ~mesbox("You need level 30 thieving to pick the guard's pocket.");
+    return;
+}
+if (%action_delay > map_clock) { // this is just action delay for some reason
+    mes("You can't pickpocket during combat.");
+    return;
+}
+mes("You attempt to pick the guard's pocket.");
+p_delay(0);
+
+if(npc_stat(hitpoints) = 0) {
+    // https://youtu.be/L9dyUj1fiko?si=mK8K0u8o9_d1EVSd&t=70
+    mes("Too late, they're dead.");
+    return;
+}
+if(stat_random(thieving, 100, 240) = false) {
+    npc_say("What do you think you're doing?");
+    mes("You fail to pick the guard's pocket.");
+    npc_changetype_keepall($next_type, 500);
+    %npc_attacking_uid = uid;
+    %aggressive_npc = npc_uid;
+    npc_setmode(opplayer2);
+    return;
+}
+
+anim(human_pickpocket, 0);
+sound_synth(pick, 0, 0);
+// this is only inv, ai_queue3 does check bank
+if(inv_total(inv, $key) > 0 | (npc_type = troll_prison_guard1 & %troll_quest >= ^troll_freed_godric) 
+    | (npc_type = troll_prison_guard2 & %troll_freed_eadgar = ^true)) {
+    mes("You pick the guard's pocket but find nothing.");
+    return;
+}
+inv_add(inv, $key, 1);
+mes("You pick the guard's pocket and find a key.");

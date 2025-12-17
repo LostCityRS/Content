@@ -44,7 +44,7 @@ def_coord $loc_coord = loc_coord;
 def_int $next_angle = calc(loc_angle - 1);
 def_loc $next_loc = loc_param(next_loc_stage);
 $x, $z = ~door_open(loc_angle, loc_shape);
-sound_synth(grate_open, 0, 0); // iron_door_open
+sound_synth(iron_door_open, 0, 0);
 def_coord $dest = $loc_coord;
 if ($entering = true) {
     $dest = movecoord($loc_coord, $x, 0, $z);

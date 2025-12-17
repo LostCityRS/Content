@@ -1,4 +1,18 @@
 [opnpc1,death_smithy]
+if(%troll_quest = ^troll_freed_godric) {
+    ~chatplayer("<p,neutral>Has Godric returned home?");
+    ~chatnpc("<p,happy>He is safe and sound, thanks to you my friend!");
+    ~chatplayer("<p,happy>I'm glad to hear it.");
+    ~chatnpc("<p,happy>I have very little to offer you in way of thanks, but perhaps you will accept this family heirloom. It was found by my great-great-grandfather, but we still don't have any idea what it does.");
+    queue(troll_quest_complete, 0, 0);
+    return;
+}
+if(%troll_quest < ^troll_freed_godric & %troll_quest >= ^troll_started) {
+    ~chatnpc("<p,neutral>Have you managed to rescue Godric yet?");
+    ~chatplayer("<p,sad>Not yet.");
+    ~chatnpc("<p,sad>Please hurry! Who knows what they will do to him? Is there anything I can do in the meantime?");
+    @dunstan_ops;
+}
 if(~death_get_map = ^death_spoken_tenzing) {
     ~chatnpc("<p,happy>Hi! How can I help?");
     ~chatplayer("<p,neutral>Tenzing has asked me to bring you his climbing boots, he needs to have spikes put on them.");
@@ -40,23 +54,21 @@ if(~death_get_map = ^death_spoken_smithy) {
     return;
 }
 ~chatnpc("<p,happy>Hi! Did you want something?");
-if(~death_get_map >= ^death_given_supplies) {
-    @multi4("Can you put some spikes on my Climbing boots?", dunstan_spikeboots, "How is your son getting on?", dunstan_son, "Is it OK if I use your anvil?", dunstan_anvil, "Nothing, thanks.", dunstan_nothing);
-}
-switch_int(%death_equiproom) {
-    case default :
-        @multi5("I'm looking for the guard that was on last night.", dunstan_guard, "Do you know of another way up Death Plateau?", dunstan_plat, "Is it OK if I use your anvil?", dunstan_anvil, "Can you repair my items for me?", dunstan_repair, "Nothing, thanks.", dunstan_nothing);
-    case ^death_not_started :
-        @multi2("Is it OK if I use your anvil?", dunstan_anvil, "Nothing, thanks.", dunstan_nothing);
-}
+@dunstan_ops;
 
 [opnpcu,death_smithy]
 switch_obj(last_useitem) {
     case default : ~chatnpc("<p,confused>Sorry friend, but I can't do anything with that.");
 }
 
-[label,dunstan_ops]
+[label,dunstan_anythingelse]
 ~chatnpc("<p,neutral>Anything else before I get on with my work?");
+@dunstan_ops;
+
+[label,dunstan_ops]
+if(%troll_quest < ^troll_complete & %troll_quest >= ^troll_started) {
+    @multi3("Can you put some spikes on my Climbing boots?", dunstan_spikeboots, "Is it OK if I use your anvil?", dunstan_anvil, "Nothing, thanks.", dunstan_nothing);
+}
 if(~death_get_map >= ^death_given_supplies) {
     @multi4("Can you put some spikes on my Climbing boots?", dunstan_spikeboots, "How is your son getting on?", dunstan_son, "Is it OK if I use your anvil?", dunstan_anvil, "Nothing, thanks.", dunstan_nothing);
 }
@@ -87,28 +99,38 @@ switch_int(~p_choice2("Yes, but I still want them.", 1, "Oh OK, I'll leave them 
             ~doubleobjbox(iron_bar, death_climbingboots, "You give Dunstan an Iron bar and the climbing boots.| ", 200); // does this break in osrs (and the space)
             ~objbox(death_spikedboots, "Dunstan has given you the Spiked boots.", 250, 0, ^objbox_height);
         }
-        @dunstan_ops;
+        @dunstan_anythingelse;
     case 2 :
         ~chatplayer("<p,neutral>Oh OK, I'll leave them thanks.");
-        @dunstan_ops;
+        @dunstan_anythingelse;
 }
 
 [label,dunstan_son]
 ~chatplayer("<p,neutral>How is your son getting on?");
-// TODO: troll stronghold dialogue
+if(%troll_quest = ^troll_complete) {
+    ~chatnpc("<p,happy>He is getting on fine! He has just been promoted to Sergeant! I'm really proud of him!");
+    ~chatplayer("<p,happy>I'm happy for you!");
+    @dunstan_anythingelse;
+}
+if(%death_equiproom = ^death_complete) {
+    ~chatnpc("<p,sad>He was captured by those cursed trolls! I don't know what to do. Even the imperial guard are too afraid to go rescue him.");
+    ~chatplayer("<p,sad>What happened?");
+    ~chatnpc("<p,sad>Talk to Denulth, he can tell you all about it. Anything else before I get on with my work?");
+    @multi4("Can you put some spikes on my Climbing boots?", dunstan_spikeboots, "How is your son getting on?", dunstan_son, "Is it OK if I use your anvil?", dunstan_anvil, "Nothing, thanks.", dunstan_nothing);
+}
 ~chatnpc("<p,happy>He is getting on fine! He has just started his basic training and has already been promoted to corporal! I'm really proud of him!");
 ~chatplayer("<p,happy>I'm happy for you!");
-@dunstan_ops;
+@dunstan_anythingelse;
 
 [label,dunstan_guard]
 ~chatplayer("<p,neutral>I'm looking for the guard that was on duty last night.");
 ~chatnpc("<p,neutral>I can't help you there I'm afraid, I don't know any of the guards.");
-@dunstan_ops;
+@dunstan_anythingelse;
 
 [label,dunstan_plat]
 ~chatplayer("<p,neutral>Do you know of another way up Death Plateau?");
 ~chatnpc("<p,laugh>I've never left the village!");
-@dunstan_ops;
+@dunstan_anythingelse;
 
 [label,dunstan_anvil]
 ~chatplayer("<p,neutral>Is it OK if I use your anvil?");
@@ -116,7 +138,7 @@ switch_int(~p_choice2("Yes, but I still want them.", 1, "Oh OK, I'll leave them 
 ~chatplayer("<p,neutral>I dabble.");
 ~chatnpc("<p,neutral>A fellow smith is welcome to use my anvil!");
 ~chatplayer("<p,happy>Thanks!");
-@dunstan_ops;
+@dunstan_anythingelse;
 
 // todo: this should prob be shared with bob and the others
 [label,dunstan_repair]

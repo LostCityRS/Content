@@ -1,0 +1,481 @@
+[troll_pass_entrance]
+name=Cave Entrance
+desc=Looks like small cave.
+model=model_loc_2
+recol1s=10400
+recol1d=11592
+recol2s=8288
+recol2d=9478
+recol3s=6176
+recol3d=7364
+recol4s=4096
+recol4d=5250
+recol5s=2048
+recol5d=3136
+width=3
+length=2
+shadow=no
+op1=Enter
+
+[troll_pass_exit]
+name=Cave Exit
+desc=The way out.
+model=loc_3736
+recol1s=10400
+recol1d=11592
+recol2s=8288
+recol2d=14763
+recol3s=6176
+recol3d=17934
+recol4s=4096
+recol4d=21105
+recol5s=2048
+recol5d=24276
+recol6s=0
+recol6d=27447
+width=3
+length=2
+ambient=60
+contrast=60
+sharelight=yes
+op1=Exit
+
+[troll_mad_eadgar_entrance]
+name=Cave Entrance
+desc=Looks like small cave.
+model=model_loc_2
+recol1s=10400
+recol1d=11592
+recol2s=8288
+recol2d=9478
+recol3s=6176
+recol3d=7364
+recol4s=4096
+recol4d=5250
+recol5s=2048
+recol5d=3136
+width=3
+length=2
+shadow=no
+op1=Enter
+
+[troll_mad_eadgar_exit]
+name=Cave Exit
+desc=The way out.
+model=loc_3736
+recol1s=10400
+recol1d=11592
+recol2s=8288
+recol2d=14763
+recol3s=6176
+recol3d=17934
+recol4s=4096
+recol4d=21105
+recol5s=2048
+recol5d=24276
+recol6s=0
+recol6d=27447
+width=3
+length=2
+ambient=60
+contrast=60
+sharelight=yes
+op1=Exit
+
+[troll_stronghold_exit]
+name=Exit
+desc=The back way out.
+model=loc_3736
+recol1s=10400
+recol1d=11592
+recol2s=8288
+recol2d=9478
+recol3s=6176
+recol3d=7364
+recol4s=4096
+recol4d=5250
+recol5s=2048
+recol5d=3136
+width=3
+length=2
+ambient=60
+contrast=60
+sharelight=yes
+op1=Open
+
+[troll_stronghold_entrance]
+name=Secret Door
+desc=The back way into the stronghold.
+model=loc_3762
+op1=Open
+length=2
+hillskew=yes
+shadow=no
+ambient=40
+contrast=40
+
+[troll_celldoor]
+name=Cell Door
+desc=The door is closed.
+model=loc_3763
+op1=Open
+category=door_closed
+param=next_loc_stage,troll_celldoor_open
+param=open_sound,iron_door_open
+
+[troll_celldoor_open]
+name=Cell Door
+desc=The door is open.
+model=loc_3763
+op1=Close
+category=door_opened
+param=next_loc_stage,troll_celldoor
+param=close_sound,iron_door_close
+
+[troll_celldoor_eadgar]
+name=Cell Door
+desc=The door to Mad Eadgar's cell.
+model=loc_3763
+op1=Unlock
+
+[troll_celldoor_eadgar_open]
+model=loc_3763
+
+[troll_celldoor_godric]
+name=Cell Door
+desc=The door to Godric's cell.
+model=loc_3763
+op1=Unlock
+
+[troll_celldoor_godric_open]
+model=loc_3763
+
+[troll_stronghold_camp_fire]
+name=Fire
+desc=Hot!
+model=loc_3769
+model2=loc_3769i2
+width=2
+length=2
+resizex=256
+resizey=256
+resizez=256
+anim=fire
+blockrange=no
+ambient=75
+contrast=75
+blockrange=no
+category=cooking_fire
+
+[troll_stronghold_window]
+name=Window
+desc=This window looks down onto the Troll Camp.
+model=loc_3770
+recol1s=10400
+recol1d=11592
+recol2s=8288
+recol2d=14763
+recol3s=6176
+recol3d=17934
+recol4s=4096
+recol4d=21105
+recol5s=2048
+recol5d=24276
+recol6s=1024
+recol6d=27447
+hillskew=yes
+sharelight=yes
+ambient=60
+contrast=60
+active=yes
+
+[troll_stronghold_door]
+name=Stronghold
+desc=The entrance to the Troll Stronghold.
+model=loc_3771
+length=3
+hillskew=yes
+ambient=30
+contrast=30
+shadow=no
+op1=Enter
+
+[troll_stronghold_top_exit_left]
+name=Exit
+desc=The way out of the Troll Stronghold.
+model=loc_3772
+hillskew=yes
+sharelight=yes
+ambient=60
+contrast=60
+op1=Use
+
+[troll_stronghold_top_exit_right]
+name=Exit
+desc=The way out of the Troll Stronghold.
+model=loc_3772
+mirror=yes
+hillskew=yes
+sharelight=yes
+ambient=60
+contrast=60
+op1=Leave
+
+[troll_stronghold_top_exit_mid]
+name=Exit
+desc=The way out of the Troll Stronghold.
+model=loc_3774
+hillskew=yes
+sharelight=yes
+ambient=60
+contrast=60
+op1=Leave
+
+[troll_eadgar_cooking_pot]
+name=Fire
+desc=Looks like stew of some kind...
+model=loc_3775
+anim=fire
+ambient=25
+contrast=25
+
+[troll_stronghold_interior_door]
+name=Door
+desc=A door in the Stronghold.
+model=loc_3776
+hillskew=yes
+ambient=25
+contrast=25
+op1=Open
+category=door_closed
+param=next_loc_stage,troll_stronghold_interior_door_open
+
+[troll_stronghold_interior_door_open]
+name=Door
+desc=A door in the Stronghold.
+model=loc_3776
+hillskew=yes
+ambient=25
+contrast=25
+op1=Close
+category=door_opened
+param=next_loc_stage,troll_stronghold_interior_door
+
+[troll_stronghold_prisonwall]
+model=loc_3778
+hillskew=yes
+blockrange=no
+
+[troll_stronghold_prisonwall_no_hillskew]
+model=loc_3778
+blockrange=no
+
+[troll_stronghold_prison_door_closed]
+name=Prison Door
+desc=The door to the prison.
+model=loc_3776
+hillskew=yes
+op1=Unlock
+
+[troll_stronghold_prison_door_open]
+model=loc_3776
+hillskew=yes
+
+[troll_stronghold_arena_entrance_left]
+name=Arena Entrance
+desc=The entrance to the Troll Arena.
+model=loc_3778
+hillskew=yes
+op1=Open
+
+[troll_stronghold_arena_entrance_right]
+name=Arena Entrance
+desc=The entrance to the Troll Arena.
+model=loc_3778
+hillskew=yes
+mirror=yes
+op1=Open
+
+[troll_stronghold_arena_entrance_inactive]
+model=loc_3778
+hillskew=yes
+
+[troll_stronghold_arena_exit_left]
+name=Arena Exit
+desc=The exit to the Troll Arena.
+model=loc_3778
+hillskew=yes
+op1=Open
+
+[troll_stronghold_arena_exit_right]
+name=Arena Exit
+desc=The exit to the Troll Arena.
+model=loc_3778
+hillskew=yes
+mirror=yes
+op1=Open
+
+[troll_stronghold_arena_exit_inactive]
+model=loc_3778
+hillskew=yes
+
+[troll_stronghold_stairs]
+name=Stone Staircase
+desc=I can climb these stairs.
+model=loc_3788
+width=2
+length=3
+op1=Climb-up
+forceapproach=south
+mapscene=7
+
+[troll_stronghold_stairstop]
+name=Stone Staircase
+desc=They go down.
+model=loc_3789
+width=2
+length=2
+op1=Climb-down
+forceapproach=north
+mapscene=7
+
+[troll_climbingrocks_top]
+name=Rocks
+desc=A rocky outcrop.
+model=model_loc_2231
+recol1s=12580
+recol1d=8454
+hillskew=yes
+op1=Climb
+
+[troll_climbingrocks_bottom]
+name=Rocks
+desc=A rocky outcrop.
+model=model_loc_2232
+recol1s=12580
+recol1d=8454
+hillskew=yes
+forcedecor=yes
+op1=Climb
+
+[troll_cavewall_face_doorside_left]
+model=loc_3792
+recol1s=12580
+recol1d=11592
+sharelight=yes
+hillskew=yes
+
+[troll_cavewall_face_doorside_right]
+model=loc_3792
+recol1s=12580
+recol1d=11592
+sharelight=yes
+hillskew=yes
+mirror=yes
+
+[troll_rocks_grass]
+name=Grass
+desc=Looks tasty! If you're a goat, that is.
+model=loc_3794
+recol1s=11712
+recol1d=8512
+hillskew=yes
+active=yes
+blockrange=no
+
+[troll_rocks_grass_falloff]
+name=Grass
+desc=Looks tasty! If you're a goat, that is.
+model=loc_3795
+hillskew=yes
+blockwalk=no
+active=yes
+blockrange=no
+
+[troll_floor_depth2]
+model=model_loc_767
+recol1s=7329
+recol1d=11592
+hillskew=yes
+sharelight=yes
+resizex=128
+resizey=384
+resizez=128
+
+[troll_corpse]
+name=Corpse
+desc=Now that's what I call slimline!
+model=model_loc_660
+recol1s=27413
+recol1d=23183
+blockrange=no
+blockrange=no
+
+[troll_corpse2]
+name=Corpse
+desc=He looks very relaxed.
+model=model_loc_661
+recol1s=27413
+recol1d=23183
+blockrange=no
+blockrange=no
+
+[troll_corpse3]
+name=Corpse
+desc=Now he's just too thin.
+model=model_loc_662
+recol1s=27413
+recol1d=23183
+width=2
+blockrange=no
+blockrange=no
+
+[troll_rockcounter]
+name=Counter
+desc=A counter made from a stone block.
+model=model_loc_2791
+recol1s=10400
+recol1d=11592
+width=2
+hillskew=yes
+blockrange=no
+
+[troll_chair]
+name=Chair
+desc=The ideal thing to sit on.
+model=model_loc_1088
+recol1s=10401
+recol1d=9411
+blockrange=no
+blockrange=no
+
+[troll_smashedchair]
+name=Smashed chair
+desc=Not so good for sitting on.
+model=model_loc_1089
+recol1s=10401
+recol1d=9411
+blockrange=no
+blockrange=no
+
+[troll_mountain_shortcut_climbingrocks1]
+name=Rocks
+desc=A rocky outcrop.
+model=model_loc_2231
+recol1s=12580
+recol1d=8454
+hillskew=yes
+op1=Climb
+ambient=20
+blockrange=no
+
+[troll_mountain_shortcut_climbingrocks2]
+name=Rocks
+desc=A rocky outcrop.
+model=model_loc_2232
+recol1s=12580
+recol1d=8454
+hillskew=yes
+op1=Climb
+ambient=20
+blockrange=no

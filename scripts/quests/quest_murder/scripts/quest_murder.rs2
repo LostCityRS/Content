@@ -175,7 +175,7 @@ if(~obj_gettotal(murderpot) > 0) {
 inv_add(inv, murderpot, 1);
 
 [label,murder_flour_barrel]
-if(%murderquest ! ^murder_started) {
+if(%murderquest < ^murder_started) {
     mes("I need the guards' permission to do that.");
     return;
 }
@@ -189,9 +189,9 @@ inv_add(inv, pot_flour, 1);
 mes("You take some flour from the barrel.");
 mes("There's still plenty of flour left.");
 
-[oploc2,loc_2662] @murder_flour_barrel;
+[oploc2,flourbarrel] @murder_flour_barrel;
 
-[oplocu,loc_2662]
+[oplocu,flourbarrel]
 if(last_useitem = murderpot2) {
     ~mesbox("You probably shouldn't use evidence from a crime|scene to keep flour in...");
     return;

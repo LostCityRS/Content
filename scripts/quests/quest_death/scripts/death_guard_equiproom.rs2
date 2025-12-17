@@ -14,7 +14,7 @@ switch_int(%death_equiproom) {
         ~chatplayer("<p,happy>Hello there.");
         ~chatnpc("<p,sad>Hi.");
         if(%death_equiproom >= ^death_given_iou & ~obj_gettotal(death_iou) = 0 & ~obj_gettotal(death_combination) = 0) @harold_reclaim_iou;
-        @multi2("Would you like to gamble?", harold_gamble, "Can I buy you a drink?", harold_drink);
+        @harold_gamble;
     case ^death_given_ale, ^death_given_iou :
         if(testbit(%death_bits, ^harold_verydrunk) = ^true) {
             ~chatplayer("<p,happy>Hello there.");
@@ -216,7 +216,6 @@ if(testbit(%death_bits, ^harold_verydrunk) = ^true) {
     ~chatnpc("<p,drunk>*giggle*");
 } else {
     if(%death_equiproom >= ^death_given_iou) {
-        // TODO: recheck, this is from chisel
         ~chatnpc("<p,sad>I've run out of money!");
         ~chatnpc("<p,sad>Oh dear. I need beer.");
         return;
@@ -340,9 +339,8 @@ if(inv_total(inv, asgarnian_ale) > 0) {
 
 [label,harold_reclaim_iou]
 ~chatplayer("<p,confused>I've lost the IOU you gave me.");
-def_string $mesanim = "<p,sad>";
-if(testbit(%death_bits, ^harold_verydrunk) = ^true) $mesanim = "<p,drunk>";
-~chatnpc("<$mesanim>Oh dear.");
+if(testbit(%death_bits, ^harold_verydrunk) = ^true) ~chatnpc("<p,drunk>Oh dear.");
+else ~chatnpc("<p,neutral>I'll write you another.");
 if(%death_equiproom >= ^death_found_combo) {
     inv_add(inv, death_combination, 1);
     mes("Harold has given you the IOU, which you know is the combination.");

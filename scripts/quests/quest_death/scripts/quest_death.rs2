@@ -82,6 +82,11 @@ mes("The door is locked.");
 
 [label,death_place_stone]
 if(oc_category(last_useitem) = death_cannonball) {
+    if(obj_find(loc_coord, death_cannonball_blue) = true | obj_find(loc_coord, death_cannonball_yellow) = true | 
+        obj_find(loc_coord, death_cannonball_red) = true | obj_find(loc_coord, death_cannonball_purple) = true | obj_find(loc_coord, death_cannonball_green) = true) {
+            mes("There is already a stone ball here.");
+            return;
+    }
     inv_dropitem(inv, loc_coord, last_useitem, 1, 1000);
     if(%death_equiproom = ^death_found_combo) {
         if(obj_find(0_45_55_14_42, death_cannonball_blue) = true & obj_find(0_45_55_15_42, death_cannonball_yellow) = true 

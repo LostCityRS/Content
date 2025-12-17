@@ -1,0 +1,373 @@
+[oploc1,troll_climbingrocks]
+if(%troll_quest < ^troll_started) {
+    mes("That looks dangerous. I'll need a good reason before I venture that way.");
+    return;
+}
+// confirm order
+if(stat(agility) < 15) {
+    mes("You need an Agility level of at least 15 to attempt this.");
+    return;
+}
+if(inv_total(worn, death_climbingboots) = 0 & coordz(coord) = 3611) {
+    mes("You'll need some climbing boots to go that way.");
+    return;
+}
+@rockslide_obstacle;
+
+[oploc1,troll_climbingrocks_top]
+def_int $dx = 3;
+def_int $dir = ^exact_west;
+if(coordx(coord) > coordx(loc_coord)) {
+    $dx = -3;
+    $dir = ^exact_east;
+}
+p_delay(0);
+~agility_exactmove(human_climbing_down, 15, 0, coord, movecoord(coord, $dx, 0, 0), 0, 90, $dir, false);
+if(stat_random(agility, 125, 250) = false) {
+    sound_synth(stumble_loop, 10, 0);
+    anim(human_climbing_fall, 0);
+    p_delay(1);
+    anim(null, 0);
+    mes("You fall and hurt yourself.");
+    say("Ouch");
+    stat_advance(agility, 10);
+    ~damage_self(calc(((stat(hitpoints) * 5) / 100) + 1));
+    return;
+}
+p_delay(1);
+stat_advance(agility, 10);
+anim(null, 0);
+
+[oploc1,troll_climbingrocks_bottom]
+def_int $dx = -1;
+def_int $dir = ^exact_west;
+if(coordx(coord) < coordx(loc_coord)) {
+    $dx = 1;
+    $dir = ^exact_east;
+}
+p_delay(0);
+~set_forcemove_bas(human_climbing);
+~forcemove(movecoord(coord, multiply(2, $dx), 0, 0));
+if(stat_random(agility, 125, 250) = false) {
+    sound_synth(stumble_loop, 10, 0);
+    ~agility_exactmove(human_climbing_fall, 0, 1, coord, movecoord(coord, multiply(-2, $dx), 0, 0), 0, 50, $dir, false);
+    ~update_bas;
+    mes("You fall and hurt yourself.");
+    say("Ouch");
+    stat_advance(agility, 10);
+    ~damage_self(calc(((stat(hitpoints) * 5) / 100) + 1));
+    return;
+}
+~forcemove(movecoord(coord, $dx, 0, 0));
+~update_bas;
+stat_advance(agility, 10);
+
+[oploc1,troll_stronghold_arena_entrance_left] @open_troll_stronghold_arena_entrance(^loc_south);
+[oploc1,troll_stronghold_arena_entrance_right] @open_troll_stronghold_arena_entrance(^loc_north);
+
+[label,open_troll_stronghold_arena_entrance](int $dir)
+if(coordx(coord) >= coordx(loc_coord)) {
+    hint_stop();
+}
+~open_and_close_door_dir(troll_stronghold_arena_entrance_inactive, ~check_axis(coord, loc_coord, loc_angle), $dir, iron_door_open);
+if(%troll_told = ^false) {
+    %troll_told = ^true;
+    if(npc_find(0_45_56_32_29, troll_champion, 16, 0) = false | (add(%npc_lastcombat, 8) > map_clock & %npc_aggressive_player ! uid)) {
+        npc_add(0_45_56_32_29, troll_champion, 1000); // osrs 1000t
+    }
+    ~chatnpc_specific(nc_name(troll_champion), troll_champion, "<p,angry>No human pass through arena without defeating Dad!");
+}
+
+[oploc1,troll_stronghold_arena_exit_left] @open_troll_stronghold_arena_exit(^loc_west);
+[oploc1,troll_stronghold_arena_exit_right] @open_troll_stronghold_arena_exit(^loc_east);
+
+[label,open_troll_stronghold_arena_exit](int $dir)
+if(%troll_quest < ^troll_defeated_dad) {
+    if(npc_find(0_45_56_32_29, troll_champion, 16, 0) = false | (add(%npc_lastcombat, 8) > map_clock & %npc_aggressive_player ! uid)) {
+        npc_add(0_45_56_32_29, troll_champion, 1000); // osrs 1000t
+    }
+    %npc_aggressive_player = uid;
+    %npc_lastcombat = sub(^max_32bit_int, 8);
+    if(%troll_accepted_challenge = ^false) %troll_accepted_challenge = ^true;
+    npc_setmode(opplayer2);
+    hint_npc(npc_uid);
+    ~chatnpc_specific(nc_name(troll_champion), troll_champion, "<p,angry>No human pass through arena without defeating Dad!");
+    return;
+}
+~open_and_close_door_dir(troll_stronghold_arena_entrance_inactive, ~check_axis(coord, loc_coord, loc_angle), $dir, iron_door_open);
+
+[oploc1,troll_stronghold_entrance]
+if(%troll_opened_back_exit = ^false & %troll_quest < ^troll_freed_godric) {
+    mes("You don't know how to open the secret door.");
+    return;
+}
+p_teleport(0_44_157_7_2);
+mes("You open the secret door.");
+
+[oploc1,troll_stronghold_exit]
+if(%troll_opened_back_exit = ^false) %troll_opened_back_exit = ^true;
+p_teleport(0_44_56_11_62);
+mes("You open the door.");
+
+[oploc1,troll_pass_entrance]
+if(loc_angle = ^loc_west) p_teleport(0_45_156_27_35);
+else p_teleport(0_45_156_27_51);
+
+[oploc1,troll_pass_exit]
+if(loc_angle = ^loc_west) p_teleport(0_45_57_28_6);
+else p_teleport(0_45_56_24_59);
+
+[oploc1,troll_mad_eadgar_entrance]
+if(%troll_freed_eadgar = ^true) p_teleport(2_45_157_13_26);
+else p_teleport(0_45_157_13_26);
+
+[oploc1,troll_mad_eadgar_exit]
+p_teleport(0_45_57_13_23);
+
+[oploc1,troll_mountain_shortcut_climbingrocks1] @troll_mountain_shortcut;
+[oploc1,troll_mountain_shortcut_climbingrocks2] @troll_mountain_shortcut;
+
+[label,troll_mountain_rockstop]
+def_int $dx = -2;
+def_int $dir = ^exact_east;
+p_delay(0);
+~agility_exactmove(human_climbing_down, 15, 0, coord, movecoord(coord, $dx, 0, 0), 0, 50, $dir, false);
+if(stat_random(agility, 125, 250) = false) {
+    sound_synth(stumble_loop, 10, 0);
+    anim(human_climbing_fall, 0);
+    p_delay(1);
+    anim(null, 0);
+    mes("You fall and hurt yourself.");
+    say("Ouch");
+    stat_advance(agility, 10);
+    ~damage_self(calc(((stat(hitpoints) * 5) / 100) + 1));
+    return;
+}
+p_delay(0);
+stat_advance(agility, 10);
+anim(null, 0);
+
+[label,troll_mountain_shortcut]
+if(coordx(coord) > coordx(loc_coord)) {
+    @troll_mountain_rockstop;
+}
+def_int $dx = 1;
+def_int $dir = ^exact_east;
+p_delay(0);
+~set_forcemove_bas(human_climbing);
+~forcemove(movecoord(coord, $dx, 0, 0));
+if(stat_random(agility, 125, 250) = false) {
+    sound_synth(stumble_loop, 10, 0);
+    ~agility_exactmove(human_climbing_fall, 0, 1, coord, movecoord(coord, multiply(-1, $dx), 0, 0), 0, 25, $dir, false);
+    anim(null, 0);
+    ~update_bas;
+    mes("You fall and hurt yourself.");
+    say("Ouch");
+    stat_advance(agility, 10);
+    ~damage_self(calc(((stat(hitpoints) * 5) / 100) + 1));
+    return;
+}
+~forcemove(movecoord(coord, $dx, 0, 0));
+~update_bas;
+stat_advance(agility, 10);
+
+[oploc1,troll_stronghold_door]
+p_teleport(2_44_157_21_42);
+if(%troll_entered_stronghold = ^false) %troll_entered_stronghold = ^true;
+
+[oploc1,troll_stronghold_top_exit_mid]
+p_teleport(0_44_57_24_42);
+
+
+[oploc1,troll_stronghold_stairstop]
+p_arrivedelay;
+switch_int(loc_angle) {
+    case ^loc_west : p_teleport(movecoord(loc_coord, 0, -1, -2));
+    case ^loc_north : p_teleport(movecoord(loc_coord, -2, -1, 0));
+    case ^loc_east : p_teleport(movecoord(loc_coord, 0, -1, 3));
+    case default : mes("Unhandled troll stairs, loc_angle <tostring(loc_angle)>");
+}
+
+[oploc1,troll_stronghold_stairs]
+p_arrivedelay;
+switch_int(loc_angle) {
+    case ^loc_west : p_teleport(movecoord(loc_coord, 0, 1, 3));
+    case ^loc_north : p_teleport(movecoord(loc_coord, 3, 1, 0));
+    case ^loc_east : p_teleport(movecoord(loc_coord, 0, 1, -1));
+    case default : mes("Unhandled troll stairs, loc_angle <tostring(loc_angle)>");
+}
+
+[oploc1,eadgar_kitchen_drawers]
+p_arrivedelay;
+anim(human_openchest, 0);
+sound_synth(cupboard_open, 0, 0);
+p_delay(0);
+loc_change(eadgar_kitchen_drawers_open, 300);
+
+[oploc1,eadgar_kitchen_drawers_open]
+p_arrivedelay;
+anim(human_closechest, 0);
+sound_synth(cupboard_close, 0, 0);
+p_delay(0);
+loc_change(eadgar_kitchen_drawers, 300);
+
+[oploc2,eadgar_kitchen_drawers_open]
+p_arrivedelay;
+mes("You search the drawers...");
+p_delay(0);
+mes("You don't find anything.");
+
+[oploc1,eadgar_storeroomdoor]
+mes("You need to find the right key to open this door.");
+
+[oploc1,troll_stronghold_prison_door_closed]
+if(inv_total(inv, troll_key_prison) = 0 & %troll_quest < ^troll_entered_prison) {
+    mes("You need a key.");
+    return;
+}
+@open_troll_stronghold_prison_door;
+
+[oplocu,troll_stronghold_prison_door_closed]
+// NO NIH
+if(last_useitem = troll_key_prison) {
+    @open_troll_stronghold_prison_door;
+}
+
+[label,open_troll_stronghold_prison_door]
+if(%troll_quest < ^troll_entered_prison) {
+    mes("You unlock the door.");
+    inv_del(inv, troll_key_prison, 1);
+    %troll_quest = ^troll_entered_prison;
+}
+sound_synth(lockeddoor, 0, 0);
+~open_and_close_door2(troll_stronghold_prison_door_open, ~check_axis(coord, loc_coord, loc_angle), door_open);
+
+[oploc1,troll_celldoor_godric] @troll_unlock_cell_1;
+
+[oplocu,troll_celldoor_godric]
+// no nih
+if(last_useitem = troll_key_godric) {
+    @troll_unlock_cell_1;
+} else if(last_useitem = troll_key_eadgar) {
+    mes("This key doesn't open this door.");
+}
+
+[oploc1,troll_celldoor_eadgar] @troll_unlock_cell_2;
+
+[oplocu,troll_celldoor_eadgar]
+// no nih
+if(last_useitem = troll_key_eadgar) {
+    @troll_unlock_cell_2;
+} else if(last_useitem = troll_key_eadgar) {
+    mes("This key doesn't open this door.");
+}
+
+[label,troll_unlock_cell_1]
+if(%cell_1_unlock_timer > map_clock) { // idk if this is the correct way, but can't unlock the door for 15t after anyone has unlocked
+    mes("The door is already unlocked.");
+    return;
+}
+if(inv_total(inv, troll_key_godric) = 0) {
+    sound_synth(locked, 0, 0);
+    mes("You need a key to unlock the door.");
+    return;
+}
+if(npc_find(coord, troll_godric, 10, 0) = false) {
+    npc_add(0_44_157_11_29, troll_godric, 100);
+    // this doesnt have var check
+    @troll_free_godric;
+}
+if(%troll_quest >= ^troll_freed_godric) {
+    mes("You have no need to do this.");
+    return;
+}
+@troll_free_godric;
+
+[label,troll_unlock_cell_2]
+if(%cell_2_unlock_timer > map_clock) { // idk if this is the correct way, but can't unlock the door for 15t after anyone has unlocked
+    mes("The door is already unlocked.");
+    return;
+}
+if(inv_total(inv, troll_key_eadgar) = 0) {
+    sound_synth(locked, 0, 0);
+    mes("You need a key to unlock the door.");
+    return;
+}
+if(npc_find(coord, troll_eadgar, 10, 0) = false) {
+    npc_add(0_44_157_11_33, troll_eadgar, 100);
+    // this doesnt have var check
+    @troll_free_eadgar;
+}
+if(%troll_freed_eadgar = ^true) {
+    mes("You have no need to do this.");
+    return;
+}
+@troll_free_eadgar;
+
+[label,troll_free_godric]
+sound_synth(locked, 0, 0);
+if(%troll_quest < ^troll_freed_godric) %troll_quest = ^troll_freed_godric;
+inv_del(inv, troll_key_godric, 1);
+mes("You unlock the cell door.");
+npc_queue(5, 0, 1);
+~chatnpc("<p,happy>Thank you, my friend.");
+
+[ai_queue5,troll_godric]
+npc_setmode(none);
+%cell_1_unlock_timer = add(map_clock, 15);
+~npc_forcewalk(0_44_157_15_30);
+if(loc_find(0_44_157_16_30, troll_celldoor_godric) = true) {
+    def_int $x;
+    def_int $z;
+    def_coord $loc_coord = loc_coord;
+    def_int $angle = loc_angle;
+    def_locshape $shape = loc_shape;
+    $x, $z = ~door_open($angle, loc_shape);
+    // Temp note: dur updated
+    loc_change(inviswall, 3);
+    loc_add(movecoord($loc_coord, $x, 0, $z), troll_celldoor_godric_open, modulo(add($angle, 1), 4), $shape, 3);
+}
+~npc_forcewalk(0_44_157_19_30);
+~npc_forcewalk(0_44_157_19_14);
+~npc_forcewalk(0_44_157_8_2);
+npc_delay(0);
+npc_del;
+
+[label,troll_free_eadgar]
+sound_synth(locked, 0, 0);
+if(%troll_freed_eadgar = ^false) %troll_freed_eadgar = ^true;
+inv_del(inv, troll_key_eadgar, 1);
+mes("You unlock the cell door.");
+npc_queue(5, 0, 1);
+~chatnpc("<p,happy>Thanks! I'm off back home!");
+
+[ai_queue5,troll_eadgar]
+npc_setmode(none);
+%cell_2_unlock_timer = add(map_clock, 15);
+~npc_forcewalk(0_44_157_15_34);
+if(loc_find(0_44_157_16_34, troll_celldoor_eadgar) = true) {
+    def_int $x;
+    def_int $z;
+    def_coord $loc_coord = loc_coord;
+    def_int $angle = loc_angle;
+    def_locshape $shape = loc_shape;
+    $x, $z = ~door_open($angle, loc_shape);
+    // Temp note: dur updated
+    loc_change(inviswall, 3);
+    loc_add(movecoord($loc_coord, $x, 0, $z), troll_celldoor_eadgar_open, modulo(add($angle, 1), 4), $shape, 3);
+}
+~npc_forcewalk(0_44_157_19_34);
+~npc_forcewalk(0_44_157_19_14);
+~npc_forcewalk(0_44_157_8_2);
+npc_delay(0);
+npc_del;
+
+[oplocu,troll_eadgar_cooking_pot]
+~chatplayer("<p,neutral>I'd better not mess around with Eadgar's stew!");
+
+[queue,troll_quest_complete]
+// https://web.archive.org/web/20051108023748/http://runescape.salmoneus.net/quests/TrollStronghold/trollstrholdcomplt.png
+session_log(^log_adventure, "Quest complete: Troll Stronghold");
+%troll_quest = ^troll_complete;
+inv_add(inv, law_talisman, 1);
+~send_quest_complete(questlist:troll, law_talisman, 250, ^troll_questpoints, "You have completed\\nTroll Stronghold!");

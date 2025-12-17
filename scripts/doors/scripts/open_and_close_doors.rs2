@@ -83,6 +83,27 @@ p_teleport($dest);
 loc_change(inviswall, 3);
 loc_add(movecoord($loc_coord, $x, 0, $z), $replacement, modulo(add($angle, 1), 4), $shape, 3);
 
+[proc,open_and_close_door_dir](loc $replacement, boolean $entering, int $dir, synth $sound)
+def_int $x;
+def_int $z;
+def_int $angle = loc_angle;
+def_locshape $shape = loc_shape;
+def_coord $loc_coord = loc_coord;
+$x, $z = ~door_open($angle, loc_shape);
+def_coord $dest = $loc_coord;
+sound_synth($sound, 0, 0);
+if ($entering = true) {
+    if (coord ! $loc_coord) {
+        p_teleport($loc_coord);
+        p_delay(1);
+    }
+    $dest = movecoord(loc_coord, $x, 0, $z);
+}
+p_teleport($dest);
+// Temp note: dur updated
+loc_change(inviswall, 3);
+loc_add(movecoord($loc_coord, $x, 0, $z), $replacement, $dir, $shape, 3);
+
 [proc,open_and_close_metal_gate](loc $replacement, boolean $entering, boolean $mirrored)
 // ~loc_shape_debug(loc_shape);
 // mes(tostring(loc_angle));

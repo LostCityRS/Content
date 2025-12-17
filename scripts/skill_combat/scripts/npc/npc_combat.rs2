@@ -187,6 +187,9 @@ if (npc_type = wormbrain & (~quest_dragon_getting_map_parts = false | inv_total(
     mes("The goblin is already in prison. You have no reason to attack him.");
     return (false);
 }
+if(npc_category = troll_spectator) {
+    return (~troll_spectator_can_attack);
+}
 if (npc_type = priestperilguarddog) {
     if(~priestperilguarddog_attack = false) {
         return (false);

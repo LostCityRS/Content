@@ -12,3 +12,34 @@
 ~chatplayer("<p,happy>Hi!");
 ~chatnpc("<p,happy>Thank goodness you opened that door!|I've been trapped here since last night!");
 ~chatplayer("<p,happy>No problem!");
+
+[ai_queue3,_death_archer]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+def_int $random = random(128);
+
+if ($random < 8) obj_add(npc_coord, studded_chaps, 1, ^lootdrop_duration);
+else if ($random < 14) obj_add(npc_coord, dragonhide_chaps, 1, ^lootdrop_duration);
+else if ($random < 18) obj_add(npc_coord, willow_longbow, 1, ^lootdrop_duration);
+else if ($random < 19) obj_add(npc_coord, maple_shortbow, 1, ^lootdrop_duration);
+else if ($random < 22) obj_add(npc_coord, bronze_arrow, 14, ^lootdrop_duration);
+else if ($random < 24) obj_add(npc_coord, earthrune, 18, ^lootdrop_duration);
+else if ($random < 26) obj_add(npc_coord, steel_arrow, 14, ^lootdrop_duration);
+else if ($random < 28) obj_add(npc_coord, firerune, 17, ^lootdrop_duration);
+else if ($random < 30) obj_add(npc_coord, airrune, 29, ^lootdrop_duration);
+else if ($random < 31) obj_add(npc_coord, naturerune, 6, ^lootdrop_duration);
+else if ($random < 32) obj_add(npc_coord, bloodrune, 1, ^lootdrop_duration);
+else if ($random < 33) obj_add(npc_coord, chaosrune, 2, ^lootdrop_duration);
+else if ($random < 70) obj_add(npc_coord, coins, 5, ^lootdrop_duration);
+else if ($random < 86) obj_add(npc_coord, coins, 15, ^lootdrop_duration);
+else if ($random < 95) obj_add(npc_coord, coins, 12, ^lootdrop_duration);
+else if ($random < 99) obj_add(npc_coord, coins, 28, ^lootdrop_duration);
+else if ($random < 103) obj_add(npc_coord, coins, 42, ^lootdrop_duration);
+else if ($random < 105) obj_add(npc_coord, coins, 46, ^lootdrop_duration);
+else if ($random < 106) obj_add(npc_coord, coins, 3, ^lootdrop_duration);
+else if ($random < 109) obj_add(npc_coord, earth_talisman, 1, ^lootdrop_duration);
+else if ($random < 110) obj_add(npc_coord, mithril_ore, 1, ^lootdrop_duration);

@@ -1,0 +1,32 @@
+[opnpc2,_troll_spectator]
+if(~troll_spectator_can_attack = false) {
+    return;
+}
+@player_combat_start;
+
+[apnpc2,_troll_spectator]
+if(~troll_spectator_can_attack = false) {
+    return;
+}
+@player_combat_start_ap;
+
+[ai_queue3,_troll_spectator] @troll_drop_table;
+
+[proc,troll_spectator_can_attack]()(boolean)
+npc_huntall(coord, 24, 0);
+while (npc_huntnext = true) {
+    if(npc_type = troll_champion) {
+        if((npc_getmode = opplayer2 | npc_getmode = applayer2) & %npc_aggressive_player = uid) {
+            mes("I'm already under attack"); // no period
+            return (false);
+        }
+    }
+}
+return (true);
+
+[ai_timer,_troll_spectator]
+if(.npc_find(npc_coord, troll_champion, 24, 0) = true) {
+    npc_facesquare(.npc_coord);
+}
+// looks to be the same as the sleeping troll
+npc_settimer(~random_range(8, 16));

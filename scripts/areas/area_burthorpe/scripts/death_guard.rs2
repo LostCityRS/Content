@@ -1,5 +1,36 @@
-[opnpc1,death_guard1] @death_guard_dialogue;
-[opnpc1,death_guard2] @death_guard_dialogue;
-
-[label,death_guard_dialogue]
+[opnpc1,_death_guard]
 mes("The guard won't talk whilst on duty.");
+
+[ai_queue3,_death_guard]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+// Tertiary
+~trail_mediumcluedrop(128, npc_coord);
+
+def_int $random = random(128);
+
+if ($random < 8) obj_add(npc_coord, steel_warhammer, 1, ^lootdrop_duration);
+else if ($random < 14) obj_add(npc_coord, mithril_warhammer, 1, ^lootdrop_duration);
+else if ($random < 18) obj_add(npc_coord, mithril_platebody, 1, ^lootdrop_duration);
+else if ($random < 19) obj_add(npc_coord, mithril_full_helm, 1, ^lootdrop_duration);
+else if ($random < 22) obj_add(npc_coord, bronze_arrow, 14, ^lootdrop_duration);
+else if ($random < 24) obj_add(npc_coord, firerune, 22, ^lootdrop_duration);
+else if ($random < 26) obj_add(npc_coord, earthrune, 23, ^lootdrop_duration);
+else if ($random < 28) obj_add(npc_coord, airrune, 25, ^lootdrop_duration);
+else if ($random < 30) obj_add(npc_coord, steel_arrow, 12, ^lootdrop_duration);
+else if ($random < 31) obj_add(npc_coord, bloodrune, 3, ^lootdrop_duration);
+else if ($random < 32) obj_add(npc_coord, chaosrune, 3, ^lootdrop_duration);
+else if ($random < 33) obj_add(npc_coord, naturerune, 4, ^lootdrop_duration);
+else if ($random < 70) obj_add(npc_coord, coins, 4, ^lootdrop_duration);
+else if ($random < 86) obj_add(npc_coord, coins, 12, ^lootdrop_duration);
+else if ($random < 95) obj_add(npc_coord, coins, 18, ^lootdrop_duration);
+else if ($random < 99) obj_add(npc_coord, coins, 32, ^lootdrop_duration);
+else if ($random < 103) obj_add(npc_coord, coins, 45, ^lootdrop_duration);
+else if ($random < 105) obj_add(npc_coord, coins, 50, ^lootdrop_duration);
+else if ($random < 106) obj_add(npc_coord, coins, 2, ^lootdrop_duration);
+else if ($random < 109) obj_add(npc_coord, earth_talisman, 1, ^lootdrop_duration);
+else if ($random < 110) obj_add(npc_coord, mithril_ore, 1, ^lootdrop_duration);

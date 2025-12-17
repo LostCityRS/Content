@@ -693,7 +693,7 @@ if(inv_total(inv, thpunishrock) >= 15) {
     ~chatplayer("<p,neutral>Okay, I have all your rocks here, let me out now.|@dbl@-- The guard unlocks the gate. --");
     ~chatnpc_specific(nc_name(desertminingmercenary1), desertminingmercenary1, "<p,neutral>Okay, okay, come on out.");
     inv_del(inv, thpunishrock, 15);
-    ~open_and_close_double_door3($entering, $loc_type, $loc_shape, $loc_angle, $loc_coord, $side, grate_open); // iron_door_open
+    ~open_and_close_double_door3($entering, $loc_type, $loc_shape, $loc_angle, $loc_coord, $side, iron_door_open);
     ~chatnpc_specific(nc_name(desertminingmercenary1), desertminingmercenary1, "<p,neutral>Okay, you've got all the rocks, you can go now, but keep your nose clean in future.");
     return;
 }

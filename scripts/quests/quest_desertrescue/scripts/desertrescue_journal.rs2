@@ -1,0 +1,213 @@
+[if_button,questlist:desertrescue]
+def_string $n = "Tourist Trap";//At some point in the future, this changes to "The Tourist Trap"
+def_string $x;
+
+if (%desertrescue = ^desertrescue_not_started) {
+    $x = append($x, "@dbl@I can start this quest by speaking to @dre@Irena@dbl@ after I have|");
+    $x = append($x, "@dbl@gone through the @dre@Shantay Pass, South of Al-Kharid.|");
+    $x = append($x, "@dbl@To complete this quest I need:-|");
+    if (stat(fletching) < 10) {
+        $x = append($x, "@dre@Level 10 Fletching.|");
+    } else {
+        $x = append($x, "@str@Level 10 Fletching.|");
+    }
+    if (stat(smithing) < 20) {
+        $x = append($x, "@dre@Level 20 Smithing.|");
+    } else {
+        $x = append($x, "@str@Level 20 Smithing.|");
+    }
+    if ((stat(smithing) >= 20) & (stat(fletching) >= 10)) {
+        $x = append($x, "@dbl@I have all the @dre@requirements@dbl@ to begin and complete this|");
+        $x = append($x, "@dre@quest@dbl@.");
+    }
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "@str@Irena was distraught that her daughter Ana had vanished|");
+$x = append($x, "@str@somewhere in the desert, and I agreed to help find her.|");
+if (%desertrescue = ^desertrescue_started) {
+    $x = append($x, "@dbl@I need to head into @dre@the desert@dbl@ and search for @dre@Ana");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "|@str@I found some suspicious guards in the desert, who I think|");
+$x = append($x, "@str@may know something about Ana's disappearance.|");
+if (%desertrescue = ^desertrescue_approached_captain) {
+    $x = append($x, "@dbl@I have a feeling @dre@Ana@dbl@ must be around here somewhere...");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "|@str@I've killed the Mercenary Captain, I found a metal key on his|");
+$x = append($x, "@str@body.|");
+if (%desertrescue = ^desertrescue_killed_capt) {
+    $x = append($x, "@dbl@I believe that @dre@Ana@dbl@ may be inside a desert @dre@mining camp@dbl@. I|");
+    $x = append($x, "@dbl@should try to find a way inside.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "|@str@The key I took from the mercenary captain allowed me to|");
+$x = append($x, "@str@gain access to the desert mining camp.|");
+if (%desertrescue = ^desertrescue_entered_camp) {
+    $x = append($x, "@dbl@I should look around this desert @dre@mining camp@dbl@ and see if I|");
+    $x = append($x, "@dbl@can find @dre@Ana@dbl@. She could be anywhere.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "|@str@I've found a slave who says he's going to escape. I've made|");
+$x = append($x, "@str@a deal with the salve. If I can crack the locks on his|");
+$x = append($x, "@str@chains, he'll trade me his slaves clothes for the desert|");
+$x = append($x, "@str@robes. Hopefully, whenn I'm dressed in slaves clothes I'll|");//intentional typo "whenn"
+$x = append($x, "@str@be able to get deeper in to the mining cave system.|");
+if (%desertrescue = ^desertrescue_spoken_slave) {
+    $x = append($x, "@dbl@I should try to undo the @dre@locks@dbl@ on the @dre@slave@dbl@ in @dre@east@dbl@ end of|");//intentional grammatical error
+    $x = append($x, "@dbl@the desert @dre@mining camp@dbl@.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "|@str@I managed to pick the locks on the slaves chains. He|");
+$x = append($x, "@str@seemed quite pleased.|");
+if (%desertrescue = ^desertrescue_freed_slave) {
+    $x = append($x, "@dbl@I need to trade my @dre@desert robes@dbl@ for the @dre@used slaves|");
+    $x = append($x, "@dre@clothes@dbl@. These will help me to move around clandestinely in|");
+    $x = append($x, "@dbl@the underground mine area.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "|@str@I've managed to swap the desert robes for slave robes.|");
+if (%desertrescue = ^desertrescue_traded_clothes) {
+    $x = append($x, "@dbl@I think I should head into the @dre@mine@dbl@ and look for @dre@Ana.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "|@str@I've managed to into the underground mine area and the|");//intentional grammatical error
+$x = append($x, "@str@guards haven't stopped me yet.|");
+if (%desertrescue = ^desertrescue_entered_mine) {
+    $x = append($x, "@dbl@I think I should head deeper into the @dre@mine@dbl@ and look for @dre@Ana.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "|@str@I tried to enter the mines but my way was blocked by a|");
+$x = append($x, "@str@guard. I was sure I had to get deeper into the mines.|");
+if (%desertrescue = ^desertrescue_finding_pineapple) {
+    $x = append($x, "@dbl@I need to get the mine guard a @dre@'Tenti' pineapple@dbl@ somehow.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+if (%desertrescue = ^desertrescue_given_bedobin_key) {
+    $x = append($x, "@dbl@I need to get the mine guard a @dre@'Tenti' pineapple@dbl@ somehow.|");
+    $x = append($x, "@dre@Al Shabim@dbl@ will give me a @dre@'Tenti' pineapple@dbl@ if I can steal the|");
+    $x = append($x, "@dre@plans@dbl@ for a @dre@new secret weapon@dbl@ for him");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "|@str@I managed to distract captain Siad and have stolen the|@str@plans.|");
+if (%desertrescue = ^desertrescue_retrieved_plans) {
+    $x = append($x, "@dbl@I need to get the mine guard a @dre@'Tenti' pineapple@dbl@ somehow.|");
+    $x = append($x, "@dre@Al Shabim@dbl@ will give me a @dre@'Tenti' pineapple@dbl@ if I can steal the|");
+    $x = append($x, "@dre@plans@dbl@ for a @dre@new secret weapon@dbl@ for him");
+    ~quest_journal($n, $x);
+    return;
+}
+
+if (%desertrescue = ^desertrescue_shown_plans_shabim) {
+    $x = append($x, "@dbl@I need to get the mine guard a @dre@'Tenti' pineapple@dbl@ somehow.|");
+    $x = append($x, "@dre@Al Shabim@dbl@ will give me a @dre@'Tenti' pineapple@dbl@ if I make him a|");
+    $x = append($x, "@dre@prototype@dbl@ of the @dre@new secret throwing weapon.|");
+    if ((inv_total(inv, hammer) >= 1) & (inv_total(inv, feather) >= 10) & (inv_total(inv, bronze_bar) >= 1)) {
+        $x = append($x, "@str@I have all theitems I need to make the weapon.|");
+    } else {
+        $x = append($x, "@dbl@To make the weapon, I will need the following:-|");
+    }
+    if (inv_total(inv, hammer) >= 1) { $x = append($x, "@str@Hammer|"); }
+    else { $x = append($x, "@dre@Hammer|"); }
+
+    if (inv_total(inv, feather) >= 10) { $x = append($x, "@str@Feathers|"); }
+    else { $x = append($x, "@dre@Feathers|"); }
+
+    if (inv_total(inv, bronze_bar) >= 1) { $x = append($x, "@str@Bronze bar|"); }
+    else { $x = append($x, "@dre@Bronze bar|"); }
+    ~quest_journal($n, $x);
+    return;
+}
+
+if (%desertrescue = ^desertrescue_made_dart_tip) {
+    $x = append($x, "@dbl@I need to get the mine guard a @dre@'Tenti' pineapple@dbl@ somehow.|");
+    $x = append($x, "@dre@Al Shabim@dbl@ will give me a @dre@'Tenti' pineapple@dbl@ if I make him a|");
+    $x = append($x, "@dre@prototype@dbl@ of the @dre@new secret throwing weapon.|");
+    $x = append($x, "@dbl@I've made the prototype dart tip, I should now add|");
+    $x = append($x, "@dbl@feathers to it.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+if (%desertrescue = ^desertrescue_finished_dart) {
+    $x = append($x, "@dbl@I need to get the mine guard a @dre@'Tenti' pineapple@dbl@ somehow.|");
+    $x = append($x, "@dre@Al Shabim@dbl@ will give me a @dre@'Tenti' pineapple@dbl@ if I make him a|");
+    $x = append($x, "@dre@prototype@dbl@ of the @dre@new secret throwing weapon.|");
+    $x = append($x, "@dbl@I've made a @dre@prototype dart @dbl@, I should now take it to|");//extra space intentional
+    $x = append($x, "@dre@Al Shabim@dbl@.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+if (%desertrescue = ^desertrescue_learned_darts) {
+    $x = append($x, "@dbl@I need to get the mine guard a @dre@'Tenti' pineapple@dbl@ somehow.||");//extra line break intentional
+    if (inv_total(inv, tentipineapple) >= 1) {
+        $x = append($x, "@dbl@Now I have a @dre@pineapple@dbl@, I should take it to the @dre@guard@dbl@.");
+    }
+    else {
+        $x = append($x, "@dre@Al Shabim@dbl@ gave me a @dre@Tenti pineapple@dbl@, but I seem to have|");
+        $x = append($x, "@dre@misplaced it@dbl@, perhaps I should get @dre@another one@dbl@?");
+    }
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "|@str@After helping the Bedabin people get a new weapon, they|");
+$x = append($x, "@str@gave me a pineapple which I used to bribe the mine guard|");
+$x = append($x, "@str@into allowing me further access into the mines.|");
+if (%desertrescue = ^desertrescue_given_pineapple) {
+    $x = append($x, "@dbl@I am sure @dre@Ana@dbl@ is down here somewhere...|");//guessed line break, otherwise "her" goes to new line
+    $x = append($x, "@dbl@I should find her.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+if (%desertrescue = ^desertrescue_used_mine_cart) {
+    $x = append($x, "@dbl@I have to find some way of getting @dre@Ana@dbl@ out of here...");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "|@str@I found Ana working as a slave in the mine. Luckily I had a|");
+$x = append($x, "@str@cunning plan to get her out, and stuck her in a barrel.|");
+if ((%desertrescue >= ^desertrescue_caught_ana) & (%desertrescue <= ^desertrescue_escaped)) {
+    $x = append($x, "@dbl@I need to get @dre@Ana@dbl@ (and her barrel) out of this mine camp!");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "|@str@I managed to smuggle her out from under the noses of the|");
+$x = append($x, "@str@mine guards, secure her in a barrel, and take a cart ride to|");
+$x = append($x, "@str@freedom outside the mining camp.|");
+if ((%desertrescue >= ^desertrescue_saved_ana) & (%desertrescue <= ^desertrescue_picked_second_skill)) {
+    $x = append($x, "@dbl@I should talk to @dre@Irena@dbl@ at the @dre@shantay pass@dbl@ for my @dre@reward.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "|@str@I returned Ana to her mother Irena, who was so grateful|");
+$x = append($x, "@str@for all of my help that she rewarded me with some training.|");
+$x = append($x, "|@dre@QUEST COMPLETE!");
+~quest_journal($n, $x);

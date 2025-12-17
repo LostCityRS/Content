@@ -1,9 +1,12 @@
 [opnpc1,death_ig_commander]
+if(%troll_quest < ^troll_complete & %troll_quest >= ^troll_started) {
+    @denulth_trollquest;
+}
 ~chatplayer("<p,happy>Hello!");
 switch_int(%death_equiproom) {
     case ^death_complete :
         ~chatnpc("<p,happy>Welcome back friend!");
-        // TODO: Troll stronghold
+        @multi3("How goes your fight with the trolls?", denulth_troll, "I thought the White Knights controlled Asgarnia?", denulth_whiteknights, "See you about Denulth!", denulth_seeyou);
     case ^death_not_started : 
         ~chatnpc("<p,happy>Hello citizen, how can I help?");
         @multi3("Do you have any quests for me?", denulth_quests, "What is this place?", denulth_place, "You can't, thanks.", denulth_youcant);
@@ -18,8 +21,36 @@ switch_int(%death_equiproom) {
         @multi4("Can you remind me of the quest I am on?", denulth_remind, "I thought the White Knights controlled Asgarnia?", denulth_whiteknights, "What is this place?", denulth_place, "That's all, thanks.", denulth_thatsall);
 }
 
+[label,denulth_trollquest]
+switch_int(%troll_quest) {
+    case ^troll_freed_godric :
+        ~chatplayer("<p,happy>I have freed Godric!");
+        ~chatnpc("<p,happy>Oh, what great news! You should hurry to tell Dunstan, he will be overjoyed!");
+    case ^troll_entered_prison :
+        ~chatplayer("<p,happy>I've found my way into the prison.");
+        ~chatnpc("<p,confused>...and?");
+        ~chatplayer("<p,neutral>That's all.");
+        ~chatnpc("<p,sad>Hurry, friend! Find a way to free Godric!");
+    case ^troll_defeated_dad :
+        if(%troll_entered_stronghold = ^true) ~chatplayer("<p,happy>I've found my way into the stronghold!");
+        else ~chatplayer("<p,happy>I've defeated the troll champion!");
+        ~chatnpc("<p,sad>Hurry, friend! What are you still doing here?");
+    case default :
+        ~chatnpc("<p,neutral>How are you getting on with rescuing Godric?");
+        if(~obj_gettotal(death_climbingboots) > 0) {
+            ~chatplayer("<p,happy>I've got some climbing boots.");
+            ~chatnpc("<p,sad>Then hurry, friend! What are you still doing here?");
+            return;
+        }
+        ~chatplayer("<p,neutral>I haven't found a way to climb up yet.");
+        ~chatnpc("<p,sad>Hurry, friend! Who knows what they'll do with Godric?");
+}
+
+
 [label,denulth_moreoptions]
 switch_int(%death_equiproom) {
+    case ^death_complete :
+        @multi3("How goes your fight with the trolls?", denulth_troll, "I thought the White Knights controlled Asgarnia?", denulth_whiteknights, "See you about Denulth!", denulth_seeyou);
     case ^death_not_started : 
         ~chatnpc("<p,neutral>Can I assist you with anything else?");
         @multi3("Do you have any quests for me?", denulth_quests, "What is this place?", denulth_place, "You can't, thanks.", denulth_youcant);
@@ -28,11 +59,39 @@ switch_int(%death_equiproom) {
         @multi4("Can you remind me of the quest I am on?", denulth_remind, "I thought the White Knights controlled Asgarnia?", denulth_whiteknights, "What is this place?", denulth_place, "That's all, thanks.", denulth_thatsall);
 }
 
+[label,denulth_troll]
+~chatplayer("<p,neutral>How goes your fight with the trolls?");
+if(%troll_quest = ^troll_complete) {
+    ~chatnpc("<p,angry>We are busy preparing for an attack by night. Godric knows of a secret entrance to the stronghold. Once we destroy the stronghold Burthorpe will be safe! Friend, we are indebted to you!");
+    ~chatplayer("<p,happy>Good luck!");
+    return;
+}
+// https://web.archive.org/web/20060907161239im_/http://www.runeweb.net/fireball/Troll%20Stronghold%20Images/trollstr2.PNG
+~chatnpc("<p,sad>I'm afraid I have bad news.|We made our attack as planned,|but we met unexpected resistance.");
+~chatplayer("<p,neutral>What happened?");
+// https://web.archive.org/web/20060907161239im_/http://www.runeweb.net/fireball/Troll%20Stronghold%20Images/trollstr3.PNG
+~chatnpc("<p,sad>We were ambushed by trolls coming from the north.|They captured Dunstan's son, Godric, who we enlisted|at your request; we tried to follow but we were|repelled at the foot of their stronghold.");
+switch_int(~p_choice2("I'm sorry to hear that.", 1, "Is there anything I can do to help?", 2)) {
+    case 1 :
+        ~chatplayer("<p,sad>I'm sorry to hear that.");
+    case 2 :
+        ~chatplayer("<p,neutral>Is there anything I can do to help?");
+        ~chatnpc("<p,sad>The way to the stronghold is treacherous, friend. Even if you manage to climb your way up, there will be many trolls defending the stronghold.");
+        switch_int(~p_choice2("I'll get Godric back!", 1, "I'm sorry, there's nothing I can do.", 2)) {
+            case 1 :
+                %troll_quest = ^troll_started;
+                ~send_quest_progress_colour(questlist:troll, %troll_quest, ^troll_complete);
+                ~chatplayer("<p,angry>I'll get Godric back!");
+                ~chatnpc("<p,happy>God speed friend! I would send some of my men with you, but none of them are brave enough to follow.");
+            case 2 :
+                ~chatplayer("<p,sad>I'm sorry, there's nothing I can do.");
+        }
+}
+
 [label,denulth_quests]
 ~chatplayer("<p,neutral>Do you have any quests for me?");
 ~chatnpc("<p,sad>I don't know if you can help us!");
-// https://web.archive.org/web/20061231212357im_/http://www.runeweb.net/fireball/Death%20Plateau%20Images/DeathPlateau1.PNG
-~chatnpc("<p,sad>The trolls have taken up camp on Death Plateau!|They are using it to launch raids at night on the village.|We have tried to attack the camp|but the main path is heavily guarded!");
+~chatnpc("<p,sad>The trolls have taken up camp on Death Plateau! They are using it to launch raids at night on the village. We have tried to attack the camp but the main path is heavily guarded!");
 ~chatplayer("<p,neutral>Perhaps there is a way you can sneak up at night?");
 ~chatnpc("<p,sad>If there is another way I do not know of it.");
 ~chatnpc("<p,confused>Do you know of such a path?");
@@ -45,8 +104,7 @@ switch_int(~p_choice2("No but perhaps I could try and find one?", 1, "No, sorry.
         ~chatnpc("<p,neutral>One other thing.");
         ~chatplayer("<p,neutral>What's that?");
         ~chatnpc("<p,neutral>All of our equipment is kept in the castle on the hill.");
-        // https://web.archive.org/web/20061231212357im_/http://www.runeweb.net/fireball/Death%20Plateau%20Images/DeathPlateau2.PNG
-        ~chatnpc("<p,angry>The stupid guard that was on duty last|night lost the combination to the lock!|I told the Prince that the Imperial Guard|should've been in charge of security!");
+        ~chatnpc("<p,angry>The stupid guard that was on duty last night lost the combination to the lock! I told the Prince that the Imperial Guard should've been in charge of security!");
         ~chatplayer("<p,neutral>No problem, what does the combination look like?");
         ~chatnpc("<p,neutral>The equipment room is unlocked when the stone balls are placed in the correct order on the stone mechanism outside it. The right order is written on a piece of paper the guard had.");
         ~chatplayer("<p,confused>A stone what...?!");
@@ -161,3 +219,7 @@ if(testbit(%death_bits, ^denulth_given_combo) = ^true & testbit(%death_bits, ^de
     ~chatnpc("<p,happy>I shall present you with some steel fighting claws. In addition I shall show you the knowledge of creating the fighting claws for yourself.");
     ~chatnpc("<p,happy>You are now an honorary member of the Imperial Guard!");
 }
+
+[label,denulth_seeyou]
+~chatplayer("<p,happy>See you about Denulth!");
+~chatnpc("<p,happy>God speed friend!");

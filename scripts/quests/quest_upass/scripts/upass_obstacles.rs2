@@ -1,5 +1,7 @@
-[oploc1,rockslide2_obstacle_upass]
-def_int $dir; 
+[oploc1,rockslide2_obstacle_upass] @rockslide_obstacle;
+
+[label,rockslide_obstacle]
+def_int $dir;
 def_coord $end;
 if(coordz(coord) > coordz(loc_coord)) {
     $dir = ^exact_south;
@@ -26,7 +28,7 @@ if(stat_random(agility, 95, 305) = false) {
 }
 mes("...and step down the other side.");
 sound_synth(climbing_loop, 3, 4);
-~agility_exactmove(human_walk_style, 0, 1, coord, $end, 0, 60, $dir, true); // probably same seq for all directions
+~agility_exactmove(human_walk_style, 0, 2, coord, $end, 0, 60, $dir, true); // probably same seq for all directions
 
 [oploc1,upass_swampbubbles1]
 mes("You try to cross the swamp...");
