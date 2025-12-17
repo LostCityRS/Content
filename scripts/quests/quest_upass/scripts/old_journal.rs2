@@ -6,6 +6,9 @@ mes("It reads...");
 p_delay(2); // 3t
 %book_page = 0;
 %open_book = upass_journal;
+if (testbit(%ibanmulti, ^upass_read_old_journal) = ^false) {
+    %ibanmulti = setbit(%ibanmulti, ^upass_read_old_journal);
+}
 @open_old_journal;
 
 [label,open_old_journal]
