@@ -344,3 +344,94 @@ mes("Priest in Peril is currently set to: <tostring(%priestperil)>.");
 [debugproc,getppm]
 if (p_finduid(uid) = true)
 mes("PIPMausoleum is currently set to: <tostring(%priestperil_mausoleum)>.");
+
+//Underground Pass
+[debugproc,upr]
+if (p_finduid(uid) = false) { return; }
+%upass = ^upass_not_started;
+%ibanmulti = 0;
+~send_quest_progress(questlist:upass, %upass, ^upass_complete);
+mes("Upass Reset.");
+
+[debugproc,upu]
+if (p_finduid(uid) = false) { return; }
+%upass = calc(%upass + 1);
+~send_quest_progress(questlist:upass, %upass, ^upass_complete);
+mes("Upass increased to stage <tostring(%upass)>");
+
+[debugproc,upd]
+if (p_finduid(uid) = false) { return; }
+%upass = calc(%upass - 1);
+~send_quest_progress(questlist:upass, %upass, ^upass_complete);
+mes("Upass decreased to stage <tostring(%upass)>");
+
+[debugproc,upb](int $bit)
+if (p_finduid(uid) = false) { return; }
+switch_int ($bit) {
+    case 0 :
+        if (testbit(%ibanmulti, ^upass_started_bit) = ^true) {
+            %ibanmulti = clearbit(%ibanmulti, ^upass_started_bit);
+            mes("upass_started_bit bit cleared.");
+        } else {
+            %ibanmulti = setbit(%ibanmulti, ^upass_started_bit);
+            mes("upass_started_bit bit set.");
+        }
+    case 1 :
+        if (testbit(%ibanmulti, ^upass_spoken_koftik) = ^true) {
+            %ibanmulti = clearbit(%ibanmulti, ^upass_spoken_koftik);
+            mes("upass_spoken_koftik bit cleared.");
+        } else {
+            %ibanmulti = setbit(%ibanmulti, ^upass_spoken_koftik);
+            mes("upass_spoken_koftik bit set.");
+        }
+    case 2 :
+        if (testbit(%ibanmulti, ^upass_read_journal_of_randas) = ^true) {
+            %ibanmulti = clearbit(%ibanmulti, ^upass_read_journal_of_randas);
+            mes("upass_read_journal_of_randas bit cleared.");
+        } else {
+            %ibanmulti = setbit(%ibanmulti, ^upass_read_journal_of_randas);
+            mes("upass_read_journal_of_randas bit set.");
+        }
+    case 3 :
+        if (testbit(%ibanmulti, ^upass_read_well_inscription) = ^true) {
+            %ibanmulti = clearbit(%ibanmulti, ^upass_read_well_inscription);
+            mes("upass_read_well_inscription bit cleared.");
+        } else {
+            %ibanmulti = setbit(%ibanmulti, ^upass_read_well_inscription);
+            mes("upass_read_well_inscription bit set.");
+        }
+    case 4 :
+        if (testbit(%ibanmulti, ^upass_read_history) = ^true) {
+            %ibanmulti = clearbit(%ibanmulti, ^upass_read_history);
+            mes("upass_read_history bit cleared.");
+        } else {
+            %ibanmulti = setbit(%ibanmulti, ^upass_read_history);
+            mes("upass_read_history bit set.");
+        }
+    case 5 :
+        if (testbit(%ibanmulti, ^upass_koftik_gone_insane) = ^true) {
+            %ibanmulti = clearbit(%ibanmulti, ^upass_koftik_gone_insane);
+            mes("upass_koftik_gone_insane bit cleared.");
+        } else {
+            %ibanmulti = setbit(%ibanmulti, ^upass_koftik_gone_insane);
+            mes("upass_koftik_gone_insane bit set.");
+        }
+    case 6 :
+        %ibanmulti = clearbit(%ibanmulti, ^upass_blood_on_doll);
+        %ibanmulti = clearbit(%ibanmulti, ^upass_dove_on_doll);
+        %ibanmulti = clearbit(%ibanmulti, ^upass_ashes_on_doll);
+        %ibanmulti = clearbit(%ibanmulti, ^upass_shadow_on_doll);
+        mes("All upass doll bits cleared.");
+    case 7 :
+        %ibanmulti = setbit(%ibanmulti, ^upass_blood_on_doll);
+        mes("upass_blood_on_doll bit set.");
+    case 8 :
+        %ibanmulti = setbit(%ibanmulti, ^upass_dove_on_doll);
+        mes("upass_dove_on_doll bit set.");
+    case 9 :
+        %ibanmulti = setbit(%ibanmulti, ^upass_ashes_on_doll);
+        mes("upass_ashes_on_doll bit set.");
+    case 10 :
+        %ibanmulti = setbit(%ibanmulti, ^upass_shadow_on_doll);
+        mes("upass_shadow_on_doll bit set.");
+}
