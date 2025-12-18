@@ -95,7 +95,7 @@ npc_anim(dragon_firebreath_middle_attack, 0);
 sound_synth(dragonbreath, 0, 30);
 %npc_action_delay = add(map_clock, 4);
 
-def_int $attack_roll = ~npc_magic_attack_roll_no_prot;
+def_int $attack_roll = ~npc_magic_attack_roll;
 def_int $defence_roll = ~player_defence_roll_specific(npc_param(damagetype));
 
 // damage player

@@ -156,7 +156,7 @@ spotanim_pl(fireblast_impact, 124, $duration); // https://web.archive.org/web/20
 
 def_int $damage = 0;
 
-def_int $attack_roll = ~npc_magic_attack_roll_no_prot;
+def_int $attack_roll = ~npc_magic_attack_roll;
 def_int $defence_roll = ~player_defence_roll_specific(^magic_style);
 if (randominc($attack_roll) > randominc($defence_roll)) {
     $damage = randominc(~kbd_fiery_breath_maxhit);
@@ -181,7 +181,7 @@ sound_synth(dragonbreath, 0, 30);
 
 def_int $damage = 0;
 
-def_int $attack_roll = ~npc_magic_attack_roll_no_prot;
+def_int $attack_roll = ~npc_magic_attack_roll;
 def_int $defence_roll = ~player_defence_roll_specific(^magic_style);
 if (randominc($attack_roll) > randominc($defence_roll)) {
     $damage = randominc(~kbd_fiery_breath_maxhit);
@@ -206,7 +206,7 @@ sound_synth(toxicbreath, 0, 30);
 
 def_int $damage = 0;
 
-def_int $attack_roll = ~npc_magic_attack_roll_no_prot;
+def_int $attack_roll = ~npc_magic_attack_roll;
 def_int $defence_roll = ~player_defence_roll_specific(^magic_style);
 if (randominc($attack_roll) > randominc($defence_roll)) {
     $damage = randominc(~kbd_special_breath_maxhit);
@@ -237,7 +237,7 @@ spotanim_pl(nezik_flamestrike, 0, 60);
 
 def_int $damage = 0;
 
-def_int $attack_roll = ~npc_magic_attack_roll_no_prot;
+def_int $attack_roll = ~npc_magic_attack_roll;
 def_int $defence_roll = ~player_defence_roll_specific(^magic_style);
 if (randominc($attack_roll) > randominc($defence_roll)) {
     $damage = randominc(~kbd_special_breath_maxhit);
@@ -283,7 +283,7 @@ sound_synth(kingicebreath, 0, 30);
 // freeze player
 def_int $damage = 0;
 
-def_int $attack_roll = ~npc_magic_attack_roll_no_prot;
+def_int $attack_roll = ~npc_magic_attack_roll;
 def_int $defence_roll = ~player_defence_roll_specific(^magic_style);
 if (randominc($attack_roll) > randominc($defence_roll)) {
     $damage = randominc(~kbd_special_breath_maxhit);

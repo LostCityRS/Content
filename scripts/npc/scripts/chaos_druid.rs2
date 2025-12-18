@@ -35,7 +35,7 @@ def_dbrow $spell_data = ~get_spell_data(^bind);
 def_dbrow $effect_spell = ~get_spell_data(^confuse);
 def_int $duration = ~npc_spell_cast($spell_data, 4);
 
-if (~npc_player_hit_roll(^magic_style) = true) {
+if (~npc_player_hit_roll(^magic_style) = true & ~check_protect_prayer(^magic_style) = false) {
     ~npc_spell_success($spell_data, null, $duration);
     if(~npc_debuff_allowed($effect_spell) = true) ~npc_stat_change_effect($effect_spell);
     queue(chaosdruid_freeze_player, 0, 0);
