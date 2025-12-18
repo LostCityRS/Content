@@ -572,3 +572,95 @@ switch_int ($bit) {
             mes("itwatchtower_market bit set to 0.");
         }
 }
+// Shilo Village
+[debugproc,zqu]
+if (p_finduid(uid) = false) { return; }
+%zombiequeen = calc(%zombiequeen + 1);
+~send_quest_progress(questlist:zombiequeen, %zombiequeen, ^zombiequeen_complete);
+mes("zombiequeen increased to <tostring(%zombiequeen)>");
+
+[debugproc,zqd]
+if (p_finduid(uid) = false) { return; }
+%zombiequeen = calc(%zombiequeen - 1);
+~send_quest_progress(questlist:zombiequeen, %zombiequeen, ^zombiequeen_complete);
+mes("zombiequeen decreased to <tostring(%zombiequeen)>");
+
+[debugproc,zqr]
+if (p_finduid(uid) = false) { return; }
+%zombiequeen = 0;
+%zq_map_mechanisms = 0;
+mes("zombiequeen reset");
+
+[debugproc,zqb](int $bit)
+if (p_finduid(uid) = false) { return; }
+switch_int($bit) {
+    case 0 :
+        if (testbit(%zq_map_mechanisms, ^zq_read_tattered_scroll) = ^true) {
+            %zq_map_mechanisms = clearbit(%zq_map_mechanisms, ^zq_read_tattered_scroll);
+            mes("zq_read_tattered_scroll bit cleared");
+        } else {
+            mes("zq_read_tattered_scroll bit set");
+            %zq_map_mechanisms = setbit(%zq_map_mechanisms, ^zq_read_tattered_scroll);
+        }
+    case 1 :
+        if (testbit(%zq_map_mechanisms, ^zq_read_crumpled_scroll) = ^true) {
+            %zq_map_mechanisms = clearbit(%zq_map_mechanisms, ^zq_read_crumpled_scroll);
+            mes("zq_read_crumpled_scroll bit cleared");
+        } else {
+            mes("zq_read_crumpled_scroll bit set");
+            %zq_map_mechanisms = setbit(%zq_map_mechanisms, ^zq_read_crumpled_scroll);
+        }
+    case 2 :
+        if (testbit(%zq_map_mechanisms, ^zq_deciphered_plaque) = ^true) {
+            %zq_map_mechanisms = clearbit(%zq_map_mechanisms, ^zq_deciphered_plaque);
+            mes("zq_deciphered_plaque bit cleared");
+        } else {
+            mes("zq_deciphered_plaque bit set");
+            %zq_map_mechanisms = setbit(%zq_map_mechanisms, ^zq_deciphered_plaque);
+        }
+    case 3 :
+        if (testbit(%zq_map_mechanisms, ^zq_found_door) = ^true) {
+            %zq_map_mechanisms = clearbit(%zq_map_mechanisms, ^zq_found_door);
+            mes("zq_found_door bit cleared");
+        } else {
+            mes("zq_found_door bit set");
+            %zq_map_mechanisms = setbit(%zq_map_mechanisms, ^zq_found_door);
+        }
+    case 4 :
+        if (testbit(%zq_map_mechanisms, ^zq_used_dolmen_paper) = ^true) {
+            %zq_map_mechanisms = clearbit(%zq_map_mechanisms, ^zq_used_dolmen_paper);
+            mes("zq_used_dolmen_paper bit cleared");
+        } else {
+            mes("zq_used_dolmen_paper bit set");
+            %zq_map_mechanisms = setbit(%zq_map_mechanisms, ^zq_used_dolmen_paper);
+        }
+    case 5 :
+        def_int $state = ~get_zqtombdoorstate;
+        if ($state = 2) { ~set_zqtombdoorstate(0); }
+        else { ~set_zqtombdoorstate(calc($state + 1)); }
+        mes("used <tostring(~get_zqtombdoorstate)> bones on the tomb door");
+    case 6 :
+        if (testbit(%zq_map_mechanisms, ^zq_defeated_nazastarool1) = ^true) {
+            %zq_map_mechanisms = clearbit(%zq_map_mechanisms, ^zq_defeated_nazastarool1);
+            mes("zq_defeated_nazastarool1 bit cleared");
+        } else {
+            mes("zq_defeated_nazastarool1 bit set");
+            %zq_map_mechanisms = setbit(%zq_map_mechanisms, ^zq_defeated_nazastarool1);
+        }
+    case 7 :
+        if (testbit(%zq_map_mechanisms, ^zq_defeated_nazastarool2) = ^true) {
+            %zq_map_mechanisms = clearbit(%zq_map_mechanisms, ^zq_defeated_nazastarool2);
+            mes("zq_defeated_nazastarool2 bit cleared");
+        } else {
+            mes("zq_defeated_nazastarool2 bit set");
+            %zq_map_mechanisms = setbit(%zq_map_mechanisms, ^zq_defeated_nazastarool2);
+        }
+    case 8 :
+        if (testbit(%zq_map_mechanisms, ^zq_defeated_nazastarool3) = ^true) {
+            %zq_map_mechanisms = clearbit(%zq_map_mechanisms, ^zq_defeated_nazastarool3);
+            mes("zq_defeated_nazastarool3 bit cleared");
+        } else {
+            mes("zq_defeated_nazastarool3 bit set");
+            %zq_map_mechanisms = setbit(%zq_map_mechanisms, ^zq_defeated_nazastarool3);
+        }
+}
