@@ -1,4 +1,7 @@
-[ai_queue3,kalphite_lord]
+[ai_queue3,kalphite_lord] @kalphite_lord_drop;
+[ai_queue3,kalphite_lord_chamber] @kalphite_lord_drop;
+
+[label,kalphite_lord_drop]
 gosub(npc_death);
 if (npc_findhero = ^false) {
     return;
