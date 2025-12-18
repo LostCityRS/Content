@@ -93,7 +93,7 @@ while (huntnext = true) {
 
 [proc,kalphite_queen_mage_hunt](coord $prev_coord, int $duration, int $total_distance)(coord, int, int)
 def_int $damage = 0;
-def_int $maxhit = 0;
+def_int $maxhit = 31;
 if (randominc(~npc_magic_attack_roll) > randominc(~player_defence_roll_specific(^magic_style))) $damage = randominc($maxhit);
 ~npc_set_attack_vars;
 
@@ -126,7 +126,7 @@ npc_anim(kalphite_ranged_attack, 0);
 %npc_action_delay = add(map_clock, npc_param(attackrate));
 
 def_int $damage = 0;
-def_int $maxhit = 0;
+def_int $maxhit = 31;
 def_int $duration = 0;
 def_int $i = 0;
 huntall(coord, 5, 1);
@@ -200,7 +200,7 @@ npc_anim(kalphite_queen_ranged_attack, 0);
 
 def_int $damage = 0;
 def_int $duration = 0;
-def_int $maxhit = 0;
+def_int $maxhit = 31;
 def_int $i = 0;
 huntall(coord, 5, 1);
 while (huntnext = true & $i < 5) { // up to 5? https://youtu.be/ZHaxxMq3nVI?list=PLn23LiLYLb1YiomJ3wnXokdbgjE7-Lgt5&t=48
