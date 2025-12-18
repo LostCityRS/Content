@@ -28,10 +28,7 @@ def_int $duration = 64;
 // map_projanim_v2	id=troll_rock_travel (276), starttime=31, endtime=50, angle=8, progress=128, startheight=146, endheight=146
 $duration = ~player_projectile(npc_coord, coord, uid, npc_param(proj_travel), 36, 36, 31, 8, 15, 128, 1);
 
-if (~check_protect_prayer(^ranged_style) = false) { // bypasses defence, but checks prayer
-    ~playerhit_n_ranged(randominc($maxhit), $duration, npc_param(attackrate));
-    return;
-}
-~playerhit_n_ranged(0, $duration, npc_param(attackrate));
+// bypasses defence, but checks prayer
+~playerhit_n_ranged(true, randominc($maxhit), $duration, npc_param(attackrate));
 
 [ai_queue3,_troll_thrower] @troll_drop_table;
