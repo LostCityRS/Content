@@ -1,0 +1,32 @@
+[label,kalphite_opplayer2]
+if (%death = ^true) {
+    npc_setmode(null);
+    return;
+}
+if (%npc_action_delay > map_clock) return;
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+~kalphite_melee_attack;
+
+[proc,kalphite_melee_attack]
+anim(%com_defendanim, 0);
+if (random(2) = 0) {
+    npc_anim(kalphite_attack_mandibles, 0);
+} else {
+    npc_anim(kalphite_attack_claws, 0);
+}
+if (npc_param(attack_sound) ! null) {
+    sound_synth(npc_param(attack_sound), 0, 0);
+}
+~npc_meleeattack;
+
+[ai_opplayer2,kalphite_lord] @kalphite_opplayer2;
+[ai_opplayer2,kalphite_lord_chamber] @kalphite_opplayer2;
+[ai_opplayer2,kalphite_soldier] @kalphite_opplayer2;
+[ai_opplayer2,kalphite_worker] @kalphite_opplayer2;
+[ai_opplayer2,kalphite_worker_chamber] @kalphite_opplayer2;

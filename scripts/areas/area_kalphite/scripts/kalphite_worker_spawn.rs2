@@ -15,11 +15,3 @@ while ($i < enum_getoutputcount(cocoon_coords)) {
     }
     $i = add($i, 1);
 }
-
-[ai_opplayer2,kalphite_worker_chamber] ~kalphite_melee_attack;
-
-[oplocu,kalphite_egg]
-if (npc_find(coord, kalphite_queen, 10, 0) = false) {
-    return;
-}
-~kalphite_worker_spawn;
