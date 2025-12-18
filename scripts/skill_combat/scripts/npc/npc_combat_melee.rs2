@@ -26,6 +26,7 @@ def_int $maxhit = ~npc_melee_maxhit;
 
 if (randominc($attack_roll) > randominc($defence_roll)) {
     ~playerhit_n_melee(true, randominc($maxhit), npc_param(attackrate));
+    ~npc_poison_player;
     return;
 }
 ~playerhit_n_melee(true, 0, npc_param(attackrate));
