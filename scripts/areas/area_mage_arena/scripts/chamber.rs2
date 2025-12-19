@@ -5,7 +5,7 @@
 [label,pray_at_statue](string $name, namedobj $cape)
 ~forcewalk2(movecoord(loc_coord, 0, 0, -2));
 facesquare(loc_coord);
-if (~obj_gettotalcat(armour_godcape) > 0) { // already have a cape
+if (~obj_gettotalcat(armour_godcape) > 0 | ~check_ground_godcapes = true) { // already have a cape
     anim(human_pray, 10);
     p_delay(2);
     ~mesbox("You kneel and chant to <$name>...|... but there is no response.");
@@ -16,7 +16,18 @@ if (%magearena = ^mage_arena_complete) %magearena = ^mage_arena_prayed_at_statue
 anim(human_pray, 10);
 p_delay(2);
 // always obj_add's https://youtu.be/fJVqiCdunZw?list=PLn23LiLYLb1Y4vxMPWXM-CVEvOUfuAP_o
-obj_add(movecoord(loc_coord, 0, 0, -1), $cape, 1, 50); // 50 ticks in osrs
+obj_add(movecoord(loc_coord, 0, 0, -1), $cape, 1, 100); // 50 ticks in osrs but i think its a late 2006 patch to prevent multiple capes?
 spotanim_map(smokepuff_large, movecoord(loc_coord, 0, 0, -1), 60, 0);
 sound_synth(smokepuff, 0, 0);
 ~mesbox("You feel a rush of energy charge through your veins. Suddenly a|cape appears before you.");
+
+[proc,check_ground_godcapes]()(boolean)
+if (obj_find(0_39_73_4_48, saradomin_cape) = true) {
+    return (true);
+}
+if (obj_find(0_39_73_11_51, guthix_cape) = true) {
+    return (true);
+}
+if (obj_find(0_39_73_20_48, zamorak_cape) = true) {
+    return (true);
+}
