@@ -572,3 +572,16 @@ switch_int ($bit) {
             mes("itwatchtower_market bit set to 0.");
         }
 }
+
+//Heroes' Quest
+[debugproc,heu]
+if (p_finduid(uid) = false) { return; }
+%heroquest = calc(%heroquest + 1);
+mes("Heroes' Quest increased to <tostring(%heroquest)>");
+~send_quest_progress(questlist:hero, %heroquest, ^hero_complete);
+
+[debugproc,hed]
+if (p_finduid(uid) = false) { return; }
+%heroquest = calc(%heroquest - 1);
+mes("Heroes' Quest decreased to <tostring(%heroquest)>");
+~send_quest_progress(questlist:hero, %heroquest, ^hero_complete);
