@@ -82,14 +82,14 @@ if($weapon = dragon_battleaxe) {
 [if_button,combat_stabsword:specbar] @toggle_sa;
 
 [if_button,combat_hacksword:specbar] 
-if (~duel_arena_spec_check = false) {
-    return;
-}
-if (~sa_enough_energy = false) {
-    return;
-}
 def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
 if($weapon = excalibur) {
+    if (~duel_arena_spec_check = false) {
+        return;
+    }
+    if (~sa_enough_energy = false) {
+        return;
+    }
     if(p_finduid(uid) = true) { // strongqueued in osrs, assuming its like settings stuff and doesnt queue
         ~set_sa_vars(oc_param($weapon, sa_energy));
         say("For Camelot!");

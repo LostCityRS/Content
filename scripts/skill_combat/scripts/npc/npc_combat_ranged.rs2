@@ -1,7 +1,4 @@
 [proc,npc_ranged_attack_roll]()(int)
-if (~check_protect_prayer(^ranged_style) = true) {
-    return(0);
-}
 def_int $rangeattack = npc_param(rangeattack);
 def_int $effective_ranged = ~combat_effective_stat(npc_stat(ranged), 100); // no prayerbonus
 $effective_ranged = add($effective_ranged, 9); // 'style bonus' of 1
@@ -41,18 +38,18 @@ def_int $duration = 64;
 $duration = ~player_projectile(npc_coord, coord, uid, npc_param(proj_travel), 40, 36, 32, 15, 0, 11, 5);
 
 if (randominc($attack_roll) > randominc($defence_roll)) {
-    ~playerhit_n_ranged(randominc($maxhit), $duration, npc_param(attackrate));
+    ~playerhit_n_ranged(true, randominc($maxhit), $duration, npc_param(attackrate));
+    ~npc_poison_player;
     return;
 }
-~playerhit_n_ranged(0, $duration, npc_param(attackrate));
+~playerhit_n_ranged(true, 0, $duration, npc_param(attackrate));
 
-[proc,playerhit_n_ranged](int $damage, int $duration, int $delay)
+[proc,playerhit_n_ranged](boolean $check_protect_prayer, int $damage, int $duration, int $delay)
 if_close; // close the player interface when taking a hit.
-// not sure if this is correct
-queue(combat_damage_player, calc($duration / 30), $damage);
-if (npc_param(poison_severity) > 0 & $damage > 0) {
-    queue(poison_player, 0, npc_param(poison_severity));
+if ($check_protect_prayer = true & ~check_protect_prayer(^ranged_style) = true) { 
+    $damage = 0;
 }
+queue(combat_damage_player, calc($duration / 30), $damage);
 queue*(playerhit_n_retaliate, calc($duration / 30))(npc_uid);
 ~npc_set_attack_vars;
 if(npc_param(npc_ammo) ! null) {

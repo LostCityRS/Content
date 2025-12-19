@@ -35,7 +35,7 @@ if (random(5) = 0) {
 def_dbrow $spell_data = ~get_spell_data(^entangle);
 def_int $duration = ~npc_spell_cast($spell_data, 4);
 
-if (~npc_player_hit_roll(^magic_style) = true) {
+if (~npc_player_hit_roll(^magic_style) = true & ~check_protect_prayer(^magic_style) = false) {
     ~npc_spell_success($spell_data, 4, $duration);
     // osrs queues a "The holding effect is beginning to fade." after 6 ticks
     // but this video shows no message. https://youtu.be/fxCXNO-46pc

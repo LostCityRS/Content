@@ -40,6 +40,7 @@ def_int $defence_level = stat(defence);
 def_int $magic_level = stat(magic);
 def_int $ranged_level = stat(ranged);
 def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+def_obj $shield = inv_getobj(worn, ^wearpos_lhand);
 
 // get style data
 def_dbrow $data = ~combat_get_weapon_style_data($weapon);
@@ -101,7 +102,7 @@ switch_int(%damagetype) {
 
 // weapon related varps
 %com_attackanim, %com_attacksound = ~combat_swing_anim_and_synth($weapon, $damagetype, %damagestyle, %com_mode);
-%com_defendanim = ~combat_defend_anim($weapon);
+%com_defendanim = ~combat_defend_anim($weapon, $shield);
 
 [proc,.player_combat_stat]
 def_int $stabattack;
@@ -145,6 +146,7 @@ def_int $defence_level = .stat(defence);
 def_int $magic_level = .stat(magic);
 def_int $ranged_level = .stat(ranged);
 def_obj $weapon = .inv_getobj(worn, ^wearpos_rhand);
+def_obj $shield = .inv_getobj(worn, ^wearpos_lhand);
 
 // get style data
 def_dbrow $data = ~combat_get_weapon_style_data($weapon);
@@ -205,7 +207,7 @@ switch_int(.%damagetype) {
 
 // weapon related varps
 .%com_attackanim, .%com_attacksound = ~combat_swing_anim_and_synth($weapon, $damagetype, .%damagestyle, .%com_mode);
-.%com_defendanim = ~combat_defend_anim($weapon);
+.%com_defendanim = ~combat_defend_anim($weapon, $shield);
 
 [proc,check_attack_prayer]()(int)
 if (%prayer2 = ^true) return (105);
