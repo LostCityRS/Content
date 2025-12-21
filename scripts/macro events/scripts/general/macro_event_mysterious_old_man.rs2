@@ -16,7 +16,6 @@ switch_int ($random_old_man_event) {
         npc_del;
         %macro_event = ^macro_mime;
         ~mime_entry_point;
-        npc_del;
         return;
     case 1 : // Strange box
         npc_anim(emote_bow, 20);
