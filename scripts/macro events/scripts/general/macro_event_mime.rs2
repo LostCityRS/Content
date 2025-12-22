@@ -68,10 +68,10 @@ if($count = 1) {
         case 1 : npc_anim(emote_think, 0);
         case 2 : npc_anim(emote_laugh, 0);
         case 3 : npc_anim(emote_dance, 0);
-        case 4 : npc_anim(seq_1130, 0);
-        case 5 : npc_anim(seq_1129, 0);
-        case 6 : npc_anim(seq_1128, 0);
-        case 7 : npc_anim(seq_1131, 0);
+        case 4 : npc_anim(emote_climbing_rope, 0);
+        case 5 : npc_anim(emote_mime_lean, 0);
+        case 6 : npc_anim(emote_glass_wall, 0);
+        case 7 : npc_anim(emote_glass_box, 0);
     }
 }
 if($count = 4) {
@@ -101,10 +101,10 @@ p_teleport(0_31_74_24_26);
 [if_button,macro_mime_emotes:com_3] @mime_random_emote(emote_think,1);
 [if_button,macro_mime_emotes:com_4] @mime_random_emote(emote_laugh,2);
 [if_button,macro_mime_emotes:com_5] @mime_random_emote(emote_dance,3);
-[if_button,macro_mime_emotes:com_6] @mime_random_emote(seq_1130,4);
-[if_button,macro_mime_emotes:com_7] @mime_random_emote(seq_1129,5);
-[if_button,macro_mime_emotes:com_8] @mime_random_emote(seq_1128,6);
-[if_button,macro_mime_emotes:com_9] @mime_random_emote(seq_1131,7);
+[if_button,macro_mime_emotes:com_6] @mime_random_emote(emote_climbing_rope,4);
+[if_button,macro_mime_emotes:com_7] @mime_random_emote(emote_mime_lean,5);
+[if_button,macro_mime_emotes:com_8] @mime_random_emote(emote_glass_wall,6);
+[if_button,macro_mime_emotes:com_9] @mime_random_emote(emote_glass_box,7);
 
 // Label to check if the right emote is selected
 [label,mime_random_emote](seq $anim, int $num)
@@ -129,7 +129,14 @@ if ($num = $curr_emote) {
         // Return where you are from
         p_delay(4);
         p_teleport(%macro_event_target_coord);
-        inv_add(inv, ~macro_mime_reward);
+        def_int $rand = random(2);
+        if($rand = 0 & ~has_all_mime_emotes = false) {
+            ~unlock_mime_emote;
+        } else if($rand = 1 & ~has_full_mime_outfit = true & ~has_all_mime_emotes = false) {
+            ~unlock_mime_emote;
+        } else {
+            inv_add(inv, ~macro_mime_reward);
+        }
     }
 } else {
     p_delay(4);
@@ -138,15 +145,144 @@ if ($num = $curr_emote) {
 }
 
 [proc,macro_mime_reward]()(namedobj, int)
-if(inv_total(inv, macro_mime_mask) = 0 & inv_total(worn, macro_mime_mask) = 0 & inv_total(bank, macro_mime_mask) = 0) {
-    return(macro_mime_mask, 1);
-} else if(inv_total(inv, macro_mime_top) = 0 & inv_total(worn, macro_mime_top) = 0 & inv_total(bank, macro_mime_top) = 0) {
-    return(macro_mime_top, 1); // Mime top
-} else if(inv_total(inv, macro_mime_legs) = 0 & inv_total(worn, macro_mime_legs) = 0 & inv_total(bank, macro_mime_legs) = 0) {
-    return(macro_mime_legs, 1); // Mime legs
-} else if(inv_total(inv, macro_mime_gloves) = 0 & inv_total(worn, macro_mime_gloves) = 0 & inv_total(bank, macro_mime_gloves) = 0) {
-    return(macro_mime_gloves, 1); // Mime gloves
-} else if(inv_total(inv, macro_mime_boots) = 0 & inv_total(worn, macro_mime_boots) = 0 & inv_total(bank, macro_mime_boots) = 0) {
-    return(macro_mime_boots, 1); // Mime boots
+if (~has_full_mime_outfit = false) {
+    return (~unlock_mime_outfit_piece);
+} else {
+    return(coins, 500);
 }
-// Emotes were not unlockables in 254
+
+[proc,has_full_mime_outfit]()(boolean)
+if(inv_total(inv, macro_mime_mask) = 0 & inv_total(worn, macro_mime_mask) = 0 & inv_total(bank, macro_mime_mask) = 0) {
+    return (false);
+}
+if(inv_total(inv, macro_mime_top) = 0 & inv_total(worn, macro_mime_top) = 0 & inv_total(bank, macro_mime_top) = 0) {
+    return (false);
+}
+if (inv_total(inv, macro_mime_legs) = 0 & inv_total(worn, macro_mime_legs) = 0 & inv_total(bank, macro_mime_legs) = 0) {
+    return (false);
+}
+if (inv_total(inv, macro_mime_gloves) = 0 & inv_total(worn, macro_mime_gloves) = 0 & inv_total(bank, macro_mime_gloves) = 0) {
+    return (false);
+}
+if (inv_total(inv, macro_mime_gloves) = 0 & inv_total(worn, macro_mime_gloves) = 0 & inv_total(bank, macro_mime_gloves) = 0) {
+    return (false);
+}
+return (true);
+
+[proc,has_all_mime_emotes]()(boolean)
+if(testbit(%emote_access, ^macro_mime_climb_rope) = ^false) {
+    return (false);
+}
+if(testbit(%emote_access, ^macro_mime_lean) = ^false) {
+    return (false);
+}
+if(testbit(%emote_access, ^macro_mime_glass_wall) = ^false) {
+    return (false);
+}
+if(testbit(%emote_access, ^macro_mime_glass_box) = ^false) {
+    return (false);
+}
+return (true);
+
+[proc,unlock_mime_emote]
+def_int $missing_count = 0;
+
+if (testbit(%emote_access, ^macro_mime_climb_rope) = ^false) {
+    $missing_count = add($missing_count, 1);
+}
+if (testbit(%emote_access, ^macro_mime_lean) = ^false) {
+    $missing_count = add($missing_count, 1);
+}
+if (testbit(%emote_access, ^macro_mime_glass_wall) = ^false) {
+    $missing_count =add($missing_count, 1);
+}
+if (testbit(%emote_access, ^macro_mime_glass_box) = ^false) {
+    $missing_count = add($missing_count, 1);
+}
+
+def_int $pick = random($missing_count);
+def_int $current = 0;
+
+if (testbit(%emote_access, ^macro_mime_climb_rope) = ^false) {
+    if ($current = $pick) {
+        %emote_access = setbit(%emote_access, ^macro_mime_climb_rope);
+        ~mesbox("You can now use the Climb Rope emote!");
+        return;
+    }
+    $current = add($current, 1);
+}
+if (testbit(%emote_access, ^macro_mime_lean) = ^false) {
+    if ($current = $pick) {
+        %emote_access = setbit(%emote_access, ^macro_mime_lean);
+        ~mesbox("You can now use the Lean on air emote!");
+        return;
+    }
+    $current = add($current, 1);
+}
+if (testbit(%emote_access, ^macro_mime_glass_wall) = ^false) {
+    if ($current = $pick) {
+        %emote_access = setbit(%emote_access, ^macro_mime_glass_wall);
+        ~mesbox("You can now use the Glass Wall emote!");
+        return;
+    }
+    $current = add($current, 1);
+}
+if (testbit(%emote_access, ^macro_mime_glass_box) = ^false) {
+    if ($current = $pick) {
+        %emote_access = setbit(%emote_access, ^macro_mime_glass_box);
+        ~mesbox("You can now use the Glass Box emote!");
+        return;
+    }
+}
+
+[proc,unlock_mime_outfit_piece]()(namedobj, int)
+def_int $missing_count = 0;
+
+if (inv_total(inv, macro_mime_mask) = 0 & inv_total(worn, macro_mime_mask) = 0 & inv_total(bank, macro_mime_mask) = 0) {
+    $missing_count = calc($missing_count + 1);
+}
+if (inv_total(inv, macro_mime_top) = 0 & inv_total(worn, macro_mime_top) = 0 & inv_total(bank, macro_mime_top) = 0) {
+    $missing_count = calc($missing_count + 1);
+}
+if (inv_total(inv, macro_mime_legs) = 0 & inv_total(worn, macro_mime_legs) = 0 & inv_total(bank, macro_mime_legs) = 0) {
+    $missing_count = calc($missing_count + 1);
+}
+if (inv_total(inv, macro_mime_gloves) = 0 & inv_total(worn, macro_mime_gloves) = 0 & inv_total(bank, macro_mime_gloves) = 0) {
+    $missing_count = calc($missing_count + 1);
+}
+if (inv_total(inv, macro_mime_boots) = 0 & inv_total(worn, macro_mime_boots) = 0 & inv_total(bank, macro_mime_boots) = 0) {
+    $missing_count = calc($missing_count + 1);
+}
+
+def_int $pick = random($missing_count);
+def_int $current = 0;
+
+if (inv_total(inv, macro_mime_mask) = 0 & inv_total(worn, macro_mime_mask) = 0 & inv_total(bank, macro_mime_mask) = 0) {
+    if ($current = $pick) {
+        return(macro_mime_mask, 1);
+    }
+    $current = add($current, 1);
+}
+if (inv_total(inv, macro_mime_top) = 0 & inv_total(worn, macro_mime_top) = 0 & inv_total(bank, macro_mime_top) = 0) {
+    if ($current = $pick) {
+        return(macro_mime_top, 1);
+    }
+    $current = add($current, 1);
+}
+if (inv_total(inv, macro_mime_legs) = 0 & inv_total(worn, macro_mime_legs) = 0 & inv_total(bank, macro_mime_legs) = 0) {
+    if ($current = $pick) {
+        return(macro_mime_legs, 1);
+    }
+    $current = add($current, 1);
+}
+if (inv_total(inv, macro_mime_gloves) = 0 & inv_total(worn, macro_mime_gloves) = 0 & inv_total(bank, macro_mime_gloves) = 0) {
+    if ($current = $pick) {
+        return(macro_mime_gloves, 1);
+    }
+    $current = add($current, 1);
+}
+if (inv_total(inv, macro_mime_boots) = 0 & inv_total(worn, macro_mime_boots) = 0 & inv_total(bank, macro_mime_boots) = 0) {
+    if ($current = $pick) {
+        return(macro_mime_boots, 1);
+    }
+}

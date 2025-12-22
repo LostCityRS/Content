@@ -42,6 +42,8 @@ settimer(general_macro_events, 500);
 // - https://youtu.be/HwGAzcmvF9k?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT
 // npc spawns only after interface is closed
 queue(macro_event_login, 0, 0);
+// TODO: Find out if these run on login?
+~macro_cube_login;
 // so pk skulls persist after logging back in
 ~set_pk_skull_login;
 // so antifire persists after logging back in

@@ -1,39 +1,40 @@
 [mapzoneexit,0_45_71]
-~macro_maze_cleanup;
-~macro_events_varps_reset;
 ~initalltabs;
 
 [mapzone,0_45_71]
 if (%macro_event ! ^macro_maze) {
     %macro_event = ^macro_maze;
-    settimer(macro_maze, 5);
-    ~update_macro_maze_progress;
-    if_openoverlay(mazetimer);
+    queue(maze_start, 0, 0);
     //https://youtu.be/yCBpihIGy68?si=CsTkheu7cAfGpjHa&t=13 login inside maze
 }
 ~macro_events_set_tabs;
 @music_playbyregion(coord);
+
+[queue,maze_start]
+settimer(macro_maze, 5);
+~update_macro_maze_progress;
+if_openoverlay(mazetimer);
 
 [proc,start_macro_maze]
 def_coord $coord = enum(int, coord, macro_maze_teleports, random(enum_getoutputcount(macro_maze_teleports)));
 %xplamp = 100;
 %macro_event_target_coord = coord;
 p_telejump($coord);
-~chatnpc_specific("Mysterious Old Man", macro_mysterious_old_man, "<p,neutral>You need to reach the maze centre, then you'll be returned to where you were.");
+queue(maze_start, 0, 0);
 mes("You need to reach the maze centre, then you'll be returned to where you were.");
-settimer(macro_maze, 5);
-~update_macro_maze_progress;
-if_openoverlay(mazetimer);
+~chatnpc_specific("Mysterious Old Man", macro_mysterious_old_man, "<p,neutral>You need to reach the maze centre, then you'll be returned to where you were.");
 
 [proc,end_macro_maze]
 if_openoverlay(null);
 cleartimer(macro_maze);
 anim(emote_cheer, 20);
 p_delay(5);
+p_telejump(%macro_event_target_coord);
 if (%xplamp > 0) {
     ~macro_maze_give_reward(~total_level, %xplamp);
 }
-p_telejump(%macro_event_target_coord);
+~macro_maze_cleanup;
+~macro_events_varps_reset;
 
 [proc,update_macro_maze_progress]
 if_settext(mazetimer:com_2, "<tostring(%xplamp)>%");

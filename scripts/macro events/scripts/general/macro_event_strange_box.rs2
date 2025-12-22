@@ -132,15 +132,6 @@ switch_int($colour_value) {
 }
 
 [proc,macro_cube_open]
-// TODO: Maybe find out if the timer(s) restarts on login instead of when opening one?
-if (gettimer(macro_cube_add) ! ^true) {
-    settimer(macro_cube_add, 150);
-}
-
-if (gettimer(macro_cube_split) ! ^true) {
-    settimer(macro_cube_split, 16);
-}
-
 if_openmain(macro_cube);
 
 // 3 distinct shapes
@@ -329,3 +320,10 @@ mes("correctly to get the prize inside!");
 settimer(macro_cube_add, 150);
 // https://www.youtube.com/watch?v=4nvDxoeBXlU // unstacks itself every 10s
 settimer(macro_cube_split, 16);
+
+[proc,macro_cube_login]
+def_int $total = inv_total(inv, macro_cube);
+if($total > 0) {
+    settimer(macro_cube_add, 150);
+    settimer(macro_cube_split, 16);
+}

@@ -62,10 +62,30 @@ if (p_finduid(uid) = true) {
 [if_button,controls:com_22] @controls_emote(emote_laugh);
 [if_button,controls:com_23] @controls_emote(emote_cheer);
 [if_button,controls:com_24] @controls_emote(emote_clap);
-[if_button,controls:com_41] @controls_emote(seq_1128);
-[if_button,controls:com_42] @controls_emote(seq_1131);
-[if_button,controls:com_43] @controls_emote(seq_1130);
-[if_button,controls:com_44] @controls_emote(seq_1129);
+
+[if_button,controls:com_41]
+if(testbit(%emote_access, ^macro_mime_glass_wall) = ^false) {
+    @lockemote_mime_event;
+}
+@controls_emote(emote_glass_wall);
+
+[if_button,controls:com_42]
+if(testbit(%emote_access, ^macro_mime_glass_box) = ^false) {
+    @lockemote_mime_event;
+}
+@controls_emote(emote_glass_box);
+
+[if_button,controls:com_43]
+if(testbit(%emote_access, ^macro_mime_climb_rope) = ^false) {
+    @lockemote_mime_event;
+}
+@controls_emote(emote_climbing_rope);
+
+[if_button,controls:com_44]
+if(testbit(%emote_access, ^macro_mime_lean) = ^false) {
+    @lockemote_mime_event;
+}
+@controls_emote(emote_mime_lean);
 
 [label,controls_emote](seq $anim)
 if_close;
@@ -80,3 +100,8 @@ if (~inzone_coord_pair_table(trawler_wreck_zones, coord) = true) {
 p_stopaction;
 anim($anim, 20);
 // p_delay(~seqlength20ms($anim));
+
+[label,lockemote_mime_event]
+if (p_finduid(uid) = true) {
+    ~mesbox("This emote can be unlocked during the mime random event.");
+}
