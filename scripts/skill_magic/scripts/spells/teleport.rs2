@@ -90,6 +90,10 @@ if (~inzone_coord_pair_table(random_event_mime_zones, $coord) = true) {
     say("I need to finish my performance!"); // https://www.youtube.com/watch?v=aGIPPPlADys&t=92s
     return(false);
 }
+if (~inzone_coord_pair_table(random_event_maze_zones, $coord) = true) {
+    say("I need to reach the maze centre!"); // Best guess, similar to mime
+    return(false);
+}
 if (~in_duel_arena($coord) = true) {
     mes("Coward! You can't teleport from a duel."); //RS3 message: https://archive.org/details/runelibris
     //Colored in #AB0908 in RS3, but was likely not colored in 2004
