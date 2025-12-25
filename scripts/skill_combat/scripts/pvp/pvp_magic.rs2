@@ -175,6 +175,7 @@ sound_synth($sound, 0, 0);
 
 if ($maxhit = null) {
     ~.pvp_damage(calc($duration / 30 + 1), null); // delayed an extra tick: https://youtu.be/eEdE0mvglM4?t=62
+    .spotanim_pl(db_getfield($spell_data, magic_spell_table:spotanim_target, 0), $duration);
     return;
 }
 
