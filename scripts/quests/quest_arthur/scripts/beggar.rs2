@@ -36,9 +36,7 @@ switch_int (~p_choice2("Yes certainly.", 1, "No I don't have any bread with me."
 ~mesbox("You give bread to the beggar.");
 inv_del(inv, bread, 1);
 ~chatnpc("<p,happy>Thank you very much!");
-if(npc_find(coord, lake_beggar, 1, 0) = true) {
-    npc_del;
-}
+npc_del;
 npc_add(0_47_50_8_47, ladyofthelake, 100);
 ~mesbox("The beggar has turned into the Lady of the Lake!");
 ~chatnpc("<p,neutral>Well done. You have passed my test.");
