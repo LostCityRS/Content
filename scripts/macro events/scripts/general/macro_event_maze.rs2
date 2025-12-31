@@ -104,7 +104,7 @@ anim(human_openchest, 0);
 sound_synth(chest_open, 0, 0);
 p_delay(0);
 loc_change($other_chest, ^macro_maze_chest_ticks);
-~macro_maze_chest_loot;
+~macro_maze_calculate_chest_loot;
 
 [proc,macro_maze_calc_reward](int $total_level, int $reward_potential_percent)
 def_int $roll;
@@ -162,7 +162,7 @@ while ($i <= enum_getoutputcount(stats)) {
 
 return($total);
 
-[proc,macro_maze_chest_loot]
+[proc,macro_maze_calculate_chest_loot]
 // Sources used: https://www.youtube.com/watch?v=0end9ZuL3vI&t=1041s - https://www.youtube.com/watch?v=OdnmdmAXnSs&t=553s
 // https://www.youtube.com/watch?v=yCBpihIGy68
 p_arrivedelay;
@@ -172,22 +172,22 @@ if (%xplamp <= 0) {
     return;
 }
 
-def_namedobj $loot_item;
-def_int $loot_qty;
-def_string $loot_name;
 def_int $roll;
 $roll = random(10);
 
 switch_int($roll) {
-    case 0 : { $loot_item = airrune;        $loot_qty = 15;     ~objbox($loot_item, "You've found some air runes!", 250, 0, 0); }
-    case 1 : { $loot_item = waterrune;      $loot_qty = 10;     ~objbox($loot_item, "You've found some water runes!", 250, 0, 0); }
-    case 2 : { $loot_item = earthrune;      $loot_qty = 10;     ~objbox($loot_item, "You've found some earth runes!", 250, 0, 0); }
-    case 3 : { $loot_item = firerune;       $loot_qty = 10;     ~objbox($loot_item, "You've found some fire runes!", 250, 0, 0); }
-    case 4 : { $loot_item = bronze_arrow;   $loot_qty = 20;     ~objbox($loot_item, "You've found some bronze arrows!", 250, 0, 0); }
-    case 5 : { $loot_item = bolt;          $loot_qty = 10;     ~objbox($loot_item, "You've found some bolts!", 250, 0, 0); }
-    case 6 : { $loot_item = iron_arrow;     $loot_qty = 15;     ~objbox($loot_item, "You've found some iron arrows!", 250, 0, 0); }
-    case 7 : { $loot_item = 2dose1attack;   $loot_qty = 1;      ~objbox($loot_item, "You've found an attack potion!", 250, 0, ^objbox_height); }
-    case 8 : { $loot_item = 2dose1strength; $loot_qty = 1;      ~objbox($loot_item, "You've found a strength potion!", 250, 0, ^objbox_height); }
-    case 9 : { $loot_item = 2dose1defense;  $loot_qty = 1;      ~objbox($loot_item, "You've found a defence potion!", 250, 0, ^objbox_height); }
+    case 0 : { ~macro_maze_give_chest_loot(airrune, 15, "You've found some air runes!", 0); }
+    case 1 : { ~macro_maze_give_chest_loot(waterrune, 10, "You've found some water runes!", 0); }
+    case 2 : { ~macro_maze_give_chest_loot(earthrune, 10, "You've found some earth runes!", 0); }
+    case 3 : { ~macro_maze_give_chest_loot(firerune, 10, "You've found some fire runes!", 0); }
+    case 4 : { ~macro_maze_give_chest_loot(bronze_arrow, 20, "You've found some bronze arrows!", 0); }
+    case 5 : { ~macro_maze_give_chest_loot(bolt, 10, "You've found some bolts!", ^objbox_height); }
+    case 6 : { ~macro_maze_give_chest_loot(iron_arrow, 15, "You've found some iron arrows!", 0); }
+    case 7 : { ~macro_maze_give_chest_loot(2dose1attack, 1, "You've found an attack potion!", ^objbox_height); }
+    case 8 : { ~macro_maze_give_chest_loot(2dose1strength, 1, "You've found a strength potion!", ^objbox_height); }
+    case 9 : { ~macro_maze_give_chest_loot(2dose1defense, 1, "You've found a defence potion!", ^objbox_height); }
 }
-inv_add(inv, $loot_item, $loot_qty);
+
+[proc,macro_maze_give_chest_loot](namedobj $item, int $qty, string $text, int $y_offset)
+inv_add(inv, $item, $qty);
+~objbox($item, $text, 200, 0, $y_offset);
