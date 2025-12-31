@@ -1,55 +1,43 @@
 [if_button,questlist:dragon]
 def_string $text;
 
-switch_int (%dragonquest) {
+if (%dragonquest = ^quest_dragon_not_started) {
+    $text = "@dbl@I can start this quest by speaking to the @dre@Guildmaster@dbl@ in|@dbl@the @dre@Champions' Guild@dbl@, south-west of Varrock.|";
+    $text = append($text, "@dbl@I will need to be able to defeat a @dre@level 83 dragon@dbl@.|");
+    if (%qp < 32) {
+        $text = append($text, "@dbl@To enter the Champions' Guild I need @dre@32 Quest Points@dbl@.");
+    } else {
+        $text = append($text, "@str@To enter the Champions' Guild I need 32 Quest Points.");
+    }
+    ~quest_journal("Dragon Slayer", $text);
+    return;
+}
 
-    case ^quest_dragon_not_started :
-        $text = "@dbl@I can start this quest by speaking to the @dre@Guildmaster@dbl@ in|@dbl@the @dre@Champions' Guild@dbl@, south-west of Varrock.|";
-        $text = append($text, "@dbl@I will need to be able to defeat a @dre@level 83 dragon@dbl@.|");
-        if (%qp < 32) {
-            $text = append($text, "@dbl@To enter the Champions' Guild I need @dre@32 Quest Points@dbl@.");
-        } else {
-            $text = append($text, "@str@To enter the Champions' Guild I need 32 Quest Points.");
-        }
+$text = "@str@The Guildmaster of the Champions' Guild said his friend|@str@Oziach could help me with a Rune Plate mail body.|";
 
-    case ^quest_dragon_spoken_to_guildmaster :
-        $text = "@str@The Guildmaster of the Champions' Guild said his friend|@str@Oziach could help me with a Rune Plate mail body.|";
-        $text = append($text, "@dbl@I should speak to @dre@Oziach@dbl@, who lives by the cliffs to the|@dbl@west of @dre@Edgeville@dbl@.");
+if (%dragonquest > ^quest_dragon_spoken_to_guildmaster) {
+    $text = append($text, "@dre@Oziach@dbl@ will sell me @dre@Rune Plate Mail@dbl@ if I can prove myself|@dbl@worthy by killing the @dre@Dragon Elvarg@dbl@ who lives on @dre@Crandor@dbl@|");
+}
+if (%dragonquest = ^quest_dragon_spoken_to_guildmaster) {
+    $text = append($text, "@dbl@I should speak to @dre@Oziach@dbl@, who lives by the cliffs to the|@dbl@west of @dre@Edgeville@dbl@.");
+}
 
-    case ^quest_dragon_spoken_to_oziach :
-        $text = ~ds_intro();
-        if (%dragon_oracle < ^quest_dragon_knows_about_oracle | 
-            %dragon_shield < ^quest_dragon_knows_about_shield | 
-            %dragon_goblin < ^quest_dragon_knows_about_goblin) 
-        {
-            $text = append($text, "@dbl@I should return to @dre@Oziach@dbl@ for more detailed instructions.");
-        } else {
-            $text = append($text, "@dbl@To defeat the dragon I will need to find a @dre@map@dbl@ to|@dbl@Crandor, a @dre@ship@dbl@, a @dre@captain@dbl@ to take me there and some kind|");
-            $text = append($text, "@dbl@of @dre@protection@dbl@ against the dragon's breath.|");
-            $text = append($text, ~ds_map_pieces());
-            $text = append($text, ~ds_shield_check());
-            $text = append($text, "@dbl@I should see if there is a @dre@ship@dbl@ for sale in @dre@Port Sarim@dbl@.|");
-        }
+if (%dragonquest = ^quest_dragon_spoken_to_oziach) {
+    if (%dragon_oracle < ^quest_dragon_knows_about_oracle | %dragon_shield < ^quest_dragon_knows_about_shield | %dragon_goblin < ^quest_dragon_knows_about_goblin) {
+        $text = append($text, "@dbl@I should return to @dre@Oziach@dbl@ for more detailed instructions.");
+    } else {
+        $text = append($text, "@dbl@To defeat the dragon I will need to find a @dre@map@dbl@ to|@dbl@Crandor, a @dre@ship@dbl@, a @dre@captain@dbl@ to take me there and some kind|");
+        $text = append($text, "@dbl@of @dre@protection@dbl@ against the dragon's breath.|");
+        $text = append($text, ~ds_map_pieces());
+        $text = append($text, ~ds_shield_check());
+        $text = append($text, "@dbl@I should see if there is a @dre@ship@dbl@ for sale in @dre@Port Sarim@dbl@.|");
+    }
+}
 
-    case ^quest_dragon_bought_ship :
-        $text = ~ds_intro();
-        if (%dragon_oracle < ^quest_dragon_knows_about_oracle | 
-            %dragon_shield < ^quest_dragon_knows_about_shield | 
-            %dragon_goblin < ^quest_dragon_knows_about_goblin) 
-        {
-            $text = append($text, "@dbl@I should return to @dre@Oziach@dbl@ for more detailed instructions.");
-        } else {
-            $text = append($text, "@dbl@To defeat the dragon I will need to find a @dre@map@dbl@ to|@dbl@Crandor, a @dre@ship@dbl@, a @dre@captain@dbl@ to take me there and some kind|");
-            $text = append($text, "@dbl@of @dre@protection@dbl@ against the dragon's breath.|");
-            $text = append($text, ~ds_map_pieces());
-            $text = append($text, ~ds_shield_check());
-            $text = append($text, "@str@I bought a ship in Port Sarim called the Lady Lumbridge.|");
-            $text = append($text, ~ds_ship_repairs());
-            $text = append($text, "@dbl@I still need to find a @dre@captain@dbl@ for my ship.|");
-        }
-
-    case ^quest_dragon_repaired_ship :
-        $text = ~ds_intro();
+if (%dragonquest = ^quest_dragon_bought_ship) {
+    if (%dragon_oracle < ^quest_dragon_knows_about_oracle | %dragon_shield < ^quest_dragon_knows_about_shield | %dragon_goblin < ^quest_dragon_knows_about_goblin) {
+        $text = append($text, "@dbl@I should return to @dre@Oziach@dbl@ for more detailed instructions.");
+    } else {
         $text = append($text, "@dbl@To defeat the dragon I will need to find a @dre@map@dbl@ to|@dbl@Crandor, a @dre@ship@dbl@, a @dre@captain@dbl@ to take me there and some kind|");
         $text = append($text, "@dbl@of @dre@protection@dbl@ against the dragon's breath.|");
         $text = append($text, ~ds_map_pieces());
@@ -57,40 +45,52 @@ switch_int (%dragonquest) {
         $text = append($text, "@str@I bought a ship in Port Sarim called the Lady Lumbridge.|");
         $text = append($text, ~ds_ship_repairs());
         $text = append($text, "@dbl@I still need to find a @dre@captain@dbl@ for my ship.|");
+    }
+}
 
-    case ^quest_dragon_ned_given_map :
-        $text = ~ds_intro();
-        $text = append($text, ~ds_map_pieces());
-        $text = append($text, ~ds_shield_check());
-        $text = append($text, "@str@I bought a ship in Port Sarim called the Lady Lumbridge.|");
-        $text = append($text, ~ds_ship_repairs());
+if (%dragonquest = ^quest_dragon_repaired_ship) {
+    $text = append($text, "@dbl@To defeat the dragon I will need to find a @dre@map@dbl@ to|@dbl@Crandor, a @dre@ship@dbl@, a @dre@captain@dbl@ to take me there and some kind|");
+    $text = append($text, "@dbl@of @dre@protection@dbl@ against the dragon's breath.|");
+    $text = append($text, ~ds_map_pieces());
+    $text = append($text, ~ds_shield_check());
+    $text = append($text, "@str@I bought a ship in Port Sarim called the Lady Lumbridge.|");
+    $text = append($text, ~ds_ship_repairs());
+    $text = append($text, "@dbl@I still need to find a @dre@captain@dbl@ for my ship.|");
+}
+
+if (%dragonquest = ^quest_dragon_ned_given_map) {
+    $text = append($text, ~ds_map_pieces());
+    $text = append($text, ~ds_shield_check());
+    $text = append($text, "@str@I bought a ship in Port Sarim called the Lady Lumbridge.|");
+    $text = append($text, ~ds_ship_repairs());
+    $text = append($text, "@str@Captain Ned from Draynor Village has agreed to sail the|@str@ship to Crandor for me.|");
+    $text = append($text, "@dbl@Now I should go to my ship in @dre@Port Sarim@dbl@ and set sail for|@dre@Crandor@dbl@!");
+}
+
+if (%dragonquest = ^quest_dragon_sailed_to_crandor) {
+    $text = append($text, ~ds_map_pieces());
+    $text = append($text, ~ds_shield_check());
+    if (%dragon_wall = ^true) {
+        $text = append($text, "@str@Now that I have found the secret passage leading from|@str@Karamja to Crandor I don't need to worry about having a|@str@seaworthy ship or a captain fit to sail it anymore.|");
+    } else {
         $text = append($text, "@str@Captain Ned from Draynor Village has agreed to sail the|@str@ship to Crandor for me.|");
-        $text = append($text, "@dbl@Now I should go to my ship in @dre@Port Sarim@dbl@ and set sail for|@dre@Crandor@dbl@!");
+        $text = append($text, ~ds_ship_repairs());
+    }
+    $text = append($text, "@dbl@Now all I need to do is kill the @dre@dragon@dbl@!");
+}
 
-    case ^quest_dragon_sailed_to_crandor :
-        $text = ~ds_intro();
-        $text = append($text, ~ds_map_pieces());
-        $text = append($text, ~ds_shield_check());
-        if (%dragon_wall = ^true) {
-            $text = append($text, "@str@Now that I have found the secret passage leading from|@str@Karamja to Crandor I don't need to worry about having a|@str@seaworthy ship or a captain fit to sail it anymore.|");
-        } else {
-            $text = append($text, "@str@Captain Ned from Draynor Village has agreed to sail the|@str@ship to Crandor for me.|");
-            $text = append($text, ~ds_ship_repairs());
-        }
-        $text = append($text, "@dbl@Now all I need to do is kill the @dre@dragon@dbl@!");
-
-    case ^dragon_complete :
-        $text = "@str@The Guildmaster of the Champions' Guild said his friend|@str@Oziach could help me with a Rune Plate mail body.|";
-        $text = append($text, "@str@Oziach would sell me Rune Plate Mail if I could prove myself|@str@worthy by killing the Dragon Elvarg who lives on Crandor|");
-        $text = append($text, "@str@I now had all three pieces of the map to Crandor|");
-        $text = append($text, "@str@I successfully got the first map piece from Melzar's Maze.|");
-        $text = append($text, "@str@I retrieved the second map piece from the Dwarven Mines.|");
-        $text = append($text, "@str@I got the third map piece from a Goblin called Wormbrain.||");
-        $text = append($text, "@str@I bought a ship in Port Sarim called the Lady Lumbridge.|");
-        $text = append($text, "@str@Captain Ned from Draynor Village had agreed to sail the|@str@ship to Crandor for me.||");
-        $text = append($text, "@str@My ship crash landed on Crandor, but luckily for me after|@str@defeating Elvarg I could use the secret passage leading to|@str@Karamja and make my way back home triumphant.||");
-        $text = append($text, "@str@Now I had proved myself worthy by killing Elvarg, Oziach|@str@agreed to sell me Rune Plate, the armour of heroes!||");
-        $text = append($text, "@red@QUEST COMPLETE!");
+if (%dragonquest >= ^dragon_complete) {
+    $text = "@str@The Guildmaster of the Champions' Guild said his friend|@str@Oziach could help me with a Rune Plate mail body.|";
+    $text = append($text, "@str@Oziach would sell me Rune Plate Mail if I could prove myself|@str@worthy by killing the Dragon Elvarg who lives on Crandor|");
+    $text = append($text, "@str@I now had all three pieces of the map to Crandor|");
+    $text = append($text, "@str@I successfully got the first map piece from Melzar's Maze.|");
+    $text = append($text, "@str@I retrieved the second map piece from the Dwarven Mines.|");
+    $text = append($text, "@str@I got the third map piece from a Goblin called Wormbrain.||");
+    $text = append($text, "@str@I bought a ship in Port Sarim called the Lady Lumbridge.|");
+    $text = append($text, "@str@Captain Ned from Draynor Village had agreed to sail the|@str@ship to Crandor for me.||");
+    $text = append($text, "@str@My ship crash landed on Crandor, but luckily for me after|@str@defeating Elvarg I could use the secret passage leading to|@str@Karamja and make my way back home triumphant.||");
+    $text = append($text, "@str@Now I had proved myself worthy by killing Elvarg, Oziach|@str@agreed to sell me Rune Plate, the armour of heroes!||");
+    $text = append($text, "@red@QUEST COMPLETE!");
 }
 
 ~quest_journal("Dragon Slayer", $text);
