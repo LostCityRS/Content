@@ -1,7 +1,7 @@
 [if_button,questlist:cog]
 def_string $text;
 
-switch_int (%cogquest) {
+switch_int (~get_cog_progress) {
 
     case ^quest_cog_not_started :
         $text = "@dbl@I can start this quest by talking to @dre@Brother Kojo@dbl@ at the|@dre@Clock Tower@dbl@ which is located @dre@South@dbl@ of @dre@Ardougne|";
