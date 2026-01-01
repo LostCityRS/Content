@@ -26,7 +26,7 @@ if(%doricquest = 0) {
         $text = append($text, "@dre@2 Iron Ore|");
     }
 } else {
-    $text = "@str@I have spoken to Doric@dre@||@str@I have collected some Clay, Copper Ore, and Iron Ore.||@str@Doric rewarded me for all my hard work.|@str@I can now use Doric's Anvils whenever I want.|@red@QUEST COMPLETE!";
+    $text = "@str@I have spoken to @dre@Doric||@str@I have collected some Clay, Copper Ore, and Iron Ore.||@str@Doric rewarded me for all my hard work.|@str@I can now use Doric's Anvils whenever I want.|@red@QUEST COMPLETE!";
 }
 
 ~quest_journal("Dorics' Quest", $text);
