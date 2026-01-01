@@ -622,13 +622,53 @@ settimer(mercenary_check, 25);
 [mapzone,0_52_52] @music_playbyregion(coord);
 [mapzone,0_52_53] @music_playbyregion(coord);
 [mapzone,0_52_54] @music_playbyregion(coord);
-[mapzone,0_52_55] @music_playbyregion(coord);
-[mapzone,0_52_56] @music_playbyregion(coord);
-[mapzone,0_52_57] @music_playbyregion(coord);
-[mapzone,0_52_58] @music_playbyregion(coord);
-[mapzone,0_52_59] @music_playbyregion(coord);
-[mapzone,0_52_60] @music_playbyregion(coord);
-[mapzone,0_52_61] @music_playbyregion(coord);
+
+[mapzone,0_52_55]
+~wilderness_enter;
+@music_playbyregion(coord);
+
+[mapzoneexit,0_52_55]
+~wilderness_exit;
+
+[mapzone,0_52_56]
+~wilderness_enter;
+@music_playbyregion(coord);
+
+[mapzoneexit,0_52_56]
+~wilderness_exit;
+
+[mapzone,0_52_57]
+~wilderness_enter;
+@music_playbyregion(coord);
+
+[mapzone,0_52_58]
+~wilderness_enter;
+@music_playbyregion(coord);
+
+[mapzoneexit,0_52_58]
+~wilderness_exit;
+
+[mapzone,0_52_59]
+~wilderness_enter;
+@music_playbyregion(coord);
+
+[mapzoneexit,0_52_59]
+~wilderness_exit;
+
+[mapzone,0_52_60]
+~wilderness_enter;
+@music_playbyregion(coord);
+
+[mapzoneexit,0_52_60]
+~wilderness_exit;
+
+[mapzone,0_52_61]
+~wilderness_enter;
+@music_playbyregion(coord);
+
+[mapzoneexit,0_52_61]
+~wilderness_exit;
+
 [mapzone,0_52_152] @music_playbyregion(coord);
 [mapzone,0_52_153] @music_playbyregion(coord);
 
