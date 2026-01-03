@@ -313,13 +313,13 @@ if (p_finduid(uid) = false) {
 }
 
 inv_add(inv, macro_cube, 1);
-~objbox(macro_cube, "You have been given a Mysterious box! Click on it and answer the question correctly to get the prize inside!", 200, 0, -16);
 mes("You have been given a Mysterious box! Click on it and answer the question");
 mes("correctly to get the prize inside!");
 // https://www.youtube.com/watch?v=VZdOT8VYfXg 90s between too long messages
 settimer(macro_cube_add, 150);
 // https://www.youtube.com/watch?v=4nvDxoeBXlU // unstacks itself every 10s
 settimer(macro_cube_split, 16);
+~objbox(macro_cube, "You have been given a Mysterious box! Click on it and answer the question correctly to get the prize inside!", 200, 0, -16);
 
 [proc,macro_cube_login]
 def_int $total = inv_total(inv, macro_cube);
