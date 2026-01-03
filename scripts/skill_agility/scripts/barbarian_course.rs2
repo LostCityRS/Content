@@ -68,7 +68,7 @@ if(coordx(coord) <= coordx(loc_coord)) {
     return;
 }
 mes("You climb the netting...");
-~agility_climb_up(75, movecoord(loc_coord, -1, 1, 1));
+~agility_climb_up(82, movecoord(loc_coord, -1, 1, 1));
 ~update_barbarian_varp(3);
 
 [oploc1,barbarian_ledge]
