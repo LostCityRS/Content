@@ -13,7 +13,7 @@ model2=model_2854_npc
 respawnrate=100
 // https://web.archive.org/web/20051201225926/http://runehq.com/RHQMonsterView.php?id=100
 // https://web.archive.org/web/20060828154137/http://www.trillionareguild.com/runescape/beastiary1.php
-hitpoints=120
+hitpoints=80
 attack=70
 strength=70
 defence=70
@@ -38,6 +38,7 @@ maxrange=7
 huntrange=7
 // all the stats information matches otherwise osrs but we only have 120hp
 // instead of 80 hp. and osrs Vislvl is also 83 while we have 86 again.
+// osrs stats and Vislvl match 1:1 //254
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_817
 
 [dragonslayer_ned]
@@ -69,7 +70,7 @@ head3=model_37_npc_head
 wanderrange=0
 moverestrict=nomove
 
-[dragonslayer_giant_rat]
+[dragonslayer_giantrat]
 size=2
 walkanim=giantrat_walk
 readyanim=giantrat_ready
@@ -94,7 +95,7 @@ param=defend_sound,rat_hit
 param=death_sound,rat_death
 huntmode=cowardly
 huntrange=1
-// stats and information taken from normal 6lv Giant rat  // Vislvl match 1:1
+// stats taken from giantrat1 // Vislvl match 1:1 //254
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3969 (3lv)
 
 [dragonslayer_ghost]
@@ -130,7 +131,7 @@ param=death_drop,null
 param=undead,^true
 huntmode=cowardly
 huntrange=1
-// osrs stats and Vislvl match 1:1
+// osrs stats and Vislvl match 1:1 //254
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3975
 
 [dragonslayer_skeleton]
@@ -145,10 +146,10 @@ model2=model_2946_npc
 wanderrange=9
 maxrange=11
 respawnrate=70
-hitpoints=17
-attack=24
-strength=24
-defence=24
+hitpoints=29
+attack=15
+strength=18
+defence=17
 param=attackbonus,15
 param=strengthbonus,14
 param=stabdefence,9
@@ -166,7 +167,7 @@ param=death_sound,skeleton_death
 param=undead,^true
 huntmode=cowardly
 huntrange=1
-// stats and information taken from a normal 25lv skeleton // Vislvl match 1:1
+// osrs stats and Vislvl match 1:1 //254
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3972 (22lv)
 
 [dragonslayer_zombie]
@@ -203,7 +204,7 @@ param=undead,^true
 huntmode=cowardly
 huntrange=1
 // https://web.archive.org/web/20051105211000/http://www.tip.it/runescape/index.php?rs2monster_id=151
-// stats taken zombie_entranan // Vislvl match 1:1
+// stats taken from zombie_entranan // Vislvl match 1:1 //254
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3980 (24lv)
 
 [dragonslayer_demon]
@@ -234,7 +235,7 @@ param=demonbane_vulnerable,yes
 param=death_drop,ashes
 huntmode=cowardly
 huntrange=2
-// osrs stats and Vislvl match 1:1
+// osrs stats and Vislvl match 1:1 //254
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3982
 
 [melzar_the_mad]
@@ -270,7 +271,7 @@ param=attack_anim,human_unarmedkick
 param=attack_sound,unarmed_kick
 huntmode=aggressive_melee
 huntrange=1
-// osrs stats and Vislvl match 1:1
+// osrs stats and Vislvl match 1:1 //254
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_823
 
 [cabin_boy_jenkins]

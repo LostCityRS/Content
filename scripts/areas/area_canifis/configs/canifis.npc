@@ -22,14 +22,14 @@ op1=Talk-to
 vislevel=24
 head1=model_55_idk_head
 head2=npc_1024_head
-attack=10
-defence=10
-strength=10
-hitpoints=60
-respawnrate=50
 wanderrange=5
 maxrange=20
-category=canafis_citizen
+respawnrate=50
+hitpoints=60
+attack=10
+strength=10
+defence=10
+param=damagetype,^crush_style
 param=stabdefence,-21
 param=slashdefence,-21
 param=crushdefence,-21
@@ -40,6 +40,9 @@ param=defend_sound,half_werewolf_hit
 param=death_sound,half_werewolf_death
 param=next_npc_type,canafis_werewolf_man1
 param=death_drop,wolf_bones
+category=canafis_citizen
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2613
 
 [canafis_man2]
 name=Man
@@ -64,14 +67,14 @@ op1=Talk-to
 vislevel=24
 head1=model_55_idk_head
 head2=npc_1024_head
-attack=10
-defence=10
-strength=10
-hitpoints=60
-respawnrate=50
 wanderrange=5
 maxrange=20
-category=canafis_citizen
+respawnrate=50
+hitpoints=60
+attack=10
+strength=10
+defence=10
+param=damagetype,^crush_style
 param=stabdefence,-21
 param=slashdefence,-21
 param=crushdefence,-21
@@ -82,6 +85,9 @@ param=defend_sound,half_werewolf_hit
 param=death_sound,half_werewolf_death
 param=next_npc_type,canafis_werewolf_man2
 param=death_drop,wolf_bones
+category=canafis_citizen
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2614
 
 [canafis_man3]
 name=Man
@@ -108,14 +114,14 @@ op1=Talk-to
 vislevel=24
 head1=model_67_idk_head
 head2=npc_1024_head
-attack=10
-defence=10
-strength=10
-hitpoints=60
-respawnrate=50
 wanderrange=5
 maxrange=20
-category=canafis_citizen
+respawnrate=50
+hitpoints=60
+attack=10
+strength=10
+defence=10
+param=damagetype,^crush_style
 param=stabdefence,-21
 param=slashdefence,-21
 param=crushdefence,-21
@@ -126,6 +132,9 @@ param=defend_sound,half_werewolf_hit
 param=death_sound,half_werewolf_death
 param=next_npc_type,canafis_werewolf_man3
 param=death_drop,wolf_bones
+category=canafis_citizen
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2615
 
 [canafis_woman1]
 name=Woman
@@ -151,14 +160,14 @@ op1=Talk-to
 vislevel=24
 head1=model_113_idk_head
 head2=npc_1027_head
-attack=10
-defence=10
-strength=10
-hitpoints=60
-respawnrate=50
 wanderrange=5
 maxrange=20
-category=canafis_citizen
+respawnrate=50
+hitpoints=60
+attack=10
+strength=10
+defence=10
+param=damagetype,^crush_style
 param=stabdefence,-21
 param=slashdefence,-21
 param=crushdefence,-21
@@ -169,6 +178,9 @@ param=defend_sound,half_werewolf_hit
 param=death_sound,half_werewolf_death
 param=next_npc_type,canafis_werewolf_woman1
 param=death_drop,wolf_bones
+category=canafis_citizen
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2621
 
 [canafis_woman2]
 name=Woman
@@ -194,14 +206,14 @@ op1=Talk-to
 vislevel=24
 head1=model_103_idk_head
 head2=npc_1027_head
-attack=10
-defence=10
-strength=10
-hitpoints=60
-respawnrate=50
 wanderrange=5
 maxrange=20
-category=canafis_citizen
+respawnrate=50
+hitpoints=60
+attack=10
+strength=10
+defence=10
+param=damagetype,^crush_style
 param=stabdefence,-21
 param=slashdefence,-21
 param=crushdefence,-21
@@ -212,6 +224,9 @@ param=defend_sound,half_werewolf_hit
 param=death_sound,half_werewolf_death
 param=next_npc_type,canafis_werewolf_woman2
 param=death_drop,wolf_bones
+category=canafis_citizen
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2622
 
 [canafis_woman3]
 name=Woman
@@ -243,14 +258,14 @@ vislevel=24
 head1=model_115_idk_head
 head2=model_131_npc_head
 head3=npc_1027_head
-attack=10
-defence=10
-strength=10
-hitpoints=60
-respawnrate=50
 wanderrange=5
 maxrange=20
-category=canafis_citizen
+respawnrate=50
+hitpoints=60
+attack=10
+strength=10
+defence=10
+param=damagetype,^crush_style
 param=stabdefence,-21
 param=slashdefence,-21
 param=crushdefence,-21
@@ -261,6 +276,9 @@ param=defend_sound,half_werewolf_hit
 param=death_sound,half_werewolf_death
 param=next_npc_type,canafis_werewolf_woman3
 param=death_drop,wolf_bones
+category=canafis_citizen
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2623
 
 [canafis_werewolf_man1]
 name=Wolfman
@@ -278,13 +296,12 @@ readyanim=werewolf_ready
 desc=Eek! A werewolf!
 op2=Attack
 vislevel=88
-attack=70
-defence=70
-strength=70
-hitpoints=100
 wanderrange=5
 maxrange=20
-category=werewolf
+hitpoints=100
+attack=70
+strength=70
+defence=70
 param=damagetype,^slash_style
 param=magicdefence,60
 param=attack_anim,werewolf_attack
@@ -294,6 +311,9 @@ param=attack_sound,wolf_attack
 param=defend_sound,wolf_hit
 param=death_sound,wolf_death
 param=death_drop,wolf_bones
+category=werewolf
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2593
 
 [canafis_werewolf_man2]
 name=Wolfman
@@ -311,13 +331,12 @@ readyanim=werewolf_ready
 desc=Eek! A werewolf!
 op2=Attack
 vislevel=88
-attack=70
-defence=70
-strength=70
-hitpoints=100
 wanderrange=5
 maxrange=20
-category=werewolf
+hitpoints=100
+attack=70
+strength=70
+defence=70
 param=damagetype,^slash_style
 param=magicdefence,60
 param=attack_anim,werewolf_attack
@@ -327,6 +346,9 @@ param=attack_sound,wolf_attack
 param=defend_sound,wolf_hit
 param=death_sound,wolf_death
 param=death_drop,wolf_bones
+category=werewolf
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2594
 
 [canafis_werewolf_man3]
 name=Wolfman
@@ -344,13 +366,12 @@ readyanim=werewolf_ready
 desc=Eek! A werewolf!
 op2=Attack
 vislevel=88
-attack=70
-defence=70
-strength=70
-hitpoints=100
 wanderrange=5
 maxrange=20
-category=werewolf
+hitpoints=100
+attack=70
+strength=70
+defence=70
 param=damagetype,^slash_style
 param=magicdefence,60
 param=attack_anim,werewolf_attack
@@ -360,6 +381,9 @@ param=attack_sound,wolf_attack
 param=defend_sound,wolf_hit
 param=death_sound,wolf_death
 param=death_drop,wolf_bones
+category=werewolf
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2595
 
 [canafis_werewolf_woman1]
 name=Wolfwoman
@@ -379,13 +403,12 @@ readyanim=werewolf_ready
 desc=Eek! A werewolf!
 op2=Attack
 vislevel=88
-attack=70
-defence=70
-strength=70
-hitpoints=100
 wanderrange=5
 maxrange=20
-category=werewolf
+hitpoints=100
+attack=70
+strength=70
+defence=70
 param=damagetype,^slash_style
 param=magicdefence,60
 param=attack_anim,werewolf_attack
@@ -395,6 +418,9 @@ param=attack_sound,wolf_attack
 param=defend_sound,wolf_hit
 param=death_sound,wolf_death
 param=death_drop,wolf_bones
+category=werewolf
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2601
 
 [canafis_werewolf_woman2]
 name=Wolfwoman
@@ -414,13 +440,12 @@ readyanim=werewolf_ready
 desc=Eek! A werewolf!
 op2=Attack
 vislevel=88
-attack=70
-defence=70
-strength=70
-hitpoints=100
 wanderrange=5
 maxrange=20
-category=werewolf
+hitpoints=100
+attack=70
+strength=70
+defence=70
 param=damagetype,^slash_style
 param=magicdefence,60
 param=attack_anim,werewolf_attack
@@ -430,6 +455,9 @@ param=attack_sound,wolf_attack
 param=defend_sound,wolf_hit
 param=death_sound,wolf_death
 param=death_drop,wolf_bones
+category=werewolf
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2602
 
 [canafis_werewolf_woman3]
 name=Wolfwoman
@@ -451,13 +479,12 @@ readyanim=werewolf_ready
 desc=Eek! A werewolf!
 op2=Attack
 vislevel=88
-attack=70
-defence=70
-strength=70
-hitpoints=100
 wanderrange=5
 maxrange=20
-category=werewolf
+hitpoints=100
+attack=70
+strength=70
+defence=70
 param=damagetype,^slash_style
 param=magicdefence,60
 param=attack_anim,werewolf_attack
@@ -467,6 +494,9 @@ param=attack_sound,wolf_attack
 param=defend_sound,wolf_hit
 param=death_sound,wolf_death
 param=death_drop,wolf_bones
+category=werewolf
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2603
 
 [werewolfroadblocker]
 name=Man
@@ -649,3 +679,4 @@ minimap=no
 ambient=70
 contrast=70
 wanderrange=5
+moverestrict=blocked
