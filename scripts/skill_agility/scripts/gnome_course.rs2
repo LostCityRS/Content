@@ -88,6 +88,6 @@ if(calc(%gnome_course_progress + 1) >= $completed) {
     %gnome_course_progress = $completed;
 }
 if(%gnome_course_progress = 7) {
-    stat_advance(agility, 450); //https://web.archive.org/web/20051210041044/http://runehq.com/RHQSkillsView.php?id=00448 thinks it was 45xp, not 39
+    stat_advance(agility, 390);
     %gnome_course_progress = 0;
 }
