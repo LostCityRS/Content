@@ -41,7 +41,7 @@ mes("where you were.");
 ~initalltabs;
 ~macro_events_varps_reset;
 
-[ai_timer,npc_1056]
+[ai_timer,macro_mime]
 def_int $count = divide(modulo(map_clock, multiply(16,2)), 2);
 if($count = 0) {
     npc_facesquare(movecoord(npc_coord, 0, 0, -1));
@@ -112,7 +112,7 @@ if_close;
 anim($anim, 0);
 
 def_int $curr_emote = random(8);
-if (npc_find(0_31_74_27_26, npc_1056, 1, 0) = true) {
+if (npc_find(0_31_74_27_26, macro_mime, 1, 0) = true) {
     $curr_emote = %npc_int;
 }
 

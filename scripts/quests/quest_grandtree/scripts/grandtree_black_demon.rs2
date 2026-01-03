@@ -1,18 +1,18 @@
-[opnpc2,grandtree_black_demon]
+[opnpc2,grandtree_blackdemon]
 if (%npc_aggressive_player ! uid) {
     mes("It's not after you...");
     return;
 }
 @player_combat_start;
 
-[apnpc2,grandtree_black_demon] 
+[apnpc2,grandtree_blackdemon] 
 if (%npc_aggressive_player ! uid) {
     mes("It's not after you...");
     return;
 }
 @player_combat_start_ap;
 
-[ai_timer,grandtree_black_demon]
+[ai_timer,grandtree_blackdemon]
 if(finduid(%npc_aggressive_player) = false) {
     npc_del;
     return;
@@ -21,7 +21,7 @@ if(distance(coord, npc_coord) > 17) {
     npc_del;
 }
 
-[ai_queue3,grandtree_black_demon]
+[ai_queue3,grandtree_blackdemon]
 if(npc_findhero = ^true) {
     // queued, no if_close
     if(%grandtree = ^grandtree_unlocked_trapdoor) {

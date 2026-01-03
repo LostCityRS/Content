@@ -100,13 +100,12 @@ param=stabdefence,9
 param=slashdefence,8
 param=crushdefence,10
 param=damagetype,^slash_style
-param=defend_sound,female_hit
-param=death_sound,female_death
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_slash
 category=bandit_camp_leader
-// osrs stats and Vislvl match 1:1
+// this npc havent female_hit or female_death sound...
+// osrs stats and Vislvl match 1:1 //254
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_301
 
 [donny_the_lad]
@@ -150,7 +149,7 @@ param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_slash
 category=bandit_camp_leader
-// osrs stats and Vislvl match 1:1
+// osrs stats and Vislvl match 1:1 //254
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_302
 
 [speedy_keith]
@@ -194,7 +193,7 @@ param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_slash
 category=bandit_camp_leader
-// osrs stats and Vislvl match 1:1
+// osrs stats and Vislvl match 1:1 //254
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_303
 
 [brawling_bandit]
@@ -236,7 +235,7 @@ param=defend_anim,human_sword_def
 param=attack_sound,stabsword_stab
 huntmode=cowardly
 huntrange=6
-// Stats match osrs version but our version Vislvl is different.
+// osrs stats and Vislvl match 1:1 //254
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1026
 
 [guard_bandit]
@@ -280,8 +279,9 @@ param=damagetype,^stab_style
 param=attack_anim,human_sword_stab
 param=defend_anim,human_sword_def
 param=attack_sound,stabsword_stab
+param=defend_sound,brassclash
 huntmode=ranged
 huntrange=1
 attackrange=1
-// Stats match osrs version but our version Vislvl is different.
+// osrs stats and Vislvl match 1:1 //254
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1027
