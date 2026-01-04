@@ -98,7 +98,7 @@ if (stat(slayer) < enum(int, int, slayer_req, npc_param(slayer_category))) {
 }
 return(true);
 
-// version of this has no period, used for crumble undead?
+// mage arena and crumble undead use this for no discenerable reason
 [proc,player_in_combat_check2]()(boolean)
 if (map_multiway(npc_coord) = false) {
     // "I'm already under attack" with no period:
