@@ -66,7 +66,7 @@ mes("The ladder is broken, I can't climb it."); // osrs
 // https://cdn.discordapp.com/attachments/917979227926695979/1332908385456361536/found-old-drive-with-rsdemon-and-some-screenshots-v0-s3lvaq7glqzd1.png?ex=679a42eb&is=6798f16b&hm=a9ec282375ac60ae6ff623484e38d4ad8a3c97423addf386ef5fb28da4e75f8f&
 
 // rat
-[ai_queue3,dragonslayer_giant_rat]
+[ai_queue3,dragonslayer_giantrat]
 gosub(npc_death);
 if (npc_findhero = ^false) {
     return;
