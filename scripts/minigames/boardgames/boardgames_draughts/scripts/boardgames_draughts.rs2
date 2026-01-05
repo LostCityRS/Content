@@ -417,8 +417,13 @@ return (true);
 if (.finduid(%duel2accept) = false) {
     return;
 }
-%boardgames_numturns = add(%boardgames_numturns, 1);
-.%boardgames_numturns = add(.%boardgames_numturns, 1);
+if(%boardgames_numturns < 4) {
+    %boardgames_numturns = add(%boardgames_numturns, 1);
+    .%boardgames_numturns = add(.%boardgames_numturns, 1);
+}
+%boardgames_drawrequested = 0;
+.%boardgames_drawrequested = 0;
+
 if (%boardgames_myturn = 1) {
     %boardgames_myturn = 0;
     .%boardgames_myturn = 1;
@@ -436,11 +441,13 @@ if_settext(boardgames_draughts:status1, "");
 if_settext(boardgames_draughts:winner, "");
 if_setanim(boardgames_draughts:sandtimer, null);
 if_setanim(boardgames_draughts:sandtimer, ~get_sandtimer_seq);
+if_settext(boardgames_draughts:status2, "");
 
 .if_settext(boardgames_draughts:status1, "");
 .if_settext(boardgames_draughts:winner, "");
 .if_setanim(boardgames_draughts:sandtimer, null);
 .if_setanim(boardgames_draughts:sandtimer, ~get_sandtimer_seq);
+.if_settext(boardgames_draughts:status2, "");
 
 def_obj $p2_rune = ~get_boardgames_player_rune(.%boardgames_piece);
 def_obj $p2_king = ~get_draughts_king(.%boardgames_piece);
@@ -621,8 +628,8 @@ inv_movetoslot(boardgames_boardinv, boardgames_boardinv, $last_slot, $last_targe
 
 def_int $row = divide($last_targetslot, 8);
 def_int $col = modulo($last_targetslot, 8);
-def_int $x = multiply($col, ^board_tile_size);
-def_int $y = multiply($row, ^board_tile_size);
+def_int $x = multiply($col, ^draughts_tile_size);
+def_int $y = multiply($row, ^draughts_tile_size);
 
 sound_synth(chesspiece_move, 0, 0);
 if_setanim(boardgames_draughts:runeflash, null);
@@ -638,8 +645,8 @@ if (.finduid(%duel2accept) = false) {
 
 def_int $row = divide($last_targetslot, 8);
 def_int $col = modulo($last_targetslot, 8);
-def_int $x = multiply($col, ^board_tile_size);
-def_int $y = multiply($row, ^board_tile_size);
+def_int $x = multiply($col, ^draughts_tile_size);
+def_int $y = multiply($row, ^draughts_tile_size);
 
 .sound_synth(chesspiece_move, 0, 0);
 .if_setanim(boardgames_draughts:runeflash, null);
@@ -729,7 +736,6 @@ if (abs(sub($target_col, $start_col)) = 2 & .inv_getobj(boardgames_boardinv, $la
 }
 
 [if_close,boardgames_draughts_view]
-if_openoverlay(boardgames_draughts_overlay);
 %duel2accept = null;
 ~reset_boardgames_varp;
 
@@ -784,7 +790,7 @@ if (.p_finduid(.uid) = false) {
     return;
 }
 
-.p_teleport(movecoord(^draughts_room_coord, ~random_range(-3, 3), 0, ~random_range(-3, 3)));
+.p_teleport(movecoord(^draughts_room_tele_coord, ~random_range(-3, 3), 0, ~random_range(-3, 3)));
 
 if($resigned = true) {
     ~.setup_draughts_view_resign($p1_rank, $p2_rank);    
@@ -795,7 +801,7 @@ if($resigned = true) {
 if (.%boardgames_closemode = ^boardgames_draw) {
     .if_settext(boardgames_draughts_view:winner, "It's a draw!");
     .midi_jingle(^boardgames_draw_jingle, ^boardgames_draw_jingle_millis);
-    if (.%boardgames_closereason = ^boardgames_timeout) {
+    if (.%boardgames_closereason = ^draughts_timeout) {
         .if_settext(boardgames_draughts_view:status1, "Nothing happened for 40 moves.");
     } else {
         .if_settext(boardgames_draughts_view:status1, "A draw was agreed.");
@@ -805,7 +811,7 @@ if (.%boardgames_closemode = ^boardgames_draw) {
 } else if (.%boardgames_closemode = ^boardgames_win) {
     .if_settext(boardgames_draughts_view:winner, "You Win!");
     .midi_jingle(^boardgames_victory_jingle, ^boardgames_victory_jingle_millis);
-    if (.%boardgames_closereason = ^boardgames_normal_end) {
+    if (.%boardgames_closereason = ^draughts_normal_end) {
         .if_settext(boardgames_draughts_view:status1, "Player took all pieces.");
     } else {
         .if_settext(boardgames_draughts_view:status1, "Player resigned.");
@@ -819,7 +825,7 @@ if (.%boardgames_closemode = ^boardgames_draw) {
 } else if (.%boardgames_closemode = ^boardgames_loss) {
     .if_settext(boardgames_draughts_view:winner, "You lose!");
     .midi_jingle(^boardgames_defeat_jingle, ^boardgames_defeat_jingle_millis);
-    if (.%boardgames_closereason = ^boardgames_normal_end) {
+    if (.%boardgames_closereason = ^draughts_normal_end) {
         .if_settext(boardgames_draughts_view:status1, "Player took all pieces.");
     } else {
         .if_settext(boardgames_draughts_view:status1, "Player resigned.");
@@ -840,13 +846,13 @@ if_close;
 if(p_finduid(uid) = false) {
     return;
 }
-p_teleport(movecoord(^draughts_room_coord, ~random_range(-3, 3), 0, ~random_range(-3, 3)));
+p_teleport(movecoord(^draughts_room_tele_coord, ~random_range(-3, 3), 0, ~random_range(-3, 3)));
 ~setup_draughts_view($p1_rank, $p2_rank);
 
 if (%boardgames_closemode = ^boardgames_draw) {
     midi_jingle(^boardgames_draw_jingle, ^boardgames_draw_jingle_millis);
     if_settext(boardgames_draughts_view:winner, "It's a draw!");
-    if (%boardgames_closereason = ^boardgames_timeout) {
+    if (%boardgames_closereason = ^draughts_timeout) {
         if_settext(boardgames_draughts_view:status1, "Nothing happened for 40 moves.");
     } else {
         if_settext(boardgames_draughts_view:status1, "A draw was agreed.");
@@ -855,7 +861,7 @@ if (%boardgames_closemode = ^boardgames_draw) {
 } else if (%boardgames_closemode = ^boardgames_win) {
     midi_jingle(^boardgames_victory_jingle, ^boardgames_victory_jingle_millis);
     if_settext(boardgames_draughts_view:winner, "You win!");
-    if (%boardgames_closereason = ^boardgames_normal_end) {
+    if (%boardgames_closereason = ^draughts_normal_end) {
         if_settext(boardgames_draughts_view:status1, "Player took all pieces.");
     } else {
         if_settext(boardgames_draughts_view:status1, "Player resigned.");
@@ -869,7 +875,7 @@ if (%boardgames_closemode = ^boardgames_draw) {
 } else if (%boardgames_closemode = ^boardgames_loss) {
     midi_jingle(^boardgames_defeat_jingle, ^boardgames_defeat_jingle_millis);
     if_settext(boardgames_draughts_view:winner, "You lose!");
-    if (%boardgames_closereason = ^boardgames_normal_end) {
+    if (%boardgames_closereason = ^draughts_normal_end) {
         if_settext(boardgames_draughts_view:status1, "Player took all pieces.");
     } else {
         if_settext(boardgames_draughts_view:status1, "Player resigned.");
@@ -988,7 +994,7 @@ if (p_finduid(uid) = true) {
 
         ~.draughts_game_end($rank_change, $winner_rank, $loser_rank, true);
 
-        p_teleport(movecoord(^draughts_room_coord, ~random_range(-3, 3), 0, ~random_range(-3, 3)));
+        p_teleport(movecoord(^draughts_room_tele_coord, ~random_range(-3, 3), 0, ~random_range(-3, 3)));
         ~setup_draughts_view_resign($winner_rank, $loser_rank);
         midi_jingle(^boardgames_defeat_jingle, ^boardgames_defeat_jingle_millis);
         if_settext(boardgames_draughts_view:winner, "You lose!");
@@ -1014,11 +1020,11 @@ return (false);
 
 [proc,draughts_process_win]
 %boardgames_closemode = ^boardgames_win;
-%boardgames_closereason = ^boardgames_normal_end;
+%boardgames_closereason = ^draughts_normal_end;
 %boardgames_viewing = 1;
 
 .%boardgames_closemode = ^boardgames_loss;
-.%boardgames_closereason = ^boardgames_normal_end;
+.%boardgames_closereason = ^draughts_normal_end;
 .%boardgames_viewing = 1;
 
 def_int $p1_rank = %boardgames_draughts_rank;
@@ -1043,11 +1049,11 @@ if (%boardgames_rankedgame = 1 & %boardgames_numturns > 3) {
 
 [proc,draughts_process_draw]
 %boardgames_closemode = ^boardgames_draw;
-%boardgames_closereason = ^boardgames_draw_agreed;
+%boardgames_closereason = ^draughts_draw_agreed;
 %boardgames_viewing = 1;
 
 .%boardgames_closemode = ^boardgames_draw;
-.%boardgames_closereason = ^boardgames_draw_agreed;
+.%boardgames_closereason = ^draughts_draw_agreed;
 .%boardgames_viewing = 1;
 
 ~draughts_game_end(0, %boardgames_draughts_rank, .%boardgames_draughts_rank);
@@ -1055,12 +1061,18 @@ if (%boardgames_rankedgame = 1 & %boardgames_numturns > 3) {
 
 [proc,draughts_process_timeout]
 %boardgames_closemode = ^boardgames_draw;
-%boardgames_closereason = ^boardgames_timeout;
+%boardgames_closereason = ^draughts_timeout;
 %boardgames_viewing = 1;
 
 .%boardgames_closemode = ^boardgames_draw;
-.%boardgames_closereason = ^boardgames_timeout;
+.%boardgames_closereason = ^draughts_timeout;
 .%boardgames_viewing = 1;
 
 ~draughts_game_end(0, %boardgames_draughts_rank, .%boardgames_draughts_rank);
 ~.draughts_game_end(0, %boardgames_draughts_rank, .%boardgames_draughts_rank, false);
+
+[zone,0_34_77_16_8]
+if_openoverlay(boardgames_draughts_overlay);
+
+[zoneexit,0_34_77_16_8]
+if_openoverlay(null);

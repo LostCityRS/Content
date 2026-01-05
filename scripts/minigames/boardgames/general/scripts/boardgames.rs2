@@ -1,5 +1,5 @@
 // https://www.youtube.com/watch?v=2J9QHQbIj5I Oldest video I found of gameplay (Nov 2006)
-// TODOS: Challenge room logic (Noteworthy Glitch https://www.youtube.com/watch?v=js7TproAYSY)
+// TODOS: Challenge room logic- Engine update for player appearance (Noteworthy Glitch https://www.youtube.com/watch?v=js7TproAYSY)
 //        Sitting at table & spectate game logic (Noteworthy glitch https://www.youtube.com/watch?v=GxdihzOz03s)
 //        Upstairs high ranked areas
 //        Misc. Doors / ladders / stairs / npcs (bartender)
@@ -96,11 +96,29 @@ if (~in_games_room(coord) = true & ~in_games_room(.coord) = true) {
     // guessing it uses some varp as duel arena challenges
     %duel2accept = .uid;
     if(.%duel2accept ! uid) {
-        if_settext(boardgames_challenge:draughts_rank, "<tostring(%boardgames_draughts_rank)> vs <tostring(.%boardgames_draughts_rank)>");
-        if_settext(boardgames_challenge:runelink_rank, "<tostring(%boardgames_runelink_rank)> vs <tostring(.%boardgames_runelink_rank)>");
-        if_settext(boardgames_challenge:runesquares_rank, "<tostring(%boardgames_runesquares_rank)> vs <tostring(.%boardgames_runesquares_rank)>");
-        if_settext(boardgames_challenge:runeversi_rank, "<tostring(%boardgames_runeversi_rank)> vs <tostring(.%boardgames_runeversi_rank)>");
-        if_openmain(boardgames_challenge);
+        if (inzone(^draughts_room_start_coord, ^draughts_room_end_coord, coord) = true) {
+            %boardgames_game = 0;
+            %boardgames_closinginterface = 1;
+            %boardgames_timepermove = 1;
+            %boardgames_rankedgame = 1;
+            %boardgames_piece = 1;
+            %boardgames_closinginterface = 0;
+            if_openmain(boardgames_draughts_options);
+        } else if (inzone(^runelinks_room_start_coord, ^runelinks_room_end_coord, coord) = true) {
+            %boardgames_game = 1;
+            %boardgames_closinginterface = 1;
+            %boardgames_timepermove = 1;
+            %boardgames_rankedgame = 1;
+            %boardgames_piece = 1;
+            %boardgames_closinginterface = 0;
+            if_openmain(boardgames_runelink_options);
+        } else {
+            if_settext(boardgames_challenge:draughts_rank, "<tostring(%boardgames_draughts_rank)> vs <tostring(.%boardgames_draughts_rank)>");
+            if_settext(boardgames_challenge:runelink_rank, "<tostring(%boardgames_runelink_rank)> vs <tostring(.%boardgames_runelink_rank)>");
+            if_settext(boardgames_challenge:runesquares_rank, "<tostring(%boardgames_runesquares_rank)> vs <tostring(.%boardgames_runesquares_rank)>");
+            if_settext(boardgames_challenge:runeversi_rank, "<tostring(%boardgames_runeversi_rank)> vs <tostring(.%boardgames_runeversi_rank)>");
+            if_openmain(boardgames_challenge);
+        }
     } else {
         %boardgames_game = .%boardgames_game;
         %boardgames_rankedgame = .%boardgames_rankedgame;
