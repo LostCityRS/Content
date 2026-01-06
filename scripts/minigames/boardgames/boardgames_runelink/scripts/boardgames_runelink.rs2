@@ -101,16 +101,20 @@
 ~toggle_boardgames_ranked;
 
 [if_button,boardgames_runelink_options:challenge]
+%boardgames_closinginterface = 1;
 if_close;
-if (.p_finduid(%duel2accept) = false) {
+if (.finduid(%duel2accept) = false) {
+    %boardgames_closinginterface = 0;
     mes("That player is no longer available.");
     return;    
 }
 if (.busy = true) {
+    %boardgames_closinginterface = 0;
     mes("Other player is busy at the moment.");
     return;
 }
 if (~in_games_room(.coord) = false) {
+    %boardgames_closinginterface = 0;
     mes("Other player has left the area.");
     return;
 }
@@ -120,6 +124,7 @@ if(.%duel2accept = uid) {
     ~.init_runelink_boardsetup;
     ~first_runelink_turn;
 } else {
+    %boardgames_closinginterface = 0;
     mes("Sending challenge...");
     ~send_boardgames_challenge_request;
 }
@@ -775,4 +780,10 @@ if ($chosen_column ! -1) {
     if (~test_runelink_move($chosen_column) = true) {
         ~make_runelink_move_for_opponent($chosen_column);
     }
+}
+
+[if_close,boardgames_runelink_options]
+if (%boardgames_closinginterface = 0) {
+    %duel2accept = null;
+    ~reset_boardgames_varp;
 }

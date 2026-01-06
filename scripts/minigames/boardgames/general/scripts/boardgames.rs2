@@ -1,10 +1,10 @@
 // https://www.youtube.com/watch?v=2J9QHQbIj5I Oldest video I found of gameplay (Nov 2006)
-// TODOS: Challenge room logic- Engine update for player appearance (Noteworthy Glitch https://www.youtube.com/watch?v=js7TproAYSY)
+//        https://www.youtube.com/watch?v=js7TproAYSY Skill level bug
 //        Sitting at table & spectate game logic (Noteworthy glitch https://www.youtube.com/watch?v=GxdihzOz03s)
 //        Upstairs high ranked areas
 //        Misc. Doors / ladders / stairs / npcs (bartender)
 [proc,set_boardgames_timepermove](int $time)
-if (.p_finduid(%duel2accept) = false) {
+if (.finduid(%duel2accept) = false) {
     mes("That player is no longer available.");
     if_close;
     return;    
@@ -16,7 +16,7 @@ if(.%duel2accept = uid) {
 }
 
 [proc,set_boardgames_piece](int $piece)
-if (.p_finduid(%duel2accept) = false) {
+if (.finduid(%duel2accept) = false) {
     mes("That player is no longer available.");
     if_close;
     return;    
@@ -28,7 +28,7 @@ if(.%duel2accept = uid & .%boardgames_piece = $piece) {
 }
 
 [proc,toggle_boardgames_ranked]
-if (.p_finduid(%duel2accept) = false) {
+if (.finduid(%duel2accept) = false) {
     mes("That player is no longer available.");
     if_close;
     return;    
@@ -94,24 +94,25 @@ if (.busy = true) {
 
 if (~in_games_room(coord) = true & ~in_games_room(.coord) = true) {
     // guessing it uses some varp as duel arena challenges
-    %duel2accept = .uid;
-    if(.%duel2accept ! uid) {
+
+    if (.%duel2accept ! uid) {
+        %duel2accept = .uid;
         if (inzone(^draughts_room_start_coord, ^draughts_room_end_coord, coord) = true) {
             %boardgames_game = 0;
             %boardgames_closinginterface = 1;
             %boardgames_timepermove = 1;
             %boardgames_rankedgame = 1;
             %boardgames_piece = 1;
-            %boardgames_closinginterface = 0;
             if_openmain(boardgames_draughts_options);
+            %boardgames_closinginterface = 0;
         } else if (inzone(^runelinks_room_start_coord, ^runelinks_room_end_coord, coord) = true) {
             %boardgames_game = 1;
             %boardgames_closinginterface = 1;
             %boardgames_timepermove = 1;
             %boardgames_rankedgame = 1;
             %boardgames_piece = 1;
-            %boardgames_closinginterface = 0;
             if_openmain(boardgames_runelink_options);
+            %boardgames_closinginterface = 0;
         } else {
             if_settext(boardgames_challenge:draughts_rank, "<tostring(%boardgames_draughts_rank)> vs <tostring(.%boardgames_draughts_rank)>");
             if_settext(boardgames_challenge:runelink_rank, "<tostring(%boardgames_runelink_rank)> vs <tostring(.%boardgames_runelink_rank)>");
@@ -120,6 +121,7 @@ if (~in_games_room(coord) = true & ~in_games_room(.coord) = true) {
             if_openmain(boardgames_challenge);
         }
     } else {
+        %duel2accept = .uid;
         %boardgames_game = .%boardgames_game;
         %boardgames_rankedgame = .%boardgames_rankedgame;
         %boardgames_timepermove = .%boardgames_timepermove;
@@ -173,12 +175,12 @@ return(false);
 %if1 = 3;
 
 [if_button,boardgames_challenge:select]
-%boardgames_closinginterface = 1; // Why does this exist?
+%boardgames_closinginterface = 1;
 %boardgames_timepermove = 1;
 %boardgames_rankedgame = 1;
 %boardgames_piece = 1;
-%boardgames_closinginterface = 0;
 ~open_boardgames_options;
+%boardgames_closinginterface = 0;
 
 [proc,get_sandtimer_seq]()(seq)
 switch_int (%boardgames_timepermove) {
@@ -281,3 +283,9 @@ if($rank_change > 100) {
 }
 
 return ($rank_change);
+
+[if_close,boardgames_challenge]
+if (%boardgames_closinginterface = 0) {
+    %duel2accept = null;
+    ~reset_boardgames_varp;
+}

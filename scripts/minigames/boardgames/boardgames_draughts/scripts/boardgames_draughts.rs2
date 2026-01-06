@@ -756,16 +756,20 @@ switch_int ($choice) {
 }
 
 [if_button,boardgames_draughts_options:challenge]
+%boardgames_closinginterface = 1;
 if_close;
-if (.p_finduid(%duel2accept) = false) {
+if (.finduid(%duel2accept) = false) {
+    %boardgames_closinginterface = 0;
     mes("That player is no longer available.");
     return;    
 }
 if (.busy = true) {
+    %boardgames_closinginterface = 0;
     mes("Other player is busy at the moment.");
     return;
 }
 if (~in_games_room(.coord) = false) {
+    %boardgames_closinginterface = 0;
     mes("Other player has left the area.");
     return;
 }
@@ -775,6 +779,7 @@ if(.%duel2accept = uid) {
     ~.init_draughts_boardsetup;
     ~first_draughts_turn;
 } else {
+    %boardgames_closinginterface = 0;
     mes("Sending challenge...");
     ~send_boardgames_challenge_request;
 }
@@ -1080,3 +1085,9 @@ set_skill_level(%boardgames_draughts_rank);
 if_openoverlay(null);
 set_skill_level(0);
 ~update_bas;
+
+[if_close,boardgames_draughts_options]
+if (%boardgames_closinginterface = 0) {
+    %duel2accept = null;
+    ~reset_boardgames_varp;
+}
