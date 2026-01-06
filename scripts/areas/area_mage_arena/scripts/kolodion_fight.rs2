@@ -123,7 +123,7 @@ if (npc_findhero = ^false) {
     // no death anim
     return;
 }
-queue(finish_mage_arena, 0, 0);
+queue(finish_mage_arena, 0);
 npc_delay(0);
 %magearena = ^mage_arena_complete;
 npc_delay(1);
