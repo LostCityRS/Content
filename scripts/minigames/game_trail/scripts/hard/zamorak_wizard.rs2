@@ -30,7 +30,7 @@ if(distance(coord, npc_coord) > 17) { // not 100% sure on this, think it's the s
 
 [ai_queue3,trail_hard]
 if (npc_findhero = ^true) {
-    queue(queue_defeat_trail_hard, 0, 0);
+    queue(queue_defeat_trail_hard, 0);
 }
 gosub(npc_death);
 if (npc_findhero = ^false) {

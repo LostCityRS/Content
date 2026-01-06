@@ -5,7 +5,7 @@ if(npc_findhero = ^true) {
     if(p_finduid(uid) = true) { // get protected access, if not then queue
         @defeat_arena_bouncer;
     }
-    queue(queue_defeat_arena_bouncer, 0, 0); //strongqueue probably
+    queue(queue_defeat_arena_bouncer, 0); //strongqueue probably
 }
 
 [queue,queue_defeat_arena_bouncer]

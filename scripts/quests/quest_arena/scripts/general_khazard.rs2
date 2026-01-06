@@ -106,7 +106,7 @@ if (npc_find(movecoord(coord, 8, 0, 0), general_khazard, 15, 0) = false | ~npc_r
 gosub(npc_death);
 if(npc_findhero = ^true) {
     if_close;
-    queue(queue_defeat_general_khazard, 0, 0);
+    queue(queue_defeat_general_khazard, 0);
 }
 
 [queue,queue_defeat_general_khazard]

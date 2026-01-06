@@ -10,7 +10,7 @@ switch_int(%arenaquest) {
         ~chatnpc("<p,shock>You're alive, I thought Khazard's men had taken you.");
         ~chatnpc("<p,happy>My son and husband are safe and recovering at home. Without you they would certainly be dead. I am truly grateful for your service.");
         ~chatnpc("<p,happy>All I can offer in return is material wealth. Please take these coins as a sign of my gratitude.");
-        queue(arena_quest_complete, 0, 0);
+        queue(arena_quest_complete, 0);
     case ^arena_entered_ogre_fight, ^arena_defeated_ogre, ^arena_sent_jail, ^arena_defeated_scorpion, ^arena_defeated_bouncer :
         ~chatplayer("<p,neutral>Lady Servil. I freed your son, however he has returned to the arena to help your husband.");
         ~chatnpc("<p,shock>Oh no, they won't stand a chance. Please go back and help.");
