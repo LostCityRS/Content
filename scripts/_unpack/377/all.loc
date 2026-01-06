@@ -1067,7 +1067,7 @@ contrast=30
 active=yes
 op1=Open
 category=door_open_and_close
-param=next_loc_stage,loc_1532
+param=next_loc_stage,desertdoor_inactive
 
 [1to2]
 active=yes
@@ -2981,6 +2981,8 @@ desc=I wonder what's inside.
 model=arena_guard_chest_shut
 op1=Open
 forceapproach=north
+category=chest_closed
+param=chest_other,chestopen
 
 [chestclosedgold]
 name=Closed chest
@@ -2990,6 +2992,8 @@ recol1s=10570
 recol1d=17921
 op1=Open
 forceapproach=north
+category=chest_closed
+param=chest_other,chestopen
 
 [shuttwistedchest]
 name=Closed chest
