@@ -1073,6 +1073,10 @@ if (%boardgames_rankedgame = 1 & %boardgames_numturns > 3) {
 
 [zone,0_34_77_16_8]
 if_openoverlay(boardgames_draughts_overlay);
+set_skill_level(%boardgames_draughts_rank);
+~update_bas;
 
 [zoneexit,0_34_77_16_8]
 if_openoverlay(null);
+set_skill_level(0);
+~update_bas;

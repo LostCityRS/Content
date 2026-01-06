@@ -623,9 +623,13 @@ inv_transmit(boardgames_boardinv, boardgames_runelink_view:boardinv);
 
 [zone,0_34_77_40_8]
 if_openoverlay(boardgames_runelink_overlay);
+set_skill_level(%boardgames_runelink_rank);
+~update_bas;
 
 [zoneexit,0_34_77_40_8]
 if_openoverlay(null);
+set_skill_level(0);
+~update_bas;
 
 [if_close,boardgames_runelink_view]
 %duel2accept = null;
