@@ -98,6 +98,31 @@ if (stat(slayer) < enum(int, int, slayer_req, npc_param(slayer_category))) {
 }
 return(true);
 
+// mage arena and crumble undead use this for no discenerable reason
+[proc,player_in_combat_check2]()(boolean)
+if (map_multiway(npc_coord) = false) {
+    // "I'm already under attack" with no period:
+    // - 2004: https://web.archive.org/web/20130303093547/http://img86.exs.cx/img86/271/80mage.jpg
+    if (add(%lastcombat_pvp, 8) > map_clock) {
+        mes("I'm already under attack");
+        return(false);
+    }
+    if (add(%lastcombat, 8) > map_clock & (%aggressive_npc ! npc_uid & %aggressive_npc ! null)) {
+        mes("I'm already under attack");
+        return(false);
+    }
+    // npc has been attacked in the last 8 ticks, and not by the current player
+    if ((add(%npc_lastcombat, 8) > map_clock & %npc_aggressive_player ! uid)) {
+        mes("Someone else is fighting that.");
+        return(false);
+    }
+}
+if (%npc_macro_event_target ! null & %npc_macro_event_target ! uid) {
+    mes("It's not after you."); // https://youtu.be/y58EFTJNIH8
+    return(false);
+}
+return(true);
+
 [proc,player_attackrange](obj $rhand)(int)
 if (~player_autocast_enabled = true){
     return(10);

@@ -1,0 +1,41 @@
+[opheld2,saradomin_cape] if (~check_conflicting_god_staff(zamorak_staff, guthix_staff) = true) ~equip(last_slot);
+[opheld2,zamorak_cape] if (~check_conflicting_god_staff(saradomin_staff, guthix_staff) = true) ~equip(last_slot);
+[opheld2,guthix_cape] if (~check_conflicting_god_staff(saradomin_staff, zamorak_staff) = true) ~equip(last_slot);
+
+[opheld2,saradomin_staff] if (~check_conflicting_god_cape(zamorak_cape, guthix_cape) = true) ~equip(last_slot);
+[opheld2,zamorak_staff] if (~check_conflicting_god_cape(saradomin_cape, guthix_cape) = true) ~equip(last_slot);
+[opheld2,guthix_staff] if (~check_conflicting_god_cape(saradomin_cape, zamorak_cape) = true) ~equip(last_slot);
+
+
+[proc,check_conflicting_god_cape](namedobj $item1, namedobj $item2)(boolean)
+if (inv_total(worn, $item1) > 0 | inv_total(worn, $item2) > 0) {
+    mes("You may not wield this staff whilst wearing the cape of another god.");
+    mes("The conflicting powers of staff and cape drive them apart.");
+    return(false);
+}
+return(true);
+
+[proc,check_conflicting_god_staff](namedobj $item1, namedobj $item2)(boolean)
+if (inv_total(worn, $item1) > 0 | inv_total(worn, $item2) > 0) {
+    mes("You may not wear this cape whilst wielding the staff of another god.");
+    mes("The conflicting powers of staff and cape drive them apart.");
+    return(false);
+}
+return(true);
+
+[opheld5,saradomin_cape] @drop_god_cape;
+[opheld5,zamorak_cape] @drop_god_cape;
+[opheld5,guthix_cape] @drop_god_cape;
+
+[label,drop_god_cape]
+inv_delslot(inv, last_slot);
+sound_synth(put_down, 0, 0);
+mes(oc_param(last_item, lose_cape_message)); // https://youtu.be/tOUAeowTkCM?list=PLn23LiLYLb1Y4vxMPWXM-CVEvOUfuAP_o&t=140
+
+[opobj3,_armour_godcape]
+if (~obj_gettotalcat(armour_godcape) > 0) {
+    mes("You may only possess one sacred cape at a time."); // https://youtu.be/fJVqiCdunZw?list=PLn23LiLYLb1Y4vxMPWXM-CVEvOUfuAP_o&t=2
+    mes("The conflicting powers of the capes drive them apart.");
+    return;
+}
+@pickup_obj;

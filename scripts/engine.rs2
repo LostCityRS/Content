@@ -378,6 +378,10 @@
 [command,queue](queue $queue, int $delay) // + args
 // info: Queue a script on the secondary player
 [command,.queue](queue $queue, int $delay) // + args
+// info: Queue a script on the player (var args)
+[command,queue*](queue $queue, int $delay)
+// info: Queue a script on the secondary player (var args)
+[command,.queue*](queue $queue, int $delay)
 // info: Long queue a script on a player with special behavior if it hasn't ran by the time the player logs out
 [command,longqueue](queue $queue, int $delay, int $logout_action) // + args
 // info: Long queue a script on a secondary player with special behavior if it hasn't ran by the time the player logs out
