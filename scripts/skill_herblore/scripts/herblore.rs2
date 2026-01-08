@@ -1,0 +1,27 @@
+/** Identify herb and give experience. */
+[proc,identify_herb](namedobj $identified_herb, int $slot)
+def_int $experience = oc_param($identified_herb, identified_herb_exp);
+def_string $message = oc_param($identified_herb, identified_herb_message);
+inv_setslot(inv, $slot, $identified_herb, 1);
+mes($message); // https://youtu.be/RVnSlXYGPe0?t=72
+stat_advance(herblore, $experience);
+
+/** Brew a potion. */
+[proc,brew_potion](struct $struct, namedobj $ingredient, namedobj $solvent, string $message, namedobj $mixture, int $experience)
+inv_del(inv, $ingredient, 1);
+inv_del(inv, $solvent, 1);
+// There is always a guaranteed slot available.
+inv_add(inv, $mixture, 1);
+// https://youtu.be/S6P-hUzgqPw?t=1
+mes($message);
+anim(human_herbing_vial, 0);
+sound_synth(grind, 0, 0);
+stat_advance(herblore, $experience);
+
+/** Grind a herblore ingredient. */
+[proc,grind_ingredient](obj $grindable, namedobj $refined, string $message, int $slot)
+inv_setslot(inv, $slot, $refined, 1);
+// https://youtu.be/QUWaqEBTrCE?t=107
+mes($message);
+anim(human_herbing_grind, 0);
+sound_synth(grind, 0, 0);
