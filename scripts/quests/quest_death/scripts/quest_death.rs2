@@ -9,7 +9,7 @@ p_teleport(0_44_55_42_57);
 [oploc1,death_harold_door]
 def_boolean $leaving = ~check_axis(coord, loc_coord, loc_angle);
 if($leaving = false) {
-    ~open_and_close_door2(loc_1535, $leaving, nicedoor_open);
+    ~open_and_close_door2(poordoor, $leaving, nicedoor_open);
     return;
 }
 if(%death_equiproom < ^death_spoken_headservant) { 
@@ -21,7 +21,7 @@ sound_synth(knock_knock, 0, 0);
 if(npc_find(coord, death_guard_equiproom, 7, 0) = true) {
     ~chatnpc("<p,neutral>Come in!");
     if_close;
-    ~open_and_close_door2(loc_1535, $leaving, nicedoor_open);
+    ~open_and_close_door2(poordoor, $leaving, nicedoor_open);
 }
 
 [opheld1,death_iou]
