@@ -1525,7 +1525,6 @@ param=death_drop,dragon_bones
 huntmode=cowardly
 huntrange=4
 // osrs stats and Vislvl match 1:1 //254
-// tarkista animaatiot osrs käyttää 2 melee hyökkäystä
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_265
 
 [dryhad]
@@ -2476,13 +2475,14 @@ param=damagetype,^slash_style
 param=attack_anim,skeleton_attack
 param=defend_anim,skeleton_block
 param=death_anim,skeleton_death
-param=attack_sound,skeleton_attack
+param=attack_sound,stabsword_slash
 param=defend_sound,skelly_hit
 param=death_sound,skeleton_death
 param=undead,^true
 huntmode=cowardly
 // huntrange: https://youtu.be/bU8sQbojKH4?list=PLn23LiLYLb1aqrojPTi1_Np81LJku2Nd0&t=127
 huntrange=1
+// osrs attack_sound hacksword_slash
 // stats and Vislvl match 1:1 //254
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_77
 
@@ -2515,13 +2515,14 @@ param=damagetype,^slash_style
 param=attack_anim,skeleton_attack
 param=defend_anim,skeleton_block
 param=death_anim,skeleton_death
-param=attack_sound,skeleton_attack
+param=attack_sound,stabsword_slash
 param=defend_sound,skelly_hit
 param=death_sound,skeleton_death
 param=undead,^true
 huntmode=cowardly
 // huntrange: https://youtu.be/bU8sQbojKH4?list=PLn23LiLYLb1aqrojPTi1_Np81LJku2Nd0&t=127
 huntrange=1
+// attack sound https://www.youtube.com/watch?v=pQhPABFP228
 // osrs stats and Vislvl match 1:1 //254
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_82
 
@@ -3055,7 +3056,7 @@ param=death_drop,big_bones
 huntmode=cowardly
 huntrange=2
 // osrs stats and Vislvl match 1:1 //254
-// tarkista äänet
+// osrs attack_sound fire_giant_attack
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2078
 
 [icegiant]
@@ -3093,7 +3094,6 @@ param=death_drop,big_bones
 huntmode=cowardly
 huntrange=2
 // Stats match osrs version but our version Vislvl is different. //254
-// tarkista äänet
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2085
 
 [mossgiant]
@@ -3315,9 +3315,9 @@ param=death_anim,dwarf_death
 param=attack_sound,warhammer_crush
 // param=defend_sound, TODO
 // param=death_sound, TODO
-// osrs sounds dwarf_hit, dwarf_death
 huntmode=cowardly
 huntrange=1
+// osrs sounds dwarf_hit, dwarf_death
 // osrs stats and Vislvl match 1:1 //254
 // TODO Try to find out what sounds dwarf used as defend and death sounds in 2004-2005.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_291
@@ -3747,14 +3747,13 @@ param=attack_anim,unicorn_attack
 param=defend_anim,unicorn_block
 param=death_anim,unicorn_death
 // param=attack_sound,cow_attack
-param=attack_sound,horse_hit
+param=attack_sound,cow_attack
 param=defend_sound,horse_hit
 huntmode=cowardly
 huntrange=2
 // param=retreat, TODO
 category=unicorn
 // osrs stats and Vislvl match 1:1 //254
-// tarkista myöhemmin
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_2849
 
 [poisonspider]
@@ -5645,7 +5644,6 @@ model9=model_566_obj_wear
 head1=model_107_npc_head
 wanderrange=3
 param=damagetype,^slash_style
-param=death_sound,female_death
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3955
 
 [suit_of_armour]
@@ -5944,7 +5942,7 @@ huntrange=4
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_260
 // and this variation have old stats npc_13010
 
-[cow3]
+[cow_beef]
 size=2
 walkanim=cow_walk
 readyanim=cow_ready

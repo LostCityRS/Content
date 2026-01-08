@@ -56,6 +56,7 @@ vislevel=hide
 resizeh=118
 resizev=118
 head1=model_67_idk_head
+wanderrange=2
 
 [troll_general]
 name=Troll General
@@ -101,12 +102,13 @@ param=damagetype,^slash_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_champion_attack
-param=defend_sound,troll_champion_hit
-param=defend_sound,troll_champion_death
+param=attack_sound,2H_crush
+param=defend_sound,troll_hit
+param=death_sound,troll_death
 huntmode=cowardly
 huntrange=1
 param=death_drop,big_bones
+// osrs sounds 2H_crush stone_armour3 troll_death
 
 [troll_general2]
 name=Troll General
@@ -152,12 +154,13 @@ param=damagetype,^slash_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_champion_attack
-param=defend_sound,troll_champion_hit
-param=defend_sound,troll_champion_death
+param=attack_sound,warhammer_crush
+param=defend_sound,troll_hit
+param=death_sound,troll_death
 huntmode=cowardly
 huntrange=1
 param=death_drop,big_bones
+// osrs sounds warhammer_crush stone_armour3 troll_death
 
 [troll_general3]
 name=Troll General
@@ -203,12 +206,13 @@ param=damagetype,^slash_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_champion_attack
-param=defend_sound,troll_champion_hit
-param=defend_sound,troll_champion_death
+param=attack_sound,mace_crush
+param=defend_sound,troll_hit
+param=death_sound,troll_death
 huntmode=cowardly
 huntrange=1
 param=death_drop,big_bones
+// osrs sounds mace_crush stone_armour3 troll_death
 
 [troll_spectator1]
 name=Troll Spectator
@@ -230,8 +234,8 @@ resizev=134
 op2=Attack
 vislevel=71
 wanderrange=0
+maxrange=50
 timer=10
-category=troll_spectator
 respawnrate=100
 hitpoints=90
 attack=40
@@ -239,19 +243,22 @@ strength=90
 defence=25
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,mace_crush
 param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=death_drop,big_bones
+category=troll_spectator
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_spectator2]
 name=Troll Spectator
@@ -273,8 +280,8 @@ resizev=128
 op2=Attack
 vislevel=71
 wanderrange=0
+maxrange=50
 timer=10
-category=troll_spectator
 respawnrate=100
 hitpoints=90
 attack=40
@@ -282,19 +289,22 @@ strength=90
 defence=25
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,mace_crush
 param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=death_drop,big_bones
+category=troll_spectator
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_spectator3]
 name=Troll Spectator
@@ -317,8 +327,8 @@ resizev=139
 op2=Attack
 vislevel=71
 wanderrange=0
+maxrange=50
 timer=10
-category=troll_spectator
 respawnrate=100
 hitpoints=90
 attack=40
@@ -326,19 +336,22 @@ strength=90
 defence=25
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,mace_crush
 param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=death_drop,big_bones
+category=troll_spectator
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_spectator4]
 name=Troll Spectator
@@ -360,8 +373,8 @@ resizev=134
 op2=Attack
 vislevel=71
 wanderrange=0
+maxrange=50
 timer=10
-category=troll_spectator
 respawnrate=100
 hitpoints=90
 attack=40
@@ -369,19 +382,22 @@ strength=90
 defence=25
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,mace_crush
 param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=death_drop,big_bones
+category=troll_spectator
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_spectator5]
 name=Troll Spectator
@@ -404,8 +420,8 @@ resizev=138
 op2=Attack
 vislevel=71
 wanderrange=0
+maxrange=50
 timer=10
-category=troll_spectator
 respawnrate=100
 hitpoints=90
 attack=40
@@ -413,19 +429,22 @@ strength=90
 defence=25
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,mace_crush
 param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=death_drop,big_bones
+category=troll_spectator
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_spectator6]
 name=Troll Spectator
@@ -445,8 +464,8 @@ resizev=125
 op2=Attack
 vislevel=71
 wanderrange=0
+maxrange=50
 timer=10
-category=troll_spectator
 respawnrate=100
 hitpoints=90
 attack=40
@@ -454,19 +473,22 @@ strength=90
 defence=25
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,mace_crush
 param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=death_drop,big_bones
+category=troll_spectator
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_spectator7]
 name=Troll Spectator
@@ -488,8 +510,8 @@ resizev=134
 op2=Attack
 vislevel=71
 wanderrange=0
+maxrange=50
 timer=10
-category=troll_spectator
 respawnrate=100
 hitpoints=90
 attack=40
@@ -497,19 +519,22 @@ strength=90
 defence=25
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,mace_crush
 param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=death_drop,big_bones
+category=troll_spectator
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_champion]
 name=Dad
@@ -533,18 +558,19 @@ op2=Attack
 vislevel=101
 head1=npc_1125_head
 head2=npc_1125_headi2
+wanderrange=0
 maxrange=25
 timer=1
 respawnrate=100
-hitpoints=90
+hitpoints=120
 attack=60
 strength=120
 defence=50
 magic=0
 ranged=0
+param=attackrate,8
 param=attackbonus,40
 param=strengthbonus,70
-param=attackrate,8
 param=stabdefence,25
 param=slashdefence,25
 param=crushdefence,40
@@ -554,11 +580,14 @@ param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
-param=defend_sound,troll_hit
-param=death_sound,troll_death
+param=attack_sound,troll_champion_attack
+param=defend_sound,troll_champion_hit
+param=death_sound,troll_champion_death
 param=death_drop,big_bones
 regenrate=10
+// death anim and death sound taken from nightmarezone..
+// TODO Confirm maxrange= The maxrange measured by The Sudden Silent would be around 30.
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_prison_guard1_awake]
 name=Twig
@@ -585,6 +614,7 @@ resizeh=142
 resizev=142
 op2=Attack
 vislevel=71
+wanderrange=0
 timer=1
 respawnrate=100
 hitpoints=90
@@ -593,20 +623,22 @@ strength=90
 defence=25
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,troll_guard_attack
 param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=death_drop,big_bones
 category=mountain_troll
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_prison_guard2_awake]
 name=Berry
@@ -633,6 +665,7 @@ resizeh=148
 resizev=148
 op2=Attack
 vislevel=71
+wanderrange=0
 timer=1
 respawnrate=100
 hitpoints=90
@@ -641,20 +674,22 @@ strength=90
 defence=25
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,troll_guard_attack
 param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=death_drop,big_bones
 category=mountain_troll
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_prison_guard1]
 name=Twig
@@ -692,20 +727,22 @@ strength=90
 defence=25
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,troll_guard_attack
 param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=death_drop,big_bones
 category=mountain_troll
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_prison_guard2]
 name=Berry
@@ -743,20 +780,22 @@ strength=90
 defence=25
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,troll_guard_attack
 param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=death_drop,big_bones
 category=mountain_troll
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_thrower1]
 name=Thrower Troll
@@ -783,6 +822,7 @@ hitpoints=95
 attack=30
 strength=95
 defence=15
+magic=0
 ranged=60
 param=attackrate,7
 param=magicdefence,200
@@ -796,10 +836,12 @@ param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=proj_launch,troll_rock_launch
 param=proj_travel,troll_rock_travel
+param=death_drop,big_bones
+category=troll_thrower
 huntmode=aggressive_ranged
 huntrange=8
-category=troll_thrower
-param=death_drop,big_bones
+// check maxrange.
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_thrower2]
 name=Thrower Troll
@@ -826,6 +868,7 @@ hitpoints=95
 attack=30
 strength=95
 defence=15
+magic=0
 ranged=60
 param=attackrate,7
 param=magicdefence,200
@@ -839,10 +882,12 @@ param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=proj_launch,troll_rock_launch
 param=proj_travel,troll_rock_travel
+param=death_drop,big_bones
+category=troll_thrower
 huntmode=aggressive_ranged
 huntrange=8
-category=troll_thrower
-param=death_drop,big_bones
+// check maxrange.
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_thrower3]
 name=Thrower Troll
@@ -869,6 +914,7 @@ hitpoints=95
 attack=30
 strength=95
 defence=15
+magic=0
 ranged=60
 param=attackrate,7
 param=magicdefence,200
@@ -882,10 +928,12 @@ param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=proj_launch,troll_rock_launch
 param=proj_travel,troll_rock_travel
+param=death_drop,big_bones
+category=troll_thrower
 huntmode=aggressive_ranged
 huntrange=8
-category=troll_thrower
-param=death_drop,big_bones
+// check maxrange.
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_thrower4]
 name=Thrower Troll
@@ -912,6 +960,7 @@ hitpoints=95
 attack=30
 strength=95
 defence=15
+magic=0
 ranged=60
 param=attackrate,7
 param=magicdefence,200
@@ -925,10 +974,12 @@ param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=proj_launch,troll_rock_launch
 param=proj_travel,troll_rock_travel
+param=death_drop,big_bones
+category=troll_thrower
 huntmode=aggressive_ranged
 huntrange=8
-category=troll_thrower
-param=death_drop,big_bones
+// check maxrange.
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_thrower5]
 name=Thrower Troll
@@ -955,6 +1006,7 @@ hitpoints=95
 attack=30
 strength=95
 defence=15
+magic=0
 ranged=60
 param=attackrate,7
 param=magicdefence,200
@@ -968,10 +1020,12 @@ param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=proj_launch,troll_rock_launch
 param=proj_travel,troll_rock_travel
+param=death_drop,big_bones
+category=troll_thrower
 huntmode=aggressive_ranged
 huntrange=8
-category=troll_thrower
-param=death_drop,big_bones
+// check maxrange.
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_cook]
 name=Cook
@@ -993,6 +1047,7 @@ size=2
 resizeh=132
 resizev=132
 vislevel=hide
+wanderrange=3
 
 [troll_cook2]
 name=Cook
@@ -1012,6 +1067,7 @@ size=2
 resizeh=132
 resizev=132
 vislevel=hide
+wanderrange=3
 
 [troll_cook3]
 name=Cook
@@ -1033,6 +1089,7 @@ size=2
 resizeh=132
 resizev=132
 vislevel=hide
+wanderrange=3
 
 [troll_melee1]
 name=Mountain Troll
@@ -1060,22 +1117,24 @@ strength=90
 defence=25
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,warhammer_crush
 param=defend_sound,troll_hit
 param=death_sound,troll_death
+param=death_drop,big_bones
+category=mountain_troll
 huntmode=cowardly
 huntrange=1
-category=mountain_troll
-param=death_drop,big_bones
+// osrs stats and Vislvl match 1:1 //254
 
 [troll_stronghold_camp_guard]
 name=Mushroom
@@ -1116,6 +1175,7 @@ resizeh=138
 resizev=138
 walkanim=sheep_walk
 readyanim=sheep_ready
+wanderrange=2
 
 [troll_mountain_goat_smaller]
 name=Mountain Goat
@@ -1132,6 +1192,7 @@ resizeh=118
 resizev=118
 walkanim=sheep_walk
 readyanim=sheep_ready
+wanderrange=2
 
 [troll_sguard1]
 name=Guard
@@ -1151,6 +1212,14 @@ readyanim=troll_ready
 resizeh=134
 resizev=134
 vislevel=hide
+defaultmode=patrol
+moverestrict=passthru
+patrol1=0_44_157_34_44,0
+patrol2=0_44_157_43_44,0
+patrol3=0_44_157_43_41,0
+patrol4=0_44_157_34_41,0
+// attack anim 1259
+// attack hit rock_impact
 
 [troll_sguard2]
 name=Guard
@@ -1170,6 +1239,14 @@ readyanim=troll_ready
 resizeh=128
 resizev=128
 vislevel=hide
+defaultmode=patrol
+moverestrict=passthru
+patrol1=0_44_157_34_41,0
+patrol2=0_44_157_34_38,0
+patrol3=0_44_157_39_38,0
+patrol4=0_44_157_39_41,0
+// attack anim 1259
+// attack hit rock_impact
 
 [troll_sguard3]
 name=Guard
@@ -1190,6 +1267,14 @@ readyanim=troll_ready
 resizeh=139
 resizev=139
 vislevel=hide
+defaultmode=patrol
+moverestrict=passthru
+patrol1=0_44_157_39_41,0
+patrol2=0_44_157_39_38,0
+patrol3=0_44_157_43_38,0
+patrol4=0_44_157_43_41,0
+// attack anim 1259
+// attack hit rock_impact
 
 [troll_sguard4]
 name=Guard
@@ -1209,6 +1294,16 @@ readyanim=troll_ready
 resizeh=134
 resizev=134
 vislevel=hide
+defaultmode=patrol
+moverestrict=passthru
+patrol1=0_44_157_34_38,0
+patrol2=0_44_157_38_38,0
+patrol3=0_44_157_38_34,0
+patrol4=0_44_157_36_34,0
+patrol5=0_44_157_36_30,0
+patrol6=0_44_157_34_30,0
+// attack anim 1259
+// attack hit rock_impact
 
 [troll_sguard5]
 name=Guard
@@ -1228,6 +1323,17 @@ readyanim=troll_ready
 resizeh=134
 resizev=134
 vislevel=hide
+defaultmode=patrol
+moverestrict=passthru
+patrol1=0_44_157_45_32,0
+patrol2=0_44_157_47_32,0
+patrol3=0_44_157_44_29,0
+patrol4=0_44_157_45_29,0
+patrol5=0_44_157_48_32,0
+patrol6=0_44_157_48_37,0
+patrol7=0_44_157_45_37,0
+// attack anim 1259
+// attack hit rock_impact
 
 [troll_sguard6]
 name=Guard
@@ -1245,6 +1351,18 @@ readyanim=troll_ready
 resizeh=125
 resizev=125
 vislevel=hide
+defaultmode=patrol
+moverestrict=passthru
+patrol1=0_44_157_39_34,0
+patrol2=0_44_157_36_34,0
+patrol3=0_44_157_36_30,0
+patrol4=0_44_157_34_30,0
+patrol5=0_44_157_34_27,0
+patrol6=0_44_157_37_27,0
+patrol7=0_44_157_37_29,0
+patrol8=0_44_157_39_29,0
+// attack anim 1259
+// attack hit rock_impact
 
 [troll_sguard7]
 name=Guard
@@ -1264,6 +1382,14 @@ readyanim=troll_ready
 resizeh=134
 resizev=134
 vislevel=hide
+defaultmode=patrol
+moverestrict=passthru
+patrol1=0_44_157_42_28,0
+patrol2=0_44_157_42_34,0
+patrol3=0_44_157_39_34,0
+patrol4=0_44_157_39_28,0
+// attack anim 1259
+// attack hit rock_impact
 
 [troll_sguard8]
 name=Guard
@@ -1283,6 +1409,17 @@ readyanim=troll_ready
 resizeh=134
 resizev=134
 vislevel=hide
+defaultmode=patrol
+moverestrict=passthru
+patrol1=0_44_157_48_37,0
+patrol2=0_44_157_48_32,0
+patrol3=0_44_157_45_29,0
+patrol4=0_44_157_44_29,0
+patrol5=0_44_157_47_32,0
+patrol6=0_44_157_45_32,0
+patrol7=0_44_157_45_37,0
+// attack anim 1259
+// attack hit rock_impact
 
 [eadgar_storeroom_guard]
 name=Guard
@@ -1302,6 +1439,9 @@ readyanim=troll_ready
 resizeh=134
 resizev=134
 vislevel=hide
+wanderrange=0
+moverestrict=nomove
+blockwalk=all
 
 [eadgar_troll_chief_cook]
 name=Burntmeat
@@ -1326,3 +1466,5 @@ vislevel=hide
 op1=Talk-to
 head1=npc_1125_head
 head2=model_2930_npc
+wanderrange=0
+moverestrict=nomove

@@ -75,6 +75,7 @@ if (npc_findhero = ^false) {
 obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
 // Drop red key.
 obj_add(npc_coord, redkey, 1, ^lootdrop_duration);
+// https://www.youtube.com/watch?v=cpg5whPm9U4
 
 
 // ghost
@@ -109,7 +110,8 @@ if (npc_findhero = ^false) {
 obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
 // Drop blue key.
 obj_add(npc_coord, bluekey, 1, ^lootdrop_duration);
-
+// The chance of a key dropping from a zombie is not 100% after maze npc graphics update.
+// https://www.youtube.com/watch?v=cpg5whPm9U4
 
 // melzar
 [ai_queue3,melzar_the_mad]

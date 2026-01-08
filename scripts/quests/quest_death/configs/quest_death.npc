@@ -25,6 +25,7 @@ resizev=128
 op1=Talk-to
 vislevel=hide
 head1=model_60_npc_head
+wanderrange=2
 moverestrict=indoors
 
 [death_ig_sergeant_drilling]
@@ -89,8 +90,8 @@ resizev=128
 op1=Talk-to
 vislevel=hide
 head1=model_60_npc_head
+wanderrange=2
 timer=5
-moverestrict=outdoors
 
 [death_ig_solider_drilling]
 name=Soldier
@@ -181,7 +182,6 @@ op1=Talk-to
 op2=Attack
 vislevel=48
 head1=model_60_npc_head
-maxrange=8
 respawnrate=50
 hitpoints=50
 attack=40
@@ -195,10 +195,13 @@ param=slashdefence,23
 param=crushdefence,21
 param=magicdefence,6
 param=rangedefence,14
+param=damagetype,^slash_style
+param=defend_anim,human_unarmedblock
 param=attack_sound,null
 param=defend_sound,null
 param=death_sound,null
-param=damagetype,^slash_style
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4088
 
 [death_ig_solider_sitting1]
 name=Soldier
@@ -418,6 +421,8 @@ param=rangedefence,-12
 param=damagetype,^crush_style
 param=defend_sound,female_hit
 param=death_sound,female_death
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4095
 
 [death_archer1]
 name=Archer
@@ -442,10 +447,9 @@ vislevel=42
 head1=model_32_obj_wear
 head2=model_63_idk_head
 head3=model_80_idk_head
-category=death_archer
 wanderrange=2
+maxrange=4
 attackrange=10
-maxrange=12
 respawnrate=50
 hitpoints=50
 attack=0
@@ -454,6 +458,7 @@ defence=40
 ranged=40
 param=attackrate,6
 param=attackbonus,34
+param=rangebonus,8
 param=stabdefence,39
 param=slashdefence,50
 param=crushdefence,49
@@ -464,6 +469,9 @@ param=attack_anim,human_bow
 param=rangeattack_sound,arrowlaunch2
 param=proj_launch,iron_arrow_launch
 param=proj_travel,iron_arrow_travel
+category=death_archer
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4096
 
 [death_archer2]
 name=Archer
@@ -490,10 +498,9 @@ vislevel=42
 head1=model_32_obj_wear
 head2=model_63_idk_head
 head3=model_80_idk_head
-category=death_archer
 wanderrange=2
+maxrange=4
 attackrange=10
-maxrange=12
 respawnrate=50
 hitpoints=50
 attack=0
@@ -502,6 +509,7 @@ defence=40
 ranged=40
 param=attackrate,6
 param=attackbonus,34
+param=rangebonus,8
 param=stabdefence,39
 param=slashdefence,50
 param=crushdefence,49
@@ -512,6 +520,9 @@ param=attack_anim,human_bow
 param=rangeattack_sound,arrowlaunch2
 param=proj_launch,iron_arrow_launch
 param=proj_travel,iron_arrow_travel
+category=death_archer
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4097
 
 [death_archer_trapped]
 name=Archer
@@ -538,10 +549,9 @@ vislevel=42
 head1=model_32_obj_wear
 head2=model_63_idk_head
 head3=model_80_idk_head
-category=death_archer
 wanderrange=2
+maxrange=4
 attackrange=10
-maxrange=12
 respawnrate=50
 hitpoints=50
 attack=0
@@ -550,6 +560,7 @@ defence=40
 ranged=40
 param=attackrate,6
 param=attackbonus,34
+param=rangebonus,8
 param=stabdefence,39
 param=slashdefence,50
 param=crushdefence,49
@@ -560,6 +571,9 @@ param=attack_anim,human_bow
 param=rangeattack_sound,arrowlaunch2
 param=proj_launch,iron_arrow_launch
 param=proj_travel,iron_arrow_travel
+category=death_archer
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4098
 
 [death_guard1]
 name=Guard
@@ -590,10 +604,10 @@ head1=model_57_obj_wear
 head2=model_80_idk_head
 wanderrange=0
 maxrange=5
+hitpoints=40
 attack=30
 defence=30
 strength=30
-hitpoints=40
 ranged=0
 param=attackrate,6
 param=attackbonus,18
@@ -605,10 +619,13 @@ param=magicdefence,-4
 param=rangedefence,38
 param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
-param=defend_anim,human_blunt_def
+param=defend_anim,human_blunt_block
 param=attack_sound,warhammer_crush
-// defend_sound blade3_mail
+// param=defend_sound TODO
+// osrs defend_sound blade3_mail
 category=death_guard
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4099
 
 [death_guard2]
 name=Guard
@@ -641,10 +658,10 @@ head1=model_57_obj_wear
 head2=model_85_idk_head
 wanderrange=0
 maxrange=5
+hitpoints=40
 attack=30
 defence=30
 strength=30
-hitpoints=40
 ranged=0
 param=attackrate,6
 param=attackbonus,18
@@ -656,10 +673,13 @@ param=magicdefence,-4
 param=rangedefence,38
 param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
-param=defend_anim,human_blunt_def
+param=defend_anim,human_blunt_block
 param=attack_sound,warhammer_crush
-// defend_sound blade3_mail
+// param=defend_sound TODO
+// osrs defend_sound blade2_mail
 category=death_guard
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4100
 
 [death_guard_equiproom]
 name=Harold
@@ -680,6 +700,7 @@ resizev=128
 op1=Talk-to
 vislevel=hide
 head1=model_57_obj_wear
+wanderrange=1
 
 [death_barman]
 name=Tostig
@@ -708,6 +729,7 @@ op3=Trade
 vislevel=hide
 head1=model_55_idk_head
 head2=model_79_idk_head
+wanderrange=1
 category=shop_keeper
 param=owned_shop,death_pub
 param=shop_sell_multiplier,1000
@@ -767,6 +789,7 @@ op1=Talk-to
 op2=Attack
 vislevel=5
 head1=model_53_idk_head
+moverestrict=indoors
 respawnrate=50
 hitpoints=10
 attack=3
@@ -778,6 +801,8 @@ param=crushdefence,-12
 param=magicdefence,-12
 param=rangedefence,-12
 param=damagetype,^crush_style
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4104
 
 [death_smithy]
 name=Dunstan
@@ -859,7 +884,7 @@ op1=Talk-to
 op2=Attack
 vislevel=5
 head1=model_48_npc_head
-category=citizen_burthorpe
+moverestrict=outdoors
 respawnrate=50
 hitpoints=10
 attack=3
@@ -871,6 +896,9 @@ param=crushdefence,-12
 param=magicdefence,-12
 param=rangedefence,-12
 param=damagetype,^crush_style
+category=citizen_burthorpe
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4107
 
 [death_man_outdoors2]
 name=Ocga
@@ -893,7 +921,7 @@ op2=Attack
 vislevel=5
 head1=model_48_npc_head
 head2=model_81_idk_head
-category=citizen_burthorpe
+moverestrict=outdoors
 respawnrate=50
 hitpoints=10
 attack=3
@@ -905,6 +933,9 @@ param=crushdefence,-12
 param=magicdefence,-12
 param=rangedefence,-12
 param=damagetype,^crush_style
+category=citizen_burthorpe
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4108
 
 [death_man_indoors1]
 name=Unferth
@@ -928,9 +959,8 @@ op1=Talk-to
 op2=Attack
 vislevel=6
 head1=model_63_idk_head
-category=citizen_burthorpe
+moverestrict=indoors
 respawnrate=50
-// stats dumped from osrs (transmitted)
 hitpoints=10
 attack=3
 strength=8
@@ -941,6 +971,12 @@ param=crushdefence,-12
 param=magicdefence,-12
 param=rangedefence,-12
 param=damagetype,^crush_style
+category=citizen_burthorpe
+// The NPC has been updated in connection with the tails of two cat quest.
+// And the NPC information has been split into 2 different NPCs and the other one is completely unused.
+// stats dumped from osrs (transmitted)
+// stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4237 / npc_6815
 
 [death_man_indoors2]
 name=Penda
@@ -966,7 +1002,7 @@ op1=Talk-to
 op2=Attack
 vislevel=5
 head1=model_52_idk_head
-category=citizen_burthorpe
+moverestrict=indoors
 respawnrate=50
 hitpoints=10
 attack=3
@@ -978,6 +1014,9 @@ param=crushdefence,-12
 param=magicdefence,-12
 param=rangedefence,-12
 param=damagetype,^crush_style
+category=citizen_burthorpe
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4109
 
 [death_woman_outdoors1]
 name=Hygd
@@ -998,7 +1037,7 @@ op1=Talk-to
 op2=Attack
 vislevel=4
 head1=model_106
-category=citizen_burthorpe
+moverestrict=outdoors
 respawnrate=50
 hitpoints=10
 attack=3
@@ -1012,6 +1051,9 @@ param=rangedefence,-12
 param=damagetype,^crush_style
 param=defend_sound,female_hit
 param=death_sound,female_death
+category=citizen_burthorpe
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4110
 
 [death_woman_outdoors2]
 name=Ceolburg
@@ -1033,7 +1075,7 @@ op1=Talk-to
 op2=Attack
 vislevel=4
 head1=model_106
-category=citizen_burthorpe
+moverestrict=outdoors
 respawnrate=50
 hitpoints=10
 attack=3
@@ -1047,6 +1089,9 @@ param=rangedefence,-12
 param=damagetype,^crush_style
 param=defend_sound,female_hit
 param=death_sound,female_death
+category=citizen_burthorpe
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4111
 
 [death_woman_indoors1]
 name=Hild
@@ -1072,7 +1117,7 @@ op1=Talk-to
 op2=Attack
 vislevel=4
 head1=model_103_idk_head
-category=citizen_burthorpe
+moverestrict=indoors
 respawnrate=50
 hitpoints=10
 attack=3
@@ -1086,6 +1131,9 @@ param=rangedefence,-12
 param=damagetype,^crush_style
 param=defend_sound,female_hit
 param=death_sound,female_death
+category=citizen_burthorpe
+// osrs stats and Vislvl match 1:1 //254 //This NPC can no longer be killed on the OSRS side. + no VisLevel
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4112
 
 [death_growncat_black]
 name=Bob
@@ -1148,8 +1196,12 @@ param=rangedefence,74
 param=damagetype,^slash_style
 param=attack_anim,human_dhsword_chop
 param=defend_anim,human_sword_def
-param=attack_sound,2H_crush
-param=defend_sound,blade3
+param=attack_sound,2H_stab
+// param=defend_sound, TODO
+// osrs defend_sound steel_mail
+// osrs defend anim seq_410
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4114
 
 [death_mountain_goat]
 name=Billy
@@ -1180,6 +1232,7 @@ vislevel=hide
 desc=This beast doesn't need climbing boots.
 walkanim=sheep_walk
 readyanim=sheep_ready
+wanderrange=2
 
 [death_troll_commander]
 name=Rock
@@ -1204,6 +1257,8 @@ resizeh=180
 resizev=180
 op2=Attack
 vislevel=111
+wanderrange=3
+maxrange=5
 respawnrate=100
 hitpoints=140
 attack=70
@@ -1211,7 +1266,6 @@ strength=110
 defence=70
 magic=0
 ranged=0
-category=troll_general
 param=attackbonus,60
 param=strengthbonus,100
 param=stabdefence,35
@@ -1219,15 +1273,19 @@ param=slashdefence,60
 param=crushdefence,35
 param=magicdefence,200
 param=rangedefence,200
-param=damagetype,^crush_style
+param=damagetype,^slash_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
 param=attack_sound,troll_champion_attack
-param=defend_sound,troll_champion_hit
-param=defend_sound,troll_champion_death
-huntrange=1
+param=defend_sound,troll_hit
+param=death_sound,troll_death
 param=death_drop,big_bones
+category=troll_general
+huntmode=cowardly
+huntrange=1
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_925
 
 [death_troll_leuitanant]
 name=Stick
@@ -1248,6 +1306,8 @@ resizeh=185
 resizev=162
 op2=Attack
 vislevel=104
+wanderrange=3
+maxrange=5
 respawnrate=100
 hitpoints=135
 attack=60
@@ -1255,10 +1315,9 @@ strength=110
 defence=60
 magic=0
 ranged=0
-category=troll_general
+param=attackrate,6
 param=attackbonus,50
 param=strengthbonus,80
-param=attackrate,6
 param=stabdefence,30
 param=slashdefence,30
 param=crushdefence,50
@@ -1269,10 +1328,14 @@ param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
 param=attack_sound,troll_champion_attack
-param=defend_sound,troll_champion_hit
-param=defend_sound,troll_champion_death
-huntrange=1
+param=defend_sound,troll_hit
+param=death_sound,troll_death
 param=death_drop,big_bones
+category=troll_general
+huntmode=cowardly
+huntrange=1
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_926
 
 [death_troll_guard1]
 name=Pee Hat
@@ -1295,6 +1358,8 @@ resizeh=174
 resizev=160
 op2=Attack
 vislevel=91
+wanderrange=0
+maxrange=5
 respawnrate=100
 hitpoints=120
 attack=50
@@ -1302,10 +1367,9 @@ strength=100
 defence=50
 magic=0
 ranged=0
-category=troll_general
+param=attackrate,6
 param=attackbonus,40
 param=strengthbonus,70
-param=attackrate,6
 param=stabdefence,25
 param=slashdefence,25
 param=crushdefence,40
@@ -1315,11 +1379,15 @@ param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_champion_attack
-param=defend_sound,troll_champion_hit
-param=defend_sound,troll_champion_death
-huntrange=1
+param=attack_sound,troll_guard_attack
+param=defend_sound,troll_hit
+param=death_sound,troll_death
 param=death_drop,big_bones
+category=troll_general
+huntmode=cowardly
+huntrange=1
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_927
 
 [death_troll_guard2]
 name=Kraka
@@ -1341,6 +1409,8 @@ resizeh=178
 resizev=162
 op2=Attack
 vislevel=91
+wanderrange=0
+maxrange=5
 respawnrate=100
 hitpoints=120
 attack=50
@@ -1348,10 +1418,9 @@ strength=100
 defence=50
 magic=0
 ranged=0
-category=troll_general
+param=attackrate,6
 param=attackbonus,40
 param=strengthbonus,70
-param=attackrate,6
 param=stabdefence,25
 param=slashdefence,25
 param=crushdefence,40
@@ -1361,11 +1430,16 @@ param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_champion_attack
-param=defend_sound,troll_champion_hit
-param=defend_sound,troll_champion_death
-huntrange=1
+param=attack_sound,troll_guard_attack
+param=defend_sound,troll_hit
+param=death_sound,troll_death
 param=death_drop,big_bones
+category=troll_general
+huntmode=cowardly
+huntrange=1
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_928
+
 
 [death_troll_cook1]
 name=Dung
@@ -1387,6 +1461,14 @@ size=2
 resizeh=145
 resizev=145
 vislevel=hide
+defaultmode=none
+moverestrict=nomove
+param=attack_anim,troll_attack
+param=defend_anim,troll_block
+param=death_anim,troll_death
+param=attack_sound,troll_attack
+param=defend_sound,troll_hit
+param=death_sound,troll_death
 
 [death_troll_cook2]
 name=Ash
@@ -1408,6 +1490,14 @@ size=2
 resizeh=132
 resizev=132
 vislevel=hide
+defaultmode=none
+moverestrict=nomove
+param=attack_anim,troll_attack
+param=defend_anim,troll_block
+param=death_anim,troll_death
+param=attack_sound,troll_attack
+param=defend_sound,troll_hit
+param=death_sound,troll_death
 
 [death_troll_thrower1]
 name=Thrower Troll
@@ -1447,10 +1537,12 @@ param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=proj_launch,troll_rock_launch
 param=proj_travel,troll_rock_travel
+param=death_drop,big_bones
+category=troll_thrower
 huntmode=aggressive_ranged
 huntrange=8
-category=troll_thrower
-param=death_drop,big_bones
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_931
 
 [death_troll_thrower2]
 name=Thrower Troll
@@ -1490,10 +1582,12 @@ param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=proj_launch,troll_rock_launch
 param=proj_travel,troll_rock_travel
+param=death_drop,big_bones
+category=troll_thrower
 huntmode=aggressive_ranged
 huntrange=8
-category=troll_thrower
-param=death_drop,big_bones
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_932
 
 [death_troll_thrower3]
 name=Thrower Troll
@@ -1533,10 +1627,12 @@ param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=proj_launch,troll_rock_launch
 param=proj_travel,troll_rock_travel
+param=death_drop,big_bones
+category=troll_thrower
 huntmode=aggressive_ranged
 huntrange=8
-category=troll_thrower
-param=death_drop,big_bones
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_933
 
 [death_troll_thrower4]
 name=Thrower Troll
@@ -1576,10 +1672,12 @@ param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=proj_launch,troll_rock_launch
 param=proj_travel,troll_rock_travel
+param=death_drop,big_bones
+category=troll_thrower
 huntmode=aggressive_ranged
 huntrange=8
-category=troll_thrower
-param=death_drop,big_bones
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_934
 
 [death_troll_thrower5]
 name=Thrower Troll
@@ -1619,10 +1717,12 @@ param=defend_sound,troll_hit
 param=death_sound,troll_death
 param=proj_launch,troll_rock_launch
 param=proj_travel,troll_rock_travel
+param=death_drop,big_bones
+category=troll_thrower
 huntmode=aggressive_ranged
 huntrange=8
-category=troll_thrower
-param=death_drop,big_bones
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_935
 
 [death_troll_melee1]
 name=Mountain Troll
@@ -1650,22 +1750,25 @@ strength=75
 defence=40
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,troll_guard_attack
 param=defend_sound,troll_hit
 param=death_sound,troll_death
+param=death_drop,big_bones
+category=mountain_troll
 huntmode=cowardly
 huntrange=1
-category=mountain_troll
-param=death_drop,big_bones
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_936
+// osrs stats and Vislvl match 1:1 //254
 
 [death_troll_melee2]
 name=Mountain Troll
@@ -1693,22 +1796,25 @@ strength=75
 defence=40
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,troll_guard_attack
 param=defend_sound,troll_hit
 param=death_sound,troll_death
+param=death_drop,big_bones
+category=mountain_troll
 huntmode=cowardly
 huntrange=1
-category=mountain_troll
-param=death_drop,big_bones
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_937
+// osrs stats and Vislvl match 1:1 //254
 
 [death_troll_melee3]
 name=Mountain Troll
@@ -1737,22 +1843,25 @@ strength=75
 defence=40
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,troll_guard_attack
 param=defend_sound,troll_hit
 param=death_sound,troll_death
+param=death_drop,big_bones
+category=mountain_troll
 huntmode=cowardly
 huntrange=1
-category=mountain_troll
-param=death_drop,big_bones
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_938
+// osrs stats and Vislvl match 1:1 //254
 
 [death_troll_melee4]
 name=Mountain Troll
@@ -1780,22 +1889,25 @@ strength=75
 defence=40
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,troll_guard_attack
 param=defend_sound,troll_hit
 param=death_sound,troll_death
+param=death_drop,big_bones
+category=mountain_troll
 huntmode=cowardly
 huntrange=1
-category=mountain_troll
-param=death_drop,big_bones
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_939
+// osrs stats and Vislvl match 1:1 //254
 
 [death_troll_melee5]
 name=Mountain Troll
@@ -1824,22 +1936,25 @@ strength=75
 defence=40
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,troll_guard_attack
 param=defend_sound,troll_hit
 param=death_sound,troll_death
+param=death_drop,big_bones
+category=mountain_troll
 huntmode=cowardly
 huntrange=1
-category=mountain_troll
-param=death_drop,big_bones
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_940
+// osrs stats and Vislvl match 1:1 //254
 
 [death_troll_melee6]
 name=Mountain Troll
@@ -1865,22 +1980,25 @@ strength=75
 defence=40
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,troll_guard_attack
 param=defend_sound,troll_hit
 param=death_sound,troll_death
+param=death_drop,big_bones
+category=mountain_troll
 huntmode=cowardly
 huntrange=1
-category=mountain_troll
-param=death_drop,big_bones
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_941
+// osrs stats and Vislvl match 1:1 //254
 
 [death_troll_melee7]
 name=Mountain Troll
@@ -1908,19 +2026,22 @@ strength=75
 defence=40
 magic=0
 ranged=0
+param=attackrate,6
 param=attackbonus,20
 param=strengthbonus,20
-param=attackrate,6
+param=crushdefence,10
 param=magicdefence,200
 param=rangedefence,200
 param=damagetype,^crush_style
 param=attack_anim,troll_attack
 param=defend_anim,troll_block
 param=death_anim,troll_death
-param=attack_sound,troll_attack
+param=attack_sound,troll_guard_attack
 param=defend_sound,troll_hit
 param=death_sound,troll_death
+param=death_drop,big_bones
+category=mountain_troll
 huntmode=cowardly
 huntrange=1
-category=mountain_troll
-param=death_drop,big_bones
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_942
+// osrs stats and Vislvl match 1:1 //254

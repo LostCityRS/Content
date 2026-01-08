@@ -40,6 +40,7 @@ param=death_anim,triffid_angry_death
 param=death_drop,null
 param=attack_sound,triffid_attack
 param=defend_sound,null
+param=death_sound,null
 // npc has no defend sound at all? or it uses the attack sound also as the defend sound.
 // I'm not sure, try to find out the information. temporary change defendsound -> null
 param=max_dealt,3
@@ -147,24 +148,17 @@ wanderrange=3
 maxrange=3
 // attack rate is 7 ticks https://youtu.be/5NgTccJZh1o
 param=attackrate,7
+param=damagetype,^stab_style
+param=attack_anim,swarm_attack
+param=defend_anim,swarm_block
+param=death_anim,null
 param=attack_sound,swarm_attack
-param=attack_anim,swarm_block
 param=defend_sound,null
-param=defend_anim,swarm_attack
+param=death_sound,null
 param=death_drop,null
 param=combat_xp_multiplier,25
 param=max_dealt,0
-// TODO
-
-// datatodo: rename
-[savage_bird]
-name=Bat
-model1=model_3782
-desc=Annoying flappy thing.
-walkanim=bat_walk
-readyanim=bat_ready
-op2=Attack
-vislevel=27
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_11156
 
 [macro_golemguardian_1]
 name=Rock Golem
@@ -191,14 +185,18 @@ attack=9
 strength=9
 defence=9
 ranged=8
-category=macro_event_rock_golem
 param=attack_anim,golem_attack
 param=defend_anim,golem_block
 param=death_anim,golem_death
-param=attack_sound,golem_attack
-param=defend_sound,golem_hit
-param=death_sound,golem_death
+param=attack_sound,null
+param=defend_sound,null
+param=death_sound,null
 param=death_drop,null
+category=macro_event_rock_golem
+param=combat_xp_multiplier,25
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6725
 
 [macro_golemguardian_2]
 name=Rock Golem
@@ -224,14 +222,18 @@ attack=22
 strength=22
 defence=22
 ranged=20
-category=macro_event_rock_golem
 param=attack_anim,golem_attack
 param=defend_anim,golem_block
 param=death_anim,golem_death
-param=attack_sound,golem_attack
-param=defend_sound,golem_hit
-param=death_sound,golem_death
+param=attack_sound,null
+param=defend_sound,null
+param=death_sound,null
 param=death_drop,null
+category=macro_event_rock_golem
+param=combat_xp_multiplier,25
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6726
 
 [macro_golemguardian_3]
 name=Rock Golem
@@ -257,14 +259,18 @@ attack=38
 strength=38
 defence=38
 ranged=35
-category=macro_event_rock_golem
 param=attack_anim,golem_attack
 param=defend_anim,golem_block
 param=death_anim,golem_death
-param=attack_sound,golem_attack
-param=defend_sound,golem_hit
-param=death_sound,golem_death
+param=attack_sound,null
+param=defend_sound,null
+param=death_sound,null
 param=death_drop,null
+category=macro_event_rock_golem
+param=combat_xp_multiplier,25
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6727
 
 [macro_golemguardian_4]
 name=Rock Golem
@@ -290,14 +296,18 @@ attack=65
 strength=65
 defence=65
 ranged=70
-category=macro_event_rock_golem
 param=attack_anim,golem_attack
 param=defend_anim,golem_block
 param=death_anim,golem_death
-param=attack_sound,golem_attack
-param=defend_sound,golem_hit
-param=death_sound,golem_death
+param=attack_sound,null
+param=defend_sound,null
+param=death_sound,null
 param=death_drop,null
+category=macro_event_rock_golem
+param=combat_xp_multiplier,25
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6728
 
 [macro_golemguardian_5]
 name=Rock Golem
@@ -323,14 +333,18 @@ attack=100
 strength=100
 defence=100
 ranged=75
-category=macro_event_rock_golem
 param=attack_anim,golem_attack
 param=defend_anim,golem_block
 param=death_anim,golem_death
-param=attack_sound,golem_attack
-param=defend_sound,golem_hit
-param=death_sound,golem_death
+param=attack_sound,null
+param=defend_sound,null
+param=death_sound,null
 param=death_drop,null
+category=macro_event_rock_golem
+param=combat_xp_multiplier,25
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6729
 
 [macro_golemguardian_6]
 name=Rock Golem
@@ -356,14 +370,18 @@ attack=130
 strength=130
 defence=130
 ranged=80
-category=macro_event_rock_golem
 param=attack_anim,golem_attack
 param=defend_anim,golem_block
 param=death_anim,golem_death
-param=attack_sound,golem_attack
-param=defend_sound,golem_hit
-param=death_sound,golem_death
+param=attack_sound,null
+param=defend_sound,null
+param=death_sound,null
 param=death_drop,null
+category=macro_event_rock_golem
+param=combat_xp_multiplier,25
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6730
 
 [macro_zombie1]
 minimap=no
@@ -382,7 +400,6 @@ hitpoints=20
 attack=9
 strength=9
 defence=9
-category=macro_event_zombie
 param=damagetype,^crush_style
 param=attack_anim,zombie_attack
 param=defend_anim,zombie_block
@@ -390,10 +407,12 @@ param=death_anim,zombie_death
 param=attack_sound,zombie_attack
 param=defend_sound,zombie_hit
 param=death_sound,zombie_death
+param=death_drop,big_bones
+category=macro_event_zombie
 param=undead,^true
 param=combat_xp_multiplier,25
-param=death_drop,big_bones
 timer=20
+// osrs stats and Vislvl match 1:1 //254
 
 [macro_zombie2]
 minimap=no
@@ -411,7 +430,6 @@ hitpoints=40
 attack=22
 strength=22
 defence=22
-category=macro_event_zombie
 param=damagetype,^crush_style
 param=attack_anim,zombie_attack
 param=defend_anim,zombie_block
@@ -419,10 +437,12 @@ param=death_anim,zombie_death
 param=attack_sound,zombie_attack
 param=defend_sound,zombie_hit
 param=death_sound,zombie_death
+param=death_drop,big_bones
+category=macro_event_zombie
 param=undead,^true
 param=combat_xp_multiplier,25
-param=death_drop,big_bones
 timer=20
+// osrs stats and Vislvl match 1:1 //254
 
 [macro_zombie3]
 minimap=no
@@ -440,7 +460,6 @@ hitpoints=60
 attack=38
 strength=38
 defence=38
-category=macro_event_zombie
 param=damagetype,^crush_style
 param=attack_anim,zombie_attack
 param=defend_anim,zombie_block
@@ -448,10 +467,12 @@ param=death_anim,zombie_death
 param=attack_sound,zombie_attack
 param=defend_sound,zombie_hit
 param=death_sound,zombie_death
+param=death_drop,big_bones
+category=macro_event_zombie
 param=undead,^true
 param=combat_xp_multiplier,25
-param=death_drop,big_bones
 timer=20
+// osrs stats and Vislvl match 1:1 //254
 
 [macro_zombie4]
 minimap=no
@@ -469,7 +490,6 @@ hitpoints=85
 attack=65
 strength=65
 defence=65
-category=macro_event_zombie
 param=damagetype,^crush_style
 param=attack_anim,zombie_attack
 param=defend_anim,zombie_block
@@ -477,10 +497,12 @@ param=death_anim,zombie_death
 param=attack_sound,zombie_attack
 param=defend_sound,zombie_hit
 param=death_sound,zombie_death
+param=death_drop,big_bones
+category=macro_event_zombie
 param=undead,^true
 param=combat_xp_multiplier,25
-param=death_drop,big_bones
 timer=20
+// osrs stats and Vislvl match 1:1 //254
 
 [macro_zombie5]
 minimap=no
@@ -498,7 +520,6 @@ hitpoints=120
 attack=100
 strength=100
 defence=100
-category=macro_event_zombie
 param=damagetype,^crush_style
 param=attack_anim,zombie_attack
 param=defend_anim,zombie_block
@@ -506,10 +527,12 @@ param=death_anim,zombie_death
 param=attack_sound,zombie_attack
 param=defend_sound,zombie_hit
 param=death_sound,zombie_death
+param=death_drop,big_bones
+category=macro_event_zombie
 param=undead,^true
 param=combat_xp_multiplier,25
-param=death_drop,big_bones
 timer=20
+// osrs stats and Vislvl match 1:1 //254
 
 [macro_zombie6]
 minimap=no
@@ -527,7 +550,6 @@ hitpoints=170
 attack=130
 strength=130
 defence=130
-category=macro_event_zombie
 param=damagetype,^crush_style
 param=attack_anim,zombie_attack
 param=defend_anim,zombie_block
@@ -535,10 +557,13 @@ param=death_anim,zombie_death
 param=attack_sound,zombie_attack
 param=defend_sound,zombie_hit
 param=death_sound,zombie_death
+param=death_drop,big_bones
+category=macro_event_zombie
 param=undead,^true
 param=combat_xp_multiplier,25
-param=death_drop,big_bones
 timer=20
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6741
 
 [macro_shade1]
 minimap=no
@@ -572,17 +597,18 @@ hitpoints=25
 attack=9
 strength=9
 defence=9
-category=macro_event_shade
 param=damagetype,^crush_style
 param=attack_anim,human_sword_transslash
 param=defend_anim,human_sword_transdef
 param=death_anim,human_transdeath
-param=attack_sound,ghost_attack
+param=attack_sound,stabsword_slash
 param=defend_sound,ghost_hit
 param=death_sound,ghost_death
 param=death_drop,null
+category=macro_event_shade
 param=undead,^true
 param=combat_xp_multiplier,25
+// osrs stats and Vislvl match 1:1 //254
 
 [macro_shade2]
 minimap=no
@@ -614,17 +640,18 @@ hitpoints=40
 attack=22
 strength=22
 defence=22
-category=macro_event_shade
 param=damagetype,^crush_style
 param=attack_anim,human_sword_transslash
 param=defend_anim,human_sword_transdef
 param=death_anim,human_transdeath
-param=attack_sound,ghost_attack
+param=attack_sound,stabsword_slash
 param=defend_sound,ghost_hit
 param=death_sound,ghost_death
 param=death_drop,null
+category=macro_event_shade
 param=undead,^true
 param=combat_xp_multiplier,25
+// osrs stats and Vislvl match 1:1 //254
 
 [macro_shade3]
 minimap=no
@@ -656,17 +683,18 @@ hitpoints=60
 attack=38
 strength=38
 defence=38
-category=macro_event_shade
 param=damagetype,^crush_style
 param=attack_anim,human_sword_transslash
 param=defend_anim,human_sword_transdef
 param=death_anim,human_transdeath
-param=attack_sound,ghost_attack
+param=attack_sound,stabsword_slash
 param=defend_sound,ghost_hit
 param=death_sound,ghost_death
 param=death_drop,null
+category=macro_event_shade
 param=undead,^true
 param=combat_xp_multiplier,25
+// osrs stats and Vislvl match 1:1 //254
 
 [macro_shade4]
 minimap=no
@@ -698,17 +726,18 @@ hitpoints=85
 attack=65
 strength=65
 defence=65
-category=macro_event_shade
 param=damagetype,^crush_style
 param=attack_anim,human_sword_transslash
 param=defend_anim,human_sword_transdef
 param=death_anim,human_transdeath
-param=attack_sound,ghost_attack
+param=attack_sound,stabsword_slash
 param=defend_sound,ghost_hit
 param=death_sound,ghost_death
 param=death_drop,null
+category=macro_event_shade
 param=undead,^true
 param=combat_xp_multiplier,25
+// osrs stats and Vislvl match 1:1 //254
 
 [macro_shade5]
 minimap=no
@@ -740,17 +769,18 @@ hitpoints=120
 attack=100
 strength=100
 defence=100
-category=macro_event_shade
 param=damagetype,^crush_style
 param=attack_anim,human_sword_transslash
 param=defend_anim,human_sword_transdef
 param=death_anim,human_transdeath
-param=attack_sound,ghost_attack
+param=attack_sound,stabsword_slash
 param=defend_sound,ghost_hit
 param=death_sound,ghost_death
 param=death_drop,null
+category=macro_event_shade
 param=undead,^true
 param=combat_xp_multiplier,25
+// osrs stats and Vislvl match 1:1 //254
 
 [macro_shade6]
 minimap=no
@@ -787,12 +817,15 @@ param=damagetype,^crush_style
 param=attack_anim,human_sword_transslash
 param=defend_anim,human_sword_transdef
 param=death_anim,human_transdeath
-param=attack_sound,ghost_attack
+param=attack_sound,stabsword_slash
 param=defend_sound,ghost_hit
 param=death_sound,ghost_death
 param=death_drop,null
+category=macro_event_shade
 param=undead,^true
 param=combat_xp_multiplier,25
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6740
 
 [macro_watchman1]
 name=Watchman
@@ -821,15 +854,15 @@ hitpoints=20
 attack=9
 strength=9
 defence=9
-// i assume the stats are identical to other random events
-category=macro_event_watchman
+param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
 param=defend_anim,human_blunt_def
 param=attack_sound,mace_crush
 // param=defend_sound, TODO Try to figure out what the original sound was.
-param=damagetype,^crush_style
+// guesses defend_sound blade3_mail (This information is taken from watchman.)
+category=macro_event_watchman
 param=combat_xp_multiplier,25
-// defend_sound blade3_mail
+// i assume the stats are identical to other random events
 // https://storage.googleapis.com/tannerdino/images/watchman.PNG here we can see defend animation.
 
 [macro_watchman2]
@@ -858,14 +891,14 @@ hitpoints=40
 attack=22
 strength=22
 defence=22
-category=macro_event_watchman
+param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
 param=defend_anim,human_blunt_def
 param=attack_sound,mace_crush
-// param=defend_sound, TODO Try to figure out what the original sound was.
-param=damagetype,^crush_style
+// param=defend_sound, TODO
+// guesses defend_sound blade3_mail (This information is taken from watchman.)
+category=macro_event_watchman
 param=combat_xp_multiplier,25
-// defend_sound blade3_mail (This information is taken from watchman.)
 
 [macro_watchman3]
 name=Watchman
@@ -893,14 +926,14 @@ hitpoints=60
 attack=38
 strength=38
 defence=38
-category=macro_event_watchman
+param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
 param=defend_anim,human_blunt_def
 param=attack_sound,mace_crush
-// param=defend_sound, TODO Try to figure out what the original sound was.
-param=damagetype,^crush_style
+// param=defend_sound, TODO
+// guesses defend_sound blade3_mail (This information is taken from watchman.)
+category=macro_event_watchman
 param=combat_xp_multiplier,25
-// defend_sound blade3_mail (This information is taken from watchman.)
 
 [macro_watchman4]
 name=Watchman
@@ -928,14 +961,14 @@ hitpoints=85
 attack=65
 strength=65
 defence=65
-category=macro_event_watchman
+param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
 param=defend_anim,human_blunt_def
 param=attack_sound,mace_crush
-// param=defend_sound, TODO Try to figure out what the original sound was.
-param=damagetype,^crush_style
+// param=defend_sound, TODO
+// guesses defend_sound blade3_mail (This information is taken from watchman.)
+category=macro_event_watchman
 param=combat_xp_multiplier,25
-// defend_sound blade3_mail (This information is taken from watchman.)
 
 [macro_watchman5]
 name=Watchman
@@ -963,14 +996,14 @@ hitpoints=120
 attack=100
 strength=100
 defence=100
-category=macro_event_watchman
+param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
 param=defend_anim,human_blunt_def
 param=attack_sound,mace_crush
-// param=defend_sound, TODO Try to figure out what the original sound was.
-param=damagetype,^crush_style
+// param=defend_sound, TODO
+// guesses defend_sound blade3_mail (This information is taken from watchman.)
+category=macro_event_watchman
 param=combat_xp_multiplier,25
-// defend_sound blade3_mail (This information is taken from watchman.)
 
 [macro_watchman6]
 name=Watchman
@@ -998,14 +1031,14 @@ hitpoints=170
 attack=130
 strength=130
 defence=130
-category=macro_event_watchman
+param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
 param=defend_anim,human_blunt_def
 param=attack_sound,mace_crush
-// param=defend_sound, TODO Try to figure out what the original sound was.
-param=damagetype,^crush_style
+// param=defend_sound, TODO
+// guesses defend_sound blade3_mail (This information is taken from watchman.)
+category=macro_event_watchman
 param=combat_xp_multiplier,25
-// defend_sound blade3_mail (This information is taken from watchman.)
 
 [macro_dryhadguardian_1]
 name=Tree spirit
@@ -1033,7 +1066,6 @@ hitpoints=25
 attack=9
 strength=9
 defence=9
-category=macro_event_dryad
 param=damagetype,^crush_style
 param=attack_anim,dryhad_attack
 param=defend_anim,dryhad_block
@@ -1041,7 +1073,12 @@ param=death_anim,dryhad_death
 param=attack_sound,null
 param=defend_sound,null
 param=death_sound,null
+param=death_drop,null
+category=macro_event_dryad
 param=combat_xp_multiplier,25
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1861
 
 [macro_dryhadguardian_2]
 name=Tree spirit
@@ -1068,7 +1105,6 @@ hitpoints=40
 attack=22
 strength=22
 defence=22
-category=macro_event_dryad
 param=damagetype,^crush_style
 param=attack_anim,dryhad_attack
 param=defend_anim,dryhad_block
@@ -1076,7 +1112,12 @@ param=death_anim,dryhad_death
 param=attack_sound,null
 param=defend_sound,null
 param=death_sound,null
+param=death_drop,null
+category=macro_event_dryad
 param=combat_xp_multiplier,25
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1862
 
 [macro_dryhadguardian_3]
 name=Tree spirit
@@ -1103,7 +1144,6 @@ hitpoints=60
 attack=38
 strength=38
 defence=38
-category=macro_event_dryad
 param=damagetype,^crush_style
 param=attack_anim,dryhad_attack
 param=defend_anim,dryhad_block
@@ -1111,7 +1151,12 @@ param=death_anim,dryhad_death
 param=attack_sound,null
 param=defend_sound,null
 param=death_sound,null
+param=death_drop,null
+category=macro_event_dryad
 param=combat_xp_multiplier,25
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1863
 
 [macro_dryhadguardian_4]
 name=Tree spirit
@@ -1138,7 +1183,6 @@ hitpoints=85
 attack=65
 strength=65
 defence=65
-category=macro_event_dryad
 param=damagetype,^crush_style
 param=attack_anim,dryhad_attack
 param=defend_anim,dryhad_block
@@ -1146,7 +1190,12 @@ param=death_anim,dryhad_death
 param=attack_sound,null
 param=defend_sound,null
 param=death_sound,null
+param=death_drop,null
+category=macro_event_dryad
 param=combat_xp_multiplier,25
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1864
 
 [macro_dryhadguardian_5]
 name=Tree spirit
@@ -1173,7 +1222,6 @@ hitpoints=120
 attack=100
 strength=100
 defence=100
-category=macro_event_dryad
 param=damagetype,^crush_style
 param=attack_anim,dryhad_attack
 param=defend_anim,dryhad_block
@@ -1181,7 +1229,12 @@ param=death_anim,dryhad_death
 param=attack_sound,null
 param=defend_sound,null
 param=death_sound,null
+param=death_drop,null
+category=macro_event_dryad
 param=combat_xp_multiplier,25
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1865
 
 [macro_dryhadguardian_6]
 name=Tree spirit
@@ -1208,7 +1261,6 @@ hitpoints=170
 attack=130
 strength=130
 defence=130
-category=macro_event_dryad
 param=damagetype,^crush_style
 param=attack_anim,dryhad_attack
 param=defend_anim,dryhad_block
@@ -1216,7 +1268,12 @@ param=death_anim,dryhad_death
 param=attack_sound,null
 param=defend_sound,null
 param=death_sound,null
+param=death_drop,null
+category=macro_event_dryad
 param=combat_xp_multiplier,25
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_1866
 
 [macro_ent_tree1]
 vislevel=hide
@@ -1232,6 +1289,7 @@ alwaysontop=yes
 recol1s=13537
 recol1d=5218
 model1=model_loc_1293_8
+defaultmode=none
 wanderrange=0
 moverestrict=nomove
 category=macro_event_ent
@@ -1251,6 +1309,7 @@ alwaysontop=yes
 recol1s=13537
 recol1d=5218
 model1=model_loc_1293_8
+defaultmode=none
 wanderrange=0
 moverestrict=nomove
 category=macro_event_ent
@@ -1270,6 +1329,7 @@ alwaysontop=yes
 recol1s=13537
 recol1d=4194
 model1=model_loc_1293_8
+defaultmode=none
 wanderrange=0
 moverestrict=nomove
 category=macro_event_ent
@@ -1288,6 +1348,7 @@ alwaysontop=yes
 recol1s=13537
 recol1d=4194
 model1=model_loc_1293_8
+defaultmode=none
 wanderrange=0
 moverestrict=nomove
 category=macro_event_ent
@@ -1307,6 +1368,7 @@ alwaysontop=yes
 recol1s=13537
 recol1d=5218
 model1=model_loc_1293_8
+defaultmode=none
 wanderrange=0
 moverestrict=nomove
 category=macro_event_ent
@@ -1326,6 +1388,7 @@ alwaysontop=yes
 recol1s=13537
 recol1d=11490
 model1=model_loc_1293_8
+defaultmode=none
 wanderrange=0
 moverestrict=nomove
 category=macro_event_ent
@@ -1345,6 +1408,7 @@ alwaysontop=yes
 recol1s=13537
 recol1d=4194
 model1=model_loc_1293_8
+defaultmode=none
 wanderrange=0
 moverestrict=nomove
 category=macro_event_ent
@@ -1364,6 +1428,8 @@ alwaysontop=yes
 recol1s=13537
 recol1d=13602
 model1=model_loc_1293_8
+defaultmode=none
+wanderrange=0
 moverestrict=nomove
 category=macro_event_ent
 param=ent_tree_loc,maple_tree
@@ -1382,6 +1448,7 @@ alwaysontop=yes
 recol1s=13537
 recol1d=5218
 model1=model_loc_1293_8
+defaultmode=none
 wanderrange=0
 moverestrict=nomove
 category=macro_event_ent
@@ -1408,14 +1475,16 @@ head2=model_6_npc_head
 wanderrange=50
 maxrange=52
 timer=10
-// https://youtu.be/azxoPxBRe3c
+// https://youtu.be/azxoPxBRe3c  //Video shows npc havent defend or death animation.
 hitpoints=255
 attack=50
 strength=1
-param=attack_anim,dwarf_stone_launch
-param=attackrate,4
-param=attack_sound,thrown
 // stats are completely guessed
+param=attackrate,4
+param=attack_anim,dwarf_stone_launch
+param=defend_anim,null
+param=death_anim,null
+param=attack_sound,thrown
 // TODO sounds
 
 [macro_bigfish]
@@ -1461,8 +1530,12 @@ param=death_anim,troll_death
 param=attack_sound,null
 param=defend_sound,null
 param=death_sound,null
+param=death_drop,null
 param=combat_xp_multiplier,25
 category=macro_event_river_troll
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6732
 
 [macro_rivertrollguardian_2]
 name=River troll
@@ -1493,8 +1566,12 @@ param=death_anim,troll_death
 param=attack_sound,null
 param=defend_sound,null
 param=death_sound,null
+param=death_drop,null
 param=combat_xp_multiplier,25
 category=macro_event_river_troll
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6733
 
 [macro_rivertrollguardian_3]
 name=River troll
@@ -1525,8 +1602,12 @@ param=death_anim,troll_death
 param=attack_sound,null
 param=defend_sound,null
 param=death_sound,null
+param=death_drop,null
 param=combat_xp_multiplier,25
 category=macro_event_river_troll
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6734
 
 [macro_rivertrollguardian_4]
 name=River troll
@@ -1557,8 +1638,12 @@ param=death_anim,troll_death
 param=attack_sound,null
 param=defend_sound,null
 param=death_sound,null
+param=death_drop,null
 param=combat_xp_multiplier,25
 category=macro_event_river_troll
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6735
 
 [macro_rivertrollguardian_5]
 name=River troll
@@ -1589,8 +1674,12 @@ param=death_anim,troll_death
 param=attack_sound,null
 param=defend_sound,null
 param=death_sound,null
-param=combat_xp_multiplier,25
+param=death_drop,null
 category=macro_event_river_troll
+param=combat_xp_multiplier,25
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6736
 
 [macro_rivertrollguardian_6]
 name=River troll
@@ -1621,8 +1710,12 @@ param=death_anim,troll_death
 param=attack_sound,null
 param=defend_sound,null
 param=death_sound,null
-param=combat_xp_multiplier,25
+param=death_drop,null
 category=macro_event_river_troll
+param=combat_xp_multiplier,25
+// All data taken from Enchanted Valley version.
+// osrs stats and Vislvl match 1:1 //254
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6737
 
 [macro_whirlpool_freshfish]
 vislevel=hide
