@@ -34,7 +34,7 @@ switch_int(%druidspirit) {
             $text = append($text, "@dre@Priest in Peril||");
         }
         $text = append($text, "@dbl@The following are also recommended:|");
-        if (stat(crafting) >= 18) {
+        if (stat_base(crafting) >= 18) {
             $text = append($text, "@str@Level 18 Crafting");
         } else {
             $text = append($text, "@dre@Level 18 Crafting");

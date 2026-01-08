@@ -9,7 +9,7 @@ switch_int (%totemquest) {
     case ^totem_not_started :
         $text = "@dbl@I can start this quest by speaking to @dre@Kangai Mau@dbl@ in @dre@the|@dre@Shrimp & Parrot@dbl@ restaurant in @dre@Brimhaven|";
         $text = append($text, "@dbl@To complete this quest I need:|");
-        if (stat(thieving) < 21) {
+        if (stat_base(thieving) < 21) {
             $text = append($text, "@dre@Level 21 Thieving");
         } else {
             $text = append($text, "@str@Level 21 Thieving");

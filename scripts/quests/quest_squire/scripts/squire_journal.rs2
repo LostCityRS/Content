@@ -4,7 +4,7 @@ def_string $x;
 if (%squire = ^squire_not_started) {//OSRS
     $x = append($x, "@dbl@I can start this quest by talking to the @dre@Squire @dbl@in the|");
     $x = append($x, "@dbl@courtyard of the @dre@White Knights's Castle@dbl@.|");
-    if (stat(mining) < 10) {
+    if (stat_base(mining) < 10) {
         $x = append($x, "@dbl@I need a mining level of @dre@10|");
     } else {
         $x = append($x, "@str@I have a mining level of 10|");

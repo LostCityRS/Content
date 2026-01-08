@@ -8,7 +8,7 @@ switch_int (%fishingcompo) {
     // https://i.imgur.com/LWLG2Tu.png
     case ^fishingcompo_not_started :
         $text = "@dbl@I can start this quest by speaking to the @dre@Dwarves@dbl@ at the|@dbl@tunnel entrances on either side of @dre@White Wolf Mountain@dbl@.|";
-        if (stat(fishing) < 10) {
+        if (stat_base(fishing) < 10) {
             $text = append($text, "@dre@I must have level 10 fishing.");
         } else {
             $text = append($text, "@str@I must have level 10 fishing.");

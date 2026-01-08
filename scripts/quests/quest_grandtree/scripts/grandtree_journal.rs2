@@ -6,7 +6,7 @@ if (%grandtree = ^grandtree_not_started) {//https://www.youtube.com/watch?v=wwdH
     $x = append($x, "@dre@Stronghold@dbl@ by speaking to @dre@King Narnode Shareen@dbl@.|");
     $x = append($x, "|");
     $x = append($x, "@dbl@I must have:|");
-    if (stat(agility) < 25) {
+    if (stat_base(agility) < 25) {
         $x = append($x, "@dre@Level 25 Agility.|");
     } else {
         $x = append($x, "@str@Level 25 Agility.|");

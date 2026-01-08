@@ -62,70 +62,70 @@ if(%legendsquest = ^legends_not_started) {
 
     $text = append($text, "|@dbl@To complete this quest I need:-");
     def_int $skill_reqs_completed = ^true;
-    if(stat(magic) >= 56) {
+    if(stat_base(magic) >= 56) {
          $text = append($text, "|@str@Level 56 magic");
     } else {
         $text = append($text, "|@dre@Level 56 magic");
         $skill_reqs_completed = ^false;
     }
 
-    if(stat(mining) >= 52) {
+    if(stat_base(mining) >= 52) {
          $text = append($text, "|@str@Level 52 mining");
     } else {
         $text = append($text, "|@dre@Level 52 mining");
         $skill_reqs_completed = ^false;
     }
 
-    if(stat(agility) >= 50) {
+    if(stat_base(agility) >= 50) {
          $text = append($text, "|@str@Level 50 agility");
     } else {
         $text = append($text, "|@dre@Level 50 agility");
         $skill_reqs_completed = ^false;
     }
 
-    if(stat(crafting) >= 50) {
+    if(stat_base(crafting) >= 50) {
          $text = append($text, "|@str@Level 50 crafting");
     } else {
         $text = append($text, "|@dre@Level 50 crafting");
         $skill_reqs_completed = ^false;
     }
 
-    if(stat(smithing) >= 50) {
+    if(stat_base(smithing) >= 50) {
          $text = append($text, "|@str@Level 50 smithing");
     } else {
         $text = append($text, "|@dre@Level 50 smithing");
         $skill_reqs_completed = ^false;
     }
 
-    if(stat(strength) >= 50) {
+    if(stat_base(strength) >= 50) {
          $text = append($text, "|@str@Level 50 strength");
     } else {
         $text = append($text, "|@dre@Level 50 strength");
         $skill_reqs_completed = ^false;
     }
 
-    if(stat(thieving) >= 50) {
+    if(stat_base(thieving) >= 50) {
          $text = append($text, "|@str@Level 50 thieving");
     } else {
         $text = append($text, "|@dre@Level 50 thieving");
         $skill_reqs_completed = ^false;
     }
 
-    if(stat(woodcutting) >= 50) {
+    if(stat_base(woodcutting) >= 50) {
          $text = append($text, "|@str@Level 50 woodcutting");
     } else {
         $text = append($text, "|@dre@Level 50 woodcutting");
         $skill_reqs_completed = ^false;
     }
 
-    if(stat(herblore) >= 45) {
+    if(stat_base(herblore) >= 45) {
          $text = append($text, "|@str@Level 45 herblore");
     } else {
         $text = append($text, "|@dre@Level 45 herblore");
         $skill_reqs_completed = ^false;
     }
 
-    if(stat(prayer) >= 42) {
+    if(stat_base(prayer) >= 42) {
          $text = append($text, "|@str@Level 42 prayer");
     } else {
         $text = append($text, "|@dre@Level 42 prayer");

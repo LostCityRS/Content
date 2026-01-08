@@ -8,7 +8,7 @@ if (%scorpcatcher = ^scorpcatcher_not_started) {
     $text = append($text, "@dre@Sorcerer's Tower@dbl@ south-west of @dre@Catherby@dbl@.||");
 
     $text = append($text, "@dbl@Requirements:|");
-    if (stat(prayer) >= 31) {
+    if (stat_base(prayer) >= 31) {
         $text = append($text, "@str@Level 31 Prayer|");
     } else {
         $text = append($text, "@dre@Level 31 Prayer|");

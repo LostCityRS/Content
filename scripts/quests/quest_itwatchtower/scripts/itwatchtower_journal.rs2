@@ -6,27 +6,27 @@ if (%itwatchtower = ^itwatchtower_not_started) {
     $x = append($x, "@dbl@I can start this quest by speaking to the @dre@Watchtower|");
     $x = append($x, "@dre@wizard@dbl@ on the top floor of Yanille's @dre@Watchtower@dbl@.||");
     $x = append($x, "@dbl@To complete this quest I need:|");
-    if (stat(magic) < 14) {
+    if (stat_base(magic) < 14) {
         $x = append($x, "@dre@Level 14 Magic|");
     } else {
         $x = append($x, "@str@Level 14 Magic|");
     }
-    if (stat(mining) < 40) {
+    if (stat_base(mining) < 40) {
         $x = append($x, "@dre@Level 40 Mining|");
     } else {
         $x = append($x, "@str@Level 40 Mining|");
     }
-    if (stat(herblore) < 14) {
+    if (stat_base(herblore) < 14) {
         $x = append($x, "@dre@Level 14 Herblore|");
     } else {
         $x = append($x, "@str@Level 14 Herblore|");
     }
-    if (stat(thieving) < 15) {
+    if (stat_base(thieving) < 15) {
         $x = append($x, "@dre@Level 15 Thieving|");
     } else {
         $x = append($x, "@str@Level 15 Thieving|");
     }
-    if (stat(agility) < 25) {
+    if (stat_base(agility) < 25) {
         $x = append($x, "@dre@Level 25 Agility|");
     } else {
         $x = append($x, "@str@Level 25 Agility|");

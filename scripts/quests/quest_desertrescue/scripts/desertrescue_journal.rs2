@@ -6,17 +6,17 @@ if (%desertrescue = ^desertrescue_not_started) {
     $x = append($x, "@dbl@I can start this quest by speaking to @dre@Irena@dbl@ after I have|");
     $x = append($x, "@dbl@gone through the @dre@Shantay Pass, South of Al-Kharid.|");
     $x = append($x, "@dbl@To complete this quest I need:-|");
-    if (stat(fletching) < 10) {
+    if (stat_base(fletching) < 10) {
         $x = append($x, "@dre@Level 10 Fletching.|");
     } else {
         $x = append($x, "@str@Level 10 Fletching.|");
     }
-    if (stat(smithing) < 20) {
+    if (stat_base(smithing) < 20) {
         $x = append($x, "@dre@Level 20 Smithing.|");
     } else {
         $x = append($x, "@str@Level 20 Smithing.|");
     }
-    if ((stat(smithing) >= 20) & (stat(fletching) >= 10)) {
+    if ((stat_base(smithing) >= 20) & (stat_base(fletching) >= 10)) {
         $x = append($x, "@dbl@I have all the @dre@requirements@dbl@ to begin and complete this|");
         $x = append($x, "@dre@quest@dbl@.");
     }

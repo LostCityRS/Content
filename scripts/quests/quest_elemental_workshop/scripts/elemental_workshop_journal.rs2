@@ -65,19 +65,19 @@ if (testbit(%elemental_workshop_bits, ^elemental_workshop_complete) = ^true) {
     $text = "@dbl@I can start this quest by reading a|@dre@book@dbl@ found in @dre@Seers village@dbl@.||";
     $text = append($text, "@dbl@Minimum requirements:|");
 
-    if (stat(mining) < 20) {
+    if (stat_base(mining) < 20) {
         $text = append($text, "@dre@Level 20 Mining|");
     } else {
         $text = append($text, "@str@Level 20 Mining|");
     }
 
-    if (stat(smithing) < 20) {
+    if (stat_base(smithing) < 20) {
         $text = append($text, "@dre@Level 20 Smithing|");
     } else {
         $text = append($text, "@str@Level 20 Smithing|");
     }
 
-    if (stat(crafting) < 20) {
+    if (stat_base(crafting) < 20) {
         $text = append($text, "@dre@Level 20 Crafting");
     } else {
         $text = append($text, "@str@Level 20 Crafting");
