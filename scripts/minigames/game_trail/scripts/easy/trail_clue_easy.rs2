@@ -1,0 +1,48 @@
+[opheld1,trail_clue_easy_map001]
+~full_trail_readclue_map(trail_map01);
+
+[opheld1,trail_clue_easy_map002]
+~full_trail_readclue_map(trail_map02);
+
+[opheld1,trail_clue_easy_map003]
+~full_trail_readclue_map(trail_map06);
+
+[opheld1,_trail_clue_easy]
+~full_trail_readclue(oc_param(last_item, trail_desc));
+
+[proc,progress_clue_easy](obj $current_clue, string $text)
+~trail_clue_progress;
+inv_del(inv, $current_clue, 1);
+if(~trail_clue_easy_complete = true) {
+    ~trail_clue_easy_reward;
+} else {
+    def_namedobj $new_clue = ~trail_clue_easy_getrandom;
+    inv_add(inv, $new_clue, 1);
+    ~objbox($new_clue, $text, 250, 0, 0);
+}
+
+// https://i.imgur.com/cohYEuj.jpeg
+[opheld1,_trail_casket_easy] ~progress_clue_easy(last_item, "You've found another clue scroll!");
+
+[proc,trail_clue_easy_complete]()(boolean)
+if(~get_trail_progress >= ^trail_easy_maxsteps | (add(~get_trail_progress, 2) >= ^trail_easy_maxsteps & random(2) = 0)) {
+    return (true);
+}
+return(false);
+
+[proc,trail_clue_easy_getrandom]()(namedobj)
+return(enum(int, namedobj, trail_easy_enum, random(enum_getoutputcount(trail_easy_enum))));
+
+[proc,trail_clue_easy_loc_interact](namedobj $clue)
+~progress_clue_easy($clue, "You've found another clue scroll!");
+
+[label,riddle_loc_easy_exp008]
+// example - https://youtu.be/alL8jv1DkRM?t=66
+p_arrivedelay;
+anim(human_openchest, 0);
+sound_synth(cupboard_open, 0, 0);
+p_delay(0);
+// Temp note: dur updated
+loc_change(drawers1open_inactive, 5);
+p_delay(0);
+~trail_clue_easy_loc_interact(trail_clue_easy_vague003);
