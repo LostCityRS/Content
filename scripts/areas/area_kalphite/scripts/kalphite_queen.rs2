@@ -90,10 +90,7 @@ while (huntnext = true) {
 [proc,kalphite_queen_mage_hunt](coord $prev_coord, int $duration, int $total_distance)(coord, int, int)
 def_int $damage = 0;
 def_int $maxhit = 31;
-if (
-    randominc(~npc_magic_attack_roll) > randominc(~player_defence_roll_specific(^magic_style)) &
-    ~check_protect_prayer(^magic_style) = false
-) {
+if (~check_protect_prayer(^magic_style) = false) {
     $damage = randominc($maxhit);
 }
 ~npc_set_attack_vars;
@@ -133,7 +130,9 @@ return(coord, $duration, $total_distance);
 // huntall(coord, 5, 1);
 // while (huntnext = true & $i < 5) { // up to 5? https://youtu.be/ZHaxxMq3nVI?list=PLn23LiLYLb1YiomJ3wnXokdbgjE7-Lgt5&t=48
 //     $damage = 0;
-//     if (randominc(~npc_ranged_attack_roll) > randominc(~player_defence_roll_specific(^ranged_style))) $damage = randominc($maxhit);
+//     if (~check_protect_prayer(^ranged_style) = false) {
+//         $damage = randominc($maxhit);
+//     }
 //     ~npc_set_attack_vars;
     
 //     $duration = ~player_projectile(movecoord(npc_coord, 2, 0, 2), coord, uid, kalphite_spine, 40, 36, 0, 15, 0, 11, 5);

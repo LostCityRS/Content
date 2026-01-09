@@ -3,9 +3,9 @@
 [oploc1,building_steps_up]
 p_arrivedelay;
 if (loc_angle = 1) {
-    p_teleport(movecoord(loc_coord, 0, 0, 1));
+    p_telejump(movecoord(loc_coord, 0, 0, 1));
 } else if (loc_angle = 2) {
-    p_teleport(movecoord(loc_coord, 1, 0, 0));
+    p_telejump(movecoord(loc_coord, 1, 0, 0));
 } else {
     mes("unhandled loc angle <tostring(loc_angle)>");
 }
@@ -13,9 +13,9 @@ if (loc_angle = 1) {
 [oploc1,building_steps_down]
 p_arrivedelay;
 if (loc_angle = 1) {
-    p_teleport(movecoord(loc_coord, 0, 0, -2));
+    p_telejump(movecoord(loc_coord, 0, 0, -2));
 } else if (loc_angle = 2) {
-    p_teleport(movecoord(loc_coord, -2, 0, 0));
+    p_telejump(movecoord(loc_coord, -2, 0, 0));
 } else {
     mes("unhandled loc angle <tostring(loc_angle)>");
 }

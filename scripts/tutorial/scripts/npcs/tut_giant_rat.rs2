@@ -121,5 +121,5 @@ if (%tutorial = ^newbie_combat_instructor_before_attacking_ranged) {
 
 [proc,set_hint_icon_giant_rat]
 if (npc_find(0_48_148_37_47, newbiegiantrat, 10, 0) = true) {
-    hint_npc(npc_uid);
+    hint_npc;
 }

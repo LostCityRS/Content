@@ -65,11 +65,28 @@ switch_obj(last_useitem) {
 ~chatnpc("<p,neutral>Anything else before I get on with my work?");
 @dunstan_ops;
 
+// TODO: this is guessed based off OSRS dialogue, reclaim used to be free if you didn't have a law talisman
+[label,dunstan_lawtali]
+~chatplayer("<p,neutral>Can I have another law talisman?");
+~chatnpc("<p,neutral>Well, I've got one here you can have if you'd like it?");
+~chatplayer("<p,happy>Yes, I'll take it.");
+if (inv_freespace(inv) = 0) {
+    ~chatnpc("<p,sad>Looks like you don't have any room to carry it just now, come back when you do.");
+    return;
+}
+inv_add(inv, law_talisman, 1);
+mes("Dunstan hands you a law talisman.");
+~objbox(law_talisman, "Dunstan hands you a law talisman.", 250, 0, 0);
+~chatplayer("<p,neutral>Thanks.");
+
 [label,dunstan_ops]
 if(%troll_quest < ^troll_complete & %troll_quest >= ^troll_started) {
     @multi3("Can you put some spikes on my Climbing boots?", dunstan_spikeboots, "Is it OK if I use your anvil?", dunstan_anvil, "Nothing, thanks.", dunstan_nothing);
 }
 if(~death_get_map >= ^death_given_supplies) {
+    if(%troll_quest = ^troll_complete & ~obj_gettotal(law_talisman) = 0) {
+        @multi5("Can I have another law talisman?", dunstan_lawtali, "Can you put some spikes on my Climbing boots?", dunstan_spikeboots, "How is your son getting on?", dunstan_son, "Is it OK if I use your anvil?", dunstan_anvil, "Nothing, thanks.", dunstan_nothing);
+    }
     @multi4("Can you put some spikes on my Climbing boots?", dunstan_spikeboots, "How is your son getting on?", dunstan_son, "Is it OK if I use your anvil?", dunstan_anvil, "Nothing, thanks.", dunstan_nothing);
 }
 switch_int(%death_equiproom) {

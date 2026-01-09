@@ -4,6 +4,7 @@ if(npc_type = zqzombie_unarmed | npc_type = zqzombie_armed) {
     world_delay(3); // 4t
     @zq_greenmist(npc_coord, 0);
 }
-if(npc_findhero = ^true) {
+if(npc_findhero = ^false) {
     return;
 }
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);

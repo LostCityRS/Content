@@ -63,7 +63,7 @@ if (inv_total(inv, net) < 1 & inv_freespace(inv) > 0) {
 [label,newbie_survival_instructor_fishing]
 ~chatnpc("<p,neutral>There's nothing like a good fire to warm the bones.|Next thing is getting food in our bellies. We'll need|something to cook. There are shrimp in the pond there.|So let's catch and cook some.");
 if (npc_findexact(0_48_48_29_20, 0_48_48_newbiefishing) = true) {
-    hint_npc(npc_uid);
+    hint_npc;
 }
 inv_add(inv, net, 1);
 %tutorial = ^newbie_survival_instructor_fish_shrimps;
@@ -144,7 +144,7 @@ switch_int($choice) {
 
 [proc,set_hint_icon_newbie_survival_instructor]
 if (npc_find(0_48_48_31_23, newbie_survival_instructor, 10, 0) = true) {
-    hint_npc(npc_uid);
+    hint_npc;
 }
 
 

@@ -75,8 +75,7 @@ if (inv_total(inv, coins) < 30) {
 }
 
 inv_del(inv, coins, 30);
-mes("You pay 30 coins..."); // https://imgur.com/myiOU5N may 2004
-def_string $sail_msg = "and board the ship.";
+def_string $sail_msg = "You pay 30 coins and board the ship."; // https://storage.googleapis.com/tannerdino/images/HolyGrail.jpg
 if(coordx(npc_coord) < 2815) { // officer in Brimhaven
     ~set_sail("Ardougne", $sail_msg, 1_41_51_59_4, ^sail_brimhaven_to_ardougne, 7);
 } else {

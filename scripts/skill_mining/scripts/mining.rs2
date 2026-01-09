@@ -191,7 +191,7 @@ if ($data = null) {
 }
 inv_add(inv, db_getfield($data, mining_table:rock_output, 0), 1);
 stat_advance(mining, db_getfield($data, mining_table:rock_exp, 0));
-mes("You manage to mine an unbound rune stone.");
+// mes("You manage to mine an unbound rune stone."); probably removed with law altar?
 p_oploc(3);
 
 

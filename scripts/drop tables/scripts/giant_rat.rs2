@@ -1,9 +1,4 @@
-[ai_queue3,giantrat] @rat_droptable;
-[ai_queue3,giantrat1] @rat_droptable;
-
-
-[label,rat_droptable]
-
+[ai_queue3,_giantrat]
 gosub(npc_death);
 if (npc_findhero = ^false) {
     return;

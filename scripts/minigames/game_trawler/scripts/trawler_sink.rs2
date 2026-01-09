@@ -36,7 +36,7 @@ if (coordy(coord) = 0) {
 p_walk(coord);
 ~bas_set_all(human_swim);
 p_animprotect(^true); // disable anims
-bas_running(null); // disable running
+runanim(null); // disable running
 cam_reset;
 
 [queue,trawler_player_sink_unflooded]
@@ -48,7 +48,7 @@ if (coordy(coord) = 0) {
 p_walk(coord);
 ~bas_set_all(human_swim);
 p_animprotect(^true); // disable anims
-bas_running(null); // disable running
+runanim(null); // disable running
 cam_reset;
 
 // in osrs only 1 barrel out of 3 work, but since theres only 2 types and no guides

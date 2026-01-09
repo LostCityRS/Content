@@ -59,8 +59,6 @@ if(stat_random(thieving, 100, 240) = false) {
     npc_say("What do you think you're doing?");
     mes("You fail to pick the guard's pocket.");
     npc_changetype_keepall($next_type, 500);
-    %npc_attacking_uid = uid;
-    %aggressive_npc = npc_uid;
     npc_setmode(opplayer2);
     return;
 }

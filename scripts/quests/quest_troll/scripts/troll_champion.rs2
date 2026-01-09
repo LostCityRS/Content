@@ -116,7 +116,7 @@ if(finduid(%npc_aggressive_player) = true) {
     if(npc_stat(hitpoints) < 20 & p_finduid(%npc_aggressive_player) = true) { // should be correct, confirmed doesnt queue
         @defeat_dad;
     }
-    hint_npc(npc_uid);
+    hint_npc;
 }
 ~npc_default_damage(last_int);
 
@@ -129,7 +129,7 @@ hint_stop();
 npc_statheal(hitpoints, 0, 100);
 npc_setmode(none);
 p_stopaction;
-~chatnpc("<p,scared>Stop! You win. Not hurt Dad.");
+~chatnpcnoturn("<p,scared>Stop! You win. Not hurt Dad.");
 switch_int(~p_choice2("I'll be going now.", 1, "I'm not done yet! Prepare to die!", 2)) {
     case 1 :
         ~chatplayer("<p,happy>I'll be going now.");
@@ -148,7 +148,7 @@ if(p_finduid(%npc_aggressive_player) = true) {
     if(%troll_quest = ^troll_started) %troll_quest = ^troll_defeated_dad;
 }
 npc_huntall(npc_coord, 16, 0);
-while (npc_huntnext = true) {
+while (npc_findnext = true) {
     if (npc_category = troll_spectator) {
         npc_setmode(opplayer2);
     }
@@ -157,7 +157,7 @@ while (npc_huntnext = true) {
 [queue,troll_champion_challenge](npc_uid $npc_uid)
 if(npc_finduid($npc_uid) = true) {
     npc_setmode(opplayer2);
-    hint_npc(npc_uid);
+    hint_npc;
 }
 
 [proc,trollchamp_in_combat_check]()(boolean)
@@ -191,7 +191,7 @@ if(%troll_accepted_challenge = ^false) {
     queue*(troll_champion_challenge, 0)(npc_uid);
     ~chatnpc("<p,happy>Tiny human brave. Dad squish!");
 } else {
-    hint_npc(npc_uid);
+    hint_npc;
     npc_setmode(opplayer2);
 }
 if (~sa_enabled = true) {

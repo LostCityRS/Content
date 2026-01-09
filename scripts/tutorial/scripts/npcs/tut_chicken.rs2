@@ -9,5 +9,5 @@ return;
 
 [proc,set_hint_icon_chicken]
 if (npc_find(0_49_48_3_20, newbiechicken, 10, 0) = true) {
-    hint_npc(npc_uid);
+    hint_npc;
 }

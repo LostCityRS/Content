@@ -66,7 +66,7 @@ def_int $random = random(128);
 // - runite bar uncommon
 // - hard clue rare
 
-// ~trail_hardcluedrop(128, npc_coord); // todo
+~trail_hardcluedrop(128, npc_coord); // todo
 
 // rates are a WIP
 if ($random < 14) { // 14/128 guess: drop log 16/128, 4/128 osrs
@@ -104,7 +104,7 @@ if ($random < 14) { // 14/128 guess: drop log 16/128, 4/128 osrs
 } else if ($random < 121) { // 2/128 guess: drop log 2.55/128
     obj_add(npc_coord, lobster, 7, ^lootdrop_duration);
 } else if ($random < 122) { // 1/128, 1 roll in osrs
-    obj_add(npc_coord, dragon_chainbody, 7, ^lootdrop_duration);
+    obj_add(npc_coord, dragon_chainbody, 1, ^lootdrop_duration);
 } else if ($random < 128) { // 7/128 guess, drop log suggests 11/128
     obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
 }

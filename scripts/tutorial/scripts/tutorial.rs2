@@ -56,7 +56,7 @@ if (%tutorial = ^newbie_basics_instructor_start) {
 
 [proc,tutorial_set_active_tabs]
 if (%tutorial > ^newbie_basics_instructor_start) {
-    if (lowmemory = true) {
+    if (lowmem = true) {
         if_settab(options_ld, ^tab_game_options);
     } else {
         if_settab(options, ^tab_game_options);
@@ -73,7 +73,7 @@ if (%tutorial > ^newbie_survival_instructor_open_skill_menu) {
 }
 
 if (%tutorial > ^newbie_cook_instructor_baked_bread) {
-    if (lowmemory = true) {
+    if (lowmem = true) {
         if_settab(music_ld, ^tab_musicplayer);
     } else {
         if_settab(music, ^tab_musicplayer);
@@ -120,7 +120,7 @@ if (%tutorial > ^tutorial_open_magic_tab) {
 [proc,tutorial_set_npc_hints]
 if (%tutorial = ^newbie_survival_instructor_fish_shrimps) {
     if (npc_findexact(0_48_48_29_20, 0_48_48_newbiefishing) = true) {
-        hint_npc(npc_uid);
+        hint_npc;
     }
 }
 
@@ -169,7 +169,7 @@ if (%tutorial = 2) {
 } else if (%tutorial = ^tutorial_open_magic_tab) {
     %tutorial = ^tutorial_opened_magic_tab;
     if (npc_find(0_49_48_5_17, newbie_magic_instructor, 10, 0) = true) {
-        hint_npc(npc_uid);
+        hint_npc;
         @newbie_magic_instructor_opened_tab;
     }
 }

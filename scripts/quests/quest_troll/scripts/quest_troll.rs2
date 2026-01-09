@@ -99,7 +99,7 @@ if(%troll_quest < ^troll_defeated_dad) {
     %npc_lastcombat = sub(^max_32bit_int, 8);
     if(%troll_accepted_challenge = ^false) %troll_accepted_challenge = ^true;
     npc_setmode(opplayer2);
-    hint_npc(npc_uid);
+    hint_npc;
     ~chatnpc_specific(nc_name(troll_champion), troll_champion, "<p,angry>No human pass through arena without defeating Dad!");
     return;
 }

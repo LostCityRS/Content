@@ -7,7 +7,7 @@ while (huntnext = true) {
     p_teleport(movecoord(coord, max($distance, 1), 0, 0));
 }
 npc_huntall($coord, 20, 0);
-while (npc_huntnext = true) {
+while (npc_findnext = true) {
     npc_tele(movecoord(npc_coord, max($distance, 1), 0, 0));
 }
 
@@ -20,7 +20,7 @@ while (huntnext = true) {
     p_teleport(movecoord(coord, sub(0, max($distance, 1)), 0, 0));
 }
 npc_huntall($coord, 20, 0);
-while (npc_huntnext = true) {
+while (npc_findnext = true) {
     npc_tele(movecoord(npc_coord, sub(0, max($distance, 1)), 0, 0));
 }
 
@@ -33,7 +33,7 @@ while (huntnext = true) {
     p_teleport(movecoord(coord, 0, 0, calc(0 - max($distance, 1))));
 }
 npc_huntall($coord, 20, 0);
-while (npc_huntnext = true) {
+while (npc_findnext = true) {
     npc_tele(movecoord(npc_coord, 0, 0, calc(0 - max($distance, 1))));
 }
 
@@ -46,7 +46,7 @@ while (huntnext = true) {
     p_teleport(movecoord(coord, 0, 0, calc(max($distance, 1))));
 }
 npc_huntall($coord, 20, 0);
-while (npc_huntnext = true) {
+while (npc_findnext = true) {
     npc_tele(movecoord(npc_coord, 0, 0, calc(max($distance, 1))));
 }
 

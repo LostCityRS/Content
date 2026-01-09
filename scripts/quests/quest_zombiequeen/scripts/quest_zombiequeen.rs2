@@ -286,7 +286,7 @@ if(coordz(coord) > coordz($loc_coord)) {
     ~rash_summon;
 }
 if(inv_total(worn, zqdeadbeads) > 0) {
-    %zombiequeen = ^zombiequeen_entered_with_beads;
+    if (%zombiequeen < ^zombiequeen_entered_with_beads) %zombiequeen = ^zombiequeen_entered_with_beads;
     mes("The Beads of the Dead start to glow...");
 }
 
@@ -391,7 +391,7 @@ if(stat(agility) < 32) {
     mes("You need a level 32 agility to attempt this.");
     return;
 }
-bas_running(null); // disable running
+runanim(null); // disable running
 mes("You start to contort your body...");
 p_teleport(0_45_46_42_56);
 p_delay(0);
@@ -1339,7 +1339,7 @@ mes("against stone as you see skeletons and");
 mes("zombies rising up out of the ground.");
 mes("The coins turn to dust in your hands.");
 npc_huntall(coord, 5, 0);
-while (npc_huntnext = true) {
+while (npc_findnext = true) {
     if(npc_category = undead_one) ~npc_retaliate(0);
 }
 if(add(%lastcombat, 8) < map_clock) @rash_summon_minions(uid);
@@ -1521,7 +1521,7 @@ if(%zombiequeen >= ^zombiequeen_complete) {
 
 [label,zq_showdown_nazastarool]
 npc_huntall(coord, 5, 0);
-while (npc_huntnext = true) {
+while (npc_findnext = true) {
     // attacking_uid check (not aggrewssive check)
     if((npc_type = zq_mainzombie1 | npc_type = zq_mainzombie2 | npc_type = zq_mainzombie3) & %npc_attacking_uid = uid) {
         mes("The dolmen remains silent.");

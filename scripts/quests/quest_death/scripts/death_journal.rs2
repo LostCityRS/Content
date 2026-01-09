@@ -61,7 +61,7 @@ if(%death_equiproom >= ^death_unlocked_door) {
 if(~death_get_map >= ^death_given_supplies) {
     $text = append($text, "||@str@I found the sherpa's house. I gave Tenzing the ten loaves|@str@of bread, ten cooked trout and the Spiked boots.");
     if(~death_get_map = ^death_scouted_area) {
-        $text = append($text, "Tenzing|@str@has given me a map of the secret way. I checked the secret way|@str@and it is safe for the Imperial Guard to use.");
+        $text = append($text, "Tenzing|@str@has given me a map of the secret way. I checked the @str@secret way|@str@and it is safe for the Imperial Guard to use.");
     } else if (~death_get_map = ^death_got_map) {
         $text = append($text, "Tenzing|@str@has given me a map of the secret way.|@dbl@I need to @dre@check@dbl@ that the @dre@secret way@dbl@ is @dre@safe@dbl@ for the @dre@Imperial|@dre@Guard@dbl@ to use.");
     }

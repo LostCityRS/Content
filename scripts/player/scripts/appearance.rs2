@@ -5,21 +5,21 @@ if (~inzone_coord_pair_table(trawler_wreck_zones, coord) = true) {
 }
 def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
 if ($weapon = null) {
-    bas_readyanim(human_ready);
-    bas_turnonspot(human_turnonspot);
-    bas_walk_f(human_walk_f);
-    bas_walk_b(human_walk_b);
-    bas_walk_l(human_walk_l);
-    bas_walk_r(human_walk_r);
-    bas_running(human_running);
+    readyanim(human_ready);
+    turnanim(human_turnonspot);
+    walkanim(human_walk_f);
+    walkanim_b(human_walk_b);
+    walkanim_l(human_walk_l);
+    walkanim_r(human_walk_r);
+    runanim(human_running);
 } else {
-    bas_readyanim(oc_param($weapon, ready_baseanim));
-    bas_turnonspot(oc_param($weapon, turnonspot_baseanim));
-    bas_walk_f(oc_param($weapon, walk_f_baseanim));
-    bas_walk_b(oc_param($weapon, walk_b_baseanim));
-    bas_walk_l(oc_param($weapon, walk_l_baseanim));
-    bas_walk_r(oc_param($weapon, walk_r_baseanim));
-    bas_running(oc_param($weapon, running_baseanim));
+    readyanim(oc_param($weapon, ready_baseanim));
+    turnanim(oc_param($weapon, turnonspot_baseanim));
+    walkanim(oc_param($weapon, walk_f_baseanim));
+    walkanim_b(oc_param($weapon, walk_b_baseanim));
+    walkanim_l(oc_param($weapon, walk_l_baseanim));
+    walkanim_r(oc_param($weapon, walk_r_baseanim));
+    runanim(oc_param($weapon, running_baseanim));
 }
 buildappearance(worn);
 
@@ -30,21 +30,21 @@ if (~.inzone_coord_pair_table(trawler_wreck_zones, .coord) = true) {
 }
 def_obj $weapon = .inv_getobj(worn, ^wearpos_rhand);
 if ($weapon = null) {
-    .bas_readyanim(human_ready);
-    .bas_turnonspot(human_turnonspot);
-    .bas_walk_f(human_walk_f);
-    .bas_walk_b(human_walk_b);
-    .bas_walk_l(human_walk_l);
-    .bas_walk_r(human_walk_r);
-    .bas_running(human_running);
+    .readyanim(human_ready);
+    .turnanim(human_turnonspot);
+    .walkanim(human_walk_f);
+    .walkanim_b(human_walk_b);
+    .walkanim_l(human_walk_l);
+    .walkanim_r(human_walk_r);
+    .runanim(human_running);
 } else {
-    .bas_readyanim(oc_param($weapon, ready_baseanim));
-    .bas_turnonspot(oc_param($weapon, turnonspot_baseanim));
-    .bas_walk_f(oc_param($weapon, walk_f_baseanim));
-    .bas_walk_b(oc_param($weapon, walk_b_baseanim));
-    .bas_walk_l(oc_param($weapon, walk_l_baseanim));
-    .bas_walk_r(oc_param($weapon, walk_r_baseanim));
-    .bas_running(oc_param($weapon, running_baseanim));
+    .readyanim(oc_param($weapon, ready_baseanim));
+    .turnanim(oc_param($weapon, turnonspot_baseanim));
+    .walkanim(oc_param($weapon, walk_f_baseanim));
+    .walkanim_b(oc_param($weapon, walk_b_baseanim));
+    .walkanim_l(oc_param($weapon, walk_l_baseanim));
+    .walkanim_r(oc_param($weapon, walk_r_baseanim));
+    .runanim(oc_param($weapon, running_baseanim));
 }
 .buildappearance(worn);
 
@@ -52,13 +52,13 @@ if ($weapon = null) {
 ~bas_set($seq, $seq, $seq, $seq, $seq, $seq, $seq);
 
 [proc,bas_set](seq $ready, seq $turn, seq $walkf, seq $walkb, seq $walkl, seq $walkr, seq $run)
-bas_readyanim($ready);
-bas_turnonspot($turn);
-bas_walk_f($walkf);
-bas_walk_b($walkb);
-bas_walk_l($walkl);
-bas_walk_r($walkr);
-bas_running($run);
+readyanim($ready);
+turnanim($turn);
+walkanim($walkf);
+walkanim_b($walkb);
+walkanim_l($walkl);
+walkanim_r($walkr);
+runanim($run);
 buildappearance(worn);
 
 [proc,headicon_add](int $icon)

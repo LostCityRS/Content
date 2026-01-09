@@ -43,5 +43,5 @@ if ($choice = 1) {
 
 [proc,set_hint_icon_newbie_quest_instructor]
 if (npc_find(0_48_48_12_52, newbie_quest_instructor, 10, 0) = true) {
-    hint_npc(npc_uid);
+    hint_npc;
 }

@@ -224,7 +224,7 @@ if((inzone(3_43_149_25_43, 3_43_149_27_43, coord) = true | inzone(3_43_149_31_37
     }
     loc_anim(agilityarena_sawblades_twist);
     sound_synth(land_flat, 0, 30);
-    p_delay(1);
+    p_delay(0);
     stat_advance(agility, 280);
 }
 

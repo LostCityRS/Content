@@ -8,7 +8,7 @@
     npc_anim(chompy_landing, 0);
     npc_say("Sqwirk!");
     if(finduid(%quest_chompybird_baiter) = true) {
-        hint_npc(npc_uid);
+        hint_npc;
     }
 
     // todo confirm behaviour, looks like it wanders first then hunts?

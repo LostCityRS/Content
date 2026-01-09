@@ -320,9 +320,9 @@ if(stat_random(agility, 240, 290) = false) {
     return;
 }
 sound_synth(climb_wall, 0, 40);
-~agility_exactmove(human_walk_crumbledwall, 30, 4, coord, movecoord(coord, multiply(3, $dx), 0, multiply(3, $dz)), 30, 100, $dir, true);
+~agility_exactmove(human_walk_crumbledwall, 30, 3, coord, movecoord(coord, multiply(3, $dx), 0, multiply(3, $dz)), 30, 100, $dir, true);
 // exact move for 270+ (changed sept 27 2004 most likely)
-// ~agility_exactmove(human_lowwall, 0, 4, coord, movecoord(coord, multiply(3, $dx), 0, multiply(3, $dz)), 0, 144, $dir, true);
+// ~agility_exactmove(human_lowwall, 0, 3, coord, movecoord(coord, multiply(3, $dx), 0, multiply(3, $dz)), 0, 144, $dir, true);
 stat_advance(agility, 80);
 
 [oploc1,agilityarena_monkeybars_end]
@@ -387,9 +387,11 @@ stat_advance(agility, 140);
 
 [label,agilityarena_ledge]
 p_delay(0);
+// https://youtu.be/eHMW2KRp9_Q?si=Q-j-HvEy1eKe5xOy&t=96 one side has no end seq, the other does
+// https://youtu.be/fu3V6gn4WWM?si=uskgi-XANqCyj9nm&t=204 this means the side with the seq takes 1t longer than the other
 def_int $x_dist = -1;
 def_seq $walk_seq = human_walk_sidestepl;
-def_seq $end_seq = human_outof_sidestepl;
+def_seq $end_seq = null;
 if(coordx(coord) < coordx(loc_coord)) {
     $x_dist = 1;
     $walk_seq = human_walk_sidestep;
@@ -417,8 +419,10 @@ sound_synth(balancing_ledge, 2, 0);
 p_delay(0);
 sound_synth(balancing_ledge, 2, 0);
 ~forcemove(movecoord(coord, multiply($x_dist, 2), 0, 0));
-anim($end_seq, 20);
-p_delay(0);
+if($end_seq ! null) {
+    anim($end_seq, 20);
+    p_delay(0);
+}
 ~update_bas;
 stat_advance(agility, 160);
 

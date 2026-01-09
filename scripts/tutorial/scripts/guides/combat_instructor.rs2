@@ -165,6 +165,6 @@ if (%tutorial > ^newbie_combat_instructor_after_rat_kill_melee) {
 
 [proc,set_hint_icon_newbie_combat_instructor]
 if (npc_find(0_48_148_35_38, newbie_combat_instructor, 10, 0) = true) {
-    hint_npc(npc_uid);
+    hint_npc;
 }
 

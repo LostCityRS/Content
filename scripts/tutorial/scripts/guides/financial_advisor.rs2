@@ -40,5 +40,5 @@ if (%tutorial = ^tutorial_opened_newbie_account_instructor_door) {
 
 [proc,set_hint_icon_newbie_account_instructor]
 if (npc_find(0_48_48_56_52, newbie_account_instructor, 5, 0) = true) {
-    hint_npc(npc_uid);
+    hint_npc;
 }

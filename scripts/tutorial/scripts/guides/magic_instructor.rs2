@@ -95,5 +95,5 @@ inv_add(inv, mindrune, 5);
 
 [proc,set_hint_icon_newbie_magic_instructor]
 if (npc_find(0_49_48_5_17, newbie_magic_instructor, 10, 0) = true) {
-    hint_npc(npc_uid);
+    hint_npc;
 }

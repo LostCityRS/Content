@@ -46,7 +46,7 @@ if ($duration = null) { // spec is over
 
 [proc,pvm_rune_thrownaxe_hunt](coord $origin, npc_uid $target1, npc_uid $target2, npc_uid $target3, npc_uid $target4)(npc_uid)
 npc_huntall($origin, 3, ^vis_lineofsight);
-while (.npc_huntnext = true) {
+while (.npc_findnext = true) {
     if (.npc_uid ! $target1 & .npc_uid ! $target2 & .npc_uid ! $target3 & .npc_uid ! $target4) {
         // test: player in multi, 1st target in singles, 2nd target in multi
         // - result: chains onto 2nd target

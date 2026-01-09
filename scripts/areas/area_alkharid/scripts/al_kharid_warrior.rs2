@@ -12,7 +12,7 @@ if (npc_getmode = opplayer2) {
 }
 ~npc_default_retaliate;
 npc_huntall(npc_coord, 5, 0);
-while (npc_huntnext = true) {
+while (npc_findnext = true) {
     if (npc_type = al_kharid_warrior & npc_getmode ! opplayer2) {
         npc_say("Brother, I will help thee with this infidel!");
         %npc_aggressive_player = uid;

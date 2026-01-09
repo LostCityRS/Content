@@ -69,25 +69,31 @@ mes("You give Cap'n Izzy the 200 coin entrance fee.");
 
 [ai_timer,agilityarena_clerk]
 if(map_clock >= %agilityarena_next_pillar_time) {
-    %agilityarena_pillar_index = random(24);
-    %agilityarena_next_pillar_time = add(map_clock, 100);
+    def_int $new_pillar = random(24);
+    while ($new_pillar = %agilityarena_pillar_index) {
+        $new_pillar = random(24);
+    }
+    %agilityarena_pillar_index = $new_pillar;
+    %agilityarena_next_pillar_time = add(map_clock, 98);
     ~agilityarena_change_planks;
 }
-if(modulo(map_clock, 10) = 0) {
+if(modulo(map_clock, 7) = 0) {
     // these all happen at the same time afaik
-    if(loc_find(3_43_149_31_15, agilityarena_timedblade2_floor) = true) {
+    if(loc_find(3_43_149_31_15, agilityarena_timedblade2_floor) = true & .loc_find(3_43_149_31_16, agilityarena_timedblade2_floorl) = true) {
         ~activate_timedblade(0, 1);
     }
-    if(loc_find(3_43_149_9_48, agilityarena_timedblade2_floor) = true) {
+    if(loc_find(3_43_149_9_48, agilityarena_timedblade2_floor) = true & .loc_find(3_43_149_9_49, agilityarena_timedblade2_floorl) = true) {
         ~activate_timedblade(0, 1);
     }
-    if(loc_find(3_43_149_36_43, agilityarena_timedblade2_floor) = true) {
+    if(loc_find(3_43_149_36_43, agilityarena_timedblade2_floor) = true & .loc_find(3_43_149_37_43, agilityarena_timedblade2_floorl) = true) {
         ~activate_timedblade(1, 0);
     }
 }
 
 [proc,activate_timedblade](int $dx, int $dz)
 def_coord $dest;
+loc_del(5);
+.loc_del(5);
 loc_add(loc_coord, agilityarena_trap_timedblade2, loc_angle, centrepiece_straight, 5);
 huntall(loc_coord, 4, 0);
 while(huntnext = true) {

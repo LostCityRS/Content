@@ -23,10 +23,6 @@
 [command,.npc_hunt](coord $source, int $distance, int $checkvis)(boolean)
 // info: Search (hunt) for npcs in a given area
 [command,npc_huntall](coord $source, int $distance, int $checkvis)
-// info: Use the next result from npc_huntall
-[command,npc_huntnext]()(boolean)
-// info: Use the next result from npc_huntall on the secondary pointer
-[command,.npc_huntnext]()(boolean)
 // info: Returns true if $pos is in the area between $from and $to
 [command,inzone](coord $from, coord $to, coord $pos)(boolean)
 // info: Returns true if $pos is in the area between $from and $to
@@ -78,14 +74,6 @@
 [command,projanim_map](coord $from, coord $to, spotanim $spotanim, int $fromHeight, int $toHeight, int $delay, int $duration, int $peak, int $arc)
 // info: Returns true if it's unsafe to spawn a loc on this tile
 [command,map_locaddunsafe](coord $coord)(boolean)
-// info: Get the number of npcs in the world
-[command,npccount]()(int) // todo: move this to debug ops
-// info: Get the number of zones in the world
-[command,zonecount]()(int) // todo: move this to debug ops
-// info: Get the number of objects in the world
-[command,loccount]()(int) // todo: move this to debug ops
-// info: Get the number of locs in the world
-[command,objcount]()(int) // todo: move this to debug ops
 // info: Get a random coord centered on $coord within $minradius and $maxradius, using ^map_findsquare_ constants for $type
 [command,map_findsquare](coord $coord, int $minradius, int $maxradius, int $type)(coord)
 // info: Returns true if the map tile at $coord is in a multi-way combat area
@@ -120,8 +108,6 @@
 [command,anim](seq $anim, int $delay)
 // info: Play an animation on a secondary player
 [command,.anim](seq $anim, int $delay)
-// info: Returns true if the player's packet buffer is full for this cycle
-[command,buffer_full]()(int)
 // info: Refresh the player's appearance
 [command,buildappearance](inv $inv)
 // info: Refresh the secondary player's appearance
@@ -405,43 +391,43 @@
 // info: Requires protected access - teleport the secondary player to $coord, short distances (1-2 tiles) will visually walk/run
 [command,.p_teleport](coord $coord)
 // info: Set the player's base ready animation
-[command,bas_readyanim](seq $seq)
+[command,readyanim](seq $seq)
 // info: Set the secondary player's base ready animation
-[command,.bas_readyanim](seq $seq)
+[command,.readyanim](seq $seq)
 // info: Set the player's base turn-on-spot animation
-[command,bas_turnonspot](seq $seq)
+[command,turnanim](seq $seq)
 // info: Set the secondary player's base turn-on-spot animation
-[command,.bas_turnonspot](seq $seq)
+[command,.turnanim](seq $seq)
 // info: Set the player's base walking forward animation
-[command,bas_walk_f](seq $seq)
+[command,walkanim](seq $seq)
 // info: Set the secodnary player's base walking forward animation
-[command,.bas_walk_f](seq $seq)
+[command,.walkanim](seq $seq)
 // info: Set the player's base walking backwards animation
-[command,bas_walk_b](seq $seq)
+[command,walkanim_b](seq $seq)
 // info: Set the secondary player's base walking backwards animation
-[command,.bas_walk_b](seq $seq)
+[command,.walkanim_b](seq $seq)
 // info: Set the player's base turn-left animation
-[command,bas_walk_l](seq $seq)
+[command,walkanim_l](seq $seq)
 // info: Set the secondary player's base turn-left animation
-[command,.bas_walk_l](seq $seq)
+[command,.walkanim_l](seq $seq)
 // info: Set the player's base turn-right animation
-[command,bas_walk_r](seq $seq)
+[command,walkanim_r](seq $seq)
 // info: Set the secondary player's base turn-right animation
-[command,.bas_walk_r](seq $seq)
+[command,.walkanim_r](seq $seq)
 // info: Set the player's base running animation
-[command,bas_running](seq $seq)
+[command,runanim](seq $seq)
 // info: Set the secondary player's base running animation
-[command,.bas_running](seq $seq)
+[command,.runanim](seq $seq)
 // info: Get the player's current gender (0 = male, 1 = female)
 [command,gender]()(int)
 // info: Get the secondary player's current gender (0 = male, 1 = female)
 [command,.gender]()(int)
-// info: Show the hint arrow on $npc
-[command,hint_npc](npc_uid $npc)
-// info: Show the hint arrow on $player
-[command,hint_player](player_uid $player)
-// info: Show the hint arrow on the secodnary $player
-[command,.hint_player](player_uid $player)
+// info: Show the hint arrow over the active player
+[command,hint_npc]
+// info: Show a hint arrow over the second active player
+[command,hint_pl]
+// info: Show a hint arrow over the active player for the second active player
+[command,.hint_pl]
 // info: Get the currently set headicons
 [command,headicons_get]()(int)
 // info: Get the currently set headicons for the secondary player
@@ -458,10 +444,6 @@
 [command,.p_opplayer](int $op)
 // info: Requires protected access - cast a spell on the active_player
 [command,p_opplayert](component $spell)
-// info: Find all players around $coord (limited to the nearest 8x8 zone area)
-[command,player_findallzone](coord $coord)
-// info: Use the next result from player_findallzone
-[command,player_findnext]()(boolean)
 // info: Allow the player to redesign their appearance (the packet is sent to the server)
 [command,allowdesign](boolean $allow)
 // info: Used in inv_buttond, similar to last_useslot, this is the other item in scope
@@ -481,7 +463,7 @@
 // info: Returns ^true if the player is ready for another AFK event
 [command,afk_event]()(int)
 // info: Get the player's low memory mode
-[command,lowmemory]()(boolean)
+[command,lowmem]()(boolean)
 // info: Set the player's identity kit
 [command,setidkit](idkit $kit, int $color)
 // info: Set the active_player to the hero that's done the most damage to the current active_player
@@ -624,9 +606,9 @@
 [command,.spotanim_npc](spotanim $spotanim, int $height, int $delay)
 // info: Find all NPCs around $coord (limited to the nearest 8x8 zone area)
 [command,npc_findallzone](coord $coord)
-// info: Use the next result from npc_findallzone
+// info: Set the active NPC to the next result from the most recent npc search
 [command,npc_findnext]()(boolean)
-// info: Use the next result from npc_findallzone on the secondary pointer
+// info: Set the secondary NPC to the next result from the most recent npc search
 [command,.npc_findnext]()(boolean)
 // info: Teleport the npc to $coord, short distances (1-2 tiles) will visually walk/run
 [command,npc_tele](coord $coord)
@@ -1030,31 +1012,7 @@
 // info: Raise a script error on the server
 [command,error](string $text)
 // info: Return true if the world is in a production environment
-[command,map_production]()(boolean)
-// info: Server debug stats
-[command,map_lastclock]()(int)
-// info: Server debug stats
-[command,map_lastworld]()(int)
-// info: Server debug stats
-[command,map_lastclientin]()(int)
-// info: Server debug stats
-[command,map_lastnpc]()(int)
-// info: Server debug stats
-[command,map_lastplayer]()(int)
-// info: Server debug stats
-[command,map_lastlogin]()(int)
-// info: Server debug stats
-[command,map_lastlogout]()(int)
-// info: Server debug stats
-[command,map_lastzone]()(int)
-// info: Server debug stats
-[command,map_lastclientout]()(int)
-// info: Server debug stats
-[command,map_lastcleanup]()(int)
-// info: Server debug stats
-[command,map_lastbandwidthin]()(int)
-// info: Server debug stats
-[command,map_lastbandwidthout]()(int)
+[command,map_live]()(boolean)
 // info: Start tracking time
 [command,timespent]
 // info: Get the time spent since the timespent command was ran. This can be ^micros or ^millis

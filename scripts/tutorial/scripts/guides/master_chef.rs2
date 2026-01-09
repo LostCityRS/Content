@@ -75,5 +75,5 @@ switch_int($option) {
 
 [proc,set_hint_icon_newbie_cook_instructor]
 if (npc_find(0_48_48_4_11, newbie_cook_instructor, 10, 0) = true) {
-    hint_npc(npc_uid);
+    hint_npc;
 }

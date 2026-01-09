@@ -18,7 +18,7 @@ if (%hazeelcultquest = ^hazeelcult_started) {
     return;
 }
 
-$x = append($x, "@str@I found a member of the cult called Clivet at the entrance|");
+$x = append($x, "|@str@I found a member of the cult called Clivet at the entrance|");
 $x = append($x, "@str@to the cult's hideout, south of Ardougne.|");
 if (%hazeelcultquest = ^hazeelcult_spoken_clivet) {
     $x = append($x, "@dbl@He told me a pack of lies about the Carnilleans, then asked|");

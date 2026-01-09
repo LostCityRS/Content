@@ -76,7 +76,7 @@ if (%tutorial < ^tutorial_complete & ~in_tutorial_island(coord) = true) {
 ~update_all(inv_getobj(worn, ^wearpos_rhand));
 cam_reset;
 queue(follower_login, 0, 0);
-if (map_production = true) {
+if (map_live = true) {
     last_login_info;
 }
 
@@ -98,7 +98,7 @@ if_settab(friends, ^tab_friends);
 if_settab(ignore, ^tab_ignore);
 if_settab(logout, ^tab_logout);
 if_settab(controls, ^tab_player_controls);
-if (lowmemory = true) {
+if (lowmem = true) {
     if_settab(options_ld, ^tab_game_options);
     if_settab(music_ld, ^tab_musicplayer);
 } else {

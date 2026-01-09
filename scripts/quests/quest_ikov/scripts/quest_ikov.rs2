@@ -48,7 +48,7 @@ if(~obj_gettotal(ikov_staffofarmardyl) > 0) {
     return;
 }
 npc_huntall(coord, 5, 1); // requires los, might need to recheck dist?
-while (npc_huntnext = true) {
+while (npc_findnext = true) {
     if (npc_category = guardian_of_armadyl) {
         npc_say("That is not thine to take!");
         npc_setmode(opplayer2);
