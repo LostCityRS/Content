@@ -15918,6 +15918,8 @@ model=ikov_mendedleverdoorl
 op1=Open
 active=yes
 blockrange=no
+category=double_door_open_and_close_left
+param=next_loc_stage,loc_1562
 
 [loc_2308]
 name=Gate
@@ -15927,6 +15929,8 @@ op1=Open
 mirror=yes
 active=yes
 blockrange=no
+category=double_door_open_and_close_right
+param=next_loc_stage,loc_1563
 
 [loc_2309]
 name=Door
@@ -16016,6 +16020,12 @@ model=loc_2320
 width=3
 op1=Swing across
 blockwalk=no
+category=monkeybars
+param=agil_level_req,15
+param=start_coord,0_48_155_48_44
+param=end_coord,0_48_155_49_49
+param=obstacle_low_fail,256
+param=obstacle_high_fail,512
 
 [loc_2321]
 name=Monkeybars
@@ -16024,6 +16034,12 @@ model=loc_2320
 width=3
 op1=Swing across
 blockwalk=no
+category=monkeybars
+param=agil_level_req,57
+param=start_coord,0_40_148_38_17
+param=end_coord,0_40_148_39_22
+param=obstacle_low_fail,36
+param=obstacle_high_fail,330
 
 [loc_2322]
 name=Ropeswing
@@ -16032,6 +16048,10 @@ model=loc_2322
 op1=Swing-on
 length=6
 blockwalk=no
+category=island_rope_swing
+param=start_coord,0_42_50_21_9
+param=end_coord,0_42_50_16_9
+param=dir,3
 
 [loc_2323]
 name=Ropeswing
@@ -16040,6 +16060,10 @@ model=loc_2322
 op1=Swing-on
 length=6
 blockwalk=no
+category=island_rope_swing
+param=start_coord,0_42_50_17_5
+param=end_coord,0_42_50_21_5
+param=dir,1
 
 [loc_2324]
 name=Ropeswing
@@ -16048,6 +16072,10 @@ model=loc_2322
 op1=Swing-on
 length=6
 blockwalk=no
+category=island_rope_swing
+param=start_coord,0_39_48_15_19
+param=end_coord,0_39_48_15_24
+param=dir,0
 
 [loc_2325]
 name=Ropeswing
@@ -16056,6 +16084,7 @@ model=loc_2322
 op1=Swing-on
 length=6
 blockwalk=no
+//TODO for someone who knows - Probably the rope swing to jangerberry island.
 
 [loc_2326]
 name=Branch
@@ -16125,6 +16154,7 @@ desc=A rocky outcrop from the running water.
 model=loc_2333
 op1=Cross
 active=yes
+category=karamja_stepping_stone
 
 [loc_2334]
 name=Stepping stones
@@ -16132,6 +16162,7 @@ desc=A rocky outcrop from the running water.
 model=loc_2333
 op1=Cross
 active=yes
+category=karamja_stepping_stone
 
 [loc_2335]
 name=Stepping stones
@@ -16139,6 +16170,7 @@ desc=A rocky outcrop from the running water.
 model=loc_2333
 op1=Cross
 active=yes
+category=karamja_stepping_stone
 
 [blackknighthole]
 name=Hole
@@ -29198,7 +29230,7 @@ name=Huge Mushroom
 desc=These fat fungi take up so much room.
 model=mushroom_massive3
 
-[loc_4058]
+[gnome_obstacle_pipe]
 name=Obstacle pipe
 desc=A pipe I can squeeze through.
 model=loc_154

@@ -1,0 +1,31 @@
+[if_button,questlist:cook]
+def_string $text;
+
+if(%cookquest = 0) {
+    $text = "@dbl@I can start this quest by speaking to the @dre@Cook@dbl@ in the|@dre@Kitchen@dbl@ on the ground floor of @dre@Lumbridge Castle@dbl@.";
+} else if(%cookquest = 1) {
+    // https://github.com/Indio3/quest-journals/blob/master/quest_cook/qca_02b.jpg?raw=true
+    // https://github.com/Indio3/quest-journals/blob/master/quest_cook/qca_07.jpg
+    $text = "@dbl@It's the @dre@Duke of Lumbridges'@dbl@ birthday and I have to help @dbl@his @dre@Cook@dbl@ make him a birthday cake. To do this I need to @dbl@bring him the following ingredients:|";
+    if(inv_total(inv, bucket_milk) > 0) {
+        $text = append($text, "@str@I have a bucket of milk with me|");
+    } else {
+        $text = append($text, "@dbl@a @dre@bucket@dbl@ of @dre@milk|");
+    }
+
+    if(inv_total(inv, egg) > 0) {
+        $text = append($text, "@str@I have an egg with me|");
+    } else {
+        $text = append($text, "@dbl@an @dre@egg|");
+    }
+
+    if(inv_total(inv, pot_flour) > 0) {
+        $text = append($text, "@str@I have a pot of flour with me");
+    } else {
+        $text = append($text, "@dbl@a @dre@pot@dbl@ of @dre@flour|");
+    }
+} else {
+    $text = "@str@It was the Duke of Lumbridge's birthday, but his cook had @str@forgotten to buy the ingredients he needed to make him a @str@cake. I brought the cook an egg, some flour and some milk @str@and the cook made a delicious looking cake with them.||@str@As a reward he now lets me use his high quality range which|@str@lets me burn things less whenever I wish to cook there.|@red@QUEST COMPLETE!";
+}
+
+~quest_journal("The Cook's Quest", $text);

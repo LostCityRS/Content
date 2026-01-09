@@ -1,0 +1,55 @@
+[label,pvm_dragon_spear_sa]
+p_stopaction;
+~set_sa_vars(oc_param(inv_getobj(worn, ^wearpos_rhand), sa_energy));
+spotanim_pl(sp_attack_shove_spotanim, 96, 0);
+anim(shove, 0);
+sound_synth(shove, 0, 0);
+
+spotanim_npc(stunned_shove, 96, 0);
+npc_anim(npc_param(defend_anim), 0);
+~npc_retaliate(0);
+npc_facesquare(coord);
+if (npc_param(defend_sound) ! null) {
+    sound_synth(npc_param(defend_sound), 0, 20);
+}
+def_coord $end_coord = ~dragon_spear_push(~coord_direction(coord, npc_coord), npc_coord);
+if (nc_size(npc_type) = 1) { // only 1x1 npcs can be pushed
+    if ($end_coord ! null) {
+        npc_tele($end_coord);
+    }
+}
+npc_delay(4); // 5t delay
+
+
+[proc,dragon_spear_push](int $dir, coord $target_coord)(coord)
+if (map_blocked($target_coord) = true) {
+    return ($target_coord);
+}
+def_coord $end_coord = $target_coord;
+switch_int ($dir) {
+    case ^exact_west : 
+        $end_coord = movecoord($target_coord, -1, 0, -1);
+        if (lineofwalk($target_coord, $end_coord) = false) {
+            $end_coord = movecoord($target_coord, -1, 0, 0);
+        }
+    case ^exact_east : 
+        $end_coord = movecoord($target_coord, 1, 0, 1);
+        if (lineofwalk($target_coord, $end_coord) = false) {
+            $end_coord = movecoord($target_coord, 1, 0, 0);
+        }
+    case ^exact_north : 
+        $end_coord = movecoord($target_coord, -1, 0, 1);
+        if (lineofwalk($target_coord, $end_coord) = false) {
+            $end_coord = movecoord($target_coord, 0, 0, 1);
+        }
+    case ^exact_south : 
+        $end_coord = movecoord($target_coord, 1, 0, -1);
+        if (lineofwalk($target_coord, $end_coord) = false) {
+            $end_coord = movecoord($target_coord, 0, 0, -1);
+        }
+}
+if (lineofwalk($target_coord, $end_coord) = true) {
+    return ($end_coord);
+}
+return ($target_coord);
+
