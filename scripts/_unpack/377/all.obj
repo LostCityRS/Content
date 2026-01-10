@@ -8,7 +8,7 @@ model=obj_mcannonremains
 2dyan=436
 2dxan=320
 members=yes
-weight=16kg 
+weight=16kg
 
 [mcannontoolkit]
 name=Tool kit
@@ -12459,8 +12459,14 @@ iop2=Wear
 manwear=obj_iron_chainbody_manwear,0
 womanwear=obj_iron_chainbody_womanwear,0
 wearpos=torso
-category=armour_body
 weight=15lb
+category=armour_body
+param=magicattack,-15
+param=stabdefence,10
+param=slashdefence,15
+param=crushdefence,19
+param=magicdefence,-3
+param=rangedefence,12
 
 [cert_iron_chainbody]
 certlink=iron_chainbody
@@ -12485,6 +12491,13 @@ manwear=obj_bronze_chainbody_manwear,0
 womanwear=obj_bronze_chainbody_womanwear,0
 wearpos=torso
 weight=15lb
+category=armour_body
+param=magicattack,-15
+param=stabdefence,7
+param=slashdefence,11
+param=crushdefence,13
+param=magicdefence,-3
+param=rangedefence,9
 
 [cert_bronze_chainbody]
 certlink=bronze_chainbody
@@ -12502,6 +12515,13 @@ manwear=obj_bronze_chainbody_manwear,0
 womanwear=obj_bronze_chainbody_womanwear,0
 wearpos=torso
 weight=15lb
+category=armour_body
+param=magicattack,-15
+param=stabdefence,17
+param=slashdefence,25
+param=crushdefence,30
+param=magicdefence,-3
+param=rangedefence,19
 
 [cert_steel_chainbody]
 certlink=steel_chainbody
@@ -12525,6 +12545,13 @@ manwear=obj_bronze_chainbody_manwear,0
 womanwear=obj_bronze_chainbody_womanwear,0
 wearpos=torso
 weight=15lb
+category=armour_body
+param=magicattack,-15
+param=stabdefence,22
+param=slashdefence,32
+param=crushdefence,39
+param=magicdefence,-3
+param=rangedefence,24
 
 [cert_black_chainbody]
 certlink=black_chainbody
@@ -12549,6 +12576,13 @@ manwear=obj_bronze_chainbody_manwear,0
 womanwear=obj_bronze_chainbody_womanwear,0
 wearpos=torso
 weight=13lb
+category=armour_body
+param=magicattack,-15
+param=stabdefence,25
+param=slashdefence,35
+param=crushdefence,42
+param=magicdefence,-3
+param=rangedefence,27
 
 [cert_mithril_chainbody]
 certlink=mithril_chainbody
@@ -12573,6 +12607,13 @@ manwear=obj_bronze_chainbody_manwear,0
 womanwear=obj_bronze_chainbody_womanwear,0
 wearpos=torso
 weight=17lb
+category=armour_body
+param=magicattack,-15
+param=stabdefence,36
+param=slashdefence,50
+param=crushdefence,61
+param=magicdefence,-3
+param=rangedefence,38
 
 [cert_adamant_chainbody]
 certlink=adamant_chainbody
@@ -12597,6 +12638,13 @@ womanwear=obj_bronze_chainbody_womanwear,0
 iop2=Wear
 wearpos=torso
 weight=15lb
+category=armour_body
+param=magicattack,-15
+param=stabdefence,63
+param=slashdefence,72
+param=crushdefence,78
+param=magicdefence,-3
+param=rangedefence,65
 
 [cert_rune_chainbody]
 certlink=rune_chainbody
@@ -13739,6 +13787,20 @@ manwear=obj_iron_dagger_manwear,0
 womanwear=obj_iron_dagger_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+param=stabattack,4
+param=slashattack,2
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,3
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=weapon_poisoned,bronze_dagger_p
+param=weapon_poisoned_message,You poison the dagger.
 
 [cert_bronze_dagger]
 certlink=bronze_dagger
@@ -13758,6 +13820,21 @@ manwear=obj_iron_dagger_manwear,0
 womanwear=obj_iron_dagger_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+respawnrate=1000
+param=stabattack,8
+param=slashattack,4
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,7
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=weapon_poisoned,steel_dagger_p
+param=weapon_poisoned_message,You poison the dagger.
 
 [cert_steel_dagger]
 certlink=steel_dagger
@@ -13785,6 +13862,20 @@ manwear=obj_iron_dagger_manwear,0
 womanwear=obj_iron_dagger_manwear,6
 wearpos=righthand
 weight=14oz
+category=weapon_stab
+param=stabattack,11
+param=slashattack,5
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,10
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=weapon_poisoned,mithril_dagger_p
+param=weapon_poisoned_message,You poison the dagger.
 
 [cert_mithril_dagger]
 certlink=mithril_dagger
@@ -13812,6 +13903,20 @@ manwear=obj_iron_dagger_manwear,0
 womanwear=obj_iron_dagger_manwear,6
 wearpos=righthand
 weight=18oz
+category=weapon_stab
+param=stabattack,15
+param=slashattack,8
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,14
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=weapon_poisoned,adamant_dagger_p
+param=weapon_poisoned_message,You poison the dagger.
 
 [cert_adamant_dagger]
 certlink=adamant_dagger
@@ -13839,6 +13944,20 @@ manwear=obj_iron_dagger_manwear,0
 womanwear=obj_iron_dagger_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+param=stabattack,25
+param=slashattack,12
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,24
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=weapon_poisoned,rune_dagger_p
+param=weapon_poisoned_message,You poison the dagger.
 
 [cert_rune_dagger]
 certlink=rune_dagger
@@ -13861,6 +13980,24 @@ manwear=obj_dragon_dagger_manwear,0
 womanwear=obj_dragon_dagger_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+param=stabattack,40
+param=slashattack,25
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,40
+param=stabattack_anim,human_ddagger_lunge
+param=slashattack_anim,human_ddagger_hack
+// param=defend_anim,human_ddagger_def
+param=defend_anim,human_ddagger_block
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=weapon_poisoned,dragon_dagger_p
+param=weapon_poisoned_message,You poison the dagger.
+// osrs defend anim seq_378
+param=specwep,^true
+param=sa_energy,250
 
 [cert_dragon_dagger]
 certlink=dragon_dagger
@@ -13888,6 +14025,21 @@ manwear=obj_iron_dagger_manwear,0
 womanwear=obj_iron_dagger_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+respawnrate=1200
+param=stabattack,10
+param=slashattack,5
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,7
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=weapon_poisoned,black_dagger_p
+param=weapon_poisoned_message,You poison the dagger.
 
 [cert_black_dagger]
 certlink=black_dagger
@@ -13918,6 +14070,19 @@ manwear=obj_iron_dagger_p_manwear,0
 womanwear=obj_iron_dagger_p_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+param=stabattack,5
+param=slashattack,3
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,4
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=poison_severity,20
 
 [cert_iron_dagger_p]
 certlink=iron_dagger_p
@@ -13948,6 +14113,19 @@ manwear=obj_iron_dagger_p_manwear,0
 womanwear=obj_iron_dagger_p_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+param=stabattack,4
+param=slashattack,2
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,3
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=poison_severity,20
 
 [cert_bronze_dagger_p]
 certlink=bronze_dagger_p
@@ -13970,6 +14148,19 @@ manwear=obj_iron_dagger_p_manwear,0
 womanwear=obj_iron_dagger_p_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+param=stabattack,8
+param=slashattack,4
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,7
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=poison_severity,20
 
 [cert_steel_dagger_p]
 certlink=steel_dagger_p
@@ -14000,6 +14191,19 @@ manwear=obj_iron_dagger_p_manwear,0
 womanwear=obj_iron_dagger_p_manwear,6
 wearpos=righthand
 weight=14oz
+category=weapon_stab
+param=stabattack,11
+param=slashattack,5
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,10
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=poison_severity,20
 
 [cert_mithril_dagger_p]
 certlink=mithril_dagger_p
@@ -14030,6 +14234,19 @@ manwear=obj_iron_dagger_p_manwear,0
 womanwear=obj_iron_dagger_p_manwear,6
 wearpos=righthand
 weight=18oz
+category=weapon_stab
+param=stabattack,15
+param=slashattack,8
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,14
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=poison_severity,20
 
 [cert_adamant_dagger_p]
 certlink=adamant_dagger_p
@@ -14060,6 +14277,19 @@ manwear=obj_iron_dagger_p_manwear,0
 womanwear=obj_iron_dagger_p_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+param=stabattack,25
+param=slashattack,12
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,24
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=poison_severity,20
 
 [cert_rune_dagger_p]
 certlink=rune_dagger_p
@@ -14080,6 +14310,23 @@ manwear=obj_dragon_dagger_manwear,0
 womanwear=obj_dragon_dagger_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+param=stabattack,40
+param=slashattack,25
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,40
+param=stabattack_anim,human_ddagger_lunge
+param=slashattack_anim,human_ddagger_hack
+// param=defend_anim,human_ddagger_def
+param=defend_anim,human_ddagger_block
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+// osrs defend anim seq_378
+param=poison_severity,20
+param=specwep,^true
+param=sa_energy,250
 
 [cert_dragon_dagger_p]
 certlink=dragon_dagger_p
@@ -14110,6 +14357,19 @@ manwear=obj_iron_dagger_p_manwear,0
 womanwear=obj_iron_dagger_p_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+param=stabattack,10
+param=slashattack,5
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,7
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=poison_severity,20
 
 [cert_black_dagger_p]
 certlink=black_dagger_p
@@ -15724,6 +15984,18 @@ manwear=obj_iron_battleaxe_manwear,0
 womanwear=obj_iron_battleaxe_manwear,6
 wearpos=righthand
 weight=6lb
+category=weapon_axe
+param=stabattack,-2
+param=slashattack,8
+param=crushattack,5
+param=rangedefence,-1
+param=strengthbonus,13
+param=attackrate,6
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
 
 [cert_iron_battleaxe]
 certlink=iron_battleaxe
@@ -15744,6 +16016,18 @@ manwear=obj_iron_battleaxe_manwear,0
 womanwear=obj_iron_battleaxe_manwear,6
 wearpos=righthand
 weight=6lb
+category=weapon_axe
+param=stabattack,-2
+param=slashattack,16
+param=crushattack,11
+param=rangedefence,-1
+param=strengthbonus,20
+param=attackrate,6
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
 
 [cert_steel_battleaxe]
 certlink=steel_battleaxe
@@ -15766,6 +16050,18 @@ manwear=obj_iron_battleaxe_manwear,0
 womanwear=obj_iron_battleaxe_manwear,6
 wearpos=righthand
 weight=6lb
+category=weapon_axe
+param=stabattack,-2
+param=slashattack,20
+param=crushattack,15
+param=rangedefence,-1
+param=strengthbonus,24
+param=attackrate,6
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
 
 [cert_black_battleaxe]
 certlink=black_battleaxe
@@ -15788,6 +16084,18 @@ manwear=obj_iron_battleaxe_manwear,0
 womanwear=obj_iron_battleaxe_manwear,6
 wearpos=righthand
 weight=5lb
+category=weapon_axe
+param=stabattack,-2
+param=slashattack,22
+param=crushattack,17
+param=rangedefence,-1
+param=strengthbonus,29
+param=attackrate,6
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
 
 [cert_mithril_battleaxe]
 certlink=mithril_battleaxe
@@ -15810,6 +16118,18 @@ manwear=obj_iron_battleaxe_manwear,0
 womanwear=obj_iron_battleaxe_manwear,6
 wearpos=righthand
 weight=7lb
+category=weapon_axe
+param=stabattack,-2
+param=slashattack,31
+param=crushattack,26
+param=rangedefence,-1
+param=strengthbonus,41
+param=attackrate,6
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
 
 [cert_adamant_battleaxe]
 certlink=adamant_battleaxe
@@ -15832,6 +16152,18 @@ manwear=obj_iron_battleaxe_manwear,0
 womanwear=obj_iron_battleaxe_manwear,6
 wearpos=righthand
 weight=6lb
+category=weapon_axe
+param=stabattack,-2
+param=slashattack,48
+param=crushattack,43
+param=rangedefence,-1
+param=strengthbonus,64
+param=attackrate,6
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
 
 [cert_rune_battleaxe]
 certlink=rune_battleaxe
@@ -15854,6 +16186,18 @@ manwear=obj_iron_battleaxe_manwear,0
 womanwear=obj_iron_battleaxe_manwear,6
 wearpos=righthand
 weight=6lb
+category=weapon_axe
+param=stabattack,-2
+param=slashattack,6
+param=crushattack,3
+param=rangedefence,-1
+param=strengthbonus,9
+param=attackrate,6
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
 
 [cert_bronze_battleaxe]
 certlink=bronze_battleaxe
@@ -15875,6 +16219,19 @@ manwear=obj_dragon_battleaxe_manwear,0
 womanwear=obj_dragon_battleaxe_manwear,6
 wearpos=righthand
 weight=6lb
+category=weapon_axe
+param=stabattack,-2
+param=slashattack,70
+param=crushattack,65
+param=rangedefence,-1
+param=strengthbonus,85
+param=attackrate,6
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=specwep,^true
 
 [cert_dragon_battleaxe]
 certlink=dragon_battleaxe
@@ -31110,6 +31467,19 @@ womanwear=obj_bronze_dart_manwear,6
 iop2=Wield
 wearpos=righthand
 weight=10g
+category=weapon_thrown
+param=rangeattack,7
+param=rangebonus,6
+param=levelrequire,10
+param=attackrate,3
+param=attackrange,3
+param=rangeattack_anim,human_stake2
+param=defend_anim,human_unarmedblock
+param=rangeattack_sound,dart
+param=proj_launch,black_dart_launch
+param=proj_travel,black_dart_travel
+param=weapon_poisoned,black_dart_p
+param=weapon_poisoned_message,You poison some darts.
 
 [black_dart_p]
 name=Black dart(p)
@@ -31132,6 +31502,19 @@ womanwear=obj_bronze_dart_p_manwear,6
 iop2=Wield
 wearpos=righthand
 weight=10g
+category=weapon_thrown
+param=rangeattack,7
+param=rangebonus,6
+param=levelrequire,10
+param=attackrate,3
+param=attackrange,3
+param=rangeattack_anim,human_stake2
+param=defend_anim,human_unarmedblock
+param=rangeattack_sound,dart
+// todo: no graphic?
+param=proj_launch,black_dart_launch
+param=proj_travel,black_dart_travel
+param=poison_severity,20
 
 [bronze_claws]
 name=Bronze claws
@@ -31157,8 +31540,21 @@ womanwear=obj_bronze_claws_manwear,6
 members=yes
 wearpos=righthand
 wearpos2=lefthand
-category=weapon_claws
 weight=2lb
+category=weapon_claws
+param=stabattack,3
+param=slashattack,4
+param=crushattack,-4
+param=stabdefence,1
+param=slashdefence,2
+param=crushdefence,1
+param=strengthbonus,5
+param=attackrate,4
+param=stabattack_anim,claws_punch
+param=slashattack_anim,human_axe_chop
+param=defend_anim,human_axe_block
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
 
 [iron_claws]
 name=Iron claws
@@ -31177,6 +31573,20 @@ members=yes
 wearpos=righthand
 wearpos2=lefthand
 weight=2lb
+category=weapon_claws
+param=stabattack,4
+param=slashattack,6
+param=crushattack,-4
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=strengthbonus,7
+param=attackrate,4
+param=stabattack_anim,claws_punch
+param=slashattack_anim,human_axe_chop
+param=defend_anim,human_axe_block
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
 
 [steel_claws]
 name=Steel claws
@@ -31203,6 +31613,20 @@ members=yes
 wearpos=righthand
 wearpos2=lefthand
 weight=2lb
+category=weapon_claws
+param=stabattack,8
+param=slashattack,11
+param=crushattack,-4
+param=stabdefence,3
+param=slashdefence,6
+param=crushdefence,2
+param=strengthbonus,12
+param=attackrate,4
+param=stabattack_anim,claws_punch
+param=slashattack_anim,human_axe_chop
+param=defend_anim,human_axe_block
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
 
 [black_claws]
 name=Black claws
@@ -31229,6 +31653,20 @@ members=yes
 wearpos=righthand
 wearpos2=lefthand
 weight=2lb
+category=weapon_claws
+param=stabattack,19
+param=slashattack,14
+param=crushattack,-4
+param=stabdefence,4
+param=slashdefence,7
+param=crushdefence,2
+param=strengthbonus,14
+param=attackrate,4
+param=stabattack_anim,claws_punch
+param=slashattack_anim,human_axe_chop
+param=defend_anim,human_axe_block
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
 
 [mithril_claws]
 name=Mithril claws
@@ -31255,6 +31693,20 @@ members=yes
 wearpos=righthand
 wearpos2=lefthand
 weight=2lb
+category=weapon_claws
+param=stabattack,11
+param=slashattack,16
+param=crushattack,-4
+param=stabdefence,4
+param=slashdefence,8
+param=crushdefence,2
+param=strengthbonus,17
+param=attackrate,4
+param=stabattack_anim,claws_punch
+param=slashattack_anim,human_axe_chop
+param=defend_anim,human_axe_block
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
 
 [adamant_claws]
 name=Adamant claws
@@ -31281,6 +31733,20 @@ members=yes
 wearpos=righthand
 wearpos2=lefthand
 weight=2lb
+category=weapon_claws
+param=stabattack,18
+param=slashattack,23
+param=crushattack,-4
+param=stabdefence,6
+param=slashdefence,12
+param=crushdefence,3
+param=strengthbonus,24
+param=attackrate,4
+param=stabattack_anim,claws_punch
+param=slashattack_anim,human_axe_chop
+param=defend_anim,human_axe_block
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
 
 [rune_claws]
 name=Rune claws
@@ -31307,6 +31773,22 @@ members=yes
 wearpos=righthand
 wearpos2=lefthand
 weight=2lb
+category=weapon_claws
+param=stabattack,26
+param=slashattack,38
+param=crushattack,-4
+param=stabdefence,10
+param=slashdefence,19
+param=crushdefence,5
+param=strengthbonus,39
+param=attackrate,4
+param=stabattack_anim,claws_punch
+param=slashattack_anim,human_axe_chop
+param=defend_anim,human_axe_block
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+param=specwep,^true
+param=sa_energy,250
 
 [cert_bronze_claws]
 certlink=bronze_claws
