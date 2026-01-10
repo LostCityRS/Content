@@ -18,11 +18,12 @@ p_opnpct(db_getfield($spell_data, magic_spell_table:spellcom, 0));
 
 // osrs's opnpct triggers are unused
 [apnpct,magic:wind_strike]
-//if (%tutorial_progress < ^tutorial_complete) {
-//  ~pvm_tutorial_spell(^wind_strike);
-//} else {
+if (%tutorial < ^tutorial_complete) {
+ ~pvm_tutorial_spell(^wind_strike);
+} else {
    ~pvm_default_spell(^wind_strike);
-//}
+}
+
 [apnpct,magic:water_strike] ~pvm_default_spell(^water_strike);
 [apnpct,magic:earth_strike] ~pvm_default_spell(^earth_strike);
 [apnpct,magic:fire_strike] ~pvm_default_spell(^fire_strike);

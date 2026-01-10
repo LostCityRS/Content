@@ -1,0 +1,47 @@
+[oplocu,newbiefurnace]
+if (%tutorial < ^newbie_mining_instructor_before_smelt_bronze_bar) {
+    ~mesbox("This is a furnace for smelting metal.|You'll learn how to use it soon.");
+    return;
+}
+
+if (last_useitem = copper_ore | last_useitem = tin_ore) {
+    @tut_smelting;
+} else {
+    ~displaymessage(^dm_default);
+}
+
+[oploc1,newbiefurnace]
+// has arrivedelay on osrs, but prob didnt exist originally since no seq
+if (%tutorial < ^newbie_mining_instructor_before_smelt_bronze_bar) {
+    ~mesbox("This is a furnace for smelting metal.|You'll learn how to use it soon.");
+    return;
+}
+// https://youtu.be/Quwc_TfPW8Q?si=4EbytLyuAdOxaxhv&t=269
+~mesbox("This is a furnace for smelting metal. To use it simply click on the ore you wish to smelt then click on the furnace you would like to use.");
+
+[label,tut_smelting]
+
+if (inv_total(inv, tin_ore) < 1) {
+    ~mesbox("You also need some tin ore to make a bronze bar.");
+    return;
+}
+
+if (inv_total(inv, copper_ore) < 1) {
+    ~mesbox("You also need some copper ore to make a bronze bar.");
+    return;
+}
+
+p_arrivedelay();
+anim(human_furnace, 0);
+sound_synth(furnace, 0, 0);
+mes("You smelt the copper and tin together in the furnace.");
+p_delay(3);
+if (%tutorial = ^newbie_mining_instructor_before_smelt_bronze_bar) {
+    %tutorial = ^newbie_mining_instructor_after_smelt_bronze_bar;
+}
+inv_del(inv, copper_ore, 1);
+inv_del(inv, tin_ore, 1);
+~tutorial_give_xp(smithing, 62);
+inv_add(inv, bronze_bar, 1);
+~set_tutorial_progress;
+mes("You retreive a bar of bronze.");

@@ -21352,6 +21352,7 @@ womanwear=obj_bucket_bailing_manwear,6
 2dyan=1660
 2dxan=204
 weight=1kg
+param=next_obj_stage,bucket_water
 
 [cert_bucket_empty]
 certlink=bucket_empty
@@ -21374,6 +21375,8 @@ model=obj_bucket_wax
 2dxan=204
 iop4=Empty
 weight=3kg
+param=is_water_source,^true
+param=next_obj_stage,bucket_empty
 
 [cert_bucket_water]
 certlink=bucket_water
@@ -22234,6 +22237,8 @@ model=obj_bronze_bar
 2dyan=1180
 2dxan=196
 weight=4lb
+param=smelting_struct,smelting_bronze_bar
+param=smithing_anvil_struct,smithing_bronze_bar
 
 [cert_bronze_bar]
 certlink=bronze_bar
