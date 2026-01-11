@@ -228,6 +228,7 @@ members=yes
 2dyan=2040
 2dxan=292
 weight=1kg
+tradeable=no
 
 [blackcog]
 name=Cog
@@ -239,6 +240,7 @@ members=yes
 2dyan=2040
 2dxan=292
 weight=1kg
+tradeable=no
 
 [bluecog]
 name=Cog
@@ -250,6 +252,7 @@ members=yes
 2dyan=2040
 2dxan=292
 weight=1kg
+tradeable=no
 
 [redcog]
 name=Cog
@@ -261,6 +264,7 @@ members=yes
 2dyan=2040
 2dxan=292
 weight=1kg
+tradeable=no
 
 [rat_poison]
 name=Rat poison
@@ -271,6 +275,7 @@ members=yes
 2dyan=1828
 2dxan=68
 weight=5oz
+tradeable=no
 
 [red_vine_worm]
 name=Red vine worm
@@ -402,6 +407,21 @@ manwear=obj_excalibur_manwear,0
 womanwear=obj_excalibur_manwear,6
 wearpos=righthand
 weight=5lb
+param=stabattack,20
+param=slashattack,29
+param=crushattack,-2
+param=slashdefence,3
+param=crushdefence,2
+param=magicdefence,1
+param=strengthbonus,25
+param=attackrate,5
+param=slashattack_anim,human_sword_slash
+param=stabattack_anim,human_sword_stab
+param=defend_anim,human_sword_def
+param=slash_sound,hacksword_slash
+param=stab_sound,hacksword_stab
+param=specwep,^true
+tradeable=no
 
 [unlit_candle]
 name=Candle
@@ -869,6 +889,11 @@ womanhead=obj_khazard_helmet_womanhead
 wearpos=hat
 wearpos2=head
 weight=6lb
+category=armour_helmet
+param=stabdefence,4
+param=slashdefence,5
+param=crushdefence,3
+tradeable=no
 
 [khazard_platemail]
 name=Khazard armour
@@ -891,6 +916,11 @@ womanwear2=obj_khazard_platemail_womanwear2
 wearpos=torso
 wearpos2=arms
 weight=20oz
+category=armour_body
+param=stabdefence,9
+param=slashdefence,11
+param=crushdefence,10
+tradeable=no
 
 [khazard_cellkeys]
 name=Khazard cell keys
@@ -903,6 +933,7 @@ model=obj_khazard_cellkeys
 2dyan=228
 2dxan=508
 weight=10g
+tradeable=no
 
 [khali_brew]
 name=Khali brew
@@ -917,6 +948,7 @@ model=obj_khali_brew
 2dyan=1888
 2dxan=104
 weight=4oz
+tradeable=no
 
 [ice_arrow]
 name=Ice arrows
@@ -4326,6 +4358,7 @@ members=yes
 2dyan=1996
 2dxan=84
 weight=30g
+tradeable=no
 
 [liquid_honey]
 name=Liquid honey
@@ -4340,6 +4373,7 @@ members=yes
 2dyan=1996
 2dxan=84
 weight=30g
+tradeable=no
 
 [sulphuric_broline]
 name=Sulphuric broline
@@ -4354,6 +4388,7 @@ members=yes
 2dyan=1996
 2dxan=84
 weight=30g
+tradeable=no
 
 [plaguesample]
 name=Plague sample
@@ -4366,6 +4401,7 @@ model=obj_plaguesample
 2dxan=136
 members=yes
 weight=50g
+tradeable=no
 
 [touch_paper]
 name=Touch paper
@@ -4379,6 +4415,7 @@ model=obj_touch_paper
 2dxan=288
 members=yes
 weight=10g
+tradeable=no
 
 [distillator]
 name=Distillator
@@ -4392,6 +4429,7 @@ model=obj_distillator
 2dyan=684
 2dxan=304
 weight=20g
+tradeable=no
 
 [king_lathas_amulet]
 name=Lathas' amulet
@@ -4409,6 +4447,7 @@ manwear=obj_ikov_pendantoflucien_manwear,0
 womanwear=obj_ikov_pendantoflucien_womanwear,0
 wearpos=front
 weight=10g
+tradeable=no
 
 [birdfeed]
 name=Bird feed
@@ -4422,6 +4461,7 @@ model=obj_birdfeed
 2dxan=116
 members=yes
 weight=50g
+tradeable=no
 
 [mournerkeytw]
 name=Key
@@ -4435,6 +4475,7 @@ model=obj_ikov_shinykey
 2dxan=328
 members=yes
 weight=10g
+tradeable=no
 
 [pigeons]
 name=Pigeon cage
@@ -4449,6 +4490,7 @@ model=obj_pigeons
 iop1=Open
 members=yes
 weight=2kg
+tradeable=no
 
 [pigeoncage]
 name=Pigeon cage
@@ -4460,6 +4502,7 @@ model=obj_lobster_pot
 2dxan=192
 members=yes
 weight=500g
+tradeable=no
 
 [priest_gown]
 name=Priest gown
@@ -4479,6 +4522,7 @@ womanwear2=obj_priest_gown_womanwear2
 wearpos=torso
 wearpos2=arms
 weight=4lb
+param=prayerbonus,3
 
 [cert_priest_gown]
 certlink=priest_gown
@@ -4499,6 +4543,7 @@ manwear=obj_priest_robe_manwear,0
 womanwear=obj_priest_robe_womanwear,0
 wearpos=legs
 weight=4lb
+param=prayerbonus,3
 
 [cert_priest_robe]
 certlink=priest_robe
@@ -4525,6 +4570,7 @@ members=yes
 wearpos=torso
 wearpos2=arms
 weight=4lb
+tradeable=no
 
 [karamja_rum]
 name=Karamjan rum
@@ -4536,6 +4582,7 @@ model=obj_khali_brew
 2dxan=104
 cost=30
 weight=2lb
+tradeable=no
 
 [chest_key]
 name=Chest key
@@ -4548,6 +4595,7 @@ model=obj_ikov_shinykey
 2dxan=328
 cost=1
 weight=10g
+tradeable=no
 
 [piratemessage]
 name=Pirate message
@@ -4561,6 +4609,7 @@ model=obj_nulodions_notes
 iop1=Read
 cost=1
 weight=20g
+tradeable=no
 
 [clay]
 name=Clay
@@ -4776,6 +4825,7 @@ model=obj_barcrawl_card
 2dxan=404
 iop1=Read
 weight=14g
+tradeable=no
 
 [scorpioncageempty]
 name=Scorpion cage
@@ -7785,6 +7835,7 @@ model=obj_mcannonbook
 2dyan=152
 2dxan=256
 weight=200g
+tradeable=no
 
 [phoenixkey1]
 name=Key
@@ -7796,6 +7847,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [phoenixkey2]
 name=Key
@@ -7838,6 +7890,7 @@ model=obj_arravshield1
 2dyan=172
 2dxan=220
 weight=6lb
+param=no_alchemy,1
 
 [cert_arravshield1]
 certlink=arravshield1
@@ -7851,6 +7904,7 @@ model=obj_arravshield2
 2dyan=8
 2dxan=376
 weight=6lb
+param=no_alchemy,1
 
 [cert_arravshield2]
 certlink=arravshield2
@@ -7872,6 +7926,14 @@ manwear=obj_phoenix_crossbow_manwear,0
 womanwear=obj_phoenix_crossbow_manwear,6
 wearpos=righthand
 weight=8lb
+category=weapon_crossbow
+param=rangeattack,6
+param=levelrequire,1
+param=attackrate,6
+param=attackrange,5
+param=rangeattack_anim,human_crossbow
+param=defend_anim,human_unarmedblock
+param=rangeattack_sound,crossbow
 
 [cert_phoenix_crossbow]
 certlink=phoenix_crossbow
@@ -7978,6 +8040,14 @@ manwear=obj_gauntlets_of_cooking_manwear,0
 womanwear=obj_gauntlets_of_cooking_womanwear,0
 wearpos=hands
 weight=8oz
+param=stabattack,2
+param=slashattack,2
+param=crushattack,2
+param=stabdefence,8
+param=slashdefence,9
+param=crushdefence,7
+param=strengthbonus,2
+tradeable=no
 
 [gauntlets_of_goldsmithing]
 name=Goldsmith gauntlet
@@ -7997,6 +8067,14 @@ manwear=obj_gauntlets_of_cooking_manwear,0
 womanwear=obj_gauntlets_of_cooking_womanwear,0
 wearpos=hands
 weight=8oz
+param=stabattack,2
+param=slashattack,2
+param=crushattack,2
+param=stabdefence,8
+param=slashdefence,9
+param=crushdefence,7
+param=strengthbonus,2
+tradeable=no
 
 [gauntlets_of_chaos]
 name=Chaos gauntlets
@@ -8016,6 +8094,14 @@ manwear=obj_gauntlets_of_cooking_manwear,0
 womanwear=obj_gauntlets_of_cooking_womanwear,0
 wearpos=hands
 weight=8oz
+param=stabattack,2
+param=slashattack,2
+param=crushattack,2
+param=stabdefence,8
+param=slashdefence,9
+param=crushdefence,7
+param=strengthbonus,2
+tradeable=no
 
 [steel_gauntlets]
 name=Steel gauntlets
@@ -8035,6 +8121,14 @@ manwear=obj_gauntlets_of_cooking_manwear,0
 womanwear=obj_gauntlets_of_cooking_womanwear,0
 wearpos=hands
 weight=8oz
+param=stabattack,2
+param=slashattack,2
+param=crushattack,2
+param=stabdefence,8
+param=slashdefence,9
+param=crushdefence,7
+param=strengthbonus,2
+tradeable=no
 
 [avan_crest]
 name=Crest part
@@ -8045,6 +8139,7 @@ members=yes
 2dyan=148
 2dxan=356
 weight=4lb
+tradeable=no
 
 [caleb_crest]
 name=Crest part
@@ -8055,6 +8150,7 @@ members=yes
 2dyan=148
 2dxan=356
 weight=3lb
+tradeable=no
 
 [johnathon_crest]
 name=Crest part
@@ -8065,6 +8161,7 @@ members=yes
 2dyan=148
 2dxan=356
 weight=3lb
+tradeable=no
 
 [family_crest]
 name=Family crest
@@ -8075,6 +8172,7 @@ members=yes
 2dyan=148
 2dxan=356
 weight=10lb
+tradeable=no
 
 [grandtree_barksample]
 name=Bark sample
@@ -22285,6 +22383,7 @@ model=obj_ikov_shinykey
 2dxan=328
 members=yes
 weight=10g
+tradeable=no
 
 [thcelldoorkey]
 name=Cell door key
@@ -22300,6 +22399,7 @@ model=obj_ikov_shinykey
 2dxan=328
 members=yes
 weight=10g
+tradeable=no
 
 [thminebarrel_empty]
 name=Barrel
@@ -22312,6 +22412,7 @@ cost=1
 2dxan=136
 members=yes
 weight=22lb
+tradeable=no
 
 [thanainabarrel]
 name=Ana in a barrel
@@ -22326,6 +22427,8 @@ model=obj_thanainabarrel
 members=yes
 iop1=Look
 weight=32kg
+tradeable=no
+param=destroy_death,^true
 
 [thgoodminekey]
 name=Wrought iron key
@@ -22341,6 +22444,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [slave_shirt]
 name=Slave shirt
@@ -22361,6 +22465,7 @@ members=yes
 weight=2lb
 wearpos=torso
 wearpos2=arms
+tradeable=no
 
 [slave_robe]
 name=Slave robe
@@ -22378,6 +22483,7 @@ manwear=obj_priest_robe_manwear,0
 womanwear=obj_priest_robe_womanwear,0
 weight=2lb
 wearpos=legs
+tradeable=no
 
 [slave_boots]
 name=Slave boots
@@ -22397,6 +22503,7 @@ manwear=obj_ikov_bootsoflightness_manwear,0
 womanwear=obj_ikov_bootsoflightness_womanwear,0
 weight=24oz
 wearpos=feet
+tradeable=no
 
 [thkebabinstructs]
 name=Scrumpled paper
@@ -22413,6 +22520,7 @@ model=obj_papyrus
 members=yes
 iop1=Read
 weight=10g
+tradeable=no
 
 [thshantaydisc]
 name=Shantay disclaimer
@@ -22429,6 +22537,7 @@ members=yes
 2dxan=472
 iop1=Read
 weight=10g
+tradeable=no
 
 [thprotodart]
 name=Prototype dart
@@ -22446,6 +22555,7 @@ model=obj_bronze_dart
 2dyan=336
 2dxan=396
 weight=10g
+tradeable=no
 
 [thcaptplans]
 name=Technical plans
@@ -22460,6 +22570,7 @@ model=obj_thcaptplans
 2dxan=472
 iop1=Read
 weight=15g
+tradeable=no
 
 [tentipineapple]
 name=Tenti pineapple
@@ -22472,6 +22583,7 @@ model=obj_tentipineapple
 2dyan=100
 2dxan=172
 weight=2lb
+tradeable=no
 
 [thbedobinkey]
 name=Bedabin key
@@ -22487,6 +22599,7 @@ members=yes
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [thprotodarttip]
 name=Prototype dart tip
@@ -22500,6 +22613,7 @@ model=obj_bronze_dart_tip
 members=yes
 stackable=yes
 weight=8g
+tradeable=no
 
 [shantay_pass]
 name=Shantay pass
@@ -24155,6 +24269,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=1kg
+tradeable=no
 
 [silverlight_key_2]
 name=Key
@@ -24168,6 +24283,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=1kg
+tradeable=no
 
 [silverlight_key_3]
 name=Key
@@ -24181,6 +24297,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=1kg
+tradeable=no
 
 [silverlight]
 name=Silverlight
@@ -24200,6 +24317,21 @@ manwear=obj_silverlight_manwear,0
 womanwear=obj_silverlight_manwear,6
 wearpos=righthand
 weight=4lb
+category=weapon_slash
+param=stabattack,9
+param=slashattack,14
+param=crushattack,-2
+param=slashdefence,3
+param=crushdefence,2
+param=magicdefence,1
+param=strengthbonus,12
+param=attackrate,5
+param=slashattack_anim,human_sword_slash
+param=stabattack_anim,human_sword_stab
+param=defend_anim,human_sword_def
+param=slash_sound,hacksword_slash
+param=stab_sound,hacksword_stab
+tradeable=no
 
 [hazeel_scroll]
 name=Hazeel scroll
@@ -24273,6 +24405,7 @@ model=obj_ball
 2dxan=300
 members=yes
 weight=150g
+tradeable=no
 
 [witches_diary]
 name=Diary
@@ -24286,6 +24419,8 @@ model=obj_mcannonbook
 2dyan=152
 2dxan=256
 weight=18oz
+respawnrate=30
+tradeable=no
 
 [witches_doorkey]
 name=Door key
@@ -24300,6 +24435,8 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+respawnrate=95
+tradeable=no
 
 [magnet]
 name=Magnet
@@ -24313,6 +24450,7 @@ model=obj_magnet
 2dxan=440
 members=yes
 weight=20g
+tradeable=no
 
 [witches_shedkey]
 name=Key
@@ -24327,6 +24465,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [saradomin_cape]
 name=Saradomin cape
@@ -30822,6 +30961,8 @@ model=obj_empty_ogre_bellows
 2dyan=36
 2dxan=112
 weight=18oz
+tradeable=no
+category=ogre_bellows
 
 [filled_ogre_bellow3]
 name=Ogre bellows (3)
@@ -30835,6 +30976,8 @@ model=obj_empty_ogre_bellows
 2dyan=36
 2dxan=112
 weight=18oz
+tradeable=no
+category=ogre_bellows
 
 [filled_ogre_bellow2]
 name=Ogre bellows (2)
@@ -30848,6 +30991,8 @@ model=obj_empty_ogre_bellows
 2dyan=36
 2dxan=112
 weight=18oz
+tradeable=no
+category=ogre_bellows
 
 [filled_ogre_bellow1]
 name=Ogre bellows (1)
@@ -30861,6 +31006,8 @@ model=obj_empty_ogre_bellows
 2dyan=36
 2dxan=112
 weight=18oz
+tradeable=no
+category=ogre_bellows
 
 [bloated_toad]
 name=Bloated toad
@@ -30876,6 +31023,7 @@ iop1=Drop
 iop4=Release All
 iop5=Release
 weight=750g
+tradeable=no
 
 [raw_chompy]
 name=Raw chompy
@@ -30909,6 +31057,7 @@ model=obj_enchanted_chicken
 2dxan=88
 iop1=Eat
 weight=10kg
+category=category_5
 
 [cert_cooked_chompy]
 certlink=cooked_chompy
@@ -30944,6 +31093,7 @@ model=obj_enchanted_chicken
 2dyan=1748
 2dxan=88
 weight=10kg
+tradeable=no
 
 [ogre_bow]
 name=Ogre bow
@@ -32023,6 +32173,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat2]
 name=Chompy bird hat
@@ -32051,6 +32202,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat3]
 name=Chompy bird hat
@@ -32077,6 +32229,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat4]
 name=Chompy bird hat
@@ -32103,6 +32256,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat5]
 name=Chompy bird hat
@@ -32129,6 +32283,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat6]
 name=Chompy bird hat
@@ -32155,6 +32310,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat7]
 name=Chompy bird hat
@@ -32173,6 +32329,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat8]
 name=Chompy bird hat
@@ -32201,6 +32358,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat9]
 name=Chompy bird hat
@@ -32227,6 +32385,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat10]
 name=Chompy bird hat
@@ -32253,6 +32412,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat11]
 name=Chompy bird hat
@@ -32279,6 +32439,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat12]
 name=Chompy bird hat
@@ -32305,6 +32466,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat13]
 name=Chompy bird hat
@@ -32323,6 +32485,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat14]
 name=Chompy bird hat
@@ -32351,6 +32514,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat15]
 name=Chompy bird hat
@@ -32377,6 +32541,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat16]
 name=Chompy bird hat
@@ -32403,6 +32568,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat17]
 name=Chompy bird hat
@@ -32429,6 +32595,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [cbhat18]
 name=Chompy bird hat
@@ -32455,6 +32622,7 @@ iop2=Wear
 members=yes
 wearpos=hat
 weight=1lb
+tradeable=no
 
 [toadflax]
 name=Toadflax
