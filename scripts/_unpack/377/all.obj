@@ -9,6 +9,7 @@ model=obj_mcannonremains
 2dxan=320
 members=yes
 weight=16kg
+tradeable=no
 
 [mcannontoolkit]
 name=Tool kit
@@ -21,6 +22,7 @@ model=obj_mcannontoolkit
 2dxan=432
 members=yes
 weight=1lb
+tradeable=no
 
 [mcannonball]
 name=Cannonball
@@ -34,6 +36,7 @@ stackable=yes
 members=yes
 cost=5
 weight=8lb
+category=category_1176
 
 [nulodions_notes]
 name=Nulodion's notes
@@ -47,6 +50,7 @@ model=obj_nulodions_notes
 iop1=Read
 members=yes
 weight=1oz
+tradeable=no
 
 [ammo_mould]
 name=Ammo mould
@@ -59,6 +63,7 @@ model=obj_ammo_mould
 cost=5
 members=yes
 weight=10lb
+tradeable=no
 
 [mcannonbook]
 name=Instruction manual
@@ -71,6 +76,7 @@ iop1=Read
 cost=10
 members=yes
 weight=18oz
+tradeable=no
 
 [twpart1]
 name=Cannon base
@@ -102,6 +108,7 @@ model=obj_twpart2
 cost=187500
 members=yes
 weight=2lb
+category=cannon_parts
 
 [cert_twpart2]
 certlink=twpart2
@@ -117,6 +124,7 @@ model=obj_twpart3
 cost=187500
 members=yes
 weight=15kg
+category=cannon_parts
 
 [cert_twpart3]
 certlink=twpart3
@@ -134,6 +142,7 @@ model=obj_twpart4
 cost=187500
 members=yes
 weight=5kg
+category=cannon_parts
 
 [cert_twpart4]
 certlink=twpart4
@@ -151,6 +160,7 @@ members=yes
 2dzan=212
 2dxan=4
 weight=2kg
+tradeable=no
 
 [holy_table_napkin]
 name=Holy table napkin
@@ -164,6 +174,7 @@ model=obj_holy_table_napkin
 2dyan=1932
 2dxan=440
 weight=1oz
+tradeable=no
 
 [magic_whistle]
 name=Magic whistle
@@ -177,6 +188,7 @@ model=obj_magic_whistle
 2dxan=152
 iop1=Blow
 weight=5g
+tradeable=no
 
 [grail_bell]
 name=Grail bell
@@ -192,6 +204,7 @@ model=obj_grail_bell
 2dxan=1132
 iop1=Ring
 weight=1oz
+tradeable=no
 
 [magic_golden_feather]
 name=Magic gold feather
@@ -208,6 +221,7 @@ model=obj_magic_golden_feather
 2dxan=428
 iop1=Blow-on
 weight=5g
+tradeable=no
 
 [holy_grail]
 name=Holy grail
@@ -219,6 +233,7 @@ model=obj_holy_grail
 2dyan=2044
 2dxan=116
 weight=3oz
+tradeable=no
 
 [whitecog]
 name=Cog
@@ -291,6 +306,7 @@ stackable=yes
 2dyan=188
 2dxan=340
 weight=10g
+tradeable=no
 
 [hemenster_fishing_trophy]
 name=Fishing trophy
@@ -303,6 +319,7 @@ members=yes
 2dyan=1931
 2dxan=210
 weight=3oz
+tradeable=no
 
 [fishing_competition_pass]
 name=Fishing pass
@@ -315,6 +332,7 @@ members=yes
 2dyan=1881
 2dxan=498
 weight=6g
+tradeable=no
 
 [insect_repellent]
 name=Insect repellent
@@ -979,6 +997,12 @@ count3=ice_arrow_4,4
 count4=ice_arrow_5,5
 wearpos=quiver
 weight=16g
+category=arrows
+param=rangebonus,16
+param=levelrequire,40
+param=proj_launch,ice_arrow_launch
+param=proj_travel,ice_arrow_travel
+tradeable=no
 
 [ice_arrow_4]
 recol1s=14798
@@ -998,6 +1022,7 @@ model=obj_ice_arrow_4
 2dzoom=1220
 2dyan=100
 2dxan=216
+dummyitem=inv_only
 
 [ice_arrow_3]
 recol1s=14798
@@ -1017,6 +1042,7 @@ model=obj_ice_arrow_3
 2dzoom=1220
 2dyan=100
 2dxan=216
+dummyitem=inv_only
 
 [ice_arrow_2]
 recol1s=14798
@@ -1036,6 +1062,7 @@ model=obj_ice_arrow_2
 2dzoom=1220
 2dyan=100
 2dxan=216
+dummyitem=inv_only
 
 [ice_arrow_5]
 recol1s=14798
@@ -1055,6 +1082,7 @@ model=obj_ice_arrow_5
 2dzoom=1220
 2dyan=100
 2dxan=216
+dummyitem=inv_only
 
 [ikov_lever]
 name=Lever
@@ -1067,6 +1095,7 @@ model=obj_ikov_lever
 2dyan=1704
 2dxan=264
 weight=2oz
+tradeable=no
 
 [ikov_staffofarmardyl]
 name=Staff of armadyl
@@ -1083,6 +1112,7 @@ model=obj_ikov_staffofarmardyl
 2dxan=148
 weight=4lb
 wearpos=righthand
+tradeable=no
 
 [ikov_shinykey]
 name=Shiny key
@@ -1096,6 +1126,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [ikov_pendantoflucien]
 name=Pendant of lucien
@@ -1115,6 +1146,7 @@ cost=12
 iop2=Wear
 wearpos=front
 weight=10g
+tradeable=no
 
 [ikov_pendantofarmardyl]
 name=Armadyl pendant
@@ -1134,6 +1166,7 @@ womanwear=obj_ikov_pendantoflucien_womanwear,0
 iop2=Wear
 wearpos=front
 weight=10g
+tradeable=no
 
 [ikov_bootsoflightness]
 name=Boots of lightness
@@ -1153,6 +1186,10 @@ model=obj_ikov_bootsoflightness
 iop2=Wear
 wearpos=feet
 weight=12oz
+param=stabdefence,1
+param=slashdefence,1
+param=crushdefence,1
+tradeable=no
 
 [ikov_bootsoflightnessworn]
 name=Boots of lightness
@@ -1172,6 +1209,11 @@ model=obj_ikov_bootsoflightness
 iop2=Wear
 wearpos=feet
 weight=-10lb
+weight=-10lb
+param=stabdefence,1
+param=slashdefence,1
+param=crushdefence,1
+tradeable=no
 
 [childs_blanket]
 name=Child's blanket
@@ -1183,6 +1225,8 @@ model=obj_childs_blanket
 members=yes
 cost=5
 weight=2lb
+respawnrate=50
+tradeable=no
 
 [guamvial]
 name=Unfinished potion
@@ -2893,6 +2937,7 @@ model=obj_pressure_gauge
 2dyan=1232
 2dxan=392
 weight=2oz
+tradeable=no
 
 [fish_food]
 name=Fish food
@@ -2929,6 +2974,7 @@ model=obj_fish_food
 2dyan=1904
 2dxan=112
 weight=30g
+tradeable=no
 
 [closet_key]
 name=Key
@@ -2940,6 +2986,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [rubber_tube]
 name=Rubber tube
@@ -2951,6 +2998,7 @@ model=obj_rubber_tube
 2dyan=76
 2dxan=312
 weight=1oz
+tradeable=no
 
 [oil_can]
 name=Oil can
@@ -2963,6 +3011,7 @@ model=obj_oil_can
 2dyan=1480
 2dxan=180
 weight=1oz
+tradeable=no
 
 [cattleprod]
 name=Cattleprod
@@ -2979,6 +3028,19 @@ manwear=obj_cattleprod_manwear,0
 womanwear=obj_cattleprod_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+param=stabattack,4
+param=slashattack,2
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,3
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+tradeable=no
 
 [poisoned_feed]
 name=Sheep feed
@@ -2991,6 +3053,7 @@ members=yes
 2dyan=1936
 2dxan=120
 weight=5lb
+tradeable=no
 
 [sheepbonesa]
 name=Sheep bones (1)
@@ -3002,6 +3065,7 @@ model=obj_sheepbonesa
 2dyan=368
 2dxan=400
 weight=3lb
+tradeable=no
 
 [sheepbonesb]
 name=Sheep bones (2)
@@ -3013,6 +3077,7 @@ model=obj_sheepbonesa
 2dyan=368
 2dxan=400
 weight=3lb
+tradeable=no
 
 [sheepbonesc]
 name=Sheep bones (3)
@@ -3024,6 +3089,7 @@ model=obj_sheepbonesa
 2dyan=368
 2dxan=400
 weight=3lb
+tradeable=no
 
 [sheepbonesd]
 name=Sheep bones (4)
@@ -3035,6 +3101,7 @@ model=obj_sheepbonesa
 2dyan=368
 2dxan=400
 weight=3lb
+tradeable=no
 
 [plague_jacket]
 name=Plague jacket
@@ -3056,6 +3123,7 @@ wearpos=torso
 wearpos2=arms
 wearpos3=hands
 weight=6lb
+tradeable=no
 
 [plague_trousers]
 name=Plague trousers
@@ -3073,6 +3141,7 @@ manwear=obj_plague_trousers_manwear,0
 womanwear=obj_plague_trousers_womanwear,0
 wearpos=legs
 weight=5lb
+tradeable=no
 
 [goblin_armour_orange]
 name=Orange goblin mail
@@ -3085,7 +3154,8 @@ cost=40
 2dzoom=1500
 2dxan=608
 weight=8lb
-wearpos=torso
+category=category_528
+tradeable=no
 
 [goblin_armour_darkblue]
 name=Blue goblin mail
@@ -3098,7 +3168,8 @@ cost=40
 2dzoom=1500
 2dxan=608
 weight=8lb
-wearpos=torso
+category=category_528
+tradeable=no
 
 [goblin_armour]
 name=Goblin mail
@@ -3109,7 +3180,7 @@ cost=40
 2dzoom=1500
 2dxan=608
 weight=8lb
-wearpos=torso
+category=category_528
 
 [cert_goblin_armour]
 certlink=goblin_armour
@@ -3128,6 +3199,7 @@ model=obj_mcannonbook
 members=yes
 iop1=Read
 weight=18oz
+tradeable=no
 
 [golrie_key_waterfall_quest]
 name=A key
@@ -3140,6 +3212,7 @@ model=obj_ikov_shinykey
 2dxan=328
 members=yes
 weight=10g
+tradeable=no
 
 [glarials_pebble_waterfall_quest]
 name=Glarial's pebble
@@ -3150,6 +3223,7 @@ model=obj_glarials_pebble_waterfall_quest
 2dxan=236
 members=yes
 weight=10g
+tradeable=no
 
 [glarials_amulet_waterfall_quest]
 name=Glarial's amulet
@@ -3168,6 +3242,7 @@ womanwear=obj_glarials_amulet_waterfall_quest_womanwear,0
 members=yes
 wearpos=front
 weight=10g
+tradeable=no
 
 [glarials_urn_full_waterfall_quest]
 name=Glarial's urn
@@ -3179,6 +3254,7 @@ model=obj_glarials_urn_full_waterfall_quest
 2dxan=68
 members=yes
 weight=5oz
+tradeable=no
 
 [glarials_urn_empty_waterfall_quest]
 name=Glarial's urn
@@ -3190,6 +3266,7 @@ model=obj_glarials_urn_full_waterfall_quest
 2dxan=68
 members=yes
 weight=3oz
+tradeable=no
 
 [baxtorian_key_waterfall_quest]
 name=A key
@@ -3202,6 +3279,7 @@ model=obj_ikov_shinykey
 2dxan=328
 members=yes
 weight=10g
+tradeable=no
 
 [mithril_seed]
 name=Mithril seeds
@@ -3231,6 +3309,7 @@ model=obj_rats_tail
 2dyan=168
 2dxan=340
 weight=3g
+tradeable=no
 
 [lobster_pot]
 name=Lobster pot
@@ -4838,6 +4917,8 @@ model=obj_scorpioncageempty
 2dxan=156
 cost=10
 weight=150g
+category=scorpcage
+tradeable=no
 
 [scorpioncagea]
 name=Scorpion cage
@@ -4850,6 +4931,8 @@ model=obj_scorpioncagea
 2dxan=156
 cost=10
 weight=175g
+category=scorpcage
+tradeable=no
 
 [scorpioncageab]
 name=Scorpion cage
@@ -4862,6 +4945,8 @@ model=obj_scorpioncagea
 2dxan=156
 cost=10
 weight=200g
+category=scorpcage
+tradeable=no
 
 [scorpioncageac]
 name=Scorpion cage
@@ -4874,6 +4959,8 @@ model=obj_scorpioncagea
 2dyan=1904
 2dxan=156
 weight=200g
+category=scorpcage
+tradeable=no
 
 [scorpioncageb]
 name=Scorpion cage
@@ -4886,6 +4973,8 @@ model=obj_scorpioncagea
 2dyan=1904
 2dxan=156
 weight=175g
+category=scorpcage
+tradeable=no
 
 [scorpioncagebc]
 name=Scorpion cage
@@ -4898,6 +4987,8 @@ model=obj_scorpioncagea
 2dyan=1904
 2dxan=156
 weight=200g
+category=scorpcage
+tradeable=no
 
 [scorpioncagec]
 name=Scorpion cage
@@ -4910,6 +5001,8 @@ model=obj_scorpioncagea
 2dyan=1904
 2dxan=156
 weight=175g
+category=scorpcage
+tradeable=no
 
 [scorpioncagefull]
 name=Scorpion cage
@@ -4922,6 +5015,8 @@ model=obj_scorpioncagea
 2dxan=156
 cost=10
 weight=225g
+category=scorpcage
+tradeable=no
 
 [enchanted_beef]
 name=Enchanted beef
@@ -5253,6 +5348,7 @@ manwear=obj_amulet_of_ghostspeak_manwear,0
 womanwear=obj_amulet_of_ghostspeak_womanwear,0
 wearpos=front
 weight=10g
+tradeable=no
 
 [ghostskull]
 name=Skull
@@ -5265,6 +5361,7 @@ model=obj_ghostskull
 2dzan=1996
 2dxan=160
 weight=80g
+tradeable=no
 
 [firerune]
 name=Fire rune
@@ -5647,6 +5744,7 @@ model=obj_orb_of_protection
 2dzoom=1260
 2dxan=48
 weight=1kg
+tradeable=no
 
 [orbs_of_protection]
 name=Orbs of protection
@@ -5659,6 +5757,7 @@ model=obj_orbs_of_protection
 2dyan=1976
 2dxan=92
 weight=2kg
+tradeable=no
 
 [gnome_amulet]
 name=Gnome amulet
@@ -5677,6 +5776,10 @@ manwear=obj_glarials_amulet_waterfall_quest_manwear,0
 womanwear=obj_glarials_amulet_waterfall_quest_womanwear,0
 wearpos=front
 weight=10g
+param=stabdefence,13
+param=slashdefence,13
+param=crushdefence,13
+tradeable=no
 
 [tinderbox]
 name=Tinderbox
@@ -5795,6 +5898,7 @@ members=yes
 2dyan=152
 2dxan=256
 weight=3g
+tradeable=no
 
 [keep_key]
 name=Keep key
@@ -5807,6 +5911,7 @@ model=obj_ikov_shinykey
 2dxan=328
 members=yes
 weight=10g
+tradeable=no
 
 [lens_mould]
 name=Lens mould
@@ -5818,6 +5923,7 @@ model=obj_lens_mould
 2dxan=196
 members=yes
 weight=1kg
+tradeable=no
 
 [lens]
 name=Lens
@@ -5830,6 +5936,7 @@ model=obj_lens
 2dxan=388
 members=yes
 weight=3g
+tradeable=no
 
 [zqboneshard]
 name=Bone shard
@@ -5843,6 +5950,7 @@ model=obj_zqboneshard
 members=yes
 iop1=Inspect
 weight=10g
+tradeable=no
 
 [zqbonekey]
 name=Bone key
@@ -5857,6 +5965,7 @@ model=obj_ikov_shinykey
 2dxan=328
 members=yes
 weight=10g
+tradeable=no
 
 [zqplaque]
 name=Stone-plaque
@@ -5870,6 +5979,7 @@ model=obj_zqplaque
 iop1=Read
 members=yes
 weight=800g
+tradeable=no
 
 [zqberviriusscroll]
 name=Tattered scroll
@@ -5885,6 +5995,7 @@ model=obj_nulodions_notes
 iop1=Read
 members=yes
 weight=20g
+tradeable=no
 
 [zqrashiliyiascroll]
 name=Crumpled scroll
@@ -5900,6 +6011,7 @@ model=obj_nulodions_notes
 iop1=Read
 members=yes
 weight=20g
+tradeable=no
 
 [zqcorpse]
 name=Rashiliyia corpse
@@ -5912,6 +6024,7 @@ model=obj_mcannonremains
 2dxan=320
 members=yes
 weight=300g
+tradeable=no
 
 [zqzadimusbones]
 name=Zadimus corpse
@@ -5925,6 +6038,7 @@ model=obj_mcannonremains
 iop1=Bury
 members=yes
 weight=500g
+tradeable=no
 
 [zqcrystal]
 name=Locating crystal
@@ -5938,6 +6052,7 @@ model=obj_zqcrystal
 members=yes
 iop1=Activate
 weight=2lb
+tradeable=no
 
 [zqcrystal_blue]
 name=Locating crystal
@@ -5952,6 +6067,7 @@ model=obj_zqcrystal
 2dxan=120
 members=yes
 weight=2lb
+tradeable=no
 
 [zqcrystal_red]
 name=Locating crystal
@@ -5967,6 +6083,7 @@ model=obj_zqcrystal
 2dxan=120
 members=yes
 weight=2lb
+tradeable=no
 
 [zqcrystal_yellow]
 name=Locating crystal
@@ -5982,6 +6099,7 @@ model=obj_zqcrystal
 2dxan=120
 members=yes
 weight=2lb
+tradeable=no
 
 [zqcrystal_white]
 name=Locating crystal
@@ -5997,6 +6115,7 @@ model=obj_zqcrystal
 2dxan=120
 members=yes
 weight=2lb
+tradeable=no
 
 [zqdeadbeads]
 name=Beads of the dead
@@ -6015,6 +6134,19 @@ womanwear=obj_zqdeadbeads_womanwear,0
 members=yes
 wearpos=front
 weight=10g
+param=stabattack,1
+param=slashattack,1
+param=crushattack,1
+param=magicattack,1
+param=rangeattack,1
+param=stabdefence,1
+param=slashdefence,1
+param=crushdefence,1
+param=magicdefence,1
+param=rangedefence,1
+param=strengthbonus,1
+param=prayerbonus,1
+tradeable=no
 
 [fake_coins]
 name=Coins
@@ -6027,6 +6159,7 @@ model=obj_fake_coins
 2dxan=184
 members=yes
 weight=2g
+tradeable=no
 
 [zqbonebeads]
 name=Bone beads
@@ -6038,6 +6171,7 @@ model=obj_zqbonebeads
 2dxan=304
 members=yes
 weight=1g
+tradeable=no
 
 [paramayaticket]
 name=Paramaya ticket
@@ -6085,6 +6219,7 @@ cost=1
 2dxan=604
 members=yes
 weight=3oz
+tradeable=no
 
 [zqberviriusscroll2]
 name=Bervirius notes
@@ -6101,6 +6236,7 @@ model=obj_nulodions_notes
 iop1=Read
 members=yes
 weight=20g
+tradeable=no
 
 [mosol_wampum_belt]
 name=Wampum belt
@@ -6112,6 +6248,7 @@ model=obj_mosol_wampum_belt
 2dxan=436
 members=yes
 weight=1lb
+tradeable=no
 
 [gnome_boots_pink]
 name=Boots
@@ -6627,6 +6764,7 @@ model=obj_knights_portrait
 2dyan=80
 2dxan=288
 weight=3lb
+tradeable=no
 
 [faladian_sword]
 name=Blurite sword
@@ -6643,6 +6781,21 @@ womanwear=obj_faladian_sword_manwear,6
 iop2=Wield
 wearpos=righthand
 weight=4lb
+category=weapon_slash
+param=stabattack,9
+param=slashattack,14
+param=crushattack,-2
+param=slashdefence,3
+param=crushdefence,2
+param=strengthbonus,10
+param=attackrate,5
+param=ready_baseanim,human_ds_ready
+param=slashattack_anim,human_sword_slash
+param=stabattack_anim,human_sword_stab
+param=defend_anim,human_sword_def
+param=slash_sound,hacksword_slash
+param=stab_sound,hacksword_stab
+tradeable=no
 
 [blurite_ore]
 name=Blurite ore
@@ -6657,6 +6810,7 @@ model=obj_copper_ore
 2dyan=1576
 2dxan=368
 weight=5lb
+tradeable=no
 
 [specimen_jar]
 name=Specimen jar
@@ -6667,6 +6821,7 @@ model=obj_specimen_jar
 2dxan=96
 members=yes
 weight=2oz
+tradeable=no
 
 [specimen_brush]
 name=Specimen brush
@@ -6679,6 +6834,7 @@ model=obj_specimen_brush
 2dxan=272
 members=yes
 weight=2oz
+tradeable=no
 
 [rock_sample1]
 name=Rock sample 1
@@ -6691,6 +6847,7 @@ model=obj_rock_sample1
 2dxan=120
 members=yes
 weight=3oz
+tradeable=no
 
 [rock_sample2]
 name=Rock sample 2
@@ -6702,6 +6859,7 @@ model=obj_rock_sample2
 2dxan=144
 members=yes
 weight=3oz
+tradeable=no
 
 [rock_sample3]
 name=Rock sample 3
@@ -6714,6 +6872,7 @@ model=obj_rock_sample3
 2dxan=104
 members=yes
 weight=3oz
+tradeable=no
 
 [cracked_sample]
 name=Rock sample
@@ -6726,6 +6885,7 @@ model=obj_rock_sample1
 2dxan=172
 members=yes
 weight=3oz
+tradeable=no
 
 [rockpick]
 name=Rock pick
@@ -6739,6 +6899,7 @@ model=obj_rockpick
 members=yes
 wearpos=righthand
 weight=2oz
+tradeable=no
 
 [trowel]
 name=Trowel
@@ -6751,6 +6912,7 @@ model=obj_trowel
 2dxan=312
 members=yes
 weight=2oz
+tradeable=no
 
 [tray_empty]
 name=Panning tray
@@ -6763,6 +6925,7 @@ model=obj_tray_empty
 members=yes
 iop2=Search
 weight=3oz
+tradeable=no
 
 [tray_gold]
 name=Panning tray
@@ -6775,6 +6938,7 @@ model=obj_tray_gold
 members=yes
 iop2=Search
 weight=5oz
+tradeable=no
 
 [tray_mud]
 name=Panning tray
@@ -6787,6 +6951,7 @@ model=obj_tray_mud
 members=yes
 iop2=Search
 weight=6oz
+tradeable=no
 
 [nuggets]
 name=Nuggets
@@ -6799,6 +6964,7 @@ model=obj_nuggets
 members=yes
 stackable=yes
 weight=4oz
+tradeable=no
 
 [digtalisman]
 name=Zaros talisman
@@ -6811,6 +6977,7 @@ model=obj_digtalisman
 2dxan=324
 members=yes
 weight=3oz
+tradeable=no
 
 [digplainletter]
 name=Unstamped letter
@@ -6823,6 +6990,7 @@ model=obj_nulodions_notes
 2dxan=380
 members=yes
 weight=20g
+tradeable=no
 
 [recommendedletter]
 name=Stamped letter
@@ -6835,6 +7003,7 @@ model=obj_recommendedletter
 2dxan=380
 members=yes
 weight=20g
+tradeable=no
 
 [digsitebuckle]
 name=Belt buckle
@@ -6848,6 +7017,7 @@ model=obj_digsitebuckle
 2dxan=524
 members=yes
 weight=1kg
+tradeable=no
 
 [old_boot]
 name=Old boot
@@ -6860,6 +7030,7 @@ model=obj_old_boot
 2dxan=168
 members=yes
 weight=2oz
+tradeable=no
 
 [digsitesword]
 name=Rusty sword
@@ -6871,6 +7042,7 @@ model=obj_digsitesword
 2dxan=652
 members=yes
 weight=5lb
+tradeable=no
 
 [digsitearrow]
 name=Broken arrow
@@ -6883,6 +7055,7 @@ model=obj_digsitearrow
 2dxan=168
 members=yes
 weight=15g
+tradeable=no
 
 [digsitebuttons]
 name=Buttons
@@ -6895,6 +7068,7 @@ model=obj_digsitebuttons
 2dxan=236
 members=yes
 weight=1g
+tradeable=no
 
 [digsitestaff]
 name=Broken staff
@@ -6907,6 +7081,7 @@ model=obj_digsitestaff
 2dxan=192
 members=yes
 weight=4lb
+tradeable=no
 
 [digsiteglass]
 name=Broken glass
@@ -6919,6 +7094,7 @@ model=obj_digsiteglass
 2dxan=412
 members=yes
 weight=20g
+tradeable=no
 
 [level1certificate]
 name=Level 1 certificate
@@ -6931,6 +7107,7 @@ model=obj_nulodions_notes
 2dxan=380
 members=yes
 weight=20g
+tradeable=no
 
 [level2certificate]
 name=Level 2 certificate
@@ -6943,6 +7120,7 @@ model=obj_nulodions_notes
 2dxan=380
 members=yes
 weight=20g
+tradeable=no
 
 [level3certificate]
 name=Level 3 certificate
@@ -6955,6 +7133,7 @@ model=obj_nulodions_notes
 2dxan=380
 members=yes
 weight=20g
+tradeable=no
 
 [digsitepottery]
 name=Ceramic remains
@@ -6969,6 +7148,7 @@ model=obj_digsitepottery
 2dxan=168
 members=yes
 weight=2oz
+tradeable=no
 
 [old_tooth]
 name=Old tooth
@@ -6981,6 +7161,7 @@ model=obj_old_tooth
 2dxan=292
 members=yes
 weight=1g
+tradeable=no
 
 [digexpertscroll]
 name=Invitation letter
@@ -6994,6 +7175,7 @@ model=obj_nulodions_notes
 members=yes
 iop2=Read
 weight=20g
+tradeable=no
 
 [digsitearmour1]
 name=Damaged armour
@@ -7008,6 +7190,7 @@ model=damagedarmour1_0
 2dxan=292
 members=yes
 weight=17lb
+tradeable=no
 
 [digsitearmour2]
 name=Broken armour
@@ -7022,6 +7205,7 @@ model=damagedarmour2_0
 2dxan=496
 members=yes
 weight=17lb
+tradeable=no
 
 [zarosstonetablet]
 name=Stone tablet
@@ -7034,6 +7218,7 @@ model=obj_zarosstonetablet
 members=yes
 iop2=Read
 weight=800g
+tradeable=no
 
 [unidentified_powder]
 name=Chemical powder
@@ -7047,6 +7232,7 @@ members=yes
 2dyan=1892
 2dxan=264
 weight=1oz
+tradeable=no
 
 [ammonium_nitrate]
 name=Ammonium nitrate
@@ -7060,6 +7246,7 @@ members=yes
 2dyan=1892
 2dxan=264
 weight=15g
+tradeable=no
 
 [unidentified_liquid]
 name=Unidentified liquid
@@ -7073,6 +7260,7 @@ model=obj_strength4
 2dxan=84
 members=yes
 weight=25g
+tradeable=no
 
 [nitroglycerin]
 name=Nitroglycerin
@@ -7086,6 +7274,7 @@ model=obj_strength4
 2dxan=84
 members=yes
 weight=25g
+tradeable=no
 
 [ground_charcoal]
 name=Ground charcoal
@@ -7099,6 +7288,7 @@ members=yes
 2dyan=1892
 2dxan=264
 weight=8g
+tradeable=no
 
 [precharcoalmixture]
 name=Mixed chemicals
@@ -7112,6 +7302,7 @@ model=obj_strength4
 2dxan=84
 members=yes
 weight=30g
+tradeable=no
 
 [postcharcoalmixture]
 name=Mixed chemicals
@@ -7125,6 +7316,7 @@ model=obj_strength4
 2dxan=84
 members=yes
 weight=35g
+tradeable=no
 
 [digcompound]
 name=Chemical compound
@@ -7138,6 +7330,7 @@ model=obj_strength4
 2dxan=84
 members=yes
 weight=35g
+tradeable=no
 
 [arcenia_root]
 name=Arcenia root
@@ -7150,6 +7343,7 @@ model=obj_arcenia_root
 2dxan=456
 members=yes
 weight=10g
+tradeable=no
 
 [digchestkey]
 name=Chest key
@@ -7162,6 +7356,7 @@ model=obj_ikov_shinykey
 2dxan=328
 members=yes
 weight=10g
+tradeable=no
 
 [digsitevase]
 name=Vase
@@ -7175,6 +7370,7 @@ model=obj_glarials_urn_full_waterfall_quest
 2dxan=68
 members=yes
 weight=500g
+tradeable=no
 
 [digsitebook]
 name=Book on chemicals
@@ -7194,6 +7390,7 @@ model=obj_digsitebook
 members=yes
 iop2=Read
 weight=18oz
+tradeable=no
 
 [display_tea]
 name=Cup of tea
@@ -7207,6 +7404,7 @@ model=obj_display_tea
 2dxan=156
 members=yes
 weight=150g
+tradeable=no
 
 [cert_display_tea]
 name=Enjifern
@@ -7237,6 +7435,7 @@ model=obj_nulodions_notes
 iop1=Read
 iop2=Complete
 weight=20g
+tradeable=no
 
 [thkaramjamapcomp]
 name=Radimus notes
@@ -7254,6 +7453,7 @@ model=obj_nulodions_notes
 2dxan=380
 iop1=Read
 weight=20g
+tradeable=no
 
 [bullroarer]
 name=Bull roarer
@@ -7265,6 +7465,7 @@ members=yes
 2dxan=176
 iop1=Swing
 weight=20g
+tradeable=no
 
 [scrawled_note1]
 name=Scrawled note
@@ -7290,6 +7491,7 @@ womanwear=obj_scrawled_note1_manwear,6
 2dxan=248
 iop1=Read
 weight=20g
+tradeable=no
 
 [scrawled_note2]
 name=A scribbled note
@@ -7315,6 +7517,7 @@ womanwear=obj_scrawled_note1_manwear,6
 2dxan=248
 iop1=Read
 weight=20g
+tradeable=no
 
 [scrawled_note3]
 name=Scrumpled note
@@ -7340,6 +7543,7 @@ womanwear=obj_scrawled_note1_manwear,6
 2dxan=248
 iop1=Read
 weight=20g
+tradeable=no
 
 [goldbowlpic]
 name=Sketch
@@ -7358,6 +7562,7 @@ model=obj_nulodions_notes
 2dxan=380
 iop1=Look
 weight=20g
+tradeable=no
 
 [goldbowl_empty]
 name=Gold bowl
@@ -7373,6 +7578,8 @@ model=obj_goldbowl_empty
 2dyan=1856
 2dxan=204
 weight=800g
+tradeable=no
+param=next_obj_stage,goldbowl_water
 
 [goldbowlbless_empty]
 name=Blessed gold bowl
@@ -7388,6 +7595,8 @@ model=obj_goldbowl_empty
 2dyan=1856
 2dxan=204
 weight=800g
+tradeable=no
+param=next_obj_stage,goldbowlbless_water
 
 [goldbowl_water]
 name=Golden bowl
@@ -7402,6 +7611,9 @@ model=obj_goldbowl_water
 2dxan=204
 iop4=Empty
 weight=1kg
+tradeable=no
+category=gold_bowl
+param=next_obj_stage,goldbowl_empty
 
 [goldbowl_pure]
 name=Golden bowl
@@ -7416,6 +7628,9 @@ model=obj_goldbowl_water
 2dxan=204
 iop4=Empty
 weight=1kg
+tradeable=no
+category=gold_bowl
+param=next_obj_stage,goldbowl_empty
 
 [goldbowlbless_water]
 name=Golden bowl
@@ -7430,6 +7645,9 @@ model=obj_goldbowl_water
 2dxan=204
 iop4=Empty
 weight=1kg
+tradeable=no
+category=gold_bowl
+param=next_obj_stage,goldbowlbless_empty
 
 [goldbowlbless_pure]
 name=Golden bowl
@@ -7444,6 +7662,9 @@ model=obj_goldbowl_water
 2dxan=204
 iop4=Empty
 weight=1kg
+tradeable=no
+category=gold_bowl
+param=next_obj_stage,goldbowlbless_empty
 
 [reed_hollow]
 name=Hollow reed
@@ -7478,6 +7699,7 @@ model=obj_shamans_tome
 members=yes
 iop1=Read
 weight=18oz
+tradeable=no
 
 [book_of_binding]
 name=Book of binding
@@ -7501,6 +7723,7 @@ members=yes
 iop1=Read
 iop2=Enchant-Vials
 weight=18oz
+tradeable=no
 
 [vial_enchanted]
 name=Enchanted vial
@@ -7514,6 +7737,7 @@ members=yes
 manwear=obj_vial_empty_manwear,0
 womanwear=obj_vial_empty_manwear,6
 weight=10g
+tradeable=no
 
 [holy_water]
 name=Holy water
@@ -7532,6 +7756,17 @@ womanwear=obj_holy_water_manwear,6
 iop2=Wield
 wearpos=righthand
 weight=2lb
+category=weapon_thrown
+param=rangeattack,6
+param=rangebonus,12
+param=levelrequire,1
+param=attackrange,4
+param=rangeattack_anim,human_throw
+param=defend_anim,human_unarmedblock
+param=proj_launch,holy_water_launch
+param=proj_travel,holy_water_travel
+param=rangeattack_sound,thrown
+tradeable=no
 
 [smashed_glass]
 name=Smashed glass
@@ -7565,6 +7800,7 @@ members=yes
 stackable=yes
 op1=Look
 weight=1g
+tradeable=no
 
 [yommiseeds_germ]
 name=Yommi tree seeds
@@ -7581,6 +7817,7 @@ members=yes
 stackable=yes
 op1=Look
 weight=1g
+tradeable=no
 
 [snakeweed_sol]
 name=Snakeweed mixture
@@ -7594,6 +7831,7 @@ model=obj_strength4
 2dxan=84
 members=yes
 weight=25g
+tradeable=no
 
 [ardrigal_sol]
 name=Ardrigal mixture
@@ -7607,6 +7845,7 @@ members=yes
 2dyan=1996
 2dxan=84
 weight=25g
+tradeable=no
 
 [bravery_pot]
 name=Bravery potion
@@ -7621,6 +7860,7 @@ members=yes
 2dxan=84
 iop1=Drink
 weight=25g
+tradeable=no
 
 [viyeldihat]
 name=Blue hat
@@ -7640,6 +7880,9 @@ manhead=obj_bluewizhat_manhead
 womanhead=obj_bluewizhat_womanhead
 wearpos=hat
 weight=1lb
+param=magicattack,3
+param=magicdefence,3
+tradeable=no
 
 [heartcrystal_sectiona]
 name=Chunk of crystal
@@ -7650,6 +7893,8 @@ members=yes
 2dyof=1
 2dzoom=660
 weight=50g
+tradeable=no
+param=crystal_bit,^legends_smelting_chunk
 
 [heartcrystal_sectionb]
 name=Hunk of crystal
@@ -7660,6 +7905,8 @@ members=yes
 2dyof=1
 2dzoom=660
 weight=50g
+tradeable=no
+param=crystal_bit,^legends_smelting_hunk
 
 [heartcrystal_sectionc]
 name=Lump of crystal
@@ -7671,6 +7918,8 @@ members=yes
 2dzoom=510
 2dyan=60
 weight=50g
+tradeable=no
+param=crystal_bit,^legends_smelting_lump
 
 [heartcrystal]
 name=Heart crystal
@@ -7682,6 +7931,7 @@ members=yes
 2dzoom=660
 iop1=Look-at
 weight=150g
+tradeable=no
 
 [heartcrystal_glow]
 name=Heart crystal
@@ -7693,6 +7943,7 @@ members=yes
 2dzoom=660
 iop1=Look-at
 weight=150g
+tradeable=no
 
 [deathdagger]
 name=Dark dagger
@@ -7708,6 +7959,19 @@ manwear=obj_deathdagger_manwear,0
 womanwear=obj_deathdagger_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+param=stabattack,10
+param=slashattack,5
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=strengthbonus,7
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+tradeable=no
 
 [deathdaggerdone]
 name=Glowing dagger
@@ -7723,6 +7987,18 @@ manwear=obj_deathdaggerdone_manwear,0
 womanwear=obj_deathdaggerdone_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+param=stabattack,5
+param=slashattack,3
+param=crushattack,-4
+param=magicattack,1
+param=magicdefence,1
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+tradeable=no
 
 [holyforce]
 name=Holy force
@@ -7735,6 +8011,7 @@ members=yes
 2dxan=272
 iop1=Cast Spell
 weight=20g
+tradeable=no
 
 [thtotempole]
 name=Yommi totem
@@ -7747,6 +8024,7 @@ model=totem_pole_8
 2dyan=132
 2dzan=1780
 weight=3kg
+tradeable=no
 
 [thtotempolegift]
 name=Gilded totem
@@ -7767,6 +8045,7 @@ model=totem_pole_8
 2dzan=1780
 members=yes
 weight=3kg
+tradeable=no
 
 [ball_gnomeball_game]
 name=Gnomeball
@@ -7815,6 +8094,7 @@ model=obj_julietmessage
 ambient=10
 contrast=12
 weight=20g
+tradeable=no
 
 [cadava]
 name=Cadava potion
@@ -7829,6 +8109,7 @@ model=obj_strength4
 iop1=Look-at
 iop2=Drink
 weight=25g
+tradeable=no
 
 [the_shield_of_arrav]
 name=Book
@@ -7970,6 +8251,7 @@ members=yes
 2dyan=152
 2dxan=268
 weight=5lb
+tradeable=no
 
 [dramen_staff]
 name=Dramen staff
@@ -7986,6 +8268,22 @@ manwear=obj_dramen_staff_manwear,0
 womanwear=obj_dramen_staff_manwear,6
 wearpos=righthand
 weight=4lb
+category=weapon_staff
+param=stabattack,-1
+param=slashattack,-1
+param=crushattack,10
+param=magicattack,10
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,10
+param=strengthbonus,10
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=crushattack_anim,human_staff_pummel
+param=defend_anim,human_staff_block
+param=crush_sound,staff_hit
+tradeable=no
 
 [perfect_ruby_ring]
 name='perfect' ring
@@ -8192,6 +8490,7 @@ model=obj_grandtree_barksample
 2dyan=76
 2dxan=264
 weight=15g
+tradeable=no
 
 [grandtree_translationbook]
 name=Translation book
@@ -8212,6 +8511,7 @@ model=obj_digsitebook
 2dxan=244
 iop1=Read
 weight=18oz
+tradeable=no
 
 [grandtree_journal]
 name=Glough's journal
@@ -8230,6 +8530,7 @@ model=obj_shamans_tome
 2dxan=276
 iop1=Read
 weight=18oz
+tradeable=no
 
 [grandtree_scroll]
 name=Hazelmere's scroll
@@ -8244,6 +8545,7 @@ model=obj_nulodions_notes
 2dxan=380
 iop1=Read
 weight=20g
+tradeable=no
 
 [grandtree_order]
 name=Lumber order
@@ -8258,6 +8560,7 @@ model=obj_nulodions_notes
 2dxan=380
 iop1=Read
 weight=20g
+tradeable=no
 
 [grandtree_gloughskey]
 name=Glough's key
@@ -8270,6 +8573,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [grandtree_twigt]
 name=Twigs
@@ -8282,6 +8586,7 @@ members=yes
 2dyan=88
 2dxan=440
 weight=20g
+tradeable=no
 
 [grandtree_twigu]
 name=Twigs
@@ -8294,6 +8599,7 @@ members=yes
 2dyan=2036
 2dxan=364
 weight=20g
+tradeable=no
 
 [grandtree_twigz]
 name=Twigs
@@ -8304,6 +8610,7 @@ members=yes
 2dyan=48
 2dxan=420
 weight=20g
+tradeable=no
 
 [grandtree_twigo]
 name=Twigs
@@ -8315,6 +8622,7 @@ members=yes
 2dzoom=1500
 2dxan=452
 weight=20g
+tradeable=no
 
 [grandtree_daconiarock]
 name=Daconia rock
@@ -8328,6 +8636,7 @@ model=obj_rock_sample2
 2dxan=144
 members=yes
 weight=2lb
+tradeable=no
 
 [grandtree_invasionplans]
 name=Invasion plans
@@ -8342,6 +8651,7 @@ model=obj_nulodions_notes
 2dxan=380
 iop1=Read
 weight=20g
+tradeable=no
 
 [grandtree_warship]
 name=War ship
@@ -8367,6 +8677,7 @@ womanwear=obj_explodingvial_manwear,6
 2dzoom=510
 2dxan=1956
 weight=25g
+dummyitem=graphic_only
 
 [herbbowl]
 name=Herb bowl
@@ -10966,6 +11277,7 @@ womanwear=obj_throwingrope_manwear,6
 2dxan=1592
 wearpos=righthand
 weight=2lb
+dummyitem=graphic_only
 
 [knife]
 name=Knife
@@ -17512,6 +17824,21 @@ manwear=obj_dramen_staff_manwear,0
 womanwear=obj_dramen_staff_manwear,6
 wearpos=righthand
 weight=5lb
+category=weapon_staff
+param=stabattack,7
+param=slashattack,-1
+param=crushattack,25
+param=magicattack,10
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,10
+param=strengthbonus,32
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=crushattack_anim,human_staff_pummel
+param=defend_anim,human_staff_block
+param=crush_sound,staff_hit
 
 [cert_battlestaff]
 certlink=battlestaff
@@ -17537,6 +17864,21 @@ womanwear=obj_dramen_staff_manwear,6
 womanwear2=obj_staff_of_air_manwear2
 wearpos=righthand
 weight=5lb
+category=weapon_staff
+param=stabattack,7
+param=slashattack,-1
+param=crushattack,28
+param=magicattack,10
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,10
+param=strengthbonus,35
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=crushattack_anim,human_stafforb_pummel
+param=defend_anim,human_stafforb_block
+param=crush_sound,staff_hit
 
 [cert_fire_battlestaff]
 certlink=fire_battlestaff
@@ -17562,6 +17904,21 @@ womanwear=obj_dramen_staff_manwear,6
 womanwear2=obj_staff_of_air_manwear2
 wearpos=righthand
 weight=5lb
+category=weapon_staff
+param=stabattack,7
+param=slashattack,-1
+param=crushattack,28
+param=magicattack,10
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,10
+param=strengthbonus,35
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=crushattack_anim,human_stafforb_pummel
+param=defend_anim,human_stafforb_block
+param=crush_sound,staff_hit
 
 [cert_water_battlestaff]
 certlink=water_battlestaff
@@ -17585,6 +17942,21 @@ womanwear=obj_dramen_staff_manwear,6
 womanwear2=obj_staff_of_air_manwear2
 wearpos=righthand
 weight=5lb
+category=weapon_staff
+param=stabattack,7
+param=slashattack,-1
+param=crushattack,28
+param=magicattack,10
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,10
+param=strengthbonus,35
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=crushattack_anim,human_stafforb_pummel
+param=defend_anim,human_stafforb_block
+param=crush_sound,staff_hit
 
 [cert_air_battlestaff]
 certlink=air_battlestaff
@@ -17610,6 +17982,21 @@ womanwear=obj_dramen_staff_manwear,6
 womanwear2=obj_staff_of_air_manwear2
 wearpos=righthand
 weight=5lb
+category=weapon_staff
+param=stabattack,7
+param=slashattack,-1
+param=crushattack,28
+param=magicattack,10
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,10
+param=strengthbonus,35
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=crushattack_anim,human_stafforb_pummel
+param=defend_anim,human_stafforb_block
+param=crush_sound,staff_hit
 
 [cert_earth_battlestaff]
 certlink=earth_battlestaff
@@ -17635,6 +18022,21 @@ womanwear=obj_dramen_staff_manwear,6
 womanwear2=obj_staff_of_air_manwear2
 wearpos=righthand
 weight=5lb
+category=weapon_staff
+param=stabattack,10
+param=slashattack,-1
+param=crushattack,40
+param=magicattack,10
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,10
+param=strengthbonus,50
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=crushattack_anim,human_stafforb_pummel
+param=defend_anim,human_stafforb_block
+param=crush_sound,staff_hit
 
 [cert_mystic_fire_staff]
 certlink=mystic_fire_staff
@@ -17660,6 +18062,21 @@ womanwear=obj_dramen_staff_manwear,6
 womanwear2=obj_staff_of_air_manwear2
 wearpos=righthand
 weight=5lb
+category=weapon_staff
+param=stabattack,10
+param=slashattack,-1
+param=crushattack,40
+param=magicattack,10
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,10
+param=strengthbonus,50
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=crushattack_anim,human_stafforb_pummel
+param=defend_anim,human_stafforb_block
+param=crush_sound,staff_hit
 
 [cert_mystic_water_staff]
 certlink=mystic_water_staff
@@ -17683,6 +18100,21 @@ womanwear=obj_dramen_staff_manwear,6
 womanwear2=obj_staff_of_air_manwear2
 wearpos=righthand
 weight=5lb
+category=weapon_staff
+param=stabattack,10
+param=slashattack,-1
+param=crushattack,40
+param=magicattack,10
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,10
+param=strengthbonus,50
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=crushattack_anim,human_stafforb_pummel
+param=defend_anim,human_stafforb_block
+param=crush_sound,staff_hit
 
 [cert_mystic_air_staff]
 certlink=mystic_air_staff
@@ -17708,6 +18140,21 @@ womanwear=obj_dramen_staff_manwear,6
 womanwear2=obj_staff_of_air_manwear2
 wearpos=righthand
 weight=5lb
+category=weapon_staff
+param=stabattack,10
+param=slashattack,-1
+param=crushattack,40
+param=magicattack,10
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,10
+param=strengthbonus,50
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=crushattack_anim,human_stafforb_pummel
+param=defend_anim,human_stafforb_block
+param=crush_sound,staff_hit
 
 [cert_mystic_earth_staff]
 certlink=mystic_earth_staff
@@ -18229,6 +18676,7 @@ desc=A chunk of rock.
 model=obj_rock_sample2
 members=yes
 weight=1g
+tradeable=no
 
 [caveorb1]
 name=Orb of light
@@ -18240,6 +18688,8 @@ model=loc_3361_8
 2dxan=100
 members=yes
 weight=1lb
+param=orb_bit,^upass_orb1_bit
+tradeable=no
 
 [caveorb2]
 name=Orb of light
@@ -18251,6 +18701,8 @@ model=loc_3361_8
 2dxan=100
 members=yes
 weight=1lb
+param=orb_bit,^upass_orb2_bit
+tradeable=no
 
 [caveorb3]
 name=Orb of light
@@ -18262,6 +18714,8 @@ model=loc_3361_8
 2dxan=100
 members=yes
 weight=1lb
+param=orb_bit,^upass_orb3_bit
+tradeable=no
 
 [caveorb4]
 name=Orb of light
@@ -18273,6 +18727,8 @@ model=loc_3361_8
 2dxan=100
 members=yes
 weight=1lb
+param=orb_bit,^upass_orb4_bit
+tradeable=no
 
 [damp_cloth]
 name=Damp cloth
@@ -18286,6 +18742,7 @@ model=obj_childs_blanket
 2dxan=368
 members=yes
 weight=12g
+tradeable=no
 
 [caverailing]
 name=Piece of railing
@@ -18299,6 +18756,7 @@ model=obj_caverailing
 2dxan=240
 members=yes
 weight=2kg
+tradeable=no
 
 [cave_unicorn_horn]
 name=Unicorn horn
@@ -18312,6 +18770,7 @@ model=obj_unicorn_horn
 members=yes
 cost=20
 weight=7g
+tradeable=no
 
 [paladinbadge1]
 name=Paladin's badge
@@ -18325,6 +18784,7 @@ model=obj_paladinbadge1
 2dxan=444
 members=yes
 weight=12g
+tradeable=no
 
 [paladinbadge2]
 name=Paladin's badge
@@ -18340,6 +18800,7 @@ model=obj_paladinbadge1
 2dxan=444
 members=yes
 weight=12g
+tradeable=no
 
 [paladinbadge3]
 name=Paladin's badge
@@ -18355,6 +18816,7 @@ model=obj_paladinbadge1
 2dxan=444
 members=yes
 weight=12g
+tradeable=no
 
 [cavewitchcat]
 name=Witch's cat
@@ -18370,6 +18832,7 @@ model=obj_cavewitchcat
 2dxan=32
 members=yes
 weight=1200g
+tradeable=no
 
 [ibandoll]
 name=Doll of iban
@@ -18384,6 +18847,7 @@ iop1=Search
 2dyan=1736
 2dxan=364
 weight=300g
+tradeable=no
 
 [upass_journal]
 name=Old journal
@@ -18400,6 +18864,7 @@ model=obj_shamans_tome
 members=yes
 iop1=Read
 weight=8oz
+tradeable=no
 
 [old_journal]
 name=History of iban
@@ -18412,6 +18877,7 @@ model=obj_mcannonbook
 members=yes
 iop1=Read
 weight=8oz
+tradeable=no
 
 [klanks_gauntlets]
 name=Klank's gauntlets
@@ -18431,6 +18897,15 @@ manwear=obj_gauntlets_of_cooking_manwear,0
 womanwear=obj_gauntlets_of_cooking_womanwear,0
 weight=8oz
 wearpos=hands
+category=category_16
+param=stabattack,2
+param=slashattack,2
+param=crushattack,2
+param=stabdefence,8
+param=slashdefence,9
+param=crushdefence,7
+param=strengthbonus,2
+tradeable=no
 
 [ibansdove]
 name=Iban's dove
@@ -18443,6 +18918,7 @@ model=obj_ibansdove
 2dxan=472
 members=yes
 weight=100g
+tradeable=no
 
 [othainian_amulet]
 name=Amulet of othanian
@@ -18460,6 +18936,7 @@ model=obj_amulet_of_accuracy
 2dxan=424
 members=yes
 weight=10g
+tradeable=no
 
 [doomion_amulet]
 name=Amulet of doomion
@@ -18477,6 +18954,7 @@ model=obj_amulet_of_accuracy
 2dxan=424
 members=yes
 weight=10g
+tradeable=no
 
 [holthion_amulet]
 name=Amulet of holthion
@@ -18494,6 +18972,7 @@ model=obj_amulet_of_accuracy
 2dxan=424
 members=yes
 weight=10g
+tradeable=no
 
 [ibansshadow]
 name=Iban's shadow
@@ -18504,6 +18983,7 @@ model=obj_ibansshadow
 2dxan=92
 members=yes
 weight=25g
+tradeable=no
 
 [upassdwarfbrew]
 name=Dwarf brew
@@ -18518,6 +18998,7 @@ model=obj_bucket_wax
 2dyan=1660
 2dxan=204
 weight=150g
+tradeable=no
 
 [ibans_ashes]
 name=Iban's ashes
@@ -18532,6 +19013,7 @@ model=obj_unicorn_horn_dust
 2dxan=264
 members=yes
 weight=2oz
+tradeable=no
 
 [warrant]
 name=Warrant
@@ -18545,6 +19027,7 @@ model=obj_recommendedletter
 2dyan=120
 2dxan=380
 weight=10g
+tradeable=no
 
 [hangover_cure]
 name=Hangover cure
@@ -18559,6 +19042,7 @@ model=obj_bucket_wax
 2dyan=1688
 2dxan=204
 weight=2200g
+tradeable=no
 
 [ardougnescroll]
 name=A magic scroll
@@ -18573,6 +19057,7 @@ model=obj_nulodions_notes
 2dxan=380
 iop1=Read
 weight=20g
+tradeable=no
 
 [gasmask]
 name=Gas mask
@@ -18594,6 +19079,7 @@ wearpos=hat
 wearpos2=head
 wearpos3=jaw
 weight=9oz
+tradeable=no
 
 [elenakey]
 name=A small key
@@ -18607,6 +19093,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [scruffy_note]
 name=A scruffy note
@@ -18621,6 +19108,7 @@ model=obj_scruffy_note
 2dxan=332
 iop1=Read
 weight=10g
+tradeable=no
 
 [turnip_book]
 name=Book
@@ -18632,6 +19120,7 @@ model=obj_mcannonbook
 2dyan=152
 2dxan=256
 weight=18oz
+tradeable=no
 
 [elena_picture]
 name=Picture
@@ -18645,6 +19134,7 @@ model=obj_elena_picture
 2dyan=112
 2dxan=288
 weight=1lb
+tradeable=no
 
 [logs]
 name=Logs
@@ -19192,6 +19682,8 @@ model=obj_cavewitchcat
 members=yes
 op1=Use
 weight=750g
+category=category_81
+tradeable=no
 
 [kittenobject]
 name=Pet kitten
@@ -19205,6 +19697,9 @@ model=obj_kittenobject
 2dxan=32
 members=yes
 weight=750g
+category=kitten
+param=follower_id,kittenpet1
+tradeable=no
 
 [kittenobject_light]
 name=Pet kitten
@@ -19226,6 +19721,9 @@ model=obj_kittenobject
 2dxan=32
 members=yes
 weight=750g
+category=kitten
+param=follower_id,kittenpet_light
+tradeable=no
 
 [kittenobject_brown]
 name=Pet kitten
@@ -19245,6 +19743,9 @@ model=obj_kittenobject
 2dxan=32
 members=yes
 weight=750g
+category=kitten
+param=follower_id,kittenpet_brown
+tradeable=no
 
 [kittenobject_black]
 name=Pet kitten
@@ -19264,6 +19765,9 @@ model=obj_kittenobject
 2dxan=32
 members=yes
 weight=750g
+category=kitten
+param=follower_id,kittenpet_black
+tradeable=no
 
 [kittenobject_browngrey]
 name=Pet kitten
@@ -19283,6 +19787,9 @@ model=obj_kittenobject
 2dxan=32
 members=yes
 weight=750g
+category=kitten
+param=follower_id,kittenpet_browngrey
+tradeable=no
 
 [kittenobject_bluegrey]
 name=Pet kitten
@@ -19302,6 +19809,9 @@ model=obj_kittenobject
 2dxan=32
 members=yes
 weight=750g
+category=kitten
+param=follower_id,kittenpet_bluegrey
+tradeable=no
 
 [growncatobject]
 name=Pet cat
@@ -19315,6 +19825,9 @@ model=obj_cavewitchcat
 2dxan=32
 members=yes
 weight=1500g
+category=cat
+param=follower_id,growncat
+tradeable=no
 
 [growncatobject_light]
 name=Pet cat
@@ -19336,6 +19849,9 @@ model=obj_cavewitchcat
 2dxan=32
 members=yes
 weight=1500g
+category=cat
+param=follower_id,growncat_light
+tradeable=no
 
 [growncatobject_brown]
 name=Pet cat
@@ -19355,6 +19871,9 @@ model=obj_cavewitchcat
 2dxan=32
 members=yes
 weight=1500g
+category=cat
+param=follower_id,growncat_brown
+tradeable=no
 
 [growncatobject_black]
 name=Pet cat
@@ -19374,6 +19893,9 @@ model=obj_cavewitchcat
 2dxan=32
 members=yes
 weight=1500g
+category=cat
+param=follower_id,growncat_black
+tradeable=no
 
 [growncatobject_browngrey]
 name=Pet cat
@@ -19393,6 +19915,9 @@ model=obj_cavewitchcat
 2dxan=32
 members=yes
 weight=1500g
+category=cat
+param=follower_id,growncat_browngrey
+tradeable=no
 
 [growncatobject_bluegrey]
 name=Pet cat
@@ -19412,6 +19937,9 @@ model=obj_cavewitchcat
 2dxan=32
 members=yes
 weight=1500g
+category=cat
+param=follower_id,growncat_bluegrey
+tradeable=no
 
 [overgrowncatobject]
 name=Pet cat
@@ -19425,6 +19953,9 @@ model=obj_overgrowncatobject
 2dxan=32
 members=yes
 weight=2500g
+category=overgrown
+param=follower_id,overgrowncat
+tradeable=no
 
 [overgrowncatobject_light]
 name=Pet cat
@@ -19446,6 +19977,9 @@ model=obj_overgrowncatobject
 2dxan=32
 members=yes
 weight=2500g
+category=overgrown
+param=follower_id,overgrowncat_light
+tradeable=no
 
 [overgrowncatobject_brown]
 name=Pet cat
@@ -19465,6 +19999,9 @@ model=obj_overgrowncatobject
 2dxan=32
 members=yes
 weight=2500g
+category=overgrown
+param=follower_id,overgrowncat_brown
+tradeable=no
 
 [overgrowncatobject_black]
 name=Pet cat
@@ -19484,6 +20021,9 @@ model=obj_overgrowncatobject
 2dxan=32
 members=yes
 weight=2500g
+category=overgrown
+param=follower_id,overgrowncat_black
+tradeable=no
 
 [overgrowncatobject_browngrey]
 name=Pet cat
@@ -19503,6 +20043,9 @@ model=obj_overgrowncatobject
 2dxan=32
 members=yes
 weight=2500g
+category=overgrown
+param=follower_id,overgrowncat_browngrey
+tradeable=no
 
 [overgrowncatobject_bluegrey]
 name=Pet cat
@@ -19522,6 +20065,9 @@ model=obj_overgrowncatobject
 2dxan=32
 members=yes
 weight=2500g
+category=overgrown
+param=follower_id,overgrowncat_bluegrey
+tradeable=no
 
 [doogleleaves]
 name=Doogle leaves
@@ -19656,6 +20202,7 @@ model=obj_magic_golden_feather
 2dxan=428
 members=yes
 weight=2g
+tradeable=no
 
 [id_papers]
 name=Id papers
@@ -19668,6 +20215,7 @@ members=yes
 2dyan=120
 2dxan=380
 weight=10g
+tradeable=no
 
 [oily_fishing_rod]
 name=Oily fishing rod
@@ -19681,6 +20229,7 @@ model=obj_fishing_rod
 2dxan=328
 members=yes
 weight=3lb
+tradeable=no
 
 [misc_key]
 name=Miscellaneous key
@@ -19695,6 +20244,7 @@ model=obj_ikov_shinykey
 2dxan=328
 members=yes
 weight=10g
+tradeable=no
 
 [cert_misc_key]
 certlink=misc_key
@@ -19713,6 +20263,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=25g
+tradeable=no
 
 [cert_grip_keys]
 name=Pretty girl
@@ -21888,6 +22439,11 @@ manwear=obj_perfect_ruby_necklace_manwear,0
 womanwear=obj_perfect_ruby_necklace_womanwear,0
 wearpos=front
 weight=10g
+category=murder_proofobj
+param=product,murdernecklacedust
+param=game_message,You sprinkle the flour on Anna's necklace.
+param=game_message2,The necklace is now coated with a thin layer of flour.
+tradeable=no
 
 [murdernecklacedust]
 name=Silver necklace
@@ -21906,6 +22462,12 @@ manwear=obj_perfect_ruby_necklace_manwear,0
 womanwear=obj_perfect_ruby_necklace_womanwear,0
 wearpos=front
 weight=10g
+category=murder_flourobj
+param=product,murderfingerprinta
+param=next_obj_stage,murdernecklace
+param=game_message,You use the flypaper on the flour covered necklace.
+param=game_message2,You have a clean impression of Anna's finger prints.
+tradeable=no
 
 [murdercup]
 name=Silver cup
@@ -21918,6 +22480,11 @@ model=obj_murdercup
 2dyan=1980
 2dxan=156
 weight=70g
+category=murder_proofobj
+param=product,murdercupdust
+param=game_message,You sprinkle the flour on Bob's cup.
+param=game_message2,The cup is now coated with a thin layer of flour.
+tradeable=no
 
 [murdercupdust]
 name=Silver cup
@@ -21932,6 +22499,12 @@ model=obj_murdercup
 2dyan=1980
 2dxan=156
 weight=70g
+category=murder_flourobj
+param=product,murderfingerprintb
+param=next_obj_stage,murdercup
+param=game_message,You use the flypaper on the flour covered cup.
+param=game_message2,You have a clean impression of Bob's finger prints.
+tradeable=no
 
 [murderbottle]
 name=Silver bottle
@@ -21945,6 +22518,11 @@ model=obj_murderbottle
 2dyan=192
 2dxan=116
 weight=90g
+category=murder_proofobj
+param=product,murderbottledust
+param=game_message,You sprinkle the flour on Carol's bottle.
+param=game_message2,The bottle is now coated with a thin layer of flour.
+tradeable=no
 
 [murderbottledust]
 name=Silver bottle
@@ -21957,6 +22535,12 @@ model=obj_murderbottle
 2dyan=1808
 2dxan=76
 weight=90g
+category=murder_flourobj
+param=product,murderfingerprintc
+param=next_obj_stage,murderbottle
+param=game_message,You use the flypaper on the flour covered bottle.
+param=game_message2,You have a clean impression of Carol's finger prints.
+tradeable=no
 
 [murderbook]
 name=Silver book
@@ -21969,6 +22553,11 @@ model=obj_mcannonbook
 2dyan=152
 2dxan=256
 weight=8oz
+category=murder_proofobj
+param=product,murderbookdust
+param=game_message,You sprinkle the flour on David's book.
+param=game_message2,The Book is now coated with a thin layer of flour.
+tradeable=no
 
 [murderbookdust]
 name=Silver book
@@ -21981,6 +22570,12 @@ model=obj_mcannonbook
 2dyan=152
 2dxan=256
 weight=8oz
+category=murder_flourobj
+param=product,murderfingerprintd
+param=next_obj_stage,murderbook
+param=game_message,You use the flypaper on the flour covered book.
+param=game_message2,You have a clean impression of David's finger prints.
+tradeable=no
 
 [murderneedle]
 name=Silver needle
@@ -21995,6 +22590,11 @@ model=obj_needle
 2dyan=868
 2dxan=368
 weight=1g
+category=murder_proofobj
+param=product,murderneedledust
+param=game_message,You sprinkle the flour on Elizabeth's needle.
+param=game_message2,The Needle is now coated with a thin layer of flour.
+tradeable=no
 
 [murderneedledust]
 name=Silver needle
@@ -22009,6 +22609,12 @@ model=obj_needle
 2dyan=868
 2dxan=368
 weight=1g
+category=murder_flourobj
+param=product,murderfingerprinte
+param=next_obj_stage,murderneedle
+param=game_message,You use the flypaper on the flour covered needle.
+param=game_message2,You have a clean impression of Elizabeth's finger prints.
+tradeable=no
 
 [murderpot]
 name=Silver pot
@@ -22023,6 +22629,11 @@ model=obj_pot_unfired
 2dyan=8
 2dxan=112
 weight=2lb
+category=murder_proofobj
+param=product,murderpotdust
+param=game_message,You sprinkle the flour on Frank's pot.
+param=game_message2,The Pot is now coated with a thin layer of flour.
+tradeable=no
 
 [murderpotdust]
 name=Silver pot
@@ -22037,6 +22648,12 @@ model=obj_pot_unfired
 2dyan=8
 2dxan=112
 weight=2lb
+category=murder_flourobj
+param=product,murderfingerprintf
+param=next_obj_stage,murderpot
+param=game_message,You use the flypaper on the flour covered pot.
+param=game_message2,You have a clean impression of Frank's finger prints.
+tradeable=no
 
 [murderthreadr]
 name=Criminal's thread
@@ -22051,6 +22668,7 @@ model=obj_bow_string
 2dyan=1872
 2dxan=148
 weight=2g
+tradeable=no
 
 [murderthreadg]
 name=Criminal's thread
@@ -22065,6 +22683,7 @@ model=obj_bow_string
 2dyan=1872
 2dxan=148
 weight=2g
+tradeable=no
 
 [murderthreadb]
 name=Criminal's thread
@@ -22079,6 +22698,7 @@ model=obj_bow_string
 2dyan=1872
 2dxan=148
 weight=2g
+tradeable=no
 
 [murderpaper]
 name=Flypaper
@@ -22091,6 +22711,7 @@ model=obj_murderpaper
 2dxan=320
 members=yes
 weight=10g
+tradeable=no
 
 [murderpot2]
 name=Pungent pot
@@ -22105,6 +22726,7 @@ model=obj_pot_unfired
 2dyan=8
 2dxan=112
 weight=2lb
+tradeable=no
 
 [murderweapon]
 name=Criminal's dagger
@@ -22118,6 +22740,11 @@ model=obj_iron_dagger
 2dyan=1276
 2dxan=472
 weight=1lb
+category=murder_proofobj
+param=product,murderweapondust
+param=game_message,You sprinkle a small amount of flour on the murderweapon.
+param=game_message2,The murderweapon is now coated with a thin layer of flour.
+tradeable=no
 
 [murderweapondust]
 name=Criminal's dagger
@@ -22131,6 +22758,12 @@ model=obj_iron_dagger
 2dyan=1276
 2dxan=472
 weight=1lb
+category=murder_flourobj
+param=product,murderfingerprint1
+param=next_obj_stage,murderweapon
+param=game_message,You use the flypaper on the floury dagger.
+param=game_message2,You have a clean impression of the murderer's finger prints.
+tradeable=no
 
 [murderfingerprint]
 name=Killer's print
@@ -22143,6 +22776,7 @@ desc=The fingerprints of the murderer.
 members=yes
 model=obj_murderfingerprint
 weight=10g
+tradeable=no
 
 [murderfingerprinta]
 name=Anna's print
@@ -22155,6 +22789,9 @@ model=obj_murderfingerprint
 2dyan=84
 2dxan=320
 weight=10g
+category=murder_printobj
+param=murder_id_value,1
+tradeable=no
 
 [murderfingerprintb]
 name=Bob's print
@@ -22167,6 +22804,9 @@ model=obj_murderfingerprint
 2dyan=84
 2dxan=320
 weight=10g
+category=murder_printobj
+param=murder_id_value,2
+tradeable=no
 
 [murderfingerprintc]
 name=Carol's print
@@ -22179,6 +22819,9 @@ model=obj_murderfingerprint
 2dyan=84
 2dxan=320
 weight=10g
+category=murder_printobj
+param=murder_id_value,3
+tradeable=no
 
 [murderfingerprintd]
 name=David's print
@@ -22191,6 +22834,9 @@ model=obj_murderfingerprint
 2dyan=84
 2dxan=320
 weight=10g
+category=murder_printobj
+param=murder_id_value,4
+tradeable=no
 
 [murderfingerprinte]
 name=Elizabeth's print
@@ -22203,6 +22849,9 @@ model=obj_murderfingerprint
 2dyan=84
 2dxan=320
 weight=10g
+category=murder_printobj
+param=murder_id_value,5
+tradeable=no
 
 [murderfingerprintf]
 name=Frank's print
@@ -22215,6 +22864,9 @@ model=obj_murderfingerprint
 2dyan=84
 2dxan=320
 weight=10g
+category=murder_printobj
+param=murder_id_value,6
+tradeable=no
 
 [murderfingerprint1]
 name=Unknown print
@@ -22227,6 +22879,7 @@ model=obj_murderfingerprint
 2dyan=84
 2dxan=320
 weight=10g
+tradeable=no
 
 [water_skin4]
 name=Waterskin(4)
@@ -22681,6 +23334,7 @@ model=obj_mcannonbook
 2dyan=152
 2dxan=256
 weight=16lb
+tradeable=no
 
 [tribal_totem]
 name=Totem
@@ -22694,6 +23348,7 @@ members=yes
 2dyan=108
 2dxan=188
 weight=3kg
+tradeable=no
 
 [tribal_totem_label]
 name=Address label
@@ -22707,6 +23362,7 @@ members=yes
 2dyan=1116
 2dxan=244
 weight=10g
+tradeable=no
 
 [cert_raw_ugthanki_meat]
 certlink=raw_ugthanki_meat
@@ -23965,6 +24621,7 @@ model=obj_ogrerelic
 2dyan=1668
 2dxan=104
 weight=3kg
+tradeable=no
 
 [relicpart1]
 name=Relic part 1
@@ -23976,6 +24633,7 @@ members=yes
 2dyan=1776
 2dxan=128
 weight=1kg
+tradeable=no
 
 [relicpart2]
 name=Relic part 2
@@ -23985,6 +24643,7 @@ members=yes
 2dzoom=860
 2dyan=1696
 weight=1kg
+tradeable=no
 
 [relicpart3]
 name=Relic part 3
@@ -23994,6 +24653,7 @@ members=yes
 2dzoom=560
 2dyan=108
 weight=1kg
+tradeable=no
 
 [skavidmap]
 name=Skavid map
@@ -24006,6 +24666,7 @@ model=obj_skavidmap
 2dxan=312
 members=yes
 weight=10g
+tradeable=no
 
 [ogretooth]
 name=Ogre tooth
@@ -24018,6 +24679,7 @@ model=obj_old_tooth
 2dxan=292
 members=yes
 weight=10g
+tradeable=no
 
 [toban_key]
 name=Toban's key
@@ -24030,6 +24692,7 @@ model=obj_ikov_shinykey
 2dxan=328
 members=yes
 weight=10g
+tradeable=no
 
 [rockcake]
 name=Rock cake
@@ -24042,6 +24705,8 @@ model=obj_rockcake
 members=yes
 iop2=Eat
 weight=25g
+category=category_734
+tradeable=no
 
 [powering_crystal1]
 name=Crystal
@@ -24056,6 +24721,7 @@ model=obj_powering_crystal1
 2dxan=216
 members=yes
 weight=2lb
+tradeable=no
 
 [powering_crystal2]
 name=Crystal
@@ -24070,6 +24736,7 @@ model=obj_powering_crystal1
 2dxan=216
 members=yes
 weight=2lb
+tradeable=no
 
 [powering_crystal3]
 name=Crystal
@@ -24084,6 +24751,7 @@ model=obj_powering_crystal1
 2dxan=216
 members=yes
 weight=2lb
+tradeable=no
 
 [powering_crystal4]
 name=Crystal
@@ -24098,6 +24766,7 @@ model=obj_powering_crystal1
 2dxan=216
 members=yes
 weight=2lb
+tradeable=no
 
 [fingernails]
 name=Finger nails
@@ -24109,6 +24778,7 @@ model=obj_fingernails
 2dxan=348
 members=yes
 weight=2g
+tradeable=no
 
 [watchtowerrobe]
 name=Old robe
@@ -24119,6 +24789,7 @@ model=obj_priest_gown
 2dxan=536
 members=yes
 weight=4lb
+tradeable=no
 
 [watchtowerarmour]
 name=Unusual armour
@@ -24129,6 +24800,7 @@ model=obj_goblin_armour_orange
 2dxan=608
 members=yes
 weight=8lb
+tradeable=no
 
 [watchtowerdagger]
 name=Damaged dagger
@@ -24140,6 +24812,7 @@ model=obj_iron_dagger
 2dxan=472
 members=yes
 weight=1lb
+tradeable=no
 
 [watch_eye_patch]
 name=Tattered eye patch
@@ -24150,6 +24823,7 @@ model=obj_eye_patch
 2dxan=296
 members=yes
 weight=6g
+tradeable=no
 
 [jangervial]
 name=Vial
@@ -24163,6 +24837,7 @@ model=obj_strength4
 2dxan=84
 members=yes
 weight=15g
+tradeable=no
 
 [guamjangervial]
 name=Vial
@@ -24176,6 +24851,7 @@ model=obj_strength4
 2dxan=84
 members=yes
 weight=25g
+tradeable=no
 
 [ground_bat_bones]
 name=Ground bat bones
@@ -24207,6 +24883,7 @@ model=obj_bronze_bar
 2dxan=196
 members=yes
 weight=4lb
+tradeable=no
 
 [ogre_potion]
 name=Potion
@@ -24221,6 +24898,7 @@ model=obj_strength4
 2dxan=84
 members=yes
 weight=25g
+tradeable=no
 
 [magic_ogre_potion]
 name=Magic ogre potion
@@ -24236,6 +24914,7 @@ model=obj_strength4
 members=yes
 wearpos=righthand
 weight=25g
+tradeable=no
 
 [watchtowerspell]
 name=Spell scroll
@@ -24250,6 +24929,7 @@ model=obj_nulodions_notes
 iop1=Read
 members=yes
 weight=10g
+tradeable=no
 
 [shaman_robe]
 name=Shaman robe
@@ -24265,6 +24945,7 @@ model=obj_priest_gown
 iop1=Search
 members=yes
 weight=4lb
+tradeable=no
 
 [nightshade]
 name=Nightshade
@@ -24280,6 +24961,8 @@ model=obj_nightshade
 iop2=Eat
 members=yes
 weight=15g
+category=category_1748
+tradeable=no
 
 [silverlight_key_1]
 name=Key
@@ -24368,6 +25051,8 @@ members=yes
 2dyan=120
 2dxan=380
 weight=10g
+param=no_alchemy,1
+tradeable=no
 
 [carnilleanchestkey]
 name=Chest key
@@ -24380,6 +25065,8 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+param=no_alchemy,1
+tradeable=no
 
 [carnillean_armour]
 name=Carnillean armour
@@ -24402,6 +25089,11 @@ womanwear2=obj_iron_platebody_womanwear2
 wearpos=torso
 wearpos2=arms
 weight=20lb
+category=armour_body
+param=stabdefence,20
+param=slashdefence,14
+param=crushdefence,8
+tradeable=no
 
 [mark_of_hazeel]
 name=Hazeel's mark
@@ -24418,6 +25110,7 @@ manwear=obj_stringsnake_manwear2,0
 womanwear=obj_stringsnake_womanwear2,0
 wearpos=front
 weight=12g
+tradeable=no
 
 [ball]
 name=Ball
@@ -24699,6 +25392,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [blondwig]
 name=Wig
@@ -24710,6 +25404,7 @@ model=obj_blondwig
 2dyan=120
 2dxan=320
 weight=1lb
+tradeable=no
 
 [cert_blondwig]
 name=Brass monkey
@@ -24735,6 +25430,7 @@ model=obj_blondwig
 2dyan=120
 2dxan=320
 weight=10g
+tradeable=no
 
 [cert_plainwig]
 name=Blue partyhat
@@ -24762,6 +25458,7 @@ model=obj_keyprint
 2dyan=1988
 2dxan=268
 weight=10g
+tradeable=no
 
 [skinpaste]
 name=Paste
@@ -24775,6 +25472,7 @@ model=obj_blamish_snail_slime
 2dyan=1920
 2dxan=124
 weight=15g
+tradeable=no
 
 [cert_skinpaste]
 name=Orbital knife
@@ -25949,6 +26647,8 @@ members=yes
 2dyan=1700
 2dxan=100
 weight=2lb
+respawnrate=50
+tradeable=no
 
 [newbiebones]
 name=Bones
@@ -31175,6 +31875,7 @@ iop1=Read
 2dyan=136
 2dxan=276
 weight=4oz
+tradeable=no
 
 [elemental_workshop_key]
 name=Battered key
@@ -31188,6 +31889,7 @@ members=yes
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [elemental_workshop_lava_bowl]
 name=A stone bowl
@@ -31205,6 +31907,7 @@ members=yes
 cost=1
 weight=5oz
 wearpos=righthand
+tradeable=no
 
 [elemental_workshop_lava_bowl_full]
 name=A stone bowl
@@ -31222,6 +31925,7 @@ members=yes
 cost=1
 weight=8oz
 wearpos=righthand
+tradeable=no
 
 [elemental_shield]
 name=Elemental shield
@@ -31238,6 +31942,8 @@ members=yes
 cost=20
 weight=8oz
 wearpos=lefthand
+category=armour_shield
+param=magicdefence,6
 
 [cert_elemental_shield]
 certlink=elemental_shield
@@ -31257,6 +31963,7 @@ model=obj_copper_ore
 members=yes
 cost=5
 weight=5lb
+tradeable=no
 
 [elemental_workshop_bar]
 name=Elemental metal
@@ -31272,6 +31979,7 @@ model=obj_bronze_bar
 members=yes
 cost=8
 weight=4lb
+tradeable=no
 
 [wolfenboots_grey]
 name=Boots
@@ -31947,6 +32655,7 @@ model=obj_birdfeed
 members=yes
 iop1=Fill
 weight=10g
+tradeable=no
 
 [druid_pouch]
 name=Druid pouch
@@ -31966,6 +32675,7 @@ members=yes
 stackable=yes
 iop1=Fill
 weight=100g
+tradeable=no
 
 [rotten_food]
 name=Rotten food
@@ -31999,6 +32709,19 @@ womanwear=obj_silver_sickle_manwear,6
 members=yes
 wearpos=righthand
 weight=56oz
+category=weapon_slash
+param=slashdefence,1
+param=crushdefence,1
+param=magicdefence,1
+param=rangedefence,1
+param=strengthbonus,1
+param=attackrate,5
+param=slashattack_anim,human_sword_slash
+param=stabattack_anim,human_sword_stab
+param=defend_anim,human_sword_def
+param=slash_sound,sickle_slash
+param=stab_sound,sickle_stab
+param=crafting_jewelry_struct,silver_sickle
 
 [cert_silver_sickle]
 certlink=silver_sickle
@@ -32025,6 +32748,20 @@ womanwear=obj_silver_sickle_manwear,6
 members=yes
 wearpos=righthand
 weight=56oz
+tradeable=no
+category=weapon_slash
+param=slashdefence,1
+param=crushdefence,1
+param=magicdefence,1
+param=rangedefence,1
+param=strengthbonus,1
+param=prayerbonus,5
+param=attackrate,5
+param=slashattack_anim,human_sword_slash
+param=stabattack_anim,human_sword_stab
+param=defend_anim,human_sword_def
+param=slash_sound,hacksword_slash
+param=stab_sound,hacksword_stab
 
 [bowl_empty_filliman]
 name=Washing bowl
@@ -32040,6 +32777,7 @@ model=obj_goldbowl_empty
 2dxan=204
 members=yes
 weight=1lb
+respawnrate=3
 
 [cert_bowl_empty_filliman]
 certlink=bowl_empty_filliman
@@ -32054,6 +32792,7 @@ model=obj_mirror
 2dxan=344
 members=yes
 weight=8oz
+tradeable=no
 
 [filliman_journal]
 name=Journal
@@ -32071,6 +32810,7 @@ model=obj_shamans_tome
 2dxan=276
 iop1=Read
 weight=18oz
+tradeable=no
 
 [bloom_spell]
 name=Druidic spell
@@ -32096,6 +32836,7 @@ womanwear=obj_scrawled_note1_manwear,6
 2dxan=248
 iop1=Cast
 weight=20g
+tradeable=no
 
 [used_bloom_spell]
 name=A used spell
@@ -32120,6 +32861,7 @@ womanwear=obj_scrawled_note1_manwear,6
 2dyan=112
 2dxan=248
 weight=20g
+tradeable=no
 
 [mortmyremushroom]
 name=Mort myre fungi
@@ -32131,6 +32873,7 @@ model=obj_mortmyremushroom
 2dxan=232
 members=yes
 weight=10g
+param=brew_potion_struct,3dose2energy
 
 [cert_mortmyremushroom]
 certlink=mortmyremushroom
@@ -33201,6 +33944,21 @@ womanwear2=obj_lava_battlestaff_manwear2
 members=yes
 wearpos=righthand
 weight=5lb
+category=weapon_staff
+param=stabattack,7
+param=slashattack,-1
+param=crushattack,28
+param=magicattack,10
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,10
+param=strengthbonus,35
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=crushattack_anim,human_stafforb_pummel
+param=defend_anim,human_stafforb_block
+param=crush_sound,staff_hit
 
 [mystic_lava_staff]
 name=Mystic lava staff
@@ -33220,6 +33978,21 @@ womanwear2=obj_lava_battlestaff_manwear2
 members=yes
 wearpos=righthand
 weight=5lb
+category=weapon_staff
+param=stabattack,10
+param=slashattack,-1
+param=crushattack,40
+param=magicattack,10
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,10
+param=strengthbonus,50
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=crushattack_anim,human_stafforb_pummel
+param=defend_anim,human_stafforb_block
+param=crush_sound,staff_hit
 
 [cert_lava_battlestaff]
 certlink=lava_battlestaff
@@ -33778,6 +34551,7 @@ model=obj_troll_key_prison
 2dyan=20
 2dxan=460
 weight=55g
+tradeable=no
 
 [troll_key_godric]
 name=Cell key 1
@@ -33795,6 +34569,7 @@ model=obj_troll_key_prison
 2dyan=20
 2dxan=460
 weight=55g
+tradeable=no
 
 [troll_key_eadgar]
 name=Cell key 2
@@ -33812,6 +34587,7 @@ model=obj_troll_key_prison
 2dyan=20
 2dxan=460
 weight=55g
+tradeable=no
 
 [cactus_potato]
 name=Potato cactus
