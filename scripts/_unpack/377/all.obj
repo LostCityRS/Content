@@ -5197,6 +5197,7 @@ manwear=obj_priest_robe_manwear,0
 womanwear=obj_priest_robe_womanwear,0
 wearpos=legs
 weight=2lb
+param=prayerbonus,4
 
 [cert_druidrobebottom]
 certlink=druidrobebottom
@@ -5221,6 +5222,7 @@ womanwear2=obj_priest_gown_womanwear
 wearpos=torso
 wearpos2=arms
 weight=2lb
+param=prayerbonus,4
 
 [cert_druidrobetop]
 certlink=druidrobetop
@@ -5241,6 +5243,7 @@ manwear=obj_priest_robe_manwear,0
 womanwear=obj_priest_robe_womanwear,0
 wearpos=legs
 weight=2lb
+param=prayerbonus,6
 
 [cert_monkrobebottom]
 certlink=monkrobebottom
@@ -5264,6 +5267,7 @@ womanwear2=obj_priest_gown_womanwear
 wearpos=torso
 wearpos2=arms
 weight=2lb
+param=prayerbonus,5
 
 [cert_monkrobetop]
 certlink=monkrobetop
@@ -5287,6 +5291,7 @@ womanwear2=obj_priest_gown_womanwear
 wearpos=torso
 wearpos2=arms
 weight=2lb
+param=prayerbonus,5
 
 [cert_blackrobetop]
 certlink=blackrobetop
@@ -5307,6 +5312,7 @@ manwear=obj_priest_robe_manwear,0
 womanwear=obj_priest_robe_womanwear,0
 wearpos=legs
 weight=2lb
+param=prayerbonus,4
 
 [cert_blackrobebottom]
 certlink=blackrobebottom
@@ -5375,6 +5381,9 @@ model=obj_firerune
 2dxan=528
 ambient=30
 weight=2g
+category=category_149
+respawnrate=100
+
 
 [waterrune]
 name=Water rune
@@ -5388,6 +5397,7 @@ model=obj_waterrune
 2dxan=528
 ambient=30
 weight=2g
+category=category_149
 
 [airrune]
 name=Air rune
@@ -5401,6 +5411,7 @@ model=obj_airrune
 2dxan=528
 ambient=30
 weight=2g
+category=category_149
 
 [earthrune]
 name=Earth rune
@@ -5414,6 +5425,7 @@ model=obj_earthrune
 2dxan=528
 ambient=30
 weight=2g
+category=category_149
 
 [mindrune]
 name=Mind rune
@@ -5427,6 +5439,7 @@ model=obj_mindrune
 2dxan=528
 ambient=30
 weight=2g
+category=category_149
 
 [bodyrune]
 name=Body rune
@@ -5440,6 +5453,7 @@ model=obj_bodyrune
 2dxan=528
 ambient=30
 weight=2g
+category=category_149
 
 [deathrune]
 name=Death rune
@@ -5453,6 +5467,8 @@ model=obj_deathrune
 2dxan=528
 ambient=30
 weight=2g
+respawnrate=200
+category=category_149
 
 [naturerune]
 name=Nature rune
@@ -5466,6 +5482,8 @@ model=obj_naturerune
 2dxan=528
 ambient=30
 weight=2g
+respawnrate=200
+category=category_149
 
 [chaosrune]
 name=Chaos rune
@@ -5479,6 +5497,8 @@ model=obj_chaosrune
 2dxan=528
 ambient=30
 weight=2g
+respawnrate=200
+category=category_149
 
 [lawrune]
 name=Law rune
@@ -5492,6 +5512,7 @@ model=obj_lawrune
 2dxan=528
 ambient=30
 weight=2g
+category=category_149
 
 [cosmicrune]
 name=Cosmic rune
@@ -5505,6 +5526,8 @@ model=obj_cosmicrune
 2dxan=528
 ambient=30
 weight=2g
+respawnrate=200
+category=category_149
 
 [bloodrune]
 name=Blood rune
@@ -5519,6 +5542,8 @@ model=obj_bloodrune
 members=yes
 ambient=30
 weight=2g
+respawnrate=200
+category=category_149
 
 [soulrune]
 name=Soul rune
@@ -5533,6 +5558,7 @@ model=obj_soulrune
 members=yes
 ambient=30
 weight=2g
+category=category_149
 
 [stafforb]
 name=Unpowered orb
@@ -5549,6 +5575,7 @@ cost=100
 members=yes
 cost=100
 weight=1lb
+param=crafting_glass_struct,stafforb
 
 [cert_stafforb]
 certlink=stafforb
@@ -5568,6 +5595,8 @@ model=obj_stafforb
 members=yes
 cost=300
 weight=1lb
+category=craft_orb
+param=crafting_staff_struct,fire_orb
 
 [cert_fire_orb]
 certlink=fire_orb
@@ -5587,6 +5616,8 @@ model=obj_stafforb
 members=yes
 cost=300
 weight=1lb
+category=craft_orb
+param=crafting_staff_struct,water_orb
 
 [cert_water_orb]
 certlink=water_orb
@@ -5604,6 +5635,8 @@ model=obj_stafforb
 members=yes
 cost=300
 weight=1lb
+category=craft_orb
+param=crafting_staff_struct,air_orb
 
 [cert_air_orb]
 certlink=air_orb
@@ -5623,6 +5656,8 @@ model=obj_stafforb
 members=yes
 cost=300
 weight=1lb
+category=craft_orb
+param=crafting_staff_struct,earth_orb
 
 [cert_earth_orb]
 certlink=earth_orb
@@ -5646,6 +5681,8 @@ womanwear2=obj_priest_gown_womanwear
 wearpos=torso
 wearpos2=arms
 weight=2lb
+param=magicattack,3
+param=magicdefence,3
 
 [cert_wizards_robe]
 certlink=wizards_robe
@@ -5668,6 +5705,8 @@ manhead=obj_bluewizhat_manhead
 womanhead=obj_bluewizhat_womanhead
 wearpos=hat
 weight=1lb
+param=magicattack,2
+param=magicdefence,2
 
 [cert_bluewizhat]
 certlink=bluewizhat
@@ -5691,6 +5730,8 @@ womanwear2=obj_priest_gown_womanwear
 wearpos=torso
 wearpos2=arms
 weight=2lb
+param=magicattack,3
+param=magicdefence,3
 
 [cert_black_robe]
 certlink=black_robe
@@ -12611,6 +12652,8 @@ manhead=obj_bluewizhat_manhead
 womanhead=obj_bluewizhat_womanhead
 wearpos=hat
 weight=1lb
+param=magicattack,2
+param=magicdefence,2
 
 [cert_blackwizhat]
 certlink=blackwizhat
@@ -16626,6 +16669,23 @@ womanwear=obj_bronze_pickaxe_manwear,6
 iop2=Wield
 weight=5lb
 wearpos=righthand
+category=weapon_pickaxe
+param=stabattack,5
+param=slashattack,-2
+param=crushattack,3
+param=slashdefence,1
+param=strengthbonus,7
+param=levelrequire,0
+param=mining_rate,6
+param=mining_animation,human_mining_iron_pickaxe
+param=attackrate,5
+param=stabattack_anim,human_blunt_pound
+param=crushattack_anim,human_blunt_spike
+param=defend_anim,human_axe_block
+param=stab_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=broken,macro_broken_iron_pickaxe
+param=pickaxe_head,macro_iron_pickaxehead
 
 [cert_iron_pickaxe]
 certlink=iron_pickaxe
@@ -16646,6 +16706,23 @@ womanwear=obj_bronze_pickaxe_manwear,6
 iop2=Wield
 weight=5lb
 wearpos=righthand
+category=weapon_pickaxe
+param=stabattack,8
+param=slashattack,-2
+param=crushattack,6
+param=slashdefence,1
+param=strengthbonus,9
+param=levelrequire,6
+param=mining_rate,5
+param=mining_animation,human_mining_steel_pickaxe
+param=attackrate,5
+param=stabattack_anim,human_blunt_pound
+param=crushattack_anim,human_blunt_spike
+param=defend_anim,human_axe_block
+param=stab_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=broken,macro_broken_steel_pickaxe
+param=pickaxe_head,macro_steel_pickaxehead
 
 [cert_steel_pickaxe]
 certlink=steel_pickaxe
@@ -16668,6 +16745,23 @@ womanwear=obj_bronze_pickaxe_manwear,6
 iop2=Wield
 weight=6lb
 wearpos=righthand
+category=weapon_pickaxe
+param=stabattack,17
+param=slashattack,-2
+param=crushattack,15
+param=slashdefence,1
+param=strengthbonus,19
+param=levelrequire,31
+param=mining_rate,3
+param=mining_animation,human_mining_adamant_pickaxe
+param=attackrate,5
+param=stabattack_anim,human_blunt_pound
+param=crushattack_anim,human_blunt_spike
+param=defend_anim,human_axe_block
+param=stab_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=broken,macro_broken_adamant_pickaxe
+param=pickaxe_head,macro_adamant_pickaxehead
 
 [cert_adamant_pickaxe]
 certlink=adamant_pickaxe
@@ -16690,6 +16784,23 @@ womanwear=obj_bronze_pickaxe_manwear,6
 iop2=Wield
 weight=4lb
 wearpos=righthand
+category=weapon_pickaxe
+param=stabattack,12
+param=slashattack,-2
+param=crushattack,10
+param=slashdefence,1
+param=strengthbonus,13
+param=levelrequire,21
+param=mining_rate,4
+param=mining_animation,human_mining_mithril_pickaxe
+param=attackrate,5
+param=stabattack_anim,human_blunt_pound
+param=crushattack_anim,human_blunt_spike
+param=defend_anim,human_axe_block
+param=stab_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=broken,macro_broken_mithril_pickaxe
+param=pickaxe_head,macro_mithril_pickaxehead
 
 [cert_mithril_pickaxe]
 certlink=mithril_pickaxe
@@ -16712,6 +16823,23 @@ womanwear=obj_bronze_pickaxe_manwear,6
 iop2=Wield
 weight=5lb
 wearpos=righthand
+category=weapon_pickaxe
+param=stabattack,26
+param=slashattack,-2
+param=crushattack,24
+param=slashdefence,1
+param=strengthbonus,29
+param=levelrequire,41
+param=mining_rate,2
+param=mining_animation,human_mining_rune_pickaxe
+param=attackrate,5
+param=stabattack_anim,human_blunt_pound
+param=crushattack_anim,human_blunt_spike
+param=defend_anim,human_axe_block
+param=stab_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=broken,macro_broken_rune_pickaxe
+param=pickaxe_head,macro_rune_pickaxehead
 
 [cert_rune_pickaxe]
 certlink=rune_pickaxe
@@ -22144,6 +22272,18 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=10g
+param=stabattack,10
+param=slashattack,10
+param=crushattack,10
+param=magicattack,10
+param=rangeattack,10
+param=stabdefence,3
+param=slashdefence,3
+param=crushdefence,3
+param=magicdefence,3
+param=rangedefence,3
+param=strengthbonus,6
+param=prayerbonus,3
 
 [cert_amulet_of_glory]
 certlink=amulet_of_glory
@@ -22172,6 +22312,18 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=10g
+param=stabattack,10
+param=slashattack,10
+param=crushattack,10
+param=magicattack,10
+param=rangeattack,10
+param=stabdefence,3
+param=slashdefence,3
+param=crushdefence,3
+param=magicdefence,3
+param=rangedefence,3
+param=strengthbonus,6
+param=prayerbonus,3
 
 [cert_amulet_of_glory_1]
 certlink=amulet_of_glory_1
@@ -22200,6 +22352,18 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=10g
+param=stabattack,10
+param=slashattack,10
+param=crushattack,10
+param=magicattack,10
+param=rangeattack,10
+param=stabdefence,3
+param=slashdefence,3
+param=crushdefence,3
+param=magicdefence,3
+param=rangedefence,3
+param=strengthbonus,6
+param=prayerbonus,3
 
 [cert_amulet_of_glory_2]
 certlink=amulet_of_glory_2
@@ -22228,6 +22392,18 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=10g
+param=stabattack,10
+param=slashattack,10
+param=crushattack,10
+param=magicattack,10
+param=rangeattack,10
+param=stabdefence,3
+param=slashdefence,3
+param=crushdefence,3
+param=magicdefence,3
+param=rangedefence,3
+param=strengthbonus,6
+param=prayerbonus,3
 
 [cert_amulet_of_glory_3]
 certlink=amulet_of_glory_3
@@ -22256,6 +22432,18 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=10g
+param=stabattack,10
+param=slashattack,10
+param=crushattack,10
+param=magicattack,10
+param=rangeattack,10
+param=stabdefence,3
+param=slashdefence,3
+param=crushdefence,3
+param=magicdefence,3
+param=rangedefence,3
+param=strengthbonus,6
+param=prayerbonus,3
 
 [cert_amulet_of_glory_4]
 certlink=amulet_of_glory_4
@@ -22428,6 +22616,7 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=10g
+param=strengthbonus,10
 
 [cert_amulet_of_strength]
 certlink=amulet_of_strength
@@ -22454,6 +22643,7 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=10g
+param=magicattack,10
 
 [cert_amulet_of_magic]
 certlink=amulet_of_magic
@@ -22480,6 +22670,11 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=10g
+param=stabdefence,7
+param=slashdefence,7
+param=crushdefence,7
+param=magicdefence,7
+param=rangedefence,7
 
 [cert_amulet_of_defence]
 certlink=amulet_of_defence
@@ -22504,6 +22699,18 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=10g
+param=stabattack,6
+param=slashattack,6
+param=crushattack,6
+param=magicattack,6
+param=rangeattack,6
+param=stabdefence,6
+param=slashdefence,6
+param=crushdefence,6
+param=magicdefence,6
+param=rangedefence,6
+param=strengthbonus,6
+param=prayerbonus,1
 
 [cert_amulet_of_power]
 certlink=amulet_of_power
@@ -27669,6 +27876,7 @@ model=obj_perfect_ruby_ring
 iop2=Wear
 wearpos=ring
 weight=6g
+category=category_656
 
 [cert_ring_of_recoil]
 certlink=ring_of_recoil
@@ -27875,6 +28083,7 @@ model=obj_perfect_ruby_ring
 iop2=Wear
 wearpos=ring
 weight=6g
+category=category_656
 
 [cert_ring_of_forging]
 certlink=ring_of_forging
@@ -27895,6 +28104,7 @@ model=obj_perfect_ruby_ring
 iop2=Wear
 wearpos=ring
 weight=6g
+category=category_656
 
 [cert_ring_of_life]
 certlink=ring_of_life
@@ -27918,6 +28128,7 @@ members=yes
 iop2=Wear
 wearpos=ring
 weight=6g
+category=category_656
 
 [cert_ring_of_wealth]
 certlink=ring_of_wealth
