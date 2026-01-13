@@ -455,6 +455,7 @@ active=yes
 width=2
 op1=Pray-at
 op2=Check
+category=prayer_altar
 
 [merlins_crystal]
 name=Giant crystal
@@ -3234,6 +3235,7 @@ model=altar
 width=2
 op1=Pray-at
 blockrange=no
+category=prayer_altar
 
 [guthix_altar]
 name=Altar of Guthix
@@ -3243,6 +3245,7 @@ width=2
 length=2
 op1=Pray-at
 blockrange=no
+category=prayer_altar
 
 [chaosaltar]
 name=Chaos altar
@@ -3251,6 +3254,7 @@ model=thrantaxaltar
 width=2
 op1=Pray-at
 blockrange=no
+category=prayer_altar
 
 [trappedchaosaltar]
 name=Chaos altar
@@ -3259,6 +3263,7 @@ model=thrantaxaltar
 width=2
 op1=Pray-at
 blockrange=no
+category=prayer_altar
 
 [dolmen]
 name=Dolmen
@@ -3561,6 +3566,8 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=mining_rock_empty,1
 
 // todo: name used from 244
 [plainrock1_alt]
@@ -3572,6 +3579,8 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=mining_rock_empty,1
 
 // todo: name used from 244
 [plainrock2]
@@ -3583,6 +3592,8 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=mining_rock_empty,1
 
 // todo: name used from 244
 [plainrock3]
@@ -3594,6 +3605,8 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=mining_rock_empty,1
 
 [loc_454]
 name=Cave rocks
@@ -14242,6 +14255,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_copperrock1
 
 // todo: name used from 244
 [copperrock2]
@@ -14255,6 +14271,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_copperrock2
 
 // todo: name used from 244
 [ironrock1]
@@ -14268,6 +14287,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_fast
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_ironrock1
 
 // todo: name used from 244
 [ironrock2]
@@ -14281,6 +14303,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_fast
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_ironrock2
 
 // todo: name used from 244
 [tinrock1]
@@ -14294,6 +14319,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_tinrock1
 
 // todo: name used from 244
 [tinrock2]
@@ -14307,6 +14335,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_tinrock2
 
 // todo: name used from 244
 [coalrock1]
@@ -14320,6 +14351,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_coalrock1
 
 // todo: name used from 244
 [coalrock2]
@@ -14333,6 +14367,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_coalrock2
 
 // todo: name used from 244
 [goldrock1]
@@ -14346,6 +14383,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_goldrock1
 
 // todo: name used from 244
 [goldrock2]
@@ -14359,6 +14399,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_goldrock2
 
 // todo: name used from 244
 [silverrock1]
@@ -14372,6 +14415,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_silverrock1
 
 // todo: name used from 244
 [silverrock2]
@@ -14385,6 +14431,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_silverrock2
 
 // todo: name used from 244
 [mithrilrock1]
@@ -14398,6 +14447,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_mithrilrock1
 
 // todo: name used from 244
 [mithrilrock2]
@@ -14411,6 +14463,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_mithrilrock2
 
 // todo: name used from 244
 [adamantiterock1]
@@ -14424,6 +14479,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_adamantiterock1
 
 // todo: name used from 244
 [adamantiterock2]
@@ -14437,6 +14495,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_adamantiterock2
 
 // todo: name used from 244
 [runiterock1]
@@ -14450,6 +14511,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_runiterock1
 
 // todo: name used from 244
 [runiterock2]
@@ -14463,6 +14527,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_runiterock2
 
 // todo: name used from 244
 [clayrock1]
@@ -14476,6 +14543,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_clayrock1
 
 // todo: name used from 244
 [clayrock2]
@@ -14489,6 +14559,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_clayrock2
 
 // todo: name used from 244
 [bluriterock]
@@ -14506,6 +14579,9 @@ mapscene=25
 blockrange=no
 ambient=10
 ambient=20
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_bluriterock
 
 // todo: name used from 244
 [gemrock]
@@ -14519,6 +14595,8 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_gemrock
 
 [loc_2112]
 name=Door
@@ -18309,6 +18387,7 @@ desc=A shrine for the faithful to worship at.
 model=altar
 width=2
 op1=Pray-at
+category=prayer_altar
 
 [monasteryladder]
 name=Ladder
@@ -18797,6 +18876,8 @@ recol1d=7400
 op1=Mine
 op2=Prospect
 op3=hidden
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
 
 [combodoor]
 name=Door
@@ -19200,6 +19281,7 @@ length=3
 sharelight=yes
 forceapproach=east
 op2=Smelt
+category=smithing_furnace
 
 // todo: name used from 244
 [doric_anvil]
@@ -19227,6 +19309,7 @@ desc=A hot place for forging things in.
 model=loc_2785
 forceapproach=east
 sharelight=yes
+category=smithing_furnace
 
 [ogreguardgate1]
 name=City gate
@@ -20795,6 +20878,7 @@ length=3
 forceapproach=east
 op1=Look
 op2=Search
+category=smithing_furnace
 
 [cavewall_face1_hce]
 model=cavewall_face1_hce
@@ -21547,6 +21631,7 @@ width=3
 length=3
 forceapproach=east
 op1=Use
+category=smithing_furnace
 
 // todo: name used from 244
 [newbiebankbooth]
@@ -23690,6 +23775,7 @@ model=furnace_legendsquest
 width=3
 length=3
 forceapproach=east
+category=smithing_furnace
 
 [stone_tablet1_upass]
 name=Stone tablet
@@ -25355,6 +25441,7 @@ length=3
 op1=Look
 mapscene=8
 op1=Pray-at
+category=prayer_altar
 
 [druidjump_loc]
 name=Bridge
@@ -27587,6 +27674,7 @@ model=tribalstatue
 width=2
 length=2
 op1=Pray-at
+category=prayer_altar
 
 [floor_depth4]
 model=floor_depth4
@@ -28705,6 +28793,7 @@ ambient=10
 name=Small furnace
 desc=A small furnace.
 model=regicide_furnace
+category=smithing_furnace
 
 [regicide_tent_human_for_fire]
 name=Tent wall
@@ -28857,6 +28946,7 @@ desc=Shrine to the glory of Saradomin.
 model=regicide_voyage_temple_altar
 width=2
 op1=Pray-at
+category=prayer_altar
 
 [regicide_bridge_a]
 model=lum_bridgea
@@ -31415,6 +31505,7 @@ length=3
 sharelight=yes
 forceapproach=east
 op2=Smelt
+category=smithing_furnace
 
 [viking_furnace2]
 name=Furnace
@@ -31429,6 +31520,7 @@ recol3d=9479
 forceapproach=east
 sharelight=yes
 op2=Smelt
+category=smithing_furnace
 
 [viking_anvil]
 name=Anvil
@@ -36337,6 +36429,7 @@ recol1d=30513
 width=2
 length=2
 op1=Pray-at
+category=prayer_altar
 
 [mm_gorillastatue2]
 name=Gorilla Statue
@@ -48235,6 +48328,7 @@ length=2
 sharelight=yes
 forceapproach=east
 op2=Smelt
+category=smithing_furnace
 
 [dwarf_keldagrim_furnace2]
 name=Furnace
@@ -48245,6 +48339,7 @@ resizey=90
 resizex=90
 forceapproach=east
 sharelight=yes
+category=smithing_furnace
 
 [dwarf_keldagrim_warhammer_repairs]
 name=Warhammer
@@ -51092,6 +51187,7 @@ desc=A mysterious ancient altar to some forgotten god...
 model=dt_zaros_altar
 width=3
 op1=Pray-at
+category=prayer_altar
 
 [dt_ancient_temple_door_open]
 name=Doorway
@@ -87227,6 +87323,7 @@ model=elf_village_altar
 width=2
 op1=Pray-at
 blockrange=no
+category=prayer_altar
 
 [elf_village_range]
 name=Cooking range
@@ -104603,6 +104700,7 @@ model=elid_statuette_base
 model2=elid_statuette_placed
 ambient=15
 op1=Pray-at
+category=prayer_altar
 
 [elid_stone_chair]
 name=Rock Chair
@@ -106673,6 +106771,7 @@ recol4d=8321
 width=2
 op1=Pray-at
 blockrange=no
+category=prayer_altar
 
 [devious_altar_scorched]
 name=Altar
@@ -106690,6 +106789,7 @@ recol4d=8321
 width=2
 op1=Pray-at
 blockrange=no
+category=prayer_altar
 
 [devious_whetstone]
 name=Doric's Whetstone
@@ -110329,6 +110429,7 @@ anim=burgh_furnace_lit
 forceapproach=south
 op2=Smelt
 active=yes
+category=smithing_furnace
 
 [enakh_brazier_1_multiloc]
 anim=fire_effect
@@ -117930,6 +118031,7 @@ width=2
 length=3
 ambient=10
 op2=Smelt
+category=smithing_furnace
 
 [loc_11667]
 model=loc_11667
@@ -122436,6 +122538,7 @@ length=3
 ambient=10
 op2=Smelt
 forceapproach=east
+category=smithing_furnace
 
 [fairy_furnace_glow]
 model=loc_11669
@@ -129869,6 +129972,7 @@ length=2
 ambient=25
 anim=burgh_furnace_lit
 op2=Smelt
+category=smithing_furnace
 
 [burgh_furnace_smoke_multiloc]
 width=4
@@ -150691,6 +150795,7 @@ desc=A furnace; small but effective.
 model=regicide_furnace
 op2=Smelt
 forceapproach=north
+category=smithing_furnace
 
 [loc_14922]
 name=Hole

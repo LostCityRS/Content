@@ -1,0 +1,31 @@
+[if_button,prayer:prayer_incrediblereflexes]
+if_close;
+if (p_finduid(uid) = true) {
+    @activate_prayer_incrediblereflexes;
+}
+%prayer11 = %prayer11; // resync varp
+
+[label,activate_prayer_incrediblereflexes]
+p_clearpendingaction;
+def_dbrow $data = ~get_prayer_data(^prayer_incrediblereflexes);
+if ($data = null) {
+    return;
+}
+if (%prayer11 = ^true) {
+    %prayer11 = ^false;
+    ~prayer_deactivate(^prayer_incrediblereflexes);
+    return;
+}
+if (~prayer_checks($data) = false) {
+    %prayer11 = ^false;
+    return;
+}
+def_int $levelreq = db_getfield($data, prayers:level, 0);
+if (stat_base(prayer) < $levelreq){
+    %prayer11 = ^false;
+    sound_synth(prayer_off, 0, 0);
+    ~mesbox("You need a @dbl@Prayer level of <tostring($levelreq)> to use <db_getfield($data, prayers:name, 0)>.");
+    return;
+}
+%prayer11 = ^true;
+~prayer_activate($data);
