@@ -1,0 +1,127 @@
+[debugproc,cw]
+if (p_finduid(uid) = true) {
+    p_teleport(0_38_48_9_18);
+}
+
+[debugproc,sara]
+if (p_finduid(uid) = true) {
+    p_teleport(^saradomin_starting_coord);
+}
+
+[debugproc,zammy]
+if (p_finduid(uid) = true) {
+    p_teleport(^zamorak_starting_coord);
+}
+
+[oploc1,castlewars_zamorak_tele]
+if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
+    error("Unable to find castlewars_judge npc.");
+    return;
+}
+if (~castlewars_can_enter = false) {
+    return;
+}
+if (~castlewars_saradomin_count < ~castlewars_zamorak_count) {
+    mes("There isn't enough space on this team!");
+    return;
+}
+p_teleport(map_findsquare(^zamorak_starting_coord, 0, 7, 0)); // guess for now
+
+[oploc1,castlewars_saradomin_tele]
+if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
+    error("Unable to find castlewars_judge npc.");
+    return;
+}
+if (~castlewars_can_enter = false) {
+    return;
+}
+if (~castlewars_zamorak_count < ~castlewars_saradomin_count) {
+    mes("There isn't enough space on this team!");
+    return;
+}
+p_teleport(map_findsquare(^saradomin_starting_coord, 0, 7, 0)); // guess for now
+
+[oploc1,castlewars_random_tele]
+if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
+    error("Unable to find castlewars_judge npc.");
+    return;
+}
+if (~castlewars_can_enter = false) {
+    return;
+}
+def_int $zamorak_count = ~castlewars_zamorak_count;
+def_int $saradomin_count = ~castlewars_saradomin_count;
+if ($zamorak_count < $saradomin_count | ($zamorak_count = $saradomin_count & random(2) = ^castlewars_team_zamorak)) {
+    p_teleport(map_findsquare(^zamorak_starting_coord, 0, 7, 0)); // guess for now
+} else {
+    p_teleport(map_findsquare(^saradomin_starting_coord, 0, 7, 0)); // guess for now
+}
+
+[oploc1,castlewars_zamorak_exit] ~castlewars_exit;
+[oploc1,castlewars_saradomin_exit] ~castlewars_exit;
+
+[proc,castlewars_exit]
+p_teleport(map_findsquare(^castlewars_lobby_coord, 0, 2, 0));
+
+[proc,castlewars_zamorak_count]()(int)
+return(max(getbit_range(%castlewars_bits, ^castlewars_zamorak_count_start_bit, ^castlewars_zamorak_count_end_bit), 0));
+
+[proc,castlewars_saradomin_count]()(int)
+return(max(getbit_range(%castlewars_bits, ^castlewars_saradomin_count_start_bit, ^castlewars_saradomin_count_end_bit), 0));
+
+[proc,castlewars_zamorak_score]()(int)
+return(max(getbit_range(%castlewars_bits, ^castlewars_zamorak_score_start_bit, ^castlewars_zamorak_score_end_bit), 0));
+
+[proc,castlewars_saradomin_score]()(int)
+return(max(getbit_range(%castlewars_bits, ^castlewars_saradomin_score_start_bit, ^castlewars_saradomin_score_end_bit), 0));
+
+[proc,castlewars_saradomin_wins]()(int)
+return(max(getbit_range(%castlewars_wins, ^castlewars_saradomin_wins_start_bit, ^castlewars_saradomin_wins_end_bit), 0));
+
+[proc,castlewars_zamorak_wins]()(int)
+return(max(getbit_range(%castlewars_wins, ^castlewars_zamorak_wins_start_bit, ^castlewars_zamorak_wins_end_bit), 0));
+
+[proc,castlewars_can_enter]()(boolean)
+if (inv_getobj(worn, ^wearpos_back) ! null) {
+    mes("You can't wear capes in the arena.");
+    return(false);
+}
+if (inv_getobj(worn, ^wearpos_head) ! null) {
+    mes("You can't wear helmets in the arena."); // guess lol osrs removed this
+    return(false);
+}
+// pets are disallowed in osrs but this old vid has it https://youtu.be/8VLhU9OnEwQ?t=8
+// if (npc_finduid(%follower_uid) = true) {
+//     return(false);
+// }
+def_int $i = 0;
+while ($i < inv_size(inv)) {
+    if (~castlewars_obj_allowed(inv_getobj(inv, $i)) = false)  {
+        mes("You can't take non-combat items into the arena."); // osrs
+        return(false);
+    }
+    $i = add($i, 1);
+}
+
+
+// in osrs:
+// -  you can bring in items that are equippable, even if its a members object on a f2p world
+// -  you can bring potions and runes, these cant be members objects on f2p world
+[proc,castlewars_obj_allowed](obj $obj)(boolean)
+if ($obj = null) { // empty slot
+    return(true);
+}
+if ($obj = castlewars_ticket) {
+    return(true);
+}
+if (oc_wearpos($obj) ! null & oc_wearpos2($obj) ! null & oc_wearpos3($obj) ! null) { // item is wearable
+    return(true);
+}
+if (map_members = ^false & oc_members($obj) = true) {
+    return(false);
+}
+// todo: port with consumption
+// if (oc_category($obj) = category_69 | oc_category($obj) = category_149) { // potions and runes
+//     return(true);
+// }
+return(false);
