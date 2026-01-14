@@ -1,0 +1,14 @@
+[oploc1,castlewars_scoreboard]
+if_settext(inter_217:com_1, "Saradomin: <tostring(~castlewars_saradomin_wins)>");
+if_settext(inter_217:com_2, "Zamorak: <tostring(~castlewars_zamorak_wins)>");
+if_openchat(inter_217);
+
+[proc,castlewars_update_scoreboard](int $winner)
+if ($winner = ^castlewars_team_saradomin) {
+    %castlewars_wins = setbit_range_toint(%castlewars_wins, add(~castlewars_saradomin_wins, 1), ^castlewars_saradomin_wins_start_bit, ^castlewars_saradomin_wins_end_bit);
+} else if ($winner = ^castlewars_team_zamorak) {
+    %castlewars_wins = setbit_range_toint(%castlewars_wins, add(~castlewars_zamorak_wins, 1), ^castlewars_zamorak_wins_start_bit, ^castlewars_zamorak_wins_end_bit);
+}
+
+[debugproc,cw_win](int $winner)
+~castlewars_update_scoreboard($winner);
