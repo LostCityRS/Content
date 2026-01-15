@@ -10,6 +10,7 @@ members=yes
 2dxan=116
 iop1=Eat
 weight=3oz
+param=cures_poison,yes
 
 [cert_macro_triffidfruit]
 certlink=macro_triffidfruit
@@ -31,6 +32,11 @@ womanwear=obj_macro_pickaxehandle_manwear,6
 cost=1
 wearpos=righthand
 weight=1lb
+category=weapon_blunt
+param=attackrate,5
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=crush_sound,baxe_crush
 
 [cert_macro_pickaxehandle]
 certlink=macro_pickaxehandle
@@ -52,6 +58,15 @@ womanwear=obj_macro_broken_bronze_pickaxe_manwear,6
 cost=0
 wearpos=righthand
 weight=4lb
+category=weapon_blunt
+param=attackrate,5
+param=stabattack_anim,human_blunt_pound
+param=crushattack_anim,human_blunt_spike
+param=defend_anim,human_axe_block
+param=stab_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=to_be_fixed_by_nurmof,^true
+param=fixed,bronze_pickaxe
 
 [cert_macro_broken_bronze_pickaxe]
 certlink=macro_broken_bronze_pickaxe
@@ -73,6 +88,15 @@ womanwear=obj_macro_broken_bronze_pickaxe_manwear,6
 cost=0
 wearpos=righthand
 weight=4lb
+category=weapon_blunt
+param=attackrate,5
+param=stabattack_anim,human_blunt_pound
+param=crushattack_anim,human_blunt_spike
+param=defend_anim,human_axe_block
+param=stab_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=to_be_fixed_by_nurmof,^true
+param=fixed,iron_pickaxe
 
 [cert_macro_broken_iron_pickaxe]
 certlink=macro_broken_iron_pickaxe
@@ -92,6 +116,15 @@ womanwear=obj_macro_broken_bronze_pickaxe_manwear,6
 cost=17
 wearpos=righthand
 weight=4lb
+category=weapon_blunt
+param=attackrate,5
+param=stabattack_anim,human_blunt_pound
+param=crushattack_anim,human_blunt_spike
+param=defend_anim,human_axe_block
+param=stab_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=to_be_fixed_by_nurmof,^true
+param=fixed,steel_pickaxe
 
 [cert_macro_broken_steel_pickaxe]
 certlink=macro_broken_steel_pickaxe
@@ -113,6 +146,15 @@ womanwear=obj_macro_broken_bronze_pickaxe_manwear,6
 cost=43
 wearpos=righthand
 weight=4lb
+category=weapon_blunt
+param=attackrate,5
+param=stabattack_anim,human_blunt_pound
+param=crushattack_anim,human_blunt_spike
+param=defend_anim,human_axe_block
+param=stab_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=to_be_fixed_by_nurmof,^true
+param=fixed,mithril_pickaxe
 
 [cert_macro_broken_mithril_pickaxe]
 certlink=macro_broken_mithril_pickaxe
@@ -134,6 +176,15 @@ womanwear=obj_macro_broken_bronze_pickaxe_manwear,6
 cost=107
 wearpos=righthand
 weight=4lb
+category=weapon_blunt
+param=attackrate,5
+param=stabattack_anim,human_blunt_pound
+param=crushattack_anim,human_blunt_spike
+param=defend_anim,human_axe_block
+param=stab_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=to_be_fixed_by_nurmof,^true
+param=fixed,adamant_pickaxe
 
 [cert_macro_broken_adamant_pickaxe]
 certlink=macro_broken_adamant_pickaxe
@@ -155,6 +206,15 @@ womanwear=obj_macro_broken_bronze_pickaxe_manwear,6
 cost=1100
 wearpos=righthand
 weight=4lb
+category=weapon_blunt
+param=attackrate,5
+param=stabattack_anim,human_blunt_pound
+param=crushattack_anim,human_blunt_spike
+param=defend_anim,human_axe_block
+param=stab_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=to_be_fixed_by_nurmof,^true
+param=fixed,rune_pickaxe
 
 [cert_macro_broken_rune_pickaxe]
 certlink=macro_broken_rune_pickaxe
@@ -173,6 +233,7 @@ model=obj_macro_bronze_pickaxehead
 2dxan=224
 cost=1
 weight=4lb
+param=fixed,bronze_pickaxe
 
 [cert_macro_bronze_pickaxehead]
 certlink=macro_bronze_pickaxehead
@@ -191,6 +252,7 @@ model=obj_macro_bronze_pickaxehead
 2dxan=224
 cost=139
 weight=4lb
+param=fixed,iron_pickaxe
 
 [cert_macro_iron_pickaxehead]
 certlink=macro_iron_pickaxehead
@@ -207,6 +269,7 @@ model=obj_macro_bronze_pickaxehead
 2dxan=224
 cost=499
 weight=4lb
+param=fixed,steel_pickaxe
 
 [cert_macro_steel_pickaxehead]
 certlink=macro_steel_pickaxehead
@@ -225,6 +288,7 @@ model=obj_macro_bronze_pickaxehead
 2dxan=224
 cost=1299
 weight=4lb
+param=fixed,mithril_pickaxe
 
 [cert_macro_mithril_pickaxehead]
 certlink=macro_mithril_pickaxehead
@@ -243,6 +307,7 @@ model=obj_macro_bronze_pickaxehead
 2dxan=224
 cost=3199
 weight=4lb
+param=fixed,adamant_pickaxe
 
 [cert_macro_adamant_pickaxehead]
 certlink=macro_adamant_pickaxehead
@@ -261,6 +326,7 @@ model=obj_macro_bronze_pickaxehead
 2dxan=224
 cost=31999
 weight=4lb
+param=fixed,rune_pickaxe
 
 [cert_macro_rune_pickaxehead]
 certlink=macro_rune_pickaxehead
@@ -284,6 +350,11 @@ womanwear=obj_macro_hatchethandle_manwear,6
 cost=1
 wearpos=righthand
 weight=1lb
+category=weapon_blunt
+param=attackrate,5
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=crush_sound,baxe_crush
 
 [cert_macro_hatchethandle]
 certlink=macro_hatchethandle
@@ -304,6 +375,15 @@ womanwear=obj_macro_broken_bronze_hatchet_manwear,6
 cost=0
 wearpos=righthand
 weight=2lb
+category=weapon_blunt
+param=attackrate,5
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=to_be_fixed_by_bob,^true
+param=fixed,bronze_axe
 
 [cert_macro_broken_bronze_hatchet]
 certlink=macro_broken_bronze_hatchet
@@ -324,6 +404,15 @@ womanwear=obj_macro_broken_bronze_hatchet_manwear,6
 cost=0
 wearpos=righthand
 weight=2lb
+category=weapon_blunt
+param=attackrate,5
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=to_be_fixed_by_bob,^true
+param=fixed,iron_axe
 
 [cert_macro_broken_iron_hatchet]
 certlink=macro_broken_iron_hatchet
@@ -342,6 +431,15 @@ womanwear=obj_macro_broken_bronze_hatchet_manwear,6
 cost=0
 wearpos=righthand
 weight=2lb
+category=weapon_blunt
+param=attackrate,5
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=to_be_fixed_by_bob,^true
+param=fixed,steel_axe
 
 [cert_macro_broken_steel_hatchet]
 certlink=macro_broken_steel_hatchet
@@ -362,6 +460,15 @@ womanwear=obj_macro_broken_bronze_hatchet_manwear,6
 cost=10
 wearpos=righthand
 weight=2lb
+category=weapon_blunt
+param=attackrate,5
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=to_be_fixed_by_bob,^true
+param=fixed,black_axe
 
 [cert_macro_broken_black_hatchet]
 certlink=macro_broken_black_hatchet
@@ -382,6 +489,15 @@ womanwear=obj_macro_broken_bronze_hatchet_manwear,6
 cost=18
 wearpos=righthand
 weight=24oz
+category=weapon_blunt
+param=attackrate,5
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=to_be_fixed_by_bob,^true
+param=fixed,mithril_axe
 
 [cert_macro_broken_mithril_hatchet]
 certlink=macro_broken_mithril_hatchet
@@ -402,6 +518,15 @@ womanwear=obj_macro_broken_bronze_hatchet_manwear,6
 cost=43
 wearpos=righthand
 weight=40oz
+category=weapon_blunt
+param=attackrate,5
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=to_be_fixed_by_bob,^true
+param=fixed,adamant_axe
 
 [cert_macro_broken_adamant_hatchet]
 certlink=macro_broken_adamant_hatchet
@@ -422,6 +547,15 @@ womanwear=obj_macro_broken_bronze_hatchet_manwear,6
 cost=427
 wearpos=righthand
 weight=2lb
+category=weapon_blunt
+param=attackrate,5
+param=slashattack_anim,human_axe_hack
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=slash_sound,baxe_slash
+param=crush_sound,baxe_crush
+param=to_be_fixed_by_bob,^true
+param=fixed,rune_axe
 
 [cert_macro_broken_rune_hatchet]
 certlink=macro_broken_rune_hatchet
@@ -439,6 +573,7 @@ model=obj_macro_bronze_hatchethead
 2dxan=520
 cost=15
 weight=2lb
+param=fixed,bronze_axe
 
 [cert_macro_bronze_hatchethead]
 certlink=macro_bronze_hatchethead
@@ -456,6 +591,7 @@ model=obj_macro_bronze_hatchethead
 2dxan=520
 cost=55
 weight=2lb
+param=fixed,iron_axe
 
 [cert_macro_iron_hatchethead]
 certlink=macro_iron_hatchethead
@@ -471,6 +607,7 @@ model=obj_macro_bronze_hatchethead
 2dxan=520
 cost=199
 weight=2lb
+param=fixed,steel_axe
 
 [cert_macro_steel_hatchethead]
 certlink=macro_steel_hatchethead
@@ -488,6 +625,7 @@ model=obj_macro_bronze_hatchethead
 2dxan=520
 cost=383
 weight=2lb
+param=fixed,black_axe
 
 [cert_macro_black_hatchethead]
 certlink=macro_black_hatchethead
@@ -505,6 +643,7 @@ model=obj_macro_bronze_hatchethead
 2dxan=520
 cost=519
 weight=24oz
+param=fixed,mithril_axe
 
 [cert_macro_mithril_hatchethead]
 certlink=macro_mithril_hatchethead
@@ -522,6 +661,7 @@ model=obj_macro_bronze_hatchethead
 2dxan=520
 cost=1279
 weight=40oz
+param=fixed,adamant_axe
 
 [cert_macro_adamant_hatchethead]
 certlink=macro_adamant_hatchethead
@@ -539,6 +679,7 @@ model=obj_macro_bronze_hatchethead
 2dxan=520
 cost=12799
 weight=2lb
+param=fixed,rune_axe
 
 [cert_macro_rune_hatchethead]
 certlink=macro_rune_hatchethead
@@ -559,6 +700,7 @@ cost=1800
 members=yes
 wearpos=righthand
 weight=2lb
+param=fixed,dragon_axe
 
 [cert_macro_broken_dragon_hatchet]
 certlink=macro_broken_dragon_hatchet
@@ -576,6 +718,7 @@ model=obj_macro_dragon_hatchethead
 cost=54999
 members=yes
 weight=2lb
+param=fixed,dragon_axe
 
 [cert_macro_dragon_hatchethead]
 certlink=macro_dragon_hatchethead
@@ -595,6 +738,11 @@ womanwear=obj_macro_hatchethandle_dragon_manwear,6
 cost=1
 wearpos=righthand
 weight=1lb
+category=weapon_blunt
+param=attackrate,5
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_axe_block
+param=crush_sound,baxe_crush
 
 [cert_macro_hatchethandle_dragon]
 certlink=macro_hatchethandle_dragon
