@@ -2,31 +2,22 @@
 
 [opnpc1,castlewars_judge]
 ~chatnpc("<p,quiz>Good day, how may I help you?");
-@multi3("What is this place?", lathus_whats_this, "What do you have for trade?", castlewars_ticket_exchange, "Do you have a manual? I'd like to learn how to play!", lathus_manual);
-
-[label,lathus_manual]
-~chatplayer("<p,quiz>Do you have a manual? I'd like to learn how to play!");
-~chatnpc("<p,happy>Sure, here you go.");
-if (inv_itemspace(inv, castlewars_manual, 1, inv_size(inv)) = false) {
-    ~chatnpc("<p,happy>I do, but you'd need to free up space in your|inventory first.");
-    return;
-}
-inv_add(inv, castlewars_manual, 1);
+@multi2("What is this place?", lathus_whats_this, "What do you have for trade?", castlewars_ticket_exchange); // https://youtu.be/w0rcFd12kSs
 
 [label,lathus_whats_this]
 ~chatplayer("<p,quiz>What is this place?");
 ~chatnpc("<p,happy>This is the great Castle Wars arena! Here you can|fight for the glory of Saradomin or Zamorak.");
-@multi4("Really, how do I do that?", lathus_how_do, "What can I win?", lathus_how_win, "What do you have for trade?", castlewars_ticket_exchange,"Do you have a manual? I'd like to learn how to play!", lathus_manual);
+@multi3("Really, how do I do that?", lathus_how_do, "What can I win?", lathus_how_win, "What do you have for trade?", castlewars_ticket_exchange);
 
 [label,lathus_how_do]
 ~chatplayer("<p,quiz>Really, how do I do that?");
 ~chatnpc("<p,happy>Easy, you just step through one of the three portals.|To join Zamorak, pass through the red portal. To join|Saradomin, pass through the blue portal. If you don't|mind then pass through the green portal.");
-@multi4("Are there any rules?", lathus_any_rules, "What can I win?", lathus_how_win, "What do you have for trade?", castlewars_ticket_exchange,"Do you have a manual? I'd like to learn how to play!", lathus_manual);
+@multi3("Are there any rules?", lathus_any_rules, "What can I win?", lathus_how_win, "What do you have for trade?", castlewars_ticket_exchange);
 
 [label,lathus_how_win]
 ~chatplayer("<p,quiz>What can I win?");
 ~chatnpc("<p,happy>Players on the winning team will receive 2 Castle Wars|Tickets which you can trade back to me for other|items. In the event of a draw every player will get 1|ticket.");
-@multi3("Are there any rules?", lathus_any_rules, "What do you have for trade?", castlewars_ticket_exchange,"Do you have a manual? I'd like to learn how to play!", lathus_manual);
+@multi2("Are there any rules?", lathus_any_rules, "What do you have for trade?", castlewars_ticket_exchange);
 
 [label,lathus_any_rules]
 ~chatplayer("<p,quiz>Are there any rules?");
@@ -39,5 +30,5 @@ inv_add(inv, castlewars_manual, 1);
 ~chatplayer("<p,quiz>Great! Oh, how do I win the game?");
 // if_settext	com=chat_left:text (231:6), text="The aim is to get into your opponents' castle and take|their team standard. Then bring that back and capture|it on your team's standard."
 ~chatnpc("<p,happy>The aim is to get into your opponents' castle and take|their team standard. Then bring that back and capture|it on your team's standard.");
-@multi3("What can I win?", lathus_how_win, "What do you have for trade?", castlewars_ticket_exchange,"Do you have a manual? I'd like to learn how to play!", lathus_manual);
+@multi2("What can I win?", lathus_how_win, "What do you have for trade?", castlewars_ticket_exchange);
 
