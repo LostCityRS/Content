@@ -1,0 +1,20 @@
+[opheld1,_bones] @bury_bones(last_slot);
+
+[label,bury_bones](int $slot)
+mes("You dig a hole in the ground...");
+anim(human_pickupfloor, 0);
+sound_synth(bones_down, 1, 0);
+
+p_stopaction;
+// bones used to delay: https://www.youtube.com/watch?v=LSpyUVXa4LE&t=84s
+p_delay(0);
+
+// delete is after delay: https://www.youtube.com/watch?v=OnW0ZwXLze4&t=141s
+def_obj $last_item = inv_getobj(inv, $slot);
+inv_delslot(inv, $slot);
+stat_advance(prayer, oc_param($last_item, bone_exp));
+mes("You bury the bones.");
+
+if (afk_event = ^true) {
+    @macro_event_prayer;
+}

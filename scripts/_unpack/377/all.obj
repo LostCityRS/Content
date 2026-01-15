@@ -359,6 +359,7 @@ model=obj_lit_black_candle
 2dxan=168
 iop1=Extinguish
 weight=1oz
+category=light_source_lit
 
 [lit_candle]
 name=Lit candle
@@ -372,6 +373,7 @@ model=obj_lit_black_candle
 2dxan=168
 iop1=Extinguish
 weight=1oz
+category=light_source_lit
 
 [cert_lit_candle]
 name=Lit candle
@@ -414,6 +416,8 @@ model=obj_unlit_candle
 2dyan=1864
 2dxan=168
 weight=1oz
+category=light_source_unlit
+param=product,lit_candle
 
 [cert_unlit_candle]
 certlink=unlit_candle
@@ -432,6 +436,8 @@ model=obj_unlit_candle
 2dyan=1864
 2dxan=168
 weight=1oz
+category=light_source_unlit
+param=product,lit_black_candle
 
 [bronze_arrowheads]
 name=Bronze arrowtips
@@ -2206,6 +2212,7 @@ iop1=Drink
 members=yes
 cost=20
 weight=2oz
+category=category_69
 
 [cert_poison_chalice]
 certlink=poison_chalice
@@ -4572,6 +4579,7 @@ model=obj_unicorn_horn_dust
 2dyan=1892
 2dxan=264
 weight=1kg
+category=category_91
 
 [cert_clay]
 certlink=clay
@@ -4590,6 +4598,7 @@ model=obj_copper_ore
 2dyan=1576
 2dxan=368
 weight=5lb
+category=category_91
 
 [cert_copper_ore]
 certlink=copper_ore
@@ -4608,6 +4617,7 @@ model=obj_copper_ore
 2dyan=1576
 2dxan=368
 weight=5lb
+category=category_91
 
 [cert_tin_ore]
 certlink=tin_ore
@@ -4628,6 +4638,7 @@ model=obj_copper_ore
 2dyan=1576
 2dxan=368
 weight=5lb
+category=category_91
 
 [cert_iron_ore]
 certlink=iron_ore
@@ -4648,6 +4659,7 @@ model=obj_copper_ore
 2dyan=1576
 2dxan=368
 weight=5lb
+category=category_91
 
 [cert_silver_ore]
 certlink=silver_ore
@@ -4668,6 +4680,7 @@ model=obj_copper_ore
 2dyan=1576
 2dxan=368
 weight=5lb
+category=category_91
 
 [cert_gold_ore]
 certlink=gold_ore
@@ -4689,6 +4702,7 @@ model=obj_copper_ore
 2dxan=368
 members=yes
 weight=5lb
+category=category_91
 
 [mithril_ore]
 name=Mithril ore
@@ -4703,6 +4717,7 @@ model=obj_copper_ore
 2dyan=1576
 2dxan=368
 weight=4lb
+category=category_91
 
 [cert_mithril_ore]
 certlink=mithril_ore
@@ -4721,6 +4736,7 @@ model=obj_copper_ore
 2dyan=1576
 2dxan=368
 weight=6lb
+category=category_91
 
 [cert_adamantite_ore]
 certlink=adamantite_ore
@@ -4739,6 +4755,7 @@ model=obj_copper_ore
 2dyan=1576
 2dxan=368
 weight=5lb
+category=category_91
 
 [cert_runite_ore]
 certlink=runite_ore
@@ -4757,6 +4774,7 @@ model=obj_copper_ore
 2dyan=1576
 2dxan=368
 weight=5lb
+category=category_91
 
 [cert_coal]
 certlink=coal
@@ -4949,6 +4967,7 @@ model=obj_sheepbonesa
 2dxan=400
 iop1=Bury
 weight=500g
+category=bones
 
 [cert_bones]
 certlink=bones
@@ -4966,6 +4985,7 @@ model=obj_sheepbonesa
 2dxan=400
 iop1=Bury
 weight=500g
+category=bones
 
 [cert_bones_burnt]
 certlink=bones_burnt
@@ -4982,6 +5002,7 @@ model=obj_sheepbonesa
 iop1=Bury
 members=yes
 weight=300g
+category=bones
 
 [cert_bat_bones]
 certlink=bat_bones
@@ -4996,6 +5017,7 @@ model=obj_big_bones
 2dxan=216
 iop1=Bury
 weight=800g
+category=bones
 
 [cert_big_bones]
 certlink=big_bones
@@ -5011,6 +5033,7 @@ model=obj_big_bones
 2dxan=216
 iop1=Bury
 weight=800g
+category=bones
 
 [cert_babydragon_bones]
 certlink=babydragon_bones
@@ -5026,6 +5049,7 @@ model=enakh_cutscene_bonepile_8
 iop1=Bury
 members=yes
 weight=1500g
+category=bones
 
 [cert_dragon_bones]
 certlink=dragon_bones
@@ -5671,6 +5695,7 @@ model=obj_torch_lit
 members=yes
 iop1=Extinguish
 weight=500g
+category=light_source_lit
 
 [cert_torch_lit]
 name=Torch
@@ -5695,6 +5720,8 @@ model=obj_torch_unlit
 2dxan=1632
 members=yes
 weight=500g
+category=light_source_unlit
+param=product,torch_lit
 
 [cert_torch_unlit]
 certlink=torch_unlit
@@ -5870,6 +5897,7 @@ model=obj_mcannonremains
 iop1=Bury
 members=yes
 weight=500g
+category=bones
 
 [zqcrystal]
 name=Locating crystal
@@ -6562,6 +6590,7 @@ model=obj_copper_ore
 2dyan=1576
 2dxan=368
 weight=5lb
+category=category_91
 
 [specimen_jar]
 name=Specimen jar
@@ -16635,6 +16664,7 @@ model=obj_blankrune
 2dyan=1012
 2dxan=528
 weight=2g
+category=category_91
 
 [cert_blankrune]
 certlink=blankrune
@@ -19461,6 +19491,7 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=10g
+category=category_557
 
 [cert_amulet_of_glory_1]
 certlink=amulet_of_glory_1
@@ -19489,6 +19520,7 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=10g
+category=category_557
 
 [cert_amulet_of_glory_2]
 certlink=amulet_of_glory_2
@@ -19517,6 +19549,7 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=10g
+category=category_557
 
 [cert_amulet_of_glory_3]
 certlink=amulet_of_glory_3
@@ -19545,6 +19578,7 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=10g
+category=category_557
 
 [cert_amulet_of_glory_4]
 certlink=amulet_of_glory_4
@@ -22234,6 +22268,7 @@ model=obj_bronze_bar
 2dyan=1180
 2dxan=196
 weight=4lb
+category=category_151
 
 [cert_bronze_bar]
 certlink=bronze_bar
@@ -22252,6 +22287,7 @@ model=obj_bronze_bar
 2dyan=1180
 2dxan=196
 weight=4lb
+category=category_151
 
 [cert_iron_bar]
 certlink=iron_bar
@@ -22270,6 +22306,7 @@ model=obj_bronze_bar
 2dyan=1180
 2dxan=196
 weight=4lb
+category=category_151
 
 [cert_steel_bar]
 certlink=steel_bar
@@ -22288,6 +22325,7 @@ model=obj_bronze_bar
 2dyan=1180
 2dxan=196
 weight=4lb
+category=category_151
 
 [cert_silver_bar]
 certlink=silver_bar
@@ -22306,6 +22344,7 @@ model=obj_bronze_bar
 2dyan=1180
 2dxan=196
 weight=4lb
+category=category_151
 
 [cert_gold_bar]
 certlink=gold_bar
@@ -22324,6 +22363,7 @@ model=obj_bronze_bar
 2dyan=1180
 2dxan=196
 weight=56oz
+category=category_151
 
 [cert_mithril_bar]
 certlink=mithril_bar
@@ -22342,6 +22382,7 @@ model=obj_bronze_bar
 2dyan=1180
 2dxan=196
 weight=72oz
+category=category_151
 
 [cert_adamantite_bar]
 certlink=adamantite_bar
@@ -22360,6 +22401,7 @@ model=obj_bronze_bar
 2dyan=1180
 2dxan=196
 weight=4lb
+category=category_151
 
 [cert_runite_bar]
 certlink=runite_bar
@@ -22379,6 +22421,7 @@ model=obj_bronze_bar
 2dxan=196
 members=yes
 weight=4lb
+category=category_151
 
 [dragonshield_a]
 name=Shield left half
@@ -24352,6 +24395,7 @@ model=obj_sheepbonesa
 2dxan=400
 iop1=Bury
 weight=500g
+category=bones
 
 [cert_newbiebones]
 certlink=newbiebones
@@ -24647,6 +24691,7 @@ iop2=Wear
 iop4=Rub
 wearpos=ring
 weight=6g
+category=category_136
 
 [cert_ring_of_dueling_8]
 certlink=ring_of_dueling_8
@@ -24670,6 +24715,7 @@ iop2=Wear
 iop4=Rub
 wearpos=ring
 weight=6g
+category=category_136
 
 [cert_ring_of_dueling_7]
 certlink=ring_of_dueling_7
@@ -24693,6 +24739,7 @@ iop2=Wear
 iop4=Rub
 wearpos=ring
 weight=6g
+category=category_136
 
 [cert_ring_of_dueling_6]
 certlink=ring_of_dueling_6
@@ -24716,6 +24763,7 @@ iop2=Wear
 iop4=Rub
 wearpos=ring
 weight=6g
+category=category_136
 
 [cert_ring_of_dueling_5]
 certlink=ring_of_dueling_5
@@ -24739,6 +24787,7 @@ iop2=Wear
 iop4=Rub
 wearpos=ring
 weight=6g
+category=category_136
 
 [cert_ring_of_dueling_4]
 certlink=ring_of_dueling_4
@@ -24762,6 +24811,7 @@ iop2=Wear
 iop4=Rub
 wearpos=ring
 weight=6g
+category=category_136
 
 [cert_ring_of_dueling_3]
 certlink=ring_of_dueling_3
@@ -24785,6 +24835,7 @@ iop2=Wear
 iop4=Rub
 wearpos=ring
 weight=6g
+category=category_136
 
 [cert_ring_of_dueling_2]
 certlink=ring_of_dueling_2
@@ -24808,6 +24859,7 @@ iop2=Wear
 iop4=Rub
 wearpos=ring
 weight=6g
+category=category_136
 
 [cert_ring_of_dueling_1]
 certlink=ring_of_dueling_1
@@ -28724,6 +28776,7 @@ members=yes
 2dxan=400
 iop1=Bury
 weight=500g
+category=bones
 
 [cert_wolf_bones]
 certlink=wolf_bones
@@ -31362,6 +31415,7 @@ model=enakh_cutscene_bonepile_8
 2dxan=216
 iop1=Bury
 weight=1500g
+category=bones
 
 [cert_tbwt_beast_bones]
 certlink=tbwt_beast_bones
@@ -31377,6 +31431,7 @@ model=obj_big_bones
 2dxan=216
 iop1=Bury
 weight=800g
+category=bones
 
 [cert_tbwt_jogre_bones]
 certlink=tbwt_jogre_bones
@@ -31394,6 +31449,7 @@ model=obj_big_bones
 2dxan=216
 iop1=Bury
 weight=800g
+category=bones
 
 [tbwt_burnt_jogre_bones_in_raw_karambwanji_paste]
 name=Pasty jogre bones
@@ -31411,6 +31467,7 @@ model=obj_tbwt_burnt_jogre_bones_in_raw_karambwanji_paste
 2dxan=320
 iop1=Bury
 weight=800g
+category=bones
 
 [tbwt_burnt_jogre_bones_in_cooked_karambwanji_paste]
 name=Pasty jogre bones
@@ -31428,6 +31485,7 @@ model=obj_tbwt_burnt_jogre_bones_in_raw_karambwanji_paste
 2dxan=320
 iop1=Bury
 weight=800g
+category=bones
 
 [tbwt_burnt_jogre_bones_marinated_in_karambwanji]
 name=Marinated j' bones
@@ -31443,6 +31501,7 @@ model=obj_big_bones
 2dxan=396
 iop1=Bury
 weight=800g
+category=bones
 
 [tbwt_jogre_bones_in_raw_karambwanji_paste]
 name=Pasty jogre bones
@@ -31458,6 +31517,7 @@ model=obj_tbwt_burnt_jogre_bones_in_raw_karambwanji_paste
 2dxan=396
 iop1=Bury
 weight=800g
+category=bones
 
 [tbwt_jogre_bones_in_cooked_karambwanji_paste]
 name=Pasty jogre bones
@@ -31473,6 +31533,7 @@ model=obj_tbwt_burnt_jogre_bones_in_raw_karambwanji_paste
 2dxan=320
 iop1=Bury
 weight=800g
+category=bones
 
 [tbwt_jogre_bones_marinated_in_karambwanji]
 name=Marinated j' bones
@@ -31486,6 +31547,7 @@ model=obj_big_bones
 2dxan=216
 iop1=Bury
 weight=800g
+category=bones
 
 [cert_granite_shield]
 certlink=granite_shield
@@ -32076,6 +32138,7 @@ model=obj_sheepbonesa
 2dxan=400
 iop1=Bury
 weight=500g
+category=bones
 
 [mm_medium_ninja_monkey_bones]
 name=Monkey bones
@@ -32088,6 +32151,7 @@ model=obj_sheepbonesa
 2dxan=400
 iop1=Bury
 weight=500g
+category=bones
 
 [mm_normal_gorilla_monkey_bones]
 name=Monkey bones
@@ -32099,6 +32163,7 @@ model=obj_big_bones
 2dxan=216
 iop1=Bury
 weight=800g
+category=bones
 
 [mm_bearded_gorilla_monkey_bones]
 name=Monkey bones
@@ -32110,6 +32175,7 @@ model=obj_big_bones
 2dxan=216
 iop1=Bury
 weight=800g
+category=bones
 
 [mm_normal_monkey_bones]
 name=Monkey bones
@@ -32121,6 +32187,7 @@ model=obj_sheepbonesa
 2dxan=400
 iop1=Bury
 weight=500g
+category=bones
 
 [cert_mm_normal_monkey_bones]
 certlink=mm_normal_monkey_bones
@@ -32137,6 +32204,7 @@ model=obj_sheepbonesa
 2dxan=400
 iop1=Bury
 weight=500g
+category=bones
 
 [mm_large_zombie_monkey_bones]
 name=Monkey bones
@@ -32148,6 +32216,7 @@ model=obj_sheepbonesa
 2dxan=216
 iop1=Bury
 weight=500g
+category=bones
 
 [mm_skeleton_bones]
 name=Bones
@@ -32161,6 +32230,7 @@ model=obj_sheepbonesa
 2dxan=400
 iop1=Bury
 weight=500g
+category=bones
 
 [tbwt_cleaning_cloth]
 name=Cleaning cloth
@@ -48713,6 +48783,8 @@ model=obj_oil_lamp_unlit
 cost=28
 members=yes
 weight=1lb
+category=light_source_unlit
+param=product,oil_lamp_lit
 
 [cert_oil_lamp_unlit]
 certlink=oil_lamp_unlit
@@ -48730,6 +48802,7 @@ iop2=Extinguish
 cost=28
 members=yes
 weight=1lb
+category=light_source_lit
 
 [oil_lamp_empty]
 name=Oil lamp
@@ -48774,6 +48847,8 @@ model=obj_candle_lantern_unlit
 cost=15
 members=yes
 weight=2lb
+category=light_source_unlit
+param=product,candle_lantern_lit
 
 [cert_candle_lantern_unlit]
 certlink=candle_lantern_unlit
@@ -48791,6 +48866,7 @@ iop2=Extinguish
 cost=15
 members=yes
 weight=2lb
+category=light_source_lit
 
 [candle_lantern_black_unlit]
 name=Candle lantern
@@ -48805,6 +48881,8 @@ model=obj_candle_lantern_unlit
 cost=15
 members=yes
 weight=2lb
+category=light_source_unlit
+param=product,candle_lantern_black_lit
 
 [cert_candle_lantern_black_unlit]
 certlink=candle_lantern_black_unlit
@@ -48824,6 +48902,7 @@ iop2=Extinguish
 cost=15
 members=yes
 weight=2lb
+category=light_source_lit
 
 [oil_lantern_empty]
 name=Oil lantern
@@ -48852,6 +48931,8 @@ model=obj_oil_lantern_unlit
 cost=125
 members=yes
 weight=2lb
+category=light_source_unlit
+param=product,oil_lantern_lit
 
 [cert_oil_lantern_unlit]
 certlink=oil_lantern_unlit
@@ -48869,6 +48950,7 @@ iop2=Extinguish
 cost=125
 members=yes
 weight=2lb
+category=light_source_lit
 
 [oil_lantern_frame]
 name=Oil lantern frame
@@ -48943,6 +49025,8 @@ model=obj_bullseye_lantern_empty
 cost=420
 members=yes
 weight=3lb
+category=light_source_unlit
+param=product,bullseye_lantern_lit
 
 [cert_bullseye_lantern_unlit]
 certlink=bullseye_lantern_unlit
@@ -48959,6 +49043,7 @@ iop2=Extinguish
 cost=420
 members=yes
 weight=3lb
+category=light_source_lit
 
 [wallbeast_spike_helmet]
 name=Spiny helmet
@@ -50682,6 +50767,8 @@ model=obj_bullseye_lantern_empty
 cost=600
 members=yes
 weight=3lb
+category=light_source_unlit
+param=product,tog_sapphire_lantern_lit
 
 [tog_sapphire_lantern_lit]
 name=Sapphire lantern
@@ -50698,6 +50785,7 @@ cost=600
 members=yes
 iop1=Extinguish
 weight=3lb
+category=light_source_lit
 
 [tog_stone]
 name=Magic stone
@@ -52322,6 +52410,7 @@ model=enakh_cutscene_bonepile_8
 iop1=Bury
 members=yes
 weight=800g
+category=bones
 
 [cert_zogre_bones]
 certlink=zogre_bones
@@ -52603,6 +52692,7 @@ model=obj_zogre_ancestral_bones_fayg
 iop1=Bury
 members=yes
 weight=800g
+category=bones
 
 [cert_zogre_ancestral_bones_fayg]
 certlink=zogre_ancestral_bones_fayg
@@ -52622,6 +52712,7 @@ model=obj_zogre_ancestral_bones_fayg
 iop1=Bury
 members=yes
 weight=800g
+category=bones
 
 [cert_zogre_ancestral_bones_raurg]
 certlink=zogre_ancestral_bones_raurg
@@ -52641,6 +52732,7 @@ model=obj_zogre_ancestral_bones_fayg
 iop1=Bury
 members=yes
 weight=800g
+category=bones
 
 [cert_zogre_ancestral_bones_ourg]
 certlink=zogre_ancestral_bones_ourg
@@ -55987,6 +56079,8 @@ members=yes
 iop2=Wear
 weight=2lb
 wearpos=hat
+category=light_source_unlit
+param=product,cave_goblin_mining_helmet_lit
 
 [cert_cave_goblin_mining_helmet_unlit]
 certlink=cave_goblin_mining_helmet_unlit
@@ -75676,6 +75770,7 @@ model=enakh_cutscene_bonepile_8
 iop1=Bury
 members=yes
 weight=1500g
+category=bones
 
 [cert_dagannoth_king_bones]
 certlink=dagannoth_king_bones
@@ -76875,6 +76970,7 @@ model=obj_wyvern_bones
 iop1=Bury
 members=yes
 weight=500g
+category=bones
 
 [cert_granite_legs]
 certlink=granite_legs
@@ -79243,6 +79339,8 @@ iop2=Wield
 cost=130
 wearpos=lefthand
 weight=5lb
+category=light_source_unlit
+param=product,slayer_buglan_on
 
 [cert_slayer_buglan_off]
 certlink=slayer_buglan_off
