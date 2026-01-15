@@ -34275,6 +34275,8 @@ desc=A large double door.
 model=posh_doubledoor_reverse_l
 op1=Open
 raiseobject=no
+category=reverse_door_left_closed
+param=next_loc_stage,posh_doubledoor_reverse_l_open
 
 [posh_doubledoor_reverse_l_open]
 name=Large door
@@ -34283,6 +34285,8 @@ model=posh_doubledoor_reverse_l
 op1=Close
 raiseobject=no
 mirror=yes
+category=reverse_door_left_opened
+param=next_loc_stage,posh_doubledoor_reverse_l
 
 [posh_doubledoor_locked_l]
 name=Large door
@@ -34304,6 +34308,8 @@ desc=A large double door.
 model=posh_doubledoor_lockedr
 op1=Open
 raiseobject=no
+category=reverse_door_right_closed
+param=next_loc_stage,posh_doubledoor_reverse_r_open
 
 [posh_doubledoor_reverse_r_open]
 name=Large door
@@ -34312,6 +34318,8 @@ model=posh_doubledoor_lockedr
 op1=Close
 raiseobject=no
 mirror=yes
+category=reverse_door_right_opened
+param=next_loc_stage,posh_doubledoor_reverse_r
 
 [old_paintedbrickwall_2]
 model=paintedbrickwall2
@@ -34332,6 +34340,7 @@ recol2d=11458
 active=yes
 op1=Open
 raiseobject=no
+param=next_loc_stage,elfdooropen_reverse
 
 [boardgames_runelink_door_experienced]
 name=Door
@@ -34344,6 +34353,7 @@ recol2d=11458
 active=yes
 op1=Open
 raiseobject=no
+param=next_loc_stage,elfdooropen_reverse
 
 [elfdoor_reverse]
 name=Door
@@ -34356,6 +34366,8 @@ recol2d=11458
 active=yes
 op1=Open
 raiseobject=no
+category=reverse_door_closed
+param=next_loc_stage,elfdooropen_reverse
 
 [elfdooropen_reverse]
 name=Door
@@ -34369,6 +34381,8 @@ active=yes
 op1=Close
 raiseobject=no
 mirror=yes
+category=reverse_door_opened
+param=next_loc_stage,elfdoor_reverse
 
 [elfdoor_locked]
 name=Door

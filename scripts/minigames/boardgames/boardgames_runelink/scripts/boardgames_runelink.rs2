@@ -104,22 +104,39 @@
 %boardgames_closinginterface = 1;
 if_close;
 if (.finduid(%duel2accept) = false) {
-    %boardgames_closinginterface = 0;
+    ~reset_boardgames_varp;
+    %duel2accept = null;
     mes("That player is no longer available.");
     return;    
 }
 if (.busy = true) {
-    %boardgames_closinginterface = 0;
+    ~reset_boardgames_varp;
+    %duel2accept = null;
     mes("Other player is busy at the moment.");
     return;
 }
 if (~in_games_room(.coord) = false) {
-    %boardgames_closinginterface = 0;
+    ~reset_boardgames_varp;
+    %duel2accept = null;
     mes("Other player has left the area.");
     return;
 }
 
 if(.%duel2accept = uid) {
+
+    ~boardgames_table_setup;
+
+    if(%boardgames_tablenum = -1) {
+        ~reset_boardgames_varp;
+        %duel2accept = null;
+        return;
+    }
+    if_openoverlay(null);
+    set_skill_level(0);
+    ~update_bas;
+    .if_openoverlay(null);
+    .set_skill_level(0);
+    ~.update_bas;
     ~init_runelink_boardsetup;
     ~.init_runelink_boardsetup;
     ~first_runelink_turn;
@@ -129,10 +146,79 @@ if(.%duel2accept = uid) {
     ~send_boardgames_challenge_request;
 }
 
+[if_button,boardgames_runelink:offer_draw]
+if (.finduid(%duel2accept) = false) {
+    return;
+}
+
+if (%boardgames_drawrequested = 1) {
+    ~runelink_process_draw;
+} else {
+    // This uses other text com in old videos. Unknown if status1 can display at same time or if it resets each move https://youtu.be/S1VYbmOb_2w?si=hZnBkXdeH1L2fxIB&t=496
+    if_settext(boardgames_runelink:status2, "Asking opponent for a draw...");
+    .if_settext(boardgames_runelink:status2, "Your opponent asked for a draw.");
+    .%boardgames_drawrequested = 1;
+}
+
+
+[if_button,boardgames_runelink:column_1]
+if (~test_runelink_move(1) = true) {
+    clearsofttimer(boardgames_sitting_anim);
+    clearsofttimer(runelink_force_move);
+    ~make_runelink_move_for_opponent(1);
+}
+
+[if_button,boardgames_runelink:column_2]
+if (~test_runelink_move(2) = true) {
+    clearsofttimer(boardgames_sitting_anim);
+    clearsofttimer(runelink_force_move);
+    ~make_runelink_move_for_opponent(2);
+}
+
+[if_button,boardgames_runelink:column_3]
+if (~test_runelink_move(3) = true) {
+    clearsofttimer(boardgames_sitting_anim);
+    clearsofttimer(runelink_force_move);
+    ~make_runelink_move_for_opponent(3);
+}
+
+[if_button,boardgames_runelink:column_4]
+if (~test_runelink_move(4) = true) {
+    clearsofttimer(boardgames_sitting_anim);
+    clearsofttimer(runelink_force_move);
+    ~make_runelink_move_for_opponent(4);
+}
+
+[if_button,boardgames_runelink:column_5]
+if (~test_runelink_move(5) = true) {
+    clearsofttimer(boardgames_sitting_anim);
+    clearsofttimer(runelink_force_move);
+    ~make_runelink_move_for_opponent(5);
+}
+
+[if_button,boardgames_runelink:column_6]
+if (~test_runelink_move(6) = true) {
+    clearsofttimer(boardgames_sitting_anim);
+    clearsofttimer(runelink_force_move);
+    ~make_runelink_move_for_opponent(6);
+}
+
+[if_button,boardgames_runelink:column_7]
+if (~test_runelink_move(7) = true) {
+    clearsofttimer(boardgames_sitting_anim);
+    clearsofttimer(runelink_force_move);
+    ~make_runelink_move_for_opponent(7);
+}
+
 [proc,init_runelink_boardsetup]
+%boardgames_ingame = 1;
+%boardgames_closemode = ^boardgames_loss;
+minimap_toggle(1);
+
 %boardgames_closinginterface = 1;
 if_openmain(boardgames_runelink);
 %boardgames_closinginterface = 0;
+
 if_setobject(boardgames_runelink:p1_rune, ~get_boardgames_rune_obj(%boardgames_piece), 72);
 if_setobject(boardgames_runelink:p2_rune, ~get_boardgames_rune_obj(.%boardgames_piece), 72);
 if (%boardgames_rankedgame = 1) {
@@ -142,18 +228,23 @@ if (%boardgames_rankedgame = 1) {
     if_settext(boardgames_runelink:p1_name, "<displayname>");
     if_settext(boardgames_runelink:p2_name, "<.displayname>");
 }
+
 inv_clear(boardgames_boardinv);
 ~boardgames_hide_tabs;
-%boardgames_ingame = 1;
-%boardgames_closemode = ^boardgames_loss;
-minimap_toggle(1);
+
 def_namedobj $p1_rune = ~get_boardgames_player_rune(.%boardgames_piece);
 inv_transmit(boardgames_boardinv, boardgames_runelink:boardinv);
 
 [proc,.init_runelink_boardsetup]
+.%boardgames_ingame = 1;
+.%boardgames_control = 1;
+.%boardgames_closemode = ^boardgames_loss;
+.minimap_toggle(1);
+
 .%boardgames_closinginterface = 1;
 .if_openmain(boardgames_runelink);
 .%boardgames_closinginterface = 0;
+
 .if_setobject(boardgames_runelink:p1_rune, ~get_boardgames_rune_obj(%boardgames_piece), 72);
 .if_setobject(boardgames_runelink:p2_rune, ~get_boardgames_rune_obj(.%boardgames_piece), 72);
 
@@ -167,9 +258,7 @@ if (.%boardgames_rankedgame = 1) {
 
 .inv_clear(boardgames_boardinv);
 ~.boardgames_hide_tabs;
-.%boardgames_ingame = 1;
-.%boardgames_closemode = ^boardgames_loss;
-.minimap_toggle(1);
+
 .inv_transmit(boardgames_boardinv, boardgames_runelink:boardinv);
 
 [proc,first_runelink_turn]
@@ -187,6 +276,7 @@ if($rand = 0) {
     if_settext(boardgames_runelink:status1, "You move first!");
     .if_settext(boardgames_runelink:status1, "");
     softtimer(runelink_force_move, ~get_sandtimer_interval);
+    softtimer(boardgames_sitting_anim, ~random_range(5,9));
 } else {
     .%boardgames_myturn = 1;
     if_settext(boardgames_runelink:turn_name, "<.displayname>");
@@ -194,53 +284,12 @@ if($rand = 0) {
     .if_settext(boardgames_runelink:status1, "You move first!");
     if_settext(boardgames_runelink:status1, "");
     .softtimer(runelink_force_move, ~get_sandtimer_interval);
+    .softtimer(boardgames_sitting_anim, ~random_range(5,9));
 }
 if_settext(boardgames_runelink:status2, "");
 if_settext(boardgames_runelink:winner, "");
 .if_settext(boardgames_runelink:status2, "");
 .if_settext(boardgames_runelink:winner, "");
-
-[if_button,boardgames_runelink:column_1]
-if (~test_runelink_move(1) = true) {
-    clearsofttimer(runelink_force_move);
-    ~make_runelink_move_for_opponent(1);
-}
-
-[if_button,boardgames_runelink:column_2]
-if (~test_runelink_move(2) = true) {
-    clearsofttimer(runelink_force_move);
-    ~make_runelink_move_for_opponent(2);
-}
-
-[if_button,boardgames_runelink:column_3]
-if (~test_runelink_move(3) = true) {
-    clearsofttimer(runelink_force_move);
-    ~make_runelink_move_for_opponent(3);
-}
-
-[if_button,boardgames_runelink:column_4]
-if (~test_runelink_move(4) = true) {
-    clearsofttimer(runelink_force_move);
-    ~make_runelink_move_for_opponent(4);
-}
-
-[if_button,boardgames_runelink:column_5]
-if (~test_runelink_move(5) = true) {
-    clearsofttimer(runelink_force_move);
-    ~make_runelink_move_for_opponent(5);
-}
-
-[if_button,boardgames_runelink:column_6]
-if (~test_runelink_move(6) = true) {
-    clearsofttimer(runelink_force_move);
-    ~make_runelink_move_for_opponent(6);
-}
-
-[if_button,boardgames_runelink:column_7]
-if (~test_runelink_move(7) = true) {
-    clearsofttimer(runelink_force_move);
-    ~make_runelink_move_for_opponent(7);
-}
 
 [proc,test_runelink_move](int $column)(boolean)
 if (%boardgames_myturn = 0) {
@@ -288,6 +337,7 @@ def_int $x = multiply($col, ^runelink_tile_size);
 def_int $y = multiply($row, ^runelink_tile_size);
 
 sound_synth(runelink_bottom, 0, 0);
+anim(human_sittingdown_move, 0);
 if_setanim(boardgames_runelink:runeflash, null);
 if_setposition(boardgames_runelink:runeflash, $x, $y);
 if_setanim(boardgames_runelink:runeflash, runeflash);
@@ -362,12 +412,16 @@ if (%boardgames_myturn = 1) {
     if_settext(boardgames_runelink:turn_name, "<.displayname>");
     .if_settext(boardgames_runelink:turn_name, "<.displayname>");
     .softtimer(runelink_force_move, ~get_sandtimer_interval);
+    .softtimer(boardgames_sitting_anim, ~random_range(5,9));
+    .anim(human_sittingdown_ready, 0);
 } else {
     %boardgames_myturn = 1;
     .%boardgames_myturn = 0;
     if_settext(boardgames_runelink:turn_name, "<displayname>");
     .if_settext(boardgames_runelink:turn_name, "<displayname>");
     softtimer(runelink_force_move, ~get_sandtimer_interval);
+    softtimer(boardgames_sitting_anim, ~random_range(5,9));
+    anim(human_sittingdown_ready, 0);
 }
 
 if_setanim(boardgames_runelink:sandtimer, null);
@@ -496,6 +550,7 @@ if (%boardgames_rankedgame = 1 & inv_totalcat(boardgames_boardinv, boardgames_pi
 
 ~runelink_game_end($rank_change, $p1_rank, $p2_rank);
 ~.runelink_game_end($rank_change, $p1_rank, $p2_rank, false);
+~update_runelink_spectators("<displayname> has won!", "Player got four in a row!");
 
 [proc,runelink_game_end](int $rank_change, int $p1_rank, int $p2_rank)
 %boardgames_viewing = 1;
@@ -505,7 +560,9 @@ if_close;
 if(p_finduid(uid) = false) {
     return;
 }
+
 p_teleport(movecoord(^runelink_room_tele_coord, ~random_range(-3, 3), 0, ~random_range(-3, 3)));
+anim(null, 0);
 ~setup_runelink_view($p1_rank, $p2_rank);
 
 if (%boardgames_closemode = ^boardgames_draw) {
@@ -560,6 +617,7 @@ if (.p_finduid(.uid) = false) {
 }
 
 .p_teleport(movecoord(^runelink_room_tele_coord, ~random_range(-3, 3), 0, ~random_range(-3, 3)));
+.anim(null, 0);
 
 if($resigned = true) {
     ~.setup_runelink_view_resign($p1_rank, $p2_rank);    
@@ -626,76 +684,68 @@ if (%boardgames_rankedgame = 1) {
 
 inv_transmit(boardgames_boardinv, boardgames_runelink_view:boardinv);
 
-[zone,0_34_77_40_8]
-if_openoverlay(boardgames_runelink_overlay);
-set_skill_level(%boardgames_runelink_rank);
-~update_bas;
+[queue,boardgames_runelink_game_end]
+clearsofttimer(runelink_force_move);
+clearsofttimer(boardgames_sitting_anim);
+minimap_toggle(0);
+~initalltabs;
 
-[zoneexit,0_34_77_40_8]
-if_openoverlay(null);
-set_skill_level(0);
-~update_bas;
-
-[if_close,boardgames_runelink_view]
-%duel2accept = null;
-~reset_boardgames_varp;
-
-[if_button,boardgames_runelink:offer_draw]
-if (.finduid(%duel2accept) = false) {
-    return;
+if(loc_find(~get_boardgames_table_coord(%boardgames_tablenum), boardgames_table_runelink) = true) {
+    loc_change(boardgames_table_runelink, 1);
 }
 
-if (%boardgames_drawrequested = 1) {
-    ~runelink_process_draw;
-} else {
-    // This uses other text com in old videos. Unknown if status1 can display at same time or if it resets each move https://youtu.be/S1VYbmOb_2w?si=hZnBkXdeH1L2fxIB&t=496
-    if_settext(boardgames_runelink:status2, "Asking opponent for a draw...");
-    .if_settext(boardgames_runelink:status2, "Your opponent asked for a draw.");
-    .%boardgames_drawrequested = 1;
+if(loc_find(coord, boardgames_barstool_invis) = true) {
+    loc_change(boardgames_barstool_invis, 1);
 }
 
-[if_close,boardgames_runelink]
-if (p_finduid(uid) = true) {
-    clearsofttimer(runelink_force_move);
-    minimap_toggle(0);
-    ~initalltabs;
-    if (%boardgames_viewing = 0) {
-        p_delay(0);
-        if (.finduid(%duel2accept) = false) {
-            return;
+if (%boardgames_viewing = 0) {
+    p_delay(0);
+    if (.finduid(%duel2accept) = false) {
+        return;
+    }
+
+    if(loc_find(.coord, boardgames_barstool_invis) = true) {
+        loc_change(boardgames_barstool_invis, 1);
+    }
+
+    .clearsofttimer(runelink_force_move);
+    .clearsofttimer(boardgames_sitting_anim);
+
+    .%boardgames_closemode = ^boardgames_win;
+    .%boardgames_viewing = 1;
+
+    def_int $winner_rank = .%boardgames_runelink_rank;
+    def_int $loser_rank = %boardgames_runelink_rank;
+    def_int $rank_change = ~calculate_rank_change($loser_rank, $winner_rank);
+
+    if (%boardgames_rankedgame = 1 & inv_totalcat(boardgames_boardinv, boardgames_piece) > 3) {
+        .%boardgames_runelink_rank = add(.%boardgames_runelink_rank, $rank_change);
+        if (.%boardgames_runelink_rank > 60000) {
+            .%boardgames_runelink_rank = 60000;
         }
-
-        .%boardgames_closemode = ^boardgames_win;
-        .%boardgames_viewing = 1;
-        def_int $winner_rank = .%boardgames_runelink_rank;
-        def_int $loser_rank = %boardgames_runelink_rank;
-        def_int $rank_change = ~calculate_rank_change($loser_rank, $winner_rank);
-        if (%boardgames_rankedgame = 1 & inv_totalcat(boardgames_boardinv, boardgames_piece) > 3) {
-            .%boardgames_runelink_rank = add(.%boardgames_runelink_rank, $rank_change);
-            if (.%boardgames_runelink_rank > 60000) {
-                .%boardgames_runelink_rank = 60000;
-            }
-            
-            %boardgames_runelink_rank = sub(%boardgames_runelink_rank, $rank_change);
-            if (%boardgames_runelink_rank < 1) {
-                %boardgames_runelink_rank = 1;
-            }
-        }
-
-        ~.runelink_game_end($rank_change, $winner_rank, $loser_rank, true);
-
-        p_teleport(movecoord(^runelink_room_tele_coord, ~random_range(-3, 3), 0, ~random_range(-3, 3)));
-        ~setup_runelink_view_resign($winner_rank, $loser_rank);
-        midi_jingle(^boardgames_defeat_jingle, ^boardgames_defeat_jingle_millis);
-        if_settext(boardgames_runelink_view:winner, "You lose!");
-        if_settext(boardgames_runelink_view:status1, "Player resigned.");
         
-        if(%boardgames_rankedgame = 1 & inv_totalcat(boardgames_boardinv, boardgames_piece) > 3) {
-            if_settext(boardgames_runelink_view:status2, "Rank change: -<tostring($rank_change)>");
-        } else {
-            if_settext(boardgames_runelink_view:status2, "");
+        %boardgames_runelink_rank = sub(%boardgames_runelink_rank, $rank_change);
+        if (%boardgames_runelink_rank < 1) {
+            %boardgames_runelink_rank = 1;
         }
     }
+
+    ~.runelink_game_end($rank_change, $winner_rank, $loser_rank, true);
+
+    p_teleport(movecoord(^runelink_room_tele_coord, ~random_range(-3, 3), 0, ~random_range(-3, 3)));
+    anim(null, 0);
+    ~setup_runelink_view_resign($winner_rank, $loser_rank);
+    midi_jingle(^boardgames_defeat_jingle, ^boardgames_defeat_jingle_millis);
+    if_settext(boardgames_runelink_view:winner, "You lose!");
+    if_settext(boardgames_runelink_view:status1, "Player resigned.");
+    
+    if(%boardgames_rankedgame = 1 & inv_totalcat(boardgames_boardinv, boardgames_piece) > 3) {
+        if_settext(boardgames_runelink_view:status2, "Rank change: -<tostring($rank_change)>");
+    } else {
+        if_settext(boardgames_runelink_view:status2, "");
+    }
+
+    ~update_runelink_spectators("<.displayname> wins!", "Player resigned.");
 }
 
 [proc,setup_runelink_view_resign](int $p1_rank, int $p2_rank)
@@ -782,8 +832,101 @@ if ($chosen_column ! -1) {
     }
 }
 
+[if_close,boardgames_runelink]
+queue(boardgames_runelink_game_end, 0);
+
 [if_close,boardgames_runelink_options]
 if (%boardgames_closinginterface = 0) {
     %duel2accept = null;
     ~reset_boardgames_varp;
 }
+
+[if_close,boardgames_runelink_view]
+%duel2accept = null;
+clearsofttimer(boardgames_close_spectate);
+~reset_boardgames_varp;
+
+[oploc1,boardgames_table_runelink]
+%boardgames_viewing = 1;
+minimap_toggle(1);
+huntall(loc_coord, 1, 0);
+while (.huntnext = true) {
+    if(.%boardgames_viewing = 0) {
+        if(.%boardgames_control = 1) {
+            %boardgames_tablenum = .%boardgames_tablenum;
+            if_setobject(boardgames_runelink_view:p2_rune, ~get_boardgames_rune_obj(.%boardgames_piece), 72);
+            
+            if (.%boardgames_rankedgame = 1) {
+                if_settext(boardgames_runelink_view:p2_name, "<.displayname> (<tostring(.%boardgames_runelink_rank)>)");
+            } else {
+                if_settext(boardgames_runelink_view:p2_name, "<.displayname>");
+            }
+
+            invother_transmit(.uid, boardgames_boardinv, boardgames_runelink_view:boardinv);
+        } else {
+            if_setobject(boardgames_runelink_view:p1_rune, ~get_boardgames_rune_obj(.%boardgames_piece), 72);
+            
+            if (.%boardgames_rankedgame = 1) {
+                if_settext(boardgames_runelink_view:p1_name, "<.displayname> (<tostring(.%boardgames_runelink_rank)>)");
+            } else {
+                if_settext(boardgames_runelink_view:p1_name, "<.displayname>");
+            }
+        }
+        
+    }
+}
+if_settext(boardgames_runelink_view:status1, "");
+if_settext(boardgames_runelink_view:status2, "");
+if_settext(boardgames_runelink_view:winner, "");
+if_openmain(boardgames_runelink_view);
+
+[proc,update_runelink_spectators](string $winner_msg, string $status_msg)
+huntall(~get_boardgames_table_coord(%boardgames_tablenum), 1, 0); 
+while (.huntnext = true) {
+    if (.%boardgames_viewing = 1 & .%boardgames_ingame = 0) {
+        .if_settext(boardgames_runelink_view:winner, $winner_msg);
+        .if_settext(boardgames_runelink_view:status1, $status_msg);
+        //automatically closes after 15 ticks
+        .softtimer(boardgames_close_spectate, 15);
+    }
+}
+
+[oploc1,boardgames_runelink_ladderup_experienced]
+if(%boardgames_runelink_rank < 1500) {
+    mes("You need a Runelink rank of at least 1500 to climb this ladder.");
+    return;
+}
+
+~climb_ladder(movecoord(coord, 0, 1, 0), true);
+
+[oploc1,boardgames_runelink_ladderdown_experienced]
+~climb_ladder(movecoord(coord, 0, -1, 0), false);
+
+[oploc1,boardgames_runelink_door_experienced]
+if(%boardgames_runelink_rank < 1500 & coordz(coord) > coordz(loc_coord)) {
+    mes("You need a Runelink rank of at least 1500 to pass through this door.");
+    return;
+}
+
+//todo: See how this door actually works
+~open_and_close_door(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), false);
+
+[zone,0_34_77_40_8]
+if_openoverlay(boardgames_runelink_overlay);
+set_skill_level(%boardgames_runelink_rank);
+~update_bas;
+
+[zoneexit,0_34_77_40_8]
+if_openoverlay(null);
+set_skill_level(0);
+~update_bas;
+
+[zone,1_34_77_40_8]
+if_openoverlay(boardgames_runelink_overlay);
+set_skill_level(%boardgames_runelink_rank);
+~update_bas;
+
+[zoneexit,1_34_77_40_8]
+if_openoverlay(null);
+set_skill_level(0);
+~update_bas;
