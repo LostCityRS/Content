@@ -2,6 +2,12 @@
 mes("Welcome to RuneScape.");
 
 %musicplay = 1; // set to auto on login
+if (%option_brightness = 0) {
+    // sane defaults for game controls
+    %option_brightness = 2;
+    %option_music = 2;
+    %option_sounds = 2;
+}
 
 ~update_all(inv_getobj(worn, ^wearpos_rhand));
 cam_reset;
