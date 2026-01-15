@@ -1,0 +1,75 @@
+[oploc1,_chest_closed]
+// Treasure Trail
+if(map_members = ^true) {
+    if(loc_coord = 1_50_50_9_18 & inv_total(inv, trail_clue_easy_simple001) = 1) {
+        ~trail_clue_easy_loc_interact(trail_clue_easy_simple001);
+    } else if(loc_coord = 1_51_49_37_33 & inv_total(inv, trail_clue_easy_simple004) = 1) {
+        ~trail_clue_easy_loc_interact(trail_clue_easy_simple004);
+    } else if(loc_coord = 2_42_54_60_39 & inv_total(inv, trail_clue_easy_simple027) = 1) {
+        ~trail_clue_easy_loc_interact(trail_clue_easy_simple027);
+    } else if(loc_coord = 0_50_54_56_31) {
+        @riddle_loc_medium_exp001;
+    } else if(loc_coord = 1_40_48_33_36) {
+        @riddle_loc_medium_exp005;
+    } else {
+        ~open_chest(loc_param(chest_other));
+    }
+    return;
+}
+~open_chest(loc_param(chest_other));
+
+[oploc3,_chest_open] 
+if(~is_quest_chest = true) { 
+    ~displaymessage(^dm_default);
+    return;
+}
+~close_chest(loc_param(chest_other));
+
+[oploc2,_chest_open]
+// Treasure Trail
+if(map_members = ^true) {
+    if(loc_coord = 1_50_50_9_18 & inv_total(inv, trail_clue_easy_simple001) = 1) {
+        ~trail_clue_easy_loc_interact(trail_clue_easy_simple001);
+        return;
+    } else if(loc_coord = 1_51_49_37_33 & inv_total(inv, trail_clue_easy_simple004) = 1) {
+        ~trail_clue_easy_loc_interact(trail_clue_easy_simple004);
+        return;
+    } else if(loc_coord = 2_42_54_60_39 & inv_total(inv, trail_clue_easy_simple027) = 1) {
+        ~trail_clue_easy_loc_interact(trail_clue_easy_simple027);
+        return;
+    }
+}
+if(~is_quest_chest = true) { 
+    ~displaymessage(^dm_default);
+    return;
+}
+if (random(^findsomethingnice_chance) = 0 & ~in_tutorial_island(coord) = false) {
+    mes("You search the chest..."); // guess
+    p_delay(2);
+    ~findsomethingnice;
+    return;
+}
+mes("You find nothing."); // guess
+
+// for quest chests that use the regular open chest loc (i'm assuming they had this to prevent breaking them...)
+[proc,is_quest_chest]()(boolean)
+if(loc_coord = 1_33_71_24_34 | loc_coord = 0_40_47_15_23 | loc_coord = 0_39_47_30_24 | loc_coord = 0_39_47_15_16) {
+    return (true);
+}
+return (false);
+
+[proc,open_chest](loc $other_chest)
+p_arrivedelay;
+anim(human_openchest, 0);
+sound_synth(chest_open, 0, 0);
+p_delay(0);
+// Temp note: dur does not need updated
+loc_change($other_chest, 300);
+
+[proc,close_chest](loc $other_chest)
+p_arrivedelay;
+anim(human_closechest, 0);
+sound_synth(chest_close, 0, 0);
+p_delay(0);
+// Temp note: dur does not need updated
+loc_change($other_chest, 300);

@@ -1,0 +1,44 @@
+// https://youtu.be/GwSL0nKsiqk?t=111
+// https://youtu.be/dQ0CKFrXGJY?list=PLn23LiLYLb1Y3P9S9qZbijcJihiD416jT&t=201
+[proc,macro_event_shade_spawn]
+def_npc $shade = enum(int, npc, macro_event_shade_levels, ~macro_event_combat_level);
+
+def_coord $shade_coord = map_findsquare(coord, 1, 1, ^map_findsquare_lineofwalk);
+if ($shade_coord = null) {
+    return;
+}
+
+npc_add($shade_coord, $shade, 1000); // guess
+npc_say("Leave this place mortal!");
+%npc_macro_event_target = uid;
+%macro_event = ^no_macro_event;
+spotanim_map(zamorak_flame, $shade_coord, 0, 0);
+npc_delay(3);
+%aggressive_npc = npc_uid; // interupt the player if they're in combat https://youtu.be/tw66JWQzpD0?t=32
+npc_setmode(opplayer2);
+
+
+[ai_timer,_macro_event_shade]
+if (~macro_event_lost_hostile = true) {
+    npc_del;
+    return;
+}
+
+[ai_queue3,_macro_event_shade]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+// if f2p, dont drop anything
+if (map_members = ^false) {
+    return;
+}
+
+def_int $random = random(128);
+if ($random < 64) {
+    return;
+} if ($random < 96) {
+    obj_add(npc_coord, blackrobetop, 1, ^lootdrop_duration);
+} else {
+    obj_add(npc_coord, blackrobebottom, 1, ^lootdrop_duration);
+}
