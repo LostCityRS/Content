@@ -1,0 +1,31 @@
+[if_button,prayer:prayer_rockskin]
+if_close;
+if (p_finduid(uid) = true) {
+    @activate_prayer_rockskin;
+}
+%prayer3 = %prayer3;
+
+[label,activate_prayer_rockskin]
+p_clearpendingaction;
+def_dbrow $data = ~get_prayer_data(^prayer_rockskin);
+if ($data = null) {
+    return;
+}
+if (%prayer3 = ^true) {
+    %prayer3 = ^false;
+    ~prayer_deactivate(^prayer_rockskin);
+    return;
+}
+if (~prayer_checks($data) = false) {
+    %prayer3 = ^false;
+    return;
+}
+def_int $levelreq = db_getfield($data, prayers:level, 0);
+if (stat_base(prayer) < $levelreq){
+    %prayer3 = ^false;
+    sound_synth(prayer_off, 0, 0);
+    ~mesbox("You need a @dbl@Prayer level of <tostring($levelreq)> to use <db_getfield($data, prayers:name, 0)>.");
+    return;
+}
+%prayer3 = ^true;
+~prayer_activate($data);

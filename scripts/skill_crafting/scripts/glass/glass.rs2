@@ -1,0 +1,91 @@
+[oplocu,sand_pit]
+if (last_useitem = bucket_empty) @sand_fill;
+~displaymessage(^dm_default);
+
+[opheldu,glassblowingpipe]
+if (last_useitem = molten_glass) @craft_glass_interface;
+
+[opheldu,molten_glass]
+if (last_useitem = glassblowingpipe) @craft_glass_interface;
+if (last_useitem = lens_mould) @craft_telescope_disc;
+
+[label,sand_fill]
+if (map_members = ^false) {
+    mes(^mes_members_feature);
+    return;
+}
+anim(human_fillbucket_sandpit, 0);
+inv_del(inv, bucket_empty, 1);
+inv_add(inv, bucket_sand, 1);
+mes("You fill the bucket with sand.");
+
+[label,smelt_glass]
+if (map_members = ^false) {
+    mes(^mes_members_feature);
+    return;
+}
+// just a guess for now. level failure:
+if (stat(crafting) < 1) {
+    ~mesbox("You need at least 1 Crafting to make Glass.");
+    return;
+}
+// check if enough soda ash
+if (inv_total(inv, soda_ash) < 1) {
+    ~mesbox("You need some Soda Ash to make Glass.");
+    return;
+}
+// check if enough sand
+if (inv_total(inv, bucket_sand) < 1) {
+    ~mesbox("You need some Sand to make Glass.");
+    return;
+}
+// delete and add items in this order
+inv_del(inv, bucket_sand, 1);
+inv_add(inv, bucket_empty, 1);
+inv_del(inv, soda_ash, 1);
+inv_add(inv, molten_glass, 1);
+// play anim and sound
+anim(human_furnace,0);
+sound_synth(furnace,0,0);
+// success message
+mes("You heat the sand and soda ash in the furnace to make glass.");
+// give xp
+stat_advance(crafting, 200);
+
+
+[label,craft_glass_interface]
+if (map_members = ^false) {
+    mes(^mes_members_feature);
+    return;
+}
+def_namedobj $item = ~multiobj3 ("What would you like to make?", 
+    beer_glass, 0, 5, 200, "Beer Glass", 0, 0,
+    vial_empty, 2, 10, 180, "Vial", 0, 0,
+    stafforb, 2, -10, 200, "Orb", 0, 0
+);
+if ($item = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
+@crafting_glass($item);
+
+
+[label,crafting_glass](namedobj $glass_item)
+def_struct $struct = oc_param($glass_item, crafting_glass_struct);
+// check if high enough level
+def_int $level = struct_param($struct, levelrequire);
+def_string $name = struct_param($struct, productmessage);
+if (stat(crafting) < $level) {
+    mes("You need level <tostring($level)> Crafting to make <$name>.");
+    return;
+}
+// delete molten glass
+inv_del(inv, molten_glass, 1);
+// add item
+inv_add(inv, $glass_item, 1);
+// play anim
+anim(human_glassblowing,0);
+// display game message
+mes("You make <$name>.");
+// give xp
+stat_advance(crafting, struct_param($struct, productexp));

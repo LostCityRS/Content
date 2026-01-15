@@ -1,0 +1,42 @@
+[opheldu,battlestaff]
+switch_obj(last_useitem)
+{
+    case air_orb, fire_orb, water_orb, earth_orb : @craft_staff(last_useslot);
+    case default : ~displaymessage(^dm_default);
+};
+
+[opheldu,_craft_orb]
+switch_obj(last_useitem)
+{
+    case battlestaff : @craft_staff(last_slot);
+    case default : ~displaymessage(^dm_default);
+};
+
+[label,craft_staff](int $last)
+if (map_members = ^false) {
+    mes(^mes_members_feature);
+    return;
+}
+def_obj $orb = inv_getobj(inv, $last);
+def_struct $struct = oc_param($orb, crafting_staff_struct);
+def_namedobj $product = struct_param($struct, product);
+
+def_int $level = struct_param($struct, levelrequire);
+// check level
+if (stat(crafting) < $level)
+{
+    ~mesbox("You need a Crafting level of <tostring($level)> to make <oc_name($product)>");
+    return;
+}
+
+// delete items
+inv_del(inv, struct_param($struct, ingredient), 1);
+inv_del(inv, battlestaff, 1);
+// add product
+inv_add(inv, $product, 1);
+// add exp
+stat_advance(crafting, struct_param($struct, productexp));
+
+
+
+
