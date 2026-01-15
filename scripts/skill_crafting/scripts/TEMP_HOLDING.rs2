@@ -1,0 +1,12 @@
+//Build failures resulting in "duplicates" of anything in this file means delete THIS VERSION
+//When porting you run into issues with how interconnected some things (like crafting) are
+//You can either get stuck porting way too much for one PR, or do this stop-gap
+//When you actually port the content this was part of, this version should be deleted
+[opheldu,goblin_armour] //goblin diplomacy
+[proc,dye_goblin_mail_armour](namedobj $dye, namedobj $armour, string $message)
+
+[label,make_bolt_tips](obj $item) //fletching
+[label,make_blonde_wig] //prince ali rescue
+[label,make_wolf_bone_tips] //fletching
+[label,craft_ivorybeads] //shilo village
+[label,craft_telescope_disc] // observatory

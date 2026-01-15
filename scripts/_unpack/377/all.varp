@@ -169,7 +169,7 @@ scope=perm
 
 [druidquest]
 
-[varp_81]
+[stunned]
 
 [varp_82]
 
@@ -221,10 +221,10 @@ transmit=yes
 [prayer15]
 transmit=yes
 
-[varp_99]
+[prayer16]
 transmit=yes
 
-[varp_100]
+[prayer17]
 transmit=yes
 
 [qp]
@@ -235,9 +235,11 @@ transmit=yes
 [prayer_drain_resistance]
 protect=no
 
-[varp_104]
+[prayer_drain_counter]
+protect=no
 
-[varp_105]
+[prayer_drain_effect]
+protect=no
 
 [varp_106]
 transmit=yes
@@ -304,7 +306,8 @@ type=player_uid
 
 [varp_137]
 
-[varp_138]
+[thieving_stall_timer]
+scope=perm
 
 [legendsquest]
 
@@ -531,11 +534,12 @@ scope=perm
 [wilderness_course_progress]
 scope=perm
 
-[varp_256]
+[thread_used]
+scope=perm
 
 [attack]
 
-[varp_260]
+[temp]
 
 [if1]
 transmit=yes
@@ -556,6 +560,8 @@ transmit=yes
 transmit=yes
 
 [magearena]
+protect=no
+scope=perm
 
 [saramage]
 
@@ -598,14 +604,16 @@ protect=no
 [dueloptions]
 transmit=yes
 
-[varp_288]
+[iban_staff_charges]
+scope=perm
 
 [varp_289]
 
 [ring_of_recoil]
 scope=perm
 
-[varp_291]
+[ring_of_forging]
+scope=perm
 
 [trail_status]
 
@@ -721,6 +729,7 @@ transmit=yes
 [varp_352]
 
 [boardgames_runelink_rank]
+protect=no
 transmit=yes
 scope=perm
 

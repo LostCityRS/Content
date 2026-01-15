@@ -600,7 +600,7 @@ switch_component (last_com) {
     case default : return(null);
 }
 
-// [proc,multiobj3](string $title, namedobj $obj1, int $x1, int $y1, int $scale1, string $string1, int $sx1, int $sy1, namedobj $obj2, int $x2, int $y2, int $scale2, string $string2, int $sx2, int $sy2, namedobj $obj3, int $x3, int $y3, int $scale3, string $string3, int $sx3, int $sy3)(namedobj)
+[proc,multiobj3](string $title, namedobj $obj1, int $x1, int $y1, int $scale1, string $string1, int $sx1, int $sy1, namedobj $obj2, int $x2, int $y2, int $scale2, string $string2, int $sx2, int $sy2, namedobj $obj3, int $x3, int $y3, int $scale3, string $string3, int $sx3, int $sy3)(namedobj)
 // // reset any positions out of place
 // if_setposition(multiobj3:com_2, $x1, $y1);
 // if_setposition(multiobj3:com_3, $x2, $y2);
@@ -629,7 +629,7 @@ switch_component (last_com) {
 // }
 
 // [if_button,multiobj3_close:com_8] if_close;
-// [proc,multiobj3_close](string $title, namedobj $obj1, int $scale1, string $string1, namedobj $obj2, int $scale2, string $string2, namedobj $obj3, int $scale3, string $string3)(namedobj)
+[proc,multiobj3_close](string $title, namedobj $obj1, int $scale1, string $string1, namedobj $obj2, int $scale2, string $string2, namedobj $obj3, int $scale3, string $string3)(namedobj)
 // if_settext(multiobj3_close:com_7, $title);
 // if_setobject(multiobj3_close:com_1, $obj1, $scale1);
 // if_settext(multiobj3_close:com_4, $string1);

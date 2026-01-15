@@ -37,17 +37,21 @@ if (p_finduid(uid) = true) {
         mes("You don't have enough free space to do that.");
         return;
     }
-    // todo: this needs a better home...
-    // if (%tutorial_progress < ^tutorial_complete) {
-    //  if (%tutorial_progress = ^newbie_combat_instructor_unequipping_items) {
-    //         def_obj $shield = inv_getobj(worn, ^wearpos_lhand);
 
-    //         if ($previous = bronze_sword & $shield = wooden_shield) {
-    //             %tutorial_progress = ^newbie_combat_instructor_open_combat_interface;
-    //             ~set_tutorial_progress;
-    //         }
-    //     }
-    // }
+    if (%tutorial < ^tutorial_complete) {
+        if (%tutorial = ^newbie_combat_instructor_worn_inventory & $obj = bronze_dagger){
+            %tutorial = ^newbie_combat_instructor_dagger_equipped;
+            ~set_tutorial_progress;
+        }
+        else if (%tutorial = ^newbie_combat_instructor_unequipping_items) {
+            def_obj $shield = inv_getobj(worn, ^wearpos_lhand);
+
+            if ($previous_weapon = bronze_sword & $shield = wooden_shield) {
+                %tutorial = ^newbie_combat_instructor_open_combat_interface;
+                ~set_tutorial_progress;
+            }
+        }
+    }
 
     if($obj = elemental_shield) {
         inv_delslot(worn, ^wearpos_lhand);
