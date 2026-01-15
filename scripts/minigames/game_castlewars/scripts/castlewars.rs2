@@ -13,6 +13,9 @@ if (p_finduid(uid) = true) {
     p_teleport(^zamorak_starting_coord);
 }
 
+[debugproc,cw_overlay]
+if_openoverlay(inter_215);
+
 [oploc1,castlewars_zamorak_tele]
 if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
     error("Unable to find castlewars_judge npc.");
@@ -21,11 +24,16 @@ if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
 if (~castlewars_can_enter = false) {
     return;
 }
-if (~castlewars_saradomin_count < ~castlewars_zamorak_count) {
+def_int $saradomin_count = ~castlewars_saradomin_count;
+def_int $zamorak_count = ~castlewars_zamorak_count;
+if ($saradomin_count < $zamorak_count) {
     mes("There isn't enough space on this team!");
     return;
 }
+%castlewars_team = ^castlewars_team_zamorak;
+~castlewars_increment_zamorak_count;
 p_teleport(map_findsquare(^zamorak_starting_coord, 0, 7, 0)); // guess for now
+if_openoverlay(inter_221);
 
 [oploc1,castlewars_saradomin_tele]
 if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
@@ -35,11 +43,16 @@ if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
 if (~castlewars_can_enter = false) {
     return;
 }
-if (~castlewars_zamorak_count < ~castlewars_saradomin_count) {
+def_int $saradomin_count = ~castlewars_saradomin_count;
+def_int $zamorak_count = ~castlewars_zamorak_count;
+if ($zamorak_count < $saradomin_count) {
     mes("There isn't enough space on this team!");
     return;
 }
+%castlewars_team = ^castlewars_team_saradomin;
+~castlewars_increment_saradomin_count;
 p_teleport(map_findsquare(^saradomin_starting_coord, 0, 7, 0)); // guess for now
+if_openoverlay(inter_221);
 
 [oploc1,castlewars_random_tele]
 if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
@@ -52,22 +65,83 @@ if (~castlewars_can_enter = false) {
 def_int $zamorak_count = ~castlewars_zamorak_count;
 def_int $saradomin_count = ~castlewars_saradomin_count;
 if ($zamorak_count < $saradomin_count | ($zamorak_count = $saradomin_count & random(2) = ^castlewars_team_zamorak)) {
+    %castlewars_team = ^castlewars_team_zamorak;
+    ~castlewars_increment_zamorak_count;
     p_teleport(map_findsquare(^zamorak_starting_coord, 0, 7, 0)); // guess for now
 } else {
+    %castlewars_team = ^castlewars_team_saradomin;
+    ~castlewars_increment_saradomin_count;
     p_teleport(map_findsquare(^saradomin_starting_coord, 0, 7, 0)); // guess for now
 }
+if_openoverlay(inter_221);
 
-[oploc1,castlewars_zamorak_exit] ~castlewars_exit;
-[oploc1,castlewars_saradomin_exit] ~castlewars_exit;
+[oploc1,castlewars_zamorak_exit] 
+~castlewars_exit_tele;
+if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
+    return;
+}
+~castlewars_decrement_zamorak_count;
 
-[proc,castlewars_exit]
+[oploc1,castlewars_saradomin_exit]
+~castlewars_exit_tele;
+if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
+    return;
+}
+~castlewars_decrement_saradomin_count;
+
+
+[proc,castlewars_exit_tele]
 p_teleport(map_findsquare(^castlewars_lobby_coord, 0, 2, 0));
+if_openoverlay(null);
+if (%castlewars_team = ^castlewars_team_saradomin) {
+    ~castlewars_decrement_saradomin_count;
+} else {
+    ~castlewars_decrement_zamorak_count;
+}
+%castlewars_team = null;
+
+[proc,castlewars_start_tele](int $team)
+if ($team = ^castlewars_team_saradomin) {
+    p_teleport(map_findsquare(^castlewars_saradomin_starting_room_coord, 0, 4, 0));
+    if_openoverlay(inter_218);
+} else {
+    p_teleport(map_findsquare(^castlewars_zamorak_starting_room_coord, 0, 4, 0));
+    if_openoverlay(inter_215);
+}
 
 [proc,castlewars_zamorak_count]()(int)
 return(max(getbit_range(%castlewars_bits, ^castlewars_zamorak_count_start_bit, ^castlewars_zamorak_count_end_bit), 0));
 
 [proc,castlewars_saradomin_count]()(int)
 return(max(getbit_range(%castlewars_bits, ^castlewars_saradomin_count_start_bit, ^castlewars_saradomin_count_end_bit), 0));
+
+[proc,castlewars_decrement_zamorak_count]
+def_int $count = ~castlewars_zamorak_count;
+if ($count = 0) {
+    return;
+}
+%castlewars_bits = setbit_range_toint(%castlewars_bits, sub($count, 1), ^castlewars_zamorak_count_start_bit, ^castlewars_zamorak_count_end_bit);
+
+[proc,castlewars_decrement_saradomin_count]
+def_int $count = ~castlewars_saradomin_count;
+if ($count = 0) {
+    return;
+}
+%castlewars_bits = setbit_range_toint(%castlewars_bits, sub($count, 1), ^castlewars_saradomin_count_start_bit, ^castlewars_saradomin_count_end_bit);
+
+[proc,castlewars_increment_zamorak_count]
+def_int $count = ~castlewars_zamorak_count;
+if ($count = 255) {
+    return;
+}
+%castlewars_bits = setbit_range_toint(%castlewars_bits, add($count, 1), ^castlewars_zamorak_count_start_bit, ^castlewars_zamorak_count_end_bit);
+
+[proc,castlewars_increment_saradomin_count]
+def_int $count = ~castlewars_saradomin_count;
+if ($count = 255) {
+    return;
+}
+%castlewars_bits = setbit_range_toint(%castlewars_bits, add($count, 1), ^castlewars_saradomin_count_start_bit, ^castlewars_saradomin_count_end_bit);
 
 [proc,castlewars_zamorak_score]()(int)
 return(max(getbit_range(%castlewars_bits, ^castlewars_zamorak_score_start_bit, ^castlewars_zamorak_score_end_bit), 0));
@@ -114,7 +188,7 @@ if ($obj = null) { // empty slot
 if ($obj = castlewars_ticket) {
     return(true);
 }
-if (oc_wearpos($obj) ! null & oc_wearpos2($obj) ! null & oc_wearpos3($obj) ! null) { // item is wearable
+if (oc_wearpos($obj) ! null | oc_wearpos2($obj) ! null | oc_wearpos3($obj) ! null) { // item is wearable
     return(true);
 }
 if (map_members = ^false & oc_members($obj) = true) {
@@ -125,3 +199,23 @@ if (map_members = ^false & oc_members($obj) = true) {
 //     return(true);
 // }
 return(false);
+
+[debugproc,up]
+if (p_finduid(uid) = true) {
+    p_teleport(movecoord(coord, 0, 1, 0));
+}
+
+[debugproc,down]
+if (p_finduid(uid) = true) {
+    p_teleport(movecoord(coord, 0, -1, 0));
+}
+
+[debugproc,coord]
+mes(~coord_tostring(coord));
+
+[debugproc,counts]
+if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
+    error("Unable to find castlewars_judge npc.");
+    return;
+}
+mes("<tostring(~castlewars_saradomin_count)>, <tostring(~castlewars_zamorak_count)>");

@@ -1,0 +1,91 @@
+[ai_timer,castlewars_judge]
+if (~castlewars_saradomin_count < 1 | ~castlewars_zamorak_count < 1) {
+    %npc_int = null;
+    return;
+}
+%npc_int = add(%npc_int, 1);
+huntall(^castlewars_centre_coord1, 32, 0);
+while (huntnext = true) {
+    ~castlewars_update_vars;
+}
+huntall(^castlewars_centre_coord2, 32, 0);
+while (huntnext = true) {
+    ~castlewars_update_vars;
+}
+huntall(^castlewars_centre_coord3, 32, 0);
+while (huntnext = true) {
+    ~castlewars_update_vars;
+}
+huntall(^castlewars_centre_coord4, 32, 0);
+while (huntnext = true) {
+    ~castlewars_update_vars;
+}
+if (%npc_int = 500) {
+    %npc_int = 0; // restart
+}
+
+
+[proc,castlewars_update_vars]
+if (%npc_int < 100) { // 5 min warmup
+    if (modulo(%npc_int, 20) = 0) {
+        %castlewars_timer = sub(5, divide(%npc_int, 20));
+    }
+    return;
+}
+if (modulo(%npc_int, 20) = 0) {
+    %castlewars_timer = sub(25, divide(%npc_int, 20)); // min until next game (+5 min)
+}
+if (inzone(^zamorak_starting_count_coord1, ^zamorak_starting_count_coord2, coord) = true) {
+    if (%npc_int = 100) {
+        queue(castlewars_start, 0);
+    } else if (modulo(%npc_int, 14) = 0) { // every 70 ticks?
+        queue(castlewars_join_in_progress, 0);
+    }
+    return;
+}
+if (inzone(^saradomin_starting_count_coord1, ^saradomin_starting_count_coord2, coord) = true) {
+    if (%npc_int = 100) {
+        queue(castlewars_start, 0);
+    } else if (modulo(%npc_int, 14) = 0) { // every 70 ticks?
+        queue(castlewars_join_in_progress, 0);
+    }
+    return;
+}
+// %castlewars_timer = sub(25, divide(%npc_int, 20));
+// mes(tostring(%npc_int));
+if (%npc_int = 500) { // game is over
+    queue(castlewars_end, 0);
+    return;
+}
+
+[queue,castlewars_join_in_progress]
+def_int $choice = ~p_choice2_header("Yes please!", 1, "No thanks.", 2, "There's a free space, do you want to join?");
+if ($choice = 2) {
+    return;
+}
+if (~castlewars_game_active = false) {
+    return;
+}
+~castlewars_start_tele(%castlewars_team);
+
+[proc,castlewars_game_active]()(boolean)
+if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
+    return(false);
+}
+if (%npc_int < 500) {
+    return(true);
+}
+return(false);
+
+[queue,castlewars_start]
+~castlewars_start_tele(%castlewars_team);
+
+[queue,castlewars_end]
+~castlewars_exit_tele;
+
+[debugproc,cw_reset]
+if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
+    error("Unable to find castlewars_judge npc.");
+    return;
+}
+%castlewars_bits = 0;
