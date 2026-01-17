@@ -113,6 +113,10 @@ facesquare($center);
 p_delay(0);
 
 def_coord $origin = movecoord($center, -1, 0, -1); // south-west tile
+if (map_locaddunsafe($origin) = true) { // check again after player movement
+    mes("There isn't enough space to set up here.");
+    return;
+}
 %ownedmcannon = $origin;
 %dropcannon = ^cannon_stage_base;
 
