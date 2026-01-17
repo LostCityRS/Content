@@ -174,14 +174,7 @@ if (inv_freespace(inv) < 2) {
     mes("You need two free inventory spaces to pick that up."); // osrs
     return;
 }
-%ownedmcannon = null;
-%dropcannon = ^cannon_stage_none;
-mes("You pick up the cannon,");
-mes("It's really heavy.");
-sound_synth(pick, 0, 0);
-inv_add(inv, twpart1, 1);
-inv_add(inv, twpart2, 1);
-loc_del(1);
+~pickup_cannon;
 
 [oplocu,multicannon_stand]
 if (~cannon_belongs_to_player = false) {
@@ -213,15 +206,7 @@ if (inv_freespace(inv) < 3) {
     mes("You need three free inventory spaces to pick that up."); // osrs
     return;
 }
-%ownedmcannon = null;
-%dropcannon = ^cannon_stage_none;
-mes("You pick up the cannon,");
-mes("It's really heavy.");
-sound_synth(pick, 0, 0);
-inv_add(inv, twpart1, 1);
-inv_add(inv, twpart2, 1);
-inv_add(inv, twpart3, 1);
-loc_del(1);
+~pickup_cannon;
 
 [oplocu,multicannon_barrels]
 if (~cannon_belongs_to_player = false) {
@@ -254,21 +239,11 @@ if (inv_freespace(inv) < 4) {
     mes("You need 4 free inventory spaces to pick that up."); // osrs
     return;
 }
-mes("You pick up the cannon,"); // https://youtu.be/TeQXQDaawO0?t=518
-mes("It's really heavy.");
-sound_synth(pick, 0, 0);
-%ownedmcannon = null;
-%dropcannon = ^cannon_stage_none;
-inv_add(inv, twpart1, 1);
-inv_add(inv, twpart2, 1);
-inv_add(inv, twpart3, 1);
-inv_add(inv, twpart4, 1);
-
+~pickup_cannon;
 if (%rockthrower > 0) {
     inv_add(inv, mcannonball, min(30, %rockthrower));
 }
 %rockthrower = 0;
-loc_del(1);
 
 [oploc1,dwarf_multicannon1]
 if (~cannon_belongs_to_player = false) {
@@ -307,3 +282,26 @@ if (last_useitem = mcannonball) {
     ~displaymessage(^dm_default);
 }
 // --------------
+
+[proc,pickup_cannon]
+if (%dropcannon = ^cannon_stage_base) {
+    inv_add(inv, twpart1, 1);
+} else if (%dropcannon = ^cannon_stage_stand) {
+    inv_add(inv, twpart1, 1);
+    inv_add(inv, twpart2, 1);
+} else if (%dropcannon = ^cannon_stage_barrels) {
+    inv_add(inv, twpart1, 1);
+    inv_add(inv, twpart2, 1);
+    inv_add(inv, twpart3, 1);
+} else if (%dropcannon = ^cannon_stage_full) {
+    inv_add(inv, twpart1, 1);
+    inv_add(inv, twpart2, 1);
+    inv_add(inv, twpart3, 1);
+    inv_add(inv, twpart4, 1);
+}
+%ownedmcannon = null;
+%dropcannon = ^cannon_stage_none;
+mes("You pick up the cannon,"); // https://youtu.be/TeQXQDaawO0?t=518
+mes("It's really heavy.");
+sound_synth(pick, 0, 0);
+loc_del(1);
