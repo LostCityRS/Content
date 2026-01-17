@@ -157,10 +157,7 @@ if (last_useitem = twpart2) {
     return;
 }
 // in osrs, if you use a cannon base on a cannon base, itll have this message...
-// i think this is because they just check for category 'cannon_parts'...
-// However! 2004 didnt have categories, so either they never checked for other cannon parts
-// or they did. If they did, they probably didnt check for the same obj?
-if (oc_category(last_useitem) = cannon_parts & last_useitem ! twpart1) { 
+if (oc_category(last_useitem) = cannon_parts) { 
     mes("This cannon needs its stand."); // osrs
     return;
 }
@@ -199,7 +196,7 @@ if (last_useitem = twpart3) {
     %dropcannon = ^cannon_stage_barrels;
     return;
 }
-if (oc_category(last_useitem) = cannon_parts & last_useitem ! twpart2) { 
+if (oc_category(last_useitem) = cannon_parts) { 
     mes("This cannon needs its barrels."); // osrs
     return;
 }
@@ -239,7 +236,7 @@ if (last_useitem = twpart4) {
     %dropcannon = ^cannon_stage_full;
     @cannon_ready_start;
 }
-if (oc_category(last_useitem) = cannon_parts & last_useitem ! twpart3) { 
+if (oc_category(last_useitem) = cannon_parts) { 
     mes("This cannon needs its furnace."); // osrs
     return;
 }
