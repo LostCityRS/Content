@@ -243,6 +243,7 @@ members=yes
 2dyan=2040
 2dxan=292
 weight=1kg
+category=cog
 tradeable=no
 
 [blackcog]
@@ -255,6 +256,7 @@ members=yes
 2dyan=2040
 2dxan=292
 weight=1kg
+category=cog
 tradeable=no
 
 [bluecog]
@@ -267,6 +269,7 @@ members=yes
 2dyan=2040
 2dxan=292
 weight=1kg
+category=cog
 tradeable=no
 
 [redcog]
@@ -279,6 +282,7 @@ members=yes
 2dyan=2040
 2dxan=292
 weight=1kg
+category=cog
 tradeable=no
 
 [rat_poison]
@@ -383,6 +387,7 @@ model=obj_lit_black_candle
 iop1=Extinguish
 weight=1oz
 category=light_source_lit
+tradeable=no
 
 [lit_candle]
 name=Lit candle
@@ -427,6 +432,7 @@ manwear=obj_excalibur_manwear,0
 womanwear=obj_excalibur_manwear,6
 wearpos=righthand
 weight=5lb
+category=weapon_slash
 param=stabattack,20
 param=slashattack,29
 param=crushattack,-2
@@ -476,6 +482,7 @@ model=obj_unlit_candle
 weight=1oz
 category=light_source_unlit
 param=product,lit_black_candle
+tradeable=no
 
 [bronze_arrowheads]
 name=Bronze arrowtips
@@ -494,6 +501,7 @@ members=yes
 stackable=yes
 cost=1
 weight=4g
+category=category_968
 
 [iron_arrowheads]
 name=Iron arrowtips
@@ -512,6 +520,7 @@ members=yes
 stackable=yes
 cost=2
 weight=4g
+category=category_968
 
 [steel_arrowheads]
 name=Steel arrowtips
@@ -526,6 +535,7 @@ members=yes
 stackable=yes
 cost=6
 weight=4g
+category=category_968
 
 [mithril_arrowheads]
 name=Mithril arrowtips
@@ -544,6 +554,7 @@ members=yes
 stackable=yes
 cost=16
 weight=3g
+category=category_968
 
 [adamant_arrowheads]
 name=Adamant arrowtips
@@ -562,6 +573,7 @@ members=yes
 stackable=yes
 cost=40
 weight=5g
+category=category_968
 
 [rune_arrowheads]
 name=Rune arrowtips
@@ -580,6 +592,7 @@ members=yes
 stackable=yes
 cost=200
 weight=4g
+category=category_968
 
 [opal_bolttips]
 name=Opal bolttips
@@ -596,6 +609,7 @@ members=yes
 stackable=yes
 cost=30
 weight=4g
+category=category_530
 
 [pearl_bolttips]
 name=Pearl bolttips
@@ -610,6 +624,7 @@ members=yes
 stackable=yes
 cost=56
 weight=4g
+category=category_530
 
 [barbed_bolttips]
 name=Barb bolttips
@@ -624,6 +639,7 @@ cost=95
 2dyan=608
 2dxan=492
 weight=4g
+category=category_530
 
 [unstrung_longbow]
 name=Longbow (u)
@@ -659,6 +675,7 @@ model=obj_unstrung_shortbow
 2dyan=124
 2dxan=508
 weight=35oz
+category=unstrung_bow
 
 [cert_unstrung_shortbow]
 certlink=unstrung_shortbow
@@ -714,6 +731,7 @@ model=obj_unstrung_shortbow
 2dyan=124
 2dxan=508
 weight=35oz
+category=unstrung_bow
 
 [cert_unstrung_oak_shortbow]
 certlink=unstrung_oak_shortbow
@@ -733,6 +751,7 @@ model=obj_unstrung_longbow
 2dyan=1004
 2dxan=460
 weight=47oz
+category=unstrung_bow
 
 [cert_unstrung_oak_longbow]
 certlink=unstrung_oak_longbow
@@ -752,6 +771,7 @@ model=obj_unstrung_longbow
 2dyan=1004
 2dxan=460
 weight=47oz
+category=unstrung_bow
 
 [cert_unstrung_willow_longbow]
 certlink=unstrung_willow_longbow
@@ -771,6 +791,7 @@ model=obj_unstrung_shortbow
 2dyan=124
 2dxan=508
 weight=35oz
+category=unstrung_bow
 
 [cert_unstrung_willow_shortbow]
 certlink=unstrung_willow_shortbow
@@ -790,6 +811,7 @@ model=obj_unstrung_longbow
 2dyan=1004
 2dxan=460
 weight=47oz
+category=unstrung_bow
 
 [cert_unstrung_maple_longbow]
 certlink=unstrung_maple_longbow
@@ -809,6 +831,7 @@ model=obj_unstrung_shortbow
 2dyan=124
 2dxan=508
 weight=35oz
+category=unstrung_bow
 
 [cert_unstrung_maple_shortbow]
 certlink=unstrung_maple_shortbow
@@ -828,6 +851,7 @@ model=obj_unstrung_longbow
 2dyan=1004
 2dxan=460
 weight=47oz
+category=unstrung_bow
 
 [cert_unstrung_yew_longbow]
 certlink=unstrung_yew_longbow
@@ -847,6 +871,7 @@ model=obj_unstrung_shortbow
 2dyan=124
 2dxan=508
 weight=35oz
+category=unstrung_bow
 
 [cert_unstrung_yew_shortbow]
 certlink=unstrung_yew_shortbow
@@ -866,6 +891,7 @@ model=obj_unstrung_longbow
 2dyan=1004
 2dxan=460
 weight=47oz
+category=unstrung_bow
 
 [cert_unstrung_magic_longbow]
 certlink=unstrung_magic_longbow
@@ -885,6 +911,7 @@ model=obj_unstrung_shortbow
 2dyan=124
 2dxan=508
 weight=35oz
+category=unstrung_bow
 
 [cert_unstrung_magic_shortbow]
 certlink=unstrung_magic_shortbow
@@ -957,6 +984,7 @@ model=obj_khazard_cellkeys
 2dyan=228
 2dxan=508
 weight=10g
+param=no_alchemy,1
 tradeable=no
 
 [khali_brew]
@@ -1028,7 +1056,6 @@ model=obj_ice_arrow_4
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [ice_arrow_3]
 recol1s=14798
@@ -1048,7 +1075,6 @@ model=obj_ice_arrow_3
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [ice_arrow_2]
 recol1s=14798
@@ -1068,7 +1094,6 @@ model=obj_ice_arrow_2
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [ice_arrow_5]
 recol1s=14798
@@ -1088,7 +1113,6 @@ model=obj_ice_arrow_5
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [ikov_lever]
 name=Lever
@@ -1215,7 +1239,6 @@ model=obj_ikov_bootsoflightness
 iop2=Wear
 wearpos=feet
 weight=-10lb
-weight=-10lb
 param=stabdefence,1
 param=slashdefence,1
 param=crushdefence,1
@@ -1248,6 +1271,7 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=2oz
+category=category_69
 
 [cert_guamvial]
 certlink=guamvial
@@ -1267,6 +1291,7 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=2oz
+category=category_69
 
 [cert_marrentillvial]
 certlink=marrentillvial
@@ -1286,6 +1311,7 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=2oz
+category=category_69
 
 [cert_tarrominvial]
 certlink=tarrominvial
@@ -1305,6 +1331,7 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=2oz
+category=category_69
 
 [cert_harralandervial]
 certlink=harralandervial
@@ -1324,6 +1351,7 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=2oz
+category=category_69
 
 [cert_ranarrvial]
 certlink=ranarrvial
@@ -1343,6 +1371,7 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=2oz
+category=category_69
 
 [cert_iritvial]
 certlink=iritvial
@@ -1362,6 +1391,7 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=2oz
+category=category_69
 
 [cert_avantoevial]
 certlink=avantoevial
@@ -1381,6 +1411,7 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=2oz
+category=category_69
 
 [cert_kwuarmvial]
 certlink=kwuarmvial
@@ -1400,6 +1431,7 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=2oz
+category=category_69
 
 [cert_cadantinevial]
 certlink=cadantinevial
@@ -1419,6 +1451,7 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=2oz
+category=category_69
 
 [cert_dwarfweedvial]
 certlink=dwarfweedvial
@@ -1438,6 +1471,7 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=2oz
+category=category_69
 
 [cert_torstolvial]
 certlink=torstolvial
@@ -1457,6 +1491,10 @@ model=obj_strength4
 2dxan=84
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dose1strength
+param=decant_potion_enum,potion_1strength
+param=dose_count,4
 
 [cert_strength4]
 certlink=strength4
@@ -1476,6 +1514,10 @@ model=obj_guamvial
 2dxan=84
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dose1strength
+param=decant_potion_enum,potion_1strength
+param=dose_count,3
 
 [cert_3dose1strength]
 certlink=3dose1strength
@@ -1495,6 +1537,10 @@ model=obj_2dose1strength
 2dxan=84
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dose1strength
+param=decant_potion_enum,potion_1strength
+param=dose_count,2
 
 [cert_2dose1strength]
 certlink=2dose1strength
@@ -1514,6 +1560,10 @@ model=obj_1dose1strength
 2dxan=84
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_1strength
+param=dose_count,1
 
 [cert_1dose1strength]
 certlink=1dose1strength
@@ -1534,6 +1584,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dose1attack
+param=decant_potion_enum,potion_1attack
+param=dose_count,3
 
 [cert_3dose1attack]
 certlink=3dose1attack
@@ -1554,6 +1608,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dose1attack
+param=decant_potion_enum,potion_1attack
+param=dose_count,2
 
 [cert_2dose1attack]
 certlink=2dose1attack
@@ -1574,6 +1632,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_1attack
+param=dose_count,1
 
 [cert_1dose1attack]
 certlink=1dose1attack
@@ -1594,6 +1656,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dosestatrestore
+param=decant_potion_enum,potion_1restore
+param=dose_count,3
 
 [cert_3dosestatrestore]
 certlink=3dosestatrestore
@@ -1614,6 +1680,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dosestatrestore
+param=decant_potion_enum,potion_1restore
+param=dose_count,2
 
 [cert_2dosestatrestore]
 certlink=2dosestatrestore
@@ -1634,6 +1704,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_1restore
+param=dose_count,1
 
 [cert_1dosestatrestore]
 certlink=1dosestatrestore
@@ -1654,6 +1728,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dose1defense
+param=decant_potion_enum,potion_1defense
+param=dose_count,3
 
 [cert_3dose1defense]
 certlink=3dose1defense
@@ -1674,6 +1752,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dose1defense
+param=decant_potion_enum,potion_1defense
+param=dose_count,2
 
 [cert_2dose1defense]
 certlink=2dose1defense
@@ -1694,6 +1776,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_1defense
+param=dose_count,1
 
 [cert_1dose1defense]
 certlink=1dose1defense
@@ -1714,6 +1800,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2doseprayerrestore
+param=decant_potion_enum,potion_prayerrestore
+param=dose_count,3
 
 [cert_3doseprayerrestore]
 certlink=3doseprayerrestore
@@ -1734,6 +1824,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1doseprayerrestore
+param=decant_potion_enum,potion_prayerrestore
+param=dose_count,2
 
 [cert_2doseprayerrestore]
 certlink=2doseprayerrestore
@@ -1754,6 +1848,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_prayerrestore
+param=dose_count,1
 
 [cert_1doseprayerrestore]
 certlink=1doseprayerrestore
@@ -1774,6 +1872,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dose2attack
+param=decant_potion_enum,potion_2attack
+param=dose_count,3
 
 [cert_3dose2attack]
 certlink=3dose2attack
@@ -1794,6 +1896,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dose2attack
+param=decant_potion_enum,potion_2attack
+param=dose_count,2
 
 [cert_2dose2attack]
 certlink=2dose2attack
@@ -1814,6 +1920,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_2attack
+param=dose_count,1
 
 [cert_1dose2attack]
 certlink=1dose2attack
@@ -1834,6 +1944,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dosefisherspotion
+param=decant_potion_enum,potion_fisherspotion
+param=dose_count,3
 
 [cert_3dosefisherspotion]
 certlink=3dosefisherspotion
@@ -1854,6 +1968,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dosefisherspotion
+param=decant_potion_enum,potion_fisherspotion
+param=dose_count,2
 
 [cert_2dosefisherspotion]
 certlink=2dosefisherspotion
@@ -1874,6 +1992,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_fisherspotion
+param=dose_count,1
 
 [cert_1dosefisherspotion]
 certlink=1dosefisherspotion
@@ -1894,6 +2016,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dose2strength
+param=decant_potion_enum,potion_2strength
+param=dose_count,3
 
 [cert_3dose2strength]
 certlink=3dose2strength
@@ -1914,6 +2040,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dose2strength
+param=decant_potion_enum,potion_2strength
+param=dose_count,2
 
 [cert_2dose2strength]
 certlink=2dose2strength
@@ -1934,6 +2064,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_2strength
+param=dose_count,1
 
 [cert_1dose2strength]
 certlink=1dose2strength
@@ -1954,6 +2088,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dose2defense
+param=decant_potion_enum,potion_2defense
+param=dose_count,3
 
 [cert_3dose2defense]
 certlink=3dose2defense
@@ -1974,6 +2112,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dose2defense
+param=decant_potion_enum,potion_2defense
+param=dose_count,2
 
 [cert_2dose2defense]
 certlink=2dose2defense
@@ -1994,6 +2136,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_2defense
+param=dose_count,1
 
 [cert_1dose2defense]
 certlink=1dose2defense
@@ -2014,6 +2160,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2doserangerspotion
+param=decant_potion_enum,potion_rangerspotion
+param=dose_count,3
 
 [cert_3doserangerspotion]
 certlink=3doserangerspotion
@@ -2034,6 +2184,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1doserangerspotion
+param=decant_potion_enum,potion_rangerspotion
+param=dose_count,2
 
 [cert_2doserangerspotion]
 certlink=2doserangerspotion
@@ -2054,6 +2208,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_rangerspotion
+param=dose_count,1
 
 [cert_1doserangerspotion]
 certlink=1doserangerspotion
@@ -2074,6 +2232,11 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=cures_poison,yes
+param=next_obj_stage,2doseantipoison
+param=decant_potion_enum,potion_antipoison
+param=dose_count,3
 
 [cert_3doseantipoison]
 certlink=3doseantipoison
@@ -2094,6 +2257,11 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=cures_poison,yes
+param=next_obj_stage,1doseantipoison
+param=decant_potion_enum,potion_antipoison
+param=dose_count,2
 
 [cert_2doseantipoison]
 certlink=2doseantipoison
@@ -2114,6 +2282,11 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=cures_poison,yes
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_antipoison
+param=dose_count,1
 
 [cert_1doseantipoison]
 certlink=1doseantipoison
@@ -2134,6 +2307,11 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=cures_poison,yes
+param=next_obj_stage,2dose2antipoison
+param=decant_potion_enum,potion_2antipoison
+param=dose_count,3
 
 [cert_3dose2antipoison]
 certlink=3dose2antipoison
@@ -2154,6 +2332,11 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=cures_poison,yes
+param=next_obj_stage,1dose2antipoison
+param=decant_potion_enum,potion_2antipoison
+param=dose_count,2
 
 [cert_2dose2antipoison]
 certlink=2dose2antipoison
@@ -2174,6 +2357,11 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=cures_poison,yes
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_2antipoison
+param=dose_count,1
 
 [cert_1dose2antipoison]
 certlink=1dose2antipoison
@@ -2193,6 +2381,7 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
 
 [cert_weapon_poison]
 certlink=weapon_poison
@@ -2213,6 +2402,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dosepotionofzamorak
+param=decant_potion_enum,potion_potionofzamorak
+param=dose_count,3
 
 [cert_3dosepotionofzamorak]
 certlink=3dosepotionofzamorak
@@ -2233,6 +2426,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dosepotionofzamorak
+param=decant_potion_enum,potion_potionofzamorak
+param=dose_count,2
 
 [cert_2dosepotionofzamorak]
 certlink=2dosepotionofzamorak
@@ -2253,6 +2450,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_potionofzamorak
+param=dose_count,1
 
 [cert_1dosepotionofzamorak]
 certlink=1dosepotionofzamorak
@@ -2306,6 +2507,8 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_773
+respawnrate=200
 
 [cert_unidentified_guam]
 certlink=unidentified_guam
@@ -2322,6 +2525,7 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_773
 
 [cert_unidentified_marentill]
 certlink=unidentified_marentill
@@ -2338,6 +2542,7 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_773
 
 [cert_unidentified_tarromin]
 certlink=unidentified_tarromin
@@ -2354,6 +2559,7 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_773
 
 [cert_unidentified_harralander]
 certlink=unidentified_harralander
@@ -2482,6 +2688,8 @@ model=obj_eye_of_newt
 2dyan=256
 2dxan=364
 weight=7g
+param=brew_potion_struct,3dose1attack
+param=brew_potion_struct_secondary,3dose2attack
 
 [cert_eye_of_newt]
 certlink=eye_of_newt
@@ -2497,6 +2705,8 @@ model=obj_red_spiders_eggs
 2dyan=12
 2dxan=252
 weight=7g
+param=brew_potion_struct,3dose1restore
+param=brew_potion_struct_secondary,3dose2restore
 
 [cert_red_spiders_eggs]
 certlink=red_spiders_eggs
@@ -2515,6 +2725,8 @@ model=obj_limpwurt_root
 2dxan=68
 ambient=15
 weight=7g
+param=brew_potion_struct,3dose1strength
+param=brew_potion_struct_secondary,3dose2strength
 
 [cert_limpwurt_root]
 certlink=limpwurt_root
@@ -2533,6 +2745,7 @@ model=obj_strength4
 cost=2
 iop4=Empty
 weight=20g
+param=next_obj_stage,vial_empty
 
 [cert_vial_water]
 certlink=vial_water
@@ -2550,6 +2763,8 @@ manwear=obj_vial_empty_manwear,0
 womanwear=obj_vial_empty_manwear,6
 cost=2
 weight=15g
+param=crafting_glass_struct,vial_empty
+param=next_obj_stage,vial_water
 
 [cert_vial_empty]
 certlink=vial_empty
@@ -2567,6 +2782,9 @@ model=obj_snape_grass
 2dyan=48
 2dxan=484
 weight=7g
+respawnrate=30
+param=brew_potion_struct,3doseprayerrestore
+param=brew_potion_struct_secondary,3dosefisherspotion
 
 [cert_snape_grass]
 certlink=snape_grass
@@ -2602,6 +2820,8 @@ model=obj_unicorn_horn_dust
 members=yes
 cost=20
 weight=7g
+param=brew_potion_struct,3doseantipoison
+param=brew_potion_struct_secondary,3dose2antipoison
 
 [cert_unicorn_horn_dust]
 certlink=unicorn_horn_dust
@@ -2619,6 +2839,8 @@ model=obj_unicorn_horn
 members=yes
 cost=20
 weight=7g
+param=grindable_ingredient_refined,unicorn_horn_dust
+param=grindable_ingredient_message,You grind the unicorn horn to dust.
 
 [cert_unicorn_horn]
 certlink=unicorn_horn
@@ -2638,6 +2860,9 @@ model=obj_white_berries
 members=yes
 cost=10
 weight=7g
+respawnrate=10
+param=brew_potion_struct,3dose1defense
+param=brew_potion_struct_secondary,3dose2defense
 
 [cert_white_berries]
 certlink=white_berries
@@ -2656,6 +2881,8 @@ model=obj_unicorn_horn_dust
 cost=52
 members=yes
 weight=7g
+param=brew_potion_struct,weapon_poison
+param=brew_potion_struct_secondary,3dose1antidragon
 
 [cert_dragon_scale_dust]
 certlink=dragon_scale_dust
@@ -2672,6 +2899,9 @@ model=obj_blue_dragon_scale
 2dyan=148
 2dxan=212
 weight=10g
+respawnrate=30
+param=grindable_ingredient_refined,dragon_scale_dust
+param=grindable_ingredient_message,You grind down the blue dragon scale.
 
 [cert_blue_dragon_scale]
 certlink=blue_dragon_scale
@@ -2689,6 +2919,8 @@ model=obj_wine_of_zamorak
 2dyan=84
 2dxan=260
 weight=3oz
+respawnrate=50
+param=brew_potion_struct,3doserangerspotion
 
 [cert_wine_of_zamorak]
 certlink=wine_of_zamorak
@@ -2710,6 +2942,9 @@ model=obj_white_berries
 2dxan=404
 members=yes
 weight=7g
+category=category_86
+respawnrate=30
+param=brew_potion_struct,3dosepotionofzamorak
 
 [cert_jangerberries]
 certlink=jangerberries
@@ -2730,6 +2965,10 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_774
+param=identified_herb_exp,25
+param=identified_herb_message,This herb is a Guam Leaf.
+param=brew_potion_struct,unf_guam_potion
 
 [cert_guam_leaf]
 certlink=guam_leaf
@@ -2750,6 +2989,11 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_774
+param=identified_herb_level,5
+param=identified_herb_exp,38
+param=identified_herb_message,This herb is a Marrentill.
+param=brew_potion_struct,unf_marrentill_potion
 
 [cert_marentill]
 certlink=marentill
@@ -2770,6 +3014,11 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_774
+param=identified_herb_level,11
+param=identified_herb_exp,50
+param=identified_herb_message,This herb is a Tarromin.
+param=brew_potion_struct,unf_tarromin_potion
 
 [cert_tarromin]
 certlink=tarromin
@@ -2790,6 +3039,11 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_774
+param=identified_herb_level,20
+param=identified_herb_exp,63
+param=identified_herb_message,This herb is a Harralander.
+param=brew_potion_struct,unf_harralander_potion
 
 [cert_harralander]
 certlink=harralander
@@ -2810,6 +3064,11 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_774
+param=identified_herb_level,25
+param=identified_herb_exp,75
+param=identified_herb_message,This herb is a Ranarr Weed.
+param=brew_potion_struct,unf_ranarr_potion
 
 [cert_ranarr_weed]
 certlink=ranarr_weed
@@ -2830,6 +3089,11 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_774
+param=identified_herb_level,40
+param=identified_herb_exp,88
+param=identified_herb_message,This herb is an Irit Leaf.
+param=brew_potion_struct,unf_irit_potion
 
 [cert_irit_leaf]
 certlink=irit_leaf
@@ -2850,6 +3114,11 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_774
+param=identified_herb_level,48
+param=identified_herb_exp,100
+param=identified_herb_message,This herb is an Avantoe.
+param=brew_potion_struct,unf_avantoe_potion
 
 [cert_avantoe]
 certlink=avantoe
@@ -2870,6 +3139,11 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_774
+param=identified_herb_level,54
+param=identified_herb_exp,113
+param=identified_herb_message,This herb is a Kwuarm.
+param=brew_potion_struct,unf_kwuarm_potion
 
 [cert_kwuarm]
 certlink=kwuarm
@@ -2890,6 +3164,11 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_774
+param=identified_herb_level,65
+param=identified_herb_exp,125
+param=identified_herb_message,This herb is a Cadantine.
+param=brew_potion_struct,unf_cadantine_potion
 
 [cert_cadantine]
 certlink=cadantine
@@ -2910,6 +3189,11 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_774
+param=identified_herb_level,70
+param=identified_herb_exp,138
+param=identified_herb_message,This herb is a Dwarf Weed.
+param=brew_potion_struct,unf_dwarf_weed_potion
 
 [cert_dwarf_weed]
 certlink=dwarf_weed
@@ -2930,6 +3214,11 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_774
+param=identified_herb_level,75
+param=identified_herb_exp,150
+param=identified_herb_message,This herb is a Torstol.
+param=brew_potion_struct,unf_torstol_potion
 
 [cert_torstol]
 certlink=torstol
@@ -3161,6 +3450,7 @@ cost=40
 2dzoom=1500
 2dxan=608
 weight=8lb
+wearpos=torso
 category=category_528
 tradeable=no
 
@@ -3175,6 +3465,7 @@ cost=40
 2dzoom=1500
 2dxan=608
 weight=8lb
+wearpos=torso
 category=category_528
 tradeable=no
 
@@ -3187,6 +3478,7 @@ cost=40
 2dzoom=1500
 2dxan=608
 weight=8lb
+wearpos=torso
 category=category_528
 
 [cert_goblin_armour]
@@ -3329,6 +3621,7 @@ cost=20
 manwear=obj_lobster_pot_manwear,0
 womanwear=obj_lobster_pot_manwear,6
 weight=9oz
+param=fish_equipment_struct,fish_equipment_lobster_pot
 
 [cert_lobster_pot]
 certlink=lobster_pot
@@ -3347,6 +3640,7 @@ cost=5
 manwear=obj_net_manwear,0
 womanwear=obj_net_manwear,6
 weight=10lb
+param=fish_equipment_struct,fish_equipment_net
 
 [cert_net]
 certlink=net
@@ -3366,6 +3660,7 @@ members=yes
 manwear=obj_big_net_manwear,0
 womanwear=obj_big_net_manwear,6
 weight=18lb
+param=fish_equipment_struct,fish_equipment_big_net
 
 [cert_big_net]
 certlink=big_net
@@ -3384,6 +3679,7 @@ cost=5
 manwear=obj_fishing_rod_manwear,0
 womanwear=obj_fishing_rod_manwear,6
 weight=3lb
+param=fish_equipment_struct,fish_equipment_fishing_rod
 
 [cert_fishing_rod]
 certlink=fishing_rod
@@ -3402,6 +3698,7 @@ cost=5
 manwear=obj_fishing_rod_manwear,0
 womanwear=obj_fishing_rod_manwear,6
 weight=3lb
+param=fish_equipment_struct,fish_equipment_fly_fishing_rod
 
 [cert_fly_fishing_rod]
 certlink=fly_fishing_rod
@@ -3420,6 +3717,7 @@ cost=5
 manwear=obj_harpoon_manwear,0
 womanwear=obj_harpoon_manwear,6
 weight=3lb
+param=fish_equipment_struct,fish_equipment_harpoon
 
 [cert_harpoon]
 certlink=harpoon
@@ -3452,6 +3750,7 @@ cost=2
 manwear=obj_feather_manwear,0
 womanwear=obj_feather_manwear,6
 weight=2g
+category=category_532
 
 [shrimp]
 name=Shrimps
@@ -3463,6 +3762,7 @@ model=obj_shrimp
 cost=5
 iop1=Eat
 weight=100g
+category=category_58
 
 [cert_shrimp]
 certlink=shrimp
@@ -3481,6 +3781,8 @@ model=obj_shrimp
 2dxan=272
 cost=5
 weight=120g
+category=category_57
+param=fishing_struct,fishing_struct_shrimps
 
 [cert_raw_shrimp]
 certlink=raw_shrimp
@@ -3500,6 +3802,8 @@ model=obj_shrimp
 cost=15
 iop1=Eat
 weight=100g
+category=category_58
+param=pizza_topping_struct,anchovy_topping
 
 [cert_anchovies]
 certlink=anchovies
@@ -3518,6 +3822,8 @@ model=obj_shrimp
 2dxan=272
 cost=15
 weight=120g
+category=category_57
+param=fishing_struct,fishing_struct_anchovies
 
 [cert_raw_anchovies]
 certlink=raw_anchovies
@@ -3536,6 +3842,7 @@ model=obj_shrimp
 2dxan=272
 cost=1
 weight=80g
+category=category_116
 
 [cert_burntfish1]
 certlink=burntfish1
@@ -3558,6 +3865,7 @@ model=obj_sardine
 cost=10
 iop1=Eat
 weight=120g
+category=category_58
 
 [cert_sardine]
 certlink=sardine
@@ -3579,6 +3887,8 @@ model=obj_sardine
 2dxan=320
 cost=10
 weight=140g
+category=category_57
+param=fishing_struct,fishing_struct_sardine
 
 [cert_raw_sardine]
 certlink=raw_sardine
@@ -3599,6 +3909,7 @@ model=obj_salmon
 cost=50
 iop1=Eat
 weight=500g
+category=category_58
 
 [cert_salmon]
 certlink=salmon
@@ -3618,6 +3929,8 @@ model=obj_salmon
 2dxan=532
 cost=50
 weight=550g
+category=category_57
+param=fishing_struct,fishing_struct_salmon
 
 [cert_raw_salmon]
 certlink=raw_salmon
@@ -3638,6 +3951,7 @@ model=obj_salmon
 cost=20
 iop1=Eat
 weight=400g
+category=category_58
 
 [cert_trout]
 certlink=trout
@@ -3657,6 +3971,8 @@ model=obj_salmon
 2dxan=532
 cost=20
 weight=450g
+category=category_57
+param=fishing_struct,fishing_struct_trout
 
 [cert_raw_trout]
 certlink=raw_trout
@@ -3678,6 +3994,8 @@ cost=50
 iop1=Eat
 members=yes
 weight=500g
+category=category_58
+tradeable=no
 
 [raw_giant_carp]
 name=Raw giant carp
@@ -3694,6 +4012,8 @@ model=obj_salmon
 cost=50
 members=yes
 weight=550g
+category=category_57
+tradeable=no
 
 [cod]
 name=Cod
@@ -3711,6 +4031,7 @@ cost=25
 iop1=Eat
 members=yes
 weight=400g
+category=category_58
 
 [cert_cod]
 certlink=cod
@@ -3731,6 +4052,7 @@ model=obj_salmon
 cost=25
 members=yes
 weight=450g
+category=category_57
 
 [cert_raw_cod]
 certlink=raw_cod
@@ -3750,6 +4072,7 @@ model=obj_salmon
 2dxan=532
 cost=1
 weight=350g
+category=category_116
 
 [cert_burntfish2]
 certlink=burntfish2
@@ -3770,6 +4093,8 @@ model=obj_raw_herring
 2dxan=436
 cost=15
 weight=550g
+category=category_57
+param=fishing_struct,fishing_struct_herring
 
 [cert_raw_herring]
 certlink=raw_herring
@@ -3791,6 +4116,7 @@ model=obj_raw_herring
 cost=15
 iop1=Eat
 weight=500g
+category=category_58
 
 [cert_herring]
 certlink=herring
@@ -3810,6 +4136,8 @@ model=obj_salmon
 2dxan=532
 cost=25
 weight=550g
+category=category_57
+param=fishing_struct,fishing_struct_pike
 
 [cert_raw_pike]
 certlink=raw_pike
@@ -3830,6 +4158,7 @@ model=obj_salmon
 cost=25
 iop1=Eat
 weight=500g
+category=category_58
 
 [cert_pike]
 certlink=pike
@@ -3851,6 +4180,7 @@ model=obj_raw_herring
 cost=17
 members=yes
 weight=350g
+category=category_57
 
 [cert_raw_mackerel]
 certlink=raw_mackerel
@@ -3873,6 +4203,7 @@ cost=17
 iop1=Eat
 members=yes
 weight=300g
+category=category_58
 
 [cert_mackerel]
 certlink=mackerel
@@ -3893,6 +4224,7 @@ model=obj_raw_herring
 2dxan=436
 cost=1
 weight=300g
+category=category_116
 
 [cert_burntfish3]
 certlink=burntfish3
@@ -3912,6 +4244,8 @@ model=obj_raw_tuna
 2dxan=464
 cost=100
 weight=450g
+category=category_57
+param=fishing_struct,fishing_struct_tuna
 
 [cert_raw_tuna]
 certlink=raw_tuna
@@ -3932,6 +4266,7 @@ model=obj_raw_tuna
 cost=100
 iop1=Eat
 weight=400g
+category=category_58
 
 [cert_tuna]
 certlink=tuna
@@ -3952,6 +4287,7 @@ model=obj_raw_tuna
 cost=120
 members=yes
 weight=400g
+category=category_57
 
 [cert_raw_bass]
 certlink=raw_bass
@@ -3973,6 +4309,7 @@ cost=120
 iop1=Eat
 members=yes
 weight=350g
+category=category_58
 
 [cert_bass]
 certlink=bass
@@ -3992,6 +4329,7 @@ model=obj_raw_tuna
 2dxan=464
 cost=1
 weight=300g
+category=category_116
 
 [cert_burntfish4]
 certlink=burntfish4
@@ -4013,6 +4351,7 @@ model=obj_sardine
 2dzan=1964
 2dxan=320
 weight=300g
+category=category_116
 
 [cert_burntfish5]
 certlink=burntfish5
@@ -4032,6 +4371,8 @@ model=obj_raw_swordfish
 2dxan=368
 cost=200
 weight=500g
+category=category_57
+param=fishing_struct,fishing_struct_swordfish
 
 [cert_raw_swordfish]
 certlink=raw_swordfish
@@ -4052,6 +4393,7 @@ model=obj_raw_swordfish
 cost=200
 iop1=Eat
 weight=450g
+category=category_58
 
 [cert_swordfish]
 certlink=swordfish
@@ -4071,6 +4413,7 @@ model=obj_raw_swordfish
 2dxan=368
 cost=1
 weight=400g
+category=category_116
 
 [cert_burnt_swordfish]
 certlink=burnt_swordfish
@@ -4089,6 +4432,8 @@ model=obj_raw_lobster
 2dxan=324
 cost=150
 weight=400g
+category=category_57
+param=fishing_struct,fishing_struct_lobster
 
 [cert_raw_lobster]
 certlink=raw_lobster
@@ -4106,6 +4451,7 @@ model=obj_raw_lobster
 cost=150
 iop1=Eat
 weight=350g
+category=category_58
 
 [cert_lobster]
 certlink=lobster
@@ -4124,6 +4470,7 @@ model=obj_raw_lobster
 2dxan=324
 cost=1
 weight=300g
+category=category_116
 
 [cert_burnt_lobster]
 certlink=burnt_lobster
@@ -4143,6 +4490,8 @@ model=obj_raw_shark
 cost=300
 members=yes
 weight=700g
+category=category_57
+param=fishing_struct,fishing_struct_shark
 
 [cert_raw_shark]
 certlink=raw_shark
@@ -4165,6 +4514,7 @@ cost=300
 iop1=Eat
 members=yes
 weight=650g
+category=category_58
 
 [cert_shark]
 certlink=shark
@@ -4186,6 +4536,7 @@ model=obj_raw_shark
 cost=1
 members=yes
 weight=600g
+category=category_116
 
 [cert_burnt_shark]
 certlink=burnt_shark
@@ -4206,6 +4557,8 @@ model=obj_raw_mantaray
 cost=500
 members=yes
 weight=450g
+category=category_57
+param=fishing_struct,fishing_struct_mantaray
 
 [cert_raw_mantaray]
 certlink=raw_mantaray
@@ -4227,6 +4580,7 @@ cost=500
 iop1=Eat
 members=yes
 weight=400g
+category=category_58
 
 [cert_mantaray]
 certlink=mantaray
@@ -4247,6 +4601,7 @@ model=obj_raw_mantaray
 cost=1
 members=yes
 weight=350g
+category=category_116
 
 [cert_burnt_mantaray]
 certlink=burnt_mantaray
@@ -4263,6 +4618,8 @@ members=yes
 2dyan=1740
 2dxan=236
 weight=400g
+category=category_57
+param=fishing_struct,fishing_struct_seaturtle
 
 [cert_raw_seaturtle]
 certlink=raw_seaturtle
@@ -4284,6 +4641,7 @@ cost=500
 iop1=Eat
 members=yes
 weight=350g
+category=category_58
 
 [cert_seaturtle]
 certlink=seaturtle
@@ -4304,6 +4662,7 @@ members=yes
 2dyan=1740
 2dxan=236
 weight=320g
+category=category_116
 
 [cert_burnt_seaturtle]
 certlink=burnt_seaturtle
@@ -4321,6 +4680,7 @@ model=obj_seaweed
 cost=2
 members=yes
 weight=200g
+category=cooking_generic
 
 [cert_seaweed]
 certlink=seaweed
@@ -4339,6 +4699,7 @@ cost=2
 iop1=Eat
 members=yes
 weight=250g
+category=category_59
 
 [cert_edible_seaweed]
 certlink=edible_seaweed
@@ -4728,6 +5089,7 @@ model=obj_copper_ore
 2dxan=368
 weight=5lb
 category=category_91
+param=smeltsto,bronze_bar
 
 [cert_copper_ore]
 certlink=copper_ore
@@ -4747,6 +5109,7 @@ model=obj_copper_ore
 2dxan=368
 weight=5lb
 category=category_91
+param=smeltsto,bronze_bar
 
 [cert_tin_ore]
 certlink=tin_ore
@@ -4768,6 +5131,7 @@ model=obj_copper_ore
 2dxan=368
 weight=5lb
 category=category_91
+param=smeltsto,iron_bar
 
 [cert_iron_ore]
 certlink=iron_ore
@@ -4789,6 +5153,7 @@ model=obj_copper_ore
 2dxan=368
 weight=5lb
 category=category_91
+param=smeltsto,silver_bar
 
 [cert_silver_ore]
 certlink=silver_ore
@@ -4810,6 +5175,8 @@ model=obj_copper_ore
 2dxan=368
 weight=5lb
 category=category_91
+respawnrate=500
+param=smeltsto,gold_bar
 
 [cert_gold_ore]
 certlink=gold_ore
@@ -4832,6 +5199,8 @@ model=obj_copper_ore
 members=yes
 weight=5lb
 category=category_91
+param=smeltsto,perfect_gold_bar
+tradeable=no
 
 [mithril_ore]
 name=Mithril ore
@@ -4847,6 +5216,7 @@ model=obj_copper_ore
 2dxan=368
 weight=4lb
 category=category_91
+param=smeltsto,mithril_bar
 
 [cert_mithril_ore]
 certlink=mithril_ore
@@ -4866,6 +5236,7 @@ model=obj_copper_ore
 2dxan=368
 weight=6lb
 category=category_91
+param=smeltsto,adamantite_bar
 
 [cert_adamantite_ore]
 certlink=adamantite_ore
@@ -4885,6 +5256,7 @@ model=obj_copper_ore
 2dxan=368
 weight=5lb
 category=category_91
+param=smeltsto,runite_bar
 
 [cert_runite_ore]
 certlink=runite_ore
@@ -5118,6 +5490,7 @@ model=obj_sheepbonesa
 iop1=Bury
 weight=500g
 category=bones
+param=bone_exp,45
 
 [cert_bones]
 certlink=bones
@@ -5136,6 +5509,7 @@ model=obj_sheepbonesa
 iop1=Bury
 weight=500g
 category=bones
+param=bone_exp,45
 
 [cert_bones_burnt]
 certlink=bones_burnt
@@ -5153,6 +5527,9 @@ iop1=Bury
 members=yes
 weight=300g
 category=bones
+param=bone_exp,45
+param=grindable_ingredient_refined,ground_bat_bones
+param=grindable_ingredient_message,You grind the bones to a powder.
 
 [cert_bat_bones]
 certlink=bat_bones
@@ -5168,6 +5545,8 @@ model=obj_big_bones
 iop1=Bury
 weight=800g
 category=bones
+respawnrate=50
+param=bone_exp,150
 
 [cert_big_bones]
 certlink=big_bones
@@ -5184,6 +5563,7 @@ model=obj_big_bones
 iop1=Bury
 weight=800g
 category=bones
+param=bone_exp,300
 
 [cert_babydragon_bones]
 certlink=babydragon_bones
@@ -5200,6 +5580,7 @@ iop1=Bury
 members=yes
 weight=1500g
 category=bones
+param=bone_exp,720
 
 [cert_dragon_bones]
 certlink=dragon_bones
@@ -5391,6 +5772,7 @@ model=obj_ghostskull
 2dzan=1996
 2dxan=160
 weight=80g
+param=no_alchemy,1
 tradeable=no
 
 [firerune]
@@ -5407,7 +5789,6 @@ ambient=30
 weight=2g
 category=category_149
 respawnrate=100
-
 
 [waterrune]
 name=Water rune
@@ -5640,6 +6021,7 @@ model=obj_stafforb
 members=yes
 cost=300
 weight=1lb
+category=craft_orb
 category=craft_orb
 param=crafting_staff_struct,water_orb
 
@@ -5943,6 +6325,14 @@ count4=unlitarrow_5,5
 2dxan=336
 wearpos=quiver
 weight=16g
+category=arrows
+param=rangebonus,7
+param=levelrequire,1
+param=proj_launch,black_arrow_launch
+param=proj_travel,black_arrow_travel
+param=next_obj_stage,litarrow
+param=unlit_arrow,^true
+tradeable=no
 
 [cert_unlitarrow]
 name=Double helix
@@ -8372,6 +8762,7 @@ iop2=Wear
 members=yes
 wearpos=ring
 weight=7g
+tradeable=no
 
 [perfect_ruby_necklace]
 name='perfect' necklace
@@ -8391,6 +8782,7 @@ womanwear=obj_perfect_ruby_necklace_womanwear,0
 members=yes
 wearpos=front
 weight=10g
+tradeable=no
 
 [gauntlets_of_cooking]
 name=Cooking gauntlets
@@ -8412,6 +8804,7 @@ manwear=obj_gauntlets_of_cooking_manwear,0
 womanwear=obj_gauntlets_of_cooking_womanwear,0
 wearpos=hands
 weight=8oz
+category=category_16
 param=stabattack,2
 param=slashattack,2
 param=crushattack,2
@@ -8439,6 +8832,7 @@ manwear=obj_gauntlets_of_cooking_manwear,0
 womanwear=obj_gauntlets_of_cooking_womanwear,0
 wearpos=hands
 weight=8oz
+category=category_16
 param=stabattack,2
 param=slashattack,2
 param=crushattack,2
@@ -8466,6 +8860,7 @@ manwear=obj_gauntlets_of_cooking_manwear,0
 womanwear=obj_gauntlets_of_cooking_womanwear,0
 wearpos=hands
 weight=8oz
+category=category_16
 param=stabattack,2
 param=slashattack,2
 param=crushattack,2
@@ -8493,6 +8888,7 @@ manwear=obj_gauntlets_of_cooking_manwear,0
 womanwear=obj_gauntlets_of_cooking_womanwear,0
 wearpos=hands
 weight=8oz
+category=category_16
 param=stabattack,2
 param=slashattack,2
 param=crushattack,2
@@ -8735,6 +9131,7 @@ model=obj_grandtree_warship
 2dyan=1832
 2dxan=60
 weight=400g
+tradeable=no
 
 [explodingvial]
 name=Exploding vial
@@ -8747,7 +9144,6 @@ womanwear=obj_explodingvial_manwear,6
 2dzoom=510
 2dxan=1956
 weight=25g
-dummyitem=graphic_only
 
 [herbbowl]
 name=Herb bowl
@@ -9429,6 +9825,7 @@ stackable=yes
 2dyan=308
 2dxan=344
 weight=8g
+category=category_969
 
 [iron_dart_tip]
 name=Iron dart tip
@@ -9444,6 +9841,7 @@ stackable=yes
 2dyan=308
 2dxan=344
 weight=8g
+category=category_969
 
 [steel_dart_tip]
 name=Steel dart tip
@@ -9459,6 +9857,7 @@ stackable=yes
 2dyan=308
 2dxan=344
 weight=8g
+category=category_969
 
 [mithril_dart_tip]
 name=Mithril dart tip
@@ -9474,6 +9873,7 @@ stackable=yes
 2dyan=308
 2dxan=344
 weight=6g
+category=category_969
 
 [adamant_dart_tip]
 name=Adamant dart tip
@@ -9489,6 +9889,7 @@ stackable=yes
 2dyan=308
 2dxan=344
 weight=10g
+category=category_969
 
 [rune_dart_tip]
 name=Rune dart tip
@@ -9504,6 +9905,7 @@ stackable=yes
 2dyan=308
 2dxan=344
 weight=8g
+category=category_969
 
 [bronze_javelin]
 name=Bronze javelin
@@ -9537,6 +9939,7 @@ param=rangeattack_sound,javelin
 param=proj_travel,bronze_javelin_travel
 param=weapon_poisoned,bronze_javelin_p
 param=weapon_poisoned_message,You poison the javelins.
+param=proj_launch,bronze_javelin_launch
 
 [iron_javelin]
 name=Iron javelin
@@ -10521,6 +10924,7 @@ param=proj_launch,rune_tknife_launch
 param=proj_travel,rune_tknife_travel
 param=weapon_poisoned,rune_knife_p
 param=weapon_poisoned_message,You poison some knives.
+param=rangeattack_anim,human_stake2
 
 [black_knife]
 name=Black knife
@@ -11323,7 +11727,6 @@ model=obj_ice_arrow_4
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [bronze_arrow_3]
 recol1s=15855
@@ -11337,7 +11740,6 @@ model=obj_ice_arrow_3
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [bronze_arrow_2]
 recol1s=15855
@@ -11351,7 +11753,6 @@ model=obj_ice_arrow_2
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [bronze_arrow_5]
 recol1s=15855
@@ -11365,7 +11766,6 @@ model=obj_ice_arrow_5
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [bronze_arrow_p_4]
 recol1s=15855
@@ -11379,7 +11779,6 @@ model=obj_ice_arrow_4
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [bronze_arrow_p_3]
 recol1s=15855
@@ -11393,7 +11792,6 @@ model=obj_ice_arrow_3
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [bronze_arrow_p_2]
 recol1s=15855
@@ -11407,7 +11805,6 @@ model=obj_ice_arrow_2
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [bronze_arrow_p_5]
 recol1s=15855
@@ -11421,7 +11818,6 @@ model=obj_ice_arrow_5
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [iron_arrow_4]
 recol1s=15855
@@ -11435,7 +11831,6 @@ model=obj_ice_arrow_4
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [iron_arrow_3]
 recol1s=15855
@@ -11449,7 +11844,6 @@ model=obj_ice_arrow_3
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [iron_arrow_2]
 recol1s=15855
@@ -11463,7 +11857,6 @@ model=obj_ice_arrow_2
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [iron_arrow_5]
 recol1s=15855
@@ -11477,7 +11870,6 @@ model=obj_ice_arrow_5
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [iron_arrow_p_4]
 recol1s=15855
@@ -11491,7 +11883,6 @@ model=obj_ice_arrow_4
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [iron_arrow_p_3]
 recol1s=15855
@@ -11505,7 +11896,6 @@ model=obj_ice_arrow_3
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [iron_arrow_p_2]
 recol1s=15855
@@ -11519,7 +11909,6 @@ model=obj_ice_arrow_2
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [iron_arrow_p_5]
 recol1s=15855
@@ -11533,7 +11922,6 @@ model=obj_ice_arrow_5
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [steel_arrow_4]
 stackable=yes
@@ -11543,7 +11931,6 @@ model=obj_ice_arrow_4
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [steel_arrow_3]
 stackable=yes
@@ -11553,7 +11940,6 @@ model=obj_ice_arrow_3
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [steel_arrow_2]
 stackable=yes
@@ -11563,7 +11949,6 @@ model=obj_ice_arrow_2
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [steel_arrow_5]
 stackable=yes
@@ -11573,7 +11958,6 @@ model=obj_ice_arrow_5
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [steel_arrow_p_4]
 recol1s=14798
@@ -11585,7 +11969,6 @@ model=obj_ice_arrow_4
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [steel_arrow_p_3]
 recol1s=14798
@@ -11597,7 +11980,6 @@ model=obj_ice_arrow_3
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [steel_arrow_p_2]
 recol1s=14798
@@ -11609,7 +11991,6 @@ model=obj_ice_arrow_2
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [steel_arrow_p_5]
 recol1s=14798
@@ -11621,7 +12002,6 @@ model=obj_ice_arrow_5
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [mithril_arrow_4]
 recol1s=15855
@@ -11635,7 +12015,6 @@ model=obj_ice_arrow_4
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [mithril_arrow_3]
 recol1s=15855
@@ -11649,7 +12028,6 @@ model=obj_ice_arrow_3
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [mithril_arrow_2]
 recol1s=15855
@@ -11663,7 +12041,6 @@ model=obj_ice_arrow_2
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [mithril_arrow_5]
 recol1s=15855
@@ -11677,7 +12054,6 @@ model=obj_ice_arrow_5
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [mithril_arrow_p_4]
 recol1s=15855
@@ -11691,7 +12067,6 @@ model=obj_ice_arrow_4
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [mithril_arrow_p_3]
 recol1s=15855
@@ -11705,7 +12080,6 @@ model=obj_ice_arrow_3
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [mithril_arrow_p_2]
 recol1s=15855
@@ -11719,7 +12093,6 @@ model=obj_ice_arrow_2
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [mithril_arrow_p_5]
 recol1s=15855
@@ -11733,7 +12106,6 @@ model=obj_ice_arrow_5
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [adamant_arrow_4]
 recol1s=15855
@@ -11747,7 +12119,6 @@ model=obj_ice_arrow_4
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [adamant_arrow_3]
 recol1s=15855
@@ -11761,7 +12132,6 @@ model=obj_ice_arrow_3
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [adamant_arrow_2]
 recol1s=15855
@@ -11775,7 +12145,6 @@ model=obj_ice_arrow_2
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [adamant_arrow_5]
 recol1s=15855
@@ -11789,7 +12158,6 @@ model=obj_ice_arrow_5
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [adamant_arrow_p_4]
 recol1s=15855
@@ -11803,7 +12171,6 @@ model=obj_ice_arrow_4
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [adamant_arrow_p_3]
 recol1s=15855
@@ -11817,7 +12184,6 @@ model=obj_ice_arrow_3
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [adamant_arrow_p_2]
 recol1s=15855
@@ -11831,7 +12197,6 @@ model=obj_ice_arrow_2
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [adamant_arrow_p_5]
 recol1s=15855
@@ -11845,7 +12210,6 @@ model=obj_ice_arrow_5
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [rune_arrow_4]
 recol1s=15855
@@ -11859,7 +12223,6 @@ model=obj_ice_arrow_4
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [rune_arrow_3]
 recol1s=15855
@@ -11873,7 +12236,6 @@ model=obj_ice_arrow_3
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [rune_arrow_2]
 recol1s=15855
@@ -11887,7 +12249,6 @@ model=obj_ice_arrow_2
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [rune_arrow_5]
 recol1s=15855
@@ -11901,7 +12262,6 @@ model=obj_ice_arrow_5
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [rune_arrow_p_4]
 recol1s=15855
@@ -11915,7 +12275,6 @@ model=obj_ice_arrow_4
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [rune_arrow_p_3]
 recol1s=15855
@@ -11929,7 +12288,6 @@ model=obj_ice_arrow_3
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [rune_arrow_p_2]
 recol1s=15855
@@ -11943,7 +12301,6 @@ model=obj_ice_arrow_2
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [rune_arrow_p_5]
 recol1s=15855
@@ -11957,7 +12314,6 @@ model=obj_ice_arrow_5
 2dzoom=1220
 2dyan=100
 2dxan=216
-dummyitem=inv_only
 
 [litarrow]
 name=Bronze fire arrows
@@ -12011,7 +12367,6 @@ womanwear=obj_throwingrope_manwear,6
 2dxan=1592
 wearpos=righthand
 weight=2lb
-dummyitem=graphic_only
 
 [knife]
 name=Knife
@@ -12148,6 +12503,7 @@ model=obj_woodplank
 2dyan=148
 2dxan=356
 weight=800g
+category=category_475
 
 [cert_woodplank]
 certlink=woodplank
@@ -12245,6 +12601,7 @@ womanwear=obj_scrawled_note1_manwear,6
 2dxan=248
 members=yes
 weight=20g
+tradeable=no
 
 [charcoal]
 name=Charcoal
@@ -12281,6 +12638,16 @@ manwear=obj_machette_manwear,0
 womanwear=obj_machette_manwear,6
 wearpos=righthand
 weight=3lb
+category=weapon_slash
+param=slashattack,6
+param=crushattack,-2
+param=strengthbonus,5
+param=attackrate,5
+param=slashattack_anim,human_sword_slash
+param=stabattack_anim,human_sword_stab
+param=defend_anim,human_sword_def
+param=slash_sound,hacksword_slash
+param=stab_sound,hacksword_stab
 
 [cert_machette]
 certlink=machette
@@ -12335,6 +12702,7 @@ model=obj_discofreturning
 2dzan=260
 2dxan=460
 weight=1lb
+param=party_clean_exempt,^true
 
 [cert_discofreturning]
 certlink=discofreturning
@@ -12575,6 +12943,10 @@ manwear=obj_red_cape_manwear,0
 womanwear=obj_red_cape_womanwear,0
 wearpos=back
 weight=1lb
+param=slashdefence,1
+param=crushdefence,1
+param=rangedefence,2
+param=crafting_capes_struct,red_cape
 
 [cert_red_cape]
 certlink=red_cape
@@ -12709,6 +13081,10 @@ manwear=obj_red_cape_manwear,0
 womanwear=obj_red_cape_womanwear,0
 wearpos=back
 weight=1lb
+param=slashdefence,1
+param=crushdefence,1
+param=rangedefence,2
+param=crafting_capes_struct,black_cape
 
 [cert_black_cape]
 certlink=black_cape
@@ -12735,6 +13111,10 @@ manwear=obj_red_cape_manwear,0
 womanwear=obj_red_cape_womanwear,0
 wearpos=back
 weight=1lb
+param=slashdefence,1
+param=crushdefence,1
+param=rangedefence,2
+param=crafting_capes_struct,blue_cape
 
 [cert_blue_cape]
 certlink=blue_cape
@@ -12761,6 +13141,10 @@ manwear=obj_red_cape_manwear,0
 womanwear=obj_red_cape_womanwear,0
 wearpos=back
 weight=1lb
+param=slashdefence,1
+param=crushdefence,1
+param=rangedefence,2
+param=crafting_capes_struct,yellow_cape
 
 [cert_yellow_cape]
 certlink=yellow_cape
@@ -12808,6 +13192,10 @@ manwear=obj_red_cape_manwear,0
 womanwear=obj_red_cape_womanwear,0
 wearpos=back
 weight=1lb
+param=slashdefence,1
+param=crushdefence,1
+param=rangedefence,2
+param=crafting_capes_struct,green_cape
 
 [cert_green_cape]
 certlink=green_cape
@@ -12834,6 +13222,10 @@ manwear=obj_red_cape_manwear,0
 womanwear=obj_red_cape_womanwear,0
 wearpos=back
 weight=1lb
+param=slashdefence,1
+param=crushdefence,1
+param=rangedefence,2
+param=crafting_capes_struct,purple_cape
 
 [cert_purple_cape]
 certlink=purple_cape
@@ -12860,6 +13252,10 @@ manwear=obj_red_cape_manwear,0
 womanwear=obj_red_cape_womanwear,0
 wearpos=back
 weight=1lb
+param=slashdefence,1
+param=crushdefence,1
+param=rangedefence,2
+param=crafting_capes_struct,orange_cape
 
 [cert_orange_cape]
 certlink=orange_cape
@@ -12881,6 +13277,10 @@ womanwear=obj_priest_robe_womanwear,0
 members=yes
 wearpos=legs
 weight=2lb
+param=zamorakitem,1
+param=magicattack,2
+param=magicdefence,3
+param=prayerbonus,3
 
 [cert_zamrobebottom]
 certlink=zamrobebottom
@@ -12905,6 +13305,10 @@ members=yes
 wearpos=torso
 wearpos2=arms
 weight=2lb
+param=zamorakitem,1
+param=magicattack,2
+param=magicdefence,3
+param=prayerbonus,3
 
 [cert_zamrobetop]
 certlink=zamrobetop
@@ -12924,6 +13328,7 @@ manhead=obj_bunnyears_manhead
 womanhead=obj_bunnyears_womanhead
 wearpos=hat
 weight=8oz
+tradeable=no
 
 [red_partyhat]
 name=Red partyhat
@@ -13104,6 +13509,13 @@ manwear=obj_cape_of_legends_manwear,0
 womanwear=obj_cape_of_legends_womanwear,0
 wearpos=back
 weight=4lb
+category=armour_cape
+param=stabdefence,7
+param=slashdefence,7
+param=crushdefence,7
+param=magicdefence,7
+param=rangedefence,7
+tradeable=no
 
 [halloweenmask_green]
 name=Green h'ween mask
@@ -13193,6 +13605,9 @@ womanwear=obj_gauntlets_of_cooking_womanwear,0
 2dxan=420
 wearpos=hands
 weight=8oz
+category=armour_hands
+param=slashdefence,1
+param=crushdefence,2
 
 [cert_leather_gloves]
 certlink=leather_gloves
@@ -13215,6 +13630,8 @@ manwear=obj_ikov_bootsoflightness_manwear,0
 womanwear=obj_ikov_bootsoflightness_womanwear,0
 wearpos=feet
 weight=12oz
+param=slashdefence,1
+param=crushdefence,1
 
 [cert_leather_boots]
 certlink=leather_boots
@@ -13235,6 +13652,10 @@ manwear=obj_leather_vambraces_manwear,0
 womanwear=obj_leather_vambraces_womanwear,0
 wearpos=hands
 weight=8oz
+param=rangeattack,4
+param=stabdefence,2
+param=slashdefence,2
+param=crushdefence,1
 
 [cert_leather_vambraces]
 certlink=leather_vambraces
@@ -13259,6 +13680,13 @@ manwear=obj_dragon_vambraces_manwear,0
 womanwear=obj_dragon_vambraces_womanwear,0
 wearpos=hands
 weight=10oz
+category=category_16
+param=magicattack,-10
+param=rangeattack,8
+param=stabdefence,3
+param=slashdefence,2
+param=crushdefence,4
+param=magicdefence,2
 
 [cert_dragon_vambraces]
 certlink=dragon_vambraces
@@ -13715,6 +14143,11 @@ manwear=obj_leather_chaps_manwear,0
 womanwear=obj_leather_chaps_womanwear,0
 wearpos=legs
 weight=6lb
+category=armour_legs
+param=rangeattack,4
+param=stabdefence,2
+param=slashdefence,2
+param=crushdefence,1
 
 [cert_leather_chaps]
 certlink=leather_chaps
@@ -13735,6 +14168,15 @@ manwear=obj_studded_chaps_manwear,0
 womanwear=obj_studded_chaps_womanwear,0
 wearpos=legs
 weight=10lb
+category=armour_legs
+param=crafting_studded_struct,studded_chaps
+param=magicattack,-5
+param=rangeattack,6
+param=stabdefence,15
+param=slashdefence,16
+param=crushdefence,17
+param=magicdefence,6
+param=rangedefence,16
 
 [cert_studded_chaps]
 certlink=studded_chaps
@@ -13755,6 +14197,14 @@ manwear=obj_dragonhide_chaps_manwear,0
 womanwear=obj_dragonhide_chaps_womanwear,0
 wearpos=legs
 weight=12lb
+category=armour_legs
+param=magicattack,-10
+param=rangeattack,8
+param=stabdefence,22
+param=slashdefence,16
+param=crushdefence,24
+param=magicdefence,8
+param=rangedefence,22
 
 [cert_dragonhide_chaps]
 certlink=dragonhide_chaps
@@ -13772,8 +14222,8 @@ iop2=Wear
 manwear=obj_iron_chainbody_manwear,0
 womanwear=obj_iron_chainbody_womanwear,0
 wearpos=torso
-weight=15lb
 category=armour_body
+weight=15lb
 param=magicattack,-15
 param=stabdefence,10
 param=slashdefence,15
@@ -13811,6 +14261,7 @@ param=slashdefence,11
 param=crushdefence,13
 param=magicdefence,-3
 param=rangedefence,9
+respawnrate=700
 
 [cert_bronze_chainbody]
 certlink=bronze_chainbody
@@ -14219,6 +14670,14 @@ manwear=obj_leather_armour_manwear,0
 womanwear=obj_leather_armour_womanwear,0
 wearpos=torso
 weight=6lb
+category=armour_body
+param=magicattack,-2
+param=rangeattack,2
+param=stabdefence,8
+param=slashdefence,9
+param=crushdefence,10
+param=magicdefence,4
+param=rangedefence,9
 
 [cert_leather_armour]
 certlink=leather_armour
@@ -14236,6 +14695,14 @@ manwear=obj_hardleather_body_manwear,0
 womanwear=obj_hardleather_body_womanwear,0
 wearpos=torso
 weight=8lb
+category=armour_body
+param=magicattack,-4
+param=rangeattack,8
+param=stabdefence,12
+param=slashdefence,15
+param=crushdefence,18
+param=magicdefence,6
+param=rangedefence,15
 
 [cert_hardleather_body]
 certlink=hardleather_body
@@ -14253,6 +14720,15 @@ manwear=obj_studded_body_manwear,0
 womanwear=obj_studded_body_womanwear,0
 wearpos=torso
 weight=12lb
+category=armour_body
+param=crafting_studded_struct,studded_body
+param=magicattack,-4
+param=rangeattack,8
+param=stabdefence,18
+param=slashdefence,25
+param=crushdefence,22
+param=magicdefence,8
+param=rangedefence,25
 
 [cert_studded_body]
 certlink=studded_body
@@ -14271,6 +14747,14 @@ manwear=obj_dragonhide_body_manwear,0
 womanwear=obj_dragonhide_body_womanwear,0
 wearpos=torso
 weight=15lb
+category=armour_body
+param=magicattack,-15
+param=rangeattack,15
+param=stabdefence,40
+param=slashdefence,32
+param=crushdefence,45
+param=magicdefence,20
+param=rangedefence,40
 
 [cert_dragonhide_body]
 certlink=dragonhide_body
@@ -14817,6 +15301,13 @@ womanhead2=obj_leather_cowl_womanhead2
 wearpos=hat
 wearpos2=head
 weight=2lb
+category=armour_helmet
+param=rangeattack,1
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,4
+param=magicdefence,2
+param=rangedefence,3
 
 [cert_leather_cowl]
 certlink=leather_cowl
@@ -14842,6 +15333,14 @@ womanhead2=obj_leather_cowl_womanhead2
 wearpos=hat
 wearpos2=head
 weight=2lb
+category=armour_helmet
+param=magicattack,-1
+param=rangeattack,2
+param=stabdefence,4
+param=slashdefence,6
+param=crushdefence,8
+param=magicdefence,4
+param=rangedefence,4
 
 [cert_coif]
 certlink=coif
@@ -14870,6 +15369,7 @@ param=slashdefence,5
 param=crushdefence,3
 param=magicdefence,1
 param=rangedefence,4
+param=defend_anim,human_shield_defence
 
 [cert_wooden_shield]
 certlink=wooden_shield
@@ -16011,6 +16511,25 @@ manwear=obj_iron_dagger_p_manwear,0
 womanwear=obj_iron_dagger_p_manwear,6
 wearpos=righthand
 weight=1lb
+category=weapon_stab
+param=stabattack,255
+param=slashattack,255
+param=crushattack,255
+param=magicattack,255
+param=rangeattack,255
+param=magicdefence,255
+param=stabdefence,255
+param=slashdefence,255
+param=crushdefence,255
+param=rangedefence,255
+param=strengthbonus,255
+param=rangebonus,255
+param=prayerbonus,255
+param=stabattack_anim,human_scythe_slash
+param=slashattack_anim,human_scythe_lunge
+param=defend_anim,human_scythe_block
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
 
 [cert_poisoned_dagger_p]
 certlink=poisoned_dagger_p
@@ -17136,6 +17655,7 @@ param=stabattack_anim,human_sword_stab
 param=defend_anim,human_sword_def
 param=slash_sound,hacksword_slash
 param=stab_sound,hacksword_stab
+category=weapon_slash
 
 [cert_bronze_longsword]
 certlink=bronze_longsword
@@ -17906,6 +18426,7 @@ param=strengthbonus,9
 param=crushattack_anim,human_blunt_pound
 param=defend_anim,human_blunt_block
 param=crush_sound,baxe_crush
+param=crush_sound,warhammer_crush
 
 [cert_iron_warhammer]
 certlink=iron_warhammer
@@ -18996,6 +19517,21 @@ manwear=obj_ibanstaff_manwear,0
 womanwear=obj_ibanstaff_manwear,6
 wearpos=righthand
 weight=5lb
+category=weapon_staff
+param=stabattack,10
+param=slashattack,-1
+param=crushattack,40
+param=magicattack,10
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,10
+param=strengthbonus,50
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_blunt_block
+tradeable=no
 
 [brokenibanstaff]
 name=Iban's staff
@@ -19008,6 +19544,7 @@ model=obj_brokenibanstaff
 members=yes
 cost=20
 weight=4lb
+tradeable=no
 
 [farmers_fork]
 name=Farmer's fork
@@ -19101,6 +19638,8 @@ param=stab_sound,scythe_slash
 param=slash_sound,scythe_slash
 param=crush_sound,scythe_slash
 tradeable=no
+param=stab_sound,scythe_stab
+param=crush_sound,scythe_double
 
 [iron_mace]
 name=Iron mace
@@ -19412,6 +19951,7 @@ model=obj_strength4
 2dxan=84
 members=yes
 weight=20g
+tradeable=no
 
 [seasluginv]
 name=Sea slug
@@ -19425,6 +19965,7 @@ model=obj_seasluginv
 2dyan=140
 2dxan=272
 weight=8oz
+tradeable=no
 
 [damp_sticks]
 name=Damp sticks
@@ -19439,6 +19980,7 @@ model=obj_damp_sticks
 2dyan=188
 2dxan=316
 weight=3oz
+tradeable=no
 
 [dry_sticks]
 name=Dry sticks
@@ -19454,6 +19996,7 @@ model=obj_damp_sticks
 2dxan=316
 iop1=Rub-together
 weight=2oz
+tradeable=no
 
 [broken_glass]
 name=Broken glass
@@ -19467,6 +20010,7 @@ model=obj_digsiteglass
 2dxan=412
 cost=0
 weight=2oz
+tradeable=no
 
 [amulet_of_accuracy]
 name=Amulet of accuracy
@@ -19487,6 +20031,11 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=10g
+param=stabattack,4
+param=slashattack,4
+param=crushattack,4
+param=magicattack,4
+param=rangeattack,4
 
 [cert_amulet_of_accuracy]
 certlink=amulet_of_accuracy
@@ -19686,6 +20235,7 @@ model=obj_shamans_tome
 members=yes
 iop1=Read
 weight=8oz
+category=category_1328
 tradeable=no
 
 [old_journal]
@@ -19699,6 +20249,7 @@ model=obj_mcannonbook
 members=yes
 iop1=Read
 weight=8oz
+category=category_1328
 tradeable=no
 
 [klanks_gauntlets]
@@ -19956,6 +20507,7 @@ model=obj_elena_picture
 2dyan=112
 2dxan=288
 weight=1lb
+respawnrate=5
 tradeable=no
 
 [logs]
@@ -19979,6 +20531,8 @@ manwear=obj_logs_manwear,0
 womanwear=obj_logs_manwear,0
 weight=2kg
 category=category_22
+param=levelrequire,1
+param=productexp,400
 
 [cert_logs]
 certlink=logs
@@ -20003,6 +20557,9 @@ model=obj_logs
 ambient=15
 op4=Light
 weight=2kg
+category=category_22
+param=levelrequire,75
+param=productexp,3038
 
 [cert_magic_logs]
 certlink=magic_logs
@@ -20026,6 +20583,9 @@ model=obj_logs
 ambient=15
 op4=Light
 weight=2kg
+category=category_22
+param=levelrequire,60
+param=productexp,2025
 
 [cert_yew_logs]
 certlink=yew_logs
@@ -20049,6 +20609,9 @@ model=obj_logs
 ambient=15
 op4=Light
 weight=2kg
+category=category_22
+param=levelrequire,45
+param=productexp,1350
 
 [cert_maple_logs]
 certlink=maple_logs
@@ -20072,6 +20635,9 @@ model=obj_logs
 ambient=15
 op4=Light
 weight=2kg
+category=category_22
+param=levelrequire,30
+param=productexp,900
 
 [cert_willow_logs]
 certlink=willow_logs
@@ -20091,6 +20657,9 @@ model=obj_logs
 ambient=15
 op4=Light
 weight=2kg
+category=category_22
+param=levelrequire,15
+param=productexp,600
 
 [cert_oak_logs]
 certlink=oak_logs
@@ -20108,6 +20677,7 @@ model=obj_lockpick
 members=yes
 cost=20
 weight=10g
+category=category_715
 
 [cert_lockpick]
 certlink=lockpick
@@ -20129,6 +20699,8 @@ members=yes
 2dxan=484
 iop1=Identify
 weight=7g
+category=category_90
+tradeable=no
 
 [snake_weed]
 name=Snake weed
@@ -20146,6 +20718,12 @@ members=yes
 2dyan=48
 2dxan=484
 weight=7g
+category=category_90
+param=identified_herb_level,3
+param=identified_herb_exp,25
+param=identified_herb_message,You identify the herb. It is Snake Weed.
+param=brew_potion_struct,snakeweed_mixture
+tradeable=no
 
 [unidentified_ardrigal]
 name=Herb
@@ -20163,6 +20741,8 @@ members=yes
 2dxan=376
 iop1=Identify
 weight=7g
+category=category_90
+tradeable=no
 
 [ardrigal]
 name=Ardrigal
@@ -20179,6 +20759,12 @@ members=yes
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_90
+param=identified_herb_level,3
+param=identified_herb_exp,25
+param=identified_herb_message,You identify the herb. It is Ardrigal.
+param=brew_potion_struct,ardrigal_mixture
+tradeable=no
 
 [unidentified_sito_foil]
 name=Herb
@@ -20191,6 +20777,8 @@ members=yes
 2dxan=376
 iop1=Identify
 weight=7g
+category=category_90
+tradeable=no
 
 [sito_foil]
 name=Sito foil
@@ -20203,6 +20791,11 @@ members=yes
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_90
+param=identified_herb_level,3
+param=identified_herb_exp,25
+param=identified_herb_message,You identify the herb. It is Sito Foil.
+tradeable=no
 
 [unidentified_volencia_moss]
 name=Herb
@@ -20215,6 +20808,8 @@ members=yes
 2dxan=376
 iop1=Identify
 weight=7g
+category=category_90
+tradeable=no
 
 [volencia_moss]
 name=Volencia moss
@@ -20227,6 +20822,11 @@ members=yes
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_90
+param=identified_herb_level,3
+param=identified_herb_exp,25
+param=identified_herb_message,You identify the herb. It is Volencia Moss.
+tradeable=no
 
 [unidentified_rogues_purse]
 name=Herb
@@ -20239,6 +20839,8 @@ members=yes
 2dxan=376
 iop1=Identify
 weight=7g
+category=category_90
+tradeable=no
 
 [rogues_purse]
 name=Rogue's purse
@@ -20251,6 +20853,11 @@ members=yes
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_90
+param=identified_herb_level,3
+param=identified_herb_exp,25
+param=identified_herb_message,You identify the herb. It is Rogues Purse.
+tradeable=no
 
 [mappart1]
 name=Map part
@@ -20959,6 +21566,7 @@ model=obj_master_thief_armband
 2dxan=296
 members=yes
 weight=25g
+tradeable=no
 
 [ice_gloves]
 name=Ice gloves
@@ -20980,6 +21588,10 @@ womanwear=obj_gauntlets_of_cooking_womanwear,0
 members=yes
 wearpos=hands
 weight=8oz
+param=slashdefence,3
+param=crushdefence,4
+param=rangedefence,2
+tradeable=no
 
 [blamish_snail_slime]
 name=Blamish snail slime
@@ -20994,6 +21606,8 @@ model=obj_blamish_snail_slime
 2dxan=124
 members=yes
 weight=25g
+param=brew_potion_struct,blamish_oil
+tradeable=no
 
 [blamish_oil]
 name=Blamish oil
@@ -21009,6 +21623,7 @@ model=obj_strength4
 2dxan=84
 members=yes
 weight=25g
+tradeable=no
 
 [hot_feather]
 name=Fire feather
@@ -21066,7 +21681,6 @@ model=obj_ikov_shinykey
 2dxan=328
 members=yes
 weight=10g
-tradeable=no
 
 [cert_misc_key]
 certlink=misc_key
@@ -21112,6 +21726,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [jail_key]
 name=Jail key
@@ -21126,6 +21741,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [ring_mould]
 name=Ring mould
@@ -21137,6 +21753,7 @@ model=obj_ring_mould
 2dyan=92
 2dxan=308
 weight=1lb
+respawnrate=200
 
 [cert_ring_mould]
 certlink=ring_mould
@@ -21153,6 +21770,7 @@ model=obj_unholy_symbol_mould
 2dxan=320
 members=yes
 weight=1lb
+tradeable=no
 
 [amulet_mould]
 name=Amulet mould
@@ -21165,6 +21783,7 @@ model=obj_amulet_mould
 2dyan=96
 2dxan=340
 weight=1lb
+respawnrate=200
 
 [cert_amulet_mould]
 certlink=amulet_mould
@@ -21180,6 +21799,7 @@ model=obj_necklace_mould
 2dyan=84
 2dxan=316
 weight=1lb
+respawnrate=200
 
 [cert_necklace_mould]
 certlink=necklace_mould
@@ -21195,6 +21815,7 @@ model=obj_holy_symbol_mould
 2dyan=96
 2dxan=320
 weight=1lb
+respawnrate=200
 
 [cert_holy_symbol_mould]
 certlink=holy_symbol_mould
@@ -21220,6 +21841,7 @@ model=obj_diamond
 manwear=obj_diamond_manwear,0
 womanwear=obj_diamond_manwear,6
 weight=2g
+category=legends_gem
 
 [cert_diamond]
 certlink=diamond
@@ -21241,6 +21863,7 @@ model=obj_diamond
 manwear=obj_diamond_manwear,0
 womanwear=obj_diamond_manwear,6
 weight=2g
+category=legends_gem
 
 [cert_ruby]
 certlink=ruby
@@ -21268,6 +21891,7 @@ model=obj_diamond
 manwear=obj_diamond_manwear,0
 womanwear=obj_diamond_manwear,6
 weight=2g
+category=legends_gem
 
 [cert_emerald]
 certlink=emerald
@@ -21295,6 +21919,8 @@ model=obj_diamond
 manwear=obj_diamond_manwear,0
 womanwear=obj_diamond_manwear,6
 weight=2g
+respawnrate=1000
+category=legends_gem
 
 [cert_sapphire]
 certlink=sapphire
@@ -21323,6 +21949,7 @@ members=yes
 manwear=obj_diamond_manwear,0
 womanwear=obj_diamond_manwear,6
 weight=2g
+category=legends_gem
 
 [cert_opal]
 certlink=opal
@@ -21351,6 +21978,7 @@ members=yes
 manwear=obj_diamond_manwear,0
 womanwear=obj_diamond_manwear,6
 weight=2g
+category=legends_gem
 
 [cert_jade]
 certlink=jade
@@ -21379,6 +22007,7 @@ members=yes
 manwear=obj_diamond_manwear,0
 womanwear=obj_diamond_manwear,6
 weight=2g
+category=legends_gem
 
 [cert_red_topaz]
 certlink=red_topaz
@@ -21483,6 +22112,7 @@ model=obj_uncut_diamond
 2dzan=1860
 2dxan=368
 weight=3g
+respawnrate=500
 
 [cert_uncut_sapphire]
 certlink=uncut_sapphire
@@ -21602,6 +22232,9 @@ model=obj_gold_ring
 iop2=Wear
 wearpos=ring
 weight=4g
+category=category_656
+respawnrate=500
+param=crafting_jewelry_struct,gold_ring
 
 [cert_gold_ring]
 certlink=gold_ring
@@ -21623,6 +22256,7 @@ model=obj_perfect_ruby_ring
 iop2=Wear
 wearpos=ring
 weight=6g
+category=category_656
 
 [cert_sapphire_ring]
 certlink=sapphire_ring
@@ -21644,6 +22278,7 @@ model=obj_perfect_ruby_ring
 iop2=Wear
 wearpos=ring
 weight=6g
+category=category_656
 
 [cert_emerald_ring]
 certlink=emerald_ring
@@ -21665,6 +22300,8 @@ model=obj_perfect_ruby_ring
 iop2=Wear
 wearpos=ring
 weight=6g
+category=category_656
+respawnrate=500
 
 [cert_ruby_ring]
 certlink=ruby_ring
@@ -21684,6 +22321,7 @@ model=obj_perfect_ruby_ring
 iop2=Wear
 wearpos=ring
 weight=6g
+category=category_656
 
 [cert_diamond_ring]
 certlink=diamond_ring
@@ -21706,6 +22344,7 @@ members=yes
 iop2=Wear
 wearpos=ring
 weight=6g
+category=category_656
 
 [cert_dragonstone_ring]
 certlink=dragonstone_ring
@@ -21741,30 +22380,35 @@ name=Sapphire ring
 desc=A valuable ring.
 model=minigame_start_icon_0
 2dxan=68
+param=crafting_jewelry_struct,sapphire_ring
 
 [invis_ring2]
 name=Emerald ring
 desc=A valuable ring.
 model=minigame_start_icon_0
 2dxan=68
+param=crafting_jewelry_struct,emerald_ring
 
 [invis_ring3]
 name=Ruby ring
 desc=A valuable ring.
 model=minigame_start_icon_0
 2dxan=68
+param=crafting_jewelry_struct,ruby_ring
 
 [invis_ring4]
 name=Diamond ring
 desc=A valuable ring.
 model=minigame_start_icon_0
 2dxan=68
+param=crafting_jewelry_struct,diamond_ring
 
 [invis_ring5]
 name=Dragonstone ring
 desc=A valuable ring.
 model=minigame_start_icon_0
 2dxan=68
+param=crafting_jewelry_struct,dragonstone_ring
 
 [gold_necklace]
 name=Gold necklace
@@ -21783,6 +22427,7 @@ manwear=obj_perfect_ruby_necklace_manwear,0
 womanwear=obj_perfect_ruby_necklace_womanwear,0
 wearpos=front
 weight=7g
+param=crafting_jewelry_struct,gold_necklace
 
 [cert_gold_necklace]
 certlink=gold_necklace
@@ -21805,6 +22450,7 @@ manwear=obj_perfect_ruby_necklace_manwear,0
 womanwear=obj_perfect_ruby_necklace_womanwear,0
 wearpos=front
 weight=10g
+respawnrate=500
 
 [cert_sapphire_necklace]
 certlink=sapphire_necklace
@@ -21929,6 +22575,7 @@ desc=I wonder if this is valuable.
 model=minigame_start_icon_0
 2dyan=4
 2dxan=20
+param=crafting_jewelry_struct,sapphire_necklace
 
 [invis_necklace2]
 name=Emerald necklace
@@ -21936,6 +22583,7 @@ desc=I wonder if this is valuable.
 model=minigame_start_icon_0
 2dyan=4
 2dxan=20
+param=crafting_jewelry_struct,emerald_necklace
 
 [invis_necklace3]
 name=Ruby necklace
@@ -21943,6 +22591,7 @@ desc=I wonder if this is valuable.
 model=minigame_start_icon_0
 2dyan=4
 2dxan=20
+param=crafting_jewelry_struct,ruby_necklace
 
 [invis_necklace4]
 name=Diamond necklace
@@ -21950,6 +22599,7 @@ desc=I wonder if this is valuable.
 model=minigame_start_icon_0
 2dyan=4
 2dxan=20
+param=crafting_jewelry_struct,diamond_necklace
 
 [invis_necklace5]
 name=Dragon necklace
@@ -21957,6 +22607,7 @@ desc=I wonder if this is valuable.
 model=minigame_start_icon_0
 2dyan=4
 2dxan=20
+param=crafting_jewelry_struct,dragonstone_necklace
 
 [unstrung_gold_amulet]
 name=Gold amulet
@@ -21971,6 +22622,7 @@ model=obj_unstrung_gold_amulet
 2dyan=100
 2dxan=304
 weight=4g
+param=crafting_jewelry_struct,unstrung_gold_amulet
 
 [cert_unstrung_gold_amulet]
 certlink=unstrung_gold_amulet
@@ -21989,6 +22641,7 @@ model=obj_unstrung_gold_amulet
 2dyan=100
 2dxan=304
 weight=4g
+param=crafting_jewelry_struct,unstrung_sapphire_amulet
 
 [cert_unstrung_sapphire_amulet]
 certlink=unstrung_sapphire_amulet
@@ -22007,6 +22660,7 @@ model=obj_unstrung_gold_amulet
 2dyan=100
 2dxan=304
 weight=4g
+param=crafting_jewelry_struct,unstrung_emerald_amulet
 
 [cert_unstrung_emerald_amulet]
 certlink=unstrung_emerald_amulet
@@ -22025,6 +22679,7 @@ model=obj_unstrung_gold_amulet
 2dyan=100
 2dxan=304
 weight=4g
+param=crafting_jewelry_struct,unstrung_ruby_amulet
 
 [cert_unstrung_ruby_amulet]
 certlink=unstrung_ruby_amulet
@@ -22041,6 +22696,7 @@ model=obj_unstrung_gold_amulet
 2dyan=100
 2dxan=304
 weight=4g
+param=crafting_jewelry_struct,unstrung_diamond_amulet
 
 [cert_unstrung_diamond_amulet]
 certlink=unstrung_diamond_amulet
@@ -22060,6 +22716,7 @@ model=obj_unstrung_gold_amulet
 2dxan=304
 members=yes
 weight=4g
+param=crafting_jewelry_struct,unstrung_dragonstone_amulet
 
 [cert_unstrung_dragonstone_amulet]
 certlink=unstrung_dragonstone_amulet
@@ -22095,6 +22752,7 @@ desc=It needs a string so I can wear it.
 model=minigame_start_icon_0
 2dyan=4
 2dxan=20
+param=crafting_jewelry_struct,unstrung_sapphire_amulet
 
 [invis_amulet2]
 name=Emerald amulet
@@ -22102,6 +22760,7 @@ desc=It needs a string so I can wear it.
 model=minigame_start_icon_0
 2dyan=4
 2dxan=20
+param=crafting_jewelry_struct,unstrung_emerald_amulet
 
 [invis_amulet3]
 name=Ruby amulet
@@ -22109,6 +22768,7 @@ desc=It needs a string so I can wear it.
 model=minigame_start_icon_0
 2dyan=4
 2dxan=20
+param=crafting_jewelry_struct,unstrung_ruby_amulet
 
 [invis_amulet4]
 name=Diamond amulet
@@ -22116,6 +22776,7 @@ desc=It needs a string so I can wear it.
 model=minigame_start_icon_0
 2dyan=4
 2dxan=20
+param=crafting_jewelry_struct,unstrung_diamond_amulet
 
 [invis_amulet5]
 name=Dragonstone ammy
@@ -22123,6 +22784,7 @@ desc=It needs a string so I can wear it.
 model=minigame_start_icon_0
 2dyan=4
 2dxan=20
+param=crafting_jewelry_struct,unstrung_dragonstone_amulet
 
 [strung_gold_amulet]
 name=Gold amulet
@@ -22171,6 +22833,7 @@ manwear=obj_amulet_of_accuracy_manwear,0
 womanwear=obj_amulet_of_accuracy_womanwear,0
 wearpos=front
 weight=7g
+category=category_621
 
 [cert_strung_sapphire_amulet]
 certlink=strung_sapphire_amulet
@@ -22355,6 +23018,7 @@ param=magicdefence,3
 param=rangedefence,3
 param=strengthbonus,6
 param=prayerbonus,3
+param=next_obj_stage,amulet_of_glory
 
 [cert_amulet_of_glory_1]
 certlink=amulet_of_glory_1
@@ -22396,6 +23060,7 @@ param=magicdefence,3
 param=rangedefence,3
 param=strengthbonus,6
 param=prayerbonus,3
+param=next_obj_stage,amulet_of_glory_1
 
 [cert_amulet_of_glory_2]
 certlink=amulet_of_glory_2
@@ -22437,6 +23102,7 @@ param=magicdefence,3
 param=rangedefence,3
 param=strengthbonus,6
 param=prayerbonus,3
+param=next_obj_stage,amulet_of_glory_2
 
 [cert_amulet_of_glory_3]
 certlink=amulet_of_glory_3
@@ -22478,6 +23144,7 @@ param=magicdefence,3
 param=rangedefence,3
 param=strengthbonus,6
 param=prayerbonus,3
+param=next_obj_stage,amulet_of_glory_3
 
 [cert_amulet_of_glory_4]
 certlink=amulet_of_glory_4
@@ -22493,6 +23160,7 @@ model=obj_nostringstar
 2dyan=92
 2dxan=352
 weight=4g
+param=crafting_jewelry_struct,unstrung_symbol
 
 [cert_nostringstar]
 certlink=nostringstar
@@ -22549,6 +23217,12 @@ womanwear=obj_amulet_of_ghostspeak_womanwear,0
 womanwear2=obj_stringstar_womanwear2
 wearpos=front
 weight=7g
+param=stabdefence,2
+param=slashdefence,2
+param=crushdefence,2
+param=magicdefence,2
+param=rangedefence,2
+param=prayerbonus,8
 
 [cert_blessedstar]
 certlink=blessedstar
@@ -22568,6 +23242,7 @@ model=obj_nostringsnake
 2dxan=336
 members=yes
 weight=4g
+param=crafting_jewelry_struct,unstrung_emblem
 
 [cert_nostringsnake]
 certlink=nostringsnake
@@ -22628,6 +23303,13 @@ womanwear2=obj_stringsnake_womanwear2
 iop2=Wear
 wearpos=front
 weight=7g
+param=stabattack,2
+param=slashattack,2
+param=crushattack,2
+param=magicattack,2
+param=rangeattack,2
+param=prayerbonus,8
+tradeable=no
 
 [amulet_of_strength]
 name=Amulet of strength
@@ -22801,6 +23483,7 @@ model=obj_wool
 2dyan=160
 2dxan=332
 weight=3g
+param=crafting_spinning_struct,wool
 
 [cert_wool]
 certlink=wool
@@ -23022,6 +23705,7 @@ model=obj_softclay
 2dxan=220
 cost=2
 weight=2lb
+param=crafting_pottery_struct,soft_clay
 
 [cert_softclay]
 certlink=softclay
@@ -23039,6 +23723,8 @@ model=obj_blamish_snail_slime
 2dyan=1920
 2dxan=124
 weight=20g
+category=category_82
+param=crafting_capes_struct,red_dye
 
 [cert_reddye]
 certlink=reddye
@@ -23056,6 +23742,8 @@ model=obj_blamish_snail_slime
 2dyan=1920
 2dxan=124
 weight=20g
+category=category_82
+param=crafting_capes_struct,yellow_dye
 
 [cert_yellowdye]
 certlink=yellowdye
@@ -23073,6 +23761,8 @@ model=obj_blamish_snail_slime
 2dyan=1920
 2dxan=124
 weight=20g
+category=category_82
+param=crafting_capes_struct,blue_dye
 
 [cert_bluedye]
 certlink=bluedye
@@ -23090,6 +23780,8 @@ model=obj_blamish_snail_slime
 2dyan=1920
 2dxan=124
 weight=20g
+category=category_82
+param=crafting_capes_struct,orange_dye
 
 [cert_orangedye]
 certlink=orangedye
@@ -23107,6 +23799,8 @@ model=obj_blamish_snail_slime
 2dyan=1920
 2dxan=124
 weight=20g
+category=category_82
+param=crafting_capes_struct,green_dye
 
 [cert_greendye]
 certlink=greendye
@@ -23124,6 +23818,8 @@ model=obj_blamish_snail_slime
 2dyan=1920
 2dxan=124
 weight=20g
+category=category_82
+param=crafting_capes_struct,purple_dye
 
 [cert_purpledye]
 certlink=purpledye
@@ -23176,6 +23872,7 @@ model=obj_flax
 2dzan=1840
 2dxan=428
 weight=1lb
+param=crafting_spinning_struct,flax
 
 [cert_flax]
 certlink=flax
@@ -23250,6 +23947,7 @@ model=obj_pot_unfired
 2dxan=112
 cost=1
 weight=24oz
+param=crafting_pottery_struct,unfired_pot
 
 [cert_pot_unfired]
 certlink=pot_unfired
@@ -23271,6 +23969,7 @@ model=obj_piedish_unfired
 2dyan=104
 2dxan=192
 weight=24oz
+param=crafting_pottery_struct,unfired_piedish
 
 [cert_piedish_unfired]
 certlink=piedish_unfired
@@ -23289,6 +23988,7 @@ model=obj_goldbowl_empty
 2dyan=1856
 2dxan=204
 weight=24oz
+param=crafting_pottery_struct,unfired_bowl
 
 [cert_bowl_unfired]
 certlink=bowl_unfired
@@ -23800,6 +24500,7 @@ members=yes
 weight=1100g
 param=is_water_source,^true
 param=next_obj_stage,water_skin0
+category=water_skin_filled
 
 [cert_water_skin4]
 certlink=water_skin4
@@ -23819,6 +24520,7 @@ members=yes
 weight=30oz
 param=is_water_source,^true
 param=next_obj_stage,water_skin4
+category=water_skin_filled
 
 [cert_water_skin3]
 certlink=water_skin3
@@ -23838,6 +24540,7 @@ members=yes
 weight=600g
 param=is_water_source,^true
 param=next_obj_stage,water_skin3
+category=water_skin_filled
 
 [cert_water_skin2]
 certlink=water_skin2
@@ -23857,6 +24560,7 @@ members=yes
 weight=350g
 param=is_water_source,^true
 param=next_obj_stage,water_skin2
+category=water_skin_filled
 
 [cert_water_skin1]
 certlink=water_skin1
@@ -23945,6 +24649,7 @@ manwear=obj_ikov_bootsoflightness_manwear,0
 womanwear=obj_ikov_bootsoflightness_womanwear,0
 weight=8oz
 wearpos=feet
+category=category_118
 
 [cert_desert_boots]
 certlink=desert_boots
@@ -24085,6 +24790,7 @@ manwear=obj_ikov_bootsoflightness_manwear,0
 womanwear=obj_ikov_bootsoflightness_womanwear,0
 weight=24oz
 wearpos=feet
+category=category_118
 tradeable=no
 
 [thkebabinstructs]
@@ -24165,6 +24871,7 @@ model=obj_tentipineapple
 2dyan=100
 2dxan=172
 weight=2lb
+category=category_120
 tradeable=no
 
 [thbedobinkey]
@@ -24226,6 +24933,7 @@ model=obj_rock_sample1
 2dxan=120
 members=yes
 weight=500g
+tradeable=no
 
 [ardougne_book]
 name=Guide book
@@ -25347,6 +26055,9 @@ model=obj_bronze_bar
 2dxan=196
 weight=4lb
 category=category_151
+respawnrate=500
+param=smelting_struct,smelting_iron_bar
+param=smithing_anvil_struct,smithing_iron_bar
 
 [cert_iron_bar]
 certlink=iron_bar
@@ -25366,6 +26077,8 @@ model=obj_bronze_bar
 2dxan=196
 weight=4lb
 category=category_151
+param=smelting_struct,smelting_steel_bar
+param=smithing_anvil_struct,smithing_steel_bar
 
 [cert_steel_bar]
 certlink=steel_bar
@@ -25385,6 +26098,7 @@ model=obj_bronze_bar
 2dxan=196
 weight=4lb
 category=category_151
+param=smelting_struct,smelting_silver_bar
 
 [cert_silver_bar]
 certlink=silver_bar
@@ -25404,6 +26118,8 @@ model=obj_bronze_bar
 2dxan=196
 weight=4lb
 category=category_151
+respawnrate=1500
+param=smelting_struct,smelting_gold_bar
 
 [cert_gold_bar]
 certlink=gold_bar
@@ -25423,6 +26139,8 @@ model=obj_bronze_bar
 2dxan=196
 weight=56oz
 category=category_151
+param=smelting_struct,smelting_mithril_bar
+param=smithing_anvil_struct,smithing_mithril_bar
 
 [cert_mithril_bar]
 certlink=mithril_bar
@@ -25442,6 +26160,8 @@ model=obj_bronze_bar
 2dxan=196
 weight=72oz
 category=category_151
+param=smelting_struct,smelting_adamantite_bar
+param=smithing_anvil_struct,smithing_adamantite_bar
 
 [cert_adamantite_bar]
 certlink=adamantite_bar
@@ -25461,6 +26181,8 @@ model=obj_bronze_bar
 2dxan=196
 weight=4lb
 category=category_151
+param=smelting_struct,smelting_runite_bar
+param=smithing_anvil_struct,smithing_runite_bar
 
 [cert_runite_bar]
 certlink=runite_bar
@@ -25481,6 +26203,8 @@ model=obj_bronze_bar
 members=yes
 weight=4lb
 category=category_151
+param=smelting_struct,smelting_perfect_gold_bar
+tradeable=no
 
 [dragonshield_a]
 name=Shield left half
@@ -25552,6 +26276,7 @@ members=yes
 2dyan=1776
 2dxan=128
 weight=1kg
+category=category_1399
 tradeable=no
 
 [relicpart2]
@@ -25562,6 +26287,7 @@ members=yes
 2dzoom=860
 2dyan=1696
 weight=1kg
+category=category_1399
 tradeable=no
 
 [relicpart3]
@@ -25572,6 +26298,7 @@ members=yes
 2dzoom=560
 2dyan=108
 weight=1kg
+category=category_1399
 tradeable=no
 
 [skavidmap]
@@ -26136,6 +26863,7 @@ param=magicdefence,10
 param=destroy_death,^true
 param=lose_cape_message,Guthix reclaims the cape as it touches the ground.
 tradeable=no
+param=lose_cape_message,Saradomin reclaims the cape as it touches the ground.
 
 [guthix_cape]
 name=Guthix cape
@@ -26424,6 +27152,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dose1attack
+param=decant_potion_enum,potion_1attack
+param=dose_count,4
 
 [cert_4dose1attack]
 certlink=4dose1attack
@@ -26444,6 +27176,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dosestatrestore
+param=decant_potion_enum,potion_1restore
+param=dose_count,4
 
 [cert_4dosestatrestore]
 certlink=4dosestatrestore
@@ -26464,6 +27200,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dose1defense
+param=decant_potion_enum,potion_1defense
+param=dose_count,4
 
 [cert_4dose1defense]
 certlink=4dose1defense
@@ -26484,6 +27224,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3doseprayerrestore
+param=decant_potion_enum,potion_prayerrestore
+param=dose_count,4
 
 [cert_4doseprayerrestore]
 certlink=4doseprayerrestore
@@ -26504,6 +27248,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dose2attack
+param=decant_potion_enum,potion_2attack
+param=dose_count,4
 
 [cert_4dose2attack]
 certlink=4dose2attack
@@ -26524,6 +27272,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dosefisherspotion
+param=decant_potion_enum,potion_fisherspotion
+param=dose_count,4
 
 [cert_4dosefisherspotion]
 certlink=4dosefisherspotion
@@ -26544,6 +27296,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dose2strength
+param=decant_potion_enum,potion_2strength
+param=dose_count,4
 
 [cert_4dose2strength]
 certlink=4dose2strength
@@ -26564,6 +27320,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dose2defense
+param=decant_potion_enum,potion_2defense
+param=dose_count,4
 
 [cert_4dose2defense]
 certlink=4dose2defense
@@ -26584,6 +27344,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3doserangerspotion
+param=decant_potion_enum,potion_rangerspotion
+param=dose_count,4
 
 [cert_4doserangerspotion]
 certlink=4doserangerspotion
@@ -26604,6 +27368,11 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=cures_poison,yes
+param=next_obj_stage,3doseantipoison
+param=decant_potion_enum,potion_antipoison
+param=dose_count,4
 
 [cert_4doseantipoison]
 certlink=4doseantipoison
@@ -26624,6 +27393,11 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=cures_poison,yes
+param=next_obj_stage,3dose2antipoison
+param=decant_potion_enum,potion_2antipoison
+param=dose_count,4
 
 [cert_4dose2antipoison]
 certlink=4dose2antipoison
@@ -26644,6 +27418,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dosepotionofzamorak
+param=decant_potion_enum,potion_potionofzamorak
+param=dose_count,4
 
 [cert_4dosepotionofzamorak]
 certlink=4dosepotionofzamorak
@@ -26664,6 +27442,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dose1antidragon
+param=decant_potion_enum,potion_1antidragon
+param=dose_count,4
 
 [cert_4dose1antidragon]
 certlink=4dose1antidragon
@@ -26684,6 +27466,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dose1antidragon
+param=decant_potion_enum,potion_1antidragon
+param=dose_count,3
 
 [cert_3dose1antidragon]
 certlink=3dose1antidragon
@@ -26704,6 +27490,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dose1antidragon
+param=decant_potion_enum,potion_1antidragon
+param=dose_count,2
 
 [cert_2dose1antidragon]
 certlink=2dose1antidragon
@@ -26724,6 +27514,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_1antidragon
+param=dose_count,1
 
 [cert_1dose1antidragon]
 certlink=1dose1antidragon
@@ -27055,6 +27849,11 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_774
+param=identified_herb_level,67
+param=identified_herb_exp,131
+param=identified_herb_message,This herb is a Lantadyme.
+param=brew_potion_struct,unf_lantadyme_potion
 
 [cert_lantadyme]
 certlink=lantadyme
@@ -27074,6 +27873,7 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=2oz
+category=category_69
 
 [cert_lantadymevial]
 certlink=lantadymevial
@@ -27090,6 +27890,7 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_773
 
 [cert_unidentified_lantadyme]
 certlink=unidentified_lantadyme
@@ -27117,6 +27918,13 @@ womanwear=obj_dragon_vambraces_womanwear,0
 members=yes
 wearpos=hands
 weight=10oz
+category=category_16
+param=magicattack,-10
+param=rangeattack,9
+param=stabdefence,4
+param=slashdefence,3
+param=crushdefence,5
+param=magicdefence,4
 
 [cert_blue_dragon_vambraces]
 certlink=blue_dragon_vambraces
@@ -27144,6 +27952,13 @@ womanwear=obj_dragon_vambraces_womanwear,0
 members=yes
 wearpos=hands
 weight=10oz
+category=category_16
+param=magicattack,-10
+param=rangeattack,10
+param=stabdefence,5
+param=slashdefence,4
+param=crushdefence,6
+param=magicdefence,6
 
 [cert_red_dragon_vambraces]
 certlink=red_dragon_vambraces
@@ -27171,6 +27986,13 @@ womanwear=obj_dragon_vambraces_womanwear,0
 members=yes
 wearpos=hands
 weight=10oz
+category=category_16
+param=magicattack,-10
+param=rangeattack,11
+param=stabdefence,6
+param=slashdefence,5
+param=crushdefence,7
+param=magicdefence,8
 
 [cert_black_dragon_vambraces]
 certlink=black_dragon_vambraces
@@ -27196,6 +28018,14 @@ womanwear=obj_dragonhide_chaps_womanwear,0
 members=yes
 wearpos=legs
 weight=12lb
+category=armour_legs
+param=magicattack,-10
+param=rangeattack,11
+param=stabdefence,25
+param=slashdefence,19
+param=crushdefence,27
+param=magicdefence,14
+param=rangedefence,25
 
 [cert_blue_dragonhide_chaps]
 certlink=blue_dragonhide_chaps
@@ -27221,6 +28051,14 @@ womanwear=obj_dragonhide_chaps_womanwear,0
 members=yes
 wearpos=legs
 weight=12lb
+category=armour_legs
+param=magicattack,-10
+param=rangeattack,14
+param=stabdefence,28
+param=slashdefence,22
+param=crushdefence,30
+param=magicdefence,20
+param=rangedefence,28
 
 [cert_red_dragonhide_chaps]
 certlink=red_dragonhide_chaps
@@ -27246,6 +28084,14 @@ womanwear=obj_dragonhide_chaps_womanwear,0
 members=yes
 wearpos=legs
 weight=12lb
+category=armour_legs
+param=magicattack,-10
+param=rangeattack,17
+param=stabdefence,31
+param=slashdefence,25
+param=crushdefence,33
+param=magicdefence,28
+param=rangedefence,31
 
 [cert_black_dragonhide_chaps]
 certlink=black_dragonhide_chaps
@@ -27269,6 +28115,14 @@ womanwear=obj_dragonhide_body_womanwear,0
 members=yes
 wearpos=torso
 weight=15lb
+category=armour_body
+param=magicattack,-15
+param=rangeattack,20
+param=stabdefence,45
+param=slashdefence,37
+param=crushdefence,50
+param=magicdefence,30
+param=rangedefence,45
 
 [cert_blue_dragonhide_body]
 certlink=blue_dragonhide_body
@@ -27292,6 +28146,14 @@ womanwear=obj_dragonhide_body_womanwear,0
 members=yes
 wearpos=torso
 weight=15lb
+category=armour_body
+param=magicattack,-15
+param=rangeattack,25
+param=stabdefence,50
+param=slashdefence,42
+param=crushdefence,55
+param=magicdefence,40
+param=rangedefence,50
 
 [cert_red_dragonhide_body]
 certlink=red_dragonhide_body
@@ -27315,6 +28177,14 @@ womanwear=obj_dragonhide_body_womanwear,0
 members=yes
 wearpos=torso
 weight=15lb
+category=armour_body
+param=magicattack,-15
+param=rangeattack,30
+param=stabdefence,55
+param=slashdefence,47
+param=crushdefence,60
+param=magicdefence,50
+param=rangedefence,55
 
 [cert_black_dragonhide_body]
 certlink=black_dragonhide_body
@@ -27389,6 +28259,7 @@ model=obj_logs
 op4=Light
 weight=3lb
 weight=3lb
+tradeable=no
 
 [newbieshrimp]
 name=Box of delights
@@ -27401,6 +28272,7 @@ model=obj_priest_robe
 2dyof=1
 2dzoom=1940
 2dxan=572
+tradeable=no
 
 [cert_newbieshrimp]
 name=Waste disposal
@@ -27580,6 +28452,7 @@ model=obj_sheepbonesa
 iop1=Bury
 weight=500g
 category=bones
+param=bone_exp,45
 
 [cert_newbiebones]
 certlink=newbiebones
@@ -27843,7 +28716,6 @@ model=obj_unlitarrow_2
 2dzoom=1420
 2dyan=1772
 2dxan=272
-dummyitem=inv_only
 
 [unlitarrow_3]
 stackable=yes
@@ -27853,7 +28725,6 @@ model=obj_unlitarrow_3
 2dzoom=1360
 2dyan=1880
 2dxan=196
-dummyitem=inv_only
 
 [unlitarrow_4]
 stackable=yes
@@ -27863,7 +28734,6 @@ model=obj_unlitarrow_4
 2dzoom=1820
 2dyan=1896
 2dxan=340
-dummyitem=inv_only
 
 [unlitarrow_5]
 stackable=yes
@@ -27871,7 +28741,6 @@ model=obj_unlitarrow_5
 2dxof=4
 2dyan=1884
 2dxan=384
-dummyitem=inv_only
 
 [litarrow_2]
 stackable=yes
@@ -27879,7 +28748,6 @@ model=obj_litarrow_2
 2dzoom=1590
 2dyan=1812
 2dxan=324
-dummyitem=inv_only
 
 [litarrow_3]
 stackable=yes
@@ -27888,7 +28756,6 @@ model=obj_litarrow_3
 2dzoom=1950
 2dyan=1804
 2dxan=388
-dummyitem=inv_only
 
 [litarrow_4]
 stackable=yes
@@ -27897,7 +28764,6 @@ model=obj_litarrow_4
 2dzoom=1980
 2dyan=1896
 2dxan=408
-dummyitem=inv_only
 
 [litarrow_5]
 stackable=yes
@@ -27906,7 +28772,6 @@ model=obj_litarrow_5
 2dyof=2
 2dyan=1860
 2dxan=440
-dummyitem=inv_only
 
 [ring_of_recoil]
 name=Ring of recoil
@@ -27950,6 +28815,8 @@ iop4=Rub
 wearpos=ring
 weight=6g
 category=category_136
+param=next_obj_stage,ring_of_dueling_7
+param=charges,8
 
 [cert_ring_of_dueling_8]
 certlink=ring_of_dueling_8
@@ -27974,6 +28841,8 @@ iop4=Rub
 wearpos=ring
 weight=6g
 category=category_136
+param=next_obj_stage,ring_of_dueling_6
+param=charges,7
 
 [cert_ring_of_dueling_7]
 certlink=ring_of_dueling_7
@@ -27998,6 +28867,8 @@ iop4=Rub
 wearpos=ring
 weight=6g
 category=category_136
+param=next_obj_stage,ring_of_dueling_5
+param=charges,6
 
 [cert_ring_of_dueling_6]
 certlink=ring_of_dueling_6
@@ -28022,6 +28893,8 @@ iop4=Rub
 wearpos=ring
 weight=6g
 category=category_136
+param=next_obj_stage,ring_of_dueling_4
+param=charges,5
 
 [cert_ring_of_dueling_5]
 certlink=ring_of_dueling_5
@@ -28046,6 +28919,8 @@ iop4=Rub
 wearpos=ring
 weight=6g
 category=category_136
+param=next_obj_stage,ring_of_dueling_3
+param=charges,4
 
 [cert_ring_of_dueling_4]
 certlink=ring_of_dueling_4
@@ -28070,6 +28945,8 @@ iop4=Rub
 wearpos=ring
 weight=6g
 category=category_136
+param=next_obj_stage,ring_of_dueling_2
+param=charges,3
 
 [cert_ring_of_dueling_3]
 certlink=ring_of_dueling_3
@@ -28094,6 +28971,8 @@ iop4=Rub
 wearpos=ring
 weight=6g
 category=category_136
+param=next_obj_stage,ring_of_dueling_1
+param=charges,2
 
 [cert_ring_of_dueling_2]
 certlink=ring_of_dueling_2
@@ -28118,6 +28997,7 @@ iop4=Rub
 wearpos=ring
 weight=6g
 category=category_136
+param=charges,1
 
 [cert_ring_of_dueling_1]
 certlink=ring_of_dueling_1
@@ -28204,6 +29084,7 @@ model=obj_trail_sextant
 2dxan=488
 iop1=Look through
 weight=200g
+tradeable=no
 
 [trail_watch]
 name=Watch
@@ -28216,6 +29097,7 @@ model=obj_trail_watch
 2dyan=2032
 2dxan=368
 weight=100g
+tradeable=no
 
 [trail_chart]
 name=Chart
@@ -28235,6 +29117,7 @@ model=obj_newcomer_map
 2dyan=1716
 2dxan=264
 weight=10g
+tradeable=no
 
 [boots_ranger]
 name=Ranger boots
@@ -29001,6 +29884,15 @@ manwear=obj_bronze_kiteshield_manwear,0
 womanwear=obj_bronze_kiteshield_manwear,6
 wearpos=lefthand
 weight=12lb
+category=armour_shield
+param=magicattack,-8
+param=rangeattack,-2
+param=stabdefence,44
+param=slashdefence,48
+param=crushdefence,46
+param=magicdefence,-1
+param=rangedefence,46
+param=defend_anim,human_shield_defence
 
 [cert_rune_kiteshield_gold]
 certlink=rune_kiteshield_gold
@@ -29863,6 +30755,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the chest in the|Duke of Lumbridge's bedroom.
+tradeable=no
 
 [trail_clue_easy_simple002]
 name=Clue scroll
@@ -29877,6 +30771,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the crate in the left-|hand tower of Lumbridge Castle.
+tradeable=no
 
 [trail_clue_easy_simple003]
 name=Clue scroll
@@ -29891,6 +30787,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the boxes in the goblin|house near Lumbridge.
+tradeable=no
 
 [trail_clue_easy_simple004]
 name=Clue scroll
@@ -29905,6 +30803,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the chests upstairs in|Al Kharid Palace.
+tradeable=no
 
 [trail_clue_easy_simple005]
 name=Clue scroll
@@ -29919,6 +30819,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Speak to Hans to|solve the clue.
+tradeable=no
 
 [trail_clue_easy_simple006]
 name=Clue scroll
@@ -29933,6 +30835,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the crates in the|most north-western house in Al Kharid.
+tradeable=no
 
 [trail_clue_easy_simple007]
 name=Clue scroll
@@ -29947,6 +30851,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Talk to Zeke in Al Kharid.
+tradeable=no
 
 [trail_clue_easy_simple008]
 name=Clue scroll
@@ -29961,6 +30867,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Speak to the tanner|in Al Kharid.
+tradeable=no
 
 [trail_clue_easy_simple009]
 name=Clue scroll
@@ -29975,6 +30883,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the boxes in|the house near the|south entrance to Varrock.
+tradeable=no
 
 [trail_clue_easy_simple010]
 name=Clue scroll
@@ -29989,6 +30899,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Speak to the bartender of the|Blue Moon Inn in Varrock.
+tradeable=no
 
 [trail_clue_easy_simple011]
 name=Clue scroll
@@ -30003,6 +30915,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the drawers, upstairs|in the bank to|the East of Varrock.
+tradeable=no
 
 [trail_clue_easy_simple012]
 name=Clue scroll
@@ -30017,6 +30931,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the crates|in Horvik's armoury.
+tradeable=no
 
 [trail_clue_easy_simple013]
 name=Clue scroll
@@ -30031,6 +30947,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the drawers in|one of Gertrude's bedrooms.
+tradeable=no
 
 [trail_clue_easy_simple014]
 name=Clue scroll
@@ -30045,6 +30963,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the boxes in the|Barbarian Village helmet shop.
+tradeable=no
 
 [trail_clue_easy_simple015]
 name=Clue scroll
@@ -30059,6 +30979,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the drawers upstairs|in Falador's shield shop.
+tradeable=no
 
 [trail_clue_easy_simple016]
 name=Clue scroll
@@ -30073,6 +30995,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the boxes of|Falador's general store.
+tradeable=no
 
 [trail_clue_easy_simple017]
 name=Clue scroll
@@ -30087,6 +31011,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Talk to the Squire in the|White Knights' castle in Falador.
+tradeable=no
 
 [trail_clue_easy_simple018]
 name=Clue scroll
@@ -30101,6 +31027,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the drawers in|Falador's chain mail shop.
+tradeable=no
 
 [trail_clue_easy_simple019]
 name=Clue scroll
@@ -30115,6 +31043,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the crates in the|Port Sarim Fishing shop.
+tradeable=no
 
 [trail_clue_easy_simple020]
 name=Clue scroll
@@ -30129,6 +31059,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Talk to the bartender of the|Rusty Anchor in Port Sarim.
+tradeable=no
 
 [trail_clue_easy_simple021]
 name=Clue scroll
@@ -30143,6 +31075,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Speak to Ned in|Draynor Village.
+tradeable=no
 
 [trail_clue_easy_simple022]
 name=Clue scroll
@@ -30157,6 +31091,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Speak to Doric, who|lives north of Falador.
+tradeable=no
 
 [trail_clue_easy_simple023]
 name=Clue scroll
@@ -30171,6 +31107,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Speak to Gaius in Taverley.
+tradeable=no
 
 [trail_clue_easy_simple024]
 name=Clue scroll
@@ -30185,6 +31123,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the drawers in|Catherby's Archery shop.
+tradeable=no
 
 [trail_clue_easy_simple025]
 name=Clue scroll
@@ -30199,6 +31139,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Speak to Arhein in Catherby.
+tradeable=no
 
 [trail_clue_easy_simple026]
 name=Clue scroll
@@ -30213,6 +31155,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Speak to Sir Kay|in Camelot Castle.
+tradeable=no
 
 [trail_clue_easy_simple027]
 name=Clue scroll
@@ -30227,6 +31171,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the chest in the left-|hand tower of Camelot Castle.
+tradeable=no
 
 [trail_clue_easy_simple028]
 name=Clue scroll
@@ -30241,6 +31187,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the crates in the|guard house of the northern|gate of East Ardougne.
+tradeable=no
 
 [trail_clue_easy_simple029]
 name=Clue scroll
@@ -30255,6 +31203,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the boxes just|outside the Armour shop|in East Ardougne.
+tradeable=no
 
 [trail_clue_easy_simple030]
 name=Clue scroll
@@ -30269,6 +31219,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the crates in East|Ardougne's general store.
+tradeable=no
 
 [trail_clue_easy_simple031]
 name=Clue scroll
@@ -30283,6 +31235,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the crates in the shed|just north of East Ardougne.
+tradeable=no
 
 [trail_clue_easy_vague001]
 name=Clue scroll
@@ -30297,6 +31251,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the drawers|above Varrock's shops.
+tradeable=no
 
 [trail_clue_easy_vague002]
 name=Clue scroll
@@ -30311,6 +31267,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the crates near|a cart in Varrock.
+tradeable=no
 
 [trail_clue_easy_vague003]
 name=Clue scroll
@@ -30325,6 +31283,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Search the drawers found upstairs|in East Ardougne's houses.
+tradeable=no
 
 [trail_clue_easy_vague004]
 name=Clue scroll
@@ -30339,6 +31299,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,A crate found in the|tower of a church is|your next location.
+tradeable=no
 
 [trail_clue_easy_vague005]
 name=Clue scroll
@@ -30353,6 +31315,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_desc,Look in the ground floor|crates of houses in Falador.
+tradeable=no
 
 [trail_clue_easy_map001]
 name=Clue scroll
@@ -30367,6 +31331,9 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_coord,0_49_52_41_32
+param=trail_casket,trail_clue_easy_map001_casket
+tradeable=no
 
 [trail_clue_easy_map001_casket]
 name=Casket
@@ -30382,6 +31349,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_easy
+tradeable=no
 
 [cert_trail_clue_easy_map001_casket]
 name=Casket
@@ -30410,6 +31378,9 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_coord,0_51_52_26_46
+param=trail_casket,trail_clue_easy_map002_casket
+tradeable=no
 
 [trail_clue_easy_map002_casket]
 name=Casket
@@ -30425,6 +31396,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_easy
+tradeable=no
 
 [cert_trail_clue_easy_map002_casket]
 name=Casket
@@ -30453,6 +31425,9 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_easy
+param=trail_coord,0_47_53_35_6
+param=trail_casket,trail_clue_easy_map003_casket
+tradeable=no
 
 [trail_clue_easy_map003_casket]
 name=Casket
@@ -30468,6 +31443,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_easy
+tradeable=no
 
 [cert_trail_clue_easy_map003_casket]
 name=Casket
@@ -30496,6 +31472,7 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+tradeable=no
 
 [trail_clue_hard_sextant001]
 name=Clue scroll
@@ -30510,6 +31487,12 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,22 degrees 35 minutes North|19 degrees 18 minutes East
+param=trail_sextant,yes
+param=trail_casket,trail_clue_hard_sextant001_casket
+param=trail_coord,0_47_60_50_44
+param=trail_guardian,trail_hard
+tradeable=no
 
 [trail_clue_hard_sextant001_casket]
 name=Casket
@@ -30525,6 +31508,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_sextant002]
 name=Clue scroll
@@ -30539,6 +31523,12 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,25 degrees 03 minutes North|17 degrees 05 minutes East
+param=trail_sextant,yes
+param=trail_casket,trail_clue_hard_sextant002_casket
+param=trail_coord,0_46_61_43_59
+param=trail_guardian,trail_hard
+tradeable=no
 
 [trail_clue_hard_sextant002_casket]
 name=Casket
@@ -30554,6 +31544,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_sextant003]
 name=Clue scroll
@@ -30568,6 +31559,12 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,24 degrees 56 minutes North|22 degrees 28 minutes East
+param=trail_sextant,yes
+param=trail_casket,trail_clue_hard_sextant003_casket
+param=trail_coord,0_49_61_23_55
+param=trail_guardian,trail_hard
+tradeable=no
 
 [trail_clue_hard_sextant003_casket]
 name=Casket
@@ -30583,6 +31580,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_sextant004]
 name=Clue scroll
@@ -30597,6 +31595,12 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,25 degrees 03 minutes North|23 degrees 24 minutes East
+param=trail_sextant,yes
+param=trail_casket,trail_clue_hard_sextant004_casket
+param=trail_coord,0_49_61_53_59
+param=trail_guardian,trail_hard
+tradeable=no
 
 [trail_clue_hard_sextant004_casket]
 name=Casket
@@ -30612,6 +31616,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_sextant005]
 name=Clue scroll
@@ -30626,6 +31631,12 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,22 degrees 45 minutes North|26 degrees 33 minutes East
+param=trail_sextant,yes
+param=trail_casket,trail_clue_hard_sextant005_casket
+param=trail_coord,0_51_60_26_49
+param=trail_guardian,trail_hard
+tradeable=no
 
 [trail_clue_hard_sextant005_casket]
 name=Casket
@@ -30641,6 +31652,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_sextant006]
 name=Clue scroll
@@ -30655,6 +31667,12 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,20 degrees 05 minutes North|21 degrees 52 minutes East
+param=trail_sextant,yes
+param=trail_casket,trail_clue_hard_sextant006_casket
+param=trail_coord,0_49_59_4_28
+param=trail_guardian,trail_hard
+tradeable=no
 
 [trail_clue_hard_sextant006_casket]
 name=Casket
@@ -30670,6 +31688,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_sextant007]
 name=Clue scroll
@@ -30684,6 +31703,12 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,20 degrees 33 minutes North|15 degrees 48 minutes East
+param=trail_sextant,yes
+param=trail_casket,trail_clue_hard_sextant007_casket
+param=trail_coord,0_46_59_2_43
+param=trail_guardian,trail_hard
+tradeable=no
 
 [trail_clue_hard_sextant007_casket]
 name=Casket
@@ -30699,6 +31724,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_sextant008]
 name=Clue scroll
@@ -30713,6 +31739,12 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,21 degrees 24 minutes North|17 degrees 54 minutes East
+param=trail_sextant,yes
+param=trail_casket,trail_clue_hard_sextant008_casket
+param=trail_coord,0_47_60_5_6
+param=trail_guardian,trail_hard
+tradeable=no
 
 [trail_clue_hard_sextant008_casket]
 name=Casket
@@ -30728,6 +31760,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_sextant009]
 name=Clue scroll
@@ -30742,6 +31775,12 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,24 degrees 58 minutes North|18 degrees 43 minutes East
+param=trail_sextant,yes
+param=trail_casket,trail_clue_hard_sextant009_casket
+param=trail_coord,0_47_61_31_56
+param=trail_guardian,trail_hard
+tradeable=no
 
 [trail_clue_hard_sextant009_casket]
 name=Casket
@@ -30757,6 +31796,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_sextant010]
 name=Clue scroll
@@ -30771,6 +31811,12 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,19 degrees 43 minutes North|25 degrees 07 minutes East
+param=trail_sextant,yes
+param=trail_casket,trail_clue_hard_sextant010_casket
+param=trail_coord,0_50_59_44_16
+param=trail_guardian,trail_hard
+tradeable=no
 
 [trail_clue_hard_sextant010_casket]
 name=Casket
@@ -30786,6 +31832,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_sextant011]
 name=Clue scroll
@@ -30800,6 +31847,12 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,16 degrees 07 minutes North|22 degrees 45 minutes East
+param=trail_sextant,yes
+param=trail_casket,trail_clue_hard_sextant011_casket
+param=trail_coord,0_49_57_32_29
+param=trail_guardian,trail_hard
+tradeable=no
 
 [trail_clue_hard_sextant011_casket]
 name=Casket
@@ -30815,6 +31868,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_sextant012]
 name=Clue scroll
@@ -30829,6 +31883,12 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,16 degrees 43 minutes North|19 degrees 13 minutes East
+param=trail_sextant,yes
+param=trail_casket,trail_clue_hard_sextant012_casket
+param=trail_coord,0_47_57_47_48
+param=trail_guardian,trail_hard
+tradeable=no
 
 [trail_clue_hard_sextant012_casket]
 name=Casket
@@ -30844,6 +31904,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_sextant013]
 name=Clue scroll
@@ -30858,6 +31919,12 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,19 degrees 00 minutes North|27 degrees 13 minutes East
+param=trail_sextant,yes
+param=trail_casket,trail_clue_hard_sextant013_casket
+param=trail_coord,0_51_58_47_57
+param=trail_guardian,trail_hard
+tradeable=no
 
 [trail_clue_hard_sextant013_casket]
 name=Casket
@@ -30873,6 +31940,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_slidingpuzzleb01]
 name=Sliding piece
@@ -31247,6 +32315,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,You will need to under-cook|to solve this one.
+tradeable=no
 
 [trail_clue_hard_riddle002]
 name=Clue scroll
@@ -31261,6 +32331,10 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,Come to the evil ledge,|Yew know yew want to.|Try not to get stung.
+param=trail_casket,trail_clue_hard_riddle002_casket
+param=trail_coord,0_48_54_17_12
+tradeable=no
 
 [trail_clue_hard_riddle002_casket]
 name=Casket
@@ -31276,6 +32350,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_riddle003]
 name=Clue scroll
@@ -31290,6 +32365,10 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,I am a token of the strongest love.|My middle is empty, I have no|beginning or end. My eye is red yet|I can fit like a glove. Go to the|place where money they lend, And|dig by the gate to be my friend.
+param=trail_casket,trail_clue_hard_riddle003_casket
+param=trail_coord,0_49_153_55_33
+tradeable=no
 
 [trail_clue_hard_riddle003_casket]
 name=Casket
@@ -31305,6 +32384,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_riddle004]
 name=Clue scroll
@@ -31319,6 +32399,9 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,If a man carried my burden,|he would break his back.|I am not rich,|but leave silver in my track.|Speak to the keeper of my trail.
+param=trail_casket,trail_clue_hard_riddle004_casket
+tradeable=no
 
 [trail_clue_hard_riddle004_casket]
 name=Casket
@@ -31334,6 +32417,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_riddle005]
 name=Clue scroll
@@ -31348,6 +32432,10 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,Aggie I see.|Lonely and southern I feel.|I am neither inside nor outside|the house, yet no house would|be complete without me.|Your treasure waits beneath me!
+param=trail_casket,trail_clue_hard_riddle005_casket
+param=trail_coord,0_48_50_13_55
+tradeable=no
 
 [trail_clue_hard_riddle005_casket]
 name=Casket
@@ -31363,6 +32451,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_riddle006]
 name=Clue scroll
@@ -31377,6 +32466,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,|My home is grey, and made of stone;|A castle with a search for a meal.|Hidden in some drawers I am,|across from a wooden wheel.
+tradeable=no
 
 [trail_clue_hard_riddle007]
 name=Clue scroll
@@ -31391,6 +32482,10 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,The beasts to my east|snap claws and tails,|The rest to my west|can slide and eat fish.|The force to my north|will jump and they'll wail,|Come dig by my fire|and make a wish.
+param=trail_casket,trail_clue_hard_riddle007_casket
+param=trail_coord,0_40_51_39_3
+tradeable=no
 
 [trail_clue_hard_riddle007_casket]
 name=Casket
@@ -31406,6 +32501,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_riddle008]
 name=Clue scroll
@@ -31420,6 +32516,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,Four blades I have|yet I draw no blood.|But I mash and turn|my victims to powder.|Search in my head,|search in my rafters,|where my blades are louder.
+tradeable=no
 
 [trail_clue_hard_riddle009]
 name=Clue scroll
@@ -31434,6 +32532,10 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,I lie lonely and forgotten|in mid wilderness,|where the dead rise from their beds.|Feel free to quarrel and wind me up,|and dig while you shoot their heads.
+param=trail_casket,trail_clue_hard_riddle009_casket
+param=trail_coord,0_49_57_38_15
+tradeable=no
 
 [trail_clue_hard_riddle009_casket]
 name=Casket
@@ -31449,6 +32551,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_riddle010]
 name=Clue scroll
@@ -31463,6 +32566,10 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,46 is my number.|My body is burnt orange colour|and crawls with those with eight.|3 mouths I have, yet I cannot eat.|My blinking blue eye|hides my grave.
+param=trail_casket,trail_clue_hard_riddle010_casket
+param=trail_coord,0_49_60_34_45
+tradeable=no
 
 [trail_clue_hard_riddle010_casket]
 name=Casket
@@ -31478,6 +32585,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_riddle011]
 name=Clue scroll
@@ -31492,6 +32600,10 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,My giant guardians below|the market streets would|be fans of rock and roll,|if only they could grab hold of it.|Dig near my green bubbles!
+param=trail_coord,0_49_154_25_49
+param=trail_casket,trail_clue_hard_riddle011_casket
+tradeable=no
 
 [trail_clue_hard_riddle011_casket]
 name=Casket
@@ -31507,6 +32619,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_hard
+tradeable=no
 
 [trail_clue_hard_riddle012]
 name=Clue scroll
@@ -31521,6 +32634,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,Snah? I feel all confused,|like one of those cakes...
+tradeable=no
 
 [trail_clue_hard_riddle013]
 name=Clue scroll
@@ -31535,6 +32650,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,@or2@'A bag belt only?'|He asked his balding brothers.
+tradeable=no
 
 [trail_clue_hard_riddle014]
 name=Clue scroll
@@ -31549,6 +32666,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,The keeper of Melzars...|Spare? Skeleton? Anar?
+tradeable=no
 
 [trail_clue_hard_riddle014_puzzlebox]
 name=Puzzle box
@@ -31578,6 +32697,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,Surprising? I bet he is...
+tradeable=no
 
 [trail_clue_hard_riddle016]
 name=Clue scroll
@@ -31592,6 +32713,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,My name is like a tree,|yet it is spelt with a 'g'.|Come see the fur|which is right near me.
+tradeable=no
 
 [trail_clue_hard_riddle016_puzzlebox]
 name=Puzzle box
@@ -31621,6 +32744,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_hard
+param=trail_desc,Generally speaking,|his nose was very bent.
+tradeable=no
 
 [trail_clue_hard_riddle017_puzzlebox]
 name=Puzzle box
@@ -31650,6 +32775,11 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,02 degrees 48 minutes North|22 degrees 30 minutes East
+param=trail_sextant,yes
+param=trail_coord,0_49_50_24_51
+param=trail_casket,trail_clue_medium_sextant001_casket
+tradeable=no
 
 [trail_clue_medium_sextant001_casket]
 name=Casket
@@ -31665,6 +32795,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_sextant002]
 name=Clue scroll
@@ -31679,6 +32810,11 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,01 degrees 35 minutes South|07 degrees 28 minutes East
+param=trail_sextant,yes
+param=trail_coord,0_41_48_55_38
+param=trail_casket,trail_clue_medium_sextant002_casket
+tradeable=no
 
 [trail_clue_medium_sextant002_casket]
 name=Casket
@@ -31694,6 +32830,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_sextant003]
 name=Clue scroll
@@ -31708,6 +32845,11 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,01 degrees 26 minutes North|08 degrees 01 minutes East
+param=trail_sextant,yes
+param=trail_coord,0_42_50_9_7
+param=trail_casket,trail_clue_medium_sextant003_casket
+tradeable=no
 
 [trail_clue_medium_sextant003_casket]
 name=Casket
@@ -31723,6 +32865,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_sextant004]
 name=Clue scroll
@@ -31737,6 +32880,11 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,06 degrees 31 minutes North|01 degrees 46 minutes West
+param=trail_sextant,yes
+param=trail_coord,0_37_52_15_42
+param=trail_casket,trail_clue_medium_sextant004_casket
+tradeable=no
 
 [trail_clue_medium_sextant004_casket]
 name=Casket
@@ -31752,6 +32900,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_sextant005]
 name=Clue scroll
@@ -31766,6 +32915,11 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,00 degrees 05 minutes South|01 degrees 13 minutes East
+param=trail_sextant,yes
+param=trail_coord,0_38_49_47_22
+param=trail_casket,trail_clue_medium_sextant005_casket
+tradeable=no
 
 [trail_clue_medium_sextant005_casket]
 name=Casket
@@ -31781,6 +32935,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_sextant006]
 name=Clue scroll
@@ -31795,6 +32950,11 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,09 degrees 33 minutes North|02 degrees 15 minutes East
+param=trail_sextant,yes
+param=trail_coord,0_39_54_16_11
+param=trail_casket,trail_clue_medium_sextant006_casket
+tradeable=no
 
 [trail_clue_medium_sextant006_casket]
 name=Casket
@@ -31810,6 +32970,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_sextant007]
 name=Clue scroll
@@ -31824,6 +32985,11 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,02 degrees 50 minutes North|06 degrees 20 minutes East
+param=trail_sextant,yes
+param=trail_coord,0_41_50_19_52
+param=trail_casket,trail_clue_medium_sextant007_casket
+tradeable=no
 
 [trail_clue_medium_sextant007_casket]
 name=Casket
@@ -31839,6 +33005,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_sextant008]
 name=Clue scroll
@@ -31853,6 +33020,11 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,04 degrees 13 minutes North|12 degrees 45 minutes East
+param=trail_sextant,yes
+param=trail_coord,0_44_51_32_32
+param=trail_casket,trail_clue_medium_sextant008_casket
+tradeable=no
 
 [trail_clue_medium_sextant008_casket]
 name=Casket
@@ -31868,6 +33040,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_sextant009]
 name=Clue scroll
@@ -31882,6 +33055,11 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,04 degrees 00 minutes South|12 degrees 46 minutes East
+param=trail_sextant,yes
+param=trail_coord,0_44_47_33_25
+param=trail_casket,trail_clue_medium_sextant009_casket
+tradeable=no
 
 [trail_clue_medium_sextant009_casket]
 name=Casket
@@ -31897,6 +33075,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_sextant010]
 name=Clue scroll
@@ -31911,6 +33090,11 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,00 degrees 31 minutes South|17 degrees 43 minutes East
+param=trail_sextant,yes
+param=trail_coord,0_46_49_63_8
+param=trail_casket,trail_clue_medium_sextant010_casket
+tradeable=no
 
 [trail_clue_medium_sextant010_casket]
 name=Casket
@@ -31926,6 +33110,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_sextant011]
 name=Clue scroll
@@ -31940,6 +33125,11 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,07 degrees 33 minutes North|15 degrees 00 minutes East
+param=trail_sextant,yes
+param=trail_coord,0_45_53_40_11
+param=trail_casket,trail_clue_medium_sextant011_casket
+tradeable=no
 
 [trail_clue_medium_sextant011_casket]
 name=Casket
@@ -31955,6 +33145,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_sextant012]
 name=Clue scroll
@@ -31969,6 +33160,11 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,00 degrees 30 minutes North|24 degrees 16 minutes East
+param=trail_sextant,yes
+param=trail_coord,0_50_49_17_41
+param=trail_casket,trail_clue_medium_sextant012_casket
+tradeable=no
 
 [trail_clue_medium_sextant012_casket]
 name=Casket
@@ -31984,6 +33180,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_sextant013]
 name=Clue scroll
@@ -31998,6 +33195,11 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,05 degrees 43 minutes North|23 degrees 05 minutes East
+param=trail_sextant,yes
+param=trail_coord,0_49_52_43_16
+param=trail_casket,trail_clue_medium_sextant013_casket
+tradeable=no
 
 [trail_clue_medium_sextant013_casket]
 name=Casket
@@ -32013,6 +33215,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_map001]
 name=Clue scroll
@@ -32027,6 +33230,9 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_coord,0_48_50_21_27
+param=trail_casket,trail_clue_medium_map001_casket
+tradeable=no
 
 [trail_clue_medium_map001_casket]
 name=Casket
@@ -32042,6 +33248,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_map002]
 name=Clue scroll
@@ -32056,6 +33263,9 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_coord,0_42_53_14_36
+param=trail_casket,trail_clue_medium_map002_casket
+tradeable=no
 
 [trail_clue_medium_map002_casket]
 name=Casket
@@ -32071,6 +33281,7 @@ iop1=Open
 members=yes
 weight=5kg
 category=trail_casket_medium
+tradeable=no
 
 [trail_clue_medium_riddle001]
 name=Clue scroll
@@ -32085,6 +33296,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,You'll need to look for|a town with a central|fountain. Look for a locked|chest in the town's chapel.
+tradeable=no
 
 [trail_clue_medium_riddle001_key]
 name=Key
@@ -32098,6 +33311,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [trail_clue_medium_riddle002]
 name=Clue scroll
@@ -32112,6 +33326,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,In a town where the guards|are armed with maces, search|the upstairs rooms of the|Public House.
+tradeable=no
 
 [trail_clue_medium_riddle002_key]
 name=Key
@@ -32125,6 +33341,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [trail_clue_medium_riddle003]
 name=Clue scroll
@@ -32139,6 +33356,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,In a town where thieves|steal from stalls, search for|some drawers in the upstairs|of a house near the bank.
+tradeable=no
 
 [trail_clue_medium_riddle003_key]
 name=Key
@@ -32152,6 +33371,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [trail_clue_medium_riddle004]
 name=Clue scroll
@@ -32166,6 +33386,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,In a town where everyone has|perfect vision, seek some|locked drawers in a house that|sits opposite a workshop.
+tradeable=no
 
 [trail_clue_medium_riddle004_key]
 name=Key
@@ -32179,6 +33401,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [trail_clue_medium_riddle005]
 name=Clue scroll
@@ -32193,6 +33416,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,In a town where wizards are|known to gather, search|upstairs in a large|house to the north.
+tradeable=no
 
 [trail_clue_medium_riddle005_key]
 name=Key
@@ -32206,6 +33431,7 @@ model=obj_ikov_shinykey
 2dyan=20
 2dxan=328
 weight=10g
+tradeable=no
 
 [trail_clue_medium_anagram001]
 name=Clue scroll
@@ -32220,6 +33446,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,Speak to Hazelmere.
+tradeable=no
 
 [trail_clue_medium_anagram001_challenge]
 name=Challenge scroll
@@ -32251,6 +33479,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,This anagram reveals|who to speak to next:||OK CO
+tradeable=no
 
 [trail_clue_medium_anagram002_challenge]
 name=Challenge scroll
@@ -32282,6 +33512,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,This anagram reveals|who to speak to next:||EEK ZERO OP
+tradeable=no
 
 [trail_clue_medium_anagram003_challenge]
 name=Challenge scroll
@@ -32296,6 +33528,9 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_challenge
+param=trail_desc,How many animals in total|are there in the zoo?
+param=trail_challenge_answer,32
+tradeable=no
 
 [trail_clue_medium_anagram004]
 name=Clue scroll
@@ -32310,6 +33545,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,This anagram reveals|who to speak to next:||EL OW
+tradeable=no
 
 [trail_clue_medium_anagram005]
 name=Clue scroll
@@ -32324,6 +33561,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,Speak to Hajedy.
+tradeable=no
 
 [trail_clue_medium_anagram006]
 name=Clue scroll
@@ -32338,6 +33577,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,This anagram reveals|who to speak to next:||BAR BELL SEEK
+tradeable=no
 
 [trail_clue_medium_anagram006_challenge]
 name=Challenge scroll
@@ -32369,6 +33610,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,This anagram reveals|who to speak to next:||ARE COL
+tradeable=no
 
 [trail_clue_medium_anagram007_challenge]
 name=Challenge scroll
@@ -32400,6 +33643,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,Speak to a referee.
+tradeable=no
 
 [trail_clue_medium_anagram008_challenge]
 name=Challenge scroll
@@ -32431,6 +33676,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,Speak to Donovan, the|Family Handyman.
+tradeable=no
 
 [trail_clue_medium_anagram010]
 name=Clue scroll
@@ -32445,6 +33692,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,This anagram reveals|who to speak to next:||PEATY PERT
+tradeable=no
 
 [trail_clue_medium_anagram011]
 name=Clue scroll
@@ -32459,6 +33708,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,This anagram reveals|who to speak to next:||GOBLIN KERN
+tradeable=no
 
 [trail_clue_medium_anagram012]
 name=Clue scroll
@@ -32473,6 +33724,8 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 weight=20g
 category=trail_clue_medium
+param=trail_desc,This anagram reveals|who to speak to next:||HALT US
+tradeable=no
 
 [wolf_bones]
 name=Wolf bones
@@ -32489,6 +33742,7 @@ members=yes
 iop1=Bury
 weight=500g
 category=bones
+param=bone_exp,45
 
 [cert_wolf_bones]
 certlink=wolf_bones
@@ -32527,6 +33781,7 @@ model=obj_achey_tree_logs
 members=yes
 op4=Light
 weight=3lb
+category=category_22
 
 [cert_achey_tree_logs]
 certlink=achey_tree_logs
@@ -33639,6 +34894,8 @@ model=obj_asgarnian_ale
 2dyan=1904
 2dxan=140
 weight=550g
+category=alcoholic_drinks
+param=next_obj_stage,beer_glass
 
 [cert_moonlight_mead]
 certlink=moonlight_mead
@@ -33754,8 +35011,8 @@ womanwear=obj_silver_sickle_manwear,6
 members=yes
 wearpos=righthand
 weight=56oz
-tradeable=no
 category=weapon_slash
+tradeable=no
 param=slashdefence,1
 param=crushdefence,1
 param=magicdefence,1
@@ -34412,6 +35669,11 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_774
+param=identified_herb_level,30
+param=identified_herb_exp,80
+param=identified_herb_message,This herb is a Toadflax.
+param=brew_potion_struct,unf_toadflax_potion
 
 [cert_toadflax]
 certlink=toadflax
@@ -34432,6 +35694,11 @@ model=obj_unidentified_guam
 2dyan=1588
 2dxan=376
 weight=7g
+category=category_774
+param=identified_herb_level,59
+param=identified_herb_exp,118
+param=identified_herb_message,This herb is a Snapdragon.
+param=brew_potion_struct,unf_snapdragon_potion
 
 [cert_snapdragon]
 certlink=snapdragon
@@ -34511,6 +35778,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dose1energy
+param=decant_potion_enum,potion_1energy
+param=dose_count,4
 
 [cert_4dose1energy]
 certlink=4dose1energy
@@ -34531,6 +35802,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dose1energy
+param=decant_potion_enum,potion_1energy
+param=dose_count,3
 
 [cert_3dose1energy]
 certlink=3dose1energy
@@ -34551,6 +35826,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dose1energy
+param=decant_potion_enum,potion_1energy
+param=dose_count,2
 
 [cert_2dose1energy]
 certlink=2dose1energy
@@ -34571,6 +35850,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_1energy
+param=dose_count,1
 
 [cert_1dose1energy]
 certlink=1dose1energy
@@ -34591,6 +35874,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dose2energy
+param=decant_potion_enum,potion_2energy
+param=dose_count,4
 
 [cert_4dose2energy]
 certlink=4dose2energy
@@ -34611,6 +35898,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dose2energy
+param=decant_potion_enum,potion_2energy
+param=dose_count,3
 
 [cert_3dose2energy]
 certlink=3dose2energy
@@ -34631,6 +35922,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dose2energy
+param=decant_potion_enum,potion_2energy
+param=dose_count,2
 
 [cert_2dose2energy]
 certlink=2dose2energy
@@ -34651,6 +35946,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_2energy
+param=dose_count,1
 
 [cert_1dose2energy]
 certlink=1dose2energy
@@ -34671,6 +35970,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dose2restore
+param=decant_potion_enum,potion_2restore
+param=dose_count,4
 
 [cert_4dose2restore]
 certlink=4dose2restore
@@ -34691,6 +35994,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dose2restore
+param=decant_potion_enum,potion_2restore
+param=dose_count,3
 
 [cert_3dose2restore]
 certlink=3dose2restore
@@ -34711,6 +36018,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dose2restore
+param=decant_potion_enum,potion_2restore
+param=dose_count,2
 
 [cert_2dose2restore]
 certlink=2dose2restore
@@ -34731,6 +36042,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_2restore
+param=dose_count,1
 
 [cert_1dose2restore]
 certlink=1dose2restore
@@ -34751,6 +36066,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dose1agility
+param=decant_potion_enum,potion_1agility
+param=dose_count,4
 
 [cert_4dose1agility]
 certlink=4dose1agility
@@ -34771,6 +36090,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dose1agility
+param=decant_potion_enum,potion_1agility
+param=dose_count,3
 
 [cert_3dose1agility]
 certlink=3dose1agility
@@ -34791,6 +36114,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dose1agility
+param=decant_potion_enum,potion_1agility
+param=dose_count,2
 
 [cert_2dose1agility]
 certlink=2dose1agility
@@ -34811,6 +36138,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_1agility
+param=dose_count,1
 
 [cert_1dose1agility]
 certlink=1dose1agility
@@ -34831,6 +36162,10 @@ model=obj_strength4
 members=yes
 iop4=Empty
 weight=35g
+category=category_69
+param=next_obj_stage,3dose1magic
+param=decant_potion_enum,potion_1magic
+param=dose_count,4
 
 [cert_4dose1magic]
 certlink=4dose1magic
@@ -34851,6 +36186,10 @@ model=obj_guamvial
 members=yes
 iop4=Empty
 weight=30g
+category=category_69
+param=next_obj_stage,2dose1magic
+param=decant_potion_enum,potion_1magic
+param=dose_count,3
 
 [cert_3dose1magic]
 certlink=3dose1magic
@@ -34871,6 +36210,10 @@ model=obj_2dose1strength
 members=yes
 iop4=Empty
 weight=25g
+category=category_69
+param=next_obj_stage,1dose1magic
+param=decant_potion_enum,potion_1magic
+param=dose_count,2
 
 [cert_2dose1magic]
 certlink=2dose1magic
@@ -34891,6 +36234,10 @@ model=obj_1dose1strength
 members=yes
 iop4=Empty
 weight=20g
+category=category_69
+param=next_obj_stage,vial_empty
+param=decant_potion_enum,potion_1magic
+param=dose_count,1
 
 [cert_1dose1magic]
 certlink=1dose1magic
@@ -35413,6 +36760,7 @@ model=enakh_cutscene_bonepile_8
 iop1=Bury
 weight=1500g
 category=bones
+param=bone_exp,250
 
 [cert_tbwt_beast_bones]
 certlink=tbwt_beast_bones
@@ -35429,6 +36777,7 @@ model=obj_big_bones
 iop1=Bury
 weight=800g
 category=bones
+param=bone_exp,150
 
 [cert_tbwt_jogre_bones]
 certlink=tbwt_jogre_bones
@@ -35447,6 +36796,7 @@ model=obj_big_bones
 iop1=Bury
 weight=800g
 category=bones
+param=bone_exp,160
 
 [tbwt_burnt_jogre_bones_in_raw_karambwanji_paste]
 name=Pasty jogre bones
@@ -35465,6 +36815,7 @@ model=obj_tbwt_burnt_jogre_bones_in_raw_karambwanji_paste
 iop1=Bury
 weight=800g
 category=bones
+param=bone_exp,170
 
 [tbwt_burnt_jogre_bones_in_cooked_karambwanji_paste]
 name=Pasty jogre bones
@@ -35483,6 +36834,7 @@ model=obj_tbwt_burnt_jogre_bones_in_raw_karambwanji_paste
 iop1=Bury
 weight=800g
 category=bones
+param=bone_exp,160
 
 [tbwt_burnt_jogre_bones_marinated_in_karambwanji]
 name=Marinated j' bones
@@ -35499,6 +36851,7 @@ model=obj_big_bones
 iop1=Bury
 weight=800g
 category=bones
+param=bone_exp,180
 
 [tbwt_jogre_bones_in_raw_karambwanji_paste]
 name=Pasty jogre bones
@@ -35515,6 +36868,7 @@ model=obj_tbwt_burnt_jogre_bones_in_raw_karambwanji_paste
 iop1=Bury
 weight=800g
 category=bones
+param=bone_exp,160
 
 [tbwt_jogre_bones_in_cooked_karambwanji_paste]
 name=Pasty jogre bones
@@ -35531,6 +36885,7 @@ model=obj_tbwt_burnt_jogre_bones_in_raw_karambwanji_paste
 iop1=Bury
 weight=800g
 category=bones
+param=bone_exp,160
 
 [tbwt_jogre_bones_marinated_in_karambwanji]
 name=Marinated j' bones
@@ -35545,6 +36900,7 @@ model=obj_big_bones
 iop1=Bury
 weight=800g
 category=bones
+param=bone_exp,170
 
 [cert_granite_shield]
 certlink=granite_shield
@@ -39769,7 +41125,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague007]
 name=Clue scroll
@@ -39783,7 +41138,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague008]
 name=Clue scroll
@@ -39797,7 +41151,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague009]
 name=Clue scroll
@@ -39811,7 +41164,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague010]
 name=Clue scroll
@@ -39825,7 +41177,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague011]
 name=Clue scroll
@@ -39839,7 +41190,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague012]
 name=Clue scroll
@@ -39853,7 +41203,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague013]
 name=Clue scroll
@@ -39867,7 +41216,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague014]
 name=Clue scroll
@@ -39881,7 +41229,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague015]
 name=Clue scroll
@@ -39895,7 +41242,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague016]
 name=Clue scroll
@@ -39909,7 +41255,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague017]
 name=Clue scroll
@@ -39923,7 +41268,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague018]
 name=Clue scroll
@@ -39937,7 +41281,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague019]
 name=Clue scroll
@@ -39951,7 +41294,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague020]
 name=Clue scroll
@@ -39965,7 +41307,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague021]
 name=Clue scroll
@@ -39979,7 +41320,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague022]
 name=Clue scroll
@@ -39993,7 +41333,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague023]
 name=Clue scroll
@@ -40007,7 +41346,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague024]
 name=Clue scroll
@@ -40021,7 +41359,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague025]
 name=Clue scroll
@@ -40035,7 +41372,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague026]
 name=Clue scroll
@@ -40049,7 +41385,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague026_casket]
 name=Casket
@@ -40064,7 +41399,6 @@ cost=50
 iop1=Open
 members=yes
 weight=5kg
-category=trail_casket_easy
 
 [trail_clue_easy_vague027]
 name=Clue scroll
@@ -40078,7 +41412,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague028]
 name=Clue scroll
@@ -40092,7 +41425,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague029]
 name=Clue scroll
@@ -40106,7 +41438,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_vague030]
 name=Clue scroll
@@ -40120,7 +41451,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_map004]
 name=Clue scroll
@@ -40134,7 +41464,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_map004_casket]
 name=Casket
@@ -40149,7 +41478,6 @@ cost=50
 iop1=Open
 members=yes
 weight=5kg
-category=trail_casket_easy
 
 [trail_clue_easy_map005]
 name=Clue scroll
@@ -40163,7 +41491,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_map005_casket]
 name=Casket
@@ -40178,7 +41505,7 @@ cost=50
 iop1=Open
 members=yes
 weight=5kg
-category=trail_casket_easy
+category=trail_casket_hard
 
 [trail_clue_hard_map002]
 name=Clue scroll
@@ -40192,7 +41519,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_map002_casket]
 name=Casket
@@ -40207,7 +41533,6 @@ cost=50
 iop1=Open
 members=yes
 weight=5kg
-category=trail_casket_hard
 
 [trail_clue_hard_map003]
 name=Clue scroll
@@ -40221,7 +41546,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_map003_casket]
 name=Casket
@@ -40236,7 +41560,6 @@ cost=50
 iop1=Open
 members=yes
 weight=5kg
-category=trail_casket_hard
 
 [trail_clue_hard_map004]
 name=Clue scroll
@@ -40250,7 +41573,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_map005]
 name=Clue scroll
@@ -40264,7 +41586,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant014]
 name=Clue scroll
@@ -40278,7 +41599,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant014_casket]
 name=Casket
@@ -40307,7 +41627,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant015_casket]
 name=Casket
@@ -40336,7 +41655,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant016_casket]
 name=Casket
@@ -40365,7 +41683,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant017_casket]
 name=Casket
@@ -40394,7 +41711,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant018_casket]
 name=Casket
@@ -40423,7 +41739,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant019_casket]
 name=Casket
@@ -40452,7 +41767,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant020_casket]
 name=Casket
@@ -40481,7 +41795,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant021_casket]
 name=Casket
@@ -40510,7 +41823,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant022_casket]
 name=Casket
@@ -40539,7 +41851,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant023_casket]
 name=Casket
@@ -40568,7 +41879,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant024_casket]
 name=Casket
@@ -40597,7 +41907,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant025_casket]
 name=Casket
@@ -40626,7 +41935,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant026_casket]
 name=Casket
@@ -40655,7 +41963,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant027_casket]
 name=Casket
@@ -40684,7 +41991,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant028_casket]
 name=Casket
@@ -40713,7 +42019,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant029_casket]
 name=Casket
@@ -40742,7 +42047,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant030_casket]
 name=Casket
@@ -40771,7 +42075,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant031_casket]
 name=Casket
@@ -40800,7 +42103,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant032_casket]
 name=Casket
@@ -40829,7 +42131,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle018_puzzlebox]
 name=Puzzle box
@@ -40843,7 +42144,6 @@ model=obj_trail_clue_hard_riddle018_puzzlebox
 2dxan=420
 iop1=Open
 weight=100g
-category=trail_puzzle
 
 [trail_clue_hard_riddle019]
 name=Clue scroll
@@ -40857,7 +42157,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle019_puzzlebox]
 name=Puzzle box
@@ -40871,7 +42170,6 @@ model=obj_trail_clue_hard_riddle018_puzzlebox
 2dxan=420
 iop1=Open
 weight=100g
-category=trail_puzzle
 
 [trail_clue_hard_riddle020]
 name=Clue scroll
@@ -40885,7 +42183,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle020_puzzlebox]
 name=Puzzle box
@@ -40899,7 +42196,6 @@ model=obj_trail_clue_hard_riddle020_puzzlebox
 2dxan=420
 iop1=Open
 weight=100g
-category=trail_puzzle
 
 [trail_clue_hard_riddle021]
 name=Clue scroll
@@ -40913,7 +42209,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle021_puzzlebox]
 name=Puzzle box
@@ -40927,7 +42222,6 @@ model=obj_trail_clue_hard_riddle020_puzzlebox
 2dxan=420
 iop1=Open
 weight=100g
-category=trail_puzzle
 
 [trail_clue_hard_riddle022]
 name=Clue scroll
@@ -40941,7 +42235,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle023]
 name=Clue scroll
@@ -40955,7 +42248,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle024]
 name=Clue scroll
@@ -40969,7 +42261,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle025]
 name=Clue scroll
@@ -40983,7 +42274,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle025_puzzlebox]
 name=Puzzle box
@@ -40997,7 +42287,6 @@ model=obj_trail_clue_hard_riddle020_puzzlebox
 2dxan=420
 iop1=Open
 weight=100g
-category=trail_puzzle
 
 [trail_clue_hard_riddle026]
 name=Clue scroll
@@ -41011,7 +42300,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle026_puzzlebox]
 name=Puzzle box
@@ -41025,7 +42313,6 @@ model=obj_trail_clue_hard_riddle018_puzzlebox
 2dxan=420
 iop1=Open
 weight=100g
-category=trail_puzzle
 
 [trail_clue_hard_riddle027]
 name=Clue scroll
@@ -41039,7 +42326,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle028]
 name=Clue scroll
@@ -41053,7 +42339,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle028_casket]
 name=Casket
@@ -41068,7 +42353,6 @@ cost=50
 iop1=Open
 members=yes
 weight=5kg
-category=trail_casket_hard
 
 [trail_clue_medium_sextant014]
 name=Clue scroll
@@ -41082,7 +42366,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant014_casket]
 name=Casket
@@ -41111,7 +42394,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant015_casket]
 name=Casket
@@ -41140,7 +42422,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant016_casket]
 name=Casket
@@ -41155,7 +42436,7 @@ cost=50
 iop1=Open
 members=yes
 weight=5kg
-category=trail_clue_casket
+category=trail_casket_medium
 
 [trail_clue_medium_sextant017]
 name=Clue scroll
@@ -41169,7 +42450,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant017_casket]
 name=Casket
@@ -41198,7 +42478,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant018_casket]
 name=Casket
@@ -41227,7 +42506,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant019_casket]
 name=Casket
@@ -41256,7 +42534,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant020_casket]
 name=Casket
@@ -41285,7 +42562,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_map003_casket]
 name=Casket
@@ -41314,7 +42590,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_map005]
 name=Clue scroll
@@ -41328,7 +42603,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_map005_casket]
 name=Casket
@@ -41357,7 +42631,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_map007]
 name=Clue scroll
@@ -41371,7 +42644,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_map007_casket]
 name=Casket
@@ -41400,7 +42672,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_riddle007]
 name=Clue scroll
@@ -41414,7 +42685,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_riddle007_key]
 name=Key
@@ -41441,7 +42711,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_riddle008_key]
 name=Key
@@ -41468,7 +42737,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_riddle010]
 name=Clue scroll
@@ -41482,7 +42750,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_anagram013]
 name=Clue scroll
@@ -41496,7 +42763,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_anagram014]
 name=Clue scroll
@@ -41510,7 +42776,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_anagram015]
 name=Clue scroll
@@ -41524,7 +42789,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_anagram016]
 name=Clue scroll
@@ -41538,7 +42802,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_anagram017]
 name=Clue scroll
@@ -41552,7 +42815,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_anagram018]
 name=Clue scroll
@@ -41566,7 +42828,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_anagram019]
 name=Clue scroll
@@ -41580,7 +42841,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_anagram020]
 name=Clue scroll
@@ -41594,7 +42854,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_slidingpuzzlec01]
 name=Sliding piece
@@ -44932,6 +46191,150 @@ weight=10g
 [cert_necklace_of_minigames_1]
 certlink=necklace_of_minigames_1
 certtemplate=template_for_cert
+
+[boardgames_runelink_firerune]
+name=Board game piece
+desc=A piece used in board games.
+model=obj_firerune
+2dyof=1
+2dzoom=740
+2dyan=1012
+2dxan=528
+members=yes
+ambient=30
+weight=2g
+
+[boardgames_runelink_waterrune]
+name=Board game piece
+desc=A piece used in board games.
+model=obj_waterrune
+2dyof=1
+2dzoom=740
+2dyan=1012
+2dxan=528
+members=yes
+ambient=30
+weight=2g
+
+[boardgames_runelink_earthrune]
+name=Board game piece
+desc=A piece used in board games.
+model=obj_earthrune
+2dyof=1
+2dzoom=740
+2dyan=1012
+2dxan=528
+members=yes
+ambient=30
+weight=2g
+
+[boardgames_runelink_airrune]
+name=Board game piece
+desc=A piece used in board games.
+model=obj_airrune
+2dyof=1
+2dzoom=740
+2dyan=1012
+2dxan=528
+members=yes
+ambient=30
+weight=2g
+
+[boardgames_runelink_mindrune]
+name=Board game piece
+desc=A piece used in board games.
+model=obj_mindrune
+2dyof=1
+2dzoom=740
+2dyan=1012
+2dxan=528
+members=yes
+ambient=30
+weight=2g
+
+[boardgames_runelink_bodyrune]
+name=Board game piece
+desc=A piece used in board games.
+model=obj_bodyrune
+2dyof=1
+2dzoom=740
+2dyan=1012
+2dxan=528
+members=yes
+ambient=30
+weight=2g
+
+[boardgames_runelink_naturerune]
+name=Board game piece
+desc=A piece used in board games.
+model=obj_naturerune
+2dyof=1
+2dzoom=740
+2dyan=1012
+2dxan=528
+members=yes
+ambient=30
+weight=2g
+
+[boardgames_runelink_chaosrune]
+name=Board game piece
+desc=A piece used in board games.
+model=obj_chaosrune
+2dyof=1
+2dzoom=740
+2dyan=1012
+2dxan=528
+members=yes
+ambient=30
+weight=2g
+
+[boardgames_runelink_lawrune]
+name=Board game piece
+desc=A piece used in board games.
+model=obj_lawrune
+2dyof=1
+2dzoom=740
+2dyan=1012
+2dxan=528
+members=yes
+ambient=30
+weight=2g
+
+[boardgames_runelink_cosmicrune]
+name=Board game piece
+desc=A piece used in board games.
+model=obj_cosmicrune
+2dyof=1
+2dzoom=740
+2dyan=1012
+2dxan=528
+members=yes
+ambient=30
+weight=2g
+
+[boardgames_runelink_bloodrune]
+name=Board game piece
+desc=A piece used in board games.
+model=obj_bloodrune
+2dyof=1
+2dzoom=740
+2dyan=1012
+2dxan=528
+members=yes
+ambient=30
+weight=2g
+
+[boardgames_runelink_soulrune]
+name=Board game piece
+desc=A piece used in board games.
+model=obj_soulrune
+2dyof=1
+2dzoom=740
+2dyan=1012
+2dxan=528
+members=yes
+ambient=30
+weight=2g
 
 [wearable_stool_white]
 name=Stool
@@ -82661,6 +84064,7 @@ weight=10g
 [nobookindex]
 model=obj_sheepbonesa
 stackable=yes
+tradeable=no
 
 [bookindex]
 model=obj_sheepbonesa
@@ -83496,6 +84900,7 @@ iop3=Extinguish
 cost=130
 wearpos=lefthand
 weight=5lb
+category=light_source_lit
 
 [potato_chilli+carne]
 name=Chilli potato
@@ -85544,7 +86949,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_easy_map006_casket]
 name=Casket
@@ -85573,7 +86977,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_easy
 
 [trail_clue_hard_map006]
 name=Clue scroll
@@ -85587,7 +86990,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_map006_casket]
 name=Casket
@@ -85602,7 +87004,6 @@ cost=50
 iop1=Open
 members=yes
 weight=5kg
-category=trail_casket_hard
 
 [trail_clue_hard_map007]
 name=Clue scroll
@@ -85616,7 +87017,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_map007_casket]
 name=Casket
@@ -85631,7 +87031,6 @@ cost=50
 iop1=Open
 members=yes
 weight=5kg
-category=trail_casket_hard
 
 [trail_clue_hard_riddle029]
 name=Clue scroll
@@ -85645,7 +87044,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle029_casket]
 name=Casket
@@ -85660,7 +87058,6 @@ cost=50
 iop1=Open
 members=yes
 weight=5kg
-category=trail_casket_hard
 
 [trail_clue_hard_riddle030]
 name=Clue scroll
@@ -85674,7 +87071,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle030_casket]
 name=Casket
@@ -85689,7 +87085,6 @@ cost=50
 iop1=Open
 members=yes
 weight=5kg
-category=trail_casket_hard
 
 [trail_clue_hard_riddle031]
 name=Clue scroll
@@ -85703,7 +87098,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle032]
 name=Clue scroll
@@ -85717,7 +87111,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle033]
 name=Clue scroll
@@ -85731,7 +87124,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle034]
 name=Clue scroll
@@ -85745,7 +87137,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle035]
 name=Clue scroll
@@ -85759,7 +87150,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle036]
 name=Clue scroll
@@ -85773,7 +87163,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle037]
 name=Clue scroll
@@ -85787,7 +87176,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle038]
 name=Clue scroll
@@ -85801,7 +87189,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_riddle039]
 name=Clue scroll
@@ -85815,7 +87202,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant033]
 name=Clue scroll
@@ -85830,7 +87216,6 @@ model=obj_trail_clue_easy_simple001
 iop1=Read
 category=trail_clue_hard
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant033_casket]
 name=Casket
@@ -85859,7 +87244,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant034_casket]
 name=Casket
@@ -85888,7 +87272,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant035_casket]
 name=Casket
@@ -85917,7 +87300,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant036_casket]
 name=Casket
@@ -85946,7 +87328,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant037_casket]
 name=Casket
@@ -85975,7 +87356,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_sextant038_casket]
 name=Casket
@@ -86004,7 +87384,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_anagram001_challenge]
 name=Challenge scroll
@@ -86018,7 +87397,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_anagram002]
 name=Clue scroll
@@ -86032,7 +87410,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_anagram002_challenge]
 name=Challenge scroll
@@ -86046,7 +87423,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_anagram003]
 name=Clue scroll
@@ -86060,7 +87436,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_hard_anagram003_challenge]
 name=Challenge scroll
@@ -86074,7 +87449,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_hard
 
 [trail_clue_medium_anagram021]
 name=Clue scroll
@@ -86088,7 +87462,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_anagram021_challenge]
 name=Challenge scroll
@@ -86102,7 +87475,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_challenge
 
 [trail_clue_medium_anagram022]
 name=Clue scroll
@@ -86116,7 +87488,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_anagram022_challenge]
 name=Challenge scroll
@@ -86130,7 +87501,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_challenge
 
 [trail_clue_medium_anagram023]
 name=Clue scroll
@@ -86144,7 +87514,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_anagram023_challenge]
 name=Challenge scroll
@@ -86158,7 +87527,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_challenge
 
 [trail_clue_medium_anagram024]
 name=Clue scroll
@@ -86172,7 +87540,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_anagram024_challenge]
 name=Challenge scroll
@@ -86186,7 +87553,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_challenge
 
 [trail_clue_medium_anagram025]
 name=Clue scroll
@@ -86200,7 +87566,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_anagram025_challenge]
 name=Challenge scroll
@@ -86214,7 +87579,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_challenge
 
 [trail_clue_medium_anagram026]
 name=Clue scroll
@@ -86228,7 +87592,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_anagram026_challenge]
 name=Challenge scroll
@@ -86242,7 +87605,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_challenge
 
 [trail_clue_medium_map008]
 name=Clue scroll
@@ -86256,7 +87618,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_map008_casket]
 name=Casket
@@ -86285,7 +87646,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_map009_casket]
 name=Casket
@@ -86314,7 +87674,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_map010_casket]
 name=Casket
@@ -86343,7 +87702,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_map011_casket]
 name=Casket
@@ -86372,7 +87730,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_map012_casket]
 name=Casket
@@ -86401,7 +87758,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_riddle011_key]
 name=Key
@@ -86428,7 +87784,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_riddle012_key]
 name=Key
@@ -86455,7 +87810,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_riddle014]
 name=Clue scroll
@@ -86469,7 +87823,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_riddle014_key]
 name=Key
@@ -86496,7 +87849,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_riddle016]
 name=Clue scroll
@@ -86510,7 +87862,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant021]
 name=Clue scroll
@@ -86524,7 +87875,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant021_casket]
 name=Casket
@@ -86553,7 +87903,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant022_casket]
 name=Casket
@@ -86582,7 +87931,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant023_casket]
 name=Casket
@@ -86611,7 +87959,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant024_casket]
 name=Casket
@@ -86640,7 +87987,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant025_casket]
 name=Casket
@@ -86669,7 +88015,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant026_casket]
 name=Casket
@@ -86698,7 +88043,6 @@ model=obj_trail_clue_easy_simple001
 2dxan=360
 iop1=Read
 weight=20g
-category=trail_clue_medium
 
 [trail_clue_medium_sextant027_casket]
 name=Casket
