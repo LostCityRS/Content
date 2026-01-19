@@ -171,7 +171,11 @@ if (%xplamp <= 0) {
 }
 
 def_int $roll;
-$roll = random(10);
+if (map_members() = ^false) {
+    $roll = random(7); // F2P
+} else {
+    $roll = random(10); // Members
+}
 
 switch_int($roll) {
     case 0 : { ~macro_maze_give_chest_loot(airrune, 15, "You've found some air runes!", 0); }
@@ -181,6 +185,7 @@ switch_int($roll) {
     case 4 : { ~macro_maze_give_chest_loot(bronze_arrow, 20, "You've found some bronze arrows!", 0); }
     case 5 : { ~macro_maze_give_chest_loot(bolt, 10, "You've found some bolts!", ^objbox_height); }
     case 6 : { ~macro_maze_give_chest_loot(iron_arrow, 15, "You've found some iron arrows!", 0); }
+    // Members-only
     case 7 : { ~macro_maze_give_chest_loot(2dose1attack, 1, "You've found an attack potion!", ^objbox_height); }
     case 8 : { ~macro_maze_give_chest_loot(2dose1strength, 1, "You've found a strength potion!", ^objbox_height); }
     case 9 : { ~macro_maze_give_chest_loot(2dose1defense, 1, "You've found a defence potion!", ^objbox_height); }
