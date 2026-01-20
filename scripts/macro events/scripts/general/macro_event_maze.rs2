@@ -172,7 +172,7 @@ if (%xplamp <= 0) {
 
 def_int $roll;
 if (map_members() = ^false) {
-    $roll = random(7); // F2P
+    $roll = random(8); // F2P
 } else {
     $roll = random(10); // Members
 }
