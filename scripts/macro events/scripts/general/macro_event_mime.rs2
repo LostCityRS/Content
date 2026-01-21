@@ -152,21 +152,11 @@ if (~has_full_mime_outfit = false) {
 }
 
 [proc,has_full_mime_outfit]()(boolean)
-if(inv_total(inv, macro_mime_mask) = 0 & inv_total(worn, macro_mime_mask) = 0 & inv_total(bank, macro_mime_mask) = 0) {
-    return (false);
-}
-if(inv_total(inv, macro_mime_top) = 0 & inv_total(worn, macro_mime_top) = 0 & inv_total(bank, macro_mime_top) = 0) {
-    return (false);
-}
-if (inv_total(inv, macro_mime_legs) = 0 & inv_total(worn, macro_mime_legs) = 0 & inv_total(bank, macro_mime_legs) = 0) {
-    return (false);
-}
-if (inv_total(inv, macro_mime_gloves) = 0 & inv_total(worn, macro_mime_gloves) = 0 & inv_total(bank, macro_mime_gloves) = 0) {
-    return (false);
-}
-if (inv_total(inv, macro_mime_gloves) = 0 & inv_total(worn, macro_mime_gloves) = 0 & inv_total(bank, macro_mime_gloves) = 0) {
-    return (false);
-}
+if (~obj_gettotal(macro_mime_mask) = 0) { return (false); }
+if (~obj_gettotal(macro_mime_top) = 0) { return (false); }
+if (~obj_gettotal(macro_mime_legs) = 0) { return (false); }
+if (~obj_gettotal(macro_mime_gloves) = 0) { return (false); }
+if (~obj_gettotal(macro_mime_boots) = 0) { return (false); }
 return (true);
 
 [proc,has_all_mime_emotes]()(boolean)
@@ -238,50 +228,50 @@ if (testbit(%emote_access, ^macro_mime_glass_box) = ^false) {
 [proc,unlock_mime_outfit_piece]()(namedobj, int)
 def_int $missing_count = 0;
 
-if (inv_total(inv, macro_mime_mask) = 0 & inv_total(worn, macro_mime_mask) = 0 & inv_total(bank, macro_mime_mask) = 0) {
-    $missing_count = calc($missing_count + 1);
+if (~obj_gettotal(macro_mime_mask) = 0) {
+    $missing_count = add($missing_count, 1);
 }
-if (inv_total(inv, macro_mime_top) = 0 & inv_total(worn, macro_mime_top) = 0 & inv_total(bank, macro_mime_top) = 0) {
-    $missing_count = calc($missing_count + 1);
+if (~obj_gettotal(macro_mime_top) = 0) {
+    $missing_count = add($missing_count, 1);
 }
-if (inv_total(inv, macro_mime_legs) = 0 & inv_total(worn, macro_mime_legs) = 0 & inv_total(bank, macro_mime_legs) = 0) {
-    $missing_count = calc($missing_count + 1);
+if (~obj_gettotal(macro_mime_legs) = 0) {
+    $missing_count = add($missing_count, 1);
 }
-if (inv_total(inv, macro_mime_gloves) = 0 & inv_total(worn, macro_mime_gloves) = 0 & inv_total(bank, macro_mime_gloves) = 0) {
-    $missing_count = calc($missing_count + 1);
+if (~obj_gettotal(macro_mime_gloves) = 0) {
+    $missing_count = add($missing_count, 1);
 }
-if (inv_total(inv, macro_mime_boots) = 0 & inv_total(worn, macro_mime_boots) = 0 & inv_total(bank, macro_mime_boots) = 0) {
-    $missing_count = calc($missing_count + 1);
+if (~obj_gettotal(macro_mime_boots) = 0) {
+    $missing_count = add($missing_count, 1);
 }
 
 def_int $pick = random($missing_count);
 def_int $current = 0;
 
-if (inv_total(inv, macro_mime_mask) = 0 & inv_total(worn, macro_mime_mask) = 0 & inv_total(bank, macro_mime_mask) = 0) {
+if (~obj_gettotal(macro_mime_mask) = 0) {
     if ($current = $pick) {
         return(macro_mime_mask, 1);
     }
     $current = add($current, 1);
 }
-if (inv_total(inv, macro_mime_top) = 0 & inv_total(worn, macro_mime_top) = 0 & inv_total(bank, macro_mime_top) = 0) {
+if (~obj_gettotal(macro_mime_top) = 0) {
     if ($current = $pick) {
         return(macro_mime_top, 1);
     }
     $current = add($current, 1);
 }
-if (inv_total(inv, macro_mime_legs) = 0 & inv_total(worn, macro_mime_legs) = 0 & inv_total(bank, macro_mime_legs) = 0) {
+if (~obj_gettotal(macro_mime_legs) = 0) {
     if ($current = $pick) {
         return(macro_mime_legs, 1);
     }
     $current = add($current, 1);
 }
-if (inv_total(inv, macro_mime_gloves) = 0 & inv_total(worn, macro_mime_gloves) = 0 & inv_total(bank, macro_mime_gloves) = 0) {
+if (~obj_gettotal(macro_mime_gloves) = 0) {
     if ($current = $pick) {
         return(macro_mime_gloves, 1);
     }
     $current = add($current, 1);
 }
-if (inv_total(inv, macro_mime_boots) = 0 & inv_total(worn, macro_mime_boots) = 0 & inv_total(bank, macro_mime_boots) = 0) {
+if (~obj_gettotal(macro_mime_boots) = 0) {
     if ($current = $pick) {
         return(macro_mime_boots, 1);
     }
