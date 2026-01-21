@@ -91,7 +91,7 @@ if (~inzone_coord_pair_table(random_event_mime_zones, $coord) = true) {
     return(false);
 }
 if (~inzone_coord_pair_table(random_event_maze_zones, $coord) = true) {
-    say("I need to reach the maze centre!"); // Best guess, similar to mime
+    say("I need to find the center of the maze!"); // https://www.youtube.com/watch?v=SFugJO98ap4
     return(false);
 }
 if (~in_duel_arena($coord) = true) {
