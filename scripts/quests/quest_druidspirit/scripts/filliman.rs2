@@ -1,0 +1,413 @@
+[label,filliman_spirit_dialogue]
+if(%druidspirit < ^druidspirit_spoken_filliman & %druidspirit >= ^druidspirit_entered_swamp) {
+    ~mesbox("A shifting apparition appears in front of you.");
+    if(inv_total(worn, amulet_of_ghostspeak) = 0) {
+        ~chatnpc("<p,neutral>Cannot wake up... Where am I?");
+        ~chatplayer("<p,neutral>Huh? What's this?");
+        ~chatnpc("<p,neutral>What did I write down now? Put it in the knot hole.");
+        if(%druidspirit = ^druidspirit_entered_swamp) %druidspirit = ^druidspirit_failed_talk;
+        ~chatnpc("<p,sad>Ahhrs Oooohh arhhhhAHhhh.");
+        ~chatplayer("<p,quiz>Huh! Now you're just not making any sense at all! I just cannot understand you!");
+    } else {
+        ~chatplayer("<p,quiz>Hello?");
+        ~chatnpc("<p,shock>Oh, I understand you! At last, someone who doesn't just mumble. I understand what you're saying!");
+        @multi4("I'm wearing an amulet of ghost speak!", filliman_ghostspeak, "How long have you been a ghost?", filliman_longghost, "What's it like being a ghost?", filliman_likeghost, "Ok, thanks.", filliman_ok);
+    }
+    return;
+}
+if(%druidspirit >= ^druidspirit_full_transform) {
+    mes("This spirit seems to ethereal to communicate with.");
+    return;
+}
+if(inv_total(worn, amulet_of_ghostspeak) = 0) {
+    @filliman_ghost;
+}
+switch_int(%druidspirit) {
+    case ^druidspirit_entered_grotto : 
+        if(inzone(0_53_52_0_0, 0_54_53_63_63, coord) = true) {
+            @filliman_grotto;
+        }
+        ~chatnpc("<p,neutral>Well, hello there again, I was just enjoying the grotto. Many thanks for your help, I couldn't have become a Spirit of nature without you.");
+        ~chatnpc("<p,neutral>I must complete the transformation now. Just stand there and watch the show, apparently it's quite good!");
+        if_close;
+        // nothing if hes not there anymore
+        if(npc_find(coord, filliman_tarlock_spirit, 10, 0) = false) {
+            return;
+        }
+        p_delay(0);
+        npc_anim(human_casting, 5);
+        // coords are indeed fixed
+        ~coord_projectile(0_53_152_52_14, npc_coord, druid_shooting_star, 0, 32, 30, 180, 46, 0, 10);
+        ~coord_projectile(0_53_152_52_10, npc_coord, druid_shooting_star, 0, 48, 30, 180, 46, 0, 10);
+        ~coord_projectile(0_53_152_52_8, npc_coord, druid_shooting_star, 0, 48, 30, 180, 46, 0, 10);
+        ~coord_projectile(0_53_152_46_14, npc_coord, druid_shooting_star, 0, 32, 30, 180, 46, 0, 10);
+        ~coord_projectile(0_53_152_47_8, npc_coord, druid_shooting_star, 0, 48, 30, 180, 46, 0, 10);
+        ~coord_projectile(0_53_152_47_10, npc_coord, druid_shooting_star, 0, 48, 30, 180, 46, 0, 10);
+        ~coord_projectile(0_53_152_50_7, npc_coord, druid_shooting_star, 0, 48, 30, 180, 46, 0, 10);
+        sound_synth(spirit_transform, 0, 30);
+        p_delay(0);
+        spotanim_map(druidicspirit_effect, npc_coord, 128, 40);
+        spotanim_map(druidicspirit_effect, npc_coord, 64, 35);
+        spotanim_map(druidicspirit_effect, npc_coord, 0, 30);
+        p_delay(0);
+        npc_changetype_keepall(filliman_tarlock_ns, 100);
+        %druidspirit = ^druidspirit_full_transform;
+        ~chatnpc("<p,neutral>Hmmm, good, the transformation is complete. Now, my friend, in return for your assistance, I will help you to kill the Ghasts. First bring to me a silver sickle so that I can bless it for you.");
+        ~chatplayer("<p,neutral>A silver sickle? What's that?");
+        ~chatnpc("<p,neutral>The sickle is the symbol and weapon of the Druid, you need to construct one of silver so that I can bless it, with its powers you will be able to defeat the Ghasts of Mort Myre.");
+        @multi4("Where would I get a silver sickle?", ns_wheresickle, "What will you do to the silver sickle?", ns_whatsickle, "How can a blessed sickle help me to defeat the Ghasts?", ns_defeatghasts, "Ok, thanks.", filliman_ok2);
+    case ^druidspirit_performed_ritual : @filliman_grotto;
+    case ^druidspirit_spoken_filliman2 :
+        ~chatnpc("<p,neutral>Hello again! I don't suppose you've found out what the other components of the Nature spell are have you?");
+        @multi5("What are the things that are needed?", filliman_whatneed,  "What should I do when I have those things?", filliman_whatdo, "I think I've solved the puzzle!", filliman_puzzle, "Could I have another bloom scroll please?", filliman_another_bloom, "Ok, thanks.", filliman_ok);
+    case ^druidspirit_picked_fungi :
+        ~chatnpc("<p,neutral>Did you manage to get something from nature?");
+        if(inv_total(inv, mortmyremushroom) > 0) {
+            ~objbox(mortmyremushroom, "You show the fungus to Filliman.", 250, 0, ^objbox_height);
+            ~chatplayer("<p,neutral>Yes, I have a fungus here that I picked.");
+        } else {
+            ~chatplayer("<p,neutral>I picked a fungus that grew when I cast the bloom spell.");
+        }
+        ~chatnpc("<p,neutral>Wonderful, the mushroom represents 'something from nature'. Now we need to work out what the other components of the spell are!");
+        %druidspirit = ^druidspirit_spoken_filliman2;
+        @multi5("What are the things that are needed?", filliman_whatneed, 
+                "What should I do when I have those things?", filliman_whatdo, 
+                "I think I've solved the puzzle!", filliman_puzzle,
+                "Could I have another bloom scroll please?", filliman_another_bloom,
+                "Ok, thanks.", filliman_ok);
+    case ^druidspirit_casted_spell :
+        ~chatplayer("<p,neutral>Hi there, I've cast the spell, but I'm not sure what to do?");
+        ~chatnpc("<p,neutral>Well, when you cast the spell, did anything happen? The spell has the ability to grow things within a certain range of the caster. Keep trying until you manage to get something to bloom.");
+        if(inv_total(inv, bloom_spell) = 0) { // does not check bank
+            @filliman_another_bloom;
+        }
+    case ^druidspirit_blessed :
+        ~chatplayer("<p,neutral>Hello, I've been blessed but I don't know what to do now.");
+        ~chatnpc("<p,neutral>Well, you need to bring 'something from nature', 'something with faith' and 'something of the spirit-to- become freely given.'");
+        ~chatplayer("<p,neutral>Yeah, but what does that mean?");
+        ~chatnpc("<p,neutral>Hmm, it is a conundrum, however, if you use that Bloom spell I gave you, you should be able to get something from nature. Once you have that, we may be able to puzzle the rest out.");
+        if(inv_total(inv, bloom_spell) = 0) { // does not check bank
+            @filliman_another_bloom;
+        }
+    case ^druidspirit_received_spell :
+        ~chatnpc("<p,sad>Hello there, have you been blessed yet?");
+        ~chatplayer("<p,neutral>No, not yet.");
+        ~chatnpc("<p,sad>Well, hurry up!");
+        if(inv_total(inv, bloom_spell) = 0) { // does not check bank
+            @filliman_another_bloom;
+        }
+    case ^druidspirit_given_journal :
+        ~chatnpc("<p,sad>Thanks for the journal, I've been reading it. It looks like I came to a violent and bitter end but that's not really important. I just have to figure out what I am going to do now?");
+        @multi5("Being dead, what options do you think you have?", filliman_bedead, "So, what's your plan?", filliman_plan, "Well, good luck with that.", filliman_goodluck, "How can I help?", filliman_howhelp, "Ok, thanks.", filliman_ok2);
+    case ^druidspirit_shown_mirror :
+        ~chatplayer("<p,neutral>Hello again..");
+        ~chatnpc("<p,sad>Oh, hello... Sorry, you've caught me at a bad time, it's just that I've had a sign you see and I need to find my journal.");
+        ~chatplayer("<p,neutral>Where did you put it?");
+        ~chatnpc("<p,sad>Well, if I knew that, I wouldn't still be looking for it. However, I do remember something about a knot? Perhaps I was meant to tie a knot or something?");
+    case ^druidspirit_spoken_filliman :
+        if(inv_total(worn, amulet_of_ghostspeak) = 0) {
+            @filliman_ghost;
+        }
+        ~chatplayer("<p,neutral>Hello again!");
+        ~chatnpc("<p,sad>Oh, hello there, do you still think I'm dead? It's hard to see how I could be dead when I'm still in the world. I can see everything quite clearly. And nothing of what you say reflects the truth.");
+        ~chatplayer("<p,neutral>Yes, I do think you're dead and I'll prove it somehow.");
+        @multi4("I'm wearing an amulet of ghost speak!", filliman_ghostspeak, "How long have you been a ghost?", filliman_longghost, "What's it like being a ghost?", filliman_likeghost, "Ok, thanks.", filliman_ok);
+}
+
+[label,filliman_ns_dialogue]
+if(%druidspirit < ^druidspirit_full_transform) {
+    mes("This spirit seems to be occupied with other-worldly matters.");
+    return;
+}
+if(%druidspirit = ^druidspirit_complete) {
+    mes("This spirit seems to be busy.");
+    return;
+}
+if(inv_total(worn, amulet_of_ghostspeak) = 0) {
+    @filliman_ghost;
+}
+switch_int(%druidspirit) {
+    case default :
+        ~chatnpc("<p,neutral>Hello again my friend, have you defeated three Ghasts as I asked you?");
+        if(%druidspirit = ^druidspirit_killed_ghast3) {
+            ~chatplayer("<p,neutral>Yes, I've killed all three and their spirits have been released!");
+            ~chatnpc("<p,neutral>Many thanks my friend, you have completed your quest! I can now change this place into a holy sanctuary! And forever will it now be an Altar of Nature!");
+            if_close;
+            if(npc_find(coord, filliman_tarlock_ns, 10, 0) = false) {
+                return;
+            }
+            queue(druidspirit_quest_complete, 0);
+            p_delay(0);
+            npc_anim(human_casting, 0);
+            p_delay(1);
+            ~coord_projectile(0_53_152_52_14, npc_coord, druid_shooting_star, 0, 42, 30, 180, 46, 0, 10);
+            ~coord_projectile(0_53_152_50_9, npc_coord, druid_shooting_star, 0, 42, 30, 180, 46, 0, 10);
+            ~coord_projectile(0_53_152_46_14, npc_coord, druid_shooting_star, 0, 42, 30, 180, 46, 0, 10);
+            p_delay(0);
+            spotanim_map(druidicspirit_effect, npc_coord, 128, 106);
+            spotanim_map(druidicspirit_effect, npc_coord, 64, 106);
+            spotanim_map(druidicspirit_effect, npc_coord, 0, 106);
+            sound_synth(bloom_pears, 0, 30);
+            sound_synth(fire_bolt_all, 0, 30);
+            sound_synth(fire_bolt_all, 0, 30);
+            p_delay(2);
+            npc_anim(human_casting, 0);
+            p_delay(2);
+            mes("You see a beautifully tended small grotto area.");
+            p_teleport(movecoord(coord, 0, 1, 0));
+            npc_del;
+            npc_add(map_findsquare(coord, 1, 9, ^map_findsquare_lineofwalk), filliman_tarlock_ns, 100);
+            return;
+        }
+        ~chatplayer("<p,neutral>Not yet.");
+        ~chatnpc("<p,neutral>Well, when you do, please come to me and I'll reward you!");
+        @multi5("How do I get to attack the Ghasts?", ns_attackghasts, "What's this pouch for?", ns_whatpouch, "What can I do with this sickle?", ns_whatsickle2, "I've lost my sickle.", ns_lostsickle, "Ok, thanks.", filliman_ok2);
+    case ^druidspirit_full_transform :
+        ~chatnpc("<p,neutral>Have you brought me the silver sickle?");
+        if(inv_total(inv, silver_sickle) = 0) {
+            ~chatplayer("<p,neutral>No sorry, not yet!");
+            ~chatnpc("<p,neutral>Well, come to me when you have it.");
+            @multi4("Where would I get a silver sickle?", ns_wheresickle, "What will you do to the silver sickle?", ns_whatsickle, "How can a blessed sickle help me to defeat the Ghasts?", ns_defeatghasts, "Ok, thanks.", filliman_ok2);
+        }
+        ~chatplayer("<p,neutral>Yes, here it is. What are you going to do with it?");
+        ~chatnpc("<p,neutral>My friend, I will bless it for you and you will then be able to accomplish great things. Now then, I must cast the enchantment. You can bless a new sickle by dipping it in the holy waterof the grotto.");
+        if_close;
+        if(npc_find(coord, filliman_tarlock_ns, 10, 0) = false) { // also stops if ns despawned
+            return;
+        }
+        ~coord_projectile(0_53_152_49_13, coord, druid_shooting_star, 0, 32, 30, 180, 46, 0, 10);
+        ~coord_projectile(0_53_152_50_13, coord, druid_shooting_star, 0, 48, 30, 180, 46, 0, 10);
+        ~coord_projectile(0_53_152_49_12, coord, druid_shooting_star, 0, 48, 30, 180, 46, 0, 10);
+        ~coord_projectile(0_53_152_50_12, coord, druid_shooting_star, 0, 32, 30, 180, 46, 0, 10);
+        p_delay(1);
+        anim(druidicspirit_human_bloom, 30);
+        p_delay(0);
+        %druidspirit = ^druidspirit_blessed_sickle;
+        inv_del(inv, silver_sickle, 1);
+        inv_add(inv, silver_sickle_blessed, 1);
+        p_delay(2);
+        // https://web.archive.org/web/20060907161158im_/http://runeweb.net/rathofdoom/quests/naturespirit/6.png
+        ~objbox(silver_sickle_blessed, "Your sickle has been blessed!||@blu@~ If you lose the blessed sickle, you can bless ~|@blu@~ a new sickle by dipping it in the grotto waters. ~", 250, 0, 0);
+        ~chatnpc("<p,neutral>Now you can go forth and make the swamp bloom. Collect natures bounty to fill a druids pouch. So armed will the Ghasts be bound to you until, you flee or they are defeated.");
+        ~chatnpc("<p,neutral>Before I can make this grotto into an Altar of Nature, I need to be sure that the Ghasts will be kept at bay. Go forth into Mort Myre and slay three Ghasts. You'll be releasing their souls from Mort Myre.");
+        inv_add(inv, druid_pouch_empty, 1);
+        ~objbox(druid_pouch_empty, "The nature spirit gives you an empty pouch.", 250, 0, ^objbox_height);
+        ~chatnpc("<p,neutral>You'll need this in order to collect together natures bounty. When it contains items, it will bind the Ghast to you until you flee or it is defeated.");
+}
+
+[label,ns_attackghasts]
+~chatplayer("<p,neutral>How do I get to attack the Ghasts?");
+~chatnpc("<p,neutral>Go forth and with the sickle make the swamp bloom. Collect natures bounty to fill a druids pouch. So armed will the Ghasts be bound to you until, you flee or they are defeated.");
+@multi5("How do I get to attack the Ghasts?", ns_attackghasts, "What's this pouch for?", ns_whatpouch, "What can I do with this sickle?", ns_whatsickle2, "I've lost my sickle.", ns_lostsickle, "Ok, thanks.", filliman_ok2);
+
+[label,ns_whatpouch]
+~chatplayer("<p,neutral>What's this pouch for?");
+~chatnpc("<p,neutral>It is for collecting natures bounty, once it contains the blossomed items of the swamp, it will make the Ghasts appear and you can then attack them.");
+@multi5("How do I get to attack the Ghasts?", ns_attackghasts, "What's this pouch for?", ns_whatpouch, "What can I do with this sickle?", ns_whatsickle2, "I've lost my sickle.", ns_lostsickle, "Ok, thanks.", filliman_ok2);
+
+[label,ns_whatsickle2]
+~chatplayer("<p,neutral>What can I do with this sickle?");
+~chatnpc("<p,neutral>You may use it wisely within the area of Mort Myre to affect natures balance and bring forth a bounty of natures harvest. Once collected into the druid pouch will the Ghast be apparent.");
+@multi5("How do I get to attack the Ghasts?", ns_attackghasts, "What's this pouch for?", ns_whatpouch, "What can I do with this sickle?", ns_whatsickle2, "I've lost my sickle.", ns_lostsickle, "Ok, thanks.", filliman_ok2);
+
+[label,ns_lostsickle]
+~chatplayer("<p,neutral>I've lost my sickle!");
+~chatnpc("<p,neutral>If you should lose the blessed sickle, simply bring another to my altar of nature and refresh it in the grotto waters.");
+@multi5("How do I get to attack the Ghasts?", ns_attackghasts, "What's this pouch for?", ns_whatpouch, "What can I do with this sickle?", ns_whatsickle2, "I've lost my sickle.", ns_lostsickle, "Ok, thanks.", filliman_ok2);
+
+[label,ns_defeatghasts]
+~chatplayer("<p,neutral>How can a blessed sickle help me to defeat the Ghasts?");
+~chatnpc("<p,neutral>My blessings will entice nature to bloom in Mort Myre! And then with natures harvest you can fill a druids pouch and release the Ghasts from their torment.");
+@multi4("Where would I get a silver sickle?", ns_wheresickle, "What will you do to the silver sickle?", ns_whatsickle, "How can a blessed sickle help me to defeat the Ghasts?", ns_defeatghasts, "Ok, thanks.", filliman_ok2);
+
+[label,ns_whatsickle]
+~chatplayer("<p,neutral>What will you do to the silver sickle?");
+~chatnpc("<p,neutral>Why, I will give it my blessings so that the very swamp in which you stand will blossom and bloom!");
+@multi4("Where would I get a silver sickle?", ns_wheresickle, "What will you do to the silver sickle?", ns_whatsickle, "How can a blessed sickle help me to defeat the Ghasts?", ns_defeatghasts, "Ok, thanks.", filliman_ok2);
+
+[label,ns_wheresickle]
+~chatplayer("<p,neutral>Where would I get a silver sickle?");
+~chatnpc("<p,neutral>You could make one yourself if you're artisan enough. I've heard of a distant sandy place where you can buy the mould that you require, it's similar in many respects to the creating of a holy symbol.");
+@multi4("Where would I get a silver sickle?", ns_wheresickle, "What will you do to the silver sickle?", ns_whatsickle, "How can a blessed sickle help me to defeat the Ghasts?", ns_defeatghasts, "Ok, thanks.", filliman_ok2);
+
+[label,filliman_ok]
+~chatplayer("<p,neutral>Ok, thanks.");
+
+// another one with a diff mesanim and no comma :)
+[label,filliman_ok2]
+~chatplayer("<p,quiz>Ok thanks.");
+
+[label,filliman_ghost]
+~chatnpc("<p,sad>Ahhrs Oooohh arhhhhAHhhh.");
+
+[label,filliman_ghostspeak]
+~chatplayer("<p,neutral>I'm wearing an amulet of ghost speak!");
+~chatnpc("<p,neutral>Why you poor fellow, have you passed away and you want to send a message back to a loved one?");
+~chatplayer("<p,neutral>Err.. Not exactly...");
+~chatnpc("<p,sad>You have come to haunt my dreams until I pass on your message to a dearly loved one. I understand. Pray, tell me who would you like me to pass a message on to?");
+~chatplayer("<p,neutral>Ermm, you don't understand... It's just that..");
+~chatnpc("<p,sad>Yes!");
+~chatplayer("<p,neutral>Well, please don't be upset or anything... But you're the ghost!");
+~chatnpc("<p,sad>Don't be silly now! That in no way reflects the truth!");
+if(%druidspirit < ^druidspirit_spoken_filliman) %druidspirit = ^druidspirit_spoken_filliman;
+@multi4("I'm wearing an amulet of ghost speak!", filliman_ghostspeak, "How long have you been a ghost?", filliman_longghost, "What's it like being a ghost?", filliman_likeghost, "Ok, thanks.", filliman_ok);
+
+[label,filliman_longghost]
+~chatplayer("<p,neutral>How long have you been a ghost?");
+~chatnpc("<p,sad>What?! Don't be preposterous! I'm not a ghost! How could you say something like that?");
+~chatplayer("<p,neutral>But it's true, you're a ghost... well, at least that is to say, you're sort of not alive anymore.");
+~chatnpc("<p,sad>Don't be silly, I can see you, I can see that tree.|If I were dead, I wouldn't be able to see anything..|What you say just doesn't reflect the truth.|You'll have to try harder to pull one over on me!");
+if(%druidspirit < ^druidspirit_spoken_filliman) %druidspirit = ^druidspirit_spoken_filliman;
+@multi4("I'm wearing an amulet of ghost speak!", filliman_ghostspeak, "How long have you been a ghost?", filliman_longghost, "What's it like being a ghost?", filliman_likeghost, "Ok, thanks.", filliman_ok);
+
+[label,filliman_likeghost]
+~chatplayer("<p,neutral>What's it like being a ghost?");
+~chatnpc("<p,sad>Oh, it's quite.... Oh... Trying to catch me out were you! Anyone can clearly see that I am not a ghost!");
+~chatplayer("<p,neutral>But you are a ghost, look at yourself! I can see straight through you! You're as dead as this swamp! Err... No offence or anything...");
+~chatnpc("<p,sad>No I won't take offence because I'm not dead and I'm afraid you'll have to come up with some pretty conclusive proof before I believe it. What a strange dream this is.");
+if(%druidspirit < ^druidspirit_spoken_filliman) %druidspirit = ^druidspirit_spoken_filliman;
+@multi4("I'm wearing an amulet of ghost speak!", filliman_ghostspeak, "How long have you been a ghost?", filliman_longghost, "What's it like being a ghost?", filliman_likeghost, "Ok, thanks.", filliman_ok);
+
+[opnpcu,filliman_tarlock_spirit]
+if(last_useitem = mirror) {
+    if(inv_total(worn, amulet_of_ghostspeak) = 0) {
+        @filliman_ghost;
+    } else {
+        if(%druidspirit < ^druidspirit_spoken_filliman) {
+            mes("The spirit doesn't seem interested in this right now.");
+            return;
+        }
+        if(%druidspirit >= ^druidspirit_shown_mirror) {
+            ~chatnpc("<p,sad>Yes, I know, I'm already dead! Thanks for reminding me.");
+            return;
+        }
+        ~objbox(mirror, "You use the mirror on the spirit of the dead Filliman Tarlock.", 250, 0, 0);
+        ~chatplayer("<p,neutral>Here take a look at this, perhaps you can see that you're utterly transparent now!");
+        ~objbox(mirror, "The spirit of Filliman reaches forwards and takes the mirror.", 250, 0, 0);
+        ~chatnpc("<p,quiz>Well, that is the most peculiar thing I've ever experienced. This mirror must somehow be dysfunctional. Strange how well it reflects the stagnant swamp behind me, but there is nothing of my own visage apparent.");
+        ~chatplayer("<p,neutral>That's because you're dead! Dead as a door nail.. Deader in fact... You bear a remarkable resemblance to worm bait! Err.. No offence...");
+        ~chatnpc("<p,sad>I think you might be right my friend, though I still feel very much alive. It is strange how I still come to be here and yet I've not turned into a Ghast.");
+        ~chatnpc("<p,sad>It must be a sign... Yes a sign... I must try to find out what it means. Now, where did I put my journal?");
+        %druidspirit = ^druidspirit_shown_mirror;
+    }
+    return;
+} else if(last_useitem = filliman_journal) {
+    if(inv_total(worn, amulet_of_ghostspeak) = 0) {
+        @filliman_ghost;
+    } else {
+        if(%druidspirit < ^druidspirit_shown_mirror) {
+            ~chatnpc("<p,happy>Oh, keep hold of that, I may need it later.");
+            return;
+        }
+        if(%druidspirit >= ^druidspirit_given_journal) {
+            ~chatnpc("<p,happy>Oh, that's handy, it's just what I needed!");
+            inv_del(inv, filliman_journal, 1);
+            return;
+        }
+        ~objbox(filliman_journal, "You give the journal to Filliman Tarlock.", 250, 0, 0);
+        ~chatplayer("<p,neutral>Here, I found this, maybe you can use it?");
+        ~chatnpc("<p,happy>My journal! That should help to collect my thoughts.");
+        // space here is correct
+        ~objbox(filliman_journal, "~ The spirit starts leafing through the journal. ~|~ He seems quite distant as he regards the pages. ~ |~ After some time the druid faces you again. ~", 250, 0, 0);
+        ~chatnpc("<p,sad>It's all coming back to me now. It looks like I came to a violent and bitter end but that's not important now. I just have to figure out what I am going to do now?");
+        inv_del(inv, filliman_journal, 1);
+        %druidspirit = ^druidspirit_given_journal;
+        @multi5("Being dead, what options do you think you have?", filliman_bedead, "So, what's your plan?", filliman_plan, "Well, good luck with that.", filliman_goodluck, "How can I help?", filliman_howhelp, "Ok thanks.", filliman_ok2);
+    }
+    return;
+}
+~displaymessage(^dm_default);
+
+[label,filliman_bedead]
+~chatplayer("<p,happy>Being dead, what options do you think you have? I'm not trying to be rude or anything, but it's not like you have many options is it? I mean, it's either up or down for you isn't it?");
+~chatnpc("<p,sad>Hmm, well you're a poetic one aren't you. Your material world logic stands you in good stead... If you're standing in the material world...");
+@multi5("Being dead, what options do you think you have?", filliman_bedead, "So, what's your plan?", filliman_plan, "Well, good luck with that.", filliman_goodluck, "How can I help?", filliman_howhelp, "Ok thanks.", filliman_ok2);
+
+[label,filliman_plan]
+~chatplayer("<p,neutral>So, what's your plan?");
+~chatnpc("<p,sad>In my former incarnation I was Filliman Tarlock, a great druid of some power. I spent many years in this place, which was once a forest and I would wish to protect it as a nature spirit.");
+@multi5("Being dead, what options do you think you have?", filliman_bedead, "So, what's your plan?", filliman_plan, "Well, good luck with that.", filliman_goodluck, "How can I help?", filliman_howhelp, "Ok thanks.", filliman_ok2);
+
+[label,filliman_goodluck]
+~chatplayer("<p,neutral>Well, good luck with that.");
+~chatnpc("<p,sad>Won't you help me to become a nature spirit? I could really use your help!");
+@multi5("Being dead, what options do you think you have?", filliman_bedead, "So, what's your plan?", filliman_plan, "Well, good luck with that.", filliman_goodluck, "How can I help?", filliman_howhelp, "Ok thanks.", filliman_ok2);
+
+[label,filliman_howhelp]
+~chatplayer("<p,neutral>How can I help?");
+~chatnpc("<p,sad>Will you help me to become a nature spirit? The directions for becoming one are a bit vague, I need three things but I know how to get one of them. Perhaps you can help collect the rest?");
+~chatplayer("<p,neutral>I might be interested, what's involved?");
+~chatnpc("<p,sad>Well, the book says, that I need, and I quote:-|'Something with faith', 'something from nature' and |'something of the 'spirit-to-become' freely given'. Hmm, I|know how to get something from nature.");
+~chatplayer("<p,neutral>Well, that does seem a bit vague.");
+~chatnpc("<p,sad>Hmm, it does and I could understand if you didn't want to help. However, if you could perhaps at least get the item from nature, that would be a start. Perhaps we can figure out the rest as we go along.");
+~objbox(bloom_spell, "The druid produces a small sheet of papyrus with some writing on it.", 250, 0, 0);
+%druidspirit = ^druidspirit_received_spell;
+inv_add(inv, bloom_spell, 1);
+~chatnpc("<p,sad>This spell needs to be cast in the swamp after you have been blessed. I'm afraid you'll need to go to the temple to the North and ask a member of the clergy to bless you.");
+~chatplayer("<p,neutral>Blessed, what does that do?");
+~chatnpc("<p,sad>It is required if you're to cast this druid spell. Once you've cast the spell, you should find something from nature. Bring it back to me and then we'll try to figure out the other things we need.");
+
+[label,filliman_another_bloom]
+~chatplayer("<p,neutral>Could I have another bloom scroll please?");
+if(inv_total(inv, bloom_spell) > 0) {
+    ~chatnpc("<p,neutral>You've already got one! You don't need two!");
+    return;
+}
+~chatnpc("<p,neutral>Sure, but please look after this one.");
+inv_add(inv, bloom_spell, 1);
+~objbox(bloom_spell, "The spirit of Filliman Tarlock gives you another bloom spell.", 250, 0, 0);
+
+[label,filliman_whatneed]
+~chatplayer("<p,neutral>What are the things that are needed again?");
+~chatnpc("<p,neutral>The three things are: 'Something with faith', 'something from nature' and 'something of the spirit-to-become freely given'.");
+~chatplayer("<p,neutral>Ok, and 'something from nature' is the mushroom from the bloom spell you gave me?");
+~chatnpc("<p,neutral>Yes, that's correct, that seems right to me. The other things we need are 'something with faith' and 'something of the spirit-to-become freely given.");
+~chatplayer("<p,neutral>Do you have any ideas what those things are?");
+~chatnpc("<p,neutral>I'm sorry my friend, but I do not.");
+@multi5("What are the things that are needed?", filliman_whatneed, 
+        "What should I do when I have those things?", filliman_whatdo, 
+        "I think I've solved the puzzle!", filliman_puzzle,
+        "Could I have another bloom scroll please?", filliman_another_bloom,
+        "Ok, thanks.", filliman_ok);
+
+[label,filliman_whatdo]
+~chatplayer("<p,neutral>What should we do when we have those things?");
+~chatnpc("<p,neutral>Ah yes, I looked this up. It says,.. 'to arrange upon three rocks around the spirit-to-become...'. Then I must cast a spell. As you can see, I've already placed the rocks. I must have planned to do this before I died!");
+~chatplayer("<p,neutral>Can we just place the components on any rock?");
+~chatnpc("<p,neutral>Well, the only thing the journal says is that 'something with faith stands south of the spirit-to-become', but I'm so confused now I don't really know what that means. Oh, if only I had all my faculties!");
+@multi5("What are the things that are needed?", filliman_whatneed, 
+        "What should I do when I have those things?", filliman_whatdo, 
+        "I think I've solved the puzzle!", filliman_puzzle,
+        "Could I have another bloom scroll please?", filliman_another_bloom,
+        "Ok, thanks.", filliman_ok);
+
+[label,filliman_puzzle]
+~chatplayer("<p,neutral>I think I've solved the puzzle!");
+~chatnpc("<p,neutral>Oh really.. Have you placed all the items on the stones? Ok, well, lets try! @blu@~ The druid attempts to cast a spell. @blu@~");
+if_close;
+// no npc check
+npc_anim(human_casting, 30);
+if(testbit(%druidspirit_bits, ^druidspirit_spirit_stone) = ^true & testbit(%druidspirit_bits, ^druidspirit_nature_stone) = ^true & coord = 0_53_52_48_7) {
+    sound_synth(spirit_transform_start, 0, 30);
+    ~coord_projectile(movecoord(npc_coord, 0, 0, -2), npc_coord, druid_shooting_star, 0, 48, 30, 180, 80, 0, 10);
+    ~coord_projectile(movecoord(npc_coord, 2, 0, 0), npc_coord, druid_shooting_star, 0, 48, 30, 180, 80, 0, 10);
+    ~coord_projectile(movecoord(npc_coord, -2, 0, 0), npc_coord, druid_shooting_star, 0, 48, 30, 180, 80, 0, 10);
+    p_delay(1);
+    %druidspirit = ^druidspirit_performed_ritual;
+    spotanim_map(druidicspirit_effect, npc_coord, 128, 40);
+    spotanim_map(druidicspirit_effect, npc_coord, 64, 35);
+    spotanim_map(druidicspirit_effect, npc_coord, 0, 30);
+    sound_synth(bloom_pears, 0, 30);
+    ~chatnpc("<p,happy>Aha, everything seems to be in place! You can come through now into the grotto for the final section of my transformation.");
+    return;
+}
+// fail
+sound_synth(spirit_transform_start, 0, 0);
+p_delay(1);
+~chatnpc("<p,neutral>Hmm, something still doesn't seem right. I think we need something more before we can continue.");
+
+[label,filliman_grotto]
+~chatnpc("<p,neutral>Please come down into the grotto, we have much to discuss.");
+
+[opnpc1,filliman_tarlock_spirit] @filliman_spirit_dialogue;
+[opnpc1,filliman_tarlock_ns] @filliman_ns_dialogue;

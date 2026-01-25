@@ -1,0 +1,16 @@
+[opnpc1,mort_myre_gate_guard]
+~chatplayer("<p,neutral>Hello there.");
+~chatnpc("<p,scared>What... Oh, don't creep up on me like that... I thought you were a Ghast!");
+~chatplayer("<p,neutral>Can I go through the gate please?");
+switch_int(%druidspirit) {
+    case ^druidspirit_complete :
+        ~chatnpc("<p,happy>Yes of course my friend, you seem to be able to handle yourself with those ghasts really well.");
+    case ^druidspirit_not_started :
+        ~chatnpc("<p,scared>Absolutely not. I've been given strict instructions not to let anyone through. It's just too dangerous. No one gets in without Drezels say so!");
+        ~chatplayer("<p,neutral>Where is Drezel?");
+        ~chatnpc("<p,scared>Oh, he's in the temple, just go back over the bridge, down the ladder and along the hallway, you can't miss him.");
+    case default :
+        ~chatnpc("<p,scared>Absolutely not. I've been given strict instructions not to let anyone through. It's just too dangerous. No one gets in without Drezels say so!");
+        ~chatplayer("<p,neutral>But I'm doing a quest for Drezel!");
+        ~chatnpc("<p,scared>Ok, on your way then!");
+}

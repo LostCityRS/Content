@@ -1,0 +1,435 @@
+[oploc1,mortmyre_metalgateclosed_l] @open_mortmyre_gate(^left);
+[oploc1,mortmyre_metalgateclosed_r] @open_mortmyre_gate(^right);
+
+[label,open_mortmyre_gate](int $side)
+if(%druidspirit = ^druidspirit_not_started) {
+    ~mesbox("There's a message attached to this gate, it reads:-|@blu@~ Mort Myre is a dangerous Ghast infested swamp. ~ |@blu@~ Do not enter if you value your life. ~ |@blu@~ All persons wishing to enter must see Drezel. ~");
+    return;
+}
+def_boolean $entering = ~check_axis_locactive(coord);
+// iron_door sounds later
+~open_and_close_double_door2($entering, $side, grate_open);
+if($entering = true) {
+    mes("You walk into the gloomy atmosphere of Mort Myre.");
+    if(%druidspirit = ^druidspirit_started) {
+        %druidspirit = ^druidspirit_entered_swamp;
+    }
+} else {
+    mes("You skip gladly out of murky Mort Myre.");
+    if(npc_find(coord, mort_myre_gate_guard, 5, 0) = true) {
+        npc_say("Oh my! You're still alive!");
+    }
+    %mortmyre = ^false;
+    cleartimer(swamp_decay);
+}
+
+[oploc1,druidjump_loc]
+def_coord $dest_coord = 0_53_52_49_1;
+def_int $dir = ^exact_south;
+def_seq $fall_seq = human_wobbleandfall_r;
+if(coordz(coord) < 3330) {
+    $dest_coord = 0_53_52_48_3;
+    $dir = ^exact_north;
+    $fall_seq = human_wobbleandfall_l;
+}
+if(coord ! loc_coord) {
+    ~forcewalk2(loc_coord);
+}
+if(stat_random(agility, 60, 252) = false) {
+    ~agility_exactmove($fall_seq, 30, 1, coord, 0_53_52_47_2, 58, 60, $dir, false);
+    spotanim_map(watersplash, coord, 0, 3);
+    sound_synth(pool_plop, 0, 0);
+    ~set_readywalkturn_bas(human_swim_ready, human_swim_ready, human_swim);
+    if($dir = ^exact_south) {
+        p_teleport(movecoord(coord, -1, 0, -2));
+        p_delay(2);
+        ~update_bas;
+        mes("You nearly drown in the disgusting swamp.");
+        p_teleport(movecoord(coord, 0, 0, -1));
+    } else {
+        p_teleport(movecoord(coord, -1, 0, 1));
+        p_delay(2);
+        ~update_bas;
+        mes("You nearly drown in the disgusting swamp.");
+        p_teleport(movecoord(coord, 0, 0, 1));
+    }
+    ~damage_self(~random_range(2, 7));
+    stat_advance(agility, 20);
+    return;
+}
+~agility_exactmove(human_steppingstonejump, 30, 3, coord, $dest_coord, 58, 70, $dir, false);
+stat_advance(agility, 150);
+
+[opobj3,bowl_empty_filliman]
+if(obj_coord = 0_53_52_45_9) {
+    if (~pickup_obj_check_for_space(obj_type, obj_count) = false) {
+        return;
+    }
+    anim(null, 0);
+    p_delay(0);
+    anim(human_pickuptable, 0);
+    obj_takeitem(inv);
+    sound_synth(pick2, 0, 0);
+    if(inv_total(inv, mirror) = 0) {
+        obj_add(obj_coord, mirror, 1, 200);
+        mes("You find a small mirror under the washing bowl.");
+    }
+    return;
+}
+@pickup_obj;
+
+[oploc1,grotto_druidicspirit]
+mes("It looks like a tree on a large rock with roots trailing down to the ground.");
+
+[oploc2,grotto_druidicspirit]
+if(inv_total(inv, filliman_journal) = 0 & %druidspirit < ^druidspirit_given_journal) {
+    inv_add(inv, filliman_journal, 1);
+    ~objbox(filliman_journal, "You search the strange rock. You find a knot and inside of it you discover a small tome. The words on the front are a bit vague, but you make out the words 'Tarlock' and 'journal'.", 250, 0, 0);
+    return;
+}
+mes("You find nothing interesting.");
+
+[oploc1,grotto_door_druidicspirit]
+mes("You prepare to enter the Druid's grotto.");
+if(%druidspirit < ^druidspirit_performed_ritual) {
+    if(npc_findexact(0_53_52_48_8, filliman_tarlock_spirit) = false) {
+        npc_add(0_53_52_48_8, filliman_tarlock_spirit, 100); // 100t osrs
+        npc_setmode(playerface); // NOT playerfaceclose
+        sound_synth(ghast_appear, 0, 0);
+    }
+    @filliman_spirit_dialogue;
+} else {
+    mes("You see a beautifully tended small grotto area.");
+    if(%druidspirit = ^druidspirit_complete) p_teleport(1_53_152_50_6);
+    else p_teleport(0_53_152_50_6);
+    if(%druidspirit = ^druidspirit_performed_ritual) %druidspirit = ^druidspirit_entered_grotto;
+}
+
+[oploc1,underground_rootwall_door] @leave_grotto;
+[oploc1,underground_rootwall_door_green] @leave_grotto;
+
+[label,leave_grotto]
+mes("You prepare to exit the Druid's grotto.");
+p_delay(0);
+mes("You crawl back out of the grotto.");
+p_teleport(0_53_52_48_9);
+
+[opheld1,filliman_journal]
+~objbox(filliman_journal, "Most of the writing is pretty uninteresting, but something inside refers to a nature spirit. The requirements are:", 250, 0, 0);
+~objbox(filliman_journal, "'Something from nature', 'something with faith' and 'something of the spirit-to-become freely given'. It's all pretty vague.", 250, 0, 0);
+
+[oploc5,stonedisc_ds_faith]
+if(coord = loc_coord | %druidspirit >= ^druidspirit_performed_ritual) {
+    ~mesbox("You search the stone and find that it has some sort of faith symbol scratched into it. This stone seems to be complete somehow.");
+    return;
+}
+~mesbox("You search the stone and find that it has some sort of faith symbol scratched into it.");
+
+[oploc5,stonedisc_ds_nature]
+if(testbit(%druidspirit_bits, ^druidspirit_nature_stone) = ^true | %druidspirit >= ^druidspirit_performed_ritual) {
+    ~mesbox("You search the stone and find that it has some sort of nature symbol scratched into it. This stone seems to be complete in some way.");
+    return;
+}
+~mesbox("You search the stone and find that it has some sort of nature symbol scratched into it.");
+
+[oplocu,stonedisc_ds_nature]
+def_obj $last_useitem = last_useitem;
+p_delay(0); // not arrivedelay
+anim(human_pickupfloor, 0);
+p_delay(0);
+if(testbit(%druidspirit_bits, ^druidspirit_nature_stone) = ^true | %druidspirit >= ^druidspirit_performed_ritual) {
+    mes("This stone seems to be complete already.");
+    return;
+}
+if($last_useitem = mortmyremushroom) {
+    if(%druidspirit < ^druidspirit_picked_fungi) {
+        mes("The fungus seems to be quite old and dry, not fresh.");
+        if(npc_findexact(0_53_52_48_8, filliman_tarlock_spirit) = false) {
+            if(coord = 0_53_52_48_8) ~forcemove(map_findsquare(coord, 1, 1, ^vis_lineofwalk)); // random tile
+            npc_add(0_53_52_48_8, filliman_tarlock_spirit, 100); // 100t osrs
+            ~chatnpc("<p,idle>@blu@~ Filliman Tarlock suddenly appears! ~");
+        }
+        ~chatnpc("<p,neutral>Hmm, that dried up fungus doesn't really represent nature does it? Did you pick it yourself? Go and get a fresh one!");
+        return;
+    }
+    %druidspirit_bits = setbit(%druidspirit_bits, ^druidspirit_nature_stone);
+    inv_del(inv, mortmyremushroom, 1);
+    obj_add(loc_coord, mortmyremushroom, 1, 3); // yes, you can just pick these back up lol
+    mes("The stone seems to absorb the fungus.");
+    return;
+}
+mes("You try to place the item onto the stone, but it just moves off.");
+if(npc_findexact(0_53_52_48_8, filliman_tarlock_spirit) = true) ~chatnpc("Hmm, that doesn't seem quite right.");
+
+[oploc5,stonedisc_ds_spirit]
+if(testbit(%druidspirit_bits, ^druidspirit_spirit_stone) = ^true | %druidspirit >= ^druidspirit_performed_ritual) {
+    ~mesbox("You search the stone and find that it has some sort of spirit symbol scratched into it. This stone seems to be complete in some way.");
+    return;
+}
+~mesbox("You search the stone and find that it has some sort of spirit symbol scratched into it.");
+
+[oplocu,stonedisc_ds_spirit]
+def_obj $last_useitem = last_useitem;
+p_delay(0);
+anim(human_pickupfloor, 0);
+p_delay(0);
+if(testbit(%druidspirit_bits, ^druidspirit_spirit_stone) = ^true | %druidspirit >= ^druidspirit_performed_ritual) {
+    mes("This stone seems to be complete already.");
+    return;
+}
+if($last_useitem = bloom_spell) {
+    inv_del(inv, bloom_spell, 1);
+    obj_add(loc_coord, bloom_spell, 1, 3);
+    %druidspirit_bits = setbit(%druidspirit_bits, ^druidspirit_spirit_stone);
+    mes("The stone seems to absorb the spell scroll.");
+    return;
+}
+if($last_useitem = used_bloom_spell) {
+    inv_del(inv, used_bloom_spell, 1);
+    obj_add(loc_coord, used_bloom_spell, 1, 3);
+    %druidspirit_bits = setbit(%druidspirit_bits, ^druidspirit_spirit_stone);
+    mes("The stone seems to absorb the used spell scroll.");
+    return;
+}
+if(npc_findexact(0_53_52_48_8, filliman_tarlock_spirit) = true) ~chatnpc("Hmm, that doesn't seem quite right.");
+
+[opheld1,bloom_spell]
+def_int $slot = last_slot;
+if(%druidspirit < ^druidspirit_blessed) {
+    mes("You need to be blessed before you can cast this spell.");
+    return;
+}
+if(inzone(0_53_52_0_0, 0_54_53_63_63, coord) = false) {
+    mes("This spell has no effect outside of Mort Myre swamp.");
+    return;
+}
+mes("You cast the spell in the swamp.");
+p_delay(1);
+anim(human_casting, 30);
+def_int $dx = -1;
+def_int $dz;
+def_coord $coord;
+def_int $changed = ^false;
+while ($dx <= 1) {
+    $dz = -1;
+    while ($dz <= 1) {
+        if ($dx ! 0 | $dz ! 0) {
+            $coord = movecoord(coord, $dx, 0, $dz);
+            spotanim_map(druidicspirit_bloom_spotanim, $coord, 30, 46);
+            // i dont think you can grow pears or stems with this?
+            if(loc_find($coord, log_druidicspirit) = true & ($changed = ^false | random(2) = 0)) { // TODO: is this randomization correct (just arbitrary atm)?
+                if(%druidspirit = ^druidspirit_blessed) %druidspirit = ^druidspirit_casted_spell;
+                sound_synth(loc_param(open_sound), 0, 0);
+                loc_change(loc_param(next_loc_stage), 25);
+                $changed = ^true;
+            }
+        }
+        $dz = add($dz, 1);
+    }
+    $dx = add($dx, 1);
+}
+sound_synth(cast_bloom, 30, 0);
+if($changed = ^false) mes("There is no suitable material to be affected in this area.");
+else inv_setslot(inv, $slot, used_bloom_spell, 1);
+
+[opheld3,silver_sickle_blessed]
+def_int $slot = last_slot;
+if(%druidspirit < ^druidspirit_blessed) {
+    mes("You need to be blessed before you can cast this spell.");
+    return;
+}
+if(stat(prayer) = 0) {
+    mes("You need some prayer points to activate the power of the sickle.");
+    return;
+}
+def_int $pray_pts = ~random_range(1, 7);
+stat_sub(prayer, $pray_pts, 0);
+if(stat(prayer) = 0) {
+    mes("You've run out of prayer points.");
+}
+anim(druidicspirit_human_bloom, 10);
+spotanim_pl(druidicspirit_bloom_player_spotanim, 200, 30);
+def_int $dx = -1;
+def_int $dz;
+def_coord $coord;
+def_int $changed = ^false;
+while ($dx <= 1) {
+    $dz = -1;
+    while ($dz <= 1) {
+        if ($dx ! 0 | $dz ! 0) {
+            $coord = movecoord(coord, $dx, 0, $dz);
+            spotanim_map(druidicspirit_bloom_spotanim, $coord, 150, 15);
+            // i dont think you can grow pears or stems with this?
+            if((loc_find($coord, log_druidicspirit) = true | loc_find($coord, peartree_druidicspirit) = true | loc_find($coord, branch_druidicspirit) = true) & ($changed = ^false | random(2) = 0)) { // TODO: is this randomization correct (just arbitrary atm)?
+                if(%druidspirit = ^druidspirit_blessed_sickle) %druidspirit = ^druidspirit_casted_sickle_bloom;
+                sound_synth(loc_param(open_sound), 0, 0);
+                loc_change(loc_param(next_loc_stage), 25);
+                $changed = ^true;
+            }
+        }
+        $dz = add($dz, 1);
+    }
+    $dx = add($dx, 1);
+}
+sound_synth(cast_bloom, 30, 0);
+
+[opheld1,druid_pouch_empty] @druid_pouch_fill(^true);
+[opheldu,druid_pouch_empty]
+if(last_useitem = mortmyremushroom | last_useitem = mortmyrebuddingstem | last_useitem = mortmyrepear) {
+    @druid_pouch_fill(^true);
+}
+~displaymessage(^dm_default);
+
+[opheld1,druid_pouch] @druid_pouch_fill(^false);
+[opheldu,druid_pouch]
+if(last_useitem = mortmyremushroom | last_useitem = mortmyrebuddingstem | last_useitem = mortmyrepear) {
+    @druid_pouch_fill(^false);
+}
+~displaymessage(^dm_default);
+
+[label,druid_pouch_fill](int $empty_pouch)
+if(%druidspirit < ^druidspirit_picked_sickle) {
+    ~objbox(druid_pouch_empty, "You've not been told how to use this item yet.", 250, 0, ^objbox_height);
+    return;
+}
+def_int $pts = 0;
+def_int $total_count = 0;
+
+def_int $count_pear = 0;
+def_int $count_stem = 0;
+def_int $count_mushroom = 0;
+
+def_int $count = min(sub(3, $total_count), inv_total(inv, mortmyrepear));
+$total_count = add($total_count, $count);
+$pts = add($pts, multiply(3, $count));
+$count_pear = $count;
+
+if($total_count < 3) {
+    $count = min(sub(3, $total_count), inv_total(inv, mortmyrebuddingstem));
+    $total_count = add($total_count, $count);
+    $pts = add($pts, multiply(2, $count));
+    $count_stem = $count;
+}
+ 
+if($total_count < 3) {
+    $count = min(sub(3, $total_count),inv_total(inv, mortmyremushroom));
+    $total_count = add($total_count, $count);
+    $pts = add($pts, multiply(1, $count));
+    $count_mushroom = $count;
+}
+
+if($total_count = 3) {
+    if($count_pear > 0) inv_del(inv, mortmyrepear, $count_pear);
+    if($count_stem > 0) inv_del(inv, mortmyrebuddingstem, $count_stem);
+    if($count_mushroom > 0) inv_del(inv, mortmyremushroom, $count_mushroom);
+    mes("You add <tostring($pts)> natures harvests to your druid pouch.");
+    if($empty_pouch = ^true) inv_del(inv, druid_pouch_empty, 1);
+    if(%druidspirit = ^druidspirit_picked_sickle) %druidspirit = ^druidspirit_added_pouch;
+    inv_add(inv, druid_pouch, $pts);
+    return;
+}
+mes("You need at least three blossomed items to add something to the druid pouch.");
+
+
+[oploc1,druidic_spirit_grotto]
+def_npc $type = filliman_tarlock_spirit;
+if(%druidspirit >= ^druidspirit_full_transform) $type = filliman_tarlock_ns;
+if(npc_find(coord, $type, 10, 0) = false) {
+    npc_add(map_findsquare(coord, 1, 5, ^map_findsquare_lineofwalk), $type, 100); // anywhere in the grotto
+    npc_setmode(playerface); // NOT playerfaceclose
+    sound_synth(ghast_appear, 0, 0);
+}
+if(%druidspirit >= ^druidspirit_full_transform) @filliman_ns_dialogue;
+@filliman_spirit_dialogue;
+
+[oploc1,druidic_spirit_grotto_naturealtar]
+def_int $amount = calc(stat_base(prayer) + 2);
+if (stat(prayer) >= $amount) {
+    mes("You have already boosted your prayer points.");
+    return;
+}
+// prayer boost
+if (stat(prayer) >= stat_base(prayer)) {
+    mes("You boost your prayer points.");
+    sound_synth(prayer_boost, 0, 0);
+} else {
+    anim(human_pray, 0);
+    mes("You recharge your prayer points.");
+    sound_synth(prayer_recharge, 0, 0);
+}
+stat_add(prayer, calc($amount - stat(prayer)), 0);
+
+[oplocu,druidic_spirit_grotto] @sickle_altar;
+[oplocu,druidic_spirit_grotto_naturealtar] @sickle_altar;
+
+[label,sickle_altar]
+def_int $slot = last_useslot;
+if(last_useitem = silver_sickle & %druidspirit >= ^druidspirit_blessed_sickle) {
+    if(~obj_gettotal(silver_sickle_blessed) > 0) {
+        mes("You already have a blessed sickle.");
+        return;
+    }
+    anim(human_pickupfloor, 0);
+    p_delay(0);
+    anim(druidicspirit_human_bloom, 30);
+    p_delay(0);
+    spotanim_pl(druidicspirit_bloom_player_spotanim, 200, 40);
+    inv_setslot(inv, $slot, silver_sickle_blessed, 1);
+    ~objbox(silver_sickle_blessed, "You dip the sickle into the grotto water to bless it.", 250, 0, 0);
+    return;
+}
+~displaymessage(^dm_default);
+
+[oploc2,log_druidicspirit2]
+if(inv_freespace(inv) = 0) {
+    mes("Your inventory is too full to take that.");
+    return;
+}
+if(%druidspirit = ^druidspirit_casted_spell) %druidspirit = ^druidspirit_picked_fungi;
+if(%druidspirit = ^druidspirit_casted_sickle_bloom) %druidspirit = ^druidspirit_picked_sickle;
+mes("You pick a mushroom from the log.");
+sound_synth(pick, 0, 0);
+anim(human_pickupfloor, 0);
+inv_add(inv, mortmyremushroom, 1);
+loc_change(log_druidicspirit, 25);
+
+[oploc2,branch_druidicspirit2]
+if(inv_freespace(inv) = 0) {
+    mes("Your inventory is too full to take that.");
+    return;
+}
+if(%druidspirit = ^druidspirit_casted_sickle_bloom) %druidspirit = ^druidspirit_picked_sickle;
+mes("You take a cutting from the budding branch.");
+sound_synth(pick, 0, 0);
+anim(human_pickupfloor, 0);
+inv_add(inv, mortmyrebuddingstem, 1);
+loc_change(branch_druidicspirit, 25);
+
+
+[oploc2,peartree_druidicspirit2]
+if(inv_freespace(inv) = 0) {
+    mes("Your inventory is too full to take that.");
+    return;
+}
+if(%druidspirit = ^druidspirit_casted_sickle_bloom) %druidspirit = ^druidspirit_picked_sickle;
+mes("You pick a pear from the tree.");
+sound_synth(pick, 0, 0);
+anim(human_pickuptable, 0);
+inv_add(inv, mortmyrepear, 1);
+loc_change(peartree_druidicspirit, 25);
+
+[queue,druidspirit_quest_complete]
+%druidspirit = ^druidspirit_complete;
+stat_advance(crafting, 30000);
+stat_advance(hitpoints, 20000);
+stat_advance(defence, 20000);
+session_log(^log_adventure, "Quest complete: Nature Spirit");
+queue(druidspirit_postquest, 0);
+// https://web.archive.org/web/20061229194746im_/http://runeweb.net/rathofdoom/quests/naturespirit/8.png
+~send_quest_complete(questlist:druidspirit, silver_sickle_blessed, 250, ^druidspirit_questpoints, "You have completed the 'Nature Spirit' Quest!", "3,000 Crafting XP|2,000 Hitpoints XP|2,000 Defence XP");
+
+[queue,druidspirit_postquest]
+if(npc_find(coord, filliman_tarlock_ns, 10, 0) = false) {
+    npc_add(map_findsquare(coord, 1, 8, ^map_findsquare_lineofwalk), filliman_tarlock_ns, 10);
+}
+~chatnpc("<p,neutral>Welcome to my Altar to Nature! Farewell my friend, and keep those Ghasts at bay!");

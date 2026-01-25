@@ -1,0 +1,20 @@
+[ai_queue3,elemental_water]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+def_int $random = random(128);
+
+if ($random < 13) obj_add(npc_coord, waterrune, 15, ^lootdrop_duration);
+else if ($random < 22) obj_add(npc_coord, naturerune, 2, ^lootdrop_duration);
+else if ($random < 29) obj_add(npc_coord, chaosrune, 2, ^lootdrop_duration);
+else if ($random < 35) obj_add(npc_coord, lawrune, 1, ^lootdrop_duration);
+else if ($random < 39) obj_add(npc_coord, deathrune, 1, ^lootdrop_duration);
+else if ($random < 42) obj_add(npc_coord, waterrune, 20, ^lootdrop_duration);
+else if ($random < 43) obj_add(npc_coord, bloodrune, 1, ^lootdrop_duration);    
+else if ($random < 57) obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+else if ($random < 93) obj_add(npc_coord, coins, 12, ^lootdrop_duration);
+else if ($random < 96) obj_add(npc_coord, coins, 42, ^lootdrop_duration);
+else if ($random < 98) obj_add(npc_coord, staff_of_water, 1, ^lootdrop_duration);
+else if ($random < 100) obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);

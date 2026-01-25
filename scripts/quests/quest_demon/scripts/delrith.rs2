@@ -1,0 +1,55 @@
+// Can kill delrith with magic as long as Silverlight is equipped, otherwise no message is sent when trying to attack
+// https://runescape.salmoneus.net/forums/topic/366965-cant-get-past-demon-slayer/
+
+[ai_queue3,delrith]
+if (finduid(%npc_aggressive_player) = false) {
+    npc_statheal(hitpoints, 0, 100);
+    return;
+}
+npc_changetype(delrith_weakened, 100); // lasts 100 ticks in osrs
+npc_setmode(none);
+npc_walk(npc_coord);
+
+if_close;
+queue(demon_slayer_start_incantation, 0);
+
+
+// https://www.youtube.com/watch?v=rjQprrDDUfE
+[queue,demon_slayer_start_incantation]
+p_stopaction; // doesnt continue to attack at https://youtu.be/rjQprrDDUfE?t=346
+~chatplayer("<p,angry>Now what was that incantation again?");
+def_int $option = ~p_choice4("Carlem Gabindo Purchai Zaree Camerinthum", 1, "Purchai Zaree Gabindo Carlem Camerinthum", 2, "Purchai Camerinthum Aber Gabindo Carlem", 3, "Carlem Aber Camerinthum Purchai Gabindo", 4);
+
+if ($option = 1) {
+    ~chatplayer("<p,happy>Carlem Gabindo Purchai Zaree Camerinthum");
+    @demon_slayer_wrong_incantation;
+} else if ($option = 2) {
+    ~chatplayer("<p,happy>Purchai Zaree Gabindo Carlem Camerinthum");
+    @demon_slayer_wrong_incantation;
+} else if ($option = 3) {
+    ~chatplayer("<p,happy>Purchai Camerinthum Aber Gabindo Carlem");
+    @demon_slayer_wrong_incantation;
+} else if ($option = 4) {
+    ~chatplayer("<p,happy>Carlem Aber Camerinthum Purchai Gabindo");
+    @demon_slayer_correct_incantation;
+}
+
+[label,demon_slayer_wrong_incantation]
+~mesbox("As you chant, Delrith is sucked towards the vortex....");
+if (npc_find(coord, delrith_weakened, 8, 0) = true) {
+    // On restore Delrith does not keep attacking you in 2004
+    // https://www.youtube.com/watch?v=rjQprrDDUfE
+    npc_changetype_keepall(delrith, ^max_32bit_int);
+    npc_statheal(hitpoints, 0, 100);
+}
+~mesbox("Suddenly the vortex collapses. That was the wrong incantation");
+
+[label,demon_slayer_correct_incantation]
+// Between 20 feb and 6 march 2006 this becomes 2 separate message boxes
+// https://www.youtube.com/watch?v=w7uLKC_rYfc
+~mesbox("As you chant, Delrith is sucked towards the vortex...|Back to the dark dimension from which he came...");
+if_close;
+if (npc_find(coord, delrith_weakened, 8, 0) = true) {
+    gosub(npc_death);
+}
+queue(demon_slayer_complete, 1);

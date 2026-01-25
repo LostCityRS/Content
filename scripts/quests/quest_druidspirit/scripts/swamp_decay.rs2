@@ -1,0 +1,29 @@
+// osrs uses areas now I think, following what wiki has
+[proc,start_swampdecay_timer]
+if(inzone(0_53_52_0_0, 0_54_53_63_63, coord) = false | %mortmyre = ^true) { // don't start another timer if already in mort myre
+    return;
+}
+%mortmyre = ^true;
+settimer(swamp_decay, 200);
+
+[timer,swamp_decay]
+if(inzone(0_53_52_42_2, 0_53_52_56_16, coord) = true | inzone(0_53_152_42_2, 0_53_152_56_16, coord) = true) {
+    mes("The aura of Fillimans camp protects you from the swamp.");
+    spotanim_pl(druidicspirit_druidsshield, 0, 30);
+    return;
+}
+if(inzone(0_53_52_0_0, 0_54_53_63_63, coord) = false) {
+    %mortmyre = ^false;
+    cleartimer(swamp_decay);
+    mes("The swamp decay effect is now over.");
+    return;
+}
+if(inv_total(inv, silver_sickle_blessed) > 0 | inv_total(worn, silver_sickle_blessed) > 0) {
+    mes("The blessed sickle prevents the swamp from decaying you.");
+    spotanim_pl(druidicspirit_druidsshield, 0, 30);
+    return;
+}
+mes("The swamp decays you!");
+anim(%com_defendanim, 30);
+spotanim_pl(mortmyre_swampstench, 0, 30);
+~damage_self(~random_range(1, 3));

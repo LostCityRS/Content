@@ -1,0 +1,32 @@
+[if_button,questlist:doric]
+def_string $text;
+
+if(%doricquest = 0) {
+    $text = "@dbl@I can start this quest by talking to @dre@Doric@dbl@ at his home|@dbl@north of @dre@Falador@dbl@.";
+} else if(%doricquest = 10) {
+    // https://github.com/Indio3/quest-journals/blob/master/quest_doric/qdq_01.jpg
+    $text = "@str@I have spoken to @dre@Doric||";
+    $text = append($text, "@dbl@I need to collect some items and bring them to @dre@Doric|");
+
+    if(inv_total(inv, clay) >= 6) {
+        $text = append($text, "@str@6 Clay|");
+    } else {
+        $text = append($text, "@dre@6 Clay|");
+    }
+
+    if(inv_total(inv, copper_ore) >= 4) {
+        $text = append($text, "@str@4 Copper Ore|");
+    } else {
+        $text = append($text, "@dre@4 Copper Ore|");
+    }
+
+    if(inv_total(inv, iron_ore) >= 2) {
+        $text = append($text, "@str@2 Iron Ore|");
+    } else {
+        $text = append($text, "@dre@2 Iron Ore|");
+    }
+} else {
+    $text = "@str@I have spoken to @dre@Doric||@str@I have collected some Clay, Copper Ore, and Iron Ore.||@str@Doric rewarded me for all my hard work.|@str@I can now use Doric's Anvils whenever I want.|@red@QUEST COMPLETE!";
+}
+
+~quest_journal("Dorics' Quest", $text);
