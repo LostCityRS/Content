@@ -1,0 +1,22 @@
+[opnpc1,gnome_waiter] // osrs
+~chatplayer("<p,neutral>Hello.");
+~chatnpc("<p,sad>Hello <text_gender("sir", "madam")>, can I tempt you with any of the dishes on|our new menu?");
+def_int $choice;
+if (inv_totalcat(inv, gnome_crunchies) > 0 | inv_totalcat(inv, gnome_batta) > 0 | inv_totalcat(inv, gnome_bowl) > 0) {
+    $choice = ~p_choice3("I'll take a look.", 1, "Not really.", 2, "Actually I'd like to sell some dishes.", 3);
+} else {
+    $choice = ~p_choice2("I'll take a look.", 1, "Not really.", 2);
+}
+if ($choice = 2) {
+    ~chatplayer("<p,neutral>Not really.");
+    ~chatnpc("<p,sad>That's your choice <text_gender("sir", "madam")>, enjoy your stay.");
+} else if ($choice = 3) {
+    ~chatplayer("<p,neutral>Actually I'd like to sell some dishes.");
+    ~chatnpc("<p,sad>Mr Gianne is the one to talk to if you want to sell any dishes you've made yourself.  He is the owner and head chef of this establishment.");
+    ~chatplayer("<p,neutral>Thank you.");
+} else {
+    ~chatplayer("<p,happy>I'll take a look.");
+    ~chatnpc("<p,sad>I hope you like what you see. Although all these|premade dishes are good to eat - they were made by|the last human assistant chef.  He wasn't up to Chef's|exacting standards - and you may find that they will");
+    ~chatnpc("<p,sad>not be accepted by some people as the 'real' thing.");
+    ~openshop_activenpc;
+}

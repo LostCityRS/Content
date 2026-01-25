@@ -1,0 +1,39 @@
+// no opnpcu interaction
+[opnpc1,werewolftanner]
+~chatnpc("<p,neutral>Hello stranger. Would you like me to tan any hides for you?");
+~chatnpc("<p,neutral>Soft leather - 2 gp per hide|Hard leather - 5 gp per hide|Dragon leather - 45 gp per hide.");
+def_int $total = calc(inv_total(inv, cow_hide) + inv_total(inv, dragonhide_green) + inv_total(inv, dragonhide_blue) + inv_total(inv, dragonhide_red) + inv_total(inv, dragonhide_black));
+if($total > 0) {
+    switch_int(~p_choice3_header("Yes please.", 1, "Why are you so expensive?", 2, "No thanks, I'm not interested.", 3, "What would you like to say?")) {
+        case 1 : @tan_leather_choices;
+        case 2 : @werewolftanner_expensive($total);
+        case 3 : @werewolftanner_notinterested;
+    }
+    return;
+}
+switch_int(~p_choice2_header("Why are you so expensive?", 1, "No thanks, I haven't any hides.", 2, "What would you like to say?")) {
+    case 1 : @werewolftanner_expensive($total);
+    case 2 : @werewolftanner_nohides;
+}
+
+[opnpc3,werewolftanner]
+@tan_leather_choices;
+
+[label,werewolftanner_expensive](int $total)
+~chatplayer("<p,quiz>Why are you so expensive? The tanner in Al-Kharid is almost half the price!");
+~chatnpc("<p,neutral>Hey, I charge more because I'm worth it! I deal in bulk, and I work extremely quickly. You'll see for yourself!");
+~chatnpc("<p,neutral>You got a lot of hides you want tanning quickly? I'm your guy!");
+~chatnpc("<p,neutral>So you got hides for me to tan, or are you just gonna bust my chops about prices all day?");
+if($total > 0) {
+    @multi2_header("Yes please.", tan_leather_choices, "No thanks, I'm not interested.", werewolftanner_notinterested, "What would you like to say?");
+} else {
+    @werewolftanner_nohides;
+}
+
+[label,werewolftanner_notinterested]
+~chatplayer("<p,bored>No thanks, I'm not interested.");
+~chatnpc("<p,neutral>Okay; you change your mind, you come see me. I'm your guy!");
+
+[label,werewolftanner_nohides]
+~chatplayer("<p,neutral>No thanks, I haven't any hides.");
+~chatnpc("<p,neutral>Fair enough. I can't tan what you don't bring me.");

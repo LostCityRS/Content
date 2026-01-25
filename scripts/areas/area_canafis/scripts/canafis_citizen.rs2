@@ -1,0 +1,100 @@
+[opnpc1,_canafis_citizen]
+switch_int(random(10)) {
+    case 0 : ~chatnpc("<p,angry>If I were as ugly as you I would not dare to show my face in public!");
+    case 1 : ~chatnpc("<p,angry>I have no interest in talking to a pathetic meat bag like yourself.");
+    case 2 : ~chatnpc("<p,angry>I don't have time for this right now.");
+    case 3 : ~chatnpc("<p,angry>Leave me alone.");
+    case 4 : ~chatnpc("<p,angry>Get lost!");
+    case 5 : ~chatnpc("<p,angry>Out of my way, punk.");
+    case 6 : ~chatnpc("<p,angry>Have you no manners?");
+    case 7 : ~chatnpc("<p,angry>I don't have anything to give you so leave me alone, mendicant.");
+    case 8 :
+        ~chatnpc("<p,angry>Hmm... you smell strange...");
+        ~chatplayer("<p,quiz>Strange how?");
+        ~chatnpc("<p,angry>Like a human!");
+        ~chatplayer("<p,shock>Oh! Er... I just ate one is why!");
+    case 9 : ~chatnpc("<p,angry>Don't talk to me again if you value your life!");
+}
+
+[ai_queue2,_canafis_citizen]
+if(finduid(%npc_aggressive_player) = true & inv_total(worn, dagger_wolfbane) = 0) {
+    npc_anim(null, 0);
+    npc_changetype(npc_param(next_npc_type), 500); // 500t osrs
+    %npc_attacking_uid = uid;
+    %aggressive_npc = npc_uid;
+}
+~npc_default_damage(last_int);
+
+[ai_queue3,_canafis_citizen]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+def_int $random = random(512);
+
+if ($random < 10) {
+    obj_add(npc_coord, steel_axe, 1, ^lootdrop_duration);
+} else if ($random < 20) {
+    obj_add(npc_coord, steel_arrow, 1, ^lootdrop_duration);
+} else if ($random < 30) {
+    obj_add(npc_coord, steel_arrow_p, 1, ^lootdrop_duration);
+} else if ($random < 32) {
+    obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+} else if ($random < 82) {
+    obj_add(npc_coord, vial_water, 1, ^lootdrop_duration);
+} else if ($random < 92) {
+    obj_add(npc_coord, iron_ore, 5, ^lootdrop_duration);
+} else if ($random < 102) {
+    obj_add(npc_coord, coal, 2, ^lootdrop_duration);
+} else if ($random < 112) {
+    obj_add(npc_coord, steel_bar, 2, ^lootdrop_duration);
+} else if ($random < 122) {
+    obj_add(npc_coord, raw_chicken, 2, ^lootdrop_duration);
+} else if ($random < 132) {
+    obj_add(npc_coord, raw_beef, 2, ^lootdrop_duration);
+} else if ($random < 142) {
+    obj_add(npc_coord, raw_bear_meat, 2, ^lootdrop_duration);
+} else if ($random < 144) {
+    obj_add(npc_coord, eye_of_newt, 1, ^lootdrop_duration);
+} else if ($random < 146) {
+    obj_add(npc_coord, snape_grass, 1, ^lootdrop_duration);
+} else if ($random < 148) {
+    obj_add(npc_coord, jangerberries, 1, ^lootdrop_duration);
+} else if ($random < 150) {
+    obj_add(npc_coord, white_berries, 1, ^lootdrop_duration);
+} else if ($random < 152) {
+    obj_add(npc_coord, limpwurt_root, 1, ^lootdrop_duration);
+} else if ($random < 154) {
+    obj_add(npc_coord, wine_of_zamorak, 1, ^lootdrop_duration);
+} else if ($random < 174) {
+    obj_add(npc_coord, coins, 6, ^lootdrop_duration);
+} else if ($random < 184) {
+    obj_add(npc_coord, coins, 20, ^lootdrop_duration);
+} else if ($random < 189) {
+    obj_add(npc_coord, coins, 15, ^lootdrop_duration);
+} else if ($random < 194) {
+    obj_add(npc_coord, coins, 16, ^lootdrop_duration);
+} else if ($random < 199) {
+    obj_add(npc_coord, coins, 38, ^lootdrop_duration);
+} else if ($random < 204) {
+    obj_add(npc_coord, coins, 50, ^lootdrop_duration);
+} else if ($random < 209) {
+    obj_add(npc_coord, coins, 96, ^lootdrop_duration);
+} else if ($random < 214) {
+    obj_add(npc_coord, coins, 120, ^lootdrop_duration);
+} else if ($random < 314) {
+    obj_add(npc_coord, fur, 1, ^lootdrop_duration);
+} else if ($random < 414) {
+    obj_add(npc_coord, grey_wolf_fur, 1, ^lootdrop_duration);
+} else if ($random < 464) {
+    obj_add(npc_coord, vial_empty, 2, ^lootdrop_duration);
+} else if ($random < 489) {
+    obj_add(npc_coord, bucket_empty, 2, ^lootdrop_duration);
+} else if ($random < 509) {
+    obj_add(npc_coord, tinderbox, 2, ^lootdrop_duration);
+} else if ($random < 510) {
+    obj_add(npc_coord, blamish_oil, 1, ^lootdrop_duration);
+} else if ($random < 511) {
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+}

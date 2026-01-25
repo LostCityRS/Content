@@ -1,0 +1,18 @@
+[opnpc1,werewolfshopkeeper1]
+~chatplayer("<p,happy>Hi!");
+~chatnpc("<p,happy>Grrreetings frrriend! Welcome to my worrrld famous food emporrrium! All my meats are so frrresh you'd swear you killed them yourrrself!");
+switch_int(~p_choice3("Why do you only sell meats?", 1, "Do you sell cooked food?", 2, "Can I buy some food?", 3)) {
+    case 1 :
+        ~chatplayer("<p,quiz>Why do you only sell meats?");
+        ~chatnpc("<p,confused>What? Why, what else would you want to eat? What kind of lycanthrrrope are you anyway?");
+        ~chatplayer("<p,quiz>...A vegetarian one?");
+        ~chatnpc("<p,confused>Vegetarrrian...?");
+        ~chatplayer("<p,sad>Never mind.");
+    case 2 :
+        ~chatplayer("<p,quiz>Do you sell cooked food?");
+        ~chatnpc("<p,confused>Cooked food? Who would want that? You lose all the flavourrr of the meat when you can't taste the blood!");
+    case 3 :
+        ~chatplayer("<p,quiz>Can I buy some food?");
+        ~chatnpc("<p,happy>Cerrrtainly!");
+        ~openshop_activenpc;
+}

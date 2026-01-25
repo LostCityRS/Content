@@ -1,0 +1,17 @@
+[opnpc1,werewolfshopkeeper3]
+~chatplayer("<p,happy>Hello there.");
+~chatnpc("<p,neutral>H-hello. You l-look like a s-stranger to these p-parts. Would you l-like to buy something? I h-have some s- special offers at the m-minute...some s-sample bottles for s-storing s-snail slime.");
+switch_int(~p_choice3("Yes, please.", 1, "No thanks.", 2, "Why are your prices so high?", 3)) {
+    case 1 :
+        ~chatplayer("<p,neutral>Yes, please.");
+        ~openshop_activenpc;
+    case 2 :
+        ~chatplayer("<p,neutral>No thanks.");
+        ~chatnpc("<p,sad>(sigh) Th-that's okay. Nobody ever w-wants to buy my wares. Oh, s-sure, if it was food or c-clothes they would though!");
+    case 3 :
+        ~chatplayer("<p,angry>Why are your prices so high?");
+        ~chatnpc("<p,sad>As you p-probably know, the h-humans hate our kind and k-keep us trapped here. To get my s-stocks I have to sneak into the human lands in s-secret!");
+        ~chatnpc("<p,sad>All the s-secrecy and d-danger has played h-havoc with my nerves!");
+        ~chatplayer("<p,angry>But all your stuff is overpriced junk!");
+        ~chatnpc("<p,angry>N-not at all! They are v-valuable human artefacts smuggled here at g-great personal risk!");
+}

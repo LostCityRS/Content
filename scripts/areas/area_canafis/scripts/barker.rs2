@@ -1,0 +1,10 @@
+[opnpc1,werewolfshopkeeper2]
+~chatnpc("<p,neutral>You are looking for clothes, yes? You look at my products! I have very many nice clothes, yes?");
+switch_int(~p_choice2("Yes, please.", 1, "No thanks.", 2)) {
+    case 1 :
+        ~chatplayer("<p,neutral>Yes, please.");
+        ~openshop_activenpc;
+    case 2 :
+        ~chatplayer("<p,neutral>No thanks.");
+        ~chatnpc("<p,sad>Unfortunate for you, yes? Many bargains, won't find elsewhere!");
+}
