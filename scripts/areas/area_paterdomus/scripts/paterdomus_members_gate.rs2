@@ -1,0 +1,13 @@
+[oploc1,loc_1598]
+if(map_members = ^false) {
+    mes(^mes_members_gate);
+    return;
+}
+~open_gate;
+
+[oploc1,loc_1599]
+if(map_members = ^false) {
+    mes(^mes_members_gate);
+    return;
+}
+~open_outer_gate;
