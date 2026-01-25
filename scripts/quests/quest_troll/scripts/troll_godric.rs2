@@ -1,0 +1,13 @@
+[apnpc1,troll_godric]
+if (npc_range(coord) > 4) { // osrs
+    p_aprange(4);
+    return;
+}
+if(%troll_quest >= ^troll_freed_godric) {
+    ~chatnpc("<p,happy>Don't worry about me, I'll be out again soon enough.");
+    return;
+}
+~chatplayer("<p,happy>How are you doing in there?");
+~chatnpc("<p,happy>I'm a little weakened by my stay, but nothing serious. How soon can you get me out of here?");
+~chatplayer("<p,neutral>I haven't found the key yet.");
+~chatnpc("<p,confused>One of the guards is bound to have it. Find a way to get it off them!");

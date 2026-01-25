@@ -1,0 +1,83 @@
+[if_button,questlist:tree]
+def_string $text;
+
+if(%treequest = ^tree_not_started) {
+    $text = "@dbl@I can start this quest by speaking to @dre@Bolren@dbl@ at the center";
+    $text = append($text, "|@dbl@of the @dre@Tree Gnome maze@dbl@, West of @dre@Port Khazard");
+    $text = append($text, "||@dbl@I need to be able to defeat a @dre@level 112 Warlord");
+    ~quest_journal("Tree Gnome Village", $text);
+    return;
+}
+
+$text = "@str@I spoke to King Bolren who told me that one of their orbs of";
+$text =  append($text, "|@str@protection has been stolen by Khazard troops.");
+
+if(%treequest > ^tree_started) {
+    $text = append($text, "||@str@I spoke to Montai. The orb was in the Khazard stronghold");
+    $text =  append($text, "|@str@North of the battlefield, but it was secure in there.");
+} else if(%treequest = ^tree_started) {
+    $text =  append($text, "||@dre@Commander Montai@dbl@, @dre@North@dbl@ of the maze, can help me get it");
+}
+
+if(%treequest > ^tree_spoken_montai) {
+    $text = append($text, "||@str@I brought Montai logs to help fortify their defences.");
+} else if(%treequest = ^tree_spoken_montai) {
+    $text = append($text, "||@dbl@I need to bring Montai @dre@logs@dbl@ to fortify their defences");
+}
+
+if(%treequest > ^tree_given_logs_montai) {
+    $text = append($text, "|@str@Now their defences were secure, they were ready to use the");
+    $text = append($text, "|@str@Gnome Ballista to break through the enemy defences.");
+} else if(%treequest = ^tree_given_logs_montai) {
+    $text = append($text, "|@dbl@I should speak to @dre@Montai@dbl@ again and see what to do next");
+}
+
+if(%treequest > ^tree_finding_trackers) {
+    $text = append($text, "||@str@I found the three trackers and used their coordinates to fire");
+    $text = append($text, "|@str@the ballista straight into the Khazard stronghold.");
+} else if(%treequest = ^tree_finding_trackers) {
+    $text = append($text, "||@dbl@I need to head into the @dre@Battlefield@dbl@ and find the @dre@three Gnome");
+    $text = append($text, "|@dre@trackers@dbl@ who have the @dre@firing coordinates@dbl@ and then fire the");
+    $text = append($text, "|@dre@ballista!");
+    // no tracking for coordinates yet, add in 2005 (varb)
+}
+
+if(%treequest > ^tree_ballista_fired) {
+    $text = append($text, "|@str@With the stronghold breached by ballista fire, I was able to");
+    $text = append($text, "|@str@make my way inside and recover the orb of protection.");
+} else if(%treequest = ^tree_ballista_fired) {
+    $text = append($text, "|@dbl@With the @dre@Khazard stronghold@dbl@ exposed I should get inside");
+    $text = append($text, "|@dbl@and retrieve the gnomes' @dre@orb of protection.");
+}
+
+if(%treequest > ^tree_retrieved_orb) {
+    $text = append($text, "||@str@I returned the orb to King Bolren, but while I was busy getting");
+    $text = append($text, "|@str@it the Khazard troops invaded the village and stole the");
+    $text = append($text, "|@str@remaining two orbs before heading north.");
+} else if(%treequest = ^tree_retrieved_orb) {
+    // no inv check
+    $text = append($text, "||@dbl@I should return the @dre@orb@dbl@ to @dre@King Bolren@dbl@ immediately");
+}
+
+if(%treequest > ^tree_returned_first_orb) {
+    $text = append($text, "||@str@After a fierce battle I defeated the warlord who'd stolen");
+    $text = append($text, "|@str@the orbs, and reclaimed them for the gnome people.");
+} else if(%treequest = ^tree_returned_first_orb) {
+    $text = append($text, "||@dbl@I should retrieve the @dre@two remaining orbs@dbl@ from the @dre@warlord");
+}
+
+if(%treequest > ^tree_defeated_warlord) {
+    $text = append($text, "||@str@I returned them to King Bolren, and was rewarded for all");
+    $text = append($text, "|@str@of my help to the Gnome people in recovering the orbs.");
+} else if(%treequest = ^tree_defeated_warlord) {
+    $text = append($text, "||@dbl@I should return them now to @dre@King Bolren@dbl@ where they @dbl@belong");
+}
+
+if(%treequest = ^tree_complete) {
+    $text = append($text, "||@str@I can now use the gnome's spirit tree to teleport around the");
+    $text = append($text, "|@str@world to places that are linked to the spirit tree!");
+    $text = append($text, "||@red@QUEST COMPLETE!");
+}
+
+
+~quest_journal("Tree Gnome Village", $text);
