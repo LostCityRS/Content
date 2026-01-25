@@ -1,0 +1,6 @@
+[oploc1,grubordoor] 
+if (%heroquest >= ^hero_blackarm_hq_door_unlocked & %blackarmgang = ^blackarmgang_complete) {
+  ~open_and_close_door(loc_type, ~check_axis(coord, loc_coord, loc_angle), false);
+  return;
+}
+@talk_grubor_thru_door;

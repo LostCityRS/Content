@@ -1,0 +1,214 @@
+[if_button,questlist:hero]
+def_string $n = "Heroes' Quest";
+def_string $x;
+
+if (%heroquest > ^hero_blackarm_obtained_armband) {
+    $x = append($x, "@str@I gave Achietties an Entranan firebird feather, a cooked|");
+    $x = append($x, "@str@lava eel from a dangerous fishing spot and (after some|");
+    $x = append($x, "@str@difficulty) a master thief's armband, and proved myself|");
+    $x = append($x, "@str@worthy of entrance to the Heroes' Guild.|");
+    $x = append($x, "@dre@QUEST COMPLETE!");
+    ~quest_journal($n, $x);
+    return;
+}
+if (%heroquest = ^hero_not_started) {
+    $x = append($x, "@dbl@I can start this quest by speaking to @dre@Achietties@dbl@ at the|");
+    $x = append($x, "@dbl@entrance to the @dre@Heroes' Guild@dbl@ in @dre@Burthorpe@dbl@.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "@dre@Achietties@dbl@ will let me into the @dre@Heroes' Guild@dbl@ if I can get:|");
+//feather section
+if (~obj_gettotal(hot_feather) > 0) {
+    $x = append($x, "@str@1) An Entranan firebird feather - I now have one!|");
+    $x = append($x, "@str@The high priest on Entrana confirmed that a firebird exists|");
+    $x = append($x, "@str@on their island. I needed to equip ice gloves (from the|");
+    $x = append($x, "@str@Ice Queen within White Wolf Mountain) to pick up the|");
+    $x = append($x, "@str@feather from the firebird I defeated on Entrana.|");
+} else {
+    $x = append($x, "@dbl@1) An @dre@Entranan firebird feather@dbl@.|");
+    if (~obj_gettotal(ice_gloves) > 0) {
+        $x = append($x, "@str@The high priest of Entrana confirmed that a firebird exists|");
+        $x = append($x, "@str@on their island and I obtained ice gloves from the Ice Queen|");
+        $x = append($x, "@str@within White Wolf Mountain to pick up the feather.|");
+        $x = append($x, "@dbl@I need to defeat the @dre@firebird@dbl@ on @dre@Entrana@dbl@ and retrieve|");
+        $x = append($x, "@dbl@an @dre@Entranan firebird feather@dbl@ with the @dre@ice gloves@dbl@ equipped.|");
+    } else {
+        $x = append($x, "@dbl@I should check if anyone important on @dre@Entrana@dbl@ knows|");
+        $x = append($x, "@dbl@where I can find an Entrana firebird.|");
+    }
+}
+
+// lava eel section
+if (~obj_gettotal(lava_eel) > 0) {
+    $x = append($x, "@str@2) A cooked lava eel - I now have one!|");
+    $x = append($x, "@str@Gerrant, the fishing shop owner in Port Sarim, told me I'll|");
+    $x = append($x, "@str@need a lava-proof fishing rod. I can make this oily fishing|");
+    $x = append($x, "@str@rod by covering an ordinary fishing rod with fire-proof|");
+    $x = append($x, "@str@blamish oil. To make the oil he gave me a jar of blamish|");
+    $x = append($x, "@str@slime to mix with harralander and water.|");
+    $x = append($x, "@str@I oiled a fishing rod and used it to catch a lava eel.|");
+} else {
+    $x = append($x, "@dbl@2) A @dre@cooked lava eel.|");
+    if ( (~obj_gettotal(raw_lava_eel) > 0)
+        | (~obj_gettotal(oily_fishing_rod) > 0)
+        | (~obj_gettotal(blamish_snail_slime) > 0)
+        | (~obj_gettotal(blamish_oil) > 0)
+        ) {
+        $x = append($x, "@str@Gerrant, the fishing shop owner in Port Sarim, told me I'll|");
+        $x = append($x, "@str@need a lava-proof fishing rod. I can make this oily fishing|");
+        $x = append($x, "@str@rod by covering an ordinary fishing rod with fire-proof|");
+        $x = append($x, "@str@blamish oil. To make the oil he gave me a jar of blamish|");
+        $x = append($x, "@str@slime to mix with harralander and water.|");
+    }
+    if (~obj_gettotal(raw_lava_eel) > 0) {
+        $x = append($x, "@dbl@I now have a @dre@raw lava eel@dbl@, but I need to @dre@cook@dbl@ it.|");
+    } else if (~obj_gettotal(oily_fishing_rod) > 0) {
+        $x = append($x, "@dbl@I can catch a @dre@lava eel@dbl@ with my @dre@oily fishing rod.|");
+    } else if ((~obj_gettotal(blamish_snail_slime) > 0 | ~obj_gettotal(blamish_oil) > 0)) {
+        $x = append($x, "@dbl@I can make an @dre@oily fishing rod@dbl@ with Gerrant's @dre@slime@dbl@.|");
+    } else {
+        $x = append($x, "@dbl@I should speak to a @dre@fishing expert@dbl@.|");
+    }
+}
+
+// armband section - header only strikes if you have one, reverts when dropped
+if (~obj_gettotal(master_thief_armband) > 0) {
+    $x = append($x, "@str@3) A master thief's armband - I now have one!|");
+} else {
+    $x = append($x, "@dbl@3) A @dre@master thief's armband.|");
+}
+if (%heroquest = ^hero_blackarm_obtained_armband) {
+    $x = append($x, "@str@I spoke to Katrine about the master thief's armband. She|");
+    $x = append($x, "@str@told me I can get one by stealing one of Pete's candlesticks.|");
+    $x = append($x, "@str@I used the Black Arm password to enter the Brimhaven Black|");
+    $x = append($x, "@str@Arm hideout, south-east of the Shrimp and Parrot.|");
+    $x = append($x, "@str@Trobert, the Brimhaven Black Arm leader, told me that the|");
+    $x = append($x, "@str@key to the treasure room is carried by Grip, Scarface Pete's|");
+    $x = append($x, "@str@head guard. He provided me with the ID papers of Grip's new|");
+    $x = append($x, "@str@deputy, a deserter from the Black Knight's Fortress.|");
+    $x = append($x, "@str@I managed to pass myself off as Hartigen the Black|");
+    $x = append($x, "@str@Knight and enter Scarface Pete's mansion.|");
+    $x = append($x, "@str@I presented myself to Grip, who has the key to the|");
+    $x = append($x, "@str@treasure room.|");
+    $x = append($x, "@str@With the help of a Phoenix Gang member who killed Grip|");
+    $x = append($x, "@str@for me, I managed to get a candlestick from the chest in|");
+    $x = append($x, "@str@the treasure room of Scarface Pete's mansion.|");
+    $x = append($x, "@str@I gave Scarface Pete's candlestick to Katrine, and in|");
+    $x = append($x, "@str@reward she gave me a master thief's armband.|");
+} else if (%heroquest = ^hero_phoenix_obtained_armband) {
+    $x = append($x, "@str@I spoke to Straven about the Master Thieves Armband.|");
+    $x = append($x, "@str@Then I told Alfonse the password 'Gherkin'.|");
+    $x = append($x, "@str@Charlie told me about a secret door into Scarface Pete's|");
+    $x = append($x, "@str@hideout, but he couldn't find a way of getting through it.|");
+    $x = append($x, "@str@A rival gang member collected a candlestick for me after I|");
+    $x = append($x, "@str@killed Grip and got the Treasure Room key for them.|");
+    $x = append($x, "@str@I gave Straven Scarface Pete's candlestick, and in reward|");
+    $x = append($x, "@str@he gave me a Master Thieves Armband to prove my skills.|");
+} else {
+    if (%phoenixgang >= ^phoenixgang_joined) {//phoenix gang side (OSRS)
+        $x = append($x, "@dbl@I worked with the @dre@Phoenix Gang@dbl@ when I was searching for the|");
+        $x = append($x, "@dre@Shield of Arrav@dbl@. I should visit their hideout, maybe they can|");
+        $x = append($x, "@dbl@help me.|");
+        if (%heroquest < ^hero_phoenix_gangmember_spoken) {
+            ~quest_journal($n, $x);
+            return;
+        }
+        $x = append($x, "@str@I spoke to Straven about the Master Thieves Armband.|");
+        if (%heroquest = ^hero_phoenix_gangmember_spoken) {
+            $x = append($x, "@dbl@He told me that I can get one by stealing @dre@Pete's Candlestick|");
+            $x = append($x, "@dbl@I should use the password he gave me at @dre@Brimhaven");
+            ~quest_journal($n, $x);
+            return;
+        }
+        $x = append($x, "@str@Then I told Alfonse the password 'Gherkin'.|");
+        if (%heroquest = ^hero_phoenix_talked_alfonse) {
+            $x = append($x, "@dbl@He said I should speak to @dre@Charlie@dbl@ round the back");
+            ~quest_journal($n, $x);
+            return;
+        }
+        $x = append($x, "@str@Charlie told me about a secret door into Scarface Pete's|");
+        $x = append($x, "@str@hideout, but he couldn't find a way of getting through it.|");
+        if (%heroquest = ^hero_phoenix_talked_charlie) {
+            $x = append($x, "@dbl@Maybe @dre@another player@dbl@ can help me get through this @dre@door@dbl@?");
+            ~quest_journal($n, $x);
+            return;
+        }
+        //^hero_phoenix_killed_grip
+        $x = append($x, "@str@A rival gang member collected a candlestick for me after I|");
+        $x = append($x, "@str@killed Grip and got the Treasure Room key for them.|");
+        $x = append($x, "@dbl@As soon as they have given me my @dre@candlestick@dbl@ I should|");
+        $x = append($x, "@dbl@head back to @dre@Varrock@dbl@ and give it to @dre@Straven@dbl@ for my @dre@reward|");
+        
+    } else {//black arm side (RS3)
+        if (%heroquest < ^hero_blackarm_gangmember_spoken) {
+            $x = append($x, "@dre@Katrine@dbl@ (the leader of the @dre@Black Arm Gang@dbl@ in @dre@south-west|");
+            $x = append($x, "@dre@Varrock@dbl@) can help me.");
+            ~quest_journal($n, $x);
+            return;
+        }
+        $x = append($x, "@str@I spoke to Katrine about the master thief's armband. She|");
+        $x = append($x, "@str@told me I can get one by stealing one of Pete's candlesticks.|");
+        if (%heroquest = ^hero_blackarm_gangmember_spoken) {
+            $x = append($x, "@dbl@I should say the password she gave me at @dbl@the @dre@Black|");//removed password here since it's not in OSRS journal
+            $x = append($x, "@dre@Arm hideout@dbl@ in @dre@Brimhaven@dbl@. @dbl@It's located @dre@south-east@dbl@ of|");
+            $x = append($x, "@dbl@the @dre@Shrimp and Parrot@dbl@.");
+            ~quest_journal($n, $x);
+            return;
+        }
+        $x = append($x, "@str@I used the Black Arm password to enter the Brimhaven Black|");
+        $x = append($x, "@str@Arm hideout, south-east of the Shrimp and Parrot.|");
+        if (%heroquest = ^hero_blackarm_hq_door_unlocked) {
+            $x = append($x, "@dbl@I should speak to other gang members in the hideout for");
+            $x = append($x, "@dbl@help.");
+            ~quest_journal($n, $x);
+            return;
+        }
+        $x = append($x, "@str@Trobert, the Brimhaven Black Arm leader, told me that the|");
+        $x = append($x, "@str@key to the treasure room is carried by Grip, Scarface Pete's|");
+        $x = append($x, "@str@head guard. He provided me with the ID papers of Grip's new|");
+        $x = append($x, "@str@deputy, a deserter from the Black Knight's Fortress.|");
+        if (%heroquest = ^hero_blackarm_id_papers_obtained) {
+            $x = append($x, "@dbl@I need to disguise myself as @dre@Hartigen the Black Knight@dbl@ in|");
+            $x = append($x, "@dbl@order to get inside @dre@Scarface Pete's mansion.");
+            ~quest_journal($n, $x);
+            return;
+        }
+        $x = append($x, "@str@I managed to pass myself off as Hartigen the Black|");
+        $x = append($x, "@str@Knight and enter Scarface Pete's mansion.|");
+        if (%heroquest = ^hero_blackarm_mansion_unlocked) {
+            $x = append($x, "@dbl@Now I need to present myself to @dre@Grip@dbl@, the head guard.");
+            ~quest_journal($n, $x);
+            return;
+        }
+        $x = append($x, "@str@I presented myself to Grip, who has the key to the|");
+        $x = append($x, "@str@treasure room.|");
+        if (%heroquest = ^hero_blackarm_id_papers_given) {
+            $x = append($x, "@dbl@I can move around the hideout, but now I need @dre@Grip's key|");
+            $x = append($x, "@dbl@ to get into the @dre@treasure room@dbl@ and get the @dre@candlestick@dbl@.|");//end phrase
+            $x = append($x, "@dbl@Maybe @dre@another player@dbl@ can help me discreetly defeat @dre@Grip@dbl@?|");
+            //omitting the next line from RS3, I think it's related to soloing the quest:
+            //Or perhaps I could break into the @dre@treasure room@dbl@ on my own.
+            ~quest_journal($n, $x);
+            return;
+        }
+        //^hero_blackarm_looted_chest
+        $x = append($x, "@str@With the help of a Phoenix Gang member who killed Grip|");
+        $x = append($x, "@str@for me, I managed to get a candlestick from the chest in|");
+        $x = append($x, "@str@the treasure room of Scarface Pete's mansion.|");
+        $x = append($x, "@dbl@After rewarding the player who assisted me, I should take|");
+        $x = append($x, "@dre@the Pete's candlestick@dbl@ to @dre@Katrine@dbl@ for my @dre@master thief's|");
+        $x = append($x, "@dre@armband@dbl@.|");
+    }
+}
+
+if (  (~obj_gettotal(master_thief_armband) > 0)
+    & (~obj_gettotal(lava_eel) > 0)
+    & (~obj_gettotal(hot_feather) > 0)
+    ) {
+    $x = append($x, "@dbl@I have @dre@all required items@dbl@. I should give them to @dre@Achietties@dbl@ at|");
+    $x = append($x, "@dbl@the entrance to the @dre@Heroes' Guild@dbl@ in @dre@Burthorpe@dbl@.");
+}
+
+~quest_journal($n, $x);
