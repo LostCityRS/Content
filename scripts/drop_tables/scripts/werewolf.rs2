@@ -1,0 +1,27 @@
+[ai_queue3,_werewolf]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+def_int $random = random(512);
+
+if ($random < 32) obj_add(npc_coord, steel_scimitar, 1, ^lootdrop_duration);
+else if ($random < 57) obj_add(npc_coord, steel_axe, 1, ^lootdrop_duration);
+else if ($random < 72) obj_add(npc_coord, steel_full_helm, 1, ^lootdrop_duration);
+else if ($random < 82) obj_add(npc_coord, mithril_chainbody, 1, ^lootdrop_duration);
+else if ($random < 92) obj_add(npc_coord, mithril_sq_shield, 1, ^lootdrop_duration);
+else if ($random < 95) obj_add(npc_coord, rune_med_helm, 1, ^lootdrop_duration);
+else if ($random < 98) obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+else if ($random < 118) obj_add(npc_coord, jug_wine, 1, ^lootdrop_duration);
+else if ($random < 128) obj_add(npc_coord, raw_chicken, 5, ^lootdrop_duration);
+else if ($random < 138) obj_add(npc_coord, raw_beef, 5, ^lootdrop_duration);
+else if ($random < 148) obj_add(npc_coord, raw_bear_meat, 5, ^lootdrop_duration);
+else if ($random < 228) obj_add(npc_coord, coins, 10, ^lootdrop_duration);
+else if ($random < 248) obj_add(npc_coord, coins, 90, ^lootdrop_duration);
+else if ($random < 268) obj_add(npc_coord, coins, 120, ^lootdrop_duration);
+else if ($random < 288) obj_add(npc_coord, coins, 222, ^lootdrop_duration);
+else if ($random < 308) obj_add(npc_coord, coins, 364, ^lootdrop_duration);
+else if ($random < 408) obj_add(npc_coord, fur, 1, ^lootdrop_duration);
+else if ($random < 508) obj_add(npc_coord, grey_wolf_fur, 1, ^lootdrop_duration);
+else if ($random < 509) obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);

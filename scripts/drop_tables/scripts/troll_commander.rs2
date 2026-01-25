@@ -1,0 +1,37 @@
+[ai_queue3,_troll_general]
+if (npc_findhero = ^true) { // this does check heropts
+    if(npc_type = troll_general | npc_type = troll_general2 | npc_type = troll_general3) {
+        if(%troll_quest < ^troll_entered_prison & ~obj_gettotal(troll_key_prison) = 0) {
+            obj_add(npc_coord, troll_key_prison, 1, ^lootdrop_duration);
+        }
+    }
+}
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+def_int $random = random(128);
+
+if ($random < 4) obj_add(npc_coord, steel_platebody, 1, ^lootdrop_duration);
+else if ($random < 7) obj_add(npc_coord, black_warhammer, 1, ^lootdrop_duration);
+else if ($random < 10) obj_add(npc_coord, steel_warhammer, 1, ^lootdrop_duration);
+else if ($random < 12) obj_add(npc_coord, adamant_axe, 1, ^lootdrop_duration);
+else if ($random < 13) obj_add(npc_coord, adamant_sq_shield, 1, ^lootdrop_duration);
+else if ($random < 14) obj_add(npc_coord, granite_shield, 1, ^lootdrop_duration);
+else if ($random < 15) obj_add(npc_coord, mithril_platebody, 1, ^lootdrop_duration);
+else if ($random < 16) obj_add(npc_coord, rune_warhammer, 1, ^lootdrop_duration);
+else if ($random < 24) obj_add(npc_coord, earthrune, 80, ^lootdrop_duration);
+else if ($random < 29) obj_add(npc_coord, naturerune, 16, ^lootdrop_duration);
+else if ($random < 32) obj_add(npc_coord, lawrune, 4, ^lootdrop_duration);
+else if ($random < 33) obj_add(npc_coord, earthrune, 65, ^lootdrop_duration);
+else if ($random < 34) obj_add(npc_coord, earthrune, 25, ^lootdrop_duration);
+else if ($random < 49) obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+else if ($random < 78) obj_add(npc_coord, coins, 40, ^lootdrop_duration);
+else if ($random < 103) obj_add(npc_coord, coins, 135, ^lootdrop_duration);
+else if ($random < 113) obj_add(npc_coord, coins, 190, ^lootdrop_duration);
+else if ($random < 117) obj_add(npc_coord, coins, 20, ^lootdrop_duration);
+else if ($random < 118) obj_add(npc_coord, coins, 420, ^lootdrop_duration);
+else if ($random < 121) obj_add(npc_coord, cert_coal, 6, ^lootdrop_duration);
+else if ($random < 123) obj_add(npc_coord, cert_raw_tuna, 4, ^lootdrop_duration);
+else obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
