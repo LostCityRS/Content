@@ -414,42 +414,6 @@ switch_coord (loc_coord) {
 
 // --- new
 
-[oploc1,tunnelstairs]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,tunnelstairstop]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,tunnelstairs2]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,tunnelstairstop2]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,ikov_darkstairs]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,ikov_darkstairsdown]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
 [oploc1,loc_1724]
 // arrive delay?
 switch_coord (loc_coord) {
@@ -481,90 +445,6 @@ switch_coord (loc_coord) {
 }
 
 [oploc3,loc_1743]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,plaguehousestairsdown]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,plaguehousestairsup]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,rehnisonstairs]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,rehnisonstairstop]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,totemtrapstairs]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,hazeelcultstairs]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,cavewalltunnel_upass_down]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,cavewalltunnel_upass_up]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,elemental_workshop_spiralstairs]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,elemental_workshop_spiralstairstop]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,building_steps_up]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,building_steps_down]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,troll_stronghold_stairs]
-// arrive delay?
-switch_coord (loc_coord) {
-    case default : @unhandled_stairs(loc_coord);
-}
-
-[oploc1,troll_stronghold_stairstop]
 // arrive delay?
 switch_coord (loc_coord) {
     case default : @unhandled_stairs(loc_coord);
@@ -674,10 +554,8 @@ switch_coord (loc_coord) {
 }
 
 [oploc1,board_game_stairs_top]
-p_arrivedelay;
+// arrive delay?
 switch_coord (loc_coord) {
-    case 1_34_77_31_7 : p_telejump(0_34_77_31_10);
-    case 1_34_77_36_14 : p_telejump(0_34_77_36_12);
     case default : @unhandled_stairs(loc_coord);
 }
 
@@ -688,10 +566,8 @@ switch_coord (loc_coord) {
 }
 
 [oploc1,board_game_stairs_base]
-p_arrivedelay;
+// arrive delay?
 switch_coord (loc_coord) {
-    case 0_34_77_31_7 : p_telejump(1_34_77_31_6);
-    case 0_34_77_36_13 : p_telejump(1_34_77_36_16);
     case default : @unhandled_stairs(loc_coord);
 }
 
@@ -702,12 +578,8 @@ switch_coord (loc_coord) {
 }
 
 [oploc1,board_game_stairs_grey_all]
-p_arrivedelay;
+// arrive delay?
 switch_coord (loc_coord) {
-    case 0_45_55_19_46 : 
-        def_int $randomZ = random(2);
-        def_int $randomX = ~random_range(-1, 1);
-        p_telejump(movecoord(1_34_77_30_5, $randomX, 0, $randomZ));
     case default : @unhandled_stairs(loc_coord);
 }
 
@@ -726,12 +598,7 @@ switch_coord (loc_coord) {
 }
 
 [oploc1,board_game_stairs_grey_base2]
-p_arrivedelay;
 switch_coord (loc_coord) {
-    case 1_34_77_29_7 : 
-        def_int $randomZ = random(2);
-        def_int $randomX = ~random_range(-1, 1);
-        p_telejump(movecoord(0_45_55_19_44, $randomX, 0, $randomZ));
     case default : @unhandled_stairs(loc_coord);
 }
 
