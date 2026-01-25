@@ -1,0 +1,65 @@
+[opheld1,mithril_seed]
+p_stopaction;
+if (~area_allow_loc_add(coord) = false) {
+    mes("You can't plant your flowers here."); // OSRS
+    return;
+} 
+if (~inzone_coord_pair_table(party_room_zones, coord) = true) {
+    // osrs
+    mes("Party Pete won't be happy if you plant your flowers here.");
+    return;
+}
+mes("You open the small mithril case.");
+mes("You drop a seed by your feet.");
+inv_del(inv, mithril_seed, 1);
+// Temp note: dur does not need updated
+loc_add(coord, ~random_flowers, 0, centrepiece_straight, 500);
+~push_player(coord);
+facesquare(loc_coord);
+def_int $option = ~p_choice2("Pick the flowers.", 1, "Leave the flowers.", 2);
+if($option = 2) {
+    return;
+}
+if(inv_freespace(inv) = 0) {
+    mes("You have no free space in your pack."); // OSRS
+    return;
+}
+anim(human_pickupfloor, 0);
+inv_add(inv, ~flowers_obj(loc_type), 1);
+loc_del(1);
+
+[proc,random_flowers]()(loc)
+def_int $rand = random(1001);
+if($rand < 150) {
+    return (flower_waterfall_quest_mixed);
+} else if($rand < 300) {
+    return (flower_waterfall_quest_red);
+} else if($rand < 450) {
+    return (flower_waterfall_quest_blue);
+} else if($rand < 600) {
+    return (flower_waterfall_quest_yellow);
+} else if($rand < 750) {
+    return (flower_waterfall_quest_purple);
+} else if($rand < 900) {
+    return (flower_waterfall_quest_orange);
+} else if($rand < 998) {
+    return (flower_waterfall_quest);
+} else if($rand < 999) {
+    return (flower_waterfall_quest_white);
+} else if($rand < 1001) {
+    return (flower_waterfall_quest_black);
+}
+
+[proc,flowers_obj](loc $flowers_loc)(namedobj)
+switch_loc($flowers_loc) {
+    case flower_waterfall_quest : return (flowers_waterfall_quest);
+    case flower_waterfall_quest_red : return (flowers_waterfall_quest_red);
+    case flower_waterfall_quest_blue : return (flowers_waterfall_quest_blue);
+    case flower_waterfall_quest_yellow : return (flowers_waterfall_quest_yellow);
+    case flower_waterfall_quest_purple : return (flowers_waterfall_quest_purple);
+    case flower_waterfall_quest_orange : return (flowers_waterfall_quest_orange);
+    case flower_waterfall_quest_mixed : return (flowers_waterfall_quest_mixed);
+    case flower_waterfall_quest_white : return (flowers_waterfall_quest_white);
+    case flower_waterfall_quest_black : return (flowers_waterfall_quest_black);
+    case default : return (flowers_waterfall_quest_mixed);
+}
