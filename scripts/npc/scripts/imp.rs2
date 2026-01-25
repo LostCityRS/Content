@@ -1,0 +1,23 @@
+[ai_timer,imp]
+// in testing, imps seemed to teleport every 200 ticks on average.
+// ash confirms a 125t timer on average, so probably a 50% chance
+if (random(2) = 0 & add(%npc_lastcombat, 8) < map_clock) { // ash says a few seconds, but i assume its 8 ticks?
+    ~npc_imp_teleport;
+}
+npc_setmode(null);
+npc_settimer(~random_range(50, 200)); // https://x.com/JagexAsh/status/1823338342525624357: ash says 70t on spawn, 50-200 ticks randomly after
+
+[ai_queue2,imp]
+if (random(10) = 0 & sub(npc_stat(hitpoints), last_int) > 0) {
+    ~npc_imp_teleport;
+}
+~npc_default_damage(last_int);
+
+[proc,npc_imp_teleport]
+spotanim_map(smokepuff, npc_coord, 124, 0);
+if (finduid(%npc_aggressive_player) = true & npc_getmode = opplayer2) {
+    sound_synth(smokepuff, 0, 0);
+}
+npc_tele(map_findsquare(npc_coord, 0, 20, ^map_findsquare_none));
+spotanim_map(smokepuff, npc_coord, 124, 0);
+npc_setmode(null);

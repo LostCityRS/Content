@@ -1,0 +1,13 @@
+[ai_opplayer2,barbarian] @barbarian_default_attack;
+[ai_opplayer2,barbarian_woman] @barbarian_default_attack;
+
+[label,barbarian_default_attack]
+if (%npc_action_delay > map_clock) return;
+// https://youtu.be/RdilejVd-cQ
+// total hits: 36 
+// hits with yeargh: 8
+// hits without: 28
+if (random(4) = 0) {
+    npc_say("YYEEEEEAAARRRRGGHHHH!!!");
+}
+~npc_default_attack;
