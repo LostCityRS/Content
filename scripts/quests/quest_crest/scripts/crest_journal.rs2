@@ -1,0 +1,104 @@
+[if_button,questlist:crest]
+def_string $text;
+
+// Source for not_started stage: https://youtu.be/5N3HEGzfEk0?si=FG_q3CbxE5HDI2or&t=10
+if (%crestquest = ^crest_not_started) {
+
+    $text = "@dbl@I can start this quest by speaking to @dre@Dimintheis@dbl@ in @dre@East|";
+    $text = append($text, "@dre@Varrock|");
+    $text = append($text, "@dbl@To complete this quest I need:|");
+    $text = append($text, "@dre@Level 40 Mining|");
+    $text = append($text, "@dre@Level 40 Crafting|");
+    $text = append($text, "@dre@Level 40 Smithing|");
+    $text = append($text, "@dre@Level 59 Magic|");
+    $text = append($text, "@dbl@I also need to be able to defeat a @dre@level 170 Demon");
+
+    ~quest_journal("Family Crest", $text);
+    return;
+}
+
+$text = "@str@I have agreed to restore Dimintheis' family crest to him.|";
+
+if (%crestquest > ^crest_spoken_dimintheis) {
+    $text = append($text, "@str@I found Caleb working as a Chef in Catherby and told him of|");
+    $text =  append($text, "@str@my Quest for his father to restore his Family Crest.|");
+    $text =  append($text, "@str@I discovered the Crest had been split into three with each|");
+    $text =  append($text, "@str@of Dimintheis' three sons taking a piece each.|");
+} else if (%crestquest = ^crest_spoken_dimintheis) { // https://youtu.be/Kp1p2J8IrhE?si=iK4RbuBeSmhnnlZL&t=119
+    $text = append($text, "@dbl@I need to find his son @dre@Caleb@dbl@. The last Dimintheis heard of|");
+    $text = append($text, "@dbl@him he was a great @dre@chef@dbl@ beyond @dre@White Wolf Mountain");
+}
+
+if (%crestquest > ^crest_spoken_caleb) {
+    $text =  append($text, "@str@I gave Caleb the Swordfish, Bass, Tuna, Salmon and Shrimp|");
+    $text =  append($text, "@str@he needed for his salad in return for his crest piece.|");
+} else if (%crestquest = ^crest_spoken_caleb) { // https://youtu.be/_bAGi959tCM?si=YQx68IwTdkHKhiX1&t=150
+    $text =  append($text, "@dre@Caleb@dbl@ will let me have @dre@his piece@dbl@ in return for:|");
+    if (inv_total(inv, tuna) >= 1) { $text = append($text, "@str@I have cooked Tuna with me|"); } else { $text = append($text, "@dre@one cooked Tuna|"); }
+    if (inv_total(inv, bass) >= 1) { $text = append($text, "@str@I have cooked Bass with me|"); } else { $text = append($text, "@dre@one cooked Bass|"); }
+    if (inv_total(inv, salmon) >= 1) { $text = append($text, "@str@I have cooked Salmon with me|"); } else { $text = append($text, "@dre@one cooked Salmon|"); }
+    if (inv_total(inv, shrimp) >= 1) { $text = append($text, "@str@I have cooked Shrimp with me|"); } else { $text = append($text, "@dre@one cooked Shrimp|"); }
+    if (inv_total(inv, swordfish) >= 1) { $text = append($text, "@str@I have cooked Swordfish with me"); } else { $text = append($text, "@dre@one cooked Swordfish"); }
+}
+
+if (%crestquest = ^crest_caleb_piece) { // https://youtu.be/Kp1p2J8IrhE?si=gx1qTURfhooMapOt&t=169
+    $text =  append($text, "@dbl@I have @dre@one@dbl@ crest piece, I need to find the other @dre@two");
+}
+
+if (%crestquest = ^crest_caleb_where) { // https://youtu.be/Kp1p2J8IrhE?si=qHjfef7J_vKZBE4v&t=198
+    $text =  append($text, "@dre@Caleb@dbl@ told me his brother @dre@Avan@dbl@ is on a treasure hunt in the|");
+    $text =  append($text, "@dre@desert@dbl@ somewhere - I should search for him there");
+}
+
+if (%crestquest = ^crest_spoken_gem_trader) { // https://youtu.be/Kp1p2J8IrhE?si=92HeWuSEeLouYyoD&t=221
+    $text =  append($text, "@dbl@The @dre@Al-Kharid Gem Trader@dbl@ told me that @dre@Avan@dbl@ is wearing a|");
+    $text =  append($text, "@dre@yellow cape@dbl@, and headed into the @dre@desert@dbl@ by the @dre@scorpions");
+}
+
+if (%crestquest > ^crest_spoken_avan) { // https://youtu.be/Kp1p2J8IrhE?si=2Eubki1E72xGLp5s&t=304
+    $text = append($text, "@str@I found Avan by some gold rocks North of Al-Kharid.|");
+} else if (%crestquest = ^crest_spoken_avan) { // https://youtu.be/Kp1p2J8IrhE?si=Ujt3oXOc8ZWUcyO5&t=248
+    $text =  append($text, "@dbl@I should find a dwarf named @dre@Boot@dbl@ who lives somewhere in|");
+    $text =  append($text, "@dre@the mountains@dbl@ and knows where to find @dre@'Perfect Gold'");
+}
+
+if (%crestquest > ^crest_spoken_boot) {
+    $text = append($text, "@str@Avan gave me his crest piece in return for a ruby ring and|");
+    $text = append($text, "@str@ruby necklace made of high quality 'perfect gold'.|");
+} else if (%crestquest = ^crest_spoken_boot) { // https://youtu.be/5N3HEGzfEk0?si=anKWcSAlt6kq8CFu&t=360
+    $text =  append($text, "@dre@Avan@dbl@ will give me his @dre@crest piece@dbl@ if I can bring him a @dre@ruby|");
+    $text =  append($text, "@dre@ring@dbl@ and @dre@ruby necklace@dbl@ made from @dre@'perfect gold'|");
+    $text =  append($text, "@dre@Boot@dbl@ told me @dre@'perfect gold'@dbl@ can be found @dre@underground|");
+    $text =  append($text, "@dbl@somewhere @dre@East@dbl@ of @dre@Ardougne@dbl@, but is difficult to get to|");
+    if (inv_total(inv, perfect_ruby_ring) >= 1) { $text = append($text, "@str@I have a ruby ring made of 'perfect gold' with me|"); } else { $text = append($text, "@dbl@I need to make a @dre@ruby ring@dbl@ made of @dre@'perfect gold'|"); }
+    if (inv_total(inv, perfect_ruby_necklace) >= 1) { $text = append($text, "@str@I have a ruby necklace made of 'perfect gold' with me|"); } else { $text = append($text, "@dbl@I need to make a @dre@ruby necklace@dbl@ made of @dre@'perfect gold'|"); }
+}
+
+if (%crestquest = ^crest_avan_piece) { // https://youtu.be/5N3HEGzfEk0?si=0QdAFzNzjtBfIROR&t=460
+    $text =  append($text, "@dbl@The @dre@final crest@dbl@ piece is with their brother @dre@Johnathon@dbl@ who is|");
+    $text =  append($text, "@dbl@a magical demon hunter at a @dre@tavern@dbl@ near the @dre@wilderness");
+}
+
+if (%crestquest > ^crest_spoken_johnathon) { // https://youtu.be/_bAGi959tCM?si=QQfFDTWkluJ2Wfzm&t=1052
+    $text = append($text, "@str@I found Johnathan looking very ill at the Jolly Boar Inn.|");
+    $text = append($text, "@str@He soon recovered when I used an antipoison potion on|");
+    $text = append($text, "@str@him.|");
+} else if (%crestquest = ^crest_spoken_johnathon) { // https://youtu.be/_bAGi959tCM?si=chhMXhRm4fQfx-x8&t=1033
+    $text =  append($text, "@dbl@I found @dre@Johnathon@dbl@ looking very ill at the @dre@Jolly Boar Inn");
+}
+
+if (%crestquest > ^crest_cured_johnathon) { // https://youtu.be/_bAGi959tCM?si=UsJ79a7TMnjV5uHv&t=1304
+    $text = append($text, "@str@I took all three pieces of the crest back to Dimintheis in|");
+    $text = append($text, "@str@Varrock. As a reward Dimintheis gave me some magical|");
+    $text = append($text, "@str@gauntlets that could be enchanted by his sons to give|");
+    $text = append($text, "@str@them bonuses in specific skills, and would always return|");
+    $text = append($text, "@str@to Dimintheis for me to reclaim if I ever lost them||");
+    $text = append($text, "@red@QUEST COMPLETE!");
+} else if (%crestquest = ^crest_cured_johnathon) { // https://youtu.be/5N3HEGzfEk0?si=9s4lTBtVbdZ_UB2E&t=518
+    $text =  append($text, "@dre@Johnathon@dbl@ lost his piece of the family crest to a demon|");
+    $text =  append($text, "@dbl@named @dre@Chronozon@dbl@ under the @dre@Air Obelisk@dbl@ in the @dre@Wilderness|");
+    $text =  append($text, "@dre@Chronozon@dbl@ is very powerful. I need to hit him with each of|");
+    $text =  append($text, "@dbl@the @dre@four spells of death@dbl@ before he can be defeated");
+}
+
+~quest_journal("Family Crest", $text);

@@ -1,0 +1,113 @@
+[if_button,questlist:biohazard]
+def_string $text;
+
+if (%biohazard = ^biohazard_not_started) {
+    $text = "@dbl@I can start this quest by speaking to @dre@Elena @dbl@who is in @dre@East|@dre@Ardougne";
+
+    ~quest_journal("Biohazard", $text);
+    return;
+}
+
+$text = "@str@I've spoken to Elena, the Mourners stole her distillator|";
+
+if (%biohazard > ^biohazard_started) {
+    $text = append($text, "|@str@I've spoken to Jerico about getting into West Ardougne|");
+} else if (%biohazard = ^biohazard_started) {
+    $text = append($text, "|@dbl@I need to talk to @dre@Jerico @dbl@about getting over the wall and|@dbl@into @dre@West Ardougne");
+}
+
+if (%biohazard = ^biohazard_spoken_jerico) {
+    $text = append($text, "|@dre@Omart @dbl@will be able to get me over the wall");
+    $text = append($text, "|@dbl@He's waiting at the @dre@South @dbl@end of the wall");
+}
+
+if (%biohazard = ^biohazard_used_birdfeed) {
+    $text = append($text, "|@dbl@I've chucked some birdfeed onto the Watch Tower");
+}
+
+if (%biohazard = ^biohazard_released_pigeons) {
+    $text = append($text, "|@dbl@The Watch Tower is now surrounded by flapping pigeons!");
+    $text = append($text, "|@dbl@Maybe I can sneak over the wall while the mourners are|@dbl@distracted");
+}
+
+if (%biohazard >= ^biohazard_climbed_ladder) {
+    $text = append($text, "|@str@I've crossed the wall into West Ardougne");
+    $text = append($text, "|@str@Omart and Kilron will stay to help me out again|");
+
+    if (%biohazard < ^biohazard_found_distillator) {
+        $text = append($text, "|@dbl@Somewhere in this city is @dre@Elena's distillator @dbl@- I must find|@dbl@it and return it to her|");
+    }
+}
+
+if (%biohazard = ^biohazard_poisoned_stew) {
+    $text = append($text, "|@dbl@I have rather unkindly poisoned the mourners' stew by|@dbl@putting rotten apples into it!");
+    $text = append($text, "|@dbl@At least the mourners aren't very nice people, so I don't|@dbl@feel bad about this");
+}
+
+if (%biohazard > ^biohazard_found_distillator) {
+    $text = append($text, "|@str@I've found Elena's Distillator and returned it to her|");
+} else if (%biohazard = ^biohazard_found_distillator) {
+    $text = append($text, "|@str@I managed to find Elena's distillator");
+
+    if (inv_total(inv, distillator) > 0) {
+        $text = append($text, "|@dbl@Now I can return the @dre@distillator @dbl@to @dre@Elena");
+    } else {
+        $text = append($text, "|@dbl@I seem to have mislaid the @dre@distillator");
+        $text = append($text, "|@dbl@I had better try to find another, or @dre@Elena @dbl@will be upset");
+    }
+}
+
+if (%biohazard > ^biohazard_given_distillator) {
+    $text = append($text, "|@str@Elena gave me some chemicals to take to Guidor|");
+} else if (%biohazard = ^biohazard_given_distillator) {
+    $text = append($text, "|@dbl@Elena's asked me to take the following items to @dre@Guidor @dbl@who|@dbl@lives in @dre@Varrock");
+
+    $text = append($text, "|@dre@Plague Sample @dbl@from @dre@Elena");
+    if (inv_total(inv, plaguesample) > 0) {
+        $text = append($text, "|@str@Elena gave me the Plague Sample");
+    }
+
+    $text = append($text, "|@dre@Liquid Honey");
+    if (inv_total(inv, liquid_honey) > 0) {
+        $text = append($text, "|@str@I have the Liquid Honey");
+    }
+
+    $text = append($text, "|@dre@Sulphuric Broline");
+    if (inv_total(inv, sulphuric_broline) > 0) {
+        $text = append($text, "|@str@I have the Sulphuric Broline");
+    }
+
+    $text = append($text, "|@dre@Ethenea");
+    if (inv_total(inv, ethenea) > 0) {
+        $text = append($text, "|@str@I have the Ethenea");
+    }
+
+    $text = append($text, "|@dre@Touch Paper @dbl@from the @dre@Chemist @dbl@in @dre@Rimmington");
+}
+
+if (%biohazard > ^biohazard_spoken_chemist) {
+    $text = append($text, "|@str@I've given all the items to Guidor|");
+} else if (%biohazard = ^biohazard_spoken_chemist) {
+    $text = append($text, "|@dbl@The Varrock guards are out looking for someone carrying|@dbl@suspicious materials. I must smuggle the items to @dre@Guidor|@dbl@secretly");
+}
+
+if (%biohazard = ^biohazard_found_secret) {
+    $text = append($text, "|@dre@Guidor's @dbl@findings were very interesting");
+    $text = append($text, "|@dbl@Apparently there is no @dre@Plague@dbl@!");
+    $text = append($text, "|@dbl@I should see what Elena thinks of this");
+}
+
+if (%biohazard = ^biohazard_reported_elena) {
+    $text = append($text, "|@str@I've told Elena Guidor's findings, she was horrified!|");
+
+    $text = append($text, "|@dbl@I need to confront the @dre@King of East Ardougne");
+}
+
+if (%biohazard = ^biohazard_complete) {
+    $text = append($text, "|@str@I've spoken to King Lathas, he admits the Plague was fake!|");
+
+    $text = append($text, "|@str@I have been given permission to use the Royal Training|@str@Gounds which are located North West of Ardougne|");
+    $text = append($text, "@red@QUEST COMPLETE!");
+}
+
+~quest_journal("Biohazard", $text);

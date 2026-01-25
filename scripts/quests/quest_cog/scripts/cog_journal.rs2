@@ -1,0 +1,50 @@
+[if_button,questlist:cog]
+def_string $text;
+
+switch_int (~get_cog_progress) {
+
+    case ^quest_cog_not_started :
+        $text = "@dbl@I can start this quest by talking to @dre@Brother Kojo@dbl@ at the|@dre@Clock Tower@dbl@ which is located @dre@South@dbl@ of @dre@Ardougne|";
+
+    case ^quest_cog_tasked_with_placing_cogs, ^quest_cog_three_remaining_cogs, ^quest_cog_two_remaining_cogs, ^quest_cog_one_remaining_cog :
+        $text = "@str@I spoke to Brother Kojo at the Clock Tower South of|@str@Argougne and agreed to help him repair the clock.|";
+        $text = append($text, "@dbl@To repair the clock I need to find the four coloured cogs|@dbl@and place them on the four correctly coloured spindles.|");
+
+        if(testbit(%cog_bits, ^quest_cog_blue) = ^false) {
+            $text = append($text, "@dbl@I haven't placed the @dre@Blue Cog@dbl@ on its @dre@spindle@dbl@ yet|");
+        } else {
+            $text = append($text, "@str@I have successfully placed the Blue Cog on its spindle|");
+        }
+
+        if(testbit(%cog_bits, ^quest_cog_black) = ^false) {
+            $text = append($text, "@dbl@I haven't placed the @dre@Black Cog@dbl@ on its @dre@spindle@dbl@ yet|");
+        } else {
+            $text = append($text, "@str@I have successfully placed the Black Cog on its spindle|");
+        }
+
+        if(testbit(%cog_bits, ^quest_cog_white) = ^false) {
+            $text = append($text, "@dbl@I haven't placed the @dre@White Cog@dbl@ on its @dre@spindle@dbl@ yet|");
+        } else {
+            $text = append($text, "@str@I have successfully placed the White Cog on its spindle|");
+        }
+
+        if(testbit(%cog_bits, ^quest_cog_red) = ^false) {
+            $text = append($text, "@dbl@I haven't placed the @dre@Red Cog@dbl@ on its @dre@spindle@dbl@ yet");
+        } else {
+            $text = append($text, "@str@I have successfully placed the Red Cog on its spindle");
+        }
+
+    case ^quest_cog_no_remaining_cogs :
+        $text = "@str@I spoke to Brother Kojo at the Clock Tower South of|@str@Argougne and agreed to help him repair the clock.|";
+        $text = append($text, "@str@I have placed all four cogs successfully on the spindles.|");
+        $text = append($text, "@dbl@I should speak to @dre@Brother Kojo@dbl@ and claim my @dre@reward");
+
+    case ^quest_cog_complete :
+        $text = "@str@I spoke to Brother Kojo at the Clock Tower South of|@str@Argougne and agreed to help him repair the clock.|";
+        $text = append($text, "@str@I have placed all four cogs successfully on the spindles.|");
+        $text = append($text, "@str@Brother Kojo was grateful for all my help and rewarded me.||");
+        $text = append($text, "@red@QUEST COMPLETE!");
+
+}
+
+~quest_journal("Clock Tower", $text);

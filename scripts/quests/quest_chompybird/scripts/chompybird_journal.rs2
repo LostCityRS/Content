@@ -1,0 +1,130 @@
+[if_button,questlist:chompybird]
+def_string $text;
+
+if (%chompybird = ^chompybird_not_started) {
+    // early OSRS
+    $text = "@dbl@I can start this quest by speaking to the ogre @dre@Rantz @dbl@who|@dbl@lives @dre@East @dbl@of the @dre@Ogre City@dbl@, @dre@North @dbl@of the @dre@Swamp Pool.|";
+
+    $text = append($text, "@dbl@To complete this quest I need:|");
+
+    if (stat_base(fletching) >= 5) {
+        $text = append($text, "@str@Level 5 Fletching|");
+    } else {
+        $text = append($text, "@dre@Level 5 Fletching|");
+    }
+
+    if (stat_base(cooking) >= 30) {
+        $text = append($text, "@str@Level 30 Cooking|");
+    } else {
+        $text = append($text, "@dre@Level 30 Cooking|");
+    }
+
+    if (stat_base(ranged) >= 30) {
+        $text = append($text, "@str@Level 30 Ranging|");
+    } else {
+        $text = append($text, "@dre@Level 30 Ranging|");
+    }
+
+    if (stat_base(fletching) >= 5 & stat_base(cooking) >= 30 & stat_base(ranged) >= 30) {
+        $text = append($text, "@dbl@I have all the @dre@stats @dbl@needed to complete this quest.");
+    }
+
+    ~quest_journal("Big Chompy Bird Hunting", $text);
+    return;
+}
+
+if (%chompybird = ^chompybird_complete) {
+    // early OSRS (yes the journal gets summarized)
+
+    $text = "@str@Once I had Rantz's bow, it was easy to hunt chompy birds|@str@using the nearby swamp toads. I cooked and seasoned a|@str@Chompy Bird for Rantz and his family.";
+    $text = append($text, "|@str@In return for this I got some experience in :|@str@Fletching, cooking and ranged. Plus I kept an ogre bow.|");
+    $text = append($text, "|@red@QUEST COMPLETE!");
+
+    ~quest_journal("Big Chompy Bird Hunting", $text);
+    return;
+}
+
+// todo: find older source, current OSRS mentions the city by name but the text fits better without
+$text = "@str@I found an ogre named Rantz near a cave just East of|@str@the Ogre City. When I spoke to him he seemed obsessed|@str@with using things called 'stabbers' to hunt 'Chompy Birds'.|";
+
+if (%chompybird = ^chompybird_started) {
+    $text = append($text, "|@dbl@I agreed to get @dre@Rants @dbl@some @dre@'stabbers'");
+}
+
+if (%chompybird >= ^chompybird_given_arrows) {
+    $text = append($text, "|@str@It turned out that 'stabbers' are a kind of specially made|@str@ogre arrow that are quite sturdily constructed. I brought|@str@Rantz some so that he could catch 'chompy'.|");
+
+    if (%chompybird = ^chompybird_given_arrows) {
+        $text = append($text, "|@dbl@Rantz says I need to get some '@dre@fatsy toadies@dbl@' to make the|@dre@chompy @dbl@come.");
+    }
+}
+
+// our dialog tells the player how to grow them at chompybird_kids_play_with_toad
+if (%chompybird >= ^chompybird_kids_play_with_toad) {
+    $text = append($text, "|@str@Rantz told me 'fatsy toadies' grow fat on swamp gas...|");
+
+    if (%chompybird < ^chompybird_shown_toad) {
+        $text = append($text, "|@dbl@I need to bring @dre@Rantz @dbl@a '@dre@fatsy toady@dbl@' to catch @dre@chompy@dbl@.");
+    }
+}
+
+if (%chompybird >= ^chompybird_shown_toad) {
+    $text = append($text, "|@str@I managed to trap some 'fatsy toadies' by using some gas|@str@filled ogre bellows. I took the 'fatsy toady' to Rantz.|");
+
+    if (%chompybird = ^chompybird_shown_toad) {
+        $text = append($text, "|@dbl@I should @dre@drop a toad @dbl@in the spot @dre@Rantz @dbl@showed to me");
+    }
+}
+
+if (%chompybird >= ^chompybird_dropped_toad) {
+    $text = append($text, "|@str@I dropped a fatsy toady on the spot Rantz showed me.|");
+
+    if (%chompybird < ^chompybird_rantz_tried_to_shoot_chompy) {
+        $text = append($text, "|@dbl@I should see how @dre@Rantz @dbl@catches a @dre@Chompy Bird.");
+    }
+}
+
+if (%chompybird > ^chompybird_rantz_gave_player_bow) {
+    // todo: see if it's possible to make this step and inv_total logic share the same @str@ assignment?
+    $text = append($text, "|@str@Rantz doesn't seem to be a very good shot... maybe I|@str@should try to shoot a chompy for him?|");
+} else if (%chompybird = ^chompybird_rantz_tried_to_shoot_chompy | %chompybird = ^chompybird_rantz_gave_player_bow) {
+    if (inv_total(inv, ogre_bow) > 0) {
+        // reverts when dropped
+        $text = append($text, "|@str@Rantz doesn't seem to be a very good shot... maybe I|@str@should try to shoot a chompy for him?|");
+        $text = append($text, "|@dre@Rantz @dbl@has lent me an @dre@Ogre bow @dbl@so I can kill a @dre@chompy|@dre@bird.");
+    } else {
+        $text = append($text, "|@dre@Rantz @dbl@doesn't seem to be a very good shot... maybe I|@dbl@should try to shoot a @dre@chompy @dbl@for him?");
+    }
+}
+
+if (%chompybird >= ^chompybird_player_killed_chompy) {
+    $text = append($text, "|@str@Rantz taught me how to use bloated swamp toads to lure|@str@Chompy Birds and hunt them. I've killed a chompy bird!|");
+}
+
+if (%chompybird = ^chompybird_player_killed_chompy) {
+    if (inv_total(inv, raw_chompy) > 0) {
+        // reverts when dropped
+        $text = append($text, "|@str@Rantz stands no chance of shooting a chompy bird - he'll|@str@starve to death if I don't help him.|");
+        $text = append($text, "|@dbl@I should take this @dre@raw chompy @dbl@to @dre@Rantz.");
+    } else {
+        $text = append($text, "|@dre@Rantz @dbl@stands no chance of shooting a @dre@chompy bird @dbl@- he'll|@dbl@starve to death if I don't @dre@help him.");
+    }
+}
+
+if (%chompybird >= ^chompybird_told_to_cook_chompy) {
+    $text = append($text, "|@str@I showed Rantz the chompy. He seemed quite impressed.|");
+
+    if (%chompybird = ^chompybird_told_to_cook_chompy) {
+        $text = append($text, "|@dbl@That cheeky ogre @dre@Rantz @dbl@has asked me to @dre@cook @dbl@the @dre@chompy|@dbl@for him and his kids, and they want it @dre@seasoning @dbl@as well!"); // [sic] seasoning (RS3)
+    }
+}
+
+if (%chompybird >= ^chompybird_chompy_cooked) {
+    $text = append($text, "|@str@That cheeky ogre Rantz has asked me to cook the chompy|@str@for him and his kids, and they want it seasoning as well!|"); // [sic] seasoning (RS3)
+
+    if (%chompybird = ^chompybird_chompy_cooked) {
+        $text = append($text, "|@dbl@I've @dre@cooked @dbl@the @dre@chompy @dbl@for that cheeky @dre@ogre @dbl@and his @dre@kids@dbl@,|@dbl@I'd better take it to them before they @dre@starve@dbl@!");
+    }
+}
+
+~quest_journal("Big Chompy Bird Hunting", $text);

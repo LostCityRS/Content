@@ -195,6 +195,10 @@ param=crushdefence,21
 param=magicdefence,6
 param=rangedefence,14
 param=damagetype,^slash_style
+maxrange=8
+param=attack_sound,null
+param=defend_sound,null
+param=death_sound,null
 
 [death_ig_solider_sitting1]
 name=Soldier
@@ -401,6 +405,19 @@ op2=Attack
 vislevel=4
 head1=idk_woman_hair_medium_head
 head2=obj_chefs_hat_womanhead
+respawnrate=50
+hitpoints=10
+attack=3
+strength=2
+defence=3
+param=stabdefence,-12
+param=slashdefence,-12
+param=crushdefence,-12
+param=magicdefence,-12
+param=rangedefence,-12
+param=damagetype,^crush_style
+param=defend_sound,female_hit
+param=death_sound,female_death
 
 [death_archer1]
 name=Archer
@@ -572,6 +589,24 @@ vislevel=37
 head1=obj_khazard_helmet_manhead
 head2=idk_man_jaw_short_head
 wanderrange=0
+maxrange=5
+attack=30
+defence=30
+strength=30
+hitpoints=40
+param=attackrate,6
+param=attackbonus,18
+param=strengthbonus,16
+param=stabdefence,36
+param=slashdefence,48
+param=crushdefence,50
+param=magicdefence,-4
+param=rangedefence,38
+param=damagetype,^crush_style
+param=attack_anim,human_blunt_pound
+param=defend_anim,human_blunt_def
+param=attack_sound,warhammer_crush
+category=death_guard
 
 [death_guard2]
 name=Guard
@@ -603,6 +638,24 @@ vislevel=37
 head1=obj_khazard_helmet_manhead
 head2=idk_man_jaw_pointy_head
 wanderrange=0
+maxrange=5
+attack=30
+defence=30
+strength=30
+hitpoints=40
+param=attackrate,6
+param=attackbonus,18
+param=strengthbonus,16
+param=stabdefence,36
+param=slashdefence,48
+param=crushdefence,50
+param=magicdefence,-4
+param=rangedefence,38
+param=damagetype,^crush_style
+param=attack_anim,human_blunt_pound
+param=defend_anim,human_blunt_def
+param=attack_sound,warhammer_crush
+category=death_guard
 
 [death_guard_equiproom]
 name=Harold
@@ -710,6 +763,17 @@ op1=Talk-to
 op2=Attack
 vislevel=5
 head1=obj_pickpocket_guide_man
+respawnrate=50
+hitpoints=10
+attack=3
+strength=3
+defence=3
+param=stabdefence,-12
+param=slashdefence,-12
+param=crushdefence,-12
+param=magicdefence,-12
+param=rangedefence,-12
+param=damagetype,^crush_style
 
 [death_smithy]
 name=Dunstan
@@ -736,6 +800,7 @@ op1=Talk-to
 vislevel=hide
 head1=idk_man_hair_long_head
 head2=idk_man_jaw_split_head
+moverestrict=indoors
 
 [death_shopkeeper]
 name=Wistan
@@ -1056,6 +1121,24 @@ op1=Talk-to
 op2=Attack
 vislevel=36
 head1=npc_1092_head
+respawnrate=100
+hitpoints=52
+attack=27
+strength=29
+defence=21
+param=attackrate,7
+param=attackbonus,30
+param=strengthbonus,31
+param=stabdefence,83
+param=slashdefence,76
+param=crushdefence,70
+param=magicdefence,-11
+param=rangedefence,74
+param=damagetype,^slash_style
+param=attack_anim,human_dhsword_chop
+param=defend_anim,human_sword_def
+param=attack_sound,2H_crush
+param=defend_sound,blade3
 
 [death_mountain_goat]
 name=Billy
