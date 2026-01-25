@@ -78,56 +78,6 @@ set_player_op("Challenge", 1, ^false);
 ~reset_boardgames_varp;
 set_player_op(null, 1, ^false);
 
-[opplayer1,_]
-if (.busy = true) {
-    mes("Other player is busy at the moment."); // https://youtu.be/YkJQDvB14-U?t=26
-    return;
-}
-
-if (~in_games_room(coord) = true & ~in_games_room(.coord) = true) {
-    // guessing it uses some varp as duel arena challenges
-
-    if (.%duel2accept ! uid) {
-        %duel2accept = .uid;
-        if (inzone(^draughts_room_start_coord, ^draughts_room_end_coord, coord) = true) {
-            %boardgames_game = 0;
-            %boardgames_closinginterface = 1;
-            %boardgames_timepermove = 1;
-            %boardgames_rankedgame = 1;
-            %boardgames_piece = 1;
-            if_openmain(boardgames_draughts_options);
-            %boardgames_closinginterface = 0;
-        } else if (inzone(^runelinks_room_start_coord, ^runelinks_room_end_coord, coord) = true) {
-            %boardgames_game = 1;
-            %boardgames_closinginterface = 1;
-            %boardgames_timepermove = 1;
-            %boardgames_rankedgame = 1;
-            %boardgames_piece = 1;
-            if_openmain(boardgames_runelink_options);
-            %boardgames_closinginterface = 0;
-        } else {
-            if_settext(boardgames_challenge:draughts_rank, "<tostring(%boardgames_draughts_rank)> vs <tostring(.%boardgames_draughts_rank)>");
-            if_settext(boardgames_challenge:runelink_rank, "<tostring(%boardgames_runelink_rank)> vs <tostring(.%boardgames_runelink_rank)>");
-            if_settext(boardgames_challenge:runesquares_rank, "<tostring(%boardgames_runesquares_rank)> vs <tostring(.%boardgames_runesquares_rank)>");
-            if_settext(boardgames_challenge:runeversi_rank, "<tostring(%boardgames_runeversi_rank)> vs <tostring(.%boardgames_runeversi_rank)>");
-            if_openmain(boardgames_challenge);
-        }
-    } else {
-        %duel2accept = .uid;
-        %boardgames_game = .%boardgames_game;
-        %boardgames_rankedgame = .%boardgames_rankedgame;
-        %boardgames_timepermove = .%boardgames_timepermove;
-        if (.%boardgames_piece = 1) {
-            %boardgames_piece = 2;
-        } else {
-            %boardgames_piece = 1;
-        }
-        ~open_boardgames_options;
-    }
-}
-
-// TODO: Duel Arena uses this too. Probably move it somewhere else
-
 [proc,in_games_room](coord $coord)(boolean)
 if (~inzone_coord_pair_table(games_room_zones, $coord) = true) {
     return(true);
