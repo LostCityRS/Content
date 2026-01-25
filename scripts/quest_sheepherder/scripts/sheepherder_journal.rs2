@@ -1,0 +1,97 @@
+[if_button,questlist:sheepherder]
+def_string $text;
+
+// text had to be based on modern RS3 so line breaks and highlights could be incorrect
+// original sources are lacking, and the OSRS journal has been overhauled so it's not a valid source for this quest
+
+if (%sheepherderquest = ^sheepherder_not_started) {
+    $text = "@dbl@I can start this quest by speaking to @dre@Councillor Halgrive|@dbl@near to the @dre@Zoo @dbl@in @dre@East Ardougne@dbl@.";
+
+    ~quest_journal("Sheep Herder", $text);
+    return;
+}
+
+$text = "@str@Councillor Halgrive asked me to dispose of four|@str@plague-bearing sheep just north of Ardougne|@str@and I accepted.|";
+$text = append($text, "@str@He gave me some poisoned sheep feed to do this.|");
+
+if (%sheepherderquest > ^sheepherder_tasked_with_talking_to_dr_orbon) {
+    $text = append($text, "|@str@I bought some protective clothing from Dr Orbon in the|@str@chapel north of Ardougne Zoo. I could now kill the sheep.|");
+} else if (%sheepherderquest = ^sheepherder_tasked_with_talking_to_dr_orbon) {
+    $text = append($text, "|@dbl@I need to get some protective clothing from @dre@Dr Orbon @dbl@who|@dbl@is in the church just north of @dre@Ardougne Zoo");
+}
+
+if (%sheepherderquest > ^sheepherder_tasked_with_disposing_of_sheep) {
+    $text = append($text, "|@str@I equipped a prod and then I used it to herd the diseased|@str@sheep to a pen where I could safely kill them and|@str@incinerate their bones.|");
+} else if (%sheepherderquest = ^sheepherder_tasked_with_disposing_of_sheep) {
+    // bits from sheepherder_sheep_data.dbrow
+    // 1 (0b001) = herded
+    // 2 (0b010) = killed - doesn't seem to be a factor in the quest step, instead checks the player's inventory
+    // 6 (0b100) = incinerated
+    def_int $sheep1 = getbit_range(%sheepherdervar, 1, 3);
+    def_int $sheep2 = getbit_range(%sheepherdervar, 4, 6);
+    def_int $sheep3 = getbit_range(%sheepherdervar, 7, 9);
+    def_int $sheep4 = getbit_range(%sheepherdervar, 10, 12);
+
+    if ($sheep1 = 6 & $sheep2 = 6 & $sheep3 = 6 & $sheep4 = 6) {
+        $text = append($text, "|@str@I equipped a prod and then I used it to herd the diseased|@str@sheep to a pen where I could safely kill them and|@str@incinerate their bones.|");
+        $text = append($text, "|@dbl@I should return to @dre@Councillor Halgrive @dbl@to collect the|@dbl@reward he has promised me for my hard work.");
+    } else {
+        if ($sheep1 = 6) {
+            $text = append($text, "|@str@I have killed the first sheep and incinerated its bones.|");
+        } else if ($sheep1 > 0) {
+            if (inv_total(inv, sheepbonesa) > 0) {
+                $text = append($text, "|@dbl@I have killed the first sheep. Now I must|@dbl@incinerate its @dre@bones@dbl@.|");
+            } else {
+                $text = append($text, "|@dbl@I have herded the first sheep to the pen. Now I must kill|@dbl@it safely.|");
+            }
+        } else {
+            // RS3: "to the special pen"
+            // OSRS: "into the pen"
+            // I'm going to just match it to the following stages
+            $text = append($text, "|@dbl@I must find the first sheep and herd it to the pen.|");
+        }
+
+        if ($sheep2 = 6) {
+            $text = append($text, "|@str@I have killed the second sheep and incinerated its bones.|");
+        } else if ($sheep2 > 0) {
+            if (inv_total(inv, sheepbonesb) > 0) {
+                $text = append($text, "|@dbl@I have killed the second sheep. Now I must|@dbl@incinerate its @dre@bones@dbl@.|");
+            } else {
+                $text = append($text, "|@dbl@I have herded the second sheep to the pen. Now I must kill|@dbl@it safely.|");
+            }
+        } else {
+            $text = append($text, "|@dbl@I must find the second sheep and herd it to the pen.|");
+        }
+
+        if ($sheep3 = 6) {
+            $text = append($text, "|@str@I have killed the third sheep and incinerated its bones.|");
+        } else if ($sheep3 > 0) {
+            if (inv_total(inv, sheepbonesc) > 0) {
+                $text = append($text, "|@dbl@I have killed the third sheep. Now I must|@dbl@incinerate its @dre@bones@dbl@.|");
+            } else {
+                $text = append($text, "|@dbl@I have herded the third sheep to the pen. Now I must kill|@dbl@it safely.|");
+            }
+        } else {
+            $text = append($text, "|@dbl@I must find the third sheep and herd it to the pen.|");
+        }
+
+        if ($sheep4 = 6) {
+            $text = append($text, "|@str@I have killed the fourth sheep and incinerated its bones.|");
+        } else if ($sheep4 > 0) {
+            if (inv_total(inv, sheepbonesd) > 0) {
+                $text = append($text, "|@dbl@I have killed the fourth sheep. Now I must|@dbl@incinerate its @dre@bones@dbl@.|");
+            } else {
+                $text = append($text, "|@dbl@I have herded the fourth sheep to the pen. Now I must kill|@dbl@it safely.|");
+            }
+        } else {
+            $text = append($text, "|@dbl@I must find the fourth sheep and herd it to the pen.|");
+        }
+    }
+}
+
+if (%sheepherderquest = ^sheepherder_complete) {
+    $text = append($text, "|@str@I returned to let Councillor Halgrive know that the plagued|@str@sheep were no more and claimed my reward.|");
+    $text = append($text, "@red@QUEST COMPLETE!");
+}
+
+~quest_journal("Sheep Herder", $text);
