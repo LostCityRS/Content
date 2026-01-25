@@ -1,0 +1,51 @@
+[opnpc1,bob]
+// This line isn't in OSRS (or launch? based on https://youtu.be/UJ94TeagEfE?si=MEO3k-HBgsEuKE2D&t=48), but exists in RSC
+// although RSC also wouldn't have the option for axe repairs
+~chatnpc("<p,quiz>Hello. How can I help you?"); 
+def_int $option = ~p_choice3("Give me a quest!", 1, "Have you anything to sell?", 2, "Can you repair my items for me?", 3);
+if($option = 1) {
+    ~chatplayer("<p,happy>Give me a quest!");
+    ~chatnpc("<p,angry>Get yer own!");
+} else if($option = 2) {
+    ~chatplayer("<p,quiz>Have you anything to sell?");
+    ~chatnpc("<p,happy>Yes! I buy and sell axes! Take your pick (or axe)!");
+    ~openshop_activenpc;
+} else if($option = 3) {
+    ~chatplayer("<p,sad>Can you repair my items for me?");
+    ~chatnpc("<p,shock>Of course I'll repair it, though the materials may cost you. Just hand me the item and I'll have a look.");
+}
+
+
+[opnpcu,bob]
+def_obj $item = last_useitem;
+def_int $slot = last_useslot;
+def_int $cost = oc_cost($item);
+if (oc_param($item, to_be_fixed_by_bob) = ^true) {
+// https://youtu.be/bdvD8uxlEAs?list=PLn23LiLYLb1aYjPgadhUQGX61AeHWaT4y
+    if (inv_total(inv, coins) < $cost) {
+        ~chatnpc("<p,sad>I'll need <tostring($cost)>gp to repair that."); // osrs
+        return;
+    }
+    if ($cost > 0) {
+        ~chatnpc("<p,neutral>Quite badly damaged, but easy to repair. Would you like me to repair it for <tostring($cost)>gp?");
+    } else {
+        ~chatnpc("<p,neutral>Quite badly damaged, but easy to repair. Would you like me to repair it for free?");
+    }
+    
+    def_int $option = ~p_choice2("Yes, please.", 1, "No, thank you.", 2);
+    if ($option = 1) {
+        if ($cost = 0) {
+            inv_delslot(inv, $slot);
+            inv_add(inv, oc_param($item, fixed), 1);
+            mes("Bob fixes your axe for free!"); // guess
+            return;
+        }
+        inv_delslot(inv, $slot);
+        inv_del(inv, coins, $cost);
+        inv_add(inv, oc_param($item, fixed), 1);
+        mes("Bob fixes your axe for <tostring($cost)>gp."); 
+        return;
+    }
+} else {
+    ~chatnpc("<p,neutral>Sorry friend, but I can't do anything with that."); // osrs
+}

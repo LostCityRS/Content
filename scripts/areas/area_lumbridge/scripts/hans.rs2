@@ -1,0 +1,32 @@
+[opnpc1,hans]
+// Treasure Trail
+if(map_members = ^true) {
+    if(inv_total(inv, trail_clue_hard_riddle012) > 0) {
+        // https://www.youtube.com/watch?v=F5i3JqU6dkY
+        ~chatnpc("<p,happy>Well done, here you go.");
+        ~progress_clue_hard(trail_clue_hard_riddle012, "Hans has given you another clue scroll!");
+        return;
+    }
+    if(inv_total(inv, trail_clue_easy_simple005) > 0) {
+        // https://www.youtube.com/watch?v=PlwFfW45HWk
+        ~chatnpc("<p,happy>Well done, you've solved the clue!");
+        ~progress_clue_easy(trail_clue_easy_simple005, "Hans has given you another clue!");
+        return;
+    }
+}
+
+~chatnpc("<p,neutral>Hello. What are you doing here?");
+def_int $option = ~p_choice3("I'm looking for whoever is in charge of this place.", 1, "I have come to kill everyone in this castle!", 2, "I don't know. I'm lost. Where am I?", 3);
+if ($option = 1) {
+    ~chatplayer("<p,neutral>I'm looking for whoever is in charge of this place.");
+    ~chatnpc("<p,neutral>Who, the Duke? He's in his study, on the first floor.");
+} else if ($option = 2) {
+    ~chatplayer("<p,angry>I have come to kill everyone in this castle!");
+    if_close;
+    npc_setmode(playerescape);
+    p_delay(0);
+    npc_say("Help! Help!");
+} else if ($option = 3) {
+    ~chatplayer("<p,confused>I don't know. I'm lost. Where am I?");
+    ~chatnpc("<p,neutral>You are in Lumbridge Castle.");
+}
