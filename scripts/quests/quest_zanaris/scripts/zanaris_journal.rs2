@@ -1,0 +1,73 @@
+[if_button,questlist:zanaris]
+def_string $text;
+
+// Thanks to 'Quest Archive' Discord server from user bball.
+switch_int (%zanaris) {
+
+    case ^zanaris_not_started :
+        $text = "@dbl@I can start this quest by speaking to the Adventurers in|@dbl@the Swamp just south of Lumbridge.|";
+        $text = append($text, "@dbl@To complete this quest I need:|");
+        if (stat_base(crafting) < 31) {
+            $text = append($text, "@dre@Level 31 Crafting|");
+        } else {
+            $text = append($text, "@str@Level 31 Crafting|");
+        }
+        if (stat_base(woodcutting) < 36) {
+            $text = append($text, "@dre@Level 36 Woodcutting|");
+        } else {
+            $text = append($text, "@str@Level 36 Woodcutting|");
+        }
+        $text = append($text, "@dbl@and be able to defeat a @dre@Level 101 Spirit without weapons");
+
+    // https://www.youtube.com/watch?v=spo3LQY3O9s
+    case ^zanaris_started :
+        $text = "@str@According to one of the adventurers in Lumbridge Swamp|@str@the entrance to Zanaris is somewhere around there.|";
+        $text = append($text, "@dbl@Apparently there is a @dre@leprechaun@dbl@ hiding in a @dre@tree@dbl@ nearby|@dbl@who can tell me how to enter the @dre@Lost City of Zanaris");
+
+    // https://www.youtube.com/watch?v=spo3LQY3O9s
+    case ^zanaris_spoken_shamus :
+        $text = "@str@According to one of the adventurers in Lumbridge Swamp|@str@the entrance to Zanaris is somewhere around there.|";
+        $text = append($text, "@str@I found a Leprechaun hiding in a nearby tree.|");
+        $text = append($text, "@dbl@He told me that the entrance to @dre@Zanaris@dbl@ is in the @dre@shed@dbl@ in|@dre@Lumbridge swamp@dbl@ but only if I am carrying a @dre@Dramen Staff|");
+        $text = append($text, "@dbl@I can find a @dre@Dramen Tree@dbl@ in a cave on @dre@Entrana|@dbl@somewhere");
+
+    // https://i.imgur.com/QedBGtJ.png
+    case ^zanaris_spirit_defeated :
+        $text = "@str@According to one of the adventurers in Lumbridge Swamp|@str@the entrance to Zanaris is somewhere around there.|";
+        $text = append($text, "@str@I found a Leprechaun hiding in a nearby tree.|");
+        $text = append($text, "@str@He told me that the entrance to Zanaris is in the shed in|@str@Lumbridge swamp but only if I am carrying a Dramen Staff.|");
+        $text = append($text, "@str@The Dramen Tree was guarded by a powerful Tree Spirit.|");
+        $text = append($text, "@dbl@With the @dre@Spirit@dbl@ defeated I can cut a @dre@branch@dbl@ from the tree");
+
+    // https://i.imgur.com/5LfKYuE.png
+    case ^zanaris_tree_chopped :
+        $text = "@str@According to one of the adventurers in Lumbridge Swamp|@str@the entrance to Zanaris is somewhere around there.|";
+        $text = append($text, "@str@I found a Leprechaun hiding in a nearby tree.|");
+        $text = append($text, "@str@He told me that the entrance to Zanaris is in the shed in|@str@Lumbridge swamp but only if I am carrying a Dramen Staff.|");
+        $text = append($text, "@str@The Dramen Tree was guarded by a powerful Tree Spirit.|");
+        $text = append($text, "@str@I cut a branch from the tree.|");
+        $text = append($text, "@dbl@I should @dre@craft@dbl@ the @dre@branch@dbl@ from the tree into a @dre@staff");
+
+    // https://www.youtube.com/watch?v=-5Qi72SaG10
+    case ^zanaris_staff_made :
+        $text = "@str@According to one of the adventurers in Lumbridge Swamp|@str@the entrance to Zanaris is somewhere around there.|";
+        $text = append($text, "@str@I found a Leprechaun hiding in a nearby tree.|");
+        $text = append($text, "@str@He told me that the entrance to Zanaris is in the shed in|@str@Lumbridge swamp but only if I am carrying a Dramen Staff.|");
+        $text = append($text, "@str@The Dramen Tree was guarded by a powerful Tree Spirit.|");
+        $text = append($text, "@str@I cut a branch from the tree and crafted a Dramen Staff.|");
+        $text = append($text, "@dbl@I should enter @dre@Zanaris@dbl@ by going to the @dre@shed@dbl@ in @dre@Lumbridge|@dre@Swamp@dbl@ while keeping the @dre@Dramen staff@dbl@ with me");
+
+    case ^zanaris_complete :
+        $text = "@str@According to one of the adventurers in Lumbridge Swamp|@str@the entrance to Zanaris is somewhere around there.|";
+        $text = append($text, "@str@I found a Leprechaun hiding in a nearby tree.|");
+        $text = append($text, "@str@He told me that the entrance to Zanaris is in the shed in|@str@Lumbridge swamp but only if I am carrying a Dramen Staff.|");
+        $text = append($text, "@str@The Dramen Tree was guarded by a powerful Tree Spirit.|");
+        $text = append($text, "@str@I cut a branch from the tree and crafted a Dramen Staff.|");
+        $text = append($text, "@str@With the mystical Dramen Staff in my possession I was|");
+        $text = append($text, "@str@able to enter Zanaris through the shed in Lumbridge|");
+        $text = append($text, "@str@swamp||");
+        $text = append($text, "@red@QUEST COMPLETE!");
+
+}
+
+~quest_journal("Lost City", $text);

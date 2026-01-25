@@ -1,0 +1,243 @@
+[if_button,questlist:zombiequeen]
+def_string $n = "Shilo Village";
+def_string $x;
+
+if (%zombiequeen >= ^zombiequeen_complete) {
+    $x = append($x, "@str@I discovered Shilo Village was being overrun by zombies|");
+    $x = append($x, "@str@from Rashiliyia the 'Queen of the Dead'. To save Shilo|");
+    $x = append($x, "@str@village I need to stop Rashiliyia from completing her evil|");
+    $x = append($x, "@str@plans. I searched the dolmen in Rashiliyia's tomb and I|");
+    $x = append($x, "@str@found Rashiliyia's remains.|");
+    $x = append($x, "|@str@I took the remains to the tomb of her son Bervirius so that|");
+    $x = append($x, "@str@they could be together in the afterlife. This seemed to|");
+    $x = append($x, "@str@break the curse and free Rashiliyia and Shilo Village is no|");
+    $x = append($x, "@str@longer under attack from Zombies.|");
+    $x = append($x, "|@dbl@I can now get access to all the features of @dre@Shilo Village@dbl@.|");
+    $x = append($x, "@red@QUEST COMPLETE!");//not @dre@ intentionally
+    ~quest_journal($n, $x);
+    return;
+}
+
+if (%zombiequeen = ^zombiequeen_not_started) {
+    $x = append($x, "@dbl@I can start this quest by speaking to @dre@Mosol Rei@dbl@ deep in the|");
+    $x = append($x, "@dbl@unexplored jungles of @dre@Southern Karamja@dbl@.|");
+    $x = append($x, "@dbl@To start this quest I need to complete the following:-|");
+    $x = append($x, "@dre@Jungle Potion|");
+    $x = append($x, "@dbl@To complete this quest I'll need the following:-|");
+    $x = append($x, "@dre@Level 20 Crafting|");
+    $x = append($x, "@dre@Level 32 Agility|");
+    $x = append($x, "@dbl@I also need to be able to defeat a @dre@level 86 Monster@dbl@.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "@str@I spoke to Mosol Rei in South Karamja, and have agreed to|");
+$x = append($x, "@str@help his village. He gave me a 'Wampum belt'. I took the|");
+$x = append($x, "@str@belt to Trufitus in Tai Bwo Wannai.|");
+$x = append($x, "@str@After speaking to Trufitus I found that there is a legend|");
+$x = append($x, "@str@about a place called Ah Za Rhoon that may contain the key|");
+$x = append($x, "@str@to defeating Rashiliyia and the zombies invading Shilo Village.|");
+if ((%zombiequeen = ^zombiequeen_started) | (%zombiequeen = ^zombiequeen_found_mound)) {
+    //seems counterintuitive, but see trufitus.rs2, it sets the varp when you speak to him
+    $x = append($x, "|@dbl@I need to find the location of '@dre@Ah Za Rhoon@dbl@'.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "@str@I need to find the location of 'Ah Za Rhoon'.|"); 
+if (%zombiequeen = ^zombiequeen_searched_mound) {
+    $x = append($x, "@dbl@I've found a @dre@mound of earth@dbl@ in the jungle which seems|");
+    $x = append($x, "@dbl@curious.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "@str@I've found a mound of earth in the jungle which seems|");
+$x = append($x, "@str@curious. I've used a spade to excavate the mound of earth.|");
+if (%zombiequeen = ^zombiequeen_dug_mound) {
+    $x = append($x, "@dbl@After using the spade on the @dre@mound of earth@dbl@ I hit granite|");
+    $x = append($x, "@dbl@and discovered a dark @dre@fissure@dbl@.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "@str@After using the spade on the mound of earth I hit granite|");
+$x = append($x, "@str@and discovered a dark fissure. I illuminated the fissure|");
+$x = append($x, "@str@and saw it was a long way down.|");
+if (%zombiequeen = ^zombiequeen_lit_mound) {
+    $x = append($x, "@dbl@I need to find the entrance to @dre@Ah Za Rhoon@dbl@, perhaps this|");
+    $x = append($x, "@dre@fissure@dbl@ could be the way in?");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "@str@I attached a rope to the start of the fissure.|");
+if (%zombiequeen = ^zombiequeen_roped_mound) {
+    $x = append($x, "@dbl@I need to find @dre@Ah Za Rhoon@dbl@, perhaps this @dre@rope@dbl@ down this|");
+    $x = append($x, "@dre@fissure@dbl@ will give me some clues as to where it is.");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "@str@I climbed down the rope into some sort of underground cavern|");
+$x = append($x, "@str@system, I need to identify this place.|");
+if ((%zombiequeen >= ^zombiequeen_entered_ah_za_rhoon) & (testbit(%zq_map_mechanisms, ^zq_used_dolmen_paper) = ^false)) {
+    $x = append($x, "@dbl@The @dre@cavern system@dbl@ I found might be @dre@Ah Za Rhoon@dbl@, if I could|");
+    $x = append($x, "@dre@identify@dbl@ the @dre@cavern@dbl@ it would help a lot.|");
+    if (testbit(%zq_map_mechanisms, ^zq_deciphered_plaque) = ^true) {
+        $x = append($x, "@str@Trufitus identified the plaque as coming from Ah Za Rhoon.|");
+        $x = append($x, "@str@The plaque also mentioned something about Zadimus.|");
+    } else if (inv_total(inv, zqplaque) > 0) {
+        $x = append($x, "@dbl@I've found a @dre@plaque@dbl@ which might be worth @dre@researching@dbl@.|");
+        $x = append($x, "@dbl@Perhaps @dre@Trufitus@dbl@ can give me a hand with this?|");
+    }
+    if (testbit(%zq_map_mechanisms, ^zq_read_tattered_scroll) = ^true) {
+        $x = append($x, "@str@I've read the tattered scroll, it gives details about Bervirius|");
+        $x = append($x, "@str@who was Rashiliyia's son.|");
+    } else if (inv_total(inv, zqberviriusscroll) > 0) {
+        $x = append($x, "@dbl@I've found a @dre@tattered scroll@dbl@ behind a hidden bookcase this|");
+        $x = append($x, "@dbl@may help me to uncover some history of @dre@Rashiliyia@dbl@.|");
+    }
+    if (testbit(%zq_map_mechanisms, ^zq_read_crumpled_scroll) = ^true) {
+        $x = append($x, "@str@I read the crumpled scroll, it said that Rashiliyia attacked|");
+        $x = append($x, "@str@people, it also said something about a ward.|");
+    } else if (inv_total(inv, zqrashiliyiascroll) > 0) {
+        $x = append($x, "@dbl@I've found a @dre@crumbled scroll@dbl@ in a sack, this might help me to|");
+        $x = append($x, "@dbl@uncover some history of @dre@Rashiliyia@dbl@.|");
+    }
+    if (inv_total(inv, zqboneshard) > 0) {
+        $x = append($x, "@str@I buried Zadimus' remains and got a bone shard.|");
+    } else if (inv_total(inv, zqzadimusbones) > 0) {
+        $x = append($x, "@dbl@I've discovered the grisly @dre@remains @dbl@of some poor soul.|");
+    }
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "|@str@I'm pretty sure that the cavern accessed by the fissure is|");
+$x = append($x, "@str@the destroyed temple of Ah Za Rhoon. While in Ah Za|");
+$x = append($x, "@str@Rhoon I found a scroll which gave details of Bervirius and|");
+$x = append($x, "@str@where he was buried. I found his tomb on Cairn isle.|");
+if ((testbit(%zq_map_mechanisms, ^zq_used_dolmen_paper) = ^true) & (testbit(%zq_map_mechanisms, ^zq_found_door) = ^false)) {
+    $x = append($x, "@dbl@I should check this place out for possible clues about|");
+    $x = append($x, "@dre@Rashiliyia @dbl@and her final@dre@ resting place@dbl@.|");
+
+    $x = append($x, "@str@I searched the dolmen in Bervirius tomb and found a crystal,|");
+    $x = append($x, "@str@some notes and a bone sword pommel. These items may help|");
+    $x = append($x, "@str@me to locate Rashiliyia's Tomb.|");
+
+    $x = append($x, "|@dbl@I need to look for @dre@Rashiliyia's@dbl@ final @dre@resting place@dbl@ perhaps|");
+    $x = append($x, "@dbl@then I can find a way to stop her reign of terror.|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+if ((%zombiequeen < ^zombiequeen_unlocked_rashliyia_tomb) & (testbit(%zq_map_mechanisms, ^zq_found_door) = ^true)) {
+    //some things repeated here in different order, I think original logic is screwed up here but this matches OSRS behavior
+    $x = append($x, "@dbl@I should check this place out for possible clues about|");
+    $x = append($x, "@dre@Rashiliyia @dbl@and her final@dre@ resting place@dbl@.|");
+
+    $x = append($x, "@str@I've found a door in the jungle to the North of Ah Za Rhoon|");
+    $x = append($x, "@str@which I cannot get past. The lock is made out of bone!|");
+
+    $x = append($x, "@dbl@If this is @dre@Rashiliyia's@dbl@ final resting place I'll probably need to|");
+    $x = append($x, "@dbl@find a suitable @dre@key@dbl@ to get in.|"); 
+
+    $x = append($x, "@str@I searched the dolmen in Bervirius tomb and found a crystal,|");
+    $x = append($x, "@str@some notes and a bone sword pommel. These items may help|");
+    $x = append($x, "@str@me to locate Rashiliyia's Tomb.|");
+
+    $x = append($x, "|@dbl@I need to look for @dre@Rashiliyia's@dbl@ final @dre@resting place@dbl@ perhaps|");
+    $x = append($x, "@dbl@then I can find a way to stop her reign of terror.|");
+
+    $x = append($x, "@str@I've found a door in the jungle to the North of Ah Za Rhoon|");
+    $x = append($x, "@str@which I cannot get past. The lock is made out of bone!||");
+
+    //intentionally duplicated again here...
+    $x = append($x, "@dbl@If this is @dre@Rashiliyia's@dbl@ final resting place I'll probably need to|");
+    $x = append($x, "@dbl@find a suitable @dre@key@dbl@ to get in.|"); 
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "@str@I've found a door in the jungle to the North of Ah Za Rhoon|");
+$x = append($x, "@str@which I cannot get past. The lock is made out of bone! I|");
+$x = append($x, "@str@made a bone key from the bone shard that Zadimus gave|");
+$x = append($x, "@str@me and I managed to get past the door.|");
+if (%zombiequeen = ^zombiequeen_unlocked_rashliyia_tomb) {
+    $x = append($x, "@dbl@If this is @dre@Rashiliyia's@dbl@ final resting place I'd better search it|");
+    $x = append($x, "@dbl@thoroughly and see if I can find her @dre@remains@dbl@.|");
+    if ((inv_total(inv, zqdeadbeads) > 0) | (inv_total(worn, zqdeadbeads) > 0)) {
+        $x = append($x, "@dbl@I've made a @dre@necklace@dbl@ which I've named '@dre@Beads of the dead@dbl@',|");
+        $x = append($x, "@dbl@hopefully these will protect me from @dre@Rashiliyia@dbl@|");
+    }
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "@str@I've made a necklace which I've named 'Beads of the dead',|");
+$x = append($x, "@str@hopefully these will protect me from Rashiliyia.|");//25 lines
+if (%zombiequeen <= ^zombiequeen_entered_with_beads) {
+    def_int $bones = ~get_zqtombdoorstate;
+    if ($bones > 0) {
+        $x = append($x, "@str@I've found a door with skeletal carvings in it, in some places|");
+        $x = append($x, "@str@the door has recesses where bones should be.|");
+        if ($bones = 1) {
+            $x = append($x, "@dbl@I've placed one @dre@bone@dbl@ in one of the @dre@recesses@dbl@.|");
+            $x = append($x, "@dbl@There are @dre@two recesses@dbl@ left.|");
+        } else {
+            $x = append($x, "@dbl@I've placed two @dre@bones@dbl@ in the door @dre@recesses@dbl@.|");
+            $x = append($x, "@dbl@There is @dre@one recess@dbl@ left.|");
+        }
+    }
+    $x = append($x, "|@dbl@If this is @dre@Rashiliyia's@dbl@ final resting place I'd better search it|");
+    $x = append($x, "@dbl@thoroughly and see if I can find her @dre@remains@dbl@.|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+$x = append($x, "@str@I found a door with skeletal carvings, some places in the door|");
+$x = append($x, "@str@had recesses. I've placed three bones in each of the|");
+$x = append($x, "@str@recesses this seemed to unlock the door.|");
+if (%zombiequeen = ^zombiequeen_unlocked_tombdoor) {
+    if (testbit(%zq_map_mechanisms, ^zq_defeated_nazastarool1) = ^true) {
+        $x = append($x, "|@str@When I investigated the Dolmen in Rashiliya's Tomb room a|");
+        $x = append($x, "@str@Zombie Nazastarool attacked me. I managed to slay the|");
+        $x = append($x, "@str@Nazastarool.|");
+    }//intentionally not else ifs below...
+    if (testbit(%zq_map_mechanisms, ^zq_defeated_nazastarool2) = ^true) {
+        $x = append($x, "@str@When I investigated the Dolmen in Rashiliya's Tomb room a|");
+        $x = append($x, "@str@Zombie Nazastarool attacked me which I slayed. A skeletal|");
+        $x = append($x, "@str@Nazastarool appeared after this but I managed to slay this|");
+        $x = append($x, "@str@guardian too.|");
+    }
+    if (testbit(%zq_map_mechanisms, ^zq_defeated_nazastarool3) = ^true) {
+        $x = append($x, "@str@When I investigated the Dolmen in Rashiliya's Tomb room a|");
+        $x = append($x, "@str@Zombie Nazastarool attacked me which I slayed. A skeletal|");
+        $x = append($x, "@str@Nazastarool appeared after this but I managed to slay this|");
+        $x = append($x, "@str@guardian too. The third and final guardian was a ghostly|");
+        $x = append($x, "@str@Nazastarool and after an epic battle, I defeated it.|");
+    }
+    $x = append($x, "@dbl@I need to find @dre@Rashiliya's remains@dbl@ so that I can put her|");
+    $x = append($x, "@dre@spirit@dbl@ to rest.|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+// ^zombiequeen_retrieved_corpse
+$x = append($x, "@str@When I investigated the Dolmen in Rashiliya's Tomb room a|");
+$x = append($x, "@str@Zombie Nazastarool attacked me which I slayed. A skeletal|");
+$x = append($x, "@str@Nazastarool appeared after this but I managed to slay this|");
+$x = append($x, "@str@guardian too.|");
+$x = append($x, "@str@The third and final guardian was a ghostly Nazastarool and|");
+$x = append($x, "@str@after an epic battle, I defeated it.|");
+if (inv_total(inv, zqcorpse) > 0) {
+    $x = append($x, "@str@I searched the dolmen in Rashiliyia's tomb and I found|");
+    $x = append($x, "@str@Rashiliyia's remains.|");
+    $x = append($x, "@dbl@I have @dre@Rashiliyia's remains@dbl@. I need to find a way to put|");
+    $x = append($x, "@dbl@her @dre@spirit@dbl@ to @dre@rest@dbl@.");
+} else {
+    $x = append($x, "@dbl@I need to find @dre@Rashiliya's remains@dbl@ so that I can put her|");
+    $x = append($x, "@dre@spirit@dbl@ to rest.|");
+}
+~quest_journal($n, $x);
