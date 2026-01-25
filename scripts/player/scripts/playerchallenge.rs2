@@ -1,0 +1,81 @@
+[opplayer1,_]
+if (.busy = true) {
+    mes("Other player is busy at the moment."); // https://youtu.be/YkJQDvB14-U?t=26
+    return;
+}
+
+def_boolean $inDuelArena = ~in_duel_arena(coord);
+def_boolean $otherInDuelArena = ~in_duel_arena(.coord);
+def_boolean $inGamesRoom = ~in_games_room(coord);
+def_boolean $otherInGamesRoom = ~in_games_room(.coord);
+
+if ($inDuelArena ! $otherInDuelArena | $inGamesRoom ! $otherInGamesRoom){
+    mes("You can't do that here.");
+    return;
+}
+
+if ($inGamesRoom = true & $otherInGamesRoom = true) {
+    // guessing it uses some varp as duel arena challenges
+    %duel2accept = .uid;
+    if(.%duel2accept ! uid) {
+        if_settext(boardgames_challenge:draughts_rank, "<tostring(%boardgames_draughts_rank)> vs <tostring(.%boardgames_draughts_rank)>");
+        if_settext(boardgames_challenge:runelink_rank, "<tostring(%boardgames_runelink_rank)> vs <tostring(.%boardgames_runelink_rank)>");
+        if_settext(boardgames_challenge:runesquares_rank, "<tostring(%boardgames_runesquares_rank)> vs <tostring(.%boardgames_runesquares_rank)>");
+        if_settext(boardgames_challenge:runeversi_rank, "<tostring(%boardgames_runeversi_rank)> vs <tostring(.%boardgames_runeversi_rank)>");
+        if_openmain(boardgames_challenge);
+    } else {
+        %boardgames_game = .%boardgames_game;
+        %boardgames_rankedgame = .%boardgames_rankedgame;
+        %boardgames_timepermove = .%boardgames_timepermove;
+        if (.%boardgames_piece = 1) {
+            %boardgames_piece = 2;
+        } else {
+            %boardgames_piece = 1;
+        }
+        ~open_boardgames_options;
+    }
+}
+
+if ($inDuelArena = true) {
+    // if the other player isnt in the duel area
+    if ($otherInDuelArena = false){
+        mes("That player is not in the duel challenge area.");
+        return;
+    }
+    // if the other player isnt in the duel area
+    if (map_members = ^false) {
+        // theres an area f2p worlds have access to that lets you duel other players
+        mes(^mes_members_do_that); // guess
+        return;
+    }
+    mes("Sending duel offer...");
+    %dueloptions = 0;
+    %duel2accept = .uid;
+
+    if (.%duel2accept = uid & %duelstatus = ^duelstatus_received) {
+        if (.p_finduid(.uid) = true) {
+            .p_stopaction;
+        }
+        %dueloptions = 0;
+        if_settext(duel_select_type:status, "");
+        if_settext(duel_select_type:otherplayer, "Dueling with: <.displayname>");
+        inv_transmit(dueloffer, duel_select_type:inv);
+        invother_transmit(.uid, dueloffer, duel_select_type:otherinv);
+        inv_transmit(inv, duel_side:inv);
+
+        .if_settext(duel_select_type:status, "");
+        .if_settext(duel_select_type:otherplayer, "Dueling with: <displayname>");
+        .inv_transmit(dueloffer, duel_select_type:inv);
+        .invother_transmit(uid, dueloffer, duel_select_type:otherinv);
+        .inv_transmit(inv, duel_side:inv);
+
+        if_openmain_side(duel_select_type, duel_side);
+        .if_openmain_side(duel_select_type, duel_side);
+        
+        %duelstatus = ^duelstatus_reset;
+        .%duelstatus = ^duelstatus_reset;
+    } else {
+        .%duelstatus = ^duelstatus_received;
+        .mes("<displayname>:duelreq:");
+    }
+}

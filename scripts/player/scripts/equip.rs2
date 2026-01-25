@@ -37,7 +37,7 @@ if (p_finduid(uid) = true) {
         mes("You don't have enough free space to do that.");
         return;
     }
-
+    // todo: this needs a better home...
     if (%tutorial < ^tutorial_complete) {
         if (%tutorial = ^newbie_combat_instructor_worn_inventory & $obj = bronze_dagger){
             %tutorial = ^newbie_combat_instructor_dagger_equipped;
