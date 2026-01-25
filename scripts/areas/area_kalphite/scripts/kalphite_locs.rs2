@@ -1,0 +1,42 @@
+[oplocu,kalphite_burrow_entrance]
+if (last_useitem = rope) {
+    loc_change(kalphite_burrow_entrance_withrope, ^lootdrop_duration); // duration is osrs
+    inv_delslot(inv, last_useslot);
+    return;
+}
+~displaymessage(^dm_default);
+
+[oplocu,kalphite_burrow_entrance_withrope]
+if (last_useitem = rope) {
+    mes("There's already a rope attached to this entrance."); // 2006 https://youtu.be/gOU3WM1idEI?t=7
+    return;
+}
+~displaymessage(^dm_default);
+
+// no arrivedelay https://youtu.be/TQ_sKT4tFtQ?list=PLn23LiLYLb1YiomJ3wnXokdbgjE7-Lgt5&t=173
+[oploc1,kalphite_burrow_entrance_withrope]
+p_teleport(^kalphite_burrow_entrance_coord);
+
+[oploc1,kalphite_burrow_exit]
+p_teleport(^kalphite_burrow_exit_coord);
+
+[oplocu,kalphite_chamber_entrance]
+if (last_useitem = rope) {
+    loc_change(kalphite_chamber_entrance_withrope, ^lootdrop_duration); // duration is osrs
+    inv_delslot(inv, last_useslot);
+    return;
+}
+~displaymessage(^dm_default);
+
+[oplocu,kalphite_chamber_entrance_withrope]
+if (last_useitem = rope) {
+    mes("There's already a rope attached to this entrance."); // 2006 https://youtu.be/gOU3WM1idEI?t=7
+    return;
+}
+~displaymessage(^dm_default);
+
+[oploc1,kalphite_chamber_entrance_withrope]
+p_teleport(^kalphite_chamber_entrance_coord);
+
+[oploc1,kalphite_chamber_exit]
+p_teleport(^kalphite_chamber_exit_coord);

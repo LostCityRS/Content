@@ -1,0 +1,279 @@
+[debugproc,alleast](int $distance)
+def_coord $coord = coord;
+huntall($coord, 20, 0);
+while (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(movecoord(coord, max($distance, 1), 0, 0));
+}
+npc_huntall($coord, 20, 0);
+while (npc_huntnext = true) {
+    npc_tele(movecoord(npc_coord, max($distance, 1), 0, 0));
+}
+
+[debugproc,allwest](int $distance)
+def_coord $coord = coord;
+huntall($coord, 20, 0);
+while (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(movecoord(coord, sub(0, max($distance, 1)), 0, 0));
+}
+npc_huntall($coord, 20, 0);
+while (npc_huntnext = true) {
+    npc_tele(movecoord(npc_coord, sub(0, max($distance, 1)), 0, 0));
+}
+
+[debugproc,allsouth](int $distance)
+def_coord $coord = coord;
+huntall($coord, 20, 0);
+while (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(movecoord(coord, 0, 0, calc(0 - max($distance, 1))));
+}
+npc_huntall($coord, 20, 0);
+while (npc_huntnext = true) {
+    npc_tele(movecoord(npc_coord, 0, 0, calc(0 - max($distance, 1))));
+}
+
+[debugproc,allnorth](int $distance)
+def_coord $coord = coord;
+huntall($coord, 20, 0);
+while (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(movecoord(coord, 0, 0, calc(max($distance, 1))));
+}
+npc_huntall($coord, 20, 0);
+while (npc_huntnext = true) {
+    npc_tele(movecoord(npc_coord, 0, 0, calc(max($distance, 1))));
+}
+
+// https://youtu.be/3d0YtI59i70?t=98
+[debugproc,kqtest1]
+def_coord $coord = coord;
+huntall($coord, 20, 0);
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_24_20);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_23_26);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_19_21);
+}
+if (npc_find($coord, kalphite_queen, 20, 0) = true) {
+    %npc_stunned = add(map_clock, 100000);
+    npc_walktrigger(8, 0);
+    npc_tele(0_54_148_20_21);
+}
+
+// https://youtu.be/XgVQSLyyo18?t=140
+[debugproc,kqtest2]
+def_coord $coord = coord;
+huntall($coord, 20, 0);
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_17_26);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_19_26);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_20_24);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_21_25);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_14_26);
+}
+if (npc_find($coord, kalphite_queen, 20, 0) = true) {
+    %npc_stunned = add(map_clock, 100000);
+    npc_walktrigger(8, 0);
+    npc_tele(0_54_148_19_24);
+}
+
+// https://youtu.be/XgVQSLyyo18?t=325
+[debugproc,kqtest3]
+def_coord $coord = coord;
+huntall($coord, 20, 0);
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_17_27);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_18_25);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_18_25);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_17_26);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_18_31);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_23_28);
+}
+if (npc_find($coord, kalphite_queen, 20, 0) = true) {
+    %npc_stunned = add(map_clock, 100000);
+    npc_walktrigger(8, 0);
+    npc_tele(0_54_148_18_26);
+}
+
+// https://youtu.be/GBejHxtsIdg?list=PLn23LiLYLb1YiomJ3wnXokdbgjE7-Lgt5&t=389
+[debugproc,kqtest4]
+def_coord $coord = coord;
+huntall($coord, 20, 0);
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_30_25);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_21_30);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_20_24);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_18_24);
+}
+// ye
+if (npc_find($coord, kalphite_queen, 20, 0) = true) {
+    %npc_stunned = add(map_clock, 100000);
+    npc_walktrigger(8, 0);
+    npc_tele(0_54_148_18_25);
+}
+
+// https://youtu.be/GBejHxtsIdg?list=PLn23LiLYLb1YiomJ3wnXokdbgjE7-Lgt5&t=37
+[debugproc,kqtest5]
+def_coord $coord = coord;
+huntall($coord, 20, 0);
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_16_27);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_16_25);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_14_28);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_10_24);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_13_22);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_14_22);
+}
+if (npc_find($coord, kalphite_queen, 20, 0) = true) {
+    %npc_stunned = add(map_clock, 100000);
+    npc_walktrigger(8, 0);
+    npc_tele(0_54_148_11_23);
+}
+
+
+// https://youtu.be/GBejHxtsIdg?list=PLn23LiLYLb1YiomJ3wnXokdbgjE7-Lgt5&t=235
+[debugproc,kqtest6]
+def_coord $coord = coord;
+huntall($coord, 20, 0);
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_34_19);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_28_21);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_27_22);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_24_22);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_27_16);
+}
+if (huntnext = true) {
+    if_close;
+    if (p_finduid(uid) = false) { @please_finish; return; }
+    p_teleport(0_54_148_23_16);
+}
+if (npc_find($coord, kalphite_queen, 20, 0) = true) {
+    %npc_stunned = add(map_clock, 100000);
+    npc_walktrigger(8, 0);
+    npc_tele(0_54_148_23_17);
+}
+
+[debugproc,kq]
+if (p_finduid(uid) = true) {
+    p_teleport(0_54_148_52_21);
+}
+
+[debugproc,kqstun]
+if (npc_find(coord, kalphite_queen, 20, 0) = true) {
+    %npc_stunned = add(map_clock, 10000);
+    npc_walktrigger(8, 0);
+}
+
+[debugproc,kqtele]
+if (npc_find(coord, kalphite_queen, 20, 0) = true) {
+    npc_tele(movecoord(coord, 0, 0, 1));
+}

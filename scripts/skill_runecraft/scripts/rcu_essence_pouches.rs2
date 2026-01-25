@@ -1,0 +1,504 @@
+[opheld1,rcu_pouch_small] @rcu_pouch_fill_small;
+[opheld2,rcu_pouch_small] @rcu_pouch_empty_small;
+[opheld3,rcu_pouch_small] @rcu_pouch_check_essence(%small_essence_pouch, %small_essence_pouch_type);
+
+[opheld1,rcu_pouch_medium] @rcu_pouch_fill_medium;
+[opheld2,rcu_pouch_medium] @rcu_pouch_empty_medium;
+[opheld3,rcu_pouch_medium] @rcu_pouch_check_essence(%medium_essence_pouch, %medium_essence_pouch_type);
+
+[opheld1,rcu_pouch_medium_degrade] @rcu_pouch_fill_medium;
+[opheld2,rcu_pouch_medium_degrade] @rcu_pouch_empty_medium;
+[opheld3,rcu_pouch_medium_degrade] @rcu_pouch_check_essence(%medium_essence_pouch, %medium_essence_pouch_type);
+
+[opheld1,rcu_pouch_large] @rcu_pouch_fill_large;
+[opheld2,rcu_pouch_large] @rcu_pouch_empty_large;
+[opheld3,rcu_pouch_large] @rcu_pouch_check_essence(%large_essence_pouch, %large_essence_pouch_type);
+
+[opheld1,rcu_pouch_large_degrade] @rcu_pouch_fill_large;
+[opheld2,rcu_pouch_large_degrade] @rcu_pouch_empty_large;
+[opheld3,rcu_pouch_large_degrade] @rcu_pouch_check_essence(%large_essence_pouch, %large_essence_pouch_type);
+
+[opheld1,rcu_pouch_giant] @rcu_pouch_fill_giant;
+[opheld2,rcu_pouch_giant] @rcu_pouch_empty_giant;
+[opheld3,rcu_pouch_giant] @rcu_pouch_check_essence(%giant_essence_pouch, %giant_essence_pouch_type);
+
+[opheld1,rcu_pouch_giant_degrade] @rcu_pouch_fill_giant;
+[opheld2,rcu_pouch_giant_degrade] @rcu_pouch_empty_giant;
+[opheld3,rcu_pouch_giant_degrade] @rcu_pouch_check_essence(%giant_essence_pouch, %giant_essence_pouch_type);
+
+[opobj3,rcu_pouch_small]
+if (inv_total(inv, rcu_pouch_small) > 0 | inv_total(bank, rcu_pouch_small) > 0) {
+    mes("You can only have one small essence pouch at a time.");
+    return;
+}
+@pickup_obj;
+
+[opobj3,rcu_pouch_medium]
+if (inv_total(inv, rcu_pouch_medium) > 0 | inv_total(inv, rcu_pouch_medium_degrade) > 0
+    | inv_total(bank, rcu_pouch_medium) > 0 | inv_total(bank, rcu_pouch_medium_degrade) > 0) {
+    mes("You can only have one medium essence pouch at a time.");
+    return;
+}
+@pickup_obj;
+
+[opobj3,rcu_pouch_large]
+if (inv_total(inv, rcu_pouch_large) > 0 | inv_total(inv, rcu_pouch_large_degrade) > 0
+    | inv_total(bank, rcu_pouch_large) > 0 | inv_total(bank, rcu_pouch_large_degrade) > 0) {
+    mes("You can only have one large essence pouch at a time.");
+    return;
+}
+@pickup_obj;
+
+[opobj3,rcu_pouch_giant]
+if (inv_total(inv, rcu_pouch_giant) > 0 | inv_total(inv, rcu_pouch_giant_degrade) > 0
+    | inv_total(bank, rcu_pouch_giant) > 0 | inv_total(bank, rcu_pouch_giant_degrade) > 0) {
+    mes("You can only have one giant essence pouch at a time.");
+    return;
+}
+@pickup_obj;
+
+// Proc used by the npc drop table scripts to award the player a new rune pouch. Pouches are dropped in sequence of availability (was this an osrs change?).
+[proc,rcu_pouch_drop_roll]()(namedobj)
+
+if (inv_total(inv, rcu_pouch_small) = 0 & inv_total(bank, rcu_pouch_small) = 0) {
+    %small_essence_pouch = 0;
+    %small_essence_pouch_type = 0;
+    return (rcu_pouch_small);
+}
+
+if (inv_total(inv, rcu_pouch_medium) = 0 & inv_total(inv, rcu_pouch_medium_degrade) = 0
+    & inv_total(bank, rcu_pouch_medium) = 0 & inv_total(bank, rcu_pouch_medium_degrade) = 0) {
+    %medium_essence_pouch = 0;
+    %medium_essence_pouch_type = 0;
+    %rcu_pouch_degradation_med = 0;
+    return (rcu_pouch_medium);
+}
+
+if (inv_total(inv, rcu_pouch_large) = 0 & inv_total(inv, rcu_pouch_large_degrade) = 0
+    & inv_total(bank, rcu_pouch_large) = 0 & inv_total(bank, rcu_pouch_large_degrade) = 0) {
+    %large_essence_pouch = 0;
+    %large_essence_pouch_type = 0;
+    %rcu_pouch_degradation_large = 0;
+    return (rcu_pouch_large);
+}
+
+if (inv_total(inv, rcu_pouch_giant) = 0 & inv_total(inv, rcu_pouch_giant_degrade) = 0
+    & inv_total(bank, rcu_pouch_giant) = 0 & inv_total(bank, rcu_pouch_giant_degrade) = 0) {
+    %giant_essence_pouch = 0;
+    %giant_essence_pouch_type = 0;
+    %rcu_pouch_degradation_giant = 0;
+    return (rcu_pouch_giant);
+}
+return (null);
+
+// https://github.com/Joshua-F/osrs-dumps/blob/69180fcaaac11d26e87fc9584c877da4d646a4a3/script/%5Bproc%2Cscript3670%5D.cs2#L3
+[proc,rcu_pouch_capacity_medium]()(int)
+if (%rcu_pouch_degradation_med >= 800) return (0);
+if (%rcu_pouch_degradation_med >= 400) return (3);
+return (^rcu_pouch_max_capacity_medium);
+
+// https://github.com/Joshua-F/osrs-dumps/blob/69180fcaaac11d26e87fc9584c877da4d646a4a3/script/%5Bproc%2Cscript3671%5D.cs2
+[proc,rcu_pouch_capacity_large]()(int)
+if (%rcu_pouch_degradation_large >= 1000) return (0);
+if (%rcu_pouch_degradation_large >= 800) return (3);
+if (%rcu_pouch_degradation_large >= 600) return (5);
+if (%rcu_pouch_degradation_large >= 400) return (7);
+return (^rcu_pouch_max_capacity_large);
+
+// https://github.com/Joshua-F/osrs-dumps/blob/69180fcaaac11d26e87fc9584c877da4d646a4a3/script/%5Bproc%2Cscript3695%5D.cs2#L3
+[proc,rcu_pouch_capacity_giant]()(int)
+if (%rcu_pouch_degradation_giant >= 1200) return (0);
+if (%rcu_pouch_degradation_giant >= 1000) return (3);
+if (%rcu_pouch_degradation_giant >= 800) return (5);
+if (%rcu_pouch_degradation_giant >= 600) return (6);
+if (%rcu_pouch_degradation_giant >= 400) return (7);
+if (%rcu_pouch_degradation_giant >= 300) return (8);
+if (%rcu_pouch_degradation_giant >= 200) return (9);
+return (^rcu_pouch_max_capacity_giant);
+
+[label,rcu_pouch_check_essence](int $count, int $type)
+if ($count = 0) {
+    mes("There is no essence in this pouch."); 
+    return;
+}
+def_string $text = "There ";
+
+if ($count = 1) $text = append($text, "is "); else $text = append($text, "are ");
+
+switch_int ($count) {
+    case 2 : $text = append($text, "two ");
+    case 3 : $text = append($text, "three ");
+    case 4 : $text = append($text, "four ");
+    case 5 : $text = append($text, "five ");
+    case 6 : $text = append($text, "six ");
+    case 7 : $text = append($text, "seven ");
+    case 8 : $text = append($text, "eight ");
+    case 9 : $text = append($text, "nine ");
+    case 10 : $text = append($text, "ten ");
+    case 11 : $text = append($text, "eleven ");
+    case 12 : $text = append($text, "twelve ");
+    case default : $text = append($text, "many ");
+}
+
+switch_int ($type) {
+    case ^rcu_pouch_blankrune_type_normal : $text = append($text, "normal ");
+    case ^rcu_pouch_blankrune_type_high : $text = append($text, "pure ");
+}
+
+if ($count = 1) $text = append($text, "essence "); else $text = append($text, "essences ");
+
+$text = append($text, "in this pouch.");
+
+mes($text);
+
+//////////////////////////////////////////////////////////////
+//                   SMALL POUCH                            //
+//////////////////////////////////////////////////////////////
+[label,rcu_pouch_fill_small]
+def_int $blankrune_count = inv_total(inv, blankrune_high);
+def_int $blankrune_type = ^rcu_pouch_blankrune_type_high;
+
+if ($blankrune_count = 0) {
+    $blankrune_count = inv_total(inv, blankrune);
+}
+
+if ($blankrune_count = 0) {
+    mes(^rcu_message_pouch_fill_no_essence);
+    return;
+}
+
+if (%small_essence_pouch_type > 0 & $blankrune_type ! %small_essence_pouch_type) {
+    if (%small_essence_pouch_type = ^rcu_pouch_blankrune_type_normal) mes(^rcu_message_pouch_incompatible_ess_normal);
+    if (%small_essence_pouch_type = ^rcu_pouch_blankrune_type_high) mes(^rcu_message_pouch_incompatible_ess_high);
+    return;
+}
+
+def_int $ess_to_fill = calc(^rcu_pouch_max_capacity_small - %small_essence_pouch);
+
+if ($ess_to_fill = 0) {
+    mes(^rcu_message_pouch_full);
+    return;
+}
+def_int $i = 0;
+
+// This is intentional, degradation is rolled per essence, so is pouch filling
+while ($i < $ess_to_fill) {
+    %small_essence_pouch_type = $blankrune_type;
+    %small_essence_pouch = calc(%small_essence_pouch + 1);
+    $i = calc($i + 1);
+}
+
+if ($blankrune_type = ^rcu_pouch_blankrune_type_high) {
+    inv_del(inv, blankrune_high, $ess_to_fill);
+} else {
+    inv_del(inv, blankrune, $ess_to_fill);
+}
+
+if (%small_essence_pouch = ^rcu_pouch_max_capacity_small) mes(^rcu_message_pouch_fill_all);
+
+[label,rcu_pouch_empty_small]
+if (%small_essence_pouch = 0) {
+    mes(^rcu_message_pouch_empty);
+    return;
+}
+def_int $free_space = inv_freespace(inv);
+
+if ($free_space = 0) {
+    mes(^rcu_message_pouch_empty_inv_full);
+    return;
+}
+def_int $ess_to_empty = min(%small_essence_pouch, inv_freespace(inv));
+
+if (%small_essence_pouch_type = ^rcu_pouch_blankrune_type_high) {
+    inv_add(inv, blankrune_high, $ess_to_empty);
+} else {
+    inv_add(inv, blankrune, $ess_to_empty);
+}
+%small_essence_pouch = calc(%small_essence_pouch - $ess_to_empty);
+
+if (%small_essence_pouch = 0) {
+    %small_essence_pouch_type = 0;
+    mes(^rcu_message_pouch_empty_all);
+}
+
+//////////////////////////////////////////////////////////////
+//                  MEDIUM POUCH                            //
+//////////////////////////////////////////////////////////////
+[label,rcu_pouch_fill_medium]
+def_int $blankrune_count = inv_total(inv, blankrune_high);
+def_int $blankrune_type = ^rcu_pouch_blankrune_type_high;
+
+if ($blankrune_count = 0) {
+    $blankrune_count = inv_total(inv, blankrune);
+}
+
+if ($blankrune_count = 0) {
+    mes(^rcu_message_pouch_fill_no_essence);
+    return;
+}
+
+if (stat_base(runecraft) < 25) {
+    mes("You need level 25 Runecraft to fill a medium pouch.");
+    return;
+}
+
+if (%medium_essence_pouch_type > 0 & $blankrune_type ! %medium_essence_pouch_type) {
+    if (%medium_essence_pouch_type = ^rcu_pouch_blankrune_type_normal) mes(^rcu_message_pouch_incompatible_ess_normal);
+    if (%medium_essence_pouch_type = ^rcu_pouch_blankrune_type_high) mes(^rcu_message_pouch_incompatible_ess_high);
+    return;
+}
+
+def_int $max_capacity = ~rcu_pouch_capacity_medium;
+def_int $remaining_capacity = max(0, calc($max_capacity - %medium_essence_pouch));
+def_int $ess_to_fill = min($blankrune_count, $remaining_capacity);
+
+if ($ess_to_fill = 0) {
+    mes(^rcu_message_pouch_full);
+    return;
+}
+def_int $i = 0;
+
+// This is intentional, degradation is rolled per essence, so is pouch filling
+while ($i < $ess_to_fill) {
+    %medium_essence_pouch_type = $blankrune_type;
+    %medium_essence_pouch = calc(%medium_essence_pouch + 1);
+    %rcu_pouch_degradation_med = calc(%rcu_pouch_degradation_med + randominc(3));
+    $i = calc($i + 1);
+}
+
+def_int $new_max_capacity = ~rcu_pouch_capacity_medium;
+
+if ($new_max_capacity = 0) {
+    inv_del(inv, last_item, 1);
+    %rcu_pouch_degradation_med = 0;
+    %medium_essence_pouch_type = 0;
+    %medium_essence_pouch = 0;
+    mes(^rcu_message_pouch_destroy);
+    return;
+} else if ($max_capacity > $new_max_capacity) {
+    $ess_to_fill = min($ess_to_fill, $new_max_capacity);
+    %medium_essence_pouch = $ess_to_fill;
+    if (last_item = rcu_pouch_medium) inv_setslot(inv, last_slot, rcu_pouch_medium_degrade, 1);
+    mes(^rcu_message_pouch_decay);
+}
+
+if ($blankrune_type = ^rcu_pouch_blankrune_type_high) {
+    inv_del(inv, blankrune_high, $ess_to_fill);
+} else {
+    inv_del(inv, blankrune, $ess_to_fill);
+}
+
+if (%medium_essence_pouch = $new_max_capacity) mes(^rcu_message_pouch_fill_all);
+
+[label,rcu_pouch_empty_medium]
+if (%medium_essence_pouch = 0) {
+    mes(^rcu_message_pouch_empty);
+    return;
+}
+def_int $free_space = inv_freespace(inv);
+
+if ($free_space = 0) {
+    mes(^rcu_message_pouch_empty_inv_full);
+    return;
+}
+def_int $ess_to_empty = min(%medium_essence_pouch, inv_freespace(inv));
+
+if (%medium_essence_pouch_type = ^rcu_pouch_blankrune_type_high) {
+    inv_add(inv, blankrune_high, $ess_to_empty);
+} else {
+    inv_add(inv, blankrune, $ess_to_empty);
+}
+%medium_essence_pouch = calc(%medium_essence_pouch - $ess_to_empty);
+
+if (%medium_essence_pouch = 0) {
+    %medium_essence_pouch_type = 0;
+    mes(^rcu_message_pouch_empty_all);
+}
+
+//////////////////////////////////////////////////////////////
+//                   LARGE POUCH                            //
+//////////////////////////////////////////////////////////////
+[label,rcu_pouch_fill_large]
+def_int $blankrune_count = inv_total(inv, blankrune_high);
+def_int $blankrune_type = ^rcu_pouch_blankrune_type_high;
+
+if ($blankrune_count = 0) {
+    $blankrune_count = inv_total(inv, blankrune);
+}
+
+if ($blankrune_count = 0) {
+    mes(^rcu_message_pouch_fill_no_essence);
+    return;
+}
+
+if (stat_base(runecraft) < 50) {
+    mes("You need level 50 Runecraft to fill a large pouch.");
+    return;
+}
+
+if (%large_essence_pouch_type > 0 & $blankrune_type ! %large_essence_pouch_type) {
+    if (%large_essence_pouch_type = ^rcu_pouch_blankrune_type_normal) mes(^rcu_message_pouch_incompatible_ess_normal);
+    if (%large_essence_pouch_type = ^rcu_pouch_blankrune_type_high) mes(^rcu_message_pouch_incompatible_ess_high);
+    return;
+}
+
+def_int $max_capacity = ~rcu_pouch_capacity_large;
+def_int $remaining_capacity = max(0, calc($max_capacity - %large_essence_pouch));
+def_int $ess_to_fill = min($blankrune_count, $remaining_capacity);
+
+if ($ess_to_fill = 0) {
+    mes(^rcu_message_pouch_full);
+    return;
+}
+def_int $i = 0;
+
+// This is intentional, degradation is rolled per essence, so is pouch filling
+while ($i < $ess_to_fill) {
+    %large_essence_pouch_type = $blankrune_type;
+    %large_essence_pouch = calc(%large_essence_pouch + 1);
+    %rcu_pouch_degradation_large = calc(%rcu_pouch_degradation_large + randominc(3));
+    $i = calc($i + 1);
+}
+
+def_int $new_max_capacity = ~rcu_pouch_capacity_large;
+
+if ($new_max_capacity = 0) {
+    inv_del(inv, last_item, 1);
+    %rcu_pouch_degradation_large = 0;
+    %large_essence_pouch_type = 0;
+    %large_essence_pouch = 0;
+    mes(^rcu_message_pouch_destroy);
+    return;
+} else if ($max_capacity > $new_max_capacity) {
+    $ess_to_fill = min($ess_to_fill, $new_max_capacity);
+    %large_essence_pouch = $ess_to_fill;
+    if (last_item = rcu_pouch_large) inv_setslot(inv, last_slot, rcu_pouch_large_degrade, 1);
+    mes(^rcu_message_pouch_decay);
+}
+
+if ($blankrune_type = ^rcu_pouch_blankrune_type_high) {
+    inv_del(inv, blankrune_high, $ess_to_fill);
+} else {
+    inv_del(inv, blankrune, $ess_to_fill);
+}
+
+if (%large_essence_pouch = $new_max_capacity) mes(^rcu_message_pouch_fill_all);
+
+[label,rcu_pouch_empty_large]
+if (%large_essence_pouch = 0) {
+    mes(^rcu_message_pouch_empty);
+    return;
+}
+def_int $free_space = inv_freespace(inv);
+
+if ($free_space = 0) {
+    mes(^rcu_message_pouch_empty_inv_full);
+    return;
+}
+def_int $ess_to_empty = min(%large_essence_pouch, inv_freespace(inv));
+
+if (%large_essence_pouch_type = ^rcu_pouch_blankrune_type_high) {
+    inv_add(inv, blankrune_high, $ess_to_empty);
+} else {
+    inv_add(inv, blankrune, $ess_to_empty);
+}
+%large_essence_pouch = calc(%large_essence_pouch - $ess_to_empty);
+
+if (%large_essence_pouch = 0) {
+    %large_essence_pouch_type = 0;
+    mes(^rcu_message_pouch_empty_all);
+}
+
+//////////////////////////////////////////////////////////////
+//                   GIANT POUCH                            //
+//////////////////////////////////////////////////////////////
+[label,rcu_pouch_fill_giant]
+def_int $blankrune_count = inv_total(inv, blankrune_high);
+def_int $blankrune_type = ^rcu_pouch_blankrune_type_high;
+
+if ($blankrune_count = 0) {
+    $blankrune_count = inv_total(inv, blankrune);
+}
+
+if ($blankrune_count = 0) {
+    mes(^rcu_message_pouch_fill_no_essence);
+    return;
+}
+
+if (stat_base(runecraft) < 50) {
+    mes("You need level 75 Runecraft to fill a giant pouch.");
+    return;
+}
+
+if (%giant_essence_pouch_type > 0 & $blankrune_type ! %giant_essence_pouch_type) {
+    if (%giant_essence_pouch_type = ^rcu_pouch_blankrune_type_normal) mes(^rcu_message_pouch_incompatible_ess_normal);
+    if (%giant_essence_pouch_type = ^rcu_pouch_blankrune_type_high) mes(^rcu_message_pouch_incompatible_ess_high);
+    return;
+}
+
+def_int $max_capacity = ~rcu_pouch_capacity_giant;
+def_int $remaining_capacity = max(0, calc($max_capacity - %giant_essence_pouch));
+def_int $ess_to_fill = min($blankrune_count, $remaining_capacity);
+
+if ($ess_to_fill = 0) {
+    mes(^rcu_message_pouch_full);
+    return;
+}
+def_int $i = 0;
+
+// This is intentional, degradation is rolled per essence, so is pouch filling
+while ($i < $ess_to_fill) {
+    %giant_essence_pouch_type = $blankrune_type;
+    %giant_essence_pouch = calc(%giant_essence_pouch + 1);
+    %rcu_pouch_degradation_giant = calc(%rcu_pouch_degradation_giant + randominc(3));
+    $i = calc($i + 1);
+}
+
+def_int $new_max_capacity = ~rcu_pouch_capacity_giant;
+
+if ($new_max_capacity = 0) {
+    inv_del(inv, last_item, 1);
+    %rcu_pouch_degradation_giant = 0;
+    %giant_essence_pouch_type = 0;
+    %giant_essence_pouch = 0;
+    mes(^rcu_message_pouch_destroy);
+    return;
+} else if ($max_capacity > $new_max_capacity) {
+    $ess_to_fill = min($ess_to_fill, $new_max_capacity);
+    %giant_essence_pouch = $ess_to_fill;
+    if (last_item = rcu_pouch_giant) inv_setslot(inv, last_slot, rcu_pouch_giant_degrade, 1);
+    mes(^rcu_message_pouch_decay);
+}
+
+if ($blankrune_type = ^rcu_pouch_blankrune_type_high) {
+    inv_del(inv, blankrune_high, $ess_to_fill);
+} else {
+    inv_del(inv, blankrune, $ess_to_fill);
+}
+
+if (%giant_essence_pouch = $new_max_capacity) mes(^rcu_message_pouch_fill_all);
+
+[label,rcu_pouch_empty_giant]
+if (%giant_essence_pouch = 0) {
+    mes(^rcu_message_pouch_empty);
+    return;
+}
+def_int $free_space = inv_freespace(inv);
+
+if ($free_space = 0) {
+    mes(^rcu_message_pouch_empty_inv_full);
+    return;
+}
+def_int $ess_to_empty = min(%giant_essence_pouch, inv_freespace(inv));
+
+if (%giant_essence_pouch_type = ^rcu_pouch_blankrune_type_high) {
+    inv_add(inv, blankrune_high, $ess_to_empty);
+} else {
+    inv_add(inv, blankrune, $ess_to_empty);
+}
+%giant_essence_pouch = calc(%giant_essence_pouch - $ess_to_empty);
+
+if (%giant_essence_pouch = 0) {
+    %giant_essence_pouch_type = 0;
+    mes(^rcu_message_pouch_empty_all);
+}

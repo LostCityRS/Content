@@ -1,0 +1,89 @@
+// Transcribed from https://runescape.wiki/w/Transcript:Dark_mage?oldid=33701725 as osrs has modified the dialogue
+// https://youtu.be/lVqdhR0n0CA?si=ah4IMQkclxI7S4gr&t=62
+[opnpc1,rcu_zammy_mage2]
+~chatplayer("<p,neutral>Hello there.");
+~chatnpc("<p,angry>Quiet! You must not break my concentration!");
+
+// if the inventory has any essence pouch the 'I need your help with something...' option appears
+def_int $choice;
+def_boolean $degraded_pouches = ~rcu_has_degraded_pouches;
+def_boolean $lost_insn_book = ~rcu_lost_instruction_book;
+
+if ($degraded_pouches = true | $lost_insn_book = true) {
+    $choice = ~p_choice4("Why not?", 1, "What are you doing here?", 2, "I need your help with something... ", 3, "Ok, Sorry.", 4);
+} else {
+    $choice = ~p_choice3("Why not?", 1, "What are you doing here?", 2, "Ok, Sorry.", 4);
+}
+
+while ($choice ! 0) {
+    if ($choice = 1) {
+        ~chatplayer("<p,quiz>Why not?");
+        ~chatnpc("<p,neutral>Well, if my concentration is broken while keeping this gate open, then, if we are lucky, everyone within a one mile radius will either have their heads explode, or will be consumed internally by the creatures of the Abyss.");
+        ~chatplayer("<p,confused>Erm... And if we are unlucky?");
+        ~chatnpc("<p,neutral>If we are unlucky, then the entire universe will begin to fold in upon itself, and all reality as we know it will be annihilated in a single stroke.");
+        ~chatnpc("<p,angry>So leave me alone!");
+        $choice = ~p_choice2("What are you doing here?", 2, "Ok, Sorry.", 4);
+    } else if ($choice = 2) {
+        ~chatplayer("<p,quiz>What are you doing here?");
+        ~chatnpc("<p,neutral>Do you mean what am I doing here in Abyssal space, or are you asking me what I consider my ultimate role to be in this voyage that we call life?");
+        ~chatplayer("<p,quiz>Um... the first one.");
+        ~chatnpc("<p,neutral>By remaining here and holding this portal open, I am providing a permanent link between normal space and this strange dimension that we call Abyssal space.");
+        ~chatnpc("<p,neutral>As long as this spell remains in effect, we have the capability to teleport into abyssal space at will.");
+        ~chatnpc("<p,angry>Now leave me be! I can afford no distraction in my task!");
+        $choice = ~p_choice2("Why not?", 1, "Ok, Sorry.", 4);
+    } else if ($choice = 3) {
+        ~chatplayer("<p,neutral>Sorry to disturb you, I just needed your help with something quickly.");
+        ~chatnpc("<p,angry>What?|Oh...|Very well. What did you want?");
+
+        if ($degraded_pouches = true & $lost_insn_book = true) {
+            $choice = ~p_choice3("Can I have another Abyssal book?", 5, "Can you repair my pouches?", 6, "Actually, I can't think of anything right now...", 7);
+        } else if ($degraded_pouches = true) {
+            $choice = ~p_choice2("Can you repair my pouches?", 6, "Actually, I can't think of anything right now...", 7);
+        } else {
+            $choice = ~p_choice2("Can I have another Abyssal book?", 5, "Actually, I can't think of anything right now...", 7);
+        }
+    } else if ($choice = 4) {
+        ~chatplayer("<p,sad>Ok, sorry.");
+        ~chatnpc("<p,angry>I am attempting to subdue the elemental mechanisms of the universe to my will. Inane chatter from random idiots is not helping me achieve this!");
+        return;
+    } else if ($choice = 5) {
+        ~chatplayer("<p,neutral>Can I have another Abyssal book?|I seem to have misplaced the one I was given.");
+        inv_add(inv, rcu_instruction_book, 1);
+        ~chatnpc("<p,neutral>Here, take it, it is important to pool our research.|Now leave me be, I must concentrate!");
+        return;
+    } else if ($choice = 6) {
+        ~chatplayer("<p,quiz>I think my essence pouches might be degrading...|Can you restore them for me?");
+        %rcu_pouch_degradation_med = 0;
+        inv_changeslot(inv, rcu_pouch_medium_degrade, rcu_pouch_medium, 1);
+        inv_changeslot(bank, rcu_pouch_medium_degrade, rcu_pouch_medium, 1);
+
+        %rcu_pouch_degradation_large = 0;
+        inv_changeslot(inv, rcu_pouch_large_degrade, rcu_pouch_large, 1);
+        inv_changeslot(bank, rcu_pouch_large_degrade, rcu_pouch_large, 1);
+
+        %rcu_pouch_degradation_giant = 0;
+        inv_changeslot(inv, rcu_pouch_giant_degrade, rcu_pouch_giant, 1);
+        inv_changeslot(bank, rcu_pouch_giant_degrade, rcu_pouch_giant, 1);
+        ~chatnpc("<p,angry>A simple transfiguration spell should resolve that for you.|Now leave me be!");
+        return;
+    } else if ($choice = 7) {
+        ~chatplayer("<p,neutral>Actually, I can't think of anything right now...");
+        ~chatnpc("<p,angry>THEN STOP DISTRACTING ME!");
+        ~chatnpc("<p,neutral>Honestly, you have no idea of the pressure I am under attempting to keep this portal open!");
+        return;
+    }
+}
+
+[proc,rcu_has_degraded_pouches]()(boolean)
+// OSRS/RS3 only checks the varbits, it is possible to "remote repair" pouches
+if (%rcu_pouch_degradation_med >= 400 | %rcu_pouch_degradation_large >= 400 | %rcu_pouch_degradation_giant >= 200) {
+    return (true);
+}
+return (false);
+
+[proc,rcu_lost_instruction_book]()(boolean)
+if (inv_total(inv, rcu_instruction_book) = 0 & inv_total(bank, rcu_instruction_book) = 0) {
+    return (true);
+}
+return (false);
+

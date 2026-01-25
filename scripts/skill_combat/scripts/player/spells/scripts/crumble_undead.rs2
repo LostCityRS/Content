@@ -1,0 +1,40 @@
+[apnpct,magic:crumble_undead] ~pvm_crumble_undead;
+[opnpct,magic:crumble_undead] ~pvm_crumble_undead;
+
+[proc,pvm_crumble_undead]
+// order of these checks are from osrs:
+// - action_delay check
+// - rune requirements
+// - in combat check
+// - op2 check
+// - undead check
+// - attackable opt check
+if (map_clock < %action_delay) {
+    p_opnpct(magic:crumble_undead);
+    return;
+}
+def_dbrow $spell_data = ~get_spell_data(^crumble_undead);
+if (~check_spell_requirements($spell_data) = false) {
+    return;
+}
+if (~player_in_combat_check2 = false) {
+    return;
+}
+if (npc_hasop(2) = false) {
+    mes("You can't attack this npc.");
+    return;
+}
+if (npc_param(undead) = ^false) {
+    mes("This spell only affects skeletons, zombies, ghosts and shades.");
+    return;
+}
+if (~npc_is_attackable_opt = false) {
+    return;
+}
+def_int $duration = ~pvm_spell_cast($spell_data);
+
+if (~player_npc_hit_roll(^magic_style) = true) {
+    ~pvm_spell_success($spell_data, ~magic_spell_maxhit($spell_data), $duration);
+} else {
+    ~pvm_spell_fail($spell_data, $duration);
+}

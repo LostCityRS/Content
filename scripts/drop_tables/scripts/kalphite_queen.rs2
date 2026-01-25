@@ -1,0 +1,110 @@
+[ai_queue3,kalphite_flyingqueen]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+def_int $random = random(128);
+
+// https://web.archive.org/web/20060412010923/http://www.runehq.com/RHQMonsterView.php?id=244
+// https://web.archive.org/web/20060519005015/http://www.runescapecommunity.com/index.php?showtopic=487780
+// from 201 drops
+//  Laws - 20, 8
+//  Rune warhammer, 5
+//  Natures - 75, 22
+//  Fire rune - 600, 18
+//  Rune chainbody, 26
+//  zammy wine - 20, 17
+//  Rune axe, 3
+//  Power ammy, 13
+//  Bloods - 19, 36
+//  Death rune - 30, 5
+//  Half key (loop), 1
+//  Adamant spear, 14
+//  Addy Javs - 20, 1
+//  Lava staff, 1
+//  Rune arrows - 100, 3
+//  Emrald, 3
+//  Nothing, 5
+//  Mithril arrow - 500, 12
+//  Lobster - 7, 4
+//  Rune kite, 1
+//  Bloods - 15, 1
+//  Coins - 3k, 1
+//  D CHAIN, 1
+//  RDT, 17
+
+// osrs wiki descriptions
+// - runeaxe common
+// - adamant spear common
+// - rune chainbody common
+// - rune baxe uncommon
+// - rune 2h uncommon
+// - rune warhammer uncommon
+// - adamant longsword uncommon
+// - lava battlestaff uncommon
+// - rune sq uncommon
+// - mith arrows common
+// - iron arrow uncommon
+// - steel arrow uncommon
+// - rune jave uncommon
+// - rune arrow uncommon
+// - diamond common
+// - sapphire uncommon
+// - emerald uncommon
+// - ruby uncommon
+// - oyster pearls uncommon
+// - blood runes common
+// - nature runes common
+// - fire runes common
+// - law runes uncommon
+// - death runes uncommon
+// - wine of zamorak common
+// - amulet of power common
+// - coins uncommon
+// - lobster uncommon
+// - runite bar uncommon
+// - hard clue rare
+
+// ~trail_hardcluedrop(128, npc_coord); // todo
+
+// rates are a WIP
+if ($random < 14) { // 14/128 guess: drop log 16/128, 4/128 osrs
+    obj_add(npc_coord, rune_chainbody, 1, ^lootdrop_duration);
+} else if ($random < 16) { // 2/128 guess: drop log 0.63/128, 2/128 osrs
+    obj_add(npc_coord, lava_battlestaff, 1, ^lootdrop_duration);
+} else if ($random < 19) { // 3/128: drop log 3/128
+    obj_add(npc_coord, rune_warhammer, 1, ^lootdrop_duration);
+} else if ($random < 22) { // 3/128 guess: drop log 2/128
+    obj_add(npc_coord, rune_axe, 1, ^lootdrop_duration);
+} else if ($random < 32) { // 10/128 guess: drop log 9/128
+    obj_add(npc_coord, adamant_spear, 1, ^lootdrop_duration);
+} else if ($random < 42) { // 10/128 guess: drop log 8/128
+    obj_add(npc_coord, mithril_arrow, 500, ^lootdrop_duration);
+} else if ($random < 45) { // 3/128 guess: missing from drop log
+    obj_add(npc_coord, iron_arrow, add(random(335), 1), ^lootdrop_duration);
+} else if ($random < 47) { // 2/128: drop log 2/128
+    obj_add(npc_coord, rune_arrow, 100, ^lootdrop_duration);
+} else if ($random < 50) { // 3/128 guess: missing from drop log
+    obj_add(npc_coord, bigoysterpearls, 40, ^lootdrop_duration);
+} else if ($random < 70) { // 20/128 guess: drop log 23/128, 6/128 osrs
+    obj_add(npc_coord, bloodrune, 19, ^lootdrop_duration);
+} else if ($random < 84) { // 14/128: drop log 14/128
+    obj_add(npc_coord, naturerune, 75, ^lootdrop_duration);
+} else if ($random < 94) { // 10/128 guess: drop log 11/128
+    obj_add(npc_coord, firerune, 600, ^lootdrop_duration);
+} else if ($random < 99) { // 5/128: drop log 5/128
+    obj_add(npc_coord, lawrune, 20, ^lootdrop_duration);
+}  else if ($random < 102) { // 3/128: drop log 3/128
+    obj_add(npc_coord, deathrune, 30, ^lootdrop_duration);
+}  else if ($random < 112) { // 10/128 guess: drop log 11/128, 10/128 osrs
+    obj_add(npc_coord, cert_wine_of_zamorak, 20, ^lootdrop_duration);
+}  else if ($random < 119) { // 7/128: drop log 8/128, guess based on kbd's amulet of power/str 7/128
+    obj_add(npc_coord, amulet_of_power, 1, ^lootdrop_duration);
+} else if ($random < 121) { // 2/128 guess: drop log 2.55/128
+    obj_add(npc_coord, lobster, 7, ^lootdrop_duration);
+} else if ($random < 122) { // 1/128, 1 roll in osrs
+    obj_add(npc_coord, dragon_chainbody, 7, ^lootdrop_duration);
+} else if ($random < 128) { // 7/128 guess, drop log suggests 11/128
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+}

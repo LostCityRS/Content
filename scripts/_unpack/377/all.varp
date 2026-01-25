@@ -134,8 +134,6 @@ protect=no
 
 [goblinquest]
 
-[wildlever]
-
 [waterfall_quest]
 
 [varp_66]
@@ -171,7 +169,7 @@ scope=perm
 
 [druidquest]
 
-[varp_81]
+[stunned]
 
 [varp_82]
 
@@ -223,10 +221,10 @@ transmit=yes
 [prayer15]
 transmit=yes
 
-[varp_99]
+[prayer16]
 transmit=yes
 
-[varp_100]
+[prayer17]
 transmit=yes
 
 [qp]
@@ -237,9 +235,11 @@ transmit=yes
 [prayer_drain_resistance]
 protect=no
 
-[varp_104]
+[prayer_drain_counter]
+protect=no
 
-[varp_105]
+[prayer_drain_effect]
+protect=no
 
 [varp_106]
 transmit=yes
@@ -306,7 +306,8 @@ type=player_uid
 
 [varp_137]
 
-[varp_138]
+[thieving_stall_timer]
+scope=perm
 
 [legendsquest]
 
@@ -524,17 +525,20 @@ type=player_uid
 
 [varp_252]
 
-[varp_253]
+[gnome_course_progress]
+scope=perm
 
-[varp_254]
+[barbarian_course_progress]
+scope=perm
 
-[varp_255]
+[wilderness_course_progress]
+scope=perm
 
 [varp_256]
 
 [attack]
 
-[varp_260]
+[temp]
 
 [if1]
 transmit=yes
@@ -555,6 +559,8 @@ transmit=yes
 transmit=yes
 
 [magearena]
+protect=no
+scope=perm
 
 [saramage]
 
@@ -589,20 +595,24 @@ transmit=yes
 [varp_283]
 
 [duel2accept]
+type=player_uid
+protect=no
 
 [varp_285]
 
 [dueloptions]
 transmit=yes
 
-[varp_288]
+[iban_staff_charges]
+scope=perm
 
 [varp_289]
 
 [ring_of_recoil]
 scope=perm
 
-[varp_291]
+[ring_of_forging]
+scope=perm
 
 [trail_status]
 
@@ -715,18 +725,24 @@ transmit=yes
 
 [deephorror]
 
-[varp_352]
+[boardgames_drop_warning]
 
 [boardgames_runelink_rank]
+protect=no
 transmit=yes
+scope=perm
 
 [boardgames_draughts_rank]
+protect=no
 transmit=yes
+scope=perm
 
 [boardgames_varbit]
+protect=no
 transmit=yes
 
 [boardgames_varbit2]
+protect=no
 transmit=yes
 
 [varp_357]
@@ -1003,19 +1019,26 @@ transmit=yes
 [varp_485]
 
 [abyssal_pouches1]
+scope=perm
 
 [necklace_of_binding]
+scope=perm
 
 [rcu_pouch_degradation_med]
+scope=perm
 
 [rcu_pouch_degradation_large]
+scope=perm
 
 [rcu_pouch_degradation_giant]
+scope=perm
 
 [abyssal_warp]
+scope=perm
 transmit=yes
 
 [abyssal_miniquest]
+scope=perm
 transmit=yes
 
 [roguesden_puzzle]
@@ -1403,9 +1426,11 @@ transmit=yes
 
 [boardgames_runesquares_rank]
 transmit=yes
+scope=perm
 
 [boardgames_runeversi_rank]
 transmit=yes
+scope=perm
 
 [varp_650]
 
@@ -1497,8 +1522,6 @@ transmit=yes
 
 [varp_689]
 
-[varp_690]
-
 [varp_691]
 
 [varp_692]
@@ -1558,6 +1581,7 @@ transmit=yes
 transmit=yes
 
 [abyssal_pouches2]
+scope=perm
 
 [varp_722]
 

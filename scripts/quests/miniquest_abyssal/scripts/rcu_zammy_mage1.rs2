@@ -1,0 +1,54 @@
+// This is the zammy mage at edgeville
+// Most of this is dialogue from rs3 as it seems to be the closest to the original, osrs completely reworked it with GoTR update
+[opnpc1,rcu_zammy_mage1]
+if (%runemysteries ! ^runemysteries_complete) @rcu_zammy_mage1_no_runemysteries;
+
+switch_int (%abyssal_miniquest) {
+    case 0 : @rcu_zammy_mage1_quest_start;
+    case 1, 2, 3 : @rcu_zammy_mage1_quest_in_progress;
+    case ^miniquest_abyssal_complete : @rcu_zammy_mage1_quest_complete;
+}
+
+[opnpc3,rcu_zammy_mage1]
+if (%abyssal_miniquest ! ^miniquest_abyssal_complete) {
+    ~openshop(darkruneshop_crap, 400, 1300, 300, "Battle Runes.");
+} else {
+    ~openshop(darkruneshop_uber, 550, 1000, 2, "Battle Runes.");
+}
+
+[opnpc4,rcu_zammy_mage1]
+if (%abyssal_miniquest ! ^miniquest_abyssal_complete) return;
+@rcu_zammy_mage1_teleport;
+
+[label,rcu_zammy_mage1_no_runemysteries]
+// Unconfirmed dialog, cannot verify authenticity in osrs/rs3, variation of the osrs dialogue.
+~chatnpc("<p,angry>This is no place to talk!|You should leave.");
+
+[label,rcu_zammy_mage1_quest_start]
+%abyssal_miniquest = 1;
+~chatnpc("<p,neutral>Meet me in Varrock's Chaos Temple.|Here is not the place to talk.");
+
+[label,rcu_zammy_mage1_quest_in_progress]
+~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1a, "<p,angry>I already told you!|Meet me in the Varrock's Chaos Temple!");
+
+[label,rcu_zammy_mage1_quest_complete]
+// RS3 dialogue, cannot verify authenticity
+~chatnpc("<p,angry>This is no place to talk!|If you need help getting out of my sight I can send you to the Abyss?");
+
+def_int $choice = ~p_choice2_header("Yes", 1, "No", 2, "Teleport to the Abyss?");
+
+if ($choice = 1) {
+    @rcu_zammy_mage1_teleport;
+}
+
+[label,rcu_zammy_mage1_teleport]
+npc_say("Veniens! Sallakar! Rinnesset!");
+npc_anim(human_teleport_other_casting, 0);
+spotanim_npc(teleport_other_casting, 0, 0);
+sound_synth(tele_other_cast, 0, 0);
+p_delay(1);
+anim(human_teleport_other_impact, 0);
+spotanim_pl(teleport_other_impact, 92, 0);
+sound_synth(teleport_all, 0, 0);
+p_delay(2);
+@rcu_teleport_to_abyss;

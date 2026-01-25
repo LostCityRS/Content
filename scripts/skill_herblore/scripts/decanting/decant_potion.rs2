@@ -1,0 +1,44 @@
+[opheldu,_category_69]
+if(oc_category(last_useitem) = category_69) {
+    @decant_potion(last_item, last_useitem);
+}
+~displaymessage(^dm_default);
+
+[label,decant_potion](obj $potion, obj $used_potion)
+def_enum $potion_enum = ~get_potion_type($potion, $used_potion);
+if ($potion_enum = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
+def_int $doses = oc_param($potion, dose_count);
+def_int $used_doses = oc_param($used_potion, dose_count);
+if($doses = 4 | $used_doses = 4) {
+    ~displaymessage(^dm_default); // we can't decant with a 4 dose pot
+    return;
+}
+def_int $total_doses = calc($doses + $used_doses);
+def_int $remainder_doses = 0;
+if($total_doses > 4) {
+    $remainder_doses = calc($total_doses - 4);
+    $total_doses = 4;
+}
+def_namedobj $decanted_potion = enum(int, namedobj, $potion_enum, $total_doses);
+def_namedobj $remainder_potion = vial_empty;
+if($remainder_doses > 0) {
+    $remainder_potion = enum(int, namedobj, $potion_enum, $remainder_doses);
+}
+inv_setslot(inv, last_useslot, $decanted_potion, 1);
+inv_setslot(inv, last_slot, $remainder_potion, 1);
+
+sound_synth(liquid, 0, 0); // osrs
+// https://youtu.be/qGcENRGIcoI?si=qGubXr8z_G3aDeaI&t=12
+mes("You have combined the liquid into <tostring($total_doses)> doses.");
+
+[proc,get_potion_type](obj $potion, obj $used_potion)(enum)
+def_enum $first_enum = oc_param($potion, decant_potion_enum);
+def_enum $second_enum = oc_param($used_potion, decant_potion_enum);
+// if either one of these is not a decantable potion, or if they are different potion types
+if ($first_enum = null | $second_enum = null | $first_enum ! $second_enum) {
+    return(null);
+}
+return($first_enum);

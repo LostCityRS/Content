@@ -455,6 +455,7 @@ active=yes
 width=2
 op1=Pray-at
 op2=Check
+category=prayer_altar
 
 [merlins_crystal]
 name=Giant crystal
@@ -1067,7 +1068,7 @@ contrast=30
 active=yes
 op1=Open
 category=door_open_and_close
-param=next_loc_stage,loc_1532
+param=next_loc_stage,desertdoor_inactive
 
 [1to2]
 active=yes
@@ -2981,6 +2982,8 @@ desc=I wonder what's inside.
 model=arena_guard_chest_shut
 op1=Open
 forceapproach=north
+category=chest_closed
+param=chest_other,chestopen
 
 [chestclosedgold]
 name=Closed chest
@@ -2990,6 +2993,8 @@ recol1s=10570
 recol1d=17921
 op1=Open
 forceapproach=north
+category=chest_closed
+param=chest_other,chestopen
 
 [shuttwistedchest]
 name=Closed chest
@@ -3005,6 +3010,8 @@ model=arena_guard_chest_open
 op2=Search
 op3=Shut
 forceapproach=north
+category=chest_open
+param=chest_other,chestclosed
 
 [chestopengold]
 name=Open chest
@@ -3015,6 +3022,8 @@ recol1d=17921
 op2=Search
 op3=Shut
 forceapproach=north
+category=chest_open
+param=chest_other,chestclosedgold
 
 [bookcase]
 name=Bookcase
@@ -3226,6 +3235,7 @@ model=altar
 width=2
 op1=Pray-at
 blockrange=no
+category=prayer_altar
 
 [guthix_altar]
 name=Altar of Guthix
@@ -3235,6 +3245,7 @@ width=2
 length=2
 op1=Pray-at
 blockrange=no
+category=prayer_altar
 
 [chaosaltar]
 name=Chaos altar
@@ -3243,6 +3254,7 @@ model=thrantaxaltar
 width=2
 op1=Pray-at
 blockrange=no
+category=prayer_altar
 
 [trappedchaosaltar]
 name=Chaos altar
@@ -3251,6 +3263,7 @@ model=thrantaxaltar
 width=2
 op1=Pray-at
 blockrange=no
+category=prayer_altar
 
 [dolmen]
 name=Dolmen
@@ -3553,6 +3566,8 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=mining_rock_empty,1
 
 // todo: name used from 244
 [plainrock1_alt]
@@ -3564,6 +3579,8 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=mining_rock_empty,1
 
 // todo: name used from 244
 [plainrock2]
@@ -3575,6 +3592,8 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=mining_rock_empty,1
 
 // todo: name used from 244
 [plainrock3]
@@ -3586,6 +3605,8 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=mining_rock_empty,1
 
 [loc_454]
 name=Cave rocks
@@ -14234,6 +14255,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_copperrock1
 
 // todo: name used from 244
 [copperrock2]
@@ -14247,6 +14271,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_copperrock2
 
 // todo: name used from 244
 [ironrock1]
@@ -14260,6 +14287,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_fast
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_ironrock1
 
 // todo: name used from 244
 [ironrock2]
@@ -14273,6 +14303,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_fast
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_ironrock2
 
 // todo: name used from 244
 [tinrock1]
@@ -14286,6 +14319,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_tinrock1
 
 // todo: name used from 244
 [tinrock2]
@@ -14299,6 +14335,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_tinrock2
 
 // todo: name used from 244
 [coalrock1]
@@ -14312,6 +14351,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_coalrock1
 
 // todo: name used from 244
 [coalrock2]
@@ -14325,6 +14367,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_coalrock2
 
 // todo: name used from 244
 [goldrock1]
@@ -14338,6 +14383,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_goldrock1
 
 // todo: name used from 244
 [goldrock2]
@@ -14351,6 +14399,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_goldrock2
 
 // todo: name used from 244
 [silverrock1]
@@ -14364,6 +14415,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_silverrock1
 
 // todo: name used from 244
 [silverrock2]
@@ -14377,6 +14431,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_silverrock2
 
 // todo: name used from 244
 [mithrilrock1]
@@ -14390,6 +14447,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_mithrilrock1
 
 // todo: name used from 244
 [mithrilrock2]
@@ -14403,6 +14463,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_mithrilrock2
 
 // todo: name used from 244
 [adamantiterock1]
@@ -14416,6 +14479,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_adamantiterock1
 
 // todo: name used from 244
 [adamantiterock2]
@@ -14429,6 +14495,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_adamantiterock2
 
 // todo: name used from 244
 [runiterock1]
@@ -14442,6 +14511,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_runiterock1
 
 // todo: name used from 244
 [runiterock2]
@@ -14455,6 +14527,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_runiterock2
 
 // todo: name used from 244
 [clayrock1]
@@ -14468,6 +14543,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
+param=macro_gas,macro_clayrock1
 
 // todo: name used from 244
 [clayrock2]
@@ -14481,6 +14559,9 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_clayrock2
 
 // todo: name used from 244
 [bluriterock]
@@ -14498,6 +14579,9 @@ mapscene=25
 blockrange=no
 ambient=10
 ambient=20
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_bluriterock
 
 // todo: name used from 244
 [gemrock]
@@ -14511,6 +14595,8 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
+param=next_loc_stage_mining,plainrock2
+param=macro_gas,macro_gemrock
 
 [loc_2112]
 name=Door
@@ -15918,6 +16004,8 @@ model=ikov_mendedleverdoorl
 op1=Open
 active=yes
 blockrange=no
+category=double_door_open_and_close_left
+param=next_loc_stage,loc_1562
 
 [loc_2308]
 name=Gate
@@ -15927,6 +16015,8 @@ op1=Open
 mirror=yes
 active=yes
 blockrange=no
+category=double_door_open_and_close_right
+param=next_loc_stage,loc_1563
 
 [loc_2309]
 name=Door
@@ -16016,6 +16106,12 @@ model=loc_2320
 width=3
 op1=Swing across
 blockwalk=no
+category=monkeybars
+param=agil_level_req,15
+param=start_coord,0_48_155_48_44
+param=end_coord,0_48_155_49_49
+param=obstacle_low_fail,256
+param=obstacle_high_fail,512
 
 [loc_2321]
 name=Monkeybars
@@ -16024,6 +16120,12 @@ model=loc_2320
 width=3
 op1=Swing across
 blockwalk=no
+category=monkeybars
+param=agil_level_req,57
+param=start_coord,0_40_148_38_17
+param=end_coord,0_40_148_39_22
+param=obstacle_low_fail,36
+param=obstacle_high_fail,330
 
 [loc_2322]
 name=Ropeswing
@@ -16032,6 +16134,10 @@ model=loc_2322
 op1=Swing-on
 length=6
 blockwalk=no
+category=island_rope_swing
+param=start_coord,0_42_50_21_9
+param=end_coord,0_42_50_16_9
+param=dir,3
 
 [loc_2323]
 name=Ropeswing
@@ -16040,6 +16146,10 @@ model=loc_2322
 op1=Swing-on
 length=6
 blockwalk=no
+category=island_rope_swing
+param=start_coord,0_42_50_17_5
+param=end_coord,0_42_50_21_5
+param=dir,1
 
 [loc_2324]
 name=Ropeswing
@@ -16048,6 +16158,10 @@ model=loc_2322
 op1=Swing-on
 length=6
 blockwalk=no
+category=island_rope_swing
+param=start_coord,0_39_48_15_19
+param=end_coord,0_39_48_15_24
+param=dir,0
 
 [loc_2325]
 name=Ropeswing
@@ -16056,6 +16170,7 @@ model=loc_2322
 op1=Swing-on
 length=6
 blockwalk=no
+//TODO for someone who knows - Probably the rope swing to jangerberry island.
 
 [loc_2326]
 name=Branch
@@ -16125,6 +16240,7 @@ desc=A rocky outcrop from the running water.
 model=loc_2333
 op1=Cross
 active=yes
+category=karamja_stepping_stone
 
 [loc_2334]
 name=Stepping stones
@@ -16132,6 +16248,7 @@ desc=A rocky outcrop from the running water.
 model=loc_2333
 op1=Cross
 active=yes
+category=karamja_stepping_stone
 
 [loc_2335]
 name=Stepping stones
@@ -16139,6 +16256,7 @@ desc=A rocky outcrop from the running water.
 model=loc_2333
 op1=Cross
 active=yes
+category=karamja_stepping_stone
 
 [blackknighthole]
 name=Hole
@@ -18269,6 +18387,7 @@ desc=A shrine for the faithful to worship at.
 model=altar
 width=2
 op1=Pray-at
+category=prayer_altar
 
 [monasteryladder]
 name=Ladder
@@ -18757,6 +18876,8 @@ recol1d=7400
 op1=Mine
 op2=Prospect
 op3=hidden
+category=mining_rock_normal
+param=next_loc_stage_mining,plainrock1
 
 [combodoor]
 name=Door
@@ -19160,6 +19281,7 @@ length=3
 sharelight=yes
 forceapproach=east
 op2=Smelt
+category=smithing_furnace
 
 // todo: name used from 244
 [doric_anvil]
@@ -19187,6 +19309,7 @@ desc=A hot place for forging things in.
 model=loc_2785
 forceapproach=east
 sharelight=yes
+category=smithing_furnace
 
 [ogreguardgate1]
 name=City gate
@@ -20755,6 +20878,7 @@ length=3
 forceapproach=east
 op1=Look
 op2=Search
+category=smithing_furnace
 
 [cavewall_face1_hce]
 model=cavewall_face1_hce
@@ -21182,6 +21306,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,poordoor
 
 // todo: name used from 244
 [newbiegateclosedl2]
@@ -21190,6 +21315,7 @@ desc=A wooden gate.
 model=plaguesheep_gatel
 active=yes
 op1=Open
+category=tutorial_gate
 
 // todo: name used from 244
 [newbiegateclosedr2]
@@ -21199,6 +21325,7 @@ model=plaguesheep_gatel
 active=yes
 mirror=yes
 op1=Open
+category=tutorial_gate
 
 // todo: name used from 244
 [newbie_door2]
@@ -21211,6 +21338,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,poordoor
 
 // todo: name used from 244
 [newbie_door3]
@@ -21223,6 +21351,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,poordoor
 
 // todo: name used from 244
 [newbie_door4]
@@ -21235,6 +21364,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,poordoor
 
 // todo: name used from 244
 [newbiedoor4l]
@@ -21244,6 +21374,7 @@ model=ikov_mendedleverdoorl
 op1=Open
 active=yes
 blockrange=no
+category=tut_mining_exit
 
 // todo: name used from 244
 [newbiedoor4r]
@@ -21254,6 +21385,7 @@ op1=Open
 mirror=yes
 active=yes
 blockrange=no
+category=tut_mining_exit
 
 // todo: name used from 244
 [newbiedoor5_l]
@@ -21263,6 +21395,7 @@ model=ikov_mendedleverdoorl
 op1=Open
 active=yes
 blockrange=no
+category=rat_pit_cage
 
 // todo: name used from 244
 [newbiedoor5_r]
@@ -21273,6 +21406,7 @@ op1=Open
 mirror=yes
 active=yes
 blockrange=no
+category=rat_pit_cage
 
 // todo: name used from 244
 [newbie_door6]
@@ -21285,6 +21419,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,poordoor
 
 // todo: name used from 244
 [newbie_door7]
@@ -21297,6 +21432,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,poordoor
 
 // todo: name used from 244
 [newbie_door8]
@@ -21309,6 +21445,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,poordoor
 
 // todo: name used from 244
 [newbie_door9]
@@ -21321,6 +21458,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,poordoor
 
 // todo: name used from 244
 [newbieladder1]
@@ -21376,6 +21514,7 @@ length=2
 mapscene=0
 op1=Chop down
 op3=hidden
+param=next_loc_stage,treestump2
 
 // todo: name used from 244
 [newbietree2]
@@ -21387,6 +21526,7 @@ length=2
 mapscene=0
 op1=Chop down
 op3=hidden
+param=next_loc_stage,treestump2
 
 // todo: name used from 244
 [newbiedeadtree]
@@ -21398,6 +21538,7 @@ length=2
 mapscene=6
 op1=Chop down
 op3=hidden
+param=next_loc_stage,deadtree1_stump
 
 // todo: name used from 244
 [newbiedeadtree2]
@@ -21409,6 +21550,7 @@ length=2
 mapscene=6
 op1=Chop down
 op3=hidden
+param=next_loc_stage,deadtree1_stump
 
 // todo: name used from 244
 [newbieoaktree]
@@ -21489,6 +21631,7 @@ width=3
 length=3
 forceapproach=east
 op1=Use
+category=smithing_furnace
 
 // todo: name used from 244
 [newbiebankbooth]
@@ -23632,6 +23775,7 @@ model=furnace_legendsquest
 width=3
 length=3
 forceapproach=east
+category=smithing_furnace
 
 [stone_tablet1_upass]
 name=Stone tablet
@@ -25297,6 +25441,7 @@ length=3
 op1=Look
 mapscene=8
 op1=Pray-at
+category=prayer_altar
 
 [druidjump_loc]
 name=Bridge
@@ -27345,79 +27490,14 @@ recol1s=13537
 recol1d=18953
 blockwalk=no
 
-[kalphite_burrow_entrance]
-name=Tunnel entrance
-desc=How am I going to get down there?
-model=kalphite_burrow_entrance
-width=2
-length=2
-
-[kalphite_burrow_entrance_withrope]
-name=Tunnel entrance
-desc=How am I going to get down there?
-model=kalphite_burrow_entrance_withrope
-width=2
-length=2
-op1=Climb-down
-
-[kalphite_burrow_exit]
-name=Rope
-desc=I hope this holds!
-model=loc_1762
-blockwalk=no
-blockrange=no
-op1=Climb-up
-
-[compost_bin_compostable_01]
-name=Tunnel entrance
-desc=How am I going to get down there?
-model=kalphite_burrow_entrance
-recol1s=25326
-recol1d=18953
-recol2s=24236
-recol2d=16839
-recol3s=20008
-recol3d=14725
-recol4s=15780
-recol4d=12611
-recol5s=11552
-recol5d=10497
-width=2
-length=2
-
 [dagexp_bossroomladder_down]
-name=Tunnel entrance
-desc=How am I going to get down there?
-model=kalphite_burrow_entrance_withrope
-recol1s=25326
-recol1d=18953
-recol2s=24236
-recol2d=16839
-recol3s=20008
-recol3d=14725
-recol4s=15780
-recol4d=12611
-recol5s=11552
-recol5d=10497
-width=2
-length=2
+name=Ladder
+desc=A sturdy iron frame, for climbing up and down.
+model=horror_ladder_down
+sharelight=yes
+active=yes
 op1=Climb-down
-
-[kalphite_chamber_exit]
-name=Rope
-desc=I hope this holds!
-model=loc_1762
-blockwalk=no
-blockrange=no
-op1=Climb-up
-
-[kalphite_egg]
-name=Cocoon
-desc=It's moving...
-model=kalphite_egg
-width=2
-length=2
-blockrange=no
+mapscene=7
 
 [loc_3834]
 model=clanwars_tournament_table
@@ -27594,6 +27674,7 @@ model=tribalstatue
 width=2
 length=2
 op1=Pray-at
+category=prayer_altar
 
 [floor_depth4]
 model=floor_depth4
@@ -28712,6 +28793,7 @@ ambient=10
 name=Small furnace
 desc=A small furnace.
 model=regicide_furnace
+category=smithing_furnace
 
 [regicide_tent_human_for_fire]
 name=Tent wall
@@ -28864,6 +28946,7 @@ desc=Shrine to the glory of Saradomin.
 model=regicide_voyage_temple_altar
 width=2
 op1=Pray-at
+category=prayer_altar
 
 [regicide_bridge_a]
 model=lum_bridgea
@@ -29263,7 +29346,7 @@ name=Huge Mushroom
 desc=These fat fungi take up so much room.
 model=mushroom_massive3
 
-[loc_4058]
+[gnome_obstacle_pipe]
 name=Obstacle pipe
 desc=A pipe I can squeeze through.
 model=loc_154
@@ -31422,6 +31505,7 @@ length=3
 sharelight=yes
 forceapproach=east
 op2=Smelt
+category=smithing_furnace
 
 [viking_furnace2]
 name=Furnace
@@ -31436,6 +31520,7 @@ recol3d=9479
 forceapproach=east
 sharelight=yes
 op2=Smelt
+category=smithing_furnace
 
 [viking_anvil]
 name=Anvil
@@ -34208,6 +34293,8 @@ desc=A large double door.
 model=posh_doubledoor_reverse_l
 op1=Open
 raiseobject=no
+category=reverse_door_left_closed
+param=next_loc_stage,posh_doubledoor_reverse_l_open
 
 [posh_doubledoor_reverse_l_open]
 name=Large door
@@ -34216,6 +34303,8 @@ model=posh_doubledoor_reverse_l
 op1=Close
 raiseobject=no
 mirror=yes
+category=reverse_door_left_opened
+param=next_loc_stage,posh_doubledoor_reverse_l
 
 [posh_doubledoor_locked_l]
 name=Large door
@@ -34237,6 +34326,8 @@ desc=A large double door.
 model=posh_doubledoor_lockedr
 op1=Open
 raiseobject=no
+category=reverse_door_right_closed
+param=next_loc_stage,posh_doubledoor_reverse_r_open
 
 [posh_doubledoor_reverse_r_open]
 name=Large door
@@ -34245,6 +34336,8 @@ model=posh_doubledoor_lockedr
 op1=Close
 raiseobject=no
 mirror=yes
+category=reverse_door_right_opened
+param=next_loc_stage,posh_doubledoor_reverse_r
 
 [old_paintedbrickwall_2]
 model=paintedbrickwall2
@@ -34265,6 +34358,7 @@ recol2d=11458
 active=yes
 op1=Open
 raiseobject=no
+param=next_loc_stage,elfdooropen_reverse
 
 [boardgames_runelink_door_experienced]
 name=Door
@@ -34277,6 +34371,7 @@ recol2d=11458
 active=yes
 op1=Open
 raiseobject=no
+param=next_loc_stage,elfdooropen_reverse
 
 [elfdoor_reverse]
 name=Door
@@ -34289,6 +34384,8 @@ recol2d=11458
 active=yes
 op1=Open
 raiseobject=no
+category=reverse_door_closed
+param=next_loc_stage,elfdooropen_reverse
 
 [elfdooropen_reverse]
 name=Door
@@ -34302,6 +34399,8 @@ active=yes
 op1=Close
 raiseobject=no
 mirror=yes
+category=reverse_door_opened
+param=next_loc_stage,elfdoor_reverse
 
 [elfdoor_locked]
 name=Door
@@ -36344,6 +36443,7 @@ recol1d=30513
 width=2
 length=2
 op1=Pray-at
+category=prayer_altar
 
 [mm_gorillastatue2]
 name=Gorilla Statue
@@ -48242,6 +48342,7 @@ length=2
 sharelight=yes
 forceapproach=east
 op2=Smelt
+category=smithing_furnace
 
 [dwarf_keldagrim_furnace2]
 name=Furnace
@@ -48252,6 +48353,7 @@ resizey=90
 resizex=90
 forceapproach=east
 sharelight=yes
+category=smithing_furnace
 
 [dwarf_keldagrim_warhammer_repairs]
 name=Warhammer
@@ -51099,6 +51201,7 @@ desc=A mysterious ancient altar to some forgotten god...
 model=dt_zaros_altar
 width=3
 op1=Pray-at
+category=prayer_altar
 
 [dt_ancient_temple_door_open]
 name=Doorway
@@ -56258,887 +56361,6 @@ recol3d=32573
 width=3
 length=3
 op1=Enter
-
-[loc_7129]
-name=Fire rift
-desc=A tear in the dimensional weave of the Abyss.
-model=loc_7129
-width=2
-ambient=50
-contrast=50
-anim=rcu_rune_icon_float
-active=yes
-op1=Exit-through
-
-[loc_7130]
-name=Earth rift
-desc=A tear in the dimensional weave of the Abyss.
-model=loc_7130
-width=2
-ambient=50
-contrast=50
-anim=rcu_rune_icon_float
-active=yes
-op1=Exit-through
-
-[loc_7131]
-name=Body rift
-desc=A tear in the dimensional weave of the Abyss.
-model=loc_7131
-width=2
-ambient=50
-contrast=50
-anim=rcu_rune_icon_float
-active=yes
-op1=Exit-through
-
-[loc_7132]
-name=Cosmic rift
-desc=A tear in the dimensional weave of the Abyss.
-model=loc_7132
-width=2
-ambient=50
-contrast=50
-anim=rcu_rune_icon_float
-active=yes
-op1=Exit-through
-
-[loc_7133]
-name=Nature rift
-desc=A tear in the dimensional weave of the Abyss.
-model=loc_7133
-width=2
-ambient=50
-contrast=50
-anim=rcu_rune_icon_float
-active=yes
-op1=Exit-through
-
-[loc_7134]
-name=Chaos rift
-desc=A tear in the dimensional weave of the Abyss.
-model=loc_7134
-width=2
-ambient=50
-contrast=50
-anim=rcu_rune_icon_float
-active=yes
-op1=Exit-through
-
-[loc_7135]
-name=Law rift
-desc=A tear in the dimensional weave of the Abyss.
-model=loc_7135
-width=2
-ambient=50
-contrast=50
-anim=rcu_rune_icon_float
-active=yes
-op1=Exit-through
-
-[loc_7136]
-name=Death rift
-desc=A tear in the dimensional weave of the Abyss.
-model=loc_7136
-width=2
-ambient=50
-contrast=50
-anim=rcu_rune_icon_float
-active=yes
-op1=Exit-through
-
-[loc_7137]
-name=Water rift
-desc=A tear in the dimensional weave of the Abyss.
-model=loc_7137
-recol1s=479
-recol1d=4376
-width=2
-ambient=50
-contrast=50
-anim=rcu_rune_icon_float
-active=yes
-op1=Exit-through
-
-[loc_7138]
-name=Soul rift
-desc=A tear in the dimensional weave of the Abyss.
-model=loc_7138
-width=2
-ambient=50
-contrast=50
-anim=rcu_rune_icon_float
-active=yes
-op1=Exit-through
-
-[loc_7139]
-name=Air rift
-desc=A tear in the dimensional weave of the Abyss.
-model=loc_7139
-width=2
-ambient=50
-contrast=50
-anim=rcu_rune_icon_float
-active=yes
-op1=Exit-through
-
-[loc_7140]
-name=Mind rift
-desc=A tear in the dimensional weave of the Abyss.
-model=loc_7140
-width=2
-ambient=50
-contrast=50
-anim=rcu_rune_icon_float
-active=yes
-op1=Exit-through
-
-[loc_7141]
-name=Blood rift
-desc=A tear in the dimensional weave of the Abyss.
-model=loc_7137
-recol1s=479
-recol1d=30787
-width=2
-ambient=50
-contrast=50
-anim=rcu_rune_icon_float
-active=yes
-op1=Exit-through
-
-[loc_7142]
-active=yes
-sharelight=yes
-width=3
-length=2
-forceapproach=south
-multivar=rcu_abyssal_generator
-multiloc=0,loc_7156
-multiloc=1,loc_7158
-multiloc=2,loc_7161
-multiloc=3,loc_7165
-multiloc=4,loc_7168
-multiloc=5,loc_7164
-multiloc=6,loc_7154
-multiloc=7,loc_7164
-multiloc=8,loc_7168
-multiloc=9,loc_7165
-multiloc=10,loc_7161
-multiloc=11,loc_7158
-multiloc=12,loc_7159
-multiloc=13,loc_7160
-multiloc=14,loc_7162
-multiloc=15,loc_7163
-multiloc=16,loc_7166
-multiloc=17,loc_7167
-multiloc=18,loc_7169
-multiloc=19,loc_7170
-
-[loc_7143]
-active=yes
-sharelight=yes
-width=3
-length=2
-forceapproach=south
-multivar=rcu_abyssal_generator
-multiloc=0,loc_7158
-multiloc=1,loc_7156
-multiloc=2,loc_7158
-multiloc=3,loc_7161
-multiloc=4,loc_7165
-multiloc=5,loc_7168
-multiloc=6,loc_7158
-multiloc=7,loc_7154
-multiloc=8,loc_7158
-multiloc=9,loc_7168
-multiloc=10,loc_7165
-multiloc=11,loc_7161
-multiloc=12,loc_7159
-multiloc=13,loc_7160
-multiloc=14,loc_7162
-multiloc=15,loc_7163
-multiloc=16,loc_7166
-multiloc=17,loc_7167
-multiloc=18,loc_7169
-multiloc=19,loc_7170
-
-[loc_7144]
-active=yes
-sharelight=yes
-width=3
-length=2
-forceapproach=south
-multivar=rcu_abyssal_generator
-multiloc=0,loc_7161
-multiloc=1,loc_7158
-multiloc=2,loc_7156
-multiloc=3,loc_7158
-multiloc=4,loc_7161
-multiloc=5,loc_7165
-multiloc=6,loc_7161
-multiloc=7,loc_7158
-multiloc=8,loc_7154
-multiloc=9,loc_7158
-multiloc=10,loc_7161
-multiloc=11,loc_7165
-multiloc=12,loc_7159
-multiloc=13,loc_7160
-multiloc=14,loc_7162
-multiloc=15,loc_7163
-multiloc=16,loc_7166
-multiloc=17,loc_7167
-multiloc=18,loc_7169
-multiloc=19,loc_7170
-
-[loc_7145]
-active=yes
-sharelight=yes
-width=3
-length=2
-forceapproach=south
-multivar=rcu_abyssal_generator
-multiloc=0,loc_7165
-multiloc=1,loc_7161
-multiloc=2,loc_7158
-multiloc=3,loc_7156
-multiloc=4,loc_7158
-multiloc=5,loc_7161
-multiloc=6,loc_7165
-multiloc=7,loc_7161
-multiloc=8,loc_7158
-multiloc=9,loc_7154
-multiloc=10,loc_7158
-multiloc=11,loc_7161
-multiloc=12,loc_7159
-multiloc=13,loc_7160
-multiloc=14,loc_7162
-multiloc=15,loc_7163
-multiloc=16,loc_7166
-multiloc=17,loc_7167
-multiloc=18,loc_7169
-multiloc=19,loc_7170
-
-[loc_7146]
-active=yes
-sharelight=yes
-width=3
-length=2
-forceapproach=south
-multivar=rcu_abyssal_generator
-multiloc=0,loc_7168
-multiloc=1,loc_7165
-multiloc=2,loc_7161
-multiloc=3,loc_7158
-multiloc=4,loc_7156
-multiloc=5,loc_7158
-multiloc=6,loc_7168
-multiloc=7,loc_7165
-multiloc=8,loc_7161
-multiloc=9,loc_7158
-multiloc=10,loc_7154
-multiloc=11,loc_7158
-multiloc=12,loc_7159
-multiloc=13,loc_7160
-multiloc=14,loc_7162
-multiloc=15,loc_7163
-multiloc=16,loc_7166
-multiloc=17,loc_7167
-multiloc=18,loc_7169
-multiloc=19,loc_7170
-
-[loc_7147]
-active=yes
-sharelight=yes
-width=3
-length=2
-forceapproach=south
-multivar=rcu_abyssal_generator
-multiloc=0,loc_7164
-multiloc=1,loc_7168
-multiloc=2,loc_7165
-multiloc=3,loc_7161
-multiloc=4,loc_7158
-multiloc=5,loc_7156
-multiloc=6,loc_7164
-multiloc=7,loc_7168
-multiloc=8,loc_7165
-multiloc=9,loc_7161
-multiloc=10,loc_7158
-multiloc=11,loc_7154
-multiloc=12,loc_7159
-multiloc=13,loc_7160
-multiloc=14,loc_7162
-multiloc=15,loc_7163
-multiloc=16,loc_7166
-multiloc=17,loc_7167
-multiloc=18,loc_7169
-multiloc=19,loc_7170
-
-[loc_7148]
-active=yes
-sharelight=yes
-width=3
-length=2
-forceapproach=south
-multivar=rcu_abyssal_generator
-multiloc=0,loc_7154
-multiloc=1,loc_7164
-multiloc=2,loc_7168
-multiloc=3,loc_7165
-multiloc=4,loc_7161
-multiloc=5,loc_7158
-multiloc=6,loc_7156
-multiloc=7,loc_7164
-multiloc=8,loc_7168
-multiloc=9,loc_7165
-multiloc=10,loc_7161
-multiloc=11,loc_7158
-multiloc=12,loc_7159
-multiloc=13,loc_7160
-multiloc=14,loc_7162
-multiloc=15,loc_7163
-multiloc=16,loc_7166
-multiloc=17,loc_7167
-multiloc=18,loc_7169
-multiloc=19,loc_7170
-
-[loc_7149]
-active=yes
-sharelight=yes
-width=3
-length=2
-forceapproach=south
-multivar=rcu_abyssal_generator
-multiloc=0,loc_7164
-multiloc=1,loc_7154
-multiloc=2,loc_7164
-multiloc=3,loc_7168
-multiloc=4,loc_7165
-multiloc=5,loc_7161
-multiloc=6,loc_7164
-multiloc=7,loc_7156
-multiloc=8,loc_7164
-multiloc=9,loc_7168
-multiloc=10,loc_7165
-multiloc=11,loc_7161
-multiloc=12,loc_7159
-multiloc=13,loc_7160
-multiloc=14,loc_7162
-multiloc=15,loc_7163
-multiloc=16,loc_7166
-multiloc=17,loc_7167
-multiloc=18,loc_7169
-multiloc=19,loc_7170
-
-[loc_7150]
-active=yes
-sharelight=yes
-width=3
-length=2
-forceapproach=south
-multivar=rcu_abyssal_generator
-multiloc=0,loc_7168
-multiloc=1,loc_7164
-multiloc=2,loc_7154
-multiloc=3,loc_7164
-multiloc=4,loc_7168
-multiloc=5,loc_7165
-multiloc=6,loc_7168
-multiloc=7,loc_7164
-multiloc=8,loc_7156
-multiloc=9,loc_7164
-multiloc=10,loc_7168
-multiloc=11,loc_7165
-multiloc=12,loc_7159
-multiloc=13,loc_7160
-multiloc=14,loc_7162
-multiloc=15,loc_7163
-multiloc=16,loc_7166
-multiloc=17,loc_7167
-multiloc=18,loc_7169
-multiloc=19,loc_7170
-
-[loc_7151]
-active=yes
-sharelight=yes
-width=3
-length=2
-forceapproach=south
-multivar=rcu_abyssal_generator
-multiloc=0,loc_7165
-multiloc=1,loc_7168
-multiloc=2,loc_7164
-multiloc=3,loc_7154
-multiloc=4,loc_7164
-multiloc=5,loc_7168
-multiloc=6,loc_7165
-multiloc=7,loc_7168
-multiloc=8,loc_7164
-multiloc=9,loc_7156
-multiloc=10,loc_7164
-multiloc=11,loc_7168
-multiloc=12,loc_7159
-multiloc=13,loc_7160
-multiloc=14,loc_7162
-multiloc=15,loc_7163
-multiloc=16,loc_7166
-multiloc=17,loc_7167
-multiloc=18,loc_7169
-multiloc=19,loc_7170
-
-[loc_7152]
-active=yes
-sharelight=yes
-width=3
-length=2
-forceapproach=south
-multivar=rcu_abyssal_generator
-multiloc=0,loc_7161
-multiloc=1,loc_7165
-multiloc=2,loc_7168
-multiloc=3,loc_7164
-multiloc=4,loc_7154
-multiloc=5,loc_7164
-multiloc=6,loc_7161
-multiloc=7,loc_7165
-multiloc=8,loc_7168
-multiloc=9,loc_7164
-multiloc=10,loc_7156
-multiloc=11,loc_7164
-multiloc=12,loc_7159
-multiloc=13,loc_7160
-multiloc=14,loc_7162
-multiloc=15,loc_7163
-multiloc=16,loc_7166
-multiloc=17,loc_7167
-multiloc=18,loc_7169
-multiloc=19,loc_7170
-
-[loc_7153]
-active=yes
-sharelight=yes
-width=3
-length=2
-forceapproach=south
-multivar=rcu_abyssal_generator
-multiloc=0,loc_7158
-multiloc=1,loc_7161
-multiloc=2,loc_7165
-multiloc=3,loc_7168
-multiloc=4,loc_7164
-multiloc=5,loc_7154
-multiloc=6,loc_7158
-multiloc=7,loc_7161
-multiloc=8,loc_7165
-multiloc=9,loc_7168
-multiloc=10,loc_7164
-multiloc=11,loc_7156
-multiloc=12,loc_7159
-multiloc=13,loc_7160
-multiloc=14,loc_7162
-multiloc=15,loc_7163
-multiloc=16,loc_7166
-multiloc=17,loc_7167
-multiloc=18,loc_7169
-multiloc=19,loc_7170
-
-[loc_7154]
-name=Passage
-desc=A tunnel through the abyss.
-model=loc_7154
-width=3
-length=2
-op1=Go-through
-
-[loc_7155]
-model=loc_7155
-hillskew=yes
-active=no
-
-[loc_7156]
-name=Blockage
-desc=This seems to be blocking the exit...
-model=loc_7156
-width=3
-length=2
-active=yes
-
-[loc_7157]
-model=loc_7155
-active=no
-hillskew=yes
-op1=Go-through
-sharelight=yes
-
-[loc_7158]
-name=Rock
-desc=I could probably break this up with a pickaxe.
-model=loc_7158
-ambient=15
-width=3
-length=2
-op1=Mine
-forceapproach=south
-
-[loc_7159]
-name=Rock
-desc=I could probably break this up with a pickaxe. Oh wait, I just did.
-model=loc_7159
-ambient=15
-width=3
-length=2
-active=yes
-forceapproach=south
-
-[loc_7160]
-name=Broken rock
-desc=Pickaxe power!
-model=loc_7160
-active=yes
-ambient=15
-width=3
-length=2
-blockwalk=no
-blockrange=no
-forceapproach=south
-
-[loc_7161]
-name=Tendrils
-desc=They don't look that solid, an axe could help me chop them down.
-model=loc_7161
-model2=loc_7161i2
-active=yes
-ambient=15
-width=3
-length=2
-op1=Chop
-forceapproach=south
-
-[loc_7162]
-name=Tendrils
-desc=They don't look that solid, an axe could help me chop them down.
-model=loc_7162
-model2=loc_7161i2
-active=yes
-ambient=15
-width=3
-length=2
-forceapproach=south
-
-[loc_7163]
-name=Chopped tendrils
-desc=I cannot tell a lie. I chopped them down.
-model=loc_7162
-model2=loc_7163
-active=yes
-ambient=15
-width=3
-length=2
-forceapproach=south
-
-[loc_7164]
-name=Gap
-desc=If I'm agile enough I might be able to squeeze through...
-model=loc_7164
-width=3
-length=2
-forceapproach=south
-op1=Squeeze-through
-
-[loc_7165]
-name=Boil
-desc=I could probably burn this away with a tinderbox.
-model=loc_7165
-width=3
-length=2
-forceapproach=south
-op1=Burn-down
-
-[loc_7166]
-name=Boil
-desc=I could probably burn this with fire.
-model=loc_7166
-width=3
-length=2
-forceapproach=south
-
-[loc_7167]
-name=Boil
-desc=Burnt open.
-model=loc_7167
-width=3
-length=2
-forceapproach=south
-
-[loc_7168]
-name=Eyes
-desc=I could probably distract these with thievery.
-model=loc_7168
-width=3
-length=2
-forceapproach=south
-op1=Distract
-
-[loc_7169]
-name=Eyes
-desc=I could probably distract these with thievery.
-model=loc_7169
-width=3
-length=2
-forceapproach=south
-
-[loc_7170]
-name=Eyes
-desc=I could probably distract these with thievery.
-model=loc_7170
-width=3
-length=2
-forceapproach=south
-
-[loc_7171]
-name=Abyssal rift
-desc=An unstable portal across the dimensions...
-model=loc_7171
-model2=loc_7171i2
-model3=loc_7171i3
-width=3
-length=3
-shadow=no
-anim=rcu_apocalypse_spins
-ambient=30
-contrast=20
-resizex=180
-resizey=180
-resizez=180
-
-[loc_7172]
-model=loc_7172
-sharelight=yes
-hillskew=yes
-
-[loc_7173]
-model=loc_7172
-sharelight=yes
-hillskew=yes
-resizex=128
-resizey=256
-resizez=128
-
-[loc_7174]
-model=loc_7172
-sharelight=yes
-hillskew=yes
-shadow=no
-
-[loc_7175]
-model=loc_7175
-sharelight=yes
-hillskew=yes
-shadow=no
-
-[loc_7176]
-model=cavewall_top
-recol1s=12580
-recol1d=12485
-sharelight=yes
-hillskew=yes
-active=no
-
-[loc_7177]
-model=cavewall_top5
-recol1s=12580
-recol1d=12485
-sharelight=yes
-hillskew=yes
-active=no
-
-[loc_7178]
-model=loc_7178
-sharelight=yes
-hillskew=yes
-active=no
-
-[loc_7179]
-model=loc_7179
-sharelight=yes
-hillskew=yes
-active=no
-
-[loc_7180]
-model=loc_7180
-sharelight=yes
-hillskew=yes
-active=no
-
-[loc_7181]
-model=loc_7182_0
-ambient=15
-active=no
-anim=rcu_abyssal_hole_open
-
-[loc_7182]
-model=loc_7182
-ambient=15
-active=no
-anim=rcu_abyssal_hole_open
-
-[loc_7183]
-model=loc_7183
-recol1s=10371
-recol1d=8257
-recol2s=11428
-recol2d=9314
-recol3s=12485
-recol3d=11427
-recol4s=13542
-recol4d=11427
-hillskew=yes
-active=no
-ambient=25
-
-[loc_7184]
-model=loc_7184
-recol1s=10371
-recol1d=8257
-recol2s=11428
-recol2d=9314
-recol3s=12485
-recol3d=11427
-recol4s=13542
-recol4d=11427
-hillskew=yes
-active=no
-ambient=25
-
-[loc_7185]
-model=loc_7185
-recol1s=10371
-recol1d=8257
-recol2s=11428
-recol2d=9314
-recol3s=12485
-recol3d=11427
-recol4s=13542
-recol4d=11427
-hillskew=yes
-active=no
-ambient=25
-
-[loc_7186]
-model=loc_7183
-recol1s=10371
-recol1d=8257
-recol2s=11428
-recol2d=8257
-recol3s=12485
-recol3d=8257
-recol4s=13542
-recol4d=9314
-hillskew=yes
-active=no
-ambient=25
-
-[loc_7187]
-model=loc_7184
-recol1s=10371
-recol1d=8257
-recol2s=11428
-recol2d=8257
-recol3s=12485
-recol3d=8257
-recol4s=13542
-recol4d=9314
-hillskew=yes
-active=no
-ambient=25
-
-[loc_7188]
-model=loc_7185
-recol1s=10371
-recol1d=8257
-recol2s=11428
-recol2d=8257
-recol3s=12485
-recol3d=8257
-recol4s=13542
-recol4d=9314
-hillskew=yes
-active=no
-ambient=25
-
-[loc_7189]
-name=Tendrils
-desc=Abyssal Tendrils.
-model=loc_7189
-anim=rcu_abyssal_tendrils
-ambient=25
-
-[loc_7190]
-name=Tendrils
-desc=Abyssal Tendrils.
-model=loc_7190
-anim=rcu_abyssal_tendrils
-ambient=25
-
-[loc_7191]
-name=Tendrils
-desc=Abyssal Tendrils.
-model=loc_7191
-anim=rcu_abyssal_tendrils
-ambient=25
-
-[loc_7192]
-model=loc_7192
-ambient=50
-width=2
-hillskew=yes
-
-[loc_7193]
-model=loc_7193
-ambient=50
-width=2
-hillskew=yes
-mirror=yes
-
-[loc_7194]
-model=loc_7193
-ambient=50
-width=2
-hillskew=yes
-
-[loc_7195]
-model=loc_7192
-ambient=50
-width=2
-hillskew=yes
-mirror=yes
-
-[loc_7196]
-model=ahoy_ecto_walldecor1
-recol1s=11914
-recol1d=13575
-recol2s=9736
-recol2d=11461
-ambient=15
-hillskew=yes
-
-[loc_7197]
-model=ahoy_ecto_walldecor2
-recol1s=11914
-recol1d=12485
-recol2s=9736
-recol2d=10371
-ambient=15
-hillskew=yes
-
-[loc_7198]
-model=ahoy_ecto_walldecor3
-recol1s=11914
-recol1d=12485
-recol2s=9736
-recol2d=10371
-ambient=15
-hillskew=yes
 
 [roguesden_railing]
 model=roguesden_railing
@@ -87234,6 +86456,7 @@ model=elf_village_altar
 width=2
 op1=Pray-at
 blockrange=no
+category=prayer_altar
 
 [elf_village_range]
 name=Cooking range
@@ -102210,15 +101433,6 @@ active=yes
 mapscene=7
 op1=Climb-up
 
-[kalphite_chamber_entrance_withrope]
-name=Ladder
-desc=A sturdy iron frame, for climbing up and down.
-model=horror_ladder_down
-sharelight=yes
-active=yes
-op1=Climb-down
-mapscene=7
-
 [dagannoth_cavewall_face1_l2]
 model=dagannoth_cavewall_face1_l2
 recol1s=6307
@@ -104619,6 +103833,7 @@ model=elid_statuette_base
 model2=elid_statuette_placed
 ambient=15
 op1=Pray-at
+category=prayer_altar
 
 [elid_stone_chair]
 name=Rock Chair
@@ -106689,6 +105904,7 @@ recol4d=8321
 width=2
 op1=Pray-at
 blockrange=no
+category=prayer_altar
 
 [devious_altar_scorched]
 name=Altar
@@ -106706,6 +105922,7 @@ recol4d=8321
 width=2
 op1=Pray-at
 blockrange=no
+category=prayer_altar
 
 [devious_whetstone]
 name=Doric's Whetstone
@@ -110345,6 +109562,7 @@ anim=burgh_furnace_lit
 forceapproach=south
 op2=Smelt
 active=yes
+category=smithing_furnace
 
 [enakh_brazier_1_multiloc]
 anim=fire_effect
@@ -117946,6 +117164,7 @@ width=2
 length=3
 ambient=10
 op2=Smelt
+category=smithing_furnace
 
 [loc_11667]
 model=loc_11667
@@ -122452,6 +121671,7 @@ length=3
 ambient=10
 op2=Smelt
 forceapproach=east
+category=smithing_furnace
 
 [fairy_furnace_glow]
 model=loc_11669
@@ -129885,6 +129105,7 @@ length=2
 ambient=25
 anim=burgh_furnace_lit
 op2=Smelt
+category=smithing_furnace
 
 [burgh_furnace_smoke_multiloc]
 width=4
@@ -150707,6 +149928,7 @@ desc=A furnace; small but effective.
 model=regicide_furnace
 op2=Smelt
 forceapproach=north
+category=smithing_furnace
 
 [loc_14922]
 name=Hole

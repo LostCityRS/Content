@@ -28,9 +28,9 @@ active=yes
 op1=Open
 raiseobject=no
 category=door_left_closed
-param=next_loc_stage,loc_1511
+param=next_loc_stage,bankdoor_r
 
-[loc_1511]
+[bankdoor_r]
 name=Large door
 desc=A sturdy wooden door.
 model=loc_1507
@@ -40,25 +40,25 @@ raiseobject=no
 category=door_left_opened
 param=next_loc_stage,loc_1508
 
-[loc_1516]
+[openbankdoor_l]
 name=Large door
 desc=A large double door.
 model=lefayeunopenabledoorl
 op1=Open
 raiseobject=no
 category=door_left_closed
-param=next_loc_stage,loc_1517
+param=next_loc_stage,castledoor
 
-[loc_1517]
+[castledoor]
 name=Large door
 desc=A large double door.
 model=lefayeunopenabledoorl
 op1=Close
 raiseobject=no
 category=door_left_opened
-param=next_loc_stage,loc_1516
+param=next_loc_stage,openbankdoor_l
 
-[loc_1519]
+[openthickpoordoor]
 name=Large door
 desc=A large double door.
 model=lefayeunopenabledoorl
@@ -66,9 +66,9 @@ op1=Open
 mirror=yes
 raiseobject=no
 category=door_right_closed
-param=next_loc_stage,loc_1520
+param=next_loc_stage,opencastledoor
 
-[loc_1520]
+[opencastledoor]
 name=Large door
 desc=A large double door.
 model=lefayeunopenabledoorl
@@ -76,9 +76,9 @@ op1=Close
 mirror=yes
 raiseobject=no
 category=door_right_opened
-param=next_loc_stage,loc_1519
+param=next_loc_stage,openthickpoordoor
 
-[loc_1542]
+[inactiveposhdoor]
 name=Door
 desc=Solid bars of iron.
 model=ctratgatea
@@ -87,10 +87,10 @@ active=yes
 blockrange=no
 raiseobject=no
 category=door_right_closed
-param=next_loc_stage,loc_1543
+param=next_loc_stage,elfdoor
 param=open_sound,grate_open
 
-[loc_1543]
+[elfdoor]
 name=Door
 desc=Solid bars of iron.
 model=ctratgatea
@@ -98,10 +98,10 @@ op1=Close
 active=yes
 raiseobject=no
 category=door_right_opened
-param=next_loc_stage,loc_1542
+param=next_loc_stage,inactiveposhdoor
 param=close_sound,grate_close
 
-[loc_1544]
+[elfdooropen]
 name=Door
 desc=Solid bars of iron.
 model=ctratgatea
@@ -111,10 +111,10 @@ active=yes
 blockrange=no
 raiseobject=no
 category=door_left_closed
-param=next_loc_stage,loc_1545
+param=next_loc_stage,inactiveelfdoor
 param=open_sound,grate_open
 
-[loc_1545]
+[inactiveelfdoor]
 name=Door
 desc=Solid bars of iron.
 model=ctratgatea
@@ -123,7 +123,7 @@ mirror=yes
 active=yes
 raiseobject=no
 category=door_left_opened
-param=next_loc_stage,loc_1544
+param=next_loc_stage,elfdooropen
 param=close_sound,grate_close
 
 [loc_1596]
@@ -135,7 +135,7 @@ active=yes
 blockrange=no
 raiseobject=no
 category=door_left_closed
-param=next_loc_stage,loc_1560
+param=next_loc_stage,fencegate_r
 param=open_sound,grate_open
 
 [loc_1597]
@@ -151,7 +151,7 @@ category=door_right_closed
 param=next_loc_stage,loc_1561
 param=open_sound,grate_open
 
-[loc_1560]
+[fencegate_r]
 name=Gate
 desc=A wrought iron gate.
 model=ikov_mendedleverdoorl
@@ -171,7 +171,7 @@ mirror=yes
 active=yes
 raiseobject=no
 category=door_right_opened
-param=next_loc_stage,loc_1558
+param=next_loc_stage,fencegate_l
 param=close_sound,grate_close
 
 [loc_1557]
@@ -183,10 +183,10 @@ active=yes
 blockrange=no
 raiseobject=no
 category=door_left_closed
-param=next_loc_stage,loc_1560
+param=next_loc_stage,fencegate_r
 param=open_sound,grate_open
 
-[loc_1558]
+[fencegate_l]
 name=Gate
 desc=A wrought iron gate.
 model=ikov_mendedleverdoorl

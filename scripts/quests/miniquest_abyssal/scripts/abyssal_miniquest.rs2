@@ -1,0 +1,23 @@
+[proc,rcu_check_scrying_orb](coord $tele_source)
+if (%abyssal_miniquest ! ^miniquest_abyssal_scrying) return;
+
+switch_coord ($tele_source) {
+    case ^essence_mine_to_aubury : if (%rcu_essencespot_aubury = 0) %rcu_essencespot_aubury = 1;
+    case ^essence_mine_to_wizardstower : if (%rcu_essencespot_wizardstower = 0) %rcu_essencespot_wizardstower = 1;
+    case ^essence_mine_to_wizardsguild : if (%rcu_essencespot_wizardsguild = 0) %rcu_essencespot_wizardsguild = 1;
+    case ^essence_mine_to_brimstail : if (%rcu_essencespot_brimstail = 0) %rcu_essencespot_brimstail = 1;
+    case ^essence_mine_to_cromperty : if (%rcu_essencespot_cromperty = 0) %rcu_essencespot_cromperty = 1;
+}
+
+def_int $count = 0;
+
+if (%rcu_essencespot_aubury = 1) $count = calc($count + 1);
+if (%rcu_essencespot_wizardstower = 1) $count = calc($count + 1);
+if (%rcu_essencespot_wizardsguild = 1) $count = calc($count + 1);
+if (%rcu_essencespot_brimstail = 1) $count = calc($count + 1);
+if (%rcu_essencespot_cromperty = 1) $count = calc($count + 1);
+
+if (inv_total(inv, scrying_orb_empty) > 0 & $count >= 3) {
+    mes("Your scrying orb has absorbed enough teleportation information.");
+    inv_changeslot(inv, scrying_orb_empty, scrying_orb_full, 1);
+}

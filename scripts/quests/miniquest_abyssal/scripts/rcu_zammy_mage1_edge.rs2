@@ -1,0 +1,232 @@
+// This is actually the varrock zammy mage...
+[opnpc1,rcu_zammy_mage1_edge]
+// TODO: check for sara/guthix gear
+
+switch_int (%abyssal_miniquest) {
+    case ^miniquest_abyssal_intro : @rcu_zammy_mage1_edge_intro;
+    case ^miniquest_abyssal_scrying : @rcu_zammy_mage1_edge_scrying;
+    case ^miniquest_abyssal_scrying_delivered : @rcu_zmmy_mage1_edge_finish_up;
+    case ^miniquest_abyssal_complete : @rcu_zmmy_mage1_edge_post_quest;
+}
+
+[label,rcu_zammy_mage1_edge_intro]
+~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Ah, you again.|What was it you wanted?|The Wilderness is hardly the appropriate place for a conversation now, is it?");
+
+def_int $choice = ~p_choice4("I'd like to buy some runes!", 1, "Where do you get your runes from?", 2, "All hail Zamorak!", 3, "Nothing, thanks.", 4);
+
+while ($choice ! 0) {
+    if ($choice = 1) {
+        ~chatplayer("<p,happy>I'd really like to buy some runes!");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>I do not conduct business in this pathetic city.|Speak to me in the Wilderness if you desire to purchase runes from me.");
+        ~chatplayer("<p,happy>Oh, please!");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>No.");
+        ~chatplayer("<p,happy>Oh, please?");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>No!");
+        ~chatplayer("<p,quiz>Pretty please with sugar and cherries on top?");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,angry>NO!");
+        ~chatplayer("<p,quiz>Pleeeeeeeeeease!");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,angry>Stranger, I warn you I have a low tolerance for idiocy.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Now are you going to stand here all day annoying me, or was there something that you actually wanted?");
+        $choice = ~p_choice4("I'm going to stand here annoying you.", 5, "Where do you get your runes from?", 2, "All hail Zamorak!", 3, "Nothing, thanks.", 4);
+    } else if ($choice = 2) {
+        ~chatplayer("<p,quiz>Where do you get your runes from?|No offence, but people around here don't exactly like 'your type'.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>My 'type'? Explain.");
+        ~chatplayer("<p,neutral>You know...|Scary bearded men in dark clothing with unhealthy obsessions with destruction and stuff.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Hmmmm. Well, you may be right, the foolish Saradominists that own this pathetic city don't appreciate loyal Zamorakians, it is true.");
+        ~chatplayer("<p,quiz>So you can't be getting your runes anywhere around here...");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>That is correct stranger.|The mysteries of manufacturing Runes is a closely guarded secret of the Zamorakian brotherhood.");
+        // maybe these are shifty
+        ~chatplayer("<p,neutral>Oh, you mean the whole teleporting to the Rune Essence mine, mining some essence, then using the talismans to locate the Rune Temple, then binding runes there?");
+        ~chatplayer("<p,neutral>I know all about it...");
+        // TODO: confirm this mesanim, either is shock or confused
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,shock>WHAT?|I... but... you...");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,shock>Tell me, this is important:|You know of the ancient temples?|You have been to a place where this 'rune essence' material is freely available?");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,shock>How did you get to such a place?");
+        ~chatplayer("<p,neutral>Well, I helped deliver some research notes to Sedridor at the Wizards Tower, and he teleported me to a huge mine he said was hidden off to the North somewhere where I could mine essence.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,shock>And there is an abundant supply of this 'essence' there you say?");
+        ~chatplayer("<p,bored>Yes, but I tought you said that you knew how to make runes?|All this stuff is fairly basic knowledge I thought.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>No.|No, not at all.");
+        // TODO: manually split this dialogue?
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>We occasionally manage to plunder small samples of this 'essence' and we have recently discovered these temples you speak of, but I have never heard of these talismans before, and I was certainly not aware that this 'essence' substance is a heavily stockpiled resource at the Wizards Tower.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>This changes everything.");
+        ~chatplayer("<p,quiz>How do you mean?");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>For many years there has been a struggle for power on this world.|You may dispute the morality of each side as you wish, but the stalemate that exists between my Lord Zamorak");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>and that pathetic meddling fool Saradomin has meant that our struggles have become more secretive.|We exist in a 'cold war' if you will, each side fearful of letting the other gain too much power, and each side");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>equally fearful of entering into open warfare for fear of bringing our struggles to the attention of... other beings.");
+        ~chatplayer("<p,quiz>You mean Guthix?");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Indeed.|Amongst others.|But you now tell me that the Saradominist Wizards have the capability to mass produce runes, I can only");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>conclude that they have been doing so secretly for some time now.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>I implore you adventurer, you may or may not agree with my aims, but you cannot allow such one-sided shift in the balance of power to occur.");
+
+        def_int $accept = ~p_choice2_header("Yes", 1, "No", 2, "Help the Zamorakian Mage?");
+
+        if ($accept = 1) {
+            ~chatplayer("<p,neutral>Okay, I'll help you.|What can I do?");
+            ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>All I need from you is the spell that will teleport me to this essence mine.|That should be sufficient for the armies of Zamorak to once more begin stockpiling magic for war.");
+            ~chatplayer("<p,confused>Oh.|Erm....|I don't actually know that spell.");
+            ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>What?|Then how do you access this location?");
+            ~chatplayer("<p,neutral>Oh, well, people who do know the spell teleport me there directly.|Apparently they wouldn't teach it to me to try and keep the location secret.");
+            ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Hmmm.|Yes, yes I see.|Very well then, you may still assist us in finding this mysterious essence mine.");
+            ~chatplayer("<p,confused>How would I do that?");
+            inv_add(inv, scrying_orb_empty, 1);
+            %abyssal_miniquest = ^miniquest_abyssal_scrying;
+            ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Here, take this scrying orb.|I have cast a standard cypher spell upon it, so that it will absorb mystical energies that it is exposed to.");
+            ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Bring it with you and teleport to the rune essence location, and it will absorb the mechanics of the spell and allow us to reverse-engineer the magic behind it.");
+            ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>The important part is that you must teleport to the essence location from three entirely separate locations.");
+            ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>More than three may be helpful to us, but we need a minimum of three in order to triangulate the position of this essence mine.");
+            ~chatplayer("<p,neutral>Yeah, I think so.");
+            ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Good.|If you encounter any difficulties speak to me again.");
+            $choice = 0;
+        } else {
+            ~chatplayer("<p,angry>No, I don't want anything to do with you and trying to bribe me into helping isn't going to work on me.");
+            ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>As you wish, stranger.|I will achieve my goals elsewhere.");
+            $choice = 0;
+        }
+
+    } else if ($choice = 3) {
+        ~chatplayer("<p,happy>All hail Zamorak!|He's the man!|If he can't do it, maybe some other guy can!");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,confused>...Okay.|I appreciate your enthusiasm for Lord Zamorak stranger, but what exactly was it you wanted?");
+
+        $choice = ~p_choice3("I'd like to buy some runes!", 1, "Where do you get your runes from?", 2, "Nothing, thanks.", 4);
+    } else if ($choice = 4) {
+        ~chatplayer("<p,neutral>I didn't really want anything, thanks.|I just like talking to random people I meet around the world.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>...I see.|Well, in the future, do not waste my time, or you will feel the wrath of Zamorak upon you.");
+        $choice = 0;
+    } else if ($choice = 5) {
+        ~chatplayer("<p,happy>Actually, that standing here annoying you thing sounds pretty good.");
+        ~chatplayer("<p,happy>PLEEEEEEEEEASE?|pleasepleasepleaseplease|pleasepleasepleaseplease|pleasepleasepleaseplease");
+        npc_anim(human_casting, 0);
+        spotanim_npc(teleport_casting, 128, 32);
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,angry>Be QUIET or be DEAD!");
+        ~chatplayer("<p,neutral>Wow, what a grouch...");
+        $choice = 0;
+    }
+}
+
+[label,rcu_zammy_mage1_edge_scrying]
+~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,confused>Well?|Have you managed to use my scrying orb to obtain the information yet?");
+
+// TODO: What happens if you have the full scrying orb banked?
+if (inv_total(inv, scrying_orb_full) >= 1) @rcu_zammy_mage1_edge_deliver_scrying_orb;
+
+if (inv_total(inv, scrying_orb_empty) = 0 & inv_total(bank, scrying_orb_empty) = 0 & inv_total(inv, scrying_orb_full) = 0 & inv_total(bank, scrying_orb_full) = 0) {
+    ~chatplayer("<p,shifty>uh...|No....|I kind of lost that orb thing you gave me...");
+    inv_add(inv, scrying_orb_empty, 1);
+    ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,angry>What?|Incompetent fool. Take this.|And do not make me regret allying myself with you.");
+}
+~chatplayer("<p,confused>No...|Actually, I had something I wanted to ask you...");
+~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,confused>I assumed the task was self-explanatory.|What is it you wish to know?");
+def_int $choice = ~p_choice4("What am I supposed to be doing again?", 1, "What's in this for me, anyway?", 2, "You're not going to use this for evil are you?", 3, "Can I have another crystal ball thing?", 4);
+
+while ($choice ! 0) {
+    if ($choice = 1) {
+        ~chatplayer("<p,quiz>Please excuse me, I have a very bad short term memory. What exactly am I supposed to be doing again?");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,confused>I am slightly concerned about your capability for this mission, if you cannot recall such a simple task...");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>All I wish for you to do is to teleport to this 'rune essence' location from three different locations while carrying the scrying orb I gave you.|It will collect the data as you teleport, and if you then");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>bring it to me I will be able to use it to further my own investigations.");
+        ~chatplayer("<p,quiz>So you want me to teleport to the rune essence mine while carrying the scrying ball?");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>That is correct.");
+        ~chatplayer("<p,quiz>And I need to teleport into the essence mine from three different locations?");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>That is also correct.");
+        ~chatplayer("<p,confused>Okay...|I think I understand that...");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>That is good to know.|Is there something else you need clarifying?");
+
+        $choice = ~p_choice4("What's in this for me, anyway?", 2, "You're not going to use this for evil are you?", 3, "Can I have another crystal ball thing?", 4, "Nope, that's it!", 5);
+    } else if ($choice = 2) {
+        ~chatplayer("<p,quiz>I just want to know one thing:|What's in this for me?");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Well now, I can certainly understand that attitude.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>From what you tell me, the Saradominist wizards have given you access to the rune essence mine, but your method of reaching the temples used to bind this essence is random and counter-productive.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>I, on the other hand, have information on quickly accessing these temples, yet my methods of producing essence are time consumingan useless as means of mass production.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>I think you can see for yourself how this may benefit both of us: you allow me the knowledge of finding plentiful essence, and I will in return show you the secret of these temples.");
+        ~chatplayer("<p,neutral>Yeah, okay, fair enough.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,quiz>Was there anything else?");
+        
+        $choice = ~p_choice4("What am I supposed to be doing again?", 1, "You're not going to use this for evil are you?", 3, "Can I have another crystal ball thing?", 4, "Nope, that's it!", 5);
+    } else if ($choice = 3) {
+        ~chatplayer("<p,shifty>If I help you with this...|I'd just like to keep my conscience clear and know that you're not going to use whatever information I give to you in the pursuit of evil and badness and stuff.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Very well, if it makes you feel any better;|I promise you that any knowledge you provide me with, absolutely will not be used in the service of anything more evil than what I was already planning on doing anyway.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>I hope that sets your conscience at rest.");
+        ~chatplayer("<p,quiz>You know...|In a weird way it actually does...");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Excellent.|Was there anything else?");
+        
+        $choice = ~p_choice4("What am I supposed to be doing again?", 1, "What's in this for me, anyway?", 2, "Can I have another crystal ball thing?", 4, "Nope, that's it!", 5);
+    } else if ($choice = 4) {
+        ~chatplayer("<p,shifty>This crystal ball thingy is of nifty.|Can I have another one?");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>It is not a 'crystal ball thingy'.|It is a precision made magic instrument scrying orb.|Do you have some particular need for another one?");
+        ~chatplayer("<p,happy>Not really, I just like to fill up my bank with cool looking stuff.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Then no, no you may not have another one.|One will be sufficient for the task at hand.");
+        ~chatplayer("<p,shifty>Erm...|But I lost the one you gave me...|Can I have another one then?");
+
+        if (inv_total(inv, scrying_orb_empty) > 0) {
+            ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>No you haven't.|I can see that you have it there in your backpack.|Now quit your foolishness and get on with the task at hand!");
+        } else if (inv_total(inv, scrying_orb_empty) > 0) {
+            ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>No you haven't.|You have it in your bank.|Now get on with it!");
+        }
+        
+        $choice = ~p_choice3("What am I supposed to be doing again?", 1, "What's in this for me, anyway?", 2, "You're not going to use this for evil are you?", 3);
+    } else if ($choice = 5) {
+        ~chatplayer("<p,neutral>No, I think I have everything clear in my head now.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>That is good to hear, stranger.|Bring me my orb back when you have successfully made those teleports.");
+        ~chatplayer("<p,neutral>Sure thing, boss.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,angry>And don't call me 'boss'.");
+        $choice = 0;
+    }
+}
+
+[label,rcu_zammy_mage1_edge_deliver_scrying_orb]
+~chatplayer("<p,happy>Yes I have!|I've got it right here!");
+inv_del(inv, scrying_orb_empty, ^max_32bit_int);
+inv_del(inv, scrying_orb_full, ^max_32bit_int);
+%abyssal_miniquest = ^miniquest_abyssal_scrying_delivered;
+~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,happy>Excellent.|Give it here, and I shall examine the findings.|Speak to me in a small while.");
+
+[label,rcu_zmmy_mage1_edge_finish_up]
+~chatplayer("<p,quiz>So... that's my end of the deal upheld.|What do I get in return?");
+~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Indeed, a deal is always a deal.");
+~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>I offer you three things as a reward for your effords on behalf of my Lord Zamorak;");
+~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>The first is knowledge.|I offer you my collected research on the abyss.|I also offer you 1000 points of experience in RuneCrafting for your trouble.");
+~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Your second gift is convenience.|Here, you may take this pouch I discovered amidst my research.|You will find it to have certain... interesting properties.");
+~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Your final gift is that of movement.|I will from now on offer you a teleport to the abyss whenever you should require it.");
+%abyssal_miniquest = ^miniquest_abyssal_complete;
+inv_add(inv, rcu_instruction_book, 1);
+inv_add(inv, rcu_pouch_small, 1);
+~chatplayer("<p,confused>Huh?|Abyss?|What are you talking about?|You told me that you would help me with");
+~chatplayer("<p,confused>RuneCrafting!");
+~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>And so I have done.|Read my research notes, they may enlighten you somewhat.");
+
+[label,rcu_zmmy_mage1_edge_post_quest]
+def_int $choice = ~p_choice3("So what is this 'abyss' stuff?", 1, "Is this abyss dangerous?", 2, "Can you teleport me there now?", 3);
+
+while ($choice ! 0) {
+    if ($choice = 1) {
+        ~chatplayer("<p,confused>Uh...|I really don't see how this talk about an 'abyss' relates to RuneCrafting in the slightest...");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>My primary research responsibility was not towards the manufacture of runes, this is true.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Rather, I was investigating an error that occurred to one of our initiates in a routine teleportation experiment.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>My discovery was this 'abyssal' place, and as a side effect, as documented in the research notes I have given you, I discovered the existence of these 'temples' used to create runes.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Fortunate for both of us, I would say. As I say, read my research notes, it should all become clear.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>My colleague inside the abyss maybe of help to you as well.");
+        $choice = ~p_choice2("Is this abyss dangerous?", 2, "Can you teleport me there now?", 3);
+    } if ($choice = 2) {
+        ~chatplayer("<p,confused>So...|This 'abyss' place...|Is it dangerous?");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Well, the creatures there ARE particulary offensive...");
+        ~chatplayer("<p,confused>You mean they smell?");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>No, I mean they hunt and attack any visitors to their dimension on sight.|This is not the danger however.");
+        ~chatplayer("<p,confused>It's not?");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>No.|Unforunately the magic we have had to use to retain a portal to the abyss open and effective is derived from Lord Zamorak himself.");
+        ~chatplayer("<p,confused>And that's a bad thing somehow...?");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Well, he has his occasional quirks.|In this case it means that when you enter this dimension your prayer will be drained.|This makes it somewhat more dangerous than other");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>places you might be used to.");
+        ~chatplayer("<p,neutral>I see...");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Was there anything else you wanted?");
+        $choice = ~p_choice2("So what is this 'abyss' stuff?", 1, "Can you teleport me there now?", 3);
+    } else if ($choice = 3) {
+        ~chatplayer("<p,confused>Well, I reckon I'm prepared to go there now.|Beam me there, or whatever it is that you do!");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>No, not from here.|The use of my Lord Zamoraks magic in this land will draw too much attention to myself.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>Meet me in the wilderness where you spoke to me before, and right click to find the 'teleport' option.");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>I trust you do not wish to have a too lenghty a conversation in such a dangerous place.");
+        ~chatplayer("<p,scared>You're right, I don't!");
+        ~chatnpc_specific("Mage of Zamorak", rcu_zammy_mage1_edgeb, "<p,neutral>I should be able to improve my stock of runes thanks to your assistance locating the essence site too, so feel free to stop by if you require any specific runes.");
+        ~chatplayer("<p,happy>Okay, thanks!");
+        $choice = 0;
+    }
+}

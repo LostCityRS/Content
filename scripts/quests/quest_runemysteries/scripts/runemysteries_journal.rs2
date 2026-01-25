@@ -1,0 +1,54 @@
+[if_button,questlist:runemysteries]
+def_string $text;
+
+// https://github.com/Indio3/quest-journals/blob/master/quest_runemysteries/qrm_02b.jpg
+// https://www.youtube.com/watch?v=ahukI7Thtlo
+// https://www.youtube.com/watch?v=2IxO2rJnRbQ
+// https://www.youtube.com/watch?v=U3O_aHm3TxU
+// https://www.youtube.com/watch?v=12JjImJ3xXc
+if(%runemysteries = ^runemysteries_not_started) {
+    $text = "@dbl@I can start this quest by speaking to @dre@Duke Horacio of|@dre@Lumbridge@dbl@, upstairs in @dre@Lumbridge Castle@dbl@";
+
+} else if(%runemysteries = ^runemysteries_started) {
+    $text = "@str@I spoke to Duke Horacio and he showed me a strange|@str@talisman that had been found by one of his subjects.|";
+    $text = append($text, "@str@I agreed to take it to the Wizards' Tower, South West of|@str@Lumbridge for further examination by the wizards.|");
+    $text = append($text, "@dbl@I need to find the @dre@Head Wizard@dbl@ and give him the @dre@Talisman");
+
+} else if(%runemysteries = ^runemysteries_given_talisman) {
+    $text = "@str@I spoke to Duke Horacio and he showed me a strange|@str@talisman that had been found by one of his subjects.|";
+    $text = append($text, "@str@I agreed to take it to the Wizards' Tower, South West of|@str@Lumbridge for further examination by the wizards.|");
+    $text = append($text, "@str@I gave the Talisman to the Head Wizard of the Tower and|@str@agreed to help him with his research into rune stones.|");
+    $text = append($text, "@dbl@I should talk to the @dre@Head Wizard@dbl@ again"); // This is a best-guess due to no source being available!
+
+} else if(%runemysteries = ^runemysteries_received_package) {
+    $text = "@str@I spoke to Duke Horacio and he showed me a strange|@str@talisman that had been found by one of his subjects.|";
+    $text = append($text, "@str@I agreed to take it to the Wizards' Tower, South West of|@str@Lumbridge for further examination by the wizards.||");
+    $text = append($text, "@str@I gave the Talisman to the Head Wizard of the Tower and|@str@agreed to help him with his research into rune stones.|");
+    $text = append($text, "@dbl@I should take this @dre@Research Package@dbl@ to @dre@Aubury@dbl@ in @dre@Varrock");
+
+} else if(%runemysteries = ^runemysteries_given_package) {
+    $text = "@str@I spoke to Duke Horacio and he showed me a strange|@str@talisman that had been found by one of his subjects.|";
+    $text = append($text, "@str@I agreed to take it to the Wizards' Tower, South West of|@str@Lumbridge for further examination by the wizards.|");
+    $text = append($text, "@str@I gave the Talisman to the Head Wizard of the Tower and|@str@agreed to help him with his research into rune stones.|");
+    $text = append($text, "@str@I took the research package to Varrock and delivered it.|");
+    $text = append($text, "@dbl@I should speak to @dre@Aubury@dbl@ again when he has finished|@dbl@examining the @dre@research package@dbl@ I have delivered him.");
+
+} else if(%runemysteries = ^runemysteries_received_notes) {
+    $text = "@str@I spoke to Duke Horacio and he showed me a strange|@str@talisman that had been found by one of his subjects.|";
+    $text = append($text, "@str@I agreed to take it to the Wizards' Tower, South West of|@str@Lumbridge for further examination by the wizards.|");
+    $text = append($text, "@str@I gave the Talisman to the Head Wizard of the Tower and|@str@agreed to help him with his research into rune stones.|");
+    $text = append($text, "@str@I took the research package to Varrock and delivered it.|");
+    $text = append($text, "@str@Aubury was interested in the research package and gave|@str@me his own research notes to deliver to Sedridor.|");
+    $text = append($text, "@dbl@I should take the @dre@notes@dbl@ to @dre@Sedridor@dbl@ and see what he says");
+
+} else { // This is a best-guess due to no source being available!
+    $text = "@str@I spoke to Duke Horacio and he showed me a strange|@str@talisman that had been found by one of his subjects.|";
+    $text = append($text, "@str@I agreed to take it to the Wizards' Tower, South West of|@str@Lumbridge for further examination by the wizards.|");
+    $text = append($text, "@str@I gave the Talisman to the Head Wizard of the Tower and|@str@agreed to help him with his research into rune stones.|");
+    $text = append($text, "@str@I took the research package to Varrock and delivered it.|");
+    $text = append($text, "@str@Aubury was interested in the research package and gave|@str@me his own research notes to deliver to Sedridor.|");
+    $text = append($text, "@str@I delivered the notes to Sedridor. As a thank you|@str@for my help, he granted me permission to use the Rune|@str@Essence Mine whenever I please.||");
+    $text = append($text, "@red@QUEST COMPLETE!");
+}
+
+~quest_journal("Rune Mysteries", $text);

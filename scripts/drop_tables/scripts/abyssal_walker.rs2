@@ -1,0 +1,50 @@
+[ai_queue3,abyssal_walker]
+gosub(npc_death);
+if (npc_findhero = ^false) return;
+
+// ~trail_mediumcluedrop(256, npc_coord);
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+def_int $random = random(256);
+
+if ($random < 6) {
+    if (p_finduid(uid) = false) return;
+
+    def_namedobj $pouch_drop = ~rcu_pouch_drop_roll;
+    if ($pouch_drop ! null) {
+        obj_add(npc_coord, $pouch_drop, 1, ^lootdrop_duration);
+    }
+} else if ($random < 11) {
+    obj_add(npc_coord, air_talisman, 1, ^lootdrop_duration);
+} else if ($random < 16) {
+    obj_add(npc_coord, water_talisman, 1, ^lootdrop_duration);
+} else if ($random < 21) {
+    obj_add(npc_coord, earth_talisman, 1, ^lootdrop_duration);
+} else if ($random < 26) {
+    obj_add(npc_coord, fire_talisman, 1, ^lootdrop_duration);
+} else if ($random < 31) {
+    obj_add(npc_coord, mind_talisman, 1, ^lootdrop_duration);
+} else if ($random < 36) {
+    obj_add(npc_coord, body_talisman, 1, ^lootdrop_duration);
+} else if ($random < 38) {
+    obj_add(npc_coord, cosmic_talisman, 1, ^lootdrop_duration);
+} else if ($random < 40) {
+    obj_add(npc_coord, chaos_talisman, 1, ^lootdrop_duration);
+} else if ($random < 42) {
+    obj_add(npc_coord, nature_talisman, 1, ^lootdrop_duration);
+} else if ($random < 43) {
+    obj_add(npc_coord, elemental_talisman, 1, ^lootdrop_duration);
+} else if ($random < 79) {
+    obj_add(npc_coord, blankrune_high, 1, ^lootdrop_duration);
+} else if ($random < 113) {
+    obj_add(npc_coord, cert_blankrune_high, 1, ^lootdrop_duration);
+} else if ($random < 117) {
+    obj_add(npc_coord, cert_blankrune_high, 5, ^lootdrop_duration);
+} else if ($random < 121) {
+    obj_add(npc_coord, cert_blankrune_high, 10, ^lootdrop_duration);
+} else if ($random < 125) {
+    obj_add(npc_coord, cert_blankrune_high, 15, ^lootdrop_duration);
+} else if ($random < 128) {
+    obj_add(npc_coord, magic_emerald_necklace, 1, ^lootdrop_duration);
+}
+

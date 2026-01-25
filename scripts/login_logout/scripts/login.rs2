@@ -2,6 +2,12 @@
 mes("Welcome to RuneScape.");
 
 %musicplay = 1; // set to auto on login
+if (%option_brightness = 0) {
+    // sane defaults for game controls
+    %option_brightness = 2;
+    %option_music = 2;
+    %option_sounds = 2;
+}
 
 ~update_all(inv_getobj(worn, ^wearpos_rhand));
 cam_reset;
@@ -10,6 +16,8 @@ set_player_op(null, 2, ^false);
 set_player_op("Follow", 3, ^false);
 set_player_op("Trade with", 4, ^false);
 set_player_op(null, 5, ^false);
+
+minimap_toggle(0); //reset minimap state on login
 
 // random event timer
 settimer(general_macro_events, 500);
