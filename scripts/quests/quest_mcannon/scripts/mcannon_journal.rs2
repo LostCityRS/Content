@@ -1,0 +1,92 @@
+[if_button,questlist:mcannon]
+def_string $text;
+
+switch_int(%mcannon) {
+
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2013-03-16-LQe6fp5uXds-1.PNG
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2016-01-11-890L_-_VhgA-1.PNG
+    case ^mcannon_not_started :
+        $text = "@dbl@I can start this quest by speaking to the @dre@Commander|@dre@of the Black Watch@dbl@. He is defending an area @dre@north-|";
+        $text = append($text, "@dre@west of the Fishing Guild@dbl@ against @dre@goblin@dbl@ attack.");
+
+    case ^mcannon_tasked_with_fixing_railings :
+        $text = "@str@I have spoken to the Commander, he recruited me|@str@into the Black Guard and asked me to help the dwarves.||";
+
+        // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2020-09-08-7OoTQ2eAqos-1.PNG
+        // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2010-06-15-BEp-KuiMvs4-1.PNG
+        if (getbit_range(%mcannonmulti, 5, 10) = 63) {
+            $text = append($text, "@str@I have repaired all the broken railings,|@dbl@I should report back to the Commander.");
+        } else {
+            // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2011-09-12-ugcIS97DDPY-1.PNG
+            // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2017-04-06-jTYYn-7E1J0-1.PNG
+            $text = append($text, "@dbl@My first task is to @dre@fix the broken railings|@dbl@in the dwarves defensive perimeter.");
+        }
+
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2020-08-31-Sf53lSP-_x8-1.PNG
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2019-08-19-J_N7JRJ76VQ-1.PNG
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2010-06-15-BEp-KuiMvs4-2.PNG
+    case ^mcannon_tasked_with_checking_guard_tower :
+        $text = "@str@I have spoken to the Commander, he recruited me|@str@into the Black Guard and asked me to help the dwarves.||";
+
+        // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2009-09-16-wExtrdFXPQg-1.PNG
+        if (inv_total(inv, mcannonremains) > 0) {
+            $text = append($text, "@str@I went to the watchtower where I found some dwarf|@str@remains.|@dbl@I should take them back to @dre@the Commander@dbl@.");
+        } else {
+            $text = append($text, "@str@I have repaired all the broken railings,|@dbl@The Commander has asked me to check up on his|@dbl@guards at @dre@the watchtower@dbl@ to the South of his camp.");
+        }
+
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2020-08-31-Sf53lSP-_x8-2.PNG
+    case ^mcannon_tasked_with_finding_goblin_cave :
+        $text = "@str@I have spoken to the Commander, he recruited me|@str@into the Black Guard and asked me to help the dwarves.||";
+        $text = append($text, "@str@I gave the remains to the Commander.|@dbl@He sent me to find the @dre@Goblin base@dbl@.");
+
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2020-09-08-7OoTQ2eAqos-2.PNG
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2021-06-10-7P9BhNUYDpU-1.PNG
+    case ^mcannon_tasked_with_finding_gilobs_son :
+        $text = "@str@I have spoken to the Commander, he recruited me|@str@into the Black Guard and asked me to help the dwarves.||";
+        $text = append($text, "@str@I found the Goblin's base.|@dbl@Next I need to find the @dre@Dwarf child@dbl@.");
+
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2011-09-12-ugcIS97DDPY-2.PNG
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2010-06-15-BEp-KuiMvs4-3.PNG
+    case ^mcannon_return_to_dwarf_commander :
+        $text = "@str@I have spoken to the Commander, he recruited me|@str@into the Black Guard and asked me to help the dwarves.||";
+        $text = append($text, "@str@I have rescued the dwarf child and sent him back to the|@str@Commander.|@dbl@I need to @dre@speak to the Commander@dbl@ again.");
+
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2013-03-06-pUxZhGGBI70-3.PNG
+    case ^mcannon_tasked_with_fixing_cannon :
+        $text = "@str@I have spoken to the Commander, he recruited me|@str@into the Black Guard and asked me to help the dwarves.||";
+        $text = append($text, "@dbl@The Commander has asked me to @dre@fix the multicannon@dbl@.");
+
+    case ^mcannon_inspected_cannon_first_time :
+        $text = "@str@I have spoken to the Commander, he recruited me|@str@into the Black Guard and asked me to help the dwarves.||";
+        $text = append($text, "@dbl@The Commander has asked me to @dre@fix the multicannon@dbl@.");
+
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2010-06-15-BEp-KuiMvs4-4.PNG
+    case ^mcannon_has_repaired_cannon :
+        $text = "@str@I have spoken to the Commander, he recruited me|@str@into the Black Guard and asked me to help the dwarves.||";
+        $text = append($text, "@str@I've fixed the broken multicannon,|");
+        $text = append($text, "@dbl@I need to @dre@speak to the Commander@dbl@ again.");
+
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2017-04-06-jTYYn-7E1J0-3.PNG
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2021-12-16-geamZhtekMk-1.PNG
+    case ^mcannon_tasked_with_speaking_to_nulodion :
+        $text = "@str@I have spoken to the Commander, he recruited me|@str@into the Black Guard and asked me to help the dwarves.||";
+        $text = append($text, "@dbl@The Commander asked me to find @dre@Nulodion the Cannon|@dre@Engineer@dbl@, he needs to know what @dre@ammunition the|@dre@multicannon@dbl@ fires.");
+
+    // https://github.com/Indio3/quest-journals/blob/master/quest_mcannon/2013-03-06-pUxZhGGBI70-4.PNG
+    case ^mcannon_return_to_dwarf_commander_with_notes :
+        $text = "@str@I have spoken to the Commander, he recruited me|@str@into the Black Guard and asked me to help the dwarves.||";
+        $text = append($text, "@str@I've spoken to Nulodion,|@str@He gave me an ammo mould and notes,|");
+        $text = append($text, "@dbl@I need to @dre@speak to the Commander@dbl@ again.");
+
+    // https://i.imgur.com/UqD2UJj.png
+    case ^mcannon_complete :
+        $text = "@str@I have spoken to the Commander, he recruited me|@str@into the Black Guard and asked me to help the dwarves.||";
+        $text = append($text, "@str@I've helped the dwarves keep out the Goblins, and found|@str@the remains of their friend.|");
+        $text = append($text, "@str@I fixed the cannon and got a mould for the Commander.|");
+        $text = append($text, "@dbl@I can now @dre@buy a multicannon@dbl@ from @dre@Nulodion@dbl@ as a reward.||");
+        $text = append($text, "@red@QUEST COMPLETE!");
+
+}
+
+~quest_journal("Dwarf Cannon", $text);

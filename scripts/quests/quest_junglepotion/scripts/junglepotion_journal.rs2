@@ -1,0 +1,114 @@
+[if_button,questlist:junglepotion]
+def_string $text;
+
+// Source for not_started stage: https://imgur.com/HxGIGf7
+if (%junglepotion = ^junglepotion_not_started) {
+
+    $text = "@dbl@I can start this quest by speaking to @dre@Trufitus Shakaya|";
+    $text = append($text, "@dbl@who lives in the main hut in @dre@Tai Bwo Wannai|");
+    $text = append($text, "@dbl@village on the island of @dre@Karamja.");
+
+    ~quest_journal("Jungle Potion", $text);
+    return;
+}
+
+$text = "@str@I spoke to Trufitus, he needs to commune with the|";
+$text = append($text, "@str@gods, he's asked me to help him by collecting herbs.||");
+
+if (%junglepotion = ^junglepotion_get_snake_weed) {
+    $text = append($text, "@dbl@I need to pick some fresh @dre@Snakeweed@dbl@ for @dre@Trufitus@dbl@.");
+}
+if (%junglepotion = ^junglepotion_found_snake_weed) {
+    if (inv_total(inv, snake_weed) > 0) {
+        $text = append($text, "@str@I picked some fresh Snakeweed for Trufitus.||");
+        $text = append($text, "@dbl@I need to give the @dre@Snake Weed@dbl@ to @dre@Trufitus@dbl@.");
+    } else if (inv_total(inv, unidentified_snake_weed) = 0) {
+        $text = append($text, "@dbl@I need to pick some fresh @dre@Snakeweed@dbl@ for @dre@Trufitus@dbl@.");
+    }
+}
+
+if (%junglepotion = ^junglepotion_get_ardrigal) {
+    $text = append($text, "@str@I've given Snakeweed to Trufitus.||");
+    $text = append($text, "@dbl@I need to pick some fresh @dre@Ardrigal@dbl@ for @dre@Trufitus@dbl@.");
+}
+if (%junglepotion = ^junglepotion_found_ardrigal) {
+    if (inv_total(inv, ardrigal) > 0) {
+        $text = append($text, "@str@I've given Snakeweed to Trufitus.|");
+        $text = append($text, "@str@I picked some fresh Ardrigal for Trufitus.||");
+        $text = append($text, "@dbl@I need to give the @dre@Ardrigal@dbl@ to @dre@Trufitus@dbl@.");
+    } else {
+        $text = append($text, "@str@I've given Snakeweed to Trufitus.||");
+        $text = append($text, "@dbl@I need to pick some fresh @dre@Ardrigal@dbl@ for @dre@Trufitus@dbl@.");
+    }
+}
+
+if (%junglepotion = ^junglepotion_get_sito_foil) {
+    $text = append($text, "@str@I've given Snakeweed and Ardrigal to Trufitus.||");
+    $text = append($text, "@dbl@I need to pick some fresh @dre@Sito Foil@dbl@ for @dre@Trufitus@dbl@.");
+}
+if (%junglepotion = ^junglepotion_found_sito_foil) {
+    if (inv_total(inv, sito_foil) > 0) {
+        $text = append($text, "@str@I've given Snakeweed and Ardrigal to Trufitus.|");
+        $text = append($text, "@str@I picked some fresh Sito Foil for Trufitus.||");
+        $text = append($text, "@dbl@I need to give the @dre@Sito Foil@dbl@ to @dre@Trufitus@dbl@.");
+    } else {
+        $text = append($text, "@str@I've given Snakeweed and Ardrigal to Trufitus.||");
+        $text = append($text, "@dbl@I need to pick some fresh @dre@Sito Foil@dbl@ for @dre@Trufitus@dbl@.");
+    }
+}
+
+if (%junglepotion = ^junglepotion_get_volencia_moss) {
+    $text = append($text, "@str@I've given Snakeweed, Ardrigal and Sito Foil|");
+    $text = append($text, "@str@to Trufitus.||");
+    $text = append($text, "@dbl@I need to pick some fresh @dre@Volencia Moss@dbl@ for @dre@Trufitus@dbl@.");
+}
+if (%junglepotion = ^junglepotion_found_volencia_moss) {
+    if (inv_total(inv, volencia_moss) > 0) {
+        $text = append($text, "@str@I've given Snakeweed, Ardrigal and Sito Foil|");
+        $text = append($text, "@str@to Trufitus.||");
+        $text = append($text, "@str@I picked some fresh Volencia Moss for Trufitus.||");
+        $text = append($text, "@dbl@I need to give the @dre@Volencia Moss@dbl@ to @dre@Trufitus@dbl@.");
+    } else {
+        $text = append($text, "@str@I've given Snakeweed, Ardrigal and Sito Foil|");
+        $text = append($text, "@str@to Trufitus.||");
+        $text = append($text, "@dbl@I need to pick some fresh @dre@Volencia Moss@dbl@ for @dre@Trufitus@dbl@.");
+    }
+}
+
+if (%junglepotion = ^junglepotion_get_rogues_purse) {
+    $text = append($text, "@str@I've given Snakeweed, Ardrigal, Sito Foil|");
+    $text = append($text, "@str@and Volencia Moss to Trufitus.||");
+    $text = append($text, "@dbl@I need to pick some fresh @dre@Rogues Purse@dbl@ for @dre@Trufitus@dbl@.");
+}
+if (%junglepotion = ^junglepotion_found_rogues_purse) {
+    if (inv_total(inv, rogues_purse) > 0) {
+        $text = append($text, "@str@I've given Snakeweed, Ardrigal, Sito Foil|");
+        $text = append($text, "@str@and Volencia Moss to Trufitus.||");
+        $text = append($text, "@str@I picked some fresh Rogues Purse for Trufitus.||");
+        $text = append($text, "@dbl@I need to give the @dre@Rogue Purse@dbl@ to @dre@Trufitus@dbl@."); // Singular 'Rogue Purse' - https://youtu.be/7kvq61b6Vvc?si=phoZoSCrnsvF4zIw&t=428
+    } else {
+        $text = append($text, "@str@I've given Snakeweed, Ardrigal, Sito Foil|");
+        $text = append($text, "@str@and Volencia Moss to Trufitus.||");
+        $text = append($text, "@dbl@I need to pick some fresh @dre@Rogues Purse@dbl@ for @dre@Trufitus@dbl@.");
+    }
+}
+
+if (%junglepotion = ^junglepotion_found_all_herbs) {
+    $text = append($text, "@str@I have given Trufitus Snakeweed, Ardrigal,|");
+    $text = append($text, "@str@Sito Foil,Volencia moss and Rogues purse.||"); // No space after comma, and lower case 'moss' & 'purse' - https://youtu.be/7kvq61b6Vvc?si=0i6TWbCGGBgOFAzF&t=487
+    $text = append($text, "@str@Trufitus needs to commune with the gods.||");
+    $text = append($text, "@dbl@I should speak to @dre@Trufitus@dbl@.");
+}
+
+// Source for completion: https://imgur.com/GYa4YpO, https://i.imgur.com/5QxgOfU.png & OSRS: https://imgur.com/4nI6XtR
+if (%junglepotion >= ^junglepotion_complete) {
+    $text = "@str@Trufitus Shakaya of the Tai Bwo Wannai village needed|";
+    $text = append($text, "@str@some jungle herbs in order to make a potion which would|");
+    $text = append($text, "@str@help him commune with the gods. I collected five lots|");
+    $text = append($text, "@str@of jungle herbs for him and he was able to|");
+    $text = append($text, "@str@commune with the gods.||");
+    $text = append($text, "@str@As a reward he showed me some herblore techniques.||");
+    $text = append($text, "@red@QUEST COMPLETE!");
+}
+
+~quest_journal("Jungle Potion", $text);
