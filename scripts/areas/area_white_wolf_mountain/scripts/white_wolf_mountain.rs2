@@ -1,0 +1,41 @@
+[oploc1,herorockslide]
+mes("These rocks contain nothing interesting. They are just in the way.");
+
+[oploc2,herorockslide]
+~mine_ice_queen_lair_rockslide;
+
+[oplocu,herorockslide]
+if (oc_category(last_useitem) = weapon_pickaxe) {
+  p_oploc(2);
+  return;
+}
+~displaymessage(^dm_default);
+
+[proc,mine_ice_queen_lair_rockslide]
+def_obj $pickaxe = ~pickaxe_checker;
+if ($pickaxe = null) {
+  ~mesbox("You need a pickaxe to clear the rockslide. You do not have one that you have the Mining level to use.");
+  return;
+}
+if(stat(mining) < 50) {
+  mes("You need a Mining level of 50 to clear the rockslide.");
+  return;
+}
+anim(oc_param($pickaxe, mining_animation), 0);
+sound_synth(mine_quick, 0, 0);
+def_coord $loc_coord = loc_coord;
+// Temp note: dur updated
+loc_change(loc_472, 3);
+p_delay(1);
+// Temp note: dur updated
+loc_change(loc_474, 3);
+p_delay(1);
+// Temp note: dur updated
+loc_change(inviswall_no_blockrange, 4);
+if (coordx(coord) > coordx($loc_coord)) {
+  ~forcemove(movecoord(coord, -2, 0, 0));
+  ~forcemove(movecoord(coord, -1, 0, 1));
+} else {
+  ~forcemove(movecoord(coord, 2, 0, 0));
+  ~forcemove(movecoord(coord, 1, 0, -1));
+}
