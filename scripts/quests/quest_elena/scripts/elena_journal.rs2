@@ -1,0 +1,115 @@
+[if_button,questlist:elena]
+def_string $text;
+
+// https://github.com/Indio3/quest-journals/tree/master/quest_elena
+
+if (%elenaquest = ^quest_elena_not_started) {
+    $text = "@dbl@I can start this quest by speaking to @dre@Edmond @dbl@who is in @dre@East|@dre@Ardougne|";
+    $text = append($text, "|@dbl@There aren't any requirements for this Quest.");
+
+    ~quest_journal("Plague City", $text);
+    return;
+}
+
+$text = "@str@I've spoken to Edmond, he's asked me to help find his|@str@daughter Elena.|";
+
+if (%elenaquest = ^quest_elena_started) {
+    $text = append($text, "|@dbl@I need to get some Dwellberries for @dre@Alrena @dbl@so she can|@dbl@make me a @dre@Gasmask|@dbl@I'm told I'll find some in @dre@McGrubor's wood");
+}
+
+if (%elenaquest >= ^quest_elena_gasmask) {
+    $text = append($text, "|@str@Alrena has given me a Gasmask to protect me from the|@str@plague while in West Ardougne.|@str@She's making a spare which will be in the cupboard.|");
+}
+
+if (%elenaquest = ^quest_elena_gasmask) {
+    $text = append($text, "|@dbl@I need to talk to @dre@Edmond @dbl@about getting into @dre@West|@dre@Ardougne");
+}
+
+if (%elenaquest >= ^quest_elena_started_mud_patch) {
+    $text = append($text, "|@str@I've spoken to Edmond about getting into West Ardougne.|");
+}
+
+if (%elenaquest >= ^quest_elena_mud_patch4) {
+    $text = append($text, "|@str@I've softened the ground in Edmond's garden enough to|@str@dig.|");
+
+    if (%elenaquest = ^quest_elena_mud_patch4) {
+        $text = append($text, "|@dbl@Now I need to dig a tunnel into @dre@West Ardougne");
+    }
+} else if (%elenaquest >= ^quest_elena_started_mud_patch) {
+    $text = append($text, "|@dbl@I need to use @dre@Water @dbl@to soften the ground in Edmond's|@dbl@garden before I can dig into it.");
+}
+
+if (%elenaquest >= ^quest_elena_opened_tunnel) {
+    $text = append($text, "|@str@I've dug a tunnel into the sewers.|");
+
+    if (%elenaquest = ^quest_elena_opened_tunnel) {
+        $text = append($text, "|@dbl@I need to find a way out of the sewers and into @dre@West|@dre@Ardougne");
+    }
+}
+
+if (%elenaquest >= ^quest_elena_opened_pipe) {
+    $text = append($text, "|@str@I've managed to clear the way into West Ardougne.|");
+
+    if (%elenaquest = ^quest_elena_opened_pipe) {
+        // todo: RS3/OSRS RS tells the player to talk an old family friend (Jethick) but RSC lacks that dialogue?
+        // consider replacing this or adding that dialogue (maybe this is why it was introduced)
+        $text = append($text, "|@dbl@Edmond told me to look out for an old family friend|@dbl@named @dre@Jethick.");
+    }
+} else if (%elenaquest = ^quest_elena_tied_rope) {
+    // RS3
+    $text = append($text, "|@dbl@I've tied a rope to the sewer grill but I need help to pull it|@dbl@off.");
+}
+
+if (%elenaquest > ^quest_elena_returned_book) {
+    $text = append($text, "|@str@I've spoken to Jethick, he thinks Elena was staying with|@str@the Rehnison Family, in a timber house to the north of the|@str@city.|");
+} else if (%elenaquest >= ^quest_elena_shown_picture) {
+    $text = append($text, "|@dbl@I've spoken to @dre@Jethick@dbl@, he thinks @dre@Elena @dbl@was staying with|@dbl@the @dre@Rehnison Family@dbl@, in a timber house to the north of the|@dbl@city.|");
+}
+
+if (%elenaquest = ^quest_elena_spoken_martha_ted) {
+    // RS3
+    $text = append($text, "|@dbl@The @dre@Rehnisons' daughter Milli @dbl@may have seen @dre@Elena."); // [sic] Rehnisons'
+}
+
+if (%elenaquest >= ^quest_elena_spoke_to_milli) {
+    $text = append($text, "|@str@I've spoken to Milli about Elena, she says Elena was taken|@str@into one of the Plague Houses.|");
+}
+
+if (%elenaquest = ^quest_elena_spoke_to_milli) {
+    $text = append($text, "|@dbl@I need to get access to the @dre@Plague House.|@dre@Milli @dbl@said it was to the south of the city.");
+} else if (%elenaquest = ^quest_elena_spoke_to_plague_house | %elenaquest = ^quest_elena_spoke_to_clerk) {
+    $text = append($text, "|@dbl@I need clearance from either the @dre@Head Mourner @dbl@or @dre@Bravek|@dbl@to get into the @dre@Plague House");
+}
+
+if (%elenaquest >= ^quest_elena_spoke_to_bravek) {
+    $text = append($text, "|@str@Bravek might give me clearance if I make his Hangover|@str@Cure.|");
+}
+
+if (%elenaquest = ^quest_elena_spoke_to_bravek) {
+    $text = append($text, "|@dbl@I need to bring @dre@Bravek @dbl@the @dre@Hangover Cure @dbl@when I work it|@dbl@out.");
+}
+
+if (%elenaquest > ^quest_elena_spoke_cured_bravek) {
+    $text = append($text, "|@str@I've given Bravek the Hangover Cure and he has given me|@str@a warrant to enter the plague House.|");
+} else if (%elenaquest = ^quest_elena_spoke_cured_bravek) {
+    $text = append($text, "|@str@I've given Bravek the Hangover Cure and he has given me|@str@a warrant to enter the plague House.|");
+
+    // taken from RS3
+    $text = append($text, "|@dbl@I need to get into the @dre@Plague House @dbl@and find @dre@Elena@dbl@.");
+}
+
+if (%elenaquest >= ^quest_elena_freed_elena) {
+    $text = append($text, "|@str@I've freed Elena from the Plague House.|");
+}
+
+if (%elenaquest = ^quest_elena_freed_elena) {
+    $text = append($text, "|@dbl@I should go and talk to @dre@Edmond @dbl@again.");
+}
+
+if (%elenaquest >= ^elena_complete) {
+    // RS3 doesn't mention the spell reward
+    $text = append($text, "|@str@I've spoken to Edmond and he thanked me for rescuing his|@str@daughter Elena. He's given me a spell to learn as a reward.|");
+    $text = append($text, "@red@QUEST COMPLETE!");
+}
+
+~quest_journal("Plague City", $text);

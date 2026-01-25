@@ -1,0 +1,93 @@
+[if_button,questlist:grail]
+def_string $text;
+
+// OSRS Source: https://youtu.be/LF0-_wWsauQ
+
+// Source for not_started stage: https://imgur.com/8RZwGYb
+if (%grail = ^grail_not_started) {
+
+    $text = "@dbl@I can start this quest by speaking to @dre@King Arthur@dbl@ at|";
+    $text = append($text, "@dre@Camelot Castle@dbl@, just @dre@North West of Catherby|");
+    $text = append($text, "@dbl@To complete this quest I must be able to defeat a @dre@Level|");
+    $text = append($text, "@dre@120 Black Knight Titan@dbl@.|");
+
+    ~quest_journal("Holy Grail", $text);
+    return;
+}
+
+if (%grail = ^grail_started) { // https://youtu.be/CMXibQXfrmk?si=MPj_90WDirRGlc1m&t=63
+    $text = "@dre@King Arthur@dbl@ has sent me questing for the @dre@Holy Grail@dbl@ of|";
+    $text = append($text, "@dbl@legend. I should start my quest by speaking to @dre@Merlin@dbl@ in @dre@his|");
+    $text = append($text, "@dre@study next to the Camelot library@dbl@ for directions to it.");
+} else if (%grail > ^grail_started) {
+    $text = "@str@I started my Quest for the Holy Grail in Camelot Castle.|";
+    $text = append($text, "@str@King Arthur sent me to Merlin for advice on locating it.|");
+
+    if (%grail = ^grail_spoken_merlin) { // https://youtu.be/CMXibQXfrmk?si=V-uagsVuR8TzioEs&t=328
+        $text = append($text, "@dre@Merlin@dbl@ suggested two things to help find the @dre@Grail:|");
+        $text = append($text, "@dbl@Speak to @dre@Galahad@dbl@ who lives @dre@West@dbl@ of @dre@McGrubor's Wood.|");
+        $text = append($text, "@dbl@Talk to someone on a '@dre@Holy Island@dbl@' he can't remember.");
+    }
+
+    if (%grail = ^grail_spoken_crone) { // https://youtu.be/CMXibQXfrmk?si=LDjkORviPYLir8p4&t=758
+        $text = append($text, "@dbl@According to a Crone on @dre@Entrana@dbl@ I need to go to where the|");
+        $text = append($text, "@dbl@'@dre@Six Heads' face@dbl@ and blow a @dre@magic whistle@dbl@ there.|");
+        $text = append($text, "@dbl@To get the @dre@Magic Whistle@dbl@ I need to carry something from|");
+        $text = append($text, "@dbl@the @dre@Realm of the Fisher King@dbl@ to a @dre@Haunted House@dbl@...");
+    }
+
+    if (%grail >= ^grail_failed_defeat_titan) {
+        $text = append($text, "@str@I spoke to Galahad in his shack West of McGrubor's Wood.|");
+        $text = append($text, "@str@Galahad gave me a napkin from the Realm of the Fisher|");
+        $text = append($text, "@str@King.|");
+        $text = append($text, "@str@I used the napkin to find a holy whistle that could teleport|");
+        $text = append($text, "@str@me to the Realm of the Fisher King.|");
+        $text = append($text, "@str@I blew the Whistle at the correct location and was|");
+        $text = append($text, "@str@teleported to the Realm of the Fisher King. The path to|");
+        $text = append($text, "@str@the Fisher King's castle was blocked by a mighty warrior|");
+        $text = append($text, "@str@called the Black Knight Titan who seemed invincible!|");
+        if (%grail = ^grail_failed_defeat_titan) { // https://imgur.com/j9Dvo7S
+            $text = append($text, "@dbl@I need to find a @dre@weapon@dbl@ that can defeat him somehow.");
+        }
+    }
+
+    if (%grail > ^grail_failed_defeat_titan) {
+        $text = append($text, "@str@I defeated the Black Knight Titan with Excalibur's|");
+        $text = append($text, "@str@power.Once past the Titan I entered the Grail Castle.|");
+        $text = append($text, "@str@The Fisher King couldn't give me the Grail, but legends say|");
+        $text = append($text, "@str@that the person who restores the land could claim the|");
+        $text = append($text, "@str@Grail.|");
+
+        if (%grail = ^grail_finding_percival) { // https://i.imgur.com/rmkAz3q.png
+            $text = append($text, "@dbl@The @dre@Fisher King@dbl@ is very sick. He has asked me to find his|");
+            $text = append($text, "@dbl@son @dre@Sir Percival@dbl@, a @dre@Knight of the Round Table.|");
+            if (inv_total(inv, magic_golden_feather) > 0) { // https://youtu.be/CMXibQXfrmk?si=jxmYKN-yRlwJbiBE&t=1962 & https://i.imgur.com/75gBsXg.png
+                $text = append($text, "@dre@King Arthur@dbl@ gave me a @dre@magic golden feather@dbl@ to help locate|");
+                $text = append($text, "@dre@Sir Percival@dbl@ - I should use it to find him!");
+            }
+        }
+
+        if (%grail = ^grail_given_whistle) {
+            $text = append($text, "@str@I honoured the Fisher King's request to find his son, and|");
+            $text = append($text, "@str@used a Magic Golden Feather to track him down. When he|");
+            $text = append($text, "@str@heard of his father's illness he rushed back to the Grail|");
+            $text = append($text, "@str@Castle using a Magic Whistle that I gave him.|");
+            if (inv_total(inv, holy_grail) > 0) { // https://i.imgur.com/ISE70RA.png
+                $text = append($text, "@dbl@Now I have the @dre@Grail@dbl@ with me. I should take it to @dre@Arthur@dbl@.");
+            } else { // https://i.imgur.com/f5UXTUq.png
+                $text = append($text, "@dbl@I should follow him to the @dre@Castle@dbl@ to get the @dre@Holy Grail@dbl@.");
+            }
+        }        
+    }
+}
+
+// Source for completion: https://youtu.be/hsHGe1KJE8Y?si=JWfAeGSFatYiGk2L&t=1
+if (%grail >= ^grail_complete) {
+    $text = append($text, "@str@I returned to the Grail Castle to find that the land had|");
+    $text = append($text, "@str@been renewed with Percival as the new King there. Out of|");
+    $text = append($text, "@str@gratitude he allowed me to take the Grail, which I took to|");
+    $text = append($text, "@str@King Arthur to prove my prowess as a Knight.||");
+    $text = append($text, "@red@QUEST COMPLETE!");
+}
+
+~quest_journal("Holy Grail", $text);

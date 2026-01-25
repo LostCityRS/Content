@@ -1,0 +1,32 @@
+[if_button,questlist:haunted]
+def_string $text;
+
+// https://github.com/Indio3/quest-journals/tree/master/quest_haunted sources all here, release OSRS
+if(%haunted = ^haunted_not_started) {
+    $text = "@dbl@I can start this quest by speaking to @dre@Veronica@dbl@ who is|@dbl@outside @dre@Draynor Manor||@dbl@There aren't any requirements for this quest";
+} else if(%haunted = ^haunted_started) {
+    $text = "@str@I have spoken to Veronica||@dbl@I need to find @dre@Ernest|@dbl@He went into @dre@Draynor Manor@dbl@ and hasn't returned";
+} else if(%haunted = ^haunted_spoken_to_oddenstein) {
+    $text = "@str@I have spoken to Veronica||@str@I've spoken to Dr Oddenstein, and discovered Ernest is a|@str@chicken||@dbl@I need to bring @dre@Dr Oddenstein@dbl@ parts for his machine|";
+    if(inv_total(inv, oil_can) > 0) {
+        $text = append($text, "@str@1 Oil Can|");
+    } else {
+        $text = append($text, "@dre@1 Oil Can|");
+    }
+
+    if(inv_total(inv, pressure_gauge) > 0) {
+        $text = append($text, "@str@1 Pressure Gauge|");
+    } else {
+        $text = append($text, "@dre@1 Pressure Gauge|");
+    }
+
+    if(inv_total(inv, rubber_tube) > 0) {
+        $text = append($text, "@str@1 Rubber Tube");
+    } else {
+        $text = append($text, "@dre@1 Rubber Tube");
+    }
+} else {
+    $text = "@str@I have spoken to Veronica||@str@I have collected all the parts for the machine||@str@Dr Oddenstein thanked me for helping fix his machine|@str@We turned Ernest back to normal and he rewarded me|@red@QUEST COMPLETE!";
+}
+
+~quest_journal("Ernest the Chicken", $text);
