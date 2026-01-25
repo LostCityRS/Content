@@ -1,0 +1,19 @@
+[opnpc1,spice_merchant]
+if (getqueue(stolen_from_stall_spice) > 0) {
+    @stall_owner_alert_guards;
+}
+~chatnpc("<p,neutral>Are you interested in buying or selling spice?");
+
+def_int $option = ~p_choice2("Yes please.", 1, "No thanks.", 2);
+
+if($option = 1) {
+    ~openshop_activenpc;
+} else if($option = 2) {
+    ~chatplayer("<p,neutral>No thanks.");
+}
+
+[opnpc3,spice_merchant]
+if (getqueue(stolen_from_stall_spice) > 0) {
+    @stall_owner_alert_guards;
+}
+~openshop_activenpc;
