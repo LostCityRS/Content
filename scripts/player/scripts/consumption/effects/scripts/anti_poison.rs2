@@ -1,0 +1,20 @@
+[label,consume_effect_antipoison]
+sound_synth(liquid, 0, 0);
+anim(human_eat, 0);
+def_obj $consumable = last_item;
+%poison = min(%poison,-5);
+~set_poison_timer;
+// change item to its next stage. default is null
+inv_setslot(inv, last_slot, oc_param($consumable, next_obj_stage), 1);
+~consume_effect_messages($consumable, stat(hitpoints), false);
+
+[label,consume_effect_super_antipoison]
+sound_synth(liquid, 0, 0);
+anim(human_eat, 0);
+def_obj $consumable = last_item;
+%poison = min(%poison,-20);
+~set_poison_timer;
+// change item to its next stage. default is null
+inv_setslot(inv, last_slot, oc_param($consumable, next_obj_stage), 1);
+~consume_effect_messages($consumable, stat(hitpoints), false);
+

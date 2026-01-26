@@ -1,0 +1,21 @@
+[label,consume_effect_antidragon]
+sound_synth(liquid, 0, 0);
+anim(human_eat, 0);
+def_obj $consumable = last_item;
+%dragonresist = calc(map_clock + 600);
+// change item to its next stage. default is null
+inv_setslot(inv, last_slot, oc_param($consumable, next_obj_stage), 1);
+~consume_effect_messages($consumable, stat(hitpoints), false);
+
+[proc,set_antifire_login]
+if (%dragonresist < 1) {
+    return;
+}
+%dragonresist = add(map_clock, %dragonresist);
+
+[proc,set_antifire_logout]
+if (%dragonresist < map_clock) {
+    %dragonresist = null;
+    return;
+}
+%dragonresist = sub(%dragonresist, map_clock);
