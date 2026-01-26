@@ -1,0 +1,14 @@
+[consume_table]
+column=consumable,obj,LIST,INDEXED,REQUIRED
+column=consume_sound,synth
+column=stat_change,stat,int,int,LIST
+column=stat_heal,stat,int,int,LIST
+column=healenergy,int
+
+[consume_messages_table]
+column=consumable,obj,LIST,INDEXED,REQUIRED
+column=consume_message1,string
+column=consume_message2,string
+column=restore_message1,string
+column=restore_message2,string
+column=message_delay,int
