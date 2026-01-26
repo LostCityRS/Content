@@ -1,0 +1,43 @@
+[if_button,magic:bones_to_bananas] @magic_spell_convert_bones(^bones_to_bananas); //bones to bananas
+
+
+// handles converting bones to bananas. will handle bones to peaches later on too.
+[label,magic_spell_convert_bones](int $spell)
+if (p_finduid(uid) = true) {
+    // look for spell in db
+    def_dbrow $spell_data = ~get_spell_data($spell);
+    if (~check_spell_requirements($spell_data) = false) {
+        return;
+    }
+    def_namedobj $product;
+    def_seq $anim;
+    def_spotanim $spotanim;
+    def_synth $sound;
+    $product, $anim, $spotanim, $sound = ~magic_spell_search_convertobj($spell_data, null);
+    // only uses regular bones.
+    // - https://oldschool.runescape.wiki/w/Update:Patch_Notes_(23_May_2013)
+    // - https://runescape.wiki/w/Update:Potions,_Spells_and_Runes
+    def_int $total_bones = inv_total(inv, bones);
+    if ($total_bones < 1) {
+        mes("You aren't holding any bones!");
+        return;
+    }
+    if (afk_event = ^true) {
+        ~macro_event_general_spawn(~macro_event_set_random);
+        return;
+    }
+    // delete all bones by category
+    inv_del(inv, bones, $total_bones);
+    inv_add(inv, $product, $total_bones);
+    // play sound and anim
+    sound_synth($sound, 0, 0);
+    anim($anim, 0);
+    spotanim_pl($spotanim, 92, 0);
+    // delete runes and give xp
+    ~delete_spell_runes($spell_data);
+    ~give_spell_xp($spell_data);
+    // doesnt delay in current osrs, but it did in early osrs:
+    // https://youtu.be/OQWflbHRYLo?t=859
+    // https://oldschool.runescape.wiki/w/Update:Bugfixes_%26_Combining_Tentacles
+    p_delay(2);
+}

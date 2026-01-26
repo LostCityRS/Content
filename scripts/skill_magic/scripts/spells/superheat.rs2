@@ -1,0 +1,69 @@
+[opheldt,magic:superheat_item]@magic_spell_superheat(^superheat_item, last_item);
+
+[label,magic_spell_superheat](int $spell, obj $ore1)
+if_settabactive(^tab_magic); // osrs sets tab back no matter what
+// look for spell in db
+def_dbrow $spell_data = ~get_spell_data($spell);
+if (~check_spell_requirements($spell_data)= false) {
+    return;
+}
+if($ore1 = elemental_workshop_ore) {
+    mes("Even this spell is not hot enough to heat this item.");
+    return;
+}
+def_namedobj $bar = oc_param($ore1, smeltsto);
+// if player doesnt even superheat an ore
+if ($bar = null) {
+    sound_synth(superheat_fail, 0, 0);
+    spotanim_pl(failedspell_impact, 92, 0);
+    mes("You need to cast superheat item on ore.");
+    return;
+}
+// if player has 2 or more coal, then assume steel bar
+// Using superheat on coal doesnt make steel bars
+if ($ore1 = iron_ore & inv_total(inv, coal) > 1 & stat(smithing) >= 30) {
+    $ore1 = iron_ore;
+    $bar = steel_bar;
+}
+// remove bar at end of name
+def_string $metal_name = substring(oc_name($bar), 0, calc(string_length(oc_name($bar)) - 4));
+def_struct $bar_struct = oc_param($bar, smelting_struct);
+// Ensure ore1 now refers to the primary ingredient (important for bronze)
+$ore1 = struct_param($bar_struct, ingredient);
+// if not enough level
+if (stat(smithing) < struct_param($bar_struct, levelrequired)) {
+    mes("You need a smithing level of at least <tostring(struct_param($bar_struct, levelrequired))> to smelt <$metal_name>.");
+    return;
+}
+// If not enough ores
+def_int $ore_count1 = inv_total(inv, $ore1);
+def_namedobj $ore2 = struct_param($bar_struct, ingredient_secondary);
+def_int $ore_count2 = inv_total(inv, $ore2);
+if ($ore_count1 < 1 | $ore_count2 < struct_param($bar_struct, ingredient_secondary_count)) {
+    mes(struct_param($bar_struct, processfailure_superheat));
+    return;
+}
+// play sound and anim
+sound_synth(superheat_all, 0, 0);
+spotanim_pl(superheatitem_casting, 92, 0);
+anim(human_castsuperheatitem, 0);
+// delete runes and give xp
+~delete_spell_runes($spell_data);
+~give_spell_xp($spell_data);
+def_int $smith_xp = struct_param($bar_struct, productexp);
+if ($bar = gold_bar & inv_total(worn, gauntlets_of_goldsmithing) > 0) {
+    $smith_xp = scale(5, 2, $smith_xp); // 2.5x
+}
+stat_advance(smithing, $smith_xp);
+// delete ores and give bar
+inv_del(inv, $ore1, 1);
+if ($ore2 ! null) {
+    inv_del(inv, $ore2, struct_param($bar_struct, ingredient_secondary_count));
+}
+inv_add(inv, $bar, 1);
+p_delay(1);
+
+if (afk_event = ^true) {
+    ~macro_event_general_spawn(~macro_event_set_random);
+    return;
+}
