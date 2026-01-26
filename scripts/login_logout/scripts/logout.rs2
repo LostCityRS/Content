@@ -1,11 +1,29 @@
 [logout,_]()(boolean)
+~set_pk_skull_logout;
+~set_antifire_logout; // TODO: should be timer
+~follower_logout;
+~duel_arena_logout;
 ~macro_event_logout;
 return (true);
 
-[if_button,logout:com_8]
+[if_button,logout:try_logout]
 if_close;
 if (p_finduid(uid) = true) {
-    // TODO: re add logout checks
+    if (~in_duel_arena(coord) = true) {
+        mes("You can't log out during a duel."); //https://youtu.be/xLE8au7T50Q?t=227
+        return;
+    }
+
+    if (~inzone_coord_pair_table(gnomeball_zones, coord) = true) {
+        mes("You can't log out on a gnomeball pitch."); // osrs
+        return;
+    }
+
     p_logout;
 }
 
+[proc,combat_preventlogout]
+p_preventlogout("You can't log out until 10 seconds after the end of combat.", 16);
+
+[proc,.combat_preventlogout]
+.p_preventlogout("You can't log out until 10 seconds after the end of combat.", 16);
