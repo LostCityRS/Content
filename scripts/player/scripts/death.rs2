@@ -1,5 +1,5 @@
 [proc,player_die]
-if (.finduid(%duelpartner) = true) {
+if (.finduid(%duel2accept) = true) {
     if (~.in_duel_arena(.coord) = true & ~in_duel_arena(coord) = true) {
         queue(player_death_duel, 0);
         return;
