@@ -1,10 +1,4 @@
 [proc,player_die]
-if (.finduid(%duel2accept) = true) {
-    if (~.in_duel_arena(.coord) = true & ~in_duel_arena(coord) = true) {
-        queue(player_death_duel, 0);
-        return;
-    }
-}
 strongqueue(player_death_default, 0);
 
 [proc,player_death]
@@ -25,6 +19,13 @@ mes("Oh dear you are dead!");
 
 ~combat_clearqueue;
 clearqueue(player_death_default);
+
+if (.finduid(%duel2accept) = true) {
+    if (~.in_duel_arena(.coord) = true & ~in_duel_arena(coord) = true) {
+        @player_death_duel;
+        return;
+    }
+}
 
 def_obj $prev_wep = inv_getobj(worn, ^wearpos_rhand);
 if (findhero = true) {
