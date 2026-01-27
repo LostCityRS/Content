@@ -48,7 +48,7 @@ healenergy(10000);
 ~clear_poison;
 ~update_all($prev_wep);
 ~initalltabs;
-~player_end_poison
+~player_end_poison;
 
 [proc,player_death_lose_items]
 if (staffmodlevel > 1 & map_production = true) { return; }
