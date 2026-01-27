@@ -70,13 +70,13 @@ if (p_finduid(uid) = true) {
 [proc,unequip](int $slot)
 if (p_finduid(uid) = true) {
     def_obj $obj = inv_getobj(worn, $slot);
-    // if (~duel_arena_flower_power_unequip_check($slot) = false) {
-    //     return;
-    // }
-    // if ($obj = ball_gnomeball_game & ~inzone_coord_pair_table(gnomeball_zones, coord) = true) {
-    //     mes("You feel it would be cheating to put the ball in your pack whilst on the pitch.");
-    //     return;
-    // }
+    if (~duel_arena_flower_power_unequip_check($slot) = false) {
+        return;
+    }
+    if ($obj = ball_gnomeball_game & ~inzone_coord_pair_table(gnomeball_zones, coord) = true) {
+        mes("You feel it would be cheating to put the ball in your pack whilst on the pitch.");
+        return;
+    }
     def_int $count = inv_getnum(worn, $slot);
     def_int $overflow = inv_itemspace2(inv, $obj, $count, inv_size(inv));
     if ($overflow >= $count) {
