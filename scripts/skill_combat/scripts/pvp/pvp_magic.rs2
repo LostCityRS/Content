@@ -195,17 +195,9 @@ queue(pvp_retaliate, calc($duration / 30 + 1), uid);
 
 [proc,pvp_spell_fail](dbrow $spell_data, int $duration)
 // splash
-def_synth $sound;
-if (db_getfieldcount($spell_data, magic_spell_table:sound_fail) > 0) {
-    $sound = db_getfield($spell_data, magic_spell_table:sound_fail, 0);
-} else {
-    // reduce stat, and freeze spells dont have fail sounds, so i assume they just play their normal sound
-    // every time?
-    $sound = db_getfield($spell_data, magic_spell_table:sound_hit, 0);
-}
-
-sound_synth($sound, 0, 0);
-.sound_synth($sound, 0, 0);
+// splash
+sound_synth(spellfail, 0, 0);
+.sound_synth(spellfail, 0, 0);
 // no splash sound?
 .spotanim_pl(failedspell_impact, 92, $duration);
 //.queue*(pvp_retaliate, 0)(uid);
@@ -253,3 +245,4 @@ if (.finduid(%pk_binder) = true) {
         walktrigger(pvp_frozen);
     }
 }
+
