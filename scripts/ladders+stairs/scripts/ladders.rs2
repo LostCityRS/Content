@@ -51,7 +51,7 @@ switch_coord (loc_coord) {
 p_arrivedelay;
 switch_coord (loc_coord) {
     // TODO 377 enable after Dwarf Cannon is ported
-    //case 0_40_53_10_49 : @ladder_to_dwarf_remains; // Ladder to Dwarf Guard Tower
+    case 0_40_53_10_49 : @ladder_to_dwarf_remains; // Ladder to Dwarf Guard Tower
     case default : ~climb_ladder(movecoord(coord(), 0, 1, 0), true);
 }
 
@@ -68,7 +68,7 @@ p_arrivedelay;
 ~climb_ladder(movecoord(coord(), 0, -1, 0), true);
 
 // TODO 377 enable after Black Knights' Fortress is ported
-/*[oploc1,loc_1749]
+[oploc1,loc_1749]
 p_arrivedelay;
 switch_coord (loc_coord) {
     case 1_47_54_14_62 : 
@@ -77,7 +77,7 @@ switch_coord (loc_coord) {
         ~black_knights_aggro(coord, 0_47_54_17_59); // checks from player coord! - osrs
         return;
 }
-~climb_ladder(movecoord(coord(), 0, -1, 0), false);*/
+~climb_ladder(movecoord(coord(), 0, -1, 0), false);
 
 [oploc1,loc_1750]
 p_arrivedelay;
@@ -129,7 +129,7 @@ p_arrivedelay;
 ~climb_ladder(0_50_52_44_54, true);
 
 // TODO 377 enable after The Grand Tree is ported
-/* [oploc1,loc_2884]
+[oploc1,loc_2884]
 p_arrivedelay;
 def_int $option = ~p_choice2_header("Climb Up.", 1, "Climb Down.", 2, "Climb up or down the ladder?");
 if_close;
@@ -145,7 +145,7 @@ if ($option = 1) {
 [oploc2,loc_2884]
 ~grandtree_spawn_charlie; // before the arrivedelay
 p_arrivedelay;
-~climb_ladder(movecoord(coord(), 0, 1, 0), true);*/
+~climb_ladder(movecoord(coord(), 0, 1, 0), true);
 
 [oploc3,loc_2884]
 p_arrivedelay;
