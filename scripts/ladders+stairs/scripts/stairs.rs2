@@ -4,7 +4,7 @@ p_arrivedelay;
 switch_coord (loc_coord) {
     case 0_41_51_38_57 : p_telejump(1_41_51_41_57); // Ardougne House - level 0
     case 0_50_53_59_54 : p_telejump(1_50_53_59_57); // Varrock Museum - level 0
-    // case 1_46_52_40_9 : p_telejump(2_46_52_40_12); // White Knight's Castle east side - level 1
+    case 1_46_52_40_9 : p_telejump(2_46_52_40_12); // White Knight's Castle east side - level 1
     case 0_48_51_27_2 : p_telejump(1_48_51_30_2); // Draynor Morgans house - level 0
     case 0_48_50_18_51 : p_telejump(1_48_50_21_51); // Draynor - to be Wise Old Man house - level 0
     case 0_49_52_52_61 : p_telejump(1_49_53_52_0); // blackarm hideout - level 0
@@ -47,7 +47,7 @@ p_arrivedelay;
 switch_coord (loc_coord) {
     case 1_41_51_39_57 : p_telejump(0_41_51_37_57); // Ardougne House - level 1
     case 1_50_53_59_55 : p_telejump(0_50_53_59_53); // Varrock Museum - level 1
-    // case 2_46_52_40_10 : p_telejump(1_46_52_40_8);  // White Knight's Castle west side - level 2
+    case 2_46_52_40_10 : p_telejump(1_46_52_40_8);  // White Knight's Castle west side - level 2
     case 1_48_51_28_2 : p_telejump(0_48_51_26_2); // Draynor Morgans house - level 1
     case 1_48_50_19_51 : p_telejump(0_48_50_17_51); // Draynor - to be Wise Old Man house - level 1
     case 1_41_51_7_58 : p_telejump(0_41_51_7_61); // Lord Handelmort's mansion - level 1
@@ -105,7 +105,7 @@ switch_coord (loc_coord) {
 p_arrivedelay;
 // Climb up
 switch_coord (loc_coord) {
-    // case 0_48_52_36_35 : p_telejump(movecoord(coord, 0, 1, 4)); // Draynor manor - level 0
+    case 0_48_52_36_35 : p_telejump(movecoord(coord, 0, 1, 4)); // Draynor manor - level 0
     case 1_43_73_16_10 : p_telejump(2_43_73_16_13); // Grail castle - level 1
     case 0_45_54_26_13 : p_telejump(1_45_54_26_16); // Witch's house - level 0
     case default : @unhandled_stairs(loc_coord);
@@ -130,7 +130,7 @@ switch_coord (loc_coord) {
     case 0_42_52_36_46 : p_telejump(0_42_152_39_46); // Legends Guild - Down to dungeon
     case 0_40_48_43_6 : p_telejump(0_40_148_41_6); // Yanille - down to town dungeon
     case 0_40_48_9_50 : p_telejump(0_40_148_9_53); // Yanille - down to dungeon outside of town
-    // case 0_47_52_51_48 : p_telejump(0_47_152_50_48); // Falador - down to mine
+    case 0_47_52_51_48 : p_telejump(0_47_152_50_48); // Falador - down to mine
     case 0_47_61_36_20 : p_telejump(0_47_161_37_19); // Wilderness - down to dungeon
     case default : @unhandled_stairs(loc_coord);
 }
@@ -166,12 +166,12 @@ switch_coord (loc_coord) {
 p_arrivedelay;
 // Climb up
 switch_coord (loc_coord) {
-    // case 0_41_51_38_29 : p_telejump(1_41_51_37_27); // Ardougne House - level 0
+    case 0_41_51_38_29 : p_telejump(1_41_51_37_27); // Ardougne House - level 0
     case 0_41_51_22_38 : p_telejump(1_41_51_24_37); // Ardougne House - level 0
     case 0_41_51_24_30 : p_telejump(1_41_51_25_32); // Ardougne House - level 0
-    // case 0_39_51_34_55 : p_telejump(1_39_51_33_53); // West Ardy House 01 - level 0
+    case 0_39_51_34_55 : p_telejump(1_39_51_33_53); // West Ardy House 01 - level 0
     case 0_39_51_30_27 : p_telejump(1_39_51_31_29); // West Ardy Church - level 0
-    // case 0_46_52_26_19 : p_telejump(1_46_52_24_20); // Falador castle courtyard
+    case 0_46_52_26_19 : p_telejump(1_46_52_24_20); // Falador castle courtyard
     case 0_39_53_20_32 : p_telejump(1_39_53_21_34); // Waterfall tourism building - level 0
     case default : @unhandled_stairs(loc_coord);
 }
@@ -193,13 +193,13 @@ switch_coord (loc_coord) {
     case 0_47_54_2_59 : p_telejump(1_47_54_4_59); // Black Knight's Fortress - level 0
     case 2_47_54_21_50 : p_telejump(3_47_54_20_51); // Black Knight's Fortress - level 2
     case 2_47_54_2_60 : p_telejump(3_47_54_2_59); // Black Knight's Fortress - level 2
-    // case 0_46_52_10_10 : p_telejump(1_46_52_12_10); // White Knight's Castle - level 0
-    // case 1_46_52_16_10 : p_telejump(2_46_52_15_11); // White Knight's Castle - level 1
-    // case 2_46_52_13_10 : p_telejump(3_46_52_12_11); // White Knight's Castle - level 1
+    case 0_46_52_10_10 : p_telejump(1_46_52_12_10); // White Knight's Castle - level 0
+    case 1_46_52_16_10 : p_telejump(2_46_52_15_11); // White Knight's Castle - level 1
+    case 2_46_52_13_10 : p_telejump(3_46_52_12_11); // White Knight's Castle - level 1
     case 1_48_52_32_34 : p_telejump(2_48_52_33_36); // Draynor Manor - level 1
     case 0_50_54_2_41 : p_telejump(1_50_54_3_40); // Varrock Palace Northwest Tower - level 0
     case 0_50_54_18_40 : p_telejump(1_50_54_20_40); // Varrock Palace North East - level 0
-    // case 0_48_49_31_23 : p_telejump(1_48_49_33_24); // Wizard Tower - level 0
+    case 0_48_49_31_23 : p_telejump(1_48_49_33_24); // Wizard Tower - level 0
     case 0_40_51_12_61 : p_telejump(1_40_51_14_61); // Ardy, The Flying Horse - level 0
     case 0_40_51_6_58 : p_telejump(1_40_51_6_57); // Ardy, house connected to Flying Horse - level 0
     case 0_39_51_35_30 : p_telejump(1_39_51_35_29); // West Ardy Church - level 0
@@ -209,7 +209,7 @@ switch_coord (loc_coord) {
     case 0_45_54_15_57 : p_telejump(1_45_54_17_57); // Heroes' Guild - level 0
     case 0_47_52_26_35 : p_telejump(1_47_52_28_35); // Falador house
     case 0_47_52_40_24 : p_telejump(1_47_52_41_26); // Falador house
-    // case 0_51_61_16_32 : p_telejump(1_51_61_18_32); // Rogues Castle - level 0
+    case 0_51_61_16_32 : p_telejump(1_51_61_18_32); // Rogues Castle - level 0
     case 0_46_52_29_56 : p_telejump(1_46_52_28_57); // Falador Shield shop
     case 0_47_52_3_10 : p_telejump(1_47_52_3_9); // Falador dwarf place
     case 0_49_53_8_55 : p_telejump(1_49_53_7_56); // Cooking Guild
@@ -217,8 +217,8 @@ switch_coord (loc_coord) {
     case 0_47_50_15_61 : p_telejump(1_47_50_17_61); // Port Sarim
     case 0_47_50_18_48 : p_telejump(1_47_50_18_47); // Port Sarim
     case 0_51_49_48_49 : p_telejump(1_51_49_50_49); // Al Kharid General Store
-    // case 0_45_52_27_6 : p_telejump(1_45_52_28_8); // Dark Wizard's Tower - Ground Floor
-    // case 1_45_52_27_6 : p_telejump(2_45_52_28_8); // Dark Wizard's Tower - First Floor
+    case 0_45_52_27_6 : p_telejump(1_45_52_28_8); // Dark Wizard's Tower - Ground Floor
+    case 1_45_52_27_6 : p_telejump(2_45_52_28_8); // Dark Wizard's Tower - First Floor
     case 0_45_51_51_18 : p_telejump(1_45_51_52_17); // Crafting Guild
     case 0_39_53_21_37 : p_telejump(1_39_53_22_39); // Hadley house - ground floor
     case 0_48_48_10_52 : p_telejump(1_48_48_12_52); // Tutorial island Quest Guide house - ground floor
@@ -240,9 +240,9 @@ switch_coord (loc_coord) {
     case 1_50_50_4_29 : @stair_options(2_50_50_6_29, 0_50_50_5_28); // Lumbridge Castle North - level 1
     case 1_40_50_12_40 : @stair_options(2_40_50_11_41, 0_40_50_12_42); // Clock Tower - level 1
     case 1_50_54_2_41 : @stair_options(2_50_54_4_41, 0_50_54_3_40); // Varrock Palace Northwest Tower - level 1
-    // case 1_48_49_31_23 : @stair_options(2_48_49_32_25, 0_48_49_33_24); // Wizard Tower - level 1
-    // case 1_51_61_16_32 : @stair_options(2_51_61_18_32, 0_51_61_18_32); // Rogues Castle - level 1
-    // case 2_51_61_16_32 : @stair_options(3_51_61_17_32, 1_51_61_18_32); // Rogues Castle - level 2
+    case 1_48_49_31_23 : @stair_options(2_48_49_32_25, 0_48_49_33_24); // Wizard Tower - level 1
+    case 1_51_61_16_32 : @stair_options(2_51_61_18_32, 0_51_61_18_32); // Rogues Castle - level 1
+    case 2_51_61_16_32 : @stair_options(3_51_61_17_32, 1_51_61_18_32); // Rogues Castle - level 2
     case 1_50_54_58_31 : @stair_options(2_50_54_58_30, 0_50_54_58_30); // Varrock church
     case 2_50_54_58_31 : @stair_options(3_50_54_58_30, 1_50_54_58_30); // Varrock church
     case default : @unhandled_stairs(loc_coord);
@@ -255,9 +255,9 @@ switch_coord (loc_coord) {
     case 1_50_50_4_29 : p_telejump(2_50_50_6_29); // Lumbridge Castle North - level 1
     case 1_40_50_12_40 : p_telejump(2_40_50_11_41); // Clock Tower - level 1
     case 1_50_54_2_41 : p_telejump(2_50_54_4_41); // Varrock Palace Northwest Tower - level 1
-    // case 1_48_49_31_23 : p_telejump(2_48_49_32_25); // Wizard Tower - level 1
-    // case 1_51_61_16_32 : p_telejump(2_51_61_18_32); // Rogues Castle - level 1
-    // case 2_51_61_16_32 : p_telejump(3_51_61_17_32); // Rogues Castle - level 2
+    case 1_48_49_31_23 : p_telejump(2_48_49_32_25); // Wizard Tower - level 1
+    case 1_51_61_16_32 : p_telejump(2_51_61_18_32); // Rogues Castle - level 1
+    case 2_51_61_16_32 : p_telejump(3_51_61_17_32); // Rogues Castle - level 2
     case 1_50_54_58_31 : p_telejump(2_50_54_58_30); // Varrock church
     case 2_50_54_58_31 : p_telejump(3_50_54_58_30); // Varrock church
     case default : @unhandled_stairs(loc_coord);
@@ -270,9 +270,9 @@ switch_coord (loc_coord) {
     case 1_50_50_4_29 : p_telejump(0_50_50_5_28); // Lumbridge Castle North - level 1
     case 1_40_50_12_40 : p_telejump(0_40_50_12_42); // Clock Tower - level 1
     case 1_50_54_2_41 : p_telejump(0_50_54_3_40); // Varrock Palace Northwest Tower - level 1
-    // case 1_48_49_31_23 : p_telejump(0_48_49_33_24); // Wizard Tower - level 1
-    // case 1_51_61_16_32 : p_telejump(0_51_61_18_32); // Rogues Castle - level 1
-    // case 2_51_61_16_32 : p_telejump(1_51_61_18_32); // Rogues Castle - level 2
+    case 1_48_49_31_23 : p_telejump(0_48_49_33_24); // Wizard Tower - level 1
+    case 1_51_61_16_32 : p_telejump(0_51_61_18_32); // Rogues Castle - level 1
+    case 2_51_61_16_32 : p_telejump(1_51_61_18_32); // Rogues Castle - level 2
     case 1_50_54_58_31 : p_telejump(0_50_54_58_30); // Varrock church
     case 2_50_54_58_31 : p_telejump(1_50_54_58_30); // Varrock church
     case default : @unhandled_stairs(loc_coord);
@@ -294,13 +294,13 @@ switch_coord (loc_coord) {
     case 1_47_54_3_59 : p_telejump(0_47_54_3_58); // Black Knight's Fortress - level 1
     case 3_47_54_21_51 : p_telejump(2_47_54_20_51); // Black Knight's Fortress - level 3
     case 3_47_54_2_60 : p_telejump(2_47_54_2_59); // Black Knight's Fortress - level 3
-    // case 3_46_52_13_11 : p_telejump(2_46_52_13_12); // White Knight's Castle - level 3
-    // case 2_46_52_16_11 : p_telejump(1_46_52_16_12); // White Knight's Castle - level 2
-    // case 1_46_52_11_10 : p_telejump(0_46_52_11_9); // White Knight's Castle - level 1
+    case 3_46_52_13_11 : p_telejump(2_46_52_13_12); // White Knight's Castle - level 3
+    case 2_46_52_16_11 : p_telejump(1_46_52_16_12); // White Knight's Castle - level 2
+    case 1_46_52_11_10 : p_telejump(0_46_52_11_9); // White Knight's Castle - level 1
     case 2_48_52_33_35 : p_telejump(1_48_52_34_35); // Draynor Manor - level 2
     case 2_50_54_3_41 : p_telejump(1_50_54_3_40); // Varrock Palace Northwest Tower - level 2
     case 1_50_54_19_40 : p_telejump(0_50_54_20_40); // Varrock Palace North East - level 1
-    // case 2_48_49_32_24 : p_telejump(1_48_49_33_24); // Wizard Tower - level 2
+    case 2_48_49_32_24 : p_telejump(1_48_49_33_24); // Wizard Tower - level 2
     case 1_40_51_13_61 : p_telejump(0_40_51_13_60); // Ardy, The Flying Horse - level 1
     case 1_40_51_6_58 : p_telejump(0_40_51_5_58); // Ardy, house connected to Flying Horse - level 1
     case 1_39_51_35_30 : p_telejump(0_39_51_34_30); // West Ardy Church - level 1
@@ -310,7 +310,7 @@ switch_coord (loc_coord) {
     case 1_45_54_16_57 : p_telejump(0_45_54_16_56); // Heroes' Guild - level 1
     case 1_47_52_27_35 : p_telejump(0_47_52_28_35); // Falador house
     case 1_47_52_41_25 : p_telejump(0_47_52_41_26); // Falador house
-    // case 3_51_61_16_32 : p_telejump(2_51_61_18_32); // Rogues Castle
+    case 3_51_61_16_32 : p_telejump(2_51_61_18_32); // Rogues Castle
     case 1_46_52_29_57 : p_telejump(0_46_52_28_56); // Falador shield shop
     case 1_47_52_3_10 : p_telejump(0_47_52_2_10); // Falador dwarf place
     case 1_49_53_8_56 : p_telejump(0_49_53_7_56); // Cooking guild
@@ -319,8 +319,8 @@ switch_coord (loc_coord) {
     case 1_47_50_16_61 : p_telejump(0_47_50_17_61); // Port Sarim
     case 1_47_50_18_48 : p_telejump(0_47_50_17_48); // Port Sarim
     case 1_51_49_49_49 : p_telejump(0_51_49_49_48); // Al Kharid General Store
-    // case 1_45_52_28_7 : p_telejump(0_45_52_28_8); // Dark Wizard's Tower - level 1
-    // case 2_45_52_28_7 : p_telejump(1_45_52_28_8); // Dark Wizard's Tower - level 2
+    case 1_45_52_28_7 : p_telejump(0_45_52_28_8); // Dark Wizard's Tower - level 1
+    case 2_45_52_28_7 : p_telejump(1_45_52_28_8); // Dark Wizard's Tower - level 2
     case 1_45_51_52_18 : p_telejump(0_45_51_52_17); // Crafting Guild - level 1
     case 1_39_53_22_38 : p_telejump(0_39_53_23_38); // Hadley house - level 1
     case 1_43_73_10_9 : p_telejump(0_43_73_11_9); // Grail castle (quest) - level 1
