@@ -138,9 +138,9 @@ if (random(^dropammo_chance) ! 0) {
 inv_del(worn, $ammo, 1);
 
 [proc,ranged_dropammo_holywater](coord $coord, int $delay)
-//if (~in_duel_arena(coord) = true) {
-//    return;
-//}
+if (~in_duel_arena(coord) = true) {
+    return;
+}
 inv_del(worn, holy_water, 1);
 if (inv_freespace(worn) > 0) {
     inv_add(worn, smashed_glass, 1);
