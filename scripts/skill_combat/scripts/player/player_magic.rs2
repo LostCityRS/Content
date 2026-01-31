@@ -28,41 +28,41 @@ if (%tutorial < ^tutorial_complete) {
 [apnpct,magic:earth_strike] ~pvm_default_spell(^earth_strike);
 [apnpct,magic:fire_strike] ~pvm_default_spell(^fire_strike);
 [apnpct,magic:wind_bolt] ~pvm_default_spell(^wind_bolt);
-// [apnpct,magic:water_bolt] ~pvm_default_spell(^water_bolt);
-// [apnpct,magic:earth_bolt] ~pvm_default_spell(^earth_bolt);
-// [apnpct,magic:fire_bolt] ~pvm_default_spell(^fire_bolt);
-// [apnpct,magic:wind_blast] ~pvm_default_spell(^wind_blast);
-// [apnpct,magic:water_blast] ~pvm_default_spell(^water_blast);
-// [apnpct,magic:earth_blast] ~pvm_default_spell(^earth_blast);
+[apnpct,magic:water_bolt] ~pvm_default_spell(^water_bolt);
+[apnpct,magic:earth_bolt] ~pvm_default_spell(^earth_bolt);
+[apnpct,magic:fire_bolt] ~pvm_default_spell(^fire_bolt);
+[apnpct,magic:wind_blast] ~pvm_default_spell(^wind_blast);
+[apnpct,magic:water_blast] ~pvm_default_spell(^water_blast);
+[apnpct,magic:earth_blast] ~pvm_default_spell(^earth_blast);
 [apnpct,magic:fire_blast] ~pvm_default_spell(^fire_blast);
-// [apnpct,magic:wind_wave] ~pvm_default_spell(^wind_wave);
-// [apnpct,magic:water_wave] ~pvm_default_spell(^water_wave);
-// [apnpct,magic:earth_wave] ~pvm_default_spell(^earth_wave);
-// [apnpct,magic:fire_wave] ~pvm_default_spell(^fire_wave);
-// [apnpct,magic:curse] 
-// if (npc_type = ungadulu_good) {
-//    ~legends_spell_usage(^curse);
-// } else {
-//    ~pvm_default_spell(^curse);
-// }
-// [apnpct,magic:weaken]
-// if (npc_type = ungadulu_good) {
-//    ~legends_spell_usage(^weaken);
-// } else {
-//    ~pvm_default_spell(^weaken);
-// }
-// [apnpct,magic:confuse]
-// if (npc_type = ungadulu_good) {
-//    ~legends_spell_usage(^confuse);
-// } else {
-//    ~pvm_default_spell(^confuse);
-// }
-// [apnpct,magic:bind] ~pvm_default_spell(^bind);
-// [apnpct,magic:snare] ~pvm_default_spell(^snare);
-// [apnpct,magic:entangle] ~pvm_default_spell(^entangle);
-// [apnpct,magic:vulnerability] ~pvm_default_spell(^vulnerability);
-// [apnpct,magic:enfeeble] ~pvm_default_spell(^enfeeble);
-// [apnpct,magic:stun] ~pvm_default_spell(^stun);
+[apnpct,magic:wind_wave] ~pvm_default_spell(^wind_wave);
+[apnpct,magic:water_wave] ~pvm_default_spell(^water_wave);
+[apnpct,magic:earth_wave] ~pvm_default_spell(^earth_wave);
+[apnpct,magic:fire_wave] ~pvm_default_spell(^fire_wave);
+[apnpct,magic:curse] 
+if (npc_type = ungadulu_good) {
+   ~legends_spell_usage(^curse);
+} else {
+   ~pvm_default_spell(^curse);
+}
+[apnpct,magic:weaken]
+if (npc_type = ungadulu_good) {
+   ~legends_spell_usage(^weaken);
+} else {
+   ~pvm_default_spell(^weaken);
+}
+[apnpct,magic:confuse]
+if (npc_type = ungadulu_good) {
+   ~legends_spell_usage(^confuse);
+} else {
+   ~pvm_default_spell(^confuse);
+}
+[apnpct,magic:bind] ~pvm_default_spell(^bind);
+[apnpct,magic:snare] ~pvm_default_spell(^snare);
+[apnpct,magic:entangle] ~pvm_default_spell(^entangle);
+[apnpct,magic:vulnerability] ~pvm_default_spell(^vulnerability);
+[apnpct,magic:enfeeble] ~pvm_default_spell(^enfeeble);
+[apnpct,magic:stun] ~pvm_default_spell(^stun);
 
 [apnpct,magic:magic_dart] ~pvm_default_spell(^magic_dart);
 
@@ -210,18 +210,18 @@ if(npc_type = salarin_the_twisted) {
     }
 }
 else if (npc_type = chronozon) {
-    //def_int $spell = db_getfield($spell_data, magic_spell_table:spell, 0); TODO 377: enable with family crest
-    //~chronozon_spell($spell);
+    def_int $spell = db_getfield($spell_data, magic_spell_table:spell, 0);
+    ~chronozon_spell($spell);
 }
 // if maxhit is defined then damage npc
 ~npc_retaliate(calc($duration / 30 + 1)); // delayed an extra tick in osrs
 if ($maxhit ! null) {
     // damage npc
-    // mes("Duration: <tostring($duration)>, Duration (ticks): <tostring(calc($duration / 30))>");
+    mes("Duration: <tostring($duration)>, Duration (ticks): <tostring(calc($duration / 30))>");
     npc_queue(2, $damage, calc($duration / 30 + 1)); // delayed an extra tick in osrs
     // npcs didnt have a flinch anim until sept 20 2006. https://youtu.be/UFgMqvI4to8
     // https://oldschool.runescape.wiki/w/Update:Slug_Menace
-    // npc_anim(npc_param(defend_anim), $duration); // delay npc this tick
+    npc_anim(npc_param(defend_anim), $duration); // delay npc this tick
     // npc sound
     if (npc_param(defend_sound) ! null) {
         sound_synth(npc_param(defend_sound), 0, $duration); // delay 1 client tick for the hit queue
