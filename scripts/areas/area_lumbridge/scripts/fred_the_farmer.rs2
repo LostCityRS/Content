@@ -196,7 +196,7 @@ if(inv_total(inv, ball_of_wool) > 0) {
 [label,fred_give_wool]
 if_close;
 def_int $balls_left = calc(21 - %sheep);
-def_int $balls = min(inv_total(inv, ball_of_wool), balls_left);
+def_int $balls = min(inv_total(inv, ball_of_wool), $balls_left);
 inv_del(inv, ball_of_wool, $balls);
 
 %sheep = calc(%sheep + $balls);
