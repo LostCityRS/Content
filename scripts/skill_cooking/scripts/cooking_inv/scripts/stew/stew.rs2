@@ -3,7 +3,7 @@ switch_obj (last_useitem) {
     case bowl_water : @make_incomplete_stew(last_slot);
     case stew2 : @make_uncooked_stew(last_slot, last_useslot);
     case bowl_empty : @no_water_stew_message;
-    // case raw_chompy : @quest_chompybird_add_ingredients_to_chompy_message;
+    case raw_chompy : @quest_chompybird_add_ingredients_to_chompy_message;
     case half_baked_bowl : @add_bowl_ingredient(last_item);
     case default : ~displaymessage(^dm_default);
 };
