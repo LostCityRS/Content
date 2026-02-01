@@ -154,7 +154,9 @@ mes("You close the chest.");
 if(%totemquest >= ^totem_crate_marked) {
     ~mesbox("To Lord Handelmort, Handelmort Mansion, Ardougne.");
 }
-~mesbox("Senior Patents Clerk, Chamber of Invention, The Wizards' Tower, Misthalin. The crate is securely fastened shut and ready for delivery.");
+else{
+    ~mesbox("Senior Patents Clerk, Chamber of Invention, The Wizards' Tower, Misthalin. The crate is securely fastened shut and ready for delivery.");
+}
 
 [queue,totem_quest_complete]
 %totemquest = ^totem_complete;
@@ -162,3 +164,4 @@ session_log(^log_adventure, "Quest complete: Tribal Totem");
 ~send_quest_complete(questlist:totem, tribal_totem, 250, ^totem_questpoints, "You have completed the\\nTribal Totem Quest!", "1,1775 Thieving XP|5 Swordfish");
 stat_advance(thieving, 17750);
 inv_add(inv, swordfish, 5);
+
