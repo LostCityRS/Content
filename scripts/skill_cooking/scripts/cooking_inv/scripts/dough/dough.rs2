@@ -1,10 +1,10 @@
 [opheldu,pot_flour]
-// if(oc_category(last_useitem) = murder_proofobj) {
-//     @flour_proofobj(last_useitem);
-// }
+if(oc_category(last_useitem) = murder_proofobj) {
+    @flour_proofobj(last_useitem);
+}
 switch_obj (last_useitem) {
     case cake_tin : @make_uncooked_cake;
-    // case swamp_tar : @make_swamp_paste;
+    case swamp_tar : @make_swamp_paste;
     case default :
         if (oc_param(last_useitem, is_water_source) = ^true) {
             @dough_interface(last_useitem);
