@@ -58,7 +58,7 @@ if(inv_freespace(inv) = 0) {
     return;
 }
 // https://youtu.be/ycZSArj7FPE?si=1xWhMae0wYMdxJxx&t=440, osrs changed it to delay -> give branch, used to be the opposite
-anim(struct_param(oc_param($axe, woodcutting_struct), skill_anim), 0);
+anim(oc_param($axe, woodcutting_anim), 0);
 sound_synth(woodchop_4,0,10);
 mes("You cut a branch from the Dramen tree.");
 if(%zanaris = ^zanaris_spirit_defeated) { // probably for quest journal

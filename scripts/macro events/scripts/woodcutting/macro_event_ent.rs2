@@ -77,7 +77,7 @@ if ($axe = null) {
     return;
 }
 
-anim(struct_param(oc_param($axe, woodcutting_struct), skill_anim), 0);
+anim(oc_param($axe, woodcutting_anim), 0);
 sound_synth(woodchop, 0, 0);
 mes("You swing your axe at the tree.");
 if (%action_delay = map_clock) {
@@ -116,7 +116,7 @@ if (inv_freespace(inv) < 1) {
 if (%action_delay < map_clock) {
     %action_delay = calc(map_clock + 3);
 } else if (%action_delay = map_clock) {
-    anim(struct_param(oc_param($axe, woodcutting_struct), skill_anim), 0);
+    anim(oc_param($axe, woodcutting_anim), 0);
     @macro_event_damage_axe($axe);
 }
 p_opnpc(3);
