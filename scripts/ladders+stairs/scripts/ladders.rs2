@@ -197,3 +197,11 @@ if ($option = 1) {
 
 [label,unhandled_ladder](coord $loccoord)
 mes("Unhandled ladder: <~coord_tostring($loccoord)>");
+
+[oploc1,loc_11727]
+p_arrivedelay;
+~climb_ladder(movecoord(coord(), 0, 1, 0), true);
+
+[oploc1,loc_11728]
+p_arrivedelay;
+~climb_ladder(movecoord(coord(), 0, -1, 0), false);
