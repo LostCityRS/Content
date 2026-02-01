@@ -41,7 +41,7 @@ if (p_finduid(uid) = true) {
     }
     if (%tutorial = ^tutorial_open_player_controls) {
         %tutorial = ^tutorial_has_toggled_on_run;
-        //~set_tutorial_progress; TODO: RE-ENABLE WITH TUTORIAL 
+        ~set_tutorial_progress;
     }
     p_run(^player_run_on);
     return;
