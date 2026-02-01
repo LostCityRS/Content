@@ -30,7 +30,7 @@ switch_int(oc_param(last_useitem, gnome_cooking_type)) {
 }
 switch_obj (last_useitem) {
     case cake : @make_chocolate_cake(last_slot);
-    // case pestle_and_mortar : ~attempt_grind_ingredient(last_useslot, last_slot);
+    case pestle_and_mortar : ~attempt_grind_ingredient(last_useslot, last_slot);
     case half_baked_bowl : @add_bowl_ingredient(last_item);
     case half_baked_crunchy : @add_crunchies_ingredient(last_item);
     case default : ~displaymessage(^dm_default);
@@ -50,7 +50,7 @@ switch_obj (last_useitem) {
 [opheldu,snape_grass]
 switch_obj (last_useitem) {
     case chocolaty_milk : @make_hangover_cure(last_slot);
-    // case default : ~attempt_brew_potion(last_useslot, last_slot);
+    case default : ~attempt_brew_potion(last_useslot, last_slot);
 }
 
 [opheldu,cake]
