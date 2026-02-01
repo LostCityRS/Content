@@ -1,4 +1,4 @@
-[opnpc1,juliet]
+[opnpc1,juliet_multi_visible]
 switch_int (%rjquest) {
     case ^romeojuliet_not_started : @juliet_start;
     case ^romeojuliet_spoken_romeo : @juliet_from_romeo;
@@ -107,3 +107,4 @@ inv_del(inv, cadava, 1);
 ~chatnpc("<p,angry>That useless fool never showed up.");
 ~chatnpc("<p,angry>And all I got was indigestion.|I am done with men like him.");
 ~chatnpc("<p,angry>Now go away before I call my father!");
+
