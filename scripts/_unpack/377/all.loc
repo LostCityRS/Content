@@ -25,6 +25,7 @@ desc=The door is closed.
 model=door
 active=yes
 op1=Open
+param=next_loc_stage,elenagateopen
 
 [mcannondoor1]
 name=Door
@@ -36,6 +37,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,elenagateopen
 
 [broken_multicannon]
 name=Broken multicannon
@@ -219,6 +221,7 @@ model=clockpole_red
 recol1s=152
 recol1d=30753
 active=yes
+category=incorrect_clock_spindle
 
 [clockpole_black]
 name=Clock spindle
@@ -227,6 +230,7 @@ model=clockpole_red
 recol1s=152
 recol1d=0
 active=yes
+category=incorrect_clock_spindle
 
 [clockpole_white]
 name=Clock spindle
@@ -235,12 +239,14 @@ model=clockpole_red
 recol1s=152
 recol1d=32767
 active=yes
+category=incorrect_clock_spindle
 
 [clockpole_blue]
 name=Clock spindle
 desc=Seems to be some kind of clock part.
 model=clockpole_red
 active=yes
+category=incorrect_clock_spindle
 
 [brokeclockpole_red]
 name=Clock spindle
@@ -369,6 +375,7 @@ desc=A wooden gate.
 model=fishinggateclosedl
 active=yes
 op1=Open
+category=hemenster_gate
 
 [fishinggateclosedr]
 name=Gate
@@ -377,6 +384,7 @@ model=fishinggateclosedl
 active=yes
 mirror=yes
 op1=Open
+category=hemenster_gate
 
 [inacfishinggateclosedl]
 name=Gate
@@ -405,6 +413,7 @@ desc=It's locked.
 model=mcgruborgatel
 op1=Open
 sharelight=yes
+category=mcgrubor_gate
 
 [mcgruborgater]
 name=Gate
@@ -413,6 +422,7 @@ model=mcgruborgatel
 op1=Open
 mirror=yes
 sharelight=yes
+category=mcgrubor_gate
 
 [red_worm_vine]
 name=Vine
@@ -427,6 +437,7 @@ hillskew=yes
 sharelight=yes
 blockwalk=no
 blockrange=no
+category=red_vine
 
 [jewellersdoor]
 name=Door
@@ -540,6 +551,7 @@ desc=Sturdy looking door.
 model=lefayeunopenabledoorl
 op1=Open
 op2=Knock-at
+category=keep_lefaye_door
 
 [lefayeunopenabledoorr]
 name=Large door
@@ -548,6 +560,7 @@ model=lefayeunopenabledoorl
 op1=Open
 op2=Knock-at
 mirror=yes
+category=keep_lefaye_door
 
 [arena_guard_chest_shut]
 name=Chest
@@ -651,6 +664,8 @@ model=ikov_mendedleverdoorl
 op1=Open
 active=yes
 blockrange=no
+category=double_door_open_and_close_left
+param=next_loc_stage,loc_1562
 
 [ikov_mendedleverdoorr]
 name=Gate
@@ -660,6 +675,8 @@ op1=Open
 mirror=yes
 active=yes
 blockrange=no
+category=double_door_open_and_close_right
+param=next_loc_stage,loc_1563
 
 [ikov_traplever]
 name=Lever
@@ -700,6 +717,8 @@ model=ikov_mendedleverdoorl
 op1=Open
 active=yes
 blockrange=no
+category=double_door_open_and_close_left
+param=next_loc_stage,loc_1562
 
 [ikov_dooroffearr]
 name=Gate
@@ -709,6 +728,8 @@ op1=Open
 mirror=yes
 active=yes
 blockrange=no
+category=double_door_open_and_close_right
+param=next_loc_stage,loc_1563
 
 [ikov_shinykeydoor]
 name=Door
@@ -830,6 +851,8 @@ blockwalk=no
 blockrange=no
 ambient=60
 op1=Burst
+category=party_balloon
+param=next_loc_stage,balloon_yellow_pop
 
 [balloon_red]
 name=Party Balloon
@@ -842,6 +865,8 @@ blockwalk=no
 blockrange=no
 ambient=60
 op1=Burst
+category=party_balloon
+param=next_loc_stage,balloon_red_pop
 
 [balloon_blue]
 name=Party Balloon
@@ -854,6 +879,8 @@ blockwalk=no
 blockrange=no
 ambient=60
 op1=Burst
+category=party_balloon
+param=next_loc_stage,balloon_blue_pop
 
 [balloon_green]
 name=Party Balloon
@@ -866,6 +893,8 @@ blockwalk=no
 blockrange=no
 ambient=60
 op1=Burst
+category=party_balloon
+param=next_loc_stage,balloon_green_pop
 
 [balloon_purple]
 name=Party Balloon
@@ -878,6 +907,8 @@ blockwalk=no
 blockrange=no
 ambient=60
 op1=Burst
+category=party_balloon
+param=next_loc_stage,balloon_purple_pop
 
 [balloon_white]
 name=Party Balloon
@@ -890,6 +921,8 @@ blockwalk=no
 blockrange=no
 ambient=60
 op1=Burst
+category=party_balloon
+param=next_loc_stage,balloon_white_pop
 
 [balloon2]
 name=Party Balloon
@@ -900,6 +933,8 @@ blockwalk=no
 blockrange=no
 ambient=60
 op1=Burst
+category=party_balloon
+param=next_loc_stage,balloon2_pop
 
 [balloon3]
 name=Party Balloon
@@ -910,6 +945,8 @@ blockwalk=no
 blockrange=no
 ambient=60
 op1=Burst
+category=party_balloon
+param=next_loc_stage,balloon3_pop
 
 [balloon_yellow_pop]
 name=Party Balloon
@@ -1037,6 +1074,8 @@ desc=A large double door.
 model=haunteddoorl
 resizey=170
 op1=Open
+category=double_door_open_and_close_left
+param=next_loc_stage,opencastledoubledoorl
 
 [haunteddoorr]
 name=Large door
@@ -1045,6 +1084,8 @@ model=haunteddoorl
 resizey=170
 op1=Open
 mirror=yes
+category=double_door_open_and_close_right
+param=next_loc_stage,doubledoorhingel
 
 [hauntedbackdoor]
 name=Door
@@ -1075,90 +1116,111 @@ active=yes
 multivar=ernestdoor_1to2
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
+category=haunted_door
 
 [2to3]
 active=yes
 multivar=ernestdoor_2to3
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
+category=haunted_door
 
 [4to5]
 active=yes
 multivar=ernestdoor_4to5
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
+category=haunted_door
 
 [5to6]
 active=yes
 multivar=ernestdoor_5to6
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
+category=haunted_door
 
 [8to9]
 active=yes
 multivar=ernestdoor_8to9
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
+category=haunted_door
 
 [2to5]
 active=yes
 multivar=ernestdoor_2to5
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
+category=haunted_door
 
 [3to6]
 active=yes
 multivar=ernestdoor_3to6
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
+category=haunted_door
 
 [4to7]
 active=yes
 multivar=ernestdoor_4to7
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
+category=haunted_door
 
 [5to8]
 active=yes
 multivar=ernestdoor_5to8
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
+category=haunted_door
 
 [levera]
 active=yes
 multivar=ernestlever_a
 multiloc=0,levera_up
 multiloc=1,levera_down
+category=haunted_lever
+param=lever_index,0
 
 [leverb]
 active=yes
 multivar=ernestlever_b
 multiloc=0,leverb_up
 multiloc=1,leverb_down
+category=haunted_lever
+param=lever_index,1
 
 [leverc]
 active=yes
 multivar=ernestlever_c
 multiloc=0,leverc_up
 multiloc=1,leverc_down
+category=haunted_lever
+param=lever_index,2
 
 [leverd]
 active=yes
 multivar=ernestlever_d
 multiloc=0,leverd_up
 multiloc=1,leverd_down
+category=haunted_lever
+param=lever_index,3
 
 [levere]
 active=yes
 multivar=ernestlever_e
 multiloc=0,levere_up
 multiloc=1,levere_down
+category=haunted_lever
+param=lever_index,4
 
 [leverf]
 active=yes
 multivar=ernestlever_f
 multiloc=0,leverf_up
 multiloc=1,leverf_down
+category=haunted_lever
+param=lever_index,5
 
 [hauntedcompostheap]
 name=Compost heap
@@ -1186,6 +1248,7 @@ retex1s=wall
 retex1d=planks
 op1=Squeeze-through
 width=2
+param=next_loc_stage,deadtree1_stump
 
 [hauntedbookcasel]
 name=Bookcase
@@ -1205,6 +1268,8 @@ recol5d=6208
 retex6s=wall
 retex6d=mossybricks
 op1=Search
+category=manor_bookcase
+param=end_coord,0_48_52_24_30
 
 [hauntedbookcaser]
 name=Bookcase
@@ -1224,6 +1289,8 @@ recol5d=6208
 retex6s=wall
 retex6d=mossybricks
 op1=Search
+category=manor_bookcase
+param=end_coord,0_48_52_24_31
 
 [hauntedbookcaseopen]
 name=Bookcase
@@ -1290,6 +1357,7 @@ desc=A wooden gate.
 model=plaguesheep_gatel
 active=yes
 op1=Open
+category=sheepherder_gate
 
 [plaguesheep_gater]
 name=Gate
@@ -1298,6 +1366,7 @@ model=plaguesheep_gatel
 active=yes
 mirror=yes
 op1=Open
+category=sheepherder_gate
 
 [decking_twister]
 model=decking_twister
@@ -2785,6 +2854,8 @@ desc=These open and close!
 model=drawers1
 op1=Open
 forceapproach=east
+category=drawer
+param=drawer_other,drawers1open
 
 [drawers1open]
 name=Drawers
@@ -2793,6 +2864,8 @@ model=drawers1open
 op2=Search
 op3=Shut
 forceapproach=east
+category=empty_drawer
+param=drawer_other,drawers1
 
 [drawers2]
 name=Drawers
@@ -2800,6 +2873,8 @@ desc=These open and close!
 model=drawers2
 op1=Open
 forceapproach=east
+category=drawer
+param=drawer_other,drawers2open
 
 [drawers2open]
 name=Drawers
@@ -2808,6 +2883,8 @@ model=drawers2open
 op2=Search
 op3=Shut
 forceapproach=east
+category=empty_drawer
+param=drawer_other,drawers2
 
 [drawers3]
 name=Drawers
@@ -2815,6 +2892,8 @@ desc=These open and close!
 model=drawers3
 op1=Open
 forceapproach=east
+category=drawer
+param=drawer_other,drawers3open
 
 [drawers3open]
 name=Drawers
@@ -2823,18 +2902,22 @@ model=drawers3open
 op2=Search
 op3=Shut
 forceapproach=east
+category=empty_drawer
+param=drawer_other,drawers3
 
 [crate2]
 name=Crate
 desc=A wooden crate for storage.
 model=crate
 op1=Search
+category=empty_crate
 
 [crate3]
 name=Crate
 desc=A wooden crate for storage.
 model=crate3
 op1=Search
+category=empty_crates
 
 [crate_old]
 name=Crate
@@ -2845,6 +2928,7 @@ retex1d=wood2
 retex2s=elfwood
 retex2d=wood2
 op1=Search
+category=empty_crate
 
 [crate2_old]
 name=Crate
@@ -2855,6 +2939,7 @@ retex1d=wood2
 retex2s=elfwood
 retex2d=wood2
 op1=Search
+category=empty_crate
 
 [crate3_old]
 name=Crate
@@ -2865,24 +2950,28 @@ retex1d=wood2
 retex2s=elfwood
 retex2d=wood2
 op1=Search
+category=empty_crate
 
 [boxes]
 name=Boxes
 desc=A pile of boxes for storage.
 model=boxes
 op1=Search
+category=empty_boxes
 
 [boxes2]
 name=Boxes
 desc=A pile of boxes for storage.
 model=boxes
 op1=Search
+category=empty_boxes
 
 [boxes3]
 name=Boxes
 desc=A pile of boxes for storage.
 model=boxes
 op1=Search
+category=empty_boxes
 
 [barrel]
 name=Barrel
@@ -2911,6 +3000,7 @@ name=Crate
 desc=Useful for transportation of delicate items.
 model=merlincrate_empty
 op1=Search
+category=empty_crate
 
 [cupboard]
 name=Cupboard
@@ -2919,6 +3009,8 @@ model=cupboard
 length=2
 forceapproach=east
 op1=Open
+category=cupboard_closed
+param=cupboard_other,cupboardopen
 
 [cupboardhigh]
 name=Cupboard
@@ -2927,6 +3019,8 @@ model=cupboardhigh
 length=2
 forceapproach=east
 op1=Open
+category=cupboard_closed
+param=cupboard_other,cupboardopen_high
 
 [cupboard_big]
 name=Large cupboard
@@ -2936,6 +3030,8 @@ width=2
 length=3
 forceapproach=east
 op1=Open
+category=cupboard_closed
+param=cupboard_other,cupboardopen_big
 
 [cupboardopen]
 name=Open Cupboard
@@ -2945,6 +3041,8 @@ length=2
 op2=Search
 op3=Shut
 forceapproach=east
+category=cupboard_opened
+param=cupboard_other,cupboard
 
 [cupboardopen_high]
 name=Cupboard
@@ -2954,6 +3052,8 @@ length=2
 op2=Search
 op3=Shut
 forceapproach=east
+category=cupboard_opened
+param=cupboard_other,cupboardhigh
 
 [cupboardopen_big]
 name=Large open cupboard
@@ -2964,6 +3064,8 @@ length=3
 op2=Search
 op3=Close
 forceapproach=east
+category=cupboard_opened
+param=cupboard_other,cupboard_big
 
 [dresser]
 name=Dresser
@@ -2995,6 +3097,7 @@ op1=Open
 forceapproach=north
 category=chest_closed
 param=chest_other,chestopen
+param=chest_other,chestopengold
 
 [shuttwistedchest]
 name=Closed chest
@@ -3032,6 +3135,7 @@ model=bookcase
 length=2
 op1=Search
 forceapproach=east
+category=bookcase
 
 [bookcase2]
 name=Bookcase
@@ -3039,6 +3143,7 @@ desc=A good source of books!
 model=bookcase2
 op1=Search
 forceapproach=east
+category=bookcase
 
 [desertbasket_closed]
 name=Basket
@@ -3118,6 +3223,7 @@ model=bookcase_bamboo
 length=2
 op1=Search
 forceapproach=east
+category=bookcase
 
 [shelves_bamboo]
 name=Bookcase
@@ -3125,6 +3231,7 @@ desc=Bamboo storage!
 model=shelves_bamboo
 length=2
 op1=Search
+category=bookcase
 
 [pot_bamboo]
 name=Pot
@@ -4731,6 +4838,7 @@ desc=Banking transactions are processed here.
 model=banktable
 width=2
 blockrange=no
+category=unusable_table
 
 [banktable2]
 name=Bank table
@@ -4738,12 +4846,14 @@ desc=Banking transactions are recorded here.
 model=banktable2
 width=2
 blockrange=no
+category=unusable_table
 
 [bathtable]
 name=Bathroom table
 desc=Contains washing items.
 model=bathtable
 blockrange=no
+category=unusable_table
 
 [bigroundtable]
 name=Table
@@ -4752,6 +4862,7 @@ model=bigroundtable
 width=2
 length=2
 blockrange=no
+category=usable_table
 
 [bigtable]
 name=Table
@@ -4759,6 +4870,7 @@ desc=A nice sturdy looking table.
 model=bigtable
 width=2
 blockrange=no
+category=usable_table
 
 [bigtable2]
 name=Table
@@ -4770,6 +4882,7 @@ retex2s=elfwood
 retex2d=wood2
 width=2
 blockrange=no
+category=usable_table
 
 [longtable]
 name=Table
@@ -4777,6 +4890,7 @@ desc=A banquet could be eaten from this.
 model=longtable
 width=4
 blockrange=no
+category=unusable_table
 
 [longtable_wide]
 name=Table
@@ -4785,24 +4899,28 @@ model=longtable_wide
 width=4
 length=2
 blockrange=no
+category=unusable_table
 
 [roundtable]
 name=Table
 desc=Useful for putting things on.
 model=roundtable
 blockrange=no
+category=usable_table
 
 [smashedtable]
 name=Table
 desc=At one time it was for putting things on.
 model=smashedtable
 blockrange=no
+category=unusable_table
 
 [gnometable]
 name=Table
 desc=The napkins are made from real silk.
 model=gnometable
 blockrange=no
+category=unusable_table
 
 [table2]
 name=Table
@@ -4811,12 +4929,14 @@ model=table2
 length=2
 width=2
 blockrange=no
+category=usable_table
 
 [table]
 name=Table
 desc=Useful for putting things on.
 model=table
 blockrange=no
+category=usable_table
 
 [table3]
 name=Table
@@ -4824,24 +4944,28 @@ desc=Useful for putting things on.
 model=table3
 width=3
 blockrange=no
+category=unusable_table
 
 [table4]
 name=Table
 desc=Useful for putting things on.
 model=table4
 blockrange=no
+category=unusable_table
 
 [table5]
 name=Table
 desc=Useful for putting things on.
 model=table5
 blockrange=no
+category=usable_table
 
 [table_diagonal]
 name=Table
 desc=Useful for putting things on.
 model=table_diagonal
 blockrange=no
+category=usable_table
 
 [clothesequip_table]
 name=Table
@@ -4849,6 +4973,7 @@ desc=Items for making clothes are kept on here.
 model=clothesequip_table
 length=2
 blockrange=no
+category=unusable_table
 
 [studydesk]
 name=Study desk
@@ -4856,6 +4981,7 @@ desc=The ideal place to study.
 model=studydesk
 width=2
 blockrange=no
+category=unusable_table
 
 [workbench]
 name=Workbench
@@ -4863,6 +4989,7 @@ desc=A handy workbench for a handy person.
 model=workbench
 width=2
 blockrange=no
+category=unusable_table
 
 [workbench2]
 name=Workbench
@@ -4874,6 +5001,7 @@ retex2s=bamboo
 retex2d=wood2
 width=2
 blockrange=no
+category=unusable_table
 
 [picnicbench]
 name=Picnic bench
@@ -4882,6 +5010,7 @@ model=picnicbench
 width=2
 length=2
 blockrange=no
+category=unusable_table
 
 [counter]
 name=Counter
@@ -4889,6 +5018,7 @@ desc=Items are for sale here.
 model=counter
 width=2
 blockrange=no
+category=usable_table
 
 [egypt_table]
 name=Table
@@ -4897,6 +5027,7 @@ model=egypt_table
 width=2
 length=2
 blockrange=no
+category=usable_table
 
 [egypt_table_2]
 name=Table
@@ -4904,18 +5035,21 @@ desc=Useful for putting things on.
 model=egypt_table2
 length=2
 blockrange=no
+category=usable_table
 
 [egypt_small_table]
 name=Small table
 desc=Useful for putting things on.
 model=egypt_small_table
 blockrange=no
+category=usable_table
 
 [spookytable]
 name=Table
 desc=A creepy looking table.
 model=spookytable
 blockrange=no
+category=usable_table
 
 [glass_fronted_counter]
 name=Counter
@@ -4923,6 +5057,7 @@ desc=Items are for sale here.
 model=glass_fronted_counter
 width=2
 blockrange=no
+category=usable_table
 
 [chemistry_table1]
 name=Chemistry Table
@@ -4930,6 +5065,7 @@ desc=There are some strange chemicals here.
 model=chemistry_table1
 width=2
 blockrange=no
+category=unusable_table
 
 [chemistry_table2]
 name=Chemistry Table
@@ -4937,12 +5073,14 @@ desc=There are some strange chemicals here.
 model=chemistry_table2
 width=2
 blockrange=no
+category=unusable_table
 
 [table_bamboo]
 name=Table
 desc=Bamboo's a versatile material.
 model=table_bamboo
 blockrange=no
+category=usable_table
 
 [v_bigroundtable]
 name=Table
@@ -4951,6 +5089,7 @@ model=v_bigroundtable
 width=5
 length=5
 blockrange=no
+category=unusable_table
 
 [v_bigroundtable_brown]
 name=Table
@@ -4963,6 +5102,7 @@ recol2d=11729
 width=5
 length=5
 blockrange=no
+category=unusable_table
 
 [bigroundtable_dark]
 name=Table
@@ -4973,6 +5113,7 @@ recol1d=1058
 width=2
 length=2
 blockrange=no
+category=usable_table
 
 [bedsidetable]
 name=Table
@@ -4986,6 +5127,7 @@ blockrange=no
 resizex=40
 resizey=100
 resizez=100
+category=usable_table
 
 [longtable_decrative]
 model=longtable_decrative
@@ -6620,6 +6762,7 @@ desc=Ideal for washing things in.
 model=sink
 length=2
 blockrange=no
+category=watersource
 
 [sink2]
 name=Sink
@@ -6629,6 +6772,7 @@ retex1s=elfwood
 retex1d=wood2
 length=2
 blockrange=no
+category=watersource
 
 [bath]
 name=Bath
@@ -6648,6 +6792,7 @@ name=Well
 desc=No this is not a mirage!
 model=desertwell
 blockrange=no
+category=well
 
 [fountain]
 name=Fountain
@@ -6657,6 +6802,7 @@ width=2
 length=2
 mapscene=8
 blockrange=no
+category=watersource
 
 [goldfountain]
 name=Fountain
@@ -6670,6 +6816,7 @@ width=2
 length=2
 mapscene=8
 blockrange=no
+category=watersource
 
 [manholeclosed]
 name=Manhole
@@ -6705,6 +6852,7 @@ resizey=100
 resizez=90
 blockrange=no
 ambient=20
+category=well
 
 [barpumps]
 name=Bar pumps
@@ -9968,6 +10116,8 @@ width=2
 length=2
 op1=Pick
 blockrange=no
+category=pineapple_plant_wild
+param=next_loc_stage,pineapple_plant_four
 
 [pineapple_plant_four]
 name=Pineapple Plant
@@ -9977,6 +10127,8 @@ width=2
 length=2
 op1=Pick
 blockrange=no
+category=pineapple_plant_wild
+param=next_loc_stage,pineapple_plant_three
 
 [pineapple_plant_three]
 name=Pineapple Plant
@@ -9986,6 +10138,8 @@ width=2
 length=2
 op1=Pick
 blockrange=no
+category=pineapple_plant_wild
+param=next_loc_stage,pineapple_plant_two
 
 [pineapple_plant_two]
 name=Pineapple Plant
@@ -9995,6 +10149,8 @@ width=2
 length=2
 op1=Pick
 blockrange=no
+category=pineapple_plant_wild
+param=next_loc_stage,pineapple_plant_one
 
 [pineapple_plant_one]
 name=Pineapple Plant
@@ -10004,6 +10160,8 @@ width=2
 length=2
 op1=Pick
 blockrange=no
+category=pineapple_plant_wild
+param=next_loc_stage,pineapple_plant_no_pineapples
 
 [pineapple_plant_no_pineapples]
 name=Pineapple Plant
@@ -10013,6 +10171,7 @@ width=2
 length=2
 op1=Pick
 blockrange=no
+param=next_loc_stage,pineapple_plant
 
 [desertroofbeams]
 model=desertroofbeams
@@ -10735,12 +10894,12 @@ sharelight=yes
 mirror=yes
 raiseobject=no
 
-[loc_1522]
+[opencastledoubledoorl]
 model=lefayeunopenabledoorl
 active=no
 raiseobject=no
 
-[loc_1523]
+[doubledoorhingel]
 model=lefayeunopenabledoorl
 mirror=yes
 active=no
@@ -11033,7 +11192,7 @@ active=yes
 op1=Push
 raiseobject=no
 
-[loc_1588]
+[inactivesecretdoor2]
 model=door1
 retex1s=wall
 retex1d=mossybricks
@@ -11132,6 +11291,8 @@ op1=Open
 active=yes
 blockrange=no
 raiseobject=no
+category=gate_main_closed
+param=next_loc_stage,loc_1552
 
 [loc_1599]
 name=Gate
@@ -11142,6 +11303,8 @@ op1=Open
 active=yes
 blockrange=no
 raiseobject=no
+category=gate_outer_closed
+param=next_loc_stage,loc_1556
 
 [loc_1600]
 name=Magic guild door
@@ -11149,6 +11312,9 @@ desc=The doors to the Magic Guild.
 model=lefayeunopenabledoorl
 op1=Open
 raiseobject=no
+category=double_door_open_and_close_left
+param=next_loc_stage,opencastledoubledoorl
+param=open_sound,null
 
 [loc_1601]
 name=Magic guild door
@@ -11157,6 +11323,9 @@ model=lefayeunopenabledoorl
 op1=Open
 mirror=yes
 raiseobject=no
+category=double_door_open_and_close_right
+param=next_loc_stage,doubledoorhingel
+param=open_sound,null
 
 [timberwall]
 model=timberwall
@@ -12393,6 +12562,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,poordoor
 
 [championdoor]
 name=Door
@@ -12404,6 +12574,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,poordoor
 
 [cavern1]
 model=cavern1
@@ -13439,6 +13610,7 @@ length=3
 blockrange=no
 op1=Search
 active=yes
+category=grandtree_root
 
 [largeroot2_gnome]
 name=Root
@@ -13449,6 +13621,7 @@ length=3
 blockrange=no
 op1=Search
 active=yes
+category=grandtree_root
 
 [lograft_waterfall_quest]
 name=Log raft
@@ -13658,6 +13831,7 @@ hillskew=yes
 sharelight=yes
 blockwalk=no
 blockrange=no
+category=red_vine
 
 [baxtorian_chalice_waterfall_quest]
 name=Chalice of Eternity
@@ -13761,6 +13935,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,poordoor
 
 [loc_2026]
 name=Fishing spot
@@ -13818,6 +13993,7 @@ desc=It's closed.
 model=door
 active=yes
 op1=Open
+param=next_loc_stage,guidordooropen
 
 [guidordooropen]
 name=Door
@@ -13946,6 +14122,7 @@ desc=A wooden gate.
 model=plaguesheep_gatel
 op1=Open
 op2=hidden
+category=varrock_gate
 
 [guidorgaterclosed]
 name=Gate
@@ -13953,6 +14130,7 @@ desc=A wooden gate.
 model=plaguesheep_gatel
 op1=Open
 mirror=yes
+category=varrock_gate
 
 [guidorgatelopen]
 model=plaguesheep_gatel
@@ -13967,9 +14145,13 @@ desc=It's a door.
 model=door
 active=yes
 op1=Open
+category=door_open_and_close
+param=next_loc_stage,elenadoor2open
 
 [elenadoor2open]
 model=door
+category=door_open_and_close
+param=next_loc_stage,elenadoor2
 
 [jericoscupboardshut]
 name=Cupboard
@@ -13978,6 +14160,8 @@ model=cupboard
 length=2
 op1=Open
 forceapproach=east
+category=cupboard_closed
+param=cupboard_other,jericoscupboardopen
 
 [jericoscupboardopen]
 name=Cupboard
@@ -13987,6 +14171,8 @@ length=2
 op1=Search
 op2=Close
 forceapproach=east
+category=cupboard_opened
+param=cupboard_other,jericoscupboardshut
 
 [mournerquaters_gatel]
 name=Gate
@@ -13994,6 +14180,8 @@ desc=It's closed.
 model=ikov_mendedleverdoorl
 op1=Open
 mirror=yes
+category=double_door_open_and_close_left
+param=next_loc_stage,mournerquaters_gatelopen
 
 [mournerquaters_gatelopen]
 model=ikov_mendedleverdoorl
@@ -14004,6 +14192,8 @@ desc=It's closed.
 model=ikov_mendedleverdoorl
 op1=Open
 mirror=yes
+category=double_door_open_and_close_right
+param=next_loc_stage,mournerquaters_gateropen
 
 [mournerquaters_gateropen]
 model=ikov_mendedleverdoorl
@@ -14016,6 +14206,8 @@ model=cupboard
 length=2
 op1=Open
 forceapproach=east
+category=cupboard_closed
+param=cupboard_other,bionursescupboardopen
 
 [bionursescupboardopen]
 name=Cupboard
@@ -14025,6 +14217,8 @@ length=2
 op1=Search
 op2=Close
 forceapproach=east
+category=cupboard_opened
+param=cupboard_other,bionursescupboardshut
 
 [mournercrateup]
 name=Crate
@@ -14104,6 +14298,8 @@ length=2
 op1=Search
 mapscene=5
 ambient=25
+category=banana_tree
+param=next_loc_stage,bananatreefour
 
 [bananatreefour]
 name=Banana Tree
@@ -14115,6 +14311,8 @@ length=2
 op1=Search
 mapscene=5
 ambient=25
+category=banana_tree
+param=next_loc_stage,bananatreethree
 
 [bananatreethree]
 name=Banana Tree
@@ -14126,6 +14324,8 @@ length=2
 op1=Search
 mapscene=5
 ambient=25
+category=banana_tree
+param=next_loc_stage,bananatreetwo
 
 [bananatreetwo]
 name=Banana Tree
@@ -14137,6 +14337,8 @@ length=2
 op1=Search
 mapscene=5
 ambient=25
+category=banana_tree
+param=next_loc_stage,bananatreeone
 
 [bananatreeone]
 name=Banana Tree
@@ -14148,6 +14350,8 @@ length=2
 op1=Search
 mapscene=5
 ambient=25
+category=banana_tree
+param=next_loc_stage,bananatreeempty
 
 [bananatreeempty]
 name=Banana Tree
@@ -14180,6 +14384,8 @@ hillskew=yes
 op1=Cross
 active=yes
 sharelight=yes
+category=gangplank_board
+param=board_message,You must speak to the Customs Officer before it will set sail.
 
 [sarimshipplank_off]
 name=Gangplank
@@ -14189,6 +14395,7 @@ hillskew=yes
 op1=Cross
 active=yes
 sharelight=yes
+category=gangplank_disembark
 
 [karamjashipplank_on]
 name=Gangplank
@@ -14197,6 +14404,8 @@ model=arhein_ship_on
 op1=Cross
 active=yes
 sharelight=yes
+category=gangplank_board
+param=board_message,You must speak to one of the sailors before it will set sail.
 
 [karamjashipplank_off]
 name=Gangplank
@@ -14205,6 +14414,7 @@ model=arhein_ship_on
 op1=Cross
 active=yes
 sharelight=yes
+category=gangplank_disembark
 
 [brimhavenshipplank_on]
 name=Gangplank
@@ -14213,6 +14423,8 @@ model=arhein_ship_on
 op1=Cross
 active=yes
 sharelight=yes
+category=gangplank_board
+param=board_message,You must speak to Captain Barnaby before it will set sail.
 
 [brimhavenshipplank_off]
 name=Gangplank
@@ -14221,6 +14433,7 @@ model=arhein_ship_on
 op1=Cross
 active=yes
 sharelight=yes
+category=gangplank_disembark
 
 [ardougneshipplank_on]
 name=Gangplank
@@ -14229,6 +14442,8 @@ model=arhein_ship_on
 op1=Cross
 active=yes
 sharelight=yes
+category=gangplank_board
+param=board_message,You must speak to the Customs Officer before it will set sail.
 
 [ardougneshipplank_off]
 name=Gangplank
@@ -14237,6 +14452,7 @@ model=arhein_ship_on
 op1=Cross
 active=yes
 sharelight=yes
+category=gangplank_disembark
 
 [loc_2089]
 name=Rockery
@@ -14604,6 +14820,7 @@ desc=The door is closed.
 model=door
 active=yes
 op1=Open
+param=next_loc_stage,desertdoor_inactive
 
 [loc_2113]
 name=Ladder
@@ -14627,6 +14844,7 @@ desc=The left hand side of the gate.
 model=ikov_mendedleverdoorl
 op1=Open
 active=yes
+category=outpost_gate
 
 [barbariangater]
 name=Gate
@@ -14635,6 +14853,7 @@ model=ikov_mendedleverdoorl
 op1=Open
 mirror=yes
 active=yes
+category=outpost_gate
 
 [scorpionwall]
 name=Old wall
@@ -14676,6 +14895,8 @@ desc=Looks secure.
 model=ctratgatea
 op1=Open
 active=yes
+category=double_door_open_and_close_right
+param=next_loc_stage,poshdooropen
 
 [cauldrondoor_l]
 name=Prison door
@@ -14684,6 +14905,8 @@ model=ctratgatea
 op1=Open
 mirror=yes
 active=yes
+category=double_door_open_and_close_left
+param=next_loc_stage,prisondoor
 
 [shutghostcoffin]
 name=Coffin
@@ -14730,6 +14953,7 @@ desc=A column of elemental power.
 model=obelisk_earth
 width=3
 length=3
+param=charge_orb_name,earth obelisk
 
 [obelisk_water]
 name=Obelisk of Water
@@ -14737,11 +14961,13 @@ desc=A column of elemental power.
 model=obelisk_water
 width=2
 length=2
+param=charge_orb_name,water obelisk
 
 [obelisk_air]
 name=Obelisk of Air
 desc=A column of elemental power.
 model=obelisk_air
+param=charge_orb_name,air obelisk
 
 [obelisk_fire]
 name=Obelisk of Fire
@@ -14750,6 +14976,7 @@ model=obelisk_fire
 width=2
 length=2
 ambient=50
+param=charge_orb_name,fire obelisk
 
 [lockedguildgatel]
 name=Gate
@@ -14758,6 +14985,7 @@ model=ikov_mendedleverdoorl
 op1=Open
 active=yes
 blockrange=no
+category=magic_guild_dungeon_door
 
 [lockedguildgater]
 name=Gate
@@ -14767,6 +14995,7 @@ op1=Open
 mirror=yes
 active=yes
 blockrange=no
+category=magic_guild_dungeon_door
 
 [wiztowerportal]
 name=Magic Portal
@@ -15172,6 +15401,7 @@ model=ikov_mendedleverdoorl
 active=yes
 op1=Open
 mirror=yes
+category=observatory_dungeon_gate
 
 [keepgate_closed_left]
 name=Keep gate
@@ -15179,6 +15409,7 @@ desc=An old gate for locking up undesirables.
 model=ikov_mendedleverdoorl
 active=yes
 op1=Open
+category=observatory_dungeon_gate
 
 [zodiac1]
 model=zodiac1
@@ -15451,6 +15682,7 @@ desc=Large doors set into the hillside.
 model=cluescroll_tutor_icon
 width=2
 op1=Enter
+category=rashiliyia_tomb_door_opened
 
 [loc_2239]
 name=Hillside entrance
@@ -15459,6 +15691,7 @@ model=cluescroll_tutor_icon
 width=2
 mirror=yes
 op1=Enter
+category=rashiliyia_tomb_door_opened
 
 [hillsideclosedl]
 name=Carved doors
@@ -15467,6 +15700,7 @@ model=hillsideclosedl
 width=2
 op1=Open
 op2=Search
+category=rashiliyia_tomb_door_closed
 
 [hillsideclosedr]
 name=Carved doors
@@ -15476,6 +15710,7 @@ width=2
 mirror=yes
 op1=Open
 op2=Search
+category=rashiliyia_tomb_door_closed
 
 [hillsideexitclosedl]
 name=Tomb exit
@@ -15517,6 +15752,7 @@ recol1s=2048
 recol1d=29562
 op1=Open
 op2=Search
+category=zqtombdoor
 
 [thzq_tombroomr1]
 name=Tomb doors
@@ -15529,6 +15765,7 @@ recol2d=29562
 mirror=yes
 op1=Open
 op2=Search
+category=zqtombdoor
 
 [thzq_tombrooml2]
 name=Tomb doors
@@ -15540,6 +15777,7 @@ recol2s=1024
 recol2d=29562
 op1=Open
 op2=Search
+category=zqtombdoor
 
 [thzq_tombrooml3]
 name=Tomb doors
@@ -15553,6 +15791,7 @@ recol3s=3072
 recol3d=29562
 op1=Open
 op2=Search
+category=zqtombdoor
 
 [thzq_tombroomr2]
 name=Tomb doors
@@ -15567,6 +15806,7 @@ recol3d=29562
 mirror=yes
 op1=Open
 op2=Search
+category=zqtombdoor
 
 [thzq_tombrooml_inac]
 model=thzq_tombrooml1
@@ -15641,6 +15881,7 @@ desc=The gate is closed.
 model=ikov_mendedleverdoorl
 op1=Open
 blockrange=no
+category=shilo_metalgate
 
 [zqshilogateclosedr]
 name=Metal gate
@@ -15649,6 +15890,7 @@ model=ikov_mendedleverdoorl
 op1=Open
 mirror=yes
 blockrange=no
+category=shilo_metalgate
 
 [zqwoodengateclosed_l]
 name=Wooden gate
@@ -15657,6 +15899,7 @@ model=plaguesheep_gatel
 active=yes
 op1=Open
 blockrange=no
+category=shilo_woodengate
 
 [zqwoodengateclosed_r]
 name=Wooden gate
@@ -15666,6 +15909,7 @@ mirror=yes
 active=yes
 op1=Open
 blockrange=no
+category=shilo_woodengate
 
 [zqwoodengateclosed_l_inactive]
 model=plaguesheep_gatel
@@ -15737,6 +15981,8 @@ model=cupboardhigh
 length=2
 op1=Open
 forceapproach=east
+category=cupboard_closed
+param=cupboard_other,vyvincupboardopen
 
 [vyvincupboardopen]
 name=Cupboard
@@ -15746,6 +15992,8 @@ length=2
 op1=Search
 op2=Shut
 forceapproach=east
+category=cupboard_opened
+param=cupboard_other,vyvincupboardshut
 
 [loc_2273]
 name=Rope swing
@@ -16170,7 +16418,6 @@ model=loc_2322
 op1=Swing-on
 length=6
 blockwalk=no
-//TODO for someone who knows - Probably the rope swing to jangerberry island.
 
 [loc_2326]
 name=Branch
@@ -16274,6 +16521,8 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+category=door_open_and_close
+param=next_loc_stage,poordoor
 
 [bkfortressdoor2]
 name=Door
@@ -16285,6 +16534,8 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+category=door_open_and_close
+param=next_loc_stage,desertdoor_inactive
 
 [bkfortressdoor3]
 name=Sturdy door
@@ -16296,6 +16547,8 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+category=door_open_and_close
+param=next_loc_stage,poordoor
 
 [inacbkfortressdoor]
 name=Sturdy door
@@ -16316,6 +16569,8 @@ retex1s=wall
 retex1d=mossybricks
 active=yes
 op1=Push
+category=door_open_and_close
+param=next_loc_stage,inactivesecretdoor2
 
 [witchgrill]
 name=Grill
@@ -16538,6 +16793,7 @@ model=dugupsoil1_upass
 hillskew=yes
 active=yes
 blockwalk=no
+category=digsite_soil
 
 [digdugupsoil2]
 name=Soil
@@ -16546,6 +16802,7 @@ model=dugupsoil2_upass
 hillskew=yes
 active=yes
 blockwalk=no
+category=digsite_soil
 
 [digdugupsoil3]
 name=Soil
@@ -16554,6 +16811,7 @@ model=dugupsoil3_upass
 hillskew=yes
 active=yes
 blockwalk=no
+category=digsite_soil
 
 [campsite_bed]
 name=Campsite bed
@@ -16690,6 +16948,9 @@ model=ikov_mendedleverdoorl
 active=yes
 op1=Open
 op2=Search
+category=double_door_open_and_close_left
+param=next_loc_stage,loc_1562
+param=open_sound,grate_open
 
 [legendsguildgater]
 name=Gate
@@ -16699,6 +16960,9 @@ mirror=yes
 active=yes
 op1=Open
 op2=Search
+category=double_door_open_and_close_right
+param=next_loc_stage,loc_1563
+param=open_sound,grate_open
 
 [goal_gnomeball_game]
 name=Gnome goal
@@ -16714,6 +16978,7 @@ model=gnome_gate
 op1=Open
 active=yes
 blockrange=no
+param=next_loc_stage,gate_open_gnomeball_game
 
 [gate_open_gnomeball_game]
 model=gnome_gate
@@ -16773,6 +17038,7 @@ offsetz=50
 active=yes
 op1=Open
 forceapproach=east
+param=cupboard_other,blackarmcupboardopen
 
 [blackarmcupboardopen]
 name=Cupboard
@@ -16785,6 +17051,7 @@ active=yes
 op1=Shut
 op2=Search
 forceapproach=east
+param=cupboard_other,blackarmcupboardshut
 
 [questbookcase]
 name=Bookcase
@@ -16894,6 +17161,7 @@ model=arhein_ship_on
 sharelight=yes
 active=yes
 op1=Cross
+category=gangplank_board
 
 [ship_to_entrana_off]
 name=Gangplank
@@ -16902,6 +17170,7 @@ model=arhein_ship_on
 sharelight=yes
 active=yes
 op1=Cross
+category=gangplank_disembark
 
 [ship_from_entrana_on]
 name=Gangplank
@@ -16910,6 +17179,7 @@ model=arhein_ship_on
 sharelight=yes
 active=yes
 op1=Cross
+category=gangplank_board
 
 [ship_from_entrana_off]
 name=Gangplank
@@ -16918,6 +17188,7 @@ model=arhein_ship_on
 sharelight=yes
 active=yes
 op1=Cross
+category=gangplank_disembark
 
 [loc_2416]
 name=Lever
@@ -17061,6 +17332,9 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+category=double_door_open_and_close_left
+param=next_loc_stage,loc_1562
+param=open_sound,grate_open
 
 [chronodoorr]
 name=Gate
@@ -17073,6 +17347,9 @@ recol2d=11458
 active=yes
 op1=Open
 mirror=yes
+category=double_door_open_and_close_right
+param=next_loc_stage,loc_1563
+param=open_sound,grate_open
 
 [grandtree_cupboardclosed]
 name=Cupboard
@@ -17081,6 +17358,7 @@ model=cupboard
 length=2
 forceapproach=east
 op1=Open
+param=cupboard_other,grandtree_cupboardopen
 
 [grandtree_cupboardopen]
 name=Cupboard
@@ -17090,6 +17368,7 @@ length=2
 forceapproach=east
 op2=Search
 op3=Close
+param=cupboard_other,grandtree_cupboardclosed
 
 [grandtree_chestclosed]
 name=Closed chest
@@ -17109,6 +17388,7 @@ model=plaguesheep_gatel
 op1=Open
 active=yes
 blockrange=no
+category=shipyard_gate
 
 [grandtree_fencegate_r]
 name=Gate
@@ -17117,6 +17397,7 @@ model=plaguesheep_gatel
 mirror=yes
 op1=Open
 active=yes
+category=shipyard_gate
 
 [grandtree_pillart]
 name=Pillar
@@ -17124,6 +17405,7 @@ desc=Wonder what this pillar is for?
 model=grandtree_pillart
 blockrange=no
 active=yes
+category=grandtree_pillar
 
 [grandtree_pillaru]
 name=Pillar
@@ -17131,6 +17413,7 @@ desc=Wonder what this pillar is for?
 model=grandtree_pillart
 blockrange=no
 active=yes
+category=grandtree_pillar
 
 [grandtree_pillarz]
 name=Pillar
@@ -17138,6 +17421,7 @@ desc=Wonder what this pillar is for?
 model=grandtree_pillart
 blockrange=no
 active=yes
+category=grandtree_pillar
 
 [grandtree_pillaro]
 name=Pillar
@@ -17145,6 +17429,7 @@ desc=Wonder what this pillar is for?
 model=grandtree_pillart
 blockrange=no
 active=yes
+category=grandtree_pillar
 
 [grandtree_trapdoorclosed]
 name=Trapdoor
@@ -17294,6 +17579,8 @@ model=cupboard
 length=2
 op1=Open
 forceapproach=east
+category=cupboard_closed
+param=cupboard_other,alrenascupboardopen
 
 [alrenascupboardopen]
 name=Cupboard
@@ -17303,6 +17590,8 @@ length=2
 op1=Search
 op2=Close
 forceapproach=east
+category=cupboard_opened
+param=cupboard_other,alrenascupboardshut
 
 [elenagateshut]
 name=Door
@@ -17314,6 +17603,8 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+category=door_open_and_close
+param=next_loc_stage,elenagateopen
 
 [elenagateopen]
 name=Door
@@ -17324,6 +17615,8 @@ retex1d=door
 recol2s=6342
 recol2d=11458
 active=yes
+category=door_open_and_close
+param=next_loc_stage,elenagateshut
 
 [bravekdoorshut]
 name=Door
@@ -17335,6 +17628,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,bravekdooropen
 
 [bravekdooropen]
 name=Door
@@ -17415,6 +17709,8 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+category=door_open_and_close
+param=next_loc_stage,rehnisondooropen
 
 [rehnisondooropen]
 name=Door
@@ -17425,6 +17721,8 @@ retex1d=door
 recol2s=6342
 recol2d=11458
 active=yes
+category=door_open_and_close
+param=next_loc_stage,rehnisondoorshut
 
 [plaguesewerpipe]
 name=Sewer pipe
@@ -17449,6 +17747,7 @@ name=Manhole
 desc=There's a cover over this manhole.
 model=manholeclosed
 op1=Open
+param=next_loc_stage,plaguemanholeopen
 
 [plaguemanholeopen]
 name=Manhole
@@ -17457,6 +17756,7 @@ model=manholeopen
 recol1s=12684
 recol1d=9513
 op1=Climb-down
+param=next_loc_stage,plaguemanholeclosed
 
 [plaguemanholecover]
 name=Manhole cover
@@ -17475,6 +17775,8 @@ retex2d=wood2
 recol3s=24001
 recol3d=15855
 op1=Open
+category=door_left_closed
+param=next_loc_stage,w_ardougnedoubledoorlopen
 
 [w_ardougnedoubledoorlopen]
 name=Door
@@ -17487,6 +17789,8 @@ retex2d=wood2
 recol3s=24001
 recol3d=15855
 op1=Close
+category=door_left_opened
+param=next_loc_stage,w_ardougnedoubledoorl
 
 [w_ardougnedoubledoorr]
 name=Door
@@ -17500,6 +17804,8 @@ recol3s=24001
 recol3d=15855
 mirror=yes
 op1=Open
+category=door_right_closed
+param=next_loc_stage,w_ardougnedoubledoorropen
 
 [w_ardougnedoubledoorropen]
 name=Door
@@ -17513,6 +17819,8 @@ recol3s=24001
 recol3d=15855
 mirror=yes
 op1=Close
+category=door_right_opened
+param=next_loc_stage,w_ardougnedoubledoorr
 
 [loc_2550]
 name=Door
@@ -17871,6 +18179,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,poordoor
 
 [oraclechestshut]
 name=Chest
@@ -18094,8 +18403,8 @@ retex1s=wall
 retex1d=mossybricks
 active=yes
 op1=Open
+param=next_loc_stage,inactivesecretdoor2
 
-// todo: name used from 244
 [elvarg_gate_right]
 name=Gate
 desc=It's closed.
@@ -18106,8 +18415,8 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+param=next_loc_stage,loc_1563
 
-// todo: name used from 244
 [elvarg_gate_left]
 name=Gate
 desc=It's closed.
@@ -18119,8 +18428,8 @@ recol2d=11458
 active=yes
 op1=Open
 mirror=yes
+param=next_loc_stage,loc_1562
 
-// todo: name used from 244
 [crandor_rock_opening]
 name=Rock opening
 desc=A collection of rocks over what looks like a depression.
@@ -18154,6 +18463,8 @@ length=2
 op1=Open
 forceapproach=east
 blockwalk=no
+category=cupboard_closed
+param=cupboard_other,garliccupboardopen
 
 [garliccupboardopen]
 name=Cupboard
@@ -18164,6 +18475,8 @@ op1=Search
 op2=Close
 forceapproach=east
 raiseobject=no
+category=cupboard_opened
+param=cupboard_other,garliccupboardshut
 
 [loc_2614]
 name=Coffin
@@ -18246,6 +18559,8 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+category=double_door_open_and_close_left
+param=next_loc_stage,opencastledoubledoorl
 
 [herodoor_r]
 name=Door
@@ -18258,6 +18573,8 @@ recol2d=11458
 active=yes
 op1=Open
 mirror=yes
+category=double_door_open_and_close_right
+param=next_loc_stage,doubledoorhingel
 
 [grubordoor]
 name=Door
@@ -18445,6 +18762,7 @@ desc=The door to the Crafting Guild.
 model=door
 active=yes
 op1=Open
+param=next_loc_stage,desertdoor_inactive
 
 [loc_2648]
 model=loc_2648
@@ -18491,6 +18809,7 @@ width=2
 length=2
 mapscene=8
 op2=Investigate
+category=watersource
 
 [murdersign]
 name=Sinclair family crest
@@ -18596,6 +18915,7 @@ desc=A succulent cactus.
 model=cactus
 mapscene=4
 op1=Cut
+param=next_loc_stage,desert_cactus_empty
 
 [desert_cactus_empty]
 name=Kharidian cactus (Dry)
@@ -18604,6 +18924,7 @@ model=cut_cactus
 recol1s=320
 recol1d=384
 mapscene=4
+param=next_loc_stage,desert_cactus_full
 
 [experimental_anvil]
 name=An experimental anvil
@@ -18618,6 +18939,8 @@ model=ikov_mendedleverdoorl
 active=yes
 op1=Open
 op2=Search
+category=double_door_open_and_close_left
+param=next_loc_stage,loc_1562
 
 [miningcampgateclosedr]
 name=Gate
@@ -18627,6 +18950,8 @@ mirror=yes
 active=yes
 op1=Open
 op2=Search
+category=double_door_open_and_close_right
+param=next_loc_stage,loc_1563
 
 [thttmineentrancel]
 name=Mine door entrance
@@ -18714,6 +19039,8 @@ model=ikov_mendedleverdoorl
 active=yes
 op1=Open
 op2=Search
+category=double_door_open_and_close_left
+param=next_loc_stage,loc_1562
 
 [undergroundcellgater]
 name=Gate
@@ -18723,6 +19050,8 @@ mirror=yes
 active=yes
 op1=Open
 op2=Search
+category=double_door_open_and_close_right
+param=next_loc_stage,loc_1563
 
 [undergroundniceminel]
 name=Gate
@@ -18731,6 +19060,8 @@ model=ikov_mendedleverdoorl
 active=yes
 op1=Open
 op2=Search
+category=double_door_open_and_close_left
+param=next_loc_stage,loc_1562
 
 [undergroundniceminer]
 name=Gate
@@ -18740,6 +19071,8 @@ mirror=yes
 active=yes
 op1=Open
 op2=Search
+category=double_door_open_and_close_right
+param=next_loc_stage,loc_1563
 
 [capt_siad_cell_door]
 name=Prison door
@@ -18754,6 +19087,8 @@ desc=Large solid, thick set oak doors - they lead outside.
 model=lefayeunopenabledoorl
 op1=Open
 op2=Search
+category=double_door_open_and_close_left
+param=next_loc_stage,opencastledoubledoorl
 
 [thttmineexitr]
 name=Mine door entrance
@@ -18762,6 +19097,8 @@ model=lefayeunopenabledoorl
 mirror=yes
 op1=Open
 op2=Search
+category=double_door_open_and_close_right
+param=next_loc_stage,doubledoorhingel
 
 [shantay_prisondoor]
 name=Prison door
@@ -18819,6 +19156,7 @@ model=cavewall_door1r
 sharelight=yes
 hillskew=yes
 op1=Walk through
+category=desertrescue_minecave
 
 [thminecavel]
 name=Mine cave
@@ -18828,6 +19166,7 @@ sharelight=yes
 hillskew=yes
 mirror=yes
 op1=Walk through
+category=desertrescue_minecave
 
 [bedabin_tentdoor]
 name=Tent door
@@ -19317,6 +19656,8 @@ desc=An entrance to Gu'Tanoth.
 model=ikov_mendedleverdoorl
 op1=Open
 active=yes
+category=double_door_open_and_close_left
+param=next_loc_stage,loc_1562
 
 [ogreguardgate1right]
 name=City gate
@@ -19325,6 +19666,8 @@ model=ikov_mendedleverdoorl
 op1=Open
 active=yes
 mirror=yes
+category=double_door_open_and_close_right
+param=next_loc_stage,loc_1563
 
 [ogreguardgate2]
 name=City gate
@@ -19332,6 +19675,8 @@ desc=An entrance to Gu'Tanoth.
 model=ikov_mendedleverdoorl
 op1=Open
 active=yes
+category=double_door_open_and_close_left
+param=next_loc_stage,loc_1562
 
 [ogreguardgate2right]
 name=City gate
@@ -19340,6 +19685,8 @@ model=ikov_mendedleverdoorl
 op1=Open
 active=yes
 mirror=yes
+category=double_door_open_and_close_right
+param=next_loc_stage,loc_1563
 
 [tobanchest]
 name=Chest
@@ -19355,6 +19702,7 @@ desc=A counter made from a stone block.
 model=rockcounter
 width=2
 active=yes
+category=usable_table
 
 [empty_rock_cake_counter]
 name=Counter
@@ -19747,6 +20095,8 @@ model=sewervalve1
 active=yes
 op1=Turn-left
 op2=Turn-right
+category=hazeelcult_valve
+param=hazeelcult_valve_idx,0
 
 [sewervalve2]
 name=Sewer valve
@@ -19755,6 +20105,8 @@ model=sewervalve1
 active=yes
 op1=Turn-left
 op2=Turn-right
+category=hazeelcult_valve
+param=hazeelcult_valve_idx,1
 
 [sewervalve3]
 name=Sewer valve
@@ -19763,6 +20115,8 @@ model=sewervalve1
 active=yes
 op1=Turn-left
 op2=Turn-right
+category=hazeelcult_valve
+param=hazeelcult_valve_idx,2
 
 [sewervalve4]
 name=Sewer valve
@@ -19771,6 +20125,8 @@ model=sewervalve1
 active=yes
 op1=Turn-left
 op2=Turn-right
+category=hazeelcult_valve
+param=hazeelcult_valve_idx,3
 
 [sewervalve5]
 name=Sewer valve
@@ -19779,6 +20135,8 @@ model=sewervalve1
 active=yes
 op1=Turn-left
 op2=Turn-right
+category=hazeelcult_valve
+param=hazeelcult_valve_idx,4
 
 [hazeelsewerraft]
 name=Raft
@@ -19795,6 +20153,7 @@ model=cupboardhigh
 length=2
 op1=Open
 forceapproach=east
+param=cupboard_other,hazeelcbopen
 
 [hazeelcbopen]
 name=Cupboard
@@ -19804,6 +20163,7 @@ length=2
 op1=Search
 op2=Shut
 forceapproach=east
+param=cupboard_other,hazeelcbshut
 
 [hazeelcultcave]
 name=Cave entrance
@@ -19917,6 +20277,8 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
+category=ball_irongate
+param=next_loc_stage,loc_1562
 
 [shockgater]
 name=Gate
@@ -19929,6 +20291,8 @@ recol2d=11458
 active=yes
 op1=Open
 mirror=yes
+category=ball_irongate
+param=next_loc_stage,loc_1563
 
 [witchpot]
 name=Potted plant
@@ -20063,14 +20427,17 @@ name=Gate
 desc=The toll gate from Lumbridge to Al-Kharid.
 model=ikov_mendedleverdoorl
 op1=Open
+category=border_gate_toll_left
+param=next_loc_stage,loc_1562
 
-// todo: name used from 244
 [border_gate_toll_right]
 name=Gate
 desc=The toll gate from Lumbridge to Al-Kharid.
 model=ikov_mendedleverdoorl
 op1=Open
 mirror=yes
+category=border_gate_toll_right
+param=next_loc_stage,loc_1563
 
 [loc_2884]
 name=Ladder
@@ -20089,6 +20456,8 @@ model=cupboard
 length=2
 forceapproach=east
 op1=Open
+category=cupboard_closed
+param=cupboard_other,legends_cupboardopen
 
 [legends_cupboardopen]
 name=Open Cupboard
@@ -20098,6 +20467,8 @@ length=2
 op2=Search
 op3=Shut
 forceapproach=east
+category=cupboard_opened
+param=cupboard_other,legends_cupboard
 
 [kharazi_jungle_tree_logs]
 name=Jungle Tree
@@ -20119,6 +20490,8 @@ op1=Chop-down
 op3=hidden
 mapscene=5
 blockwalk=no
+category=jungle_tree
+param=next_loc_stage,junglestump_kharazi
 
 [kharazi_jungle_palm]
 name=Jungle Palm
@@ -20143,6 +20516,8 @@ op1=Chop-down
 op3=hidden
 mapscene=5
 blockwalk=no
+category=jungle_tree
+param=next_loc_stage,junglestump_kharazi
 
 [kharazi_jungle_tree2]
 name=Jungle Tree
@@ -20154,6 +20529,8 @@ op1=Chop-down
 op3=hidden
 mapscene=5
 blockwalk=no
+category=jungle_tree
+param=next_loc_stage,junglestump_kharazi
 
 [junglestump_kharazi]
 name=Tree stump
@@ -20172,6 +20549,8 @@ op1=Chop-down
 op3=hidden
 mapscene=5
 blockwalk=no
+category=jungle_bush
+param=next_loc_stage,kharazi_jungle_plant1_slashed
 
 [kharazi_jungle_plant2]
 name=Jungle Bush
@@ -20183,6 +20562,8 @@ op1=Chop-down
 op3=hidden
 mapscene=5
 blockwalk=no
+category=jungle_bush
+param=next_loc_stage,kharazi_jungle_plant1_slashed
 
 [kharazi_jungle_plant1_slashed]
 name=Slashed bush
@@ -20214,6 +20595,9 @@ recol3s=24129
 recol3d=20159
 active=yes
 op1=Open
+category=double_door_open_and_close_left
+param=next_loc_stage,inac_legendsguilddoorl
+param=open_sound,door_open
 
 [legendsguilddoorr]
 name=Legends Guild door
@@ -20228,6 +20612,9 @@ recol3d=20159
 active=yes
 op1=Open
 mirror=yes
+category=double_door_open_and_close_right
+param=next_loc_stage,inac_legendsguilddoorr
+param=open_sound,door_open
 
 [inac_legendsguilddoorl]
 model=inacmetalgateopenl
@@ -20365,6 +20752,8 @@ model=lglockpickgatebottoml
 active=yes
 op1=Open
 op2=Search
+category=double_door_open_and_close_left
+param=next_loc_stage,inac_lglockpickgatebottoml
 
 [lglockpickgatebottomr]
 name=Ancient Gate
@@ -20373,6 +20762,8 @@ model=lglockpickgatebottomr
 active=yes
 op1=Open
 op2=Search
+category=double_door_open_and_close_right
+param=next_loc_stage,inac_lglockpickgatebottomr
 
 [inac_lglockpickgatebottoml]
 model=lglockpickgatebottoml
@@ -20411,6 +20802,7 @@ width=2
 length=2
 mapscene=11
 op1=Smash-to-bits
+category=boulder_legends
 
 [mine_test_boulder2]
 name=Boulder
@@ -20420,6 +20812,7 @@ width=2
 length=2
 mapscene=11
 op1=Smash-to-bits
+category=boulder_legends
 
 [mine_test_boulder3]
 name=Boulder
@@ -20429,6 +20822,7 @@ width=2
 length=2
 mapscene=11
 op1=Smash-to-bits
+category=boulder_legends
 
 [lgstrengthtrialgatel]
 name=Ancient Gate
@@ -20444,6 +20838,8 @@ recol4s=9512
 recol4d=11328
 active=yes
 op1=Open
+category=double_door_open_and_close_left
+param=next_loc_stage,lgstrengthtrialgate_inact_l
 
 [lgstrengthtrialgater]
 name=Ancient Gate
@@ -20459,6 +20855,8 @@ recol4s=9512
 recol4d=11328
 active=yes
 op1=Open
+category=double_door_open_and_close_right
+param=next_loc_stage,lgstrengthtrialgate_inact_r
 
 [lgstrengthtrialgate_inact_l]
 name=Ancient Gate
@@ -21115,6 +21513,7 @@ hillskew=yes
 sharelight=yes
 blockwalk=no
 blockrange=no
+category=red_vine
 
 [red_worm_junction]
 name=Vine
@@ -21129,6 +21528,7 @@ hillskew=yes
 sharelight=yes
 blockwalk=no
 blockrange=no
+category=red_vine
 
 [red_worm_diag1]
 name=Vine
@@ -21143,6 +21543,7 @@ hillskew=yes
 sharelight=yes
 blockwalk=no
 blockrange=no
+category=red_vine
 
 [red_worm_diag3]
 name=Vine
@@ -21157,6 +21558,7 @@ hillskew=yes
 sharelight=yes
 blockwalk=no
 blockrange=no
+category=red_vine
 
 [red_worm_diagfiller]
 name=Vine
@@ -21171,6 +21573,7 @@ hillskew=yes
 sharelight=yes
 blockwalk=no
 blockrange=no
+category=red_vine
 
 [red_worm_end_diag]
 name=Vine
@@ -21185,6 +21588,7 @@ hillskew=yes
 sharelight=yes
 blockwalk=no
 blockrange=no
+category=red_vine
 
 [chestlocked]
 name=Closed chest
@@ -21207,6 +21611,8 @@ model=loc_2534
 active=yes
 op1=Open
 raiseobject=no
+category=door_closed
+param=next_loc_stage,loc_2998
 
 [loc_2998]
 name=Door
@@ -21215,6 +21621,8 @@ model=loc_2534
 active=yes
 op1=Close
 raiseobject=no
+category=door_opened
+param=next_loc_stage,loc_2997
 
 [lum_bridge_a]
 model=lum_bridgea
@@ -21538,7 +21946,6 @@ length=2
 mapscene=6
 op1=Chop down
 op3=hidden
-param=next_loc_stage,deadtree1_stump
 
 // todo: name used from 244
 [newbiedeadtree2]
@@ -22870,6 +23277,8 @@ resizex=100
 resizey=100
 resizez=100
 active=yes
+category=drawer
+param=drawer_other,arena_hospital_drawers2open
 
 [arena_hospital_drawers2open]
 name=Drawers
@@ -22890,6 +23299,8 @@ resizex=100
 resizey=100
 resizez=100
 active=yes
+category=empty_drawer
+param=drawer_other,arena_hospital_drawers2
 
 [loc_3192]
 name=Scoreboard
@@ -22941,8 +23352,9 @@ recol1d=12580
 op1=Open
 active=yes
 blockrange=no
+category=gate_main_closed
+param=next_loc_stage,loc_4139
 
-// todo: name used from 244
 [loc_3198]
 name=Gate
 desc=Entrance to the Duel Arena.
@@ -22953,6 +23365,8 @@ mirror=yes
 op1=Open
 active=yes
 blockrange=no
+category=gate_outer_closed
+param=next_loc_stage,loc_4140
 
 [viking_doublebed]
 name=Bed
@@ -23033,8 +23447,9 @@ recol3d=5216
 active=yes
 op1=Push
 raiseobject=no
+category=double_door_open_and_close_right
+param=next_loc_stage,openoddwall_r
 
-// todo: name used from 244
 [openoddwall_r]
 name=Odd looking wall
 desc=A strange crack cuts into the wall.
@@ -23062,8 +23477,9 @@ recol3d=5216
 active=yes
 op1=Push
 raiseobject=no
+category=double_door_open_and_close_left
+param=next_loc_stage,openoddwall_l
 
-// todo: name used from 244
 [openoddwall_l]
 name=Odd looking wall
 desc=A strange crack cuts into the wall.
@@ -24056,6 +24472,7 @@ desc=A very big door.
 model=upass_templedoor_closed_right
 length=2
 op1=Open
+param=next_loc_stage,upass_templedoor_open_right
 
 [upass_templedoor_closed_left]
 name=Door
@@ -24064,6 +24481,7 @@ model=upass_templedoor_closed_right
 length=2
 mirror=yes
 op1=Open
+param=next_loc_stage,upass_templedoor_open_left
 
 [upass_templedoor_open_right]
 name=Door
@@ -24230,6 +24648,7 @@ width=4
 length=2
 sharelight=yes
 op1=Search
+category=ibantomb
 
 [ibantomb_right]
 name=Tomb
@@ -24244,6 +24663,7 @@ length=2
 sharelight=yes
 mirror=yes
 op1=Search
+category=ibantomb
 
 [ibantomb_burnt_left]
 model=ibantomb_left
@@ -24551,16 +24971,18 @@ desc=A strange crack cuts into the wall.
 model=loc_3209
 active=yes
 op1=Open
+category=double_door_open_and_close_right
+param=next_loc_stage,elemental_workshop_oddwall_r_open
 
-// todo: name used from 244
 [elemental_workshop_oddwall_l]
 name=Odd looking wall
 desc=A strange crack cuts into the wall.
 model=loc_3211
 active=yes
 op1=Open
+category=double_door_open_and_close_left
+param=next_loc_stage,elemental_workshop_oddwall_l_open
 
-// todo: name used from 244
 [elemental_workshop_oddwall_r_open]
 name=Odd looking wall
 desc=A strange crack cuts into the wall.
@@ -25321,6 +25743,8 @@ model=ikov_mendedleverdoorl
 op1=Open
 active=yes
 blockrange=no
+category=double_door_open_and_close_left
+param=next_loc_stage,loc_1562
 
 [mortmyre_metalgateclosed_r]
 name=Gate
@@ -25330,6 +25754,8 @@ op1=Open
 mirror=yes
 active=yes
 blockrange=no
+category=double_door_open_and_close_right
+param=next_loc_stage,loc_1563
 
 [log_druidicspirit]
 name=Rotting log
@@ -25341,6 +25767,8 @@ recol2s=11490
 recol2d=3233
 blockwalk=no
 hillskew=yes
+param=next_loc_stage,log_druidicspirit2
+param=open_sound,bloom_mushroom
 
 [log_druidicspirit2]
 name=Fungi on log
@@ -25360,6 +25788,8 @@ name=Rotting branch
 desc=Not sure if that's any use.
 model=branch_druidicspirit
 blockwalk=no
+param=next_loc_stage,branch_druidicspirit2
+param=open_sound,bloom_branch
 
 [branch_druidicspirit2]
 name=Budding branch
@@ -25374,6 +25804,8 @@ name=A small bush
 desc=It'll probably die soon.
 model=peartree_druidicspirit
 blockwalk=no
+param=next_loc_stage,peartree_druidicspirit2
+param=open_sound,bloom_pears
 
 [peartree_druidicspirit2]
 name=A golden pear bush
@@ -26952,12 +27384,18 @@ name=Cell Door
 desc=The door is closed.
 model=troll_celldoor
 op1=Open
+category=door_closed
+param=next_loc_stage,troll_celldoor_open
+param=open_sound,iron_door_open
 
 [troll_celldoor_open]
 name=Cell Door
 desc=The door is open.
 model=troll_celldoor
 op1=Close
+category=door_opened
+param=next_loc_stage,troll_celldoor
+param=close_sound,iron_door_close
 
 [troll_celldoor_eadgar]
 name=Cell Door
@@ -26992,6 +27430,7 @@ blockrange=no
 ambient=75
 contrast=75
 blockrange=no
+category=cooking_fire
 
 [troll_stronghold_window]
 name=Window
@@ -27073,6 +27512,8 @@ hillskew=yes
 ambient=25
 contrast=25
 op1=Open
+category=door_closed
+param=next_loc_stage,troll_stronghold_interior_door_open
 
 [troll_stronghold_interior_door_open]
 name=Door
@@ -27082,6 +27523,8 @@ hillskew=yes
 ambient=25
 contrast=25
 op1=Close
+category=door_opened
+param=next_loc_stage,troll_stronghold_interior_door
 
 [troll_stronghold_prisonwall]
 model=troll_stronghold_prisonwall
