@@ -1,0 +1,61 @@
+[opheldu,chisel]
+switch_obj (last_useitem)
+{
+    case uncut_sapphire, uncut_emerald, uncut_ruby, uncut_diamond, uncut_dragonstone, uncut_opal, uncut_jade, uncut_red_topaz : @crafting_gem(last_useitem);
+    case opal, smalloysterpearls, bigoysterpearls : @make_bolt_tips(last_useitem);
+    case wolf_bones : @make_wolf_bone_tips;
+    case zqbonebeads : @craft_ivorybeads;
+    case default : ~displaymessage(^dm_default);
+};
+
+//--- Label to craft a gem
+[label,crafting_gem](obj $uncut_gem)
+if (oc_members($uncut_gem) = true) {
+    if (map_members = ^false) {
+        mes(^mes_members_feature);
+        return;
+    }
+}
+db_find(gem_cutting_table:uncut_gem, $uncut_gem);
+def_dbrow $data = db_findnext;
+if ($data = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
+// check if the player has the required level
+def_int $level = db_getfield($data, gem_cutting_table:level, 0);
+def_namedobj $cut_gem = db_getfield($data, gem_cutting_table:cut_gem, 0);
+if (stat(crafting) < $level) {
+    def_string $level_fail_name = db_getfield($data, gem_cutting_table:level_fail_name, 0);
+    if (string_length($level_fail_name) < 1) {
+        $level_fail_name = "<lowercase(oc_name($cut_gem))>s";
+    }
+    ~objbox($uncut_gem, "You need a Crafting level of <tostring($level)> to cut <$level_fail_name>.", 250, 0, divide(^objbox_height, 2));
+    return;
+}
+anim(db_getfield($data, gem_cutting_table:skill_anim, 0), 0);
+sound_synth(chisel, 0, 0);
+
+inv_del(inv, $uncut_gem, 1);
+
+def_string $product_name = db_getfield($data, gem_cutting_table:product_name, 0);
+if (string_length($product_name) < 1) {
+    $product_name = oc_name($cut_gem);
+}
+
+def_int $low;
+def_int $high;
+$low, $high = db_getfield($data, gem_cutting_table:success_rate, 0);
+if ($low ! null & $high ! null & stat_random(crafting, $low, $high) = false) {
+    // they prob hardcode this but this is easier
+    stat_advance(crafting, calc((db_getfield($data, gem_cutting_table:experience, 0) + 2)/4));
+    // osrs except uppercase product name. needs confirmation
+    mes("You mis-hit the chisel and smash the <$product_name> to pieces!");
+    inv_add(inv, crushed_gemstone, 1);
+    return;
+}
+
+mes("You cut the <$product_name>.");
+inv_add(inv, $cut_gem, 1);
+stat_advance(crafting, db_getfield($data, gem_cutting_table:experience, 0));
+//-----------------------

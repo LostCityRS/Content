@@ -1,0 +1,77 @@
+[opheldu,ball_of_wool]
+switch_obj (last_useitem)
+{
+    case unstrung_gold_amulet, unstrung_sapphire_amulet, unstrung_emerald_amulet, unstrung_ruby_amulet, unstrung_diamond_amulet, nostringstar : @string_amulet(last_useslot);
+    case nostringsnake, unstrung_dragonstone_amulet :
+        if (map_members = ^false) {
+            mes(^mes_members_feature);
+            return;
+        }
+        @string_amulet(last_useslot);
+}
+~displaymessage(^dm_default);
+
+[opheldu,unstrung_sapphire_amulet]
+if (last_useitem = ball_of_wool) @string_amulet(last_slot);
+~displaymessage(^dm_default);
+
+[opheldu,unstrung_emerald_amulet]
+if (last_useitem = ball_of_wool) @string_amulet(last_slot);
+~displaymessage(^dm_default);
+
+[opheldu,unstrung_ruby_amulet]
+if (last_useitem = ball_of_wool) @string_amulet(last_slot);
+~displaymessage(^dm_default);
+
+[opheldu,unstrung_diamond_amulet]
+if (last_useitem = ball_of_wool) @string_amulet(last_slot);
+~displaymessage(^dm_default);
+
+[opheldu,unstrung_dragonstone_amulet]
+if (last_useitem = ball_of_wool) {
+    if (map_members = ^false) {
+        mes(^mes_members_feature);
+        return;
+    }
+    @string_amulet(last_slot);
+}
+~displaymessage(^dm_default);
+
+[opheldu,nostringstar]
+if (last_useitem = ball_of_wool) @string_amulet(last_slot);
+~displaymessage(^dm_default);
+
+[opheldu,nostringsnake]
+if (last_useitem = ball_of_wool) {
+    if (map_members = ^false) {
+        mes(^mes_members_feature);
+        return;
+    }
+    @string_amulet(last_slot);
+}
+~displaymessage(^dm_default);
+
+
+[label,string_amulet](int $last)
+def_obj $unstrung = inv_getobj(inv, $last);
+def_struct $struct = oc_param($unstrung, crafting_jewelry_struct);
+
+// delete items
+inv_del(inv, $unstrung, 1);
+inv_del(inv, ball_of_wool, 1);
+
+// give item
+inv_add(inv, struct_param($struct, strung), 1);
+
+// always 4 crafting xp
+stat_advance(crafting, 40);
+
+// display game message
+def_string $name = struct_param($struct, stringing_name);
+if (string_length($name) < 1) {
+    $name = "amulet";
+}
+mes("You put some string on your <$name>.");
+
+
+

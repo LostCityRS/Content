@@ -225,6 +225,7 @@ model=obj_pumpkin
 2dxan=132
 weight=500g
 category=category_131
+param=party_clean_exempt,^true
 
 [easter_egg]
 name=Easter egg
@@ -237,8 +238,8 @@ model=obj_easter_egg
 2dxan=2044
 weight=3oz
 category=category_59
+param=party_clean_exempt,^true
 
-// Typo of `bannana` in model name is Jagex consistent.
 [banana]
 name=Banana
 desc=Mmm this looks tasty.
@@ -417,6 +418,7 @@ weight=150g
 category=category_59
 param=gnome_topping,^true
 param=cocktail_message,You sprinkle the chocolate dust over the drink.
+param=brew_potion_struct,3dose1energy
 
 [pot_empty]
 name=Pot
