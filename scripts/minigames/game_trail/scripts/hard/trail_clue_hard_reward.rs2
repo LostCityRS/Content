@@ -49,7 +49,7 @@ switch_int ($random) {
 }
 
 [proc,trail_clue_hard_rare]
-def_int $random = random(25);
+def_int $random = random(33);
 
 switch_int ($random) {
     case 0 : inv_add(trail_rewardinv, robinhoodhat, 1);
