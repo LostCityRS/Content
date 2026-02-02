@@ -1,0 +1,413 @@
+[oploc1,rcu_outer_multi1]
+switch_int (%rcu_abyssal_generator) {
+    case 0 : return; // blockage
+    case 1 : @rcu_break_rock;
+    case 2 : @rcu_chop_tendrils;
+    case 3 : @rcu_burn_down_boil;
+    case 4 : @rcu_distract_eyes;
+    case 5 : @rcu_squeeze_through_gap;
+    case 6 : @rcu_go_through_passage;
+    case 7 : @rcu_squeeze_through_gap;
+    case 8 : @rcu_distract_eyes;
+    case 9 : @rcu_burn_down_boil;
+    case 10 : @rcu_chop_tendrils;
+    case 11 : @rcu_break_rock;
+}
+
+[oploc1,rcu_outer_multi2]
+switch_int (%rcu_abyssal_generator) {
+    case 0 : @rcu_break_rock;
+    case 1 : return; // blockage
+    case 2 : @rcu_break_rock;
+    case 3 : @rcu_chop_tendrils;
+    case 4 : @rcu_burn_down_boil;
+    case 5 : @rcu_distract_eyes;
+    case 6 : @rcu_break_rock;
+    case 7 : @rcu_go_through_passage;
+    case 8 : @rcu_break_rock;
+    case 9 : @rcu_distract_eyes;
+    case 10 : @rcu_burn_down_boil;
+    case 11 : @rcu_chop_tendrils;
+}
+
+[oploc1,rcu_outer_multi3]
+switch_int (%rcu_abyssal_generator) {
+    case 0 : @rcu_chop_tendrils;
+    case 1 : @rcu_break_rock;
+    case 2 : return; // blockage
+    case 3 : @rcu_break_rock;
+    case 4 : @rcu_chop_tendrils;
+    case 5 : @rcu_burn_down_boil;
+    case 6 : @rcu_chop_tendrils;
+    case 7 : @rcu_break_rock;
+    case 8 : @rcu_go_through_passage;
+    case 9 : @rcu_break_rock;
+    case 10 : @rcu_chop_tendrils;
+    case 11 : @rcu_burn_down_boil;
+}
+
+[oploc1,rcu_outer_multi4]
+switch_int (%rcu_abyssal_generator) {
+    case 0 : @rcu_burn_down_boil;
+    case 1 : @rcu_chop_tendrils;
+    case 2 : @rcu_break_rock;
+    case 3 : return; // blockage
+    case 4 : @rcu_break_rock;
+    case 5 : @rcu_chop_tendrils;
+    case 6 : @rcu_burn_down_boil;
+    case 7 : @rcu_chop_tendrils;
+    case 8 : @rcu_break_rock;
+    case 9 : @rcu_go_through_passage;
+    case 10 : @rcu_break_rock;
+    case 11 : @rcu_chop_tendrils;
+}
+
+[oploc1,rcu_outer_multi5]
+switch_int (%rcu_abyssal_generator) {
+    case 0 : @rcu_distract_eyes;
+    case 1 : @rcu_burn_down_boil;
+    case 2 : @rcu_chop_tendrils;
+    case 3 : @rcu_break_rock;
+    case 4 : return; // blockage
+    case 5 : @rcu_break_rock;
+    case 6 : @rcu_distract_eyes;
+    case 7 : @rcu_burn_down_boil;
+    case 8 : @rcu_chop_tendrils;
+    case 9 : @rcu_break_rock;
+    case 10 : @rcu_go_through_passage;
+    case 11 : @rcu_break_rock;
+}
+
+[oploc1,rcu_outer_multi6]
+switch_int (%rcu_abyssal_generator) {
+    case 0 : @rcu_squeeze_through_gap;
+    case 1 : @rcu_distract_eyes;
+    case 2 : @rcu_burn_down_boil;
+    case 3 : @rcu_chop_tendrils;
+    case 4 : @rcu_break_rock;
+    case 5 : return; // blockage
+    case 6 : @rcu_squeeze_through_gap;
+    case 7 : @rcu_distract_eyes;
+    case 8 : @rcu_burn_down_boil;
+    case 9 : @rcu_chop_tendrils;
+    case 10 : @rcu_break_rock;
+    case 11 : @rcu_go_through_passage;
+}
+
+[oploc1,rcu_outer_multi7]
+switch_int (%rcu_abyssal_generator) {
+    case 0 : @rcu_go_through_passage;
+    case 1 : @rcu_squeeze_through_gap;
+    case 2 : @rcu_distract_eyes;
+    case 3 : @rcu_burn_down_boil;
+    case 4 : @rcu_chop_tendrils;
+    case 5 : @rcu_break_rock;
+    case 6 : return; // blockage
+    case 7 : @rcu_squeeze_through_gap;
+    case 8 : @rcu_distract_eyes;
+    case 9 : @rcu_burn_down_boil;
+    case 10 : @rcu_chop_tendrils;
+    case 11 : @rcu_break_rock;
+}
+
+[oploc1,rcu_outer_multi8]
+switch_int (%rcu_abyssal_generator) {
+    case 0 : @rcu_squeeze_through_gap;
+    case 1 : @rcu_go_through_passage;
+    case 2 : @rcu_squeeze_through_gap;
+    case 3 : @rcu_distract_eyes;
+    case 4 : @rcu_burn_down_boil;
+    case 5 : @rcu_chop_tendrils;
+    case 6 : @rcu_squeeze_through_gap;
+    case 7 : return; // blockage
+    case 8 : @rcu_squeeze_through_gap;
+    case 9 : @rcu_distract_eyes;
+    case 10 : @rcu_burn_down_boil;
+    case 11 : @rcu_chop_tendrils;
+}
+
+[oploc1,rcu_outer_multi9]
+switch_int (%rcu_abyssal_generator) {
+    case 0 : @rcu_distract_eyes;
+    case 1 : @rcu_squeeze_through_gap;
+    case 2 : @rcu_go_through_passage;
+    case 3 : @rcu_squeeze_through_gap;
+    case 4 : @rcu_distract_eyes;
+    case 5 : @rcu_burn_down_boil;
+    case 6 : @rcu_distract_eyes;
+    case 7 : @rcu_squeeze_through_gap;
+    case 8 : return; // blockage
+    case 9 : @rcu_squeeze_through_gap;
+    case 10 : @rcu_distract_eyes;
+    case 11 : @rcu_burn_down_boil;
+}
+
+[oploc1,rcu_outer_multi10]
+switch_int (%rcu_abyssal_generator) {
+    case 0 : @rcu_burn_down_boil;
+    case 1 : @rcu_distract_eyes;
+    case 2 : @rcu_squeeze_through_gap;
+    case 3 : @rcu_go_through_passage;
+    case 4 : @rcu_squeeze_through_gap;
+    case 5 : @rcu_distract_eyes;
+    case 6 : @rcu_burn_down_boil;
+    case 7 : @rcu_distract_eyes;
+    case 8 : @rcu_squeeze_through_gap;
+    case 9 : return; // blockage
+    case 10 : @rcu_squeeze_through_gap;
+    case 11 : @rcu_distract_eyes;
+}
+
+[oploc1,rcu_outer_multi11]
+switch_int (%rcu_abyssal_generator) {
+    case 0 : @rcu_chop_tendrils;
+    case 1 : @rcu_burn_down_boil;
+    case 2 : @rcu_distract_eyes;
+    case 3 : @rcu_squeeze_through_gap;
+    case 4 : @rcu_go_through_passage;
+    case 5 : @rcu_squeeze_through_gap;
+    case 6 : @rcu_chop_tendrils;
+    case 7 : @rcu_burn_down_boil;
+    case 8 : @rcu_distract_eyes;
+    case 9 : @rcu_squeeze_through_gap;
+    case 10 : return; // blockage
+    case 11 : @rcu_squeeze_through_gap;
+}
+
+[oploc1,rcu_outer_multi12]
+switch_int (%rcu_abyssal_generator) {
+    case 0 : @rcu_break_rock;
+    case 1 : @rcu_chop_tendrils;
+    case 2 : @rcu_burn_down_boil;
+    case 3 : @rcu_distract_eyes;
+    case 4 : @rcu_squeeze_through_gap;
+    case 5 : @rcu_go_through_passage;
+    case 6 : @rcu_break_rock;
+    case 7 : @rcu_chop_tendrils;
+    case 8 : @rcu_burn_down_boil;
+    case 9 : @rcu_distract_eyes;
+    case 10 : @rcu_squeeze_through_gap;
+    case 11 : return; // blockage
+}
+
+[debugproc,teleabyss]
+if (p_finduid(uid) = false) return;
+@rcu_teleport_to_abyss;
+
+[label,rcu_teleport_to_abyss]
+%rcu_abyssal_generator = randominc(^rcu_abyss_layout_count);
+def_coord $base_coord = enum(int, coord, rcu_abyss_entry_coords, %rcu_abyssal_generator);
+p_telejump(map_findsquare($base_coord, 0, 5, ^map_findsquare_lineofwalk));
+
+stat_drain(prayer, 99, 0);
+~pk_skull(^rcu_pk_skull_duration);
+
+// OSRS - Delays the player for a tick after tp'ing in
+anim(null, 0);
+p_delay(0);
+
+[label,rcu_break_rock]
+def_namedobj $pickaxe = rune_pickaxe; // TODO: fixme, pickaxe check
+
+if ($pickaxe = null) {
+    mes("You need a pickaxe for which you have the required Mining level to mine this rock.");
+    return;
+}
+mes("You attempt to mine your way through...");
+anim(human_mining_mithril_pickaxe, 0); // TODO: fixme, pickaxe anim
+sound_synth(mining_3, 0, 0); // guess
+~rcu_loc_face_center;
+p_delay(7);
+
+if (stat_random(mining, 0, 255) = true) {
+    cam_moveto(coord, 2500, 0, 0);
+    cam_lookat(loc_coord, 0, 10, 10);
+
+    %rcu_abyssal_generator = 12;
+    p_delay(1);
+    %rcu_abyssal_generator = 13;
+    
+    p_teleport(loc_param(rcu_outer_enter_coord));
+    p_delay(2);
+
+    p_telejump(loc_param(rcu_outer_inner_coord));
+    p_delay(0);
+    cam_reset;
+
+    clearqueue(damage_player);
+    %rcu_abyssal_generator = 0;
+    stat_advance(mining, 250);
+    mes("...and manage to break through the rock.");
+} else {
+    clearqueue(damage_player);
+    mes("...but fail to break-up the rock.");
+}
+
+[label,rcu_chop_tendrils]
+mes("You attempt to chop your way through...");
+
+~rcu_loc_face_center;
+p_delay(3);
+
+def_namedobj $axe = mithril_axe; // TODO: fixme, axe check
+
+if ($axe = null) {
+    mes("You need an axe to chop through the tendrils.");
+    mes("You do not have an axe that you have the Woodcutting level to use.");
+    return;
+}
+anim(human_woodcutting_mithril_axe, 0); // TODO: fixme, correct axe anim
+sound_synth(woodchop_quick, 0, 0); // guess
+p_delay(1);
+
+if (stat_random(woodcutting, 0, 255) = true) {
+    anim(human_woodcutting_mithril_axe, 0); // TODO: fixme, correct axe anim
+    sound_synth(woodchop_quick, 0, 0); // guess
+    cam_moveto(coord, 2500, 0, 0);
+    cam_lookat(loc_coord, 0, 10, 10);
+    p_delay(1);
+
+    %rcu_abyssal_generator = 14;
+    anim(human_woodcutting_mithril_axe, 0); // TODO: fixme, correct axe anim
+    sound_synth(woodchop_quick, 0, 0); // guess
+    p_delay(1);
+    
+    %rcu_abyssal_generator = 15;
+    p_teleport(loc_param(rcu_outer_enter_coord));
+    p_delay(1);
+
+    mes("...and manage to cut a way through the tendrils.");
+    p_delay(0);
+
+    p_telejump(loc_param(rcu_outer_inner_coord));
+    p_delay(0);
+
+    cam_reset;
+    clearqueue(damage_player);
+    %rcu_abyssal_generator = 0;
+    stat_advance(woodcutting, 250);
+} else {
+    clearqueue(damage_player);
+    mes("...but fail to cut through the tendrils.");
+}
+
+[label,rcu_distract_eyes]
+mes("You use your thieving skills to misdirect the eyes...");
+~rcu_loc_face_center;
+p_delay(1);
+
+if (stat_random(thieving, 0, 255) = true) {
+    anim(~rcu_distract_eyes_rand_anim, 0);
+    cam_moveto(coord, 2500, 0, 0);
+    cam_lookat(loc_coord, 0, 10, 10);
+    p_delay(1);
+
+    anim(~rcu_distract_eyes_rand_anim, 0);
+    %rcu_abyssal_generator = 18;
+    p_delay(1);
+
+    %rcu_abyssal_generator = 19;
+    p_teleport(loc_param(rcu_outer_enter_coord));
+    p_delay(1);
+
+    p_telejump(loc_param(rcu_outer_inner_coord));
+    mes("...and sneak past while they're not looking.");
+    p_delay(0);
+
+    cam_reset;
+    clearqueue(damage_player);
+    %rcu_abyssal_generator = 0;
+    stat_advance(thieving, 250);
+} else {
+    clearqueue(damage_player);
+    mes("...but fail to distract them enough to get past.");
+}
+
+// TODO: Find out more anims that are used here
+[proc,rcu_distract_eyes_rand_anim]()(seq)
+switch_int (random(4)) {
+    case 0 : return (human_stamp);
+    case 1 : return (human_chicken_dance);
+    case 2 : return (emote_beckon);
+    case 3 : return (emote_clap);
+    case default : return (emote_climbing_rope);
+}
+
+[label,rcu_squeeze_through_gap]
+mes("You attempt to squeeze through the narrow gap...");
+~rcu_loc_face_center;
+p_delay(1);
+
+anim(viking_drop_to_knee, 0);
+p_delay(3);
+
+if (stat_random(agility, 0, 255) = true) {
+    // https://youtu.be/IhfNuSQukOQ?si=CwEgAlQhLc91mAPd&t=70
+    // Due to camera packet buffering this looks very broken (matches osrs through), should camera packets be buffered?
+    cam_moveto(coord, 2500, 0, 0);
+    cam_lookat(loc_coord, 0, 10, 10);
+    anim(human_crawling, 0);
+    mes("...and you manage to crawl through.");
+    p_telejump(loc_param(rcu_outer_inner_coord));
+    sound_synth(abyssal_squeezethrough, 4, 0);
+    p_delay(0);
+
+    clearqueue(damage_player);
+    %rcu_abyssal_generator = 0;
+    cam_reset;
+    stat_advance(agility, 250);
+} else {
+    anim(viking_drop_to_knee_and_backtoready, 0);
+    mes("...but you are not agile enough to get through the gap.");
+}
+
+[label,rcu_burn_down_boil]
+mes("You attempt to set the blockade on fire...");
+~rcu_loc_face_center;
+p_delay(2);
+
+if (inv_total(inv, tinderbox) = 0) {
+    mes("...but you don't have a tinderbox to burn it!");
+    return;
+}
+
+if (stat_random(firemaking, 0, 255) = true) {
+    anim(human_createfire, 0);
+    cam_moveto(coord, 2500, 0, 0);
+    cam_lookat(loc_coord, 0, 10, 10);
+    p_delay(5);
+
+    %rcu_abyssal_generator = 16;
+    anim(human_createfire, 0);
+    p_delay(5);
+
+    %rcu_abyssal_generator = 17;
+    spotanim_map(firewave_impact, loc_coord, 128, 0);
+    p_teleport(loc_param(rcu_outer_enter_coord));
+    sound_synth(boil_burst, 0, 0);
+    p_delay(1);
+
+    mes("...and manage to burn it down and get past.");
+    p_delay(0);
+
+    p_telejump(loc_param(rcu_outer_inner_coord));
+    p_delay(0);
+
+    clearqueue(damage_player);
+    %rcu_abyssal_generator = 0;
+    cam_reset;
+    stat_advance(firemaking, 250);
+} else {
+    clearqueue(damage_player);
+    mes("...but fail to burn it out of your way.");
+}
+
+[label,rcu_go_through_passage]
+clearqueue(damage_player);
+p_telejump(loc_param(rcu_outer_inner_coord));
+
+[proc,rcu_loc_face_center]
+def_int $x_off = calc(lc_width(loc_type) / 2);
+def_int $z_off = calc(lc_length(loc_type) / 2);
+
+facesquare(movecoord(loc_coord, $x_off, 0, $z_off));
