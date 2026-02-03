@@ -1,4 +1,13 @@
-[ai_queue3,fai_barbarian_goblin_armed_4] @goblin_drop_table; //lvl 2
+[ai_queue3,slayer_crawling_hand_1] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_2] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_3] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_4] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_5] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_big_1] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_big_2] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_big_3] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_big_4] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_big_5] @crawling_hand_drop_table;
 
 [label,crawling_hand_drop_table]
 gosub(npc_death);
@@ -36,4 +45,5 @@ if ($dropint < 7) {
     obj_add(npc_coord, coins, 1, ^lootdrop_duration);
 } else if ($dropint < 37) {
     obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+
 }
