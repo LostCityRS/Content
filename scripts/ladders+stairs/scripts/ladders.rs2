@@ -205,3 +205,10 @@ p_arrivedelay;
 [oploc1,loc_11728]
 p_arrivedelay;
 ~climb_ladder(movecoord(coord(), 0, -1, 0), false);
+
+[oploc1,roving_golrie_ladder_to_cellar]
+~climb_ladder(0_39_149_37_20, false);
+
+[oploc1,roving_golrie_ladder_from_cellar]
+~climb_ladder(0_39_49_37_20, true);
+
