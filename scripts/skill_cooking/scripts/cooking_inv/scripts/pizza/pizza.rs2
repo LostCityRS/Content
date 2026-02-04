@@ -24,6 +24,7 @@ switch_obj  (last_useitem) {
     case incomplete_pizza : @make_uncooked_pizza;
     case half_baked_bowl : @add_bowl_ingredient(last_item);
     case half_baked_batta : @add_batta_ingredient(last_item);
+    case potato_butter : @make_cheese_potato;
     case default : ~displaymessage(^dm_default);
 };
 
