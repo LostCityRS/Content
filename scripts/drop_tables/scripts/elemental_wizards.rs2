@@ -3,7 +3,7 @@
 [ai_queue3,water_wizard] @elemental_wizard_drops(waterrune, water_talisman);
 [ai_queue3,fire_wizard] @elemental_wizard_drops(firerune, fire_talisman);
 
-[label,elemental_wizard_drops](def_obj $rune, def_obj $talisman)
+[label,elemental_wizard_drops](namedobj $rune, namedobj $talisman)
 gosub(npc_death);
 if (npc_findhero = ^false) {
     return;
