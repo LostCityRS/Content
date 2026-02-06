@@ -23,6 +23,7 @@ def_int $ruby_total = inv_total(inv, ruby);
 def_int $emerald_total = inv_total(inv, emerald);
 def_int $sapphire_total = inv_total(inv, sapphire);
 def_int $dragonstone_total = inv_total(inv, dragonstone);
+def_int $onyx_total = inv_total(inv, onyx);
 // https://i.imgur.com/BwS99Hp.png
 // from https://web.archive.org/web/20051025132703/http://www.runeweb.net/index.php?page=rs2-crafting
 // check if player has the corresponding moulds
@@ -65,6 +66,13 @@ if (inv_total(inv, ring_mould) > 0) {
     } else {
         inv_delslot(crafting_make_rings, 5);
         if_setobject(crafting_jewelry:rings5, black_ring, 110);
+    }
+    if ($onyx_total > 0) {
+        inv_setslot(crafting_make_rings, 6, invis_ring6, 1);
+        if_setobject(crafting_jewelry:rings6, onyx_ring, 110);
+    } else {
+        inv_delslot(crafting_make_rings, 6);
+        if_setobject(crafting_jewelry:rings6, black_ring, 110);
     }
     
     inv_transmit(crafting_make_rings, crafting_jewelry:rings_inv);
@@ -114,6 +122,13 @@ if (inv_total(inv, necklace_mould) > 0) {
         inv_delslot(crafting_make_necklaces, 5);
         if_setobject(crafting_jewelry:necklaces5, black_necklace, 100);
     }
+    if ($onyx_total > 0) {
+        inv_setslot(crafting_make_necklaces, 6, invis_necklace6, 1);
+        if_setobject(crafting_jewelry:necklaces6, onyx_necklace, 100);
+    } else {
+        inv_delslot(crafting_make_necklaces, 6);
+        if_setobject(crafting_jewelry:necklaces6, black_necklace, 100);
+    }
     
     inv_transmit(crafting_make_necklaces, crafting_jewelry:necklaces_inv);
 } else {
@@ -162,6 +177,13 @@ if (inv_total(inv, amulet_mould) > 0) {
     } else {
         inv_delslot(crafting_make_amulets, 5);
         if_setobject(crafting_jewelry:amulets5, black_amulet, 75);
+    }
+    if ($onyx_total > 0) {
+        inv_setslot(crafting_make_amulets, 6, invis_amulet6, 1);
+        if_setobject(crafting_jewelry:amulets6, unstrung_onyx_amulet, 75);
+    } else {
+        inv_delslot(crafting_make_amulets, 6);
+        if_setobject(crafting_jewelry:amulets6, black_amulet, 75);
     }
 
     inv_transmit(crafting_make_amulets, crafting_jewelry:amulets_inv);
