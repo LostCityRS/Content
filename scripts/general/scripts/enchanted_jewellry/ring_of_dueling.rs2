@@ -4,8 +4,8 @@ mes("You rub the ring...");
 def_obj $item = last_item;
 def_int $slot = last_slot;
 p_delay(1);
-def_int $choice = ~p_choice2_header("Al Kharid Duel Arena.", 1, "Nowhere.", 2, "Where would you like to teleport to?");
-if($choice = 2) {
+def_int $choice = ~p_choice3_header("Al Kharid Duel Arena.", 1, "Castle Wars", 2, "Nowhere.", 3, "Where would you like to teleport to?");
+if($choice = 3) {
     mes("You remain where you were.");
     return;
 }
@@ -18,7 +18,13 @@ if (~wilderness_level(coord) > 20) {
 if (~pre_tele_checks(coord) = false) {
     return;
 }
-~player_teleport_normal(map_findsquare(0_51_50_51_35, 0, 2, ^map_findsquare_lineofwalk));
+def_coord $destination;
+if ($choice = 1) {
+    $destination = map_findsquare(0_51_50_51_35, 0, 2, ^map_findsquare_lineofwalk);
+} else if ($choice = 2) {
+    $destination = map_findsquare(0_38_48_9_18, 0, 2, ^map_findsquare_lineofwalk);
+}
+~player_teleport_normal($destination);
 def_namedobj $new_ring = oc_param($item, next_obj_stage);
 // osrs uses lowercase in the name.
 // 2006: https://www.youtube.com/watch?v=dTLr_7HhgXw
