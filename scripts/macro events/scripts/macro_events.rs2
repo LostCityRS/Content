@@ -88,8 +88,8 @@ return(enum(int, npc, general_macro_events, $event));
 [proc,macro_event_set_random]()(int)
 def_int $random = ~random_range(1, enum_getoutputcount(general_macro_events));
 
-if ($random >= ^teleport_macro_start & random(4) ! 0) {
-    //Only give teleport events 25% of the time they are rolled
+if ($random >= ^teleport_macro_start & (random(4) ! 0 | ~wilderness_level(coord) > 20)) {
+    //Only give teleport events 25% of the time they are rolled and only under 20 wildy
     while ($random >= ^teleport_macro_start) {
         $random = ~random_range(1, sub(^teleport_macro_start, 1));
     }
