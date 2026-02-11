@@ -4,8 +4,8 @@ if (p_finduid(uid) = false) {
     @please_finish;
     return;
 }
-if ($event < 1 | $event > ~macro_event_general_count) {
-    mes("event_id must be between 1 and <tostring(~macro_event_general_count)>.");
+if ($event < 1 | $event > add(~macro_event_general_count,1)) {
+    mes("event_id must be between 1 and <tostring(add(~macro_event_general_count,1))>.");
     @debugusage("::macro_event (event_id)", "::macro_event 2", "");
     return;
 }

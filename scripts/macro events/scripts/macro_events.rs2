@@ -87,8 +87,16 @@ return(enum(int, npc, general_macro_events, $event));
 
 [proc,macro_event_set_random]()(int)
 def_int $random = ~random_range(1, enum_getoutputcount(general_macro_events));
+
+if ($random >= ^teleport_macro_start & random(4) ! 0) {
+    //Only give teleport events 25% of the time they are rolled
+    while ($random >= ^teleport_macro_start) {
+        $random = ~random_range(1, sub(^teleport_macro_start, 1));
+    }
+}
+
 if(map_members = ^false) {
-    while($random = ^macro_triffidseed) $random = ~random_range(1, enum_getoutputcount(general_macro_events));
+    while($random = ^macro_triffidseed) $random = ~random_range(1, sub(^teleport_macro_start, 1));
 }
 return($random);
 

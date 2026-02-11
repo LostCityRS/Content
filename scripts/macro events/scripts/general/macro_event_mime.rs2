@@ -15,8 +15,8 @@ p_teleport(0_31_74_24_28);
 // Enter map trigger: 
 [mapzone,0_31_74]
 %macro_event = ^macro_mime;
-midi_song("artistry"); // Todo: In cache but was it played here without being unlockable?
-if_settext(music:com_177, "Artistry");
+// midi_song("artistry"); // Not in tracks yet so probably wasn't played here
+// if_settext(music:com_177, "Artistry");
 def_int $count = divide(modulo(map_clock, multiply(16,2)), 2);
 if ($count < 4) {
     if (loc_find(0_31_74_23_25, loc_3644) = true) {
@@ -227,52 +227,64 @@ if (testbit(%emote_access, ^macro_mime_glass_box) = ^false) {
 
 [proc,unlock_mime_outfit_piece]()(namedobj, int)
 def_int $missing_count = 0;
+def_int $set_0_missing = 0; // mask
+def_int $set_1_missing = 0; // legs + gloves
+def_int $set_2_missing = 0; // top + boots
 
 if (~obj_gettotal(macro_mime_mask) = 0) {
+    $set_0_missing = 1;
     $missing_count = add($missing_count, 1);
 }
-if (~obj_gettotal(macro_mime_top) = 0) {
+
+if (~obj_gettotal(macro_mime_legs) = 0 | ~obj_gettotal(macro_mime_gloves) = 0) {
+    $set_1_missing = 1;
     $missing_count = add($missing_count, 1);
 }
-if (~obj_gettotal(macro_mime_legs) = 0) {
-    $missing_count = add($missing_count, 1);
-}
-if (~obj_gettotal(macro_mime_gloves) = 0) {
-    $missing_count = add($missing_count, 1);
-}
-if (~obj_gettotal(macro_mime_boots) = 0) {
+
+if (~obj_gettotal(macro_mime_top) = 0 | ~obj_gettotal(macro_mime_boots) = 0) {
+    $set_2_missing = 1;
     $missing_count = add($missing_count, 1);
 }
 
 def_int $pick = random($missing_count);
 def_int $current = 0;
 
-if (~obj_gettotal(macro_mime_mask) = 0) {
+if ($set_0_missing = 1) {
     if ($current = $pick) {
         return(macro_mime_mask, 1);
     }
     $current = add($current, 1);
 }
-if (~obj_gettotal(macro_mime_top) = 0) {
+
+if ($set_1_missing = 1) {
     if ($current = $pick) {
-        return(macro_mime_top, 1);
+        def_int $has_legs = ~obj_gettotal(macro_mime_legs);
+        def_int $has_gloves = ~obj_gettotal(macro_mime_gloves);
+        
+        if ($has_legs = 0 & $has_gloves = 0) {
+            inv_add(inv, macro_mime_legs, 1);
+            return(macro_mime_gloves, 1);
+        } else if ($has_legs = 0) {
+            return(macro_mime_legs, 1);
+        } else {
+            return(macro_mime_gloves, 1);
+        }
     }
     $current = add($current, 1);
 }
-if (~obj_gettotal(macro_mime_legs) = 0) {
+
+if ($set_2_missing = 1) {
     if ($current = $pick) {
-        return(macro_mime_legs, 1);
-    }
-    $current = add($current, 1);
-}
-if (~obj_gettotal(macro_mime_gloves) = 0) {
-    if ($current = $pick) {
-        return(macro_mime_gloves, 1);
-    }
-    $current = add($current, 1);
-}
-if (~obj_gettotal(macro_mime_boots) = 0) {
-    if ($current = $pick) {
-        return(macro_mime_boots, 1);
+        def_int $has_top = ~obj_gettotal(macro_mime_top);
+        def_int $has_boots = ~obj_gettotal(macro_mime_boots);
+        
+        if ($has_top = 0 & $has_boots = 0) {
+            inv_add(inv, macro_mime_top, 1);
+            return(macro_mime_boots, 1);
+        } else if ($has_top = 0) {
+            return(macro_mime_top, 1);
+        } else {
+            return(macro_mime_boots, 1);
+        }
     }
 }

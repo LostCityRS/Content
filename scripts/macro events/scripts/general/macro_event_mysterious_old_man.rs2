@@ -4,7 +4,7 @@ sound_synth(smokepuff, 0, 0);
 // to match genie in this video: https://www.youtube.com/watch?v=el-h9hbSH80&t=293s
 npc_setmode(playerfollow);
 
-if ($random_old_man_event = ^macro_cube & inv_freespace(inv) = 0) { // Cannot give strange box if no inventory space, so becomes Maze... Possibly also Mime?
+if ($random_old_man_event = ^macro_cube & (inv_freespace(inv) = 0 | inv_total(inv, macro_cube) >= 28)) { // Cannot give strange box if no inventory space, so becomes Maze. Also can not have more than 28 of them (guess)
     $random_old_man_event = ^macro_maze;
 }
 
