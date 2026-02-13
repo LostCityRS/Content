@@ -58,7 +58,8 @@ if (inv_freespace(inv) < 1) {
 def_obj $pickaxe = ~pickaxe_checker;
 if ($pickaxe = null) {
     anim(null, 0);
-    ~mesbox("You need a pickaxe to mine this rock. You do not have a pickaxe which you have the Mining level to use.");
+    //https://www.youtube.com/watch?v=rjQprrDDUfE
+    ~mesbox("You need a Pickaxe to mine this rock. You do not have a Pickaxe which you have the Mining level to use.");
     return(false);
 }
 

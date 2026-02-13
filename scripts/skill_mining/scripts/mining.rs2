@@ -47,7 +47,8 @@ if (afk_event = ^true & loc_category ! mining_rock_macro_gas) {
 def_obj $pickaxe = ~pickaxe_checker;
 if ($pickaxe = null) {
     anim(null, 0);
-    ~mesbox("You need a pickaxe to mine this rock. You do not have a pickaxe which you have the Mining level to use.");
+    //https://www.youtube.com/watch?v=rjQprrDDUfE
+    ~mesbox("You need a Pickaxe to mine this rock. You do not have a Pickaxe which you have the Mining level to use.");
     return;
 }
 def_int $mining_rate = oc_param($pickaxe, mining_rate);
@@ -84,7 +85,7 @@ if (stat(mining) < $levelreq) {
 def_obj $pickaxe = ~pickaxe_checker;
 if ($pickaxe = null) {
     anim(null, 0);
-    ~mesbox("You need a pickaxe to mine this rock. You do not have a pickaxe which you have the Mining level to use.");
+    ~mesbox("You need a Pickaxe to mine this rock. You do not have a Pickaxe which you have the Mining level to use.");
     return;
 }
 def_int $mining_rate = oc_param($pickaxe, mining_rate);
