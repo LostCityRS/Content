@@ -7,5 +7,5 @@ switch_int(~p_choice2("Yes, please.", 1, "No, thanks.", 2)) {
         ~chatplayer("<p,neutral>Yes, please.");
         ~openshop_activenpc;
     case 2 :
-        ~chatnpc("<p,neutral>No, thanks.");
+        ~chatplayer("<p,neutral>No, thanks.");
 }
