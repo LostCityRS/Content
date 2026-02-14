@@ -1,0 +1,9 @@
+[opheld4,_category_69]
+~empty_vial(last_slot);
+
+[opheld4,_category_111]
+~empty_vial(last_slot);
+
+// info: Replace $slot with an empty vial
+[proc,empty_vial](int $slot)
+inv_setslot(inv, $slot, vial_empty, 1);
