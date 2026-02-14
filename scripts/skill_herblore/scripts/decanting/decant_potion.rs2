@@ -1,5 +1,5 @@
-[opheldu,_category_69]
-if(oc_category(last_useitem) = category_69) {
+[opheldu,_potion]
+if(oc_category(last_useitem) = potion) {
     @decant_potion(last_item, last_useitem);
 }
 ~displaymessage(^dm_default);
