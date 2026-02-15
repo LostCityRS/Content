@@ -54,13 +54,7 @@ if($start_pos = ^ta_quir_priw & $dest = ^sindarpos) {
 }
 return (-1);
 
-[opnpc1,gnomepilot]
-if(inzone(0_45_47_35_42, 0_45_47_45_53, npc_coord) = true) {
-    @gnome_pilot_crash_karamja;
-}
-if(inzone(movecoord(^lemanto_andra, -8, 0, -8), movecoord(^lemanto_andra, 8, 0, 8), npc_coord) = true) {
-    @gnome_pilot_crash_varrock;
-}
+[opnpc1,pilot_grand_tree]
 if(%grandtree = ^grandtree_released_prison & inzone(3_38_54_31_43, 3_38_54_35_47, npc_coord) = true) {
     ~chatnpc("<p,neutral>Hi, the King said that you need to leave?");
     ~chatplayer("<p,sad>Apparently humans are invading!");
@@ -96,6 +90,33 @@ if(%grandtree = ^grandtree_complete) {
 }
 ~chatnpc("<p,neutral>Welcome to Gnome Air!");
 @multi4("What's Gnome Air?", gnome_pilot_what, "Where can you take me?", gnome_pilot_where, "How much for one-way to Varrock?", gnome_pilot_how, "I'll leave you to it.", gnome_pilot_leave);
+
+[opnpc1,pilot_karamja]
+if(inzone(0_45_47_35_42, 0_45_47_45_53, npc_coord) = true) {
+    @gnome_pilot_crash_karamja;
+}
+
+[opnpc1,gnomepilot]
+if(inzone(movecoord(^lemanto_andra, -8, 0, -8), movecoord(^lemanto_andra, 8, 0, 8), npc_coord) = true) {
+    @gnome_pilot_crash_varrock; 
+}
+
+[opnpc1,pilot_al_kharid]
+if(%grandtree = ^grandtree_complete) {
+    @multi2("Can you take me on the glider?", return_grand_tree, "I'll leave you to it.", gnome_pilot_leave);
+} else {
+    ~chatnpc("<p,neutral>Glough has ordered that I only take gnomes on Gnome Air.");
+}
+
+[opnpc1,pilot_white_wolf]
+if(%grandtree = ^grandtree_complete) {
+    @multi2("Can you take me on the glider?", return_grand_tree, "I'll leave you to it.", gnome_pilot_leave);
+} else {
+    ~chatnpc("<p,neutral>Glough has ordered that I only take gnomes on Gnome Air.");
+}
+
+[label,return_grand_tree]
+@gnomeglider_fly(^ta_quir_priw);
 
 [label,gnome_pilot_glider]
 ~chatplayer("<p,quiz>Can you take me on the glider?");

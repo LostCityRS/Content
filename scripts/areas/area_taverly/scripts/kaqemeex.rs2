@@ -85,6 +85,7 @@ if($option = 1) {
 [label,druid_completion]
 ~chatnpc("<p,neutral>I have word from Sanfew that you have been very helpful in assisting him with his preparations for the purification ritual. As promised I will now teach you the ancient arts of Herblore.");
 //queue*(druid_quest_complete, 0)(npc_uid);
+queue(druid_quest_complete, 0, npc_uid);
 
 // https://youtu.be/uWhSsATZubQ?si=Kxu-Wb796lTCOUv3&t=717
 [label,kaqemeex_herblore_fundamentals]

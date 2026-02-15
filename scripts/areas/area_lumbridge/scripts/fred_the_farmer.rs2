@@ -195,7 +195,7 @@ if(inv_total(inv, ball_of_wool) > 0) {
 
 [label,fred_give_wool]
 if_close;
-def_int $balls_left = calc(20 - %sheep);
+def_int $balls_left = calc(21 - %sheep);
 def_int $balls = min(inv_total(inv, ball_of_wool), $balls_left);
 inv_del(inv, ball_of_wool, $balls);
 
@@ -209,11 +209,9 @@ if(%sheep = calc(^sheep_last_wool) & inv_total(inv, ball_of_wool) > 0) {
 // No way to tell as hardly anybody doing the quest on video ever hands in less than 20 balls of wool
 // However this mesbox is also present in OSRS transcript https://oldschool.runescape.wiki/w/Transcript:Sheep_Shearer#Handing_in_any_balls_of_wool
 ~mesbox("You give Fred <~text_plural($balls, "ball", "balls")> of wool"); // no period
-if (%sheep ! ^sheep_complete) {
-    ~chatplayer("<p,happy>That's all I've got so far.");
-    ~chatnpc("<p,neutral>I need more before I can pay you."); // should probably specify the number here, 2009 source does
-    ~chatplayer("<p,neutral>Ok, I'll work on it.");
-}
+~chatplayer("<p,happy>That's all I've got so far.");
+~chatnpc("<p,neutral>I need more before I can pay you."); // should probably specify the number here, 2009 source does
+~chatplayer("<p,neutral>Ok, I'll work on it.");
 
 [label,fred_end_giving_wool]
 if(%sheep = calc(^sheep_last_wool) & inv_total(inv, ball_of_wool) > 0) {
