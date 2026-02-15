@@ -260,3 +260,19 @@ if (stat_base(attack) < 50) {
     return;
 }
 ~equip($slot);
+
+[label,levelrequire_prayer](int $level, int $slot)
+if (stat_base(prayer) < $level) {
+    mes("You are not a high enough level to use this item.");
+    mes("You need to have a Prayer level of <tostring($level)>.");
+    return;
+}
+~equip($slot);
+
+[label,levelrequire_prayer_and_magic](int $prayer_level, int $magic_level, int $slot)
+if (stat_base(prayer) < $prayer_level | stat_base(magic) < $magic_level) {
+    mes("You are not a high enough level to use this item.");
+    mes("You need to have an prayer level of <tostring($prayer_level)> and a magic level of <tostring($magic_level)>.");
+    return;
+}
+~equip($slot);
