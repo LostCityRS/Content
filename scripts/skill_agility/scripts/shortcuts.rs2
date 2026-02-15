@@ -266,3 +266,117 @@ if(stat_random(agility, 140, 250) = false) {
 }
 stat_advance(agility, 30);
 mes("You manage to make the jump.");
+
+[oploc1,farming_style]
+~climb_stile;
+
+[oploc1,qip_sheep_shearer_fullstyle]
+~climb_stile;
+
+[oploc1,loc_9299]
+if(stat(agility) < 29) { 
+    mes("You need an agility level of 29 to attempt to climb through this broken fence.");
+    return;
+}
+~climb_fence;
+
+[oploc1,loc_9309]
+if(stat(agility) < 26) { 
+    mes("You need an agility level of 26 to attempt to climb under this wall.");
+    return;
+}
+def_coord $end_coord = movecoord(coord, 0, 0, 4);
+~agility_exactmove(null, 20, 0, coord, $end_coord, 45, 70, ^exact_north, false);
+p_teleport($end_coord);
+
+[oploc1,loc_9310]
+if(stat(agility) < 26) { 
+    mes("You need an agility level of 26 to attempt to climb under this wall.");
+    return;
+}
+def_coord $end_coord = movecoord(coord, 0, 0, -4);
+~agility_exactmove(null, 20, 0, coord, $end_coord, 45, 70, ^exact_south, false);
+p_teleport($end_coord);
+
+[oploc1,loc_9311]
+if(stat(agility) < 21) { 
+    mes("You need an agility level of 21 to attempt to climb under this wall.");
+    return;
+}
+def_coord $end_coord = movecoord(coord, 5, 0, 0);
+~agility_exactmove(null, 20, 0, coord, $end_coord, 45, 70, ^exact_east, false);
+p_teleport($end_coord);
+
+[oploc1,loc_9312]
+if(stat(agility) < 21) { 
+    mes("You need an agility level of 21 to attempt to climb under this wall.");
+    return;
+}
+def_coord $end_coord = movecoord(coord, -5, 0, 0);
+~agility_exactmove(null, 20, 0, coord, $end_coord, 45, 70, ^exact_west, false);
+p_teleport($end_coord);
+
+[oploc1,falador_crumbling_wall]
+if(stat(agility) < 5) {
+    ~mesbox("You need an Agility level of 5 to climb the wall.");
+    return;
+}
+if(coordx(coord) > coordx(loc_coord)) {
+    def_coord $end_coord = movecoord(loc_coord, -1, 0, 0);
+    ~agility_exactmove(human_walk_crumbledwall, 20, 0, coord, $end_coord, 45, 70, ^exact_west, true);
+    p_teleport($end_coord);
+} else {
+    def_coord $end_coord = movecoord(loc_coord, 1, 0, 0);
+    ~agility_exactmove(human_walk_crumbledwall, 20, 0, coord, $end_coord, 45, 70, ^exact_east, true);
+    p_teleport($end_coord);
+}
+stat_advance(agility, 50);
+sound_synth(climb_wall, 0, 0);
+mes("You climb over the wall.");
+
+[proc,climb_stile]
+def_coord $start_coord = loc_coord;
+def_int $mod = 1;
+def_int $dir = ^exact_north;
+def_coord $end_coord = movecoord($start_coord, 0, 0, 1);
+if(coordz(coord) > coordz(loc_coord)) {
+    $start_coord = movecoord(loc_coord, 0, 0, 1);
+    $mod = -1;
+    $dir = ^exact_south;
+    $end_coord = movecoord(loc_coord, 0, 0, 0);
+}
+def_coord $walk_coord = movecoord($end_coord, 0, 0, $mod);
+if(loc_angle = ^loc_north | loc_angle = ^loc_south) {
+    $start_coord = loc_coord;
+    $mod = 1;
+    $dir = ^exact_east;
+    $end_coord = movecoord($start_coord, 1, 0, 0);
+    if(coordx(coord) > coordx(loc_coord)) {
+        $start_coord = movecoord(loc_coord, 1, 0, 0);
+        $mod = -1;
+        $dir = ^exact_west;
+        $end_coord = movecoord(loc_coord, 0, 0, 0);
+    }
+    $walk_coord = movecoord($end_coord, $mod, 0, 0);
+} 
+p_teleport($start_coord);
+p_delay(0);
+~agility_exactmove(human_walk_style, 30, 2, $start_coord, $end_coord, 30, 94, $dir, true);
+p_teleport($walk_coord);
+
+[proc,climb_fence]
+def_coord $start_coord = loc_coord;
+def_int $mod = 1;
+def_int $dir = ^exact_north;
+def_coord $end_coord = movecoord($start_coord, 0, 0, 1);
+if(coordz(coord) > coordz(loc_coord)) {
+    $start_coord = movecoord(loc_coord, 0, 0, 1);
+    $mod = -1;
+    $dir = ^exact_south;
+    $end_coord = movecoord(loc_coord, 0, 0, 0);
+}
+def_coord $walk_coord = movecoord($end_coord, 0, 0, 0);
+p_teleport($start_coord);
+p_delay(0);
+~agility_exactmove(human_crawling, 30, 2, $start_coord, $end_coord, 30, 94, $dir, true);
+p_teleport($walk_coord);

@@ -1,0 +1,57 @@
+[ai_queue3,slayer_banshee_1] @banshee_drop_table;
+
+[label,banshee_drop_table]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+//Tertiary
+~trail_easycluedrop(128, npc_coord);
+
+def_int $dropint = random(512);
+
+// may need to redo this table, and/or add bronze_javelin (check old fan sites)
+// That appears to only be fore the goblin_armed_red and _green
+// https://oldschool.runescape.wiki/w/Goblin_(Goblin_Village)
+if ($dropint < 1) {
+    obj_add(npc_coord, mystic_gloves_dark, 1, ^lootdrop_duration);
+} else if ($dropint < 9) {
+    obj_add(npc_coord, iron_mace, 1, ^lootdrop_duration);
+} else if ($dropint < 18) {
+    obj_add(npc_coord, iron_dagger, 1, ^lootdrop_duration);
+} else if ($dropint < 22) {
+    obj_add(npc_coord, iron_kiteshield, 1, ^lootdrop_duration);
+} else if ($dropint < 34) {
+    obj_add(npc_coord, airrune, 3, ^lootdrop_duration);
+} else if ($dropint < 46) {
+    obj_add(npc_coord, cosmicrune, 2, ^lootdrop_duration);
+} else if ($dropint < 54) {
+    obj_add(npc_coord, chaosrune, 3, ^lootdrop_duration);
+} else if ($dropint < 58) {
+    obj_add(npc_coord, firerune, 7, ^lootdrop_duration);
+} else if ($dropint < 62) {
+    obj_add(npc_coord, chaosrune, 7, ^lootdrop_duration);
+} else if ($dropint < 198) {
+    obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+} else if ($dropint < 226) {
+    obj_add(npc_coord, cert_rune_essence, 13, ^lootdrop_duration);
+} else if ($dropint < 230) {
+    obj_add(npc_coord, iron_ore, 1, ^lootdrop_duration);
+} else if ($dropint < 254) {
+    obj_add(npc_coord, coins, 26, ^lootdrop_duration);
+} else if ($dropint < 276) {
+    obj_add(npc_coord, coins, 35, ^lootdrop_duration);
+} else if ($dropint < 304) {
+    obj_add(npc_coord, coins, 13, ^lootdrop_duration);
+} else if ($dropint < 332) {
+    obj_add(npc_coord, fishing_bait, 15, ^lootdrop_duration);
+} else if ($dropint < 350) {
+    obj_add(npc_coord, fishing_bait, 7, ^lootdrop_duration);
+} else if ($dropint < 354) {
+    obj_add(npc_coord, eye_of_newt, 1, ^lootdrop_duration);
+} else if ($dropint < 362) {
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+}

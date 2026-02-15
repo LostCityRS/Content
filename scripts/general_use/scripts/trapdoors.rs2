@@ -22,13 +22,15 @@ anim(human_pickupfloor, 0);
 p_delay(0);
 p_telejump(1_47_77_53_56);
 
-[oploc1,roguesden_passage_to_pub]
-mes("You walk through the passage...");
-p_delay(0);
-p_telejump(0_45_55_26_16);
-
 [oploc1,loc_9472]
 mes("You climb down through the trapdoor...");
 anim(human_pickupfloor, 0);
 p_delay(0);
 p_telejump(0_46_149_63_13);
+
+[oploc1,loc_14879]
+mes("You climb down through the trapdoor...");
+anim(human_pickupfloor, 0);
+p_delay(0);
+p_telejump(0_50_150_9_17);
+

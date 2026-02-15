@@ -1,0 +1,40 @@
+[opheldu,potato_baked]
+if (last_useitem = pot_of_butter) {
+    @make_potato_butter;
+} else {
+    ~displaymessage(^dm_default);
+}
+
+[opheldu,pot_of_butter]
+if (last_useitem = potato_baked) {
+    @make_potato_butter;
+} else {
+    ~displaymessage(^dm_default);
+}
+
+[opheldu,potato_butter]
+if (last_useitem = cheese) {
+    @make_cheese_potato;
+} else {
+    ~displaymessage(^dm_default);
+}
+
+[label,make_potato_butter]
+if (stat_base(cooking) < 39) {
+    ~mesbox("You need a Cooking level of 39 to do make a Potato with butter.");
+} else {
+    inv_del(inv, potato_baked, 1);
+    inv_del(inv, pot_of_butter, 1);
+    inv_add(inv, potato_butter, 1);
+    stat_advance(cooking, 400);
+}
+
+[label,make_cheese_potato]
+if (stat_base(cooking) < 47) {
+    inv_del(inv, potato_butter, 1);
+    inv_del(inv, cheese, 1);
+    inv_add(inv, potato_cheese, 1);
+    stat_advance(cooking, 400);
+} else {
+    ~mesbox("You need a Cooking level of 47 to do make a Potato with butter and cheese.");
+}

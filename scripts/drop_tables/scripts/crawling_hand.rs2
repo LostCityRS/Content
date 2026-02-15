@@ -1,0 +1,49 @@
+[ai_queue3,slayer_crawling_hand_1] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_2] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_3] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_4] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_5] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_big_1] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_big_2] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_big_3] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_big_4] @crawling_hand_drop_table;
+[ai_queue3,slayer_crawling_hand_big_5] @crawling_hand_drop_table;
+
+[label,crawling_hand_drop_table]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+// Tertiary
+~trail_easycluedrop(15, npc_coord);
+
+def_int $dropint = random(128);
+
+
+if ($dropint < 7) {
+    obj_add(npc_coord, leather_gloves, 1, ^lootdrop_duration);
+} else if ($dropint < 9) {
+    obj_add(npc_coord, wolfengloves_purple, 1, ^lootdrop_duration);
+} else if ($dropint < 11) {
+    obj_add(npc_coord, wolfengloves_tangerine, 1, ^lootdrop_duration);
+} else if ($dropint < 13) {
+    obj_add(npc_coord, wolfengloves_crimson, 1, ^lootdrop_duration);
+} else if ($dropint < 15) {
+    obj_add(npc_coord, wolfenboots_ocean, 1, ^lootdrop_duration);
+} else if ($dropint < 18) {
+    obj_add(npc_coord, gold_ring, 1, ^lootdrop_duration);
+} else if ($dropint < 20) {
+    obj_add(npc_coord, sapphire_ring, 1, ^lootdrop_duration);
+} else if ($dropint < 22) {
+    obj_add(npc_coord, emerald_ring, 1, ^lootdrop_duration);
+} else if ($dropint < 29) {
+    obj_add(npc_coord, coins, 1, ^lootdrop_duration);
+} else if ($dropint < 35) {
+    obj_add(npc_coord, coins, 1, ^lootdrop_duration);
+} else if ($dropint < 37) {
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+
+}

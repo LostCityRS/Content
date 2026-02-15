@@ -1,0 +1,10 @@
+[opnpc3,rag_wine_merchant]
+~openshop_fortunato;
+
+[proc,openshop_fortunato]
+if(map_members = ^true) {
+    //if started rag and bone man, use wine_vinegar_merchant. needs varp
+    ~openshop(wine_merchant, 600, 1000, 20, "Wine Shop.");
+} else {
+    ~openshop(wine_merchant_free, 600, 1000, 20, "Wine Shop.");
+}

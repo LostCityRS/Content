@@ -1,0 +1,20 @@
+[ai_queue3,air_wizard] @elemental_wizard_drops(airrune, air_talisman);
+[ai_queue3,earth_wizard] @elemental_wizard_drops(earthrune, earth_talisman);
+[ai_queue3,water_wizard] @elemental_wizard_drops(waterrune, water_talisman);
+[ai_queue3,fire_wizard] @elemental_wizard_drops(firerune, fire_talisman);
+
+[label,elemental_wizard_drops](namedobj $rune, namedobj $talisman)
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+def_int $dropint = random(20);
+
+if ($dropint = 0) {
+    obj_add(npc_coord, $talisman, 1, ^lootdrop_duration);
+} else {
+    obj_add(npc_coord, $rune, calc(5 + random(6)), ^lootdrop_duration);
+}

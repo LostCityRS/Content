@@ -56,7 +56,7 @@ switch_int ($random) {
 }
 
 [proc,trail_clue_medium_rare]
-def_int $random = random(12);
+def_int $random = random(18);
 
 switch_int ($random) {
     case 0 : inv_add(trail_rewardinv, boots_ranger, 1);
@@ -71,4 +71,10 @@ switch_int ($random) {
     case 9 : inv_add(trail_rewardinv, headband_red, 1);
     case 10 : inv_add(trail_rewardinv, headband_black, 1);
     case 11 : inv_add(trail_rewardinv, headband_brown, 1);
+    case 12 : inv_add(trail_rewardinv, boots_wizard, 1);
+    case 13 : inv_add(trail_rewardinv, adamant_heraldic_kiteshield1, 1);
+    case 14 : inv_add(trail_rewardinv, adamant_heraldic_kiteshield2, 1);
+    case 15 : inv_add(trail_rewardinv, adamant_heraldic_kiteshield3, 1);
+    case 16 : inv_add(trail_rewardinv, adamant_heraldic_kiteshield4, 1);
+    case 17 : inv_add(trail_rewardinv, adamant_heraldic_kiteshield5, 1);
 }
