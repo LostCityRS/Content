@@ -70,12 +70,12 @@ size=2
 walkanim=inv_ghast_walk
 readyanim=inv_ghast_ready
 minimap=no
-attack=22
-strength=22
-hitpoints=45
-defence=18
 wanderrange=5
 maxrange=7
+hitpoints=45
+attack=22
+strength=22
+defence=18
 param=damagetype,^slash_style
 param=attack_anim,ghast_attack
 param=defend_anim,ghast_block
@@ -84,8 +84,9 @@ param=attack_sound,ghast_attack
 param=defend_sound,ghast_hit
 param=death_sound,ghast_death
 huntmode=aggressive_melee
-huntrange=5
 moverestrict=blocked+normal
+huntrange=5
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_945
 
 [ghast_vis]
 name=Ghast
@@ -96,12 +97,12 @@ walkanim=ghast_walk
 readyanim=ghast_ready
 op2=Attack
 vislevel=30
-attack=22
-strength=22
-hitpoints=45
-defence=18
 wanderrange=5
 maxrange=7
+hitpoints=45
+attack=22
+strength=22
+defence=18
 param=damagetype,^slash_style
 param=attack_anim,ghast_attack
 param=defend_anim,ghast_block
@@ -111,6 +112,7 @@ param=defend_sound,ghast_hit
 param=death_sound,ghast_death
 moverestrict=blocked+normal
 timer=20
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_946
 
 [mort_myre_gate_guard]
 name=Ulizius
