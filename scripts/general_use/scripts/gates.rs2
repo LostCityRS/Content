@@ -78,7 +78,9 @@ while (loc_findnext = true) {
 }
 
 [oploc1,_gate_main_closed] ~open_gate;
-[oploc1,_gate_outer_closed]
+[oploc1,_gate_outer_closed] ~open_outer_gate;
+
+[proc,open_outer_gate]
 def_coord $orig_coord = loc_coord;
 loc_findallzone(~get_pair_coord($orig_coord, loc_angle, true));
 while (loc_findnext = true) {

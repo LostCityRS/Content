@@ -15,6 +15,8 @@
 [oploc2,cupboardopen_big] @search_cupboard;
 [oploc3,cupboardopen_big] @close_cupboard(false);
 
+[oploc1,garliccupboardopen] @search_cupboard;
+
 [label,search_cupboard]
 //mes(~coord_tostring(loc_coord));
 switch_coord (loc_coord) {
@@ -31,7 +33,7 @@ switch_coord (loc_coord) {
                 }
             }
             ~mesbox("There is just a load of junk in here.");
-    case 1_48_51_24_4 : @cupboard_take_garlic; // draynor morgans house level 1
+    case 1_48_51_24_6, 1_48_51_24_5 : @cupboard_take_garlic; // draynor morgans house level 1
     case 0_40_52_14_6 : @elena_search_cupboard; // alrenas house for plague city
     case 0_52_52_26_4 : @exam_centre_cupboard_jar; // exam centre specimen jar cupboard
     case 0_42_53_10_12, 0_40_49_29_46, 0_41_53_36_34 : mes("You search the cupboard but find nothing."); // sorcerers tower, fight arena, ranging guild
