@@ -31,3 +31,7 @@ if ($random < 3) {
 } else if ($random < 82) {
     obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
 }
+
+if (random(^champion_scroll_chance) = 0) {
+obj_add(npc_coord, champions_challenge_earthwarrior, 1, ^lootdrop_duration);
+}

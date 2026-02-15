@@ -68,6 +68,10 @@ if ($random < 3) {
     obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
 }
 
+if (random(^champion_scroll_chance) = 0) {
+obj_add(npc_coord, champions_challenge_hobgoblin, 1, ^lootdrop_duration);
+}
+
 [ai_queue3,hobgoblin_armed] // LVL 42 Hobgoblins
 gosub(npc_death);
 if (npc_findhero = ^false) {
@@ -126,4 +130,8 @@ if ($random < 3) {
     obj_add(npc_coord, goblin_armour, 1, ^lootdrop_duration);
 } else if ($random < 115) {
     obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+}
+
+if (random(^champion_scroll_chance) = 0) {
+obj_add(npc_coord, champions_challenge_hobgoblin, 1, ^lootdrop_duration);
 }

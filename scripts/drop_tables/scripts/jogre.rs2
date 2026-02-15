@@ -13,7 +13,7 @@ if (npc_findhero = ^false) {
 obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
 
 // Treasure trail
-~trail_mediumcluedrop(129, npc_coord);
+~trail_mediumcluedrop(^trail_medium_droprate, npc_coord);
 
 def_int $random = randominc(128);
 if ($random < 30) {
@@ -48,4 +48,8 @@ if ($random < 30) {
     obj_add(npc_coord, unidentified_snake_weed, 1, ^lootdrop_duration);
 } else if ($random < 90) {
     obj_add(npc_coord, unidentified_rogues_purse, 1, ^lootdrop_duration);
+}
+
+if (random(^champion_scroll_chance) = 0) {
+obj_add(npc_coord, champions_challenge_jogre, 1, ^lootdrop_duration);
 }

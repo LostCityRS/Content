@@ -57,3 +57,7 @@ if ($random < 5) {
 } else if ($random < 98) {
     obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
 }
+
+if (random(^champion_scroll_chance) = 0) {
+obj_add(npc_coord, champions_challenge_giant, 1, ^lootdrop_duration);
+}

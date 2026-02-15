@@ -47,6 +47,10 @@ if ($dropint < 4) {
     obj_add(npc_coord, copper_ore, 1, ^lootdrop_duration);
 }
 
+if (random(^champion_scroll_chance) = 0) {
+obj_add(npc_coord, champions_challenge_zombie, 1, ^lootdrop_duration);
+}
+
 // Armed Zombie
 [ai_queue3,zombie_armed] @armed_zombie;
 
@@ -130,3 +134,7 @@ if ($dropint < 50) {
     obj_add(npc_coord, coins, 28, ^lootdrop_duration);
 }
 // Nothing - 8/128
+
+if (random(^champion_scroll_chance) = 0) {
+obj_add(npc_coord, champions_challenge_zombie, 1, ^lootdrop_duration);
+}

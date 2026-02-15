@@ -1,0 +1,34 @@
+[ai_queue3,tzhaar_ket1] @tzhaar_ket_drops;
+[ai_queue3,tzhaar_ket2] @tzhaar_ket_drops;
+[ai_queue3,tzhaar_ket3] @tzhaar_ket_drops;
+[ai_queue3,tzhaar_ket4] @tzhaar_ket_drops;
+[ai_queue3,tzhaar_ket5] @tzhaar_ket_drops;
+[ai_queue3,tzhaar_ket6] @tzhaar_ket_drops;
+
+[label,tzhaar_ket_drops]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+def_int $random = random(512);
+
+ if ($random < 1) {
+    obj_add(npc_coord, uncut_diamond, 1, ^lootdrop_duration);
+} else if ($random < 5) {
+    obj_add(npc_coord, uncut_ruby, 1, ^lootdrop_duration);
+} else if ($random < 13) {
+    obj_add(npc_coord, uncut_ruby, 1, ^lootdrop_duration);
+} else if ($random < 29) {
+    obj_add(npc_coord, uncut_emerald, 1, ^lootdrop_duration);
+} else if ($random < 61) {
+    obj_add(npc_coord, uncut_sapphire, 1, ^lootdrop_duration);
+} else if ($random < 222) {
+    obj_add(npc_coord, tzhaar_token, calc(1 + random(64)), ^lootdrop_duration);
+} else if ($random < 223) {
+    obj_add(npc_coord, tzhaar_maul, 1, ^lootdrop_duration);
+} else if ($random < 224) {
+    obj_add(npc_coord, tzhaar_spikeshield, 1, ^lootdrop_duration);
+} else if ($random < 225) {
+    obj_add(npc_coord, tzhaar_cape_obsidian, 1, ^lootdrop_duration);
+}

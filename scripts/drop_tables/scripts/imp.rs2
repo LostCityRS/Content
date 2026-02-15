@@ -74,3 +74,7 @@ if ($random < 5) {
 } else if ($random < 128) {
     obj_add(npc_coord, acne_potion, 1, ^lootdrop_duration);
 }
+
+if (random(^champion_scroll_chance) = 0) {
+obj_add(npc_coord, champions_challenge_imp, 1, ^lootdrop_duration);
+}

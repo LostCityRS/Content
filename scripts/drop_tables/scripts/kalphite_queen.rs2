@@ -66,7 +66,7 @@ def_int $random = random(128);
 // - runite bar uncommon
 // - hard clue rare
 
-// ~trail_hardcluedrop(128, npc_coord); // todo
+~trail_hardcluedrop(^trail_hard_droprate, npc_coord);
 
 // rates are a WIP
 if ($random < 14) { // 14/128 guess: drop log 16/128, 4/128 osrs

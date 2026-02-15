@@ -37,7 +37,7 @@ if (npc_findhero = ^false) {
 obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
 
 // Tertiary
-//~trail_easycluedrop(128, npc_coord);
+~trail_easycluedrop(^trail_easy_droprate, npc_coord);
 
 def_int $dropint = random(128);
 
@@ -80,6 +80,9 @@ if ($dropint < 1) {
     obj_add(npc_coord, coins, 5, ^lootdrop_duration);
 }
 
+if (random(^champion_scroll_chance) = 0) {
+obj_add(npc_coord, champions_challenge_goblin, 1, ^lootdrop_duration);
+}
 
 [ai_queue3,goblin_greenarmour] @goblin_village_drop_table; // Green
 [ai_queue3,goblin_redarmour] @goblin_village_drop_table; // Red
@@ -93,7 +96,7 @@ if (npc_findhero = ^false) {
 obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
 
 // Tertiary
-//~trail_easycluedrop(128, npc_coord);
+~trail_easycluedrop(^trail_easy_droprate, npc_coord);
 
 def_int $dropint = random(128);
 
@@ -146,4 +149,8 @@ if ($dropint < 3) {
     obj_add(npc_coord, red_cape, 1, ^lootdrop_duration);
 } else if ($dropint < 109) {
     obj_add(npc_coord, tin_ore, 1, ^lootdrop_duration);
+}
+
+if (random(^champion_scroll_chance) = 0) {
+obj_add(npc_coord, champions_challenge_goblin, 1, ^lootdrop_duration);
 }

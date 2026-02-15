@@ -18,10 +18,9 @@ if (npc_findhero = ^false) {
 obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
 
 // Tertiary
-~trail_easycluedrop(15, npc_coord);
+~trail_easycluedrop(^trail_easy_droprate, npc_coord);
 
 def_int $dropint = random(128);
-
 
 if ($dropint < 7) {
     obj_add(npc_coord, leather_gloves, 1, ^lootdrop_duration);
@@ -45,5 +44,4 @@ if ($dropint < 7) {
     obj_add(npc_coord, coins, 1, ^lootdrop_duration);
 } else if ($dropint < 37) {
     obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
-
 }
