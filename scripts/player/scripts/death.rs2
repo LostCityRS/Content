@@ -191,3 +191,7 @@ if($is_worn = true) {
 } else {
     inv_moveitem(inv,deathkeep,$priciest_item,1);
 }
+
+[proc,player_end_poison]
+%poison = 0;
+~set_poison_timer;
