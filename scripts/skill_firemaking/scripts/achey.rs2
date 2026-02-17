@@ -1,6 +1,6 @@
 [opheldu,achey_tree_logs]
 switch_obj(last_useitem) {
-    // case knife : @make_ogre_shafts;
+    case knife : @make_ogre_shafts;
     case tinderbox : @light_achey_inv(last_slot);
     case default : ~displaymessage(^dm_default);
 }
