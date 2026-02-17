@@ -66,18 +66,23 @@ if (map_members = ^false & $staff ! null & oc_members($staff) = true) {
 }
 db_find(magic_staff_table:staff, $staff);
 def_dbrow $staff_data = db_findnext;
+def_dbrow $staff_data2 = db_findnext;
 def_namedobj $staff_rune = null;
+def_namedobj $staff_rune2 = null;
 if ($staff_data ! null) {
     $staff_rune = db_getfield($staff_data, magic_staff_table:rune, 0);
 }
+if ($staff_data2 ! null) {
+    $staff_rune2 = db_getfield($staff_data2, magic_staff_table:rune, 0);
+}
 // remove the number of runes required if the rune matches with staff rune
-if ($staff_rune = $rune1) {
+if ($staff_rune = $rune1 | $staff_rune2 = $rune1) {
     $rune_count1 = null;
 }
-if ($staff_rune = $rune2) {
+if ($staff_rune = $rune2 | $staff_rune2 = $rune2) {
     $rune_count2 = null;
 }
-if ($staff_rune = $rune3) {
+if ($staff_rune = $rune3 | $staff_rune2 = $rune3) {
     $rune_count3 = null;
 }
 return($rune1, $rune_count1, $rune2, $rune_count2, $rune3, $rune_count3);
