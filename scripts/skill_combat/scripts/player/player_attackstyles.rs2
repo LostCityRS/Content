@@ -105,10 +105,10 @@ if ($previous = null | $obj = null | oc_category($previous) ! oc_category($obj))
     // osrs keeps track of selected per category
     ~player_autocast_reset;
 }
-// if (~inzone_coord_pair_table(gnomeball_zones, coord) = true) { TODO 377: renable with gnomeball
-//     if_settab(gnomeball, 0);
-//     return;
-// }
+if (~inzone_coord_pair_table(gnomeball_zones, coord) = true) {
+    if_settab(gnomeball, 0);
+    return;
+}
 if ($obj = null | (map_members = ^false & oc_members($obj) = true)) {
     ~weapon_category_tab_attack_unarmed($obj);
     return;
@@ -173,10 +173,10 @@ if ($previous = null | $obj = null | oc_category($previous) ! oc_category($obj))
     // osrs keeps track of selected per category
     ~.player_autocast_reset;
 }
-// if (~.inzone_coord_pair_table(gnomeball_zones, .coord) = true) {
-//     .if_settab(gnomeball, 0);
-//     return;
-// }
+if (~.inzone_coord_pair_table(gnomeball_zones, .coord) = true) {
+    .if_settab(gnomeball, 0);
+    return;
+}
 if ($obj = null | (map_members = ^false & oc_members($obj) = true)) {
     ~.weapon_category_tab_attack_unarmed($obj);
     return;

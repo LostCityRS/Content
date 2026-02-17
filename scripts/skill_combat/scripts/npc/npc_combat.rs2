@@ -100,82 +100,82 @@ return(false);
 // it says "You have no reason to do that.", so its prob this osrs message.
 // every guide says you have to kill wormbrain, and monster db's say he drops bones. so theres no
 // beating up message most likely.
-// if (npc_type = wormbrain & (~quest_dragon_getting_map_parts = false | inv_total(inv, mappart2) > 0 | %dragon_goblin ! ^quest_dragon_knows_about_goblin)) {
-//     mes("The goblin is already in prison. You have no reason to attack him.");
-//     // if (%dragon_progress < 3) {
-//     //     mes("The goblin is already in prison. You have no reason to attack him.");
-//     // } else {
-//     //     mes("You have already taken Wormbrain's map piece. There is no use in beating him up"); //osrs
-//     //     mes("further.");
-//     // }
-//     return (false);
-// }
-// if (npc_category = battle_mage & %magearena < ^mage_arena_complete) {
-//     mes("You are not ready to fight the battle mages.");
-//     return(false);
-// }
+if (npc_type = wormbrain & (~quest_dragon_getting_map_parts = false | inv_total(inv, mappart2) > 0 | %dragon_goblin ! ^quest_dragon_knows_about_goblin)) {
+    mes("The goblin is already in prison. You have no reason to attack him.");
+    if (%dragonquest < 3) {
+        mes("The goblin is already in prison. You have no reason to attack him.");
+    } else {
+        mes("You have already taken Wormbrain's map piece. There is no use in beating him up"); //osrs
+        mes("further.");
+    }
+    return (false);
+}
+if (npc_category = battle_mage & %magearena < ^mage_arena_complete) {
+    mes("You are not ready to fight the battle mages.");
+    return(false);
+}
 
-// if (~player_autocast_enabled = false & ~inzone_coord_pair_table(mage_arena, coord) = true) {
-//     mes("Kolodion allows only magical combat within the arena."); // taken from pvp
-//     return(false);
-// }
+if (~player_autocast_enabled = false & ~inzone_coord_pair_table(mage_arena, coord) = true) {
+    mes("Kolodion allows only magical combat within the arena."); // taken from pvp
+    return(false);
+}
 
-// if(npc_type = general_khazard & %arena_progress < ^arena_freed_servils) {
-//     mes("I don't have time. I'm here to rescue Sir Servil and Jeremy.");
-//     return (false);
-// }
+if(npc_type = general_khazard & %arenaquest < ^arena_freed_servils) {
+    mes("I don't have time. I'm here to rescue Sir Servil and Jeremy.");
+    return (false);
+}
 
 if (npc_type = priestperilguarddog) {
     return(~priestperilguarddog_attack);
 }
 
-// if (npc_type = grip) {
-//     return(~grip_attack);
-// }
+if (npc_type = grip) {
+    return(~grip_attack);
+}
 
-// if(npc_type = ikov_lucien2) {
-//     return (~lucien_attack);
-// } 
+if(npc_type = ikov_lucien2) {
+    return (~lucien_attack);
+} 
 
-// if(npc_type = gorad & (~obj_gettotal(ogretooth) > 0 | getbit_range(%itwatchtower_bits, ^itwatchtower_spoken_grew, ^itwatchtower_helped_grew) ! 1)) {
-//     if(%itwatchtower_progress = ^itwatchtower_complete) return (true);
-//     if(getbit_range(%itwatchtower_bits, ^itwatchtower_spoken_grew, ^itwatchtower_helped_grew) < 1) {
-//         mes("You don't need to fight him now.");
-//     } else {
-//         mes("You have already got his tooth.");
-//     }
-//     return(false);
-// }
+if(npc_type = gorad & (~obj_gettotal(ogretooth) > 0 | getbit_range(%itwatchtower_bits, ^itwatchtower_spoken_grew, ^itwatchtower_helped_grew) ! 1)) {
+    if(%itwatchtower = ^itwatchtower_complete) return (true);
+    if(getbit_range(%itwatchtower_bits, ^itwatchtower_spoken_grew, ^itwatchtower_helped_grew) < 1) {
+        mes("You don't need to fight him now.");
+    } else {
+        mes("You have already got his tooth.");
+    }
+    return(false);
+}
 
-// if(npc_type = desertminingcaptain) {
-//     return (~mercenary_capt_attack(false));
-// } 
+if(npc_type = desertminingcaptain) {
+    return (~mercenary_capt_attack(false));
+} 
 
-// if(npc_type = ikov_firewarrior & (inv_total(worn, ice_arrow) = 0 | %damagetype ! ^ranged_style)) {
-//     ~chatnpc("<p,angry>Your puny weapons do nothing against me human! Come back when you can give me a real fight!");
-//     return (false);
-// }
+if(npc_type = ikov_firewarrior & (inv_total(worn, ice_arrow) = 0 | %damagetype ! ^ranged_style)) {
+    ~chatnpc("<p,angry>Your puny weapons do nothing against me human! Come back when you can give me a real fight!");
+    return (false);
+}
 
-// if (npc_type = delrith) {
-//     if (%demon_progress >= ^demon_complete) {
-//         mes("You've already done that quest.");
-//         return(false);
-//     }
-//     if (inv_getobj(worn, 3) ! silverlight) {
-//         if (inv_total(inv, silverlight) > 0) {
-//             mes("Maybe I'd better wield silverlight first.");
-//             return(false);
-//         }
-//         mes("I'd rather not. He looks scary");
-//         return(false);
-//     }
-// }
-// if (npc_type = count_draynor) {
-//     if (%vampire_progress = ^vampire_complete) {
-//         mes("You've done enough vampire slaying.");
-//         return(false);
-//     }
-// }
+if (npc_type = delrith) {
+    if (%demonstart >= ^demon_complete) {
+        mes("You've already done that quest.");
+        return(false);
+    }
+    if (inv_getobj(worn, 3) ! silverlight) {
+        if (inv_total(inv, silverlight) > 0) {
+            mes("Maybe I'd better wield silverlight first.");
+            return(false);
+        }
+        mes("I'd rather not. He looks scary");
+        return(false);
+    }
+}
+if (npc_type = count_draynor) {
+    if (%vampire = ^vampire_complete) {
+        mes("You've done enough vampire slaying.");
+        return(false);
+    }
+}
 
 if (npc_hasop(2) = true) {
     return (true);
@@ -184,82 +184,82 @@ return (false);
 
 // this proc is used for magic (TODO 377: re-enable later!!)
 [proc,npc_is_attackable_opt]()(boolean)
-// if (npc_type = wormbrain & (~quest_dragon_getting_map_parts = false | inv_total(inv, mappart2) > 0 | %dragon_goblin ! ^quest_dragon_knows_about_goblin)) {
-//     mes("The goblin is already in prison. You have no reason to attack him.");
-//     return (false);
-// }
-// if (npc_type = grip) {
-//     return(~grip_attack);
-// }
-// if (npc_category = battle_mage & %magearena < ^mage_arena_complete) {
-//     mes("You are not ready to fight the battle mages.");
-//     return(false);
-// }
-// if(npc_type = general_khazard & %arena_progress < ^arena_freed_servils) {
-//     mes("I don't have time. I'm here to rescue Sir Servil and Jeremy.");
-//     return (false);
-// }
-// if(npc_type = ikov_lucien2) {
-//     return (~lucien_attack);
-// }
-// if(npc_type = gorad & (~obj_gettotal(ogretooth) > 0 | getbit_range(%itwatchtower_bits, ^itwatchtower_spoken_grew, ^itwatchtower_helped_grew) ! 1)) {
-//     if(getbit_range(%itwatchtower_bits, ^itwatchtower_spoken_grew, ^itwatchtower_helped_grew) ! 1 | %itwatchtower_progress >= ^itwatchtower_complete) {
-//         mes("You don't need to fight him now.");
-//     } else {
-//         mes("You have already got his tooth.");
-//     }
-//     return(false);
-// }
-// if(npc_type = desertminingcaptain) {
-//     return (~mercenary_capt_attack(true));
-// } 
-// if(npc_type = ikov_firewarrior) { // can't attack with magic
-//     ~chatnpc("<p,angry>Your puny weapons do nothing against me human! Come back when you can give me a real fight!");
-//     return (false);
-// }
-// if (npc_category = kolodion & enum(int, npc, mage_arena_bosses, %magearena) ! npc_type) {
-//     if (%magearena > ^mage_arena_complete) {
-//         mes("You have already proven yourself against Kolodion.");
-//         return(false);
-//     }
-//     if (enum(npc, int, mage_arena_stages, npc_type) < %magearena) {
-//         mes("You have already killed Kolodion in his <enum(int, string, mage_arena_boss_names, sub(%magearena, 1))> form.");
-//     }
-//     if (npc_type = kolspider | npc_type = koldemon) {
-//         mes("You must now defeat him as <~add_article(enum(int, string, mage_arena_boss_names, %magearena))>.");
-//     } else {
-//         mes("You must currently fight Kolodion in his <enum(int, string, mage_arena_boss_names, %magearena)> form.");
-//     }
-//     return(false);
-// }
-// if (npc_type = chompy_bird) {
-//     mes("Magic simply won't affect this beast!");
-//     return(false);
-// }
-// if (%vampire_progress = ^vampire_complete & npc_type = count_draynor) {
-//     mes("You've done enough vampire slaying.");
-//     return(false);
-// }
-// if (npc_type = delrith) {
-//     if (%demon_progress >= ^demon_complete) {
-//         mes("You've already done that quest.");
-//         return(false);
-//     }
-//     if (inv_getobj(worn, 3) ! silverlight) {
-//         if (inv_total(inv, silverlight) > 0) {
-//             mes("Maybe I'd better wield silverlight first.");
-//             return(false);
-//         }
-//         mes("I'd rather not. He looks scary");
-//         return(false);
-//     }
-// }
-// if (npc_type = count_draynor) {
-//     if (%vampire_progress = ^vampire_complete) {
-//         mes("You've done enough vampire slaying.");
-//         return(false);
-//     }
-// }
+if (npc_type = wormbrain & (~quest_dragon_getting_map_parts = false | inv_total(inv, mappart2) > 0 | %dragon_goblin ! ^quest_dragon_knows_about_goblin)) {
+    mes("The goblin is already in prison. You have no reason to attack him.");
+    return (false);
+}
+if (npc_type = grip) {
+    return(~grip_attack);
+}
+if (npc_category = battle_mage & %magearena < ^mage_arena_complete) {
+    mes("You are not ready to fight the battle mages.");
+    return(false);
+}
+if(npc_type = general_khazard & %arenaquest < ^arena_freed_servils) {
+    mes("I don't have time. I'm here to rescue Sir Servil and Jeremy.");
+    return (false);
+}
+if(npc_type = ikov_lucien2) {
+    return (~lucien_attack);
+}
+if(npc_type = gorad & (~obj_gettotal(ogretooth) > 0 | getbit_range(%itwatchtower_bits, ^itwatchtower_spoken_grew, ^itwatchtower_helped_grew) ! 1)) {
+    if(getbit_range(%itwatchtower_bits, ^itwatchtower_spoken_grew, ^itwatchtower_helped_grew) ! 1 | %itwatchtower >= ^itwatchtower_complete) {
+        mes("You don't need to fight him now.");
+    } else {
+        mes("You have already got his tooth.");
+    }
+    return(false);
+}
+if(npc_type = desertminingcaptain) {
+    return (~mercenary_capt_attack(true));
+} 
+if(npc_type = ikov_firewarrior) { // can't attack with magic
+    ~chatnpc("<p,angry>Your puny weapons do nothing against me human! Come back when you can give me a real fight!");
+    return (false);
+}
+if (npc_category = kolodion & enum(int, npc, mage_arena_bosses, %magearena) ! npc_type) {
+    if (%magearena > ^mage_arena_complete) {
+        mes("You have already proven yourself against Kolodion.");
+        return(false);
+    }
+    if (enum(npc, int, mage_arena_stages, npc_type) < %magearena) {
+        mes("You have already killed Kolodion in his <enum(int, string, mage_arena_boss_names, sub(%magearena, 1))> form.");
+    }
+    if (npc_type = kolspider | npc_type = koldemon) {
+        mes("You must now defeat him as <~add_article(enum(int, string, mage_arena_boss_names, %magearena))>.");
+    } else {
+        mes("You must currently fight Kolodion in his <enum(int, string, mage_arena_boss_names, %magearena)> form.");
+    }
+    return(false);
+}
+if (npc_type = chompy_bird) {
+    mes("Magic simply won't affect this beast!");
+    return(false);
+}
+if (%vampire = ^vampire_complete & npc_type = count_draynor) {
+    mes("You've done enough vampire slaying.");
+    return(false);
+}
+if (npc_type = delrith) {
+    if (%demonstart >= ^demon_complete) {
+        mes("You've already done that quest.");
+        return(false);
+    }
+    if (inv_getobj(worn, 3) ! silverlight) {
+        if (inv_total(inv, silverlight) > 0) {
+            mes("Maybe I'd better wield silverlight first.");
+            return(false);
+        }
+        mes("I'd rather not. He looks scary");
+        return(false);
+    }
+}
+if (npc_type = count_draynor) {
+    if (%vampire = ^vampire_complete) {
+        mes("You've done enough vampire slaying.");
+        return(false);
+    }
+}
 if (npc_hasop(2) = true) {
     return (true);
 }

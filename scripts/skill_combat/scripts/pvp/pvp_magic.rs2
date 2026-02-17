@@ -195,7 +195,6 @@ queue(pvp_retaliate, calc($duration / 30 + 1), uid);
 
 [proc,pvp_spell_fail](dbrow $spell_data, int $duration)
 // splash
-// splash
 sound_synth(spellfail, 0, 0);
 .sound_synth(spellfail, 0, 0);
 // no splash sound?
@@ -245,4 +244,3 @@ if (.finduid(%pk_binder) = true) {
         walktrigger(pvp_frozen);
     }
 }
-

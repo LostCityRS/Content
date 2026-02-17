@@ -1,0 +1,22 @@
+[label,pvp_rune_claws_sa]
+~set_sa_vars(oc_param(inv_getobj(worn, ^wearpos_rhand), sa_energy));
+~set_pk_vars;
+def_int $damage = 0;
+def_int $maxhit = scale(110, 100, %com_maxhit); 
+if (~pvp_hit_roll(%damagetype) = true) {
+    if (~.check_protect_prayer(^melee_style) = true) {
+        $maxhit = scale(6, 10, $maxhit); // reduction of 40%
+    }
+    $damage = min(randominc($maxhit), .stat(hitpoints)); // tick eating existed! https://oldschool.runescape.wiki/w/Update:The_Wintertodt
+    ~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
+    both_heropoints($damage);
+}
+anim(impale, 0);
+sound_synth(impale, 0, 0);
+%action_delay = add(%action_delay, 1);
+spotanim_pl(sp_attack_impale_spotanim, 96, 0);
+.anim(.%com_defendanim, 20);
+.sound_synth(impale, 0, 0);
+//.queue*(pvp_retaliate, 0)(uid);
+.queue(pvp_retaliate, 0, uid);
+~.pvp_damage(0, $damage);
