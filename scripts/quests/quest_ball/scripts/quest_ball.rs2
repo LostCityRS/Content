@@ -152,7 +152,6 @@ if(last_useitem = witches_shedkey) {
                 npc_del;
             }
         }
-        npc_add(^ball_experiment_spawn_coord, shapeshifterglob, 500);
     }
     ~open_and_close_door2(desertdoor_inactive, $entering, door_open);
     return;

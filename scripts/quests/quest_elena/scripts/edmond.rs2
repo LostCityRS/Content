@@ -1,4 +1,10 @@
-[opnpc1,edmond]
+[opnpc1,edmond_top]
+@edmond_dialogue;
+
+[opnpc1,edmond_bottom]
+@edmond_dialogue;
+
+[label,edmond_dialogue]
 switch_int(%elenaquest) {
     case ^quest_elena_not_started :
         ~chatplayer("<p,happy>Hello old man.");
@@ -60,7 +66,7 @@ switch_int(%elenaquest) {
 
 [label,edmond_what_happened_to_elena]
 ~chatplayer("<p,quiz>What's happened to her?");
-~chatnpc("<p,sad><nc_name(elena2)>'s a missionary and a healer.|Three weeks ago she managed to cross the Ardougne wall.|");
+~chatnpc("<p,sad>Elena's a missionary and a healer.|Three weeks ago she managed to cross the Ardougne wall.|");
 ~chatnpc("<p,sad>No one's allowed to cross the wall in case they spread the plague, but after hearing the screams of suffering, she felt she had to help.");
 ~chatnpc("<p,sad>She said she'd be gone for a few days, but we've heard nothing since.");
 @multi3("Tell me more about the plague.", edmond_tell_me_more, "Can I help find her?", edmond_can_i_help_find_elena, "I'm sorry, I have to go.", edmond_sorry_i_have_to_go);
