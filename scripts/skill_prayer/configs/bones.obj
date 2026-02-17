@@ -1,0 +1,83 @@
+[bones]
+name=Bones
+desc=Bones are for burying!
+model=obj_sheepbonesa
+2dxof=2
+2dzoom=1410
+2dyan=368
+2dxan=400
+iop1=Bury
+weight=500g
+category=bones
+param=bone_exp,45
+
+[bones_burnt]
+name=Burnt bones
+desc=Bones are for burying!
+recol1s=32767
+recol1d=7399
+model=obj_sheepbonesa
+2dxof=2
+2dzoom=1410
+2dyan=368
+2dxan=400
+iop1=Bury
+weight=500g
+category=bones
+param=bone_exp,45
+
+[bat_bones]
+name=Bat bones
+desc=Bones are for burying!
+model=obj_sheepbonesa
+2dxof=2
+2dzoom=1410
+2dyan=368
+2dxan=400
+iop1=Bury
+members=yes
+weight=300g
+category=bones
+param=bone_exp,45
+param=grindable_ingredient_refined,ground_bat_bones
+param=grindable_ingredient_message,You grind the bones to a powder.
+
+[big_bones]
+name=Big bones
+desc=Ew it's a pile of bones.
+model=obj_big_bones
+2dzoom=1830
+2dyan=648
+2dxan=216
+iop1=Bury
+weight=800g
+category=bones
+respawnrate=50
+param=bone_exp,150
+
+[babydragon_bones]
+name=Babydragon bones
+desc=Ew it's a pile of bones.
+members=yes
+model=obj_big_bones
+2dzoom=1830
+2dyan=648
+2dxan=216
+iop1=Bury
+weight=800g
+category=bones
+param=bone_exp,300
+
+[dragon_bones]
+name=Dragon bones
+desc=These would feed a dog for months!
+model=enakh_cutscene_bonepile_8
+2dzoom=1830
+2dyan=648
+2dxan=216
+iop1=Bury
+members=yes
+weight=1500g
+category=bones
+param=bone_exp,720
+

@@ -1,10 +1,10 @@
 [oplocu,_smithing_furnace]
 switch_obj (last_useitem)
 {
-    // case gold_bar, perfect_gold_bar : @craft_gold_interface;
-    // case silver_bar : @craft_silver;
+    case gold_bar, perfect_gold_bar : @craft_gold_interface;
+    case silver_bar : @craft_silver;
     case steel_bar : @smelt_cannonballs;
-    // case bucket_sand, soda_ash : @smelt_glass;
+    case bucket_sand, soda_ash : @smelt_glass;
     case caveorb1, caveorb2, caveorb3, caveorb4 :
         if(loc_type = furnace_upass) @destroy_orboflight(last_useitem);
         ~displaymessage(^dm_default);
