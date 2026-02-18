@@ -11207,6 +11207,7 @@ op1=Open
 active=yes
 blockrange=no
 raiseobject=no
+category=locked_gate
 
 [lockedmetalgater]
 name=Gate
@@ -11217,6 +11218,7 @@ mirror=yes
 active=yes
 blockrange=no
 raiseobject=no
+category=locked_gate
 
 [loc_1591]
 name=Door
@@ -27802,6 +27804,7 @@ mapscene=42
 ambient=15
 contrast=15
 blockrange=no
+category=empty_crate
 
 [eadgar_troll_crates]
 name=Crates
@@ -27811,6 +27814,7 @@ active=yes
 mapscene=42
 ambient=15
 contrast=15
+category=empty_crate
 
 [eadgar_troll_crates_2]
 name=Crates
@@ -27820,6 +27824,7 @@ active=yes
 mapscene=42
 ambient=15
 contrast=15
+category=empty_crate
 
 [eadgar_kitchen_drawers]
 name=Kitchen Drawers
@@ -41518,6 +41523,7 @@ active=yes
 ambient=15
 contrast=15
 blockrange=no
+category=empty_crate
 
 [ahoy_crates]
 name=Crates
@@ -41538,6 +41544,7 @@ recol6d=4256
 active=yes
 ambient=15
 contrast=15
+category=empty_crate
 
 [ahoy_crates_2]
 name=Crates
@@ -41558,6 +41565,7 @@ recol6d=4256
 active=yes
 ambient=15
 contrast=15
+category=empty_crate
 
 [ahoy_skeleton_1]
 name=Skeleton
@@ -48677,6 +48685,7 @@ recol6d=8388
 resizex=100
 resizey=100
 resizez=100
+category=empty_crate
 
 [dwarf_keldagrim_potsandpans1]
 name=Cooking Pots
@@ -57520,6 +57529,8 @@ recol2d=11458
 active=yes
 op1=Open
 raiseobject=no
+category=door_closed
+param=next_loc_stage,roguesden_door_to_pub_open
 
 [roguesden_door_to_pub_open]
 name=Door
@@ -57532,6 +57543,8 @@ recol2d=11458
 active=yes
 op1=Close
 raiseobject=no
+category=door_opened
+param=next_loc_stage,roguesden_door_to_pub
 
 [grim_blankwall_with_blockwalk]
 model=inviswall
@@ -58749,6 +58762,7 @@ recol6d=10466
 blockrange=no
 ambient=20
 op1=Search
+category=empty_crate
 
 [rd_small_crates]
 name=Crate
@@ -58769,6 +58783,7 @@ recol6d=10466
 blockrange=no
 ambient=20
 op1=Search
+category=empty_crate
 
 [rd_chest_closed]
 name=Closed chest
@@ -60863,6 +60878,7 @@ blockrange=no
 offsetx=-30
 offsety=0
 offsetz=0
+category=empty_crate
 
 [farming_crate]
 name=Crate
@@ -88500,6 +88516,7 @@ recol6d=8388
 resizex=100
 resizey=100
 resizez=100
+category=empty_crate
 
 [dwarf_keldagrim_metal_crate_withpapers]
 name=Crate
@@ -92849,6 +92866,7 @@ contrast=15
 forcedecor=yes
 shadow=no
 active=yes
+category=cooking_fire
 
 [loc_9375]
 model=loc_9375
@@ -93026,6 +93044,7 @@ width=3
 forceapproach=west
 op2=Smelt
 shadow=no
+category=smithing_furnace
 
 [loc_9391]
 name=Viewing orb
@@ -96511,6 +96530,8 @@ op3=hidden
 mapscene=24
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4027
 
 [loc_9709]
 name=Rocks
@@ -96526,6 +96547,8 @@ op3=hidden
 mapscene=25
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4028
 
 [loc_9710]
 name=Rocks
@@ -96541,6 +96564,8 @@ op3=hidden
 mapscene=12
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_2110
 
 [loc_9711]
 name=Rocks
@@ -96556,6 +96581,8 @@ op3=hidden
 mapscene=24
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4027
 
 [loc_9712]
 name=Rocks
@@ -96586,6 +96613,8 @@ op3=hidden
 mapscene=25
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_2110
 
 [loc_9714]
 name=Rocks
@@ -96601,6 +96630,8 @@ op3=hidden
 mapscene=12
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4027
 
 [loc_9715]
 name=Rocks
@@ -96616,6 +96647,8 @@ op3=hidden
 mapscene=12
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4028
 
 [loc_9716]
 name=Rocks
@@ -96631,6 +96664,8 @@ op3=hidden
 mapscene=12
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_2110
 
 [loc_9717]
 name=Rocks
@@ -96646,6 +96681,8 @@ op3=hidden
 mapscene=12
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4027
 
 [loc_9718]
 name=Rocks
@@ -96661,6 +96698,8 @@ op3=hidden
 mapscene=12
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4028
 
 [loc_9719]
 name=Rocks
@@ -96676,6 +96715,8 @@ op3=hidden
 mapscene=12
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_2110
 
 [loc_9720]
 name=Rocks
@@ -96691,6 +96732,8 @@ op3=hidden
 mapscene=12
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4027
 
 [loc_9721]
 name=Rocks
@@ -96721,6 +96764,8 @@ op3=hidden
 mapscene=12
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_2110
 
 [loc_9723]
 name=Rocks
@@ -102528,6 +102573,7 @@ recol5s=9411
 recol5d=7296
 recol6s=8354
 recol6d=6240
+category=empty_crate
 
 [makinghistory_crates]
 name=Crates
@@ -102545,6 +102591,7 @@ recol5s=9411
 recol5d=7296
 recol6s=8354
 recol6d=6240
+category=empty_crate
 
 [makinghistory_crate]
 name=Crate
@@ -102562,6 +102609,7 @@ recol5s=9411
 recol5d=7296
 recol6s=8354
 recol6d=6240
+category=empty_crate
 
 [makinghistory_double_crates]
 name=Crates
@@ -102579,6 +102627,7 @@ recol5s=9411
 recol5d=7296
 recol6s=8354
 recol6d=6240
+category=empty_crate
 
 [waterfall_swim_point]
 name=River
@@ -102743,6 +102792,7 @@ recol5d=6305
 recol6s=9410
 recol6d=4256
 ambient=20
+category=empty_crate
 
 [vc_rat_valve_dwarf]
 name=Rat lever
@@ -103714,6 +103764,7 @@ recol6s=8354
 recol6d=11491
 ambient=60
 op1=Search
+category=empty_crate
 
 [elid_small_crates]
 name=Crates
@@ -103737,6 +103788,7 @@ offsetx=-30
 offsety=0
 offsetz=0
 op1=Search
+category=empty_crate
 
 [elid_cupboard_closed]
 name=Cupboard
@@ -112158,6 +112210,8 @@ op3=hidden
 mapscene=12
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4027
 
 [loc_11184]
 name=Rocks
@@ -112173,6 +112227,8 @@ op3=hidden
 mapscene=12
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4028
 
 [loc_11185]
 name=Rocks
@@ -112188,6 +112244,8 @@ op3=hidden
 mapscene=12
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_2110
 
 [loc_11186]
 name=Rocks
@@ -112203,6 +112261,8 @@ op3=hidden
 mapscene=24
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4027
 
 [loc_11187]
 name=Rocks
@@ -112218,6 +112278,8 @@ op3=hidden
 mapscene=25
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4028
 
 [loc_11188]
 name=Rocks
@@ -112233,6 +112295,8 @@ op3=hidden
 mapscene=12
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_2110
 
 [loc_11189]
 name=Rocks
@@ -112310,6 +112374,8 @@ op3=hidden
 mapscene=12
 anim=gas
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_9728
 
 [loc_11194]
 name=Rocks
@@ -112326,6 +112392,8 @@ op3=hidden
 mapscene=12
 anim=gas
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_9726
 
 [loc_11195]
 name=Rocks
@@ -112342,6 +112410,8 @@ op3=hidden
 mapscene=12
 anim=gas
 blockrange=no
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_9728
 
 [boardgames_runeversi_door_experienced]
 name=Door
@@ -114816,6 +114886,8 @@ model=ctleverb
 active=yes
 op1=Pull
 op2=Inspect
+category=haunted_lever
+param=lever_index,0
 
 [levera_down]
 name=Lever A
@@ -114824,6 +114896,8 @@ model=ctlevera
 active=yes
 op1=Pull
 op2=Inspect
+category=haunted_lever
+param=lever_index,0
 
 [leverb_up]
 name=Lever B
@@ -114832,6 +114906,8 @@ model=ctleverb
 active=yes
 op1=Pull
 op2=Inspect
+category=haunted_lever
+param=lever_index,1
 
 [leverb_down]
 name=Lever B
@@ -114840,6 +114916,8 @@ model=ctlevera
 active=yes
 op1=Pull
 op2=Inspect
+category=haunted_lever
+param=lever_index,1
 
 [leverc_up]
 name=Lever C
@@ -114848,6 +114926,8 @@ model=ctleverb
 active=yes
 op1=Pull
 op2=Inspect
+category=haunted_lever
+param=lever_index,2
 
 [leverc_down]
 name=Lever C
@@ -114856,6 +114936,8 @@ model=ctlevera
 active=yes
 op1=Pull
 op2=Inspect
+category=haunted_lever
+param=lever_index,2
 
 [leverd_up]
 name=Lever D
@@ -114864,6 +114946,8 @@ model=ctleverb
 active=yes
 op1=Pull
 op2=Inspect
+category=haunted_lever
+param=lever_index,3
 
 [leverd_down]
 name=Lever D
@@ -114872,6 +114956,8 @@ model=ctlevera
 active=yes
 op1=Pull
 op2=Inspect
+category=haunted_lever
+param=lever_index,2
 
 [levere_up]
 name=Lever E
@@ -114880,6 +114966,8 @@ model=ctleverb
 active=yes
 op1=Pull
 op2=Inspect
+category=haunted_lever
+param=lever_index,3
 
 [levere_down]
 name=Lever E
@@ -114888,6 +114976,8 @@ model=ctlevera
 active=yes
 op1=Pull
 op2=Inspect
+category=haunted_lever
+param=lever_index,3
 
 [leverf_up]
 name=Lever F
@@ -114896,6 +114986,8 @@ model=ctleverb
 active=yes
 op1=Pull
 op2=Inspect
+category=haunted_lever
+param=lever_index,4
 
 [leverf_down]
 name=Lever F
@@ -114904,6 +114996,8 @@ model=ctlevera
 active=yes
 op1=Pull
 op2=Inspect
+category=haunted_lever
+param=lever_index,4
 
 [draynor_manor_fence]
 model=draynor_manor_fence
@@ -114977,6 +115071,8 @@ recol3d=7265
 active=yes
 op1=Open
 raiseobject=no
+category=door_closed
+param=next_loc_stage,draynor_panelled_door_open
 
 [draynor_panelled_door_open]
 name=Door
@@ -114991,6 +115087,8 @@ recol3d=7265
 active=yes
 op1=Close
 raiseobject=no
+category=door_opened
+param=next_loc_stage,draynor_panelled_door
 
 [draynor_candles_1]
 name=Candles
@@ -115146,6 +115244,7 @@ recol6s=9410
 recol6d=4192
 blockrange=no
 op1=Search
+category=empty_crate
 
 [draynor_crates]
 name=Crates
@@ -115164,6 +115263,7 @@ recol5d=5249
 recol6s=9410
 recol6d=4192
 op1=Search
+category=empty_crate
 
 [draynor_boxes]
 name=Boxes
@@ -115202,6 +115302,7 @@ blockrange=no
 offsetx=-30
 offsety=0
 offsetz=0
+category=empty_crate
 
 [draynor_chair]
 name=Chair
@@ -116845,6 +116946,7 @@ offsetx=-30
 offsety=0
 offsetz=0
 op1=Search
+category=empty_boxes
 
 [fai_barbarian_pottery_oven]
 name=Pottery Oven
@@ -117077,6 +117179,8 @@ active=yes
 ambient=10
 op1=Open
 raiseobject=no
+category=door_opened
+param=next_loc_stage,fai_barbarian_poordooropen
 
 [fai_barbarian_poordooropen]
 name=Door
@@ -117094,6 +117198,8 @@ active=yes
 ambient=10
 op1=Close
 raiseobject=no
+category=door_closed
+param=next_loc_stage,fai_barbarian_poordoor
 
 [fai_barbarian_poordoor_inactive]
 model=zanarisdoor
@@ -118094,6 +118200,8 @@ raiseobject=no
 resizey=152
 ambient=20
 resizey=152
+category=door_closed
+param=next_loc_stage,loc_11715
 
 [loc_11715]
 name=Door
@@ -118116,6 +118224,8 @@ op1=Close
 raiseobject=no
 resizey=152
 ambient=20
+category=door_opened
+param=next_loc_stage,loc_11714
 
 [loc_11716]
 name=Castle door
@@ -118137,6 +118247,8 @@ op1=Open
 raiseobject=no
 resizey=152
 ambient=20
+category=double_door_open_and_close_left
+param=next_loc_stage,loc_11718
 
 [loc_11717]
 name=Castle door
@@ -118245,6 +118357,8 @@ mirror=yes
 raiseobject=no
 resizey=152
 ambient=20
+category=double_door_open_and_close_right
+param=next_loc_stage,loc_11722
 
 [loc_11722]
 name=Castle door
@@ -118266,6 +118380,8 @@ op1=Close
 raiseobject=no
 resizey=152
 ambient=20
+category=double_door_open_and_close_right
+param=next_loc_stage,loc_11721
 
 [loc_11723]
 name=Castle door
@@ -119587,7 +119703,7 @@ active=no
 ambient=20
 contrast=15
 
-[tzhaar_cave_door_closed]
+[falador_crumbling_wall]
 name=Crumbling wall
 desc=It looks like I might be able to climb over this piece of the wall...
 model=tzhaar_cave_door_closed
@@ -120438,6 +120554,8 @@ op3=hidden
 mapscene=24
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4027
 
 [loc_11931]
 name=Rocks
@@ -120453,6 +120571,8 @@ op3=hidden
 mapscene=25
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4028
 
 [loc_11932]
 name=Rocks
@@ -120468,6 +120588,8 @@ op3=hidden
 mapscene=25
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_2110
 
 [loc_11933]
 name=Rocks
@@ -120483,6 +120605,8 @@ op3=hidden
 mapscene=24
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4027
 
 [loc_11934]
 name=Rocks
@@ -120498,6 +120622,8 @@ op3=hidden
 mapscene=25
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_4028
 
 [loc_11935]
 name=Rocks
@@ -120513,6 +120639,8 @@ op3=hidden
 mapscene=25
 blockrange=no
 ambient=10
+category=mining_rock_normal
+param=next_loc_stage_mining,loc_2110
 
 [loc_11936]
 name=Rocks
@@ -121013,6 +121141,7 @@ recol2d=20082
 ambient=20
 contrast=15
 offsety=14
+category=empty_crate
 
 [tzhaar_cavewall_top]
 model=tzhaar_eeg2
@@ -125310,6 +125439,7 @@ recol5d=6305
 recol6s=9410
 recol6d=6305
 ambient=20
+category=empty_crate
 
 [goblin_outpost_poordoor]
 name=Door
@@ -143774,6 +143904,7 @@ recol6s=9410
 recol6d=13636
 blockrange=no
 ambient=50
+category=empty_crate
 
 [pest_boxes]
 name=Boxes
@@ -143815,6 +143946,7 @@ ambient=50
 offsetx=-30
 offsety=0
 offsetz=0
+category=empty_crate
 
 [pest_blacksmithtools]
 name=Blacksmith's tools
@@ -148277,6 +148409,7 @@ recol5d=6240
 recol6s=9410
 recol6d=5184
 active=yes
+category=empty_crate
 
 [wild_crate_pile]
 name=Pile of Crates
