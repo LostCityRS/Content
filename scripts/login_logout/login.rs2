@@ -3,6 +3,7 @@ mes("Welcome to RuneScape.");
 cam_reset;
 
 %musicplay = 1; // set to auto on login
+minimap_toggle(0); // always reset on login (osrs)
 if (%option_brightness = 0) {
     // sane defaults for game controls
     %option_brightness = 2;
