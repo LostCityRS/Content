@@ -1753,7 +1753,7 @@ param=death_sound,dragon_death
 param=death_drop,dragon_bones
 param=slayer_category,^slayer_blackdragon
 huntrange=20
-huntmode=king_dragon
+huntmode=cowardly
 
 [babydragon]
 name=Baby dragon
@@ -5897,7 +5897,7 @@ recol3s=14801
 recol3d=24075
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
-//op2=Attack
+op2=Attack
 op3=Pickpocket
 vislevel=15
 respawnrate=100
@@ -33811,6 +33811,12 @@ op1=Talk-to
 op3=Trade
 vislevel=hide
 head1=idk_woman_hair_medium_head
+category=shop_keeper
+param=owned_shop,death_pub
+param=shop_sell_multiplier,1000
+param=shop_buy_multiplier,0
+param=shop_delta,10
+param=shop_title,The Toad and Chicken
 
 [boardgames_barmaid2]
 name=Rachael
@@ -33833,6 +33839,12 @@ op1=Talk-to
 op3=Trade
 vislevel=hide
 head1=obj_pickpocket_guide_warrior
+category=shop_keeper
+param=owned_shop,death_pub
+param=shop_sell_multiplier,1000
+param=shop_buy_multiplier,0
+param=shop_delta,10
+param=shop_title,The Toad and Chicken
 
 [misc_queen_sigrid]
 name=Queen Sigrid
@@ -51479,168 +51491,6 @@ readyanim=human_ready
 op3=Pickpocket
 op2=Attack
 vislevel=62
-
-[rcu_zammy_mage1]
-walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
-readyanim=human_ready
-vislevel=1
-multivar=abyssal_miniquest
-multinpc=0,rcu_zammy_mage1a
-multinpc=1,rcu_zammy_mage1a
-multinpc=2,rcu_zammy_mage1a
-multinpc=3,rcu_zammy_mage1a
-multinpc=4,rcu_zammy_mage1b
-
-[rcu_zammy_mage1a]
-name=Mage of Zamorak
-desc=A disciple of Zamorak.
-model1=obj_ham_hood_manwear
-model2=idk_man_jaw_medium
-model3=obj_stringsnake_manwear2
-model4=obj_priest_gown_manwear
-model5=obj_priest_gown_manwear2
-model6=obj_cert_drill_top_manwear3
-model7=obj_zamorak_staff_manwear
-model8=obj_unfinished_saradominbook_manwear
-model9=npc_skeletonmagei2
-recol1s=14724
-recol1d=2340
-recol2s=2340
-recol2d=15360
-recol3s=6273
-recol3d=20083
-recol4s=21140
-recol4d=8291
-recol5s=27553
-recol5d=0
-vislevel=hide
-walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
-readyanim=human_ready
-op1=Talk-to
-op3=Trade
-head1=obj_pickpocket_guide_mham
-head2=idk_man_jaw_medium_head
-
-[rcu_zammy_mage1b]
-name=Mage of Zamorak
-desc=A disciple of Zamorak.
-model1=obj_ham_hood_manwear
-model2=idk_man_jaw_medium
-model3=obj_stringsnake_manwear2
-model4=obj_priest_gown_manwear
-model5=obj_priest_gown_manwear2
-model6=obj_cert_drill_top_manwear3
-model7=obj_zamorak_staff_manwear
-model8=obj_unfinished_saradominbook_manwear
-model9=npc_skeletonmagei2
-recol1s=14724
-recol1d=2340
-recol2s=2340
-recol2d=15360
-recol3s=6273
-recol3d=20083
-recol4s=21140
-recol4d=8291
-recol5s=27553
-recol5d=0
-vislevel=hide
-op1=Talk-to
-op3=Trade
-op4=Teleport
-walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
-readyanim=human_ready
-head1=obj_pickpocket_guide_mham
-head2=idk_man_jaw_medium_head
-
-[rcu_zammy_mage1_edge]
-walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
-readyanim=human_ready
-vislevel=1
-multivar=abyssal_miniquest
-multinpc=1,rcu_zammy_mage1_edgeb
-multinpc=2,rcu_zammy_mage1_edgeb
-multinpc=3,rcu_zammy_mage1_edgeb
-multinpc=4,rcu_zammy_mage1_edgeb
-
-[rcu_zammy_mage1_edgeb]
-name=Mage of Zamorak
-desc=A disciple of Zamorak.
-model1=obj_ham_hood_manwear
-model2=idk_man_jaw_medium
-model3=obj_stringsnake_manwear2
-model4=obj_priest_gown_manwear
-model5=obj_priest_gown_manwear2
-model6=obj_cert_drill_top_manwear3
-model7=obj_zamorak_staff_manwear
-model8=obj_unfinished_saradominbook_manwear
-model9=npc_skeletonmagei2
-recol1s=14724
-recol1d=2340
-recol2s=2340
-recol2d=15360
-recol3s=6273
-recol3d=20083
-recol4s=21140
-recol4d=8291
-recol5s=27553
-recol5d=0
-vislevel=hide
-walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
-readyanim=human_ready
-op1=Talk-to
-head1=obj_pickpocket_guide_mham
-head2=idk_man_jaw_medium_head
-
-[rcu_zammy_mage2]
-name=Dark mage
-desc=An initiate of Zamorak.
-model1=obj_ham_hood_manwear
-model2=idk_man_jaw_none
-model3=obj_zqdeadbeads_manwear
-model4=obj_priest_gown_manwear
-model5=obj_priest_gown_manwear2
-model6=obj_cert_drill_top_manwear3
-model7=npc_1716
-model8=npc_macro_geni
-recol1s=14724
-recol1d=0
-recol2s=2340
-recol2d=0
-recol3s=24075
-recol3d=22028
-vislevel=hide
-walkanim=human_geni_bowing
-readyanim=human_geni_bowing
-turnspeed=0
-op1=Talk-to
-head1=obj_pickpocket_guide_mham
-
-[abyssal_leech]
-name=Abyssal leech
-desc=A blood-drinking denizen of the abyss.
-model1=npc_2263
-walkanim=abyssal_leech_walk
-readyanim=abyssal_leech_ready
-op2=Attack
-vislevel=41
-
-[abyssal_pyramid]
-name=Abyssal guardian
-desc=It seems to have eyes in the back of its head...
-model1=npc_2264
-walkanim=abyssal_pyramid_walk
-readyanim=abyssal_pyramid_ready
-op2=Attack
-vislevel=59
-
-[abyssal_walker]
-name=Abyssal walker
-desc=Apparently walks the abyss.
-model1=npc_2265
-walkanim=abyssal_walker_walk
-readyanim=abyssal_walker_ready
-op2=Attack
-vislevel=81
 
 [roguesden_mazemaster]
 name=Brian O'Richard
