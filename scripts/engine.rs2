@@ -278,6 +278,8 @@
 [command,tut_flash](int $tab)
 // info: Set a component's model animation
 [command,if_setanim](component $component, seq $anim)
+// info: Set a component's model animation for the secondary player
+[command,.if_setanim](component $component, seq $anim)
 // info: Set a side tab to a specific interface
 [command,if_settab](interface $interface, int $tab)
 // info: Set a side tab to a specific interface for the secondary player
@@ -306,6 +308,8 @@
 [command,if_setnpchead](component $component, npc $npc)
 // info: Reposition a component
 [command,if_setposition](component $component, int $x, int $y);
+// info: Reposition a component for the secondary player
+[command,.if_setposition](component $component, int $x, int $y);
 // info: Set the scrollbar position on a component
 [command,if_setscrollpos](component $component, int $y);
 // info: Give xp in a stat
@@ -324,6 +328,12 @@
 [command,midi_song](string $song)
 // info: Play a jingle (advancing levels, completing quests, ...)
 [command,midi_jingle](string $jingle, int $length)
+// info: Play a jingle for the secondary player (advancing levels, completing quests, ...)
+[command,.midi_jingle](string $jingle, int $length)
+// info: Change the active_player type of minimap displayed
+[command,minimap_toggle](int $type)
+// info: Change the secondary active_player type of minimap displayed
+[command,.minimap_toggle](int $type)
 // info: Show the hint arrow at $coord
 [command,hint_coord](int $offset, coord $coord, int $height)
 // info: Start a softtimer on the active_player
@@ -466,6 +476,10 @@
 [command,lowmem]()(boolean)
 // info: Set the player's identity kit
 [command,setidkit](idkit $kit, int $color)
+// info: Set the player's skill level for games room
+[command,set_skill_level](int $level)
+// info: Set the player's skill level for games room
+[command,.set_skill_level](int $level)
 // info: Set the active_player to the hero that's done the most damage to the current active_player
 [command,findhero]()(boolean)
 // info: Set the secondary active_player to the hero that's done the most damage to the current secondary active_player

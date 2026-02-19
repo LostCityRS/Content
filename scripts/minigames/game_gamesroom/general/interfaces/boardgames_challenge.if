@@ -520,12 +520,12 @@ graphic=steelborder2,0
 
 [com_65]
 type=layer
-x=308
-y=197
+x=320
+y=220
 width=78
 height=42
 
-[com_67]
+[select]
 layer=com_65
 type=rect
 x=6
@@ -539,13 +539,13 @@ option=Challenge player
 [com_68]
 layer=com_65
 type=text
-x=12
+x=21
 y=14
-width=55
+width=35
 height=14
 font=p12_full
 shadowed=yes
-text=Challenge
+text=Select
 colour=0x008000
 overcolour=0x00FF00
 
@@ -607,11 +607,11 @@ graphic=miscgraphics,3
 type=text
 x=97
 y=65
-width=102
+width=130
 height=14
 font=p12_full
 shadowed=yes
-text=Draughts: Options
+text=Challenge: Select Game
 colour=0xFFAA44
 
 [com_75]
@@ -627,502 +627,113 @@ text=Close Window
 colour=0x808080
 overcolour=0xFFFFFF
 
-[com_78]
-type=layer
-x=296
-y=94
-width=99
-height=95
-
 [com_76]
-layer=com_78
-type=text
-x=32
-y=40
-buttontype=select
-width=66
-height=14
-font=p12_full
-shadowed=yes
-text=30 seconds
-colour=0xAA8822
-option=Select option
+type=layer
+x=115
+y=121
+width=272
+height=77
 
-[com_77]
-layer=com_78
+[draughts_radio]
+layer=com_76
 type=graphic
-x=10
-y=40
+x=8
+y=28
 buttontype=select
 width=14
 height=15
-script1op1=push_varbit,boardgames_timepermove
-script1=eq,1
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select option
-
-[com_79]
-layer=com_78
-type=graphic
-x=10
-y=60
-buttontype=select
-width=14
-height=15
-script1op1=push_varbit,boardgames_timepermove
-script1=eq,2
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select option
-
-[com_80]
-layer=com_78
-type=graphic
-x=10
-y=80
-buttontype=select
-width=14
-height=15
-script1op1=push_varbit,boardgames_timepermove
-script1=eq,3
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select option
-
-[com_81]
-layer=com_78
-type=graphic
-x=10
-y=20
-buttontype=select
-width=14
-height=15
-script1op1=push_varbit,boardgames_timepermove
+script1op1=pushvar,if1
 script1=eq,0
 graphic=miscgraphics,10
 activegraphic=miscgraphics,11
-option=Select option
+option=Select game
 
-[com_82]
-layer=com_78
-type=text
-x=32
-y=60
+[runelink_radio]
+layer=com_76
+type=graphic
+x=8
+y=58
 buttontype=select
+width=14
+height=15
+script1op1=pushvar,if1
+script1=eq,1
+graphic=miscgraphics,10
+activegraphic=miscgraphics,11
+option=Select game
+
+[draughts_text]
+layer=com_76
+type=text
+x=37
+y=28
+buttontype=normal
+width=52
+height=14
+font=p12_full
+shadowed=yes
+text=Draughts
+colour=0xFFAA44
+option=Select game
+
+[runelink_text]
+layer=com_76
+type=text
+x=37
+y=58
+buttontype=normal
 width=47
 height=14
 font=p12_full
 shadowed=yes
-text=1 minute
-colour=0xAA8822
-option=Select option
+text=Runelink
+colour=0xFFAA44
+option=Select game
 
-[com_83]
-layer=com_78
+[draughts_rank]
+layer=com_76
 type=text
-x=32
-y=80
-buttontype=select
-width=56
-height=14
-font=p12_full
-shadowed=yes
-text=2 minutes
-colour=0xAA8822
-option=Select option
-
-[com_84]
-layer=com_78
-type=text
-x=32
-y=20
-buttontype=select
+x=112
+y=28
 width=64
 height=14
 font=p12_full
 shadowed=yes
-text=15 seconds
-colour=0xAA8822
-option=Select option
+text=100 vs 100
+colour=0xAAAAAA
 
-[com_85]
-layer=com_78
+[runelink_rank]
+layer=com_76
 type=text
-x=11
-y=1
-width=82
+x=112
+y=58
+width=64
 height=14
 font=p12_full
 shadowed=yes
-text=Time per move:
-colour=0xAA8822
+text=100 vs 100
+colour=0xAAAAAA
 
-[com_86]
-type=layer
-x=97
-y=89
-width=191
-height=179
-
-[com_87]
-layer=com_86
-type=graphic
-x=10
-y=34
-buttontype=select
-width=14
-height=15
-script1op1=push_varbit,boardgames_piece
-script1=eq,1
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select piece
-
-[com_88]
-layer=com_86
-type=model
-x=29
-y=25
-buttontype=select
-width=34
-height=32
-model=model_2399_obj
-zoom=622
-xan=452
-option=Select piece
-
-[com_89]
-layer=com_86
+[com_83]
+layer=com_76
 type=text
-x=10
+x=37
 y=3
-width=78
+width=34
 height=14
 font=p12_full
 shadowed=yes
-text=Choose piece:
-colour=0xAA8822
+text=Game:
+colour=0xFFAA44
 
-[com_90]
-layer=com_86
-type=model
-x=29
-y=65
-buttontype=select
-width=34
-height=32
-model=model_2652_obj
-zoom=622
-xan=452
-option=Select piece
-
-[com_91]
-layer=com_86
-type=model
-x=29
-y=105
-buttontype=select
-width=34
-height=32
-model=model_2737_obj
-zoom=622
-xan=452
-option=Select piece
-
-[com_92]
-layer=com_86
-type=model
-x=29
-y=145
-buttontype=select
-width=34
-height=32
-model=model_2405_obj
-zoom=622
-xan=452
-option=Select piece
-
-[com_93]
-layer=com_86
-type=model
-x=92
-y=25
-buttontype=select
-width=34
-height=32
-model=model_2481_obj
-zoom=622
-xan=452
-option=Select piece
-
-[com_94]
-layer=com_86
-type=model
-x=92
-y=65
-buttontype=select
-width=34
-height=32
-model=model_2340_obj
-zoom=622
-xan=452
-option=Select piece
-
-[com_95]
-layer=com_86
-type=model
-x=92
-y=105
-buttontype=select
-width=34
-height=32
-model=model_2734_obj
-zoom=622
-xan=452
-option=Select piece
-
-[com_96]
-layer=com_86
-type=model
-x=92
-y=145
-buttontype=select
-width=34
-height=32
-model=model_2707_obj
-zoom=622
-xan=452
-option=Select piece
-
-[com_97]
-layer=com_86
-type=model
-x=155
-y=24
-buttontype=select
-width=34
-height=32
-model=model_2382_obj
-zoom=622
-xan=452
-option=Select piece
-
-[com_98]
-layer=com_86
-type=model
-x=155
-y=65
-buttontype=select
-width=34
-height=31
-model=model_2735_obj
-zoom=622
-xan=452
-option=Select piece
-
-[com_99]
-layer=com_86
-type=model
-x=155
-y=105
-buttontype=select
-width=34
-height=32
-model=model_2665_obj
-zoom=622
-xan=452
-option=Select piece
-
-[com_100]
-layer=com_86
-type=model
-x=155
-y=145
-buttontype=select
-width=34
-height=32
-model=model_2434_obj
-zoom=622
-xan=452
-option=Select piece
-
-[com_101]
-layer=com_86
-type=graphic
-x=10
-y=74
-buttontype=select
-width=14
-height=15
-script1op1=push_varbit,boardgames_piece
-script1=eq,2
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select piece
-
-[com_102]
-layer=com_86
-type=graphic
-x=10
-y=114
-buttontype=select
-width=14
-height=15
-script1op1=push_varbit,boardgames_piece
-script1=eq,3
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select piece
-
-[com_103]
-layer=com_86
-type=graphic
-x=10
-y=154
-buttontype=select
-width=14
-height=15
-script1op1=push_varbit,boardgames_piece
-script1=eq,4
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select piece
-
-[com_104]
-layer=com_86
-type=graphic
-x=73
-y=34
-buttontype=select
-width=14
-height=15
-script1op1=push_varbit,boardgames_piece
-script1=eq,5
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select piece
-
-[com_105]
-layer=com_86
-type=graphic
-x=73
-y=74
-buttontype=select
-width=14
-height=15
-script1op1=push_varbit,boardgames_piece
-script1=eq,6
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select piece
-
-[com_106]
-layer=com_86
-type=graphic
-x=73
-y=114
-buttontype=select
-width=14
-height=15
-script1op1=push_varbit,boardgames_piece
-script1=eq,7
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select piece
-
-[com_107]
-layer=com_86
-type=graphic
-x=73
-y=154
-buttontype=select
-width=14
-height=15
-script1op1=push_varbit,boardgames_piece
-script1=eq,8
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select piece
-
-[com_108]
-layer=com_86
-type=graphic
-x=136
-y=34
-buttontype=select
-width=14
-height=15
-script1op1=push_varbit,boardgames_piece
-script1=eq,9
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select piece
-
-[com_109]
-layer=com_86
-type=graphic
-x=136
-y=74
-buttontype=select
-width=14
-height=15
-script1op1=push_varbit,boardgames_piece
-script1=eq,10
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select piece
-
-[com_110]
-layer=com_86
-type=graphic
-x=136
-y=114
-buttontype=select
-width=15
-height=15
-script1op1=push_varbit,boardgames_piece
-script1=eq,11
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select piece
-
-[com_111]
-layer=com_86
-type=graphic
-x=136
-y=154
-buttontype=select
-width=14
-height=15
-script1op1=push_varbit,boardgames_piece
-script1=eq,12
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select piece
-
-[com_112]
+[com_84]
+layer=com_76
 type=text
-x=329
-y=248
-buttontype=normal
-width=41
+x=112
+y=3
+width=155
 height=14
 font=p12_full
 shadowed=yes
-text=Ranked
-colour=0xAA8822
-option=Select option
-
-[com_113]
-type=graphic
-x=307
-y=248
-buttontype=toggle
-width=14
-height=15
-script1op1=push_varbit,boardgames_rankedgame
-script1=eq,1
-graphic=miscgraphics,10
-activegraphic=miscgraphics,11
-option=Select option
+text=Ranks (mine vs opponents):
+colour=0xFFAA44
