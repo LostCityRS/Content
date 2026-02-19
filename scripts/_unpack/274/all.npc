@@ -226,6 +226,9 @@ readyanim=human_staffready
 vislevel=hide
 head1=model_64_npc_head
 head2=model_43_obj_wear
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [tbwt_tamayu_final_hunter]
 name=Tamayu
@@ -250,6 +253,9 @@ readyanim=human_staffready
 vislevel=hide
 head1=model_64_npc_head
 head2=model_43_obj_wear
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [tbwt_lubufu]
 name=Lubufu
@@ -279,6 +285,26 @@ readyanim=lion_ready
 minimap=no
 op2=Attack
 vislevel=83
+wanderrange=12
+maxrange=64
+// respawnrate= TODO
+hitpoints=100
+attack=80
+defence=80
+strength=25
+param=magicdefence,10000
+param=rangedefence,10000
+param=damagetype,^slash_style
+param=attack_anim,lion_attack
+param=defend_anim,lion_block
+param=death_anim,lion_death
+param=attack_sound,beast_attack
+param=defend_sound,beast_hit
+param=death_sound,beast_death
+param=death_drop,tbwt_beast_bones
+huntmode=cowardly
+// huntrange= TODO
+// wanderrange is quesses
 
 [tbwt_beast_cutscene]
 name=The Shaikahan
@@ -289,6 +315,22 @@ walkanim=lion_walk
 readyanim=lion_ready
 minimap=no
 vislevel=83
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
+// respawnrate= TODO
+hitpoints=100
+attack=80
+defence=80
+strength=25
+param=damagetype,^slash_style
+param=attack_anim,lion_attack
+param=defend_anim,lion_block
+param=death_anim,lion_death
+param=attack_sound,beast_attack
+param=defend_sound,beast_hit
+param=death_sound,beast_death
+param=death_drop,null
 
 [0_43_47_karambwanji]
 name=Fishing spot
@@ -300,6 +342,9 @@ desc=There are brightly coloured fish swimming in the water.
 minimap=no
 op1=Net
 op4=hidden
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [general_karambwanji]
 name=Fishing spot
@@ -311,6 +356,9 @@ desc=There are brightly coloured fish swimming in the water.
 minimap=no
 op1=Net
 op4=hidden
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [0_45_48_karambwan]
 name=Fishing spot
@@ -321,6 +369,9 @@ walkanim=fishingspot_walk
 desc=Something dark green is lurking in these waters.
 minimap=no
 op1=Fish
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [general_karambwan]
 name=Fishing spot
@@ -331,6 +382,9 @@ walkanim=fishingspot_walk
 desc=Something dark green is lurking in these waters.
 minimap=no
 op1=Fish
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [lubufu_karambwan]
 name=Fishing spot
@@ -341,6 +395,9 @@ walkanim=fishingspot_walk
 desc=Something dark green is lurking in these waters.
 minimap=no
 op1=Fish
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [0_45_48_seabird1]
 name=Gull
@@ -351,6 +408,22 @@ walkanim=bird_walk
 readyanim=bird_ready
 minimap=no
 vislevel=26
+wanderrange=8
+hitpoints=32
+attack=22
+strength=22
+defence=17
+param=stabdefence,12
+param=slashdefence,10
+param=crushdefence,16
+param=magicdefence,8
+param=damagetype,^stab_style
+param=attack_anim,bird_attack
+param=defend_anim,bird_block
+param=death_anim,bird_death
+param=attack_sound,bird_attack
+param=defend_sound,bird_hit
+param=death_sound,bird_death
 
 [0_45_48_seabird2]
 name=Cormorant
@@ -361,6 +434,22 @@ walkanim=bird_walk
 readyanim=bird_ready
 minimap=no
 vislevel=26
+wanderrange=15
+hitpoints=32
+attack=22
+strength=22
+defence=17
+param=stabdefence,12
+param=slashdefence,10
+param=crushdefence,16
+param=magicdefence,8
+param=damagetype,^stab_style
+param=attack_anim,bird_attack
+param=defend_anim,bird_block
+param=death_anim,bird_death
+param=attack_sound,bird_attack
+param=defend_sound,bird_hit
+param=death_sound,bird_death
 
 [0_45_48_seabird3]
 name=Albatross
@@ -371,6 +460,22 @@ walkanim=bird_walk
 readyanim=bird_ready
 minimap=no
 vislevel=26
+wanderrange=20
+hitpoints=32
+attack=22
+strength=22
+defence=17
+param=stabdefence,12
+param=slashdefence,10
+param=crushdefence,16
+param=magicdefence,8
+param=damagetype,^stab_style
+param=attack_anim,bird_attack
+param=defend_anim,bird_block
+param=death_anim,bird_death
+param=attack_sound,bird_attack
+param=defend_sound,bird_hit
+param=death_sound,bird_death
 
 [lord_iorwerth]
 name=Lord Iorwerth
@@ -392,6 +497,9 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op1=Talk-to
 head1=npc_1182_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [regicide_darkelf]
 name=Elf warrior
@@ -405,6 +513,29 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_staffready
 op2=Attack
 vislevel=90
+wanderrange=5
+maxrange=7
+attackrange=8
+// respawnrate= TODO
+hitpoints=105
+attack=10
+strength=80
+defence=10
+ranged=80
+param=rangebonus,8
+param=stabdefence,50
+param=slashdefence,50
+param=crushdefence,50
+param=magicdefence,50
+param=rangedefence,70
+param=damagetype,^stab_style
+param=attack_anim,human_bow
+param=defend_anim,human_spear_block
+param=defend_sound,crystal_armour_1
+param=death_sound,elf_death
+param=rangeattack_sound,crystal_bow2
+// param=proj_launch, TODO
+// param=proj_travel, TODO
 
 [regicide_darkelf2]
 name=Elf warrior
@@ -418,6 +549,26 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_staffready
 op2=Attack
 vislevel=108
+wanderrange=5
+maxrange=7
+attackrange=2
+// respawnrate= TODO
+hitpoints=105
+attack=95
+strength=95
+defence=80
+ranged=0
+param=stabdefence,50
+param=slashdefence,70
+param=crushdefence,70
+param=magicdefence,60
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,human_spear_spike
+param=defend_anim,human_spear_block
+param=attack_sound,crystal_polearm
+param=defend_sound,crystal_armour_2
+param=death_sound,elf_death
 
 [prif_city_guard]
 name=Elven city guard
@@ -432,6 +583,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_staffready
 op1=Talk-to
 head1=npc_1185_head
+wanderrange=3
 
 [regicide_good_elf1]
 name=Idris
@@ -488,6 +640,9 @@ op1=Lure
 op3=Bait
 op4=hidden
 op5=hidden
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [0_35_50_freshfish]
 name=Fishing spot
@@ -501,6 +656,9 @@ op1=Lure
 op3=Bait
 op4=hidden
 op5=hidden
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [0_33_51_memberfish]
 name=Fishing spot
@@ -514,6 +672,9 @@ op1=Net
 op3=Harpoon
 op4=hidden
 op5=hidden
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [regicide_rabbit]
 name=Rabbit
@@ -527,6 +688,24 @@ resizeh=164
 resizev=164
 op2=Attack
 vislevel=2
+wanderrange=5
+maxrange=7
+// respawnrate= TODO
+hitpoints=5
+param=attackbonus,-47
+param=strengthbonus,-42
+param=stabdefence,-42
+param=slashdefence,-42
+param=crushdefence,-42
+param=magicdefence,-42
+param=rangedefence,-42
+param=damagetype,^crush_style
+param=attack_anim,rabbit_attack
+param=defend_anim,rabbit_block
+param=death_anim,rabbit_death
+// param=attack_sound,rabbit_attack
+// param=defend_sound,rabbit_hit
+// param=death_sound,rabbit_death
 
 [regicide_bunny1]
 name=Rabbit
@@ -540,6 +719,24 @@ resizeh=100
 resizev=100
 op2=Attack
 vislevel=2
+wanderrange=5
+maxrange=7
+// respawnrate= TODO
+hitpoints=5
+param=attackbonus,-47
+param=strengthbonus,-42
+param=stabdefence,-42
+param=slashdefence,-42
+param=crushdefence,-42
+param=magicdefence,-42
+param=rangedefence,-42
+param=damagetype,^crush_style
+param=attack_anim,rabbit_attack
+param=defend_anim,rabbit_block
+param=death_anim,rabbit_death
+// param=attack_sound,rabbit_attack
+// param=defend_sound,rabbit_hit
+// param=death_sound,rabbit_death
 
 [regicide_bunny2]
 name=Rabbit
@@ -553,6 +750,24 @@ resizeh=110
 resizev=110
 op2=Attack
 vislevel=2
+wanderrange=5
+maxrange=7
+// respawnrate= TODO
+hitpoints=5
+param=attackbonus,-47
+param=strengthbonus,-42
+param=stabdefence,-42
+param=slashdefence,-42
+param=crushdefence,-42
+param=magicdefence,-42
+param=rangedefence,-42
+param=damagetype,^crush_style
+param=attack_anim,rabbit_attack
+param=defend_anim,rabbit_block
+param=death_anim,rabbit_death
+// param=attack_sound,rabbit_attack
+// param=defend_sound,rabbit_hit
+// param=death_sound,rabbit_death
 
 [regicide_darkbear]
 name=Grizzly bear
@@ -565,6 +780,22 @@ walkanim=bear_walk
 readyanim=bear_ready
 op2=Attack
 vislevel=24
+wanderrange=12
+maxrange=14
+// respawnrate= TODO
+hitpoints=35
+attack=40
+strength=36
+defence=35
+param=damagetype,^slash_style
+param=attack_anim,bear_attack
+param=defend_anim,bear_block
+param=death_anim,bear_death
+param=attack_sound,bear_attack
+param=defend_sound,bear_hit
+param=death_sound,bear_death
+huntmode=cowardly
+// huntrange= TODO
 
 [regicide_darkbear_cub1]
 name=Grizzly bear cub
@@ -579,6 +810,22 @@ op2=Attack
 resizeh=70
 resizev=70
 vislevel=19
+wanderrange=12
+maxrange=14
+// respawnrate= TODO
+hitpoints=35
+attack=30
+strength=26
+defence=25
+param=damagetype,^slash_style
+param=attack_anim,bear_attack
+param=defend_anim,bear_block
+param=death_anim,bear_death
+param=attack_sound,bear_attack
+param=defend_sound,bear_hit
+param=death_sound,bear_death
+huntmode=cowardly
+// huntrange= TODO
 
 [regicide_darkbear_cub2]
 name=Grizzly bear cub
@@ -593,6 +840,22 @@ op2=Attack
 resizeh=80
 resizev=80
 vislevel=19
+wanderrange=12
+maxrange=14
+// respawnrate= TODO
+hitpoints=35
+attack=32
+strength=32
+defence=28
+param=damagetype,^slash_style
+param=attack_anim,bear_attack
+param=defend_anim,bear_block
+param=death_anim,bear_death
+param=attack_sound,bear_attack
+param=defend_sound,bear_hit
+param=death_sound,bear_death
+huntmode=cowardly
+// huntrange= TODO
 
 [direwolf]
 name=Dire Wolf
@@ -609,6 +872,24 @@ resizev=130
 desc=What big teeth you have.
 op2=Attack
 vislevel=88
+wanderrange=20
+maxrange=22
+// respawnrate= TODO
+hitpoints=85
+attack=75
+strength=75
+defence=75
+param=damagetype,^stab_style
+param=attack_anim,dog_attack
+param=defend_anim,dog_block
+param=death_anim,dog_death
+param=attack_sound,wolf_attack
+param=defend_sound,wolf_hit
+param=death_sound,wolf_death
+huntmode=aggressive_melee
+huntrange=10
+// wander, max, hunt, ranges guesses.
+// osrs stats and Vislvl match 1:1
 
 [regicide_old_camp_tracker]
 name=Elf Tracker
@@ -630,6 +911,9 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op1=Talk-to
 head1=npc_1182_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [regicide_old_camp_guard]
 name=Tyras guard
@@ -658,6 +942,31 @@ readyanim=human_ready
 op2=Attack
 vislevel=110
 head1=npc_1200_head
+defaultmode=none
+wanderrange=5
+maxrange=7
+moverestrict=nomove
+// respawnrate= TODO
+hitpoints=110
+attack=85
+strength=95
+defence=100
+param=attackrate,5
+param=attackbonus,20
+param=strengthbonus,30
+param=stabdefence,87
+param=slashdefence,84
+param=crushdefence,76
+param=magicdefence,-10
+param=rangedefence,79
+param=damagetype,^stab_style
+param=attack_anim,human_staff_pummel
+param=defend_anim,human_spear_block
+param=attack_sound,scythe_slash
+// param=defend_sound, TODO
+// osrs sounds big_bar_mail, scythe_slash
+// old attack anim https://www.youtube.com/watch?v=zhzVchpmscU
+// osrs attack anim seq_440,,, Old attack anim is seq_414 or seq_419
 
 [regicide_arandar_gate_guard]
 name=Elf warrior
@@ -715,6 +1024,31 @@ op1=Talk-to
 op2=Attack
 vislevel=110
 head1=npc_1200_head
+defaultmode=none
+wanderrange=9
+maxrange=7
+attackrange=2
+// respawnrate= TODO
+hitpoints=110
+attack=85
+strength=95
+defence=100
+param=attackrate,5
+param=attackbonus,20
+param=strengthbonus,30
+param=stabdefence,87
+param=slashdefence,84
+param=crushdefence,76
+param=magicdefence,-10
+param=rangedefence,79
+param=damagetype,^stab_style
+param=attack_anim,human_spear_spike
+param=defend_anim,human_spear_block
+param=attack_sound,scythe_slash
+// param=defend_sound, TODO
+// osrs defend sound big_bar_mail
+// old attack anim https://www.youtube.com/watch?v=zhzVchpmscU
+// osrs attack anim seq_440
 
 [regicide_tyras_guard]
 name=Tyras guard
@@ -744,6 +1078,28 @@ op1=Talk-to
 op2=Attack
 vislevel=110
 head1=npc_1200_head
+wanderrange=5
+maxrange=7
+attackrange=2
+// respawnrate= TODO
+hitpoints=110
+attack=85
+strength=95
+defence=100
+param=attackrate,5
+param=attackbonus,20
+param=strengthbonus,30
+param=stabdefence,87
+param=slashdefence,84
+param=crushdefence,76
+param=magicdefence,-10
+param=rangedefence,79
+param=attack_anim,human_spear_spike
+param=defend_anim,human_spear_block
+param=attack_sound,scythe_slash
+// param=defend_sound, TODO
+// osrs defend sound big_bar_mail
+// osrs attack anim seq_440
 
 [regicide_tyras_lazy_guard]
 name=Tyras guard
@@ -773,6 +1129,7 @@ readyanim=human_ready
 op1=Talk-to
 vislevel=hide
 head1=model_63_idk_head
+wanderrange=3
 
 [regicide_tyras_camp_tent_guard]
 name=Tyras guard
@@ -802,6 +1159,9 @@ readyanim=human_ready
 op1=Talk-to
 vislevel=hide
 head1=npc_1200_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [regicide_general_hining]
 name=General Hining
@@ -833,6 +1193,7 @@ op1=Talk-to
 vislevel=hide
 head1=model_55_idk_head
 head2=model_79_idk_head
+wanderrange=5
 
 [regicidegeneralshopkeeper]
 name=Quartermaster
@@ -862,6 +1223,8 @@ readyanim=human_ready
 op1=Talk-to
 vislevel=hide
 head1=model_55_idk_head
+wanderrange=1
+moverestrict=indoors
 
 [caveguide6]
 name=Koftik
@@ -880,6 +1243,7 @@ readyanim=human_ready
 op1=Talk-to
 head1=model_48_npc_head
 head2=model_81_idk_head
+wanderrange=5
 
 [regicide_kings_messenger]
 name=Kings messenger
@@ -912,6 +1276,7 @@ resizev=142
 minimap=no
 ambient=70
 contrast=70
+wanderrange=5
 
 [regicide_willothewisp2]
 name=Willow the wisp
@@ -925,6 +1290,7 @@ readyanim=willowthewisp
 minimap=no
 ambient=70
 contrast=70
+wanderrange=5
 
 [eadgar_druid_washing]
 name=Tegid
@@ -950,6 +1316,9 @@ op1=Talk-to
 vislevel=hide
 head1=model_55_idk_head
 head2=model_82_idk_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [eadgar_troll_thistle]
 name=Thistle
@@ -958,12 +1327,18 @@ desc=It's a Troll Thistle.
 vislevel=hide
 minimap=no
 op1=Pick
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [eadgar_parrotts]
 name=Parrots
 model1=npc_1215
 desc=What a colourful bunch of parrots!
 vislevel=hide
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [eadgar_zoo_keeper_aviary]
 name=Parroty Pete
@@ -995,6 +1370,7 @@ vislevel=hide
 head1=model_53_idk_head
 head2=model_83_idk_head
 head3=model_37_npc_head
+wanderrange=2
 
 [pirate_irate_gardener]
 name=Gardener
@@ -1015,6 +1391,20 @@ readyanim=human_ready
 op2=Attack
 vislevel=3
 head1=model_63_idk_head
+wanderrange=5
+maxrange=7
+respawnrate=50
+hitpoints=7
+attack=2
+defence=5
+param=damagetype,^stab_style
+param=attack_anim,human_farmersfork_stab
+param=defend_anim,human_farmersfork_def
+param=attack_sound,staff_stab
+// osrs attack_sound farmersfork_stab
+// stats taken 3lv Gardener (Falador) Vislvl match.
+// Also Hitpoints match RSC version.
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3276
 
 [ghoul]
 name=Ghoul
@@ -1034,6 +1424,19 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=ghoul_ready
 op2=Attack
 vislevel=42
+wanderrange=3
+maxrange=5
+// respawnrate= TODO
+hitpoints=50
+attack=30
+strength=40
+defence=30
+param=damagetype,^crush_style
+param=attack_sound,ghoul_attack
+// param=defend_sound,ghoul_hit
+// param=death_sound,ghoul_death
+huntmode=cowardly
+// huntrange= TODO
 
 [vampire_leech]
 name=Leech
@@ -1044,6 +1447,22 @@ readyanim=leechready
 op2=Attack
 minimap=no
 vislevel=52
+wanderrange=10
+maxrange=10
+// respawnrate= TODO
+hitpoints=45
+attack=80
+strength=20
+defence=35
+param=damagetype,^stab_style
+param=attack_anim,leechattack
+param=defend_anim,leechblock
+param=death_anim,leechdeath
+param=attack_sound,leech_suck
+param=defend_sound,leech_hit
+param=death_sound,leech_death
+huntmode=cowardly
+// huntrange= TODO
 
 [vampire_flyer]
 name=Vampire
@@ -1067,6 +1486,22 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op2=Attack
 vislevel=72
+wanderrange=5
+maxrange=7
+// respawnrate= TODO
+hitpoints=50
+attack=65
+strength=70
+defence=65
+magic=50
+param=damagetype,^stab_style
+param=attack_anim,vamp_claw
+param=defend_anim,human_unarmedblock
+param=attack_sound,vampire_attack
+param=defend_sound,vampire_hit
+param=death_sound,vampire_death
+huntmode=cowardly
+// huntrange= TODO
 
 // this is probably an OSRS name considering they had an accidental bug spawning vampires... and vampyre is a newer term
 [spider_that_spawns_vampyres]
@@ -1078,6 +1513,8 @@ desc=Nasty little creature.
 vislevel=hide
 walkanim=spider_walk
 minimap=no
+wanderrange=14
+maxrange=16
 
 [vampire_misty]
 name=vampire_misty
@@ -1110,6 +1547,23 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op2=Attack
 vislevel=61
+wanderrange=15
+maxrange=30
+// respawnrate= TODO
+hitpoints=40
+attack=55
+strength=60
+defence=55
+magic=40
+param=damagetype,^stab_style
+param=attack_anim,vamp_claw
+param=defend_anim,human_unarmedblock
+param=attack_sound,vampire_attack
+param=defend_sound,vampire_hit
+param=death_sound,vampire_death
+huntmode=cowardly
+// huntrange= TODO
+// second attack seq_1263 suck attack / second sound 886 vampire_suck
 
 [vampire_juve_hound]
 name=vampire_juve_hound
@@ -1124,6 +1578,12 @@ readyanim=dog_ready
 resizeh=170
 resizev=170
 vislevel=1
+param=attack_anim,dog_attack
+param=defend_anim,dog_block
+param=death_anim,dog_death
+param=attack_sound,null
+param=defend_sound,null
+param=death_sound,null
 
 [vampire_count]
 name=vampire_count
@@ -1149,6 +1609,9 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op2=Attack
 vislevel=25
+hitpoints=100
+param=damagetype,^slash_style
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3239
 
 [nasty_tree_swamp]
 name=Tree
@@ -1160,6 +1623,26 @@ recol2d=7428
 vislevel=hide
 desc=It's bark is worse than its swipe.
 minimap=no
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
+blockwalk=all
+hitpoints=250
+attack=20
+strength=20
+defence=40
+param=stabdefence,40
+param=slashdefence,10
+param=crushdefence,60
+param=magicdefence,10
+param=damagetype,^crush_style
+param=attack_anim,deadtree_attack
+param=attack_sound,nasty_tree_attack
+huntmode=aggressive_melee
+huntrange=1
+// https://vxtwitter.com/JagexAsh/status/1775970463061049645?t=dBzjxnZ88IdFRi86mMgqjw&s=19
+// "They have level 20 Attack & Strength" - ash
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3240
 
 [mmsnailround_swamp]
 name=Myre Blamish Snail
@@ -1181,6 +1664,32 @@ walkanim=snail_walk
 readyanim=snail_ready
 op2=Attack
 vislevel=9
+wanderrange=20
+maxrange=22
+attackrange=3
+// respawnrate= TODO
+hitpoints=8
+attack=0
+strength=0
+defence=22
+ranged=5
+param=attackrate,6
+param=attackbonus,10
+param=strengthbonus,10
+param=stabdefence,5
+param=slashdefence,5
+param=crushdefence,30
+param=magicdefence,5
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,snail_attack
+param=defend_anim,snail_defend
+param=death_anim,snail_death
+// param=defend_sound,snail_hit
+// param=death_sound,snail_death
+// param=rangeattack_sound,snail_spit
+// param=proj_launch, TODO
+// param=proj_travel, TODO
 
 [mmsnailround_red+black]
 name=Blood Blamish Snail
@@ -1202,6 +1711,32 @@ walkanim=snail_walk
 readyanim=snail_ready
 op2=Attack
 vislevel=20
+wanderrange=60
+maxrange=62
+attackrange=3
+// respawnrate= TODO
+hitpoints=13
+attack=0
+strength=0
+defence=45
+ranged=12
+param=attackrate,6
+param=attackbonus,10
+param=strengthbonus,10
+param=stabdefence,5
+param=slashdefence,5
+param=crushdefence,30
+param=magicdefence,5
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,snail_attack
+param=defend_anim,snail_defend
+param=death_anim,snail_death
+// param=defend_sound,snail_hit
+// param=death_sound,snail_death
+// param=rangeattack_sound,snail_spit
+// param=proj_launch, TODO
+// param=proj_travel, TODO
 
 [mmsnailround_yellow]
 name=Ochre Blamish Snail
@@ -1223,6 +1758,32 @@ walkanim=snail_walk
 readyanim=snail_ready
 op2=Attack
 vislevel=10
+wanderrange=15
+maxrange=17
+attackrange=3
+// respawnrate= TODO
+hitpoints=10
+attack=0
+strength=0
+defence=18
+ranged=7
+param=attackrate,6
+param=attackbonus,10
+param=strengthbonus,10
+param=stabdefence,5
+param=slashdefence,5
+param=crushdefence,30
+param=magicdefence,5
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,snail_attack
+param=defend_anim,snail_defend
+param=death_anim,snail_death
+// param=defend_sound,snail_hit
+// param=death_sound,snail_death
+// param=rangeattack_sound,snail_spit
+// param=proj_launch, TODO
+// param=proj_travel, TODO
 
 [mmsnailround_blue]
 name=Bruise Blamish Snail
@@ -1244,6 +1805,32 @@ walkanim=snail_walk
 readyanim=snail_ready
 op2=Attack
 vislevel=20
+wanderrange=50
+maxrange=52
+attackrange=3
+// respawnrate= TODO
+hitpoints=12
+attack=0
+strength=0
+defence=40
+ranged=15
+param=attackrate,6
+param=attackbonus,10
+param=strengthbonus,10
+param=stabdefence,5
+param=slashdefence,5
+param=crushdefence,30
+param=magicdefence,5
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,snail_attack
+param=defend_anim,snail_defend
+param=death_anim,snail_death
+// param=defend_sound,snail_hit
+// param=death_sound,snail_death
+// param=rangeattack_sound,snail_spit
+// param=proj_launch, TODO
+// param=proj_travel, TODO
 
 [mmsnailround_orange]
 name=Bark Blamish Snail
@@ -1265,6 +1852,32 @@ walkanim=snail_walk
 readyanim=snail_ready
 op2=Attack
 vislevel=15
+wanderrange=30
+maxrange=32
+attackrange=3
+// respawnrate= TODO
+hitpoints=22
+attack=0
+strength=0
+defence=20
+ranged=10
+param=attackrate,6
+param=attackbonus,10
+param=strengthbonus,10
+param=stabdefence,5
+param=slashdefence,5
+param=crushdefence,30
+param=magicdefence,5
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,snail_attack
+param=defend_anim,snail_defend
+param=death_anim,snail_death
+// param=defend_sound,snail_hit
+// param=death_sound,snail_death
+// param=rangeattack_sound,snail_spit
+// param=proj_launch, TODO
+// param=proj_travel, TODO
 
 [mmsnailpoint_swamp]
 name=Myre Blamish Snail
@@ -1284,6 +1897,32 @@ walkanim=snail_walk
 readyanim=snail_ready
 op2=Attack
 vislevel=10
+wanderrange=10
+maxrange=12
+attackrange=3
+// respawnrate= TODO
+hitpoints=13
+attack=0
+strength=0
+defence=12
+ranged=8
+param=attackrate,6
+param=attackbonus,10
+param=strengthbonus,10
+param=stabdefence,5
+param=slashdefence,5
+param=crushdefence,30
+param=magicdefence,5
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,snail_attack
+param=defend_anim,snail_defend
+param=death_anim,snail_death
+// param=defend_sound,snail_hit
+// param=death_sound,snail_death
+// param=rangeattack_sound,snail_spit
+// param=proj_launch, TODO
+// param=proj_travel, TODO
 
 [mmsnailpoint_red+black]
 name=Blood Blamish Snail
@@ -1303,6 +1942,32 @@ walkanim=snail_walk
 readyanim=snail_ready
 op2=Attack
 vislevel=20
+wanderrange=40
+maxrange=42
+attackrange=3
+// respawnrate= TODO
+hitpoints=10
+attack=0
+strength=0
+defence=30
+ranged=21
+param=attackrate,6
+param=attackbonus,10
+param=strengthbonus,10
+param=stabdefence,5
+param=slashdefence,5
+param=crushdefence,30
+param=magicdefence,5
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,snail_attack
+param=defend_anim,snail_defend
+param=death_anim,snail_death
+// param=defend_sound,snail_hit
+// param=death_sound,snail_death
+// param=rangeattack_sound,snail_spit
+// param=proj_launch, TODO
+// param=proj_travel, TODO
 
 [mmsnailpoint_yellow]
 name=Ochre Blamish Snail
@@ -1322,6 +1987,32 @@ walkanim=snail_walk
 readyanim=snail_ready
 op2=Attack
 vislevel=15
+wanderrange=25
+maxrange=27
+attackrange=3
+// respawnrate= TODO
+hitpoints=20
+attack=0
+strength=0
+defence=25
+ranged=8
+param=attackrate,6
+param=attackbonus,10
+param=strengthbonus,10
+param=stabdefence,5
+param=slashdefence,5
+param=crushdefence,30
+param=magicdefence,5
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,snail_attack
+param=defend_anim,snail_defend
+param=death_anim,snail_death
+// param=defend_sound,snail_hit
+// param=death_sound,snail_death
+// param=rangeattack_sound,snail_spit
+// param=proj_launch, TODO
+// param=proj_travel, TODO
 
 [mmsnailpoint_blue]
 name=Bruise Blamish Snail
@@ -1341,6 +2032,32 @@ walkanim=snail_walk
 readyanim=snail_ready
 op2=Attack
 vislevel=20
+wanderrange=35
+maxrange=37
+attackrange=3
+// respawnrate= TODO
+hitpoints=15
+attack=0
+strength=0
+defence=27
+ranged=20
+param=attackrate,6
+param=attackbonus,10
+param=strengthbonus,10
+param=stabdefence,5
+param=slashdefence,5
+param=crushdefence,30
+param=magicdefence,5
+param=rangedefence,50
+param=damagetype,^stab_style
+param=rangeattack_anim,snail_attack
+param=defend_anim,snail_defend
+param=death_anim,snail_death
+// param=defend_sound,snail_hit
+// param=death_sound,snail_death
+// param=rangeattack_sound,snail_spit
+// param=proj_launch, TODO
+// param=proj_travel, TODO
 
 [0_54_53_slimey_eel]
 name=Fishing spot
@@ -1353,6 +2070,9 @@ minimap=no
 op1=Bait
 op3=hidden
 op5=hidden
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [0_53_53_slimey_eel]
 name=Fishing spot
@@ -1365,6 +2085,9 @@ minimap=no
 op1=Bait
 op3=hidden
 op5=hidden
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [0_53_51_slimey_eel]
 name=Fishing spot
@@ -1377,6 +2100,9 @@ minimap=no
 op1=Bait
 op3=hidden
 op5=hidden
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [bedabin_fighter]
 name=Bedabin Nomad Fighter
@@ -1410,6 +2136,21 @@ vislevel=56
 head1=model_63_idk_head
 head2=model_34_npc_head
 head3=model_79_idk_head
+wanderrange=20
+maxrange=22
+// respawnrate= TODO
+hitpoints=50
+attack=40
+strength=50
+defence=60
+magic=0
+ranged=0
+param=attackbonus,9
+param=strengthbonus,14
+param=damagetype,^slash_style
+param=attack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=attack_sound,hacksword_slash
 
 [shadeshadow_level1]
 name=Loar Shadow
@@ -1421,6 +2162,28 @@ readyanim=shadeshadow_ready
 walkanim=shadeshadow_walk
 op2=Attack
 vislevel=40
+wanderrange=30
+maxrange=60
+moverestrict=blocked+normal
+// respawn= TODO
+hitpoints=38
+attack=45
+strength=30
+defence=26
+magic=0
+ranged=0
+param=damagetype,^crush_style
+param=attack_anim,shade_attack
+param=defend_anim,shade_block
+param=death_anim,shade_sink
+param=attack_sound,shade_attack
+param=defend_sound,shade_hit
+param=death_sound,shade_death
+param=death_drop,shade_bones1
+param=undead,^true
+huntmode=cowardly
+// huntrange= TODO
+// TODO immune to poison
 
 [shade_level1]
 name=Loar Shade
@@ -1435,6 +2198,28 @@ readyanim=shade_ready
 op2=Attack
 alwaysontop=yes
 vislevel=40
+wanderrange=30
+maxrange=60
+moverestrict=blocked+normal
+// respawn= TODO
+hitpoints=38
+attack=45
+strength=30
+defence=26
+magic=0
+ranged=0
+param=damagetype,^crush_style
+param=attack_anim,shade_attack
+param=defend_anim,shade_block
+param=death_anim,shade_sink
+param=attack_sound,shade_attack
+param=defend_sound,shade_hit
+param=death_sound,shade_death
+param=death_drop,shade_bones1
+param=undead,^true
+huntmode=cowardly
+// huntrange= TODO
+// TODO immune to poison
 
 [shade_heaven]
 name=Shade Spirit
@@ -1448,6 +2233,9 @@ recol3d=32767
 vislevel=hide
 walkanim=shade_heaven
 readyanim=shade_heaven
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [shadeshadow_level2]
 name=Phrin Shadow
@@ -1459,6 +2247,27 @@ readyanim=shadeshadow_ready
 walkanim=shadeshadow_walk
 op2=Attack
 vislevel=60
+wanderrange=5
+maxrange=11
+// respawnrate= TODO
+hitpoints=56
+attack=64
+strength=47
+defence=42
+magic=0
+ranged=0
+param=damagetype,^crush_style
+param=attack_anim,shade_attack
+param=defend_anim,shade_block
+param=death_anim,shade_sink
+param=attack_sound,shade_attack
+param=defend_sound,shade_hit
+param=death_sound,shade_death
+param=death_drop,shade_bones2
+param=undead,^true
+huntmode=cowardly
+// huntrange= TODO
+// TODO immune to poison
 
 [shade_level2]
 name=Phrin Shade
@@ -1473,6 +2282,27 @@ readyanim=shade_ready
 op2=Attack
 alwaysontop=yes
 vislevel=60
+wanderrange=5
+maxrange=11
+// respawnrate= TODO
+hitpoints=56
+attack=64
+strength=47
+defence=42
+magic=0
+ranged=0
+param=damagetype,^crush_style
+param=attack_anim,shade_attack
+param=defend_anim,shade_block
+param=death_anim,shade_sink
+param=attack_sound,shade_attack
+param=defend_sound,shade_hit
+param=death_sound,shade_death
+param=death_drop,shade_bones2
+param=undead,^true
+huntmode=cowardly
+// huntrange= TODO
+// immune to poison
 
 [shadeshadow_level3]
 name=Riyl Shadow
@@ -1484,6 +2314,27 @@ readyanim=shadeshadow_ready
 walkanim=shadeshadow_walk
 op2=Attack
 vislevel=80
+wanderrange=5
+maxrange=11
+// respawnrate= TODO
+hitpoints=76
+attack=88
+strength=55
+defence=60
+magic=0
+ranged=0
+param=damagetype,^crush_style
+param=attack_anim,shade_attack
+param=defend_anim,shade_block
+param=death_anim,shade_sink
+param=attack_sound,shade_attack
+param=defend_sound,shade_hit
+param=death_sound,shade_death
+param=death_drop,shade_bones3
+param=undead,^true
+huntmode=cowardly
+// huntrange= TODO
+// immune to poison
 
 [shade_level3]
 name=Riyl Shade
@@ -1498,6 +2349,27 @@ readyanim=shade_ready
 op2=Attack
 alwaysontop=yes
 vislevel=80
+wanderrange=5
+maxrange=11
+// respawnrate= TODO
+hitpoints=76
+attack=88
+strength=55
+defence=60
+magic=0
+ranged=0
+param=damagetype,^crush_style
+param=attack_anim,shade_attack
+param=defend_anim,shade_block
+param=death_anim,shade_sink
+param=attack_sound,shade_attack
+param=defend_sound,shade_hit
+param=death_sound,shade_death
+param=death_drop,shade_bones3
+param=undead,^true
+huntmode=cowardly
+// huntrange= TODO
+// immune to poison
 
 [shadeshadow_level4]
 name=Asyn Shadow
@@ -1509,6 +2381,27 @@ readyanim=shadeshadow_ready
 walkanim=shadeshadow_walk
 op2=Attack
 vislevel=100
+wanderrange=7
+maxrange=11
+// respawnrate= TODO
+hitpoints=90
+attack=102
+strength=84
+defence=70
+magic=0
+ranged=0
+param=damagetype,^crush_style
+param=attack_anim,shade_attack
+param=defend_anim,shade_block
+param=death_anim,shade_sink
+param=attack_sound,shade_attack
+param=defend_sound,shade_hit
+param=death_sound,shade_death
+param=death_drop,shade_bones4
+param=undead,^true
+huntmode=cowardly
+// huntrange= TODO
+// immune to poison
 
 [shade_level4]
 name=Asyn Shade
@@ -1523,6 +2416,27 @@ readyanim=shade_ready
 op2=Attack
 alwaysontop=yes
 vislevel=100
+wanderrange=7
+maxrange=11
+// respawnrate= TODO
+hitpoints=90
+attack=102
+strength=84
+defence=70
+magic=0
+ranged=0
+param=damagetype,^crush_style
+param=attack_anim,shade_attack
+param=defend_anim,shade_block
+param=death_anim,shade_sink
+param=attack_sound,shade_attack
+param=defend_sound,shade_hit
+param=death_sound,shade_death
+param=death_drop,shade_bones4
+param=undead,^true
+huntmode=cowardly
+// huntrange= TODO
+// immune to poison
 
 [shadeshadow_level5]
 name=Fiyr Shadow
@@ -1532,6 +2446,27 @@ readyanim=shadeshadow_ready
 walkanim=shadeshadow_walk
 op2=Attack
 vislevel=120
+wanderrange=7
+maxrange=11
+// respawnrate= TODO
+hitpoints=110
+attack=120
+strength=100
+defence=85
+magic=0
+ranged=0
+param=damagetype,^crush_style
+param=attack_anim,shade_attack
+param=defend_anim,shade_block
+param=death_anim,shade_sink
+param=attack_sound,shade_attack
+param=defend_sound,shade_hit
+param=death_sound,shade_death
+param=death_drop,shade_bones5
+param=undead,^true
+huntmode=cowardly
+// huntrange= TODO
+// immune to poison
 
 [shade_level5]
 name=Fiyr Shade
@@ -1544,6 +2479,27 @@ readyanim=shade_ready
 op2=Attack
 alwaysontop=yes
 vislevel=120
+wanderrange=7
+maxrange=11
+// respawnrate= TODO
+hitpoints=110
+attack=120
+strength=100
+defence=85
+magic=0
+ranged=0
+param=damagetype,^crush_style
+param=attack_anim,shade_attack
+param=defend_anim,shade_block
+param=death_anim,shade_sink
+param=attack_sound,shade_attack
+param=defend_sound,shade_hit
+param=death_sound,shade_death
+param=death_drop,shade_bones5
+param=undead,^true
+huntmode=cowardly
+// huntrange= TODO
+// immune to poison
 
 [ulsquire_shauncy_afflicted]
 name=Afflicted(Ulsquire)
@@ -1574,6 +2530,9 @@ op1=Talk-to
 alwaysontop=yes
 head1=model_59_idk_head
 head2=model_79_idk_head
+wanderrange=5
+moverestrict=indoors
+param=damagetype,^crush_style
 
 [ulsquire_shauncy]
 name=Ulsquire Shauncy
@@ -1598,6 +2557,9 @@ op1=Talk-to
 alwaysontop=yes
 head1=model_59_idk_head
 head2=model_79_idk_head
+wanderrange=5
+moverestrict=indoors
+param=damagetype,^crush_style
 
 [razmire_keelgan_afflicted]
 name=Afflicted(Razmire)
@@ -1628,6 +2590,9 @@ op1=Talk-to
 alwaysontop=yes
 head1=model_67_idk_head
 head2=model_80_idk_head
+wanderrange=5
+moverestrict=indoors
+param=damagetype,^crush_style
 
 [razmire_keelgan]
 name=Razmire Keelgan
@@ -1652,6 +2617,9 @@ op4=Trade-Builders-Store
 alwaysontop=yes
 head1=model_67_idk_head
 head2=model_80_idk_head
+wanderrange=5
+moverestrict=indoors
+param=damagetype,^crush_style
 
 [mort_man]
 name=Mort'ton Local
@@ -1726,6 +2694,17 @@ op1=Talk-to
 op2=Attack
 vislevel=37
 head1=model_55_idk_head
+wanderrange=5
+maxrange=7
+// respawnrate= TODO
+hitpoints=30
+attack=30
+strength=30
+defence=40
+param=damagetype,^crush_style
+param=attack_sound,zombie_attack
+param=defend_sound,zombie_hit
+param=death_sound,zombie_death
 
 [mort_afflicted_woman]
 name=Afflicted
@@ -1754,6 +2733,17 @@ op1=Talk-to
 op2=Attack
 vislevel=34
 head1=model_113_idk_head
+wanderrange=5
+maxrange=7
+// respawnrate= TODO
+hitpoints=28
+attack=28
+strength=28
+defence=38
+param=damagetype,^crush_style
+param=attack_sound,zombie_attack
+param=defend_sound,zombie_hit
+param=death_sound,zombie_death
 
 [mort_man2]
 name=Mort'ton local
@@ -1832,6 +2822,17 @@ op2=Attack
 vislevel=32
 head1=model_63_idk_head
 head2=model_83_idk_head
+wanderrange=5
+maxrange=7
+// respawnrate= TODO
+hitpoints=26
+attack=26
+strength=26
+defence=36
+param=damagetype,^crush_style
+param=attack_sound,zombie_attack
+param=defend_sound,zombie_hit
+param=death_sound,zombie_death
 
 [mort_afflicted_woman2]
 name=Afflicted
@@ -1860,6 +2861,17 @@ op1=Talk-to
 op2=Attack
 vislevel=30
 head1=model_118_idk_head
+wanderrange=5
+maxrange=7
+// respawnrate= TODO
+hitpoints=24
+attack=24
+strength=24
+defence=34
+param=damagetype,^crush_style
+param=attack_sound,zombie_attack
+param=defend_sound,zombie_hit
+param=death_sound,zombie_death
 
 [armourmaking_wizard]
 name=Wizard
@@ -1879,6 +2891,7 @@ op1=Talk-to
 head1=model_53_idk_head
 head2=obj_3385_manhead
 head3=model_82_idk_head
+wanderrange=5
 
 [trail_hard2]
 name=Saradomin Wizard
@@ -1906,6 +2919,24 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op2=Attack
 vislevel=108
+wanderrange=4
+maxrange=6
+attackrange=5
+// respawnrate= TODO
+hitpoints=111
+attack=100
+strength=80
+defence=80
+magic=80
+param=attackbonus,40
+param=strengthbonus,40
+param=magicdefence,30
+param=damagetype,^stab_style
+param=attack_anim,human_ddagger_lunge
+param=defend_anim,human_ddagger_block
+// param=attack_sound, TODO
+// param=defend_sound, TODO
+// param=death_sound, TODO
 
 [horror_rockcrab]
 name=Rock Crab
@@ -1917,6 +2948,19 @@ readyanim=horror_crab_ready
 minimap=no
 op2=Attack
 vislevel=13
+wanderrange=7
+maxrange=9
+// respawnrate= TODO
+hitpoints=50
+param=damagetype,^crush_style
+param=attack_anim,horror_crab_attack
+param=defend_anim,horror_crab_defend
+param=death_anim,horror_crab_hide
+// param=attack_sound,rock_crab_attack
+// param=defend_sound,rock_crab_hit
+// param=death_sound,rock_crab_death
+huntmode=cowardly
+// huntrange= TODO
 
 [horror_rockcrab_inactive]
 name=Rocks
@@ -1927,6 +2971,18 @@ desc=A rocky outcrop.
 walkanim=horror_crab_walk
 readyanim=horror_crab_hide_ready
 minimap=no
+wanderrange=0
+moverestrict=nomove
+// respawnrate= TODO
+hitpoints=50
+param=attack_anim,horror_crab_attack
+param=defend_anim,horror_crab_defend
+param=death_anim,horror_crab_hide
+// param=attack_sound,rock_crab_attack
+// param=defend_sound,rock_crab_hit
+// param=death_sound,rock_crab_death
+huntmode=cowardly
+// huntrange= TODO
 
 [horror_rockcrab_small]
 name=Rock Crab
@@ -1940,6 +2996,19 @@ resizev=84
 minimap=no
 op2=Attack
 vislevel=13
+wanderrange=7
+maxrange=9
+// respawnrate= TODO
+hitpoints=50
+param=damagetype,^crush_style
+param=attack_anim,horror_crab_attack
+param=defend_anim,horror_crab_defend
+param=death_anim,horror_crab_hide
+// param=attack_sound,rock_crab_attack
+// param=defend_sound,rock_crab_hit
+// param=death_sound,rock_crab_death
+huntmode=cowardly
+// huntrange= TODO
 
 [horror_rockcrab_small_inactive]
 name=Rocks
@@ -1952,6 +3021,18 @@ readyanim=horror_crab_hide_ready
 resizeh=84
 resizev=84
 minimap=no
+wanderrange=0
+moverestrict=nomove
+// respawnrate= TODO
+hitpoints=50
+param=attack_anim,horror_crab_attack
+param=defend_anim,horror_crab_defend
+param=death_anim,horror_crab_hide
+// param=attack_sound,rock_crab_attack
+// param=defend_sound,rock_crab_hit
+// param=death_sound,rock_crab_death
+huntmode=cowardly
+// huntrange= TODO
 
 [viking_olaf]
 name=Olaf the Bard
@@ -1986,6 +3067,7 @@ op1=Talk-to
 head1=model_53_idk_head
 head2=model_81_idk_head
 head3=model_77_npc_head
+wanderrange=3
 
 [viking_lalli_troll]
 name=Lalli
@@ -2006,6 +3088,7 @@ resizeh=160
 resizev=160
 op1=Talk-to
 head1=npc_1125_head
+wanderrange=3
 
 [viking_golden_sheepsheered]
 name=Golden sheep
@@ -2022,6 +3105,7 @@ walkanim=sheep_walk
 readyanim=sheep_ready
 ambient=20
 contrast=20
+wanderrange=5
 
 [viking_golden_sheepunsheered]
 name=Golden sheep
@@ -2038,6 +3122,7 @@ walkanim=sheep_walk
 readyanim=sheep_ready
 ambient=20
 contrast=20
+wanderrange=5
 
 [viking_lake_spirit]
 name=Fossegrimen
@@ -2061,6 +3146,9 @@ readyanim=human_ready
 op1=Talk-to
 ambient=80
 head1=npc_1273_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [viking_heckler]
 name=Ospak
@@ -2089,6 +3177,9 @@ readyanim=human_sitting_chair
 op1=Talk-to
 head1=model_46_idk_head
 head2=model_84_idk_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [viking_heckler_2]
 name=Styrmir
@@ -2117,6 +3208,9 @@ readyanim=human_sitting_chair
 op1=Talk-to
 head1=model_46_idk_head
 head2=model_84_idk_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [viking_heckler_3]
 name=Torbrund
@@ -2145,6 +3239,9 @@ readyanim=human_sitting_chair
 op1=Talk-to
 head1=model_63_idk_head
 head2=model_84_idk_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [viking_heckler_4]
 name=Fridgeir
@@ -2173,6 +3270,9 @@ readyanim=human_sitting_chair
 op1=Talk-to
 head1=model_46_idk_head
 head2=model_84_idk_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [viking_longhall_bouncer]
 name=Longhall Bouncer
@@ -2203,6 +3303,9 @@ op1=Talk-to
 head1=obj_3686
 head2=model_84_idk_head
 head3=obj_3751_manhead2
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [viking_draugen]
 name=The Draugen
@@ -2215,6 +3318,25 @@ readyanim=human_ready
 op2=Attack
 ambient=80
 vislevel=69
+wanderrange=5
+maxrange=20
+// respawnrate= TODO
+hitpoints=60
+attack=60
+strength=60
+defence=60
+param=stabdefence,100
+param=slashdefence,100
+param=crushdefence,100
+param=magicdefence,500
+param=rangedefence,500
+param=damagetype,^crush_style
+param=attack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+// param=death_anim,
+param=attack_sound,unarmed_punch
+param=defend_sound,ghost_hit
+// param=death_sound,ghost_death
 
 [viking_draugen_safe]
 name=Butterfly
@@ -2224,6 +3346,7 @@ walkanim=butterfly_hover
 readyanim=butterfly_hover
 minimap=no
 vislevel=hide
+// wanderrange= TODO
 
 [viking_sigli]
 name=Sigli the Huntsman
@@ -2255,6 +3378,7 @@ readyanim=human_ready
 op1=Talk-to
 head1=model_58_npc_head
 head2=model_84_idk_head
+wanderrange=2
 
 [viking_sigmund]
 name=Sigmund The Merchant
@@ -2283,6 +3407,7 @@ op1=Talk-to
 op3=Trade
 head1=model_48_npc_head
 head2=model_82_idk_head
+wanderrange=3
 
 [viking_hallifred]
 name=Swensen the Navigator
@@ -2313,6 +3438,7 @@ readyanim=human_staffready
 op1=Talk-to
 head1=model_63_idk_head
 head2=model_82_idk_head
+wanderrange=1
 
 [viking_reveller]
 name=Bjorn
@@ -2343,6 +3469,7 @@ readyanim=viking_drinking_ready
 op1=Talk-to
 head1=model_46_idk_head
 head2=model_84_idk_head
+wanderrange=3
 
 [viking_reveller_2]
 name=Eldgrim
@@ -2373,6 +3500,7 @@ readyanim=viking_drinking_ready
 op1=Talk-to
 head1=model_46_idk_head
 head2=model_84_idk_head
+wanderrange=5
 
 [viking_reveller_3]
 name=Manni the Reveller
@@ -2403,6 +3531,7 @@ readyanim=viking_drinking_ready
 op1=Talk-to
 head1=model_46_idk_head
 head2=model_84_idk_head
+wanderrange=5
 
 [vt_council_workmen]
 name=Council workman
@@ -2433,6 +3562,7 @@ readyanim=human_ready
 op1=Talk-to
 head1=model_63_idk_head
 head2=model_79_idk_head
+wanderrange=1
 
 [viking_peer]
 name=Peer the Seer
@@ -2463,6 +3593,7 @@ readyanim=human_staffready
 op1=Talk-to
 head1=model_48_npc_head
 head2=model_82_idk_head
+wanderrange=2
 
 [viking_thorvald]
 name=Thorvald the Warrior
@@ -2494,6 +3625,8 @@ op1=Talk-to
 head1=obj_3686
 head2=model_84_idk_head
 head3=obj_3748_manhead2
+wanderrange=5
+moverestrict=indoors
 
 [viking_enemy1]
 name=Koschei the deathless
@@ -2524,6 +3657,22 @@ readyanim=human_staffready
 op2=Attack
 head1=model_46_idk_head
 head2=model_84_idk_head
+wanderrange=5
+maxrange=20
+// respawnrate= TODO
+hitpoints=30
+attack=20
+strength=20
+defence=20
+param=stabdefence,20
+param=slashdefence,20
+param=crushdefence,20
+param=magicdefence,20
+param=rangedefence,20
+param=damagetype,^slash_style
+param=attack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=attack_sound,staff_stab
 
 [viking_enemy2]
 name=Koschei the deathless
@@ -2554,6 +3703,22 @@ readyanim=human_staffready
 op2=Attack
 head1=model_46_idk_head
 head2=model_84_idk_head
+wanderrange=5
+maxrange=20
+// respawnrate= TODO
+hitpoints=50
+attack=40
+strength=40
+defence=40
+param=stabdefence,40
+param=slashdefence,40
+param=crushdefence,40
+param=magicdefence,40
+param=rangedefence,40
+param=damagetype,^slash_style
+param=attack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=attack_sound,staff_stab
 
 [viking_enemy3]
 name=Koschei the deathless
@@ -2584,6 +3749,22 @@ readyanim=human_staffready
 op2=Attack
 head1=model_46_idk_head
 head2=model_84_idk_head
+wanderrange=5
+maxrange=20
+// respawnrate= TODO
+hitpoints=70
+attack=60
+strength=60
+defence=60
+param=stabdefence,60
+param=slashdefence,60
+param=crushdefence,60
+param=magicdefence,60
+param=rangedefence,60
+param=damagetype,^slash_style
+param=attack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=attack_sound,staff_stab
 
 [viking_enemy4]
 name=Koschei the deathless
@@ -2614,6 +3795,18 @@ readyanim=human_staffready
 op2=Attack
 head1=model_46_idk_head
 head2=model_84_idk_head
+wanderrange=5
+maxrange=20
+// respawnrate= TODO
+hitpoints=255
+attack=255
+strength=5
+defence=255
+param=attackrate,1
+param=damagetype,^slash_style
+param=attack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=attack_sound,staff_stab
 
 [viking_brundt_child]
 name=Brundt the Chieftain
@@ -2649,6 +3842,7 @@ head1=obj_3686
 head2=model_82_idk_head
 head3=model_68_obj_wear
 head4=obj_3748_manhead2
+wanderrange=3
 
 [viking_askelapen]
 name=Askeladden
@@ -2674,6 +3868,7 @@ readyanim=midget_ready
 op1=Talk-to
 head1=model_139_npc_head
 head2=npc_1295_head
+wanderrange=1
 
 [viking_longhall_guard1]
 name=Guard
@@ -2708,6 +3903,9 @@ readyanim=human_staffready
 vislevel=hide
 head1=obj_3686
 head2=model_84_idk_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [viking_longhall_guard2]
 name=Guard
@@ -2742,6 +3940,9 @@ readyanim=human_staffready
 vislevel=hide
 head1=obj_3686
 head2=model_84_idk_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [viking_town_entrance_guard1]
 name=Town Guard
@@ -2776,6 +3977,9 @@ readyanim=human_staffready
 vislevel=hide
 head1=obj_3686
 head2=model_84_idk_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [viking_town_entrance_guard2]
 name=Town Guard
@@ -2810,6 +4014,9 @@ readyanim=human_staffready
 vislevel=hide
 head1=obj_3686
 head2=model_84_idk_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [viking_longhall_barkeep]
 name=Thora the Barkeep
@@ -2866,6 +4073,8 @@ readyanim=human_ready
 op1=Talk-to
 op3=Trade
 head1=model_103_idk_head
+wanderrange=5
+moverestrict=indoors
 
 [viking_fisherman1]
 name=Fisherman
@@ -2896,6 +4105,9 @@ op1=Talk-to
 vislevel=hide
 head1=model_48_npc_head
 head2=model_84_idk_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [viking_weapons_salesman]
 name=Skulgrimen
@@ -2953,6 +4165,7 @@ op1=Talk-to
 vislevel=hide
 head1=model_48_npc_head
 head2=model_84_idk_head
+wanderrange=1
 
 [viking_man]
 name=Agnar
@@ -2987,6 +4200,20 @@ vislevel=48
 head1=model_53_idk_head
 head2=model_84_idk_head
 head3=obj_3686
+wanderrange=12
+maxrange=14
+// respawnrate= TODO
+hitpoints=50
+attack=40
+strength=40
+defence=40
+param=strengthbonus,20
+param=damagetype,^crush_style
+param=attack_anim,human_axe_hack
+param=defend_anim,human_axe_def
+param=attack_sound,baxe_crush
+param=defend_sound,blade5
+// anims are guesses        //check this
 
 [viking_man2]
 name=Freidir
@@ -3017,6 +4244,17 @@ op3=Pickpocket
 vislevel=48
 head1=model_46_idk_head
 head2=model_84_idk_head
+wanderrange=12
+maxrange=14
+moverestrict=indoors
+// respawnrate= TODO
+hitpoints=50
+attack=40
+strength=40
+defence=40
+param=strengthbonus,20
+param=damagetype,^crush_style
+param=defend_anim,human_unarmedblock
 
 [viking_man3]
 name=Borrokar
@@ -3050,6 +4288,19 @@ vislevel=48
 head1=model_53_idk_head
 head2=model_84_idk_head
 head3=obj_3686
+wanderrange=12
+maxrange=14
+moverestrict=indoors
+// respawnrate= TODO
+hitpoints=50
+attack=40
+strength=40
+defence=40
+param=strengthbonus,20
+param=damagetype,^crush_style
+param=attack_anim,human_blunt_pound
+param=defend_anim,human_blunt_def
+param=attack_sound,baxe_crush
 
 [viking_man4]
 name=Lanzig
@@ -3084,6 +4335,17 @@ op3=Pickpocket
 vislevel=48
 head1=model_48_npc_head
 head2=model_84_idk_head
+wanderrange=12
+maxrange=14
+moverestrict=indoors
+// respawnrate= TODO
+hitpoints=50
+attack=40
+strength=40
+defence=40
+param=strengthbonus,20
+param=damagetype,^crush_style
+param=defend_anim,human_unarmedblock
 
 [viking_man5]
 name=Pontak
@@ -3118,6 +4380,19 @@ vislevel=48
 head1=model_53_idk_head
 head2=model_84_idk_head
 head3=obj_3686
+wanderrange=12
+maxrange=14
+moverestrict=indoors
+// respawnrate= TODO
+hitpoints=50
+attack=40
+strength=40
+defence=40
+param=strengthbonus,20
+param=damagetype,^crush_style
+param=attack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=attack_sound,hacksword_slash
 
 [viking_woman]
 name=Freygerd
@@ -3146,6 +4421,18 @@ op2=Attack
 op3=Pickpocket
 vislevel=48
 head1=model_110_idk_head
+wanderrange=12
+maxrange=14
+// respawnrate= TODO
+hitpoints=50
+attack=40
+strength=40
+defence=40
+param=strengthbonus,20
+param=damagetype,^crush_style
+param=defend_anim,human_unarmedblock
+param=defend_sound,female_hit
+param=death_sound,female_death
 
 [viking_woman2]
 name=Lensa
@@ -3174,6 +4461,18 @@ op2=Attack
 op3=Pickpocket
 vislevel=48
 head1=model_105_idk_head
+wanderrange=12
+maxrange=14
+// respawnrate= TODO
+hitpoints=50
+attack=40
+strength=40
+defence=40
+param=strengthbonus,20
+param=damagetype,^crush_style
+param=defend_anim,human_unarmedblock
+param=defend_sound,female_hit
+param=death_sound,female_death
 
 [viking_woman3]
 name=Jennella
@@ -3204,6 +4503,18 @@ op3=Pickpocket
 vislevel=48
 head1=model_113_idk_head
 head2=model_136_npc_head
+wanderrange=12
+maxrange=14
+// respawnrate= TODO
+hitpoints=50
+attack=40
+strength=40
+defence=40
+param=strengthbonus,20
+param=damagetype,^crush_style
+param=defend_anim,human_unarmedblock
+param=defend_sound,female_hit
+param=death_sound,female_death
 
 [viking_woman4]
 name=Sassilik
@@ -3230,6 +4541,18 @@ op1=Talk-to
 op3=Pickpocket
 vislevel=48
 head1=model_105_idk_head
+wanderrange=12
+maxrange=14
+// respawnrate= TODO
+hitpoints=50
+attack=40
+strength=40
+defence=40
+param=strengthbonus,20
+param=damagetype,^crush_style
+param=defend_anim,human_unarmedblock
+param=defend_sound,female_hit
+param=death_sound,female_death
 
 [viking_woman_indoors]
 name=Inga
@@ -3260,6 +4583,18 @@ op1=Talk-to
 op3=Pickpocket
 vislevel=48
 head1=model_103_idk_head
+wanderrange=12
+maxrange=14
+// respawnrate= TODO
+hitpoints=50
+attack=40
+strength=40
+defence=40
+param=strengthbonus,20
+param=damagetype,^crush_style
+param=defend_anim,human_unarmedblock
+param=defend_sound,female_hit
+param=death_sound,female_death
 
 [viking_fish_monger]
 name=Fish monger
@@ -3293,6 +4628,7 @@ op1=Talk-to
 op3=Trade
 head1=model_63_idk_head
 head2=model_84_idk_head
+wanderrange=3
 
 [viking_fur_monger]
 name=Fur trader
@@ -3324,6 +4660,7 @@ op1=Talk-to
 op3=Trade
 head1=model_46_idk_head
 head2=model_84_idk_head
+wanderrange=3
 
 [viking_guard]
 name=Market Guard
@@ -3358,6 +4695,27 @@ op2=Attack
 vislevel=48
 head1=obj_3686
 head2=model_84_idk_head
+wanderrange=12
+maxrange=14
+moverestrict=outdoors
+// respawnrate= TODO
+hitpoints=50
+attack=40
+strength=40
+defence=40
+param=attackrate,3
+param=attackbonus,40
+param=strengthbonus,40
+param=stabdefence,50
+param=slashdefence,50
+param=crushdefence,50
+param=magicdefence,50
+param=rangedefence,50
+param=damagetype,^crush_style
+param=attack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=attack_sound,hacksword_slash
+param=defend_sound,blade5
 
 [viking_guard2]
 name=Warrior
@@ -3393,6 +4751,27 @@ vislevel=48
 head1=obj_3686
 head2=model_84_idk_head
 head3=obj_3748_manhead2
+wanderrange=12
+maxrange=14
+moverestrict=outdoors
+// respawnrate= TODO
+hitpoints=50
+attack=40
+strength=40
+defence=40
+param=attackrate,3
+param=attackbonus,40
+param=strengthbonus,40
+param=stabdefence,50
+param=slashdefence,50
+param=crushdefence,50
+param=magicdefence,50
+param=rangedefence,50
+param=damagetype,^crush_style
+param=attack_anim,human_blunt_pound
+param=defend_anim,human_blunt_def
+param=attack_sound,warhammer_crush
+param=defend_sound,blade5
 
 [viking_fox]
 name=Fox
@@ -3403,6 +4782,26 @@ readyanim=dog_ready
 vislevel=hide
 resizeh=100
 resizev=100
+wanderrange=5
+maxrange=7
+// respawnrate= TODO
+hitpoints=30
+strength=20
+defence=20
+param=attackbonus,30
+param=strengthbonus,30
+param=stabdefence,30
+param=slashdefence,30
+param=crushdefence,30
+param=magicdefence,30
+param=rangedefence,30
+param=damagetype,^crush_style
+param=attack_anim,dog_attack
+param=defend_anim,dog_block
+param=death_anim,dog_death
+param=attack_sound,null
+param=defend_sound,null
+param=death_sound,null
 
 [viking_bunny_1]
 name=Bunny
@@ -3420,6 +4819,24 @@ resizeh=128
 resizev=128
 vislevel=hide
 op2=Attack
+wanderrange=5
+maxrange=7
+// respawnrate= TODO
+hitpoints=5
+param=attackbonus,-47
+param=strengthbonus,-42
+param=stabdefence,-42
+param=slashdefence,-42
+param=crushdefence,-42
+param=magicdefence,-42
+param=rangedefence,-42
+param=damagetype,^crush_style
+param=attack_anim,rabbit_attack
+param=defend_anim,rabbit_block
+param=death_anim,rabbit_death
+// param=attack_sound,rabbit_attack
+// param=defend_sound,rabbit_hit
+// param=death_sound,rabbit_death
 
 [viking_bunny_2]
 name=Bunny
@@ -3437,6 +4854,24 @@ resizeh=92
 resizev=92
 vislevel=hide
 op2=Attack
+wanderrange=5
+maxrange=7
+// respawnrate= TODO
+hitpoints=5
+param=attackbonus,-47
+param=strengthbonus,-42
+param=stabdefence,-42
+param=slashdefence,-42
+param=crushdefence,-42
+param=magicdefence,-42
+param=rangedefence,-42
+param=damagetype,^crush_style
+param=attack_anim,rabbit_attack
+param=defend_anim,rabbit_block
+param=death_anim,rabbit_death
+// param=attack_sound,rabbit_attack
+// param=defend_sound,rabbit_hit
+// param=death_sound,rabbit_death
 
 [viking_seagull]
 name=Gull
@@ -3453,6 +4888,24 @@ readyanim=bird_ready
 vislevel=hide
 minimap=no
 vislevel=hide
+// wanderrange= TODO
+moverestrict=blocked
+hitpoints=32
+attack=22
+strength=22
+defence=17
+param=stabdefence,12
+param=slashdefence,10
+param=crushdefence,16
+param=magicdefence,8
+param=damagetype,^stab_style
+param=attack_anim,bird_attack
+param=defend_anim,bird_block
+param=death_anim,bird_death
+param=attack_sound,bird_attack
+param=defend_sound,bird_hit
+param=death_sound,bird_death
+// This npc was removed in the osrs sailing update. This npc still exists in rs3.
 
 [viking_seagull2]
 name=Gull
@@ -3468,6 +4921,24 @@ walkanim=bird_walk
 readyanim=bird_ready
 vislevel=hide
 minimap=no
+// wanderrange= TODO
+moverestrict=blocked
+hitpoints=32
+attack=22
+strength=22
+defence=17
+param=stabdefence,12
+param=slashdefence,10
+param=crushdefence,16
+param=magicdefence,8
+param=damagetype,^stab_style
+param=attack_anim,bird_attack
+param=defend_anim,bird_block
+param=death_anim,bird_death
+param=attack_sound,bird_attack
+param=defend_sound,bird_hit
+param=death_sound,bird_death
+// This npc was removed in the osrs sailing update. This npc still exists in rs3.
 
 [viking_seagull3]
 name=Gull
@@ -3483,6 +4954,24 @@ walkanim=bird_walk
 readyanim=bird_ready
 vislevel=hide
 minimap=no
+// wanderrange= TODO
+moverestrict=blocked
+hitpoints=32
+attack=22
+strength=22
+defence=17
+param=stabdefence,12
+param=slashdefence,10
+param=crushdefence,16
+param=magicdefence,8
+param=damagetype,^stab_style
+param=attack_anim,bird_attack
+param=defend_anim,bird_block
+param=death_anim,bird_death
+param=attack_sound,bird_attack
+param=defend_sound,bird_hit
+param=death_sound,bird_death
+// This npc was removed in the osrs sailing update. This npc still exists in srs3.
 
 [viking_seagull4]
 name=Gull
@@ -3498,6 +4987,24 @@ walkanim=bird_walk
 readyanim=bird_ready
 vislevel=hide
 minimap=no
+moverestrict=blocked+normal
+hitpoints=32
+attack=22
+strength=22
+defence=17
+param=stabdefence,12
+param=slashdefence,10
+param=crushdefence,16
+param=magicdefence,8
+param=damagetype,^stab_style
+param=attack_anim,bird_attack
+param=defend_anim,bird_block
+param=death_anim,bird_death
+param=attack_sound,bird_attack
+param=defend_sound,bird_hit
+param=death_sound,bird_death
+// This npc was removed in the osrs sailing update. This npc still exists in rs3.
+// This npc patrols instead of normal wandering.
 
 [brownbear_cub_1]
 name=Bear Cub
@@ -3514,6 +5021,22 @@ op2=Attack
 resizeh=96
 resizev=96
 vislevel=15
+wanderrange=12
+maxrange=14
+// respawnrate= TODO
+hitpoints=20
+attack=10
+strength=15
+defence=10
+param=damagetype,^slash_style
+param=attack_anim,bear_attack
+param=defend_anim,bear_block
+param=death_anim,bear_death
+param=attack_sound,bear_attack
+param=defend_sound,bear_hit
+param=death_sound,bear_death
+// huntmode=cowardly TODO
+// huntrange= TODO
 
 [brownbear_cub_2]
 name=Bear Cub
@@ -3529,6 +5052,22 @@ op2=Attack
 resizeh=64
 resizev=64
 vislevel=15
+wanderrange=12
+maxrange=14
+// respawnrate= TODO
+hitpoints=20
+attack=10
+strength=15
+defence=10
+param=damagetype,^slash_style
+param=attack_anim,bear_attack
+param=defend_anim,bear_block
+param=death_anim,bear_death
+param=attack_sound,bear_attack
+param=defend_sound,bear_hit
+param=death_sound,bear_death
+// huntmode=cowardly TODO
+// huntrange= TODO
 
 [unicorn_foal_1]
 name=Unicorn Foal
@@ -3547,6 +5086,20 @@ op2=Attack
 resizeh=96
 resizev=96
 vislevel=12
+wanderrange=17
+maxrange=19
+// respawnrate= TODO
+hitpoints=15
+attack=10
+strength=10
+defence=10
+param=damagetype,^stab_style
+param=attack_anim,unicorn_attack
+param=defend_anim,unicorn_block
+param=death_anim,unicorn_death
+param=attack_sound,cow_attack
+param=defend_sound,horse_hit
+// param=retreat,6 TODO
 
 [black_unicorn_foal]
 name=Black unicorn Foal
@@ -3567,6 +5120,20 @@ op2=Attack
 resizeh=96
 resizev=96
 vislevel=22
+wanderrange=17
+maxrange=19
+// respawnrate= TODO
+hitpoints=25
+attack=18
+strength=18
+defence=18
+param=damagetype,^stab_style
+param=attack_anim,unicorn_attack
+param=defend_anim,unicorn_block
+param=death_anim,unicorn_death
+param=attack_sound,cow_attack
+param=defend_sound,horse_hit
+// param=retreat,6 TODO
 
 [viking_wolf]
 name=Wolf
@@ -3581,6 +5148,23 @@ walkanim=dog_walk
 readyanim=dog_ready
 op2=Attack
 vislevel=64
+wanderrange=6
+maxrange=8
+// respawnrate= TODO
+hitpoints=69
+attack=50
+strength=55
+defence=52
+param=damagetype,^stab_style
+param=attack_anim,dog_attack
+param=defend_anim,dog_block
+param=death_anim,dog_death
+param=attack_sound,wolf_attack
+param=defend_sound,wolf_hit
+param=death_sound,wolf_death
+param=death_drop,wolf_bones
+huntmode=cowardly
+// huntrange=2 TODO
 
 [0_41_57_saltfish]
 name=Fishing spot
@@ -3594,6 +5178,9 @@ op1=Net
 op3=Bait
 op4=hidden
 op5=hidden
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [0_41_57_rarefish]
 name=Fishing spot
@@ -3607,6 +5194,9 @@ op1=Cage
 op3=Harpoon
 op4=hidden
 op5=hidden
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [0_41_57_memberfish]
 name=Fishing spot
@@ -3620,6 +5210,9 @@ op1=Net
 op3=Harpoon
 op4=hidden
 op5=hidden
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [horror_lighthousekeeeper_well]
 name=Jossik
@@ -3653,6 +5246,7 @@ vislevel=hide
 head1=model_46_idk_head
 head2=model_85_idk_head
 head3=model_37_npc_head
+wanderrange=5
 
 [horror_lighthousekeeeper_injured]
 name=Jossik
@@ -3685,6 +5279,9 @@ op1=Talk-to
 head1=model_46_idk_head
 head2=model_85_idk_head
 head3=model_37_npc_head
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [horror_girlfriend_prequest]
 name=Larrissa
@@ -3720,6 +5317,7 @@ op1=Talk-to
 head1=model_115_idk_head
 head2=model_136_npc_head
 head3=model_101_obj_wear
+wanderrange=5
 
 [horror_girlfriend_postquest]
 name=Larrissa
@@ -3753,6 +5351,7 @@ op1=Talk-to
 head1=model_113_idk_head
 head2=model_101_obj_wear
 head3=model_136_npc_head
+wanderrange=5
 
 [horror_dagganoth_jr]
 name=Dagannoth
@@ -3764,6 +5363,25 @@ walkanim=horror_dagannoth_walk
 readyanim=horror_dagannoth_ready
 op2=Attack
 vislevel=74
+wanderrange=65
+maxrange=65
+attackrange=4
+// respawnrate= TODO
+hitpoints=70
+attack=68
+strength=70
+defence=50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_rangeattack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
+// param=rangeattack_sound,dagganoth_spines
+// param=proj_launch, TODO
+// param=proj_travel,spotanim_294
+huntmode=cowardly
+huntrange=1
 
 [horror_dagganoth_jr_darker]
 name=Dagannoth
@@ -3783,6 +5401,25 @@ walkanim=horror_dagannoth_walk
 readyanim=horror_dagannoth_ready
 op2=Attack
 vislevel=74
+wanderrange=65
+maxrange=65
+attackrange=4
+// respawnrate= TODO
+hitpoints=70
+attack=68
+strength=70
+defence=50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_rangeattack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
+// param=rangeattack_sound,dagganoth_spines
+// param=proj_launch, TODO
+// param=proj_travel,spotanim_294
+huntmode=cowardly
+huntrange=1
 
 [horror_dagganoth_jr_lighter]
 name=Dagannoth
@@ -3802,6 +5439,25 @@ walkanim=horror_dagannoth_walk
 readyanim=horror_dagannoth_ready
 op2=Attack
 vislevel=74
+wanderrange=65
+maxrange=65
+attackrange=4
+// respawnrate= TODO
+hitpoints=70
+attack=68
+strength=70
+defence=50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_rangeattack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
+// param=rangeattack_sound,dagganoth_spines
+// param=proj_launch, TODO
+// param=proj_travel,spotanim_294
+huntmode=cowardly
+huntrange=1
 
 [horror_dagannoth_medium]
 name=Dagannoth
@@ -3814,6 +5470,23 @@ walkanim=horror_dagannoth_walk
 readyanim=horror_dagannoth_ready
 op2=Attack
 vislevel=92
+wanderrange=65
+maxrange=65
+// respawnrate= TODO
+hitpoints=120
+attack=68
+strength=70
+defence=71
+param=magicdefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
+huntmode=cowardly
+huntrange=1
 
 [horror_dagannoth_medium_darker]
 name=Dagannoth
@@ -3834,6 +5507,23 @@ walkanim=horror_dagannoth_walk
 readyanim=horror_dagannoth_ready
 op2=Attack
 vislevel=92
+wanderrange=65
+maxrange=65
+// respawnrate= TODO
+hitpoints=120
+attack=68
+strength=70
+defence=71
+param=magicdefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
+huntmode=cowardly
+huntrange=1
 
 [horror_dagannoth_medium_lighter]
 name=Dagannoth
@@ -3854,6 +5544,23 @@ walkanim=horror_dagannoth_walk
 readyanim=horror_dagannoth_ready
 op2=Attack
 vislevel=92
+wanderrange=65
+maxrange=65
+// respawnrate= TODO
+hitpoints=120
+attack=68
+strength=70
+defence=71
+param=magicdefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
+huntmode=cowardly
+huntrange=1
 
 [horror_dagannoth_jr1]
 name=Dagannoth
@@ -3873,6 +5580,25 @@ resizev=82
 walkanim=horror_dagannoth_emerge_a
 readyanim=horror_dagannoth_emerge_a
 vislevel=92
+// respawnrate= TODO
+hitpoints=120
+attack=78
+strength=78
+defence=81
+ranged=50
+param=stabdefence,150
+param=slashdefence,150
+param=crushdefence,150
+param=magicdefence,50
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_976
 
 [horror_dagannoth_jr2]
 name=Dagannoth
@@ -3892,6 +5618,26 @@ resizev=82
 walkanim=horror_dagannoth_emerge_b
 readyanim=horror_dagannoth_emerge_b
 vislevel=100
+// respawnrate= TODO
+hitpoints=120
+// hitpoints=50
+attack=78
+strength=78
+defence=81
+ranged=50
+param=stabdefence,150
+param=slashdefence,150
+param=crushdefence,150
+param=magicdefence,50
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_977
 
 [horror_dagannoth_jr3]
 name=Dagannoth
@@ -3911,6 +5657,26 @@ resizev=82
 walkanim=horror_dagannoth_emerge_c
 readyanim=horror_dagannoth_emerge_c
 vislevel=100
+// respawnrate= TODO
+hitpoints=120
+// hitpoints=50
+attack=78
+strength=78
+defence=81
+ranged=50
+param=stabdefence,150
+param=slashdefence,150
+param=crushdefence,150
+param=magicdefence,50
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_978
 
 [horror_dagannoth_jr4]
 name=Dagannoth
@@ -3931,6 +5697,22 @@ walkanim=horror_dagannoth_walk
 readyanim=horror_dagannoth_ready
 op2=Attack
 vislevel=100
+// wanderrange= TODO
+// maxrange= TODO
+// respawnrate= TODO
+hitpoints=120
+attack=78
+strength=78
+defence=81
+ranged=50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_979
 
 [horror_dagganoth_aira]
 name=Dagannoth mother
@@ -3950,6 +5732,25 @@ readyanim=horror_dagannoth_emerge_a
 resizeh=155
 resizev=155
 vislevel=100
+attackrange=10
+// respawnrate= TODO
+hitpoints=120
+attack=78
+strength=78
+defence=81
+ranged=50
+param=stabdefence,150
+param=slashdefence,150
+param=crushdefence,150
+param=magicdefence,50
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
 
 [horror_dagganoth_airb]
 name=Dagannoth mother
@@ -3969,6 +5770,25 @@ readyanim=horror_dagannoth_emerge_b
 resizeh=155
 resizev=155
 vislevel=100
+attackrange=10
+// respawnrate= TODO
+hitpoints=120
+attack=78
+strength=78
+defence=81
+ranged=50
+param=stabdefence,150
+param=slashdefence,150
+param=crushdefence,150
+param=magicdefence,50
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
 
 [horror_dagganoth_airc]
 name=Dagannoth mother
@@ -3988,6 +5808,25 @@ readyanim=horror_dagannoth_emerge_c
 resizeh=155
 resizev=155
 vislevel=100
+attackrange=10
+// respawnrate= TODO
+hitpoints=120
+attack=78
+strength=78
+defence=81
+ranged=50
+param=stabdefence,150
+param=slashdefence,150
+param=crushdefence,150
+param=magicdefence,50
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
 
 [horror_dagganoth_air]
 name=Dagannoth mother
@@ -4008,6 +5847,27 @@ op2=Attack
 resizeh=155
 resizev=155
 vislevel=100
+// wanderrange= TODO
+// maxrange= TODO
+attackrange=10
+// respawnrate= TODO
+hitpoints=120
+attack=78
+strength=78
+defence=81
+ranged=50
+param=stabdefence,150
+param=slashdefence,150
+param=crushdefence,150
+param=magicdefence,50
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
 
 [horror_dagganoth_water]
 name=Dagannoth mother
@@ -4028,6 +5888,27 @@ op2=Attack
 resizeh=155
 resizev=155
 vislevel=100
+// wanderrange= TODO
+// maxrange= TODO
+attackrange=10
+// respawnrate= TODO
+hitpoints=120
+attack=78
+strength=78
+defence=81
+ranged=50
+param=stabdefence,150
+param=slashdefence,150
+param=crushdefence,150
+param=magicdefence,50
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
 
 [horror_dagganoth_fire]
 name=Dagannoth mother
@@ -4048,6 +5929,27 @@ op2=Attack
 resizeh=155
 resizev=155
 vislevel=100
+// wanderrange= TODO
+// maxrange= TODO
+attackrange=10
+// respawnrate= TODO
+hitpoints=120
+attack=78
+strength=78
+defence=81
+ranged=50
+param=stabdefence,150
+param=slashdefence,150
+param=crushdefence,150
+param=magicdefence,50
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
 
 [horror_dagganoth_earth]
 name=Dagannoth mother
@@ -4068,6 +5970,27 @@ op2=Attack
 resizeh=155
 resizev=155
 vislevel=100
+// wanderrange= TODO
+// maxrange= TODO
+attackrange=10
+// respawnrate= TODO
+hitpoints=120
+attack=78
+strength=78
+defence=81
+ranged=50
+param=stabdefence,150
+param=slashdefence,150
+param=crushdefence,150
+param=magicdefence,50
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
 
 [horror_dagganoth_ranged]
 name=Dagannoth mother
@@ -4088,6 +6011,27 @@ op2=Attack
 resizeh=155
 resizev=155
 vislevel=100
+// wanderrange= TODO
+// maxrange= TODO
+attackrange=10
+// respawnrate= TODO
+hitpoints=120
+attack=78
+strength=78
+defence=81
+ranged=50
+param=stabdefence,150
+param=slashdefence,150
+param=crushdefence,150
+param=magicdefence,50
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
 
 [horror_dagganoth_melee]
 name=Dagannoth mother
@@ -4108,6 +6052,27 @@ op2=Attack
 resizeh=155
 resizev=155
 vislevel=100
+// wanderrange= TODO
+// maxrange= TODO
+attackrange=10
+// respawnrate= TODO
+hitpoints=120
+attack=78
+strength=78
+defence=81
+ranged=50
+param=stabdefence,150
+param=slashdefence,150
+param=crushdefence,150
+param=magicdefence,50
+param=rangedefence,50
+param=damagetype,^stab_style
+param=attack_anim,horror_dagannoth_attack
+param=defend_anim,horror_dagannoth_defend
+param=death_anim,horror_dagannoth_death
+// param=attack_sound,dagganoth_attack
+// param=defend_sound,dagganoth_hit
+// param=death_sound,dagganoth_death
 
 [boardgames_barmaid]
 name=Sam
@@ -4130,6 +6095,7 @@ op1=Talk-to
 op3=Trade
 vislevel=hide
 head1=model_115_idk_head
+wanderrange=5
 
 [boardgames_barmaid2]
 name=Rachael
@@ -4152,4 +6118,5 @@ op1=Talk-to
 op3=Trade
 vislevel=hide
 head1=model_113_idk_head
+wanderrange=5
 
