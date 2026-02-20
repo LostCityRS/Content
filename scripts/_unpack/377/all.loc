@@ -33036,6 +33036,8 @@ op1=Open
 op2=Attack
 mirror=yes
 raiseobject=no
+category=door_closed
+param=next_loc_stage,castlewars_saradomin_maindoorr_open
 
 [castlewars_saradomin_maindoorl]
 name=Large door
@@ -33044,6 +33046,8 @@ model=lefayeunopenabledoorl
 op1=Open
 op2=Attack
 raiseobject=no
+category=door_closed
+param=next_loc_stage,castlewars_saradomin_maindoorl_open
 
 [castlewars_saradomin_maindoorr_open]
 name=Large door
@@ -33052,6 +33056,8 @@ model=lefayeunopenabledoorl
 op1=Close
 mirror=yes
 raiseobject=no
+category=door_opened
+param=next_loc_stage,castlewars_saradomin_maindoorr
 
 [castlewars_saradomin_maindoorl_open]
 name=Large door
@@ -33059,6 +33065,8 @@ desc=A large double door.
 model=lefayeunopenabledoorl
 op1=Close
 raiseobject=no
+category=door_opened
+param=next_loc_stage,castlewars_saradomin_maindoorl
 
 [castlewars_zamorak_maindoorr]
 name=Large door
@@ -33068,6 +33076,8 @@ op1=Open
 op2=Attack
 mirror=yes
 raiseobject=no
+category=door_closed
+param=next_loc_stage,castlewars_zamorak_maindoorl_open
 
 [castlewars_zamorak_maindoorl]
 name=Large door
@@ -33076,6 +33086,8 @@ model=lefayeunopenabledoorl
 op1=Open
 op2=Attack
 raiseobject=no
+category=door_closed
+param=next_loc_stage,castlewars_zamorak_maindoorr_open
 
 [castlewars_zamorak_maindoorr_open]
 name=Large door
@@ -33084,6 +33096,8 @@ model=lefayeunopenabledoorl
 op1=Close
 mirror=yes
 raiseobject=no
+category=door_opened
+param=next_loc_stage,castlewars_zamorak_maindoorr
 
 [castlewars_zamorak_maindoorl_open]
 name=Large door
@@ -33091,6 +33105,8 @@ desc=A large double door.
 model=lefayeunopenabledoorl
 op1=Close
 raiseobject=no
+category=door_opened
+param=next_loc_stage,castlewars_zamorak_maindoorl
 
 [castlewars_saradomin_brokendoorl]
 name=Broken door
@@ -125497,6 +125513,8 @@ recol4d=7361
 op1=Open
 raiseobject=no
 mirror=yes
+category=door_closed
+param=next_loc_stage,openpoordoor_double_inner
 
 [goblin_outpost_openpoordoor_double_inner]
 name=Large door
@@ -125513,6 +125531,8 @@ recol4d=7361
 op1=Close
 raiseobject=no
 mirror=yes
+category=door_opened
+param=next_loc_stage,poordoor_double_inner
 
 [goblin_outpost_poordoor_doubler_inner]
 name=Large door
@@ -125528,6 +125548,8 @@ recol4s=11456
 recol4d=7361
 op1=Open
 raiseobject=no
+category=door_closed
+param=next_loc_stage,openpoordoor_doubler_inner
 
 [goblin_outpost_openpoordoor_doubler_inner]
 name=Large door
@@ -125543,6 +125565,8 @@ recol4s=11456
 recol4d=7361
 op1=Close
 raiseobject=no
+category=door_opened
+param=next_loc_stage,poordoor_doubler_inner
 
 [goblin_outpost_big_table]
 name=Table
