@@ -945,7 +945,6 @@ head1=npc_1200_head
 defaultmode=none
 wanderrange=5
 maxrange=7
-moverestrict=nomove
 // respawnrate= TODO
 hitpoints=110
 attack=85
@@ -1025,7 +1024,7 @@ op2=Attack
 vislevel=110
 head1=npc_1200_head
 defaultmode=none
-wanderrange=9
+wanderrange=5
 maxrange=7
 attackrange=2
 // respawnrate= TODO
@@ -4164,11 +4163,10 @@ strength=40
 defence=40
 param=strengthbonus,20
 param=damagetype,^crush_style
-param=attack_anim,human_axe_hack
+param=attack_anim,human_blunt_pound
 param=defend_anim,human_axe_def
 param=attack_sound,baxe_crush
 param=defend_sound,blade5
-// anims are guesses        //check this
 
 [viking_man2]
 name=Freidir
