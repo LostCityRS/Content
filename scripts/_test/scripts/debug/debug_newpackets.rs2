@@ -8,12 +8,12 @@ minimap_toggle($type);
 if (p_finduid(uid) = false) {
     return;
 }
-if_openmain(inter_60);
-if_setrotation(inter_60:com_92, $xSpeed, $ySpeed);
+if_openmain(player_kit_hair_woman);
+if_setrotation(player_kit_hair_woman:com_92, $xSpeed, $ySpeed);
 
 [debugproc,angle](int $xan, int $yan, int $zoom)
 if (p_finduid(uid) = false) {
     return;
 }
-if_openmain(inter_60);
-if_setangle(inter_60:com_92, $xan, $yan, $zoom);
+if_openmain(player_kit_hair_woman);
+if_setangle(player_kit_hair_woman:com_92, $xan, $yan, $zoom);
