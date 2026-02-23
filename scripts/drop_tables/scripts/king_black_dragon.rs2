@@ -1,0 +1,70 @@
+[ai_queue3,king_dragon]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+// Default drop
+obj_add(npc_coord, dragon_bones, 1, ^lootdrop_duration);
+obj_add(npc_coord, dragonhide_black, 1, ^lootdrop_duration);
+
+// sources used:
+// - https://web.archive.org/web/20050305120920/http://runehq.com:80/cache/viewMonster57.htm
+// - https://web.archive.org/web/20050407104611/http://www.tip.it/runescape/index.php?rs2monster_id=219
+// - https://web.archive.org/web/20050415214837/http://www.trillionareguild.com/runescape/beastiary3.php
+// - https://web.archive.org/web/20040817192737/http://www.runescapecommunity.com/index.php?showtopic=106758
+// - https://web.archive.org/web/20050221193145/http://www.runecrypt.com/index.php?pid=118
+
+// clue scroll. Osrs only has elite scrolls for kbd, not sure what the rate would be for hard clues.
+// Im guessing its 1/128 like most high level monsters
+~trail_hardcluedrop(^trail_hard_droprate, npc_coord);
+
+
+def_int $random = random(128);
+
+if ($random < 10) { // osrs
+    obj_add(npc_coord, rune_longsword, 1, ^lootdrop_duration);
+} else if ($random < 19) { // osrs
+    obj_add(npc_coord, adamant_platebody, 1, ^lootdrop_duration);
+} else if ($random < 20) { // osrs
+    obj_add(npc_coord, dragon_med_helm, 1, ^lootdrop_duration);
+} else if ($random < 30) { // osrs's runite bolts (probably added when xbows were released)
+    obj_add(npc_coord, bronze_arrow, 310, ^lootdrop_duration);
+} else if ($random < 40) { // osrs
+    obj_add(npc_coord, iron_arrow, 690, ^lootdrop_duration);
+} else if ($random < 50) { // osrs (count is from monster db's on fansites)
+    obj_add(npc_coord, airrune, 105, ^lootdrop_duration);
+} else if ($random < 60) { // osrs (count is from monster db's on fansites)
+    obj_add(npc_coord, firerune, 105, ^lootdrop_duration);
+} else if ($random < 65) { // osrs (count is from monster db's on fansites)
+    obj_add(npc_coord, bloodrune, 15, ^lootdrop_duration);
+} else if ($random < 70) { // osrs (count is from monster db's on fansites)
+    obj_add(npc_coord, lawrune, 15, ^lootdrop_duration);
+} else if ($random < 75) { // missing from osrs, replaces dragon dart tips? 2 fan sites say 7-45 death runes (45 is from ultrarare)
+    obj_add(npc_coord, deathrune, 7, ^lootdrop_duration);
+} else if ($random < 78) { // osrs's adamant kiteshield?
+    obj_add(npc_coord, adamant_axe, 1, ^lootdrop_duration);
+} else if ($random < 80) { // missing from osrs. drop rate is guessed 2/128
+    obj_add(npc_coord, rune_axe, 1, ^lootdrop_duration);
+} else if ($random < 85) { // osrs, count is from rsc
+    obj_add(npc_coord, adamantite_bar, ~random_range(1,2), ^lootdrop_duration);
+} else if ($random < 88) { // osrs
+    obj_add(npc_coord, runite_bar, 1, ^lootdrop_duration);
+} else if ($random < 90) { // osrs's gold ore
+    obj_add(npc_coord, cert_coal, 100, ^lootdrop_duration);
+} else if ($random < 95) { // missing from osrs, replaces dragon dart tips
+    obj_add(npc_coord, cert_iron_ore, 100, ^lootdrop_duration);
+} else if ($random < 100) { // osrs, but 5/128 instead of 10/128
+    obj_add(npc_coord, cert_yew_logs, 100, ^lootdrop_duration);
+} else if ($random < 107) { // osrs's amulet of power
+    obj_add(npc_coord, amulet_of_strength, 1, ^lootdrop_duration);
+} else if ($random < 111) { // osrs
+    obj_add(npc_coord, shark, 4, ^lootdrop_duration);
+} else if ($random < 115) { // osrs's rune limbs
+    obj_add(npc_coord, bigoysterpearls, 4, ^lootdrop_duration);
+} else if ($random < 118) { // missing from osrs
+    obj_add(npc_coord, mithril_battleaxe, 1, ^lootdrop_duration); // https://youtu.be/KDkdsTPeb_8?t=358
+} else if ($random < 126) { // osrs
+    obj_add(npc_coord, ~ultrarare_getitem, ^lootdrop_duration);
+} else { // osrs
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+}
