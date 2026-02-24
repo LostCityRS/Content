@@ -28,6 +28,7 @@ op1=Talk-to
 vislevel=hide
 head1=model_64_npc_head
 head2=obj_2984_manhead
+wanderrange=5
 
 [tbwt_tiadeche]
 name=Tiadeche
@@ -57,6 +58,7 @@ op1=Talk-to
 vislevel=hide
 head1=model_64_npc_head
 head2=model_43_obj_wear
+wanderrange=5
 
 [tbwt_tiadeche_final]
 name=Tiadeche
@@ -87,6 +89,7 @@ op3=Trade
 vislevel=hide
 head1=model_64_npc_head
 head2=model_43_obj_wear
+wanderrange=5
 
 [tbwt_tinsay]
 name=Tinsay
@@ -119,6 +122,7 @@ vislevel=hide
 head1=model_46_idk_head
 head2=model_82_idk_head
 head3=model_43_obj_wear
+wanderrange=5
 
 [tbwt_tinsay_final]
 name=Tinsay
@@ -151,6 +155,7 @@ vislevel=hide
 head1=model_46_idk_head
 head2=model_82_idk_head
 head3=model_43_obj_wear
+wanderrange=5
 
 [tbwt_tamayu]
 name=Tamayu
@@ -176,6 +181,7 @@ op1=Talk-to
 vislevel=hide
 head1=model_64_npc_head
 head2=model_43_obj_wear
+wanderrange=5
 
 [tbwt_tamayu_final]
 name=Tamayu
@@ -202,6 +208,7 @@ op3=Trade
 vislevel=hide
 head1=model_64_npc_head
 head2=model_43_obj_wear
+wanderrange=5
 
 [tbwt_tamayu_hunter]
 name=Tamayu
@@ -274,6 +281,7 @@ op1=Talk-to
 vislevel=hide
 head1=model_63_idk_head
 head2=model_81_idk_head
+wanderrange=5
 
 [tbwt_beast]
 name=The Shaikahan
@@ -583,7 +591,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_staffready
 op1=Talk-to
 head1=npc_1185_head
-wanderrange=3
+wanderrange=5
 
 [regicide_good_elf1]
 name=Idris
@@ -1224,6 +1232,13 @@ vislevel=hide
 head1=model_55_idk_head
 wanderrange=1
 moverestrict=indoors
+category=shop_keeper
+param=owned_shop,regicide_general_shop
+param=owned_shop,regicide_general_shop_2
+param=shop_sell_multiplier,1300
+param=shop_buy_multiplier,400
+param=shop_delta,30
+param=shop_title,Quatermaster's Stores
 
 [caveguide6]
 name=Koftik
@@ -3362,6 +3377,12 @@ op3=Trade
 head1=model_48_npc_head
 head2=model_82_idk_head
 wanderrange=3
+category=shop_keeper
+param=owned_shop,viking_general_store
+param=shop_sell_multiplier,1300
+param=shop_buy_multiplier,500
+param=shop_delta,30
+param=shop_title,Sigmund the Merchant
 
 [viking_hallifred]
 name=Swensen the Navigator
@@ -3997,6 +4018,12 @@ op1=Talk to
 op3=Trade
 head1=model_113_idk_head
 head2=model_136_npc_head
+category=shop_keeper
+param=owned_shop,viking_bar
+param=shop_sell_multiplier,1300
+param=shop_buy_multiplier,700
+param=shop_delta,30
+param=shop_title,Rellekka Longhall Bar
 
 [viking_clothing_shopkeeper]
 name=Yrsa
@@ -4029,6 +4056,12 @@ op3=Trade
 head1=model_103_idk_head
 wanderrange=5
 moverestrict=indoors
+category=shop_keeper
+param=owned_shop,viking_clothes_shop
+param=shop_sell_multiplier,1300
+param=shop_buy_multiplier,700
+param=shop_delta,30
+param=shop_title,Yrsa's Accountrements
 
 [viking_fisherman1]
 name=Fisherman
@@ -4090,6 +4123,13 @@ op3=Trade
 vislevel=hide
 head1=model_46_idk_head
 head2=model_84_idk_head
+wanderrange=1
+category=shop_keeper
+param=owned_shop,viking_weapons_shop
+param=shop_sell_multiplier,1300
+param=shop_buy_multiplier,700
+param=shop_delta,30
+param=shop_title,Skulgrimen's Battle Gear
 
 [viking_sailor]
 name=Sailor
@@ -4119,7 +4159,9 @@ op1=Talk-to
 vislevel=hide
 head1=model_48_npc_head
 head2=model_84_idk_head
-wanderrange=1
+defaultmode=none
+wanderrange=0
+moverestrict=nomove
 
 [viking_man]
 name=Agnar
@@ -4582,6 +4624,12 @@ op3=Trade
 head1=model_63_idk_head
 head2=model_84_idk_head
 wanderrange=3
+category=shop_keeper
+param=owned_shop,viking_fishmonger
+param=shop_sell_multiplier,1300
+param=shop_buy_multiplier,700
+param=shop_delta,30
+param=shop_title,Fremennik Fish Monger
 
 [viking_fur_monger]
 name=Fur trader
@@ -4614,6 +4662,12 @@ op3=Trade
 head1=model_46_idk_head
 head2=model_84_idk_head
 wanderrange=3
+category=shop_keeper
+param=owned_shop,viking_furshop
+param=shop_sell_multiplier,1200
+param=shop_buy_multiplier,950
+param=shop_delta,20
+param=shop_title,Fremennik Fur Trader
 
 [viking_guard]
 name=Market Guard
@@ -5200,6 +5254,12 @@ head1=model_46_idk_head
 head2=model_85_idk_head
 head3=model_37_npc_head
 wanderrange=5
+category=shop_keeper
+param=owned_shop,lighthouseshop
+param=shop_sell_multiplier,1100
+param=shop_buy_multiplier,550
+param=shop_delta,30
+param=shop_title,The Lighthouse Store
 
 [horror_lighthousekeeeper_injured]
 name=Jossik
