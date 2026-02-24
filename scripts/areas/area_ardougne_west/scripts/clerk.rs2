@@ -49,7 +49,7 @@ switch_int(%elenaquest) {
 ~chatplayer("<p,angry>This is urgent though!");
 ~chatnpc("<p,neutral>I'll see what I can do I suppose.");
 ~chatnpc("<p,neutral>Mr <nc_name(bravek)> there's a <text_gender("man", "lady")> here who really needs to speak to you.");
-if (.npc_find(coord, bravek, 7, 0) = true) { // yes its possible this doesnt pop off if hes too far
+if (.npc_find(coord, bravek, 13, 0) = true) { // yes its possible this doesnt pop off if hes too far
     ~quest_elena_set_progress(^quest_elena_spoke_to_clerk);
     ~.chatnpc("<p,confused>I suppose they can come in then. If they keep it short.");
 }
@@ -57,3 +57,4 @@ if (.npc_find(coord, bravek, 7, 0) = true) { // yes its possible this doesnt pop
 [label,clerk_bravek_will_see_you_now]
 ~chatnpc("<p,neutral><nc_name(bravek)> will see you now but keep it short!");
 ~chatplayer("<p,happy>Thanks, I won't take much of his time.");
+
