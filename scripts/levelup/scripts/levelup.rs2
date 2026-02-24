@@ -41,7 +41,7 @@ if ($unlocks_levels ! null) {
     $has_unlocks = ~enum_containsintvalue($unlocks_levels, $level);
 }
 // play the jingle
-def_string $jingle;
+def_midi $jingle;
 def_int $jingle_millis;
 if ($has_unlocks = false) {
     $jingle = db_getfield($unlock_row, levelup:levelup_jingle, 0);

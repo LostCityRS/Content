@@ -27,15 +27,15 @@ p_delay(0);
 loc_change(loc_param(drawer_other), 300);
 
 [oplocu,_drawer]
-if(loc_coord = 1_40_51_14_62 & last_useitem = trail_clue_medium_riddle002_key) {
+if(loc_coord = 1_40_51_14_62) {
     @riddle_loc_medium_exp002;
-} else if(loc_coord = 1_40_51_51_60 & last_useitem = trail_clue_medium_riddle003_key) {
+} else if(loc_coord = 1_40_51_51_60) {
     @riddle_loc_medium_exp003;
-} else if(loc_coord = 0_42_54_21_22 & last_useitem = trail_clue_medium_riddle004_key) {
+} else if(loc_coord = 0_42_54_21_22) {
     @riddle_loc_medium_exp004;
-} else if(loc_coord = 1_43_49_57_29 & last_useitem = trail_clue_medium_riddle007_key) {
+} else if(loc_coord = 1_43_49_57_29) {
     @riddle_loc_medium_exp007;
-}  else if(loc_coord = 0_45_55_49_50 & last_useitem = trail_clue_medium_riddle008_key) {
+}  else if(loc_coord = 0_45_55_49_50) {
     @riddle_loc_medium_exp008;
 }
 ~displaymessage(^dm_default);

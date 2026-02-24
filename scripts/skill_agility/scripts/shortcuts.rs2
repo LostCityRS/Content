@@ -3,6 +3,10 @@ if (map_members = ^false) {
     mes(^mes_members_feature);
     return;
 }
+if(coordx(coord) > coordx(loc_coord)) {
+    mes("You cannot climb the wall from this side.");
+    return;
+}
 if(stat(agility) < 5) {
     mes("You need an Agility level of 5 to climb this.");
     return;
