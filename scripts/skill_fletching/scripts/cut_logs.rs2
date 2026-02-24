@@ -3,7 +3,16 @@
 switch_obj(last_useitem) {
     case knife : @fletch_log(last_item);
     case tinderbox : @light_logs_inv(last_slot);
-    case default : ~displaymessage(^dm_default);
+    case default : 
+        if (oc_category(last_item) = category_111 & last_useitem ! achey_tree_logs) {
+            if(%morttonquest < ^mortton_created_sacred_oil) {
+                mes("This sacred oil doesn't seem fresh. You should make your own.");
+                return;
+            }
+            @create_sacred_logs(last_useitem, last_useslot, last_item, last_slot);
+        } else {
+            ~displaymessage(^dm_default);
+        }
 }
 
 [label,fletch_log](obj $log)

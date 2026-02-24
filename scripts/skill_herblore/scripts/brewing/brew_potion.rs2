@@ -84,6 +84,12 @@ if(last_useitem = ground_bat_bones) {
 [opheldu,wine_of_zamorak]
 ~attempt_brew_potion(last_useslot, last_slot);
 
+[opheldu,ashes]
+~attempt_brew_potion(last_useslot, last_slot);
+
+[opheldu,ashesvial]
+~attempt_brew_potion(last_useslot, last_slot);
+
 [proc,attempt_brew_potion](int $use_slot, int $last_slot)(boolean)
 // Find the struct of the potion being made (if valid item combo)
 def_struct $struct = ~get_brew_struct(inv_getobj(inv, $last_slot), inv_getobj(inv, $use_slot));

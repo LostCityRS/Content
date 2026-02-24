@@ -227,6 +227,9 @@ if (%death_equiproom = ^death_complete) {
 if (%troll_quest = ^troll_complete) {
     $questpoints = add($questpoints, ^troll_questpoints); 
 }
+if (%morttonquest = ^mortton_quest_complete) {
+    $questpoints = add($questpoints, ^mortton_questpoints); 
+}
 return ($questpoints);
 
 [proc,update_questlist]
@@ -296,6 +299,7 @@ if (testbit(%ibanmulti, ^upass_started_bit) = ^true & %upass ! ^upass_complete) 
 ~send_quest_progress_colour(questlist:druidspirit, %druidspirit, ^druidspirit_complete);
 ~send_quest_progress_colour(questlist:death, %death_equiproom, ^death_complete);
 ~send_quest_progress_colour(questlist:troll, %troll_quest, ^troll_complete);
+~send_quest_progress_colour(questlist:mortton, %morttonquest, ^mortton_quest_complete);
 if_settab(questlist, ^tab_quest_journal);
 
 if (%drunkmonkquest >= ^drunkmonk_spoken_to_omad) {
