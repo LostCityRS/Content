@@ -12,8 +12,8 @@ if(~check_axis(coord, loc_coord, loc_angle) = false) {
     @west_ardougne_mourner_headquarters_doors;
 }
 
-[oploc1,ardougnewalldoor_left] @west_ardougne_open_city_doors;
-[oploc1,ardougnewalldoor_right] @west_ardougne_open_city_doors;
+[oploc1,ardougnedoor_l] @west_ardougne_open_city_doors;
+[oploc1,ardougnedoor_r] @west_ardougne_open_city_doors;
 
 [oploc1,bravekdoorshut]
 switch_int(%elenaquest) {
@@ -26,21 +26,21 @@ mes("You pull on the large wooden doors...");
 if(%biohazard = ^biohazard_complete) {
     def_coord $loc_coord = loc_coord;
     mes("...You open them and walk through.");
-    if(loc_find(0_39_51_62_36, ardougnewalldoor_right) = true) {
+    if(loc_find(0_39_51_62_36, ardougnedoor_r) = true) {
         // Temp note: dur updated
-        loc_add(loc_coord, ardougnewalldoor_left, 2, loc_shape, 5);
+        loc_add(loc_coord, ardougnedoor_l, 2, loc_shape, 5);
     }
-    if(loc_find(0_39_51_61_36, ardougnewalldoor_left) = true) {
+    if(loc_find(0_39_51_61_36, ardougnedoor_l) = true) {
         // Temp note: dur updated
-        loc_add(loc_coord, ardougnewalldoor_right, 0, loc_shape, 5);
+        loc_add(loc_coord, ardougnedoor_r, 0, loc_shape, 5);
     }
-    if(loc_find(0_39_51_62_35, ardougnewalldoor_left) = true) {
+    if(loc_find(0_39_51_62_35, ardougnedoor_l) = true) {
         // Temp note: dur updated
-        loc_add(loc_coord, ardougnewalldoor_right, 2, loc_shape, 5);
+        loc_add(loc_coord, ardougnedoor_r, 2, loc_shape, 5);
     }
-    if(loc_find(0_39_51_61_35, ardougnewalldoor_right) = true) {
+    if(loc_find(0_39_51_61_35, ardougnedoor_r) = true) {
         // Temp note: dur updated
-        loc_add(loc_coord, ardougnewalldoor_left, 0, loc_shape, 5);
+        loc_add(loc_coord, ardougnedoor_l, 0, loc_shape, 5);
     }
     sound_synth(coffin_open, 0, 0);
     if(coordx(coord) < coordx(loc_coord)) {
@@ -75,3 +75,4 @@ switch_int(%biohazard) {
 
 [label,bravek_enter_room]
 ~open_and_close_door2(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), door_open);
+
