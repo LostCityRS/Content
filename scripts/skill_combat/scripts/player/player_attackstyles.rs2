@@ -70,6 +70,11 @@
 [if_button,combat_staff_2:staff2b] ~set_attackstyle(1);
 [if_button,combat_staff_2:staff2c] ~set_attackstyle(2);
 
+[if_button,combat_claw:claw0] ~set_attackstyle(0);
+[if_button,combat_claw:claw1] ~set_attackstyle(1);
+[if_button,combat_claw:claw2] ~set_attackstyle(2);
+[if_button,combat_claw:claw3] ~set_attackstyle(3);
+
 [if_button,combat_staff_2:auto_toggle]
 if_close;
 if (%autocast_spell = 0) {
