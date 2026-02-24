@@ -33,6 +33,7 @@ switch_category(oc_category($weapon)) {
     case weapon_thrown : return(weapon_thrown_table);
     case weapon_javelin : return(weapon_thrown_table);
     case weapon_staff : return(weapon_staff_table);
+    case weapon_claws : return(weapon_claws_table);
     case weapon_whip : return(weapon_whip_table);
     case default : return(weapon_unarmed_table);
 }
