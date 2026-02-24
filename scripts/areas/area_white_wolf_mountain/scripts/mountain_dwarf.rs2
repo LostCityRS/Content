@@ -5,6 +5,13 @@ switch_int (%fishingcompo) {
     case default : @tunnel_dwarf_won;
 }
 
+[opnpc1,tunnel_dwarf1]
+switch_int (%fishingcompo) {
+    case ^fishingcompo_not_started : @tunnel_dwarf_start;
+    case ^fishingcompo_complete : ~chatnpc("<p,happy>Welcome, oh great Fishing Champion!|Feel free to pop by any time.");
+    case default : @tunnel_dwarf_won;
+}
+
 [label,tunnel_dwarf_start]
 ~chatnpc("<p,angry>Hmmph. What do you want?");
 def_int $option = ~p_choice2("I was just wondering what was down those stairs?", 1, "I was just stopping to say hello!", 2);
