@@ -1,4 +1,7 @@
 [ai_timer,castlewars_judge]
+if (%npc_int = 0 & (~castlewars_waitingroom_saradomin_count < 1 | ~castlewars_waitingroom_zamorak_count < 1)) {
+    return;
+}
 %npc_int = add(%npc_int, 1);
 huntall(^castlewars_centre_coord1, 32, 0);
 while (huntnext = true) {
@@ -61,7 +64,7 @@ if (~castlewars_can_join_in_progress = false) {
 ~castlewars_start_tele(%castlewars_team);
 
 [proc,castlewars_can_join_in_progress]()(boolean)
-if (~castlewars_judge_find = false) {
+if (npc_finduid(%castlewars_judge_uid) = false) {
     return(false);
 }
 def_int $saradomin_count = ~castlewars_saradomin_count;

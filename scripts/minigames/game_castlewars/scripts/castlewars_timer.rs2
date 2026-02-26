@@ -3,13 +3,11 @@ if (~in_castlewars_waitingroom(coord) = false) {
     cleartimer(castlewars_timer);
     return;
 }
-if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
+if (npc_finduid(%castlewars_judge_uid) = false) {
     return;
 }
-if (modulo(%npc_int, 20) = 0) {
-    if (%npc_int < 100) { // 5 min warmup
-        %castlewars_timer = sub(5, divide(%npc_int, 20));
-        return;
-    }
-    %castlewars_timer = sub(25, divide(%npc_int, 20)); // min until next game (+5 min)
+if (%npc_int < 100) { // 5 min warmup
+    %castlewars_timer = sub(5, divide(%npc_int, 20));
+    return;
 }
+%castlewars_timer = sub(25, divide(%npc_int, 20)); // min until next game (+5 min)
