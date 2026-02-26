@@ -1,8 +1,4 @@
 [ai_timer,castlewars_judge]
-if (~castlewars_saradomin_count < 1 | ~castlewars_zamorak_count < 1) {
-    %npc_int = null;
-    return;
-}
 %npc_int = add(%npc_int, 1);
 huntall(^castlewars_centre_coord1, 32, 0);
 while (huntnext = true) {
@@ -26,28 +22,21 @@ if (%npc_int = 500) {
 
 
 [proc,castlewars_update_vars]
-if (%npc_int < 100) { // 5 min warmup
-    if (modulo(%npc_int, 20) = 0) {
-        %castlewars_timer = sub(5, divide(%npc_int, 20));
-    }
-    return;
-}
-if (modulo(%npc_int, 20) = 0) {
-    %castlewars_timer = sub(25, divide(%npc_int, 20)); // min until next game (+5 min)
-}
 if (inzone(^zamorak_starting_count_coord1, ^zamorak_starting_count_coord2, coord) = true) {
     if (%npc_int = 100) {
-        queue(castlewars_start, 0);
-    } else if (modulo(%npc_int, 14) = 0) { // every 70 ticks?
-        queue(castlewars_join_in_progress, 0);
+        if_close;
+        longqueue(castlewars_start, 0, ^discard);
+    } else if (modulo(%npc_int, 20) = 0) { // every 100 ticks?
+        longqueue(castlewars_join_in_progress, 0, ^discard);
     }
     return;
 }
 if (inzone(^saradomin_starting_count_coord1, ^saradomin_starting_count_coord2, coord) = true) {
     if (%npc_int = 100) {
-        queue(castlewars_start, 0);
-    } else if (modulo(%npc_int, 14) = 0) { // every 70 ticks?
-        queue(castlewars_join_in_progress, 0);
+        if_close;
+        longqueue(castlewars_start, 0, ^discard);
+    } else if (modulo(%npc_int, 20) = 0 & p_finduid(uid) = true) { // every 100 ticks?
+        longqueue(castlewars_join_in_progress, 0, ^discard);
     }
     return;
 }
@@ -59,23 +48,39 @@ if (%npc_int = 500) { // game is over
 }
 
 [queue,castlewars_join_in_progress]
-def_int $choice = ~p_choice2_header("Yes please!", 1, "No thanks.", 2, "There's a free space, do you want to join?");
-if ($choice = 2) {
+if (~castlewars_can_join_in_progress = false) {
     return;
 }
-if (~castlewars_game_active = false) {
+if (~p_choice2_header("Yes please!", 1, "No thanks.", 2, "There's a free space, do you want to join?") = 2) {
+    return;
+}
+if (~castlewars_can_join_in_progress = false) {
+    ~mesbox("Sorry but the free place has already been taken."); // osrs
     return;
 }
 ~castlewars_start_tele(%castlewars_team);
 
-[proc,castlewars_game_active]()(boolean)
-if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
+[proc,castlewars_can_join_in_progress]()(boolean)
+if (~castlewars_judge_find = false) {
     return(false);
 }
-if (%npc_int < 500) {
-    return(true);
+def_int $saradomin_count = ~castlewars_saradomin_count;
+def_int $zamorak_count = ~castlewars_zamorak_count;
+// osrs tests:
+// - Equal amount of players = no join
+// - More players on your team = no join
+// - 3 players wait for join in progress interface, whilst other team has two players ingame.
+//      RESULT: 3rd player was blocked with "Sorry but the free place has already been taken."
+if (%castlewars_team = ^castlewars_team_saradomin & $saradomin_count >= $zamorak_count) {
+    return(false);
 }
-return(false);
+if (%castlewars_team = ^castlewars_team_zamorak & $zamorak_count >= $saradomin_count) {
+    return(false);
+}
+if (~in_castlewars_waitingroom(coord) = false) {
+    return(false);
+}
+return(true);
 
 [queue,castlewars_start]
 ~castlewars_start_tele(%castlewars_team);
