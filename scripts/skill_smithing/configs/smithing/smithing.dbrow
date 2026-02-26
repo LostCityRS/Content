@@ -1340,15 +1340,70 @@ data=levelfailmessage,Steel Studs
 data=bar,steel_bar
 data=bar_amount,1
 
-[nails]
+[nails_bronze]
 table=smithing
 data=ifproduct,nails
 data=product,nails
-data=product_amount,2
+data=product_amount,15
+data=levelrequired,4
+data=end_message,fifteen nails
+data=levelfailmessage,Nails
+data=bar,bronze_bar
+data=bar_amount,1
+
+[nails_iron]
+table=smithing
+data=ifproduct,nails
+data=product,nails
+data=product_amount,15
+data=levelrequired,19
+data=end_message,fifteen nails
+data=levelfailmessage,Nails
+data=bar,iron_bar
+data=bar_amount,1
+
+[nails_steel]
+table=smithing
+data=ifproduct,nails
+data=product,nails
+data=product_amount,15
 data=levelrequired,34
-data=end_message,two nails
+data=end_message,fifteen nails
 data=levelfailmessage,Nails
 data=bar,steel_bar
+data=bar_amount,1
+
+[nails_mithril]
+table=smithing
+data=ifproduct,nails
+data=product,nails
+data=product_amount,15
+data=levelrequired,54
+data=end_message,fifteen nails
+data=levelfailmessage,Nails
+data=bar,mithril_bar
+data=bar_amount,1
+
+[nails_adamant]
+table=smithing
+data=ifproduct,nails
+data=product,nails
+data=product_amount,15
+data=levelrequired,74
+data=end_message,fifteen nails
+data=levelfailmessage,Nails
+data=bar,adamantite_bar
+data=bar_amount,1
+
+[nails_rune]
+table=smithing
+data=ifproduct,nails
+data=product,nails
+data=product_amount,15
+data=levelrequired,89
+data=end_message,fifteen nails
+data=levelfailmessage,Nails
+data=bar,runite_bar
 data=bar_amount,1
 
 [bronze_claws]
