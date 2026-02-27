@@ -1075,7 +1075,7 @@ model=haunteddoorl
 resizey=170
 op1=Open
 category=double_door_open_and_close_left
-param=next_loc_stage,opencastledoubledoorl
+param=next_loc_stage,loc_1522
 
 [haunteddoorr]
 name=Large door
@@ -1085,7 +1085,7 @@ resizey=170
 op1=Open
 mirror=yes
 category=double_door_open_and_close_right
-param=next_loc_stage,doubledoorhingel
+param=next_loc_stage,loc_1523
 
 [hauntedbackdoor]
 name=Door
@@ -10894,53 +10894,53 @@ sharelight=yes
 mirror=yes
 raiseobject=no
 
-[opencastledoubledoorl]
+[loc_1522]
 model=lefayeunopenabledoorl
 active=no
 raiseobject=no
 
-[doubledoorhingel]
-model=lefayeunopenabledoorl
-mirror=yes
-active=no
-raiseobject=no
-
-[castledoubledoorr]
-model=lefayeunopenabledoorl
-active=no
-raiseobject=no
-
-[opencastledoubledoorr]
+[loc_1523]
 model=lefayeunopenabledoorl
 mirror=yes
 active=no
 raiseobject=no
 
-[doubledoorhinger]
-name=Curtain
-desc=The curtain is closed.
-model=doubledoorhinger
-active=yes
-op1=Open
-raiseobject=no
-
-[inaccastledoubledoorl]
-model=inaccastledoubledoorl
+[loc_1524]
+model=lefayeunopenabledoorl
 active=no
 raiseobject=no
 
-[inaccastledoubledoorr]
+[openloc_1524]
+model=lefayeunopenabledoorl
+mirror=yes
+active=no
+raiseobject=no
+
+[loc_1526]
 name=Curtain
 desc=The curtain is closed.
-model=doubledoorhinger
+model=loc_1526
 active=yes
 op1=Open
 raiseobject=no
 
-[inaccastledoubledoorlopen]
+[loc_1527]
+model=loc_1527
+active=no
+raiseobject=no
+
+[inacloc_1524]
+name=Curtain
+desc=The curtain is closed.
+model=loc_1526
+active=yes
+op1=Open
+raiseobject=no
+
+[loc_1527open]
 name=Curtain
 desc=The curtain is open.
-model=inaccastledoubledoorl
+model=loc_1527
 active=yes
 op1=Close
 blockwalk=no
@@ -11015,7 +11015,7 @@ mirror=yes
 blockrange=no
 raiseobject=no
 
-[loc_1566]
+[towered_gateway_roof]
 model=inactivefencegate_l
 length=3
 sharelight=yes
@@ -11023,7 +11023,7 @@ blockrange=no
 raiseobject=no
 active=no
 
-[loc_1567]
+[trapdoor_nonactive]
 model=ikov_trapdoor
 raiseobject=no
 
@@ -11315,7 +11315,7 @@ model=lefayeunopenabledoorl
 op1=Open
 raiseobject=no
 category=double_door_open_and_close_left
-param=next_loc_stage,opencastledoubledoorl
+param=next_loc_stage,loc_1522
 param=open_sound,null
 
 [loc_1601]
@@ -11326,7 +11326,7 @@ op1=Open
 mirror=yes
 raiseobject=no
 category=double_door_open_and_close_right
-param=next_loc_stage,doubledoorhingel
+param=next_loc_stage,loc_1523
 param=open_sound,null
 
 [timberwall]
@@ -18562,7 +18562,7 @@ recol2d=11458
 active=yes
 op1=Open
 category=double_door_open_and_close_left
-param=next_loc_stage,opencastledoubledoorl
+param=next_loc_stage,loc_1522
 
 [herodoor_r]
 name=Door
@@ -18576,7 +18576,7 @@ active=yes
 op1=Open
 mirror=yes
 category=double_door_open_and_close_right
-param=next_loc_stage,doubledoorhingel
+param=next_loc_stage,loc_1523
 
 [grubordoor]
 name=Door
@@ -19090,7 +19090,7 @@ model=lefayeunopenabledoorl
 op1=Open
 op2=Search
 category=double_door_open_and_close_left
-param=next_loc_stage,opencastledoubledoorl
+param=next_loc_stage,loc_1522
 
 [thttmineexitr]
 name=Mine door entrance
@@ -19100,7 +19100,7 @@ mirror=yes
 op1=Open
 op2=Search
 category=double_door_open_and_close_right
-param=next_loc_stage,doubledoorhingel
+param=next_loc_stage,loc_1523
 
 [shantay_prisondoor]
 name=Prison door
@@ -19173,7 +19173,7 @@ category=desertrescue_minecave
 [bedabin_tentdoor]
 name=Tent door
 desc=The entrance to the tent.
-model=doubledoorhinger
+model=loc_1526
 recol1s=14400
 recol1d=13741
 recol2s=16481
@@ -19182,7 +19182,7 @@ active=yes
 op1=Walk-through
 
 [bedabin_tentdoor_open]
-model=inaccastledoubledoorl
+model=loc_1527
 recol1s=14400
 recol1d=13741
 recol2s=16481
@@ -26186,48 +26186,48 @@ op1=Open
 model=loc_3627
 sharelight=yes
 
-[loc_3628]
+[macro_maze_both_dir_wall]
 name=Wall
 desc=It looks very sturdy.
-model=loc_3628
+model=macro_maze_both_dir_wall
 recol1s=9513
 recol1d=15855
 op1=Open
 
-[loc_3629]
+[macro_maze_east_wall]
 name=Wall
 desc=It looks very sturdy.
-model=loc_3628
+model=macro_maze_both_dir_wall
 recol1s=9513
 recol1d=15855
 op1=Open
 
-[loc_3630]
+[macro_maze_west_wall]
 name=Wall
 desc=It looks very sturdy.
-model=loc_3628
+model=macro_maze_both_dir_wall
 recol1s=9513
 recol1d=15855
 op1=Open
 
-[loc_3631]
+[macro_maze_north_wall]
 name=Wall
 desc=It looks very sturdy.
-model=loc_3628
+model=macro_maze_both_dir_wall
 recol1s=9513
 recol1d=15855
 op1=Open
 
-[loc_3632]
+[macro_maze_west2_wall]
 name=Wall
 desc=It looks very sturdy.
-model=loc_3628
+model=macro_maze_both_dir_wall
 recol1s=9513
 recol1d=15855
 op1=Open
 
 [macro_maze_opened_wall]
-model=loc_3628
+model=macro_maze_both_dir_wall
 recol1s=9513
 recol1d=15855
 
@@ -26252,8 +26252,8 @@ desc=It looks empty.
 model=arena_guard_chest_open
 op1=Search
 
-[loc_3637]
-model=loc_3637
+[godsorb]
+model=godsorb
 active=no
 anim=godsorb
 
@@ -31355,11 +31355,11 @@ recol2d=16872
 mirror=yes
 active=no
 
-[grandtree_ladderbottom]
+[castlewars_table_bandages]
 name=Table
 desc=There are some bandages on this table.
 model=bigtable
-model2=grandtree_ladderbottom
+model2=castlewars_table_bandages
 width=2
 blockrange=no
 op1=Take-from
@@ -96114,3 +96114,4 @@ width=2
 length=2
 hillskew=yes
 op1=Take-from
+
