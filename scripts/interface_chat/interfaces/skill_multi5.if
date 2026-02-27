@@ -1,4 +1,4 @@
-[com_0]
+[swordl]
 type=graphic
 x=2
 y=5
@@ -6,7 +6,7 @@ width=57
 height=13
 graphic=sworddecor,1
 
-[com_1]
+[swordr]
 type=graphic
 x=421
 y=5
@@ -14,56 +14,64 @@ width=57
 height=13
 graphic=sworddecor,0
 
-[com_2]
+[model_a]
 type=model
-x=28
+x=14
 y=13
 width=64
 height=96
 zoom=400
 
-[com_3]
+[model_b]
 type=model
-x=148
+x=111
 y=13
 width=64
 height=96
 zoom=400
 
-[com_4]
+[model_c]
 type=model
-x=268
+x=208
 y=13
 width=64
 height=96
 zoom=400
 
-[com_5]
+[model_d]
 type=model
-x=388
+x=305
 y=13
 width=64
 height=96
 zoom=400
 
-[com_6]
+[model_e]
+type=model
+x=402
+y=13
+width=64
+height=96
+zoom=400
+
+[makex_a]
 type=text
-x=10
+x=1
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
 overcolour=0x00C000
 option=Make X
 
-[com_7]
+[make10_a]
 type=text
-x=10
+x=1
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
@@ -71,12 +79,12 @@ shadowed=yes
 overcolour=0x00C000
 option=Make 10
 
-[com_8]
+[make5_a]
 type=text
-x=10
+x=1
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
@@ -84,36 +92,36 @@ shadowed=yes
 overcolour=0x00C000
 option=Make 5
 
-[com_9]
+[make1_a]
 type=text
-x=10
+x=1
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
 overcolour=0x00C000
 option=Make 1
 
-[com_10]
+[makex_b]
 type=text
-x=130
+x=98
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
 overcolour=0x00C000
 option=Make X
 
-[com_11]
+[make10_b]
 type=text
-x=130
+x=98
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
@@ -121,12 +129,12 @@ shadowed=yes
 overcolour=0x00C000
 option=Make 10
 
-[com_12]
+[make5_b]
 type=text
-x=130
+x=98
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
@@ -134,36 +142,36 @@ shadowed=yes
 overcolour=0x00C000
 option=Make 5
 
-[com_13]
+[make1_b]
 type=text
-x=130
+x=98
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
 overcolour=0x00C000
 option=Make 1
 
-[com_14]
+[makex_c]
 type=text
-x=250
+x=195
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
 overcolour=0x00C000
 option=Make X
 
-[com_15]
+[make10_c]
 type=text
-x=250
+x=195
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
@@ -171,12 +179,12 @@ shadowed=yes
 overcolour=0x00C000
 option=Make 10
 
-[com_16]
+[make5_c]
 type=text
-x=250
+x=195
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
@@ -184,36 +192,36 @@ shadowed=yes
 overcolour=0x00C000
 option=Make 5
 
-[com_17]
+[make1_c]
 type=text
-x=250
+x=195
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
 overcolour=0x00C000
 option=Make 1
 
-[com_18]
+[makex_d]
 type=text
-x=370
+x=292
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
 overcolour=0x00C000
 option=Make X
 
-[com_19]
+[make10_d]
 type=text
-x=370
+x=292
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
@@ -221,12 +229,12 @@ shadowed=yes
 overcolour=0x00C000
 option=Make 10
 
-[com_20]
+[make5_d]
 type=text
-x=370
+x=292
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
@@ -234,19 +242,70 @@ shadowed=yes
 overcolour=0x00C000
 option=Make 5
 
-[com_21]
+[make1_d]
 type=text
-x=370
+x=292
 y=16
 buttontype=normal
-width=100
+width=90
 height=93
 center=yes
 font=q8_full
 overcolour=0x00C000
 option=Make 1
 
-[com_22]
+[makex_e]
+type=text
+x=389
+y=16
+buttontype=normal
+width=90
+height=93
+center=yes
+font=q8_full
+shadowed=yes
+overcolour=0x00C000
+option=Make X
+
+[make10_e]
+type=text
+x=389
+y=16
+buttontype=normal
+width=90
+height=93
+center=yes
+font=q8_full
+shadowed=yes
+overcolour=0x00C000
+option=Make 10
+
+[make5_e]
+type=text
+x=389
+y=16
+buttontype=normal
+width=90
+height=93
+center=yes
+font=q8_full
+shadowed=yes
+overcolour=0x00C000
+option=Make 5
+
+[make1_e]
+type=text
+x=389
+y=16
+buttontype=normal
+width=90
+height=93
+center=yes
+font=q8_full
+overcolour=0x00C000
+option=Make 1
+
+[prompt]
 type=text
 x=8
 y=3

@@ -60,6 +60,12 @@ p_delay(2);
 if (stat(hitpoints) = 0) {
     return;
 }
+
+//It's not a zone or mapsquare trigger, happens instantly on teleport
+if(~inzone_coord_pair_table(mortton_temple_zones, coord) = true) {
+    if_openoverlay(null);
+}
+
 p_telejump($coord);
 anim(null, 0);
 // todo: ensure this proc is used for other teleports too

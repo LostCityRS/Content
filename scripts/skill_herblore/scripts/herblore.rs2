@@ -12,6 +12,11 @@ inv_del(inv, $ingredient, 1);
 inv_del(inv, $solvent, 1);
 // There is always a guaranteed slot available.
 inv_add(inv, $mixture, 1);
+
+if($mixture = mort_serum3 & %morttonquest = ^mortton_read_diary) {
+    %morttonquest = ^mortton_made_serum;
+}
+
 // https://youtu.be/S6P-hUzgqPw?t=1
 mes($message);
 anim(human_herbing_vial, 0);

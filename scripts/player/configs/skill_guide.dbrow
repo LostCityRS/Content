@@ -6,7 +6,6 @@ data=op,Defence,skill_guide_combat_defence
 
 [skill_guide_combat_attack]
 table=skill_guides
-data=op,skill_guide_combat
 data=name,Combat - Attack
 data=advancement,Able to wield:
 data=inv,skill_guide_combat_weapons
@@ -22,7 +21,6 @@ data=unlock,60,Members: Dragon.
 
 [skill_guide_combat_defence]
 table=skill_guides
-data=op,skill_guide_combat
 data=name,Combat - Defence
 data=advancement,Able to wear:
 data=inv,skill_guide_combat_armours
@@ -82,14 +80,14 @@ data=name,Ranging - Thrown
 // todo: complete guess:
 data=advancement,Able to throw:
 data=inv,skill_guide_ranged_thrown
-data=unlock,1,Bronze items.
-data=unlock,1,Iron items.
-data=unlock,5,Steel items.
-data=unlock,10,Black items.
-data=unlock,20,Mithril items.
+data=unlock,1,Members: Bronze items.
+data=unlock,1,Members: Iron items.
+data=unlock,5,Members: Steel items.
+data=unlock,10,Members: Black items.
+data=unlock,20,Members: Mithril items.
 // [sic] "Adamantite" despite "Rune" below
-data=unlock,30,Adamantite items.
-data=unlock,40,Rune items.
+data=unlock,30,Members: Adamantite items.
+data=unlock,40,Members: Rune items.
 
 [skill_guide_ranged_armour]
 table=skill_guides
@@ -321,9 +319,9 @@ data=unlock,8,Bowl.
 table=skill_guides
 data=name,Crafting - Glass
 data=inv,skill_guide_crafting_glass
-data=unlock,1,Beer glass.
-data=unlock,33,Vial.
-data=unlock,46,Glass orb.
+data=unlock,1,Members: Beer glass.
+data=unlock,33,Members: Vial.
+data=unlock,46,Members: Glass orb.
 
 // note: derived from 2007 clientscript
 [skill_guide_crafting_jewellery]
@@ -336,6 +334,7 @@ data=unlock,6,Gold necklace.
 data=unlock,8,Gold amulet.
 data=unlock,13,Members: Cut jade.
 data=unlock,16,Holy symbol.
+data=unlock,16,Members: Cut red topaz.
 data=unlock,17,Members: Unholy symbol.
 data=unlock,20,Cut sapphire.
 data=unlock,20,Sapphire ring.
@@ -363,10 +362,10 @@ data=unlock,80,Members: Dragonstone amulet.
 table=skill_guides
 data=name,Crafting - Staffs
 data=inv,skill_guide_crafting_staffs
-data=unlock,54,Water battlestaff.
-data=unlock,58,Earth battlestaff.
-data=unlock,62,Fire battlestaff.
-data=unlock,66,Air battlestaff.
+data=unlock,54,Members: Water battlestaff.
+data=unlock,58,Members: Earth battlestaff.
+data=unlock,62,Members: Fire battlestaff.
+data=unlock,66,Members: Air battlestaff.
 
 // note: derived from 2007 clientscript
 [skill_guide_crafting_armour]
@@ -378,6 +377,7 @@ data=unlock,7,Leather boots.
 data=unlock,9,Leather cowl.
 data=unlock,11,Leather vambraces.
 data=unlock,14,Leather body.
+data=unlock,15,Members: Snail helmet.
 data=unlock,18,Leather chaps.
 data=unlock,28,Hard leather body.
 data=unlock,38,Members: Coif.

@@ -4,6 +4,24 @@ if(oc_category(last_useitem) = category_69) {
 }
 ~displaymessage(^dm_default);
 
+[opheldu,_category_108]
+if(oc_category(last_useitem) = category_108) {
+    @decant_potion(last_item, last_useitem);
+}
+~displaymessage(^dm_default);
+
+[opheldu,_category_109]
+if(oc_category(last_useitem) = category_109) {
+    @decant_potion(last_item, last_useitem);
+}
+~displaymessage(^dm_default);
+
+[opheldu,_category_110]
+if(oc_category(last_useitem) = category_110) {
+    @decant_potion(last_item, last_useitem);
+}
+~displaymessage(^dm_default);
+
 [label,decant_potion](obj $potion, obj $used_potion)
 def_enum $potion_enum = ~get_potion_type($potion, $used_potion);
 if ($potion_enum = null) {

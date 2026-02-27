@@ -1,4 +1,4 @@
-[com_0]
+[swordl]
 type=graphic
 x=2
 y=5
@@ -6,7 +6,7 @@ width=57
 height=13
 graphic=sworddecor,1
 
-[com_1]
+[swordr]
 type=graphic
 x=421
 y=5
@@ -14,46 +14,53 @@ width=57
 height=13
 graphic=sworddecor,0
 
-[com_2]
+[model_a]
 type=model
-x=56
+x=28
 y=13
 width=64
 height=96
 zoom=400
 
-[com_3]
+[model_b]
 type=model
-x=207
+x=148
 y=13
 width=64
 height=96
 zoom=400
 
-[com_4]
+[model_c]
 type=model
-x=360
+x=268
 y=13
 width=64
 height=96
 zoom=400
 
-[com_5]
+[model_d]
+type=model
+x=388
+y=13
+width=64
+height=96
+zoom=400
+
+[makex_a]
 type=text
-x=38
+x=10
 y=16
 buttontype=normal
 width=100
 height=93
 center=yes
 font=q8_full
-shadowed=yes
 overcolour=0x00C000
 option=Make X
 
-[com_6]
+[make10_a]
 type=text
-x=38
+x=10
 y=16
 buttontype=normal
 width=100
@@ -64,9 +71,9 @@ shadowed=yes
 overcolour=0x00C000
 option=Make 10
 
-[com_7]
+[make5_a]
 type=text
-x=38
+x=10
 y=16
 buttontype=normal
 width=100
@@ -77,9 +84,9 @@ shadowed=yes
 overcolour=0x00C000
 option=Make 5
 
-[com_8]
+[make1_a]
 type=text
-x=38
+x=10
 y=16
 buttontype=normal
 width=100
@@ -89,22 +96,21 @@ font=q8_full
 overcolour=0x00C000
 option=Make 1
 
-[com_9]
+[makex_b]
 type=text
-x=189
+x=130
 y=16
 buttontype=normal
 width=100
 height=93
 center=yes
 font=q8_full
-shadowed=yes
 overcolour=0x00C000
 option=Make X
 
-[com_10]
+[make10_b]
 type=text
-x=189
+x=130
 y=16
 buttontype=normal
 width=100
@@ -115,9 +121,9 @@ shadowed=yes
 overcolour=0x00C000
 option=Make 10
 
-[com_11]
+[make5_b]
 type=text
-x=189
+x=130
 y=16
 buttontype=normal
 width=100
@@ -128,9 +134,9 @@ shadowed=yes
 overcolour=0x00C000
 option=Make 5
 
-[com_12]
+[make1_b]
 type=text
-x=189
+x=130
 y=16
 buttontype=normal
 width=100
@@ -140,22 +146,21 @@ font=q8_full
 overcolour=0x00C000
 option=Make 1
 
-[com_13]
+[makex_c]
 type=text
-x=342
+x=250
 y=16
 buttontype=normal
 width=100
 height=93
 center=yes
 font=q8_full
-shadowed=yes
 overcolour=0x00C000
 option=Make X
 
-[com_14]
+[make10_c]
 type=text
-x=342
+x=250
 y=16
 buttontype=normal
 width=100
@@ -166,9 +171,9 @@ shadowed=yes
 overcolour=0x00C000
 option=Make 10
 
-[com_15]
+[make5_c]
 type=text
-x=342
+x=250
 y=16
 buttontype=normal
 width=100
@@ -179,9 +184,9 @@ shadowed=yes
 overcolour=0x00C000
 option=Make 5
 
-[com_16]
+[make1_c]
 type=text
-x=342
+x=250
 y=16
 buttontype=normal
 width=100
@@ -191,7 +196,57 @@ font=q8_full
 overcolour=0x00C000
 option=Make 1
 
-[com_17]
+[makex_d]
+type=text
+x=370
+y=16
+buttontype=normal
+width=100
+height=93
+center=yes
+font=q8_full
+overcolour=0x00C000
+option=Make X
+
+[make10_d]
+type=text
+x=370
+y=16
+buttontype=normal
+width=100
+height=93
+center=yes
+font=q8_full
+shadowed=yes
+overcolour=0x00C000
+option=Make 10
+
+[make5_d]
+type=text
+x=370
+y=16
+buttontype=normal
+width=100
+height=93
+center=yes
+font=q8_full
+shadowed=yes
+overcolour=0x00C000
+option=Make 5
+
+[make1_d]
+type=text
+x=370
+y=16
+buttontype=normal
+width=100
+height=93
+center=yes
+font=q8_full
+overcolour=0x00C000
+option=Make 1
+
+[prompt]
 type=text
 x=8
 y=3

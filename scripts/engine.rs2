@@ -318,8 +318,8 @@
 [command,damage](player_uid $uid, int $type, int $amount)
 // info: Hurt the secondary player
 [command,.damage](player_uid $uid, int $type, int $amount)
-// info: internal- set which buttons can re-trigger the suspended script
-[command,if_setresumebuttons](component $component1, component $component2, component $component3, component $component4, component $component5)
+// info: internal- set which buttons can re-trigger a script suspended with p_pausebutton
+[command,if_addresumebutton](component $button)
 // info: Choose a text string based on the player's gender
 [command,text_gender](string $male_text, string $female_text)(string)
 // info: Choose a text string based on the secondary player's gender
@@ -1022,9 +1022,9 @@
 // info: dynamic arg (indexed key)
 [command,db_find_refine_with_count](dbrow $row)(int)
 // info: dynamic arg (indexed key)
-[command,db_find](dbrow $row)
+[command,db_find](dbcolumn $row)
 // info: dynamic arg (indexed key)
-[command,db_find_refine](dbrow $row)
+[command,db_find_refine](dbcolumn $row)
 [command,db_listall](dbtable $table)
 
 // Debug ops (10000-11000)

@@ -1,6 +1,7 @@
 [opheldu,chisel]
 switch_obj (last_useitem)
 {
+    case limestone : @craft_limestonebrick;
     case uncut_sapphire, uncut_emerald, uncut_ruby, uncut_diamond, uncut_dragonstone, uncut_opal, uncut_jade, uncut_red_topaz : @crafting_gem(last_useitem);
     case opal, smalloysterpearls, bigoysterpearls : @make_bolt_tips(last_useitem);
     case wolf_bones : @make_wolf_bone_tips;
