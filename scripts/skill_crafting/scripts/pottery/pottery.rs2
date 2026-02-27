@@ -12,7 +12,7 @@ switch_obj (last_useitem)
 [oplocu,viking_potteryoven] @use_pottery_oven(last_useitem);
 [oplocu,fai_barbarian_pottery_oven] @use_pottery_oven(last_useitem);
 
-[label,use_pottery_oven](obj $obj)
+[label,use_pottery_oven](obj $item)
 switch_obj ($item)
 {
     case bowl_unfired, piedish_unfired, pot_unfired : @fire_pottery(last_useslot);
