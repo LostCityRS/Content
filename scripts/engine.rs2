@@ -78,6 +78,8 @@
 [command,map_findsquare](coord $coord, int $minradius, int $maxradius, int $type)(coord)
 // info: Returns true if the map tile at $coord is in a multi-way combat area
 [command,map_multiway](coord $coord)(boolean)
+// info: Returns the current world number
+[command,map_world]()(int)
 
 // Player ops (2000-2499)
 // info: Get access to $player if they are in the world
