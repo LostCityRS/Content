@@ -1,19 +1,19 @@
 [oplocu,spinning_wheel]
 switch_obj (last_useitem) 
 {
-    case wool : @craft_spinning(last_useitem, 1, loc_coord);
+    case wool : @craft_spinning(last_useitem, 1, loc_type, loc_coord);
     case flax :
         if (map_members = ^false) {
             mes(^mes_members_feature);
             return;
         }
-        @craft_spinning(last_useitem, 1, loc_coord);
+        @craft_spinning(last_useitem, 1, loc_type, loc_coord);
     case ball_of_wool : ~objbox(ball_of_wool, "You have already spun this wool.", 250, 0, divide(^objbox_height, 2));
     case bow_string : ~objbox(bow_string, "You have already spun this bow string.", 250, 0, divide(^objbox_height, 2));
     case default : ~displaymessage(^dm_default);
 }
 
-[queue,crafting_spinning](obj $spinning_obj, int $amt, coord $coord)
+[queue,crafting_spinning](obj $spinning_obj, int $amt, loc $loc, coord $coord)
 if ($amt = 0 | inv_total(inv, $spinning_obj) = 0) {
     return;
 }
@@ -25,7 +25,7 @@ inv_add(inv, struct_param($struct, product), 1);
 mes(struct_param($struct, processmessage));
 stat_advance(crafting, struct_param($struct, productexp));
 
-@craft_spinning($spinning_obj, sub($amt, 1), $coord);
+@craft_spinning($spinning_obj, sub($amt, 1), $loc, $coord);
 
 [oploc2,spinning_wheel]
 def_int $amt = 0;
@@ -47,9 +47,9 @@ if (stat(crafting) < $level) {
     return;
 }
 
-@craft_spinning($obj, $amt, loc_coord);
+@craft_spinning($obj, $amt, loc_type, loc_coord);
 
-[label,craft_spinning](obj $spinning_obj, int $amt, coord $coord)
+[label,craft_spinning](obj $spinning_obj, int $amt, loc $loc, coord $coord)
 def_struct $struct = oc_param($spinning_obj, crafting_spinning_struct);
 
 // check if we have the required level
@@ -66,7 +66,7 @@ if (afk_event = ^true) {
 }
 
 // loc_anim does not work without this check
-if (loc_find($coord, spinning_wheel) = false) {
+if (loc_find($coord, $loc) = false) {
     return;   
 }
 
@@ -80,7 +80,7 @@ anim(human_spinningwheel, 0);
 loc_anim(spinningwheel);
 sound_synth(spinning, 0, 0);
 
-weakqueue*(crafting_spinning, 3)($spinning_obj, $amt, $coord);
+weakqueue*(crafting_spinning, 3)($spinning_obj, $amt, $loc, $coord);
 
 /**
 //May have not used weakqueue for this back then https://youtu.be/eQEYx8hwA_I?t=410
