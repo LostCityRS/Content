@@ -1,4 +1,4 @@
-[label,inter_219]
+[label,castlewars_ticket_exchange]
 inv_transmit(inv, inter_269:com_0);
 inv_transmit(castlewars_trade_tickets, inter_219:com_90);
 inv_transmit(castlewars_trade_coins, inter_219:com_91);
@@ -15,7 +15,7 @@ inv_stoptransmit(inter_219:com_91);
 [inv_button1,inter_219:com_90]
 def_obj $item = inv_getobj(castlewars_trade_tickets, last_slot);
 def_string $item_name = oc_name($item);
-def_int $item_value = enum(obj, int, inter_219, $item);
+def_int $item_value = enum(obj, int, castlewars_ticket_exchange, $item);
 mes("The <lowercase($item_name)> costs <tostring($item_value)> tickets.");
 
 
@@ -34,7 +34,7 @@ if ($item = castlewars_manual) {
     mes("<$item_name>: shop will buy for 0gp."); // todo: confirm
     return;
 }
-def_int $item_value = enum(obj, int, inter_219, $item);
+def_int $item_value = enum(obj, int, castlewars_ticket_exchange, $item);
 if ($item_value = null) {
     mes("You can't sell this item to this shop."); // https://youtu.be/BlH7c7FBAUQ?t=8
     return;
@@ -52,7 +52,7 @@ if ($item = castlewars_manual) {
     inv_moveitem_uncert(inv, castlewars_trade_coins, $item, 1);
     return;
 }
-def_int $item_value = enum(obj, int, inter_219, $item);
+def_int $item_value = enum(obj, int, castlewars_ticket_exchange, $item);
 if ($item_value = null) {
     mes("You can't sell this item to this shop."); // https://youtu.be/BlH7c7FBAUQ?t=8
     return;
@@ -72,7 +72,7 @@ inv_add(inv, castlewars_ticket, $item_value);
 // buy
 [inv_button2,inter_219:com_90]
 def_obj $item = oc_uncert(inv_getobj(castlewars_trade_tickets, last_slot));
-def_int $item_value = enum(obj, int, inter_219, $item);
+def_int $item_value = enum(obj, int, castlewars_ticket_exchange, $item);
 def_int $tickets = inv_total(inv, castlewars_ticket);
 if ($item_value > $tickets) {
     mes("You dont have enough tickets to buy this item."); // https://youtu.be/BlH7c7FBAUQ?t=14
