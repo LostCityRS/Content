@@ -70,6 +70,11 @@ if (loc_find($coord, spinning_wheel) = false) {
     return;   
 }
 
+// Make sure the player has an item to spin
+if (inv_total(inv, $spinning_obj) = 0) {
+    return;
+}
+
 // play human animation
 anim(human_spinningwheel, 0);
 loc_anim(spinningwheel);
