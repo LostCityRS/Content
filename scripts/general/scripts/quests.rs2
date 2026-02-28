@@ -91,6 +91,9 @@ if (%imp = ^imp_complete) {
 if (%druidquest = ^druid_complete) {
     $questpoints = add($questpoints, ^druid_questpoints);
 }
+if (%druidspirit = ^druidspirit_complete) {
+    $questpoints = add($questpoints, ^druidspirit_questpoints);
+}
 if (%goblinquest = ^gobdip_complete) {
     $questpoints = add($questpoints, ^gobdip_questpoints); 
 }
@@ -249,6 +252,7 @@ return ($questpoints);
 ~send_quest_progress_colour(questlist:squire, %squire, ^squire_complete);
 ~send_quest_progress_colour(questlist:imp, %imp, ^imp_complete);
 ~send_quest_progress_colour(questlist:druid, %druidquest, ^druid_complete);
+~send_quest_progress_colour(questlist:druidspirit, %druidspirit, ^druidspirit_complete);
 ~send_quest_progress_colour(questlist:gobdip, %goblinquest, ^gobdip_complete);
 ~send_quest_progress_colour(questlist:sheep, %sheep, ^sheep_complete);
 ~send_quest_progress_colour(questlist:fluffs, %fluffs, ^fluffs_complete);
