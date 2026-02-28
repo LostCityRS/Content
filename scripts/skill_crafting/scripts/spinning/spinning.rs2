@@ -13,6 +13,39 @@ switch_obj (last_useitem)
     case default : ~displaymessage(^dm_default);
 }
 
+[queue,crafting_spinning](obj $spinning_obj, coord $coord)
+// loc_anim in craft_spinning does not work without this check
+if (loc_find($coord, spinning_wheel) = false) {
+    return;   
+}
+
+@craft_spinning($spinning_obj);
+
+[oploc2,spinning_wheel]
+def_int $amt = 0;
+def_int $count = 0;
+def_obj $obj;
+
+$obj, $amt = ~skill_multi2(wool, flax);
+$amt = min($amt, inv_total(inv, $obj));
+def_struct $struct = oc_param($obj, crafting_spinning_struct);
+
+if ($obj = flax & map_members = ^false) {
+    mes(^mes_members_crafting);
+    return;
+}
+
+def_int $level = struct_param($struct, levelrequire);
+if (stat(crafting) < $level) {
+    ~mesbox("You need level <tostring($level)> Crafting to make that.");
+    return;
+}
+
+while ($count < $amt) {
+    weakqueue*(crafting_spinning, 0)($obj, loc_coord);
+    $count = add($count, 1);
+}
+
 [label,craft_spinning](obj $spinning_obj)
 def_struct $struct = oc_param($spinning_obj, crafting_spinning_struct);
 // check if we have the required level
@@ -26,6 +59,7 @@ if (afk_event = ^true) {
     ~macro_event_general_spawn(~macro_event_set_random);
     return;
 }
+
 // play human animation
 anim(human_spinningwheel, 0);
 loc_anim(spinningwheel);
@@ -35,7 +69,6 @@ inv_add(inv, struct_param($struct, product), 1);
 mes(struct_param($struct, processmessage));
 stat_advance(crafting, struct_param($struct, productexp));
 p_delay(3);
-//weakqueue(crafting_spinning, 2, $struct);
 
 /**
 //May have not used weakqueue for this back then https://youtu.be/eQEYx8hwA_I?t=410
