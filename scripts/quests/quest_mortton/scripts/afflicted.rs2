@@ -41,45 +41,45 @@ if ($random < 59) {
 //Always says some for oil
 } else if ($random < 105) {
     inv_add(inv, oliveoil1, ~random_range(1, 3));
-    ~objbox(oliveoil1, "The local gives you some olive oil.", 250, 0, 0);
+    ~objbox(oliveoil1, "The local gives you some olive oil.", 200, 0, ^objbox_height);
 } else if ($random < 120) {
     inv_add(inv, oliveoil2, ~random_range(1, 3));
-    ~objbox(oliveoil2, "The local gives you some olive oil.", 250, 0, 0);
+    ~objbox(oliveoil2, "The local gives you some olive oil.", 200, 0, ^objbox_height);
 } else if ($random < 128) {
     inv_add(inv, oliveoil3, 1);
-    ~objbox(oliveoil3, "The local gives you some olive oil.", 250, 0, 0);
+    ~objbox(oliveoil3, "The local gives you some olive oil.", 200, 0, ^objbox_height);
 } else if ($random < 139) {
     inv_add(inv, oliveoil4, 1);
-    ~objbox(oliveoil4, "The local gives you some olive oil.", 250, 0, 0);
+    ~objbox(oliveoil4, "The local gives you some olive oil.", 200, 0, ^objbox_height);
 } else if ($random < 169) {
     def_int $amount = ~random_range(1, 3);
     inv_add(inv, vial_water, $amount);
     if($amount = 1) {
-        ~objbox(vial_water, "The local gives you a water vial.", 250, 0, 0);
+        ~objbox(vial_water, "The local gives you a water vial.", 200, 0, ^objbox_height);
     } else {
-        ~objbox(vial_water, "The local gives you some water vials.", 250, 0, 0);
+        ~objbox(vial_water, "The local gives you some water vials.", 200, 0, ^objbox_height);
     }
 } else if ($random < 209) {
     inv_add(inv, logs, ~random_range(1, 5));
-    ~objbox(logs, "The local gives you some logs.", 250, 0, 0);
+    ~objbox(logs, "The local gives you some logs.", 250, 0, divide(^objbox_height, 2));
 } else if ($random < 243) {
     def_int $amount = ~random_range(1, 3);
     inv_add(inv, unidentified_tarromin, $amount);
     if($amount = 1) {
-        ~objbox(unidentified_tarromin, "The local gives you a herb.", 250, 0, 0);
+        ~objbox(unidentified_tarromin, "The local gives you a herb.", 200, 0, divide(^objbox_height, 2));
     } else {
-        ~objbox(unidentified_tarromin, "The local gives you some herbs.", 250, 0, 0);
+        ~objbox(unidentified_tarromin, "The local gives you some herbs.", 200, 0, divide(^objbox_height, 2));
     }
 } else if ($random < 246) {
     inv_add(inv, hammer, 1);
-    ~objbox(hammer, "The local gives you a hammer.", 250, 0, 0);
+    ~objbox(hammer, "The local gives you a hammer.", 200, 0, 0);
 } else {
     def_int $amount = ~random_range(1, 3);
     inv_add(inv, vial_empty, $amount);
     if($amount = 1) {
-        ~objbox(vial_water, "The local gives you an empty vial.", 250, 0, 0);
+        ~objbox(vial_water, "The local gives you an empty vial.", 200, 0, 0);
     } else {
-        ~objbox(vial_water, "The local gives you some empty vials.", 250, 0, 0);
+        ~objbox(vial_water, "The local gives you some empty vials.", 200, 0, 0);
     }
 }
 
