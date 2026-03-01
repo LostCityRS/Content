@@ -116,6 +116,12 @@ if ($last_item ! steel_bar) {
 } else {
     if_sethide (smithing:stud_layer, false);
 }
+// hide lantern frame if its not iron
+if ($last_item ! iron_bar) {
+    if_sethide (smithing:com_145, true);
+} else {
+    if_sethide (smithing:com_145, false);
+}
 // hide claws button if death plateau is not complete
 if(%death_equiproom < ^death_complete) {
     if_sethide(smithing:claws_layer, true);
