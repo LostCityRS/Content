@@ -31,7 +31,6 @@ if ($saradomin_count < $zamorak_count) {
     return;
 }
 %castlewars_team = ^castlewars_team_zamorak;
-%castlewars_judge_uid = npc_uid;
 p_teleport(map_findsquare(^zamorak_starting_coord, 0, 7, 0)); // guess for now
 
 [oploc1,castlewars_saradomin_tele]
@@ -49,7 +48,6 @@ if ($zamorak_count < $saradomin_count) {
     return;
 }
 %castlewars_team = ^castlewars_team_saradomin;
-%castlewars_judge_uid = npc_uid;
 p_teleport(map_findsquare(^saradomin_starting_coord, 0, 7, 0)); // guess for now
 
 [oploc1,castlewars_random_tele]
@@ -77,7 +75,6 @@ if ($zamorak_count < $saradomin_count | ($zamorak_count = $saradomin_count & ran
 p_teleport(map_findsquare(^castlewars_lobby_coord, 0, 2, 0));
 if_openoverlay(null);
 %castlewars_team = null;
-%castlewars_judge_uid = null;
 
 [proc,castlewars_start_tele](int $team)
 if ($team = ^castlewars_team_saradomin) {
@@ -191,7 +188,7 @@ if (p_finduid(uid) = true) {
 mes(~coord_tostring(coord));
 
 [debugproc,counts]
-if (npc_finduid(%castlewars_judge_uid) = false) {
+if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
     error("Unable to find castlewars_judge npc.");
     return;
 }
