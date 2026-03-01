@@ -29,4 +29,4 @@ if (.%castlewars_team ! %castlewars_team) {
 .stat_heal(hitpoints, 6, 0);
 .healenergy(3000);
 anim(human_lockedchest, 0);
-inv_delslot(inv, last_slot);
+inv_delslot(inv, last_useslot);
