@@ -244,25 +244,24 @@ if (%castlewars_team = ^castlewars_team_saradomin) {
 
 [proc,castlewars_login]
 if (~in_castlewars_waitingroom(coord) = true) {
-    ~castlewars_exit_tele;
+    // ~castlewars_exit_tele; // added around aug 2006 ?
     return;
 }
 if (~in_castlewars_game(coord) = false) {
     return;
 }
-if (npc_finduid(%castlewars_judge_uid) = false) {
+if (%last_world ! map_world) {
     ~castlewars_exit_tele;
     return;
 }
-// todo make this a varp?
-// if (add(map_lastclock, 100) < map_clock) {
-//     if (%castlewars_team = ^castlewars_team_zamorak) {
-//         p_teleport(map_findsquare(^zamorak_starting_coord, 0, 7, 0)); // guess for now
-//     } else if (%castlewars_team = ^castlewars_team_saradomin) {
-//         p_teleport(map_findsquare(^saradomin_starting_coord, 0, 7, 0)); // guess for now
-//     }
-//     return;
-// }
+if (add(%last_logout, 100) < map_clock) {
+    if (%castlewars_team = ^castlewars_team_zamorak) {
+        p_teleport(map_findsquare(^zamorak_starting_coord, 0, 7, 0)); // guess for now
+    } else if (%castlewars_team = ^castlewars_team_saradomin) {
+        p_teleport(map_findsquare(^saradomin_starting_coord, 0, 7, 0)); // guess for now
+    }
+    return;
+}
 
 [proc,in_castlewars_game](coord $coord)(boolean)
 if (inzone(0_37_48_0_0, 0_37_48_63_63, $coord) = true | inzone(1_37_48_0_0, 1_37_48_63_63, $coord) = true | inzone(2_37_48_0_0, 2_37_48_63_63, $coord) = true | inzone(3_37_48_0_0, 3_37_48_63_63, $coord) = true) {
