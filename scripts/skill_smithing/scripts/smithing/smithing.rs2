@@ -105,7 +105,7 @@ if ($last_item = bronze_bar) {
     if_sethide (smithing:stud_layer, false);
     if_sethide (smithing:other_layer, false);
     // https://imgur.com/CdcGdXD
-    if_settext (smithing:com_101, "Steel nails");
+    if_settext (smithing:com_101, "Steel studs");
 }  else {
     if_sethide (smithing:other_layer, true);
     if_sethide (smithing:stud_layer, true);
