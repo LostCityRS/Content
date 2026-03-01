@@ -77,9 +77,9 @@ if ($random < 59) {
     def_int $amount = ~random_range(1, 3);
     inv_add(inv, vial_empty, $amount);
     if($amount = 1) {
-        ~objbox(vial_water, "The local gives you an empty vial.", 200, 0, 0);
+        ~objbox(vial_water, "The local gives you an empty vial.", 200, 0, ^objbox_height);
     } else {
-        ~objbox(vial_water, "The local gives you some empty vials.", 200, 0, 0);
+        ~objbox(vial_water, "The local gives you some empty vials.", 200, 0, ^objbox_height);
     }
 }
 
