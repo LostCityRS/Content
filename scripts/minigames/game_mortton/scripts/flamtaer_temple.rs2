@@ -154,7 +154,7 @@ anim(human_pickuptable, 0);
 p_oploc(3);
 
 [queue,clear_fullpool_warning]
-clearbit(%morttonmulti, ^mortton_temple_fullpool_warning);
+%morttonmulti = clearbit(%morttonmulti, ^mortton_temple_fullpool_warning);
 
 [timer,sanctity_drain]
 if(%temple_sanctity > 0) {

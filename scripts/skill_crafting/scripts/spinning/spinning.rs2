@@ -11,7 +11,7 @@ switch_obj (last_useitem)
     case ball_of_wool : ~objbox(ball_of_wool, "You have already spun this wool.", 250, 0, divide(^objbox_height, 2));
     case bow_string : ~objbox(bow_string, "You have already spun this bow string.", 250, 0, divide(^objbox_height, 2));
     case default : ~displaymessage(^dm_default);
-};
+}
 
 [label,craft_spinning](obj $spinning_obj)
 def_struct $struct = oc_param($spinning_obj, crafting_spinning_struct);

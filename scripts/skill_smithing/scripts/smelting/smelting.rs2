@@ -14,7 +14,7 @@ switch_obj (last_useitem)
             @smelt_ore(last_useitem);
         }
         ~displaymessage(^dm_default);
-};
+}
 
 //--- this is the code that uses p_delays instead of weakqueues
 [label,smelt_ore](obj $last)

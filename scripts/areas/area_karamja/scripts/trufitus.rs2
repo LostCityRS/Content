@@ -814,13 +814,23 @@ switch_int(~p_choice2("Not really.", 1, "Yes, I found lots of things.", 2)) {
 ~chatnpc("<p,neutral>Hmmm, I'm not sure you will get much use out of this. Why not see if you can sell it in Shilo Village.");
 
 [label,trufitus_tombops]
-if(%zombiequeen >= ^zombiequeen_entered_tomb_bervirius & ~obj_gettotal(zqboneshard) > 0) @multi5("I have just buried Zadimus' corpse.", trufitus_buried, "I need help with Bervirius.", trufitus_bervirius, "I have some items that I need help with.", trufitus_items, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple, "I need help with Zadimus.", trufitus_zadimus);
-else if(%zombiequeen >= ^zombiequeen_entered_tomb_bervirius) @multi5("I need help with Bervirius.", trufitus_bervirius, "I have some items that I need help with.", trufitus_items, "I need help with Zadimus.", trufitus_zadimus, "I need help with Rashiliyia.", trufitus_helprash, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple);
-else if(~obj_gettotal(zqboneshard) > 0) @multi5("I have just buried Zadimus' corpse.", trufitus_buried, "I have some items that I need help with.", trufitus_items, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple, "I need help with Zadimus.", trufitus_zadimus, "I need help with Rashiliyia.", trufitus_helprash);
-else @multi4("I have some items that I need help with.", trufitus_items, "I need help with Zadimus.", trufitus_zadimus, "I need help with Rashiliyia.", trufitus_helprash, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple);
+if(%zombiequeen >= ^zombiequeen_entered_tomb_bervirius & ~obj_gettotal(zqboneshard) > 0) {
+    @multi5("I have just buried Zadimus' corpse.", trufitus_buried, "I need help with Bervirius.", trufitus_bervirius, "I have some items that I need help with.", trufitus_items, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple, "I need help with Zadimus.", trufitus_zadimus);
+} else if(%zombiequeen >= ^zombiequeen_entered_tomb_bervirius) {
+    @multi5("I need help with Bervirius.", trufitus_bervirius, "I have some items that I need help with.", trufitus_items, "I need help with Zadimus.", trufitus_zadimus, "I need help with Rashiliyia.", trufitus_helprash, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple);
+} else if(~obj_gettotal(zqboneshard) > 0) {
+    @multi5("I have just buried Zadimus' corpse.", trufitus_buried, "I have some items that I need help with.", trufitus_items, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple, "I need help with Zadimus.", trufitus_zadimus, "I need help with Rashiliyia.", trufitus_helprash);
+} else {
+    @multi4("I have some items that I need help with.", trufitus_items, "I need help with Zadimus.", trufitus_zadimus, "I need help with Rashiliyia.", trufitus_helprash, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple);
+}
 
 [label,trufitus_tombops2]
-if(%zombiequeen >= ^zombiequeen_entered_tomb_bervirius & ~obj_gettotal(zqboneshard) > 0) @multi5("I have just buried Zadimus' corpse.", trufitus_buried, "I need help with Bervirius.", trufitus_bervirius, "I have some items that I need help with.", trufitus_items, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple, "I need help with Rashiliyia.", trufitus_helprash);
-else if(%zombiequeen >= ^zombiequeen_entered_tomb_bervirius) @multi5("I need help with Bervirius.", trufitus_bervirius, "I have some items that I need help with.", trufitus_items, "I need help with Zadimus.", trufitus_zadimus, "I need help with Rashiliyia.", trufitus_helprash, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple);
-else if(~obj_gettotal(zqboneshard) > 0) @multi5("I have just buried Zadimus' corpse.", trufitus_buried, "I have some items that I need help with.", trufitus_items, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple, "I need help with Zadimus.", trufitus_zadimus, "I need help with Rashiliyia.", trufitus_helprash);
-else @multi4("I have some items that I need help with.", trufitus_items, "I need help with Zadimus.", trufitus_zadimus, "I need help with Rashiliyia.", trufitus_helprash, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple);
+if(%zombiequeen >= ^zombiequeen_entered_tomb_bervirius & ~obj_gettotal(zqboneshard) > 0) {
+    @multi5("I have just buried Zadimus' corpse.", trufitus_buried, "I need help with Bervirius.", trufitus_bervirius, "I have some items that I need help with.", trufitus_items, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple, "I need help with Rashiliyia.", trufitus_helprash);
+} else if(%zombiequeen >= ^zombiequeen_entered_tomb_bervirius) {
+    @multi5("I need help with Bervirius.", trufitus_bervirius, "I have some items that I need help with.", trufitus_items, "I need help with Zadimus.", trufitus_zadimus, "I need help with Rashiliyia.", trufitus_helprash, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple);
+} else if(~obj_gettotal(zqboneshard) > 0) {
+    @multi5("I have just buried Zadimus' corpse.", trufitus_buried, "I have some items that I need help with.", trufitus_items, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple, "I need help with Zadimus.", trufitus_zadimus, "I need help with Rashiliyia.", trufitus_helprash);
+} else {
+    @multi4("I have some items that I need help with.", trufitus_items, "I need help with Zadimus.", trufitus_zadimus, "I need help with Rashiliyia.", trufitus_helprash, "I need some help with the Temple of Ah Za Rhoon.", trufitus_helptemple);
+}

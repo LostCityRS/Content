@@ -3,7 +3,7 @@ switch_obj (last_useitem)
 {
     case bowl_water, bucket_water, jug_water : @make_softclay(last_useitem);
     case default : ~displaymessage(^dm_default);
-};
+}
 
 [oplocu,potters_wheel]
 switch_obj (last_useitem)
@@ -11,14 +11,14 @@ switch_obj (last_useitem)
     case softclay : @craft_pottery_interface;
     case clay : ~objbox(clay, "This clay is too hard to craft|You'll need to soften it with some water.", 250, 0, divide(^objbox_height, 2));
     case default : ~displaymessage(^dm_default);
-};
+}
 
 [oplocu,pottery_oven]
 switch_obj (last_useitem)
 {
     case bowl_unfired, piedish_unfired, pot_unfired : @fire_pottery(last_useslot);
     case default : ~displaymessage(^dm_default);
-};
+}
 
 
 [label,make_softclay](obj $water_source)

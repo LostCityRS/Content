@@ -15,7 +15,7 @@ switch_obj (last_useitem)
     case hard_leather : @craft_leather(hardleather_body);
     case dragon_leather, dragon_leather_blue, dragon_leather_red, dragon_leather_black : @craft_dhide_interface(last_useslot);
     case default : ~displaymessage(^dm_default);
-};
+}
 
 [opheldu,leather]
 if (last_useitem = needle) {

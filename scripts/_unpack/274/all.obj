@@ -8,6 +8,8 @@ model=obj_3142
 2dzoom=1800
 2dyan=56
 2dxan=388
+weight=700g
+category=category_57
 
 [tbwt_cooked_karambwan]
 name=Cooked karambwan
@@ -22,6 +24,9 @@ model=obj_3142
 2dyan=56
 2dxan=388
 iop1=Eat
+weight=650g
+category=58
+// param=param_1564,1001
 
 [tbwt_poorly_cooked_karambwan]
 name=Cooked karambwan
@@ -36,6 +41,9 @@ model=obj_3142
 2dyan=56
 2dxan=388
 iop1=Eat
+weight=650g
+category=58
+tradeable=no
 
 [tbwt_burnt_karambwan]
 name=Burnt karambwan
@@ -49,6 +57,9 @@ model=obj_3142
 2dzoom=1800
 2dyan=56
 2dxan=388
+weight=600g
+category=category_116
+tradeable=no
 
 [tbwt_raw_karambwanji]
 name=Raw karambwanji
@@ -60,6 +71,10 @@ model=obj_3150
 2dyof=6
 2dzoom=1000
 2dxan=464
+weight=170g
+category=category_57
+tradeable=no
+// weight guesses.
 
 [tbwt_cooked_karambwanji]
 name=Karambwanji
@@ -78,6 +93,9 @@ model=obj_3150
 2dzoom=1000
 2dxan=464
 iop1=Eat
+weight=120g
+category=category_15
+// param=param_59,1
 
 [tbwt_raw_karambwan_paste]
 name=Karambwan paste
@@ -92,6 +110,8 @@ model=obj_3152
 2dzoom=2250
 2dyan=1980
 2dxan=320
+weight=10g
+tradeable=no
 
 [tbwt_poisonous_karambwan_paste]
 name=Karambwan paste
@@ -106,6 +126,8 @@ model=obj_3152
 2dzoom=2250
 2dyan=1980
 2dxan=320
+weight=10g
+tradeable=no
 
 [tbwt_cooked_karambwan_paste]
 name=Karambwan paste
@@ -120,6 +142,8 @@ model=obj_3152
 2dzoom=2250
 2dyan=1980
 2dxan=320
+weight=10g
+tradeable=no
 
 [tbwt_raw_karambwanji_paste]
 name=Karambwanji paste
@@ -134,6 +158,8 @@ model=obj_3152
 2dzoom=2250
 2dyan=1980
 2dxan=320
+weight=10g
+tradeable=no
 
 [tbwt_cooked_karambwanji_paste]
 name=Karambwanji paste
@@ -148,6 +174,8 @@ model=obj_3152
 2dzoom=2250
 2dyan=1980
 2dxan=320
+weight=10g
+tradeable=no
 
 [tbwt_karambwan_vessel]
 name=Karambwan vessel
@@ -159,6 +187,8 @@ model=obj_3157
 2dxan=72
 manwear=obj_3157_manwear,0
 womanwear=obj_3157_manwear,6
+wearpos=righthand
+weight=3kg
 
 [tbwt_karambwan_vessel_loaded_with_karambwanji]
 name=Karambwan vessel
@@ -170,6 +200,7 @@ model=obj_3159
 2dxan=72
 manwear=obj_3157_manwear,0
 womanwear=obj_3157_manwear,6
+weight=3150g
 
 [tbwt_crafting_manual]
 name=Crafting manual
@@ -182,6 +213,8 @@ model=model_2600_obj
 2dzoom=1040
 2dyan=120
 2dxan=380
+weight=50g
+tradeable=no
 
 [tbwt_sliced_banana]
 name=Sliced banana
@@ -191,6 +224,7 @@ model=model_2772_obj
 2dzoom=920
 2dxan=232
 iop1=Eat
+weight=1oz
 
 [tbwt_sliced_banana_in_karamja_rum]
 name=Karamjan rum
@@ -203,6 +237,8 @@ model=model_2660_obj
 2dxan=104
 manwear=obj_3164_manwear,0
 womanwear=obj_3164_manwear,6
+weight=2lb
+tradeable=no
 
 [tbwt_banana_in_karamja_rum]
 name=Karamjan rum
@@ -210,6 +246,8 @@ desc=A banana has been stuffed into the neck of this bottle.
 cost=30
 model=obj_3165
 2dzoom=1560
+weight=2lb
+tradeable=no
 
 [tbwt_monkey_corpse]
 name=Monkey corpse
@@ -220,6 +258,8 @@ model=obj_3166
 2dzoom=1380
 2dyan=188
 2dxan=112
+weight=1kg
+tradeable=no
 
 [tbwt_monkey_skin]
 name=Monkey skin
@@ -232,6 +272,8 @@ model=model_2338_obj
 2dzoom=1510
 2dyan=2028
 2dxan=468
+weight=300g
+tradeable=no
 
 [tbwt_seaweed_in_monkey_skin_sandwich]
 name=Seaweed sandwich
@@ -243,6 +285,8 @@ model=obj_3168
 2dyan=1816
 2dxan=344
 iop1=Eat
+weight=500g
+tradeable=no
 
 [tbwt_seaweed_in_monkey_corpse]
 name=Stuffed monkey
@@ -253,6 +297,8 @@ model=obj_3169
 2dzoom=1380
 2dyan=188
 2dxan=112
+weight=1200g
+tradeable=no
 
 [tbwt_bronze_spear_kp]
 name=Bronze spear(kp)
@@ -273,9 +319,11 @@ model=model_2719_obj
 manwear=model_540_obj_wear,0
 womanwear=model_540_obj_wear,6
 iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
 tradeable=no
 category=weapon_spear
-//weight=TODO
+weight=5lb
 param=stabattack,5
 param=slashattack,5
 param=crushattack,5
@@ -304,9 +352,11 @@ model=model_2719_obj
 manwear=model_540_obj_wear,0
 womanwear=model_540_obj_wear,6
 iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
 tradeable=no
 category=weapon_spear
-//weight=TODO
+weight=5lb
 param=stabattack,8
 param=slashattack,8
 param=crushattack,8
@@ -335,9 +385,11 @@ model=model_2719_obj
 manwear=model_540_obj_wear,0
 womanwear=model_540_obj_wear,6
 iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
 tradeable=no
 category=weapon_spear
-//weight=TODO
+weight=5lb
 param=stabattack,12
 param=slashattack,12
 param=crushattack,12
@@ -366,9 +418,11 @@ model=model_2719_obj
 manwear=model_540_obj_wear,0
 womanwear=model_540_obj_wear,6
 iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
 tradeable=no
 category=weapon_spear
-//weight=TODO
+weight=4lb
 param=stabattack,17
 param=slashattack,17
 param=crushattack,17
@@ -397,9 +451,11 @@ model=model_2719_obj
 manwear=model_540_obj_wear,0
 womanwear=model_540_obj_wear,6
 iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
 tradeable=no
 category=weapon_spear
-//weight=TODO
+weight=6lb
 param=stabattack,24
 param=slashattack,24
 param=crushattack,24
@@ -428,9 +484,11 @@ model=model_2719_obj
 manwear=model_540_obj_wear,0
 womanwear=model_540_obj_wear,6
 iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
 tradeable=no
 category=weapon_spear
-//weight=TODO
+weight=5lb
 param=stabattack,36
 param=slashattack,36
 param=crushattack,36
@@ -457,9 +515,11 @@ model=model_2482_obj
 manwear=model_505_obj_wear,0
 womanwear=model_505_obj_wear,6
 iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
 tradeable=no
 category=weapon_spear
-//weight=TODO
+weight=5lb
 param=stabattack,55
 param=slashattack,55
 param=crushattack,55
@@ -485,6 +545,11 @@ model=inv_bannana
 2dxan=280
 manwear=obj_3177_manwear,0
 womanwear=obj_3177_manwear,6
+category=category_15
+wearpos=lefthand
+weight=1oz
+tradeable=no
+// param=param_148,-1
 
 [mm_small_ninja_monkey_bones]
 name=Monkey bones
@@ -496,6 +561,9 @@ model=model_2674_obj
 2dyan=368
 2dxan=400
 iop1=Bury
+weight=500g
+category=6
+tradeable=no
 
 [mm_medium_ninja_monkey_bones]
 name=Monkey bones
@@ -507,6 +575,9 @@ model=model_2674_obj
 2dyan=368
 2dxan=400
 iop1=Bury
+weight=500g
+category=6
+tradeable=no
 
 [mm_normal_gorilla_monkey_bones]
 name=Monkey bones
@@ -517,6 +588,9 @@ model=model_222_obj
 2dyan=648
 2dxan=216
 iop1=Bury
+weight=800g
+category=6
+tradeable=no
 
 [mm_bearded_gorilla_monkey_bones]
 name=Monkey bones
@@ -527,6 +601,9 @@ model=model_222_obj
 2dyan=648
 2dxan=216
 iop1=Bury
+weight=800g
+category=6
+tradeable=no
 
 [mm_normal_monkey_bones]
 name=Monkey bones
@@ -537,6 +614,8 @@ model=model_2674_obj
 2dyan=368
 2dxan=400
 iop1=Bury
+weight=500g
+category=6
 
 [mm_small_zombie_monkey_bones]
 name=Monkey bones
@@ -548,6 +627,9 @@ model=model_2674_obj
 2dyan=368
 2dxan=400
 iop1=Bury
+weight=500g
+category=6
+tradeable=no
 
 [mm_large_zombie_monkey_bones]
 name=Monkey bones
@@ -558,6 +640,9 @@ model=model_2674_obj
 2dyan=648
 2dxan=216
 iop1=Bury
+weight=500g
+category=6
+tradeable=no
 
 [mm_skeleton_bones]
 name=Bones
@@ -570,6 +655,9 @@ model=model_2674_obj
 2dyan=368
 2dxan=400
 iop1=Bury
+weight=500g
+category=6
+tradeable=no
 
 [tbwt_cleaning_cloth]
 name=Cleaning cloth
@@ -582,6 +670,7 @@ model=model_2725_obj
 2dzoom=1360
 2dxan=368
 members=yes
+weight=1kg
 
 [bronze_halberd]
 name=Bronze halberd
@@ -600,7 +689,7 @@ womanwear=model_555_npc,6
 category=weapon_polearm
 wearpos=righthand
 wearpos2=lefthand
-//weight=TODO
+weight=7lb
 param=stabattack,7
 param=slashattack,8
 param=magicattack,-4
@@ -633,7 +722,7 @@ womanwear=model_555_npc,6
 category=weapon_polearm
 wearpos=righthand
 wearpos2=lefthand
-//weight=TODO
+weight=7lb
 param=stabattack,9
 param=slashattack,12
 param=magicattack,-4
@@ -664,7 +753,7 @@ womanwear=model_555_npc,6
 category=weapon_polearm
 wearpos=righthand
 wearpos2=lefthand
-//weight=TODO
+weight=7lb
 param=stabattack,14
 param=slashattack,19
 param=magicattack,-4
@@ -697,7 +786,7 @@ womanwear=model_555_npc,6
 category=weapon_polearm
 wearpos=righthand
 wearpos2=lefthand
-//weight=TODO
+weight=7lb
 param=stabattack,19
 param=slashattack,25
 param=magicattack,-4
@@ -730,7 +819,7 @@ womanwear=model_555_npc,6
 category=weapon_polearm
 wearpos=righthand
 wearpos2=lefthand
-//weight=TODO
+weight=6lb
 param=stabattack,22
 param=slashattack,28
 param=magicattack,-4
@@ -763,7 +852,7 @@ womanwear=model_555_npc,6
 category=weapon_polearm
 wearpos=righthand
 wearpos2=lefthand
-//weight=TODO
+weight=8lb
 param=stabattack,28
 param=slashattack,41
 param=magicattack,-4
@@ -796,7 +885,7 @@ womanwear=model_555_npc,6
 category=weapon_polearm
 wearpos=righthand
 wearpos2=lefthand
-//weight=TODO
+weight=7lb
 param=stabattack,48
 param=slashattack,67
 param=magicattack,-4
@@ -829,7 +918,7 @@ womanwear=obj_3204_manwear,6
 category=weapon_polearm
 wearpos=righthand
 wearpos2=lefthand
-//weight=TODO
+weight=7lb
 param=stabattack,70
 param=slashattack,95
 param=magicattack,-4
@@ -858,6 +947,8 @@ model=model_2675_obj
 2dxan=380
 cost=1
 iop1=Read
+weight=2oz
+tradeable=no
 
 [regicide_iorwerth_message]
 name=Iorwerths message
@@ -871,6 +962,8 @@ model=model_2675_obj
 members=yes
 cost=1
 iop1=Read
+weight=2oz
+tradeable=no
 
 [regicide_crystal_pendant]
 name=Crystal pendant
@@ -886,6 +979,8 @@ cost=10
 iop2=Wear
 manwear=model_283_obj_wear,0
 womanwear=model_447_obj_wear,0
+weight=5g
+tradeable=no
 
 [regicide_sulphar]
 name=Sulphur
@@ -897,6 +992,8 @@ model=obj_3209
 2dyan=1960
 2dxan=196
 members=yes
+weight=10g
+tradeable=no
 
 [limestone]
 name=Limestone
@@ -910,6 +1007,7 @@ model=obj_3211
 2dyan=164
 2dxan=220
 members=yes
+weight=5lb
 
 [regicide_quicklime]
 name=Quicklime
@@ -924,6 +1022,8 @@ model=model_2748_obj
 2dyan=1576
 2dxan=368
 members=yes
+weight=5lb
+tradeable=no
 
 [regicide_quicklime_dust]
 name=Pot of quicklime
@@ -938,6 +1038,8 @@ model=model_2406_obj
 2dyan=1576
 2dxan=368
 members=yes
+weight=1lb
+tradeable=no
 
 [regicide_sulphar_dust]
 name=Ground sulphur
@@ -951,6 +1053,8 @@ model=model_2742_obj
 2dyan=1892
 2dxan=264
 members=yes
+weight=2oz
+tradeable=no
 
 [regicide_barrel_empty]
 name=Barrel
@@ -962,6 +1066,8 @@ model=obj_3216
 2dyan=1976
 2dxan=152
 members=yes
+weight=10kg
+tradeable=no
 
 [regicide_barrel_lid]
 name=Barrel bomb
@@ -973,6 +1079,8 @@ model=obj_3218
 2dyan=1976
 2dxan=152
 members=yes
+weight=32kg
+tradeable=no
 
 [regicide_barrel_lid_fused]
 name=Barrel bomb
@@ -984,6 +1092,8 @@ model=obj_3218
 2dyan=1976
 2dxan=152
 members=yes
+weight=32kg
+tradeable=no
 
 [regicide_barrel_tar]
 name=Barrel of coal-tar
@@ -995,6 +1105,8 @@ model=obj_3220
 2dyan=1976
 2dxan=152
 members=yes
+weight=32kg
+tradeable=no
 
 [regicide_barrel_naphtha]
 name=Barrel of naphtha
@@ -1006,6 +1118,8 @@ model=obj_3221
 2dyan=1976
 2dxan=152
 members=yes
+weight=32kg
+tradeable=no
 
 [regicide_barrel_naphtha_sulphar_mix]
 name=Naphtha mix
@@ -1019,6 +1133,8 @@ model=obj_3221
 2dyan=1976
 2dxan=152
 members=yes
+weight=32kg
+tradeable=no
 
 [regicide_barrel_naphtha_quicklime_mix]
 name=Naphtha mix
@@ -1032,6 +1148,8 @@ model=obj_3221
 2dyan=1976
 2dxan=152
 members=yes
+weight=32kg
+tradeable=no
 
 [regicide_cloth]
 name=Cloth
@@ -1044,6 +1162,8 @@ model=model_2725_obj
 2dzoom=1360
 2dxan=368
 members=yes
+weight=12oz
+tradeable=no
 
 [raw_rabbit]
 name=Raw rabbit
@@ -1056,6 +1176,7 @@ model=model_2760_obj
 2dxan=308
 cost=1
 members=yes
+weight=6oz
 
 [cooked_rabbit]
 name=Cooked rabbit
@@ -1073,6 +1194,8 @@ model=model_2760_obj
 2dyan=176
 2dxan=308
 members=yes
+weight=5oz
+category=5
 
 [regicide_alchemy]
 name=Big book of bangs
@@ -1088,6 +1211,8 @@ model=model_2543_obj
 2dxan=256
 members=yes
 iop1=Read
+weight=8oz
+tradeable=no
 
 [regicide_alchemy_symbol1]
 name=Symbol1
@@ -1096,6 +1221,8 @@ model=obj_3231
 2dyof=7
 2dzoom=1890
 2dxan=496
+weight=1g
+tradeable=no
 
 [regicide_alchemy_symbol2]
 name=Symbol2
@@ -1104,6 +1231,8 @@ model=obj_3233
 2dyof=7
 2dzoom=1890
 2dxan=496
+weight=1g
+tradeable=no
 
 [regicide_alchemy_symbol3]
 name=Symbol3
@@ -1112,6 +1241,8 @@ model=obj_3235
 2dyof=7
 2dzoom=1890
 2dxan=496
+weight=1g
+tradeable=no
 
 [regicide_alchemy_symbol4]
 name=Symbol4
@@ -1120,6 +1251,8 @@ model=obj_3237
 2dyof=7
 2dzoom=1890
 2dxan=496
+weight=1g
+tradeable=no
 
 [hollow_bark]
 name=Bark
@@ -1129,6 +1262,8 @@ model=obj_3239
 2dyan=1708
 2dzan=284
 2dxan=176
+category=category_22
+weight=1kg
 
 [pickpocket_guide_man]
 name=Man
@@ -1139,6 +1274,7 @@ model=model_53_idk_head
 2dzoom=2660
 2dyan=1876
 2dxan=28
+tradeable=no
 
 [pickpocket_guide_farmer]
 name=Farmer
@@ -1149,6 +1285,7 @@ model=model_55_idk_head
 2dzoom=2660
 2dyan=1876
 2dxan=28
+tradeable=no
 
 [pickpocket_guide_warrior]
 name=Warrior woman
@@ -1161,6 +1298,7 @@ model=model_113_idk_head
 2dzoom=2600
 2dyan=1856
 2dxan=32
+tradeable=no
 
 [pickpocket_guide_rogue]
 name=Rogue
@@ -1171,6 +1309,7 @@ model=model_63_idk_head
 2dzoom=2660
 2dyan=1876
 2dxan=28
+tradeable=no
 
 [pickpocket_guide_guard]
 name=Guard
@@ -1182,6 +1321,7 @@ model=model_66_npc_head
 2dzoom=2530
 2dyan=1888
 2dxan=16
+tradeable=no
 
 [pickpocket_guide_knight]
 name=Knight of ardougne
@@ -1192,6 +1332,7 @@ model=model_56_obj_wear
 2dzoom=2920
 2dyan=1884
 2dxan=2032
+tradeable=no
 
 [pickpocket_guide_watchman]
 name=Watchman
@@ -1201,6 +1342,7 @@ model=model_57_obj_wear
 2dzoom=2370
 2dyan=1912
 2dxan=28
+tradeable=no
 
 [pickpocket_guide_paladin]
 name=Paladin
@@ -1212,6 +1354,7 @@ model=model_55_idk_head
 2dzoom=2510
 2dyan=1816
 2dxan=2032
+tradeable=no
 
 [pickpocket_guide_gnome]
 name=Gnome
@@ -1223,6 +1366,7 @@ model=model_21_npc_head
 2dzoom=4430
 2dyan=1848
 2dxan=236
+tradeable=no
 
 [pickpocket_guide_hero]
 name=Hero
@@ -1234,6 +1378,7 @@ model=model_55_idk_head
 2dzoom=2510
 2dyan=1816
 2dxan=2032
+tradeable=no
 
 [eadgar_goutweed_herb]
 name=Goutweed
@@ -1249,6 +1394,8 @@ cost=1
 2dzoom=730
 2dyan=2028
 2dxan=540
+weight=7g
+tradeable=no
 
 [eadgar_troll_thistle]
 name=Troll thistle
@@ -1263,6 +1410,8 @@ cost=1
 2dxan=128
 ambient=30
 contrast=30
+weight=1g
+tradeable=no
 
 [eadgar_dried_troll_thistle]
 name=Dried thistle
@@ -1283,6 +1432,8 @@ cost=1
 2dxan=128
 ambient=30
 contrast=30
+weight=1g
+tradeable=no
 
 [eadgar_ground_troll_thistle]
 name=Ground thistle
@@ -1296,6 +1447,8 @@ cost=1
 2dzoom=1210
 2dyan=1892
 2dxan=264
+weight=1oz
+tradeable=no
 
 [eadgar_ground_troll_thistle_potion]
 name=Troll potion
@@ -1309,6 +1462,8 @@ model=model_2789_obj
 2dzoom=550
 2dyan=1996
 2dxan=84
+weight=2oz
+tradeable=no
 
 [eadgar_drunk_parrot]
 name=Drunk parrot
@@ -1322,6 +1477,8 @@ model=obj_3266
 2dxan=32
 ambient=50
 contrast=50
+weight=1g
+tradeable=no
 
 [eadgar_dirty_druid_robe]
 name=Dirty robe
@@ -1334,6 +1491,8 @@ cost=1
 2dzoom=2010
 2dyan=116
 2dxan=408
+weight=1g
+tradeable=no
 
 [eadgar_fake_man]
 name=Fake man
@@ -1347,6 +1506,8 @@ cost=1
 2dyan=56
 2dzan=1900
 2dxan=128
+weight=1g
+tradeable=no
 
 [eadgar_troll_storeroom_key]
 name=Storeroom key
@@ -1363,6 +1524,8 @@ cost=1
 2dzoom=860
 2dyan=20
 2dxan=460
+weight=55g
+tradeable=no
 
 [eadgar_alco_chunks]
 name=Alco-chunks
@@ -1378,6 +1541,8 @@ cost=1
 2dyan=2004
 2dzan=36
 2dxan=244
+weight=80g
+tradeable=no
 
 [eadgar_fade_to_black_inv]
 name=Dummy
@@ -1385,6 +1550,7 @@ model=obj_3271
 2dzoom=130
 2dxan=512
 code10=seq_1255
+tradeable=no
 
 [01_wind_strike]
 name=Spell
@@ -1393,6 +1559,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [03_confuse]
 name=Spell
@@ -1401,6 +1568,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [05_water_strike]
 name=Spell
@@ -1409,6 +1577,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [07_enchant_amulet_lvl1]
 name=Spell
@@ -1417,6 +1586,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [09_earth_strike]
 name=Spell
@@ -1425,6 +1595,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [11_weaken]
 name=Spell
@@ -1433,6 +1604,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [13_fire_strike]
 name=Spell
@@ -1441,6 +1613,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [15_bones_bananas]
 name=Spell
@@ -1449,6 +1622,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [17_wind_bolt]
 name=Spell
@@ -1457,6 +1631,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [19_curse]
 name=Spell
@@ -1465,6 +1640,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [20_bind]
 name=Spell
@@ -1473,6 +1649,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [21_low_alchemy]
 name=Spell
@@ -1481,6 +1658,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [23_water_bolt]
 name=Spell
@@ -1489,6 +1667,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [25_varrock_teleport]
 name=Spell
@@ -1497,6 +1676,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [27_enchant_amulet_lvl2]
 name=Spell
@@ -1505,6 +1685,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [29_earth_bolt]
 name=Spell
@@ -1513,6 +1694,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [31_lumbridge_teleport]
 name=Spell
@@ -1521,6 +1703,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [33_tele_grab]
 name=Spell
@@ -1529,6 +1712,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [35_fire_bolt]
 name=Spell
@@ -1537,6 +1721,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [37_falador_teleport]
 name=Spell
@@ -1545,6 +1730,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [39_crumble_undead]
 name=Spell
@@ -1553,6 +1739,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [41_wind_blast]
 name=Spell
@@ -1561,6 +1748,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [43_superheat_item]
 name=Spell
@@ -1569,6 +1757,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [45_camelot_teleport]
 name=Spell
@@ -1577,6 +1766,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [47_water_blast]
 name=Spell
@@ -1585,6 +1775,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [49_enchant_amulet_lvl3]
 name=Spell
@@ -1593,6 +1784,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [50_iban_blast]
 name=Spell
@@ -1601,6 +1793,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [50_snare]
 name=Spell
@@ -1609,6 +1802,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [51_ardougne_teleport]
 name=Spell
@@ -1617,6 +1811,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [53_earth_blast]
 name=Spell
@@ -1625,6 +1820,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [55_high_alchemy]
 name=Spell
@@ -1633,6 +1829,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [56_charge_water_orb]
 name=Spell
@@ -1641,6 +1838,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [57_enchant_amulet_lvl4]
 name=Spell
@@ -1649,6 +1847,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [58_watchtower_teleport]
 name=Spell
@@ -1657,6 +1856,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [59_fire_blast]
 name=Spell
@@ -1665,6 +1865,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [60_charge_earth_orb]
 name=Spell
@@ -1673,6 +1874,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [60_claws_of_guthix]
 name=Spell
@@ -1681,6 +1883,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [60_flames_of_zamorak]
 name=Spell
@@ -1689,6 +1892,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [60_saradomin_strike]
 name=Spell
@@ -1697,6 +1901,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [61_trollheim_teleport]
 name=Spell
@@ -1705,6 +1910,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [62_wind_wave]
 name=Spell
@@ -1713,6 +1919,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [63_charge_fire_orb]
 name=Spell
@@ -1721,6 +1928,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [65_water_wave]
 name=Spell
@@ -1729,6 +1937,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [66_charge_air_orb]
 name=Spell
@@ -1737,6 +1946,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [66_vulnerability]
 name=Spell
@@ -1745,6 +1955,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [68_enchant_amulet_lvl5]
 name=Spell
@@ -1753,6 +1964,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [70_earth_wave]
 name=Spell
@@ -1761,6 +1973,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [73_enfeeble]
 name=Spell
@@ -1769,6 +1982,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [75_fire_wave]
 name=Spell
@@ -1777,6 +1991,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [79_entangle]
 name=Spell
@@ -1785,6 +2000,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [80_charge]
 name=Spell
@@ -1793,6 +2009,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [80_stun]
 name=Spell
@@ -1801,6 +2018,7 @@ model=model_3374_obj
 2dzoom=1010
 2dyan=672
 2dxan=360
+tradeable=no
 
 [vampire_dust]
 name=Vampire dust
@@ -1814,6 +2032,7 @@ model=model_2742_obj
 2dyan=1892
 2dxan=264
 members=yes
+weight=2oz
 
 [snelm_round_swamp]
 name=Myre snelm
@@ -1840,6 +2059,16 @@ manwear=obj_3327_manwear,0
 womanwear=obj_3327_womanwear,0
 manhead=obj_3327_manhead
 womanhead=obj_3327_womanhead
+wearpos=hat
+weight=2kg
+category=armour_helmet
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,7
+param=slashdefence,8
+param=crushdefence,6
+param=magicdefence,-1
+param=rangedefence,7
 
 [snelm_round_red+black]
 name=Blood'n'tar snelm
@@ -1866,6 +2095,16 @@ manwear=obj_3327_manwear,0
 womanwear=obj_3327_womanwear,0
 manhead=obj_3327_manhead
 womanhead=obj_3327_womanhead
+wearpos=hat
+weight=2kg
+category=armour_helmet
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,7
+param=slashdefence,8
+param=crushdefence,6
+param=magicdefence,-1
+param=rangedefence,7
 
 [snelm_round_yellow]
 name=Ochre snelm
@@ -1892,6 +2131,16 @@ manwear=obj_3327_manwear,0
 womanwear=obj_3327_womanwear,0
 manhead=obj_3327_manhead
 womanhead=obj_3327_womanhead
+wearpos=hat
+weight=2kg
+category=armour_helmet
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,7
+param=slashdefence,8
+param=crushdefence,6
+param=magicdefence,-1
+param=rangedefence,7
 
 [snelm_round_blue]
 name=Bruise blue snelm
@@ -1918,6 +2167,16 @@ manwear=obj_3327_manwear,0
 womanwear=obj_3327_womanwear,0
 manhead=obj_3327_manhead
 womanhead=obj_3327_womanhead
+wearpos=hat
+weight=2kg
+category=armour_helmet
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,7
+param=slashdefence,8
+param=crushdefence,6
+param=magicdefence,-1
+param=rangedefence,7
 
 [snelm_round_orange]
 name=Broken bark snelm
@@ -1944,6 +2203,16 @@ manwear=obj_3327_manwear,0
 womanwear=obj_3327_womanwear,0
 manhead=obj_3327_manhead
 womanhead=obj_3327_womanhead
+wearpos=hat
+weight=2kg
+category=armour_helmet
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,7
+param=slashdefence,8
+param=crushdefence,6
+param=magicdefence,-1
+param=rangedefence,7
 
 [snelm_point_swamp]
 name=Myre snelm
@@ -1962,6 +2231,16 @@ manwear=obj_3337_manwear,0
 womanwear=obj_3337_womanwear,0
 manhead=obj_3337_manhead
 womanhead=obj_3337_womanhead
+wearpos=hat
+weight=2kg
+category=armour_helmet
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,7
+param=slashdefence,8
+param=crushdefence,6
+param=magicdefence,-1
+param=rangedefence,7
 
 [snelm_point_red+black]
 name=Blood'n'tar snelm
@@ -1984,6 +2263,16 @@ manwear=obj_3337_manwear,0
 womanwear=obj_3337_womanwear,0
 manhead=obj_3337_manhead
 womanhead=obj_3337_womanhead
+wearpos=hat
+weight=2kg
+category=armour_helmet
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,7
+param=slashdefence,8
+param=crushdefence,6
+param=magicdefence,-1
+param=rangedefence,7
 
 [snelm_point_yellow]
 name=Ochre snelm
@@ -2006,6 +2295,16 @@ manwear=obj_3337_manwear,0
 womanwear=obj_3337_womanwear,0
 manhead=obj_3337_manhead
 womanhead=obj_3337_womanhead
+wearpos=hat
+weight=2kg
+category=armour_helmet
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,7
+param=slashdefence,8
+param=crushdefence,6
+param=magicdefence,-1
+param=rangedefence,7
 
 [snelm_point_blue]
 name=Bruise blue snelm
@@ -2028,6 +2327,16 @@ manwear=obj_3337_manwear,0
 womanwear=obj_3337_womanwear,0
 manhead=obj_3337_manhead
 womanhead=obj_3337_womanhead
+wearpos=hat
+weight=2kg
+category=armour_helmet
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,7
+param=slashdefence,8
+param=crushdefence,6
+param=magicdefence,-1
+param=rangedefence,7
 
 [shellround_swamp]
 name=Blamish myre shell
@@ -2047,6 +2356,8 @@ model=obj_3345
 2dzoom=1130
 2dyan=1732
 2dxan=232
+weight=10kg
+category=category_3
 
 [shellround_red+black]
 name=Blamish red shell
@@ -2066,6 +2377,8 @@ model=obj_3345
 2dzoom=1130
 2dyan=1732
 2dxan=232
+weight=10kg
+category=category_3
 
 [shellround_yellow]
 name=Blamish ochre shell
@@ -2085,6 +2398,8 @@ model=obj_3345
 2dzoom=1130
 2dyan=1732
 2dxan=232
+weight=10kg
+category=category_3
 
 [shellround_blue]
 name=Blamish blue shell
@@ -2104,6 +2419,8 @@ model=obj_3345
 2dzoom=1130
 2dyan=1732
 2dxan=232
+weight=10kg
+category=category_3
 
 [shellround_orange]
 name=Blamish bark shell
@@ -2123,6 +2440,8 @@ model=obj_3345
 2dzoom=1130
 2dyan=1732
 2dxan=232
+weight=10kg
+category=category_3
 
 [shellpoint_swamp]
 name=Blamish myre shell
@@ -2134,6 +2453,8 @@ model=obj_3355
 2dzoom=1800
 2dyan=1948
 2dxan=232
+weight=10kg
+category=category_3
 
 [shellpoint_red+black]
 name=Blamish red shell
@@ -2149,6 +2470,8 @@ model=obj_3355
 2dzoom=1800
 2dyan=1948
 2dxan=232
+weight=10kg
+category=category_3
 
 [shellpoint_yellow]
 name=Blamish ochre shell
@@ -2164,6 +2487,8 @@ model=obj_3355
 2dzoom=1800
 2dyan=1948
 2dxan=232
+weight=10kg
+category=category_3
 
 [shellpoint_blue]
 name=Blamish blue shell
@@ -2179,6 +2504,8 @@ model=obj_3355
 2dzoom=1800
 2dyan=1948
 2dxan=232
+weight=10kg
+category=category_3
 
 [snail_corpse1]
 name=Thin snail
@@ -2190,6 +2517,8 @@ model=obj_3363
 2dzoom=1640
 2dyan=1732
 2dxan=220
+weight=2kg
+// category=category_4
 
 [snail_corpse2]
 name=Lean snail
@@ -2211,6 +2540,8 @@ model=obj_3363
 2dzoom=1640
 2dyan=1732
 2dxan=220
+weight=2kg
+// category=category_4
 
 [snail_corpse3]
 name=Fat snail
@@ -2232,6 +2563,8 @@ model=obj_3363
 2dzoom=1640
 2dyan=1732
 2dxan=220
+weight=2kg
+// category=category_4
 
 [snail_corpse_cooked1]
 name=Thin snail meat
@@ -2254,6 +2587,8 @@ model=obj_3363
 2dyan=1732
 2dxan=220
 iop1=Eat
+weight=3kg
+category=category_5
 
 [snail_corpse_cooked2]
 name=Lean snail meat
@@ -2276,6 +2611,8 @@ model=obj_3363
 2dyan=1732
 2dxan=220
 iop1=Eat
+weight=4kg
+category=category_5
 
 [snail_corpse_cooked3]
 name=Fat snail meat
@@ -2298,6 +2635,8 @@ model=obj_3363
 2dyan=1732
 2dxan=220
 iop1=Eat
+weight=5kg
+category=category_5
 
 [burnt_snail]
 name=Burnt snail
@@ -2319,6 +2658,7 @@ model=obj_3363
 2dzoom=1640
 2dyan=1732
 2dxan=220
+weight=1kg
 
 [empty_dye_bottle]
 name=Sample bottle
@@ -2330,6 +2670,7 @@ model=obj_3377
 2dyan=1920
 2dxan=124
 members=yes
+weight=20g
 
 [mort_slimey_eel]
 name=Slimey eel
@@ -2340,6 +2681,7 @@ model=obj_3379
 2dyan=36
 2dxan=256
 members=yes
+weight=2kg
 
 [mort_slimey_eel_cooked]
 name=Cooked slimey eel
@@ -2361,6 +2703,8 @@ model=obj_3379
 2dxan=256
 members=yes
 iop1=Eat
+weight=2kg
+category=category_5
 
 [burnt_eel]
 name=Burnt eel
@@ -2381,6 +2725,7 @@ model=obj_3379
 2dyan=36
 2dxan=256
 members=yes
+weight=2kg
 
 [splitbark_helm]
 name=Splitbark helm
@@ -2398,6 +2743,15 @@ members=yes
 2dzoom=1040
 2dyan=200
 2dxan=272
+wearpos=hat
+weight=2lb
+category=armour_helmet
+param=magicattack,2
+param=rangeattack,-2
+param=stabdefence,10
+param=slashdefence,9
+param=crushdefence,11
+param=magicdefence,3
 
 [splitbark_body]
 name=Splitbark body
@@ -2413,6 +2767,20 @@ members=yes
 2dyof=16
 2dzoom=1050
 2dxan=276
+wearpos=torso
+wearpos2=arms
+weight=10lb
+category=armour_body
+param=magicattack,8
+param=rangeattack,-10
+param=stabdefence,36
+param=slashdefence,26
+param=crushdefence,42
+param=magicdefence,15
+// Used tip.it guide attack stats and 2006 guide defence stats
+// 2004 stats https://web.archive.org/web/20050303033424/http://koti.mbnet.fi/~timpat/index2.htm
+// 2004 stats https://web.archive.org/web/20050411232314/http://www.tip.it/runescape/index.php?page=splitbark_armour.htm
+// 2006 stats https://web.archive.org/web/20060415002448/http://kbase.runescape.com/lang/en/aff/runescape/viewarticle.ws?article_id=2379
 
 [splitbark_legs]
 name=Splitbark legs
@@ -2427,6 +2795,15 @@ members=yes
 2dyof=-1
 2dzoom=1320
 2dxan=252
+wearpos=legs
+weight=8lb
+category=armour_legs
+param=magicattack,7
+param=rangeattack,-6
+param=stabdefence,22
+param=slashdefence,20
+param=crushdefence,25
+param=magicdefence,10
 
 [splitbark_gauntlets]
 name=Splitbark gauntlets
@@ -2441,6 +2818,15 @@ members=yes
 2dzoom=750
 2dyan=284
 2dxan=308
+wearpos=hands
+weight=2lb
+category=category_16
+param=magicattack,1
+param=rangeattack,-1
+param=stabdefence,3
+param=slashdefence,2
+param=crushdefence,4
+param=magicdefence,2
 
 [splitbark_greaves]
 name=Splitbark greaves
@@ -2455,6 +2841,15 @@ members=yes
 2dzoom=810
 2dyan=192
 2dxan=168
+wearpos=feet
+weight=2lb
+category=category_17
+param=magicattack,1
+param=rangeattack,-1
+param=stabdefence,3
+param=slashdefence,2
+param=crushdefence,4
+param=magicdefence,2
 
 [fine_cloth]
 name=Fine cloth
@@ -2465,6 +2860,7 @@ model=obj_3470
 2dxan=580
 cost=500
 members=yes
+weight=1kg
 
 [viking_toyship]
 
@@ -2479,6 +2875,7 @@ model=obj_3678
 2dyan=1576
 2dxan=488
 members=yes
+weight=3lb
 
 [dummy_shoe1]
 name=Dummy shoe1
@@ -2491,6 +2888,8 @@ model=model_2837_obj
 2dyan=160
 2dxan=152
 members=yes
+weight=0g
+tradeable=no
 
 [dummy_shoe2]
 name=Dummy shoe2
@@ -2503,6 +2902,8 @@ model=model_2837_obj
 2dyan=160
 2dxan=152
 members=yes
+weight=0g
+tradeable=no
 
 [dummy_shoe3]
 name=Dummy shoe3
@@ -2515,6 +2916,8 @@ model=model_2837_obj
 2dyan=160
 2dxan=152
 members=yes
+weight=0g
+tradeable=no
 
 [dummy_shoe4]
 name=Dummy shoe4
@@ -2527,6 +2930,8 @@ model=model_2837_obj
 2dyan=160
 2dxan=152
 members=yes
+weight=0g
+tradeable=no
 
 [dummy_shoe5]
 name=Dummy shoe5
@@ -2539,6 +2944,8 @@ model=model_2837_obj
 2dyan=160
 2dxan=152
 members=yes
+weight=0g
+tradeable=no
 
 [dummy_shoe6]
 name=Dummy shoe6
@@ -2551,6 +2958,8 @@ model=model_2837_obj
 2dyan=160
 2dxan=152
 members=yes
+weight=0g
+tradeable=no
 
 [pickpocket_guide_fremennik_citizen]
 name=Fremennik
@@ -2571,6 +2980,7 @@ model=obj_3686
 2dzoom=2660
 2dyan=1876
 2dxan=28
+tradeable=no
 
 [viking_unstrung_lyre]
 name=Unstrung lyre
@@ -2583,6 +2993,9 @@ womanwear=obj_3688_manwear,0
 2dyan=144
 2dxan=464
 members=yes
+wearpos=righthand
+weight=4lb
+tradeable=no
 
 [viking_strung_lyre]
 name=Lyre
@@ -2596,6 +3009,9 @@ iop1=Play
 2dyan=144
 2dxan=464
 members=yes
+wearpos=righthand
+weight=4lb
+tradeable=no
 
 [viking_enchanted_strung_lyre]
 name=Enchanted lyre
@@ -2609,6 +3025,9 @@ iop1=Play
 manwear=obj_3688_manwear,0
 womanwear=obj_3688_manwear,0
 members=yes
+wearpos=righthand
+weight=4lb
+tradeable=no
 
 [magic_strung_lyre]
 name=Enchanted lyre
@@ -2622,6 +3041,10 @@ iop1=Play
 cost=1000
 manwear=obj_3688_manwear,0
 members=yes
+wearpos=righthand
+weight=4lb
+category=category_148
+tradeable=no
 
 [viking_musical_tree_branch]
 name=Branch
@@ -2633,6 +3056,8 @@ model=obj_3692
 2dyan=152
 2dxan=268
 members=yes
+weight=4lb
+tradeable=no
 
 [viking_golden_fleece]
 name=Golden fleece
@@ -2647,6 +3072,8 @@ model=model_2779_obj
 ambient=30
 contrast=30
 members=yes
+weight=12g
+tradeable=no
 
 [viking_golden_wool]
 name=Golden wool
@@ -2662,6 +3089,8 @@ model=obj_3694
 ambient=30
 contrast=30
 members=yes
+weight=12g
+tradeable=no
 
 [vt_useless_rock]
 name=Pet rock
@@ -2679,6 +3108,8 @@ members=yes
 iop1=Feed
 iop2=Stroke
 iop3=Talk-to
+weight=3lb
+tradeable=no
 
 [viking_draugen_talisman]
 name=Hunters' talisman
@@ -2692,6 +3123,8 @@ model=obj_3696
 cost=4
 iop1=Locate
 members=yes
+weight=15g
+tradeable=no
 
 [viking_draugen_talisman_uncharged]
 name=Hunters' talisman
@@ -2705,6 +3138,8 @@ model=obj_3696
 cost=4
 iop1=Locate
 members=yes
+weight=15g
+tradeable=no
 
 [viking_rare_flower]
 name=Exotic flower
@@ -2725,6 +3160,8 @@ model=model_1781_obj
 2dyan=816
 2dxan=612
 members=yes
+weight=1oz
+tradeable=no
 
 [viking_song]
 name=Fremennik ballad
@@ -2737,6 +3174,8 @@ model=model_2429_obj
 2dyan=28
 2dxan=552
 members=yes
+weight=5g
+tradeable=no
 
 [viking_new_boots]
 name=Sturdy boots
@@ -2748,6 +3187,8 @@ model=model_2837_obj
 2dyan=160
 2dxan=152
 members=yes
+weight=12oz
+tradeable=no
 
 [viking_map_to_hunting_grounds]
 name=Hunters map
@@ -2765,6 +3206,8 @@ model=model_2774_obj
 2dyan=1716
 2dxan=264
 members=yes
+weight=18oz
+tradeable=no
 
 [viking_bowstring]
 name=Custom bow string
@@ -2776,6 +3219,8 @@ model=model_2552_obj
 2dyan=1872
 2dxan=148
 members=yes
+weight=400g
+tradeable=no
 
 [viking_unique_fish]
 name=Unusual fish
@@ -2792,6 +3237,8 @@ model=model_2355_obj
 2dyan=1920
 2dxan=464
 members=yes
+weight=400g
+tradeable=no
 
 [viking_another_map]
 name=Sea fishing map
@@ -2809,6 +3256,8 @@ model=model_2774_obj
 2dyan=1716
 2dxan=264
 members=yes
+weight=18oz
+tradeable=no
 
 [viking_weather_forecast]
 name=Weather forecast
@@ -2821,6 +3270,8 @@ model=model_2429_obj
 2dyan=28
 2dxan=552
 members=yes
+weight=5g
+tradeable=no
 
 [viking_champion_token]
 name=Champions token
@@ -2835,6 +3286,8 @@ model=model_2784_obj
 2dzan=2024
 2dxan=268
 members=yes
+weight=4g
+tradeable=no
 
 [viking_legendary_cocktail]
 name=Legendary cocktail
@@ -2845,6 +3298,8 @@ model=model_2738_obj
 2dyan=1988
 2dxan=104
 members=yes
+weight=450g
+tradeable=no
 
 [viking_promissary_note]
 name=Fiscal statement
@@ -2862,6 +3317,8 @@ model=model_2675_obj
 2dyan=120
 2dxan=380
 members=yes
+weight=5g
+tradeable=no
 
 [viking_promissary_note2]
 name=Promissory note
@@ -2879,6 +3336,8 @@ model=model_2675_obj
 2dyan=120
 2dxan=380
 members=yes
+weight=5g
+tradeable=no
 
 [viking_promissary_note3]
 name=Warriors' contract
@@ -2896,6 +3355,8 @@ model=model_2675_obj
 2dyan=120
 2dxan=380
 members=yes
+weight=5g
+tradeable=no
 
 [viking_beerkeg]
 name=Keg of beer
@@ -2908,6 +3369,8 @@ womanwear=obj_3711_manwear,0
 2dyan=4
 2dxan=128
 members=yes
+weight=20kg
+tradeable=no
 
 [viking_low_alcahol_beerkeg]
 name=Low alcohol keg
@@ -2918,6 +3381,8 @@ model=obj_3711
 2dyan=4
 2dxan=128
 members=yes
+weight=20kg
+tradeable=no
 
 [viking_firecracker]
 name=Strange object
@@ -2929,6 +3394,8 @@ model=obj_3713
 2dyan=1948
 2dxan=112
 members=yes
+weight=1g
+tradeable=no
 
 [viking_firecracker_lit]
 name=Lit strange object
@@ -2940,6 +3407,8 @@ model=obj_3713
 2dyan=1948
 2dxan=112
 members=yes
+weight=1g
+tradeable=no
 
 [viking_dummy_coin]
 name=Red disk
@@ -2954,6 +3423,8 @@ model=model_2484_obj
 2dzoom=230
 2dxan=356
 members=yes
+weight=1g
+tradeable=no
 
 [viking_dummy_coin2]
 name=Red disk
@@ -2968,11 +3439,14 @@ model=model_2484_obj
 2dzoom=230
 2dxan=356
 members=yes
+weight=1g
+tradeable=no
 
 [viking_dummy_lid]
 name=Viking dummy lid
 model=model_loc_2733_0
 members=yes
+tradeable=no
 
 [viking_pointless_magnet]
 name=Magnet
@@ -2985,6 +3459,8 @@ model=model_2798_obj
 2dyan=132
 2dxan=440
 members=yes
+weight=20g
+tradeable=no
 
 [viking_pointless_thread]
 name=Blue thread
@@ -2998,6 +3474,8 @@ model=model_2552_obj
 2dzoom=530
 2dyan=1872
 2dxan=148
+weight=2g
+tradeable=no
 
 [viking_pointless_pick]
 name=Small pick
@@ -3009,6 +3487,8 @@ model=model_2792_obj
 2dyan=1076
 2dxan=476
 members=yes
+weight=2oz
+tradeable=no
 
 [viking_pointless_shiptoy]
 name=Toy ship
@@ -3023,6 +3503,8 @@ model=obj_3721
 2dxan=68
 ambient=20
 contrast=20
+weight=400g
+tradeable=no
 
 [viking_bucket_5]
 name=Full bucket
@@ -3033,6 +3515,8 @@ model=model_2504_obj
 2dyan=1688
 2dxan=204
 members=yes
+weight=1g
+tradeable=no
 
 [viking_bucket_4]
 name=4/5ths full bucket
@@ -3043,6 +3527,8 @@ model=model_2504_obj
 2dyan=1688
 2dxan=204
 members=yes
+weight=1g
+tradeable=no
 
 [viking_bucket_3]
 name=3/5ths full bucket
@@ -3053,6 +3539,8 @@ model=model_2504_obj
 2dyan=1688
 2dxan=204
 members=yes
+weight=1g
+tradeable=no
 
 [viking_bucket_2]
 name=2/5ths full bucket
@@ -3063,6 +3551,8 @@ model=model_2397_obj
 2dyan=1688
 2dxan=204
 members=yes
+weight=1g
+tradeable=no
 
 [viking_bucket_1]
 name=1/5ths full bucket
@@ -3073,6 +3563,8 @@ model=model_2397_obj
 2dyan=1688
 2dxan=204
 members=yes
+weight=1g
+tradeable=no
 
 [viking_bucket_empty]
 name=Empty bucket
@@ -3083,6 +3575,8 @@ model=model_2397_obj
 2dyan=1688
 2dxan=204
 members=yes
+weight=1g
+tradeable=no
 
 [viking_bucket_frozen]
 name=Frozen bucket
@@ -3093,6 +3587,8 @@ model=obj_3728
 2dyan=1688
 2dxan=204
 members=yes
+weight=1g
+tradeable=no
 
 [viking_jug_3]
 name=Full jug
@@ -3106,6 +3602,9 @@ model=model_2390_obj
 2dyan=84
 2dxan=260
 members=yes
+weight=1g
+tradeable=no
+// param=param_59,1
 
 [viking_jug_2]
 name=2/3rds full jug
@@ -3119,6 +3618,9 @@ model=model_2390_obj
 2dyan=84
 2dxan=260
 members=yes
+weight=1g
+tradeable=no
+// param=param_59,1
 
 [viking_jug_1]
 name=1/3rds full jug
@@ -3132,6 +3634,9 @@ model=model_2390_obj
 2dyan=84
 2dxan=260
 members=yes
+weight=1g
+tradeable=no
+// param=param_59,1
 
 [viking_jug_empty]
 name=Empty jug
@@ -3145,6 +3650,9 @@ model=model_2390_obj
 2dyan=84
 2dxan=260
 members=yes
+weight=1g
+tradeable=no
+// param=param_59,1
 
 [viking_jug_frozen]
 name=Frozen jug
@@ -3160,6 +3668,9 @@ model=model_2390_obj
 2dyan=84
 2dxan=260
 members=yes
+weight=1lb
+tradeable=no
+// param=param_59,1
 
 [viking_airtight_vase]
 name=Vase
@@ -3172,6 +3683,9 @@ model=obj_3734
 2dxan=160
 members=yes
 iop1=Shake
+weight=1g
+tradeable=no
+// param=param_59,1
 
 [viking_airtight_vase_water]
 name=Vase of water
@@ -3184,6 +3698,9 @@ model=obj_3734
 2dxan=160
 members=yes
 iop1=Shake
+weight=1g
+tradeable=no
+// param=param_59,1
 
 [viking_airtight_vase_frozen]
 name=Frozen vase
@@ -3196,6 +3713,9 @@ model=obj_3734
 2dxan=160
 members=yes
 iop1=Shake
+weight=1g
+tradeable=no
+// param=param_59,1
 
 [viking_vase_lid]
 name=Vase lid
@@ -3206,6 +3726,9 @@ model=obj_3737
 2dzoom=1260
 2dxan=152
 members=yes
+weight=1g
+tradeable=no
+// param=param_59,1
 
 [viking_airtight_vase_with_lid]
 name=Sealed vase
@@ -3218,6 +3741,9 @@ model=obj_3738
 2dxan=160
 members=yes
 iop1=Remove-lid
+weight=1g
+tradeable=no
+// param=param_59,1
 
 [viking_airtight_vase_with_lid_frozen]
 name=Sealed vase
@@ -3230,6 +3756,9 @@ model=obj_3738
 2dxan=160
 members=yes
 iop1=Remove-lid
+weight=1g
+tradeable=no
+// param=param_59,1
 
 [viking_airtight_vase_with_lid_water]
 name=Sealed vase
@@ -3242,6 +3771,9 @@ model=obj_3738
 2dxan=160
 members=yes
 iop1=Remove-lid
+weight=1g
+tradeable=no
+// param=param_59,1
 
 [viking_key_in_ice]
 name=Frozen key
@@ -3253,6 +3785,9 @@ model=obj_3741
 2dyan=44
 2dxan=160
 members=yes
+weight=1g
+tradeable=no
+// param=param_59,1
 
 [viking_red_herring]
 name=Red herring
@@ -3270,6 +3805,9 @@ model=model_2353_obj
 ambient=30
 contrast=30
 members=yes
+weight=500g
+tradeable=no
+// param=param_59,1
 
 [viking_red_wooden_coin]
 name=Red disk
@@ -3284,6 +3822,9 @@ model=model_2484_obj
 2dyan=2012
 2dxan=184
 members=yes
+weight=2g
+tradeable=no
+// param=param_59,1
 
 [viking_uncoloured_wooden_coin]
 name=Wooden disk
@@ -3298,6 +3839,9 @@ model=model_2484_obj
 2dyan=2012
 2dxan=184
 members=yes
+weight=2g
+tradeable=no
+// param=param_59,1
 
 [viking_key]
 name=Seers' key
@@ -3311,6 +3855,9 @@ model=model_2372_obj
 2dyan=20
 2dxan=328
 members=yes
+weight=10g
+tradeable=no
+// param=param_59,1
 
 [viking_red_splat]
 name=Sticky red goop
@@ -3320,6 +3867,9 @@ model=obj_3746
 2dzoom=1090
 2dyan=2020
 2dxan=304
+weight=1g
+tradeable=no
+// param=param_59,1
 
 [viking_helmet]
 name=Fremennik helm
@@ -3346,7 +3896,7 @@ cost=5000
 wearpos=hat
 category=armour_helmet
 tradeable=no
-//weight=TODO
+weight=6lb
 param=magicattack,-6
 param=rangeattack,-2
 param=stabdefence,19
@@ -3378,7 +3928,7 @@ womanhead2=obj_3749_manhead2
 members=yes
 wearpos=hat
 category=armour_helmet
-//weight=TODO
+weight=6lb
 param=slashattack,5
 param=magicattack,-5
 param=rangeattack,-5
@@ -3413,7 +3963,7 @@ womanhead2=obj_3751_manhead2
 members=yes
 wearpos=hat
 category=armour_helmet
-//weight=TODO
+weight=6lb
 param=magicattack,-5
 param=rangeattack,-5
 param=stabdefence,31
@@ -3445,7 +3995,7 @@ womanhead2=obj_3753_manhead2
 members=yes
 wearpos=hat
 category=armour_helmet
-//weight=TODO
+weight=6lb
 param=slashattack,5
 param=magicattack,-5
 param=rangeattack,-5
@@ -3477,7 +4027,7 @@ womanhead2=obj_3755_manhead2
 members=yes
 wearpos=hat
 category=armour_helmet
-//weight=TODO
+weight=6lb
 param=stabattack,-5
 param=slashattack,-5
 param=crushattack,-5
@@ -3505,7 +4055,7 @@ cost=5000
 tradeable=no
 wearpos=righthand
 category=weapon_slash
-//weight=TODO
+weight=4lb
 param=stabattack,-6
 param=slashattack,29
 param=crushattack,-2
@@ -3534,7 +4084,7 @@ cost=5000
 tradeable=no
 wearpos=lefthand
 category=armour_shield
-//weight=TODO
+weight=5lb
 param=magicattack,-8
 param=rangeattack,-2
 param=stabdefence,27
@@ -3560,7 +4110,7 @@ iop2=Wear
 manwear=model_317_npc,0
 womanwear=model_479_npc,0
 members=yes
-//weight=TODO
+weight=1lb
 wearpos=back
 param=slashdefence,1
 param=crushdefence,1
@@ -3582,7 +4132,7 @@ iop2=Wear
 manwear=model_317_npc,0
 womanwear=model_479_npc,0
 members=yes
-//weight=TODO
+weight=1lb
 wearpos=back
 param=slashdefence,1
 param=crushdefence,1
@@ -3604,7 +4154,7 @@ iop2=Wear
 manwear=model_317_npc,0
 womanwear=model_479_npc,0
 members=yes
-//weight=TODO
+weight=1lb
 wearpos=back
 param=slashdefence,1
 param=crushdefence,1
@@ -3626,7 +4176,7 @@ iop2=Wear
 manwear=model_317_npc,0
 womanwear=model_479_npc,0
 members=yes
-//weight=TODO
+weight=1lb
 wearpos=back
 param=slashdefence,1
 param=crushdefence,1
@@ -3654,7 +4204,7 @@ iop2=Wear
 2dzoom=1370
 2dxan=536
 members=yes
-//weight=TODO
+weight=2lb
 wearpos=torso
 wearpos2=arms
 param=slashdefence,2
@@ -3682,7 +4232,7 @@ iop2=Wear
 2dzoom=1370
 2dxan=536
 members=yes
-//weight=TODO
+weight=2lb
 wearpos=torso
 wearpos2=arms
 param=slashdefence,2
@@ -3710,7 +4260,7 @@ iop2=Wear
 2dzoom=1370
 2dxan=536
 members=yes
-//weight=TODO
+weight=2lb
 wearpos=torso
 wearpos2=arms
 param=slashdefence,2
@@ -3738,7 +4288,7 @@ iop2=Wear
 2dzoom=1370
 2dxan=536
 members=yes
-//weight=TODO
+weight=2lb
 wearpos=torso
 wearpos2=arms
 param=slashdefence,2
@@ -3766,7 +4316,7 @@ iop2=Wear
 2dzoom=1370
 2dxan=536
 members=yes
-//weight=TODO
+weight=2lb
 wearpos=torso
 wearpos2=arms
 param=slashdefence,2
@@ -3788,7 +4338,7 @@ iop2=Wear
 manwear=model_317_npc,0
 womanwear=model_479_npc,0
 members=yes
-//weight=TODO
+weight=1lb
 wearpos=back
 param=slashdefence,1
 param=crushdefence,1
@@ -3810,7 +4360,7 @@ iop2=Wear
 manwear=model_317_npc,0
 womanwear=model_479_npc,0
 members=yes
-//weight=TODO
+weight=1lb
 wearpos=back
 param=slashdefence,1
 param=crushdefence,1
@@ -3832,7 +4382,7 @@ iop2=Wear
 manwear=model_317_npc,0
 womanwear=model_479_npc,0
 members=yes
-//weight=TODO
+weight=1lb
 wearpos=back
 param=slashdefence,1
 param=crushdefence,1
@@ -3854,7 +4404,7 @@ iop2=Wear
 manwear=model_317_npc,0
 womanwear=model_479_npc,0
 members=yes
-//weight=TODO
+weight=1lb
 wearpos=back
 param=slashdefence,1
 param=crushdefence,1
@@ -3876,7 +4426,7 @@ iop2=Wear
 manwear=model_317_npc,0
 womanwear=model_479_npc,0
 members=yes
-//weight=TODO
+weight=1lb
 wearpos=back
 param=slashdefence,1
 param=crushdefence,1
@@ -3898,7 +4448,7 @@ iop2=Wear
 manwear=model_317_npc,0
 womanwear=model_479_npc,0
 members=yes
-//weight=TODO
+weight=1lb
 wearpos=back
 param=slashdefence,1
 param=crushdefence,1
@@ -3920,7 +4470,7 @@ iop2=Wear
 manwear=model_317_npc,0
 womanwear=model_479_npc,0
 members=yes
-//weight=TODO
+weight=1lb
 wearpos=back
 param=slashdefence,1
 param=crushdefence,1
@@ -3942,7 +4492,7 @@ cost=500
 2dyan=160
 2dxan=152
 members=yes
-//weight=TODO
+weight=12oz
 wearpos=feet
 param=slashdefence,1
 param=crushdefence,1
@@ -3963,7 +4513,7 @@ cost=500
 2dzoom=1370
 2dxan=536
 members=yes
-//weight=TODO
+weight=2lb
 wearpos=torso
 wearpos2=arms
 param=slashdefence,2
@@ -3983,7 +4533,7 @@ cost=500
 2dzoom=1940
 2dxan=572
 members=yes
-//weight=TODO
+weight=2lb
 wearpos=legs
 param=slashdefence,2
 param=crushdefence,2
@@ -4006,7 +4556,7 @@ iop2=Wear
 2dyan=156
 2dxan=152
 members=yes
-//weight=TODO
+weight=1lb
 wearpos=hat
 param=magicattack,3
 param=magicdefence,3
@@ -4029,7 +4579,7 @@ womanwear=model_356_obj_wear,0
 2dyan=828
 2dxan=420
 members=yes
-//weight=TODO
+weight=1lb
 wearpos=hands
 category=armour_hands
 param=slashdefence,1
@@ -4048,6 +4598,8 @@ womanwear=obj_3711_manwear,0
 2dxan=128
 cost=250
 members=yes
+weight=20kg
+// param=param_468,44
 
 [viking_tankard_full]
 name=Beer
@@ -4063,6 +4615,8 @@ womanwear=obj_3803_manwear,0
 2dxan=132
 cost=20
 members=yes
+weight=550g
+// param=param_468,44
 
 [viking_tankard_empty]
 name=Tankard
@@ -4075,6 +4629,7 @@ model=obj_3805
 2dxan=132
 cost=5
 members=yes
+weight=50g
 
 [bolt2]
 name=Bolt2
@@ -4085,6 +4640,7 @@ model=obj_3807
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [bolt3]
 name=Bolt3
@@ -4095,6 +4651,7 @@ model=obj_3808
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [bolt4]
 name=Bolt4
@@ -4105,6 +4662,7 @@ model=obj_3809
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [bolts]
 name=Bolts
@@ -4115,6 +4673,7 @@ model=model_2664_obj
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [poison_bolt2]
 name=Poison bolt2
@@ -4129,6 +4688,7 @@ model=obj_3807
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [poison_bolt3]
 name=Poison bolt3
@@ -4143,6 +4703,7 @@ model=obj_3808
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [poison_bolt4]
 name=Poison bolt4
@@ -4157,6 +4718,7 @@ model=obj_3809
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [poison_bolts]
 name=Poison bolts
@@ -4171,6 +4733,7 @@ model=model_2664_obj
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [opal_bolt2]
 name=Opal bolt2
@@ -4191,6 +4754,7 @@ model=obj_3807
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [opal_bolt3]
 name=Opal bolt3
@@ -4211,6 +4775,7 @@ model=obj_3808
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [opal_bolt4]
 name=Opal bolt4
@@ -4231,6 +4796,7 @@ model=obj_3809
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [opal_bolts]
 name=Opal bolts
@@ -4251,6 +4817,7 @@ model=model_2664_obj
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [pearl_bolt2]
 name=Pearl bolt2
@@ -4269,6 +4836,7 @@ model=obj_3807
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [pearl_bolt3]
 name=Pearl bolt3
@@ -4287,6 +4855,7 @@ model=obj_3808
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [pearl_bolt4]
 name=Pearl bolt4
@@ -4305,6 +4874,7 @@ model=obj_3809
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [pearl_bolts]
 name=Pearl bolts
@@ -4323,6 +4893,7 @@ model=model_2664_obj
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [barbed_bolt2]
 name=Barbed bolt2
@@ -4335,6 +4906,7 @@ model=obj_3807
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [barbed_bolt3]
 name=Barbed bolt3
@@ -4347,6 +4919,7 @@ model=obj_3808
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [barbed_bolt4]
 name=Barbed bolt4
@@ -4359,6 +4932,7 @@ model=obj_3809
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [barbed_bolts]
 name=Barbed bolts
@@ -4371,6 +4945,7 @@ model=model_2664_obj
 2dzoom=640
 2dyan=4
 2dxan=244
+tradeable=no
 
 [holy_book_s_page1]
 name=Torn page 1
@@ -4394,6 +4969,8 @@ model=obj_3827
 2dzoom=680
 2dyan=80
 2dxan=400
+weight=5g
+category=category_759
 
 [holy_book_s_page2]
 name=Torn page 2
@@ -4417,6 +4994,8 @@ model=obj_3827
 2dzoom=680
 2dyan=80
 2dxan=400
+weight=5g
+category=category_759
 
 [holy_book_s_page3]
 name=Torn page 3
@@ -4440,6 +5019,8 @@ model=obj_3827
 2dzoom=680
 2dyan=80
 2dxan=400
+weight=5g
+category=category_759
 
 [holy_book_s_page4]
 name=Torn page 4
@@ -4463,6 +5044,8 @@ model=obj_3827
 2dzoom=680
 2dyan=80
 2dxan=400
+weight=5g
+category=category_759
 
 [holy_book_z_page1]
 name=Torn page 1
@@ -4486,6 +5069,7 @@ model=obj_3827
 2dzoom=680
 2dyan=80
 2dxan=400
+category=category_759
 
 [holy_book_z_page2]
 name=Torn page 2
@@ -4509,6 +5093,8 @@ model=obj_3827
 2dzoom=680
 2dyan=80
 2dxan=400
+weight=5g
+category=category_759
 
 [holy_book_z_page3]
 name=Torn page 3
@@ -4532,6 +5118,8 @@ model=obj_3827
 2dzoom=680
 2dyan=80
 2dxan=400
+weight=5g
+category=category_759
 
 [holy_book_z_page4]
 name=Torn page 4
@@ -4555,6 +5143,8 @@ model=obj_3827
 2dzoom=680
 2dyan=80
 2dxan=400
+weight=5g
+category=category_759
 
 [holy_book_g_page1]
 name=Torn page 1
@@ -4578,6 +5168,8 @@ model=obj_3827
 2dzoom=680
 2dyan=80
 2dxan=400
+weight=5g
+category=category_759
 
 [holy_book_g_page2]
 name=Torn page 2
@@ -4601,6 +5193,8 @@ model=obj_3827
 2dzoom=680
 2dyan=80
 2dxan=400
+weight=5g
+category=category_759
 
 [holy_book_g_page3]
 name=Torn page 3
@@ -4624,6 +5218,8 @@ model=obj_3827
 2dzoom=680
 2dyan=80
 2dxan=400
+weight=5g
+category=category_759
 
 [holy_book_g_page4]
 name=Torn page 4
@@ -4647,6 +5243,8 @@ model=obj_3827
 2dzoom=680
 2dyan=80
 2dxan=400
+weight=5g
+category=category_759
 
 [unfinished_saradominbook]
 name=Damaged book
@@ -4668,6 +5266,11 @@ womanwear=model_556,6
 2dyan=116
 2dxan=244
 cost=200
+wearpos=lefthand
+weight=1kg
+tradeable=no
+param=prayerbonus,5
+// param=param_40,1
 
 [saradominbook_complete]
 name=Holy book
@@ -4691,6 +5294,16 @@ womanwear=model_556,6
 2dyan=116
 2dxan=244
 cost=200
+wearpos=lefthand
+weight=1kg
+tradeable=no
+param=stabdefence,8
+param=slashdefence,8
+param=crushdefence,8
+param=magicdefence,8
+param=rangedefence,8
+param=prayerbonus,5
+// param=param_40,1
 
 [unfinished_zamorakbook]
 name=Damaged book
@@ -4712,6 +5325,11 @@ womanwear=model_556,6
 2dyan=116
 2dxan=244
 cost=200
+wearpos=lefthand
+weight=1kg
+tradeable=no
+param=prayerbonus,5
+// param=param_41,1
 
 [zamorakbook_complete]
 name=Unholy book
@@ -4734,6 +5352,17 @@ womanwear=model_556,6
 2dyan=116
 2dxan=244
 cost=200
+wearpos=lefthand
+weight=1kg
+tradeable=no
+param=stabattack,8
+param=slashattack,8
+param=crushattack,8
+param=magicattack,8
+param=rangeattack,8
+param=prayerbonus,5
+// param=param_41,1
+// param=param_451,Read
 
 [unfinished_guthixbook]
 name=Damaged book
@@ -4755,6 +5384,11 @@ womanwear=model_556,6
 2dyan=116
 2dxan=244
 cost=200
+wearpos=lefthand
+weight=1kg
+tradeable=no
+param=prayerbonus,5
+// param=param_42,1
 
 [guthixbook_complete]
 name=Book of balance
@@ -4777,6 +5411,22 @@ womanwear=model_556,6
 2dyan=116
 2dxan=244
 cost=200
+wearpos=lefthand
+weight=1kg
+tradeable=no
+param=stabattack,4
+param=slashattack,4
+param=crushattack,4
+param=magicattack,4
+param=rangeattack,4
+param=stabdefence,4
+param=slashdefence,4
+param=crushdefence,4
+param=magicdefence,4
+param=rangedefence,4
+param=prayerbonus,5
+// param=param_42,1
+// param=param_451,Read
 
 [horror_diary1]
 name=Journal
@@ -4791,6 +5441,8 @@ model=model_2794_obj
 2dzoom=840
 2dyan=152
 2dxan=256
+weight=18oz
+tradeable=no
 
 [horror_diary2]
 name=Diary
@@ -4807,6 +5459,8 @@ model=model_2633_obj
 2dzoom=860
 2dyan=120
 2dxan=276
+weight=18oz
+tradeable=no
 
 [horror_diary3]
 name=Manual
@@ -4827,6 +5481,8 @@ model=model_2543_obj
 2dzoom=830
 2dyan=116
 2dxan=244
+weight=18oz
+tradeable=no
 
 [horror_key]
 name=Lighthouse key
@@ -4840,6 +5496,8 @@ model=model_2372_obj
 2dyan=20
 2dxan=328
 members=yes
+weight=10g
+tradeable=no
 
 [horror_casket]
 name=Rusty casket
@@ -4851,6 +5509,8 @@ model=obj_3849
 2dyan=1948
 2dxan=72
 members=yes
+weight=5kg
+tradeable=no
 
 [readbook_dummy]
 name=Readbook dummy
@@ -4868,6 +5528,8 @@ model=model_2543_obj
 2dxan=244
 manwear=obj_3850_manwear,0
 womanwear=obj_3850_manwear,6
+wearpos=righthand
+tradeable=no
 
 [necklace_of_minigames_8]
 name=Games necklace(8)
@@ -4885,6 +5547,9 @@ iop2=Wear
 manwear=model_281_obj_wear,0
 womanwear=model_445_obj_wear,0
 iop4=Rub
+weight=10g
+wearpos=front
+// category=category_558
 
 [necklace_of_minigames_7]
 name=Games necklace(7)
@@ -4902,6 +5567,9 @@ iop2=Wear
 manwear=model_281_obj_wear,0
 womanwear=model_445_obj_wear,0
 iop4=Rub
+weight=10g
+wearpos=front
+// category=category_558
 
 [necklace_of_minigames_6]
 name=Games necklace(6)
@@ -4919,6 +5587,9 @@ iop2=Wear
 manwear=model_281_obj_wear,0
 womanwear=model_445_obj_wear,0
 iop4=Rub
+weight=10g
+wearpos=front
+// category=category_558
 
 [necklace_of_minigames_5]
 name=Games necklace(5)
@@ -4936,6 +5607,9 @@ iop2=Wear
 manwear=model_281_obj_wear,0
 womanwear=model_445_obj_wear,0
 iop4=Rub
+weight=10g
+wearpos=front
+// category=category_558
 
 [necklace_of_minigames_4]
 name=Games necklace(4)
@@ -4953,6 +5627,9 @@ iop2=Wear
 manwear=model_281_obj_wear,0
 womanwear=model_445_obj_wear,0
 iop4=Rub
+weight=10g
+wearpos=front
+// category=category_558
 
 [necklace_of_minigames_3]
 name=Games necklace(3)
@@ -4970,6 +5647,9 @@ iop2=Wear
 manwear=model_281_obj_wear,0
 womanwear=model_445_obj_wear,0
 iop4=Rub
+weight=10g
+wearpos=front
+// category=category_558
 
 [necklace_of_minigames_2]
 name=Games necklace(2)
@@ -4987,6 +5667,9 @@ iop2=Wear
 manwear=model_281_obj_wear,0
 womanwear=model_445_obj_wear,0
 iop4=Rub
+weight=10g
+wearpos=front
+// category=category_558
 
 [necklace_of_minigames_1]
 name=Games necklace(1)
@@ -5004,3 +5687,6 @@ iop2=Wear
 manwear=model_281_obj_wear,0
 womanwear=model_445_obj_wear,0
 iop4=Rub
+weight=10g
+wearpos=front
+// category=category_558
