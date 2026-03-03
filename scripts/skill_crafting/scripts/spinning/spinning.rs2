@@ -19,6 +19,8 @@ if ($amt = 0) {
 }
 
 if (inv_total(inv, $spinning_obj) = 0) {
+    // From https://youtu.be/W77l-6ZquQQ?si=-3acNd8zIcPvrWM5&t=340
+    // Couldn't find sources for this happening with wool
     if ($spinning_obj = flax) {
         mes("You have run out of flax.");
     }
@@ -84,6 +86,8 @@ if (loc_find($coord, $loc) = false) {
 
 // Make sure the player has an item to spin
 if (inv_total(inv, $spinning_obj) = 0) {
+    // From https://youtu.be/W77l-6ZquQQ?si=-3acNd8zIcPvrWM5&t=340
+    // Couldn't find sources for this happening with wool
     if ($spinning_obj = flax) {
         mes("You have run out of flax.");
     }
