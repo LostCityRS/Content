@@ -46,6 +46,7 @@ switch_int ($event) {
     case ^macro_candlelight : ~macro_candlelight_spawn;
 }
 
+// this proc is used for random events teleing to follow the player
 [proc,macro_event_area](coord $coord)(boolean)
 if (~in_duel_arena($coord) = true) {
     return(false);
@@ -61,8 +62,14 @@ if (~in_tutorial_island($coord) = true) {
 }
 return(true);
 
+// this proc is only used for spawning randoms
 [proc,macro_event_allowed]()(boolean)
 if (~macro_event_area(coord) = false) {
+    return(false);
+}
+// this goes here to allow this bug: https://youtu.be/c0HABEQe41s
+// - bug desc: random events will follow you into castle wars
+if (~in_castlewars_game(coord) = true | ~in_castlewars_waitingroom(coord) = true) {
     return(false);
 }
 // if this var isnt reset on npc delete, then youll never get a random event: https://youtu.be/vRlOfkCCGkw
