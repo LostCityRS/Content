@@ -14,7 +14,15 @@ switch_obj (last_useitem)
 }
 
 [queue,crafting_spinning](obj $spinning_obj, int $amt, loc $loc, coord $coord)
-if ($amt = 0 | inv_total(inv, $spinning_obj) = 0) {
+if ($amt = 0) {
+    return;
+}
+
+if (inv_total(inv, $spinning_obj) = 0) {
+    if ($spinning_obj = flax) {
+        mes("You have run out of flax.");
+    }
+
     return;
 }
 
@@ -47,6 +55,10 @@ if (stat(crafting) < $level) {
     return;
 }
 
+if ($amt = 0) {
+    return;
+}
+
 @craft_spinning($obj, $amt, loc_type, loc_coord);
 
 [label,craft_spinning](obj $spinning_obj, int $amt, loc $loc, coord $coord)
@@ -72,6 +84,10 @@ if (loc_find($coord, $loc) = false) {
 
 // Make sure the player has an item to spin
 if (inv_total(inv, $spinning_obj) = 0) {
+    if ($spinning_obj = flax) {
+        mes("You have run out of flax.");
+    }
+
     return;
 }
 
