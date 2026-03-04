@@ -14,4 +14,4 @@ if (%npc_int < 100) { // 5 min warmup
     %castlewars_timer = sub(5, divide(%npc_int, 20));
     return;
 }
-%castlewars_timer = sub(25, divide(%npc_int, 20)); // min until next game (+5 min)
+%castlewars_timer = sub(30, divide(%npc_int, 20)); // min until next game (+5 min)

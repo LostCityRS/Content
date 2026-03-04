@@ -21,3 +21,17 @@ if ($rhand = castlewars_saradomin_banner | $rhand = castlewars_zamorak_banner) {
     return;
 }
 ~walk_through_door;
+
+[oploc1,castlewars_saradomin_quit] 
+if (%castlewars_team = ^castlewars_team_saradomin) {
+    ~castlewars_waitingroom_tele(%castlewars_team);
+} else {
+    ~castlewars_exit_tele;
+}
+
+[oploc1,castlewars_zamorak_quit]
+if (%castlewars_team = ^castlewars_team_zamorak) {
+    ~castlewars_waitingroom_tele(%castlewars_team);
+} else {
+    ~castlewars_exit_tele;
+}
