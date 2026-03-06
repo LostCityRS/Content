@@ -285,7 +285,9 @@ if(stat(agility) < 26) {
     mes("You need an agility level of 26 to attempt to climb under this wall.");
     return;
 }
+p_teleport(0_46_51_4_45);
 def_coord $end_coord = movecoord(coord, 0, 0, 4);
+p_delay(0);
 ~agility_exactmove(null, 20, 0, coord, $end_coord, 45, 70, ^exact_north, false);
 p_teleport($end_coord);
 
@@ -294,7 +296,9 @@ if(stat(agility) < 26) {
     mes("You need an agility level of 26 to attempt to climb under this wall.");
     return;
 }
+p_teleport(0_46_51_4_49);
 def_coord $end_coord = movecoord(coord, 0, 0, -4);
+p_delay(0);
 ~agility_exactmove(null, 20, 0, coord, $end_coord, 45, 70, ^exact_south, false);
 p_teleport($end_coord);
 
@@ -303,7 +307,9 @@ if(stat(agility) < 21) {
     mes("You need an agility level of 21 to attempt to climb under this wall.");
     return;
 }
+p_teleport(0_49_54_52_37);
 def_coord $end_coord = movecoord(coord, 5, 0, 0);
+p_delay(0);
 ~agility_exactmove(null, 20, 0, coord, $end_coord, 45, 70, ^exact_east, false);
 p_teleport($end_coord);
 
@@ -312,7 +318,9 @@ if(stat(agility) < 21) {
     mes("You need an agility level of 21 to attempt to climb under this wall.");
     return;
 }
+p_teleport(0_49_54_57_37);
 def_coord $end_coord = movecoord(coord, -5, 0, 0);
+p_delay(0);
 ~agility_exactmove(null, 20, 0, coord, $end_coord, 45, 70, ^exact_west, false);
 p_teleport($end_coord);
 
