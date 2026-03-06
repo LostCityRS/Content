@@ -5,8 +5,6 @@
 [oploc1,wilderness_portal_stone_4] @wilderness_obelisk(^obelisk_three);
 [oploc1,wilderness_portal_stone_5] @wilderness_obelisk(^obelisk_six);
 
-//5 is by chaos ele
-
 [label,wilderness_obelisk](coord $center_coord)
 def_string $name;
 def_int $locsChanged;
@@ -54,3 +52,4 @@ p_delay(2);
 p_telejump($destination);
 
 anim(null, 0);
+
