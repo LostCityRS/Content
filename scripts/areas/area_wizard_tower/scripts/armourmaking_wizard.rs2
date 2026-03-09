@@ -37,8 +37,8 @@ if(map_members = ^false) {
 
 [label,armourmaking_wizard_howmuch]
 ~chatplayer("<p,quiz>Okay, how much do I need?");
-~chatnpc("<p,happy>I need 1 piece of each for either gloves or boots,|2 pieces of each for a hat,|3 pieces of each for leggings,|and 4 pieces of each for a top.");
-~chatnpc("<p,happy>I'll charge you 1,000 coins for either gloves or boots,|6,000 coins for a hat,|32,000 coins for leggings,|and 37,000 for a top.");
+~chatnpc("<p,happy>I need 1 piece of each for either gloves or greaves,|2 pieces of each for a hat,|3 pieces of each for leggings,|and 4 pieces of each for a top.");
+~chatnpc("<p,happy>I'll charge you 1,000 coins for either gloves or greaves,|6,000 coins for a hat,|32,000 coins for leggings,|and 37,000 for a top.");
 @armourmaking_wizard_go;
 
 [label,armourmaking_wizard_make_please]
@@ -50,7 +50,7 @@ if(map_members = ^false) {
 }
 @armourmaking_wizard_splitbark;
 
-//Matches release osrs https://youtu.be/uUK2t-05adA?si=ZUFmYa4u66i2fMxr&t=70
+//Matches release osrs https://youtu.be/uUK2t-05adA?si=ZUFmYa4u66i2fMxr&t=70 but greaves instead of boots
 [label,armourmaking_wizard_splitbark]
 def_namedobj $product;
 def_int $process_count;
@@ -59,7 +59,7 @@ $product, $process_count = ~skill_multi5_header("Splitbark Armour",
     splitbark_body, 0, -5, 175, "\\n\\n\\n\\nBody",
     splitbark_legs, 0, -5, 175, "\\n\\n\\n\\nLegs",
     splitbark_gauntlets, 0, -5, 175, "\\n\\n\\n\\nGauntlets",
-    splitbark_greaves, 0, -5, 175, "\\n\\n\\n\\nBoots"
+    splitbark_greaves, 0, -5, 175, "\\n\\n\\n\\nGreaves"
 );
 if($process_count = 0) {
     return;
@@ -133,12 +133,12 @@ if ($product = splitbark_helm) {
     }
 } else if ($product = splitbark_greaves) {
     if (inv_total(inv, hollow_bark) < 1 | inv_total(inv, fine_cloth) < 1 | inv_total(inv, coins) < 1000) {
-        ~chatnpc("<p,sad>You need 1 piece of bark, 1 piece of fine cloth and|1,000 coins for splitbark boots.");
+        ~chatnpc("<p,sad>You need 1 piece of bark, 1 piece of fine cloth and|1,000 coins for splitbark greaves.");
         return;
     }
     while ($process_count > 0) {
         if (inv_total(inv, hollow_bark) < 1 | inv_total(inv, fine_cloth) < 1 | inv_total(inv, coins) < 1000) {
-            ~chatnpc("<p,sad>I'm afraid I can't make you any more now. You need|1 piece of bark, 1 piece of fine cloth and 1,000 coins|for splitbark boots.");
+            ~chatnpc("<p,sad>I'm afraid I can't make you any more now. You need|1 piece of bark, 1 piece of fine cloth and 1,000 coins|for splitbark greaves.");
             return;
         }
         inv_del(inv, hollow_bark, 1);
