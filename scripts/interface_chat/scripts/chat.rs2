@@ -871,7 +871,7 @@ if_setposition(skill_multi5:model_a, $x1, $y1);
 if_setposition(skill_multi5:model_b, $x2, $y2);
 if_setposition(skill_multi5:model_c, $x3, $y3);
 if_setposition(skill_multi5:model_d, $x4, $y4);
-if_setposition(skill_multi5:model_e, $x4, $y4);
+if_setposition(skill_multi5:model_e, $x5, $y5);
 
 if_setobject(skill_multi5:model_a, $obj1, $scale1);
 if_setobject(skill_multi5:model_b, $obj2, $scale2);
@@ -879,6 +879,87 @@ if_setobject(skill_multi5:model_c, $obj3, $scale3);
 if_setobject(skill_multi5:model_d, $obj4, $scale4);
 if_setobject(skill_multi5:model_e, $obj5, $scale5);
 
+if_settext(skill_multi5:prompt, "What would you like to make?");
+if_settext(skill_multi5:make1_a, $string1);
+if_settext(skill_multi5:make1_b, $string2);
+if_settext(skill_multi5:make1_c, $string3);
+if_settext(skill_multi5:make1_d, $string4);
+if_settext(skill_multi5:make1_e, $string5);
+
+if_addresumebutton(skill_multi5:make1_a);
+if_addresumebutton(skill_multi5:make5_a);
+if_addresumebutton(skill_multi5:make10_a);
+if_addresumebutton(skill_multi5:makex_a);
+if_addresumebutton(skill_multi5:make1_b);
+if_addresumebutton(skill_multi5:make5_b);
+if_addresumebutton(skill_multi5:make10_b);
+if_addresumebutton(skill_multi5:makex_b);
+if_addresumebutton(skill_multi5:make1_c);
+if_addresumebutton(skill_multi5:make5_c);
+if_addresumebutton(skill_multi5:make10_c);
+if_addresumebutton(skill_multi5:makex_c);
+if_addresumebutton(skill_multi5:make1_d);
+if_addresumebutton(skill_multi5:make5_d);
+if_addresumebutton(skill_multi5:make10_d);
+if_addresumebutton(skill_multi5:makex_d);
+if_addresumebutton(skill_multi5:make1_e);
+if_addresumebutton(skill_multi5:make5_e);
+if_addresumebutton(skill_multi5:make10_e);
+if_addresumebutton(skill_multi5:makex_e);
+p_pausebutton;
+
+switch_component (last_com) {
+    case skill_multi5:makex_a : 
+        p_countdialog;
+        return($obj1, last_int);
+    case skill_multi5:make10_a : return($obj1, 10);
+    case skill_multi5:make5_a : return($obj1, 5);
+    case skill_multi5:make1_a : return($obj1, 1);
+    case skill_multi5:makex_b : 
+        p_countdialog;
+        return($obj2, last_int);
+    case skill_multi5:make10_b : return($obj2, 10);
+    case skill_multi5:make5_b : return($obj2, 5);
+    case skill_multi5:make1_b : return($obj2, 1);
+    case skill_multi5:makex_c : 
+        p_countdialog;
+        return($obj3, last_int);
+    case skill_multi5:make10_c : return($obj3, 10);
+    case skill_multi5:make5_c : return($obj3, 5);
+    case skill_multi5:make1_c : return($obj3, 1);
+    case skill_multi5:makex_d : 
+        p_countdialog;
+        return($obj4, last_int);
+    case skill_multi5:make10_d : return($obj4, 10);
+    case skill_multi5:make5_d : return($obj4, 5);
+    case skill_multi5:make1_d : return($obj4, 1);
+    case skill_multi5:makex_e : 
+        p_countdialog;
+        return($obj5, last_int);
+    case skill_multi5:make10_e : return($obj5, 10);
+    case skill_multi5:make5_e : return($obj5, 5);
+    case skill_multi5:make1_e : return($obj5, 1);
+    case default : return(null, null);
+}
+
+[proc,skill_multi5_header](string $header, namedobj $obj1, int $x1, int $y1, int $scale1, string $string1, namedobj $obj2, int $x2, int $y2, int $scale2, string $string2, 
+                    namedobj $obj3, int $x3, int $y3, int $scale3, string $string3, namedobj $obj4, int $x4, int $y4, int $scale4, string $string4, 
+                    namedobj $obj5, int $x5, int $y5, int $scale5, string $string5)(namedobj, int)
+if_openchat(skill_multi5);
+
+if_setposition(skill_multi5:model_a, $x1, $y1);
+if_setposition(skill_multi5:model_b, $x2, $y2);
+if_setposition(skill_multi5:model_c, $x3, $y3);
+if_setposition(skill_multi5:model_d, $x4, $y4);
+if_setposition(skill_multi5:model_e, $x5, $y5);
+
+if_setobject(skill_multi5:model_a, $obj1, $scale1);
+if_setobject(skill_multi5:model_b, $obj2, $scale2);
+if_setobject(skill_multi5:model_c, $obj3, $scale3);
+if_setobject(skill_multi5:model_d, $obj4, $scale4);
+if_setobject(skill_multi5:model_e, $obj5, $scale5);
+
+if_settext(skill_multi5:prompt, $header);
 if_settext(skill_multi5:make1_a, $string1);
 if_settext(skill_multi5:make1_b, $string2);
 if_settext(skill_multi5:make1_c, $string3);
