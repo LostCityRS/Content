@@ -16,7 +16,7 @@ if (last_useitem = newbielogs) {
 } else if(oc_param(last_useitem, unlit_arrow) = ^true) { // might not work on every fire?
     @light_firearrow(last_useitem);
 } else switch_category(oc_category(last_useitem)) {
-    case category_22 : @light_logs_inv(last_useslot);
+    case category_22 : @light_logs_inv(last_slot);
     case light_source_unlit : @ignite_light_source(last_useitem);
     case default : ~displaymessage(^dm_default);
 }
