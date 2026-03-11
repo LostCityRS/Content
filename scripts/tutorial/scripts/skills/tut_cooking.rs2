@@ -16,7 +16,7 @@ if (last_useitem = bread_dough) {
     if (%tutorial = ^newbie_cook_instructor_mixed_dough) {
         inv_del(inv, bread_dough, 1);
         inv_add(inv, bread, 1);
-        ~tutorial_give_xp(cooking, 400);
+        stat_advance(cooking, 400);
         %tutorial = ^newbie_cook_instructor_baked_bread;
         ~set_tutorial_progress;
     } else {
@@ -25,7 +25,7 @@ if (last_useitem = bread_dough) {
         if ($rand < calc(3 + stat_base(cooking))) {
             mes("You remove the bread from the oven.");
             inv_add(inv, bread, 1);
-            ~tutorial_give_xp(cooking, 400);
+            stat_advance(cooking, 400);
         } else {
             mes("You accidentally burn the bread.");
             inv_add(inv, burnt_bread, 1);
@@ -64,7 +64,7 @@ if ($uncooked_item = newbieraw_shrimp) {
         p_delay(2);
         inv_del(inv, newbieraw_shrimp, 1);
         inv_add(inv, shrimp, 1);
-        ~tutorial_give_xp(cooking, 300);
+        stat_advance(cooking, 300);
         %tutorial = ^newbie_survival_instructor_complete;
         ~tutorial_step_survival_recap;
     } else {
@@ -89,7 +89,7 @@ def_int $rand = random(10);
 if ($rand < calc(3 + stat_base(cooking))) {
     mes("The shrimps are now nicely cooked.");
     inv_add(inv, shrimp, 1);
-    ~tutorial_give_xp(cooking, 300);
+    stat_advance(cooking, 300);
 } else {
     mes("You accidentally burn the shrimps.");
     inv_add(inv, burntfish1, 1);
@@ -100,7 +100,7 @@ def_int $rand = random(10);
 if ($rand < calc(3 + stat_base(cooking))) {
     mes("The meat is now nicely cooked.");
     inv_add(inv, cooked_meat, 1);
-    ~tutorial_give_xp(cooking, 300);
+    stat_advance(cooking, 300);
 } else {
     mes("You accidentally burn the meat.");
     inv_add(inv, burnt_meat, 1);

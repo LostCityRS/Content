@@ -13,7 +13,7 @@ if (%tutorial = ^newbie_mining_instructor_mined_tin_first) {
 }
 ~set_tutorial_progress;
 inv_add(inv, copper_ore, 1);
-~tutorial_give_xp(mining, 175);
+stat_advance(mining, 175);
 ~mesbox("You manage to mine some copper.");
 
 // Tin Ore
@@ -31,7 +31,7 @@ if (%tutorial = ^newbie_mining_instructor_minted_copper_first) {
 }
 ~set_tutorial_progress;
 inv_add(inv, tin_ore, 1);
-~tutorial_give_xp(mining, 175);
+stat_advance(mining, 175);
 ~mesbox("You manage to mine some tin.");
 
 [proc,tut_mining](string $ore_name)(boolean)
