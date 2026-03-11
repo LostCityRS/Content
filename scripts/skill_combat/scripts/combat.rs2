@@ -116,57 +116,30 @@ if(npc_type = black_knight_titan) {
     stat_advance(hitpoints, scale(133, 100, $base));
     return;
 }
-if (%tutorial < ^tutorial_complete) {
-    switch_int($damagestyle) {
-        case ^style_melee_accurate :
-            ~tutorial_give_xp(attack, scale($multiplier, 1000, scale(400, 100, $base)));
-        case ^style_melee_aggressive :
-            ~tutorial_give_xp(strength, scale($multiplier, 1000, scale(400, 100, $base)));
-        case ^style_melee_defensive :
-            ~tutorial_give_xp(defence, scale($multiplier, 1000, scale(400, 100, $base)));
-        case ^style_melee_controlled :
-            ~tutorial_give_xp(attack, scale($multiplier, 1000, scale(133, 100, $base)));
-            ~tutorial_give_xp(strength, scale($multiplier, 1000, scale(133, 100, $base)));
-            ~tutorial_give_xp(defence, scale($multiplier, 1000, scale(133, 100, $base)));
-        case ^style_ranged_accurate, ^style_ranged_rapid :
-            ~tutorial_give_xp(ranged, scale($multiplier, 1000, scale(400, 100, $base)));
-        case ^style_ranged_longrange :
-            ~tutorial_give_xp(ranged, scale($multiplier, 1000, scale(200, 100, $base)));
-            ~tutorial_give_xp(defence, scale($multiplier, 1000, scale(200, 100, $base)));
-        case ^style_magic_normal :
-            ~tutorial_give_xp(magic, scale($multiplier, 1000, scale(200, 100, $base)));
-        case ^style_magic_defensive :
-            ~tutorial_give_xp(magic, scale($multiplier, 1000, scale(133, 100, $base)));
-            ~tutorial_give_xp(defence, scale($multiplier, 1000, scale(100, 100, $base)));
-        case default : return;
-    }
-    ~tutorial_give_xp(hitpoints, scale($multiplier, 1000, scale(133, 100, $base)));
-} else {
-    switch_int($damagestyle) {
-        case ^style_melee_accurate :
-            stat_advance(attack, scale($multiplier, 1000, scale(400, 100, $base)));
-        case ^style_melee_aggressive :
-            stat_advance(strength, scale($multiplier, 1000, scale(400, 100, $base)));
-        case ^style_melee_defensive :
-            stat_advance(defence, scale($multiplier, 1000, scale(400, 100, $base)));
-        case ^style_melee_controlled :
-            stat_advance(attack, scale($multiplier, 1000, scale(133, 100, $base)));
-            stat_advance(strength, scale($multiplier, 1000, scale(133, 100, $base)));
-            stat_advance(defence, scale($multiplier, 1000, scale(133, 100, $base)));
-        case ^style_ranged_accurate, ^style_ranged_rapid :
-            stat_advance(ranged, scale($multiplier, 1000, scale(400, 100, $base)));
-        case ^style_ranged_longrange :
-            stat_advance(ranged, scale($multiplier, 1000, scale(200, 100, $base)));
-            stat_advance(defence, scale($multiplier, 1000, scale(200, 100, $base)));
-        case ^style_magic_normal :
-            stat_advance(magic, scale($multiplier, 1000, scale(200, 100, $base)));
-        case ^style_magic_defensive :
-            stat_advance(magic, scale($multiplier, 1000, scale(133, 100, $base)));
-            stat_advance(defence, scale($multiplier, 1000, scale(100, 100, $base)));
-        case default : return;
-    }
-    stat_advance(hitpoints, scale($multiplier, 1000, scale(133, 100, $base)));
+switch_int($damagestyle) {
+    case ^style_melee_accurate :
+        stat_advance(attack, scale($multiplier, 1000, scale(400, 100, $base)));
+    case ^style_melee_aggressive :
+        stat_advance(strength, scale($multiplier, 1000, scale(400, 100, $base)));
+    case ^style_melee_defensive :
+        stat_advance(defence, scale($multiplier, 1000, scale(400, 100, $base)));
+    case ^style_melee_controlled :
+        stat_advance(attack, scale($multiplier, 1000, scale(133, 100, $base)));
+        stat_advance(strength, scale($multiplier, 1000, scale(133, 100, $base)));
+        stat_advance(defence, scale($multiplier, 1000, scale(133, 100, $base)));
+    case ^style_ranged_accurate, ^style_ranged_rapid :
+        stat_advance(ranged, scale($multiplier, 1000, scale(400, 100, $base)));
+    case ^style_ranged_longrange :
+        stat_advance(ranged, scale($multiplier, 1000, scale(200, 100, $base)));
+        stat_advance(defence, scale($multiplier, 1000, scale(200, 100, $base)));
+    case ^style_magic_normal :
+        stat_advance(magic, scale($multiplier, 1000, scale(200, 100, $base)));
+    case ^style_magic_defensive :
+        stat_advance(magic, scale($multiplier, 1000, scale(133, 100, $base)));
+        stat_advance(defence, scale($multiplier, 1000, scale(100, 100, $base)));
+    case default : return;
 }
+stat_advance(hitpoints, scale($multiplier, 1000, scale(133, 100, $base)));
 
 
 // returns the defend anim to use for this combat

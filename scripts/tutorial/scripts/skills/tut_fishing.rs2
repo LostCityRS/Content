@@ -26,7 +26,7 @@ sound_synth(fishing_cast, 0, 15);
 p_delay(1);
 anim(null, 0);
 inv_add(inv, newbieraw_shrimp, 1);
-~tutorial_give_xp(fishing, 100);
+~givexp(fishing, 100);
 if (%tutorial = ^newbie_survival_instructor_fish_shrimps) {
     hint_stop();
     %tutorial = ^newbie_survival_instructor_cook_shrimps;

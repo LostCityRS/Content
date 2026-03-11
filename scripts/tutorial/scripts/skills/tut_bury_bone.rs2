@@ -15,9 +15,9 @@ p_delay(0);
 
 def_obj $last_item = inv_getobj(inv, $slot);
 inv_delslot(inv, $slot);
-~tutorial_give_xp(prayer, oc_param($last_item, bone_exp));
+~givexp(prayer, oc_param($last_item, bone_exp));
 mes("You bury the bones.");
 
 // [queue,tut_finish_bury](obj $last_item)
-// ~tutorial_give_xp(prayer, oc_param($last_item, bone_exp));
+// ~givexp(prayer, oc_param($last_item, bone_exp));
 // mes("You bury the bones.");

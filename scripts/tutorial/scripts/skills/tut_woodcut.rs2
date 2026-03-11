@@ -80,7 +80,7 @@ loc_change($next_stage, $respawnrate);
 // set skill anim so it doesnt continue after depletion
 anim(null, $respawnrate);
 
-~tutorial_give_xp(woodcutting, 250);
+~givexp(woodcutting, 250);
 if (%tutorial = ^newbie_survival_instructor_cut_tree) {
     @tut_advance_woodcutting;
 } else {
