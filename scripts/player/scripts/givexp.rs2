@@ -1,0 +1,6 @@
+[proc,givexp](stat $stat, int $experience)
+// tutorial island level 3 cap is inzone based
+if (~in_tutorial_island(coord) = true & stat_base($stat) > 2) {
+    return;
+}
+stat_advance($stat, $experience);
