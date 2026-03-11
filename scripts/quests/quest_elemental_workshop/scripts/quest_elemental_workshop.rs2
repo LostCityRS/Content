@@ -237,7 +237,7 @@ if($last_useitem = elemental_workshop_ore) {
     inv_del(inv, coal, 4);
     anim(human_furnace, 0);
     p_delay(3);
-    stat_advance(smithing, 80);
+    ~givexp(smithing, 80);
     inv_add(inv, elemental_workshop_bar, 1);
     mes("You retrieve a bar of elemental metal.");
     mes("The furnace is so hot it will destroy almost anything put in it."); // todo: does this mean anything functionally?
@@ -263,7 +263,7 @@ if(last_useitem = elemental_workshop_bar) {
     anim(human_cooking, 0);
     p_delay(3);
     inv_add(inv, elemental_shield, 1);
-    stat_advance(smithing, 200);
+    ~givexp(smithing, 200);
     if(testbit(%elemental_workshop_bits, ^elemental_workshop_complete) = ^false) queue(elemental_workshop_quest_complete, 0, 0);
 }
 else if (oc_category(last_useitem) = category_151) ~objbox(last_useitem, "The workbench is not made to work this type of metal.", 250, 0, 0);
@@ -271,8 +271,8 @@ else ~displaymessage(^dm_default);
 
 [queue,elemental_workshop_quest_complete]
 %elemental_workshop_bits = setbit(%elemental_workshop_bits, ^elemental_workshop_complete);
-stat_advance(crafting, 50000);
-stat_advance(smithing, 50000);
+~givexp(crafting, 50000);
+~givexp(smithing, 50000);
 session_log(^log_adventure, "Quest complete: Elemental Workshop");
 // todo: find image for proof on sizing
 ~send_quest_complete(questlist:elemental_workshop, elemental_shield, 250, ^elemental_workshop_questpoints, "You have completed the\\nElemental Workshop Quest!");

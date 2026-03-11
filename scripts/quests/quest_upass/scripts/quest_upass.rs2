@@ -233,7 +233,7 @@ if (stat_random(thieving, 128, 400) = false) {
 sound_synth(lockeddoor, 0, 0);
 mes("You manage to pick the lock.");
 p_delay(2);
-stat_advance(thieving, 30);
+~givexp(thieving, 30);
 mes("You walk through.");
 ~open_and_close_door2(inact_cave_railings, ~check_axis_locactive(coord), door_open);
 mes("The cage slams shut behind you.");
@@ -260,7 +260,7 @@ sound_synth(lockeddoor, 0, 0);
 mes("You manage to pick the lock.");
 ~open_and_close_door2(inact_cave_railings, ~check_axis_locactive(coord), door_open);
 p_delay(1);
-stat_advance(thieving, 30);
+~givexp(thieving, 30);
 mes("You walk through...");
 mes("The cage slams shut behind you.");
 sound_synth(grate_close, 0, 50);
@@ -797,8 +797,8 @@ if_openmain(stone);
 
 [queue,upass_quest_complete]
 %upass = ^upass_complete;
-stat_advance(agility, 30000);
-stat_advance(attack, 30000);
+~givexp(agility, 30000);
+~givexp(attack, 30000);
 session_log(^log_adventure, "Quest complete: Underground Pass");
 // todo: can't find an image of this so might need to confirm obj zoom + text breaking
 ~send_quest_complete(questlist:upass, ibandoll, 250, ^upass_questpoints, "You have completed the\\n'Underground Pass Quest'!");

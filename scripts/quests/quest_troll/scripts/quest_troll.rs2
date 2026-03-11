@@ -34,12 +34,12 @@ if(stat_random(agility, 170, 253) = false) {
     anim(null, 0);
     mes("You fall and hurt yourself.");
     say("Ouch");
-    stat_advance(agility, 10);
+    ~givexp(agility, 10);
     ~damage_self(calc(((stat(hitpoints) * 5) / 100) + 1));
     return;
 }
 p_delay(1);
-stat_advance(agility, 10);
+~givexp(agility, 10);
 anim(null, 0);
 
 [oploc1,troll_climbingrocks_bottom]
@@ -63,13 +63,13 @@ if(stat_random(agility, 170, 253) = false) {
     ~update_bas;
     mes("You fall and hurt yourself.");
     say("Ouch");
-    stat_advance(agility, 10);
+    ~givexp(agility, 10);
     ~damage_self(calc(((stat(hitpoints) * 5) / 100) + 1));
     return;
 }
 ~forcemove(movecoord(coord, $dx, 0, 0));
 ~update_bas;
-stat_advance(agility, 10);
+~givexp(agility, 10);
 
 [oploc1,troll_stronghold_arena_entrance_left] @open_troll_stronghold_arena_entrance(^loc_south);
 [oploc1,troll_stronghold_arena_entrance_right] @open_troll_stronghold_arena_entrance(^loc_north);
@@ -152,12 +152,12 @@ if(stat_random(agility, 170, 253) = false) {
     anim(null, 0);
     mes("You fall and hurt yourself.");
     say("Ouch");
-    stat_advance(agility, 10);
+    ~givexp(agility, 10);
     ~damage_self(calc(((stat(hitpoints) * 5) / 100) + 1));
     return;
 }
 p_delay(0);
-stat_advance(agility, 10);
+~givexp(agility, 10);
 anim(null, 0);
 
 [label,troll_mountain_shortcut]
@@ -180,13 +180,13 @@ if(stat_random(agility, 170, 253) = false) {
     ~update_bas;
     mes("You fall and hurt yourself.");
     say("Ouch");
-    stat_advance(agility, 10);
+    ~givexp(agility, 10);
     ~damage_self(calc(((stat(hitpoints) * 5) / 100) + 1));
     return;
 }
 ~forcemove(movecoord(coord, $dx, 0, 0));
 ~update_bas;
-stat_advance(agility, 10);
+~givexp(agility, 10);
 
 [oploc1,troll_stronghold_door]
 p_teleport(2_44_157_21_42);

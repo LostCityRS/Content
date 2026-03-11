@@ -126,7 +126,7 @@ if (%action_delay = map_clock) {
         // There's also a chance to receive no logs. This seems to be about a 50% chance (tested w/100 rolls on OSRS)
         if (inv_freespace(inv) > 0 & random(2) = 0) {
             mes("You get some <lowercase(oc_name($product))>.");
-            stat_advance(woodcutting, db_getfield($data, woodcutting_trees:productexp, 0));
+            ~givexp(woodcutting, db_getfield($data, woodcutting_trees:productexp, 0));
             inv_add(inv, $product, 1);
         }
         if (random($deplete_chance) <= 2) {

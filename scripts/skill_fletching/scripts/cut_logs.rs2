@@ -94,7 +94,7 @@ if(inv_total(inv, $log) = 0) {
 }
 inv_del(inv, $log, 1);
 mes($message);
-stat_advance(fletching, $fletching_experience);
+~givexp(fletching, $fletching_experience);
 inv_add(inv, $product, $count);
 if(sub($process_count, 1) < 1) {
     anim(null, 20);

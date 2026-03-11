@@ -39,7 +39,7 @@ if (%targetcount = 0) {
     // calc pts
     def_int $points =  ~get_targetpts;
     %targetscore = calc(%targetscore + $points);
-    stat_advance(ranged, calc(($points / 2) * 10));
+    ~givexp(ranged, calc(($points / 2) * 10));
     if_settext(target:com_120, ~get_targetstr);
     if_openmain(target);
 } else if(%targetcount = 11) {   

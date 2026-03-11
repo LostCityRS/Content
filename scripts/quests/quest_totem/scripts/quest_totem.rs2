@@ -160,5 +160,5 @@ if(%totemquest >= ^totem_crate_marked) {
 %totemquest = ^totem_complete;
 session_log(^log_adventure, "Quest complete: Tribal Totem");
 ~send_quest_complete(questlist:totem, tribal_totem, 250, ^totem_questpoints, "You have completed the\\nTribal Totem Quest!");
-stat_advance(thieving, 17750);
+~givexp(thieving, 17750);
 inv_add(inv, swordfish, 5);

@@ -74,7 +74,7 @@ mes("You crawl through the pipe.");
 ~change_merged_loc(movecoord(coord, 0, 0, 1));
 ~agility_exactmove(human_doublepipesqueeze, 30, 3, coord, movecoord(coord, 0, 0, 3), 30, 126, ^exact_north, true);
 mes("You hear the grating slam shut behind you.");
-stat_advance(agility, 30);
+~givexp(agility, 30);
 sound_synth(squeeze_in, 0, 0);
 sound_synth(grate_close, 0, 0);
 
@@ -363,7 +363,7 @@ if($dir = ^exact_west) {
 ~agility_exactmove(human_doublepipesqueeze, 30, 3, coord, movecoord(coord, calc(3 * $mod), 0, 0), 30, 126, $dir, true);
 sound_synth(squeeze_in, 0, 0);
 p_delay(0);
-stat_advance(agility, 30);
+~givexp(agility, 30);
 
 [oploc1,bridgecollapsed1] @upass_cross_bridge;
 [oploc1,bridgecollapsed2] @upass_cross_bridge;

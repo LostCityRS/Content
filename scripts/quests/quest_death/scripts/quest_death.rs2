@@ -218,5 +218,5 @@ session_log(^log_adventure, "Quest complete: Death Plateau");
 %death_equiproom = ^death_complete;
 %death_bits = clearbit_range(%death_bits, ^death_haroldroll_lower, ^denulth_given_combo);
 inv_add(inv, steel_claws, 1);
-stat_advance(attack, 30000);
+~givexp(attack, 30000);
 ~send_quest_complete(questlist:death, steel_claws, 250, ^death_questpoints, "You have completed\\nDeath Plateau!");

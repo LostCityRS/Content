@@ -169,7 +169,7 @@ if_openmain(questscroll);
 [queue,hazeelcult_quest_complete]
 %hazeelcultquest = ^hazeelcult_complete;
 inv_del(inv, hazeel_scroll, 1);
-stat_advance(thieving, 15000);
+~givexp(thieving, 15000);
 inv_add(inv, coins, 2000);
 session_log(^log_adventure, "Quest complete: Hazeel Cult");
 ~send_quest_complete(questlist:hazeelcult, coins, 250, ^hazeelcult_questpoints, "You have completed the\\nHazeel Cult Quest!");

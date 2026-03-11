@@ -64,7 +64,7 @@ if(inv_total(inv, agilityarena_ticket) < $cost) {
     return;
 }
 inv_del(inv, agilityarena_ticket, $cost);
-stat_advance(agility, $xp);
+~givexp(agility, $xp);
 mes("You have been granted some Agility experience!");
 
 [label,agilityarena_buy_item](int $cost, namedobj $item)

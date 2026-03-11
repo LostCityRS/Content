@@ -14,7 +14,7 @@ if (p_finduid(uid) = true) {
     inv_add(inv, firerune, 6);
     inv_add(inv, earthrune, 6);
     inv_add(inv, rope, 1);
-    stat_advance(hitpoints, calc(50000 * 10));
+    ~givexp(hitpoints, calc(50000 * 10));
     ~player_teleport_normal(0_39_54_30_40);
 } else {
     @please_finish;
@@ -46,8 +46,8 @@ if (p_finduid(uid) = true) {
 if_close;
 if (p_finduid(uid) = true) {
     ~player_teleport_normal(0_40_54_12_7);
-    stat_advance(agility, calc(10000 * 10));
-    stat_advance(magic, calc(100000 * 10));
+    ~givexp(agility, calc(10000 * 10));
+    ~givexp(magic, calc(100000 * 10));
     inv_add(inv, airrune, 50);
     inv_add(inv, lawrune, 20);
     inv_add(inv, waterrune, 20);
@@ -59,8 +59,8 @@ if (p_finduid(uid) = true) {
 if_close;
 if (p_finduid(uid) = true) {
     ~player_teleport_normal(0_40_51_18_56);
-    stat_advance(ranged, calc(100000 * 10));
-    stat_advance(thieving, calc(100000 * 10));
+    ~givexp(ranged, calc(100000 * 10));
+    ~givexp(thieving, calc(100000 * 10));
     inv_add(bank, knife, 5);
     inv_add(bank, limpwurt_root, 50);
     inv_add(bank, unlit_candle, 5);

@@ -39,7 +39,7 @@ if($doses = $doses_req) {
     inv_setslot(inv, $oil_slot, sacred_oil1, 1);
 }
 inv_setslot(inv, $logs_slot, $product, 1);
-stat_advance(firemaking, struct_param($struct, pyre_create_experience));
+~givexp(firemaking, struct_param($struct, pyre_create_experience));
 
 [oplocu,temple_pyre]
 if(%morttonquest < ^mortton_created_pyre_logs) {
@@ -176,8 +176,8 @@ if(~validate_shade_and_log_type(loc_type, %mortton_current_shade) = false) {
 }
 spotanim_map(temple_pyre_fire, ~get_pyre_coord(loc_coord, loc_angle), 0, 30);
 sound_synth(fire_lit, 0, 0);
-stat_advance(firemaking, struct_param($funeral_pyre_struct, pyre_fm_experience));
-stat_advance(prayer,add(oc_param(%mortton_current_shade, pyre_shade_exp),struct_param($funeral_pyre_struct, pyre_shade_exp_bonus)));
+~givexp(firemaking, struct_param($funeral_pyre_struct, pyre_fm_experience));
+~givexp(prayer,add(oc_param(%mortton_current_shade, pyre_shade_exp),struct_param($funeral_pyre_struct, pyre_shade_exp_bonus)));
 %pyre_loc = 0;
 clearqueue(clear_pyre_loc);
 world_delay(0);

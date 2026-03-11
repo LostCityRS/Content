@@ -50,7 +50,7 @@ sound_synth(furnace,0,0);
 // success message
 mes("You heat the sand and soda ash in the furnace to make glass.");
 // give xp
-stat_advance(crafting, 200);
+~givexp(crafting, 200);
 
 
 [label,craft_glass_interface]
@@ -103,7 +103,7 @@ inv_add(inv, $item, 1);
 // display game message
 mes("You make <$name>.");
 // give xp
-stat_advance(crafting, $exp);
+~givexp(crafting, $exp);
 if(sub($process_count, 1) < 1) {
     anim(null, 20);
     return;

@@ -217,13 +217,13 @@ if(stat_random(strength, 100, 250) = false) {
 if(coordx(coord) < 3284) {
     mes("You manage to bend the bar!");
     p_delay(2);
-    stat_advance(strength, 40);
+    ~givexp(strength, 40);
     p_telejump(movecoord(coord, 1, 0, 0));
     mes("You climb back inside the cell.");
 } else {
     mes("You manage to bend the bar and climb out of the window.");
     p_delay(2);
-    stat_advance(strength, 40);
+    ~givexp(strength, 40);
     p_telejump(movecoord(coord, -1, 0, 0));
     mes("You land near some rough rocks, which you may be able to climb.");
 }
@@ -666,7 +666,7 @@ if(stat_random(fletching, 61, 254) = false) {
 if_close;
 p_delay(2);
 if(%desertrescue = ^desertrescue_made_dart_tip) %desertrescue = ^desertrescue_finished_dart;
-stat_advance(fletching, 100);
+~givexp(fletching, 100);
 inv_del(inv, feather, 10);
 inv_del(inv, thprotodarttip, 1);
 inv_add(inv, thprotodart, 1);

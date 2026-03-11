@@ -129,7 +129,7 @@ else if ($random < 124) obj_add(npc_coord, tin_ore, 1, ^lootdrop_duration);
 else if ($random < 125) obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
 
 [queue,ghast_vis_reward]
-stat_advance(prayer, 300);
+~givexp(prayer, 300);
 if(%druidspirit = ^druidspirit_added_pouch) {
     mes("That's one Ghast, 2 more to kill.");
     %druidspirit = ^druidspirit_killed_ghast1;

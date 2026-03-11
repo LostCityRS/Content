@@ -14,7 +14,7 @@ if(stat_random(agility, 200, 250) = false) {
 }
 ~forcemove(movecoord(coord, 0, 0, 6));
 ~update_bas;
-stat_advance(agility, 150);
+~givexp(agility, 150);
 mes("You skillfully balance across the ridge...");
 if(loc_find(movecoord(coord, 0, 0, 1), loc_2307) = true) ~open_and_close_double_door2(~check_axis(coord, loc_coord, loc_angle), ^left, door_open);
 else p_teleport(movecoord(coord, 0, 0, 2));
@@ -37,7 +37,7 @@ if(stat_random(agility, 200, 250) = false) {
 ~update_bas;
 mes("You skillfully balance across the ridge...");
 p_delay(0);
-stat_advance(agility, 150);
+~givexp(agility, 150);
 if(loc_find(movecoord(coord, 0, 0, -1), loc_2309) = true) {
     loc_change(inviswall, 3);
     loc_add(movecoord(loc_coord, 0, 0, -1), poshdooropen, 0, loc_shape, 3);
@@ -73,7 +73,7 @@ p_delay(0);
 ~change_merged_loc(movecoord(coord, 0, 0, 1));
 ~agility_exactmove(human_doublepipesqueeze, 30, 3, movecoord(loc_coord, 0, 0, -1), movecoord(loc_coord, 0, 0, 2), 30, 126, ^exact_north, true);
 sound_synth(squeeze_in, 0, 0);
-stat_advance(agility, 125);
+~givexp(agility, 125);
 ~update_wilderness_varp(1);
 
 [oploc1,wilderness_rope_swing]
@@ -99,7 +99,7 @@ loc_anim(ropeswing_long);
 ~agility_exactmove(human_ropeswing_long, 20, 0, $start_pos, movecoord($start_pos, 0, 0, 5), 45, 70, ^exact_north, false);
 mes("You skillfully swing across.");
 sound_synth(swing_across, 0, 0);
-stat_advance(agility, 200);
+~givexp(agility, 200);
 ~update_wilderness_varp(2);
 
 [oploc1,wilderness_stepping_stone]
@@ -121,7 +121,7 @@ sound_synth(jump_no_land, 0, 0);
 ~agility_exactmove(human_spot_jump, 0, 1, movecoord(loc_coord, -3, 0, 0), movecoord(loc_coord, -4, 0, 0), 15, 30, ^exact_west, false);
 sound_synth(jump_no_land, 0, 0);
 ~agility_exactmove(human_spot_jump, 0, 1, movecoord(loc_coord, -4, 0, 0), movecoord(loc_coord, -5, 0, 0), 15, 30, ^exact_west, false);
-stat_advance(agility, 200);
+~givexp(agility, 200);
 mes("...You safely cross to the other side.");
 ~update_wilderness_varp(3);
 
@@ -144,7 +144,7 @@ mes("You skillfully edge across the gap.");
 sound_synth(log_balance, 2, 0);
 ~forcemove(movecoord(coord, -1, 0, 0));
 ~update_bas;
-stat_advance(agility, 200);
+~givexp(agility, 200);
 ~update_wilderness_varp(4);
 
 [oploc1,wilderness_rocks]
@@ -172,6 +172,6 @@ if(calc(%wilderness_course_progress + 1) >= $completed) {
 }
 if(%wilderness_course_progress = 5) {
     mes("You reach the top.");
-    stat_advance(agility, 4989);
+    ~givexp(agility, 4989);
     %wilderness_course_progress = 0;
 }

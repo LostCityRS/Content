@@ -313,5 +313,5 @@ npc_del;
 [queue,fluffs_complete] //imgur.com/6ePHvef
 session_log(^log_adventure, "Quest complete: Gertrude's Cat");
 %qp = calc(%qp + ^fluffs_questpoints);
-stat_advance(cooking, 15250);
+~givexp(cooking, 15250);
 ~send_quest_complete(questlist:fluffs, null, 0, ^fluffs_questpoints, null);

@@ -77,16 +77,16 @@ if(%desertrescue = ^desertrescue_not_started) {
 [label,irena_xpreward]
 switch_int(~p_choice4("Fletching.", 1, "Agility.", 2, "Smithing.", 3, "Thieving", 4)) {
     case 1 :
-        stat_advance(fletching, 46500);
+        ~givexp(fletching, 46500);
         mes("You advance your stat in Fletching.");
     case 2 :
-        stat_advance(agility, 46500);
+        ~givexp(agility, 46500);
         mes("You advance your stat in Agility.");
     case 3 :
-        stat_advance(smithing, 46500);
+        ~givexp(smithing, 46500);
         mes("You advance your stat in Smithing.");
     case 4 :
-        stat_advance(thieving, 46500);
+        ~givexp(thieving, 46500);
         mes("You advance your stat in Thieving.");
 }
 %desertrescue = calc(%desertrescue + 1);

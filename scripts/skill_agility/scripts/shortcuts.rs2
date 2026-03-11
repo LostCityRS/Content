@@ -19,7 +19,7 @@ if(stat(agility) < 5) {
     return;
 }
 p_telejump(movecoord(loc_coord, 0, 0, 3));
-stat_advance(agility, 250);
+~givexp(agility, 250);
 sound_synth(climb_wall, 0, 0);
 mes("You climb over the wall.");
 
@@ -42,7 +42,7 @@ sound_synth(log_balance, 2, 0);
 sound_synth(log_balance, 1, 0);
 ~forcemove(movecoord(coord, $x_dist, 0, 0));
 ~update_bas;
-stat_advance(agility, 85);
+~givexp(agility, 85);
 // https://youtu.be/Fr0ZhqD6KKM?si=NUQInNCAp1j_PJhp&t=164
 mes("...You make it safely to the other side.");
 
@@ -87,7 +87,7 @@ if(stat_random(agility, 90, 250) = false) {
     p_delay(1);
     ~update_bas;
     ~forcemove($fail_end_coord);
-    stat_advance(agility, 20);
+    ~givexp(agility, 20);
     ~damage_self(calc(((stat(hitpoints) * 6) / 100) + 1));
     return;
 }
@@ -95,7 +95,7 @@ mes("You make it across the log without any problems.");
 p_teleport(movecoord(coord, $x_dist, 0, 0));
 p_delay(2);
 ~update_bas;
-stat_advance(agility, 40);
+~givexp(agility, 40);
 
 [proc,get_island_rope_var]()(int)
 switch_coord (loc_param(start_coord)) {
@@ -147,7 +147,7 @@ loc_anim(ropeswing_long);
 ~agility_exactmove(human_ropeswing_long, 20, 0, coord, loc_param(end_coord), 45, 70, loc_param(dir), false);
 mes("You skillfully swing across.");
 sound_synth(swing_across, 0, 0);
-stat_advance(agility, 30);
+~givexp(agility, 30);
 
 [oploc1,_monkeybars]
 if(stat(agility) < loc_param(agil_level_req) & coordz(loc_coord) ! 9489 & coordz(loc_coord) ! 9969) {
@@ -190,7 +190,7 @@ p_delay(0);
 sound_synth(monkeybars_loop, 3, 0);
 ~forcemove(movecoord(coord, 0, 0, calc($dist_mod * 1)));
 ~update_bas;
-stat_advance(agility, 200);
+~givexp(agility, 200);
 anim(human_monkeybars_off, 0);
 sound_synth(monkeybars_off, 0, 0);
 p_delay(0);
@@ -264,8 +264,8 @@ if(stat_random(agility, 50, 253) = false) {
     mes("You get washed up on the side of the river.");
     mes("After being nearly half drowned.");
     ~damage_self(calc($damage_bound + random($damage_bound) + 1)); // 10 - 20%?
-    stat_advance(agility, 10);
+    ~givexp(agility, 10);
     return;
 }
-stat_advance(agility, 30);
+~givexp(agility, 30);
 mes("You manage to make the jump.");

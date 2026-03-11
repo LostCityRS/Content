@@ -25,7 +25,7 @@ p_delay(0);
 ~change_merged_loc($end_pipe_coord);
 ~agility_exactmove(human_doublepipesqueeze, 30, 3, 0_40_148_15_34, movecoord(0_40_148_15_34, calc(3 * $mod), 0, 0), 30, 126, $dir, true);
 sound_synth(squeeze_in, 0, 0);
-stat_advance(agility, 75);
+~givexp(agility, 75);
 
 [oploc1,loc_2303]
 if(stat(agility) < 40) {
@@ -79,7 +79,7 @@ sound_synth(balancing_ledge, 2, 0);
 p_delay(0);
 anim($end_seq, 0);
 ~update_bas;
-stat_advance(agility, 225);
+~givexp(agility, 225);
 mes("You skillfully edge across the gap.");
 
 [oploc1,loc_2317]

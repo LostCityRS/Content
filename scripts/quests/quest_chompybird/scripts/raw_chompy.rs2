@@ -77,7 +77,7 @@ if ($passes_roll = true) {
     anim(human_pickuptable, 0);
     mes("Eventually the chompy is cooked.");
     inv_add(inv, cooked_chompy, 1);
-    stat_advance(cooking, 140);
+    ~givexp(cooking, 140);
 } else {
     mes("You accidentally burn the chompy.");
     // Temp note: dur updated
@@ -202,7 +202,7 @@ if ($passes_roll = true) {
     anim(human_pickuptable, 0);
     mes("Eventually the chompy is cooked.");
     inv_add(inv, cooked_s_chompy, 1);
-    stat_advance(cooking, 142);
+    ~givexp(cooking, 142);
     p_delay(1);
     ~objbox(cooked_s_chompy, "You use the <$rantz_ingredient_name>, <$bugs_ingredient_name> and the <$fycie_ingredient_name>|with the chompy bird to make a seasoned chompy.", 250, 0, divide(^objbox_height, 2));
 } else {

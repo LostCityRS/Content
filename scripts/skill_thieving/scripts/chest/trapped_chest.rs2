@@ -101,7 +101,7 @@ sound_synth(chest_open, 0, 0);
 p_delay(1);
 mes("You find treasure inside!");
 anim(human_openchest, 0);
-stat_advance(thieving, $experience);
+~givexp(thieving, $experience);
 ~trapped_chest_check_for_reward($data);
 loc_change(loc_2574, 4); //opened chest
 p_delay(2);

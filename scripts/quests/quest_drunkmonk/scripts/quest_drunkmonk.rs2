@@ -86,4 +86,4 @@ if(random(3) > 0) {
 session_log(^log_adventure, "Quest complete: Monk's Friend");
 ~send_quest_complete(questlist:drunkmonk, lawrune, 250, ^drunkmonk_questpoints, "You have completed the\\nMonk's Friend Quest!");
 inv_add(inv, lawrune, 8);
-stat_advance(woodcutting, 20000);
+~givexp(woodcutting, 20000);

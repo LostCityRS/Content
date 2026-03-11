@@ -119,7 +119,7 @@ switch_int(~p_choice4("* Herblore *", 1, "* Agility *", 2, "* Thieving *", 3, "-
 [label,radimus_train](stat $skill, string $skill_name)
 // https://youtu.be/5MwrA2Ci39Q?si=kqnNaYMoqEA4Rgfy&t=184
 %legendsquest = add(%legendsquest, 5);
-stat_advance($skill, 76500);
+~givexp($skill, 76500);
 // this is stupid but video shows double space for herblore, meaning theres prob a seperate label for each skill in 2004 (and it's prob a linebreak)
 if(string_length($skill_name) > 7) { 
     ~mesbox("You receive some training and increase|experience to your <$skill_name>.");

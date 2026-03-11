@@ -143,7 +143,7 @@ if(loc_find(coord, agilityarena_floorspikes) = true) {
     loc_anim(agilityarena_floorspikes_activate);
     sound_synth(floor_spikes_avoid, 0, 0);
     p_delay(0);
-    stat_advance(agility, 240);
+    ~givexp(agility, 240);
 }
 
 [timer,agilityarena_pressurepad]
@@ -183,7 +183,7 @@ if(loc_find(coord, agilityarena_pressurepad) = true) {
     spotanim_map(agilityarena_roofcollapse, loc_coord, 0, 20);
     sound_synth(collapse_avoid, 0, 0);
     p_delay(0);
-    stat_advance(agility, 260);
+    ~givexp(agility, 260);
 }
 
 [proc,get_sawblades_coord]()(coord)
@@ -233,7 +233,7 @@ if((inzone(3_43_149_25_43, 3_43_149_27_43, coord) = true | inzone(3_43_149_31_37
     loc_anim(agilityarena_sawblades_twist);
     sound_synth(land_flat, 0, 30);
     p_delay(0);
-    stat_advance(agility, 280);
+    ~givexp(agility, 280);
 }
 
 // pillar, cam2, cam3, dart target, dest, fail dest, fail dir
@@ -282,5 +282,5 @@ if(coord = 3_43_149_42_38 | coord = 3_43_149_42_37 | coord = 3_43_149_37_21 | co
     p_delay(6);
     ~forcemove($dest);
     cam_reset;
-    stat_advance(agility, 300);
+    ~givexp(agility, 300);
 }

@@ -133,7 +133,7 @@ if(%temple_sanctity_p < 100) {
 }
 
 //1 exp per 2 resources spent
-stat_advance(crafting, divide($resource_amount,2));
+~givexp(crafting, divide($resource_amount,2));
 
 def_int $current_wall_state = loc_param(temple_wall_level);
 //todo: Find better breakpoints

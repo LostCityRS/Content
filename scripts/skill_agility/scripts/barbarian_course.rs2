@@ -27,7 +27,7 @@ loc_anim(ropeswing_long);
 ~agility_exactmove(human_ropeswing_long, 20, 0, $start_pos, movecoord($start_pos, 0, 0, -5), 45, 70, ^exact_south, false);
 mes("You skillfully swing across.");
 sound_synth(swing_across, 0, 0);
-stat_advance(agility, 200);
+~givexp(agility, 200);
 ~update_barbarian_varp(1);
 
 [oploc1,barbarian_log_balance]
@@ -62,7 +62,7 @@ sound_synth(log_balance, 2, 0);
 mes("...You make it safely to the other side.");
 ~forcemove(movecoord(coord, -1, 0, 0));
 ~update_bas;
-stat_advance(agility, 125);
+~givexp(agility, 125);
 ~update_barbarian_varp(2);
 
 [oploc1,barbarian_obstacle_net]
@@ -101,7 +101,7 @@ p_teleport(movecoord(coord, 0, 0, -1));
 sound_synth(balancing_ledge, 1, 0);
 mes("You skillfully edge across the gap.");
 p_delay(0);
-stat_advance(agility, 200);
+~givexp(agility, 200);
 ~update_barbarian_varp(4);
 
 [oploc1,castlecrumbly1]
@@ -117,7 +117,7 @@ def_coord $start = movecoord(loc_coord, -1, 0, 0);
 ~forcewalk2($start);
 sound_synth(climb_wall, 0, 40);
 ~agility_exactmove(human_walk_crumbledwall, 30, 2, $start, movecoord($start, 2, 0, 0), 30, 100, ^exact_east, true);
-stat_advance(agility, 125);
+~givexp(agility, 125);
 if(loc_coord = 0_39_55_46_33) {
     ~update_barbarian_varp(5);
 }
@@ -143,7 +143,7 @@ if(%barb_obstacle_pipe_used >= map_clock) {
 %barb_obstacle_pipe_used = calc(map_clock + 4);
 ~agility_exactmove(human_doublepipesqueeze, 30, 3, $start_coord, movecoord($start_coord, 0, 0, $dist), 30, 126, $dir, true);
 sound_synth(squeeze_in, 0, 0);
-stat_advance(agility, 100);
+~givexp(agility, 100);
 p_delay(0);
 
 [proc,update_barbarian_varp](int $completed)
@@ -151,6 +151,6 @@ if(calc(%barbarian_course_progress + 1) >= $completed) {
     %barbarian_course_progress = $completed;
 }
 if(%barbarian_course_progress = 5) {
-    stat_advance(agility, 420);
+    ~givexp(agility, 420);
     %barbarian_course_progress = 0;
 }

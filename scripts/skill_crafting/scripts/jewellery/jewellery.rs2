@@ -245,7 +245,7 @@ if ($gem ! null) {
 }
 inv_add(inv, $product, 1);
 
-stat_advance(crafting, $productexp);
+~givexp(crafting, $productexp);
 
 if ($bar = gold_bar) {
     // No message for perfect gold items https://youtu.be/e8btuenT4nE?t=729
@@ -323,7 +323,7 @@ if_close;
 p_delay(2);
 inv_del(inv, silver_bar, 1);
 inv_add(inv, $product, 1);
-stat_advance(crafting, struct_param($struct, productexp));
+~givexp(crafting, struct_param($struct, productexp));
 // Confirmed, no period at the end. https://i.imgur.com/sCKRVO9.png
 mes("You make <~add_article(struct_param($struct, name))>");
 
@@ -341,7 +341,7 @@ mes("You make <~add_article(struct_param($struct, name))>");
 // inv_del(inv, gold_bar, 1);
 // inv_del(inv, $gem, 1);
 // inv_add(inv, $product, 1);
-// stat_advance(crafting, $productexp);
+// ~givexp(crafting, $productexp);
 
 // $count = calc($count - 1);
 // if ($count < 1) {
@@ -360,7 +360,7 @@ mes("You make <~add_article(struct_param($struct, name))>");
 // [weakqueue,crafting_silver](int $productexp, namedobj $product)
 // inv_del(inv, silver_bar, 1);
 // inv_add(inv, $product, 1);
-// stat_advance(crafting, $productexp);
+// ~givexp(crafting, $productexp);
 
 // // plays the anim again
 // anim(human_furnace, 0);

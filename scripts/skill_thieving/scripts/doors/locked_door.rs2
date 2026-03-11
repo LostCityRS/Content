@@ -174,7 +174,7 @@ if ($locked = true) {
     mes("You manage to pick the lock.");
 
     def_int $experience = db_getfield($data, locked_door:experience, 0);
-    stat_advance(thieving, $experience);
+    ~givexp(thieving, $experience);
 
     if ($gate = true) {
         ~open_and_close_metal_gate2($replacement, $entering, $mirror);

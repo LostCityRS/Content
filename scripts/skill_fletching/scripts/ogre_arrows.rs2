@@ -37,7 +37,7 @@ inv_add(inv, ogre_arrow_shaft, $shaft_count);
 
 mes("You carefully cut the wood into <tostring($shaft_count)> arrow shafts.");
 
-stat_advance(fletching, multiply($shaft_count, 18));
+~givexp(fletching, multiply($shaft_count, 18));
 
 
 [label,make_wolf_bone_tips]
@@ -63,8 +63,8 @@ inv_add(inv, wolfbone_arrowheads, $tip_count);
 
 mes("You chisel <tostring($tip_count)> wolf bone arrow tips.");
 
-stat_advance(fletching, multiply($tip_count, 25));
-stat_advance(crafting, multiply($tip_count, 25));
+~givexp(fletching, multiply($tip_count, 25));
+~givexp(crafting, multiply($tip_count, 25));
 
 
 [label,make_ogre_headless_arrows]
@@ -104,7 +104,7 @@ inv_del(inv, ogre_arrow_shaft, $arrow_count);
 
 inv_add(inv, ogre_headless_arrow, $arrow_count);
 
-stat_advance(fletching, multiply($arrow_count, 15));
+~givexp(fletching, multiply($arrow_count, 15));
 
 
 [label,make_ogre_arrows]
@@ -141,4 +141,4 @@ if (%chompybird ! ^chompybird_complete) {
     %chompybird_kills = setbit(%chompybird_kills, ^chompybird_varbit_made_arrows);
 }
 
-stat_advance(fletching, multiply($arrow_count, 10));
+~givexp(fletching, multiply($arrow_count, 10));

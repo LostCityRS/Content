@@ -439,7 +439,7 @@ if (stat_random(thieving, 0, 255) = false) {
 ~mesbox("CLICK!");
 ~chatplayer("<p,happy>Easy as pie...");
 ~mesbox("You tumble the lock mechanism and the door opens easily.");
-stat_advance(thieving, 100);
+~givexp(thieving, 100);
 ~open_and_close_double_door2($entering, $side, door_open);
 
 [label,use_on_outer_ancient_gate](int $side)
@@ -539,7 +539,7 @@ if (stat_random(mining, 90, 255) = true) {
     if (inv_freespace(inv) > 0) {
         mes("You get some rock.");
         inv_add(inv, swamprocks1, 1);
-        stat_advance(mining, 350);
+        ~givexp(mining, 350);
     }
     def_int $move = -1;
     if(coordz(coord) < coordz(loc_coord)) {
@@ -1500,7 +1500,7 @@ else {
     mes("You forge a beautiful bowl out of solid gold.");
     inv_del(inv, gold_bar, 2);
     inv_add(inv, goldbowl_empty, 1);
-    stat_advance(smithing, 300);
+    ~givexp(smithing, 300);
 }
 
 [opheld5,_gold_bowl]

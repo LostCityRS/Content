@@ -222,10 +222,10 @@ switch_int(~p_choice2("I can see a constellation.", 1, "What am I looking at?", 
 switch_int($constellation_numb) {
     case ^sign_capricorn :
         ~chatnpc("<p,happy>Capricorn the goat.|You are granted an increase in strength.");
-        stat_advance(strength, 8750);
+        ~givexp(strength, 8750);
     case ^sign_virgo :
         ~chatnpc("<p,happy>Virgo the virtuous.|The strong and peaceful nature of Virgo boosts your defence.");
-        stat_advance(defence, 8750);
+        ~givexp(defence, 8750);
     case ^sign_libra :
         // https://web.archive.org/web/20050521225136/http://www.runeweb.net/index.php?page=rs2-quest-observator mentions it in text
         ~chatnpc("<p,happy>Libra the scales.|The scales of justice award you with law runes.");
@@ -238,10 +238,10 @@ switch_int($constellation_numb) {
         inv_add(inv, weapon_poison, 1);
     case ^sign_leo :
         ~chatnpc("<p,happy>Leo the lion.|The power of the lion has increased your hitpoints.");
-        stat_advance(hitpoints, 8750);
+        ~givexp(hitpoints, 8750);
     case ^sign_aries :
         ~chatnpc("<p,happy>Aries the ram.|The ram's strength improves your attack abilites.");
-        stat_advance(attack, 8750);
+        ~givexp(attack, 8750);
     case ^sign_sagittarius :
         ~chatnpc("<p,happy>Sagittarius the Centaur.|The Gods award you a maple longbow.");
         inv_add(inv, maple_longbow, 1);
@@ -258,7 +258,7 @@ switch_int($constellation_numb) {
         ~chatnpc("<p,happy>Cancer the crab.|The armoured crab gives you an amulet of defence.");
         inv_add(inv, amulet_of_defence, 1);
 }
-stat_advance(crafting, 22500);
+~givexp(crafting, 22500);
 inv_add(inv, uncut_sapphire, 1);
 %itgronigen = ^itgronigen_complete;
 %qp = calc(%qp + ^itgronigen_questpoints);

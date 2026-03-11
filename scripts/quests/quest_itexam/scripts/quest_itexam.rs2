@@ -38,8 +38,8 @@ return (testbit(%itexam_bits, $bit));
 
 [queue,itexam_complete]
 ~itexam_set_progress(^itexam_complete);
-stat_advance(mining, 153000);
-stat_advance(herblore, 20000);
+~givexp(mining, 153000);
+~givexp(herblore, 20000);
 inv_add(inv, gold_bar, 2);
 session_log(^log_adventure, "Quest complete: Digsite");
 // https://web.archive.org/web/20050612015017/http://runescape.salmoneus.net/quests/DigsiteQuest/digsitecomplt.pnghell

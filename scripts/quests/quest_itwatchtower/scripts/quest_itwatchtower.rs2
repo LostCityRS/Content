@@ -406,7 +406,7 @@ if(npc_find(coord, ogre_guard4, 8, 0) = true) {
             }
             mes("You daringly jump across the chasm.");
             inv_del(inv, coins, 20);
-            stat_advance(agility, 50);
+            ~givexp(agility, 50);
             p_teleport(0_39_47_34_21);
             // jumping seq doesn't exist in our verison, maybe just teleport at this point?
             ~chatplayer("<p,happy>Phew! I just made it.");
@@ -448,7 +448,7 @@ loc_add($loc_coord, inviswall, $angle, $shape, 3);
 mes("You enter the tunnel.");
 mes("So that's how the skavids are getting into Yanille!");
 p_teleport(0_40_48_25_36);
-stat_advance(agility, 40);
+~givexp(agility, 40);
 
 [oploc1,shamangate] @open_shamancave_gate;
 [oploc1,shamangate2] @open_shamancave_gate;
@@ -528,7 +528,7 @@ if(~watchtower_has_all_crystals = true & %itwatchtower = ^itwatchtower_found_all
     inv_del(inv, powering_crystal4, ^max_32bit_int);
     inv_del(bank, powering_crystal4, ^max_32bit_int);
     p_delay(3);
-    stat_advance(magic, 153000);
+    ~givexp(magic, 153000);
     inv_add(inv, coins, 5000);
     inv_add(inv, watchtowerspell, 1);
     queue(itwatchtower_quest_complete, 0, 0);

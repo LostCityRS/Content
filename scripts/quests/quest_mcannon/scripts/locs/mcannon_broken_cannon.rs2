@@ -67,7 +67,7 @@ p_delay(2);
 if (~multi_cannon_fail_to_fix_or_find_problem() = true) {
     mes("After some tinkering you manage to fix it.");
     %mcannonmulti = setbit(%mcannonmulti, $bit);
-    stat_advance(crafting, 12); // 1.2xp gave 1.25 on classic
+    ~givexp(crafting, 12); // 1.2xp gave 1.25 on classic
     p_delay(2);
 } else {
     mes("It's too hard you fail to fix it.");

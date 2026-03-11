@@ -64,10 +64,10 @@ if (stat_random(woodcutting, 30, 253) = true) {
     } else {
         mes("You have no empty waterskins to put the water in.");
     }
-    stat_advance(woodcutting, 100);
+    ~givexp(woodcutting, 100);
 } else {
     mes("You fail to cut the cactus correctly and it gives no water this time.");
-    stat_advance(woodcutting, 4);
+    ~givexp(woodcutting, 4);
 }
 
 // Temp note: dur does not need updated

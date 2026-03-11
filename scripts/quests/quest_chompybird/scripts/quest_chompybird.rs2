@@ -43,9 +43,9 @@ inv_add(inv, filled_ogre_bellow3, 1);
 // https://x.com/JagexAsh/status/1820722879937343844, 294 is probably cleared entirely after quest
 %chompybird = ^chompybird_complete;
 %chompybird_kills = 0;
-stat_advance(fletching, 2620);
-stat_advance(cooking, 14700);
-stat_advance(ranged, 7350);
+~givexp(fletching, 2620);
+~givexp(cooking, 14700);
+~givexp(ranged, 7350);
 // todo is ogre bow given separately here?
 session_log(^log_adventure, "Quest complete: Big Chompy Bird Hunting");
 ~send_quest_complete(questlist:chompybird, ogre_bow, 250, ^chompybird_questpoints, "You have completed the 'Chompy Bird' Quest!");

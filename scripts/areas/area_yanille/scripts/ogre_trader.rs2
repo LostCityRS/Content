@@ -36,7 +36,7 @@ mes("You cautiously grab a cake from the stall.");
 inv_add(inv, rockcake, 1);
 // Temp note: dur updated
 loc_change(empty_rock_cake_counter, 12); // 11t osrs
-stat_advance(thieving, 65);
+~givexp(thieving, 65);
 
 [opnpc1,falseogretrader]
 ~chatnpc("<p,angry>Grrr, little animal; I shall destroy you!");

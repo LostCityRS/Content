@@ -82,7 +82,7 @@ if(stat_random(thieving, 100, 240) = false) {
 } else {
     anim(human_pickpocket, 0);
     sound_synth(pick, 0, 0);
-    stat_advance(thieving, 104);
+    ~givexp(thieving, 104);
 
     def_int $rand = random(11);
 

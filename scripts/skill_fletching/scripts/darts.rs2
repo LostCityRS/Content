@@ -58,5 +58,5 @@ if ($darts_count > 1) {
 } else {
     mes("You finish making one dart.");
 }
-stat_advance(fletching, multiply($darts_count, db_getfield($data, fletching_table:experience, 0)));
+~givexp(fletching, multiply($darts_count, db_getfield($data, fletching_table:experience, 0)));
 inv_add(inv, $product, $darts_count);

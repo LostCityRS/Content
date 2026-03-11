@@ -107,7 +107,7 @@ p_opobj(4);
 
 [proc,firemaking_success](coord $fire_coord, obj $log)
 obj_del;
-stat_advance(firemaking, oc_param($log, productexp));
+~givexp(firemaking, oc_param($log, productexp));
 sound_synth(fire_lit, 0, 0);
 facesquare($fire_coord);
 //mes("<tostring(map_clock)>, <tostring(%action_delay)>: The fire catches and the logs begin to burn.");

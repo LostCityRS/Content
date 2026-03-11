@@ -113,7 +113,7 @@ sound_synth(tightrope, 1, 0);
 ~forcemove(movecoord(coord, 0, 0, $z_dist));
 ~update_bas;
 ~forcemove(movecoord(coord, 0, 0, $z_dist));
-stat_advance(agility, 100);
+~givexp(agility, 100);
 
 [aploc1,agilityarena_ropeswing]
 def_int $dz = 0;
@@ -175,7 +175,7 @@ if(stat_random(agility, 100, 310) = false) {
 loc_anim(ropeswing_long);
 ~agility_exactmove(human_ropeswing_long, 20, 0, $start_pos, movecoord($start_pos, $dx, 0, $dz), 45, 70, $dir, false);
 sound_synth(swing_across, 0, 0);
-stat_advance(agility, 200);
+~givexp(agility, 200);
 
 [oploc1,agilityarena_pillar_top]
 p_delay(0);
@@ -216,7 +216,7 @@ sound_synth(jump_no_land, 0, 0);
 ~agility_exactmove(human_spot_jump, 0, 1, movecoord(loc_coord, multiply(4, $dx), 0, multiply(4, $dz)), movecoord(loc_coord, multiply(5, $dx), 0, multiply(5, $dz)), 15, 30, $dir, false);
 sound_synth(jump_no_land, 0, 0);
 ~agility_exactmove(human_spot_jump, 0, 1, movecoord(loc_coord, multiply(5, $dx), 0, multiply(5, $dz)), movecoord(loc_coord, multiply(6, $dx), 0, multiply(6, $dz)), 15, 30, $dir, false);
-stat_advance(agility, 180);
+~givexp(agility, 180);
 
 [oploc1,agilityarena_handholds]
 if(stat(agility) < 20) {
@@ -293,7 +293,7 @@ sound_synth(handholds_loop, 0, 5);
 ~agility_exactmove($middle_seq, 0, 1, movecoord(loc_coord, multiply(5, $dx), 0, multiply(5, $dz)), movecoord(loc_coord, multiply(6, $dx), 0, multiply(6, $dz)), 26, 44, $dir, false);
 sound_synth(handholds_off, 0, 0);
 ~agility_exactmove($end_seq, 0, 1, movecoord(loc_coord, multiply(6, $dx), 0, multiply(6, $dz)), movecoord(loc_coord, multiply(7, $dx), 0, multiply(7, $dz)), 26, 44, $dir, false);
-stat_advance(agility, 220);
+~givexp(agility, 220);
 
 [oploc1,agilityarena_lowwall]
 // https://youtu.be/eHMW2KRp9_Q?si=0DNrQy3ljO7yjbZ9&t=90 this might be arrivedelay, i suspect not though
@@ -324,7 +324,7 @@ if(stat_random(agility, 220, 460) = false) {
 }
 sound_synth(climb_wall, 0, 40);
 ~agility_exactmove(human_lowwall, 0, 3, coord, movecoord(coord, multiply(3, $dx), 0, multiply(3, $dz)), 0, 144, $dir, true);
-stat_advance(agility, 80);
+~givexp(agility, 80);
 
 [oploc1,agilityarena_monkeybars_end]
 p_delay(0);
@@ -381,7 +381,7 @@ anim(human_monkeybars_off, 0);
 sound_synth(monkeybars_off, 0, 0);
 p_delay(0);
 p_teleport(movecoord(coord, $dx, 0, $dz));
-stat_advance(agility, 140);
+~givexp(agility, 140);
 
 [oploc1,agilityarena_ledgebalance] @agilityarena_ledge;
 [oploc1,agilityarena_ledgebalance2] @agilityarena_ledge;
@@ -425,7 +425,7 @@ if($end_seq ! null) {
     p_delay(0);
 }
 ~update_bas;
-stat_advance(agility, 160);
+~givexp(agility, 160);
 
 [oploc1,agilityarena_logbalance1] @agilityarena_logbalance;
 [oploc1,agilityarena_logbalance2] @agilityarena_logbalance;
@@ -467,7 +467,7 @@ sound_synth(log_balance, 1, 0);
 ~forcemove(movecoord(coord, $x_dist, 0, $z_dist));
 ~update_bas;
 ~forcemove(movecoord(coord, $x_dist, 0, $z_dist));
-stat_advance(agility, 120);
+~givexp(agility, 120);
 
 [oploc1,agilityarena_plank] @agilityarena_plank;
 [oploc1,agilityarena_plank2] @agilityarena_plank;
@@ -497,7 +497,7 @@ if(loc_find(coord, agilityarena_plank_broke1) = true) {
 }
 sound_synth(plankwalk, 4, 10);
 ~forcemove(movecoord(coord, multiply($x_dist, 5), 0, 0));
-stat_advance(agility, 60);
+~givexp(agility, 60);
 
 [oploc1,agilityarena_climbingrope]
 p_arrivedelay;

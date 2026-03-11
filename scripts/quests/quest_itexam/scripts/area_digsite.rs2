@@ -24,8 +24,8 @@ mes("You swirl away the excess water");
 p_delay(1);
 inv_del(inv, tray_empty, 1);
 inv_add(inv, tray_mud, 1);
-stat_advance(mining, 20);
-stat_advance(fishing, 20);
+~givexp(mining, 20);
+~givexp(fishing, 20);
 ~objbox(tray_mud, "You lift the full tray from the water.", 250, 0, divide(^objbox_height, 2));
 
 [opheld2,tray_empty]
@@ -197,7 +197,7 @@ if ($item ! trowel) {
     return;
 }
 mes("You dig through the earth...");
-stat_advance(mining, 50);
+~givexp(mining, 50);
 p_delay(6);
 
 // I'm not sure why this behaves differently. The osrs training site is incredibly broken in the live game.
@@ -275,7 +275,7 @@ if (inv_getobj(worn, ^wearpos_feet) ! leather_boots) {
     return;
 }
 mes("You dig through the earth...");
-stat_advance(mining, 60);
+~givexp(mining, 60);
 p_delay(6);
 @level_1_dig_loot_table;
 
@@ -343,7 +343,7 @@ if (inv_freespace(inv) = 0) {
 }
 
 mes("You dig through the earth...");
-stat_advance(mining, 70);
+~givexp(mining, 70);
 p_delay(6);
 @level_2_dig_loot_table;
 
@@ -434,7 +434,7 @@ if (inv_total(inv, specimen_brush) = 0) {
     return;
 }
 mes("You dig through the earth...");
-stat_advance(mining, 80);
+~givexp(mining, 80);
 p_delay(6);
 @level_3_dig_loot_table;
 
@@ -526,7 +526,7 @@ if (inv_total(inv, specimen_jar) = 0) {
 
     mes("You sift through the earth in the tray.");
     anim(human_pickupfloor, 0);
-    stat_advance(mining, 5);
+    ~givexp(mining, 5);
     p_delay(3);
 
     def_int $rand = random(11);
@@ -621,7 +621,7 @@ if (stat(agility) < 10) {
 }
 mes("You try to climb down the rope.");
 mes("You lower yourself into the shaft.");
-stat_advance(agility, 20);
+~givexp(agility, 20);
 p_delay(1);
 mes("You find yourself in a cavern...");
 if (~itexam_progress >= ^itexam_removed_blockage) {
@@ -674,7 +674,7 @@ if (stat(agility) < 10) {
 }
 mes("You try to climb down the rope.");
 mes("You lower yourself into the shaft.");
-stat_advance(agility, 20);
+~givexp(agility, 20);
 p_delay(1);
 mes("You find yourself in a cavern.");
 if (~itexam_progress >= ^itexam_removed_blockage) {

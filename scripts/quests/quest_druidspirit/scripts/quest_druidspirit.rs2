@@ -54,11 +54,11 @@ if(stat_random(agility, 60, 252) = false) {
         p_teleport(movecoord(coord, 0, 0, 1));
     }
     ~damage_self(~random_range(2, 7));
-    stat_advance(agility, 20);
+    ~givexp(agility, 20);
     return;
 }
 ~agility_exactmove(human_steppingstonejump, 30, 3, coord, $dest_coord, 58, 70, $dir, false);
-stat_advance(agility, 150);
+~givexp(agility, 150);
 
 [opobj3,bowl_empty_filliman]
 if(obj_coord = 0_53_52_45_9) {
@@ -420,9 +420,9 @@ loc_change(peartree_druidicspirit, 25);
 
 [queue,druidspirit_quest_complete]
 %druidspirit = ^druidspirit_complete;
-stat_advance(crafting, 30000);
-stat_advance(hitpoints, 20000);
-stat_advance(defence, 20000);
+~givexp(crafting, 30000);
+~givexp(hitpoints, 20000);
+~givexp(defence, 20000);
 session_log(^log_adventure, "Quest complete: Nature Spirit");
 queue(druidspirit_postquest, 0, 0);
 // https://web.archive.org/web/20061229194746im_/http://runeweb.net/rathofdoom/quests/naturespirit/8.png

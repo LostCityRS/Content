@@ -205,7 +205,7 @@ if(%chompybird < ^chompybird_complete | %chompybird_kills >= 100000) {
 mes("You scratch a notch on your bow for the chompy bird kill.");
 %chompybird_kills = calc(%chompybird_kills + 1);
 if(%chompybird_kills = 4000) {
-    stat_advance(ranged, 300000);
+    ~givexp(ranged, 300000);
     mes("You've been awarded ranged experience for your relentless pursuit of chompies!");
     // https://youtu.be/cQ_HQgUodI0?si=NMThWxkpJozNbe57&t=121
     ~objbox(chompy_bird_obj, "@blu@**** Congratulations! 4000 Chompies! ****|@dre@~ You're an Expert Dragon Archer! ~|This is the highest honour that can be bestowed on any chompy bird hunter.", 250, 0, ^objbox_height); 

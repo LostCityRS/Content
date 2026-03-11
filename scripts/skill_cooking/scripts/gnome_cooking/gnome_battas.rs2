@@ -69,7 +69,7 @@ if ($spicy_worm_count = 1 & $cheese_count = 1 & $total = 2) {
 }
 // toad legs batta
 if ($seasoned_toad_legs_count = 1 & $cheese_count = 1 & $total = 2) {
-    stat_advance(cooking, 600); // finish
+    ~givexp(cooking, 600); // finish
     return(toad_batta);
 }
 // cheese & tomato batta
