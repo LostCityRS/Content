@@ -42,7 +42,10 @@ def_int $amt = 0;
 def_int $count = 0;
 def_obj $obj;
 
-$obj, $amt = ~skill_multi2(wool, flax);
+$obj, $amt = ~skill_multi2(
+    wool, 0, -2, 200, "\\n\\n\\n\\nWool", 
+    flax, 0, -3, 200, "\\n\\n\\n\\nFlax"
+);
 $amt = min($amt, inv_total(inv, $obj));
 def_struct $struct = oc_param($obj, crafting_spinning_struct);
 
