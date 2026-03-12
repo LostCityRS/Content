@@ -87,7 +87,7 @@ if (inv_total(inv, thread) < 1) {
 %thread_used = calc(%thread_used + 1);
 if (%thread_used > 4) {
     inv_del(inv, thread, 1);
-    mes("You use up one of your reels of Thread.");
+    mes("You use up one of your reels of thread"); // https://i.imgur.com/cpc8CJ0.png (pre sept 06)
     %thread_used = 0;
 }
 inv_del(inv, $leather, $leather_count);

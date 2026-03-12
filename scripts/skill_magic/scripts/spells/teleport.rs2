@@ -23,7 +23,7 @@ if (p_finduid(uid) = true) {
         return;
     }
     if($spell = ^watchtower_teleport & %itwatchtower < ^itwatchtower_complete) {
-        mes("You must have completed Watch Tower to use this spell.");
+        mes("You need to have completed the Watchtower Quest to use this spell."); // https://i.imgur.com/FelStNH.png (pre sept 06)
         return;
     }
     // https://www.reddit.com/r/2007scape/comments/b4vdki/watchtower_teleport_not_working_despite/, https://runescape.salmoneus.net/forums/topic/212538-cant-do-ardougne-tele-why-is-it-so/
