@@ -18,7 +18,7 @@ p_opnpct(db_getfield($spell_data, magic_spell_table:spellcom, 0));
 
 // osrs's opnpct triggers are unused
 [apnpct,magic:wind_strike]
-if (%tutorial < ^tutorial_complete) {
+if (~in_tutorial_island(coord) = true) {
    ~pvm_tutorial_spell(^wind_strike);
 } else {
    ~pvm_default_spell(^wind_strike);
