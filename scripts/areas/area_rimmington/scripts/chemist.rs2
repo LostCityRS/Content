@@ -1,0 +1,26 @@
+[oplocu,lamp_oil_still]
+def_obj $useitem = last_useitem;
+
+if(last_useitem = swamp_tar) {
+    if (%chemist_still_full ! false) {
+        mes("There's already oil in the still"); // TODO: Real message
+        return;
+    }
+
+    inv_del(inv, swamp_tar, 1);
+    %chemist_still_full = true;
+    mes("You fill the still with swamp tar..."); // TODO: Real message
+} else if(last_useitem = tog_sapphire_lantern_empty) {
+    if (%chemist_still_full ! true) {
+        mes("There is no oil in the still for you to use..."); // TODO: Real message
+        return;
+    }
+
+    inv_del(inv, tog_sapphire_lantern_empty, 1);
+    inv_add(inv, tog_sapphire_lantern_unlit, 1);
+    mes("You fill your lantern with oil..."); // TODO: Real message
+    %chemist_still_full = false;
+} else {
+    mes("Nothing interesting happens.");
+}
+
