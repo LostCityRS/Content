@@ -380,3 +380,28 @@ p_teleport($start_coord);
 p_delay(0);
 ~agility_exactmove(human_crawling, 30, 2, $start_coord, $end_coord, 30, 94, $dir, true);
 p_teleport($walk_coord);
+
+
+[aploc1,swamp_cave_steppingstone_b]
+def_seq $fall_seq = human_wobbleandfall_l;
+
+if (distance(loc_coord, coord) > 2) {
+    p_aprange(2);
+    return;
+}
+
+// TODO: Implement falling
+// TODO: On fall, if inventory has light source(s), need to extinguish them.
+
+if(coordz(coord) > coordz(loc_coord)) { // Player is north of stone
+    ~agility_exactmove(human_steppingstonejump, 20, 2, coord, movecoord(coord, 0, 0, -2), 48, 60, ^exact_south, false);
+    p_delay(0);
+    ~agility_exactmove(human_steppingstonejump, 20, 2, coord, movecoord(coord, 0, 0, -2), 48, 60, ^exact_south, false);
+} else { // Player is south of stone
+    // TODO: This is kinda hacky and should probably figure out a better way to do this
+    def_coord $start = 0_50_149_21_16;
+    def_coord $mid = 0_50_149_21_18;
+    ~agility_exactmove(human_steppingstonejump, 20, 2, $start, movecoord($start, 0, 0, 2), 48, 60, ^exact_north, false);
+    p_delay(0);
+    ~agility_exactmove(human_steppingstonejump, 20, 2, $mid, movecoord($mid, 0, 0, 2), 48, 60, ^exact_north, false);
+}

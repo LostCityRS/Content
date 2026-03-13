@@ -1,0 +1,20 @@
+
+// TODO: If no light source, need to prompt the player to let them know it's scary, etc.
+[oploc1,goblin_cave_entrance]
+// In https://www.youtube.com/watch?v=0fQ4ewyy_Ps there was no animation to climb down after the notice
+//anim(human_pickupfloor, 0);
+//p_delay(0);
+p_telejump(0_49_149_33_35);
+
+
+[oploc1,swamp_cave_climbing_rope]
+anim(human_reachforladder, 0);
+p_delay(0);
+p_telejump(0_49_49_32_36);
+
+
+[oploc1,tog_cave_down]
+p_telejump(2_50_148_19_60);
+
+[oploc1,tog_cave_up]
+p_telejump(0_50_149_25_6);
