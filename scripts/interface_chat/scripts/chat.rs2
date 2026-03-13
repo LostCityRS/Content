@@ -717,6 +717,52 @@ if_setposition(skill_multi2:model_b, $x2, $y2);
 if_setobject(skill_multi2:model_a, $obj1, $scale1);
 if_setobject(skill_multi2:model_b, $obj2, $scale2);
 
+if_settext(skill_multi2:prompt, "What would you like to make?");
+if_settext(skill_multi2:make1_a, $string1);
+if_settext(skill_multi2:make1_b, $string2);
+
+if_addresumebutton(skill_multi2:make1_a);
+if_addresumebutton(skill_multi2:make5_a);
+if_addresumebutton(skill_multi2:make10_a);
+if_addresumebutton(skill_multi2:makex_a);
+if_addresumebutton(skill_multi2:make1_b);
+if_addresumebutton(skill_multi2:make5_b);
+if_addresumebutton(skill_multi2:make10_b);
+if_addresumebutton(skill_multi2:makex_b);
+p_pausebutton;
+
+def_component $last_com = last_com;
+if(%weakqueue_map_clock = map_clock) {
+    if_close;
+    p_delay(0);
+}
+
+switch_component ($last_com) {
+    case skill_multi2:makex_a : 
+        p_countdialog;
+        return($obj1, last_int);
+    case skill_multi2:make10_a : return($obj1, 10);
+    case skill_multi2:make5_a : return($obj1, 5);
+    case skill_multi2:make1_a : return($obj1, 1);
+    case skill_multi2:makex_b : 
+        p_countdialog;
+        return($obj2, last_int);
+    case skill_multi2:make10_b : return($obj2, 10);
+    case skill_multi2:make5_b : return($obj2, 5);
+    case skill_multi2:make1_b : return($obj2, 1);
+    case default : return(null, null);
+}
+
+[proc,skill_multi2_header](string $header, namedobj $obj1, int $x1, int $y1, int $scale1, string $string1, namedobj $obj2, int $x2, int $y2, int $scale2, string $string2)(namedobj, int)
+if_openchat(skill_multi2);
+
+if_setposition(skill_multi2:model_a, $x1, $y1);
+if_setposition(skill_multi2:model_b, $x2, $y2);
+
+if_setobject(skill_multi2:model_a, $obj1, $scale1);
+if_setobject(skill_multi2:model_b, $obj2, $scale2);
+
+if_settext(skill_multi2:prompt, $header);
 if_settext(skill_multi2:make1_a, $string1);
 if_settext(skill_multi2:make1_b, $string2);
 
