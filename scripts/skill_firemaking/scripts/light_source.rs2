@@ -9,3 +9,13 @@ inv_add(inv, $product, 1);
 if($product ! lit_black_candle & $product ! lit_candle) {
     mes("You light the <lowercase(oc_name($product))>.");
 }
+
+[label,extinguish_light_source](obj $lit_source)
+def_namedobj $product = oc_param($lit_source, product);
+inv_del(inv, $lit_source, 1);
+inv_add(inv, $product, 1);
+mes("You extinguish the <lowercase(oc_name($product))>."); // TODO: Check real message
+
+[opheld1,_light_source_lit]
+@extinguish_light_source(last_item);
+

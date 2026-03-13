@@ -388,6 +388,7 @@ iop1=Extinguish
 weight=1oz
 category=light_source_lit
 tradeable=no
+param=product,unlit_black_candle
 
 [lit_candle]
 name=Lit candle
@@ -402,6 +403,7 @@ model=obj_lit_black_candle
 iop1=Extinguish
 weight=1oz
 category=light_source_lit
+param=product,unlit_candle
 
 [cert_lit_candle]
 name=Lit candle
@@ -5965,6 +5967,7 @@ members=yes
 iop1=Extinguish
 weight=500g
 category=light_source_lit
+param=product,torch_unlit
 
 [cert_torch_lit]
 name=Torch
@@ -53476,6 +53479,7 @@ cost=28
 members=yes
 weight=1lb
 category=light_source_lit
+param=product,oil_lamp_unlit
 
 [oil_lamp_empty]
 name=Oil lamp
@@ -53540,6 +53544,7 @@ cost=15
 members=yes
 weight=2lb
 category=light_source_lit
+param=product,candle_lantern_unlit
 
 [candle_lantern_black_unlit]
 name=Candle lantern
@@ -53576,6 +53581,7 @@ cost=15
 members=yes
 weight=2lb
 category=light_source_lit
+param=product,candle_lantern_black_unlit
 
 [oil_lantern_empty]
 name=Oil lantern
@@ -53624,6 +53630,7 @@ cost=125
 members=yes
 weight=2lb
 category=light_source_lit
+param=product,oil_lantern_unlit
 
 [oil_lantern_frame]
 name=Oil lantern frame
@@ -53709,7 +53716,7 @@ certtemplate=template_for_cert
 name=Bullseye lantern
 desc=A sturdy steel lantern casting a bright beam.
 model=obj_bullseye_lantern_lit
-iop2=Extinguish
+iop1=Extinguish
 2dzoom=1190
 2dyan=120
 2dxan=28
@@ -53717,6 +53724,7 @@ cost=420
 members=yes
 weight=3lb
 category=light_source_lit
+param=product,bullseye_lantern_unlit
 
 [wallbeast_spike_helmet]
 name=Spiny helmet
@@ -55459,6 +55467,7 @@ members=yes
 iop1=Extinguish
 weight=3lb
 category=light_source_lit
+param=product,tog_sapphire_lantern_unlit
 
 [tog_stone]
 name=Magic stone
@@ -84097,6 +84106,7 @@ cost=130
 wearpos=lefthand
 weight=5lb
 category=light_source_lit
+param=product,slayer_buglan_off
 
 [potato_chilli+carne]
 name=Chilli potato
