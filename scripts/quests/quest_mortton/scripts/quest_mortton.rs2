@@ -60,28 +60,6 @@ stat_advance(herblore, 3350);
 ~chatplayer("<p,neutral>No thanks, I want to keep hold if it a bit longer.");
 ~chatnpc("<p,neutral>Oh, that's a shame... Come back if you change your|mind.");
 
-[oploc1,shadelairentrancel]
-if(testbit(%morttonmulti, ^mortton_unlocked_shade_lair) = ^false & ~get_shadekeys_total = 0) {
-    mes("The door seems locked. Perhaps you need a key.");
-    sound_synth(locked, 0, 0);
-    return;
-}
-
-[oploc1,shadelairentrancer]
-if(testbit(%morttonmulti, ^mortton_unlocked_shade_lair) = ^false & ~get_shadekeys_total = 0) {
-    mes("The door seems locked. Perhaps you need a key.");
-    sound_synth(locked, 0, 0);
-    return;
-}
-
-[proc,get_shadekeys_total]()(int)
-def_int $total = 0;
-$total = add($total, inv_totalcat(inv, category_112)); //bronze
-$total = add($total, inv_totalcat(inv, category_113)); //steel
-$total = add($total, inv_totalcat(inv, category_114)); //black
-$total = add($total, inv_totalcat(inv, category_115)); //silver
-return ($total);
-
 [queue,mortton_quest_complete]
 %morttonquest = ^mortton_quest_complete;
 stat_advance(crafting,20000);
