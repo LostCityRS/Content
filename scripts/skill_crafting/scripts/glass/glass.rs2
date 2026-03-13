@@ -89,3 +89,38 @@ anim(human_glassblowing,0);
 mes("You make <$name>.");
 // give xp
 stat_advance(crafting, struct_param($struct, productexp));
+
+[opheldu,bullseye_lantern_empty]
+if (last_useitem = sapphire) {
+    inv_del(inv, bullseye_lantern_empty, 1);
+    inv_del(inv, sapphire, 1);
+    inv_add(inv, tog_sapphire_lantern_empty, 1);
+    inv_add(inv, bullseye_lantern_lens, 1);
+} else {
+    mes("Nothing interesting happens.");
+}
+
+[opheldu,bullseye_lantern_nolens]
+if (last_useitem = sapphire) {
+    inv_del(inv, bullseye_lantern_nolens, 1);
+    inv_del(inv, sapphire, 1);
+    inv_add(inv, tog_sapphire_lantern_empty, 1);
+} else if (last_useitem = bullseye_lantern_lens) {
+    if (map_members = ^false) {
+        mes(^mes_members_feature);
+        return;
+    }
+
+    if (stat(crafting) < 49) {
+        ~mesbox("You need at least 49 Crafting to make a Bullseye Lantern.");
+        return;
+    }
+
+    inv_del(inv, bullseye_lantern_nolens, 1);
+    inv_del(inv, bullseye_lantern_lens, 1);
+    inv_add(inv, bullseye_lantern_empty, 1);
+} else {
+    mes("Nothing interesting happens.");
+}
+
+// TODO: Need a game message for when you try and light an empty sapphire lantern
