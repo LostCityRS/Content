@@ -42,7 +42,8 @@ def_int $amt = 0;
 def_int $count = 0;
 def_obj $obj;
 
-$obj, $amt = ~skill_multi2(
+$obj, $amt = ~skill_multi2_header(
+    "What would you like to spin?",
     wool, 0, -2, 200, "\\n\\n\\n\\nWool", 
     flax, 0, -3, 200, "\\n\\n\\n\\nFlax"
 );
