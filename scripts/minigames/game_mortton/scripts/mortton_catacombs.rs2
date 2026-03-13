@@ -595,9 +595,10 @@ inv_add(inv, swamppaste, $paste_amount);
 ~objbox(swamppaste, "You find <tostring($paste_amount)> doses of swamp paste  at the bottom of the chest.", 250, 0, 0);
 
 [proc,ShadebronzeDrop](int $key_tier)(namedobj, int)
-//https://runescape.salmoneus.net/activities/shades-of-mortton.html
-//https://www.youtube.com/watch?v=QMrg9I5lVsc
-//guess based on these and osrs + rs3 droptables + silver droptable leak
+// https://runescape.salmoneus.net/activities/shades-of-mortton.html
+// https://www.youtube.com/watch?v=QMrg9I5lVsc
+// https://i.imgur.com/SFUHEv2.png
+// guess based on these and osrs + rs3 droptables + silver droptable leak
 def_namedobj $namedobj;
 def_int $count = 1;
 def_int $temp = add(1,sub(random(102),$key_tier));
@@ -624,7 +625,7 @@ if($temp < 40) {$namedobj=steel_scimitar;$count=1;}
 if($temp < 37) {$namedobj=black_mace;$count=1;}
 if($temp < 35) {$namedobj=black_axe;$count=1;}
 if($temp < 34) {$namedobj=steel_longsword;$count=1;}
-if($temp < 33) {$namedobj=steel_spear;$count=1;}
+if($temp < 33) {$namedobj=steel_spear;$count=1;} // this is black spear in 2005
 if($temp < 32) {$namedobj=chaosrune;$count=~random_range(10,29);}
 if($temp < 17) {$namedobj=steel_med_helm;$count=1;}
 if($temp < 12) {$namedobj=gold_bar;$count=3;}
@@ -633,8 +634,9 @@ if($temp < 2) {$namedobj=sapphire_ring;$count=1;}
 return ($namedobj,$count);
 
 [proc,ShadesteelDrop](int $key_tier)(namedobj, int)
-//https://runescape.salmoneus.net/activities/shades-of-mortton.html
-//guess based on these and osrs + rs3 droptables + silver droptable leak
+// https://runescape.salmoneus.net/activities/shades-of-mortton.html
+// https://i.imgur.com/SFUHEv2.png
+// guess based on these and osrs + rs3 droptables + silver droptable leak
 def_namedobj $namedobj;
 def_int $count = 1;
 def_int $temp = add(1,sub(random(135),$key_tier));
@@ -664,8 +666,8 @@ if($temp < 43) {$namedobj=adamant_dagger;$count=1;}
 if($temp < 39) {$namedobj=mithril_sword;$count=1;}
 if($temp < 36) {$namedobj=black_longsword;$count=1;}
 if($temp < 34) {$namedobj=steel_2h_sword;$count=1;}
-if($temp < 33) {$namedobj=steel_spear;$count=1;}
-if($temp < 32) {$namedobj=steel_spear_p;$count=1;}
+if($temp < 33) {$namedobj=steel_spear;$count=1;} // black spear in 2005
+if($temp < 32) {$namedobj=steel_spear;$count=1;} // double black spear from osrs official table
 if($temp < 31) {$namedobj=adamant_dagger_p;$count=1;}
 if($temp < 30) {$namedobj=black_med_helm;$count=1;}
 if($temp < 23) {$namedobj=studded_chaps;$count=1;}
@@ -677,10 +679,11 @@ if($temp < 2) {$namedobj=fine_cloth;$count=1;}
 return ($namedobj,$count);
 
 [proc,ShadeblackDrop](int $key_tier)(namedobj, int)
-//https://www.youtube.com/watch?v=xtSany9isbg
-//https://www.youtube.com/watch?v=t5Ll-S1R1JE
-//https://runescape.salmoneus.net/activities/shades-of-mortton.html
-//guess based on these and osrs + rs3 droptables + silver droptable leak
+// https://www.youtube.com/watch?v=xtSany9isbg
+// https://www.youtube.com/watch?v=t5Ll-S1R1JE
+// https://runescape.salmoneus.net/activities/shades-of-mortton.html
+// https://i.imgur.com/SFUHEv2.png
+// guess based on these and osrs + rs3 droptables + silver droptable leak
 def_namedobj $namedobj;
 def_int $count = 1;
 def_int $temp = add(1,sub(random(142),$key_tier));
@@ -697,7 +700,7 @@ if($temp < 120) {$namedobj=Steel_plateskirt;$count=1;}
 if($temp < 114) {$namedobj=Ruby_ring;$count=1;}
 if($temp < 107) {$namedobj=mithril_longsword;$count=1;}
 if($temp < 101) {$namedobj=adamant_axe;$count=1;}
-if($temp < 95) {$namedobj=steel_spear;$count=1;}
+// if($temp < 95) {$namedobj=steel_spear;$count=1;} // black spear but also not in jagex guide
 if($temp < 91) {$namedobj=Black_Battleaxe;$count=1;}
 if($temp < 88) {$namedobj=Mithril_Scimitar;$count=1;}
 if($temp < 86) {$namedobj=Black_Sq_Shield;$count=1;}
@@ -711,7 +714,7 @@ if($temp < 74) {
         else{$count=1;}
     }
 }
-if($temp < 64) {$namedobj=Adamant_Mace;$count=1;}
+if($temp < 64) {$namedobj=Mithril_Mace;$count=1;}
 if($temp < 58) {$namedobj=Mithril_2h_Sword;$count=1;}
 if($temp < 56) {$namedobj=Mithril_Warhammer;$count=1;}
 if($temp < 54) {$namedobj=Mithril_Battleaxe;$count=1;}
@@ -722,9 +725,7 @@ if($temp < 46) {$namedobj=Black_Kiteshield;$count=1;}
 if($temp < 40) {$namedobj=Mithril_Full_helm;$count=1;}
 if($temp < 34) {$namedobj=Black_Chainbody;$count=1;}
 if($temp < 29) {$namedobj=Mithril_Sq_Shield;$count=1;}
-if($temp < 25) {$namedobj=Steel_platebody;$count=1;}
 if($temp < 23) {$namedobj=Black_Platelegs;$count=1;}
-if($temp < 21) {$namedobj=Black_plateskirt;$count=1;}
 if($temp < 19) {$namedobj=Mithril_Kiteshield;$count=1;}
 if($temp < 17) {$namedobj=Mithril_platelegs;$count=1;}
 if($temp < 15) {$namedobj=Mithril_chainbody;$count=1;}
@@ -739,7 +740,7 @@ return ($namedobj,$count);
 [proc,ShadesilverDrop](int $key_tier)(namedobj, int)
 // https://i.imgur.com/jnr4qWs.png
 // cursed.. but I shall be faithful
-// replaced black spear drops with steel
+// https://i.imgur.com/SFUHEv2.png
 def_namedobj $namedobj;
 def_int $count = 1;
 def_int $temp = add(1,sub(random(153),$key_tier));
@@ -748,7 +749,7 @@ if($temp < 153)
     if(random(10)<6) {$namedobj=cert_yew_logs;$count=~random_range(5,14);}
     else {$namedobj=cert_magic_logs; $count=~random_range(5,14);}
 }
-if($temp < 148) {$namedobj=steel_spear;$count=1;}
+if($temp < 148) {$namedobj=steel_spear;$count=1;} // black spear in 2005
 if($temp < 141) {$namedobj=Adamant_Spear;$count=1;}
 if($temp < 130) {$namedobj=Adamant_spear_p;$count=1;}
 if($temp < 119) {$namedobj=Mithril_PlateSkirt;$count=1;}
@@ -779,7 +780,7 @@ if($temp < 58) {$namedobj=Adamant_2h_Sword;$count=1;}
 if($temp < 55) {$namedobj=Adamant_PlateLegs;$count=1;}
 if($temp < 52) {$namedobj=Adamant_PlateSkirt;$count=1;}
 if($temp < 49) {$namedobj=Battlestaff;$count=1;}
-if($temp < 40) {$namedobj=Adamant_Full_Helm;$count=1;} //This is damned_amulet in the leak but they don't have full helm in the table so.. guess?
+if($temp < 40) {$namedobj=Adamant_Full_Helm;$count=1;} // This is damned_amulet in the leak but they don't have full helm in the table so.. guess?
 if($temp < 30) {$namedobj=Adamant_PlateBody;$count=1;}
 if($temp < 28) {$namedobj=Rune_Med_Helm;$count=1;}
 if($temp < 25) {$namedobj=Rune_Sword;$count=1;}
