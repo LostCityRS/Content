@@ -607,9 +607,11 @@ if($temp < 90) {$namedobj=steel_mace;$count=1;}
 if($temp < 87) {$namedobj=silver_bar;$count=3;}
 if($temp < 81) {$namedobj=amulet_of_defence;$count=1;}
 if($temp < 74) {
+    if($temp > 71) {
         $namedobj = ~trail_geteasyclue;
         if($namedobj = null) $temp=add(1,sub(random(72),$key_tier));
         else{$count=1;}
+    }
 }
 if($temp < 72) {$namedobj=black_dagger;$count=1;}
 if($temp < 66) {$namedobj=black_dagger_p;$count=1;}
