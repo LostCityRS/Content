@@ -8,7 +8,7 @@ if (npc_findhero = ^false) {
 obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
 
 // Tertiary
-~trail_hardcluedrop(128, npc_coord);
+~trail_hardcluedrop(^trail_hard_droprate, npc_coord);
 
 def_int $random = random(128);
 

@@ -4,7 +4,6 @@ p_arrivedelay;
 switch_coord (loc_coord) {
     case 0_41_51_38_57 : p_telejump(1_41_51_41_57); // Ardougne House - level 0
     case 0_50_53_59_54 : p_telejump(1_50_53_59_57); // Varrock Museum - level 0
-    case 1_46_52_40_9 : p_telejump(2_46_52_40_12); // White Knight's Castle east side - level 1
     case 0_48_51_27_2 : p_telejump(1_48_51_30_2); // Draynor Morgans house - level 0
     case 0_48_50_18_51 : p_telejump(1_48_50_21_51); // Draynor - to be Wise Old Man house - level 0
     case 0_49_52_52_61 : p_telejump(1_49_53_52_0); // blackarm hideout - level 0
@@ -37,7 +36,6 @@ switch_coord (loc_coord) {
     case 0_40_49_53_3 : p_telejump(1_40_49_52_3);
     case 0_45_73_41_13 : p_telejump(1_45_73_41_12); // Yanille west gate - level 0
     case 0_45_73_41_24 : p_telejump(1_45_73_41_27); // Yanille west gate - level 0
-    case 0_45_55_17_46 : p_telejump(1_45_55_17_49); // Burthorpe castle - level 0
     case 0_45_55_34_19 : p_telejump(1_45_55_34_22); // Burthorpe pub - level 0
     case default : @unhandled_stairs(loc_coord);
 }
@@ -48,7 +46,6 @@ p_arrivedelay;
 switch_coord (loc_coord) {
     case 1_41_51_39_57 : p_telejump(0_41_51_37_57); // Ardougne House - level 1
     case 1_50_53_59_55 : p_telejump(0_50_53_59_53); // Varrock Museum - level 1
-    case 2_46_52_40_10 : p_telejump(1_46_52_40_8);  // White Knight's Castle west side - level 2
     case 1_48_51_28_2 : p_telejump(0_48_51_26_2); // Draynor Morgans house - level 1
     case 1_48_50_19_51 : p_telejump(0_48_50_17_51); // Draynor - to be Wise Old Man house - level 1
     case 1_41_51_7_58 : p_telejump(0_41_51_7_61); // Lord Handelmort's mansion - level 1
@@ -82,7 +79,6 @@ switch_coord (loc_coord) {
     case 1_40_49_53_3 : p_telejump(0_40_49_56_3);
     case 1_45_73_41_13 : p_telejump(0_45_73_41_16); // Yanille west gate - level 1
     case 1_45_73_41_25 : p_telejump(0_45_73_41_23); // Yanille west gate - level 1
-    case 1_45_55_17_47 : p_telejump(0_45_55_17_45); // Burthorpe castle - level 1
     case 1_45_55_34_20 : p_telejump(0_45_55_34_18); // Burthorpe pub - level 1
     case default : @unhandled_stairs(loc_coord);
 }
@@ -107,7 +103,6 @@ switch_coord (loc_coord) {
 p_arrivedelay;
 // Climb up
 switch_coord (loc_coord) {
-    case 0_48_52_36_35 : p_telejump(movecoord(coord, 0, 1, 4)); // Draynor manor - level 0
     case 1_43_73_16_10 : p_telejump(2_43_73_16_13); // Grail castle - level 1
     case 0_45_54_26_13 : p_telejump(1_45_54_26_16); // Witch's house - level 0
     case default : @unhandled_stairs(loc_coord);
@@ -117,7 +112,6 @@ switch_coord (loc_coord) {
 p_arrivedelay;
 // Climb down
 switch_coord (loc_coord) {
-    case 1_48_52_36_36 : p_telejump(movecoord(coord, 0, -1, -4)); // Draynor manor - level 1
     case 2_43_73_16_11 : p_telejump(1_43_73_16_9); // Grail castle - level 2
     case 1_45_54_26_14 : p_telejump(0_45_54_26_12); // Witch's house - level 1
     case default : @unhandled_stairs(loc_coord);
@@ -132,7 +126,7 @@ switch_coord (loc_coord) {
     case 0_42_52_36_46 : p_telejump(0_42_152_39_46); // Legends Guild - Down to dungeon
     case 0_40_48_43_6 : p_telejump(0_40_148_41_6); // Yanille - down to town dungeon
     case 0_40_48_9_50 : p_telejump(0_40_148_9_53); // Yanille - down to dungeon outside of town
-    case 0_47_52_51_48 : p_telejump(0_47_152_50_48); // Falador - down to mine
+    case 0_47_52_50_48 : p_telejump(0_47_152_50_48); // Falador - down to mine
     case 0_47_61_36_20 : p_telejump(0_47_161_37_19); // Wilderness - down to dungeon
     case default : @unhandled_stairs(loc_coord);
 }
@@ -198,7 +192,6 @@ switch_coord (loc_coord) {
     case 0_46_52_10_10 : p_telejump(1_46_52_12_10); // White Knight's Castle - level 0
     case 1_46_52_16_10 : p_telejump(2_46_52_15_11); // White Knight's Castle - level 1
     case 2_46_52_13_10 : p_telejump(3_46_52_12_11); // White Knight's Castle - level 1
-    case 1_48_52_32_34 : p_telejump(2_48_52_33_36); // Draynor Manor - level 1
     case 0_50_54_2_41 : p_telejump(1_50_54_3_40); // Varrock Palace Northwest Tower - level 0
     case 0_50_54_18_40 : p_telejump(1_50_54_20_40); // Varrock Palace North East - level 0
     case 0_48_49_31_23 : p_telejump(1_48_49_33_24); // Wizard Tower - level 0

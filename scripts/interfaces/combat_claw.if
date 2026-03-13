@@ -1,6 +1,6 @@
 type=overlay
 
-[com_0]
+[preview]
 type=model
 x=135
 y=16
@@ -22,7 +22,7 @@ shadowed=yes
 text=Weapon:
 colour=0xFFFF00
 
-[com_2]
+[name]
 type=text
 x=52
 y=10
@@ -44,15 +44,15 @@ shadowed=yes
 text=Choose Attack Style
 colour=0x00C000
 
-[com_4]
+[claw101]
 type=layer
 x=4
 y=60
 width=145
 height=190
 
-[com_5]
-layer=com_4
+[claw0]
+layer=claw101
 type=graphic
 x=5
 y=1
@@ -64,8 +64,8 @@ script1=eq,0
 graphic=combatboxes,0
 activegraphic=combatboxes,1
 
-[com_6]
-layer=com_4
+[claw3]
+layer=claw101
 type=graphic
 x=5
 y=124
@@ -77,8 +77,8 @@ script1=eq,3
 graphic=combatboxes,0
 activegraphic=combatboxes,1
 
-[com_7]
-layer=com_4
+[claw2]
+layer=claw101
 type=graphic
 x=5
 y=83
@@ -90,8 +90,8 @@ script1=eq,2
 graphic=combatboxes,0
 activegraphic=combatboxes,1
 
-[com_8]
-layer=com_4
+[claw1]
+layer=claw101
 type=graphic
 x=5
 y=42
@@ -104,7 +104,7 @@ graphic=combatboxes,0
 activegraphic=combatboxes,1
 
 [com_9]
-layer=com_4
+layer=claw101
 type=graphic
 x=22
 y=130
@@ -113,7 +113,7 @@ height=24
 graphic=combaticons3,7
 
 [com_10]
-layer=com_4
+layer=claw101
 type=graphic
 x=22
 y=6
@@ -122,7 +122,7 @@ height=24
 graphic=combaticons3,6
 
 [com_11]
-layer=com_4
+layer=claw101
 type=graphic
 x=22
 y=48
@@ -131,7 +131,7 @@ height=24
 graphic=combaticons3,5
 
 [com_12]
-layer=com_4
+layer=claw101
 type=graphic
 x=22
 y=89
@@ -140,7 +140,7 @@ height=24
 graphic=combaticons3,4
 
 [com_13]
-layer=com_4
+layer=claw101
 type=text
 x=78
 y=0
@@ -152,7 +152,7 @@ text=Chop
 colour=0xFFFF00
 
 [com_14]
-layer=com_4
+layer=claw101
 type=text
 x=78
 y=43
@@ -164,7 +164,7 @@ text=Slash
 colour=0xFFFF00
 
 [com_15]
-layer=com_4
+layer=claw101
 type=text
 x=78
 y=83
@@ -176,7 +176,7 @@ text=Lunge
 colour=0xFFFF00
 
 [com_16]
-layer=com_4
+layer=claw101
 type=text
 x=79
 y=124
@@ -188,7 +188,7 @@ text=Block
 colour=0xFFFF00
 
 [com_17]
-layer=com_4
+layer=claw101
 type=text
 x=78
 y=12
@@ -199,7 +199,7 @@ text=(Accurate)
 colour=0xFFFF00
 
 [com_18]
-layer=com_4
+layer=claw101
 type=text
 x=78
 y=95
@@ -210,7 +210,7 @@ text=(Controlled)
 colour=0xFFFF00
 
 [com_19]
-layer=com_4
+layer=claw101
 type=text
 x=78
 y=55
@@ -221,7 +221,7 @@ text=(Aggressive)
 colour=0xFFFF00
 
 [com_20]
-layer=com_4
+layer=claw101
 type=text
 x=78
 y=137
@@ -271,7 +271,7 @@ font=p11_full
 text=(Slash)
 colour=0xFFFF00
 
-[com_37]
+[specbar_layer]
 type=layer
 x=17
 y=231
@@ -279,8 +279,8 @@ width=158
 height=24
 hide=yes
 
-[com_25]
-layer=com_37
+[specbar]
+layer=specbar_layer
 type=rect
 x=0
 y=1
@@ -291,7 +291,7 @@ colour=0xFFFF00
 option=Use @gre@Special Attack
 
 [com_26]
-layer=com_37
+layer=specbar_layer
 type=graphic
 x=131
 y=1
@@ -300,7 +300,7 @@ height=30
 graphic=steelborder,1
 
 [com_27]
-layer=com_37
+layer=specbar_layer
 type=graphic
 x=0
 y=1
@@ -309,7 +309,7 @@ height=30
 graphic=steelborder,0
 
 [com_28]
-layer=com_37
+layer=specbar_layer
 type=graphic
 x=6
 y=-15
@@ -318,7 +318,7 @@ height=36
 graphic=miscgraphics,3
 
 [com_29]
-layer=com_37
+layer=specbar_layer
 type=graphic
 x=42
 y=-15
@@ -327,7 +327,7 @@ height=36
 graphic=miscgraphics,3
 
 [com_30]
-layer=com_37
+layer=specbar_layer
 type=graphic
 x=78
 y=-15
@@ -336,7 +336,7 @@ height=36
 graphic=miscgraphics,3
 
 [com_31]
-layer=com_37
+layer=specbar_layer
 type=graphic
 x=114
 y=-15
@@ -345,7 +345,7 @@ height=36
 graphic=miscgraphics,3
 
 [com_32]
-layer=com_37
+layer=specbar_layer
 type=graphic
 x=5
 y=3
@@ -354,7 +354,7 @@ height=36
 graphic=miscgraphics,3
 
 [com_33]
-layer=com_37
+layer=specbar_layer
 type=graphic
 x=41
 y=3
@@ -363,7 +363,7 @@ height=36
 graphic=miscgraphics,3
 
 [com_34]
-layer=com_37
+layer=specbar_layer
 type=graphic
 x=77
 y=3
@@ -372,7 +372,7 @@ height=36
 graphic=miscgraphics,3
 
 [com_35]
-layer=com_37
+layer=specbar_layer
 type=graphic
 x=112
 y=3
@@ -381,7 +381,7 @@ height=36
 graphic=miscgraphics,3
 
 [com_36]
-layer=com_37
+layer=specbar_layer
 type=graphic
 x=115
 y=3
@@ -390,7 +390,7 @@ height=36
 graphic=miscgraphics,3
 
 [com_38]
-layer=com_37
+layer=specbar_layer
 type=model
 x=5
 y=8
@@ -401,7 +401,7 @@ zoom=1153
 xan=500
 
 [com_39]
-layer=com_37
+layer=specbar_layer
 type=model
 x=3
 y=8
@@ -414,7 +414,7 @@ zoom=1153
 xan=500
 
 [com_40]
-layer=com_37
+layer=specbar_layer
 type=model
 x=18
 y=8
@@ -427,7 +427,7 @@ zoom=1153
 xan=500
 
 [com_41]
-layer=com_37
+layer=specbar_layer
 type=model
 x=33
 y=8
@@ -440,7 +440,7 @@ zoom=1153
 xan=500
 
 [com_42]
-layer=com_37
+layer=specbar_layer
 type=model
 x=47
 y=8
@@ -453,7 +453,7 @@ zoom=1153
 xan=500
 
 [com_43]
-layer=com_37
+layer=specbar_layer
 type=model
 x=61
 y=8
@@ -466,7 +466,7 @@ zoom=1153
 xan=500
 
 [com_44]
-layer=com_37
+layer=specbar_layer
 type=model
 x=75
 y=8
@@ -479,7 +479,7 @@ zoom=1153
 xan=500
 
 [com_45]
-layer=com_37
+layer=specbar_layer
 type=model
 x=90
 y=8
@@ -492,7 +492,7 @@ zoom=1153
 xan=500
 
 [com_46]
-layer=com_37
+layer=specbar_layer
 type=model
 x=104
 y=8
@@ -505,7 +505,7 @@ zoom=1153
 xan=500
 
 [com_47]
-layer=com_37
+layer=specbar_layer
 type=model
 x=118
 y=8
@@ -518,7 +518,7 @@ zoom=1153
 xan=500
 
 [com_48]
-layer=com_37
+layer=specbar_layer
 type=model
 x=132
 y=8
@@ -531,7 +531,7 @@ zoom=1153
 xan=500
 
 [com_49]
-layer=com_37
+layer=specbar_layer
 type=text
 x=20
 y=7

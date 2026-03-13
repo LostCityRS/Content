@@ -16,7 +16,7 @@ obj_add(npc_coord, dragonhide_black, 1, ^lootdrop_duration);
 
 // clue scroll. Osrs only has elite scrolls for kbd, not sure what the rate would be for hard clues.
 // Im guessing its 1/128 like most high level monsters
-~trail_hardcluedrop(128, npc_coord);
+~trail_hardcluedrop(^trail_hard_droprate, npc_coord);
 
 
 def_int $random = random(128);
