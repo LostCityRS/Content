@@ -1,6 +1,10 @@
 [oploc1,rehnisondoorshut] @rehnissons_enter_house;
-[oploc1,loc_2534] @west_ardougne_plague_house_doors;
-[oploc1,loc_2535] mes("This door is locked."); // todo probs not right but yolo in 225 seems only 1 door is the correct one.
+
+// Should be the west door per old RuneHQ and Zybez
+// https://web.archive.org/web/20040423204649/http://www.runehq.com/viewquest.php?id=00155
+// https://web.archive.org/web/20060220020506/http://www.zybez.net/quests.php?id=38 (See Picture)
+[oploc1,loc_2534] mes("This door is locked."); // todo probs not right but yolo in 225 seems only 1 door is the correct one.
+[oploc1,loc_2535] @west_ardougne_plague_house_doors;
 
 [label,west_ardougne_plague_house_doors]
 if (~check_axis(coord, loc_coord, loc_angle) = false) {
