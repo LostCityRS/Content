@@ -1195,12 +1195,6 @@ switch_coord (loc_coord) {
 }
 // ---
 
-[oploc1,board_game_stairs_base]
-switch_coord (loc_coord) {
-    case 0_34_77_31_7 : p_telejump(0_45_55_19_44); // Gamesroom main exit
-    case default : @unhandled_stairs(loc_coord);
-}
-
 [label,stair_options](coord $up, coord $down)
 def_int $option = ~p_choice2_header("Climb up the stairs.", 1, "Climb down the stairs.", 2, "Climb up or down the stairs?");
 if ($option = 1) {
