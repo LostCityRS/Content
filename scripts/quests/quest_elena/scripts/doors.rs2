@@ -16,7 +16,9 @@ switch_int(%elenaquest) {
         ~mesbox("The door won't open.|You notice a black cross on the door.");
         if (npc_find(coord, mournertwb, 14, 0) = true) {
             ~chatnpcrange("<p,neutral>I'd stand away from there. That black cross means that house has been touched by the plague.");
-            @multi3("But I think a kidnap victim is in here.", plague_house_but_i_think_a_kidnap_victim_is_in_here, "I fear not a mere plague.", plague_house_i_fear_not_a_mere_plague, "Thanks for the warning.", plague_house_thanks_for_the_warning);
+            @multi3("But I think a kidnap victim is in here.", plague_house_but_i_think_a_kidnap_victim_is_in_here,
+                    "I fear not a mere plague.", plague_house_i_fear_not_a_mere_plague,
+                    "Thanks for the warning.", plague_house_thanks_for_the_warning);
         }
     case ^quest_elena_spoke_cured_bravek :
         // Based on 2013 & 2023 OSRS because some dialogue was missing about "sneaking into the building" on Apr 2004 RuneHQ
@@ -45,7 +47,7 @@ switch_int(%elenaquest) {
             // npc_say("Hey... I've got someone here with a warrant from Bravek, what should we do?");
             // p_delay(2);
             // .npc_say("Well you can't let them in...");
-            ~open_and_close_door_fast(loc_2536, true, door_open);;
+            ~open_and_close_door_fast(loc_2536, true, door_open);
             ~mesbox("You wait until the mourner's back is turned and sneak into the building.");
             npc_setmode(null);
             // .npc_setmode(null);
@@ -53,7 +55,8 @@ switch_int(%elenaquest) {
             ~mesbox("The door won't open.|You notice a black cross on the door.");
             ~chatnpcrange("<p,neutral>I'd stand away from there. That black cross means that house has been touched by the plague.");
         }
-    case ^quest_elena_freed_elena, ^elena_complete, ^elena_complete_read_scroll : ~open_and_close_door_fast(loc_2536, true, door_open);;
+    case ^quest_elena_freed_elena, ^elena_complete, ^elena_complete_read_scroll :
+        ~open_and_close_door_fast(loc_2536, true, door_open);
     case default :
         ~mesbox("The door won't open.|You notice a black cross on the door.");
         if (npc_find(coord, mournertwb, 14, 0) = true) {
