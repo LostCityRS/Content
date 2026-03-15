@@ -24,27 +24,31 @@ switch_int(%elenaquest) {
         // https://youtu.be/CCoUF_hIbU0?t=202
         // https://youtu.be/lw1AzW2OoT0?t=882
         if (inv_total(inv, warrant) > 0 & npc_find(coord, mournertwb, 14, 0) = true) {
-            .npc_findall(npc_coord, mournertwb, 14, 0);
-            if (.npc_findnext = false) return;
-            def_int $tries = 0;// precautionary
-            while (.npc_uid = npc_uid & $tries < 30) {
-                .npc_findnext;
-                $tries = add($tries, 1);
-            }            
+            // Uncomment below for Post-rework Feb 06 mini-cutscene (Matches videos above)
+            // .npc_findall(npc_coord, mournertwb, 14, 0);
+            // if (.npc_findnext = false) return;
+            // def_int $tries = 0;// precautionary
+            // while (.npc_uid = npc_uid & $tries < 30) {
+            //     .npc_findnext;
+            //     $tries = add($tries, 1);
+            // }
             ~chatnpcrange("<p,neutral>I'd stand away from there. That black cross means that house has been touched by the plague.");
             ~chatplayer("<p,neutral>I have a warrant from <nc_name(bravek)> to enter here.");
-            ~chatnpc("<p,neutral>This is highly irregular. Please wait...");
-            npc_setmode(none); .npc_setmode(none);
-            if_close;
-            p_delay(1);
-            npc_facesquare(.npc_coord);
-            .npc_facesquare(npc_coord);
-            npc_say("Hey... I've got someone here with a warrant from Bravek, what should we do?");
-            p_delay(2);
-            .npc_say("Well you can't let them in...");
+            // ~chatnpcrange("<p,neutral>This is highly irregular. Please wait...");
+            ~chatnpcrange("<p,neutral>This is highly irregular. Please wait while I speak to the Head Mourner.");
+            // npc_setmode(none);
+            // .npc_setmode(none);
+            // if_close;
+            // p_delay(1);
+            // npc_facesquare(.npc_coord);
+            // .npc_facesquare(npc_coord);
+            // npc_say("Hey... I've got someone here with a warrant from Bravek, what should we do?");
+            // p_delay(2);
+            // .npc_say("Well you can't let them in...");
             ~open_and_close_door_fast(loc_2536, true, door_open);;
             ~mesbox("You wait until the mourner's back is turned and sneak into the building.");
-            npc_setmode(null); .npc_setmode(null);
+            npc_setmode(null);
+            // .npc_setmode(null);
         } else if (npc_find(coord, mournertwb, 14, 0) = true) {
             ~mesbox("The door won't open.|You notice a black cross on the door.");
             ~chatnpcrange("<p,neutral>I'd stand away from there. That black cross means that house has been touched by the plague.");
