@@ -1,4 +1,15 @@
+[applayer1,_]
+if (~inzone_coord_pair_table(gnomeball_zones, coord) = true) {
+    @pvp_gnomeball_pass;
+    return;
+}
+p_aprange(0);
+
 [opplayer1,_]
+if (~inzone_coord_pair_table(gnomeball_zones, coord) = true) {
+    @pvp_gnomeball_pass;
+    return;
+}
 if (.busy = true) {
     mes("Other player is busy at the moment."); // https://youtu.be/YkJQDvB14-U?t=26
     return;

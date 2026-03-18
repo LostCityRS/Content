@@ -1,7 +1,5 @@
 [opplayeru,ball_gnomeball_game] @pvp_gnomeball_pass;
 [applayeru,ball_gnomeball_game] @pvp_gnomeball_pass;
-// [opplayert,gnomeball:com_7] @pvp_gnomeball_pass;
-// [applayert,gnomeball:com_7] @pvp_gnomeball_pass;
 
 [label,pvp_gnomeball_pass]
 def_boolean $player1_ingame = ~inzone_coord_pair_table(gnomeball_zones, coord);
