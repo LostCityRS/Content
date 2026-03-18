@@ -41,16 +41,6 @@ npc_sethuntmode(null); // none
 [opnpc1,gnomeballer_red] @player_gnomeball_tackle(30, 200);
 [opnpc1,gnomeballer_orange] @player_gnomeball_tackle(30, 200);
 [opnpc1,gnomeballer_yellow] @player_gnomeball_tackle(30, 220);
-// [opnpct,gnomeball:com_5] 
-// switch_npc (npc_type) {
-//     case gnomeballer_red, gnomeballer_orange : @player_gnomeball_tackle(30, 200);
-//     case gnomeballer_yellow : @player_gnomeball_tackle(30, 220);
-//     case gnomeballer_red_withball, gnomeballer_orange_withball, gnomeballer_yellow_withball : @player_gnomeball_tackle_carrier;
-//     case default : mes("You can only tackle gnome ballers."); // complete guess
-// }
-
-// [opplayert,gnomeball:com_5] 
-// mes("You can only tackle gnome ballers."); // complete guess
 
 [label,player_gnomeball_tackle](int $low, int $high)
 if (inv_getobj(worn, ^wearpos_rhand) = ball_gnomeball_game) {
