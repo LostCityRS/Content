@@ -35,3 +35,12 @@ if (%castlewars_team = ^castlewars_team_zamorak) {
 } else {
     ~castlewars_exit_tele;
 }
+
+[oploc1,castlewars_zamorak_spawntrapdoor]
+p_arrivedelay;
+p_teleport(movecoord(coord, 0, -1, 0));
+
+[oploc1,castlewars_saradomin_spawntrapdoor]
+p_arrivedelay;
+p_teleport(movecoord(coord, 0, -1, 0));
+
