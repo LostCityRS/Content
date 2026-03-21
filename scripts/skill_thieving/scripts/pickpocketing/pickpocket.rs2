@@ -91,6 +91,15 @@
 [opnpc3,rogue] // Rogue
 @attempt_pick_pocket(npc_type);
 
+[opnpc3,master_farmer_1] // Master Farmer
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,master_farmer_2] // Master Farmer
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,martin_the_master_farmer] // Master Farmer
+@attempt_pick_pocket(npc_type);
+
 [label,attempt_pick_pocket](npc $npc)
 if (map_members = ^false) {
     mes(^mes_members_thieving);
