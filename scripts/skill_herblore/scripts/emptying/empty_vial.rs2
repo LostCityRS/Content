@@ -1,7 +1,7 @@
-[opheld4,_potion] @empty_potion(last_slot);
-[opheld4,vial_water] @empty_potion(last_slot);
+[opheld4,_potion] @empty_vial(last_slot);
+[opheld4,vial_water] @empty_vial(last_slot);
 
-[label,empty_potion](int $last_slot)
+[label,empty_vial](int $last_slot)
 inv_setslot(inv, $last_slot, vial_empty, 1);
 
 // osrs: https://youtu.be/fYh1pbk7Gt4?si=ZCgi-Pi2Q9SD4IDi&t=47
