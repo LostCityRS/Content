@@ -1,0 +1,5 @@
+[opheld4,_category_69] @empty_potion(last_slot);
+[opheld4,vial_water] @empty_potion(last_slot);
+
+[label,empty_potion](int $last_slot)
+inv_setslot(inv, $last_slot, vial_empty, 1);
