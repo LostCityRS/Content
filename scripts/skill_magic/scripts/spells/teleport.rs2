@@ -4,6 +4,7 @@
 [if_button,magic:camelot_teleport] @magic_teleport(^camelot_teleport);
 [if_button,magic:ardougne_teleport] @magic_teleport(^ardougne_teleport);
 [if_button,magic:watchtower_teleport] @magic_teleport(^watchtower_teleport);
+[if_button,magic:trollheim_teleport] @magic_teleport(^trollheim_teleport);
 
 [label,magic_teleport](int $spell)
 if_close;
@@ -26,11 +27,15 @@ if (p_finduid(uid) = true) {
         mes("You need to have completed the Watchtower Quest to use this spell."); // https://i.imgur.com/FelStNH.png (2006)
         return;
     }
+    if($spell = ^trollheim_teleport & %eadgar_quest < ^eadgar_complete) {
+        mes("You need to have completed the Eadgar's Ruse Quest to use this spell."); // https://wiki.lostcity.rs/images/7/78/Trollheim-tele-message.jpg
+        return;
+    }  
     // https://www.reddit.com/r/2007scape/comments/b4vdki/watchtower_teleport_not_working_despite/, https://runescape.salmoneus.net/forums/topic/212538-cant-do-ardougne-tele-why-is-it-so/
     if(($spell = ^ardougne_teleport & %elenaquest < ^elena_complete_read_scroll) | ($spell = ^watchtower_teleport & %itwatchtower < ^itwatchtower_complete_read_scroll)) {
         mes("You havn't learnt how to cast this spell yet.");
         return;
-    }
+    }  
     if (~pre_tele_checks(coord) = false) {
         return;
     }

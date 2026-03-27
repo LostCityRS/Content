@@ -73,4 +73,29 @@ if(%druidquest > ^druid_spoken_sanfew) { // guess they made a label with the exa
 
 [label,sanfew_more_work]
 ~chatplayer("<p,quiz>Have you any more work for me to help reclaim the stone circle?");
-~chatnpc("<p,neutral>Well, not right now I don't think young 'un. In fact, I need to make some more preparations myself for the ritual. Rest assured, if I need any more help I will ask you again.");
+if(%death_equiproom = ^death_complete & %troll_quest = ^troll_complete) {
+    // source https://youtu.be/Kt5WcY9qP0g?t=61
+    // todo check mesanims against rsprox
+    ~chatnpc("<p,neutral>Ah, you've come just in time. I need a certain herb for the next part of the purification ritual...");
+    ~chatnpc("<p,neutral>Ot used to be quite common, but nowadays only the trolls know where to find it. They use it in their cooking, you see. It's a very prized ingredient.");
+    ~chatplayer("<p,quiz>And what exactly do you want me to do?");
+    ~chatnpc("<p,neutral>Journey to the north into the land of the trolls, and find the secret of the herb the trolls call 'goutweed'.");
+    ~chatnpc("<p,neutral>My friend Eadgar lives in the area, and he may be able to help you. Bring some goutweed back and I will teach you something useful.");
+    @multi2("I'll do it.", sanfew_ill_do_it, "No thanks.", sanfew_no_thanks);
+} else {
+    ~chatnpc("<p,neutral>Well, not right now I don't think young 'un. In fact, I need to make some more preparations myself for the ritual. Rest assured, if I need any more help I will ask you again.");
+}
+
+[label,sanfew_ill_do_it]
+// source https://youtu.be/Kt5WcY9qP0g?t=61
+// todo check mesanims against rsprox
+~chatplayer("<p,neutral>I'll do it.");
+~chatnpc("<p,happy>Thank you, adventurer!");
+%eadgar_quest = ^eadgar_spoken_sanfew;
+~send_quest_progress(questlist:com_82, %eadgar_quest, ^eadgar_complete);
+
+
+[label,sanfew_no_thanks]
+// source https://oldschool.runescape.wiki/w/Transcript:Eadgar%27s_Ruse?oldid=15100939
+// todo check mesanims against rsprox
+~chatnpc("<p,neutral>Oh well. No doubt some other adventurer will eventually come who can help me.");
