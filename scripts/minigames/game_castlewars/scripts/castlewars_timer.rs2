@@ -6,7 +6,7 @@ if (~in_castlewars_waitingroom(coord) = false) {
 if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
     return;
 }
-if (%npc_int = 0) { // waiting for players
+if (%npc_int < 1) { // waiting for players
     %castlewars_timer = 0;
     return;
 }
