@@ -41,6 +41,12 @@ if (~in_castlewars_waitingroom(coord) = true) {
     }
     return;
 }
+if (%castlewars_team = ^castlewars_team_saradomin) {
+    %castlewars_zamorak_sidedoor = ~castlewars_sidedoor_unlocked(%castlewars_team);
+} else if (%castlewars_team = ^castlewars_team_zamorak) {
+    %castlewars_saradomin_sidedoor = ~castlewars_sidedoor_unlocked(%castlewars_team);
+}
+
 %castlewars_timer = sub(25, divide(%npc_int, 20));
 if (%npc_int = 500) { // game is over
     queue(castlewars_end, 0, 0);

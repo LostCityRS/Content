@@ -1,0 +1,66 @@
+[oploc1,castlewars_zamorak_sidedoor]
+if (%castlewars_team = ^castlewars_team_zamorak) {
+    ~open_door;
+    ~castlewars_sidedoor_set(^castlewars_team_zamorak, ^true);
+    return;
+}
+if (stat_random(thieving, 15, 255) = true) { // osrs
+    mes("You manage to pick the lock!");
+    ~open_door;
+    ~castlewars_sidedoor_set(^castlewars_team_zamorak, ^true);
+    return;
+}
+mes("You fail to pick the lock!");
+
+[oploc1,castlewars_saradomin_sidedoor]
+if (%castlewars_team = ^castlewars_team_saradomin) {
+    ~open_door;
+    ~castlewars_sidedoor_set(^castlewars_team_saradomin, ^true);
+    return;
+}
+if (stat_random(thieving, 15, 255) = true) { // osrs
+    mes("You manage to pick the lock!");
+    ~open_door;
+    ~castlewars_sidedoor_set(^castlewars_team_saradomin, ^true);
+    return;
+}
+mes("You fail to pick the lock!");
+
+[oploc1,castlewars_zamorak_sidedoor_open]
+~close_door;
+~castlewars_sidedoor_set(^castlewars_team_zamorak, ^false);
+
+[oploc1,castlewars_saradomin_sidedoor_open]
+~close_door;
+~castlewars_sidedoor_set(^castlewars_team_saradomin, ^false);
+
+
+// Handled via world/npc var in osrs:
+// - side door doesnt reset (in other words close on its own) when a new game starts.
+// If you open the door right before the game ends, itll remain opened by the time the next game starts
+// This is really funny because it didnt always do this since the wait time between games was always 5 min.
+// But osrs changed it to 2 minutes so, lol... anyway, the door varbit will say "locked", even though
+// the door is open
+// - The door auto closes after 5 min, and when it auto closes, the varbit isnt updated either.
+// this indicates that theres def no loc_find in the npc/controller's huntall!
+[proc,castlewars_sidedoor_set](int $team, int $unlocked)
+def_int $bit;
+if ($team = ^castlewars_team_saradomin) $bit = 15;
+else if ($team = ^castlewars_team_zamorak) $bit = 16;
+else return; // invalid team ?
+
+if ($unlocked = ^true) {
+    %castlewars_bits2 = setbit(%castlewars_bits2, $bit);
+} else {
+    %castlewars_bits2 = clearbit(%castlewars_bits2, $bit);
+}
+
+
+[proc,castlewars_sidedoor_unlocked](int $team)(int)
+if ($team = ^castlewars_team_saradomin & testbit(%castlewars_bits2, 15) = ^true) {
+    return(^true);
+}
+if ($team = ^castlewars_team_zamorak & testbit(%castlewars_bits2, 16) = ^true) {
+    return(^true);
+}
+return(^false);
