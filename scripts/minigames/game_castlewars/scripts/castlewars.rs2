@@ -248,7 +248,7 @@ if (%last_world ! map_world) {
     ~castlewars_exit_tele;
     return;
 }
-if (add(%last_logout, 100) < map_clock) {
+if (add(%last_logout, 100) < map_clock | %last_logout > map_clock) {
     ~castlewars_waitingroom_tele(%castlewars_team);
     return;
 }
