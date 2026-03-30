@@ -8,6 +8,8 @@ if(%eadgar_quest < ^eadgar_started) {
     $text = "@dbl@I can start this quest by speaking to @dre@Sanfew@dbl@ after|@dbl@completing the @dre@Druidic Ritual@dbl@ quest in @dre@Taverley@dbl@. To complete|@dbl@this quest I need @dre@Level 31 Herblore@dbl@. I also need to have|@dbl@rescued @dre@Mad Eadgar@dbl@ from the @dre@Troll Stronghold";
 } else if(%eadgar_quest = ^eadgar_spoken_sanfew) {
     $text = "@str@Sanfew asked me to find him some Goutweed.||@dbl@I need to find out where to get @dre@Goutweed - Mad Eadgar@dbl@ may|@dbl@be able to help.";
+} else if(%eadgar_quest = ^eadgar_spoken_eadgar) {
+    $text = "@str@Sanfew asked me to find him some Goutweed.||@dbl@I need to find out where to get @dre@Goutweed - @dbl@I should ask the|@dre@Troll Cook.";
 }
 
 ~quest_journal("Eadgar's Ruse", $text);

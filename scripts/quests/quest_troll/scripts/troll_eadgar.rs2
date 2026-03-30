@@ -26,36 +26,59 @@ switch_int(random(4)) {
     case 3 : ~chatnpc("<p,happy>Welcome to Mad Eadgar's! Serving all day, every day!");
 }
 ~chatnpc("<p,happy>Would you care to sample our delicious home cooking?");
-switch_int(~p_choice3("Why do you live so close to the trolls?", 1, "What do you have to offer?", 2, "No thanks, Eadgar.", 3)) {
+if(%eadgar_quest = ^eadgar_spoken_sanfew) {
+    switch_int(~p_choice4("I need to find some goutweed.", 1, "Why do you live so close to the trolls?", 2, "What do you have to offer?", 3, "No thanks, Eadgar.", 4)) {
+        case 1 : @eadgar_need_goutweed;
+        case 2 : @eadgar_live_so_close;
+        case 3 : @eadgar_what_do_you_have;
+        case 4 : @eadgar_nothanks;
+    } 
+} else {
+    switch_int(~p_choice3("Why do you live so close to the trolls?", 1, "What do you have to offer?", 2, "No thanks, Eadgar.", 3)) {
+        case 1 : @eadgar_live_so_close;
+        case 2 : @eadgar_what_do_you_have;
+        case 3 : @eadgar_nothanks;    
+    }
+}
+
+[label,eadgar_need_goutweed]
+// dialog source https://youtu.be/tEsRQ9fXIU?t=150
+// mesanims should be good here
+// need this from rsprox https://oldschool.runescape.wiki/w/Transcript:Eadgar%27s_Ruse#Taking_to_Eadgar_again_before_talking_to_Burntmeat
+~chatplayer("<p,neutral>I need to find some goutweed. Sanfew said you might be able to help.");
+~chatnpc("<p,quiz>Sanfew, you say? Ah, haven't seen him in a while...");
+~chatnpc("<p,neutral>Goutweed is used as an ingredient in troll cooking. You should ask one of their cooks.");
+%eadgar_quest = ^eadgar_spoken_eadgar;
+
+
+[label,eadgar_live_so_close]
+~chatplayer("<p,confused>Why do you live so close to the trolls? Isn't it dangerous?");
+~chatnpc("<p,happy>Well, I suppose I do keep getting captured by the trolls and thrown in prison...But they always release me in the end, I'm far too old and skinny for their tastes.");
+~chatnpc("<p,happy>In any case, this is my home, and I'm not leaving it. And this area has the tastiest goats!");
+
+[label,eadgar_what_do_you_have]
+~chatplayer("<p,confused>What do you have to offer?");
+~chatnpc("<p,happy>The chef's recommendation for today is mountain goat stew. I'll give some stew in exchange for logs for my fire. They're hard to come by around here.");
+switch_int(~p_choice2("I'd like some mountain goat stew, please.", 1, "No thanks, Eadgar.", 2)) {
     case 1 :
-        ~chatplayer("<p,confused>Why do you live so close to the trolls? Isn't it dangerous?");
-        ~chatnpc("<p,happy>Well, I suppose I do keep getting captured by the trolls and thrown in prison...But they always release me in the end, I'm far too old and skinny for their tastes.");
-        ~chatnpc("<p,happy>In any case, this is my home, and I'm not leaving it. And this area has the tastiest goats!");
-    case 2 :
-        ~chatplayer("<p,confused>What do you have to offer?");
-        ~chatnpc("<p,happy>The chef's recommendation for today is mountain goat stew. I'll give some stew in exchange for logs for my fire. They're hard to come by around here.");
-        switch_int(~p_choice2("I'd like some mountain goat stew, please.", 1, "No thanks, Eadgar.", 2)) {
-            case 1 :
-                ~chatplayer("<p,neutral>I'd like some mountain goat stew, please.");
-                if(inv_totalcat(inv, category_22) = 0) {
-                    ~chatnpc("<p,angry>You don't have any logs! I may be mad, but I'm not stupid!");
-                    return;
-                }
-                ~inv_delcat(inv, category_22);
-                ~chatnpc("<p,happy>Here you go! Enjoy!");
-                if_close;
-                mes("You get a bowl of mountain goat stew.");
-                anim(human_eat, 0);
-                sound_synth(eat, 0, 0);
-                p_delay(1);
-                mes("You eat the mountain goat stew.");
-                if (stat(hitpoints) < stat_base(hitpoints)) {
-                    mes("It heals some health.");
-                    stat_heal(hitpoints, 20, 0);
-                }
-            case 2 : @eadgar_nothanks;
+        ~chatplayer("<p,neutral>I'd like some mountain goat stew, please.");
+        if(inv_totalcat(inv, category_22) = 0) {
+            ~chatnpc("<p,angry>You don't have any logs! I may be mad, but I'm not stupid!");
+            return;
         }
-    case 3 : @eadgar_nothanks;
+        ~inv_delcat(inv, category_22);
+        ~chatnpc("<p,happy>Here you go! Enjoy!");
+        if_close;
+        mes("You get a bowl of mountain goat stew.");
+        anim(human_eat, 0);
+        sound_synth(eat, 0, 0);
+        p_delay(1);
+        mes("You eat the mountain goat stew.");
+        if (stat(hitpoints) < stat_base(hitpoints)) {
+            mes("It heals some health.");
+            stat_heal(hitpoints, 20, 0);
+        }
+    case 2 : @eadgar_nothanks;
 }
 
 [label,eadgar_nothanks]
