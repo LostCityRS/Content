@@ -6,6 +6,9 @@ if (%npc_int = 0 & (~castlewars_waitingroom_saradomin_count < 1 | ~castlewars_wa
 if (%npc_int < 100) { // warm up
     return;
 }
+if (%npc_int = 100) {
+    ~castlewars_reset;
+}
 if (~castlewars_zamorak_count < 1 & ~castlewars_saradomin_count < 1 & (~castlewars_waitingroom_saradomin_count < 1 | ~castlewars_waitingroom_zamorak_count < 1)) {
     %npc_int = 0;
     return;
@@ -42,8 +45,10 @@ if (~in_castlewars_waitingroom(coord) = true) {
     return;
 }
 if (%castlewars_team = ^castlewars_team_saradomin) {
+    %castlewars_zamorak_maindoor = ~castlewars_door_health(%castlewars_team);
     %castlewars_zamorak_sidedoor = ~castlewars_sidedoor_unlocked(%castlewars_team);
 } else if (%castlewars_team = ^castlewars_team_zamorak) {
+    %castlewars_saradomin_maindoor = ~castlewars_door_health(%castlewars_team);
     %castlewars_saradomin_sidedoor = ~castlewars_sidedoor_unlocked(%castlewars_team);
 }
 
@@ -100,3 +105,25 @@ if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
     return;
 }
 %castlewars_bits = 0;
+%castlewars_bits2 = 0;
+
+[proc,castlewars_reset]
+if (loc_find(0_37_48_58_15, castlewars_saradomin_maindoorr_open) = true | loc_find(0_37_48_58_15, castlewars_saradomin_brokendoorr) = true) {
+    loc_del(1);
+    loc_add(0_37_48_58_16, castlewars_saradomin_maindoorr, 3, wall_straight, 1);
+}
+if (loc_find(0_37_48_59_15, castlewars_saradomin_maindoorl_open) = true | loc_find(0_37_48_59_15, castlewars_saradomin_brokendoorl) = true) {
+    loc_del(1);
+    loc_add(0_37_48_59_16, castlewars_saradomin_maindoorl, 3, wall_straight, 1);
+}
+if (loc_find(0_37_48_5_48, castlewars_zamorak_maindoorr_open) = true | loc_find(0_37_48_5_48, castlewars_zamorak_brokendoorr) = true) {
+    loc_del(1);
+    loc_add(0_37_48_5_47, castlewars_zamorak_maindoorr, 3, wall_straight, 1);
+}
+if (loc_find(0_37_48_4_48, castlewars_zamorak_maindoorl_open) = true | loc_find(0_37_48_4_48, castlewars_zamorak_brokendoorl) = true) {
+    loc_del(1);
+    loc_add(0_37_48_4_47, castlewars_zamorak_maindoorl, 3, wall_straight, 1);
+}
+
+%castlewars_bits = 0;
+%castlewars_bits2 = 0;
