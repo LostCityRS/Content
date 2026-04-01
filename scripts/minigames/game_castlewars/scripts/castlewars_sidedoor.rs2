@@ -1,12 +1,12 @@
 [oploc1,castlewars_zamorak_sidedoor]
 if (%castlewars_team = ^castlewars_team_zamorak) {
-    ~open_door;
+    ~open_door(2000);
     ~castlewars_sidedoor_set(^castlewars_team_zamorak, ^true);
     return;
 }
 if (stat_random(thieving, 15, 255) = true) { // osrs
     mes("You manage to pick the lock!");
-    ~open_door;
+    ~open_door(2000);
     ~castlewars_sidedoor_set(^castlewars_team_zamorak, ^true);
     return;
 }
@@ -14,24 +14,24 @@ mes("You fail to pick the lock!");
 
 [oploc1,castlewars_saradomin_sidedoor]
 if (%castlewars_team = ^castlewars_team_saradomin) {
-    ~open_door;
+    ~open_door(2000);
     ~castlewars_sidedoor_set(^castlewars_team_saradomin, ^true);
     return;
 }
 if (stat_random(thieving, 15, 255) = true) { // osrs
     mes("You manage to pick the lock!");
-    ~open_door;
+    ~open_door(2000);
     ~castlewars_sidedoor_set(^castlewars_team_saradomin, ^true);
     return;
 }
 mes("You fail to pick the lock!");
 
 [oploc1,castlewars_zamorak_sidedoor_open]
-~close_door;
+~close_door(2000);
 ~castlewars_sidedoor_set(^castlewars_team_zamorak, ^false);
 
 [oploc1,castlewars_saradomin_sidedoor_open]
-~close_door;
+~close_door(2000);
 ~castlewars_sidedoor_set(^castlewars_team_saradomin, ^false);
 
 
