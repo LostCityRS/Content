@@ -1,8 +1,8 @@
-[oploc1,_door_closed] ~open_door;
-[oploc1,_door_opened] ~close_door;
-[oploc1,_reverse_door_closed] ~open_door_reversed;
-[oploc1,_reverse_door_opened] ~close_door_reversed;
-[proc,open_door]
+[oploc1,_door_closed] ~open_door(500);
+[oploc1,_door_opened] ~close_door(500);
+[oploc1,_reverse_door_closed] ~open_door_reversed(500);
+[oploc1,_reverse_door_opened] ~close_door_reversed(500);
+[proc,open_door](int $duration)
 def_coord $new_loc_coord = ~movecoord_loc_return(~door_open(loc_angle, loc_shape));
 def_loc $new_loc = loc_param(next_loc_stage);
 if (coord = $new_loc_coord & loc_shape = wall_diagonal) {
@@ -10,10 +10,10 @@ if (coord = $new_loc_coord & loc_shape = wall_diagonal) {
     p_delay(1);
 };
 sound_synth(loc_param(open_sound), 0, 0);
-loc_del(500);
-loc_add($new_loc_coord, $new_loc, modulo(add(loc_angle, 1), 4), loc_shape, 500);
+loc_del($duration);
+loc_add($new_loc_coord, $new_loc, modulo(add(loc_angle, 1), 4), loc_shape, $duration);
 
-[proc,close_door]
+[proc,close_door](int $duration)
 def_coord $new_loc_coord = ~movecoord_loc_return(~door_close(loc_angle, loc_shape));
 def_loc $new_loc = loc_param(next_loc_stage);
 if (coord = $new_loc_coord & loc_shape = wall_diagonal) {
@@ -21,10 +21,10 @@ if (coord = $new_loc_coord & loc_shape = wall_diagonal) {
     p_delay(1);
 }
 sound_synth(loc_param(close_sound), 0, 0);
-loc_del(500);
-loc_add($new_loc_coord, $new_loc, modulo(add(loc_angle, 3), 4), loc_shape, 500);
+loc_del($duration);
+loc_add($new_loc_coord, $new_loc, modulo(add(loc_angle, 3), 4), loc_shape, $duration);
 
-[proc,open_door_reversed]
+[proc,open_door_reversed](int $duration)
 def_coord $new_loc_coord = ~movecoord_loc_return(0, 0);
 def_loc $new_loc = loc_param(next_loc_stage);
 if (coord = $new_loc_coord & loc_shape = wall_diagonal) {
@@ -32,10 +32,10 @@ if (coord = $new_loc_coord & loc_shape = wall_diagonal) {
     p_delay(1);
 };
 sound_synth(loc_param(open_sound), 0, 0);
-loc_del(500);
-loc_add($new_loc_coord, $new_loc, modulo(add(loc_angle, 3), 4), loc_shape, 500);
+loc_del($duration);
+loc_add($new_loc_coord, $new_loc, modulo(add(loc_angle, 3), 4), loc_shape, $duration);
 
-[proc,close_door_reversed]
+[proc,close_door_reversed](int $duration)
 def_coord $new_loc_coord = ~movecoord_loc_return(0, 0);
 def_loc $new_loc = loc_param(next_loc_stage);
 if (coord = $new_loc_coord & loc_shape = wall_diagonal) {
@@ -43,5 +43,5 @@ if (coord = $new_loc_coord & loc_shape = wall_diagonal) {
     p_delay(1);
 }
 sound_synth(loc_param(close_sound), 0, 0);
-loc_del(500);
-loc_add($new_loc_coord, $new_loc, modulo(add(loc_angle, 1), 4), loc_shape, 500);
+loc_del($duration);
+loc_add($new_loc_coord, $new_loc, modulo(add(loc_angle, 1), 4), loc_shape, $duration);
