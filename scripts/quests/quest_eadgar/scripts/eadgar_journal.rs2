@@ -4,12 +4,15 @@
 [if_button,questlist:com_82]
 def_string $text;
 
-if(%eadgar_quest < ^eadgar_started) {
+if(%eadgar_quest < ^eadgar_spoken_sanfew) {
     $text = "@dbl@I can start this quest by speaking to @dre@Sanfew@dbl@ after|@dbl@completing the @dre@Druidic Ritual@dbl@ quest in @dre@Taverley@dbl@. To complete|@dbl@this quest I need @dre@Level 31 Herblore@dbl@. I also need to have|@dbl@rescued @dre@Mad Eadgar@dbl@ from the @dre@Troll Stronghold";
 } else if(%eadgar_quest = ^eadgar_spoken_sanfew) {
     $text = "@str@Sanfew asked me to find him some Goutweed.||@dbl@I need to find out where to get @dre@Goutweed - Mad Eadgar@dbl@ may|@dbl@be able to help.";
 } else if(%eadgar_quest = ^eadgar_spoken_eadgar) {
     $text = "@str@Sanfew asked me to find him some Goutweed.||@dbl@I need to find out where to get @dre@Goutweed - @dbl@I should ask the|@dre@Troll Cook.";
+} else if (%eadgar_quest = ^eadgar_spoken_burntmeat) {
+    // LP ep41 video @ 5:57
+    $text = "@dbl@I need to get @dre@a tasty human@dbl@ for the @dre@Troll Cook. Mad Eadgar|@dbl@may be able to help.";
 }
 
 ~quest_journal("Eadgar's Ruse", $text);

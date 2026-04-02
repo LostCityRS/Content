@@ -1,0 +1,56 @@
+// all dialog sourced from soup's osrs vid, need mesanims from rsprox
+
+[opnpc1,eadgar_zoo_keeper_aviary]
+~chatnpc("<p,happy>Good day, good day. Come to admire the new parrot aviary have we?");
+switch_int(~p_choice3("It's very nice.", 1, "When did you add it?", 2, "What do you feed them?", 3)) {
+    //case 1 : @parroty_pete_nice;
+    case 2 : @parroty_pete_when_add;
+    case 3 : @parroty_pete_what_feed;    
+}
+
+[label,parroty_pete_when_add]
+~chatplayer("<p,quiz>When did you add it?");
+~chatnpc("<p,neutral>Just recently. It would have been sooner, but some wretch thought it would be amusing to replace their drinking water with vodka. The vet had to nurse them back to health for weeks!");
+
+// videos make it seem like you have to ask both of these questions - how is that tracked? varbit?
+
+[label,parroty_pete_what_feed]
+~chatplayer("<p,quiz>What do you feed them?");
+~chatnpc("<p,neutral>Well, fruit and grain mostly. I try to give them a balanced diet, but their favourite treat is pineapple chunks.");
+
+[opheldu,vodka]
+switch_obj(last_useitem) {
+    case pineapple_chunks : @make_alco_chunks;
+    case default : ~displaymessage(^dm_default);
+}
+
+// is there a message for trying to do this pre-quest?
+[label,make_alco_chunks]
+inv_del(inv, pineapple_chunks, 1);
+inv_del(inv, vodka, 1);
+inv_add(inv, eadgar_alco_chunks, 1);
+
+[oplocu,eadgar_aviary_wall_hatch]
+switch_obj(last_useitem) {
+    case eadgar_alco_chunks : @eadgar_catch_parrot;
+    case default : ~displaymessage(^dm_default);
+}
+
+[label,eadgar_catch_parrot]
+inv_del(inv, eadgar_alco_chunks, 1);
+~mesbox("You manage to attract a parrot and catch it.");
+~chatplayer("Hah! Got you now!");
+// how do you switch between multiple chatnpc's?
+//
+// Sqwaawk...*hic*
+// Hey! What are you doing with that parrot?
+// Nothing.
+// It looks drunk! You should NEVER feed alcohol to a parrot!
+// Well, good thing I found it! I'll just take it to the vet for you, shall I?
+// Oh, thank you! We're ever so busy here at the Zoo.
+inv_add(inv, eadgar_drunk_parrot, 1);
+%eadgar_quest = ^eadgar_caught_parrot;
+
+[opheld5,eadgar_drunk_parrot]
+inv_del(inv, eadgar_drunk_parrot, 1);
+mes("You release the parrot, and it flies away."); // osrs wiki

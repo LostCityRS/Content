@@ -18,6 +18,12 @@ if (npc_range(coord) > 1) {
     p_aprange(1);
     return;
 }
+if(%eadgar_quest = ^eadgar_spoken_burntmeat) {
+    @eadgar_talked_to_troll_cook_yet;
+}
+if(%eadgar_quest = ^eadgar_caught_parrot) {
+    @eadgar_got_parrot_yet;
+}
 ~chatplayer("<p,happy>Hi!");
 switch_int(random(4)) {
     case 0 : ~chatnpc("<p,happy>Welcome to Mad Eadgar's! Happiness in a bowl!");
@@ -34,11 +40,14 @@ if(%eadgar_quest = ^eadgar_spoken_sanfew) {
         case 4 : @eadgar_nothanks;
     } 
 } else {
-    switch_int(~p_choice3("Why do you live so close to the trolls?", 1, "What do you have to offer?", 2, "No thanks, Eadgar.", 3)) {
-        case 1 : @eadgar_live_so_close;
-        case 2 : @eadgar_what_do_you_have;
-        case 3 : @eadgar_nothanks;    
-    }
+    @eadgar_default_tree;
+}
+
+[label,eadgar_default_tree]
+switch_int(~p_choice3("Why do you live so close to the trolls?", 1, "What do you have to offer?", 2, "No thanks, Eadgar.", 3)) {
+    case 1 : @eadgar_live_so_close;
+    case 2 : @eadgar_what_do_you_have;
+    case 3 : @eadgar_nothanks;    
 }
 
 [label,eadgar_need_goutweed]
@@ -49,7 +58,6 @@ if(%eadgar_quest = ^eadgar_spoken_sanfew) {
 ~chatnpc("<p,quiz>Sanfew, you say? Ah, haven't seen him in a while...");
 ~chatnpc("<p,neutral>Goutweed is used as an ingredient in troll cooking. You should ask one of their cooks.");
 %eadgar_quest = ^eadgar_spoken_eadgar;
-
 
 [label,eadgar_live_so_close]
 ~chatplayer("<p,confused>Why do you live so close to the trolls? Isn't it dangerous?");
@@ -84,3 +92,20 @@ switch_int(~p_choice2("I'd like some mountain goat stew, please.", 1, "No thanks
 [label,eadgar_nothanks]
 ~chatplayer("<p,neutral>No thanks, Eadgar.");
 ~chatnpc("<p,happy>Your loss!");
+
+[label,eadgar_talked_to_troll_cook_yet]
+// source from osrs vids, todo mesanims from rsprox
+~chatnpc("<p,quiz>Oh, it's you. Have you talked to the troll cook yet?");
+~chatplayer("<p,sad>I talked to the troll cook but he wouldn't tell me anything, and now he wants me to find him some tasty human for his stew.");
+~chatnpc("<p,sad>Oh dear, that's no good. You can't just go hand over a human to those trolls...");
+~chatnpc("<p,happy>Aha! I have a plan!");
+~chatplayer("<p,neutral>Really?");
+~chatnpc("<p,happy>Yes! It's bound to work. First of all, I will need a parrot!");
+~chatplayer("<p,quiz>A PARROT? Where am I going to find one of those?");
+~chatnpc("<p,neutral>At the zoo, where else?");
+%eadgar_quest = ^eadgar_spoken_eadgar2;
+~chatnpc("<p,quiz>Anything else I can do for you?");
+@eadgar_default_tree;
+
+[label,eadgar_got_parrot_yet]
+// presumably this checks for whether or not the parrot is in the inventory?
