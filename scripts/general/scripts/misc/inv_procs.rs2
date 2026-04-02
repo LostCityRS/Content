@@ -304,3 +304,11 @@ while ($i < enum_getoutputcount($enum)) {
     inv_del($inv, enum(int, obj, $enum, $i), ^max_32bit_int);
     $i = add($i, 1);
 }
+
+[proc,inv_getslot](inv $inv, obj $obj)(int)
+def_int $i = 0;
+while ($i < inv_size($inv)) {
+    if (inv_getobj($inv, $i) = $obj) return($i);
+    $i = add($i, 1);
+}
+return(null);
