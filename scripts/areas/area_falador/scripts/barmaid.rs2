@@ -1,13 +1,37 @@
 [opnpc1,risingsun_barmaid]
+@falador_bar_dialogue;
+
+[apnpc1,risingsun_barmaid]
+@falador_bar_dialogue;
+
+[opnpc1,risingsun_barmaid2]
+@falador_bar_dialogue;
+
+[apnpc1,risingsun_barmaid2]
+@falador_bar_dialogue;
+
+[opnpcu,risingsun_barmaid]
+@falador_pub_barcrawl_use;
+
+[opnpcu,risingsun_barmaid2]
+@falador_pub_barcrawl_use;
+
+[apnpcu,risingsun_barmaid]
+@falador_pub_barcrawl_use;
+
+[apnpcu,risingsun_barmaid2]
+@falador_pub_barcrawl_use;
+
+[label,falador_pub_barcrawl_use]
+if(testbit(%barcrawl, ^risingsun_index) = ^false & last_useitem = barcrawl_card) {
+    @risingsun_barmaid_barcrawl_dialogue;
+}
+
+[label,falador_bar_dialogue]
 if(testbit(%barcrawl, ^risingsun_index) = ^false & inv_total(inv, barcrawl_card) > 0) {
     @risingsun_barmaid_barcrawl_dialogue;
 }
 @risingsun_barmaid_what_ales;
-
-[opnpcu,risingsun_barmaid]
-if(testbit(%barcrawl, ^risingsun_index) = ^false & last_useitem = barcrawl_card) {
-    @risingsun_barmaid_barcrawl_dialogue;
-}
 
 [label,risingsun_barmaid_barcrawl_dialogue]
 def_int $option = ~p_choice2("Hi, what ales are you serving?", 1, "I'm doing Alfred Grimhand's Barcrawl.", 2);
