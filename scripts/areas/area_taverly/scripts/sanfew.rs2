@@ -76,7 +76,7 @@ if(%druidquest > ^druid_spoken_sanfew) { // guess they made a label with the exa
 if(%death_equiproom = ^death_complete & %troll_quest = ^troll_complete) {
     // source https://youtu.be/Kt5WcY9qP0g?t=61
     // todo check mesanims against rsprox
-    ~chatnpc("<p,neutral>Ah, you've come just in time. I need a certain herb for the next part of the purification ritual...");
+    ~chatnpc("<p,neutral>Ah, you've come just in time. I need a certain herb|for the next part of the purification ritual..."); //linebreaks from runeweb 2004
     ~chatnpc("<p,neutral>It used to be quite common, but nowadays only the trolls know where to find it. They use it in their cooking, you see. It's a very prized ingredient.");
     ~chatplayer("<p,quiz>And what exactly do you want me to do?");
     ~chatnpc("<p,neutral>Journey to the north into the land of the trolls, and find the secret of the herb the trolls call 'goutweed'.");

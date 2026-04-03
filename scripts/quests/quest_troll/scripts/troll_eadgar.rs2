@@ -24,6 +24,9 @@ if(%eadgar_quest = ^eadgar_spoken_burntmeat) {
 if(%eadgar_quest = ^eadgar_caught_parrot) {
     @eadgar_got_parrot_yet;
 }
+if(%eadgar_quest = ^eadgar_hid_parrot) {
+    @eadgar_hid_parrot;
+}
 ~chatplayer("<p,happy>Hi!");
 switch_int(random(4)) {
     case 0 : ~chatnpc("<p,happy>Welcome to Mad Eadgar's! Happiness in a bowl!");
@@ -96,6 +99,7 @@ switch_int(~p_choice2("I'd like some mountain goat stew, please.", 1, "No thanks
 [label,eadgar_talked_to_troll_cook_yet]
 // source from osrs vids, todo mesanims from rsprox
 ~chatnpc("<p,quiz>Oh, it's you. Have you talked to the troll cook yet?");
+// varp check here I'd imagine, with a dialog branch for if you haven't talked to burntmeat yet
 ~chatplayer("<p,sad>I talked to the troll cook but he wouldn't tell me anything, and now he wants me to find him some tasty human for his stew.");
 ~chatnpc("<p,sad>Oh dear, that's no good. You can't just go hand over a human to those trolls...");
 ~chatnpc("<p,happy>Aha! I have a plan!");
@@ -108,4 +112,64 @@ switch_int(~p_choice2("I'd like some mountain goat stew, please.", 1, "No thanks
 @eadgar_default_tree;
 
 [label,eadgar_got_parrot_yet]
-// presumably this checks for whether or not the parrot is in the inventory?
+~chatnpc("<p,quiz>Oh, it's you. Have you got me a parrot yet?");
+if(inv_total(inv, eadgar_drunk_parrot) > 0) {
+    //parrot: Raaawk! Polly wanna cracker!
+    ~chatplayer("<p,quiz>Here it is! How are you going to explain your plan?");
+    ~chatnpc("<p,happy>Yes, yes, of course. It's quite ingenious really!");
+    ~chatnpc("<p,neutral>What we need is something that looks like a human,|sounds like a human, smells like a human and tastes|like a human."); //linebreaks from from runeweb, one of the few 2004-era images we have of this quest
+    ~chatplayer("<p,quiz>How ae we going to make it look like a human?");
+    ~chatnpc("<p,neutral>We'll just make a scarecrow. We'll need logs, and 10 sheaves of wheat for stuffing.");
+    ~chatplayer("<p,quiz>How are we going to make it sound like a human?");
+    ~chatnpc("<p,neutral>That's what the parrot's for, of course.");
+    // parrot: Who's a pretty boy then?
+    ~chatnpc("<p,neutral>Although the trolls might get suspicious if it doesn't say what they expect a human to say...");
+    ~chatnpc("<p,neutral>You should hide it for a while somewhere it can pick up some more appropriate catchphrases.");
+    ~chatplayer("<p,quiz>How are we going to make it smell like a human?");
+    ~chatnpc("<p,neutral>Well, we'll need to dress it up anyway; if we use dirty clothes it'll smell human to the trolls.");
+    ~chatnpc("<p,neutral>I'm a man of few clothes myself, so you might want to ask old Sanfew about that one.");
+    ~chatplayer("<p,quiz>And how are we going to make it taste like a human?");
+    ~chatnpc("<p,neutral>That's easy, we'll just stuff it with a few chickens. Everything tastes like chicken! Five raw chickens should be enough!");
+    %eadgar_quest = ^eadgar_spoken_eadgar3;
+    ~chatnpc("<p,quiz>That's the plan. Anything else I can do for you?");
+    @eadgar_default_tree;
+} else {
+    // presumably this checks for whether or not the parrot is in the inventory?
+    // will have to check if osrs even increments the varp for this quest stage
+    // or if it's purely based on having the parrot in your inventory
+}
+
+[oploc1,eadgar_rack]
+mes("todo"); // presumably this does something before starting the quest
+// then before and after storing the parrot
+// during the interim quest stages (troll thistle potion)
+// then maybe before and after picking it up again?
+// and then possibly after the quest?
+
+[oplocu,eadgar_rack]
+switch_obj(last_useitem) {
+    case eadgar_drunk_parrot : @eadgar_hide_parrot;
+    case default : ~displaymessage(^dm_default);
+}
+
+[label,eadgar_hide_parrot]
+if(%eadgar_quest = ^eadgar_spoken_eadgar3) {
+    inv_del(inv, eadgar_drunk_parrot, 1);
+    mes("You hide the parrot under the torture rack."); //osrs
+    %eadgar_quest = ^eadgar_hid_parrot;
+} else {
+    mes("You can't think of a reason to place a defenceless parrot on a torture rack."); // not the real mes, need rsprox
+}
+
+[label,eadgar_hid_parrot]
+~chatplayer("<p,neutral>I hid the parrot under the rack in the troll prison.");
+~chatnpc("<p,neutral>Good work. How about those other items?");
+// adds up items from the inventory and uses them for the chatplayer:
+// I have the logs, five chickens, ten bundles of grain and no dirty clothes.
+// eadgar responds with the difference
+// You now need no longs, no chickens, no grain and the dirty clothes.
+@eadgar_default_tree; // until all items are gathered it seems 
+
+// there's another fairly extensive dialog tree if eadgar is talked to after bringing him the parrot
+// "What should I do with this parrot?" -> Eadgar answers, then after "Anything else I can do for you?"
+// there's a bunch of recap dialog options about how to make the scarecrow seem human

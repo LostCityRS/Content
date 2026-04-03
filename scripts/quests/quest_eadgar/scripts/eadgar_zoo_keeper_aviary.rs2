@@ -30,24 +30,28 @@ inv_del(inv, pineapple_chunks, 1);
 inv_del(inv, vodka, 1);
 inv_add(inv, eadgar_alco_chunks, 1);
 
+// missing an interaction for using regular pineapple chunks
 [oplocu,eadgar_aviary_wall_hatch]
 switch_obj(last_useitem) {
     case eadgar_alco_chunks : @eadgar_catch_parrot;
     case default : ~displaymessage(^dm_default);
 }
 
+// any message for trying to do this either before talking to eadgar/parroty pete
+// or after having already got a parrot?
+// for that matter does this interaction change at all if the parrot is lost and reobtained? 
 [label,eadgar_catch_parrot]
 inv_del(inv, eadgar_alco_chunks, 1);
 ~mesbox("You manage to attract a parrot and catch it.");
-~chatplayer("Hah! Got you now!");
-// how do you switch between multiple chatnpc's?
-//
-// Sqwaawk...*hic*
-// Hey! What are you doing with that parrot?
-// Nothing.
-// It looks drunk! You should NEVER feed alcohol to a parrot!
-// Well, good thing I found it! I'll just take it to the vet for you, shall I?
-// Oh, thank you! We're ever so busy here at the Zoo.
+~chatplayer("<p,happy>Hah! Got you now!");
+~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Sqwaawk...*hic*"); // not the right npc, where is this chathead?
+if(.npc_find(coord, eadgar_zoo_keeper_aviary, 14, 0) = true) {
+    ~.chatnpc("<p,angry>Hey! What are you doing with that parrot?");
+    ~chatplayer("<p,neutral>Nothing.");
+    ~.chatnpc("<p,angry>It looks drunk! You should NEVER feed alcohol to a parrot!");
+    ~chatplayer("<p,neutral>Well, good thing I found it! I'll just take it to the vet for you, shall I?"); // not sure which mesanim this is
+    ~.chatnpc("<p,happy>Oh, thank you! We're ever so busy here at the Zoo.");
+}
 inv_add(inv, eadgar_drunk_parrot, 1);
 %eadgar_quest = ^eadgar_caught_parrot;
 
