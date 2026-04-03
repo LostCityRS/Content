@@ -15,6 +15,8 @@ if (last_useitem = newbielogs) {
     @tut_light_logs_inv(last_useslot);
 } else if(oc_param(last_useitem, unlit_arrow) = ^true) { // might not work on every fire?
     @light_firearrow(last_useitem);
+} else if(last_useitem = viking_firecracker) {
+    @viking_light_firecracker;
 } else switch_category(oc_category(last_useitem)) {
     case category_22 : @light_logs_inv(last_useslot);
     case light_source_unlit : @ignite_light_source(last_useitem);

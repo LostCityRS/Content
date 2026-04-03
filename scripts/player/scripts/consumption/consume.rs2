@@ -75,7 +75,7 @@ if (oc_param(last_item, next_obj_stage) = null) {
 [opheld1,jangerberries]@player_consume_item(consume_effect_stat, 2, 3);
 [opheld1,poison_chalice]@player_consume_item(consume_effect_poison_chalice, null, null);
 [opheld1,cup_of_tea]@player_consume_item(consume_effect_stat_say, 2, 3);
-[opheld1,_category_69]
+[opheld1,_potion]
 switch_obj(last_item) {
     // anti dragon
     case 1dose1antidragon, 2dose1antidragon, 3dose1antidragon, 4dose1antidragon :
@@ -88,6 +88,8 @@ switch_obj(last_item) {
     case default : @player_consume_item(consume_effect_stat, null, null);
 }
 [opheld1,macro_triffidfruit]@player_consume_item(consume_effect_strange_fruit, 2, 3);
+
+[opheld1,keg_of_beer] @player_consume_item(consume_effect_keg_of_beer, null, null);
 // ************************* TRIGGERS **************************
 
 // all normal foods use %eat_delay

@@ -6,6 +6,12 @@ switch_obj (last_useitem)
 }
 
 [oplocu,_potters_wheel]
+if(loc_type = viking_potterywheel) {
+    if(%viking < ^viking_complete) {
+        mes("Only Fremenniks may use this pottery wheel.");
+        return;
+    }
+}
 switch_obj (last_useitem)
 {
     case softclay : @craft_pottery_interface;
@@ -14,6 +20,12 @@ switch_obj (last_useitem)
 }
 
 [oplocu,_pottery_oven]
+if(loc_type = viking_potteryoven) {
+    if(%viking < ^viking_complete) {
+        mes("Only Fremenniks may use this pottery oven.");
+        return;
+    }
+}
 switch_obj (last_useitem)
 {
     case bowl_unfired, piedish_unfired, pot_unfired : @fire_pottery(last_useslot);
@@ -21,6 +33,12 @@ switch_obj (last_useitem)
 }
 
 [oploc1,_pottery_oven]
+if(loc_type = viking_potteryoven) {
+    if(%viking < ^viking_complete) {
+        mes("Only Fremenniks may use this pottery oven.");
+        return;
+    }
+}
 @fire_pottery_interface;
 
 [label,make_softclay](obj $water_source)

@@ -1,4 +1,10 @@
 [oplocu,_smithing_furnace]
+if(loc_type = viking_furnace) {
+    if(%viking < ^viking_complete) {
+        mes("Only Fremenniks may use this furnace.");
+        return;
+    }
+}
 switch_obj (last_useitem)
 {
     case gold_bar, perfect_gold_bar : @craft_gold_interface;
@@ -17,7 +23,17 @@ switch_obj (last_useitem)
         ~displaymessage(^dm_default);
 }
 
-[oploc2,furnace1]
+[oploc2,furnace1] @smelting_interface;
+[oploc2,viking_furnace]
+if(loc_type = viking_furnace) {
+    if(%viking < ^viking_complete) {
+        mes("Only Fremenniks may use this furnace.");
+        return;
+    }
+}
+@smelting_interface;
+
+[label,smelting_interface]
 // https://youtu.be/IKcLMkk50VU?si=9nCY28zLperwnJgM&t=62, interface was always brought up originally
 // osrs will auto make a single bar if you have ores for only 1 in inventory
 if_setobject(smelting:com_4, bronze_bar, 150);

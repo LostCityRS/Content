@@ -1,9 +1,4 @@
-// Melee
-[opheld2,viking_helmet_crush] @levelrequire_defence(45, last_slot); // quest requirement missing
-[opheld2,viking_helmet_slash] @levelrequire_defence(45, last_slot); // quest requirement missing
-
-// Ranged
-[opheld2,viking_helmet_range] @levelrequire_defence(45, last_slot); // quest requirement missing
-
-// Magic
-[opheld2,viking_helmet_magic] @levelrequire_defence(45, last_slot); // quest requirement missing
+[opheld2,viking_helmet_crush] @levelrequire_viking_quest_helm(45, last_slot);
+[opheld2,viking_helmet_slash] @levelrequire_viking_quest_helm(45, last_slot);
+[opheld2,viking_helmet_magic] @levelrequire_viking_quest_helm(45, last_slot);
+[opheld2,viking_helmet_range] @levelrequire_viking_quest_helm(45, last_slot);

@@ -129,7 +129,7 @@ if(%horror_claimed_unholybook = ^false) $books_to_buy = add($books_to_buy, 1);
 if(%horror_claimed_holybook = ^false) $books_to_buy = add($books_to_buy, 1);
 
 if($books_to_buy = 0) {
-    ~chatnpc("<p,happy>Nope, sorry adventurer, I guess you've found them all! I'll let you know if any new ones show up though.");
+    ~chatnpc("<p,happy>Nope, sorry adventurer, I guess you've found them all! I'll let you know if any new ones show up though!");
     return;
 }
 

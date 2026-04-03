@@ -233,6 +233,9 @@ if (%morttonquest = ^mortton_quest_complete) {
 if (%regicide_quest = ^regicide_complete) {
     $questpoints = add($questpoints, ^regicide_questpoints); 
 }
+if (%viking = ^viking_complete) {
+    $questpoints = add($questpoints, ^viking_questpoints); 
+}
 if (%horrorquest = ^horror_complete) {
     $questpoints = add($questpoints, ^horror_questpoints); 
 }
@@ -307,6 +310,7 @@ if (testbit(%ibanmulti, ^upass_started_bit) = ^true & %upass ! ^upass_complete) 
 ~send_quest_progress_colour(questlist:troll, %troll_quest, ^troll_complete);
 ~send_quest_progress_colour(questlist:mortton, %morttonquest, ^mortton_quest_complete);
 ~send_quest_progress_colour(questlist:regicide, %regicide_quest, ^regicide_complete);
+~send_quest_progress_colour(questlist:viking, %viking, ^viking_complete);
 ~send_quest_progress_colour(questlist:horror, %horrorquest, ^horror_complete);
 if_settab(questlist, ^tab_quest_journal);
 
