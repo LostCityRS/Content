@@ -1,9 +1,8 @@
 [opnpc1,cook]
 // https://www.youtube.com/watch?v=mtPhS3n2dAo
-/*if(map_members = ^true &inv_total(inv, trail_clue_medium_anagram002) > 0) {
+if(map_members = ^true &inv_total(inv, trail_clue_medium_anagram002) > 0) {
     @trail_cook;
-}*/
-// TODO enable when treasure trails is ported
+}
 
 if(%cookquest = 0) {
     ~chatnpc("<p,sad>What am I to do?");
@@ -31,12 +30,11 @@ if(%cookquest = 0) {
 
 }
 
-/*[label,trail_cook]
+[label,trail_cook]
 if(inv_total(inv, trail_clue_medium_anagram002_challenge) > 0) {
     @trail_challengenpc_prompt("<p,neutral>Please tell me how many cannons there are.", "<p,happy>Cheers!", "<p,angry>Hmm, I don't think that's right.",
     "The cook has given you another clue scroll!", trail_clue_medium_anagram002, trail_clue_medium_anagram002_challenge);
 }
 ~chatnpc("<p,confused>I've always wondered how many cannons the castle has. Could you find out for me?");
 inv_add(inv, trail_clue_medium_anagram002_challenge, 1);
-~objbox(trail_clue_medium_anagram002_challenge, "The cook has given you a challenge scroll!", 250, 0, 0);*/
-// TODO enable when treasure trails is ported
+~objbox(trail_clue_medium_anagram002_challenge, "The cook has given you a challenge scroll!", 250, 0, 0);
