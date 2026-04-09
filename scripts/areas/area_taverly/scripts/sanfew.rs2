@@ -3,6 +3,9 @@ if(%druidquest = ^druid_spoken_sanfew) {
     @druid_sanfew_give_ingredients;
 }
 ~chatnpc("<p,quiz>What can I do for you young 'un?");
+if(%eadgar_quest >= ^eadgar_spoken_eadgar3 & %eadgar_quest < ^eadgar_spoken_sanfew2) {
+    @eadgar_sanfew_dirty_clothes;
+}
 if(%druidquest = ^druid_started) {
     @multi2("I've been sent to help purify the Varrock stone circle.", druid_sanfew_information, "Actually I don't need to speak to you.", sanfew_dont_need);
 } else if(%druidquest >= ^druid_given_ingredients) {
@@ -101,3 +104,12 @@ if(%death_equiproom = ^death_complete & %troll_quest = ^troll_complete) {
 
 // https://oldschool.runescape.wiki/w/Transcript:Eadgar%27s_Ruse#Talking_to_Sanfew_after_starting_the_quest
 // missing this interaction
+
+
+[label,eadgar_sanfew_dirty_clothes]
+// dialog from Soup's OSRS video, need mesanims checked against rsprox
+~chatplayer("<p,neutral>Eadgar says he needs some dirty clothes for his plan, and he said you might be able to help.");
+~chatnpc("<p,quiz>Now why would he need that?");
+~chatplayer("<p,neutral>It's a long story.");
+~chatnpc("<p,neutral>Never mind then... I think Tegid is doing his laundry outside. You could ask him if you can borrow one of his dirty robes.");
+%eadgar_quest = ^eadgar_spoken_sanfew2;

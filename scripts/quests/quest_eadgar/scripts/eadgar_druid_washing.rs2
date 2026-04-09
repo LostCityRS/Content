@@ -1,0 +1,40 @@
+[opnpc1,eadgar_druid_washing]
+// todo check dialog pre-quest, this might be right but idk
+// also need to check if there is any special interaction when losing and reobtaining the robes
+// as well as attempting to reobtain when one is already in inv
+// need mesanims from rsprox etc etc
+~chatplayer("<p,quiz>So, you're doing laundry, eh?");
+~chatnpc("<p,neutral>Yes. What is it to you?");
+~chatplayer("<p,neutral>Nice day for it.");
+~chatnpc("<p,neutral>I suppose it is.");
+if(%eadgar_quest = ^eadgar_spoken_sanfew2) {
+    ~chatplayer("<p,quiz>You wouldn't be able to spare any of those dirty robes by any chance? It's a matter of the utmost importance.");
+    ~chatnpc("<p,angry>What? No! These are my robes!");
+    switch_int(~p_choice3("Fine.", 1, "Sanfew won't be happy...", 2, "You'll give me those robes right now...", 3)) {
+    case 1 : @eadgar_tegid_fine;
+    case 2 : @eadgar_tegid_sanfew_wont_be_happy;
+    case 3 : @eadgar_tegid_threaten;
+    }
+}
+
+[label,eadgar_tegid_fine]
+~chatplayer("idk what goes here yet");
+
+[label,eadgar_tegid_sanfew_wont_be_happy]
+// dialog from Soup's video
+// need mesanims
+~chatplayer("<p,neutral>I'm sure Sanfew won't be happy when I tell him it's your fault he can't perform the purification ritual.");
+~chatnpc("<p,neutral>What? Oh wel, if it's a matter of that much importance, I suppose you can borrow one...");
+inv_add(inv, eadgar_dirty_druid_robe, 1);
+
+[label,eadgar_tegid_threaten]
+// dialog from LP41 video
+// need mesanims
+~chatplayer("<p,angry>You'll give me those robes right now...or I'm going to cut down trees until you do.");
+~chatnpc("<p,scared>You wouldn't dare!");
+~chatplayer("<p,neutral>Of course I would. They're just trees.");
+~chatnpc("<p,neutral>You monster! Take the robes and leave this place!");
+inv_add(inv, eadgar_dirty_druid_robe, 1);
+
+
+
