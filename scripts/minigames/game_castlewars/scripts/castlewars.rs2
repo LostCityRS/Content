@@ -114,11 +114,21 @@ if ($count = 255) {
 }
 %castlewars_bits = setbit_range_toint(%castlewars_bits, add($count, 1), ^castlewars_saradomin_count_start_bit, ^castlewars_saradomin_count_end_bit);
 
-[proc,castlewars_zamorak_score]()(int)
-return(max(getbit_range(%castlewars_bits, ^castlewars_zamorak_score_start_bit, ^castlewars_zamorak_score_end_bit), 0));
+[proc,castlewars_score](int $team)(int)
+if ($team = ^castlewars_team_saradomin) {
+    return(max(getbit_range(%castlewars_bits, ^castlewars_saradomin_score_start_bit, ^castlewars_saradomin_score_end_bit), 0));
+} else if ($team = ^castlewars_team_zamorak) {
+    return(max(getbit_range(%castlewars_bits, ^castlewars_zamorak_score_start_bit, ^castlewars_zamorak_score_end_bit), 0));
+}
+return(null);
 
-[proc,castlewars_saradomin_score]()(int)
-return(max(getbit_range(%castlewars_bits, ^castlewars_saradomin_score_start_bit, ^castlewars_saradomin_score_end_bit), 0));
+// no mes
+[proc,castlewars_score_point](int $team)
+if ($team = ^castlewars_team_saradomin) {
+    %castlewars_bits = setbit_range_toint(%castlewars_bits, add(~castlewars_score($team), 1), ^castlewars_saradomin_score_start_bit, ^castlewars_saradomin_score_end_bit);
+} else if ($team = ^castlewars_team_zamorak) {
+    %castlewars_bits = setbit_range_toint(%castlewars_bits, add(~castlewars_score($team), 1), ^castlewars_zamorak_score_start_bit, ^castlewars_zamorak_score_end_bit);
+}
 
 [proc,castlewars_saradomin_wins]()(int)
 return(max(getbit_range(%castlewars_wins, ^castlewars_saradomin_wins_start_bit, ^castlewars_saradomin_wins_end_bit), 0));
