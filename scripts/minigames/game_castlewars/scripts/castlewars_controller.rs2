@@ -29,6 +29,10 @@ huntall(^castlewars_centre_coord4, 32, 0);
 while (huntnext = true) {
     ~castlewars_update_vars;
 }
+huntall(^castlewars_centre_coord5, 32, 0);
+while (huntnext = true) {
+    ~castlewars_update_vars;
+}
 if (%npc_int = 500) {
     %npc_int = 0;
 }
