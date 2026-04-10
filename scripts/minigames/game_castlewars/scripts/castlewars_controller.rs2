@@ -1,6 +1,9 @@
 [ai_timer,castlewars_judge]
-if (%npc_int = null & (~castlewars_waitingroom_saradomin_count < 1 | ~castlewars_waitingroom_zamorak_count < 1)) {
-    return;
+if (%npc_int = null) {
+    if (~castlewars_waitingroom_saradomin_count < 1 | ~castlewars_waitingroom_zamorak_count < 1) {
+        return;
+    }
+    %npc_int = 0;
 }
 %npc_int = add(%npc_int, 1);
 if (%npc_int < 100) { // warm up
