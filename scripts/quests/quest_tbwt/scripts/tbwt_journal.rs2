@@ -15,6 +15,7 @@ mes("Get TBWT Lubufu(5): <tostring(~get_tbwt_lubufu_progress())>");
 mes("Get TBWT Lubufu Karambwanji Count(6): <tostring(~get_tbwt_lubufu_karambwanji())>");
 mes("Get TBWT Lubufu Questioning Count(7): <tostring(~get_tbwt_lubufu_questioning())>");
 mes("Get TBWT Tamayu Agility Count(8): <tostring(~get_tbwt_tamayu_agility_count())>");
+mes("<tostring(testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tiadeche_received_karambwan))>");
 mes("Raw TBWT Tiadeche varp: <tostring(%tbwt_tiadeche)>");
 
 if (~get_tbwt_main_progress() < ^tbwt_started) {
@@ -97,7 +98,7 @@ if (~get_tbwt_main_progress() > ^tbwt_timfraku_asked_for_help & ~get_tbwt_main_p
         $text = append($text, "@str@Tiadeche|");
     }
     if (~get_tbwt_main_progress = ^tbwt_completed_all_brothers) {
-        $text = append($text, "@str@I have convinced them to return to the village.|");
+        $text = append($text, "@str@I have convinced them to return to the village.||");
         $text = append($text, "@dbl@I must speak with @dre@Timfraku@dbl@.||");
     } else {
         $text = append($text, "@dbl@I need to convince them to return to the village.||");

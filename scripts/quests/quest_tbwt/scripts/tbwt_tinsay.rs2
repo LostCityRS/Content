@@ -34,33 +34,33 @@ if (~get_tbwt_main_progress() < ^tbwt_started) {
 [opnpcu,tbwt_tinsay]
 switch_obj(last_useitem) {
     case tbwt_karambwan_vessel, tbwt_karambwan_vessel_loaded_with_karambwanji :
-        def_obj $vessel = last_useitem;
-        if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tinsay_received_manual) = ^true ) {
-            ~chatplayer("<p,neutral>I ... uh ... lost the crafting instructions. Could you write me another copy?");
-        } else {
-            ~chatplayer("<p,quiz>Your brother Tiadeche has sent me. He asks you to study this vessel and produce crafting instructions.");
-        }
         if (~get_tbwt_tinsay_progress ! ^tbwt_tinsay_complete) {
             ~chatnpc("<p,neutral>You first help me, then I'll help you.");
             return;
         } else {
-            if (~get_tbwt_tiadeche_progress ! ^tbwt_tiadeche_complete) {
-                def_boolean $reclaim = false;
-                if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tinsay_received_manual) = ^true ) $reclaim = true;
+            if (~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_request_manual | ~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_player_received_manual) {
+                def_obj $vessel = last_useitem;
+                if (~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_player_received_manual) {
+                    ~chatplayer("<p,neutral>I ... uh ... lost the crafting instructions. Could you write me another copy?");
+                } else {
+                    ~chatplayer("<p,quiz>Your brother Tiadeche has sent me. He asks you to study this vessel and produce crafting instructions.");
+                }
                 ~chatnpc("<p,neutral>Very well - hand it over.");
                 inv_del(inv, $vessel, 1);
                 ~objbox($vessel, "You hand over the Karambwan vessel to Tinsay.", 250, 0, ^objbox_height);
                 if_close;
                 mes("Tinsay studies it for a moment then quickly sketches some crafting instructions.");
                 p_delay(3);
-                inv_add(inv, tbwt_crafting_manual, 1);
-                %tbwt_tiadeche = setbit(%tbwt_tiadeche, ^tbwt_tiadeche_tinsay_received_manual);
+                inv_add(inv, tbwt_crafting_manual, 1); // Can reclaim even if you have one in your inventory already
+                if (~get_tbwt_tiadeche_progress < ^tbwt_tiadeche_player_received_manual) ~set_tbwt_tiadeche_progress(^tbwt_tiadeche_player_received_manual);
                 ~objbox(tbwt_crafting_manual, "Tinsay hands you a Karambwan vessel crafting manual.", 250, 0, 0);
-                if ($reclaim = true ) {
+                if (~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_player_received_manual) {
                     ~chatnpc("<p,neutral>Try not to lose it this time...");
                 } else {
                     ~chatnpc("<p,neutral>I hope that's what he wanted.");
                 }
+            } else {
+                ~displaymessage(^dm_default);
             }
         }
 

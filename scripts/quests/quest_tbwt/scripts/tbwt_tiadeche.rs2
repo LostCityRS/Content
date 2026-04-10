@@ -21,7 +21,7 @@ if (~get_tbwt_main_progress() < ^tbwt_started) {
             @tbwt_tiadeche_initial_ops;
         case ^tbwt_tiadeche_caught_karambwan : 
             @tbwt_tiadeche_can_we_return;
-        case ^tbwt_tiadeche_request_manual : 
+        case ^tbwt_tiadeche_request_manual, ^tbwt_tiadeche_player_received_manual : 
             @tbwt_tiadeche_have_you_retrieved_manual;
         case ^tbwt_tiadeche_complete, ^tbwt_tiadeche_claimed_final_reward :
             @tbwt_tiadeche_complete;
@@ -97,6 +97,12 @@ if (~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_return_when_caught_karambwan) {
     } else {
         ~displaymessage(^dm_default);
     }
+} else if (~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_player_received_manual) {
+    if (last_useitem = tbwt_crafting_manual) {
+        @tbwt_tiadeche_give_crafting_manual;
+    } else {
+        ~displaymessage(^dm_default);
+    }
 } else {
     ~displaymessage(^dm_default);
 }
@@ -159,24 +165,19 @@ npc_anim(human_octopus_pot, 0);
 
 [label,tbwt_tiadeche_have_you_retrieved_manual]
 if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tiadeche_received_karambwan) = ^false) {
-    if (inv_total(inv, tbwt_raw_karambwan) < 1) {
+    if (inv_total(inv, tbwt_raw_karambwan) < 1) { 
         ~chatnpc("<p,happy>I have caught another Karambwan! I think I ought to give it to you.");
+        inv_add(inv, tbwt_raw_karambwan, 1);
+        %tbwt_tiadeche = setbit(%tbwt_tiadeche, ^tbwt_tiadeche_tiadeche_received_karambwan);
     }
-    inv_add(inv, tbwt_raw_karambwan, 1);
-    %tbwt_tiadeche = setbit(%tbwt_tiadeche, ^tbwt_tiadeche_tiadeche_received_karambwan);
 }
 ~chatnpc("<p,quiz>Have you taken the Karambwan vessel to Tinsay?");
-if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tinsay_received_manual) = ^true ) {
+if (~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_player_received_manual) {
     ~chatplayer("<p,neutral>Yes, I have.");
     ~chatnpc("<p,neutral>Did you ask for crafting instructions as I said?");
     if (inv_total(inv, tbwt_crafting_manual) > 0) {
         ~chatplayer("<p,neutral>Yes. He gave me this.");
-        inv_del(inv, tbwt_crafting_manual, 1);
-        ~set_tbwt_tiadeche_progress(^tbwt_tiadeche_complete);
-        ~objbox(tbwt_crafting_manual, "You hand over the crafting manual to Tiadeche.", 250, 0, 0);
-        ~music_jingle("tiadeche thankful");
-        ~chatnpc("<p,happy>Thank you so much. You cannot understand what all of this means to me and our people.");
-        @tbwt_tiadeche_complete;
+        @tbwt_tiadeche_give_crafting_manual;
     } else {
         ~chatplayer("<p,neutral>I did, but I think I've lost them...");
         ~chatnpc("<p,angry>Well go back and ask him to make another copy!");
@@ -185,6 +186,14 @@ if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tinsay_received_manual) = ^true ) {
     ~chatplayer("<p,neutral>No, not yet.");
     ~chatnpc("<p,neutral>Please hurry! Time is of the essence!");
 }
+
+[label,tbwt_tiadeche_give_crafting_manual]
+inv_del(inv, tbwt_crafting_manual, 1);
+~set_tbwt_tiadeche_progress(^tbwt_tiadeche_complete);
+~objbox(tbwt_crafting_manual, "You hand over the crafting manual to Tiadeche.", 250, 0, 0);
+~music_jingle("tiadeche thankful");
+~chatnpc("<p,happy>Thank you so much. You cannot understand what all of this means to me and our people.");
+@tbwt_tiadeche_complete;
 
 [label,tbwt_tiadeche_complete]
 ~chatplayer("<p,quiz>Will you return to the village now?");
