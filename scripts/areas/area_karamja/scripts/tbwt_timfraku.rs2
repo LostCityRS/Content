@@ -277,13 +277,26 @@ queue(twbt_quest_complete, 0, 0);
 
 [queue,tbwt_timfraku_talk_to_sons]
 if(npc_find(coord, tbwt_timfraku, 10, 0) = true) {
-    ~chatnpc("<p,neutral>You should go and see my sons in the village. I think they have something for you.");
+    @tbwt_timfraku_speak_to_sons;
 }
 
 [label,tbwt_timfraku_post_tbwt]
-~chatnpc("<p,neutral>Ah, <~tbwt_get_timfraku_title>, welcome back to Tai Bwo Wannai.");
-@multi2("What do you do here?", tbwt_timfraku_whatdoyoudo, 
-        //"Is there anything interesting to do here?", tbwt_timfraku_interesting,
-        //"I've been doing some work around the village.", tbwt_timfraku_workaroundvillage,
-        "I'm just passing through.", tbwt_timfraku_end_conversation
-        );
+if (~get_tbwt_tinsay_progress ! ^tbwt_tinsay_claimed_final_reward | ~get_tbwt_tiadeche_progress ! ^tbwt_tiadeche_claimed_final_reward | ~get_tbwt_tamayu_progress ! ^tbwt_tamayu_claimed_final_reward) {
+    @tbwt_timfraku_speak_to_sons;
+} else {
+    ~chatnpc("<p,neutral>Ah, <~tbwt_get_timfraku_title>, welcome back to Tai Bwo Wannai.");
+    @multi2("What do you do here?", tbwt_timfraku_whatdoyoudo, 
+            //"Is there anything interesting to do here?", tbwt_timfraku_interesting,
+            //"I've been doing some work around the village.", tbwt_timfraku_workaroundvillage,
+            "I'm just passing through.", tbwt_timfraku_end_conversation
+            );
+}
+
+[label,tbwt_timfraku_speak_to_sons]
+~chatnpc("<p,neutral>You should go and see my sons in the village. I think they have something for you.");
+def_int $choice = ~p_choice2("What do you do here?", 1, "Ok, thanks.", 2);
+if ($choice = 1) {
+    @tbwt_timfraku_whatdoyoudo;
+} else {
+    ~chatplayer("<p,neutral>Ok, thanks.");
+}

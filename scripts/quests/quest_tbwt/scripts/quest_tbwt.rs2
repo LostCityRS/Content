@@ -283,13 +283,20 @@ session_log(^log_adventure, "Quest complete: Tai Bwo Wannai Trio");
 ~send_quest_complete(questlist:tbwt, tbwt_raw_karambwan, 250, ^tbwt_questpoints, "You have completed the\\n'Tai Bwo Wannai Trio' Quest!"); // https://web.archive.org/web/20051228165555/http://runescape.salmoneus.net/quests/TaiBwoTrio/taibwocomplt.png
 queue(tbwt_timfraku_talk_to_sons, 0, 0);
 
+[oploc1,tbwt_tribal_statue]
+if (~get_tbwt_tinsay_progress < ^tbwt_tinsay_claimed_final_reward) {
+    mes("You do not have permission to pray here.");
+} else {
+    @pray_at_altar(stat_base(prayer));
+}
+
 /*
 If you don't have 30 Firemaking, and try to use tinderbox on Jogre bones, message "You need a firemaking level of 30 to burn Jogre bones. You could find some other way of burning them."
 Can superheat Jogre bones to burn them, for 53 magic xp & 25 cook xp
 Jogre bones take 45 ticks to burn, according to OSRS via RSProx
 Cooking Jogre bones on a range or fire gives message, "You heat the bones, but they don't look any different."
 
-You cannot cook raw karambwanji after ^tbwt_tinsay_complete (Message: "You don't feel that would be useful now.")
+You cannot cook raw karambwanji after ^tbwt_tinsay_complete (Message: "You don't feel that would be useful now.") (OSRS change; ignored)
 
 According to wiki, jogre bones made from cooked karambwanji paste will explode, dealing 2 damage, when cooked. Players will receive the message: "The cooked karambwanji paste catches fire and explodes."
 Items: tbwt_jogre_bones_in_cooked_karambwanji_paste & tbwt_burnt_jogre_bones_in_cooked_karambwanji_paste

@@ -15,7 +15,7 @@ switch_int(~get_tbwt_tiadeche_progress) {
 ~chatnpc("<p,neutral>Indeed. I have determined precisely how long to cook them for so that they are edible.");
 ~set_tbwt_tiadeche_progress(^tbwt_tiadeche_claimed_final_reward);
 stat_advance(fishing, 50000);
-~objbox(tbwt_raw_karambwan, "Tiadeche trains you in fishing technique.", 250, 0, 0);
+~objbox(tbwt_raw_karambwan, "Tiadeche trains you in fishing technique.", 250, 0, 0); // https://x.com/JagexAsh/status/544605469290274816 & https://youtu.be/eOeuXivjuuM?si=b7_1pjpDzNamPexi&t=534
 ~mesbox("You gain knowledge of how to properly cook Karambwan.");
 ~chatnpc("<p,neutral>Thanks to you, Lubufu's Karambwan monopoly is over. If you ever need some, then come to me and not the store in Brimhaven.");
 ~chatplayer("<p,neutral>Thanks.");

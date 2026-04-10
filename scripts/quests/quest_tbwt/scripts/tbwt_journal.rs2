@@ -58,16 +58,16 @@ if (~get_tbwt_main_progress() = ^tbwt_received_gold_reward | ~get_tbwt_main_prog
 
     // Tinsay
     if (~get_tbwt_tinsay_progress > ^tbwt_tinsay_complete) {
-        $text = append($text, "@str@Tinsay has shown me how to properly cook Karambwan,|");
-        $text = append($text, "@str@and has trained me in cooking technique. He also said he'd|");
-        $text = append($text, "@str@done something to the tribal statue, though he didn't say|");
-        $text = append($text, "@str@what.||");
+        $text = append($text, "@str@Tinsay has trained me in cooking technique. He also said|");
+        $text = append($text, "@str@he'd done something to the tribal statue, though he didn't|");
+        $text = append($text, "@str@say what.||"); // https://x.com/JagexAsh/status/544605469290274816
     }
 
     // Tiadeche
     if (~get_tbwt_tiadeche_progress > ^tbwt_tiadeche_complete) {
-        $text = append($text, "@str@Tiadeche is willing to sell Karambwan at a low price, and|");
-        $text = append($text, "@str@has trained me in fishing technique.||");
+        $text = append($text, "@str@Tiadeche has shown me how to properly cook Karambwan,|");
+        $text = append($text, "@str@is willing to sell them at a low price and has trained me in|");
+        $text = append($text, "@str@fishing technique.||"); // https://x.com/JagexAsh/status/544605469290274816
     }
 
     $text = append($text, "@red@QUEST COMPLETE!");
