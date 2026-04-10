@@ -49,7 +49,15 @@ if (%action_delay = calc(map_clock + 3)) {
     sound_synth(net, 0, 0);
     p_opnpc(4);
 } else if (%action_delay = map_clock) {
-    ~fish_roll(raw_shrimp, tbwt_raw_karambwanji, net, null);
+    if (stat_random(fishing, 100, 250) = true) {
+        inv_add(inv, tbwt_raw_karambwanji, 1);
+        stat_advance(fishing, 50);
+        mes("You catch a Karambwanji.");
+    } else if (stat_random(fishing, 48, 256) = true) {
+        inv_add(inv, raw_shrimp, 1);
+        stat_advance(fishing, 100);
+        mes("You catch some shrimp.");
+    }
 }
 
 if (afk_event = ^true & npc_param(is_whirlpool) = ^false) {
@@ -76,7 +84,15 @@ if (%action_delay < map_clock) {
     %action_delay = calc(map_clock + 5);
 } else if (%action_delay = map_clock) {
     anim(human_smallnet, 0);
-    ~fish_roll(raw_shrimp, tbwt_raw_karambwanji, net, null);
+    if (stat_random(fishing, 100, 250) = true) {
+        inv_add(inv, tbwt_raw_karambwanji, 1);
+        stat_advance(fishing, 50);
+        mes("You catch a Karambwanji.");
+    } else if (stat_random(fishing, 48, 256) = true) {
+        inv_add(inv, raw_shrimp, 1);
+        stat_advance(fishing, 100);
+        mes("You catch some shrimp.");
+    }
 }
 p_opnpc(4);
 
@@ -100,10 +116,19 @@ if (inv_freespace(inv) < 1) {
     ~mesbox("You can't carry any more Karambwan.");
     return;
 }
-// prob no fishing random roll here
 // https://youtu.be/vVAfKCvmrz4?si=t3jLmmVAP_Jp1ht-&t=105 6t here, prob no interaction loop
 anim(human_octopus_pot, 0);
 mes("You lower the Karambwan vessel.");
 sound_synth(fishing_cast, 0, 0);
 p_delay(5);
-~fish_roll(tbwt_raw_karambwan, null, tbwt_karambwan_vessel_loaded_with_karambwanji, null);
+if (stat_random(fishing, 5, 160) = true) {
+    inv_del(inv, tbwt_karambwan_vessel_loaded_with_karambwanji, 1);
+    inv_add(inv, tbwt_karambwan_vessel, 1);
+    inv_add(inv, tbwt_raw_karambwan, 1);
+    stat_advance(fishing, 1050);
+    mes("You catch a Karambwan!");
+} else {
+    mes("A Karambwan deftly snatches the Karambwanji from your vessel!");
+    inv_del(inv, tbwt_karambwan_vessel_loaded_with_karambwanji, 1);
+    inv_add(inv, tbwt_karambwan_vessel, 1);
+}
