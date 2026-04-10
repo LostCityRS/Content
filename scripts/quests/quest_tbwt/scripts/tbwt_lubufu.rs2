@@ -1,3 +1,14 @@
+[opnpcu,tbwt_lubufu]
+if (~get_tbwt_lubufu_progress ! ^tbwt_lubufu_fetch_karambwanji) {
+    ~displaymessage(^dm_default);
+} else {
+    if (last_useitem = tbwt_raw_karambwanji) {
+        @tbwt_lubufu_give_karambwanji;
+    } else {
+        ~displaymessage(^dm_default);
+    }
+}
+
 [opnpc1,tbwt_lubufu]
 if (~get_tbwt_lubufu_progress < ^tbwt_lubufu_intro) {
     if (getqueue(tbwt_lubufu_queue) > 0) {
@@ -284,20 +295,28 @@ if ($current > 0 & $current < 20 & inv_total(inv, tbwt_raw_karambwanji) > 0) {
 
 if (inv_total(inv, tbwt_raw_karambwanji) > 0) {
     ~chatplayer("<p,neutral>Yes, I have some here.");
-    def_int $amount = min(inv_total(inv, tbwt_raw_karambwanji), $needed);
-    ~set_tbwt_lubufu_karambwanji(add($current, $amount));
-    inv_del(inv, tbwt_raw_karambwanji, $amount);
-    ~objbox(tbwt_raw_karambwanji, "You hand Lubufu <tostring($amount)> raw Karambwanji.", 250, 0, 0);
-    if (~get_tbwt_lubufu_karambwanji >= 20) {
-        ~set_tbwt_lubufu_progress(^tbwt_lubufu_given_karambwanji);
-        ~chatnpc("<p,neutral>Thank you! This should tide me over for the next month.");
-    } else {
-        def_int $still_needed = sub(20, ~get_tbwt_lubufu_karambwanji);
-        ~chatnpc("<p,neutral>Hurry along now. I still need <tostring($still_needed)> more.");
-    }
+    @tbwt_lubufu_give_karambwanji;
 } else {
     ~chatplayer("<p,neutral>No, I'm still fishing for them.");
     ~chatnpc("<p,neutral>Well hurry! My reserves are beginning to run low.");
+}
+
+[label,tbwt_lubufu_give_karambwanji]
+def_int $current = ~get_tbwt_lubufu_karambwanji;
+def_int $needed  = sub(20, $current);
+def_int $amount = min(inv_total(inv, tbwt_raw_karambwanji), $needed);
+~set_tbwt_lubufu_karambwanji(add($current, $amount));
+inv_del(inv, tbwt_raw_karambwanji, $amount);
+~objbox(tbwt_raw_karambwanji, "You hand Lubufu <tostring($amount)> raw Karambwanji.", 250, 0, 0);
+@tbwt_lubufu_received_karambwanji;
+
+[label,tbwt_lubufu_received_karambwanji]
+if (~get_tbwt_lubufu_karambwanji >= 20) {
+    ~set_tbwt_lubufu_progress(^tbwt_lubufu_given_karambwanji);
+    ~chatnpc("<p,neutral>Thank you! This should tide me over for the next month.");
+} else {
+    def_int $still_needed = sub(20, ~get_tbwt_lubufu_karambwanji);
+    ~chatnpc("<p,neutral>Hurry along now. I still need <tostring($still_needed)> more.");
 }
 
 [label,tbwt_lubufu_given_karambwanji_ops]

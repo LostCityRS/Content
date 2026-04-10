@@ -29,7 +29,7 @@ if (p_finduid(uid) = true) {
     } else if ($var2 = 6) { // Set Lubufu Karambwanji Count
         %tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $var, ^tbwt_tiadeche_lubufu_karambwanji_count_start, ^tbwt_tiadeche_lubufu_karambwanji_count_end);
         mes("Set TBWT Lubufu Karambwanji Count(6) to: <tostring($var)>.");
-    } else if ($var2 = 7) { // Set Lubufu Karambwanji Count
+    } else if ($var2 = 7) { // Set Lubufu Questioning Count
         %tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $var, ^tbwt_tiadeche_lubufu_questioning_count_start, ^tbwt_tiadeche_lubufu_questioning_count_end);
         mes("Set TBWT Lubufu Questioning Count(7) to: <tostring($var)>.");
     } else if ($var2 = 8) { // Set Tamayu Agility Count
