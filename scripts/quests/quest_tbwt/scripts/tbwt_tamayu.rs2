@@ -292,7 +292,6 @@ if (npc_find(^tbwt_tamayu_hunter_cutscene_final_spawn, tbwt_tamayu_final_hunter,
     %npc_int = add(map_clock, 13);
 
     npc_facesquare(movecoord(npc_coord, 0, 0, 1));
-    .npc_facesquare(npc_coord);
     facesquare(^tbwt_tamayu_hunter_cutscene_final_spawn);
 
     npc_anim(human_spear_spike, 0);
