@@ -1,11 +1,11 @@
 [opnpc1,tbwt_lubufu]
 if (~get_tbwt_lubufu_progress < ^tbwt_lubufu_intro) {
-    if (gettimer(tbwt_lubufu_timer) > 0) {
+    if (getqueue(tbwt_lubufu_queue) > 0) {
         ~chatnpc("<p,angry>I said go away!");
         ~chatplayer("<p,neutral>Ok, I'm going...");
         def_int $random = randominc(4);
         if ($random > 0) ~forcewalk(movecoord(coord, sub(0, $random), 0, 0));
-        ~tbwt_lubufu_settimer;
+        ~tbwt_lubufu_setqueue;
     } else {
         ~chatnpc("<p,angry>Watch where you're going, young whippersnapper!");
         @multi3("I wasn't going anywhere...", tbwt_lubufu_wasntgoinganywhere, 
@@ -150,7 +150,7 @@ if ($initialops = 1) { // Talk about him...
 if (~get_tbwt_main_progress = ^tbwt_started) {
     ~set_tbwt_lubufu_progress(^tbwt_lubufu_intro);
 }
-~tbwt_lubufu_settimer;
+~tbwt_lubufu_setqueue;
 
 [label,tbwt_lubufu_whatsawhippersnapper]
 ~chatplayer("<p,quiz>What's a whippersnapper?");
@@ -158,7 +158,7 @@ if (~get_tbwt_main_progress = ^tbwt_started) {
 if (~get_tbwt_main_progress = ^tbwt_started) {
     ~set_tbwt_lubufu_progress(^tbwt_lubufu_intro);
 }
-~tbwt_lubufu_settimer;
+~tbwt_lubufu_setqueue;
 
 [label,tbwt_lubufu_whoareyou]
 ~chatplayer("<p,quiz>Who are you?");
@@ -168,13 +168,13 @@ if (~get_tbwt_main_progress = ^tbwt_started) {
 if (~get_tbwt_main_progress = ^tbwt_started) {
     ~set_tbwt_lubufu_progress(^tbwt_lubufu_intro);
 }
-~tbwt_lubufu_settimer;
+~tbwt_lubufu_setqueue;
 
-[timer,tbwt_lubufu_timer]
-cleartimer(tbwt_lubufu_timer);
+[queue,tbwt_lubufu_queue]
+// nothing
 
-[proc,tbwt_lubufu_settimer]
-settimer(tbwt_lubufu_timer, 10);
+[proc,tbwt_lubufu_setqueue]
+longqueue(tbwt_lubufu_queue, 10, 0, ^discard);
 
 [label,tbwt_lubufu_what_is_karambwan]
 ~chatplayer("<p,quiz>What is a Karambwan?");

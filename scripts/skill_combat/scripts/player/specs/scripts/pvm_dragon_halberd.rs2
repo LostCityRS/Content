@@ -58,6 +58,7 @@ def_int $damage = 0;
 def_int $maxhit = scale(110, 100, %com_maxhit);
 def_int $attackroll = scale($scale, 100, ~player_attack_roll_specific(%damagetype));
 def_int $defenceroll = ~npc_defence_roll_specific(^slash_style);
+if(npc_type = tbwt_beast) $attackroll = 0;
 if (randominc($attackroll) > randominc($defenceroll)) {
     if (npc_type = count_draynor & inv_total(inv, garlic) > 0) {
         $maxhit = add($maxhit, 1);

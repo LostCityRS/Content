@@ -25,6 +25,10 @@ if (~get_tbwt_main_progress() < ^tbwt_started) {
 }
 
 [opnpcu,tbwt_tamayu]
+if(%tbwt_main < ^tbwt_started) {
+    ~displaymessage(^dm_default);
+    return;
+}
 if ((last_useitem = tbwt_monkey_corpse) | (last_useitem = tbwt_seaweed_in_monkey_corpse)) {
     def_obj $corpse = last_useitem;
     if (~get_tbwt_tamayu_progress() < ^tbwt_tamayu_complete) {

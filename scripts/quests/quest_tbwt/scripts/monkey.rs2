@@ -1,10 +1,13 @@
 [opnpc2,monkey]
+if (~player_in_combat_check = false) {
+    return;
+}
+def_int $attackrange = ~player_attackrange(inv_getobj(worn, ^wearpos_rhand));
 if (%tbwt_main >= ^tbwt_started & %tbwt_main < ^tbwt_complete) {
-    if ((inv_getobj(worn, ^wearpos_rhand) = null) | (oc_category(inv_getobj(worn, ^wearpos_rhand)) ! weapon_polearm)) {
-        @monkey_dodge;
-    } else {
+    if ($attackrange > 1) {
         @player_combat_start;
     }
+    @monkey_dodge;
 } else {
     @player_combat_start;
 }
@@ -20,6 +23,7 @@ sound_synth(%com_attacksound, 0, 0);
 npc_setmode(playerescape);
 world_delay(2);
 npc_setmode(null);
+~sound_area(monkey_death, 2, npc_coord, 8);
 switch_int(random(10)) {
     case 0 :
         npc_say("Ook! Ook! Oook!");
@@ -42,6 +46,14 @@ switch_int(random(10)) {
     case 9 :
         npc_say("Ook! Ook! Oook!");
 }
+
+[ai_queue1,monkey]
+if(finduid(%npc_aggressive_player) = true) {
+    if (%tbwt_main >= ^tbwt_started & %tbwt_main < ^tbwt_complete) {
+        return;
+    }
+}
+gosub(npc_default_retaliate);
 
 [ai_queue3,monkey]
 gosub(npc_death);

@@ -10,6 +10,10 @@ if(oc_param(last_useitem, unlit_arrow) = ^true) { // might not work on every fir
     @light_firearrow(last_useitem);
 } else if (~in_tutorial_island(coord) = true) {
     @tut_attempt_cook_item(last_useitem);
+} else if(last_useitem = tbwt_jogre_bones_marinated_in_karambwanji | last_useitem = tbwt_burnt_jogre_bones_marinated_in_karambwanji) {
+    ~mesbox("The jogre bones are already marinated!|They don't need any more cooking.");
+} else if(last_useitem = tbwt_jogre_bones_in_cooked_karambwanji_paste | last_useitem = tbwt_burnt_jogre_bones_in_cooked_karambwanji_paste) {
+    @explode_cooked_jogre_bones(last_useitem);
 } else {
     @attempt_cook_item(last_useitem);
 }
@@ -19,6 +23,24 @@ if(oc_param(last_useitem, unlit_arrow) = ^true) { // might not work on every fir
 p_arrivedelay();
 // get item data from db
 db_find(cooking_generic:uncooked, $uncooked_item);
+// karambwan cooking
+def_namedobj $product;
+if($uncooked_item = tbwt_raw_karambwan) {
+    if (map_members = ^false) {
+        mes("You can only make that on a members' server.");
+        return;
+    }
+    if(~get_tbwt_tinsay_progress = ^tbwt_tinsay_claimed_final_reward) {
+        $product = ~multiobj2("How would you like to cook your karambwan?", 
+            tbwt_poorly_cooked_karambwan, 0, -15, 175, "\\n\\n\\n\\nPoorly", 5, -1,
+            tbwt_cooked_karambwan, 0, -15, 175, "\\n\\n\\n\\nThoroughly", 4, -1
+        );
+        if_close;
+    } else {
+        $product = tbwt_poorly_cooked_karambwan;
+    }
+    db_find(cooking_generic:cooked, $product);
+}
 def_dbrow $data = db_findnext;
 if ($data = null) {
     ~mesbox("You can't cook that.");
@@ -43,8 +65,12 @@ if (oc_members($cooked_item) = true | oc_members($uncooked_item) = true) {
 }
 // check if player has high enough level
 def_int $levelrequired = db_getfield($data,cooking_generic:levelrequired,0);
+def_string $levelrequired_message = db_getfield($data,cooking_generic:levelrequired_message,0);
+if (string_length($levelrequired_message) < 1 & compare($levelrequired_message, "0") ! 0) {
+    $levelrequired_message = "You need a Cooking level of <tostring($levelrequired)> to cook <lowercase(oc_name($cooked_item))>.";
+}
 if (stat(cooking) < $levelrequired) {
-    ~mesbox("You need a Cooking level of <tostring($levelrequired)> to cook <lowercase(oc_name($cooked_item))>.");
+    ~mesbox($levelrequired_message);
     return;
 }
 // macro event

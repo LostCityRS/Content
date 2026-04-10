@@ -15,6 +15,8 @@ switch_obj (last_useitem)
         if(loc_type = furnace_upass) @destroy_orboflight(last_useitem);
         ~displaymessage(^dm_default);
     case elemental_workshop_ore : mes("This furnace is not hot enough to smelt elemental ore.");
+    case tbwt_jogre_bones : @tbwt_smelt_jogre_bones;
+    case tbwt_burnt_jogre_bones : mes("These Jogre bones are already burnt!");
     case limestone : @regicide_heat_quicklime;
     case default :
         if (oc_category(last_useitem) = category_91) {

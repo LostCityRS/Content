@@ -1,6 +1,6 @@
 // trigger for logs on ground
 [opobj4,_category_22]
-    @light_logs_ground;
+@light_logs_ground;
 
 [opobju,_category_22]
 if (last_useitem = tinderbox) {
@@ -15,6 +15,8 @@ if (last_useitem = newbielogs) {
     @tut_light_logs_inv(last_useslot);
 } else if(oc_param(last_useitem, unlit_arrow) = ^true) { // might not work on every fire?
     @light_firearrow(last_useitem);
+} else if(last_useitem = tbwt_jogre_bones) {
+    @light_jogre_bones_inv(last_useslot);
 } else if(last_useitem = hollow_bark) {
     ~displaymessage(^dm_default);
 } else if(last_useitem = viking_firecracker) {
