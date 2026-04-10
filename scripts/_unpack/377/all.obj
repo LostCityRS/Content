@@ -45299,6 +45299,9 @@ iop4=Rub
 members=yes
 wearpos=front
 weight=10g
+category=necklace_of_minigames
+param=next_obj_stage,necklace_of_minigames_7
+param=charges,8
 
 [cert_necklace_of_minigames_8]
 certlink=necklace_of_minigames_8
@@ -45323,6 +45326,9 @@ iop4=Rub
 members=yes
 wearpos=front
 weight=10g
+category=necklace_of_minigames
+param=next_obj_stage,necklace_of_minigames_6
+param=charges,7
 
 [cert_necklace_of_minigames_7]
 certlink=necklace_of_minigames_7
@@ -45347,6 +45353,9 @@ iop4=Rub
 members=yes
 wearpos=front
 weight=10g
+category=necklace_of_minigames
+param=next_obj_stage,necklace_of_minigames_5
+param=charges,6
 
 [cert_necklace_of_minigames_6]
 certlink=necklace_of_minigames_6
@@ -45371,6 +45380,9 @@ iop4=Rub
 members=yes
 wearpos=front
 weight=10g
+category=necklace_of_minigames
+param=next_obj_stage,necklace_of_minigames_4
+param=charges,5
 
 [cert_necklace_of_minigames_5]
 certlink=necklace_of_minigames_5
@@ -45395,6 +45407,9 @@ iop4=Rub
 members=yes
 wearpos=front
 weight=10g
+category=necklace_of_minigames
+param=next_obj_stage,necklace_of_minigames_3
+param=charges,4
 
 [cert_necklace_of_minigames_4]
 certlink=necklace_of_minigames_4
@@ -45419,6 +45434,9 @@ iop4=Rub
 members=yes
 wearpos=front
 weight=10g
+category=necklace_of_minigames
+param=next_obj_stage,necklace_of_minigames_2
+param=charges,3
 
 [cert_necklace_of_minigames_3]
 certlink=necklace_of_minigames_3
@@ -45443,6 +45461,9 @@ iop4=Rub
 members=yes
 wearpos=front
 weight=10g
+category=necklace_of_minigames
+param=next_obj_stage,necklace_of_minigames_1
+param=charges,2
 
 [cert_necklace_of_minigames_2]
 certlink=necklace_of_minigames_2
@@ -45467,6 +45488,8 @@ iop4=Rub
 members=yes
 wearpos=front
 weight=10g
+category=necklace_of_minigames
+param=charges,1
 
 [cert_necklace_of_minigames_1]
 certlink=necklace_of_minigames_1
@@ -48204,6 +48227,11 @@ members=yes
 2dxan=164
 wearpos=feet
 weight=3lb
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,1
+param=slashdefence,2
+param=crushdefence,3
 
 [cert_bronze_armoured_boots]
 certlink=bronze_armoured_boots
@@ -48227,6 +48255,11 @@ members=yes
 2dxan=164
 wearpos=feet
 weight=3lb
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,4
 
 [cert_iron_armoured_boots]
 certlink=iron_armoured_boots
@@ -48248,6 +48281,11 @@ members=yes
 2dxan=164
 wearpos=feet
 weight=3lb
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,5
+param=slashdefence,6
+param=crushdefence,7
 
 [cert_steel_armoured_boots]
 certlink=steel_armoured_boots
@@ -48271,6 +48309,11 @@ members=yes
 2dxan=164
 wearpos=feet
 weight=3lb
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,7
+param=slashdefence,8
+param=crushdefence,9
 
 [cert_black_armoured_boots]
 certlink=black_armoured_boots
@@ -48294,6 +48337,11 @@ members=yes
 2dxan=164
 wearpos=feet
 weight=3lb
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,8
+param=slashdefence,9
+param=crushdefence,10
 
 [cert_mithril_armoured_boots]
 certlink=mithril_armoured_boots
@@ -48317,6 +48365,12 @@ members=yes
 2dxan=164
 wearpos=feet
 weight=3lb
+param=magicattack,-3
+param=rangeattack,-1
+param=stabdefence,10
+param=slashdefence,11
+param=crushdefence,12
+param=strengthbonus,1
 
 [cert_adamant_armoured_boots]
 certlink=adamant_armoured_boots
@@ -57214,6 +57268,7 @@ cost=2
 members=yes
 stackable=yes
 weight=5g
+category=category_74
 
 [nails_iron]
 name=Iron nails
@@ -57230,6 +57285,7 @@ cost=4
 members=yes
 stackable=yes
 weight=5g
+category=category_74
 
 [nails_black]
 name=Black nails
@@ -57246,6 +57302,7 @@ cost=12
 members=yes
 stackable=yes
 weight=5g
+category=category_74
 
 [nails_mithril]
 name=Mithril nails
@@ -57262,6 +57319,7 @@ cost=18
 members=yes
 stackable=yes
 weight=5g
+category=category_74
 
 [nails_adamant]
 name=Adamantite nails
@@ -57278,6 +57336,7 @@ cost=45
 members=yes
 stackable=yes
 weight=5g
+category=category_74
 
 [nails_rune]
 name=Rune nails
@@ -57294,6 +57353,7 @@ cost=220
 members=yes
 stackable=yes
 weight=5g
+category=category_74
 
 [unstrung_zogre_bow]
 name=Unstrung comp bow
@@ -77717,92 +77777,6 @@ cost=250
 wearpos=righthand
 weight=12oz
 
-[tzhaar_splitsword]
-name=Toktz-xil-ak
-desc=A razor sharp sword of obsidian.
-members=yes
-iop2=Wield
-model=obj_tzhaar_splitsword
-2dxof=-3
-2dyof=9
-2dzoom=1320
-2dyan=1612
-2dxan=580
-contrast=35
-ambient=15
-manwear=obj_tzhaar_splitsword_manwear,0
-womanwear=obj_tzhaar_splitsword_manwear,6
-cost=40000
-wearpos=righthand
-weight=4lb
-param=stabattack,47
-param=slashattack,38
-param=crushattack,-2
-param=stabdefence,2
-param=slashdefence,3
-param=strengthbonus,49
-param=slashattack_anim,human_sword_slash
-param=stabattack_anim,human_sword_stab
-param=defend_anim,human_sword_def
-param=slash_sound,hacksword_slash
-param=stab_sound,hacksword_stab
-category=weapon_stab
-
-[tzhaar_spikeshield]
-name=Toktz-ket-xil
-desc=A spiked shield of obsidian.
-members=yes
-iop2=Wield
-model=obj_tzhaar_spikeshield
-2dyof=3
-2dzoom=1200
-2dyan=1836
-2dxan=568
-contrast=35
-ambient=15
-manwear=obj_tzhaar_spikeshield_manwear,0
-womanwear=obj_tzhaar_spikeshield_manwear,6
-cost=45000
-wearpos=lefthand
-weight=8lb
-category=armour_shield
-param=magicattack,-12
-param=rangeattack,-8
-param=stabdefence,40
-param=slashdefence,42
-param=crushdefence,38
-param=rangedefence,65
-param=strengthbonus,5
-param=defend_anim,human_shield_defence
-
-[tzhaar_knife]
-name=Toktz-xil-ek
-desc=A large knife of obsidian.
-members=yes
-iop2=Wield
-model=obj_tzhaar_knife
-2dxof=1
-2dyof=4
-2dzoom=920
-2dyan=68
-2dxan=548
-contrast=35
-ambient=15
-manwear=obj_tzhaar_knife_manwear,0
-womanwear=obj_tzhaar_knife_manwear,6
-cost=25000
-wearpos=righthand
-weight=1lb
-param=stabattack,16
-param=slashattack,48
-param=strengthbonus,39
-param=slashattack_anim,human_sword_slash
-param=stabattack_anim,human_sword_stab
-param=defend_anim,human_sword_def
-param=slash_sound,hacksword_slash
-param=stab_sound,hacksword_stab
-category=weapon_slash
-
 [tzhaar_staff]
 name=Toktz-mej-tal
 desc=A staff of obsidian.
@@ -77836,59 +77810,6 @@ param=ready_baseanim,human_staffready
 param=crushattack_anim,human_stafforb_pummel
 param=defend_anim,human_stafforb_block
 param=crush_sound,staff_hit
-
-[tzhaar_mace]
-name=Tzhaar-ket-em
-desc=A mace of obsidian.
-members=yes
-iop2=Wield
-model=obj_tzhaar_mace
-2dyof=6
-2dzoom=840
-2dyan=2028
-2dxan=380
-contrast=35
-ambient=15
-manwear=obj_tzhaar_mace_manwear,0
-womanwear=obj_tzhaar_mace_manwear,6
-cost=30000
-wearpos=righthand
-weight=4lb
-param=stabattack,-4
-param=slashattack,-4
-param=crushattack,62
-param=strengthbonus,56
-param=attackrate,5
-param=slashattack_anim,human_blunt_pound
-param=defend_anim,human_blunt_block
-param=slash_sound,mace_crush
-category=weapon_crush
-
-[tzhaar_maul]
-name=Tzhaar-ket-om
-desc=A maul of obsidian.
-members=yes
-iop2=Wield
-model=obj_tzhaar_maul
-2dxof=3
-2dyof=-4
-2dzoom=1130
-2dyan=952
-2dxan=396
-contrast=35
-ambient=15
-manwear=obj_tzhaar_maul_manwear,0
-womanwear=obj_tzhaar_maul_manwear,6
-cost=50000
-wearpos=righthand
-wearpos2=lefthand
-weight=8lb
-param=crushattack,80
-param=strengthbonus,85
-param=crushattack_anim,human_blunt_pound
-param=defend_anim,human_dhsword_block
-param=crush_sound,2H_crush
-category=weapon_crush
 
 [tzhaar_token]
 name=Tokkul
@@ -88352,6 +88273,8 @@ manhead=obj_bluewizhat_trim_gold_manhead
 womanhead=obj_bluewizhat_trim_gold_womanhead
 wearpos=hat
 weight=1lb
+param=magicattack,2
+param=magicdefence,2
 
 [cert_bluewizhat_trim_gold]
 certlink=bluewizhat_trim_gold
@@ -88376,6 +88299,8 @@ manhead=obj_bluewizhat_trim_gold_manhead
 womanhead=obj_bluewizhat_trim_gold_womanhead
 wearpos=hat
 weight=1lb
+param=magicattack,2
+param=magicdefence,2
 
 [cert_bluewizhat_trim]
 certlink=bluewizhat_trim
@@ -88395,6 +88320,8 @@ womanwear=obj_enchanted_robelegs_womanwear,0
 members=yes
 wearpos=legs
 weight=4lb
+param=magicattack,15
+param=magicdefence,15
 
 [enchanted_robetop]
 name=Enchanted top
@@ -88413,6 +88340,8 @@ members=yes
 wearpos=torso
 wearpos2=arms
 weight=6lb
+param=magicattack,20
+param=magicdefence,20
 
 [enchanted_hat]
 name=Enchanted hat
@@ -88433,6 +88362,8 @@ members=yes
 wearpos=hat
 wearpos2=head
 weight=1lb
+param=magicattack,4
+param=magicdefence,4
 
 [cert_enchanted_robelegs]
 certlink=enchanted_robelegs
@@ -89113,6 +89044,17 @@ cost=50
 iop2=Wear
 wearpos=hands
 weight=8oz
+param=stabattack,1
+param=slashattack,1
+param=crushattack,1
+param=magicattack,1
+param=rangeattack,1
+param=stabdefence,1
+param=slashdefence,1
+param=crushdefence,1
+param=magicdefence,1
+param=rangedefence,1
+param=strengthbonus,1
 
 [hundred_gauntlets_level_2]
 name=Gloves
@@ -89135,6 +89077,17 @@ iop2=Wear
 wearpos=hands
 weight=8oz
 wearpos=hands
+param=stabattack,2
+param=slashattack,2
+param=crushattack,2
+param=magicattack,1
+param=rangeattack,2
+param=stabdefence,2
+param=slashdefence,2
+param=crushdefence,2
+param=magicdefence,1
+param=rangedefence,2
+param=strengthbonus,2
 
 [hundred_gauntlets_level_3]
 name=Gloves
@@ -89155,6 +89108,17 @@ manwear=obj_hundred_gauntlets_level_1_manwear,0
 womanwear=obj_hundred_gauntlets_level_1_womanwear,0
 weight=8oz
 wearpos=hands
+param=stabattack,3
+param=slashattack,3
+param=crushattack,3
+param=magicattack,2
+param=rangeattack,3
+param=stabdefence,3
+param=slashdefence,3
+param=crushdefence,3
+param=magicdefence,2
+param=rangedefence,3
+param=strengthbonus,3
 
 [hundred_gauntlets_level_4]
 name=Gloves
@@ -89175,6 +89139,17 @@ womanwear=obj_hundred_gauntlets_level_1_womanwear,0
 cost=500
 weight=8oz
 wearpos=hands
+param=stabattack,4
+param=slashattack,4
+param=crushattack,4
+param=magicattack,2
+param=rangeattack,4
+param=stabdefence,4
+param=slashdefence,4
+param=crushdefence,4
+param=magicdefence,2
+param=rangedefence,4
+param=strengthbonus,4
 
 [hundred_gauntlets_level_5]
 name=Gloves
@@ -89195,6 +89170,17 @@ womanwear=obj_hundred_gauntlets_level_1_womanwear,0
 cost=1000
 weight=8oz
 wearpos=hands
+param=stabattack,5
+param=slashattack,5
+param=crushattack,5
+param=magicattack,3
+param=rangeattack,5
+param=stabdefence,5
+param=slashdefence,5
+param=crushdefence,5
+param=magicdefence,3
+param=rangedefence,5
+param=strengthbonus,5
 
 [hundred_gauntlets_level_6]
 name=Gloves
@@ -89215,6 +89201,17 @@ womanwear=obj_hundred_gauntlets_level_1_womanwear,0
 cost=1500
 weight=8oz
 wearpos=hands
+param=stabattack,6
+param=slashattack,6
+param=crushattack,6
+param=magicattack,3
+param=rangeattack,6
+param=stabdefence,6
+param=slashdefence,6
+param=crushdefence,6
+param=magicdefence,3
+param=rangedefence,6
+param=strengthbonus,6
 
 [hundred_gauntlets_level_7]
 name=Gloves
@@ -89235,6 +89232,17 @@ womanwear=obj_hundred_gauntlets_level_1_womanwear,0
 cost=2500
 weight=8oz
 wearpos=hands
+param=stabattack,7
+param=slashattack,7
+param=crushattack,7
+param=magicattack,4
+param=rangeattack,7
+param=stabdefence,7
+param=slashdefence,7
+param=crushdefence,7
+param=magicdefence,4
+param=rangedefence,7
+param=strengthbonus,7
 
 [hundred_gauntlets_level_8]
 name=Gloves
@@ -89255,6 +89263,17 @@ womanwear=obj_hundred_gauntlets_level_1_womanwear,0
 cost=5000
 weight=8oz
 wearpos=hands
+param=stabattack,8
+param=slashattack,8
+param=crushattack,8
+param=magicattack,4
+param=rangeattack,8
+param=stabdefence,8
+param=slashdefence,8
+param=crushdefence,8
+param=magicdefence,4
+param=rangedefence,8
+param=strengthbonus,8
 
 [hundred_gauntlets_level_9]
 name=Gloves
@@ -89275,6 +89294,17 @@ womanwear=obj_hundred_gauntlets_level_1_womanwear,0
 cost=100000
 weight=8oz
 wearpos=hands
+param=stabattack,9
+param=slashattack,9
+param=crushattack,9
+param=magicattack,5
+param=rangeattack,9
+param=stabdefence,9
+param=slashdefence,9
+param=crushdefence,9
+param=magicdefence,5
+param=rangedefence,9
+param=strengthbonus,9
 
 [hundred_gauntlets_level_10]
 name=Gloves
@@ -89295,12 +89325,12 @@ category=armour_hands
 param=stabattack,12
 param=slashattack,12
 param=crushattack,12
-param=magicattack,12
+param=magicattack,6
 param=rangeattack,12
 param=stabdefence,12
 param=slashdefence,12
 param=crushdefence,12
-param=magicdefence,12
+param=magicdefence,6
 param=rangedefence,12
 param=strengthbonus,12
 

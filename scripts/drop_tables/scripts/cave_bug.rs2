@@ -1,0 +1,42 @@
+[ai_queue3,cave_littlebug]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+// Default drop from config.
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+def_int $random = random(128);
+
+if ($random < 3) {
+    obj_add(npc_coord, coins, 8, ^lootdrop_duration);
+} else if ($random < 11) {
+    obj_add(npc_coord, coins, 3, ^lootdrop_duration);
+} else if ($random < 12) {
+    obj_add(npc_coord, candle_lantern_empty, 1, ^lootdrop_duration);
+} else if ($random < 15) {
+    obj_add(npc_coord, tinderbox, 1, ^lootdrop_duration);
+} else if ($random < 20) {
+    obj_add(npc_coord, unlit_candle, 1, ^lootdrop_duration);
+} else if ($random < 22) {
+    obj_add(npc_coord, unicorn_horn_dust, 1, ^lootdrop_duration);
+} else if ($random < 24) {
+    obj_add(npc_coord, eye_of_newt, 1, ^lootdrop_duration);
+} else if ($random < 26) {
+    obj_add(npc_coord, red_spiders_eggs, 1, ^lootdrop_duration);
+} else if ($random < 27) {
+    obj_add(npc_coord, limpwurt_root, 1, ^lootdrop_duration);
+} else if ($random < 28) {
+    obj_add(npc_coord, snape_grass, 1, ^lootdrop_duration);
+}  else if ($random < 33) {
+    obj_add(npc_coord, waterrune, 8, ^lootdrop_duration);
+} else if ($random < 38) {
+    obj_add(npc_coord, naturerune, 1, ^lootdrop_duration);
+} else if ($random < 40) {
+    obj_add(npc_coord, earthrune, 6, ^lootdrop_duration);
+} else if ($random < 41) {
+    obj_add(npc_coord, naturerune, 2, ^lootdrop_duration);
+} else if ($random < 64) {
+    obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+}

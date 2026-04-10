@@ -7,39 +7,46 @@
 // [ai_queue1,blue_dragon] ~npc_default_retaliate_ap;
 // [ai_queue1,black_dragon] ~npc_default_retaliate_ap;
 
-// [ai_applayer2,babydragon] @dragon_ai_applayer2;
-// [ai_applayer2,babybluedragon] @dragon_ai_applayer2;
-// [ai_applayer2,green_dragon] @dragon_ai_applayer2;
-// [ai_applayer2,red_dragon] @dragon_ai_applayer2;
-// [ai_applayer2,blue_dragon] @dragon_ai_applayer2;
-// [ai_applayer2,black_dragon] @dragon_ai_applayer2;
+[ai_applayer2,babydragon] @dragon_ai_applayer2(false);
+[ai_applayer2,babybluedragon] @dragon_ai_applayer2(false);
+[ai_applayer2,green_dragon] @dragon_ai_applayer2(false);
+[ai_applayer2,red_dragon] @dragon_ai_applayer2(false);
+[ai_applayer2,blue_dragon] @dragon_ai_applayer2(false);
+[ai_applayer2,black_dragon] @dragon_ai_applayer2(false);
+[ai_applayer2,bronze_dragon] @dragon_ai_applayer2(true);
+[ai_applayer2,iron_dragon] @dragon_ai_applayer2(true);
+[ai_applayer2,steel_dragon] @dragon_ai_applayer2(true);
 
-[ai_opplayer2,green_dragon] @dragon_ai_opplayer2;
-[ai_opplayer2,blue_dragon] @dragon_ai_opplayer2;
-[ai_opplayer2,red_dragon] @dragon_ai_opplayer2;
-[ai_opplayer2,black_dragon] @dragon_ai_opplayer2;
+[ai_opplayer2,green_dragon] @dragon_ai_opplayer2(false);
+[ai_opplayer2,blue_dragon] @dragon_ai_opplayer2(false);
+[ai_opplayer2,red_dragon] @dragon_ai_opplayer2(false);
+[ai_opplayer2,black_dragon] @dragon_ai_opplayer2(false);
+[ai_opplayer2,bronze_dragon] @dragon_ai_opplayer2(true);
+[ai_opplayer2,iron_dragon] @dragon_ai_opplayer2(true);
+[ai_opplayer2,steel_dragon] @dragon_ai_opplayer2(true);
 
 // edit: elvarg was reworked after the dragon slayer rework.
-// [label,dragon_ai_applayer2]
-// // mes("<tostring(map_clock)>: Ap");
-// if (%npc_action_delay > map_clock) {
-//     return;
-// }
-// if (~npc_check_notcombat = false) {
-//     npc_setmode(null);
-//     return;
-// }
-// if (~npc_check_notcombat_self = false) {
-//     return;
-// }
-// // 1/2 chance to switch to op, with line of walk check (same as elvarg for now)
-// if (random(2) = 0 & lineofwalk(npc_coord, coord) = true) {
-//     npc_setmode(opplayer2);
-// }
-// ~dragon_fire;
+[label,dragon_ai_applayer2](boolean $metalDragon)
+// mes("<tostring(map_clock)>: Ap");
+if (%npc_action_delay > map_clock) {
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+// 1/2 chance to switch to op, with line of walk check (same as elvarg for now)
+//metal dragons never switch to melee if you are out of range
+if (($metalDragon = false | distance(coord,npc_coord) < 2) & random(2) = 0 & lineofwalk(npc_coord, coord) = true) {
+    npc_setmode(opplayer2);
+}
+~dragon_fire;
 
 
-[label,dragon_ai_opplayer2]
+[label,dragon_ai_opplayer2](boolean $metalDragon)
 // mes("<tostring(map_clock)>: Op");
 if (%npc_action_delay > map_clock) {
     return;
@@ -53,9 +60,9 @@ if (~npc_check_notcombat_self = false) {
 }
 // edit: elvarg was reworked after the dragon slayer rework.
 // 1/8 chance to switch back to ap (same as elvarg for now)
-// if (random(8) = 0) {
-//     npc_setmode(applayer2);
-// }
+if (random(8) = 0) {
+    npc_setmode(applayer2);
+}
 
 // 1/4 chance to dragon fire (same as pre reworked elvarg)
 if (random(4) = 0) {

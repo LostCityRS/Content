@@ -48,6 +48,8 @@ switch_int (%xplamp) {
     case ^xplamp_firemaking : @xplamp_confirm(firemaking);
     case ^xplamp_woodcutting : @xplamp_confirm(woodcutting);
     case ^xplamp_fletching : @xplamp_confirm(fletching);
+    case ^xplamp_slayer : @xplamp_confirm(slayer);
+    case ^xplamp_farming : @xplamp_confirm(farming);
 }
 error("case not found for xplamp varp: <tostring(%xplamp)>");
 
