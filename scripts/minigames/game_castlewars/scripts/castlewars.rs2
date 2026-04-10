@@ -245,6 +245,11 @@ if (%castlewars_team = ^castlewars_team_saradomin) {
 } else {
     ~castlewars_decrement_zamorak_count;
 }
+%castlewars_clock = ~castlewars_end_clock;
+
+[proc,castlewars_end_clock]()(int)
+if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = true) return (%npc_int2);
+return (null);
 
 [proc,castlewars_login]
 if (~in_castlewars_waitingroom(coord) = true) {
@@ -254,10 +259,11 @@ if (~in_castlewars_waitingroom(coord) = true) {
 if (~in_castlewars_game(coord) = false) {
     return;
 }
-if (%last_world ! map_world) {
+if (~castlewars_end_clock ! %castlewars_clock) {
     ~castlewars_exit_tele;
     return;
 }
+// https://youtu.be/uQX-0rU7Lkc
 if (add(%last_logout, 100) < map_clock | %last_logout > map_clock) {
     ~castlewars_waitingroom_tele(%castlewars_team);
     return;
