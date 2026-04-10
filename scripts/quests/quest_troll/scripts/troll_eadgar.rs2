@@ -197,55 +197,95 @@ def_string $chickens_str = "";
 def_string $grain_str = "";
 def_string $clothes_str = "";
 
-// there has got to be a more portable way to do this, maybe some integer-to-string routine
-// i'm not aware of or at least this could be a proc that returns a value?
-// for now we are duplicating code intern style, yolo
 switch_int ($logs_num) {
     case 0 : $logs_str = "no logs";
-    case 1 : $logs_str = "one log";
-    case default : $logs_str = "the logs"; // if >= 2
+    case default : $logs_str = "the logs";
 }
 switch_int ($chickens_num) {
     case 0 : $chickens_str = "no chickens";
-    case 1 : $chickens_str = "one chicken";
-    case 2 : $chickens_str = "two chickens";
-    case 3 : $chickens_str = "three chickens";
-    case 4 : $chickens_str = "four chickens";
-    case default : $chickens_str = "five chickens"; // >= 5
+    case default : $chickens_str = "<tostring($chickens_num)> chickens";
 }
 switch_int ($grain_num) {
-    case 0 : $grain_str = "no";
-    case 1 : $grain_str = "one bundle of";
-    case 2 : $grain_str = "two bundles of";
-    case 3 : $grain_str = "three bundles of";
-    case 4 : $grain_str = "four bundles of";
-    case 5 : $grain_str = "five bundles of";
-    case 6 : $grain_str = "six bundles of";
-    case 7 : $grain_str = "seven bundles of";
-    case 8 : $grain_str = "eight bundles of";
-    case 9 : $grain_str = "nine bundles of";
-    case default : $grain_str = "ten bundles of"; // >= 10
+    case 0 : $grain_str = "no grain";
+    case default : $grain_str = "<tostring($grain_num)> bundles of grain";
 }
 switch_int ($clothes_num) {
     case 0 : $clothes_str = "no dirty clothes";
     case default : $clothes_str = "the dirty clothes";
 }
 
-// items are removed here
-inv_del(inv, logs, $logs_num);
-inv_del(inv, raw_chicken, $chickens_num);
-inv_del(inv, grain, $grain_num);
-inv_del(inv, eadgar_dirty_druid_robe, $clothes_num);
-~chatplayer("<p,neutral>I have <$logs_str>, <$chickens_str>, <$grain_str> grain and <$clothes_str>.");
+// done building strings, now clamp values so we don't eat the player's items
+$chickens_num = min(calc(5 - %eadgar_chickens), $chickens_num);
+~mesbox("Setting chickens_num to <tostring($chickens_num)>");
+$grain_num = min(calc(10 - %eadgar_grain), $grain_num);
+~mesbox("Setting grain_num to <tostring($grain_num)>");
 
-// i have no idea how this is tracked, it seems impossible to do with the quest varp
-// there must be varbits involved here somewhere
-// for now, we continue!
 
-// if not all items are delivered, dialog goes back to default tree after eadgar tells you
-// what else is needed
-// is clicking on eadgar after showing him the parrot but before hiding it the only way to
-// see the scarecrow dialog tree?
+// videos show items are removed here, immediately before the player's "I have XYZ" dialog fires
+if ($logs_num >= 1 & testbit(%eadgar_bits, ^eadgar_given_logs) = ^false) {
+    ~mesbox("We have logs but have not given them, deleting logs and setting bit");
+    inv_del(inv, logs, 1);
+    %eadgar_bits = setbit(%eadgar_bits, ^eadgar_given_logs);
+} else {
+    ~mesbox("Either we don't have logs (string will be overwritten next check) or don't need to give them");
+    $logs_str = "no logs";
+    // This is to match Soup's OSRS video.
+    // The player gives Eadgar the logs first, then returns with the dirty clothes on a second trip while still carrying
+    // a second set of logs for making a fire later. The player's dialog reads "I have no logs" while turning in the clothes,
+    // even though there are actually logs in the inventory.
+}
+
+if ($chickens_num > 0) {
+    inv_del(inv, raw_chicken, $chickens_num);
+}
+
+if ($grain_num > 0) {
+    inv_del(inv, grain, $grain_num);
+}
+
+if ($clothes_num >= 1 & testbit(%eadgar_bits, ^eadgar_given_clothes) = ^false) {
+    inv_del(inv, eadgar_dirty_druid_robe, $clothes_num); // todo check if it's possible to get dupes of this and see and what the quest does if turning in this step with dupes
+    %eadgar_bits = setbit(%eadgar_bits, ^eadgar_given_clothes);
+} // might need an else here if it's possible to come back with a duped robe in the event that it affects dialog like with logs...?
+
+// increment what we've brought
+%eadgar_chickens = calc(%eadgar_chickens + $chickens_num);
+%eadgar_grain = calc(%eadgar_grain + $grain_num);
+
+// check if anything more is needed
+def_int $logs_needed = calc(1 - $logs_num);
+def_int $chickens_needed = calc(5 - %eadgar_chickens);
+def_int $grain_needed = calc(10 - %eadgar_grain);
+def_int $clothes_needed = calc(1 - $clothes_num);
+
+~chatplayer("<p,neutral>I have <$logs_str>, <$chickens_str>, <$grain_str> and <$clothes_str>.");
+
+// if not all items are delivered, dialog goes back to default tree after eadgar tells you what else is needed
+// is clicking on eadgar after showing him the parrot but before hiding it the only way to see the scarecrow dialog tree?
+if($logs_needed > 0 | $chickens_needed > 0 | $grain_needed > 0 | $clothes_needed > 0) {
+    // todo probably a better way to do this w/o code duplication
+    switch_int ($logs_needed) {
+    case 0 : $logs_str = "no logs";
+    case default : $logs_str = "the logs";
+    }
+    switch_int ($chickens_needed) {
+        case 0 : $chickens_str = "no chickens";
+        case default : $chickens_str = "<tostring($chickens_needed)> chickens";
+    }
+    switch_int ($grain_needed) {
+        case 0 : $grain_str = "no grain";
+        case default : $grain_str = "<tostring($grain_needed)> bundles of grain";
+    }
+    switch_int ($clothes_needed) {
+        case 0 : $clothes_str = "no dirty clothes";
+        case default : $clothes_str = "the dirty clothes";
+    }
+    ~chatnpc("<p,neutral>You now need <$logs_str>, <$chickens_str>, <$grain_str> and <$clothes_str>.");
+    ~chatnpc("<p,quiz>Anything else I can do for you?"); // this line is used in a couple different contexts at this point before
+    // forwarding to the default tree but ALSO there are other lines used sometimes so rather than duplicating this dialog 3x
+    // it should probably be in its own tiny label
+    @eadgar_default_tree;
+}
 
 // dialog from soup's vid, todo mesanims though these should be mostly good
 ~chatnpc("<p,happy>That's everything!");
