@@ -291,22 +291,7 @@ if (~get_tbwt_tinsay_progress < ^tbwt_tinsay_claimed_final_reward) {
 }
 
 /*
-If you don't have 30 Firemaking, and try to use tinderbox on Jogre bones, message "You need a firemaking level of 30 to burn Jogre bones. You could find some other way of burning them."
-Can superheat Jogre bones to burn them, for 53 magic xp & 25 cook xp
-Jogre bones take 45 ticks to burn, according to OSRS via RSProx
-Cooking Jogre bones on a range or fire gives message, "You heat the bones, but they don't look any different."
-
-You cannot cook raw karambwanji after ^tbwt_tinsay_complete (Message: "You don't feel that would be useful now.") (OSRS change; ignored)
-
-According to wiki, jogre bones made from cooked karambwanji paste will explode, dealing 2 damage, when cooked. Players will receive the message: "The cooked karambwanji paste catches fire and explodes."
-Items: tbwt_jogre_bones_in_cooked_karambwanji_paste & tbwt_burnt_jogre_bones_in_cooked_karambwanji_paste
-
-Cooking a raw karambwan: "You cook the karambwan. It looks very dodgy."
-Eating a poison karambwan: Hit for 5 health, with poison hitsplat (no poison applied). "You eat the Karambwan." NEW LINE: "It tastes ... painful."
-Burning karambwan: "You accidentally burn the karambwan."
+Cooking a raw karambwan: "You cook the karambwan. It looks very dodgy." - ToDo: Update message to this with Make-X
 Cannot cook a poison karambwan: message box: "You cannot cook that again; it's already cooked."
-
-Using cleaning cloth on a poisoned spear: "You gingerly wipe the poison off the spear."
-
 Using a poison karambwan on a spear yields: ~chatplayer("<p,neutral>This blasted Karambwan just falls off the spear! My life is becoming such a grind...");
 */
