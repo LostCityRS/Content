@@ -1,62 +1,20 @@
 // PROC
 
-[proc,get_tbwt_main_progress]()(int)
-return (getbit_range(%tbwt_main, ^tbwt_not_started, ^tbwt_complete));
-
-[proc,set_tbwt_main_progress](int $prog)
-%tbwt_main = setbit_range_toint(%tbwt_main, $prog, ^tbwt_not_started, ^tbwt_complete);
-
 [proc,get_tbwt_timfraku_title]()(int)
-return (getbit_range(%tbwt_tiadeche, ^tbwt_tiadeche_timfraku_title_start, ^tbwt_tiadeche_timfraku_title_end));
+return (getbit_range(%tbwt_bits, ^tbwt_timfraku_title_start, ^tbwt_timfraku_title_end));
 
 [proc,set_tbwt_timfraku_title](int $title)
-%tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $title, ^tbwt_tiadeche_timfraku_title_start, ^tbwt_tiadeche_timfraku_title_end);
-
-[proc,get_tbwt_tiadeche_progress]()(int)
-return (getbit_range(%tbwt_tiadeche, ^tbwt_tiadeche_tiadeche_start, ^tbwt_tiadeche_tiadeche_end));
-
-[proc,set_tbwt_tiadeche_progress](int $prog)
-%tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $prog, ^tbwt_tiadeche_tiadeche_start, ^tbwt_tiadeche_tiadeche_end);
-
-[proc,get_tbwt_tamayu_progress]()(int)
-return (getbit_range(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_start, ^tbwt_tiadeche_tamayu_end));
-
-[proc,set_tbwt_tamayu_progress](int $prog)
-%tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $prog, ^tbwt_tiadeche_tamayu_start, ^tbwt_tiadeche_tamayu_end);
-
-[proc,get_tbwt_tinsay_progress]()(int)
-return (getbit_range(%tbwt_tiadeche, ^tbwt_tiadeche_tinsay_start, ^tbwt_tiadeche_tinsay_end));
-
-[proc,set_tbwt_tinsay_progress](int $prog)
-%tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $prog, ^tbwt_tiadeche_tinsay_start, ^tbwt_tiadeche_tinsay_end);
-
-[proc,get_tbwt_lubufu_progress]()(int)
-return (getbit_range(%tbwt_tiadeche, ^tbwt_tiadeche_lubufu_start, ^tbwt_tiadeche_lubufu_end));
-
-[proc,set_tbwt_lubufu_progress](int $prog)
-%tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $prog, ^tbwt_tiadeche_lubufu_start, ^tbwt_tiadeche_lubufu_end);
-
-[proc,get_tbwt_lubufu_karambwanji]()(int)
-return (getbit_range(%tbwt_tiadeche, ^tbwt_tiadeche_lubufu_karambwanji_count_start, ^tbwt_tiadeche_lubufu_karambwanji_count_end));
-
-[proc,set_tbwt_lubufu_karambwanji](int $prog)
-%tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $prog, ^tbwt_tiadeche_lubufu_karambwanji_count_start, ^tbwt_tiadeche_lubufu_karambwanji_count_end);
-
-[proc,get_tbwt_lubufu_questioning]()(int)
-return (getbit_range(%tbwt_tiadeche, ^tbwt_tiadeche_lubufu_questioning_count_start, ^tbwt_tiadeche_lubufu_questioning_count_end));
-
-[proc,set_tbwt_lubufu_questioning](int $prog)
-%tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $prog, ^tbwt_tiadeche_lubufu_questioning_count_start, ^tbwt_tiadeche_lubufu_questioning_count_end);
+%tbwt_bits = setbit_range_toint(%tbwt_bits, $title, ^tbwt_timfraku_title_start, ^tbwt_timfraku_title_end);
 
 [proc,get_tbwt_tamayu_agility_count]()(int)
-return (getbit_range(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_agility_count_start, ^tbwt_tiadeche_tamayu_agility_count_end));
+return (getbit_range(%tbwt_bits, ^tbwt_tamayu_agility_count_start, ^tbwt_tamayu_agility_count_end));
 
 [proc,set_tbwt_tamayu_agility_count](int $prog)
-%tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $prog, ^tbwt_tiadeche_tamayu_agility_count_start, ^tbwt_tiadeche_tamayu_agility_count_end);
+%tbwt_bits = setbit_range_toint(%tbwt_bits, $prog, ^tbwt_tamayu_agility_count_start, ^tbwt_tamayu_agility_count_end);
 
 [proc,tbwt_get_timfraku_title]()(string)
 def_string $title = "adventurer";
-switch_int(getbit_range(%tbwt_tiadeche, ^tbwt_tiadeche_timfraku_title_start, ^tbwt_tiadeche_timfraku_title_end)) {
+switch_int(getbit_range(%tbwt_bits, ^tbwt_timfraku_title_start, ^tbwt_timfraku_title_end)) {
     case 0 : $title = "adventurer";
     case 1 : $title = "explorer";
     case 2 : $title = "wayfarer";
@@ -66,7 +24,7 @@ return ($title);
 
 [proc,tbwt_get_completed_timfraku_title]()(string)
 def_string $title = "Roving adventurer";
-switch_int(getbit_range(%tbwt_tiadeche, ^tbwt_tiadeche_timfraku_title_start, ^tbwt_tiadeche_timfraku_title_end)) {
+switch_int(getbit_range(%tbwt_bits, ^tbwt_timfraku_title_start, ^tbwt_timfraku_title_end)) {
     case 0 : $title = "Roving adventurer";
     case 1 : $title = "Travelling explorer";
     case 2 : $title = "Wandering wayfarer";
@@ -75,7 +33,7 @@ switch_int(getbit_range(%tbwt_tiadeche, ^tbwt_tiadeche_timfraku_title_start, ^tb
 return ($title);
 
 [proc,tbwt_get_brother_completion]()(boolean)
-if (~get_tbwt_tinsay_progress = ^tbwt_tinsay_complete & ~get_tbwt_tamayu_progress = ^tbwt_tamayu_complete & ~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_complete & ~get_tbwt_lubufu_progress = ^tbwt_lubufu_complete) {
+if (%tbwt_tinsay = ^tbwt_tinsay_complete & %tbwt_tamayu = ^tbwt_tamayu_complete & %tbwt_tiadeche = ^tbwt_tiadeche_complete & %tbwt_lubufu = ^tbwt_lubufu_complete) {
     return (true);
 } else {
     return (false);
@@ -108,7 +66,7 @@ if (oc_category(last_useitem) = weapon_spear & oc_param(last_useitem, poison_sev
 // OPLOC1
 
 [oploc1,tbwt_bamboo_door]
-if (~get_tbwt_main_progress() < ^tbwt_complete) {
+if (%tbwt_main < ^tbwt_complete) {
     mes("You do not have permission to enter here"); // Intentionally no period - https://imgur.com/a/1LTxz27
     return;
 }
@@ -116,7 +74,7 @@ if (~get_tbwt_main_progress() < ^tbwt_complete) {
 ~open_and_close_door(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), false);
 
 [oploc1,tbwt_tribal_statue]
-if (~get_tbwt_tinsay_progress < ^tbwt_tinsay_claimed_final_reward) {
+if (%tbwt_tinsay < ^tbwt_tinsay_claimed_final_reward) {
     mes("You do not have permission to pray here.");
 } else {
     @pray_at_altar(stat_base(prayer));
@@ -126,15 +84,13 @@ if (~get_tbwt_tinsay_progress < ^tbwt_tinsay_claimed_final_reward) {
 // OPNPCU
 
 [opnpcu,lubufu_karambwan]
-def_int $lubufu_progress = ~get_tbwt_lubufu_progress();
-def_int $main_progress = ~get_tbwt_main_progress();
-if ($main_progress >= ^tbwt_complete) {
+if (%tbwt_main >= ^tbwt_complete) {
     if (npc_find(coord, tbwt_lubufu, 20, 0) = true) {
         ~chatnpc("<p,angry>You deceived me you confoundering dolt! Because of you, my entire business is ruined! Don't you dare touch my fishing spot!");
     }
     return;
 }
-if ($lubufu_progress >= ^tbwt_lubufu_complete) {
+if (%tbwt_lubufu >= ^tbwt_lubufu_complete) {
     if (last_useitem = tbwt_karambwan_vessel) {
         if (npc_find(coord, tbwt_lubufu, 20, 0) = true) {
             ~chatnpc("<p,neutral>You'll first have to bait that pot with Karambwanji.");
@@ -154,12 +110,12 @@ if (npc_find(coord, tbwt_lubufu, 20, 0) = true) {
 // OPNPC1
 
 [opnpc1,lubufu_karambwan]
-if (~get_tbwt_lubufu_progress() < ^tbwt_lubufu_complete & ~get_tbwt_main_progress() < ^tbwt_complete) {
+if (%tbwt_lubufu < ^tbwt_lubufu_complete & %tbwt_main < ^tbwt_complete) {
     if (npc_find(coord, tbwt_lubufu, 20, 0) = true) {
         ~chatnpc("<p,angry>Keep off my fishing spot, whippersnapper!");
     }
 } else {
-    if (~get_tbwt_main_progress() >= ^tbwt_complete) {
+    if (%tbwt_main >= ^tbwt_complete) {
         if (npc_find(coord, tbwt_lubufu, 20, 0) = true) {
             ~chatnpc("<p,angry>You deceived me you confoundering dolt! Because of you, my entire business is ruined! Don't you dare touch my fishing spot!");
         }
@@ -301,7 +257,7 @@ switch_obj(last_useitem) {
 
 [queue,twbt_quest_complete]
 session_log(^log_adventure, "Quest complete: Tai Bwo Wannai Trio");
-~set_tbwt_main_progress(^tbwt_complete);
+%tbwt_main = ^tbwt_complete;
 ~send_quest_complete(questlist:tbwt, tbwt_raw_karambwan, 250, ^tbwt_questpoints, "You have completed the\\n'Tai Bwo Wannai Trio' Quest!"); // https://web.archive.org/web/20051228165555/http://runescape.salmoneus.net/quests/TaiBwoTrio/taibwocomplt.png
 queue(tbwt_timfraku_talk_to_sons, 0, 0);
 

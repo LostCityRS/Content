@@ -1,5 +1,5 @@
 [opnpc1,tbwt_tiadeche]
-if (~get_tbwt_main_progress() < ^tbwt_started) {
+if (%tbwt_main < ^tbwt_started) {
     switch_int(random(3)) {
         case 0 :
             ~chatnpc("<p,neutral>Just leave a depressed fish hunter alone...");
@@ -9,9 +9,9 @@ if (~get_tbwt_main_progress() < ^tbwt_started) {
             ~chatnpc("<p,angry>Go away! Can't you see I'm concentrating?");
     }
 } else {
-    switch_int(~get_tbwt_tiadeche_progress()) {
+    switch_int(%tbwt_tiadeche) {
         case ^tbwt_tiadeche_unknown :
-            ~set_tbwt_tiadeche_progress(^tbwt_tiadeche_intro);
+            %tbwt_tiadeche = ^tbwt_tiadeche_intro;
             ~chatplayer("<p,quiz>Are you Tiadeche?");
             ~chatnpc("<p,neutral>I am.");
             @tbwt_tiadeche_bringgoodnews;
@@ -29,7 +29,7 @@ if (~get_tbwt_main_progress() < ^tbwt_started) {
 }
 
 [opnpcu,tbwt_tiadeche]
-if (~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_return_when_caught_karambwan) { // Only applicable before Tiadeche catches a Karambwan
+if (%tbwt_tiadeche = ^tbwt_tiadeche_return_when_caught_karambwan) { // Only applicable before Tiadeche catches a Karambwan
     if(last_useitem = tbwt_raw_karambwan | last_useitem = tbwt_cooked_karambwan | last_useitem = tbwt_poorly_cooked_karambwan) {
         ~chatnpc("<p,angry>I refuse to take your offerings. I must catch this Karambwan myself.");
 
@@ -65,7 +65,7 @@ if (~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_return_when_caught_karambwan) {
     } else if (last_useitem = tbwt_karambwan_vessel_loaded_with_karambwanji) {
         ~chatplayer("<p,neutral>Tiadeche, instead of using your net, try using this vessel.");
         inv_del(inv, tbwt_karambwan_vessel_loaded_with_karambwanji, 1);
-        ~set_tbwt_tiadeche_progress(^tbwt_tiadeche_caught_karambwan);
+        %tbwt_tiadeche = ^tbwt_tiadeche_caught_karambwan;
         ~objbox(tbwt_karambwan_vessel_loaded_with_karambwanji, "You hand over the Karambwan vessel to Tiadeche.", 250, 0, ^objbox_height);
         ~chatnpc("<p,quiz>What is it?");
         ~chatplayer("<p,neutral>It has been specially constructed to catch Karambwan. Once they enter it, they cannot return..");
@@ -83,7 +83,7 @@ if (~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_return_when_caught_karambwan) {
         def_int $choice = ~p_choice2_header("Yes", 1, "No", 2, "Accept Tiadeche's offer?");
         if ($choice = 1) { // Yes
             inv_add(inv, tbwt_raw_karambwan, 1);
-            %tbwt_tiadeche = setbit(%tbwt_tiadeche, ^tbwt_tiadeche_tiadeche_received_karambwan);
+            %tbwt_bits = setbit(%tbwt_bits, ^tbwt_tiadeche_received_karambwan);
             ~objbox(tbwt_raw_karambwan, "Tiadeche hands you his first catch!", 250, 0, 0);
             ~chatplayer("<p,neutral>Your father would be proud.");
             ~chatnpc("<p,neutral>Hmph ... my father would not care.");
@@ -97,7 +97,7 @@ if (~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_return_when_caught_karambwan) {
     } else {
         ~displaymessage(^dm_default);
     }
-} else if (~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_player_received_manual) {
+} else if (%tbwt_tiadeche = ^tbwt_tiadeche_player_received_manual) {
     if (last_useitem = tbwt_crafting_manual) {
         @tbwt_tiadeche_give_crafting_manual;
     } else {
@@ -111,10 +111,10 @@ if (~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_return_when_caught_karambwan) {
 npc_anim(human_octopus_pot, 0);
 
 [label,tbwt_tiadeche_bringgoodnews]
-~set_tbwt_tiadeche_progress(^tbwt_tiadeche_intro);
+%tbwt_tiadeche = ^tbwt_tiadeche_intro;
 ~chatplayer("<p,neutral>Tiadeche, I bring good news. Trufitus has communed with the gods -  your village is once again safe."); // Double space after hyphen is intentional - https://imgur.com/a/d1K0ei0
 ~chatplayer("<p,neutral>Your father requests that you return to the village.");
-~set_tbwt_tiadeche_progress(^tbwt_tiadeche_return_when_caught_karambwan);
+%tbwt_tiadeche = ^tbwt_tiadeche_return_when_caught_karambwan;
 ~chatnpc("<p,neutral>I will return only when I have caught a Karambwan.");
 @tbwt_tiadeche_initial_ops;
 
@@ -157,22 +157,22 @@ npc_anim(human_octopus_pot, 0);
 ~chatplayer("<p,neutral>...");
 ~chatnpc("<p,neutral>Before I return, I must ask you to do one thing.");
 ~chatplayer("<p,quiz>And that is?");
-~set_tbwt_tiadeche_progress(^tbwt_tiadeche_request_manual);
+%tbwt_tiadeche = ^tbwt_tiadeche_request_manual;
 ~chatnpc("<p,neutral>Take a Karambwan vessel to my brother Tinsay. He is the academic amongst us. Tell him I have asked him to study it so that we may craft more of its type.");
 ~chatplayer("<p,quiz>Can I have the vessel back then?");
 ~chatnpc("<p,shifty>I need this to practice with. Why don't you craft another one?");
 ~chatplayer("<p,neutral>I ... never mind.");
 
 [label,tbwt_tiadeche_have_you_retrieved_manual]
-if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tiadeche_received_karambwan) = ^false) {
+if (testbit(%tbwt_bits, ^tbwt_tiadeche_received_karambwan) = ^false) {
     if (inv_total(inv, tbwt_raw_karambwan) < 1) { 
         ~chatnpc("<p,happy>I have caught another Karambwan! I think I ought to give it to you.");
         inv_add(inv, tbwt_raw_karambwan, 1);
-        %tbwt_tiadeche = setbit(%tbwt_tiadeche, ^tbwt_tiadeche_tiadeche_received_karambwan);
+        %tbwt_bits = setbit(%tbwt_bits, ^tbwt_tiadeche_received_karambwan);
     }
 }
 ~chatnpc("<p,quiz>Have you taken the Karambwan vessel to Tinsay?");
-if (~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_player_received_manual) {
+if (%tbwt_tiadeche = ^tbwt_tiadeche_player_received_manual) {
     ~chatplayer("<p,neutral>Yes, I have.");
     ~chatnpc("<p,neutral>Did you ask for crafting instructions as I said?");
     if (inv_total(inv, tbwt_crafting_manual) > 0) {
@@ -189,7 +189,7 @@ if (~get_tbwt_tiadeche_progress = ^tbwt_tiadeche_player_received_manual) {
 
 [label,tbwt_tiadeche_give_crafting_manual]
 inv_del(inv, tbwt_crafting_manual, 1);
-~set_tbwt_tiadeche_progress(^tbwt_tiadeche_complete);
+%tbwt_tiadeche = ^tbwt_tiadeche_complete;
 ~objbox(tbwt_crafting_manual, "You hand over the crafting manual to Tiadeche.", 250, 0, 0);
 ~music_jingle("tiadeche thankful");
 ~chatnpc("<p,happy>Thank you so much. You cannot understand what all of this means to me and our people.");
@@ -201,6 +201,6 @@ inv_del(inv, tbwt_crafting_manual, 1);
 ~chatplayer("<p,neutral>I am glad to hear this. Let us go.");
 ~chatnpc("<p,neutral>Not yet. I will stay here a while to catch more Karambwan.");
 ~chatnpc("<p,neutral>I will meet you in the village once you have helped my brothers and spoken to my father.");
-if (~get_tbwt_main_progress = ^tbwt_started & ~tbwt_get_brother_completion = true) {
-    ~set_tbwt_main_progress(^tbwt_completed_all_brothers);
+if (%tbwt_main = ^tbwt_started & ~tbwt_get_brother_completion = true) {
+    %tbwt_main = ^tbwt_completed_all_brothers;
 }

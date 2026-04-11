@@ -1,10 +1,14 @@
 [opnpc1,tbwt_tamayu_final]
-switch_int(~get_tbwt_tamayu_progress) {
+switch_int(%tbwt_tamayu) {
     case ^tbwt_tamayu_complete :
         @tbwt_tamayu_claim_reward;
     case ^tbwt_tamayu_claimed_final_reward :
         @tbwt_tamayu_final;
 }
+
+[opnpc3,tbwt_tamayu_final]
+if (%tbwt_tamayu = ^tbwt_tamayu_complete) p_opnpc(1);
+else ~openshop_activenpc;
 
 [label,tbwt_tamayu_claim_reward]
 ~chatnpc("<p,neutral>Welcome back to Tai Bwo Wannai, stranger.");
@@ -14,7 +18,7 @@ switch_int(~get_tbwt_tamayu_progress) {
 ~mesbox("Tamayu trains you in fighting technique.");
 ~chatplayer("<p,neutral>Thanks.");
 ~chatnpc("<p,neutral>This is the one thing I can give. My family have honoured me with this spear. But the honour is truly yours.");
-~set_tbwt_tamayu_progress(^tbwt_tamayu_claimed_final_reward);
+%tbwt_tamayu = ^tbwt_tamayu_claimed_final_reward;
 stat_advance(attack, 25000);
 stat_advance(strength, 25000);
 inv_add(inv, tbwt_rune_spear_kp, 1);

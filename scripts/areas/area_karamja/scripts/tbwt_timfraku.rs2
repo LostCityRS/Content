@@ -1,5 +1,5 @@
 [opnpc1,tbwt_timfraku]
-switch_int(~get_tbwt_main_progress()) {
+switch_int(%tbwt_main) {
     case ^tbwt_not_started :
         ~chatnpc("<p,angry>I am the Chief of Tai Bwo Wannai Village! Who dares set foot in my hut?");
         @multi4("I am a roving adventurer.", tbwt_timfraku_rovingadventurer, 
@@ -61,11 +61,11 @@ if (%junglepotion >= ^junglepotion_complete) {
 
 
 [proc,tbwt_set_spoke_to_timfraku]
-switch_int(~get_tbwt_main_progress()) {
+switch_int(%tbwt_main) {
     case ^tbwt_not_started :
-        ~set_tbwt_main_progress(^tbwt_spoke_to_timfraku);
+        %tbwt_main = ^tbwt_spoke_to_timfraku;
     case ^tbwt_spoke_to_timfraku :
-        if(%junglepotion >= ^junglepotion_complete) ~set_tbwt_main_progress(^tbwt_timfraku_asked_for_help);
+        if(%junglepotion >= ^junglepotion_complete) %tbwt_main = ^tbwt_timfraku_asked_for_help;
 }
 
 [label,tbwt_timfraku_whyshouldileave]
@@ -138,7 +138,7 @@ if (%junglepotion < ^junglepotion_complete) {
 @multi2_header("Yes", tbwt_timfraku_starttbwt, "No", tbwt_timfraku_declinetbwt, "Start Tai Bwo Wannai Trio?");
 
 [label,tbwt_timfraku_starttbwt]
-~set_tbwt_main_progress(^tbwt_started);
+%tbwt_main = ^tbwt_started;
 ~send_quest_progress(questlist:tbwt, %tbwt_main, ^tbwt_complete);
 ~chatplayer("<p,happy>Ok, I'll do it.");
 ~chatnpc("<p,neutral>Thank you very much. I shall reward you greatly if you succeed.");
@@ -170,7 +170,7 @@ if (%junglepotion < ^junglepotion_complete) {
 ~chatnpc("<p,neutral>It should be clear to anyone that I am the chief of Tai Bwo Wannai. I ensure that things run smoothly in this village.");
 
 [label,tbwt_timfraku_end_conversation]
-if (~get_tbwt_main_progress < ^tbwt_complete) {
+if (%tbwt_main < ^tbwt_complete) {
     ~chatplayer("<p,neutral>Ok, thanks.");
 } else {
     ~chatplayer("<p,neutral>I'm just passing through.");
@@ -267,7 +267,7 @@ if ($choice = 1) { // Oh it was nothing really.
 }
 
 [label,tbwt_timfraku_give_coin_reward]
-~set_tbwt_main_progress(^tbwt_received_gold_reward);
+%tbwt_main = ^tbwt_received_gold_reward;
 inv_add(inv, coins, 2000);
 ~objbox(coins_1000, "Timfraku hands you a big stack of gold coins.", 200, 0, ^objbox_height);
 @tbwt_timfraku_complete_quest;
@@ -281,7 +281,7 @@ if(npc_find(coord, tbwt_timfraku, 10, 0) = true) {
 }
 
 [label,tbwt_timfraku_post_tbwt]
-if (~get_tbwt_tinsay_progress ! ^tbwt_tinsay_claimed_final_reward | ~get_tbwt_tiadeche_progress ! ^tbwt_tiadeche_claimed_final_reward | ~get_tbwt_tamayu_progress ! ^tbwt_tamayu_claimed_final_reward) {
+if (%tbwt_tinsay ! ^tbwt_tinsay_claimed_final_reward | %tbwt_tiadeche ! ^tbwt_tiadeche_claimed_final_reward | %tbwt_tamayu ! ^tbwt_tamayu_claimed_final_reward) {
     @tbwt_timfraku_speak_to_sons;
 } else {
     ~chatnpc("<p,neutral>Ah, <~tbwt_get_timfraku_title>, welcome back to Tai Bwo Wannai.");

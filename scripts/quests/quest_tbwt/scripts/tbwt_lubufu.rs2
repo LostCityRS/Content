@@ -1,16 +1,12 @@
 [opnpcu,tbwt_lubufu]
-if (~get_tbwt_lubufu_progress ! ^tbwt_lubufu_fetch_karambwanji) {
-    ~displaymessage(^dm_default);
+if (%tbwt_lubufu >= ^tbwt_lubufu_fetch_karambwanji & %tbwt_lubufu < ^tbwt_lubufu_given_karambwanji) {
+    if (last_useitem = tbwt_raw_karambwanji) @tbwt_lubufu_give_karambwanji; else ~displaymessage(^dm_default);
 } else {
-    if (last_useitem = tbwt_raw_karambwanji) {
-        @tbwt_lubufu_give_karambwanji;
-    } else {
-        ~displaymessage(^dm_default);
-    }
+    ~displaymessage(^dm_default);
 }
 
 [opnpc1,tbwt_lubufu]
-if (~get_tbwt_lubufu_progress < ^tbwt_lubufu_intro) {
+if (%tbwt_lubufu < ^tbwt_lubufu_intro) {
     if (getqueue(tbwt_lubufu_queue) > 0) {
         ~chatnpc("<p,angry>I said go away!");
         ~chatplayer("<p,neutral>Ok, I'm going...");
@@ -24,22 +20,22 @@ if (~get_tbwt_lubufu_progress < ^tbwt_lubufu_intro) {
                 "Who are you?", tbwt_lubufu_whoareyou
                 );
     }
-} else if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_intro) {
+} else if (%tbwt_lubufu = ^tbwt_lubufu_intro) {
     ~chatnpc("<p,angry>You again! I thought I told you to go away!");
     ~chatplayer("<p,neutral>You did. I came back.");
     ~chatnpc("<p,angry>So I see. What would a fool like you want with me?");
     @tbwt_lubufu_initialops;
-} else if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_offered_to_help) {
+} else if (%tbwt_lubufu = ^tbwt_lubufu_offered_to_help) {
     @tbwt_lubufu_offered_to_help;
-} else if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_fetch_karambwanji) {
+} else if (%tbwt_lubufu >= ^tbwt_lubufu_fetch_karambwanji & %tbwt_lubufu < ^tbwt_lubufu_given_karambwanji) {
     @tbwt_lubufu_retrieved_karambwanji;
-} else if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_given_karambwanji) {
+} else if (%tbwt_lubufu >= ^tbwt_lubufu_given_karambwanji & %tbwt_lubufu < ^tbwt_lubufu_asked_questions) {
     @tbwt_lubufu_given_karambwanji_ops;
-} else if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_offered_apprentice) {
+} else if (%tbwt_lubufu = ^tbwt_lubufu_offered_apprentice) {
     @tbwt_lubufu_offered_apprentice;
-} else if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_became_apprentice) {
+} else if (%tbwt_lubufu = ^tbwt_lubufu_became_apprentice) {
     @tbwt_lubufu_learn_karambwan_fishing;
-} else if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_complete) {
+} else if (%tbwt_lubufu = ^tbwt_lubufu_complete) {
     @tbwt_lubufu_apprentice_dialogue;
 } else {
     @tbwt_lubufu_initialops;
@@ -48,8 +44,8 @@ if (~get_tbwt_lubufu_progress < ^tbwt_lubufu_intro) {
 [label,tbwt_lubufu_initialops]
 def_int $initialops = ~p_choice4("Talk about him...", 1, "Talk about Karambwan...", 2, "Talk about something else...", 3, "Leave...", 4);
 if ($initialops = 1) { // Talk about him...
-    if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_intro) {
-        ~set_tbwt_lubufu_progress(^tbwt_lubufu_initialops);
+    if (%tbwt_lubufu = ^tbwt_lubufu_intro) {
+        %tbwt_lubufu = ^tbwt_lubufu_initialops;
     }
     def_int $abouthimops = ~p_choice4("Who are you?", 1, "Where are you from?", 2, "What do you do?", 3, "How old are you?", 4);
     if ($abouthimops = 1) { // Who are you?
@@ -89,14 +85,14 @@ if ($initialops = 1) { // Talk about him...
     } else if ($abouthimops = 3) { // What do you do?
         ~chatplayer("<p,quiz>What do you do?");
         ~chatnpc("<p,neutral>Nowadays I mostly fish for Karambwan and collect their bait. Collecting the bait has become increasingly tiresome, what with my age and health.");
-        if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_asked_what_do) {
+        if (%tbwt_lubufu = ^tbwt_lubufu_asked_what_do) {
             @multi4("What do you do with your Karambwan?", tbwt_lubufu_what_do_with_karambwan,
                     "How old are you?", tbwt_lubufu_how_old_are_you,
                     "What do you use for bait?", tbwt_lubufu_what_use_for_bait,
                     "I could help collect the bait.", tbwt_lubufu_i_could_help
             );
         } else {
-            ~set_tbwt_lubufu_progress(^tbwt_lubufu_asked_what_do);
+            %tbwt_lubufu = ^tbwt_lubufu_asked_what_do;
             @multi3("What do you do with your Karambwan?", tbwt_lubufu_what_do_with_karambwan,
                     "How old are you?", tbwt_lubufu_how_old_are_you,
                     "What do you use for bait?", tbwt_lubufu_what_use_for_bait
@@ -106,9 +102,7 @@ if ($initialops = 1) { // Talk about him...
         @tbwt_lubufu_how_old_are_you;
     }
 } else if ($initialops = 2) { // Talk about Karambwan...
-    if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_intro) {
-        ~set_tbwt_lubufu_progress(^tbwt_lubufu_initialops);
-    }
+    if (%tbwt_lubufu = ^tbwt_lubufu_intro) %tbwt_lubufu = ^tbwt_lubufu_initialops;
     def_int $karambwanops = ~p_choice4("What is a Karambwan?", 1, "What do you do with your Karambwan?", 2, "What do you use for bait?", 3, "What does Karambwan taste like?", 4);
     if ($karambwanops = 1) { // What is a Karambwan?
         @tbwt_lubufu_what_is_karambwan;
@@ -120,9 +114,7 @@ if ($initialops = 1) { // Talk about him...
         @tbwt_lubufu_what_karambwan_taste_like;
     }
 } else if ($initialops = 3) { // Talk about something else...
-    if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_intro) {
-        ~set_tbwt_lubufu_progress(^tbwt_lubufu_initialops);
-    }
+    if (%tbwt_lubufu = ^tbwt_lubufu_intro) %tbwt_lubufu = ^tbwt_lubufu_initialops;
     def_int $somethingops = ~p_choice4("I have come for your soul.", 1, "I'm with the Fishing Guild Anti-Monopoly Department.", 2, "Do you have any spare monkey skin lying around?", 3, "I've heard something about an accident.", 4);
     if ($somethingops = 1) { // I have come for your soul.
         ~chatplayer("<p,angry>I have come for your soul.");
@@ -148,9 +140,7 @@ if ($initialops = 1) { // Talk about him...
         @tbwt_lubufu_initialops;
     }
 } else if ($initialops = 4) { // Leave...
-    if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_intro) {
-        ~set_tbwt_lubufu_progress(^tbwt_lubufu_initialops);
-    }
+    if (%tbwt_lubufu = ^tbwt_lubufu_intro) %tbwt_lubufu = ^tbwt_lubufu_initialops;
     ~chatplayer("<p,neutral>I'll be back later.");
     ~chatnpc("<p,angry>Don't hurry back!");
 }
@@ -158,17 +148,13 @@ if ($initialops = 1) { // Talk about him...
 [label,tbwt_lubufu_wasntgoinganywhere]
 ~chatplayer("<p,neutral>I wasn't going anywhere...");
 ~chatnpc("<p,angry>Well then go away from here!");
-if (~get_tbwt_main_progress = ^tbwt_started) {
-    ~set_tbwt_lubufu_progress(^tbwt_lubufu_intro);
-}
+if (%tbwt_main = ^tbwt_started) %tbwt_lubufu = ^tbwt_lubufu_intro;
 ~tbwt_lubufu_setqueue;
 
 [label,tbwt_lubufu_whatsawhippersnapper]
 ~chatplayer("<p,quiz>What's a whippersnapper?");
 ~chatnpc("<p,angry>It's a whip. Which snaps. Like me. Now leave!");
-if (~get_tbwt_main_progress = ^tbwt_started) {
-    ~set_tbwt_lubufu_progress(^tbwt_lubufu_intro);
-}
+if (%tbwt_main = ^tbwt_started) %tbwt_lubufu = ^tbwt_lubufu_intro;
 ~tbwt_lubufu_setqueue;
 
 [label,tbwt_lubufu_whoareyou]
@@ -176,9 +162,7 @@ if (~get_tbwt_main_progress = ^tbwt_started) {
 ~chatnpc("<p,neutral>I am Lubufu - the only fisherman who knows the secret of the Karambwan!");
 ~chatplayer("<p,quiz>What's a Karambwan?");
 ~chatnpc("<p,angry>What a foolish question! Now leave!");
-if (~get_tbwt_main_progress = ^tbwt_started) {
-    ~set_tbwt_lubufu_progress(^tbwt_lubufu_intro);
-}
+if (%tbwt_main = ^tbwt_started) %tbwt_lubufu = ^tbwt_lubufu_intro;
 ~tbwt_lubufu_setqueue;
 
 [queue,tbwt_lubufu_queue]
@@ -190,10 +174,10 @@ longqueue(tbwt_lubufu_queue, 10, 0, ^discard);
 [label,tbwt_lubufu_what_is_karambwan]
 ~chatplayer("<p,quiz>What is a Karambwan?");
 ~chatnpc("<p,neutral>A species of octopus native to the island which I and I alone know how to catch.");
-if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_given_karambwanji) {
+if (%tbwt_lubufu >= ^tbwt_lubufu_given_karambwanji) {
     ~chatnpc("<p,shifty>You should really ought to know that by now.");
-    ~set_tbwt_lubufu_questioning(add(1, ~get_tbwt_lubufu_questioning));
-    if (~get_tbwt_lubufu_questioning >= 3) {
+    %tbwt_lubufu = add(1, %tbwt_lubufu);
+    if (%tbwt_lubufu = ^tbwt_lubufu_asked_questions) {
         @tbwt_lubufu_offer_apprentice;
     }
 } else {
@@ -203,10 +187,10 @@ if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_given_karambwanji) {
 [label,tbwt_lubufu_what_do_with_karambwan]
 ~chatplayer("<p,quiz>What do you do with your Karambwan?");
 ~chatnpc("<p,neutral>I eat what I need and sell the rest to the Shrimp and Parrot restaurant.");
-if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_given_karambwanji) {
+if (%tbwt_lubufu >= ^tbwt_lubufu_given_karambwanji) {
     ~chatnpc("<p,neutral>Before you ask, the Shrimp and Parrot is just north of here, in Brimhaven.");
-    ~set_tbwt_lubufu_questioning(add(1, ~get_tbwt_lubufu_questioning));
-    if (~get_tbwt_lubufu_questioning >= 3) {
+    %tbwt_lubufu = add(1, %tbwt_lubufu);
+    if (%tbwt_lubufu = ^tbwt_lubufu_asked_questions) {
         @tbwt_lubufu_offer_apprentice;
     }
 } else {
@@ -225,9 +209,9 @@ if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_given_karambwanji) {
 ~chatnpc("<p,neutral>That depends entirely on how it is cooked...");
 ~chatplayer("<p,quiz>What do you mean?");
 ~chatnpc("<p,neutral>Novicely cooked Karambwan is often poisonous to large mammals such as humans. If you buy some and cook it, be careful.");
-if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_given_karambwanji) {
-    ~set_tbwt_lubufu_questioning(add(1, ~get_tbwt_lubufu_questioning));
-    if (~get_tbwt_lubufu_questioning >= 3) {
+if (%tbwt_lubufu >= ^tbwt_lubufu_given_karambwanji) {
+    %tbwt_lubufu = add(1, %tbwt_lubufu);
+    if (%tbwt_lubufu = ^tbwt_lubufu_asked_questions) {
         @tbwt_lubufu_offer_apprentice;
     }
 } else {
@@ -251,7 +235,7 @@ if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_given_karambwanji) {
 ~chatnpc("<p,angry>And why would you help me?");
 def_int $helpops = ~p_choice4("You sound like you could do with the help.", 1, "You sound like you need help.", 2, "I enjoy collecting meaningless items for people.", 3, "You're right. I don't want to help", 4);
 if ($helpops = 1) { // You sound like you could do with the help.
-    ~set_tbwt_lubufu_progress(^tbwt_lubufu_offered_to_help);
+    %tbwt_lubufu = ^tbwt_lubufu_offered_to_help;
     ~chatplayer("<p,neutral>You sound like you could do with the help.");
     ~chatnpc("<p,neutral>Well perhaps you're right. It's nigh time I could do with some help after all.");
     @tbwt_lubufu_offered_to_help;
@@ -278,21 +262,18 @@ if ($helpops = 1) { // You sound like you could do with the help.
 ~chatplayer("<p,quiz>Where is the Holy Lake?");
 ~chatnpc("<p,neutral>Just to the south of Tai Bwo Wannai Village. I'm sure you've met the locals already.");
 ~chatplayer("<p,quiz>And what do I use to fish for the bait?");
-if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_offered_to_help) {
-    ~set_tbwt_lubufu_progress(^tbwt_lubufu_fetch_karambwanji);
+if (%tbwt_lubufu = ^tbwt_lubufu_offered_to_help) {
+    %tbwt_lubufu = ^tbwt_lubufu_fetch_karambwanji;
 }
 ~chatnpc("<p,neutral>Any small net will do. Return here as soon as you have caught 20 Karambwanji.");
 
 [label,tbwt_lubufu_retrieved_karambwanji]
 ~chatnpc("<p,quiz>Have you retrieved the Karambwanji yet?");
-
-def_int $current = ~get_tbwt_lubufu_karambwanji;
+def_int $current = sub(%tbwt_lubufu, ^tbwt_lubufu_fetch_karambwanji);
 def_int $needed  = sub(20, $current);
-
 if ($current > 0 & $current < 20 & inv_total(inv, tbwt_raw_karambwanji) > 0) {
     ~chatnpc("<p,neutral>I still need <tostring($needed)> more.");
 }
-
 if (inv_total(inv, tbwt_raw_karambwanji) > 0) {
     ~chatplayer("<p,neutral>Yes, I have some here.");
     @tbwt_lubufu_give_karambwanji;
@@ -302,20 +283,24 @@ if (inv_total(inv, tbwt_raw_karambwanji) > 0) {
 }
 
 [label,tbwt_lubufu_give_karambwanji]
-def_int $current = ~get_tbwt_lubufu_karambwanji;
+def_int $current = sub(%tbwt_lubufu, ^tbwt_lubufu_fetch_karambwanji);
 def_int $needed  = sub(20, $current);
-def_int $amount = min(inv_total(inv, tbwt_raw_karambwanji), $needed);
-~set_tbwt_lubufu_karambwanji(add($current, $amount));
-inv_del(inv, tbwt_raw_karambwanji, $amount);
-~objbox(tbwt_raw_karambwanji, "You hand Lubufu <tostring($amount)> raw Karambwanji.", 250, 0, 0);
+def_int $amount  = min(inv_total(inv, tbwt_raw_karambwanji), $needed);
+if ($amount > 0) {
+    %tbwt_lubufu = add(%tbwt_lubufu, $amount);
+    inv_del(inv, tbwt_raw_karambwanji, $amount);
+    ~objbox(tbwt_raw_karambwanji, "You hand Lubufu <tostring($amount)> raw Karambwanji.", 250, 0, 0);
+}
 @tbwt_lubufu_received_karambwanji;
 
 [label,tbwt_lubufu_received_karambwanji]
-if (~get_tbwt_lubufu_karambwanji >= 20) {
-    ~set_tbwt_lubufu_progress(^tbwt_lubufu_given_karambwanji);
+def_int $current = sub(%tbwt_lubufu, ^tbwt_lubufu_fetch_karambwanji);
+
+if (%tbwt_lubufu >= ^tbwt_lubufu_given_karambwanji) {
+    %tbwt_lubufu = ^tbwt_lubufu_given_karambwanji;
     ~chatnpc("<p,neutral>Thank you! This should tide me over for the next month.");
 } else {
-    def_int $still_needed = sub(20, ~get_tbwt_lubufu_karambwanji);
+    def_int $still_needed = sub(20, $current);
     ~chatnpc("<p,neutral>Hurry along now. I still need <tostring($still_needed)> more.");
 }
 
@@ -334,9 +319,9 @@ if ($initialops = 1) { // What is a Karambwan?
 [label,tbwt_lubufu_what_do_you_use]
 ~chatplayer("<p,quiz>What do you use to catch Karambwan?");
 ~chatnpc("<p,neutral>Well ... since you ask, a specially constructed octopus pot. But don't tell anybody - that's part of the secret!");
-if (~get_tbwt_lubufu_progress = ^tbwt_lubufu_given_karambwanji) {
-    ~set_tbwt_lubufu_questioning(add(1, ~get_tbwt_lubufu_questioning));
-    if (~get_tbwt_lubufu_questioning >= 3) {
+if (%tbwt_lubufu >= ^tbwt_lubufu_given_karambwanji) {
+    %tbwt_lubufu = add(1, %tbwt_lubufu);
+    if (%tbwt_lubufu = ^tbwt_lubufu_asked_questions) {
         @tbwt_lubufu_offer_apprentice;
     }
 }
@@ -347,7 +332,7 @@ mes("Lubufu appears to think for a moment.");
 npc_anim(emote_think, 0);
 if_close;
 p_delay(2);
-~set_tbwt_lubufu_progress(^tbwt_lubufu_offered_apprentice);
+%tbwt_lubufu = ^tbwt_lubufu_offered_apprentice;
 ~chatnpc("<p,quiz>How would you feel about becoming my apprentice?");
 ~chatplayer("<p,quiz>That's a slight change in attitude...");
 ~chatnpc("<p,neutral>As much as I need to protect the secret, I should not carry it to the grave.");
@@ -357,9 +342,10 @@ p_delay(2);
 [label,tbwt_lubufu_become_apprentice_ops]
 def_int $initialops = ~p_choice2("Yes!", 1, "No.", 2);
 if ($initialops = 1) { // Yes!
-    ~set_tbwt_lubufu_progress(^tbwt_lubufu_became_apprentice);
+    %tbwt_lubufu = ^tbwt_lubufu_became_apprentice;
     ~chatplayer("<p,neutral>Yes!");
     ~chatnpc("<p,neutral>I'm glad to hear it. I'm sure the secrets of the Karambwan will be safe with you.");
+    @tbwt_lubufu_learn_karambwan_fishing;
 } else if ($initialops = 2) { // No.
     @tbwt_lubufu_reject_apprentice;
 }
@@ -377,7 +363,7 @@ if ($initialops = 1) { // Yes!
 ~chatplayer("<p,neutral>Yes, I understand.");
 inv_add(inv, tbwt_karambwan_vessel, 1);
 stat_advance(fishing, 15000);
-~set_tbwt_lubufu_progress(^tbwt_lubufu_complete);
+%tbwt_lubufu = ^tbwt_lubufu_complete;
 ~objbox(tbwt_karambwan_vessel, "Lubufu hands you a Karambwan vessel.", 250, 0, ^objbox_height);
 ~chatnpc("<p,neutral>Feel free to practise on my fishing spot.");
 
@@ -391,7 +377,7 @@ stat_advance(fishing, 15000);
 ~chatnpc("<p,neutral>Let me know if you change your mind.");
 
 [label,tbwt_lubufu_apprentice_dialogue]
-if (~get_tbwt_main_progress < ^tbwt_complete) {
+if (%tbwt_main < ^tbwt_complete) {
     ~chatnpc("<p,quiz>How fares my apprentice?");
     if (inv_total(inv, tbwt_karambwan_vessel) > 0 | inv_total(inv, tbwt_karambwan_vessel_loaded_with_karambwanji) > 0) {
         @multi3("I'm fine thanks.", tbwt_lubufu_finethanks,
@@ -408,7 +394,6 @@ if (~get_tbwt_main_progress < ^tbwt_complete) {
 } else {
     ~chatnpc("<p,angry>You deceived me you confoundering dolt! Because of you, my entire business is ruined! Get out of my sight!");
 }
-
 
 [label,tbwt_lubufu_finethanks]
 ~chatplayer("<p,neutral>I'm fine thanks.");

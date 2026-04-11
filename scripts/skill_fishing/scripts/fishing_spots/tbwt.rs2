@@ -97,7 +97,7 @@ if (%action_delay < map_clock) {
 p_opnpc(4);
 
 [label,attempt_fish_karambwan]
-if(~get_tbwt_lubufu_progress < ^tbwt_lubufu_complete) {
+if(%tbwt_lubufu < ^tbwt_lubufu_complete) {
     ~mesbox("You don't even know how to use the vessel!");
     return;
 }

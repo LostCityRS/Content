@@ -38,7 +38,7 @@ if($uncooked_item = tbwt_raw_karambwan) {
         mes("You can only make that on a members' server.");
         return;
     }
-    if(~get_tbwt_tinsay_progress = ^tbwt_tinsay_claimed_final_reward) {
+    if(%tbwt_tinsay = ^tbwt_tinsay_claimed_final_reward) {
         $product = ~multiobj2("How would you like to cook your karambwan?", 
             tbwt_poorly_cooked_karambwan, 0, -15, 175, "\\n\\n\\n\\nPoorly", 5, -1,
             tbwt_cooked_karambwan, 0, -15, 175, "\\n\\n\\n\\nThoroughly", 4, -1

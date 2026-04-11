@@ -1,5 +1,5 @@
 [opnpc1,tbwt_tamayu]
-if (~get_tbwt_main_progress() < ^tbwt_started) {
+if (%tbwt_main < ^tbwt_started) {
     switch_int(random(3)) {
         case 0 :
             ~chatnpc("<p,angry>Die! Die!!");
@@ -9,9 +9,9 @@ if (~get_tbwt_main_progress() < ^tbwt_started) {
             ~chatnpc("<p,angry>Get out of my way! Argh! I'm hunting!");
     }
 } else {
-    switch_int(~get_tbwt_tamayu_progress) {
+    switch_int(%tbwt_tamayu) {
         case ^tbwt_tamayu_unknown :
-            ~set_tbwt_tamayu_progress(^tbwt_tamayu_intro);
+            %tbwt_tamayu = ^tbwt_tamayu_intro;
             ~chatplayer("<p,angry>Tamayu, first son of Timfraku!"); // Angry mesanim is intentional
             ~chatnpc("<p,neutral>I am.");
             @tbwt_tamayu_bringgoodnews;
@@ -31,7 +31,7 @@ if(%tbwt_main < ^tbwt_started) {
 }
 if ((last_useitem = tbwt_monkey_corpse) | (last_useitem = tbwt_seaweed_in_monkey_corpse)) {
     def_obj $corpse = last_useitem;
-    if (~get_tbwt_tamayu_progress() < ^tbwt_tamayu_complete) {
+    if (%tbwt_tamayu < ^tbwt_tamayu_complete) {
         ~chatnpc("<p,angry>I'm not going to skin that! In the jungle, we help only those who help us.");
     } else {
         ~chatnpc("<p,angry>Let me guess - you want me to skin that monkey. Very well: I shall, since you have assisted me.");
@@ -56,7 +56,7 @@ if ((last_useitem = tbwt_monkey_corpse) | (last_useitem = tbwt_seaweed_in_monkey
         }
     }
 } else if (last_useitem = 1dose1agility | last_useitem = 2dose1agility | last_useitem = 3dose1agility | last_useitem = 4dose1agility) {
-    if (~get_tbwt_tamayu_progress ! ^tbwt_tamayu_watched_cutscene) {
+    if (%tbwt_tamayu ! ^tbwt_tamayu_watched_cutscene) {
         ~chatnpc("<p,neutral>I have no interest in your potions right now. Only slaying the Shaikahan.");
         return;
     } else {
@@ -94,32 +94,34 @@ if ((last_useitem = tbwt_monkey_corpse) | (last_useitem = tbwt_seaweed_in_monkey
         }
     }
 } else if (oc_category(last_useitem) = weapon_spear) {
-    if (~get_tbwt_tamayu_progress ! ^tbwt_tamayu_watched_cutscene) {
+    if (%tbwt_tamayu ! ^tbwt_tamayu_watched_cutscene) {
         ~chatnpc("<p,neutral>I have no interest in your weapons right now. Only slaying the Shaikahan.");
         return;
     } else {
         def_obj $spear = last_useitem;
 
-        %tbwt_tiadeche = clearbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_acceptable_spear);
-        %tbwt_tiadeche = clearbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_poisoned_spear);
-        %tbwt_tiadeche = clearbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_kp_spear);
+        %tbwt_bits = clearbit(%tbwt_bits, ^tbwt_tamayu_received_acceptable_spear);
+        %tbwt_bits = clearbit(%tbwt_bits, ^tbwt_tamayu_received_poisoned_spear);
+        %tbwt_bits = clearbit(%tbwt_bits, ^tbwt_tamayu_received_kp_spear);
 
         // Interestingly, in OSRS as of Apr 2026, Bronze Spear (p+) & (p++) sets '^tbwt_tiadeche_tamayu_received_acceptable_spear' too
         // We don't have (p+, or p++) variants yet in 274 though, so no action taken.
         // Leaf-bladed spear & Guthan's Warspear are also considered 'acceptable_spears' (due to the oc_category of weapon_spear)
-        if ($spear = bronze_spear_p) {
-            %tbwt_tiadeche = setbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_poisoned_spear);
+        if ($spear = bronze_spear) {
+            // Bronze spear does nothing
+        } else if ($spear = bronze_spear_p) {
+            %tbwt_bits = setbit(%tbwt_bits, ^tbwt_tamayu_received_poisoned_spear);
         } else if ($spear = tbwt_bronze_spear_kp) {
-            %tbwt_tiadeche = setbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_kp_spear);
+            %tbwt_bits = setbit(%tbwt_bits, ^tbwt_tamayu_received_kp_spear);
         } else {
-            %tbwt_tiadeche = setbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_acceptable_spear);
+            %tbwt_bits = setbit(%tbwt_bits, ^tbwt_tamayu_received_acceptable_spear);
 
             if (oc_param($spear, poison_severity) > 0) {
-                %tbwt_tiadeche = setbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_poisoned_spear);
+                %tbwt_bits = setbit(%tbwt_bits, ^tbwt_tamayu_received_poisoned_spear);
             }
 
             if (oc_param($spear, tbwt_karambwan_poison) = ^true) {
-                %tbwt_tiadeche = setbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_kp_spear);
+                %tbwt_bits = setbit(%tbwt_bits, ^tbwt_tamayu_received_kp_spear);
             }
         }
 
@@ -129,24 +131,24 @@ if ((last_useitem = tbwt_monkey_corpse) | (last_useitem = tbwt_seaweed_in_monkey
         ~chatnpc("<p,neutral>Thank you Bwana. Now I must prepare for my next hunt.");
     }
 } else {
-    if (~get_tbwt_tamayu_progress = ^tbwt_tamayu_complete) {
+    if (%tbwt_tamayu = ^tbwt_tamayu_complete) {
         ~chatnpc("<p,neutral>I have no need for that now.");
         return;
     }
 }
 
 [label,tbwt_tamayu_bringgoodnews]
-~set_tbwt_tamayu_progress(^tbwt_tamayu_intro);
+%tbwt_tamayu = ^tbwt_tamayu_intro;
 ~chatplayer("<p,neutral>Tamayu, I bring good news. Trufitus has communed with the gods -  your village is once again safe."); // Double space after hyphen is intentional
 ~chatplayer("<p,neutral>Your father requests that you return to the village.");
 ~chatnpc("<p,angry>Then know this, stranger.");
-~set_tbwt_tamayu_progress(^tbwt_tamayu_slay_shaikahan);
+%tbwt_tamayu = ^tbwt_tamayu_slay_shaikahan;
 ~chatnpc("<p,angry>I vow upon the blood of my fallen kin that I shall not set foot in that godforsaken village till I have slain the Shaikahan.");
 ~chatplayer("<p,neutral>You could slay it after we return to the village.");
 ~chatnpc("<p,angry>No! Your pitiful whining tires me. Now let me prepare.");
 
 [label,tbwt_tamayu_shaikahanops]
-if (~get_tbwt_tamayu_progress < ^tbwt_tamayu_watched_cutscene) {
+if (%tbwt_tamayu < ^tbwt_tamayu_watched_cutscene) {
     @multi4("Tell me more of the Shaikahan.", tbwt_tamayu_tellmemore,
         "How long have you been hunting the Shaikahan?", tbwt_tamayu_howlonghunting,
         "When will you succeed?", tbwt_tamayu_whensucceed,
@@ -180,7 +182,7 @@ def_int $choice = ~p_choice2_header("Yes", 1, "No", 2, "Follow Tamayu on the nex
 if ($choice = 1) { // Yes
     ~chatplayer("<p,neutral>Lead the way.");
     if_close;
-    ~set_tbwt_tamayu_progress(^tbwt_tamayu_watched_cutscene);
+    %tbwt_tamayu = ^tbwt_tamayu_watched_cutscene;
     @tbwt_tamayu_cutscene;
 } else if ($choice = 2) { // No
     ~chatplayer("<p,neutral>Perhaps later, Tamayu, first son of Timfraku.");
@@ -190,7 +192,7 @@ if ($choice = 1) { // Yes
 ~chatplayer("<p,neutral>Take me on your next hunt for the Shaikahan.");
 ~chatnpc("<p,neutral>Very well, but you must not interfere.");
 if_close;
-~set_tbwt_tamayu_progress(^tbwt_tamayu_watched_cutscene);
+%tbwt_tamayu = ^tbwt_tamayu_watched_cutscene;
 @tbwt_tamayu_cutscene;
 
 [label,tbwt_tamayu_slayforyou]
@@ -200,10 +202,10 @@ if_close;
 [label,tbwt_tamayu_cutscene]
 def_boolean $killing_hunt = false;
 def_int $delay = 3;
-if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_acceptable_spear) = ^true & testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_kp_spear) = ^true) {
+if (testbit(%tbwt_bits, ^tbwt_tamayu_received_acceptable_spear) = ^true & testbit(%tbwt_bits, ^tbwt_tamayu_received_kp_spear) = ^true & ~get_tbwt_tamayu_agility_count >= 4) {
     $killing_hunt = true;
 }
-~set_tbwt_tamayu_progress(^tbwt_tamayu_watched_cutscene);
+%tbwt_tamayu = ^tbwt_tamayu_watched_cutscene;
 p_teleport(^tbwt_player_cutscene_spawn);
 
 if (npc_find(^tbwt_tamayu_hunter_cutscene_spawn, tbwt_tamayu_hunter, 5, 0) = true &
@@ -260,7 +262,6 @@ if (npc_find(^tbwt_tamayu_hunter_cutscene_spawn, tbwt_tamayu_hunter, 5, 0) = tru
         facesquare(npc_coord);
         @tbwt_tamayu_assess_agility;
     } else { // Safety to make sure player returns if Tamayu not found
-        mes("Can't find");
         p_teleport(map_findsquare(^tbwt_tamayu_spawn, 2, 4, ^map_findsquare_lineofwalk));
         facesquare(npc_coord);
         @tbwt_tamayu_assess_agility;
@@ -285,7 +286,7 @@ if (npc_find(^tbwt_tamayu_hunter_cutscene_final_spawn, tbwt_tamayu_final_hunter,
         p_delay(5);
         ~music_jingle("tamayu_slays_the_shaikahan");
         p_delay(6);
-        ~set_tbwt_tamayu_progress(^tbwt_tamayu_complete);
+        %tbwt_tamayu = ^tbwt_tamayu_complete;
         p_teleport(0_44_47_32_31);
         return;
     }
@@ -324,7 +325,7 @@ if (npc_find(^tbwt_tamayu_hunter_cutscene_final_spawn, tbwt_tamayu_final_hunter,
     p_delay(0);
 }
 cam_reset;
-~set_tbwt_tamayu_progress(^tbwt_tamayu_complete);
+%tbwt_tamayu = ^tbwt_tamayu_complete;
 p_teleport(0_44_47_32_31);
 
 [ai_timer,tbwt_tamayu_hunter]
@@ -374,7 +375,7 @@ if (~get_tbwt_tamayu_agility_count < 1) {
 @tbwt_tamayu_assess_damage;
 
 [label,tbwt_tamayu_assess_damage]
-if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_acceptable_spear) = ^true) {
+if (testbit(%tbwt_bits, ^tbwt_tamayu_received_acceptable_spear) = ^true) {
     ~chatnpc("<p,angry>I can do enough damage...");
 } else {
     ~chatnpc("<p,angry>I cannot do enough damage with this spear...");
@@ -382,20 +383,20 @@ if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_acceptable_spear) = ^
 @tbwt_tamayu_assess_health;
 
 [label,tbwt_tamayu_assess_health]
-if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_kp_spear) = ^true) {
-    if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_acceptable_spear) = ^true) {
+if (testbit(%tbwt_bits, ^tbwt_tamayu_received_kp_spear) = ^true) {
+    if (testbit(%tbwt_bits, ^tbwt_tamayu_received_acceptable_spear) = ^true) {
         ~chatnpc("<p,angry>... and it does seem extremely sick!");
     } else {
         ~chatnpc("<p,angry>... but it does seem extremely sick!");
     }
-} else if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_poisoned_spear) = ^true) {
-    if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_acceptable_spear) = ^true) {
+} else if (testbit(%tbwt_bits, ^tbwt_tamayu_received_poisoned_spear) = ^true) {
+    if (testbit(%tbwt_bits, ^tbwt_tamayu_received_acceptable_spear) = ^true) {
         ~chatnpc("<p,angry>... and  it does seem quite sick! Perhaps another poison would be more effective?");
     } else {
         ~chatnpc("<p,angry>... but  it does seem quite sick! Perhaps another poison would be more effective?");
     }
 } else {
-    if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_acceptable_spear) = ^true) {
+    if (testbit(%tbwt_bits, ^tbwt_tamayu_received_acceptable_spear) = ^true) {
         ~chatnpc("<p,angry>... but  it seems to be healing too quickly!");
     } else {
         ~chatnpc("<p,angry>... and  it seems to be healing too quickly!");
@@ -408,6 +409,6 @@ if (testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_kp_spear) = ^true) {
 ~chatplayer("<p,quiz>Worry not - I am your witness. Shall we return to the village now?");
 ~chatnpc("<p,neutral>Yes. Go on ahead without me. I have further matters to attend to here.");
 ~chatnpc("<p,neutral>I will meet you in the village once you have helped my brothers and spoken to my father.");
-if (~get_tbwt_main_progress = ^tbwt_started & ~tbwt_get_brother_completion = true) {
-    ~set_tbwt_main_progress(^tbwt_completed_all_brothers);
+if (%tbwt_main = ^tbwt_started & ~tbwt_get_brother_completion = true) {
+    %tbwt_main = ^tbwt_completed_all_brothers;
 }
