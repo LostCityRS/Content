@@ -10,10 +10,6 @@ if(oc_param(last_useitem, unlit_arrow) = ^true) { // might not work on every fir
     @light_firearrow(last_useitem);
 } else if (~in_tutorial_island(coord) = true) {
     @tut_attempt_cook_item(last_useitem);
-} else if(last_useitem = tbwt_jogre_bones_marinated_in_karambwanji | last_useitem = tbwt_burnt_jogre_bones_marinated_in_karambwanji) {
-    ~mesbox("The jogre bones are already marinated!|They don't need any more cooking.");
-} else if(last_useitem = tbwt_jogre_bones_in_cooked_karambwanji_paste | last_useitem = tbwt_burnt_jogre_bones_in_cooked_karambwanji_paste) {
-    @explode_cooked_jogre_bones(last_useitem);
 } else {
     @attempt_cook_item(last_useitem);
 }
@@ -21,6 +17,18 @@ if(oc_param(last_useitem, unlit_arrow) = ^true) { // might not work on every fir
 [label,attempt_cook_item](obj $uncooked_item)
 //not sure if this is used
 p_arrivedelay();
+// special cases
+if($uncooked_item = tbwt_jogre_bones_marinated_in_karambwanji | $uncooked_item = tbwt_burnt_jogre_bones_marinated_in_karambwanji) {
+    ~mesbox("The jogre bones are already marinated!|They don't need any more cooking.");
+    return;
+}
+if($uncooked_item = tbwt_jogre_bones_in_cooked_karambwanji_paste | $uncooked_item = tbwt_burnt_jogre_bones_in_cooked_karambwanji_paste) {
+    @explode_cooked_jogre_bones($uncooked_item);
+}
+if($uncooked_item = tbwt_cooked_karambwan | $uncooked_item = tbwt_poorly_cooked_karambwan) {
+    ~mesbox("You cannot cook that again; it's already cooked.");
+    return;
+}
 // get item data from db
 db_find(cooking_generic:uncooked, $uncooked_item);
 // karambwan cooking
