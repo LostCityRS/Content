@@ -11,18 +11,6 @@ if(last_useitem = vial_water | last_useitem = guamjangervial) { // this only wor
 }
 ~attempt_grind_ingredient(last_useslot, last_slot);
 
-[opheldu,tbwt_raw_karambwan]
-~attempt_grind_ingredient(last_useslot, last_slot);
-
-[opheldu,tbwt_poorly_cooked_karambwan]
-~attempt_grind_ingredient(last_useslot, last_slot);
-
-[opheldu,tbwt_cooked_karambwan]
-~attempt_grind_ingredient(last_useslot, last_slot);
-
-[opheldu,tbwt_cooked_karambwanji]
-~attempt_grind_ingredient(last_useslot, last_slot);
-
 [proc,attempt_grind_ingredient](int $use_slot, int $last_slot)
 def_obj $used_on = inv_getobj(inv, $last_slot);
 def_obj $used_with = inv_getobj(inv, $use_slot);
