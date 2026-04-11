@@ -112,6 +112,7 @@ if (~get_tbwt_main_progress() < ^tbwt_complete) {
     mes("You do not have permission to enter here"); // Intentionally no period - https://imgur.com/a/1LTxz27
     return;
 }
+// These doors currently use 'door_open' synth sound, but switch to 'bamboodoor_open' by Feb 2005 with this update - https://oldschool.runescape.wiki/w/Update:Wilderness_Capes,_and_Changes
 ~open_and_close_door(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), false);
 
 [oploc1,tbwt_tribal_statue]
