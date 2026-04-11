@@ -6,18 +6,6 @@
 [if_button,questlist:tbwt]
 def_string $text;
 
-mes("Get TBWT Main: <tostring(~get_tbwt_main_progress())>");
-mes("Get TBWT Timfraku Title(1): <tostring(~get_tbwt_timfraku_title())>");
-mes("Get TBWT Tiadeche(2): <tostring(~get_tbwt_tiadeche_progress())>");
-mes("Get TBWT Tamayu(3): <tostring(~get_tbwt_tamayu_progress())>");
-mes("Get TBWT Tinsay(4): <tostring(~get_tbwt_tinsay_progress())>");
-mes("Get TBWT Lubufu(5): <tostring(~get_tbwt_lubufu_progress())>");
-mes("Get TBWT Lubufu Karambwanji Count(6): <tostring(~get_tbwt_lubufu_karambwanji())>");
-mes("Get TBWT Lubufu Questioning Count(7): <tostring(~get_tbwt_lubufu_questioning())>");
-mes("Get TBWT Tamayu Agility Count(8): <tostring(~get_tbwt_tamayu_agility_count())>");
-mes("<tostring(testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tiadeche_received_karambwan))>");
-mes("Raw TBWT Tiadeche varp: <tostring(%tbwt_tiadeche)>");
-
 if (~get_tbwt_main_progress() < ^tbwt_started) {
     if (%junglepotion = ^junglepotion_complete_after_spoken) {
         $text = append($text, "@dbl@In @dre@Jungle Potion@dbl@, @dre@Trufitus@dbl@ found @dre@Tai Bwo Wannai Village@dbl@ was|");

@@ -683,3 +683,66 @@ switch_int($bit) {
 if (p_finduid(uid) = false) { return; }
 %legends_bits = setbit(%legends_bits, $bit);
 mes("setbit <tostring($bit)> for legends quest");
+
+[debugproc,settbwt](int $var)
+if (p_finduid(uid) = true)
+%tbwt_main = $var;
+mes("Set TBWT Main to: <tostring($var)>.");
+~send_quest_progress(questlist:tbwt, %tbwt_main, ^tbwt_complete);
+
+[debugproc,settbwtt](int $var, int $var2)
+if (p_finduid(uid) = true) {
+    if ($var2 = 1) { // Set Timfraku title
+        %tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $var, ^tbwt_tiadeche_timfraku_title_start, ^tbwt_tiadeche_timfraku_title_end);
+        mes("Set TBWT Timfraku Title(1) to: <tostring($var)>.");
+    } else if ($var2 = 2) { // Set Tiadeche progress
+        %tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $var, ^tbwt_tiadeche_tiadeche_start, ^tbwt_tiadeche_tiadeche_end);
+        %tbwt_tiadeche = clearbit(%tbwt_tiadeche, ^tbwt_tiadeche_tiadeche_received_karambwan);
+        mes("Set TBWT Tiadeche(2) progress to: <tostring($var)>.");
+    } else if ($var2 = 3) { // Set Tamayu progress
+        %tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $var, ^tbwt_tiadeche_tamayu_start, ^tbwt_tiadeche_tamayu_end);
+        %tbwt_tiadeche = clearbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_acceptable_spear);
+        %tbwt_tiadeche = clearbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_poisoned_spear);
+        %tbwt_tiadeche = clearbit(%tbwt_tiadeche, ^tbwt_tiadeche_tamayu_received_kp_spear);
+        mes("Set TBWT Tamayu(3) progress to: <tostring($var)>.");
+    } else if ($var2 = 4) { // Set Tinsay progress
+        %tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $var, ^tbwt_tiadeche_tinsay_start, ^tbwt_tiadeche_tinsay_end);
+        mes("Set TBWT Tinsay(4) progress to: <tostring($var)>.");
+    } else if ($var2 = 5) { // Set Lubufu progress
+        %tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $var, ^tbwt_tiadeche_lubufu_start, ^tbwt_tiadeche_lubufu_end);
+        mes("Set TBWT Lubufu(5) progress to: <tostring($var)>.");
+    } else if ($var2 = 6) { // Set Lubufu Karambwanji Count
+        %tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $var, ^tbwt_tiadeche_lubufu_karambwanji_count_start, ^tbwt_tiadeche_lubufu_karambwanji_count_end);
+        mes("Set TBWT Lubufu Karambwanji Count(6) to: <tostring($var)>.");
+    } else if ($var2 = 7) { // Set Lubufu Questioning Count
+        %tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $var, ^tbwt_tiadeche_lubufu_questioning_count_start, ^tbwt_tiadeche_lubufu_questioning_count_end);
+        mes("Set TBWT Lubufu Questioning Count(7) to: <tostring($var)>.");
+    } else if ($var2 = 8) { // Set Tamayu Agility Count
+        %tbwt_tiadeche = setbit_range_toint(%tbwt_tiadeche, $var, ^tbwt_tiadeche_tamayu_agility_count_start, ^tbwt_tiadeche_tamayu_agility_count_end);
+        mes("Set TBWT Tamayu Agility Count(8) to: <tostring($var)>.");
+    } else if ($var2 = 0) {
+        %tbwt_tiadeche = $var;
+        mes("Set entire TBWT Tiadeche varp to: <tostring($var)>.");
+    }
+
+    mes("After set - raw varp: <tostring(%tbwt_tiadeche)>");
+}
+
+[debugproc,tbwtstatus]
+if (p_finduid(uid) = false){return;}
+mes("TBWT Main: <tostring(~get_tbwt_main_progress())>");
+mes("TBWT Timfraku Title(1): <tostring(~get_tbwt_timfraku_title())>");
+mes("TBWT Tiadeche(2): <tostring(~get_tbwt_tiadeche_progress())>");
+mes("TBWT Tamayu(3): <tostring(~get_tbwt_tamayu_progress())>");
+mes("TBWT Tinsay(4): <tostring(~get_tbwt_tinsay_progress())>");
+mes("TBWT Lubufu(5): <tostring(~get_tbwt_lubufu_progress())>");
+mes("TBWT Lubufu Karambwanji Count(6): <tostring(~get_tbwt_lubufu_karambwanji())>");
+mes("TBWT Lubufu Questioning Count(7): <tostring(~get_tbwt_lubufu_questioning())>");
+mes("TBWT Tamayu Agility Count(8): <tostring(~get_tbwt_tamayu_agility_count())>");
+mes("Received <tostring(testbit(%tbwt_tiadeche, ^tbwt_tiadeche_tiadeche_received_karambwan))>");
+mes("Raw TBWT Tiadeche varp: <tostring(%tbwt_tiadeche)>");
+
+[debugproc,tbwtcs2] // Plays the final cutscene from Tai Bwo Wannai Trio
+if (p_finduid(uid) = true) {
+    @tbwt_tamayu_final_cutscene;
+}
