@@ -733,3 +733,16 @@ mes("Raw %tbwt_bits varp: <tostring(%tbwt_bits)>");
 [debugproc,tbwtcs2] // Plays the final cutscene from Tai Bwo Wannai Trio
 if (p_finduid(uid) = false) return;
 @tbwt_tamayu_final_cutscene;
+
+[debugproc,setmortton](int $var)
+if (p_finduid(uid) = false) return;
+%morttonquest = $var;
+~send_quest_progress(questlist:mortton, %morttonquest, ^mortton_quest_complete);
+mes("Shades of Mort'ton set to: <tostring($var)>");
+
+[debugproc,resetmortton] // Resets Shades of Mortton progress completely
+if (p_finduid(uid) = false) return;
+%morttonquest = 0;
+%morttonmulti = 0;
+~send_quest_progress(questlist:mortton, %morttonquest, ^mortton_quest_complete);
+mes("Shades of Mortton reset.");
