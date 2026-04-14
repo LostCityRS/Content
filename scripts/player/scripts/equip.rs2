@@ -105,6 +105,9 @@ if (p_finduid(uid) = true) {
 // Called whenever an obj is removed from the 'worn' inv, intented to be used as a central hook point for
 // handling unequipping effects
 [proc,on_unequip](obj $obj)
+if ($obj = castlewars_saradomin_banner | $obj = castlewars_zamorak_banner) {
+    ~castlewars_flag_drop(inv, $obj);
+}
 ~runecraft_unset_no_tally($obj);
 
 // used for duel arena, no weapon/no armour

@@ -478,6 +478,11 @@ switch_coord (loc_coord) {
 }
 
 [oploc1,castlewars_outsidestairs_zamorak]
+// before arrivedelay
+if (%castlewars_team = ^castlewars_team_saradomin & inv_total(worn, castlewars_saradomin_banner) > 0) {
+    mes("Saradomin won't let you take his standard toward the enemy."); // osrs? no idea if this existed in 2005...
+    return;
+}
 p_arrivedelay;
 switch_coord (loc_coord) {
     case 1_37_48_1_54 : p_teleport(2_37_48_1_55);
@@ -487,6 +492,10 @@ switch_coord (loc_coord) {
 }
 
 [oploc1,castlewars_outsidestairs_saradomin_linked]
+if (%castlewars_team = ^castlewars_team_zamorak & inv_total(worn, castlewars_zamorak_banner) > 0) {
+    mes("Zamorak won't let you take his standard toward the enemy."); // osrs? no idea if this existed in 2005...
+    return;
+}
 p_arrivedelay;
 switch_coord (loc_coord) {
     case 0_37_48_49_2 : 

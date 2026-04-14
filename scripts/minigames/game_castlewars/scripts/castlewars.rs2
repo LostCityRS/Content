@@ -68,6 +68,16 @@ if ($zamorak_count < $saradomin_count | ($zamorak_count = $saradomin_count & ran
 [oploc1,castlewars_saradomin_exit] ~castlewars_exit_tele;
 
 [proc,castlewars_exit_tele]
+if (inv_total(worn, castlewars_saradomin_banner) > 0) {
+    inv_del(worn, castlewars_saradomin_banner, 1);
+    ~update_all(castlewars_saradomin_banner);
+    ~castlewars_flag_reset(castlewars_saradomin_banner);
+} else if (inv_total(worn, castlewars_zamorak_banner) > 0) {
+    inv_del(worn, castlewars_zamorak_banner, 1);
+    ~update_all(castlewars_zamorak_banner);
+    ~castlewars_flag_reset(castlewars_zamorak_banner);
+}
+
 ~castlewars_del_items;
 p_teleport(map_findsquare(^castlewars_lobby_coord, 0, 2, 0));
 if_openoverlay(null);
@@ -245,6 +255,9 @@ if (%castlewars_team = ^castlewars_team_saradomin) {
 } else {
     ~castlewars_decrement_zamorak_count;
 }
+if (~castlewars_has_flag = true) {
+    ~castlewars_flag_drop(worn, ~castlewars_flag(%castlewars_team));
+}
 %castlewars_clock = ~castlewars_end_clock;
 
 [proc,castlewars_end_clock]()(int)
@@ -309,3 +322,12 @@ if ($team = ^castlewars_team_zamorak) {
 }
 settimer(castlewars_timer, 5);
 buildappearance(worn);
+
+[proc,castlewars_in_base]()(boolean)
+if (%castlewars_team = ^castlewars_team_saradomin & inzone(0_37_48_49_0, 3_37_48_63_14, coord) = true) {
+    return(true);
+}
+if (%castlewars_team = ^castlewars_team_zamorak & inzone(0_37_48_0_49, 3_37_48_14_63, coord) = true) {
+    return(true);
+}
+return(false);

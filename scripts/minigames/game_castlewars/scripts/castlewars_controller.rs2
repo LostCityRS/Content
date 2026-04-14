@@ -54,11 +54,40 @@ if (~in_castlewars_waitingroom(coord) = true) {
 if (%castlewars_team = ^castlewars_team_saradomin) {
     %castlewars_zamorak_maindoor = ~castlewars_door_health(%castlewars_team);
     %castlewars_zamorak_sidedoor = ~castlewars_sidedoor_unlocked(%castlewars_team);
+    // https://oldschool.runescape.wiki/w/Update:Karamja_Dungeon
+    if (inv_total(worn, castlewars_saradomin_banner) > 0 & ~castlewars_in_base = true) { // https://youtu.be/LE64K-ViNH8?t=571
+        if_close;
+        if (p_finduid(uid) = true) { // fails if delayed
+            inv_del(worn, castlewars_saradomin_banner, 1);
+            ~castlewars_flag_reset(castlewars_saradomin_banner);
+            ~update_all(castlewars_saradomin_banner);
+        }
+    }
 } else if (%castlewars_team = ^castlewars_team_zamorak) {
     %castlewars_saradomin_maindoor = ~castlewars_door_health(%castlewars_team);
     %castlewars_saradomin_sidedoor = ~castlewars_sidedoor_unlocked(%castlewars_team);
+    // https://oldschool.runescape.wiki/w/Update:Karamja_Dungeon
+    if (inv_total(worn, castlewars_zamorak_banner) > 0 & ~castlewars_in_base = true) { // https://youtu.be/LE64K-ViNH8?t=571
+        if_close;
+        if (p_finduid(uid) = true) { // fails if delayed
+            inv_del(worn, castlewars_zamorak_banner, 1);
+            ~castlewars_flag_reset(castlewars_zamorak_banner);
+            ~update_all(castlewars_zamorak_banner);
+        }
+    }
 }
+~castlewars_set_hint;
 
+if (%castlewars_zamorak_flag_coord ! null) %castlewars_zamorak_flag = 2;
+else if (%castlewars_zamorak_flag_uid ! null) %castlewars_zamorak_flag = 1;
+else %castlewars_zamorak_flag = 0;
+
+if (%castlewars_saradomin_flag_coord ! null) %castlewars_saradomin_flag = 2;
+else if (%castlewars_saradomin_flag_uid ! null) %castlewars_saradomin_flag = 1;
+else %castlewars_saradomin_flag = 0;
+
+%castlewars_zamorak_score = ~castlewars_score(^castlewars_team_zamorak);
+%castlewars_saradomin_score = ~castlewars_score(^castlewars_team_saradomin);
 %castlewars_timer = sub(25, divide(%npc_int, 20));
 if (%npc_int = 500) { // game is over
     queue(castlewars_end, 0, 0);
@@ -135,3 +164,6 @@ if (loc_find(0_37_48_4_48, castlewars_zamorak_maindoorl_open) = true | loc_find(
 %castlewars_bits = 0;
 %castlewars_bits2 = 0;
 %npc_int2 = add(map_clock, 2500);
+
+~castlewars_flag_reset(castlewars_saradomin_banner);
+~castlewars_flag_reset(castlewars_zamorak_banner);
