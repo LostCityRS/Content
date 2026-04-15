@@ -85,8 +85,10 @@ if_openoverlay(null);
 
 [proc,castlewars_start_tele](int $team)
 if ($team = ^castlewars_team_saradomin) {
+    ~castlewars_increment_saradomin_count;
     p_teleport(map_findsquare(^castlewars_saradomin_starting_room_coord, 0, 4, 0));
 } else {
+    ~castlewars_increment_zamorak_count;
     p_teleport(map_findsquare(^castlewars_zamorak_starting_room_coord, 0, 4, 0));
 }
 
@@ -96,6 +98,11 @@ return(max(getbit_range(%castlewars_bits, ^castlewars_zamorak_count_start_bit, ^
 [proc,castlewars_saradomin_count]()(int)
 return(max(getbit_range(%castlewars_bits, ^castlewars_saradomin_count_start_bit, ^castlewars_saradomin_count_end_bit), 0));
 
+// these procs probably only decrement & increment on the locs & game start/join in progress
+// I was thinking maybe it was put into the mapzone trigger but i rly doubt this esp because of
+// this blog post (https://oldschool.runescape.wiki/w/Update:New_Animations_%26_Barbarian_Assault_Changes)
+// that mentions:
+// - "The issue with Castle Wars tracking the players on each team going out of sync has been resolved."
 [proc,castlewars_decrement_zamorak_count]
 def_int $count = ~castlewars_zamorak_count;
 if ($count = 0) {
@@ -221,22 +228,12 @@ if (~in_castlewars_waitingroom(coord) = true) {
     return;
 }
 if (%castlewars_team = ^castlewars_team_saradomin) {
-    ~castlewars_increment_saradomin_count;
     if_openoverlay(inter_218);
 } else {
-    ~castlewars_increment_zamorak_count;
     if_openoverlay(inter_215);
 }
 
 [proc,castlewars_mapzoneexit]
-if (~in_castlewars_waitingroom(coord) = true) {
-    return;
-}
-if (%castlewars_team = ^castlewars_team_saradomin) {
-    ~castlewars_decrement_saradomin_count;
-} else {
-    ~castlewars_decrement_zamorak_count;
-}
 cleartimer(castlewars_timer);
 if_openoverlay(null);
 
@@ -281,9 +278,14 @@ if (add(%last_logout, 100) < map_clock | %last_logout > map_clock) {
     ~castlewars_waitingroom_tele(%castlewars_team);
     return;
 }
+if (%castlewars_team = ^castlewars_team_saradomin) {
+    ~castlewars_increment_saradomin_count;
+} else {
+    ~castlewars_increment_zamorak_count;
+}
 
 [proc,in_castlewars_game](coord $coord)(boolean)
-if (inzone(0_37_48_0_0, 0_37_48_63_63, $coord) = true | inzone(1_37_48_0_0, 1_37_48_63_63, $coord) = true | inzone(2_37_48_0_0, 2_37_48_63_63, $coord) = true | inzone(3_37_48_0_0, 3_37_48_63_63, $coord) = true) {
+if (inzone(0_37_48_0_0, 3_37_48_63_63, $coord) = true) {
     return(true);
 }
 if (~in_castlewars_waitingroom(coord) = true) {
