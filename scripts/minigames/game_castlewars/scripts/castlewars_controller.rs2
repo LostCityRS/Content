@@ -11,10 +11,10 @@ if (%npc_int < 100) { // warm up
 }
 if (%npc_int = 100) {
     ~castlewars_reset;
-}
-if (~castlewars_zamorak_count < 1 & ~castlewars_saradomin_count < 1 & (~castlewars_waitingroom_saradomin_count < 1 | ~castlewars_waitingroom_zamorak_count < 1)) {
-    %npc_int = null;
-    return;
+    if (~castlewars_zamorak_count < 1 & ~castlewars_saradomin_count < 1 & (~castlewars_waitingroom_saradomin_count < 1 | ~castlewars_waitingroom_zamorak_count < 1)) {
+        %npc_int = null;
+        return;
+    }
 }
 huntall(^castlewars_centre_coord1, 32, 0);
 while (huntnext = true) {
