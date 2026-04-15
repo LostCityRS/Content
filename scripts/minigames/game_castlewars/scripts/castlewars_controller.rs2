@@ -118,10 +118,10 @@ def_int $zamorak_count = ~castlewars_zamorak_count;
 // - More players on your team = no join
 // - 3 players wait for join in progress interface, whilst other team has two players ingame.
 //      RESULT: 3rd player was blocked with "Sorry but the free place has already been taken."
-if (%castlewars_team = ^castlewars_team_saradomin & $saradomin_count >= $zamorak_count) {
+if (%castlewars_team = ^castlewars_team_saradomin & add($saradomin_count, 1) >= $zamorak_count) {
     return(false);
 }
-if (%castlewars_team = ^castlewars_team_zamorak & $zamorak_count >= $saradomin_count) {
+if (%castlewars_team = ^castlewars_team_zamorak & add($zamorak_count, 1) >= $saradomin_count) {
     return(false);
 }
 if (~in_castlewars_waitingroom(coord) = false) {
