@@ -18,6 +18,24 @@
 
 ^eadgar_spoken_tegid = 9
 
+^eadgar_given_all_items = 10 // given all scarecrow items to eadgar
+
+^eadgar_made_potion = 11 // quest journal updates after having made the potion
+// but would this maybe be a varbit? it strikes me as odd to increment a varp based on
+// having made an item (that you could lose...)
+// raises the question of what the journal says if you make the potion and then lose it
+// or if interactions with eadgar/these items would be any different if you have to remake
+
+^eadgar_given_potion = 12
+
+^eadgar_retrieved_parrot = 13
+
+^eadgar_got_fake_man = 14
+
+// probably one in here for giving the fake man and getting the burnt meat?
+
+^eadgar_spoken_burntmeat2 = 15 // learned location of key to storeroom
+
 ^eadgar_complete = 99
 
 // varbits

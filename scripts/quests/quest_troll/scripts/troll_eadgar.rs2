@@ -42,6 +42,34 @@ if(%eadgar_quest = ^eadgar_spoken_eadgar3) {
     ~chatnpc("<p,quiz>How are you getting on?");
     @eadgar_scarecrow_items;
 }
+if(%eadgar_quest = ^eadgar_made_potion) {
+    if(inv_total(inv, eadgar_ground_troll_thistle_potion) > 0) {
+        @eadgar_got_troll_truth_potion;
+    } else {
+        // todo presumably there is dialog here
+    }
+}
+if(%eadgar_quest = ^eadgar_retrieved_parrot) {
+    if(inv_total(inv, eadgar_drunk_parrot) > 0) {
+        ~chatplayer("<p,neutral>I've brought the parrot.");
+        ~chatnpc("<p,happy>Hand it here...there we go! Can you tell this isn't a bona fide human being? I sure can't!");
+        
+        // not sure which npc this is
+        ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>What am I doing here? Ow! Where's the rest of the Guard? Agh! I won't tell you anything!");
+        
+        //@eadgar_default_tree;
+        // to match Soup's OSRS video, oddly the drunk parrot is not removed and the fake man is not added
+        // until he clicks through eadgar's default dialog tree, telling us it's a proc and not a label...
+        // so todo convert to proc. for now...
+        inv_del(inv, eadgar_drunk_parrot, 1);
+        inv_add(inv, eadgar_fake_man, 1);
+        %eadgar_quest = ^eadgar_got_fake_man;
+        return;
+    } else {
+        // presumably something here for if you grabbed but lost the parrot?
+        // also need dialog for if you haven't gone back for it yet
+    }
+}
 ~chatplayer("<p,happy>Hi!");
 switch_int(random(4)) {
     case 0 : ~chatnpc("<p,happy>Welcome to Mad Eadgar's! Happiness in a bowl!");
@@ -155,11 +183,21 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
 }
 
 [oploc1,eadgar_rack]
-mes("todo"); // presumably this does something before starting the quest
+// presumably this does something before starting the quest
 // then before and after storing the parrot
 // during the interim quest stages (troll thistle potion)
 // then maybe before and after picking it up again?
 // and then possibly after the quest?
+if(%eadgar_quest = ^eadgar_given_potion) {
+    ~mesbox("You look under the rack and find the drunk parrot.");
+    ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Ah, hello Sir. Could you please free me?|I seem to have ... OW! What are you doing?|That's my spleen!");
+    ~chatplayer("<p,neutral>I think it's probably heard enough.");
+    inv_add(inv, eadgar_drunk_parrot, 1);
+    %eadgar_quest = ^eadgar_retrieved_parrot;
+} else {
+    // todo presumably something for if you're not at this stage yet, or if you click the rack again
+    // after pickink up the parrot
+}
 
 [oplocu,eadgar_rack]
 switch_obj(last_useitem) {
@@ -189,8 +227,8 @@ mes("todo");
 
 [label,eadgar_scarecrow_items]
 def_int $logs_num = inv_total(inv, logs);
-def_int $chickens_num = inv_total(inv, raw_chicken);
-def_int $grain_num = inv_total(inv, grain);
+def_int $chickens_num = min(inv_total(inv, raw_chicken), calc(5 - %eadgar_chickens));
+def_int $grain_num = min(inv_total(inv, raw_chicken), calc(10 - %eadgar_grain));
 def_int $clothes_num = inv_total(inv, eadgar_dirty_druid_robe);
 def_string $logs_str = "";
 def_string $chickens_str = "";
@@ -216,23 +254,20 @@ switch_int ($clothes_num) {
 
 // done building strings, now clamp values so we don't eat the player's items
 $chickens_num = min(calc(5 - %eadgar_chickens), $chickens_num);
-~mesbox("Setting chickens_num to <tostring($chickens_num)>");
 $grain_num = min(calc(10 - %eadgar_grain), $grain_num);
-~mesbox("Setting grain_num to <tostring($grain_num)>");
 
 
 // videos show items are removed here, immediately before the player's "I have XYZ" dialog fires
 if ($logs_num >= 1 & testbit(%eadgar_bits, ^eadgar_given_logs) = ^false) {
-    ~mesbox("We have logs but have not given them, deleting logs and setting bit");
     inv_del(inv, logs, 1);
     %eadgar_bits = setbit(%eadgar_bits, ^eadgar_given_logs);
 } else {
-    ~mesbox("Either we don't have logs (string will be overwritten next check) or don't need to give them");
     $logs_str = "no logs";
     // This is to match Soup's OSRS video.
     // The player gives Eadgar the logs first, then returns with the dirty clothes on a second trip while still carrying
     // a second set of logs for making a fire later. The player's dialog reads "I have no logs" while turning in the clothes,
     // even though there are actually logs in the inventory.
+    // TODO check if this also happens with grain, chickens, and possibly even dirty clothes if it's possible to dupe them
 }
 
 if ($chickens_num > 0) {
@@ -262,11 +297,11 @@ def_int $clothes_needed = calc(1 - $clothes_num);
 
 // if not all items are delivered, dialog goes back to default tree after eadgar tells you what else is needed
 // is clicking on eadgar after showing him the parrot but before hiding it the only way to see the scarecrow dialog tree?
-if($logs_needed > 0 | $chickens_needed > 0 | $grain_needed > 0 | $clothes_needed > 0) {
+if(testbit(%eadgar_bits, ^eadgar_given_logs) ! 1 | $chickens_needed > 0 | $grain_needed > 0 | testbit(%eadgar_bits, ^eadgar_given_clothes) ! 1) {
     // todo probably a better way to do this w/o code duplication
-    switch_int ($logs_needed) {
-    case 0 : $logs_str = "no logs";
-    case default : $logs_str = "the logs";
+    switch_int (testbit(%eadgar_bits, ^eadgar_given_logs)) {
+    case 1 : $logs_str = "no logs";
+    case 0 : $logs_str = "the logs";
     }
     switch_int ($chickens_needed) {
         case 0 : $chickens_str = "no chickens";
@@ -276,17 +311,20 @@ if($logs_needed > 0 | $chickens_needed > 0 | $grain_needed > 0 | $clothes_needed
         case 0 : $grain_str = "no grain";
         case default : $grain_str = "<tostring($grain_needed)> bundles of grain";
     }
-    switch_int ($clothes_needed) {
-        case 0 : $clothes_str = "no dirty clothes";
-        case default : $clothes_str = "the dirty clothes";
+    switch_int (testbit(%eadgar_bits, ^eadgar_given_clothes)) {
+        case 1 : $clothes_str = "no dirty clothes";
+        case 0 : $clothes_str = "the dirty clothes";
     }
     ~chatnpc("<p,neutral>You now need <$logs_str>, <$chickens_str>, <$grain_str> and <$clothes_str>.");
     ~chatnpc("<p,quiz>Anything else I can do for you?"); // this line is used in a couple different contexts at this point before
     // forwarding to the default tree but ALSO there are other lines used sometimes so rather than duplicating this dialog 3x
     // it should probably be in its own tiny label
     @eadgar_default_tree;
+} else {
+    @eadgar_thats_everything;
 }
 
+[label,eadgar_thats_everything]
 // dialog from soup's vid, todo mesanims though these should be mostly good
 ~chatnpc("<p,happy>That's everything!");
 // kinda odd this is two separate chatnpc's, is something being checked here?
@@ -299,4 +337,13 @@ if($logs_needed > 0 | $chickens_needed > 0 | $grain_needed > 0 | $clothes_needed
 ~chatplayer("<p,quiz>How do you prepare it?");
 ~chatnpc("<p,neutral>You'll have to dry it in a fire, then grind it and mix it into a potion with Ranarr weed.");
 ~chatplayer("<p,neutral>Okay, I'll be back with that soon.");
+%eadgar_quest = ^eadgar_given_all_items; // todo unsure if this is where the varp really updates
+~chatnpc("<p,quiz>Anything else I can do for you?");
 @eadgar_default_tree;
+
+[label,eadgar_got_troll_truth_potion]
+~chatplayer("<p,neutral>I've got the troll truth potion.");
+~chatnpc("<p,happy>Excellent, hand it here. Now just go fetch that poor parrot back, it's probably had enough by now.");
+// item is deleted here
+inv_del(inv, eadgar_ground_troll_thistle_potion, 1); // what happens if you have multiple (if possible)?
+%eadgar_quest = ^eadgar_given_potion;

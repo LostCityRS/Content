@@ -9,11 +9,49 @@ if(%eadgar_quest = ^eadgar_spoken_eadgar) {
     ~chatplayer("<p,neutral>I'm on a quest to find some goutweed.");
     ~chatnpc("<p,laugh>Bwahahaha! Burntmeat not give his greatest cooking secret away so easily!");
     ~chatnpc("<p,neutral>But Burntmeat also has quest for human!");
-    ~chatplayer("<p,quiz>Really? What is it?");   
+    ~chatplayer("<p,quiz>Really? What is it?");
     ~chatnpc("<p,neutral>Bring back a tasty human for Burntmeat's stew. If you find tasty human, Burntmeat will give you good reward.");
     ~chatplayer("<p,scared>Right. I'll just...go fetch that for you then. Bye!");
     %eadgar_quest = ^eadgar_spoken_burntmeat;
+} else if (%eadgar_quest = ^eadgar_got_fake_man & inv_total(inv, eadgar_fake_man) > 0) {
+    // source from soup's vid, need mesanims
+    ~chatnpc("<p,neutral>Did you find tasty human? Burntmeat spell something good.");
+    ~chatplayer("<p,happy>Yes! Look!");
+    ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>Heeeeeeelp!");
+    ~chatnpc("<p,neutral>Ah, dat look like nice tasty human.");
+    ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>Aaaargh! Somebody save me!");
+    ~chatnpc("<p,neutral>Yep, sound like human too. Burntmeat put it in stew.|Good work, human. Burnmeat give precious reward.");
+    // todo special dialog if inventory is full?
+    inv_add(inv, burnt_meat, 1);
+    ~chatplayer("<p,neutral>This is burnt meat.");
+    ~chatnpc("<p,neutral>It first thing I ever try to cook! Very precious to Burntmeat.");
+    ~chatplayer("<p,quiz>Thank you... and how's the stew?");
+    ~chatnpc("<p,neutral>Slurp, mmm... Human stew cheer Burntmeat up!");
+    // maybe varp ticks here and further interaction with burntmeat goes straight to this branch?
+    @burntmeat_gave_fake_man;
 } else {
     ~chatplayer("<p,neutral>Nothing. I was just leaving.");
 }
+
+[label,burntmeat_gave_fake_man]
+switch_int(~p_choice2("So, where can I get some goutweed?", 1, "I'll be going now.", 2)) {
+    case 1 : @burntmeat_where_goutweed;
+    case 2 : @burntmeat_ill_be_going;
+}
+
+[label,burntmeat_where_goutweed]
+~chatplayer("<p,quiz>So, where can I get some goutweed?");
+~chatnpc("<p,neutral>Hah! Trolls pick it all until none left, many years ago. Only remaining stock in storeroom.");
+~chatnpc("<p,neutral>It well guarded, and Burntmeat hide key in fake bottom of kitchen drawer. Nobody find it there.");
+~chatplayer("<p,neutral>That's some well-guarded secret alright. I'll just be off on my way now.");
+// varp ticks here?
+%eadgar_quest = ^eadgar_spoken_burntmeat2;
+
+
+[label,burntmeat_ill_be_going]
+// todo verify
+~chatplayer("<p,neutral>I'll be going now.");
+
+// todo probably need to check burntmeat's other dialog for all stages of the quest
+
 

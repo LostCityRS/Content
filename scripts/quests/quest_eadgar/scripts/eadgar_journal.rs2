@@ -16,6 +16,17 @@ if(%eadgar_quest < ^eadgar_spoken_sanfew) {
 } /* skipping a few here but this is the next journal update i've run across in videos (LP ep41 @ 9:30) */
   else if(%eadgar_quest = ^eadgar_spoken_eadgar3) {
     $text = "@str@Sanfew asked me to find him some Goutweed.|@str@The Troll Cook will tell me how to find goutweed if I bring him|@str@a tasty human.|@str@Mad Eadgar has a plan.||@str@I got the parrot Eadgar wanted.||@dbl@I need to @dre@hide the parrot@dbl@ somewhere it can hear what Trolls|@dbl@expect humans to sound like.";
+} else if(%eadgar_quest = ^eadgar_given_all_items) {
+    // LP41 video @ 12:55, no period at the end!
+    // linebreaks for the active line seem wonky, need a 2004-era source
+    $text = "@str@Sanfew asked me to find him some Goutweed.|@str@The Troll Cook will tell me how to find goutweed if I bring him|@str@a tasty human.|@str@Mad Eadgar has a plan.||@str@I got the parrot Eadgar wanted.|@str@I hid the parrot under the rock in the Troll prison.|@str@Eadgar wants to make a fake human to give the troll cook. I|@str@gave Eadgar everything he needed.|@dbl@I need to make a troll truth potion by putting @dre@dried, @dre@ground troll thistle @dbl@in a @dre@potion of ranarr weed"; 
+} else if(%eadgar_quest = ^eadgar_made_potion) {
+    // LP41 video @ 14:06
+    // also no period at the end! linebreak at the end is a little weird similar to above
+    $text = "@str@Sanfew asked me to find him some Goutweed.|@str@The Troll Cook will tell me how to find goutweed if I bring him|@str@a tasty human.|@str@Mad Eadgar has a plan.||@str@I got the parrot Eadgar wanted.|@str@I hid the parrot under the rock in the Troll prison.|@str@Eadgar wants to make a fake human to give the troll cook. I|@str@gave Eadgar everything he needed.|@dbl@I made the Troll potion. I should go give it to Mad @dre@Eadgar";
+} else if(%eadgar_quest = ^eadgar_got_fake_man) {
+    // LP41 video @ 14:56 - no period! linebreaks seem ok here
+    $text = "@str@Sanfew asked me to find him some Goutweed.|@str@The Troll Cook will tell me how to find goutweed if I bring him|@str@a tasty human.|@str@Mad Eadgar has a plan.||@str@I got the parrot Eadgar wanted.|@str@I hid the parrot under the rock in the Troll prison.|@str@Eadgar wants to make a fake human to give the troll cook. I|@str@gave Eadgar everything he needed.|@str@I made the Troll potion and gave it to Mad Eadgar.|@str@I fetched the parrot back from the Troll prison rack and|@str@gave it to Eadgar.||@str@I got Eadgar's fake man.|@dbl@I should give the fake man to the @dre@Troll cook";
 }
 
 
