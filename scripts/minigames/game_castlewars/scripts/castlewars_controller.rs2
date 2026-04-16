@@ -6,6 +6,9 @@ if (%npc_int = null) {
     %npc_int = 0;
 }
 %npc_int = add(%npc_int, 1);
+if (modulo(%npc_int, 20) = 0 & divide(sub(100, %npc_int), 20) > 0) {
+    npc_say("The next game will start in <~pluralise(divide(sub(100, %npc_int), 20), "minute")>"); // no punctuation https://youtu.be/QhZyBOd1wWY?t=279, no "1 minutes" typo https://youtu.be/Hmtn4-TRFno?t=59
+}
 if (%npc_int < 100) { // warm up
     return;
 }
