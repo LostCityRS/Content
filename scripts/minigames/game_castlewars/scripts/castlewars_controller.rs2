@@ -135,6 +135,11 @@ return(true);
 ~castlewars_start_tele(%castlewars_team);
 
 [queue,castlewars_end]
+if (%castlewars_team = ^castlewars_team_saradomin) {
+    ~castlewars_increment_saradomin_count;
+} else {
+    ~castlewars_increment_zamorak_count;
+}
 ~castlewars_exit_tele;
 
 [debugproc,cw_reset]
