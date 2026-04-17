@@ -18,56 +18,17 @@ if (npc_range(coord) > 1) {
     p_aprange(1);
     return;
 }
-if(%eadgar_quest = ^eadgar_spoken_burntmeat) {
-    @eadgar_talked_to_troll_cook_yet;
-}
-if(%eadgar_quest = ^eadgar_caught_parrot) {
-    @eadgar_got_parrot_yet;
-}
-// if we've shown the parrot to eadgar but haven't hidden it yet
-// this blocks turning in the other scarecrow supplies
-// TODO probably special dialog if you trigger this with no parrot in inv + also haven't hidden one?
-// also mesanims
-if(%eadgar_quest = ^eadgar_spoken_eadgar3 & %eadgar_quest < ^eadgar_hid_parrot) {
-    ~chatplayer("<p,quiz>What should I do with this parrot?");
-    ~chatnpc("<p,neutral>I told you, put it somewhere it'll learn to say the sort of thing the trolls will expect it to say.");
-    ~chatnpc("<p,neutral>That is likely to be screaming. There's bound to be a good spot somewhere in the troll prison.");
-    ~chatnpc("<p,quiz>Anything else I can do for you?");
-    @eadgar_scarecrow_tree; // first available entrypoint to this i think, need to determine if there are any others
-}
-if(%eadgar_quest = ^eadgar_hid_parrot) {
-    @eadgar_hid_parrot;
-}
-if(%eadgar_quest = ^eadgar_spoken_eadgar3) {
-    ~chatnpc("<p,quiz>How are you getting on?");
-    @eadgar_scarecrow_items;
-}
-if(%eadgar_quest = ^eadgar_made_potion) {
-    if(inv_total(inv, eadgar_ground_troll_thistle_potion) > 0) {
-        @eadgar_got_troll_truth_potion;
-    } else {
-        // todo presumably there is dialog here
-    }
-}
-if(%eadgar_quest = ^eadgar_retrieved_parrot) {
-    if(inv_total(inv, eadgar_drunk_parrot) > 0) {
-        ~chatplayer("<p,neutral>I've brought the parrot.");
-        ~chatnpc("<p,happy>Hand it here...there we go! Can you tell this isn't a bona fide human being? I sure can't!");
-        
-        // not sure which npc this is
-        ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>What am I doing here? Ow! Where's the rest of the Guard? Agh! I won't tell you anything!");
-        
-        //@eadgar_default_tree;
-        // to match Soup's OSRS video, oddly the drunk parrot is not removed and the fake man is not added
-        // until he clicks through eadgar's default dialog tree, telling us it's a proc and not a label...
-        // so todo convert to proc. for now...
-        inv_del(inv, eadgar_drunk_parrot, 1);
-        inv_add(inv, eadgar_fake_man, 1);
-        %eadgar_quest = ^eadgar_got_fake_man;
-        return;
-    } else {
-        // presumably something here for if you grabbed but lost the parrot?
-        // also need dialog for if you haven't gone back for it yet
+/* Eadgar's Ruse dialog trees */
+if(%eadgar_quest > 0) {
+    switch_int(%eadgar_quest) {
+        case ^eadgar_spoken_sanfew : @eadgar_quest_initial_tree;
+        case ^eadgar_spoken_burntmeat : @eadgar_talked_to_troll_cook_yet;
+        case ^eadgar_caught_parrot : @eadgar_got_parrot_yet;
+        case ^eadgar_spoken_eadgar3 : @eadgar_what_do_with_parrot;
+        case ^eadgar_hid_parrot : @eadgar_hid_parrot;
+        case ^eadgar_spoken_eadgar4 : @eadgar_how_are_you_getting_on;
+        case ^eadgar_made_potion : @eadgar_got_troll_truth_potion;
+        case ^eadgar_retrieved_parrot : @eadgar_retrieved_parrot;
     }
 }
 ~chatplayer("<p,happy>Hi!");
@@ -78,16 +39,7 @@ switch_int(random(4)) {
     case 3 : ~chatnpc("<p,happy>Welcome to Mad Eadgar's! Serving all day, every day!");
 }
 ~chatnpc("<p,happy>Would you care to sample our delicious home cooking?");
-if(%eadgar_quest = ^eadgar_spoken_sanfew) {
-    switch_int(~p_choice4("I need to find some goutweed.", 1, "Why do you live so close to the trolls?", 2, "What do you have to offer?", 3, "No thanks, Eadgar.", 4)) {
-        case 1 : @eadgar_need_goutweed;
-        case 2 : @eadgar_live_so_close;
-        case 3 : @eadgar_what_do_you_have;
-        case 4 : @eadgar_nothanks;
-    } 
-} else {
-    @eadgar_default_tree;
-}
+@eadgar_default_tree;
 
 [label,eadgar_default_tree]
 switch_int(~p_choice3("Why do you live so close to the trolls?", 1, "What do you have to offer?", 2, "No thanks, Eadgar.", 3)) {
@@ -95,15 +47,6 @@ switch_int(~p_choice3("Why do you live so close to the trolls?", 1, "What do you
     case 2 : @eadgar_what_do_you_have;
     case 3 : @eadgar_nothanks;    
 }
-
-[label,eadgar_need_goutweed]
-// dialog source https://youtu.be/tEsRQ9fXIU?t=150
-// mesanims should be good here
-// need this from rsprox https://oldschool.runescape.wiki/w/Transcript:Eadgar%27s_Ruse#Taking_to_Eadgar_again_before_talking_to_Burntmeat
-~chatplayer("<p,neutral>I need to find some goutweed. Sanfew said you might be able to help.");
-~chatnpc("<p,quiz>Sanfew, you say? Ah, haven't seen him in a while...");
-~chatnpc("<p,neutral>Goutweed is used as an ingredient in troll cooking. You should ask one of their cooks.");
-%eadgar_quest = ^eadgar_spoken_eadgar;
 
 [label,eadgar_live_so_close]
 ~chatplayer("<p,confused>Why do you live so close to the trolls? Isn't it dangerous?");
@@ -138,212 +81,3 @@ switch_int(~p_choice2("I'd like some mountain goat stew, please.", 1, "No thanks
 [label,eadgar_nothanks]
 ~chatplayer("<p,neutral>No thanks, Eadgar.");
 ~chatnpc("<p,happy>Your loss!");
-
-[label,eadgar_talked_to_troll_cook_yet]
-// source from osrs vids, todo mesanims from rsprox
-~chatnpc("<p,quiz>Oh, it's you. Have you talked to the troll cook yet?");
-// varp check here I'd imagine, with a dialog branch for if you haven't talked to burntmeat yet
-~chatplayer("<p,sad>I talked to the troll cook but he wouldn't tell me anything, and now he wants me to find him some tasty human for his stew.");
-~chatnpc("<p,sad>Oh dear, that's no good. You can't just go hand over a human to those trolls...");
-~chatnpc("<p,happy>Aha! I have a plan!");
-~chatplayer("<p,neutral>Really?");
-~chatnpc("<p,happy>Yes! It's bound to work. First of all, I will need a parrot!");
-~chatplayer("<p,quiz>A PARROT? Where am I going to find one of those?");
-~chatnpc("<p,neutral>At the zoo, where else?");
-%eadgar_quest = ^eadgar_spoken_eadgar2;
-~chatnpc("<p,quiz>Anything else I can do for you?");
-@eadgar_default_tree;
-
-[label,eadgar_got_parrot_yet]
-~chatnpc("<p,quiz>Oh, it's you. Have you got me a parrot yet?");
-if(inv_total(inv, eadgar_drunk_parrot) > 0) {
-    //parrot: Raaawk! Polly wanna cracker!
-    ~chatplayer("<p,quiz>Here it is! How are you going to explain your plan?");
-    ~chatnpc("<p,happy>Yes, yes, of course. It's quite ingenious really!");
-    ~chatnpc("<p,neutral>What we need is something that looks like a human,|sounds like a human, smells like a human and tastes|like a human."); //linebreaks from from runeweb, one of the few 2004-era images we have of this quest
-    ~chatplayer("<p,quiz>How ae we going to make it look like a human?");
-    ~chatnpc("<p,neutral>We'll just make a scarecrow. We'll need logs, and 10 sheaves of wheat for stuffing.");
-    ~chatplayer("<p,quiz>How are we going to make it sound like a human?");
-    ~chatnpc("<p,neutral>That's what the parrot's for, of course.");
-    // parrot: Who's a pretty boy then?
-    ~chatnpc("<p,neutral>Although the trolls might get suspicious if it doesn't say what they expect a human to say...");
-    ~chatnpc("<p,neutral>You should hide it for a while somewhere it can pick up some more appropriate catchphrases.");
-    ~chatplayer("<p,quiz>How are we going to make it smell like a human?");
-    ~chatnpc("<p,neutral>Well, we'll need to dress it up anyway; if we use dirty clothes it'll smell human to the trolls.");
-    ~chatnpc("<p,neutral>I'm a man of few clothes myself, so you might want to ask old Sanfew about that one.");
-    ~chatplayer("<p,quiz>And how are we going to make it taste like a human?");
-    ~chatnpc("<p,neutral>That's easy, we'll just stuff it with a few chickens. Everything tastes like chicken! Five raw chickens should be enough!");
-    %eadgar_quest = ^eadgar_spoken_eadgar3;
-    ~chatnpc("<p,quiz>That's the plan. Anything else I can do for you?");
-    @eadgar_default_tree;
-} else {
-    // presumably this checks for whether or not the parrot is in the inventory?
-    // will have to check if osrs even increments the varp for this quest stage
-    // or if it's purely based on having the parrot in your inventory
-}
-
-[oploc1,eadgar_rack]
-// presumably this does something before starting the quest
-// then before and after storing the parrot
-// during the interim quest stages (troll thistle potion)
-// then maybe before and after picking it up again?
-// and then possibly after the quest?
-if(%eadgar_quest = ^eadgar_given_potion) {
-    ~mesbox("You look under the rack and find the drunk parrot.");
-    ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Ah, hello Sir. Could you please free me?|I seem to have ... OW! What are you doing?|That's my spleen!");
-    ~chatplayer("<p,neutral>I think it's probably heard enough.");
-    inv_add(inv, eadgar_drunk_parrot, 1);
-    %eadgar_quest = ^eadgar_retrieved_parrot;
-} else {
-    // todo presumably something for if you're not at this stage yet, or if you click the rack again
-    // after pickink up the parrot
-}
-
-[oplocu,eadgar_rack]
-switch_obj(last_useitem) {
-    case eadgar_drunk_parrot : @eadgar_hide_parrot;
-    case default : ~displaymessage(^dm_default);
-}
-
-[label,eadgar_hide_parrot]
-if(%eadgar_quest = ^eadgar_spoken_eadgar3) {
-    inv_del(inv, eadgar_drunk_parrot, 1);
-    mes("You hide the parrot under the torture rack."); //osrs
-    %eadgar_quest = ^eadgar_hid_parrot;
-} else {
-    mes("You can't think of a reason to place a defenceless parrot on a torture rack."); // not the real mes, need rsprox
-}
-
-[label,eadgar_hid_parrot]
-~chatplayer("<p,neutral>I hid the parrot under the rack in the troll prison.");
-~chatnpc("<p,neutral>Good work. How about those other items?");
-@eadgar_scarecrow_items;
-
-[label,eadgar_scarecrow_tree]
-mes("todo");
-// there's another fairly extensive dialog tree if eadgar is talked to after bringing him the parrot
-// "What should I do with this parrot?" -> Eadgar answers, then after "Anything else I can do for you?"
-// there's a bunch of recap dialog options about how to make the scarecrow seem human
-
-[label,eadgar_scarecrow_items]
-def_int $logs_num = inv_total(inv, logs);
-def_int $chickens_num = min(inv_total(inv, raw_chicken), calc(5 - %eadgar_chickens));
-def_int $grain_num = min(inv_total(inv, raw_chicken), calc(10 - %eadgar_grain));
-def_int $clothes_num = inv_total(inv, eadgar_dirty_druid_robe);
-def_string $logs_str = "";
-def_string $chickens_str = "";
-def_string $grain_str = "";
-def_string $clothes_str = "";
-
-switch_int ($logs_num) {
-    case 0 : $logs_str = "no logs";
-    case default : $logs_str = "the logs";
-}
-switch_int ($chickens_num) {
-    case 0 : $chickens_str = "no chickens";
-    case default : $chickens_str = "<tostring($chickens_num)> chickens";
-}
-switch_int ($grain_num) {
-    case 0 : $grain_str = "no grain";
-    case default : $grain_str = "<tostring($grain_num)> bundles of grain";
-}
-switch_int ($clothes_num) {
-    case 0 : $clothes_str = "no dirty clothes";
-    case default : $clothes_str = "the dirty clothes";
-}
-
-// done building strings, now clamp values so we don't eat the player's items
-$chickens_num = min(calc(5 - %eadgar_chickens), $chickens_num);
-$grain_num = min(calc(10 - %eadgar_grain), $grain_num);
-
-
-// videos show items are removed here, immediately before the player's "I have XYZ" dialog fires
-if ($logs_num >= 1 & testbit(%eadgar_bits, ^eadgar_given_logs) = ^false) {
-    inv_del(inv, logs, 1);
-    %eadgar_bits = setbit(%eadgar_bits, ^eadgar_given_logs);
-} else {
-    $logs_str = "no logs";
-    // This is to match Soup's OSRS video.
-    // The player gives Eadgar the logs first, then returns with the dirty clothes on a second trip while still carrying
-    // a second set of logs for making a fire later. The player's dialog reads "I have no logs" while turning in the clothes,
-    // even though there are actually logs in the inventory.
-    // TODO check if this also happens with grain, chickens, and possibly even dirty clothes if it's possible to dupe them
-}
-
-if ($chickens_num > 0) {
-    inv_del(inv, raw_chicken, $chickens_num);
-}
-
-if ($grain_num > 0) {
-    inv_del(inv, grain, $grain_num);
-}
-
-if ($clothes_num >= 1 & testbit(%eadgar_bits, ^eadgar_given_clothes) = ^false) {
-    inv_del(inv, eadgar_dirty_druid_robe, $clothes_num); // todo check if it's possible to get dupes of this and see and what the quest does if turning in this step with dupes
-    %eadgar_bits = setbit(%eadgar_bits, ^eadgar_given_clothes);
-} // might need an else here if it's possible to come back with a duped robe in the event that it affects dialog like with logs...?
-
-// increment what we've brought
-%eadgar_chickens = calc(%eadgar_chickens + $chickens_num);
-%eadgar_grain = calc(%eadgar_grain + $grain_num);
-
-// check if anything more is needed
-def_int $logs_needed = calc(1 - $logs_num);
-def_int $chickens_needed = calc(5 - %eadgar_chickens);
-def_int $grain_needed = calc(10 - %eadgar_grain);
-def_int $clothes_needed = calc(1 - $clothes_num);
-
-~chatplayer("<p,neutral>I have <$logs_str>, <$chickens_str>, <$grain_str> and <$clothes_str>.");
-
-// if not all items are delivered, dialog goes back to default tree after eadgar tells you what else is needed
-// is clicking on eadgar after showing him the parrot but before hiding it the only way to see the scarecrow dialog tree?
-if(testbit(%eadgar_bits, ^eadgar_given_logs) ! 1 | $chickens_needed > 0 | $grain_needed > 0 | testbit(%eadgar_bits, ^eadgar_given_clothes) ! 1) {
-    // todo probably a better way to do this w/o code duplication
-    switch_int (testbit(%eadgar_bits, ^eadgar_given_logs)) {
-    case 1 : $logs_str = "no logs";
-    case 0 : $logs_str = "the logs";
-    }
-    switch_int ($chickens_needed) {
-        case 0 : $chickens_str = "no chickens";
-        case default : $chickens_str = "<tostring($chickens_needed)> chickens";
-    }
-    switch_int ($grain_needed) {
-        case 0 : $grain_str = "no grain";
-        case default : $grain_str = "<tostring($grain_needed)> bundles of grain";
-    }
-    switch_int (testbit(%eadgar_bits, ^eadgar_given_clothes)) {
-        case 1 : $clothes_str = "no dirty clothes";
-        case 0 : $clothes_str = "the dirty clothes";
-    }
-    ~chatnpc("<p,neutral>You now need <$logs_str>, <$chickens_str>, <$grain_str> and <$clothes_str>.");
-    ~chatnpc("<p,quiz>Anything else I can do for you?"); // this line is used in a couple different contexts at this point before
-    // forwarding to the default tree but ALSO there are other lines used sometimes so rather than duplicating this dialog 3x
-    // it should probably be in its own tiny label
-    @eadgar_default_tree;
-} else {
-    @eadgar_thats_everything;
-}
-
-[label,eadgar_thats_everything]
-// dialog from soup's vid, todo mesanims though these should be mostly good
-~chatnpc("<p,happy>That's everything!");
-// kinda odd this is two separate chatnpc's, is something being checked here?
-~chatnpc("<p,happy>Good, good, everything is almost finished.");
-~chatnpc("<p,neutral>Of course, we can't just give him the dummy and expect to get anything useful out of him.");
-~chatplayer("<p,quiz>Oh?");
-~chatnpc("<p,neutral>No, of course not. We need to make sure he'll tell you what you need to know.");
-~chatplayer("<p,quiz>And how do we do that?");
-~chatnpc("<p,neutral>I happen to know that the trolls are susceptible to a certain kind of plant that grows around this mountain. I call it Troll Thistle. If properly prepared, it can be made into a sort of Troll truth potion.");
-~chatplayer("<p,quiz>How do you prepare it?");
-~chatnpc("<p,neutral>You'll have to dry it in a fire, then grind it and mix it into a potion with Ranarr weed.");
-~chatplayer("<p,neutral>Okay, I'll be back with that soon.");
-%eadgar_quest = ^eadgar_given_all_items; // todo unsure if this is where the varp really updates
-~chatnpc("<p,quiz>Anything else I can do for you?");
-@eadgar_default_tree;
-
-[label,eadgar_got_troll_truth_potion]
-~chatplayer("<p,neutral>I've got the troll truth potion.");
-~chatnpc("<p,happy>Excellent, hand it here. Now just go fetch that poor parrot back, it's probably had enough by now.");
-// item is deleted here
-inv_del(inv, eadgar_ground_troll_thistle_potion, 1); // what happens if you have multiple (if possible)?
-%eadgar_quest = ^eadgar_given_potion;
