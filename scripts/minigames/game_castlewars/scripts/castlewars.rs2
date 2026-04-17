@@ -31,6 +31,10 @@ if ($saradomin_count < $zamorak_count) {
     return;
 }
 ~castlewars_waitingroom_tele(^castlewars_team_zamorak);
+if (~castlewars_conflicting_god(^castlewars_team_zamorak) = true) {
+    ~castlewars_transmog(castlewars_imp);
+    ~mesbox("You're wearing objects of my ignorant brothers and you come to me? Such treachery must be rewarded! Enjoy some time in the most mischievous of forms."); // osrs
+}
 
 [oploc1,castlewars_saradomin_tele]
 if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
@@ -47,6 +51,10 @@ if ($zamorak_count < $saradomin_count) {
     return;
 }
 ~castlewars_waitingroom_tele(^castlewars_team_saradomin);
+if (~castlewars_conflicting_god(^castlewars_team_saradomin) = true) {
+    ~castlewars_transmog(castlewars_rabbit);
+    ~mesbox("You wear objects of my foolish brothers? Perhaps some time spent as the lowliest of formss will help you appreciate the gifts that I can bestow upon my followers.");
+}
 
 [oploc1,castlewars_random_tele]
 if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
@@ -63,9 +71,18 @@ if ($zamorak_count < $saradomin_count | ($zamorak_count = $saradomin_count & ran
 } else {
     ~castlewars_waitingroom_tele(^castlewars_team_saradomin);
 }
+if (~castlewars_conflicting_god(^castlewars_team_guthix) = true) {
+    ~castlewars_transmog(castlewars_sheep);
+    ~mesbox("I pity your faith in my brothers. I shall bless you with some time in the most holy of forms; maybe its wisdom will rub off on you and you'll see the error of your ways."); // osrs
+}
 
-[oploc1,castlewars_zamorak_exit] ~castlewars_exit_tele;
-[oploc1,castlewars_saradomin_exit] ~castlewars_exit_tele;
+[oploc1,castlewars_zamorak_exit]
+~castlewars_transmog_reset;
+~castlewars_exit_tele;
+
+[oploc1,castlewars_saradomin_exit]
+~castlewars_transmog_reset;
+~castlewars_exit_tele;
 
 [proc,castlewars_exit_tele]
 if (inv_total(worn, castlewars_saradomin_banner) > 0) {
@@ -91,6 +108,7 @@ if ($team = ^castlewars_team_saradomin) {
     ~castlewars_increment_zamorak_count;
     p_teleport(map_findsquare(^castlewars_zamorak_starting_room_coord, 0, 4, 0));
 }
+~castlewars_transmog_reset;
 
 [proc,castlewars_zamorak_count]()(int)
 return(max(getbit_range(%castlewars_bits, ^castlewars_zamorak_count_start_bit, ^castlewars_zamorak_count_end_bit), 0));

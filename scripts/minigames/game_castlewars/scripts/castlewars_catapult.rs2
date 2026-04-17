@@ -7,7 +7,6 @@ if (inv_total(inv, castlewars_catapult_rock) < 1) {
     mes("You need a rock to launch from the catapult!");
     return;
 }
-mes(~coord_tostring(loc_coord));
 %castlewars_catapultx = 0;
 %castlewars_catapultz = 0;
 ~castlewars_catapult_set_marker;
