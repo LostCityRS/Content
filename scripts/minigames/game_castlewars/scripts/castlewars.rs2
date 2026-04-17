@@ -255,9 +255,9 @@ if (%castlewars_team = ^castlewars_team_saradomin) {
 cleartimer(castlewars_timer);
 if_openoverlay(null);
 
-if (~in_castlewars_game(coord) = false) {
-    ~castlewars_del_items;
-}
+// if (~in_castlewars_game(coord) = false & ~in_castlewars_waitingroom(coord) = false) {
+//     ~castlewars_del_items;
+// }
 
 [mapzone,0_37_148] ~castlewars_mapzone;
 
