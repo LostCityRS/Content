@@ -2,34 +2,74 @@
 // 2014 OSRS: https://youtu.be/945tUgBj3SM?t=14
 
 [if_button,questlist:com_82]
-def_string $text;
+def_string $prev_text;
+def_string $new_text;
 
 if(%eadgar_quest < ^eadgar_spoken_sanfew) {
-    $text = "@dbl@I can start this quest by speaking to @dre@Sanfew@dbl@ after|@dbl@completing the @dre@Druidic Ritual@dbl@ quest in @dre@Taverley@dbl@. To complete|@dbl@this quest I need @dre@Level 31 Herblore@dbl@. I also need to have|@dbl@rescued @dre@Mad Eadgar@dbl@ from the @dre@Troll Stronghold";
-} else if(%eadgar_quest = ^eadgar_spoken_sanfew) {
-    $text = "@str@Sanfew asked me to find him some Goutweed.||@dbl@I need to find out where to get @dre@Goutweed - Mad Eadgar@dbl@ may|@dbl@be able to help.";
+    // https://youtu.be/945tUgBj3SM?t=14
+    $prev_text = "@dbl@I can start this quest by speaking to @dre@Sanfew@dbl@ after|@dbl@completing the @dre@Druidic Ritual@dbl@ quest in @dre@Taverley@dbl@. To complete|@dbl@this quest I need @dre@Level 31 Herblore@dbl@. I also need to have|@dbl@rescued @dre@Mad Eadgar@dbl@ from the @dre@Troll Stronghold";
+} else {
+    // https://youtu.be/945tUgBj3SM?t=118
+    // this starts out strikethrough and all subsequent journal updates follow from here
+    $prev_text = "@str@Sanfew asked me to find him some Goutweed.";
+}
+
+if(%eadgar_quest = ^eadgar_spoken_sanfew) {
+    // https://youtu.be/945tUgBj3SM?t=118
+    $new_text = append($prev_text, "||@dbl@I need to find out where to get @dre@Goutweed - Mad Eadgar@dbl@ may|@dbl@be able to help.");
 } else if(%eadgar_quest = ^eadgar_spoken_eadgar) {
-    $text = "@str@Sanfew asked me to find him some Goutweed.||@dbl@I need to find out where to get @dre@Goutweed - @dbl@I should ask the|@dre@Troll Cook.";
+    // https://youtu.be/945tUgBj3SM?t=251   
+    $new_text = append($prev_text, "||@dbl@I need to find out where to get @dre@Goutweed - @dbl@I should ask the|@dre@Troll Cook.");
 } else if(%eadgar_quest = ^eadgar_spoken_burntmeat) {
-    // LP ep41 video @ 5:57
-    $text = "@dbl@I need to get @dre@a tasty human@dbl@ for the @dre@Troll Cook. Mad Eadgar|@dbl@may be able to help.";
-} /* skipping a few here but this is the next journal update i've run across in videos (LP ep41 @ 9:30) */
-  else if(%eadgar_quest = ^eadgar_spoken_eadgar3) {
-    $text = "@str@Sanfew asked me to find him some Goutweed.|@str@The Troll Cook will tell me how to find goutweed if I bring him|@str@a tasty human.|@str@Mad Eadgar has a plan.||@str@I got the parrot Eadgar wanted.||@dbl@I need to @dre@hide the parrot@dbl@ somewhere it can hear what Trolls|@dbl@expect humans to sound like.";
+    // https://youtu.be/945tUgBj3SM?t=357
+    $prev_text = append($prev_text, "|@str@The Troll Cook will tell me how to find goutweed if I bring him|@str@a tasty human.");
+    $new_text = append($prev_text, "||@dbl@I need to get @dre@a tasty human@dbl@ for the @dre@Troll Cook. Mad Eadgar|@dbl@may be able to help.");
+} else if(%eadgar_quest = ^eadgar_spoken_eadgar2) {
+    // from RS3
+    $prev_text = append($prev_text, "|@str@Mad Eadgar has a plan.");
+    $new_text = append($prev_text, "||@dbl@I need to bring Eadgar a @dre@parrot @dbl@from the @dre@Zoo");
+} else if(%eadgar_quest = ^eadgar_spoken_eadgar3) {
+    // https://youtu.be/945tUgBj3SM?t=569
+    $prev_text = append($prev_text, "||@str@I got the parrot Eadgar wanted.");
+    $new_text = append($prev_text, "||@dbl@I need to @dre@hide the parrot@dbl@ somewhere it can hear what Trolls|@dbl@expect humans to sound like.");
+} else if (%eadgar_quest = ^eadgar_hid_parrot) {
+    // from RS3
+    $prev_text = append($prev_text, "|@str@I hid the parrot under the rock in the Troll prison.");
+    $new_text = append($prev_text, "||@dbl@I should go and find out the rest of Mad Eadgar's plan.");
+} else if (%eadgar_quest = ^eadgar_spoken_eadgar4) {
+    // from RS3. todo see if OSRS does the list of remaining needed items too
+    $new_text = "||@dbl@Eadgar wants to make a @dre@fake human @dbl@to give the troll cook.|@dbl@I still need to bring him:";
+    
+    def_int $chickens_needed = calc(5 - %eadgar_chickens);
+    def_int $grain_needed = calc(10 - %eadgar_grain);
+    def_string $items_remaining = "";
+    if(testbit(%eadgar_bits, ^eadgar_given_logs) ! 1) {
+        // all of these $items_remaining strings need verified as far as formatting
+        $items_remaining = append($items_remaining, "|@dre@Some Logs");
+    }
+    if($chickens_needed > 0) {
+        $items_remaining = append($items_remaining, "|@dre@<tostring($chickens_needed)> Chickens");
+    }
+    if($grain_needed > 0) {
+        $items_remaining = append($items_remaining, "|@dre@<tostring($grain_needed)> Grain");
+    }
+    if(testbit(%eadgar_bits, ^eadgar_given_clothes) ! 1) {
+        $items_remaining = append($items_remaining, "|@dre@Some Dirty Clothes");
+    }
+
+    $new_text = append($prev_text, $new_text);
+    $new_text = append($new_text, $items_remaining);
 } else if(%eadgar_quest = ^eadgar_given_all_items) {
-    // LP41 video @ 12:55, no period at the end!
-    // linebreaks for the active line seem wonky, need a 2004-era source
-    $text = "@str@Sanfew asked me to find him some Goutweed.|@str@The Troll Cook will tell me how to find goutweed if I bring him|@str@a tasty human.|@str@Mad Eadgar has a plan.||@str@I got the parrot Eadgar wanted.|@str@I hid the parrot under the rock in the Troll prison.|@str@Eadgar wants to make a fake human to give the troll cook. I|@str@gave Eadgar everything he needed.|@dbl@I need to make a troll truth potion by putting @dre@dried, @dre@ground troll thistle @dbl@in a @dre@potion of ranarr weed"; 
+    // https://youtu.be/945tUgBj3SM?t=775 - no period at the end of the new text, linebreaks seem wonky, need a 2004-era source
+    
+    $new_text = append($prev_text, "|@str@Eadgar wants to make a fake human to give the troll cook. I|@str@gave Eadgar everything he needed.|@dbl@I need to make a troll truth potion by putting @dre@dried, @dre@ground troll thistle @dbl@in a @dre@potion of ranarr weed"); 
 } else if(%eadgar_quest = ^eadgar_made_potion) {
     // LP41 video @ 14:06
     // also no period at the end! linebreak at the end is a little weird similar to above
-    $text = "@str@Sanfew asked me to find him some Goutweed.|@str@The Troll Cook will tell me how to find goutweed if I bring him|@str@a tasty human.|@str@Mad Eadgar has a plan.||@str@I got the parrot Eadgar wanted.|@str@I hid the parrot under the rock in the Troll prison.|@str@Eadgar wants to make a fake human to give the troll cook. I|@str@gave Eadgar everything he needed.|@dbl@I made the Troll potion. I should go give it to Mad @dre@Eadgar";
+    $new_text = "@str@Sanfew asked me to find him some Goutweed.|@str@The Troll Cook will tell me how to find goutweed if I bring him|@str@a tasty human.|@str@Mad Eadgar has a plan.||@str@I got the parrot Eadgar wanted.|@str@I hid the parrot under the rock in the Troll prison.|@str@Eadgar wants to make a fake human to give the troll cook. I|@str@gave Eadgar everything he needed.|@dbl@I made the Troll potion. I should go give it to Mad @dre@Eadgar";
 } else if(%eadgar_quest = ^eadgar_got_fake_man) {
     // LP41 video @ 14:56 - no period! linebreaks seem ok here
-    $text = "@str@Sanfew asked me to find him some Goutweed.|@str@The Troll Cook will tell me how to find goutweed if I bring him|@str@a tasty human.|@str@Mad Eadgar has a plan.||@str@I got the parrot Eadgar wanted.|@str@I hid the parrot under the rock in the Troll prison.|@str@Eadgar wants to make a fake human to give the troll cook. I|@str@gave Eadgar everything he needed.|@str@I made the Troll potion and gave it to Mad Eadgar.|@str@I fetched the parrot back from the Troll prison rack and|@str@gave it to Eadgar.||@str@I got Eadgar's fake man.|@dbl@I should give the fake man to the @dre@Troll cook";
+    $new_text = "@str@Sanfew asked me to find him some Goutweed.|@str@The Troll Cook will tell me how to find goutweed if I bring him|@str@a tasty human.|@str@Mad Eadgar has a plan.||@str@I got the parrot Eadgar wanted.|@str@I hid the parrot under the rock in the Troll prison.|@str@Eadgar wants to make a fake human to give the troll cook. I|@str@gave Eadgar everything he needed.|@str@I made the Troll potion and gave it to Mad Eadgar.|@str@I fetched the parrot back from the Troll prison rack and|@str@gave it to Eadgar.||@str@I got Eadgar's fake man.|@dbl@I should give the fake man to the @dre@Troll cook";
 }
 
-
-
-
-~quest_journal("Eadgar's Ruse", $text);
+~quest_journal("Eadgar's Ruse", $new_text);
