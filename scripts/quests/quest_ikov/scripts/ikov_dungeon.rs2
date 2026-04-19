@@ -33,6 +33,10 @@ if($entering = false | testbit(%ikov_dungeon, ^ikov_lever) = ^true) {
 }
 ~mesbox("The door won't open!");
 
+[mapzone,0_41_153]
+settimer(move_ikovtrigger, 1);
+@music_playbyregion(coord);
+
 [mapzoneexit,0_41_153] 
 cleartimer(move_ikovtrigger);
 %ikov_dungeon = clearbit(%ikov_dungeon, ^ikov_bridge);
