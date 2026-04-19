@@ -1,0 +1,37 @@
+[if_button,questlist:troll_love]
+def_string $text;
+if (%troll_love = ^troll_love_not_started) {
+    $text = "@dbl@I can start this quest by speaking to @dre@Ug@dbl@ who is in the @dre@Troll|@dre@Stronghold@dbl@.||";
+    $text = append($text, "@dbl@Requirements:|");
+    if (%troll_quest < ^troll_complete) {
+        $text = append($text, "@dbl@Must have completed @dre@Troll Stronghold|");
+    } else {
+        $text = append($text, "@str@Must have completed Troll Stronghold|");
+    }
+    if (stat_base(agility) < 28) {
+        $text = append($text, "@dre@Level 28 Agility|");
+    } else {
+        $text = append($text, "@str@Level 28 Agility|");
+    }
+    $text = append($text, "@dbl@Must be able to defeat a level @dre@113 Troll@dbl@.");
+    ~quest_journal("Troll Romance", $text);
+    return;
+}
+
+if (%troll_love > ^troll_love_not_started) {
+    $text = append($text, "@str@I have spoken to Ug and found out that he is in love with|@str@Aga.|");
+} else if (%troll_love = ^troll_love_started) {
+    $text = append($text, "@dbl@I should speak to @dre@Aga@dbl@.");
+}
+
+if (%troll_love > ^troll_love_started) {
+    $text = append($text, "@str@I have spoken to Aga and found out that her heart could be|");
+    $text = append($text, "@str@won with a certain flower.|");
+}
+
+if (%troll_love = ^troll_love_aga_wants_trollweiss) {
+    $text = append($text, "@dbl@I should ask someone about @dre@Trollweiss@dbl@ who knows a lot|");
+    $text = append($text, "@dbl@about these mountains.|");
+}
+
+~quest_journal("Troll Romance", $text);

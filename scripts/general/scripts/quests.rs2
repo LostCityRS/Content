@@ -235,6 +235,9 @@ if (%death_equiproom = ^death_complete) {
 if (%troll_quest = ^troll_complete) {
     $questpoints = add($questpoints, ^troll_questpoints); 
 }
+if (%troll_love = ^troll_love_complete) {
+    $questpoints = add($questpoints, ^troll_love_questpoints); 
+}
 if (%golem_a = ^golem_complete) {
     $questpoints = add($questpoints, ^golem_questpoints);
 }
