@@ -1,11 +1,3 @@
-[oploc1,castlewars_table_bandages]
-if (inv_freespace(inv) = 0) {
-    ~mesbox("Your inventory is too full to hold anymore bandages.");
-    return;
-}
-inv_add(inv, castlewars_bandages, 1);
-
-
 // back port todo: allow healing outside of castle wars when smuggled, even in duel arena (bug)
 // fixed a bit after the release of castlewars ?
 [opheld1,castlewars_bandages]
