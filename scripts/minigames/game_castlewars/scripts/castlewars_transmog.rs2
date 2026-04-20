@@ -29,6 +29,7 @@ if ($god = ^castlewars_team_saradomin) {
 return(false);
 
 [proc,castlewars_transmog](npc $npc_type)
+if_settab(null, ^tab_combat_options);
 if_settab(null, ^tab_skills);
 if_settab(null, ^tab_quest_journal);
 if_settab(null, ^tab_inventory);
