@@ -58,6 +58,8 @@ if (%castlewars_team = ^castlewars_team_saradomin) {
     %castlewars_zamorak_maindoor = ~castlewars_door_health(%castlewars_team);
     %castlewars_zamorak_sidedoor = ~castlewars_sidedoor_unlocked(%castlewars_team);
     %castlewars_zamorak_catapult = ~castlewars_catapult_broken(%castlewars_team);
+    %castlewars_zamorak_tunnel1 = ~castlewars_tunnel_cleared(%castlewars_team, 0);
+    %castlewars_zamorak_tunnel2 = ~castlewars_tunnel_cleared(%castlewars_team, 1);
     // https://oldschool.runescape.wiki/w/Update:Karamja_Dungeon
     if (inv_total(worn, castlewars_saradomin_banner) > 0 & ~castlewars_in_base = true) { // https://youtu.be/LE64K-ViNH8?t=571
         if_close;
@@ -71,6 +73,8 @@ if (%castlewars_team = ^castlewars_team_saradomin) {
     %castlewars_saradomin_maindoor = ~castlewars_door_health(%castlewars_team);
     %castlewars_saradomin_sidedoor = ~castlewars_sidedoor_unlocked(%castlewars_team);
     %castlewars_saradomin_catapult = ~castlewars_catapult_broken(%castlewars_team);
+    %castlewars_saradomin_tunnel1 = ~castlewars_tunnel_cleared(%castlewars_team, 0);
+    %castlewars_saradomin_tunnel2 = ~castlewars_tunnel_cleared(%castlewars_team, 1);
     // https://oldschool.runescape.wiki/w/Update:Karamja_Dungeon
     if (inv_total(worn, castlewars_zamorak_banner) > 0 & ~castlewars_in_base = true) { // https://youtu.be/LE64K-ViNH8?t=571
         if_close;
@@ -175,6 +179,14 @@ if (loc_find(^castlewars_saradomin_catapult_coord, castlewars_catapult_saradomin
 }
 if (loc_find(^castlewars_zamorak_catapult_coord, castlewars_catapult_zamorak_burning) = true | loc_find(^castlewars_zamorak_catapult_coord, castlewars_catapult_zamorak_broken) = true) {
     loc_change(castlewars_catapult_zamorak, 1);
+}
+
+def_int $i = 0;
+def_coord $coord;
+while ($i < enum_getoutputcount(castlewars_rocks_coords)) {
+    $coord = enum(int, coord, castlewars_rocks_coords, $i);
+    loc_add($coord, castlewars_blocked_tunnel_1, modulo(add(~coord_direction($coord, 0_37_148_32_32), 1), 2), centrepiece_straight, ^max_32bit_int);
+    $i = add($i, 1);
 }
 
 
