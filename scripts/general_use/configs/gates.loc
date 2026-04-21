@@ -52,8 +52,7 @@ blockrange=no
 recol1s=12480
 recol1d=12580
 category=gate_main_closed
-// todo:
-// param=next_loc_stage,
+param=next_loc_stage,loc_4139
 
 [loc_3198]
 name=Gate
@@ -66,24 +65,29 @@ blockrange=no
 recol1s=12480
 recol1d=12580
 category=gate_outer_closed
-// todo:
-// param=next_loc_stage,
+param=next_loc_stage,loc_4140
 
+[loc_4139]
+name=Gate
+desc=Entrance to the Duel Arena.
+model=model_loc_47
+recol1s=12480
+recol1d=12580
+active=yes
+op1=Close
+blockrange=no
+category=gate_main_open
+param=next_loc_stage,loc_3197
 
-[viking_doublebed]
-name=Bed
-desc=A wooden double bed.  For sleeping in...
-model=model_4409
-width=3
-length=3
-
-[horror_broken_bridge]
-model=model_4408
-recol1s=9409
-recol1d=9445
-recol2s=11523
-recol2d=15717
-sharelight=yes
-forcedecor=yes
-mapscene=46
-active=no
+[loc_4140]
+name=Gate
+desc=Entrance to the Duel Arena.
+model=model_loc_47
+recol1s=12480
+recol1d=12580
+active=yes
+op1=Close
+mirror=yes
+blockrange=no
+category=gate_outer_open
+param=next_loc_stage,loc_3198

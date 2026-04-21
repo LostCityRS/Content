@@ -46,6 +46,10 @@ if(%morttonquest < ^mortton_created_pyre_logs) {
     mes("You can't do that until you have made your own funeral pyre logs.");
     return;
 }
+if(last_useitem = hollow_bark) {
+    mes("You can't make a pyre with that kind of log.");
+    return;
+}
 if(oc_category(last_useitem) = category_22) {
     ~objbox(last_useitem, "These logs won't burn hot enough to cremate the dead.|You need to make pyre logs.", 200, 0, 0);
     return;

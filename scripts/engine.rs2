@@ -489,8 +489,8 @@
 [command,both_heropoints](int $damage)
 // info: Set the player's gender
 [command,setgender](int $gender)
-// info: Set the player's skin
-[command,setskincolour](int $skin_colour)
+// info: Set the player's identity kit color based on slot
+[command,setidkcolour](int $slot, int $colour)
 // info: Requires protected access - allow or deny animations to be played
 [command,p_animprotect](int $toggle)
 // info: Requires protected access - allow or deny animations to be played on the secondary pointer

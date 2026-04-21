@@ -87,6 +87,19 @@ womanwear=model_503_obj_wear,6
 weight=3lb
 param=fish_equipment_struct,fish_equipment_harpoon
 
+[tbwt_karambwan_vessel_loaded_with_karambwanji]
+name=Karambwan vessel
+desc=This Karambwan Vessel is loaded with Karambwanji.
+cost=40
+members=yes
+model=obj_3159
+2dzoom=940
+2dxan=72
+manwear=obj_3157_manwear,0
+womanwear=obj_3157_manwear,6
+weight=3150g
+param=fish_equipment_struct,fish_equipment_karambwan_vessel
+
 [fishing_bait]
 name=Fishing bait
 desc=For use with a fishing rod.
@@ -189,6 +202,37 @@ recol2d=7399
 cost=1
 weight=80g
 category=category_116
+
+[tbwt_raw_karambwan]
+name=Raw karambwan
+desc=A raw green octopus.
+cost=200
+members=yes
+model=obj_3142
+2dyof=7
+2dzoom=1800
+2dyan=56
+2dxan=388
+weight=700g
+category=category_57
+param=grindable_ingredient_refined,tbwt_raw_karambwan_paste
+param=grindable_ingredient_message,You grind the raw Karambwan to form a sticky paste.
+
+[tbwt_raw_karambwanji]
+name=Raw karambwanji
+desc=Small brightly coloured tropical fish.
+cost=10
+members=yes
+model=obj_3150
+2dxof=6
+2dyof=6
+2dzoom=1000
+2dxan=464
+weight=140g
+category=category_57
+tradeable=no
+param=grindable_ingredient_refined,tbwt_raw_karambwanji_paste
+param=grindable_ingredient_message,You grind the raw Karambwanji to form a sticky paste.
 
 [sardine]
 name=Sardine

@@ -62,12 +62,12 @@ if(%horrorquest > ^horror_fixing_lighthouse) {
 }
 
 if(%horrorquest > ^horror_repaired_lighthouse) {
-    $text = append($text, "@str@I found Jossik in an underground cavern, behind a strange @str@wall where he had been attacked by some sea @str@creatures.");
+    $text = append($text, "@str@I found Jossik in an underground cavern, behind a strange|@str@wall where he had been attacked by some sea @str@creatures.");
 } else if(%horrorquest = ^horror_repaired_lighthouse) {
     $text = append($text, "@dbl@I must @dre@search this place@dbl@ and find out what has happened to @dbl@Larrissa's boyfriend @dre@Jossik@dbl@!");
 }
 
 if(%horrorquest = ^horror_defeated_dagjr) {
-    $text = append($text, "@dbl@I must defeat these sea monsters to save him!");
+    $text = append($text, "|@dbl@I must defeat these sea monsters to save him!");
 }
 ~quest_journal("Horror from the Deep", $text);

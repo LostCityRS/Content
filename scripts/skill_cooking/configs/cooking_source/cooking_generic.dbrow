@@ -124,6 +124,7 @@ data=successchance_range,112,476
 [cooking_generic_raw_oomlie]
 table=cooking_generic
 data=uncooked,raw_oomlie
+data=cooked,null
 data=cantcookmessage_fire,The meat is far too delicate to cook like this. Perhaps you should wrap it up to protect it from the heat.
 data=cantcookmessage_range,The meat is far too delicate to cook like this. Perhaps you should wrap it up to protect it from the heat.
 
@@ -527,3 +528,91 @@ data=cookmessage_fire,You cook the rabbit on the fire...
 data=cookmessage_range,You cook the rabbit on the stove...
 data=successmessage,The rabbit is now nicely cooked.
 data=burnmessage,You accidentally burn the rabbit.
+
+[cooking_generic_karambwanji]
+table=cooking_generic
+data=uncooked,tbwt_raw_karambwanji
+data=cooked,tbwt_cooked_karambwanji
+data=burnt,ashes
+data=levelrequired,1
+data=experience,100
+data=successchance,200,400
+data=cookmessage_fire,You cook the karambwanji on the fire...
+data=cookmessage_range,You cook the karambwanji on the stove...
+data=successmessage,The karambwanji is now nicely cooked.
+data=burnmessage,You accidentally burn the karambwanji to ashes.
+
+[cooking_generic_karambwan]
+table=cooking_generic
+data=uncooked,tbwt_raw_karambwan
+data=cooked,tbwt_cooked_karambwan
+data=burnt,tbwt_burnt_karambwan
+// requirement is only 1, but need 30 to complete the quest
+data=levelrequired,1
+data=experience,1900
+data=successchance,70,255
+data=cookmessage_fire,You cook the karambwan on the fire...
+data=cookmessage_range,You cook the karambwan on the stove...
+data=successmessage,The karambwan is now nicely cooked.
+data=burnmessage,You accidentally burn the karambwan.
+
+[cooking_generic_poor_karambwan]
+table=cooking_generic
+data=uncooked,tbwt_raw_karambwan
+data=cooked,tbwt_poorly_cooked_karambwan
+data=burnt,tbwt_burnt_karambwan
+data=levelrequired,1
+data=experience,800
+data=successchance,70,255
+data=cookmessage_fire,You cook the karambwan on the fire...
+data=cookmessage_range,You cook the karambwan on the stove...
+// guess
+data=successmessage,The karambwan is now poorly cooked.
+data=burnmessage,You accidentally burn the karambwan.
+
+[cooking_generic_jogre_bones_in_raw_karambwanji_paste]
+table=cooking_generic
+data=uncooked,tbwt_jogre_bones_in_raw_karambwanji_paste
+data=cooked,tbwt_jogre_bones_marinated_in_karambwanji
+data=burnt,null
+data=levelrequired,30
+data=levelrequired_message,You need a Cooking level of 30 to cook jogre bones covered in raw karambwanji paste.
+data=experience,1000
+data=successchance,1,1
+data=cookmessage_fire,You cook the burnt bones on the fire...
+data=cookmessage_range,You cook the burnt bones on the stove...
+// this says burnt bones on osrs, idk if thats a mistake from refactoring or something
+data=successmessage,You marinate the burnt bones perfectly.
+
+[cooking_generic_burnt_jogre_bones_in_raw_karambwanji_paste]
+table=cooking_generic
+data=uncooked,tbwt_burnt_jogre_bones_in_raw_karambwanji_paste
+data=cooked,tbwt_burnt_jogre_bones_marinated_in_karambwanji
+data=burnt,null
+data=levelrequired,30
+data=levelrequired_message,You need a Cooking level of 30 to cook burnt jogre bones covered in raw karambwanji paste.
+data=experience,1000
+data=successchance,1,1
+data=cookmessage_fire,You cook the burnt bones on the fire...
+data=cookmessage_range,You cook the burnt bones on the stove...
+data=successmessage,You marinate the burnt bones perfectly.
+
+[cooking_generic_jogre_bones]
+table=cooking_generic
+data=uncooked,tbwt_jogre_bones
+data=cooked,tbwt_jogre_bones
+data=burnt,null
+data=levelrequired,0
+data=experience,0
+data=successchance,1,1
+data=successmessage,"You heat the bones, but they don't look any different."
+
+[cooking_generic_burnt_jogre_bones]
+table=cooking_generic
+data=uncooked,tbwt_burnt_jogre_bones
+data=cooked,tbwt_burnt_jogre_bones
+data=burnt,null
+data=levelrequired,0
+data=experience,0
+data=successchance,1,1
+data=successmessage,"You heat the bones, but they don't look any different."

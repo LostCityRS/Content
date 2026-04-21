@@ -113,6 +113,14 @@ if (~levelrequire_zanaris_quest = false) {
 }
 @levelrequire_attack_caps($level, $slot);
 
+[label,levelrequire_viking_quest_helm](int $level, int $slot)
+if (%viking < ^viking_complete) {
+    mes("Only Fremenniks are worthy of wearing this helm.");
+    mes("You need to complete The Fremennik Trials first."); // todo confirm for 2004
+    return;
+}
+@levelrequire_defence($level, $slot);
+
 [proc,levelrequire_dragon_slayer_quest]()(boolean)
 if (%dragonquest < ^dragon_complete) {
     mes("You have not earned the right to wear this yet.");

@@ -219,7 +219,7 @@ switch_int(~p_choice4("Take the Lighthouse Manual", 1, "Take the ancient Diary",
             mes("You don't have enough space to take that.");
             return;
         }
-        inv_add(inv, horror_diary1, 1);
+        inv_add(inv, horror_diary3, 1);
     case 2 :
         if(inv_freespace(inv) < 1) {
             mes("You don't have enough space to take that.");
@@ -231,7 +231,7 @@ switch_int(~p_choice4("Take the Lighthouse Manual", 1, "Take the ancient Diary",
             mes("You don't have enough space to take that.");
             return;
         }
-        inv_add(inv, horror_diary3, 1);
+        inv_add(inv, horror_diary1, 1);
     case 4 :
         if(inv_freespace(inv) < 3) {
             mes("You don't have enough space to take all three.");
@@ -334,7 +334,7 @@ def_obj $obj = last_useitem;
 def_int $op;
 if($obj = firerune) {
     if(%horrorfire = ^true) {
-        mes("There is no space to a put a fire rune into the wall.");
+        mes("There is no space to put a fire rune into the wall.");
         return;
     }
     ~chatplayer("<p,confused>I don't think I'll get that back if I put it in there.");
@@ -349,7 +349,7 @@ if($obj = firerune) {
 }
 if($obj = waterrune) {
     if(%horrorwater = ^true) {
-        mes("There is no space to a put a water rune into the wall.");
+        mes("There is no space to put a water rune into the wall.");
         return;
     }
     ~chatplayer("<p,confused>I don't think I'll get that back if I put it in there.");
@@ -364,7 +364,7 @@ if($obj = waterrune) {
 }
 if($obj = earthrune) {
     if(%horrorearth = ^true) {
-        mes("There is no space to a put an earth rune into the wall.");
+        mes("There is no space to put an earth rune into the wall.");
         return;
     }
     ~chatplayer("<p,confused>I don't think I'll get that back if I put it in there.");
@@ -379,7 +379,7 @@ if($obj = earthrune) {
 }
 if($obj = airrune) {
     if(%horrorair = ^true) {
-        mes("There is no space to a put an air rune into the wall.");
+        mes("There is no space to put an air rune into the wall.");
         return;
     }
     ~chatplayer("<p,confused>I don't think I'll get that back if I put it in there.");
@@ -395,7 +395,7 @@ if($obj = airrune) {
 // seems like any stab or slash weapon works (daggers, swords, longswords, scimitars, includes stuff like dark dagger and excalibur)
 if(oc_category($obj) = weapon_stab | oc_category($obj) = weapon_slash) {
     if(%horrorsword = ^true) {
-        mes("There is no space to a put a weapon into the wall.");
+        mes("There is no space to put a weapon into the wall.");
         return;
     }
     ~chatplayer("<p,confused>I don't think I'll get that back if I put it in there.");
@@ -410,7 +410,7 @@ if(oc_category($obj) = weapon_stab | oc_category($obj) = weapon_slash) {
 }
 if(oc_category($obj) = arrows) {
     if(%horrorarrow = ^true) {
-        mes("There is no space to a put an arrow into the wall.");
+        mes("There is no space to put an arrow into the wall.");
         return;
     }
     ~chatplayer("<p,confused>I don't think I'll get that back if I put it in there.");

@@ -317,9 +317,10 @@ if(%sa_energy < 250) {
     mes("You don't have enough Special Energy to preach.");
     return;
 }
-def_int $op = ~p_choice4_header("Wedding Ceremony", 1, "Last Rites", 2, "Blessings", 3, "Preach", 4, "Select a relevant passage");
+def_int $op = ~p_choice4_header("Partnerships", 1, "Last Rites", 2, "Blessings", 3, "Preach", 4, "Select a relevant passage");
 if_close;
 p_stopaction;
+def_int $rand;
 switch_int($op) {
     case 1 :
         anim(horror_preach_saradomin, 0);
@@ -328,7 +329,7 @@ switch_int($op) {
         p_delay(1);
         say("Protector of us all,");
         p_delay(2);
-        say("~I now join you in the eyes of Saradomin.");
+        say("I now join you in the eyes of Saradomin.");
     case 2 :
         anim(horror_preach_saradomin, 0);
         p_delay(0);
@@ -344,9 +345,28 @@ switch_int($op) {
     case 4 :
         anim(horror_preach_saradomin, 0);
         p_delay(0);
-        say("The currency of goodness is honour;");
-        p_delay(1);
-        say("It retains its value through scarcity.");
+        $rand = random(5);
+        if($rand = 0) {
+            say("Protect your self, protect your friends.");
+            p_delay(1);
+            say("Mine is the glory that never ends.");
+        } else if ($rand = 1) {
+            say("The darkness in life may be avoided,");
+            p_delay(1);
+            say(" by the light of wisdom shining.");
+        } else if ($rand = 2) {
+            say("Show love to your friends, and mercy to your enemies,");
+            p_delay(1);
+            say("and know that the wisdom of Saradomin will follow.");
+        } else if ($rand = 3) {
+            say("A fight begun, when the cause is just,");
+            p_delay(1);
+            say("will prevail over all others.");
+        } else {
+            say("The currency of goodness is honour;");
+            p_delay(1);
+            say("It retains its value through scarcity.");
+        }
         p_delay(2);
         say("This is Saradomin's wisdom.");
 }
@@ -360,6 +380,7 @@ if(%sa_energy < 250) {
 def_int $op = ~p_choice4_header("Wedding Ceremony", 1, "Last Rites", 2, "Blessings", 3, "Preach", 4, "Select a relevant passage");
 if_close;
 p_stopaction;
+def_int $rand;
 switch_int($op) {
     case 1 :
         anim(horror_preach_zamorak, 0);
@@ -368,7 +389,7 @@ switch_int($op) {
         p_delay(1);
         say("to spread destruction across the land.");
         p_delay(2);
-        say("~In Zamorak's name, now two are one.");
+        say("In Zamorak's name, now two are one.");
     case 2 :
         anim(horror_preach_zamorak, 0);
         p_delay(0);
@@ -388,9 +409,28 @@ switch_int($op) {
     case 4 :
         anim(horror_preach_zamorak, 0);
         p_delay(0);
-        say("There is no opinion that cannot be proven true...");
-        p_delay(1);
-        say("by crushing those who choose to disagree with it.");
+        $rand = random(5);
+        if($rand = 0) {
+            say("There is no opinion that cannot be proven true,");
+            p_delay(1);
+            say("by crushing those who choose to disagree with it.");
+        } else if ($rand = 1) {
+            say("Strike fast, strike hard, strike true:");
+            p_delay(1);
+            say("The strength of Zamorak will be with you.");
+        } else if ($rand = 2) {
+            say("Battle is my calling,");
+            p_delay(1);
+            say("and death shall be my rest.");
+        } else if ($rand = 3) {
+            say("Those who fight, then run away,");
+            p_delay(1);
+            say("shame Zamorak with their cowardice.");
+        } else {
+            say("Battles are not lost and won;");
+            p_delay(1);
+            say("They simply remove the weak from the equation.");
+        }
         p_delay(2);
         say("Zamorak give me strength!");
 }
@@ -404,6 +444,7 @@ if(%sa_energy < 250) {
 def_int $op = ~p_choice4_header("Wedding Ceremony", 1, "Last Rites", 2, "Blessings", 3, "Preach", 4, "Select a relevant passage");
 if_close;
 p_stopaction;
+def_int $rand;
 switch_int($op) {
     case 1 :
         anim(horror_preach_guthix, 0);
@@ -412,7 +453,7 @@ switch_int($op) {
         p_delay(1);
         say("Balance arises from contrast.");
         p_delay(2);
-        say("~I unify thee in the name of Guthix.");
+        say("I unify thee in the name of Guthix.");
     case 2 :
         anim(horror_preach_guthix, 0);
         p_delay(0);
@@ -432,9 +473,28 @@ switch_int($op) {
     case 4 :
         anim(horror_preach_guthix, 0);
         p_delay(0);
-        say("The trees, the earth, the sky, the waters;");
-        p_delay(1);
-        say("All play their part upon this land.");
+        $rand = random(5);
+        if($rand = 0) {
+            say("All things must end, as all begin;");
+            p_delay(1);
+            say("Only Guthix knows the role thou must play.");
+        } else if ($rand = 1) {
+            say("In life, in death, in joy, in sorrow:");
+            p_delay(1);
+            say("May thine experience show thee balance.");
+        } else if ($rand = 2) {
+            say("Thou must do as thou must, no matter what.");
+            p_delay(1);
+            say("Thine actions bring balance to this world.");
+        } else if ($rand = 3) {
+            say("The river flows, the sun ignites,");
+            p_delay(1);
+            say("May you stand with Guthix in thy fights.");
+        } else {
+            say("A journey of a single step,");
+            p_delay(1);
+            say("May take thee over a thousand miles.");
+        }
         p_delay(2);
         say("May Guthix bring you balance.");
 }

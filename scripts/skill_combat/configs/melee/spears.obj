@@ -38,6 +38,8 @@ param=slash_sound,staff_hit
 param=crush_sound,staff_hit
 param=weapon_poisoned,bronze_spear_p
 param=weapon_poisoned_message,You poison a spear.
+param=tbwt_weapon_poisoned,tbwt_bronze_spear_kp
+param=tbwt_weapon_poisoned_message,You smear the poisonous Karambwan paste over the spear.
 // osrs slash sound staff_crush / crush sound newstaff
 
 [iron_spear]
@@ -78,6 +80,8 @@ param=slash_sound,staff_hit
 param=crush_sound,staff_hit
 param=weapon_poisoned,iron_spear_p
 param=weapon_poisoned_message,You poison a spear.
+param=tbwt_weapon_poisoned,tbwt_iron_spear_kp
+param=tbwt_weapon_poisoned_message,You smear the poisonous Karambwan paste over the spear.
 // osrs slash sound staff_crush / crush sound newstaff
 
 [steel_spear]
@@ -120,6 +124,8 @@ param=slash_sound,staff_hit
 param=crush_sound,staff_hit
 param=weapon_poisoned,steel_spear_p
 param=weapon_poisoned_message,You poison a spear.
+param=tbwt_weapon_poisoned,tbwt_steel_spear_kp
+param=tbwt_weapon_poisoned_message,You smear the poisonous Karambwan paste over the spear.
 // osrs slash sound staff_crush / crush sound newstaff
 
 [mithril_spear]
@@ -162,6 +168,8 @@ param=slash_sound,staff_hit
 param=crush_sound,staff_hit
 param=weapon_poisoned,mithril_spear_p
 param=weapon_poisoned_message,You poison a spear.
+param=tbwt_weapon_poisoned,tbwt_mithril_spear_kp
+param=tbwt_weapon_poisoned_message,You smear the poisonous Karambwan paste over the spear.
 // osrs slash sound staff_crush / crush sound newstaff
 
 [adamant_spear]
@@ -204,6 +212,8 @@ param=slash_sound,staff_hit
 param=crush_sound,staff_hit
 param=weapon_poisoned,adamant_spear_p
 param=weapon_poisoned_message,You poison a spear.
+param=tbwt_weapon_poisoned,tbwt_adamant_spear_kp
+param=tbwt_weapon_poisoned_message,You smear the poisonous Karambwan paste over the spear.
 // osrs slash sound staff_crush / crush sound newstaff
 
 [rune_spear]
@@ -246,6 +256,8 @@ param=slash_sound,staff_hit
 param=crush_sound,staff_hit
 param=weapon_poisoned,rune_spear_p
 param=weapon_poisoned_message,You poison a spear.
+param=tbwt_weapon_poisoned,tbwt_rune_spear_kp
+param=tbwt_weapon_poisoned_message,You smear the poisonous Karambwan paste over the spear.
 // osrs slash sound staff_crush / crush sound newstaff
 
 [dragon_spear]
@@ -289,6 +301,8 @@ param=slash_sound,staff_hit
 param=crush_sound,staff_hit
 param=weapon_poisoned,dragon_spear_p
 param=weapon_poisoned_message,You poison a spear.
+param=tbwt_weapon_poisoned,tbwt_dragon_spear_kp
+param=tbwt_weapon_poisoned_message,You smear the poisonous Karambwan paste over the spear.
 param=specwep,^true
 param=sa_energy,250
 // osrs slash sound staff_crush / crush sound newstaff
@@ -331,6 +345,8 @@ param=stab_sound,staff_stab
 param=slash_sound,staff_hit
 param=crush_sound,staff_hit
 param=poison_severity,20
+param=next_obj_stage,bronze_spear
+param=tbwt_weapon_poison_clear,You gingerly wipe the poison off the spear
 // osrs slash sound staff_crush / crush sound newstaff
 
 [iron_spear_p]
@@ -370,6 +386,8 @@ param=stab_sound,staff_stab
 param=slash_sound,staff_hit
 param=crush_sound,staff_hit
 param=poison_severity,20
+param=next_obj_stage,iron_spear
+param=tbwt_weapon_poison_clear,You gingerly wipe the poison off the spear
 // osrs slash sound staff_crush / crush sound newstaff
 
 [steel_spear_p]
@@ -411,6 +429,8 @@ param=stab_sound,staff_stab
 param=slash_sound,staff_hit
 param=crush_sound,staff_hit
 param=poison_severity,20
+param=next_obj_stage,steel_spear
+param=tbwt_weapon_poison_clear,You gingerly wipe the poison off the spear
 // osrs slash sound staff_crush / crush sound newstaff
 
 [mithril_spear_p]
@@ -452,6 +472,8 @@ param=stab_sound,staff_stab
 param=slash_sound,staff_hit
 param=crush_sound,staff_hit
 param=poison_severity,20
+param=next_obj_stage,mithril_spear
+param=tbwt_weapon_poison_clear,You gingerly wipe the poison off the spear
 // osrs slash sound staff_crush / crush sound newstaff
 
 [adamant_spear_p]
@@ -493,6 +515,8 @@ param=stab_sound,staff_stab
 param=slash_sound,staff_hit
 param=crush_sound,staff_hit
 param=poison_severity,20
+param=next_obj_stage,adamant_spear
+param=tbwt_weapon_poison_clear,You gingerly wipe the poison off the spear
 // osrs slash sound staff_crush / crush sound newstaff
 
 [rune_spear_p]
@@ -534,6 +558,8 @@ param=stab_sound,staff_stab
 param=slash_sound,staff_hit
 param=crush_sound,staff_hit
 param=poison_severity,20
+param=next_obj_stage,rune_spear
+param=tbwt_weapon_poison_clear,You gingerly wipe the poison off the spear
 // osrs slash sound staff_crush / crush sound newstaff
 
 [dragon_spear_p]
@@ -578,4 +604,322 @@ param=crush_sound,staff_hit
 param=poison_severity,20
 param=specwep,^true
 param=sa_energy,250
+param=next_obj_stage,dragon_spear
+param=tbwt_weapon_poison_clear,You gingerly wipe the poison off the spear
+// osrs slash sound staff_crush / crush sound newstaff
+
+[tbwt_bronze_spear_kp]
+name=Bronze spear(kp)
+recol1s=8456
+recol1d=18260
+recol2s=7399
+recol2d=18260
+desc=A Karambwan poisoned bronze tipped spear.
+cost=26
+members=yes
+model=model_2719_obj
+2dxof=7
+2dyof=-4
+2dzoom=1490
+2dyan=112
+2dzan=144
+2dxan=1960
+manwear=model_540_obj_wear,0
+womanwear=model_540_obj_wear,6
+iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
+tradeable=no
+category=weapon_spear
+weight=5lb
+param=stabattack,5
+param=slashattack,5
+param=crushattack,5
+param=stabdefence,1
+param=slashdefence,1
+param=strengthbonus,6
+param=attackrate,6
+param=ready_baseanim,human_staffready
+param=stabattack_anim,human_spear_spike
+param=slashattack_anim,human_scythe_sweep
+param=crushattack_anim,human_spear_lunge
+param=defend_anim,human_spear_block
+param=stab_sound,staff_stab
+param=slash_sound,staff_hit
+param=crush_sound,staff_hit
+param=poison_severity,30
+param=tbwt_karambwan_poison,^true
+param=next_obj_stage,bronze_spear
+param=tbwt_weapon_poison_clear,You gingerly wipe the poison off the spear
+// osrs slash sound staff_crush / crush sound newstaff
+
+[tbwt_iron_spear_kp]
+name=Iron spear(kp)
+recol1s=8456
+recol1d=18260
+recol2s=7399
+recol2d=18260
+desc=A Karambwan poisoned iron tipped spear.
+cost=91
+members=yes
+model=model_2719_obj
+2dxof=7
+2dyof=-4
+2dzoom=1490
+2dyan=112
+2dzan=144
+2dxan=1960
+manwear=model_540_obj_wear,0
+womanwear=model_540_obj_wear,6
+iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
+tradeable=no
+category=weapon_spear
+weight=5lb
+param=stabattack,8
+param=slashattack,8
+param=crushattack,8
+param=stabdefence,1
+param=slashdefence,1
+param=strengthbonus,10
+param=attackrate,6
+param=ready_baseanim,human_staffready
+param=stabattack_anim,human_spear_spike
+param=slashattack_anim,human_scythe_sweep
+param=crushattack_anim,human_spear_lunge
+param=defend_anim,human_spear_block
+param=stab_sound,staff_stab
+param=slash_sound,staff_hit
+param=crush_sound,staff_hit
+param=poison_severity,30
+param=tbwt_karambwan_poison,^true
+param=next_obj_stage,iron_spear
+param=tbwt_weapon_poison_clear,You gingerly wipe the poison off the spear
+// osrs slash sound staff_crush / crush sound newstaff
+
+[tbwt_steel_spear_kp]
+name=Steel spear(kp)
+recol1s=8456
+recol1d=18260
+recol2s=7399
+recol2d=18260
+desc=A Karambwan poisoned steel tipped spear.
+cost=325
+members=yes
+model=model_2719_obj
+2dxof=7
+2dyof=-4
+2dzoom=1490
+2dyan=112
+2dzan=144
+2dxan=1960
+manwear=model_540_obj_wear,0
+womanwear=model_540_obj_wear,6
+iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
+tradeable=no
+category=weapon_spear
+weight=5lb
+param=stabattack,12
+param=slashattack,12
+param=crushattack,12
+param=stabdefence,1
+param=slashdefence,1
+param=strengthbonus,12
+param=attackrate,6
+param=ready_baseanim,human_staffready
+param=stabattack_anim,human_spear_spike
+param=slashattack_anim,human_scythe_sweep
+param=crushattack_anim,human_spear_lunge
+param=defend_anim,human_spear_block
+param=stab_sound,staff_stab
+param=slash_sound,staff_hit
+param=crush_sound,staff_hit
+param=poison_severity,30
+param=tbwt_karambwan_poison,^true
+param=next_obj_stage,steel_spear
+param=tbwt_weapon_poison_clear,You gingerly wipe the poison off the spear
+// osrs slash sound staff_crush / crush sound newstaff
+
+[tbwt_mithril_spear_kp]
+name=Mithril spear(kp)
+recol1s=8456
+recol1d=18260
+recol2s=7399
+recol2d=18260
+desc=A Karambwan poisoned mithril tipped spear.
+cost=845
+members=yes
+model=model_2719_obj
+2dxof=7
+2dyof=-4
+2dzoom=1490
+2dyan=112
+2dzan=144
+2dxan=1960
+manwear=model_540_obj_wear,0
+womanwear=model_540_obj_wear,6
+iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
+tradeable=no
+category=weapon_spear
+weight=4lb
+param=stabattack,17
+param=slashattack,17
+param=crushattack,17
+param=stabdefence,1
+param=slashdefence,1
+param=strengthbonus,18
+param=attackrate,6
+param=ready_baseanim,human_staffready
+param=stabattack_anim,human_spear_spike
+param=slashattack_anim,human_scythe_sweep
+param=crushattack_anim,human_spear_lunge
+param=defend_anim,human_spear_block
+param=stab_sound,staff_stab
+param=slash_sound,staff_hit
+param=crush_sound,staff_hit
+param=poison_severity,30
+param=tbwt_karambwan_poison,^true
+param=next_obj_stage,mithril_spear
+param=tbwt_weapon_poison_clear,You gingerly wipe the poison off the spear
+// osrs slash sound staff_crush / crush sound newstaff
+
+[tbwt_adamant_spear_kp]
+name=Adamant spear(kp)
+recol1s=8456
+recol1d=18260
+recol2s=7399
+recol2d=18260
+desc=A Karambwan poisoned adamantite tipped spear.
+cost=2080
+members=yes
+model=model_2719_obj
+2dxof=7
+2dyof=-4
+2dzoom=1490
+2dyan=112
+2dzan=144
+2dxan=1960
+manwear=model_540_obj_wear,0
+womanwear=model_540_obj_wear,6
+iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
+tradeable=no
+category=weapon_spear
+weight=6lb
+param=stabattack,24
+param=slashattack,24
+param=crushattack,24
+param=stabdefence,1
+param=slashdefence,1
+param=strengthbonus,28
+param=attackrate,6
+param=ready_baseanim,human_staffready
+param=stabattack_anim,human_spear_spike
+param=slashattack_anim,human_scythe_sweep
+param=crushattack_anim,human_spear_lunge
+param=defend_anim,human_spear_block
+param=stab_sound,staff_stab
+param=slash_sound,staff_hit
+param=crush_sound,staff_hit
+param=poison_severity,30
+param=tbwt_karambwan_poison,^true
+param=next_obj_stage,adamant_spear
+param=tbwt_weapon_poison_clear,You gingerly wipe the poison off the spear
+// osrs slash sound staff_crush / crush sound newstaff
+
+[tbwt_rune_spear_kp]
+name=Rune spear(kp)
+recol1s=8456
+recol1d=18260
+recol2s=7399
+recol2d=18260
+desc=A Karambwan poisoned rune tipped spear.
+cost=20800
+members=yes
+model=model_2719_obj
+2dxof=7
+2dyof=-4
+2dzoom=1490
+2dyan=112
+2dzan=144
+2dxan=1960
+manwear=model_540_obj_wear,0
+womanwear=model_540_obj_wear,6
+iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
+tradeable=no
+category=weapon_spear
+weight=5lb
+param=stabattack,36
+param=slashattack,36
+param=crushattack,36
+param=stabdefence,1
+param=slashdefence,1
+param=strengthbonus,42
+param=attackrate,6
+param=ready_baseanim,human_staffready
+param=stabattack_anim,human_spear_spike
+param=slashattack_anim,human_scythe_sweep
+param=crushattack_anim,human_spear_lunge
+param=defend_anim,human_spear_block
+param=stab_sound,staff_stab
+param=slash_sound,staff_hit
+param=crush_sound,staff_hit
+param=poison_severity,30
+param=tbwt_karambwan_poison,^true
+param=next_obj_stage,rune_spear
+param=tbwt_weapon_poison_clear,You gingerly wipe the poison off the spear
+// osrs slash sound staff_crush / crush sound newstaff
+
+[tbwt_dragon_spear_kp]
+name=Dragon spear(kp)
+recol1s=896
+recol1d=18260
+desc=A Karambwan poisoned dragon tipped spear.
+cost=62400
+members=yes
+model=model_2482_obj
+2dxof=7
+2dyof=-4
+2dzoom=1490
+2dyan=112
+2dzan=144
+2dxan=1960
+manwear=model_505_obj_wear,0
+womanwear=model_505_obj_wear,6
+iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
+tradeable=no
+category=weapon_spear
+weight=5lb
+param=stabattack,55
+param=slashattack,55
+param=crushattack,55
+param=stabdefence,5
+param=slashdefence,5
+param=crushdefence,5
+param=magicdefence,5
+param=rangedefence,5
+param=strengthbonus,60
+param=attackrate,6
+param=ready_baseanim,human_staffready
+param=stabattack_anim,human_dspear_stab
+param=slashattack_anim,human_dspear_slash
+param=crushattack_anim,human_dspear_lunge
+param=defend_anim,human_dspear_block
+param=stab_sound,staff_stab
+param=slash_sound,staff_hit
+param=crush_sound,staff_hit
+param=poison_severity,30
+param=tbwt_karambwan_poison,^true
+param=next_obj_stage,dragon_spear
+param=tbwt_weapon_poison_clear,You gingerly wipe the poison off the spear
 // osrs slash sound staff_crush / crush sound newstaff

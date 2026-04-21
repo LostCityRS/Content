@@ -67,6 +67,7 @@ if(~inzone_coord_pair_table(mortton_temple_zones, coord) = true) {
 }
 
 p_telejump($coord);
+cam_reset;
 anim(null, 0);
 // todo: ensure this proc is used for other teleports too
 def_int $rum = inv_total(inv, karamja_rum);
@@ -78,6 +79,7 @@ if(inv_total(inv, plaguesample) > 0) {
     inv_del(inv, plaguesample, ^max_32bit_int);
     mes("The plague sample is too delicate...it disintegrates in the crossing.");
 }
+~clear_peer_trial_items;
 
 [proc,tele_checks]()
 if(inv_total(inv, thanainabarrel) > 0) {

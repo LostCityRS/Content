@@ -22,8 +22,9 @@ switch_int (%book_page) {
     case 10 : ~book("Diary of Herbi Flax", "@dbl@~ Page 21 ~|@bla@|||Ffssies urgsl sikflv|dfdsf....|||||urgll splats fysi rsil|@dbl@~ Page 22 ~|@bla@|||||raditz ufus spokes me too|||wets lands in deis tinker");
     case 11 : ~book("Diary of Herbi Flax", "@dbl@~ Page 23 ~|@bla@||||||||||@dbl@~ Page 24 ~");
     //You have to flip to the last page to start the quest back then
-    case 12 : if (%morttonquest = 0) {
+    case 12 : if (%morttonquest = ^mortton_not_started) {
                   %morttonquest = ^mortton_read_diary;
+                  ~send_quest_progress(questlist:mortton, %morttonquest, ^mortton_quest_complete);
               }
               ~book("Diary of Herbi Flax", "@dbl@~ Page 25 ~|@bla@Index of Solution|content value (ScV)||Water @blu@ScV@bla@(@dre@100@bla@)|Tarromin @blu@ScV@bla@(@dre@94@bla@)|Fyrneght @blu@ScV@bla@(@dre@13@bla@)||Water+Tarromin|@blu@ScV@bla@(@dre@194@bla@)||Fyrneght+Water @blu@ScV@bla@(@dre@113@bla@)");
 }

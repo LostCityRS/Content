@@ -16,19 +16,23 @@ if(%morttonquest >= ^mortton_read_diary) {
     $text = "@str@I can start this quest by exploring the town of Mort'ton|@str@which is accessible from the southern edge of Mort Myre.|";
 } 
 if (%morttonquest >= ^mortton_made_serum) {
-    $text = append($text, "@str@I made my way down through Mort Myre and found the|@str@town of Mort'ton. I discovered a diary which had some notes|@str@ on a special serum in it. I made the serum.|");
+    $text = append($text, "@str@I made my way down through Mort Myre and found the town|@str@of Mort'ton. I discovered a diary which had some notes on|@str@a special serum in it. I made the serum.|");
 }
 if (%morttonquest >= ^mortton_kill_shades) {
     $text = append($text, "@str@I made serum 207 from tarromin, water and ashes by using|@str@Herbi Flax's diary. I wonder what the serum is used for?|");
     $text = append($text, "@str@I used the serum on a local NPC and I've been able to ask|@str@a few questions about the place.|");
-    $text = append($text, "@str@I talked to Razmire Keelgan and he asked me to kill five|@str@shades for him. He seems to hate them!|");
+    if (%morttonquest < ^mortton_killed_5_shades) {
+        $text = append($text, "@dbl@I talked to @dre@Razmire Keelgan@dbl@ and he asked me to kill @dre@five|@dre@shades@dbl@ for him. He seems to hate them!|");
+    } else {
+        $text = append($text, "@str@I talked to Razmire Keelgan and he asked me to kill five|@str@shades for him. He seems to hate them!|");
+    }
 }
 if (%morttonquest >= ^mortton_shades_to_razmire) {
-    $text = append($text, "@str@I've killed all five shades and showed the remains to Razmire.|");
+    $text = append($text, "@str@I've killed five shades and showed the remains to Razmire.|");
     $text = append($text, "@str@Razmire told me to show the remains to Ulsquire.|");
 }
 if (%morttonquest >= ^mortton_shades_to_ulsquire) {
-    $text = append($text, "@str@I showed Ulsquire the shade remains and he gave me some.|@str@information which may be useful.|");
+    $text = append($text, "@str@I showed Ulsquire the shade remains and he gave me some|@str@information which may be useful.|");
 }
 if (%morttonquest >= ^mortton_rebuild_temple) {
     $text = append($text, "@str@Ulsquire seems to know a lot about this area, he's quite|@str@interested in 'Flaemtaer temple' and wishes he could|@str@rebuild it.|");
@@ -52,7 +56,9 @@ if (%morttonquest >= ^mortton_lit_pyre) {
 
 if(%morttonquest = ^mortton_read_diary) {
     $text = append($text,"@dbl@I made my way down through @dre@Mort Myre@dbl@ and I found the|@dbl@town of @dre@Mort'ton@dbl@. I've found a @dre@diary@dbl@ which has some|@dbl@interesting @dre@notes@dbl@ in it. ");
-    if(inv_total(bank, serum_book) > 0) {
+    if (inv_total(inv, serum_book) < 1) {
+        $text = append($text, "@dbl@Maybe it was important?");
+    } else if (inv_total(bank, serum_book) > 0) {
         $text = append($text, "@dbl@I placed the book in my @dre@bank@dbl@.");
     } else {
         $text = append($text, "@dbl@Perhaps this can help me?");
@@ -60,10 +66,10 @@ if(%morttonquest = ^mortton_read_diary) {
 }
 if(%morttonquest = ^mortton_made_serum) {
     if (testbit(%morttonmulti, ^mortton_used_serum_on_razmire) = ^true | testbit(%morttonmulti, ^mortton_used_serum_on_ulsquire) = ^true) {
-        $text = append($text, "@str@I made serum 207 from tarromin, water and ashes by reading|@str@the notes in Herbi Flax's diary. I wonder what the serum is|@str@used for?|");
-        $text = append($text, "@dbl@I used the @dre@serum@dbl@ on a local NPC and I've been able to|@dbl@ ask a few questions about the place.");
+        $text = append($text, "@str@I made serum 207 from tarromin, water and ashes by|@str@using Herbi Flax's diary. I wonder what the serum is used|@str@for?|");
+        $text = append($text, "@dbl@I used the @dre@serum@dbl@ on a local NPC and I've been able to|@dbl@ask a few questions about the place.");
     } else {
-        $text = append($text, "@dbl@I made @dre@serum 207@dbl@ from tarromin, water and ashes by using|@dbl@Herbi Flax's diary. I wonder what the @dre@serum@dbl@ is used for?");
+        $text = append($text, "@dbl@I made @dre@serum 207@dbl@ from tarromin, water and ashes by|@dbl@using Herbi Flax's diary. I wonder what the @dre@serum@dbl@ is used|@dbl@for?");
     }
 }
 
@@ -90,7 +96,7 @@ if (%morttonquest = ^mortton_shades_to_ulsquire) {
 }
 
 if (%morttonquest = ^mortton_ulsquire_temple) {
-    $text = append($text, "@dre@Ulsquire@dbl@ seems to know a lot about this area, he's quite|@dbl@interested in @dre@'Flaemtaer temple'@dbl@ and wishes he could rebuild|@dbl@it.");
+    $text = append($text, "@dre@Ulsquire@dbl@ seems to know a lot about this area, he's quite|@dbl@interested in @dre@'Flaemtaer temple'@dbl@ and wishes he could|@dbl@rebuild it.");
 }
 
 if (%morttonquest = ^mortton_rebuild_temple) {

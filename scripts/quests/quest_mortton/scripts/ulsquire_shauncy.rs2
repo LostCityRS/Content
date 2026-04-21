@@ -184,7 +184,7 @@ if (testbit(%morttonmulti, ^mortton_shades_dampe_intro) = ^false) {
 @ulsquire_questions_post_rebuild;
 
 [label,ulsquire_remains]
-~chatplayer("<p,neutral>What did you find out about the remains?");
+~chatplayer("<p,neutral>What did you find out about the remains."); // Intentional period here - https://youtu.be/dBPVyY4ZZQg?si=D10NkjurjSaZWG-Q&t=252 (OSRS) & https://youtu.be/hHHAp2FE0HI?si=Uw6TNrypvsAdsP_c&t=451 (RS3)
 ~chatnpc("<p,neutral>The shade remains are made of a strange substance|which I've not come across before. I believe we should|put these tormented spirits to rest.");
 ~chatplayer("<p,neutral>How do we do that? You can't even bury the remains!");
 ~chatnpc("<p,neutral>Quite right...I was thinking that a holy cremation would|do the trick, but the funeral pyres need specially|prepared 'pyre logs' - normal logs that have been|treated with 'sacred oil' to give it a nice holy touch.");

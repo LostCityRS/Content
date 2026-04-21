@@ -36,7 +36,7 @@
 @attempt_smithing(last_item, 10);
 
 
-[oplocu,anvil]
+[oplocu,_anvil]
 if (~in_tutorial_island(coord) = true) {
     // This happens with any item, not just bars.
     if (%tutorial < ^newbie_mining_instructor_before_smelt_bronze_bar) {
@@ -46,6 +46,26 @@ if (~in_tutorial_island(coord) = true) {
 
     if (%tutorial < ^newbie_mining_instructor_smith_a_dagger) {
         ~mesbox("You need a hammer to work the metal with.|Talk to the mining instructor to get one");
+        return;
+    }
+}
+
+if(loc_type = doric_anvil) {
+    if (%doricquest = 0) {
+        mes("You must complete Doric's Quest to use this anvil.");
+        if(npc_find(coord, doric, 5, 0) = true) @doric_not_started_anvil;
+        return;
+    }
+    if (%doricquest = 10) {
+        mes("You must complete Doric's Quest to use this anvil.");
+        if(npc_find(coord, doric, 5, 0) = true) @doric_materials;
+        return;
+    }
+}
+
+if(loc_type = viking_anvil) {
+    if(%viking < ^viking_complete) {
+        mes("Only Fremenniks may use this anvil.");
         return;
     }
 }

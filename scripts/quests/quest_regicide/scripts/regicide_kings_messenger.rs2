@@ -35,6 +35,3 @@ if(uid = %npc_aggressive_player & %upass = ^upass_complete & %regicide_quest = 0
     @kings_messenger_dialogue;
 }
 ~chatnpc("<p,neutral>I have no business with you.");
-
-[debugproc,spkm]
-settimer(spawn_kings_messenger, 10);
