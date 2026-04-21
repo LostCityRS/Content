@@ -5,30 +5,45 @@
 // 0_45_57_12_28
 // 0_45_57_22_26
 
-[ai_timer,eadgar_troll_thistle]
-npc_settimer(10);
-npc_say("Baa!");
-// should teleport around to the different spots at some interval
-// also need to figure out facing direction
-
 // what happens if this is attempted before the quest?
 // after starting the quest but before eadgar tells us about troll thistle?
+// verified via rsprox, thanks Ashie
 [opnpc1,eadgar_troll_thistle]
 mes("You pick the Troll Thistle.");
-npc_del;
+sound_synth(pick, 0, 0);
+// should drop to the ground if inv is full
 inv_add(inv, eadgar_troll_thistle, 1);
+switch_int(random(5)) {
+    // todo i think this should exclude the npc's current position
+    // also it doesn't seem to face the correct direction currently
+    case 0 : npc_tele(0_45_57_03_22);
+    case 1 : npc_tele(0_45_57_07_27);
+    case 2 : npc_tele(0_45_57_11_28);
+    case 3 : npc_tele(0_45_57_12_28);
+    case 4 : npc_tele(0_45_57_22_26);
+}
 
-// if multiple are held, does it grind in the selected slot or first slot available?
-[opheldu,eadgar_dried_troll_thistle]
-~attempt_grind_ingredient(last_useslot, last_slot);
+
 // is this possible before the happy-path quest stage, or after quest / after next varp?
-// when used on a ranarr vial before grinding: "It's too big to fit in the vial."
+[opheldu,eadgar_dried_troll_thistle]
+if(last_useitem = ranarrvial) {
+    mes("It's too big to fit in the vial."); // osrs wiki
+} else {
+    // Ashie tested in OSRS and it grinds the first slot
+    ~attempt_grind_ingredient(last_useslot, last_slot);
+}
 
 [opheldu,eadgar_ground_troll_thistle]
-if(~attempt_brew_potion(last_useslot, last_slot) = true) {
-    mes("This should fire!"); // todo why doesn't this work?
-    %eadgar_quest = ^eadgar_made_potion;
+if(%eadgar_quest = ^eadgar_given_all_items) {
+    if(~attempt_brew_potion(last_useslot, last_slot) = true) {
+        mes("This should fire!"); // todo why doesn't this work?
+        %eadgar_quest = ^eadgar_made_potion;
+    }
+} else {
+    // osrs, from Ashie
+    ~chatplayer("<p,confused>Hmmm...perhaps I shouldn't try and mix these together. It might have unpredictable results...");
 }
+
 if(%eadgar_quest < ^eadgar_made_potion) { // why doesn't my conditional fire unless i have runnable code beneath it wtfff
     %eadgar_quest = ^eadgar_made_potion;
 }
@@ -36,3 +51,12 @@ if(%eadgar_quest < ^eadgar_made_potion) { // why doesn't my conditional fire unl
 // todo check if this is the case immediately after the varp ticks over, or if it requires completion
 // for that matter is it possible to attempt making the potion before reaching the stage where it's required
 // and if so, is there a mes for that?
+
+// osrs, from Ashie, I am guessing behavior for the dried thistle is the same
+// since the model for both is floating in the air and doesn't look like it should be a grounditem
+// not sure about the ground thistle or the mixed potion yet
+[opheld5,eadgar_troll_thistle] @eadgar_drop_thistle;
+[opheld5,eadgar_dried_troll_thistle] @eadgar_drop_thistle;
+[label,eadgar_drop_thistle]
+inv_delslot(inv, last_slot);
+mes("The Troll Thistle withers away as soon as it hits the ground.");

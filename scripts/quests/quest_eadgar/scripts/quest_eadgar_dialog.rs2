@@ -92,8 +92,9 @@ if(%eadgar_quest = ^eadgar_given_potion) {
     inv_add(inv, eadgar_drunk_parrot, 1);
     %eadgar_quest = ^eadgar_retrieved_parrot;
 } else {
-    // todo presumably something for if you're not at this stage yet, or if you click the rack again
-    // after pickink up the parrot
+    // osrs, from Ashie
+    // there are other interactions missing here but this is one of them, for now
+    ~mesbox("You look under the rack but find nothing.");
 }
 
 [oplocu,eadgar_rack]
