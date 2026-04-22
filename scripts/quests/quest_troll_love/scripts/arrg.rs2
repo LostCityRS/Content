@@ -62,8 +62,8 @@ if ($choice = 1) {
     ~chatplayer("<p,neutral>I've got to go.");
 }
 
-[debugproc,tr]
-if (p_finduid(uid) = true) p_teleport(1_44_157_12_46);
+
+// TODO: Implement boss fight.
 
 [label,trollromance_arrg_combat]
 p_teleport(map_findsquare(0_45_56_34_27, 1, 2, ^map_findsquare_lineofwalk));

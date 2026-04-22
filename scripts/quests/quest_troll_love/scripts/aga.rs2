@@ -13,6 +13,10 @@ if (%troll_love < ^troll_love_aga_wants_trollweiss) {
     ~chatnpc("<p,scared>Thanks for getting Aga and Ug happy. Without you Ug too shy, Aga so in love with Ug!");
 }
 
+[opnpcu,trollromance_aga]
+if (last_useitem = trollromance_rare_flower) mes("That's probably not a good idea...");
+else ~displaymessage(^dm_default);
+
 [label,trollromance_aga_learn_about_trollweiss]
 ~chatnpc("<p,angry>What you want, man-thing?");
 def_int $choice = ~p_choice3("Well... you're big and hairy?", 1, "So... how's your... um... love life?", 2, "Errr... nothing.", 3);
