@@ -99,4 +99,8 @@ if (~in_duel_arena($coord) = true) {
     //Colored in #AB0908 in RS3, but was likely not colored in 2004
     return(false);
 }
+if (~in_castlewars_game(coord) = true | ~in_castlewars_waitingroom(coord) = true) {
+    ~mesbox("You can't leave just like that!"); // osrs
+    return(false);
+}
 return(true);
