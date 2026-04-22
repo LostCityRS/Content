@@ -1,24 +1,28 @@
 [ai_timer,castlewars_judge]
-if (%npc_int = null) {
+if (%npc_int = 0) {
     if (~castlewars_waitingroom_saradomin_count < 1 | ~castlewars_waitingroom_zamorak_count < 1) {
+        return; // still waiting for players, dont start counter again until enough players
+    }
+}
+if (%npc_int = 100) { // warmup ends
+    if (~castlewars_waitingroom_saradomin_count < 1 | ~castlewars_waitingroom_zamorak_count < 1) {
+        %npc_int = 0; // not enough players, reset warmup
         return;
     }
+    ~castlewars_reset; // only reset locs & vars when a game *actually* starts
+}
+if (%npc_int >= 100) { // game is active
+    ~castlewars_process_players;
+}
+if (%npc_int >= 500) { // game ends
     %npc_int = 0;
 }
-%npc_int = add(%npc_int, 1);
 if (modulo(%npc_int, 20) = 0 & divide(sub(100, %npc_int), 20) > 0) {
     npc_say("The next game will start in <~pluralise(divide(sub(100, %npc_int), 20), "minute")>"); // no punctuation https://youtu.be/QhZyBOd1wWY?t=279, no "1 minutes" typo https://youtu.be/Hmtn4-TRFno?t=59
 }
-if (%npc_int < 100) { // warm up
-    return;
-}
-if (%npc_int = 100) {
-    if (~castlewars_zamorak_count < 1 & ~castlewars_saradomin_count < 1 & (~castlewars_waitingroom_saradomin_count < 1 | ~castlewars_waitingroom_zamorak_count < 1)) {
-        %npc_int = null;
-        return;
-    }
-    ~castlewars_reset;
-}
+%npc_int = add(%npc_int, 1);
+
+[proc,castlewars_process_players]
 huntall(^castlewars_centre_coord1, 32, 0);
 while (huntnext = true) {
     ~castlewars_update_vars;
@@ -39,10 +43,6 @@ huntall(^castlewars_centre_coord5, 32, 0);
 while (huntnext = true) {
     ~castlewars_update_vars;
 }
-if (%npc_int = 500) {
-    %npc_int = 0;
-}
-
 
 [proc,castlewars_update_vars]
 if (~in_castlewars_waitingroom(coord) = true) {
