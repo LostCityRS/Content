@@ -142,12 +142,25 @@ return(true);
 ~castlewars_start_tele(%castlewars_team);
 
 [queue,castlewars_end]
-if (%castlewars_team = ^castlewars_team_saradomin) {
+def_int $team = %castlewars_team;
+if ($team = ^castlewars_team_saradomin) {
     ~castlewars_increment_saradomin_count;
 } else {
     ~castlewars_increment_zamorak_count;
 }
 ~castlewars_exit_tele;
+
+def_int $winner = ~castlewars_winning_team;
+if ($winner = ^castlewars_team_guthix) {
+    inv_add(inv, castlewars_ticket, 2);
+    ~objbox(castlewars_ticket, "It was a draw!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));
+} else if ($winner = $team) {
+    inv_add(inv, castlewars_ticket, 3);
+    ~objbox(castlewars_ticket, "You won!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));
+} else {
+    inv_add(inv, castlewars_ticket, 1);
+    ~objbox(castlewars_ticket, "You lost!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));
+}
 
 [debugproc,cw_reset]
 if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
@@ -196,3 +209,15 @@ while ($i < enum_getoutputcount(castlewars_rocks_coords)) {
 
 ~castlewars_flag_reset(castlewars_saradomin_banner);
 ~castlewars_flag_reset(castlewars_zamorak_banner);
+
+
+[debugproc,cwo]
+if (p_finduid(uid) = false) {
+    return;
+}
+inv_add(inv, castlewars_ticket, 2);
+~objbox(castlewars_ticket, "It was a draw!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));
+inv_add(inv, castlewars_ticket, 3);
+~objbox(castlewars_ticket, "You won!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));
+inv_add(inv, castlewars_ticket, 3);
+~objbox(castlewars_ticket, "You lost!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));

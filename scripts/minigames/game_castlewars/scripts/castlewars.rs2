@@ -164,6 +164,25 @@ if ($team = ^castlewars_team_saradomin) {
 } else if ($team = ^castlewars_team_zamorak) {
     %castlewars_bits = setbit_range_toint(%castlewars_bits, add(~castlewars_score($team), 1), ^castlewars_zamorak_score_start_bit, ^castlewars_zamorak_score_end_bit);
 }
+%castlewars_caps = add(%castlewars_caps, 1);
+
+[proc,castlewars_winning_team]()(int)
+def_int $sara = max(getbit_range(%castlewars_bits, ^castlewars_saradomin_score_start_bit, ^castlewars_saradomin_score_end_bit), 0);
+def_int $zammy = max(getbit_range(%castlewars_bits, ^castlewars_zamorak_score_start_bit, ^castlewars_zamorak_score_end_bit), 0);
+if ($sara > $zammy) {
+    return (^castlewars_team_saradomin);
+} else if ($zammy > $sara) {
+    return(^castlewars_team_zamorak);
+}
+return(^castlewars_team_guthix); // tie
+
+[proc,castlewars_increment_wins]
+def_int $team = ~castlewars_winning_team;
+if ($team = ^castlewars_team_saradomin) {
+    %castlewars_wins = setbit_range_toint(%castlewars_wins, add(~castlewars_saradomin_wins, 1), ^castlewars_saradomin_wins_start_bit, ^castlewars_saradomin_wins_end_bit);
+} else if ($team = ^castlewars_team_zamorak) {
+    %castlewars_wins = setbit_range_toint(%castlewars_wins, add(~castlewars_zamorak_wins, 1), ^castlewars_zamorak_wins_start_bit, ^castlewars_zamorak_wins_end_bit);
+}
 
 [proc,castlewars_saradomin_wins]()(int)
 return(max(getbit_range(%castlewars_wins, ^castlewars_saradomin_wins_start_bit, ^castlewars_saradomin_wins_end_bit), 0));
