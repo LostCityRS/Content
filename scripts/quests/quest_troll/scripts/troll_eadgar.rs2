@@ -19,7 +19,7 @@ if (npc_range(coord) > 1) {
     return;
 }
 /* Eadgar's Ruse dialog trees */
-if(%eadgar_quest > 0 & %eadgar_quest ! ^eadgar_complete) {
+if(%eadgar_quest > ^eadgar_spoken_sanfew & %eadgar_quest ! ^eadgar_complete) {
     @eadgar_quest_dialog;
 }
 ~chatplayer("<p,happy>Hi!");
@@ -30,7 +30,12 @@ switch_int(random(4)) {
     case 3 : ~chatnpc("<p,happy>Welcome to Mad Eadgar's! Serving all day, every day!");
 }
 ~chatnpc("<p,happy>Would you care to sample our delicious home cooking?");
-~eadgar_default_tree;
+/* When first meeting Eadgar for Eadgar's Ruse, the dialog takes place here */
+if(%eadgar_quest = ^eadgar_spoken_sanfew) {
+    @eadgar_quest_initial_tree;
+} else {
+    ~eadgar_default_tree;
+}
 
 [proc,eadgar_default_tree]
 switch_int(~p_choice3("Why do you live so close to the trolls?", 1, "What do you have to offer?", 2, "No thanks, Eadgar.", 3)) {
