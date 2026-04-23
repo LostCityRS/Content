@@ -214,29 +214,6 @@ switch_int(loc_angle) {
     case default : mes("Unhandled troll stairs, loc_angle <tostring(loc_angle)>");
 }
 
-[oploc1,eadgar_kitchen_drawers]
-p_arrivedelay;
-anim(human_openchest, 0);
-sound_synth(cupboard_open, 0, 0);
-p_delay(0);
-loc_change(eadgar_kitchen_drawers_open, 300);
-
-[oploc1,eadgar_kitchen_drawers_open]
-p_arrivedelay;
-anim(human_closechest, 0);
-sound_synth(cupboard_close, 0, 0);
-p_delay(0);
-loc_change(eadgar_kitchen_drawers, 300);
-
-[oploc2,eadgar_kitchen_drawers_open]
-p_arrivedelay;
-mes("You search the drawers...");
-p_delay(0);
-mes("You don't find anything.");
-
-[oploc1,eadgar_storeroomdoor]
-mes("You need to find the right key to open this door.");
-
 [oploc1,troll_stronghold_prison_door_closed]
 if(inv_total(inv, troll_key_prison) = 0 & %troll_quest < ^troll_entered_prison) {
     mes("You need a key.");

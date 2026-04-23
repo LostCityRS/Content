@@ -1,9 +1,21 @@
+[label,eadgar_quest_dialog]
+switch_int(%eadgar_quest) {
+    case ^eadgar_spoken_sanfew : @eadgar_quest_initial_tree;
+    case ^eadgar_spoken_burntmeat : @eadgar_talked_to_troll_cook_yet;
+    case ^eadgar_caught_parrot : @eadgar_got_parrot_yet;
+    case ^eadgar_spoken_eadgar3 : @eadgar_what_do_with_parrot;
+    case ^eadgar_hid_parrot : @eadgar_hid_parrot;
+    case ^eadgar_spoken_eadgar4 : @eadgar_how_are_you_getting_on;
+    case ^eadgar_made_potion : @eadgar_got_troll_truth_potion;
+    case ^eadgar_retrieved_parrot : @eadgar_retrieved_parrot;
+}
+
 [label,eadgar_quest_initial_tree]
 switch_int(~p_choice4("I need to find some goutweed.", 1, "Why do you live so close to the trolls?", 2, "What do you have to offer?", 3, "No thanks, Eadgar.", 4)) {
     case 1 : @eadgar_need_goutweed;
-    case 2 : @eadgar_live_so_close;
-    case 3 : @eadgar_what_do_you_have;
-    case 4 : @eadgar_nothanks;
+    case 2 : ~eadgar_live_so_close;
+    case 3 : ~eadgar_what_do_you_have;
+    case 4 : ~eadgar_nothanks;
 } 
 
 [label,eadgar_need_goutweed]
@@ -27,7 +39,7 @@ if(%eadgar_quest = ^eadgar_spoken_burntmeat) {
     ~chatnpc("<p,neutral>At the zoo, where else?");
     %eadgar_quest = ^eadgar_spoken_eadgar2;
     ~chatnpc("<p,quiz>Anything else I can do for you?");
-    @eadgar_default_tree;    
+    ~eadgar_default_tree;    
 } else {
     // todo dialog branch for if you haven't talked to burntmeat yet
     // even wiki transcript does not have this ;) https://oldschool.runescape.wiki/w/Transcript:Eadgar%27s_Ruse#Taking_to_Eadgar_again_before_talking_to_Burntmeat
@@ -54,7 +66,7 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
     ~chatnpc("<p,neutral>That's easy, we'll just stuff it with a few chickens. Everything tastes like chicken! Five raw chickens should be enough!");
     %eadgar_quest = ^eadgar_spoken_eadgar3;
     ~chatnpc("<p,quiz>That's the plan. Anything else I can do for you?");
-    @eadgar_default_tree;
+    ~eadgar_default_tree;
 } else {
     // presumably this checks for whether or not the parrot is in the inventory?
     // will have to check if osrs even increments the varp for this quest stage
@@ -214,7 +226,7 @@ if(testbit(%eadgar_bits, ^eadgar_given_logs) ! 1 | $chickens_needed > 0 | $grain
     ~chatnpc("<p,quiz>Anything else I can do for you?"); // this line is used in a couple different contexts at this point before
     // forwarding to the default tree but ALSO there are other lines used sometimes so rather than duplicating this dialog 3x
     // it should probably be in its own tiny label
-    @eadgar_default_tree;
+    ~eadgar_default_tree;
 } else {
     @eadgar_thats_everything;
 }
@@ -234,7 +246,7 @@ if(testbit(%eadgar_bits, ^eadgar_given_logs) ! 1 | $chickens_needed > 0 | $grain
 ~chatplayer("<p,neutral>Okay, I'll be back with that soon.");
 %eadgar_quest = ^eadgar_given_all_items; // todo unsure if this is where the varp really updates
 ~chatnpc("<p,quiz>Anything else I can do for you?");
-@eadgar_default_tree;
+~eadgar_default_tree;
 
 [label,eadgar_got_troll_truth_potion]
 if(inv_total(inv, eadgar_ground_troll_thistle_potion) > 0) {
@@ -255,10 +267,15 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
     // not sure which npc this is
     ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>What am I doing here? Ow! Where's the rest of the Guard? Agh! I won't tell you anything!");
     
-    //@eadgar_default_tree;
-    // to match Soup's OSRS video, oddly the drunk parrot is not removed and the fake man is not added
-    // until he clicks through eadgar's default dialog tree, telling us it's a proc and not a label...
-    // so todo convert to proc. for now...
+    // to match OSRS videos - oddly the drunk parrot is not removed and the fake man is not added
+    // until the player clicks through eadgar's default dialog tree, telling us it's a proc and not a label...
+    // so i have converted the default tree to use procs. TODO check if this behaves the same way when choosing
+    // options BESIDES "No thanks" here?
+    ~eadgar_default_tree;
+    // we have a 2008 source where the player yellow-clicks out of the default tree and still gets the fake man: https://youtu.be/ol1aKQKbR04?t=824
+    // this code does not work for that
+    //
+    // also, videos show the fake man is given in the first free slot *not counting the slot freed by deleting the parrot* which I have wrong atm
     inv_del(inv, eadgar_drunk_parrot, 1);
     inv_add(inv, eadgar_fake_man, 1);
     %eadgar_quest = ^eadgar_got_fake_man;
@@ -267,3 +284,83 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
     // presumably something here for if you grabbed but lost the parrot?
     // also need dialog for if you haven't gone back for it yet
 }
+
+[oploc1,eadgar_kitchen_drawers]
+p_arrivedelay;
+anim(human_openchest, 0);
+sound_synth(cupboard_open, 0, 0);
+p_delay(0);
+loc_change(eadgar_kitchen_drawers_open, 300);
+
+[oploc1,eadgar_kitchen_drawers_open]
+p_arrivedelay;
+anim(human_closechest, 0);
+sound_synth(cupboard_close, 0, 0);
+p_delay(0);
+loc_change(eadgar_kitchen_drawers, 300);
+
+[oploc2,eadgar_kitchen_drawers_open]
+p_arrivedelay;
+mes("You search the drawers...");
+p_delay(0);
+if(%eadgar_quest = ^eadgar_spoken_burntmeat2) { // todo what if inv is full here or we already have a key?
+    mes("You open the fake bottom of the drawer and find the storeroom key.");
+    inv_add(inv, eadgar_troll_storeroom_key, 1);
+} else {
+    mes("You don't find anything.");
+}
+
+[oploc1,eadgar_storeroomdoor]
+if(coord = 0_44_157_53_37) { // just let them out i guess? todo check if this is correct and also if door stays unlocked after unlocking once + can key be retrieved after unlocking
+    ~open_and_close_door(eadgar_storeroomdoor, ~check_axis(coord, loc_coord, loc_angle), false);
+} else {
+    if(inv_total(inv, eadgar_troll_storeroom_key) > 0 & %eadgar_quest = ^eadgar_spoken_burntmeat2) {
+        mes("You unlock the door.");
+        inv_del(inv, eadgar_troll_storeroom_key, 1);
+        ~open_and_close_door(eadgar_storeroomdoor, ~check_axis(coord, loc_coord, loc_angle), false);
+    } else {
+        mes("You need to find the right key to open this door.");
+    }
+}
+
+// big greetz to Ashie for this code
+[ai_timer,_troll_sguard]
+huntall(npc_coord, 1, 0);
+if (huntnext = true) {
+    if (p_finduid(uid) = false) {
+        return;
+    }
+    npc_settimer(0);
+    npc_say("!");
+    ~eadgar_troll_whack;
+    npc_settimer(1);
+    npc_setmode(patrol);
+    return;
+}
+
+[oploc1,eadgar_crate_goutweed]
+if(npc_find(0_44_157_41_27, eadgar_storeroom_guard, 4, 0) = true) {
+    // guess based on osrs videos, it's pretty centered vertically but looks scaled down slightly
+    ~objbox(eadgar_goutweed_herb, "You've found some goutweed!", 225, 0, calc(^objbox_height / 4));
+    inv_add(inv, eadgar_goutweed_herb, 1); // what happens if inv is full?
+    npc_say("Hm?");
+    npc_facesquare(coord);
+    ~eadgar_troll_whack;
+    npc_facesquare(0_44_157_41_29); // OSRS videos show the guard always turning to face away from the box after
+}
+
+[proc,eadgar_troll_whack]
+npc_anim(eadgar_troll_axethrow, 0);
+p_delay(1);
+p_stopaction;
+if_openoverlay(eadgar_fade_to_black);
+anim(eadgar_knockout, 2);
+~damage_self(random(7)); // osrs wiki says 0-6 damage is possible
+sound_synth(stunned, 0, 0);
+p_delay(2);
+p_teleport(0_44_157_49_40);
+if_openoverlay(null);
+spotanim_pl(spotanim_291, 124, 0);
+%action_delay = calc(map_clock + 2);
+%stunned = calc(map_clock + 2);
+walktrigger(stunned);

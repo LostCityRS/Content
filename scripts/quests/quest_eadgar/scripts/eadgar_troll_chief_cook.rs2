@@ -1,9 +1,33 @@
 // moved to the eadgar's ruse folder in 274 since this is burntmeat's first quest-related appearance
 [opnpc1,eadgar_troll_chief_cook]
+    if(%eadgar_quest = ^eadgar_gave_fake_man) {
+        @burntmeat_gave_fake_man; // not sure if this is correct
+    }
+    if(%eadgar_quest = ^eadgar_got_fake_man & inv_total(inv, eadgar_fake_man) > 0) {
+    // source from soup's vid, need mesanims
+    ~chatnpc("<p,neutral>Did you find tasty human? Burntmeat smell something good.");
+    ~chatplayer("<p,happy>Yes! Look!");
+    ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>Heeeeeeelp!");
+    ~chatnpc("<p,neutral>Ah, dat look like nice tasty human.");
+    ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>Aaaargh! Somebody save me!");
+    ~chatnpc("<p,neutral>Yep, sound like human too. Burntmeat put it in stew.|Good work, human. Burnmeat give precious reward.");
+    // todo special dialog if inventory is full? probably impossible since the fake man is removed
+    inv_del(inv, eadgar_fake_man, 1);
+    %eadgar_quest = ^eadgar_gave_fake_man; // there almost has to be a varp tick here since the item is removed at this point but learning about the storeroom key is separate
+    inv_add(inv, burnt_meat, 1);
+    ~chatplayer("<p,neutral>This is burnt meat.");
+    ~chatnpc("<p,neutral>It first thing I ever try to cook! Very precious to Burntmeat.");
+    ~chatplayer("<p,quiz>Thank you... and how's the stew?");
+    ~chatnpc("<p,neutral>Slurp, mmm... Human stew cheer Burntmeat up!");
+    // maybe varp ticks here and further interaction with burntmeat goes straight to this branch?
+    // what happens if dialog is cancelled and re-initiated at this point?
+    @burntmeat_gave_fake_man;
+} else {
     ~chatplayer("<p,neutral>Er, hi.");
     ~chatnpc("<p,happy>Hmm? What human do in troll kitchen? Burntmeat tired of cooking goats. Human look tasty.");
     ~chatplayer("<p,scared>Oh, you don't want to eat me! I'm a tough, hardened adventurer, not tender or tasty at all!");
     ~chatnpc("<p,neutral>Hmm. Burntmeat think you probably right. What human doing here?");
+}
 if(%eadgar_quest = ^eadgar_spoken_eadgar) {
     // source from osrs vids, todo mesanims from rsprox
     ~chatplayer("<p,neutral>I'm on a quest to find some goutweed.");
@@ -13,22 +37,6 @@ if(%eadgar_quest = ^eadgar_spoken_eadgar) {
     ~chatnpc("<p,neutral>Bring back a tasty human for Burntmeat's stew. If you find tasty human, Burntmeat will give you good reward.");
     ~chatplayer("<p,scared>Right. I'll just...go fetch that for you then. Bye!");
     %eadgar_quest = ^eadgar_spoken_burntmeat;
-} else if (%eadgar_quest = ^eadgar_got_fake_man & inv_total(inv, eadgar_fake_man) > 0) {
-    // source from soup's vid, need mesanims
-    ~chatnpc("<p,neutral>Did you find tasty human? Burntmeat spell something good.");
-    ~chatplayer("<p,happy>Yes! Look!");
-    ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>Heeeeeeelp!");
-    ~chatnpc("<p,neutral>Ah, dat look like nice tasty human.");
-    ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>Aaaargh! Somebody save me!");
-    ~chatnpc("<p,neutral>Yep, sound like human too. Burntmeat put it in stew.|Good work, human. Burnmeat give precious reward.");
-    // todo special dialog if inventory is full?
-    inv_add(inv, burnt_meat, 1);
-    ~chatplayer("<p,neutral>This is burnt meat.");
-    ~chatnpc("<p,neutral>It first thing I ever try to cook! Very precious to Burntmeat.");
-    ~chatplayer("<p,quiz>Thank you... and how's the stew?");
-    ~chatnpc("<p,neutral>Slurp, mmm... Human stew cheer Burntmeat up!");
-    // maybe varp ticks here and further interaction with burntmeat goes straight to this branch?
-    @burntmeat_gave_fake_man;
 } else {
     ~chatplayer("<p,neutral>Nothing. I was just leaving.");
 }
@@ -44,7 +52,6 @@ switch_int(~p_choice2("So, where can I get some goutweed?", 1, "I'll be going no
 ~chatnpc("<p,neutral>Hah! Trolls pick it all until none left, many years ago. Only remaining stock in storeroom.");
 ~chatnpc("<p,neutral>It well guarded, and Burntmeat hide key in fake bottom of kitchen drawer. Nobody find it there.");
 ~chatplayer("<p,neutral>That's some well-guarded secret alright. I'll just be off on my way now.");
-// varp ticks here?
 %eadgar_quest = ^eadgar_spoken_burntmeat2;
 
 
