@@ -267,23 +267,19 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
     // not sure which npc this is
     ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>What am I doing here? Ow! Where's the rest of the Guard? Agh! I won't tell you anything!");
     
-    // to match OSRS videos - oddly the drunk parrot is not removed and the fake man is not added
-    // until the player clicks through eadgar's default dialog tree, telling us it's a proc and not a label...
-    // so i have converted the default tree to use procs. TODO check if this behaves the same way when choosing
-    // options BESIDES "No thanks" here?
+    // to match OSRS videos - the drunk parrot is not removed and the fake man is queued
+    // and does not occur until the player clicks through or cancels eadgar's default dialog tree
+    queue(eadgar_get_fake_man, 0, 0);
     ~eadgar_default_tree;
-    // we have a 2008 source where the player yellow-clicks out of the default tree and still gets the fake man: https://youtu.be/ol1aKQKbR04?t=824
-    // this code does not work for that
-    //
-    // also, videos show the fake man is given in the first free slot *not counting the slot freed by deleting the parrot* which I have wrong atm
-    inv_del(inv, eadgar_drunk_parrot, 1);
-    inv_add(inv, eadgar_fake_man, 1);
-    %eadgar_quest = ^eadgar_got_fake_man;
-    return;
 } else {
     // presumably something here for if you grabbed but lost the parrot?
     // also need dialog for if you haven't gone back for it yet
 }
+
+[queue,eadgar_get_fake_man]
+inv_del(inv, eadgar_drunk_parrot, 1);
+inv_add(inv, eadgar_fake_man, 1);
+%eadgar_quest = ^eadgar_got_fake_man;
 
 [oploc1,eadgar_kitchen_drawers]
 p_arrivedelay;
