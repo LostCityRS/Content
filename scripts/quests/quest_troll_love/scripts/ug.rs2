@@ -15,6 +15,9 @@ if (%troll_love < ^troll_love_started) {
 
 } else if (%troll_love = ^troll_love_dispose_of_arrg) {
     @trollromance_ug_not_defeated_arrg;
+
+} else if (%troll_love = ^troll_love_defeated_arrg) {
+    @trollromance_ug_defeated_arrg;
     
 } else if (%troll_love = ^troll_love_complete) {
     ~chatplayer("<p,scared>How did it go with Aga?");
@@ -101,3 +104,14 @@ inv_del(inv, trollromance_rare_flower, 1);
 [label,trollromance_ug_not_defeated_arrg]
 ~chatnpc("<p,neutral>You defeat Arrg yet?");
 ~chatplayer("<p,neutral>No, not yet. Something like this requires careful planning.");
+
+// TODO: MesAnims & check whether queue is before the last chatnpc proc
+[label,trollromance_ug_defeated_arrg]
+~chatnpc("<p,neutral>You defeat Arrg yet?");
+~chatplayer("<p,neutral>Yes, he has been defeated.");
+~chatnpc("<p,neutral>You very strong and nice. Take pretty rocks as thanks.");
+~chatplayer("<p,neutral>Thanks, Ug. So, now you can go and speak to Aga!");
+~chatnpc("<p,neutral>I too scared.");
+~chatplayer("<p,neutral>Has anyone ever told you that you are a useless troll? My grandmother has more guts than you and she doesn't even have her teeth anymore!");
+~chatnpc("<p,neutral>Whaaat? Man-thing want to die? Ug no scared of you or your grandmother! Ug show you. Ug go to Aga now.");
+queue(trollromance_quest_complete, 0, 0);

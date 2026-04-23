@@ -8,10 +8,10 @@ if (%troll_love < ^troll_love_aga_wants_trollweiss) {
 } else if (%troll_love > ^troll_love_waxed_sled & %troll_love < ^troll_love_dispose_of_arrg) {
     @trollromance_arrg_cheese_off;
 
-} else if (%troll_love > ^troll_love_picked_trollweiss & %troll_love < ^troll_love_complete) {
+} else if (%troll_love > ^troll_love_picked_trollweiss & %troll_love < ^troll_love_defeated_arrg) {
     @trollromance_arrg_talk;
 
-} else if (%troll_love = ^troll_love_complete) {
+} else if (%troll_love >= ^troll_love_defeated_arrg) {
     ~chatnpc("<p,scared>Oh mighty man-warrior, please no hurt Arrg.");
 }
 

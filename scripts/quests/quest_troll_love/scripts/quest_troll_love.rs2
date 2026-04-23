@@ -4,14 +4,14 @@ if (p_finduid(uid) = true) p_teleport(0_43_59_20_60);
 [debugproc,trarrg] // Teleport to Arrg in Stronghold
 if (p_finduid(uid) = true) p_teleport(1_44_157_12_46);
 
-[oploc1,trollromance_piste_walk_barrier_down]
+[oploc1,trollromance_piste_walk_barrier_down] // TODO: Trigger for both the top ride (0_43_59), and the bottom ride (0_43_58)
 if (inv_total(worn, trollromance_toboggon_waxed) < 1) {
     mes("You need to have a waxed sled equipped!");
     return;
 }
 ~troll_love_first_sled_ride;
 
-[oploc1,trollromance_piste_walk_barrier_up]
+[oploc1,trollromance_piste_walk_barrier_up] // On OSRS, NIH message when attempting to go back up the snow hill
 ~displaymessage(^dm_default);
 
 [oploc1,trollromance_caveentrance] // Tunnel entrance north-west of Trollheim
@@ -144,3 +144,17 @@ facesquare(loc_coord);
 stat_advance(agility, 250);
 
 // TODO: Immplement second slope cutscene
+
+
+[queue,trollromance_quest_complete]
+// https://web.archive.org/web/20060428042217/http://runescape.salmoneus.net/quests/TrollRomance/trollrmcecomplt.png
+session_log(^log_adventure, "Quest complete: Troll Romance");
+%troll_love = ^troll_love_complete;
+// Gems given in the below order as per: https://youtu.be/V88fh4k0Po4?si=Gyb2h6BI9566rs3Z&t=969
+inv_add(inv, uncut_diamond, 1);
+inv_add(inv, uncut_ruby, 2);
+inv_add(inv, uncut_emerald, 4);
+stat_advance(agility, 80000);
+stat_advance(strength, 40000);
+// Below possibly also includes these rewards: "\\n8000 Agility XP\\n4000 Strength XP" but currently the "8000 Agility XP" overlaps on the same line...
+~send_quest_complete(questlist:troll_love, trollromance_rare_flower, 250, ^troll_love_questpoints, "You have completed the Troll Romance Quest!", "7 Uncut Gems");

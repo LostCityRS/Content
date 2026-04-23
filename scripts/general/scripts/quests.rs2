@@ -50,7 +50,12 @@ switch_component ($component) {
 // Update Quest Tab color
 if_setcolour($component, ^green_rgb);
 if_settab(questlist, ^tab_quest_journal);
-mes("Congratulations! Quest complete!");
+switch_component ($component) {
+    case questlist:troll_love : 
+        mes("Congratulations! You've helped a lonely troll find love. Quest complete!");
+    case default : 
+        mes("Congratulations! Quest complete!");
+}
 
 [proc,update_questpoints]
 def_int $questpointrecount = ~count_questpoints;
