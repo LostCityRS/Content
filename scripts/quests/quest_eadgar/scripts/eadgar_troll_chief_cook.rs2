@@ -10,7 +10,7 @@
     ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>Heeeeeeelp!");
     ~chatnpc("<p,neutral>Ah, dat look like nice tasty human.");
     ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>Aaaargh! Somebody save me!");
-    ~chatnpc("<p,neutral>Yep, sound like human too. Burntmeat put it in stew.|Good work, human. Burnmeat give precious reward.");
+    ~chatnpc("<p,neutral>Yep, sound like human too. Burntmeat put it in stew.|Good work, human. Burnmeat give precious reward."); // linebreaks from runeweb 2004
     // todo special dialog if inventory is full? probably impossible since the fake man is removed
     inv_del(inv, eadgar_fake_man, 1);
     %eadgar_quest = ^eadgar_gave_fake_man; // there almost has to be a varp tick here since the item is removed at this point but learning about the storeroom key is separate

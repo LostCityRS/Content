@@ -48,7 +48,7 @@ if(%eadgar_quest = ^eadgar_spoken_burntmeat) {
 [label,eadgar_got_parrot_yet]
 ~chatnpc("<p,quiz>Oh, it's you. Have you got me a parrot yet?");
 if(inv_total(inv, eadgar_drunk_parrot) > 0) {
-    //parrot: Raaawk! Polly wanna cracker!
+    ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Raaawk! Polly wanna cracker!");
     ~chatplayer("<p,quiz>Here it is! How are you going to explain your plan?");
     ~chatnpc("<p,happy>Yes, yes, of course. It's quite ingenious really!");
     ~chatnpc("<p,neutral>What we need is something that looks like a human,|sounds like a human, smells like a human and tastes|like a human."); //linebreaks from from runeweb, one of the few 2004-era images we have of this quest
@@ -56,7 +56,7 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
     ~chatnpc("<p,neutral>We'll just make a scarecrow. We'll need logs, and 10 sheaves of wheat for stuffing.");
     ~chatplayer("<p,quiz>How are we going to make it sound like a human?");
     ~chatnpc("<p,neutral>That's what the parrot's for, of course.");
-    // parrot: Who's a pretty boy then?
+    ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Who's a pretty boy then?");
     ~chatnpc("<p,neutral>Although the trolls might get suspicious if it doesn't say what they expect a human to say...");
     ~chatnpc("<p,neutral>You should hide it for a while somewhere it can pick up some more appropriate catchphrases.");
     ~chatplayer("<p,quiz>How are we going to make it smell like a human?");
@@ -99,7 +99,7 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
 // and then possibly after the quest?
 if(%eadgar_quest = ^eadgar_given_potion) {
     ~mesbox("You look under the rack and find the drunk parrot.");
-    ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Ah, hello Sir. Could you please free me?|I seem to have ... OW! What are you doing?|That's my spleen!");
+    ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Ah, hello Sir. Could you please free me?|I seem to have ... OW! What are you doing?|That's my spleen!"); // linebreaks from runeweb 2004
     ~chatplayer("<p,neutral>I think it's probably heard enough.");
     inv_add(inv, eadgar_drunk_parrot, 1);
     %eadgar_quest = ^eadgar_retrieved_parrot;
@@ -240,7 +240,7 @@ if(testbit(%eadgar_bits, ^eadgar_given_logs) ! 1 | $chickens_needed > 0 | $grain
 ~chatplayer("<p,quiz>Oh?");
 ~chatnpc("<p,neutral>No, of course not. We need to make sure he'll tell you what you need to know.");
 ~chatplayer("<p,quiz>And how do we do that?");
-~chatnpc("<p,neutral>I happen to know that the trolls are susceptible to a certain kind of plant that grows around this mountain. I call it Troll Thistle. If properly prepared, it can be made into a sort of Troll truth potion.");
+~chatnpc("<p,neutral>I happen to know that the trolls are susceptible to a|certain kind of plant that grows around this mountain.|I call it Troll Thistle. If properly prepared, it can|be made into a sort of Troll truth potion."); // linebreaks from runeweb 2004
 ~chatplayer("<p,quiz>How do you prepare it?");
 ~chatnpc("<p,neutral>You'll have to dry it in a fire, then grind it and mix it into a potion with Ranarr weed.");
 ~chatplayer("<p,neutral>Okay, I'll be back with that soon.");
@@ -265,9 +265,9 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
     ~chatnpc("<p,happy>Hand it here...there we go! Can you tell this isn't a bona fide human being? I sure can't!");
     
     // not sure which npc this is
-    ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>What am I doing here? Ow! Where's the rest of the Guard? Agh! I won't tell you anything!");
+    ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>What am I doing here? Ow! Where's the rest of the|Guard? Agh! I won't tell you anything!"); // linebreaks from runeweb 2004
     
-    // to match OSRS videos - the drunk parrot is not removed and the fake man is queued
+    // to match OSRS videos - the drunk parrot/fake man swap is queued
     // and does not occur until the player clicks through or cancels eadgar's default dialog tree
     queue(eadgar_get_fake_man, 0, 0);
     ~eadgar_default_tree;
@@ -337,6 +337,7 @@ if (huntnext = true) {
 [oploc1,eadgar_crate_goutweed]
 if(npc_find(0_44_157_41_27, eadgar_storeroom_guard, 4, 0) = true) {
     // guess based on osrs videos, it's pretty centered vertically but looks scaled down slightly
+    // https://web.archive.org/web/20051025140652im_/http://www.runeweb.net/fireball/Eadgars%20Ruse%20Images/Eadgar18.PNG
     ~objbox(eadgar_goutweed_herb, "You've found some goutweed!", 225, 0, calc(^objbox_height / 4));
     inv_add(inv, eadgar_goutweed_herb, 1); // what happens if inv is full?
     npc_say("Hm?");
