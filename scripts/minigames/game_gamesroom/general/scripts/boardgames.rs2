@@ -80,6 +80,7 @@ if(%boardgames_runelink_rank < 1) {
     %boardgames_runelink_rank = 1000;
 }
 set_player_op("Challenge", 1, ^false);
+@music_playbyregion(coord);
 
 [mapzoneexit,0_34_77]
 ~reset_boardgames_varp;
