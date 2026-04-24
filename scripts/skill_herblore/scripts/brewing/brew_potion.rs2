@@ -34,12 +34,11 @@ if(last_useitem = ground_bat_bones) {
 ~attempt_brew_potion(last_useslot, last_slot);
 
 [opheldu,ranarrvial]
-// maybe shouldn't be here if the mes isn't given both ways
-if(last_useitem = eadgar_dried_troll_thistle) {
-    mes("It's too big to fit in the vial.");
-    return;
-} else {
-    ~attempt_brew_potion(last_useslot, last_slot);
+// maybe the troll thistle stuff shouldn't be here if the mes isn't given both ways
+switch_obj(last_useitem) {
+    case eadgar_troll_thistle : @eadgar_troll_thistle_mes;
+    case eadgar_dried_troll_thistle : @eadgar_dried_troll_thistle_mes;
+    case default : ~attempt_brew_potion(last_useslot, last_slot);        
 }
 
 [opheldu,iritvial]

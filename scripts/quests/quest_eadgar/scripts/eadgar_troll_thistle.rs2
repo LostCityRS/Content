@@ -23,7 +23,6 @@ switch_int(random(5)) {
     case 4 : npc_tele(0_45_57_22_26);
 }
 
-
 // is this possible before the happy-path quest stage, or after quest / after next varp?
 [opheldu,eadgar_dried_troll_thistle]
 if(last_useitem = ranarrvial) {
@@ -43,7 +42,6 @@ if(%eadgar_quest = ^eadgar_given_all_items) {
     // osrs, from Ashie
     ~chatplayer("<p,confused>Hmmm...perhaps I shouldn't try and mix these together. It might have unpredictable results...");
 }
-
 if(%eadgar_quest < ^eadgar_made_potion) { // why doesn't my conditional fire unless i have runnable code beneath it wtfff
     %eadgar_quest = ^eadgar_made_potion;
 }
@@ -52,11 +50,15 @@ if(%eadgar_quest < ^eadgar_made_potion) { // why doesn't my conditional fire unl
 // for that matter is it possible to attempt making the potion before reaching the stage where it's required
 // and if so, is there a mes for that?
 
+[label,eadgar_troll_thistle_mes] mes("I need to dry it over a fire first.");
+[label,eadgar_dried_troll_thistle_mes] mes("It's too big to fit in the vial.");
+
 // osrs, from Ashie, I am guessing behavior for the dried thistle is the same
 // since the model for both is floating in the air and doesn't look like it should be a grounditem
 // not sure about the ground thistle or the mixed potion yet
-[opheld5,eadgar_troll_thistle] @eadgar_drop_thistle;
-[opheld5,eadgar_dried_troll_thistle] @eadgar_drop_thistle;
 [label,eadgar_drop_thistle]
 inv_delslot(inv, last_slot);
 mes("The Troll Thistle withers away as soon as it hits the ground.");
+
+[opheld5,eadgar_troll_thistle] @eadgar_drop_thistle;
+[opheld5,eadgar_dried_troll_thistle] @eadgar_drop_thistle;
