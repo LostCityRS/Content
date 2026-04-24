@@ -3,15 +3,18 @@ if(%druidquest = ^druid_spoken_sanfew) {
     @druid_sanfew_give_ingredients;
 }
 ~chatnpc("<p,quiz>What can I do for you young 'un?");
-if(%eadgar_quest >= ^eadgar_spoken_eadgar3 & %eadgar_quest < ^eadgar_spoken_sanfew2) {
-    @eadgar_sanfew_dirty_clothes;
-}
 if(%druidquest = ^druid_started) {
     @multi2("I've been sent to help purify the Varrock stone circle.", druid_sanfew_information, "Actually I don't need to speak to you.", sanfew_dont_need);
 } else if(%druidquest >= ^druid_given_ingredients) {
     @multi2("Have you any more work for me, to help reclaim the circle?", sanfew_more_work, "Actually I don't need to speak to you.", sanfew_dont_need);
 } else if(%druidquest = ^druid_not_started) {
     @multi2("I've heard you druids might be able to teach me herblore.", sanfew_teach_herblore, "Actually I don't need to speak to you.", sanfew_dont_need);
+}
+if(%eadgar_quest >= ^eadgar_spoken_sanfew) {
+    @multi2("What was I meant to be doing again?", eadgar_sanfew_reminder, "Actually I don't need to speak to you.", sanfew_dont_need);
+}
+if(%eadgar_quest >= ^eadgar_spoken_eadgar3 & %eadgar_quest < ^eadgar_spoken_sanfew2) {
+    @eadgar_sanfew_dirty_clothes;
 }
 
 [label,druid_sanfew_information]
@@ -109,9 +112,13 @@ if(%death_equiproom = ^death_complete & %troll_quest = ^troll_complete) {
 // todo check mesanims against rsprox
 ~chatnpc("<p,neutral>Oh well. No doubt some other adventurer will eventually come who can help me.");
 
-// https://oldschool.runescape.wiki/w/Transcript:Eadgar%27s_Ruse#Talking_to_Sanfew_after_starting_the_quest
-// missing this interaction
-
+[label,eadgar_sanfew_reminder]
+// OSRS wiki
+~chatplayer("<p,quiz>What was I meant to be doing again?");
+~chatnpc("<p,neutral>I've told you already.");
+~chatnpc("<p,neutral>Journey to the north into the land of the trolls, and find the secret of the herb the trolls call goutweed.");
+~chatnpc("<p,neutral>My friend Eadgar lives in the area, and he may be able to help you. Bring some goutweed back and I will teach you something useful.");
+~chatplayer("<p,neutral>I'll get on with it.");
 
 [label,eadgar_sanfew_dirty_clothes]
 // dialog from Soup's OSRS video, need mesanims checked against rsprox

@@ -11,14 +11,15 @@ if(%eadgar_quest = ^eadgar_spoken_sanfew2) {
     ~chatplayer("<p,quiz>You wouldn't be able to spare any of those dirty robes by any chance? It's a matter of the utmost importance.");
     ~chatnpc("<p,angry>What? No! These are my robes!");
     switch_int(~p_choice3("Fine.", 1, "Sanfew won't be happy...", 2, "You'll give me those robes right now...", 3)) {
-    case 1 : @eadgar_tegid_fine;
-    case 2 : @eadgar_tegid_sanfew_wont_be_happy;
-    case 3 : @eadgar_tegid_threaten;
+        case 1 : @eadgar_tegid_fine;
+        case 2 : @eadgar_tegid_sanfew_wont_be_happy;
+        case 3 : @eadgar_tegid_threaten;
     }
 }
 
 [label,eadgar_tegid_fine]
-~chatplayer("idk what goes here yet");
+// OSRS wiki
+~chatplayer("<p,neutral>Fine.");
 
 [label,eadgar_tegid_sanfew_wont_be_happy]
 // dialog from Soup's video
