@@ -1,8 +1,8 @@
 [label,eadgar_quest_dialog]
 switch_int(%eadgar_quest) {
     case ^eadgar_spoken_sanfew : @eadgar_quest_initial_tree;
-    case ^eadgar_spoken_burntmeat : @eadgar_talked_to_troll_cook_yet;
-    case ^eadgar_caught_parrot : @eadgar_got_parrot_yet;
+    case ^eadgar_spoken_burntmeat : @eadgar_talked_to_troll_cook;
+    case ^eadgar_spoken_eadgar2, ^eadgar_caught_parrot : @eadgar_got_parrot_yet;
     case ^eadgar_spoken_eadgar3 : @eadgar_what_do_with_parrot;
     case ^eadgar_hid_parrot : @eadgar_hid_parrot;
     case ^eadgar_spoken_eadgar4 : @eadgar_how_are_you_getting_on;
@@ -23,12 +23,27 @@ switch_int(~p_choice4("I need to find some goutweed.", 1, "Why do you live so cl
 // mesanims should be good here
 ~chatplayer("<p,neutral>I need to find some goutweed. Sanfew said you might be able to help.");
 ~chatnpc("<p,quiz>Sanfew, you say? Ah, haven't seen him in a while...");
+switch_int(testbit(%eadgar_bits, ^eadgar_spoken_burntmeat_first)) {
+    case ^true : @eadgar_talked_to_troll_cook;
+    case ^false : @eadgar_advice;
+}
+
+[label,eadgar_advice]
 ~chatnpc("<p,neutral>Goutweed is used as an ingredient in troll cooking. You should ask one of their cooks.");
 %eadgar_quest = ^eadgar_spoken_eadgar;
 
-[label,eadgar_talked_to_troll_cook_yet]
+[label,eadgar_talked_to_troll_cook]
+// according to OSRS transcript it's possible to start the quest with Sanfew and then speak with Burntmeat _before_ talking to Eadgar
+// https://oldschool.runescape.wiki/w/Transcript:Eadgar%27s_Ruse#Taking_to_Eadgar_after_talking_to_Burntmeat
+// if you do this, dialog is about the same as the happy path, but ~eadgar_quest_initial_tree is skipped
+// because you already spoke with the troll cook, so Eadgar does not need to advise you to do this
+// 
+// this also makes sense with how the quest journal is laid out - the journal updates for both of these stages end with "Mad Eadgar may be able to help"
+
 // source from osrs vids, todo mesanims from rsprox
-~chatnpc("<p,quiz>Oh, it's you. Have you talked to the troll cook yet?");
+if(testbit(%eadgar_bits, ^eadgar_spoken_burntmeat_first) = ^false) { // this is skipped if the player has already talked to burntmeat
+    ~chatnpc("<p,quiz>Oh, it's you. Have you talked to the troll cook yet?");
+}
 if(%eadgar_quest = ^eadgar_spoken_burntmeat) {
     ~chatplayer("<p,sad>I talked to the troll cook but he wouldn't tell me anything, and now he wants me to find him some tasty human for his stew.");
     ~chatnpc("<p,sad>Oh dear, that's no good. You can't just go hand over a human to those trolls...");

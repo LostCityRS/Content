@@ -32,7 +32,9 @@ if(%eadgar_quest = ^eadgar_got_fake_man & inv_total(inv, eadgar_fake_man) > 0) {
     ~chatplayer("<p,scared>Oh, you don't want to eat me! I'm a tough, hardened adventurer, not tender or tasty at all!");
     ~chatnpc("<p,neutral>Hmm. Burntmeat think you probably right. What human doing here?");
 }
-if(%eadgar_quest = ^eadgar_spoken_eadgar) {
+// in OSRS it's possible to skip eadgar initially and talk to burntmeat first
+// see comments in ~eadgar_talked_to_troll_cook
+if(%eadgar_quest = ^eadgar_spoken_eadgar | %eadgar_quest = ^eadgar_spoken_sanfew) {
     // source from osrs vids, todo mesanims from rsprox
     ~chatplayer("<p,neutral>I'm on a quest to find some goutweed.");
     ~chatnpc("<p,laugh>Bwahahaha! Burntmeat not give his greatest cooking secret away so easily!");
@@ -40,6 +42,9 @@ if(%eadgar_quest = ^eadgar_spoken_eadgar) {
     ~chatplayer("<p,quiz>Really? What is it?");
     ~chatnpc("<p,neutral>Bring back a tasty human for Burntmeat's stew. If you find tasty human, Burntmeat will give you good reward.");
     ~chatplayer("<p,scared>Right. I'll just...go fetch that for you then. Bye!");
+    if (%eadgar_quest = ^eadgar_spoken_sanfew) { // if the player has skipped talking to eadgar initially and is talking to burntmeat first
+        %eadgar_quest = setbit(%eadgar_quest, ^eadgar_spoken_burntmeat_first);
+    }
     %eadgar_quest = ^eadgar_spoken_burntmeat;
 } else {
     ~chatplayer("<p,neutral>Nothing. I was just leaving.");
