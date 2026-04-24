@@ -226,7 +226,7 @@ if(last_useitem = spade) {
 [oploc1,cave_railings2]
 mes("You attempt to pick the lock...");
 def_int $roll = random(100);
-if ($roll < 50) { // Some arbitrary rng.
+if (stat_random(thieving, 128, 400) = false) {
     mes("You fail to pick the lock.");
     return;
 }
@@ -251,7 +251,7 @@ if(stat(thieving) < 50) {
 }
 mes("You attempt to pick the lock...");
 def_int $roll = random(100);
-if ($roll < 50) { // Some arbitrary rng.
+if (stat_random(thieving, 128, 400) = false) {
     mes("You fail to pick the lock.");
     return;
 }

@@ -27,7 +27,7 @@ if(coordx(coord) > coordx(loc_coord)) {
 }
 p_delay(0);
 ~agility_exactmove(human_climbing_down, 15, 0, coord, movecoord(coord, $dx, 0, 0), 0, 90, $dir, false);
-if(stat_random(agility, 125, 250) = false) {
+if(stat_random(agility, 170, 253) = false) {
     sound_synth(stumble_loop, 10, 0);
     anim(human_climbing_fall, 0);
     p_delay(1);
@@ -56,7 +56,7 @@ if(coordx(coord) < coordx(loc_coord)) {
 p_delay(0);
 ~set_forcemove_bas(human_climbing);
 ~forcemove(movecoord(coord, multiply(2, $dx), 0, 0));
-if(stat_random(agility, 125, 250) = false) {
+if(stat_random(agility, 170, 253) = false) {
     sound_synth(stumble_loop, 10, 0);
     ~agility_exactmove(human_climbing_fall, 0, 1, coord, movecoord(coord, multiply(-2, $dx), 0, 0), 0, 50, $dir, false);
     anim(null, 0);
@@ -145,7 +145,7 @@ def_int $dx = -2;
 def_int $dir = ^exact_east;
 p_delay(0);
 ~agility_exactmove(human_climbing_down, 15, 0, coord, movecoord(coord, $dx, 0, 0), 0, 50, $dir, false);
-if(stat_random(agility, 125, 250) = false) {
+if(stat_random(agility, 170, 253) = false) {
     sound_synth(stumble_loop, 10, 0);
     anim(human_climbing_fall, 0);
     p_delay(1);
@@ -173,7 +173,7 @@ def_int $dir = ^exact_east;
 p_delay(0);
 ~set_forcemove_bas(human_climbing);
 ~forcemove(movecoord(coord, $dx, 0, 0));
-if(stat_random(agility, 125, 250) = false) {
+if(stat_random(agility, 170, 253) = false) {
     sound_synth(stumble_loop, 10, 0);
     ~agility_exactmove(human_climbing_fall, 0, 1, coord, movecoord(coord, multiply(-1, $dx), 0, 0), 0, 25, $dir, false);
     anim(null, 0);
@@ -192,7 +192,7 @@ stat_advance(agility, 10);
 p_teleport(2_44_157_21_42);
 if(%troll_entered_stronghold = ^false) %troll_entered_stronghold = ^true;
 
-[oploc1,troll_stronghold_top_exit_mid]
+[oploc1,_troll_stronghold_top_exit]
 p_teleport(0_44_57_24_42);
 
 

@@ -8418,51 +8418,51 @@ occlude=yes
 active=yes
 raiseobject=no
 
-[archeddooropen]
+[loc_1509]
 model=model_loc_1506
 mirror=yes
 active=no
 raiseobject=no
 
-[archeddoorclosed]
+[loc_1510]
 model=model_loc_1506
 active=no
 raiseobject=no
 
-[thickpoordoor]
+[loc_1518]
 model=model_loc_1518
 sharelight=yes
 raiseobject=no
 
-[castledoubledoorl]
+[loc_1521]
 model=model_loc_1518
 sharelight=yes
 mirror=yes
 raiseobject=no
 
-[opencastledoubledoorl]
+[loc_1522]
 model=model_loc_71
 active=no
 raiseobject=no
 
-[doubledoorhingel]
-model=model_loc_71
-mirror=yes
-active=no
-raiseobject=no
-
-[castledoubledoorr]
-model=model_loc_71
-active=no
-raiseobject=no
-
-[opencastledoubledoorr]
+[loc_1523]
 model=model_loc_71
 mirror=yes
 active=no
 raiseobject=no
 
-[doubledoorhinger]
+[loc_1524]
+model=model_loc_71
+active=no
+raiseobject=no
+
+[loc_1525]
+model=model_loc_71
+mirror=yes
+active=no
+raiseobject=no
+
+[loc_1526]
 name=Curtain
 desc=The curtain is closed.
 model=model_loc_1526
@@ -8470,12 +8470,12 @@ active=yes
 op1=Open
 raiseobject=no
 
-[inaccastledoubledoorl]
+[loc_1527]
 model=model_loc_1527
 active=no
 raiseobject=no
 
-[inaccastledoubledoorr]
+[loc_1528]
 name=Curtain
 desc=The curtain is closed.
 model=model_loc_1526
@@ -8483,7 +8483,7 @@ active=yes
 op1=Open
 raiseobject=no
 
-[inaccastledoubledoorlopen]
+[loc_1529]
 name=Curtain
 desc=The curtain is open.
 model=model_loc_1527
@@ -8493,23 +8493,23 @@ blockwalk=no
 blockrange=no
 raiseobject=no
 
-[prisondooropen]
+[loc_1547]
 model=model_loc_1547
 blockrange=no
 raiseobject=no
 
-[inactiveprisondoor]
+[loc_1548]
 model=model_loc_1547
 mirror=yes
 blockrange=no
 raiseobject=no
 
-[prisondoor_r]
+[loc_1549]
 model=model_loc_1549
 blockrange=no
 raiseobject=no
 
-[prisondooropen_r]
+[loc_1550]
 model=model_loc_1549
 mirror=yes
 blockrange=no
@@ -8528,7 +8528,7 @@ active=no
 blockrange=no
 raiseobject=no
 
-[openfencegate_l]
+[loc_1559]
 name=Gate
 model=model_loc_1559
 length=2
@@ -12310,46 +12310,46 @@ mapscene=44
 model=model_loc_771
 mapscene=45
 
-[loc_2493]
+[runetemple_pillar_new1]
 name=Ruined Pillar
 desc=A part of an old temple.
 model=model_loc_2493
 
-[loc_2494]
+[runetemple_pillar_new2]
 name=Ruined Pillar
 desc=A part of an old temple.
 model=model_loc_2494
 
-[loc_2495]
+[runetemple_pillar_new_top]
 name=Ruined Pillar
 desc=A part of an old temple.
 model=model_loc_2495
 width=3
 
-[loc_2496]
+[runetemple_standingstone_new]
 model=model_loc_2496
 forcedecor=yes
 
-[loc_2497]
+[runetemple_standingstone_old]
 name=Mysterious stone
 desc=Unusual energy is gathered here.
 model=model_loc_2497
 
-[loc_2498]
+[runetemple_standingstone_glow]
 name=Mysterious glow
 desc=Unusual energy is gathered here.
 model=model_loc_2498
 ambient=100
 anim=stoneglow
 
-[loc_2499]
+[runetemple_standingstone_glow_air]
 name=Mysterious glow
 desc=Unusual energy is gathered here.
 model=model_loc_2498
 ambient=100
 anim=stoneglow
 
-[loc_2500]
+[runetemple_standingstone_glow_water]
 name=Mysterious glow
 desc=Unusual energy is gathered here.
 model=model_loc_2498
@@ -12358,7 +12358,7 @@ ambient=60
 recol1s=28538
 recol1d=15871
 
-[loc_2501]
+[runetemple_standingstone_glow_fire]
 name=Mysterious glow
 desc=Unusual energy is gathered here.
 model=model_loc_2498
@@ -12367,7 +12367,7 @@ ambient=60
 recol1s=28538
 recol1d=18465
 
-[loc_2502]
+[runetemple_standingstone_glow_body]
 name=Mysterious glow
 desc=Unusual energy is gathered here.
 model=model_loc_2498
@@ -12376,44 +12376,45 @@ ambient=60
 recol1s=28538
 recol1d=12488
 
-[loc_2503]
+[runetemple_pillar_old1]
 name=Pillar
 desc=An old crumbled pillar.
 model=model_loc_2503
 
-[loc_2504]
+[runetemple_pillar_old2]
 name=Pillar
 desc=An old crumbled pillar.
 model=model_loc_2504
 
-[loc_2505]
+[runetemple_pillar_old3]
 name=Pillar
 desc=An old crumbled pillar.
 model=model_loc_2505
 width=2
 
-[loc_2506]
+[runetemple_pillar_old4]
 name=Pillar
 desc=An old crumbled pillar.
 model=model_loc_2506
 
-[loc_2507]
+// [sic] "ol45" (typo of old5?)
+[runetemple_pillar_ol45]
 name=Pillar
 desc=An old crumbled pillar.
 model=model_loc_2507
 width=3
 
-[loc_2508]
+[runetemple_rubble1]
 name=Rubble
 desc=Broken parts of an old temple.
 model=model_loc_2508
 
-[loc_2509]
+[runetemple_rubble2]
 name=Rubble
 desc=Broken parts of an old temple.
 model=model_loc_2509
 
-[loc_2510]
+[runetemple_rubble3]
 name=Rubble
 desc=Broken parts of an old temple.
 model=model_loc_2510
@@ -12776,7 +12777,7 @@ model=model_loc_2668
 op1=Look at
 op2=Use
 
-[shantay_pass]
+[shantay_pass_henge_doorway]
 name=Shantay pass
 desc=Looks like a stone doorway to me.
 model=model_loc_407
@@ -12941,7 +12942,7 @@ model=model_loc_71
 op1=Open
 op2=Search
 category=double_door_open_and_close_left
-param=next_loc_stage,opencastledoubledoorl
+param=next_loc_stage,loc_1522
 
 [thttmineexitr]
 name=Mine door entrance
@@ -12951,7 +12952,7 @@ mirror=yes
 op1=Open
 op2=Search
 category=double_door_open_and_close_right
-param=next_loc_stage,doubledoorhingel
+param=next_loc_stage,loc_1523
 
 [ttcellclimbrock1]
 name=Rock
@@ -14958,7 +14959,7 @@ model=model_loc_3206
 model=model_loc_3207
 active=no
 
-[loc_3208]
+[death_camp_roof]
 model=loc_3208
 recol1s=22126
 recol1d=21071

@@ -4,7 +4,7 @@ if (%ownedmcannon = null) {
     return;
 }
 if (loc_find(%ownedmcannon, dwarf_multicannon1) = false) {
-    mes("Your cannon has decayed."); // https://runescape.wiki/w/Update:Patch_Notes_(6_May_2009)
+    mes("Your cannon has decayed!"); // https://i.imgur.com/Sw6twUP.png (2006) https://runescape.wiki/w/Update:Patch_Notes_(6_May_2009)
     cleartimer(cannon_decay);
 }
 

@@ -7,7 +7,7 @@ if(p_finduid(uid) = false) return;
 %journey_number = $var;
 // todo: should com_0 be set to "You sail to <$place_name>."?
 if_openmain(ship_journey);
-midi_jingle(^sailing_journey_jingle, ^sailing_journey_jingle_millis);
+midi_jingle("sailing journey");
 
 [debugproc,objbox](obj $obj)
 if (p_finduid(uid) = true) {

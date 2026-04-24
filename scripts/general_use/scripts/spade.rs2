@@ -55,7 +55,7 @@ if(map_members = ^true & ~trail_hasclue_inv = true) {
                     // this prevents other players from attacking w/manual cast, this might've been a later change
                     %npc_lastcombat = sub(^max_32bit_int, 8);
                     %npc_aggressive_player = uid;
-                    npc_setmode(applayer2);
+                    npc_setmode(opplayer2);
                     return;
                 }
             }

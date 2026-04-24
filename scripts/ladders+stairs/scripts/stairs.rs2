@@ -374,8 +374,11 @@ switch_coord (loc_coord) {
 p_arrivedelay;
 // 0 43 29: 2616 10 2
 switch_coord (loc_coord) {
-    case 0_48_52_43_29 : p_telejump(0_48_152_5_43); // draynor manor stairs to the vampire
-    case default : @unhandled_stairs(loc_coord);
+    case 0_48_52_43_29 : // draynor manor stairs to the vampire // https://youtu.be/JmlR1NcDkGI?si=vd58QL7jZd1weQAi&t=168
+        p_telejump(0_48_152_5_43);
+        mes("You walk down the stairs...");
+    case default : @unhandled_stairs(loc_coord);     
+
 }
 
 [oploc1,cryptstairsup]

@@ -177,7 +177,7 @@ if_openmain(crafting_jewelry);
 
 
 //--- Label to check if the player has high enough level
-//--- also calcs the real count of jewelry, and calls the weakqueue
+//--- also calcs the real count of jewelry, and crafts it
 [label,craft_gold](inv $crafting_inv, int $last, int $count)
 def_obj $jewelry_obj = inv_getobj($crafting_inv, $last);
 // check if mems objs are selected
@@ -201,16 +201,6 @@ if (afk_event = ^true) {
     return;
 }
 def_namedobj $gem = struct_param($struct, gem);
-// ****** FOR WEAKQUEUE *******
-// // make sure the player doesnt produce more than they can
-// // the gem_total is only 0 when the player selects gold crafting
-// def_int $gem_total = inv_total(inv,  struct_param($struct, gem));
-// if ($gem_total = 0) {
-//     $count = min($count, inv_total(inv, gold_bar));
-// } else {
-//     $count = min(min($count, inv_total(inv, gold_bar)), $gem_total);
-// }
-// ****** FOR WEAKQUEUE *******
 def_int $productexp = struct_param($struct, productexp);
 def_namedobj $product = struct_param($struct, product);
 // mes(oc_debugname($product));
@@ -219,7 +209,6 @@ anim(human_furnace, 0);
 sound_synth(furnace, 0, 0);
 p_delay(2);
 ~crafting_gold($product, $gem, $productexp, $count);
-// weakqueue(crafting_gold, 1, $productexp, $gem, $product, $count);
 //----------------------
 
 [proc,crafting_gold](namedobj $product, namedobj $gem, int $productexp, int $count)
@@ -326,43 +315,3 @@ inv_add(inv, $product, 1);
 stat_advance(crafting, struct_param($struct, productexp));
 // Confirmed, no period at the end. https://i.imgur.com/sCKRVO9.png
 mes("You make <~add_article(struct_param($struct, name))>");
-
-// weakqueue(crafting_silver, 1, $productexp, $product);
-//----------------------
-
-
-//******************* WEAKQUEUES NOT-USED UNTIL SEPT 2004 *******************
-// //--- weakqueue to craft gold jewelry, should craft jewelry at a rate of 3 ticks.
-// //    And should repeat until the specified count is reached.
-// [weakqueue,crafting_gold](int $productexp, namedobj $gem, namedobj $product, int $count)
-// //mes(oc_name($product));
-// //mes(tostring($count));
-
-// inv_del(inv, gold_bar, 1);
-// inv_del(inv, $gem, 1);
-// inv_add(inv, $product, 1);
-// stat_advance(crafting, $productexp);
-
-// $count = calc($count - 1);
-// if ($count < 1) {
-//     return;
-// }
-// // these go after
-// anim(human_furnace, 0);
-// sound_synth(furnace, 0, 0);
-// // requeue itself
-// weakqueue(crafting_gold, 3, $productexp, $gem, $product, $count);
-// //----------------------
-
-
-// //---weakqueue to craft silver jewelry at a rate of 2 + 1 ticks.
-// //   only crafts one at a time.
-// [weakqueue,crafting_silver](int $productexp, namedobj $product)
-// inv_del(inv, silver_bar, 1);
-// inv_add(inv, $product, 1);
-// stat_advance(crafting, $productexp);
-
-// // plays the anim again
-// anim(human_furnace, 0);
-// //----------------------
-

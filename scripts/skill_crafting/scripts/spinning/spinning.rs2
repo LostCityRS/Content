@@ -1,4 +1,4 @@
-[oplocu,spinning_wheel]
+[oplocu,_spinning_wheel]
 switch_obj (last_useitem) 
 {
     case wool : @craft_spinning(last_useitem);
@@ -11,7 +11,7 @@ switch_obj (last_useitem)
     case ball_of_wool : ~objbox(ball_of_wool, "You have already spun this wool.", 250, 0, divide(^objbox_height, 2));
     case bow_string : ~objbox(bow_string, "You have already spun this bow string.", 250, 0, divide(^objbox_height, 2));
     case default : ~displaymessage(^dm_default);
-};
+}
 
 [label,craft_spinning](obj $spinning_obj)
 def_struct $struct = oc_param($spinning_obj, crafting_spinning_struct);
@@ -32,25 +32,6 @@ loc_anim(spinningwheel);
 sound_synth(spinning, 0, 0);
 inv_del(inv, struct_param($struct, ingredient), 1);
 inv_add(inv, struct_param($struct, product), 1);
-mes(struct_param($struct, processmessage));
+mes(struct_param($struct, productmessage));
 stat_advance(crafting, struct_param($struct, productexp));
-p_delay(3);
-//weakqueue(crafting_spinning, 2, $struct);
-
-/**
-//May have not used weakqueue for this back then https://youtu.be/eQEYx8hwA_I?t=410
-// todo flax spinning must have been queue because of 2 diff messages: https://youtu.be/HQEpeWAUMbI?t=51
-// todo one for in queue and one out of queue. -jordan
-[weakqueue,crafting_spinning](struct $struct)
-// delete item
-inv_del(inv, struct_param($struct, ingredient), 1);
-
-// add item
-inv_add(inv, struct_param($struct, product), 1);
-// display game message
-mes(struct_param($struct, processmessage));
-
-stat_advance(crafting, struct_param($struct, productexp));
-*/
-
-
+p_delay(2);
