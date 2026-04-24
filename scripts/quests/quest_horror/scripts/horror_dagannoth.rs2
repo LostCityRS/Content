@@ -104,6 +104,7 @@ if (~check_protect_prayer(^ranged_style) = true) {
     $damage = 0;
     $damage2 = 0;
 }
+anim(%com_defendanim, $duration);
 queue(combat_damage_player, calc($duration / 30), $damage);
 if($double_roll = ^true) queue(combat_damage_player, calc($duration / 30), $damage2);
 queue*(playerhit_n_retaliate, calc($duration / 30))(npc_uid);
