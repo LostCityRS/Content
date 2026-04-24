@@ -13,10 +13,14 @@ switch_int(%eadgar_quest) {
 [label,eadgar_quest_initial_tree]
 switch_int(~p_choice4("I need to find some goutweed.", 1, "Why do you live so close to the trolls?", 2, "What do you have to offer?", 3, "No thanks, Eadgar.", 4)) {
     case 1 : @eadgar_need_goutweed;
-    case 2 : ~eadgar_live_so_close;
-    case 3 : ~eadgar_what_do_you_have;
-    case 4 : ~eadgar_nothanks;
-} 
+    case 2 : @eadgar_live_so_close;
+    case 3 : @eadgar_what_do_you_have;
+    case 4 : @eadgar_nothanks;
+}
+
+[label,eadgar_anything_else_default_tree]
+~chatnpc("<p,quiz>Anything else I can do for you?");
+@eadgar_default_tree;
 
 [label,eadgar_need_goutweed]
 // dialog source https://youtu.be/tEsRQ9fXIU?t=150
@@ -53,8 +57,7 @@ if(%eadgar_quest = ^eadgar_spoken_burntmeat) {
     ~chatplayer("<p,quiz>A PARROT? Where am I going to find one of those?");
     ~chatnpc("<p,neutral>At the zoo, where else?");
     %eadgar_quest = ^eadgar_spoken_eadgar2;
-    ~chatnpc("<p,quiz>Anything else I can do for you?");
-    ~eadgar_default_tree;    
+    @eadgar_anything_else_default_tree;  
 } else {
     // todo dialog branch for if you haven't talked to burntmeat yet
     // even wiki transcript does not have this ;) https://oldschool.runescape.wiki/w/Transcript:Eadgar%27s_Ruse#Taking_to_Eadgar_again_before_talking_to_Burntmeat
@@ -67,7 +70,7 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
     ~chatplayer("<p,quiz>Here it is! How are you going to explain your plan?");
     ~chatnpc("<p,happy>Yes, yes, of course. It's quite ingenious really!");
     ~chatnpc("<p,neutral>What we need is something that looks like a human,|sounds like a human, smells like a human and tastes|like a human."); //linebreaks from from runeweb, one of the few 2004-era images we have of this quest
-    ~chatplayer("<p,quiz>How ae we going to make it look like a human?");
+    ~chatplayer("<p,quiz>How are we going to make it look like a human?");
     ~chatnpc("<p,neutral>We'll just make a scarecrow. We'll need logs, and 10 sheaves of wheat for stuffing.");
     ~chatplayer("<p,quiz>How are we going to make it sound like a human?");
     ~chatnpc("<p,neutral>That's what the parrot's for, of course.");
@@ -81,12 +84,24 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
     ~chatnpc("<p,neutral>That's easy, we'll just stuff it with a few chickens. Everything tastes like chicken! Five raw chickens should be enough!");
     %eadgar_quest = ^eadgar_spoken_eadgar3;
     ~chatnpc("<p,quiz>That's the plan. Anything else I can do for you?");
-    ~eadgar_default_tree;
+    @eadgar_default_tree;
 } else {
-    // presumably this checks for whether or not the parrot is in the inventory?
-    // will have to check if osrs even increments the varp for this quest stage
-    // or if it's purely based on having the parrot in your inventory
+    // osrs wiki. needs mesanims
+    ~chatplayer("<p,sad>I haven't been able to find one yet.");
+    ~chatnpc("<p,neutral>Well, go see if the zoo have one."); // "have" instead of "has" appears to be authentic
+    @multi2("Where's the zoo?", eadgar_where_zoo, "Okay, I'll be right back.", eadgar_brb); 
 }
+
+// wiki, need mesanims
+[label,eadgar_where_zoo]
+~chatplayer("<p,quiz>Where's the zoo?");
+~chatnpc("<p,neutral>It's in Ardougne, south west of here.");
+@eadgar_brb;
+
+// wiki, need mesanims
+[label,eadgar_brb]
+~chatplayer("<p,neutral>Okay, I'll be right back.");
+@eadgar_anything_else_default_tree;
 
 // if we've shown the parrot to eadgar but haven't hidden it yet
 // this blocks turning in the other scarecrow supplies
@@ -239,10 +254,7 @@ if(testbit(%eadgar_bits, ^eadgar_given_logs) ! 1 | $chickens_needed > 0 | $grain
         case 0 : $clothes_str = "the dirty clothes";
     }
     ~chatnpc("<p,neutral>You now need <$logs_str>, <$chickens_str>, <$grain_str> and <$clothes_str>.");
-    ~chatnpc("<p,quiz>Anything else I can do for you?"); // this line is used in a couple different contexts at this point before
-    // forwarding to the default tree but ALSO there are other lines used sometimes so rather than duplicating this dialog 3x
-    // it should probably be in its own tiny label
-    ~eadgar_default_tree;
+    @eadgar_anything_else_default_tree;
 } else {
     @eadgar_thats_everything;
 }
@@ -261,8 +273,7 @@ if(testbit(%eadgar_bits, ^eadgar_given_logs) ! 1 | $chickens_needed > 0 | $grain
 ~chatnpc("<p,neutral>You'll have to dry it in a fire, then grind it and mix it into a potion with Ranarr weed.");
 ~chatplayer("<p,neutral>Okay, I'll be back with that soon.");
 %eadgar_quest = ^eadgar_given_all_items; // todo unsure if this is where the varp really updates
-~chatnpc("<p,quiz>Anything else I can do for you?");
-~eadgar_default_tree;
+@eadgar_anything_else_default_tree;
 
 [label,eadgar_got_troll_truth_potion]
 if(inv_total(inv, eadgar_ground_troll_thistle_potion) > 0) {
@@ -286,7 +297,7 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
     // to match OSRS videos - the drunk parrot/fake man swap is queued
     // and does not occur until the player clicks through or cancels eadgar's default dialog tree
     queue(eadgar_get_fake_man, 0, 0);
-    ~eadgar_default_tree;
+    @eadgar_default_tree; // todo check to make sure this being a label doesn't mess with the queue
 } else {
     // presumably something here for if you grabbed but lost the parrot?
     // also need dialog for if you haven't gone back for it yet

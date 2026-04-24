@@ -34,22 +34,22 @@ switch_int(random(4)) {
 if(%eadgar_quest = ^eadgar_spoken_sanfew) {
     @eadgar_quest_initial_tree;
 } else {
-    ~eadgar_default_tree;
+    @eadgar_default_tree;
 }
 
-[proc,eadgar_default_tree]
+[label,eadgar_default_tree]
 switch_int(~p_choice3("Why do you live so close to the trolls?", 1, "What do you have to offer?", 2, "No thanks, Eadgar.", 3)) {
-    case 1 : ~eadgar_live_so_close;
-    case 2 : ~eadgar_what_do_you_have;
-    case 3 : ~eadgar_nothanks;    
+    case 1 : @eadgar_live_so_close;
+    case 2 : @eadgar_what_do_you_have;
+    case 3 : @eadgar_nothanks;    
 }
 
-[proc,eadgar_live_so_close]
+[label,eadgar_live_so_close]
 ~chatplayer("<p,confused>Why do you live so close to the trolls? Isn't it dangerous?");
 ~chatnpc("<p,happy>Well, I suppose I do keep getting captured by the trolls and thrown in prison...But they always release me in the end, I'm far too old and skinny for their tastes.");
 ~chatnpc("<p,happy>In any case, this is my home, and I'm not leaving it. And this area has the tastiest goats!");
 
-[proc,eadgar_what_do_you_have]
+[label,eadgar_what_do_you_have]
 ~chatplayer("<p,confused>What do you have to offer?");
 ~chatnpc("<p,happy>The chef's recommendation for today is mountain goat stew. I'll give some stew in exchange for logs for my fire. They're hard to come by around here.");
 switch_int(~p_choice2("I'd like some mountain goat stew, please.", 1, "No thanks, Eadgar.", 2)) {
@@ -71,9 +71,9 @@ switch_int(~p_choice2("I'd like some mountain goat stew, please.", 1, "No thanks
             mes("It heals some health.");
             stat_heal(hitpoints, 20, 0);
         }
-    case 2 : ~eadgar_nothanks;
+    case 2 : @eadgar_nothanks;
 }
 
-[proc,eadgar_nothanks]
+[label,eadgar_nothanks]
 ~chatplayer("<p,neutral>No thanks, Eadgar.");
 ~chatnpc("<p,happy>Your loss!");
