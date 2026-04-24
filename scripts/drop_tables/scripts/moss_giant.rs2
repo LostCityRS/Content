@@ -1,4 +1,8 @@
-[ai_queue3,mossgiant]
+[ai_queue3,mossgiant] @moss_giant_death;
+[ai_queue3,mossgiant2] @moss_giant_death;
+[ai_queue3,mossgiant3] @moss_giant_death;
+
+[label,moss_giant_death]
 gosub(npc_death);
 if (npc_findhero = ^false) {
     return;

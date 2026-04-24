@@ -173,9 +173,6 @@ if(add($val, ~death_get_haroldgold) >= 10000) {
     %death_bits = setbit_range_toint(%death_bits, $val, ^harold_money_lower, ^harold_money_upper);
 }
 
-[proc,death_clear_dicegame]()(int)
-clearbit_range(%death_bits, ^death_haroldroll_lower, ^death_goldclaimed);
-
 [proc,death_get_map]()(int)
 return (getbit_range(%death_map, ^death_map_lower, ^death_map_upper));
 
