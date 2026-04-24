@@ -2,10 +2,11 @@
 // 2014 OSRS: https://youtu.be/945tUgBj3SM?t=14
 
 [if_button,questlist:eadgar]
+def_int $quest_progress = %eadgar_quest;
 def_string $prev_text;
 def_string $new_text;
 
-if(%eadgar_quest < ^eadgar_spoken_sanfew) {
+if($quest_progress < ^eadgar_spoken_sanfew) {
     // https://youtu.be/945tUgBj3SM?t=14
     $prev_text = "@dbl@I can start this quest by speaking to @dre@Sanfew@dbl@ after|@dbl@completing the @dre@Druidic Ritual@dbl@ quest in @dre@Taverley@dbl@. To complete|@dbl@this quest I need @dre@Level 31 Herblore@dbl@. I also need to have|@dbl@rescued @dre@Mad Eadgar@dbl@ from the @dre@Troll Stronghold";
 } else {
@@ -14,32 +15,52 @@ if(%eadgar_quest < ^eadgar_spoken_sanfew) {
     $prev_text = "@str@Sanfew asked me to find him some Goutweed.";
 }
 
-if(%eadgar_quest = ^eadgar_spoken_sanfew) {
+if($quest_progress = ^eadgar_spoken_sanfew) {
     // https://youtu.be/945tUgBj3SM?t=118
     $new_text = append($prev_text, "||@dbl@I need to find out where to get @dre@Goutweed - Mad Eadgar@dbl@ may|@dbl@be able to help.");
-} else if(%eadgar_quest = ^eadgar_spoken_eadgar) {
+}
+
+if($quest_progress = ^eadgar_spoken_eadgar) {
     // https://youtu.be/945tUgBj3SM?t=251   
     $new_text = append($prev_text, "||@dbl@I need to find out where to get @dre@Goutweed - @dbl@I should ask the|@dre@Troll Cook.");
-} else if(%eadgar_quest = ^eadgar_spoken_burntmeat) {
+} 
+
+if($quest_progress >= ^eadgar_spoken_burntmeat) {
     // https://youtu.be/945tUgBj3SM?t=357
     $prev_text = append($prev_text, "|@str@The Troll Cook will tell me how to find goutweed if I bring him|@str@a tasty human.");
-    $new_text = append($prev_text, "||@dbl@I need to get @dre@a tasty human@dbl@ for the @dre@Troll Cook. Mad Eadgar|@dbl@may be able to help.");
-} else if(%eadgar_quest = ^eadgar_spoken_eadgar2) {
+    if($quest_progress = ^eadgar_spoken_burntmeat) {
+        $new_text = append($prev_text, "||@dbl@I need to get @dre@a tasty human@dbl@ for the @dre@Troll Cook. Mad Eadgar|@dbl@may be able to help.");
+    }
+} 
+
+if($quest_progress >= ^eadgar_spoken_eadgar2) {
     // from RS3
     $prev_text = append($prev_text, "|@str@Mad Eadgar has a plan.");
-    $new_text = append($prev_text, "||@dbl@I need to bring Eadgar a @dre@parrot @dbl@from the @dre@Zoo");
-} else if(%eadgar_quest = ^eadgar_spoken_eadgar3) {
+    if($quest_progress = ^eadgar_spoken_eadgar2) {
+        $new_text = append($prev_text, "||@dbl@I need to bring Eadgar a @dre@parrot @dbl@from the @dre@Zoo");
+    }
+}
+
+if($quest_progress >= ^eadgar_spoken_eadgar3) {
     // https://youtu.be/945tUgBj3SM?t=569
     $prev_text = append($prev_text, "||@str@I got the parrot Eadgar wanted.");
-    $new_text = append($prev_text, "||@dbl@I need to @dre@hide the parrot@dbl@ somewhere it can hear what Trolls|@dbl@expect humans to sound like.");
-} else if (%eadgar_quest = ^eadgar_hid_parrot) {
+    if($quest_progress = ^eadgar_spoken_eadgar3) {
+        $new_text = append($prev_text, "||@dbl@I need to @dre@hide the parrot@dbl@ somewhere it can hear what Trolls|@dbl@expect humans to sound like.");
+    }
+}
+
+if ($quest_progress >= ^eadgar_hid_parrot) {
     // from RS3
     $prev_text = append($prev_text, "|@str@I hid the parrot under the rock in the Troll prison.");
-    $new_text = append($prev_text, "||@dbl@I should go and find out the rest of Mad Eadgar's plan.");
-} else if (%eadgar_quest = ^eadgar_spoken_eadgar4) {
+    if($quest_progress = ^eadgar_hid_parrot) {
+        $new_text = append($prev_text, "||@dbl@I should go and find out the rest of Mad Eadgar's plan.");
+    }
+} 
+
+if ($quest_progress = ^eadgar_spoken_eadgar4) {
     // from RS3. todo see if OSRS does the list of remaining needed items too
     $new_text = "||@dbl@Eadgar wants to make a @dre@fake human @dbl@to give the troll cook.|@dbl@I still need to bring him:";
-    
+
     def_int $chickens_needed = calc(5 - %eadgar_chickens);
     def_int $grain_needed = calc(10 - %eadgar_grain);
     def_string $items_remaining = "";
@@ -59,17 +80,84 @@ if(%eadgar_quest = ^eadgar_spoken_sanfew) {
 
     $new_text = append($prev_text, $new_text);
     $new_text = append($new_text, $items_remaining);
-} else if(%eadgar_quest = ^eadgar_given_all_items) {
-    // https://youtu.be/945tUgBj3SM?t=775 - no period at the end of the new text, linebreaks seem wonky, need a 2004-era source
-    
-    $new_text = append($prev_text, "|@str@Eadgar wants to make a fake human to give the troll cook. I|@str@gave Eadgar everything he needed.|@dbl@I need to make a troll truth potion by putting @dre@dried, @dre@ground troll thistle @dbl@in a @dre@potion of ranarr weed"); 
-} else if(%eadgar_quest = ^eadgar_made_potion) {
-    // LP41 video @ 14:06
-    // also no period at the end! linebreak at the end is a little weird similar to above
-    $new_text = "@str@Sanfew asked me to find him some Goutweed.|@str@The Troll Cook will tell me how to find goutweed if I bring him|@str@a tasty human.|@str@Mad Eadgar has a plan.||@str@I got the parrot Eadgar wanted.|@str@I hid the parrot under the rock in the Troll prison.|@str@Eadgar wants to make a fake human to give the troll cook. I|@str@gave Eadgar everything he needed.|@dbl@I made the Troll potion. I should go give it to Mad @dre@Eadgar";
-} else if(%eadgar_quest = ^eadgar_got_fake_man) {
-    // LP41 video @ 14:56 - no period! linebreaks seem ok here
-    $new_text = "@str@Sanfew asked me to find him some Goutweed.|@str@The Troll Cook will tell me how to find goutweed if I bring him|@str@a tasty human.|@str@Mad Eadgar has a plan.||@str@I got the parrot Eadgar wanted.|@str@I hid the parrot under the rock in the Troll prison.|@str@Eadgar wants to make a fake human to give the troll cook. I|@str@gave Eadgar everything he needed.|@str@I made the Troll potion and gave it to Mad Eadgar.|@str@I fetched the parrot back from the Troll prison rack and|@str@gave it to Eadgar.||@str@I got Eadgar's fake man.|@dbl@I should give the fake man to the @dre@Troll cook";
+} 
+
+if($quest_progress >= ^eadgar_given_all_items) {
+    // https://youtu.be/945tUgBj3SM?t=775 - no period at the end of the new text
+    $prev_text = append($prev_text, "|@str@Eadgar wants to make a fake human to give the troll cook. I|@str@gave Eadgar everything he needed.");
+    if($quest_progress = ^eadgar_given_all_items) {
+        $new_text = append($prev_text, "|@dbl@I need to make a troll truth potion by putting @dre@dried, @dre@ground|@dre@troll thistle @dbl@in a @dre@potion of ranarr weed"); 
+    }
+}
+
+if($quest_progress = ^eadgar_made_potion) {
+    // https://youtu.be/945tUgBj3SM?t=846 - also no period at the end of the new text
+    // 2007 linebreak doesn't work here, the final word "Eadgar" winds up on its own line. need 2004-era source
+    $new_text = append($prev_text, "|@dbl@I made the Troll potion. I should go give it to @dre@Mad @dre@Eadgar");
+}
+
+if($quest_progress >= ^eadgar_given_potion) {
+    // from RS3
+    $prev_text = append($prev_text, "|@str@I made the Troll potion and gave it to Mad Eadgar.");
+    if($quest_progress = ^eadgar_given_potion) {
+        $new_text = append($prev_text, "|@dre@I think we're missing this update actually! We have the prev_text from RS3 but not the new text for this stage.");
+    }
+}
+
+if($quest_progress >= ^eadgar_retrieved_parrot) {
+    // from RS3 - the new line is "blue" (orange) in RS3 as opposed to "red" (yellow)
+    $prev_text = append($prev_text, "|@str@I fetched the parrot back from the Troll prison rack");
+    if($quest_progress = ^eadgar_retrieved_parrot) {
+        $new_text = append($prev_text, ".|@dbl@I should go tell Eadgar.");
+    }
+}
+
+if($quest_progress >= ^eadgar_got_fake_man) {
+    // https://youtu.be/945tUgBj3SM?t=896 - once again, no period at the end of the new text. 2007 linebreaks work fine here
+    $prev_text = append($prev_text, " and|@str@gave it to Eadgar.||@str@I got Eadgar's fake man");
+    if($quest_progress = ^eadgar_got_fake_man) {
+        $new_text = append($prev_text, ".|@dbl@I should give the fake man to the @dre@Troll cook");
+    }
+}
+
+if($quest_progress >= ^eadgar_gave_fake_man) {
+    // from RS3. no clue on linebreaks here, I clipped them wherever they landed. need a better source!
+    //$prev_text = append($prev_text, " and gave it to the troll cook. The|@str@troll cook told me the key to the storeroom is in a fake|@str@bottom in the kitchen drawers.");
+    $prev_text = append($prev_text, " and gave it to the troll cook. The|@str@troll cook has NOT YET told me where the key to the @str@storeroom is but I think we're missing a journal update so @str@I don't know what goes here yet.");
+    if($quest_progress = ^eadgar_gave_fake_man) {
+        //$new_text = append($prev_text, "||@dbl@I should get the @dre@key to the storeroom @dbl@and unlock it.");
+        $new_text = append($prev_text, "||I DON'T KNOW that I should get the key to the storeroom yet because this is the wrong journal update.");
+    }
+}
+
+// my theory is that handing in the fake man is separate from learning the location of the key so we may be missing a journal update here.
+// eadgar_gave_fake_man shouldn't incldue the location of the key, rather it should say something else (idk what)
+// and ^eadgar_spoken_burntmeat2 should update the journal line with the key location ONLY AFTER the relevant dialog with burntmeat has been triggered
+
+// see, I think the actual text for the above journal update should really go here
+// and the one above this should say something else
+if($quest_progress >= ^eadgar_spoken_burntmeat2) {
+    // from RS3. no clue on linebreaks here, I clipped them wherever they landed. need a better source!
+    $prev_text = append($prev_text, " and gave it to the troll cook. The|@str@troll cook told me the key to the storeroom is in a fake|@str@bottom in the kitchen drawers.");
+    if($quest_progress = ^eadgar_spoken_burntmeat2) {
+        $new_text = append($prev_text, "||@dbl@I should get the @dre@key to the storeroom @dbl@and unlock it.");
+    }
+}
+
+if($quest_progress >= ^eadgar_unlocked_storeroom) {
+    // from RS3
+    $prev_text = append($prev_text, "||@str@I've unlocked the storeroom!");
+    if(inv_total(inv, eadgar_goutweed_herb) = 0) {
+        $new_text = append($prev_text, "|@dbl@I should sneak in and get some @dre@goutweed"); // no period at the end of this line
+    } else { // todo does this journal line reversion for dropping the goutweed also occur if the goutweed is banked? how is this checked?
+        $new_text = append($prev_text, "|@str@I snuck into the storeroom and got some goutweed.|@dbl@I should bring this to @dre@Sanfew and collect my reward.");
+    }
+}
+
+if($quest_progress = ^eadgar_complete) {
+    // RS3, added linebreaks wherever the line split
+    $prev_text = append($prev_text, "|@str@I snuck into the storeroom and got some goutweed. I gave|@str@it to Sanfew and he taught me the Trollheim Teleport spell.");
+    $new_text = append($prev_text, "||@dre@QUEST COMPLETE!");
 }
 
 ~quest_journal("Eadgar's Ruse", $new_text);
