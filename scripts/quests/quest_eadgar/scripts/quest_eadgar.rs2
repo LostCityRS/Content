@@ -120,8 +120,9 @@ if(%eadgar_quest = ^eadgar_spoken_eadgar3) {
     inv_del(inv, eadgar_drunk_parrot, 1);
     mes("You hide the parrot under the torture rack."); //osrs
     %eadgar_quest = ^eadgar_hid_parrot;
-} else {
-    mes("todo does this say anything when trying to hide the parrot prematurly");
+} else if(%eadgar_quest >= ^eadgar_retrieved_parrot) {
+    // OSRS wiki
+    mes("Why would you want to do that?");
 }
 
 [label,eadgar_hid_parrot]

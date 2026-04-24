@@ -1,9 +1,16 @@
-// moved to the eadgar's ruse folder in 274 since this is burntmeat's first quest-related appearance
+/* Moved to the Eadgar's Ruse directory in 274 since this is Burntmeat's first quest-related appearance */
 [opnpc1,eadgar_troll_chief_cook]
-    if(%eadgar_quest = ^eadgar_gave_fake_man) {
-        @burntmeat_gave_fake_man; // not sure if this is correct
-    }
-    if(%eadgar_quest = ^eadgar_got_fake_man & inv_total(inv, eadgar_fake_man) > 0) {
+if(%eadgar_quest > ^eadgar_spoken_burntmeat & %eadgar_quest < ^eadgar_got_fake_man) {
+    // wiki, need mesanims
+    ~chatnpc("<p,quiz>Did you find tasty human?");
+    ~chatplayer("<p,neutral>Erm, not yet, but I'm working on it...");
+}
+if(%eadgar_quest = ^eadgar_gave_fake_man) {
+    // osrs wiki
+    ~chatplayer("<p,quiz>How's the stew?");
+    @burntmeat_gave_fake_man;
+}
+if(%eadgar_quest = ^eadgar_got_fake_man & inv_total(inv, eadgar_fake_man) > 0) {
     // source from soup's vid, need mesanims
     ~chatnpc("<p,neutral>Did you find tasty human? Burntmeat smell something good.");
     ~chatplayer("<p,happy>Yes! Look!");
@@ -18,9 +25,6 @@
     ~chatplayer("<p,neutral>This is burnt meat.");
     ~chatnpc("<p,neutral>It first thing I ever try to cook! Very precious to Burntmeat.");
     ~chatplayer("<p,quiz>Thank you... and how's the stew?");
-    ~chatnpc("<p,neutral>Slurp, mmm... Human stew cheer Burntmeat up!");
-    // maybe varp ticks here and further interaction with burntmeat goes straight to this branch?
-    // what happens if dialog is cancelled and re-initiated at this point?
     @burntmeat_gave_fake_man;
 } else {
     ~chatplayer("<p,neutral>Er, hi.");
@@ -42,6 +46,7 @@ if(%eadgar_quest = ^eadgar_spoken_eadgar) {
 }
 
 [label,burntmeat_gave_fake_man]
+~chatnpc("<p,neutral>Slurp, mmm... Human stew cheer Burntmeat up!");
 switch_int(~p_choice2("So, where can I get some goutweed?", 1, "I'll be going now.", 2)) {
     case 1 : @burntmeat_where_goutweed;
     case 2 : @burntmeat_ill_be_going;
@@ -56,8 +61,9 @@ switch_int(~p_choice2("So, where can I get some goutweed?", 1, "I'll be going no
 
 
 [label,burntmeat_ill_be_going]
-// todo verify
+// OARS wiki, need mesanims
 ~chatplayer("<p,neutral>I'll be going now.");
+~chatnpc("<p,neutral>Bye bye.");
 
 // todo probably need to check burntmeat's other dialog for all stages of the quest
 
