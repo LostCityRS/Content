@@ -101,7 +101,7 @@ if(%death_equiproom = ^death_complete & %troll_quest = ^troll_complete) {
 
 [label,sanfew_ill_do_it] 
 %eadgar_quest = ^eadgar_spoken_sanfew;
-~send_quest_progress(questlist:com_82, %eadgar_quest, ^eadgar_complete);
+~send_quest_progress(questlist:eadgar, %eadgar_quest, ^eadgar_complete);
 // source https://youtu.be/Kt5WcY9qP0g?t=61
 // todo check mesanims against rsprox
 ~chatplayer("<p,neutral>I'll do it.");
