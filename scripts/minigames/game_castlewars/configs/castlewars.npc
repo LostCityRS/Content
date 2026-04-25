@@ -89,6 +89,16 @@ model1=castlewars_barricade_8
 minimap=no
 vislevel=hide
 op2=Attack
+wanderrange=0
+moverestrict=nomove
+defaultmode=none
+blockwalk=all
+category=castlewars_barricade
+timer=100
+hitpoints=50
+param=next_npc_type,castlewars_barricade_burning_saradomin
+param=defend_anim,null
+param=defend_sound,null
 
 [castlewars_barricade_burning_saradomin]
 name=Barricade
@@ -103,6 +113,15 @@ minimap=no
 vislevel=hide
 readyanim=fire
 op2=Attack
+wanderrange=0
+moverestrict=nomove
+defaultmode=none
+category=castlewars_barricade
+timer=100
+hitpoints=50
+param=next_npc_type,castlewars_barricade_saradomin
+param=defend_anim,null
+param=defend_sound,null
 
 [castlewars_barricade_zamorak]
 name=Barricade
@@ -111,6 +130,15 @@ model1=castlewars_barricade_8
 minimap=no
 vislevel=hide
 op2=Attack
+wanderrange=0
+moverestrict=nomove
+defaultmode=none
+category=castlewars_barricade
+timer=100
+hitpoints=50
+param=next_npc_type,castlewars_barricade_burning_zamorak
+param=defend_anim,null
+param=defend_sound,null
 
 [castlewars_barricade_burning_zamorak]
 name=Barricade
@@ -125,3 +153,12 @@ minimap=no
 vislevel=hide
 readyanim=fire
 op2=Attack
+wanderrange=0
+moverestrict=nomove
+defaultmode=none
+category=castlewars_barricade
+timer=100
+hitpoints=50
+param=next_npc_type,castlewars_barricade_zamorak
+param=defend_anim,null
+param=defend_sound,null
