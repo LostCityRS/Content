@@ -26,6 +26,9 @@ if ($pickaxe = null) {
     ~mesbox("You need a pickaxe to mine this rock. You do not have a pickaxe which you have the Mining level to use.");
     return;
 }
+
+p_oploc(3); // for some reason you continue collapsing this tunnel (https://youtu.be/0lPiEWFcXTM?t=205) lol, Doesnt match in osrs
+
 def_int $mining_rate = oc_param($pickaxe, mining_rate);
 sound_synth(mine_quick, 0, 0);
 if (%action_delay < map_clock) {
@@ -34,12 +37,11 @@ if (%action_delay < map_clock) {
     anim(oc_param($pickaxe, mining_animation), 0);
     @castlewars_mining_roll;
 }
-p_oploc(3);
 
 
 [label,castlewars_mining_roll]
 if (stat_random(mining, 15, 255) = true) { // todo: figure out exact rate, for now its same as picking lock
-    anim(null, 0);
+    p_delay(0); // https://youtu.be/0lPiEWFcXTM?t=36
     if (loc_type = castlewars_blocked_tunnel_1) {
         loc_change(castlewars_blocked_tunnel_2, ^max_32bit_int);
         mes("You manage to remove some of the rocks.");
@@ -47,9 +49,12 @@ if (stat_random(mining, 15, 255) = true) { // todo: figure out exact rate, for n
         loc_change(castlewars_blocked_tunnel_3, ^max_32bit_int);
         ~castlewars_tunnel_set_from_coord(loc_coord, ^false);
         mes("You manage to clear the rest of the rocks.");
+        anim(null, 0);
     } else if (loc_type = castlewars_cavewall_rockslide) {
+        anim(null, 0);
         @castlewars_collapse_tunnel;
     }
+    p_oploc(3);
 }
 
 [proc,castlewars_tunnel_set](int $team, int $tunnel, int $collapse)
