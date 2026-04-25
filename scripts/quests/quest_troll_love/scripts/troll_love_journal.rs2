@@ -1,7 +1,9 @@
+
+// TODO: Stage=Complete journal entry
+
 [if_button,questlist:troll_love]
-%troll_love = ^troll_love_defeated_arrg;
-mes("Troll Romance: <tostring(%troll_love)>");
 def_string $text;
+
 if (%troll_love = ^troll_love_not_started) {
     $text = "@dbl@I can start this quest by speaking to @dre@Ug@dbl@ who is in the @dre@Troll|";
     $text = "@dre@Stronghold@dbl@.||";
