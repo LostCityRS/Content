@@ -123,6 +123,12 @@ if ($obj = castlewars_saradomin_banner) {
 
 [oploc1,castlewars_saradomin_stand]
 if (%castlewars_team = ^castlewars_team_saradomin) {
+    if (inv_total(worn, castlewars_saradomin_banner) > 0) {
+        inv_del(worn, castlewars_saradomin_banner, 1);
+        ~castlewars_flag_reset(castlewars_saradomin_banner);
+        ~update_all(castlewars_saradomin_banner);
+        return;
+    }
     if (inv_total(worn, castlewars_zamorak_banner) < 1) {
         mes("You need to bring a standard back here!"); // osrs
         return;
@@ -138,6 +144,12 @@ mes("Their standard has already been taken!"); // osrs
 
 [oploc1,castlewars_zamorak_stand]
 if (%castlewars_team = ^castlewars_team_zamorak) {
+    if (inv_total(worn, castlewars_zamorak_banner) > 0) {
+        inv_del(worn, castlewars_zamorak_banner, 1);
+        ~castlewars_flag_reset(castlewars_zamorak_banner);
+        ~update_all(castlewars_zamorak_banner);
+        return;
+    }
     if (inv_total(worn, castlewars_saradomin_banner) < 1) {
         mes("You need to bring a standard back here!"); // osrs
         return;
