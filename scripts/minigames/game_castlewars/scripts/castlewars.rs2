@@ -110,6 +110,13 @@ if ($team = ^castlewars_team_saradomin) {
 }
 ~castlewars_transmog_reset;
 
+[proc,castlewars_respawn](int $team)
+if ($team = ^castlewars_team_saradomin) {
+    p_teleport(map_findsquare(^castlewars_saradomin_starting_room_coord, 0, 4, 0));
+} else {
+    p_teleport(map_findsquare(^castlewars_zamorak_starting_room_coord, 0, 4, 0));
+}
+
 [proc,castlewars_zamorak_count]()(int)
 return(max(getbit_range(%castlewars_bits, ^castlewars_zamorak_count_start_bit, ^castlewars_zamorak_count_end_bit), 0));
 

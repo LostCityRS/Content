@@ -1,0 +1,49 @@
+[label,player_death_castlewars]
+~player_death;
+mes("Oh dear you are dead!");
+midi_jingle(death2, ^death_jingle_2_millis);
+
+~combat_clearqueue;
+clearqueue(player_death_default);
+
+if (findhero = true) {
+    .%castlewars_kills = add(.%castlewars_kills, 1);
+}
+~castlewars_flag_drop(worn, castlewars_saradomin_banner);
+~castlewars_flag_drop(worn, castlewars_zamorak_banner);
+~castlewars_respawn(%castlewars_team);
+buildappearance(worn);
+~prayer_deactivate_all;
+anim(null, 0);
+p_stopaction;
+
+~stat_reset_all;
+healenergy(10000);
+~clear_pk_skull;
+~clear_poison;
+~update_all(null);
+~initalltabs;
+~player_end_poison;
+
+
+[label,player_death_castlewars_waitingroom]
+~player_death;
+mes("Oh dear you are dead!");
+midi_jingle(death2, ^death_jingle_2_millis);
+
+~combat_clearqueue;
+clearqueue(player_death_default);
+
+~castlewars_waitingroom_tele(%castlewars_team);
+buildappearance(worn);
+~prayer_deactivate_all;
+anim(null, 0);
+p_stopaction;
+
+~stat_reset_all;
+healenergy(10000);
+~clear_pk_skull;
+~clear_poison;
+~update_all(null);
+~initalltabs;
+~player_end_poison;
