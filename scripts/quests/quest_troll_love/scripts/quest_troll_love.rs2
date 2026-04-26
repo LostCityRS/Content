@@ -2,7 +2,7 @@
 TODO LIST:
 - Recheck what appears in Quest Journal if you give Dunstan maple logs instead of yew logs, when making a sled for the first time. (Does it use a separate varp to track which item was given?)
   I only have RSProx logs from giving yew logs, so my journal shows 'yew' too.
-- Recheck Dunstan's dialogue in Burthorpe before, during & after quest on OSRS
+- Recheck Dunstan's dialogue in Burthorpe before, during & after quest on OSRS (2 ops; Talk about quest, talk about something else?)
 - Recheck Chill effect (If you enter the area of chill, leave after a couple ticks, and re-enter, does the timer reset to 10 ticks?)
 - Re-do first sled cutscene (Missing engine 'run' command?)
 - Implement second sled cutscene
@@ -25,7 +25,7 @@ if (inv_total(worn, trollromance_toboggon_waxed) < 1) {
     mes("You need to have a waxed sled equipped!");
     return;
 }
-~troll_love_first_sled_ride;
+~trollromance_first_sled_ride;
 
 [oploc1,trollromance_piste_walk_barrier_up] // On OSRS, NIH message when attempting to go back up the snow hill
 ~displaymessage(^dm_default);
@@ -53,7 +53,7 @@ p_delay(0);
 anim(human_pickuptrollweiss_up, 0);
 inv_add(inv, trollromance_rare_flower, 1);
 
-[proc,troll_love_dunstan_has_materials]()(boolean)
+[proc,trollromance_dunstan_has_materials]()(boolean)
 if (inv_total(inv, yew_logs) > 0 | inv_total(inv, maple_logs) > 0) {
     if (inv_total(inv, iron_bar) > 0 & inv_total(inv, rope) > 0) {
         return (true);
@@ -106,7 +106,7 @@ return(false);
 [opheld2,trollromance_toboggon_waxed]
 ~can_ride_sled;
 
-[proc,troll_love_first_sled_ride] // Does the job, but not quite accurate... TODO: Needs reworked!
+[proc,trollromance_first_sled_ride] // Does the job, but not quite accurate... TODO: Needs reworked!
 if_close;
 p_teleport(0_43_59_20_58);
 ~bas_set(trollromance_toboggan_ready, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving);
