@@ -194,7 +194,7 @@ if ($op = 1) {
 [label,troll_love_dunstan_materials_for_sled]
 ~chatnpc("<p,neutral>Have you got all the materials for the sled yet?");
 if (~troll_love_dunstan_has_materials() = true) {
-    ~chatplayer("<p,neutral>Yes, I have all the materials for the sled.");
+    ~chatplayer("<p,happy>Yes, I have all the materials for the sled.");
     @troll_love_dunstan_make_sled;
 } else {
     ~chatplayer("<p,neutral>No, I haven't got everything yet.");
@@ -204,8 +204,6 @@ if (~troll_love_dunstan_has_materials() = true) {
 
 [label,troll_love_dunstan_make_sled]
 ~objbox(trollromance_toboggon, "Dunstan takes the materials and some of his tools and starts making a sled.|After a while Dunstan hands you a finished sled.", 250, 0, 16);
-~chatnpc("<p,neutral>Well, here's the sled but it will need to be waxed. The wax will need to both protect the sled as well as smoothen it.");
-~chatnpc("<p,neutral>Maybe if you mix some wax with a bit of swamp tar it will achieve the desired effect. You'll also need something to store the wax in... like a cake tin.");
 ~chatnpc("<p,happy>Well, here's the sled but it will need to be waxed. The wax will need to both protect the sled as well as smoothen it.");
 ~chatnpc("<p,neutral>Maybe if you mix some wax with a bit of swamp tar it will achieve the desired effect. You'll also need something to store the wax in... like a cake tin.");
 if (%troll_love < ^troll_love_dunstan_made_sled) %troll_love = ^troll_love_dunstan_made_sled;
