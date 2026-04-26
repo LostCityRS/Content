@@ -315,6 +315,8 @@ if (testbit(%ibanmulti, ^upass_started_bit) = ^true & %upass ! ^upass_complete) 
 ~send_quest_progress_colour(questlist:priestperil, %priestperil, ^priestperil_complete);
 ~send_quest_progress_colour(questlist:druidspirit, %druidspirit, ^druidspirit_complete);
 ~send_quest_progress_colour(questlist:death, %death_equiproom, ^death_complete);
+~send_quest_progress_colour(questlist:troll, %troll_quest, ^troll_complete);
+~send_quest_progress_colour(questlist:troll_love, %troll_love, ^troll_love_complete);
 ~send_quest_progress_colour(questlist:golem, %golem_a, ^golem_complete);
 if_settab(questlist, ^tab_quest_journal);
 

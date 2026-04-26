@@ -40,7 +40,21 @@ p_teleport(0_44_58_6_32);
 p_teleport(0_43_60_26_29);
 
 [oploc1,trollromance_piste_top] // Tunnel entrance back towards Trollheim from Trollweiss Mountain
+~unequip_trollromance_sled;
 p_teleport(0_43_159_20_55);
+
+[oploc1,trollromance_piste_exit_tunnel_exit] // Tunnel entrance towards Rellekka cave from Trollweiss Mountain
+~unequip_trollromance_sled;
+p_teleport(0_43_158_47_22);
+
+[oploc1,trollromance_piste_exit_tunnel_top] // Tunnel entrance towards Trollweiss Mountain from Rellekka cave
+p_teleport(0_43_58_45_7);
+
+[oploc1,trollromance_piste_exit_tunnel_bottom] // Tunnel entrance towards Rellekka from Rellekka cave
+p_teleport(0_42_58_42_1);
+
+[oploc1,trollromance_stronghold_exit_tunnel] // Tunnel entrance towards Rellekka cave from Rellekka
+p_teleport(0_43_158_21_50);
 
 [oploc2,trollromance_rareflowers]
 if (inv_freespace(inv) = 0) {
@@ -94,6 +108,12 @@ inv_add(inv, trollromance_toboggon_waxed, 1);
 inv_add(inv, cake_tin, 1);
 sound_synth(wax_sled, 0, 0);
 
+[proc,unequip_trollromance_sled]
+if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) {
+    ~unequip(^wearpos_rhand);
+    ~update_bas;
+}
+
 [proc,can_ride_sled]()(boolean)
 if (inzone(^sled_lower_coord, ^sled_upper_coord, coord) = true) {
     ~equip(last_slot);
@@ -101,6 +121,7 @@ if (inzone(^sled_lower_coord, ^sled_upper_coord, coord) = true) {
     return(true);
 }
 mes("You cannot use that here!");
+~unequip_trollromance_sled; // Safety, but shouldn't really be hit
 return(false);
 
 [opheld2,trollromance_toboggon_waxed]
