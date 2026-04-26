@@ -38,8 +38,10 @@ if (~inzone_coord_pair_table(chill_zones, coord) = true) {
 }
 
 [mapzone,0_44_58]
+if_openoverlay(overlay_atmosphere_snow_flakes);
 ~refresh_chill; // check + start timer if needed
 @music_playbyregion(coord);
 
 [mapzoneexit,0_44_58]
+if_openoverlay(null);
 ~refresh_chill;

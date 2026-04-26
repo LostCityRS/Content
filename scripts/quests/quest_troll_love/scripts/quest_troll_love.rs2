@@ -1,3 +1,17 @@
+/*
+TODO LIST:
+- Recheck Dunstan's dialogue in Burthorpe before, during & after quest on OSRS
+- Recheck Chill effect (If you enter the area of chill, leave after a couple ticks, and re-enter, does the timer reset to 10 ticks?)
+- Re-do first sled cutscene (Missing engine 'run' command?)
+- Implement second sled cutscene
+- Stop other anims (woodcutting, teleporting, etc) when riding sled
+- Recheck order of events on OSRS when teleporting from Trollweiss Mountain with sled equipped
+- Implement Arrg boss fight properly (Hits with both ranged and melee)
+- Figure out mesanims for Ug's final dialogue
+- Implement the 'Quest Complete' quest journal entry
+*/
+
+
 [debugproc,trcs] // Teleport to first slope cutscene
 if (p_finduid(uid) = true) p_teleport(0_43_59_20_60);
 
@@ -78,12 +92,17 @@ inv_add(inv, trollromance_toboggon_waxed, 1);
 inv_add(inv, cake_tin, 1);
 sound_synth(wax_sled, 0, 0);
 
-// TODO: Add check to make sure player is in appropriate area
-// mes("You remove the sled."); when teleporting away from the area whilst riding it, with room for sled in inventory.
-// mes("You drop the sled."); when teleporting away from the area whilst riding it, with NO room for sled in inventory.
+[proc,can_ride_sled]()(boolean)
+if (inzone(^sled_lower_coord, ^sled_upper_coord, coord) = true) {
+    ~equip(last_slot);
+    ~update_bas;
+    return(true);
+}
+mes("You cannot use that here!");
+return(false);
+
 [opheld2,trollromance_toboggon_waxed]
-~equip(last_slot);
-~update_bas;
+~can_ride_sled;
 
 [proc,troll_love_first_sled_ride] // Does the job, but not quite accurate... TODO: Needs reworked!
 if_close;
