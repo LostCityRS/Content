@@ -23,6 +23,7 @@ if ($rhand = castlewars_saradomin_banner | $rhand = castlewars_zamorak_banner) {
 ~walk_through_door;
 
 [oploc1,castlewars_saradomin_quit]
+hint_stop;
 if (%castlewars_team = ^castlewars_team_saradomin) {
     ~castlewars_decrement_saradomin_count;
     ~castlewars_waitingroom_tele(%castlewars_team);
@@ -31,6 +32,7 @@ if (%castlewars_team = ^castlewars_team_saradomin) {
 }
 
 [oploc1,castlewars_zamorak_quit]
+hint_stop;
 if (%castlewars_team = ^castlewars_team_zamorak) {
     ~castlewars_decrement_zamorak_count;
     ~castlewars_waitingroom_tele(%castlewars_team);
