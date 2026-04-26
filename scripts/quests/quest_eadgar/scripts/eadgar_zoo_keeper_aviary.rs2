@@ -30,14 +30,18 @@ switch_obj(last_useitem) {
     case default : ~displaymessage(^dm_default);
 }
 
+// in OSRS you can set these bits and make alco-chunks even if the quest is not started yet
 [label,make_alco_chunks]
 if (testbit(%eadgar_quest, ^eadgar_pete_dialog_1) = ^true & testbit(%eadgar_quest, ^eadgar_pete_dialog_2) = ^true) {
-    inv_del(inv, pineapple_chunks, 1);
-    inv_del(inv, vodka, 1);
-    inv_add(inv, eadgar_alco_chunks, 1);
+    // in OSRS you cannot make more alco-chunks if the parrot is held in inventory or bank
+    if(inv_total(inv, eadgar_drunk_parrot) > 0 | inv_total(bank, eadgar_drunk_parrot) > 0) {
+        mes("You don't need to make any more.");
+    } else {
+        inv_del(inv, pineapple_chunks, 1);
+        inv_del(inv, vodka, 1);
+        inv_add(inv, eadgar_alco_chunks, 1);
+    }
 } else {
-    // osrs, from Ashie, guessing this is contingent upon Parroty Pete's dialog
-    // since he's the one who tells the player about both the pineapple chunks and the vodka
     mes("Why would you want to do that?");
 }
 
@@ -51,14 +55,12 @@ switch_obj(last_useitem) {
     case default : ~displaymessage(^dm_default);
 }
 
-// any message for trying to do this either before talking to eadgar/parroty pete
-// or after having already got a parrot?
-// for that matter does this interaction change at all if the parrot is lost and reobtained? 
+// in OSRS you can catch the parrot even if the quest is not started yet
 [label,eadgar_catch_parrot]
 inv_del(inv, eadgar_alco_chunks, 1);
 ~mesbox("You manage to attract a parrot and catch it.");
 ~chatplayer("<p,happy>Hah! Got you now!");
-~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Sqwaawk...*hic*"); // not the right npc, where is this chathead?
+~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Sqwaawk...*hic*"); // this chathead should be lunar_captains_parrot which we won't have until 2006
 if(.npc_find(coord, eadgar_zoo_keeper_aviary, 14, 0) = true) {
     ~.chatnpc("<p,angry>Hey! What are you doing with that parrot?");
     ~chatplayer("<p,neutral>Nothing.");
