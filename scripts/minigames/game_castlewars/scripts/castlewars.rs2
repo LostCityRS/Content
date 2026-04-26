@@ -269,10 +269,14 @@ if (%castlewars_team = ^castlewars_team_saradomin) {
 } else {
     if_openoverlay(inter_215);
 }
+set_player_op("Attack", 2, ^true);
+set_player_op("Take-from", 5, ^false);
 
 [proc,castlewars_mapzoneexit]
 cleartimer(castlewars_timer);
 if_openoverlay(null);
+set_player_op(null, 2, ^false);
+set_player_op(null, 5, ^false);
 
 // if (~in_castlewars_game(coord) = false & ~in_castlewars_waitingroom(coord) = false) {
 //     ~castlewars_del_items;

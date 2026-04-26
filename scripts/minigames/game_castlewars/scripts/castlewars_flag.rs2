@@ -31,6 +31,12 @@ if ($team_flag = ^castlewars_team_saradomin) return (castlewars_saradomin_banner
 else if ($team_flag = ^castlewars_team_zamorak) return (castlewars_zamorak_banner);
 else return (null);
 
+[proc,.castlewars_has_flag]()(boolean)
+if (.inv_total(worn, castlewars_saradomin_banner) > 0 | .inv_total(worn, castlewars_zamorak_banner) > 0) {
+    return (true);
+}
+return(false);
+
 [proc,castlewars_has_flag]()(boolean)
 if (inv_total(worn, castlewars_saradomin_banner) > 0 | inv_total(worn, castlewars_zamorak_banner) > 0) {
     return (true);
@@ -83,9 +89,11 @@ if (~unequip_conflicts_space($obj) = false) {
 }
 
 if ($team_flag = ^castlewars_team_saradomin) {
+    if (%castlewars_saradomin_flag_uid ! uid) %castlewars_flag_clock = add(map_clock, 300);
     %castlewars_saradomin_flag_coord = null;
     %castlewars_saradomin_flag_uid = uid;
 } else if ($team_flag = ^castlewars_team_zamorak) {
+    if (%castlewars_zamorak_flag_uid ! uid) %castlewars_flag_clock = add(map_clock, 300);
     %castlewars_zamorak_flag_coord = null;
     %castlewars_zamorak_flag_uid = uid;
 }
@@ -107,11 +115,9 @@ if ($coord = null) {
 if ($obj = castlewars_saradomin_banner) {
     loc_add($coord, castlewars_saradomin_banner, 0, centrepiece_straight, 20000);
     %castlewars_saradomin_flag_coord = $coord;
-    %castlewars_saradomin_flag_uid = null;
 } else if ($obj = castlewars_zamorak_banner) {
     loc_add($coord, castlewars_zamorak_banner, 0, centrepiece_straight, 20000);
     %castlewars_zamorak_flag_coord = $coord;
-    %castlewars_zamorak_flag_uid = null;
 }
 
 
@@ -164,7 +170,7 @@ mes("Their standard has already been taken!"); // osrs
 
 [proc,castlewars_set_hint]
 if (%castlewars_team = ^castlewars_team_saradomin) {
-    if (%castlewars_zamorak_flag_uid ! null & .finduid(%castlewars_zamorak_flag_uid) = true) {
+    if (%castlewars_zamorak_flag_uid ! null & .finduid(%castlewars_zamorak_flag_uid) = true & ~.castlewars_has_flag = true) {
         hint_stop; // called before setting hint every time (rsprox)
         hint_pl;
         return;
@@ -180,7 +186,7 @@ if (%castlewars_team = ^castlewars_team_saradomin) {
         return;
     }
 } else if (%castlewars_team = ^castlewars_team_zamorak) {
-    if (%castlewars_saradomin_flag_uid ! null & .finduid(%castlewars_saradomin_flag_uid) = true) {
+    if (%castlewars_saradomin_flag_uid ! null & .finduid(%castlewars_saradomin_flag_uid) = true & ~.castlewars_has_flag = true) {
         hint_stop;
         hint_pl;
         return;
