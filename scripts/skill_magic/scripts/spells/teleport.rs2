@@ -78,6 +78,7 @@ if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) { // Troll R
         mes("You remove the sled.");
     } else {
         inv_del(worn, trollromance_toboggon_waxed, 1);
+        ~update_bas;
         mes("You drop the sled.");
     }
 }
