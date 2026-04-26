@@ -233,10 +233,9 @@ if (oc_wearpos($obj) ! null | oc_wearpos2($obj) ! null | oc_wearpos3($obj) ! nul
 if (map_members = ^false & oc_members($obj) = true) {
     return(false);
 }
-// todo: port with consumption
-// if (oc_category($obj) = category_69 | oc_category($obj) = category_149) { // potions and runes
-//     return(true);
-// }
+if (oc_category($obj) = potion | oc_category($obj) = category_149) { // potions and runes
+    return(true);
+}
 return(false);
 
 [debugproc,up]
