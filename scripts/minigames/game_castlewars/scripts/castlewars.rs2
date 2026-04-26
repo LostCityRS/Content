@@ -272,9 +272,9 @@ if (~in_castlewars_waitingroom(coord) = true) {
     return;
 }
 if (%castlewars_team = ^castlewars_team_saradomin) {
-    if_openoverlay(inter_218);
-} else {
     if_openoverlay(inter_215);
+} else {
+    if_openoverlay(inter_218);
 }
 set_player_op("Attack", 2, ^true);
 set_player_op("Take-from", 5, ^false);
