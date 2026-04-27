@@ -99,6 +99,8 @@ if (inv_total(worn, castlewars_saradomin_banner) > 0) {
 p_teleport(map_findsquare(^castlewars_lobby_coord, 0, 2, 0));
 if_openoverlay(null);
 %castlewars_team = null;
+%castlewars_caps = 0;
+%castlewars_kills = 0;
 hint_stop;
 
 [proc,castlewars_start_tele](int $team)
