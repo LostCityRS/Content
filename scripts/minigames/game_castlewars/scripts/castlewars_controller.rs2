@@ -16,6 +16,7 @@ if (%npc_int >= 100) { // game is active
 }
 if (%npc_int >= 500) { // game ends
     %npc_int = 0;
+    ~castlewars_increment_wins;
 }
 if (modulo(%npc_int, 20) = 0 & divide(sub(100, %npc_int), 20) > 0) {
     npc_say("The next game will start in <~pluralise(divide(sub(100, %npc_int), 20), "minute")>"); // no punctuation https://youtu.be/QhZyBOd1wWY?t=279, no "1 minutes" typo https://youtu.be/Hmtn4-TRFno?t=59
