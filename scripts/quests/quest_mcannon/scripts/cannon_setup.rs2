@@ -71,7 +71,7 @@ if (~inzone_coord_pair_table(dwarf_zones, coord) = true) {
     mes("The dwarves won't be happy if you set up a cannon here."); // osrs
     return;
 }
-if (~inzone_coord_pair_table(bank_zones, coord) = true | ~in_duel_arena(coord) = true) { // guessing they dont let u set up at duel arena at all, esp with nomovement duels
+if (~inzone_coord_pair_table(bank_zones, coord) = true | ~in_duel_arena(coord) = true | ~in_castlewars_game(coord) = true | ~in_castlewars_waitingroom(coord) = true) { // guessing they dont let u set up at duel arena at all, esp with nomovement duels
     mes("You can't set up a cannon here."); // osrs
     return;
 }
