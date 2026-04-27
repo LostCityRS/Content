@@ -6,7 +6,7 @@ if (%castlewars_team = ^castlewars_team_zamorak) {
     }
     inv_del(worn, castlewars_saradomin_banner, 1);
     ~castlewars_flag_reset(castlewars_saradomin_banner);
-    ~castlewars_score_point(^castlewars_team_zamorak);
+    ~castlewars_zamorak_cap;
     ~update_all(castlewars_saradomin_banner);
     return;
 }
@@ -20,7 +20,7 @@ if (%castlewars_team = ^castlewars_team_saradomin) {
     }
     inv_del(worn, castlewars_zamorak_banner, 1);
     ~castlewars_flag_reset(castlewars_zamorak_banner);
-    ~castlewars_score_point(^castlewars_team_saradomin);
+    ~castlewars_saradomin_cap;
     ~update_all(castlewars_zamorak_banner);
     return;
 }
@@ -141,7 +141,7 @@ if (%castlewars_team = ^castlewars_team_saradomin) {
     }
     inv_del(worn, castlewars_zamorak_banner, 1);
     ~castlewars_flag_reset(castlewars_zamorak_banner);
-    ~castlewars_score_point(^castlewars_team_saradomin);
+    ~castlewars_saradomin_cap;
     ~update_all(castlewars_zamorak_banner);
     return;
 }
@@ -162,7 +162,7 @@ if (%castlewars_team = ^castlewars_team_zamorak) {
     }
     inv_del(worn, castlewars_saradomin_banner, 1);
     ~castlewars_flag_reset(castlewars_saradomin_banner);
-    ~castlewars_score_point(^castlewars_team_zamorak);
+    ~castlewars_zamorak_cap;
     ~update_all(castlewars_saradomin_banner);
     return;
 }

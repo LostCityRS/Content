@@ -56,11 +56,11 @@ if (~in_castlewars_waitingroom(coord) = true) {
     return;
 }
 if (%castlewars_team = ^castlewars_team_zamorak) {
-    %castlewars_zamorak_maindoor = ~castlewars_door_health(%castlewars_team);
-    %castlewars_zamorak_sidedoor = ~castlewars_sidedoor_unlocked(%castlewars_team);
-    %castlewars_zamorak_catapult = ~castlewars_catapult_broken(%castlewars_team);
-    %castlewars_zamorak_tunnel1 = ~castlewars_tunnel_cleared(%castlewars_team, 0);
-    %castlewars_zamorak_tunnel2 = ~castlewars_tunnel_cleared(%castlewars_team, 1);
+    %castlewars_zamorak_maindoor = ~castlewars_zamorak_door_health;
+    %castlewars_zamorak_sidedoor = testbit(%castlewars_zamorak_bits, ^castlewars_sidedoor_bit);
+    %castlewars_zamorak_catapult = testbit(%castlewars_zamorak_bits, ^castlewars_catapult_bit);
+    %castlewars_zamorak_tunnel1 = testbit(%castlewars_zamorak_bits, ^castlewars_tunnel1_bit);
+    %castlewars_zamorak_tunnel2 = testbit(%castlewars_zamorak_bits, ^castlewars_tunnel2_bit);
     // https://oldschool.runescape.wiki/w/Update:Karamja_Dungeon
     if (inv_total(worn, castlewars_zamorak_banner) > 0 & ~castlewars_in_base = true) { // https://youtu.be/LE64K-ViNH8?t=571
         if_close;
@@ -71,11 +71,11 @@ if (%castlewars_team = ^castlewars_team_zamorak) {
         }
     }
 } else if (%castlewars_team = ^castlewars_team_saradomin) {
-    %castlewars_saradomin_maindoor = ~castlewars_door_health(%castlewars_team);
-    %castlewars_saradomin_sidedoor = ~castlewars_sidedoor_unlocked(%castlewars_team);
-    %castlewars_saradomin_catapult = ~castlewars_catapult_broken(%castlewars_team);
-    %castlewars_saradomin_tunnel1 = ~castlewars_tunnel_cleared(%castlewars_team, 0);
-    %castlewars_saradomin_tunnel2 = ~castlewars_tunnel_cleared(%castlewars_team, 1);
+    %castlewars_saradomin_maindoor = ~castlewars_saradomin_door_health;
+    %castlewars_saradomin_sidedoor = testbit(%castlewars_saradomin_bits, ^castlewars_sidedoor_bit);
+    %castlewars_saradomin_catapult = testbit(%castlewars_saradomin_bits, ^castlewars_catapult_bit);
+    %castlewars_saradomin_tunnel1 = testbit(%castlewars_saradomin_bits, ^castlewars_tunnel1_bit);
+    %castlewars_saradomin_tunnel2 = testbit(%castlewars_saradomin_bits, ^castlewars_tunnel2_bit);
     // https://oldschool.runescape.wiki/w/Update:Karamja_Dungeon
     if (inv_total(worn, castlewars_saradomin_banner) > 0 & ~castlewars_in_base = true) { // https://youtu.be/LE64K-ViNH8?t=571
         if_close;
@@ -96,8 +96,8 @@ if (%castlewars_saradomin_flag_coord ! null & %castlewars_saradomin_flag_coord !
 else if (%castlewars_saradomin_flag_uid ! null) %castlewars_saradomin_flag = 1;
 else %castlewars_saradomin_flag = 0;
 
-%castlewars_zamorak_score = ~castlewars_score(^castlewars_team_zamorak);
-%castlewars_saradomin_score = ~castlewars_score(^castlewars_team_saradomin);
+%castlewars_zamorak_score = max(getbit_range(%castlewars_zamorak_bits, ^castlewars_score_startbit, ^castlewars_score_endbit), 0);
+%castlewars_saradomin_score = max(getbit_range(%castlewars_saradomin_bits, ^castlewars_score_startbit, ^castlewars_score_endbit), 0);
 %castlewars_timer = sub(25, divide(%npc_int, 20));
 if (%npc_int = 500) { // game is over
     queue(castlewars_end, 0, 0);
@@ -168,8 +168,6 @@ if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
     error("Unable to find castlewars_judge npc.");
     return;
 }
-%castlewars_bits = 0;
-%castlewars_bits2 = 0;
 
 [proc,castlewars_reset]
 if (loc_find(0_37_48_58_15, castlewars_saradomin_maindoorr_open) = true | loc_find(0_37_48_58_15, castlewars_saradomin_brokendoorr) = true) {
@@ -203,9 +201,8 @@ while ($i < enum_getoutputcount(castlewars_rocks_coords)) {
     $i = add($i, 1);
 }
 
-
-%castlewars_bits = 0;
-%castlewars_bits2 = 0;
+%castlewars_saradomin_bits = 0;
+%castlewars_zamorak_bits = 0;
 %npc_int2 = add(map_clock, 2500);
 
 ~castlewars_flag_reset(castlewars_saradomin_banner);

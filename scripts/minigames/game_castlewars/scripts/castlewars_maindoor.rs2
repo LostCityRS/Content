@@ -30,7 +30,7 @@ if (%castlewars_team = ^castlewars_team_zamorak & ~check_axis_locactive(coord) =
 if (~castlewars_attack_door(^castlewars_team_saradomin) = false) {
     return;
 }
-if (~castlewars_door_health(^castlewars_team_saradomin) < 1) {
+if (~castlewars_saradomin_door_health < 1) {
     ~change_open_double_doors_left(castlewars_saradomin_maindoorr, castlewars_saradomin_brokendoorl, castlewars_saradomin_brokendoorr, 2000, loc_param(open_sound));
 }
 
@@ -38,7 +38,7 @@ if (~castlewars_door_health(^castlewars_team_saradomin) < 1) {
 if (~castlewars_attack_door(^castlewars_team_saradomin) = false) {
     return;
 }
-if (~castlewars_door_health(^castlewars_team_saradomin) < 1) {
+if (~castlewars_saradomin_door_health < 1) {
     ~change_open_double_doors_right(castlewars_saradomin_maindoorl, castlewars_saradomin_brokendoorr, castlewars_saradomin_brokendoorl, 2000, loc_param(open_sound));
 }
 
@@ -46,7 +46,7 @@ if (~castlewars_door_health(^castlewars_team_saradomin) < 1) {
 if (~castlewars_attack_door(^castlewars_team_zamorak) = false) {
     return;
 }
-if (~castlewars_door_health(^castlewars_team_zamorak) < 1) {
+if (~castlewars_zamorak_door_health < 1) {
     ~change_open_double_doors_left(castlewars_zamorak_maindoorr, castlewars_zamorak_brokendoorl, castlewars_zamorak_brokendoorr, 2000, loc_param(open_sound));
 }
 
@@ -54,27 +54,24 @@ if (~castlewars_door_health(^castlewars_team_zamorak) < 1) {
 if (~castlewars_attack_door(^castlewars_team_zamorak) = false) {
     return;
 }
-if (~castlewars_door_health(^castlewars_team_zamorak) < 1) {
+if (~castlewars_zamorak_door_health < 1) {
     ~change_open_double_doors_right(castlewars_zamorak_maindoorl, castlewars_zamorak_brokendoorr, castlewars_zamorak_brokendoorl, 2000, loc_param(open_sound));
 }
 
-[proc,castlewars_door_health](int $team)(int)
-if ($team = ^castlewars_team_saradomin) {
-    return(sub(100, getbit_range(%castlewars_bits2, 0, 7)));
-} else if ($team = ^castlewars_team_zamorak) {
-    return(sub(100, getbit_range(%castlewars_bits2, 8, 14)));
-}
-return(100);
+[proc,castlewars_saradomin_door_health]()(int)
+return(sub(100, getbit_range(%castlewars_saradomin_bits, ^castlewars_maindoor_startbit, ^castlewars_maindoor_startbit)));
 
+[proc,castlewars_zamorak_door_health]()(int)
+return(sub(100, getbit_range(%castlewars_zamorak_bits, ^castlewars_maindoor_startbit, ^castlewars_maindoor_endbit)));
 
 [proc,castlewars_door_damage](int $team, int $damage)
 def_int $total_damage;
 if ($team = ^castlewars_team_saradomin) {
-    $total_damage = max(min(add(getbit_range(%castlewars_bits2, 0, 7), $damage), 100), 0);
-    %castlewars_bits2 = setbit_range_toint(%castlewars_bits2, $total_damage, 0, 7);
+    $total_damage = max(min(add(getbit_range(%castlewars_saradomin_bits, ^castlewars_maindoor_startbit, ^castlewars_maindoor_startbit), $damage), 100), 0);
+    %castlewars_saradomin_bits = setbit_range_toint(%castlewars_saradomin_bits, $total_damage, ^castlewars_maindoor_startbit, ^castlewars_maindoor_startbit);
 } else if ($team = ^castlewars_team_zamorak) {
-    $total_damage = max(min(add(getbit_range(%castlewars_bits2, 8, 14), $damage), 100), 0);
-    %castlewars_bits2 = setbit_range_toint(%castlewars_bits2, $total_damage, 8, 14);
+    $total_damage = max(min(add(getbit_range(%castlewars_zamorak_bits, ^castlewars_maindoor_startbit, ^castlewars_maindoor_endbit), $damage), 100), 0);
+    %castlewars_zamorak_bits = setbit_range_toint(%castlewars_zamorak_bits, $total_damage, ^castlewars_maindoor_startbit, ^castlewars_maindoor_endbit);
 }
 // mes(tostring($damage));
 // say("<tostring($damage)>, <tostring($before)>, <tostring($after)>... <tostring($health)>");

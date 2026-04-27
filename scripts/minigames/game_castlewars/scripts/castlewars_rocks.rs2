@@ -47,7 +47,7 @@ if (stat_random(mining, 15, 255) = true) { // todo: figure out exact rate, for n
         mes("You manage to remove some of the rocks.");
     } else if (loc_type = castlewars_blocked_tunnel_2) {
         loc_change(castlewars_blocked_tunnel_3, ^max_32bit_int);
-        ~castlewars_tunnel_set_from_coord(loc_coord, ^false);
+        ~castlewars_tunnel_clear(loc_coord);
         mes("You manage to clear the rest of the rocks.");
         anim(null, 0);
     } else if (loc_type = castlewars_cavewall_rockslide) {
@@ -57,36 +57,19 @@ if (stat_random(mining, 15, 255) = true) { // todo: figure out exact rate, for n
     p_oploc(3);
 }
 
-[proc,castlewars_tunnel_set](int $team, int $tunnel, int $collapse)
-def_int $bit;
-if ($team = ^castlewars_team_saradomin) $bit = 19;
-else if ($team = ^castlewars_team_zamorak) $bit = 21;
-else return;
+[proc,castlewars_tunnel_set](coord $loc_coord)
+def_int $tunnel = enum(coord, int, castlewars_rocks_ints, $loc_coord);
+def_int $bit = add(modulo($tunnel, 2), ^castlewars_tunnel1_bit);
 
-$bit = add($bit, $tunnel); // 0 or 1
+if ($tunnel < 2) %castlewars_saradomin_bits = clearbit(%castlewars_saradomin_bits, $bit);
+else %castlewars_zamorak_bits = clearbit(%castlewars_zamorak_bits, $bit);
 
-if ($collapse = ^false) {
-    %castlewars_bits2 = setbit(%castlewars_bits2, $bit);
-} else {
-    %castlewars_bits2 = clearbit(%castlewars_bits2, $bit);
-}
+[proc,castlewars_tunnel_clear](coord $loc_coord)
+def_int $tunnel = enum(coord, int, castlewars_rocks_ints, $loc_coord);
+def_int $bit = add(modulo($tunnel, 2), ^castlewars_tunnel1_bit);
 
-[proc,castlewars_tunnel_set_from_coord](coord $coord, int $collapse)
-def_int $bit = add(enum(coord, int, castlewars_rocks_ints, $coord), 19);
-if ($collapse = ^false) {
-    %castlewars_bits2 = setbit(%castlewars_bits2, $bit);
-} else {
-    %castlewars_bits2 = clearbit(%castlewars_bits2, $bit);
-}
-
-[proc,castlewars_tunnel_cleared](int $team, int $tunnel)(int)
-if ($team = ^castlewars_team_saradomin & testbit(%castlewars_bits2, add(19, $tunnel)) = ^true) {
-    return(^true);
-}
-if ($team = ^castlewars_team_zamorak & testbit(%castlewars_bits2, add(21, $tunnel)) = ^true) {
-    return(^true);
-}
-return(^false);
+if ($tunnel < 2) %castlewars_saradomin_bits = setbit(%castlewars_saradomin_bits, $bit);
+else %castlewars_zamorak_bits = setbit(%castlewars_zamorak_bits, $bit);
 
 [oploc1,castlewars_blocked_tunnel_1] @castlewars_mining_firstswing;
 [oploc3,castlewars_blocked_tunnel_1] @castlewars_mining_continue;
@@ -118,7 +101,7 @@ inv_delslot(inv, last_useslot);
 sound_synth(fire_wave_all, 0, 0);
 spotanim_map(firewave_impact, loc_coord, 92, 0);
 loc_change(castlewars_blocked_tunnel_3, ^max_32bit_int);
-~castlewars_tunnel_set_from_coord(loc_coord, ^false);
+~castlewars_tunnel_set(loc_coord);
 mes("You manage to clear the rest of the rocks.");
 
 [oplocu,castlewars_cavewall_rockslide]
@@ -135,8 +118,8 @@ sound_synth(roof_collapse, 0, 0);
 mes("You've collapsed the tunnel!");
 def_coord $rocks_coord = ~closest_enum_coord(loc_coord, castlewars_rocks_coords);
 if (map_blocked($rocks_coord) = true) return;
-loc_add($rocks_coord, castlewars_blocked_tunnel_1, modulo(add(~coord_direction($rocks_coord, 0_37_148_32_32), 1), 2), centrepiece_straight, ^max_32bit_int);
-~castlewars_tunnel_set_from_coord($rocks_coord, ^true);
+loc_add($rocks_coord, castlewars_blocked_tunnel_1, modulo(add(~coord_direction($rocks_coord, ^castlewars_underground_centre), 1), 2), centrepiece_straight, ^max_32bit_int);
+~castlewars_tunnel_set($rocks_coord);
 
 huntall(loc_coord, 1, 0);
 while (huntnext = true) {
