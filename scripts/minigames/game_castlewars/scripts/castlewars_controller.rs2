@@ -88,11 +88,11 @@ if (%castlewars_team = ^castlewars_team_zamorak) {
 }
 ~castlewars_set_hint;
 
-if (%castlewars_zamorak_flag_coord ! null) %castlewars_zamorak_flag = 2;
+if (%castlewars_zamorak_flag_coord ! null & %castlewars_zamorak_flag_coord ! ^castlewars_zamorak_flag_coord) %castlewars_zamorak_flag = 2;
 else if (%castlewars_zamorak_flag_uid ! null) %castlewars_zamorak_flag = 1;
 else %castlewars_zamorak_flag = 0;
 
-if (%castlewars_saradomin_flag_coord ! null) %castlewars_saradomin_flag = 2;
+if (%castlewars_saradomin_flag_coord ! null & %castlewars_saradomin_flag_coord ! ^castlewars_saradomin_flag_coord) %castlewars_saradomin_flag = 2;
 else if (%castlewars_saradomin_flag_uid ! null) %castlewars_saradomin_flag = 1;
 else %castlewars_saradomin_flag = 0;
 
