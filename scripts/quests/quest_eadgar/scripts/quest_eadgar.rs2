@@ -1,11 +1,12 @@
 [label,eadgar_quest_dialog]
 switch_int(%eadgar_quest) {
-    case ^eadgar_spoken_sanfew : @eadgar_quest_initial_tree;
-    case ^eadgar_spoken_burntmeat : @eadgar_talked_to_troll_cook;
-    case ^eadgar_spoken_eadgar2, ^eadgar_caught_parrot : @eadgar_got_parrot_yet;
-    case ^eadgar_spoken_eadgar3 : @eadgar_what_do_with_parrot;
+    case ^eadgar_started : @eadgar_quest_initial_tree;
+    case ^eadgar_spoken_eadgar_first : @eadgar_talked_to_troll_cook;
+    case ^eadgar_spoken_burntmeat_first : @eadgar_need_goutweed; // dialog jumps straight here if the player talks to burntmeat first
+    case ^eadgar_needs_parrot : @eadgar_got_parrot_yet;
+    case ^eadgar_explained_plan : @eadgar_what_do_with_parrot;
     case ^eadgar_hid_parrot : @eadgar_hid_parrot;
-    case ^eadgar_spoken_eadgar4 : @eadgar_how_are_you_getting_on;
+    case ^eadgar_needs_items : @eadgar_how_are_you_getting_on;
     case ^eadgar_made_potion : @eadgar_got_troll_truth_potion;
     case ^eadgar_retrieved_parrot : @eadgar_retrieved_parrot;
 }
@@ -19,7 +20,9 @@ switch_int(~p_choice4("I need to find some goutweed.", 1, "Why do you live so cl
 }
 
 [label,eadgar_anything_else_default_tree]
-~chatnpc("<p,quiz>Anything else I can do for you?");
+// mesanim rsprox/indio
+// todo see if mesanims are ever different for this line since it's reused a bunch
+~chatnpc("<p,neutral>Anything else I can do for you?");
 @eadgar_default_tree;
 
 [label,eadgar_need_goutweed]
@@ -27,41 +30,37 @@ switch_int(~p_choice4("I need to find some goutweed.", 1, "Why do you live so cl
 // mesanims should be good here
 ~chatplayer("<p,neutral>I need to find some goutweed. Sanfew said you might be able to help.");
 ~chatnpc("<p,quiz>Sanfew, you say? Ah, haven't seen him in a while...");
-switch_int(testbit(%eadgar_bits, ^eadgar_spoken_burntmeat_first)) {
-    case ^true : @eadgar_talked_to_troll_cook;
-    case ^false : @eadgar_advice;
+if(%eadgar_quest = ^eadgar_spoken_burntmeat_first) {
+    @eadgar_talked_to_troll_cook;
+} else {
+    @eadgar_goutweed_advice;
 }
 
-[label,eadgar_advice]
+[label,eadgar_goutweed_advice]
 ~chatnpc("<p,neutral>Goutweed is used as an ingredient in troll cooking. You should ask one of their cooks.");
-%eadgar_quest = ^eadgar_spoken_eadgar;
+%eadgar_quest = ^eadgar_spoken_eadgar_first;
 
 [label,eadgar_talked_to_troll_cook]
-// according to OSRS transcript it's possible to start the quest with Sanfew and then speak with Burntmeat _before_ talking to Eadgar
-// https://oldschool.runescape.wiki/w/Transcript:Eadgar%27s_Ruse#Taking_to_Eadgar_after_talking_to_Burntmeat
-// if you do this, dialog is about the same as the happy path, but ~eadgar_quest_initial_tree is skipped
-// because you already spoke with the troll cook, so Eadgar does not need to advise you to do this
-// 
-// this also makes sense with how the quest journal is laid out - the journal updates for both of these stages end with "Mad Eadgar may be able to help"
-
 // source from osrs vids, todo mesanims from rsprox
-if(testbit(%eadgar_bits, ^eadgar_spoken_burntmeat_first) = ^false) { // this is skipped if the player has already talked to burntmeat
-    ~chatnpc("<p,quiz>Oh, it's you. Have you talked to the troll cook yet?");
+if(%eadgar_quest = ^eadgar_spoken_eadgar_first) { // this is only used if the player goes to eadgar first after sanfew
+    // mesanim rsprox/indio
+    ~chatnpc("<p,neutral>Oh, it's you. Have you talked to the troll cook yet?");
 }
-if(%eadgar_quest = ^eadgar_spoken_burntmeat) {
+if(%eadgar_quest = ^eadgar_spoken_burntmeat_first | %eadgar_quest = ^eadgar_spoken_burntmeat_second) { // this dialog is used if burntmeat has been spoken to at all, regardless of order
     ~chatplayer("<p,sad>I talked to the troll cook but he wouldn't tell me anything, and now he wants me to find him some tasty human for his stew.");
     ~chatnpc("<p,sad>Oh dear, that's no good. You can't just go hand over a human to those trolls...");
     ~chatnpc("<p,happy>Aha! I have a plan!");
     ~chatplayer("<p,neutral>Really?");
+    %eadgar_quest = ^eadgar_needs_parrot; 
     ~chatnpc("<p,happy>Yes! It's bound to work. First of all, I will need a parrot!");
     ~chatplayer("<p,quiz>A PARROT? Where am I going to find one of those?");
     ~chatnpc("<p,neutral>At the zoo, where else?");
-    %eadgar_quest = ^eadgar_spoken_eadgar2;
-    @eadgar_anything_else_default_tree;  
 } else {
-    // todo dialog branch for if you haven't talked to burntmeat yet
-    // even wiki transcript does not have this ;) https://oldschool.runescape.wiki/w/Transcript:Eadgar%27s_Ruse#Taking_to_Eadgar_again_before_talking_to_Burntmeat
+    // mesanim rsprox/indio
+    ~chatplayer("<p,neutral>Not yet.");
+    ~chatnpc("<p,neutral>Well, you should do that then.");
 }
+@eadgar_anything_else_default_tree;
 
 [label,eadgar_got_parrot_yet]
 ~chatnpc("<p,quiz>Oh, it's you. Have you got me a parrot yet?");
@@ -82,7 +81,7 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
     ~chatnpc("<p,neutral>I'm a man of few clothes myself, so you might want to ask old Sanfew about that one.");
     ~chatplayer("<p,quiz>And how are we going to make it taste like a human?");
     ~chatnpc("<p,neutral>That's easy, we'll just stuff it with a few chickens. Everything tastes like chicken! Five raw chickens should be enough!");
-    %eadgar_quest = ^eadgar_spoken_eadgar3;
+    %eadgar_quest = ^eadgar_explained_plan;
     ~chatnpc("<p,quiz>That's the plan. Anything else I can do for you?");
     @eadgar_default_tree;
 } else {
@@ -146,7 +145,7 @@ switch_obj(last_useitem) {
 }
 
 [label,eadgar_hide_parrot]
-if(%eadgar_quest = ^eadgar_spoken_eadgar3) {
+if(%eadgar_quest = ^eadgar_explained_plan) {
     inv_del(inv, eadgar_drunk_parrot, 1);
     mes("You hide the parrot under the torture rack."); //osrs
     %eadgar_quest = ^eadgar_hid_parrot;
@@ -158,7 +157,7 @@ if(%eadgar_quest = ^eadgar_spoken_eadgar3) {
 [label,eadgar_hid_parrot]
 ~chatplayer("<p,neutral>I hid the parrot under the rack in the troll prison.");
 ~chatnpc("<p,neutral>Good work. How about those other items?");
-%eadgar_quest = ^eadgar_spoken_eadgar4;
+%eadgar_quest = ^eadgar_needs_items;
 @eadgar_scarecrow_items;
 
 [label,eadgar_scarecrow_tree]

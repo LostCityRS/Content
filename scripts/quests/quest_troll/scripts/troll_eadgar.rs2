@@ -19,7 +19,7 @@ if (npc_range(coord) > 1) {
     return;
 }
 /* Eadgar's Ruse dialog trees */
-if(%eadgar_quest > ^eadgar_spoken_sanfew & %eadgar_quest ! ^eadgar_complete) {
+if(%eadgar_quest > ^eadgar_started & %eadgar_quest ! ^eadgar_complete) {
     @eadgar_quest_dialog;
 }
 ~chatplayer("<p,happy>Hi!");
@@ -31,7 +31,7 @@ switch_int(random(4)) {
 }
 ~chatnpc("<p,happy>Would you care to sample our delicious home cooking?");
 /* When first meeting Eadgar for Eadgar's Ruse, the dialog takes place here */
-if(%eadgar_quest = ^eadgar_spoken_sanfew) {
+if(%eadgar_quest = ^eadgar_started) {
     @eadgar_quest_initial_tree;
 } else {
     @eadgar_default_tree;

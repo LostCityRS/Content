@@ -1,4 +1,5 @@
 // all dialog sourced from soup's osrs vid
+// mesanim rsprox/branon
 [opnpc1,eadgar_zoo_keeper_aviary]
 ~chatnpc("<p,happy>Good day, good day. Come to admire the new parrot aviary have we?");
 switch_int(~p_choice3("It's very nice.", 1, "When did you add it?", 2, "What do you feed them?", 3)) {
@@ -8,8 +9,8 @@ switch_int(~p_choice3("It's very nice.", 1, "When did you add it?", 2, "What do 
 }
 
 [label,parroty_pete_nice]
-// osrs from Ashie
-~chatplayer("<p,neutral>It's very nice.");
+// osrs from Ashie, mesanim rsprox/branon
+~chatplayer("<p,happy>It's very nice.");
 ~chatnpc("<p,happy>Isn't it just?");
 
 [label,parroty_pete_when_add]
@@ -56,7 +57,12 @@ switch_obj(last_useitem) {
 }
 
 // in OSRS you can catch the parrot even if the quest is not started yet
+// but cannot catch duplicate parrots if you already own one
 [label,eadgar_catch_parrot]
+if(inv_total(inv, eadgar_drunk_parrot) > 0 | inv_total(bank, eadgar_drunk_parrot) > 0) {
+    mes("You've already caught one.");
+    return;
+}
 inv_del(inv, eadgar_alco_chunks, 1);
 ~mesbox("You manage to attract a parrot and catch it.");
 ~chatplayer("<p,happy>Hah! Got you now!");
@@ -69,7 +75,6 @@ if(.npc_find(coord, eadgar_zoo_keeper_aviary, 14, 0) = true) {
     ~.chatnpc("<p,happy>Oh, thank you! We're ever so busy here at the Zoo.");
 }
 inv_add(inv, eadgar_drunk_parrot, 1);
-%eadgar_quest = ^eadgar_caught_parrot;
 
 [label,eadgar_aviary_pineapple_chunks]
 // osrs, from Ashie, pineapple chunks are deleted

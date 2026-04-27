@@ -53,9 +53,8 @@ if(%eadgar_quest < ^eadgar_made_potion) { // why doesn't my conditional fire unl
 [label,eadgar_troll_thistle_mes] mes("I need to dry it over a fire first.");
 [label,eadgar_dried_troll_thistle_mes] mes("It's too big to fit in the vial.");
 
-// osrs, from Ashie, I am guessing behavior for the dried thistle is the same
-// since the model for both is floating in the air and doesn't look like it should be a grounditem
-// not sure about the ground thistle or the mixed potion yet
+// fresh & dried thistle both inv_del on drop
+// ground thistle and mixed potion both drop normally (but are untradeable)
 [label,eadgar_drop_thistle]
 inv_delslot(inv, last_slot);
 mes("The Troll Thistle withers away as soon as it hits the ground.");

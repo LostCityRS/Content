@@ -1,6 +1,6 @@
 /* Moved to the Eadgar's Ruse directory in 274 since this is Burntmeat's first quest-related appearance */
 [opnpc1,eadgar_troll_chief_cook]
-if(%eadgar_quest > ^eadgar_spoken_burntmeat & %eadgar_quest < ^eadgar_got_fake_man) {
+if(%eadgar_quest > ^eadgar_spoken_eadgar_first & %eadgar_quest < ^eadgar_got_fake_man) {
     // wiki, need mesanims
     ~chatnpc("<p,quiz>Did you find tasty human?");
     ~chatplayer("<p,neutral>Erm, not yet, but I'm working on it...");
@@ -18,9 +18,8 @@ if(%eadgar_quest = ^eadgar_got_fake_man & inv_total(inv, eadgar_fake_man) > 0) {
     ~chatnpc("<p,neutral>Ah, dat look like nice tasty human.");
     ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>Aaaargh! Somebody save me!");
     ~chatnpc("<p,neutral>Yep, sound like human too. Burntmeat put it in stew.|Good work, human. Burnmeat give precious reward."); // linebreaks from runeweb 2004
-    // todo special dialog if inventory is full? probably impossible since the fake man is removed
     inv_del(inv, eadgar_fake_man, 1);
-    %eadgar_quest = ^eadgar_gave_fake_man; // there almost has to be a varp tick here since the item is removed at this point but learning about the storeroom key is separate
+    %eadgar_quest = ^eadgar_gave_fake_man;
     inv_add(inv, burnt_meat, 1);
     ~chatplayer("<p,neutral>This is burnt meat.");
     ~chatnpc("<p,neutral>It first thing I ever try to cook! Very precious to Burntmeat.");
@@ -34,18 +33,19 @@ if(%eadgar_quest = ^eadgar_got_fake_man & inv_total(inv, eadgar_fake_man) > 0) {
 }
 // in OSRS it's possible to skip eadgar initially and talk to burntmeat first
 // see comments in ~eadgar_talked_to_troll_cook
-if(%eadgar_quest = ^eadgar_spoken_eadgar | %eadgar_quest = ^eadgar_spoken_sanfew) {
+if(%eadgar_quest = ^eadgar_started) {
     // source from osrs vids, todo mesanims from rsprox
     ~chatplayer("<p,neutral>I'm on a quest to find some goutweed.");
     ~chatnpc("<p,laugh>Bwahahaha! Burntmeat not give his greatest cooking secret away so easily!");
     ~chatnpc("<p,neutral>But Burntmeat also has quest for human!");
     ~chatplayer("<p,quiz>Really? What is it?");
     ~chatnpc("<p,neutral>Bring back a tasty human for Burntmeat's stew. If you find tasty human, Burntmeat will give you good reward.");
-    ~chatplayer("<p,scared>Right. I'll just...go fetch that for you then. Bye!");
-    if (%eadgar_quest = ^eadgar_spoken_sanfew) { // if the player has skipped talking to eadgar initially and is talking to burntmeat first
-        %eadgar_quest = setbit(%eadgar_quest, ^eadgar_spoken_burntmeat_first);
+    if (%eadgar_quest = ^eadgar_started) { // if the player has skipped talking to eadgar initially and is talking to burntmeat first
+        %eadgar_quest = ^eadgar_spoken_burntmeat_first;
+    } else { // if the player is talking to burntmeat after talking to eadgar
+        %eadgar_quest = ^eadgar_spoken_burntmeat_second;
     }
-    %eadgar_quest = ^eadgar_spoken_burntmeat;
+    ~chatplayer("<p,scared>Right. I'll just...go fetch that for you then. Bye!");
 } else {
     ~chatplayer("<p,neutral>Nothing. I was just leaving.");
 }

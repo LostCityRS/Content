@@ -10,11 +10,13 @@ if(%druidquest = ^druid_started) {
 } else if(%druidquest = ^druid_not_started) {
     @multi2("I've heard you druids might be able to teach me herblore.", sanfew_teach_herblore, "Actually I don't need to speak to you.", sanfew_dont_need);
 }
-if(%eadgar_quest >= ^eadgar_spoken_sanfew) {
+if(%eadgar_quest >= ^eadgar_started) {
     @multi2("What was I meant to be doing again?", eadgar_sanfew_reminder, "Actually I don't need to speak to you.", sanfew_dont_need);
 }
-if(%eadgar_quest >= ^eadgar_spoken_eadgar3 & %eadgar_quest < ^eadgar_spoken_sanfew2) {
-    @eadgar_sanfew_dirty_clothes;
+if(%eadgar_quest = ^eadgar_needs_items) {
+    if(inv_total(inv, eadgar_dirty_druid_robe) = 0 & inv_total(bank, eadgar_dirty_druid_robe) = 0) {
+        @eadgar_sanfew_dirty_clothes;
+    }
 }
 
 [label,druid_sanfew_information]
@@ -100,7 +102,7 @@ if(%death_equiproom = ^death_complete & %troll_quest = ^troll_complete) {
 }
 
 [label,sanfew_ill_do_it] 
-%eadgar_quest = ^eadgar_spoken_sanfew;
+%eadgar_quest = ^eadgar_started;
 ~send_quest_progress(questlist:eadgar, %eadgar_quest, ^eadgar_complete);
 // source https://youtu.be/Kt5WcY9qP0g?t=61
 // todo check mesanims against rsprox
@@ -126,4 +128,3 @@ if(%death_equiproom = ^death_complete & %troll_quest = ^troll_complete) {
 ~chatnpc("<p,quiz>Now why would he need that?");
 ~chatplayer("<p,neutral>It's a long story.");
 ~chatnpc("<p,neutral>Never mind then... I think Tegid is doing his laundry|outside. You could ask him if you can borrow one of|his dirty robes."); // linebreaks from runeweb 2004
-%eadgar_quest = ^eadgar_spoken_sanfew2;
