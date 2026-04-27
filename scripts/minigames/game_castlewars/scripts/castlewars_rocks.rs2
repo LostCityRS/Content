@@ -81,7 +81,6 @@ else %castlewars_zamorak_bits = setbit(%castlewars_zamorak_bits, $bit);
 [oploc3,castlewars_cavewall_rockslide] @castlewars_mining_continue;
 
 [oplocu,castlewars_blocked_tunnel_1]
-mes(tostring(loc_angle));
 if (last_useitem ! castlewars_explosives_potion) {
     ~displaymessage(^dm_default);
     return;

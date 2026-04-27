@@ -3,19 +3,6 @@ if (p_finduid(uid) = true) {
     p_teleport(0_38_48_9_18);
 }
 
-[debugproc,sara]
-if (p_finduid(uid) = true) {
-    p_teleport(^saradomin_starting_coord);
-}
-
-[debugproc,zammy]
-if (p_finduid(uid) = true) {
-    p_teleport(^zamorak_starting_coord);
-}
-
-[debugproc,cw_overlay]
-if_openoverlay(inter_215);
-
 [oploc1,castlewars_zamorak_tele]
 if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
     error("Unable to find castlewars_judge npc.");
@@ -226,33 +213,6 @@ if (oc_category($obj) = potion | oc_category($obj) = category_149) { // potions 
     return(true);
 }
 return(false);
-
-[debugproc,up]
-if (p_finduid(uid) = true) {
-    p_teleport(movecoord(coord, 0, 1, 0));
-}
-
-[debugproc,down]
-if (p_finduid(uid) = true) {
-    p_teleport(movecoord(coord, 0, -1, 0));
-}
-
-[debugproc,coord]
-mes(~coord_tostring(coord));
-
-[debugproc,counts]
-if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
-    error("Unable to find castlewars_judge npc.");
-    return;
-}
-mes("<tostring(~castlewars_saradomin_count)>, <tostring(~castlewars_zamorak_count)>");
-
-[debugproc,cw_vars]
-if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
-    return;
-}
-mes("<tostring(%npc_int)>");
-
 
 [proc,castlewars_mapzone]
 if (~in_castlewars_waitingroom(coord) = true) {

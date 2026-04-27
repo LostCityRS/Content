@@ -163,12 +163,6 @@ if ($winner = ^castlewars_team_guthix) {
     ~objbox(castlewars_ticket, "You lost!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));
 }
 
-[debugproc,cw_reset]
-if (npc_find(^castlewars_lobby_coord, castlewars_judge, 10, 0) = false) {
-    error("Unable to find castlewars_judge npc.");
-    return;
-}
-
 [proc,castlewars_reset]
 if (loc_find(0_37_48_58_15, castlewars_saradomin_maindoorr_open) = true | loc_find(0_37_48_58_15, castlewars_saradomin_brokendoorr) = true) {
     loc_del(1);
@@ -207,15 +201,3 @@ while ($i < enum_getoutputcount(castlewars_rocks_coords)) {
 
 ~castlewars_flag_reset(castlewars_saradomin_banner);
 ~castlewars_flag_reset(castlewars_zamorak_banner);
-
-
-[debugproc,cwo]
-if (p_finduid(uid) = false) {
-    return;
-}
-inv_add(inv, castlewars_ticket, 2);
-~objbox(castlewars_ticket, "It was a draw!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));
-inv_add(inv, castlewars_ticket, 3);
-~objbox(castlewars_ticket, "You won!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));
-inv_add(inv, castlewars_ticket, 3);
-~objbox(castlewars_ticket, "You lost!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));

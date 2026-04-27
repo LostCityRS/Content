@@ -18,7 +18,6 @@ if (.p_finduid(.uid) = false) {
     mes("You can't take from them yet.");
     return;
 }
-mes("map <tostring(map_clock)>: <tostring(.%castlewars_flag_clock)>");
 if (.%castlewars_flag_clock >= map_clock) {
     mes("You can't take from them yet.");
     return;
