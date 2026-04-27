@@ -202,5 +202,5 @@ world_delay(divide($duration, 30)); // seems too slow if -2
 huntall($target_coord, 2, ^vis_lineofsight);
 while (huntnext = true) {
     if_close;
-    queue(damage_player, 0, ~random_range(15, 30));
+    strongqueue(damage_player, 0, ~random_range(15, 30));
 }

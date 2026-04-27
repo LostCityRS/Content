@@ -125,6 +125,6 @@ huntall(loc_coord, 1, 0);
 while (huntnext = true) {
     if (inzone(loc_coord, movecoord(loc_coord, 1, 0, 1), coord) = true) {
         if_close;
-        queue(damage_player, 0, 255);
+        strongqueue(damage_player, 0, 255);
     }
 }
