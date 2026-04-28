@@ -1,8 +1,8 @@
 [opnpc1,eadgar_druid_washing]
-// need mesanims from rsprox etc etc
-~chatplayer("<p,quiz>So, you're doing laundry, eh?");
+// mesanims rsprox/branon
+~chatplayer("<p,happy>So, you're doing laundry, eh?");
 ~chatnpc("<p,neutral>Yes. What is it to you?");
-~chatplayer("<p,neutral>Nice day for it.");
+~chatplayer("<p,happy>Nice day for it.");
 ~chatnpc("<p,neutral>I suppose it is.");
 if(%eadgar_quest = ^eadgar_needs_items) {
     if(inv_total(inv, eadgar_dirty_druid_robe) = 0 & inv_total(bank, eadgar_dirty_druid_robe) = 0) {
@@ -17,25 +17,25 @@ if(%eadgar_quest = ^eadgar_needs_items) {
 }
 
 [label,eadgar_tegid_fine]
-// OSRS wiki
+// rsprox/branon
 ~chatplayer("<p,neutral>Fine.");
 
 [label,eadgar_tegid_sanfew_wont_be_happy]
 // dialog from Soup's video
-// need mesanims
+// mesanims rsprox/branon
 queue(eadgar_tegid_give_clothes, 0, 0);
 ~chatplayer("<p,neutral>I'm sure Sanfew won't be happy when I tell him it's your fault he can't perform the purification ritual.");
-~chatnpc("<p,neutral>What? Oh wel, if it's a matter of that much importance, I suppose you can borrow one...");
+~chatnpc("<p,happy>What? Oh well, if it's a matter of that much importance, I suppose you can borrow one...");
 inv_add(inv, eadgar_dirty_druid_robe, 1);
 
 [label,eadgar_tegid_threaten]
 // dialog from LP41 video
-// need mesanims
+// mesanims rsprox/branon
 queue(eadgar_tegid_give_clothes, 0, 0);
 ~chatplayer("<p,angry>You'll give me those robes right now...or I'm going to cut down trees until you do.");
 ~chatnpc("<p,scared>You wouldn't dare!");
-~chatplayer("<p,neutral>Of course I would. They're just trees.");
-~chatnpc("<p,neutral>You monster! Take the robes and leave this place!");
+~chatplayer("<p,quiz>Of course I would. They're just trees.");
+~chatnpc("<p,scared>You monster! Take the robes and leave this place!");
 
 [queue,eadgar_tegid_give_clothes]
 inv_add(inv, eadgar_dirty_druid_robe, 1);
