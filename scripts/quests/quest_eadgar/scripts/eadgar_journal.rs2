@@ -105,7 +105,7 @@ if($quest_progress = ^eadgar_made_potion) {
 }
 
 if($quest_progress >= ^eadgar_given_potion) {
-    // from my run of the quest in OSRS (RS3 is the same)
+    // from my run of the quest in OSRS (missing an RS3 source for this)
     $prev_text = append($prev_text, "|@str@I made the Troll potion and gave it to Mad Eadgar.");
     if($quest_progress = ^eadgar_given_potion) {
         $new_text = append($prev_text, "||@dbl@I need to fetch the parrot back from the @dre@prison rack");
@@ -139,9 +139,9 @@ if($quest_progress >= ^eadgar_gave_fake_man) {
 if($quest_progress >= ^eadgar_unlocked_storeroom) {
     // from RS3, OSRS is the same
     $prev_text = append($prev_text, "||@str@I've unlocked the storeroom!");
-    if(inv_total(inv, eadgar_goutweed_herb) = 0) {
+    if(inv_total(inv, eadgar_goutweed_herb) = 0) { // quest journal does not check bank
         $new_text = append($prev_text, "|@dbl@I should sneak in and get some @dre@goutweed"); // no period at the end of this line
-    } else { // todo does this journal line reversion for dropping the goutweed also occur if the goutweed is banked? how is this checked?
+    } else {
         $new_text = append($prev_text, "|@str@I snuck into the storeroom and got some goutweed.|@dbl@I should bring this to @dre@Sanfew and collect my reward.");
     }
 }
