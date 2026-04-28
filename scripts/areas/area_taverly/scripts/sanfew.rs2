@@ -95,7 +95,7 @@ if(%death_equiproom = ^death_complete & %troll_quest = ^troll_complete) {
         // Before my run of the quest in OSRS, I tried starting the quest with Death Plateau and Troll Stronghold completed but under 31 Herblore and I got:
         ~chatnpc("<p,neutral>Not just yet, young 'un.");
         // The wiki says there should be different dialog (below) but I'm skeptical of the spelling ("'m" versus "I'm")
-        // and also didn't capture it and couldn't verify mesanim, so...
+        // and also this line didn't show up for me, so...
         //~chatnpc("<p,sad>'m afraid you are not yet learned enough in the art of Herblore to be able to help me, adventurer...");
         ~mesbox("You do not meet all of the requirements to start the Eadgar's Ruse quest.");
     }
@@ -113,20 +113,21 @@ if(%death_equiproom = ^death_complete & %troll_quest = ^troll_complete) {
 
 [label,sanfew_no_thanks]
 // source https://oldschool.runescape.wiki/w/Transcript:Eadgar%27s_Ruse?oldid=15100939
-// todo check mesanims against rsprox
+// todo need to verify mesanim for these, think i missed them
+~chatplayer("<p,neutral>No thanks.");
 ~chatnpc("<p,neutral>Oh well. No doubt some other adventurer will eventually come who can help me.");
 
 [label,eadgar_sanfew_reminder]
-// OSRS wiki
-~chatplayer("<p,quiz>What was I meant to be doing again?");
-~chatnpc("<p,neutral>I've told you already.");
+// rsprox/branon
+~chatplayer("<p,neutral>What was I meant to be doing again?");
+~chatnpc("<p,angry>I've told you already.");
 ~chatnpc("<p,neutral>Journey to the north into the land of the trolls, and find the secret of the herb the trolls call goutweed.");
 ~chatnpc("<p,neutral>My friend Eadgar lives in the area, and he may be able to help you. Bring some goutweed back and I will teach you something useful.");
 ~chatplayer("<p,neutral>I'll get on with it.");
 
 [label,eadgar_sanfew_dirty_clothes]
-// dialog from Soup's OSRS video, need mesanims checked against rsprox
+// rsprox/branon
 ~chatplayer("<p,neutral>Eadgar says he needs some dirty clothes for his plan, and he said you might be able to help.");
-~chatnpc("<p,quiz>Now why would he need that?");
+~chatnpc("<p,confused>Now why would he need that?");
 ~chatplayer("<p,neutral>It's a long story.");
 ~chatnpc("<p,neutral>Never mind then... I think Tegid is doing his laundry|outside. You could ask him if you can borrow one of|his dirty robes."); // linebreaks from runeweb 2004
