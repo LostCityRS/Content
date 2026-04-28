@@ -7,7 +7,7 @@ switch_int(%eadgar_quest) {
     case ^eadgar_explained_plan : @eadgar_what_do_with_parrot;
     case ^eadgar_hid_parrot : @eadgar_hid_parrot;
     case ^eadgar_needs_items : @eadgar_how_are_you_getting_on;
-    case ^eadgar_made_potion : @eadgar_got_troll_truth_potion;
+    case ^eadgar_needs_potion : @eadgar_got_troll_truth_potion;
     case ^eadgar_retrieved_parrot : @eadgar_retrieved_parrot;
 }
 
@@ -20,8 +20,7 @@ switch_int(~p_choice4("I need to find some goutweed.", 1, "Why do you live so cl
 }
 
 [label,eadgar_anything_else_default_tree]
-// mesanim rsprox/indio
-// todo see if mesanims are ever different for this line since it's reused a bunch
+// mesanim rsprox/indio, this line is always <p,neutral>
 ~chatnpc("<p,neutral>Anything else I can do for you?");
 @eadgar_default_tree;
 
@@ -158,7 +157,7 @@ mes("todo");
 [label,eadgar_scarecrow_items]
 def_int $logs_num = inv_total(inv, logs);
 def_int $chickens_num = min(inv_total(inv, raw_chicken), calc(5 - %eadgar_chickens));
-def_int $grain_num = min(inv_total(inv, raw_chicken), calc(10 - %eadgar_grain));
+def_int $grain_num = min(inv_total(inv, grain), calc(10 - %eadgar_grain));
 def_int $clothes_num = inv_total(inv, eadgar_dirty_druid_robe);
 def_string $logs_str = "";
 def_string $chickens_str = "";
@@ -171,10 +170,12 @@ switch_int ($logs_num) {
 }
 switch_int ($chickens_num) {
     case 0 : $chickens_str = "no chickens";
+    case 1 : $chickens_str = "one chicken";
     case default : $chickens_str = "<tostring($chickens_num)> chickens";
 }
 switch_int ($grain_num) {
     case 0 : $grain_str = "no grain";
+    case 1 : $grain_str = "one bundle of grain";
     case default : $grain_str = "<tostring($grain_num)> bundles of grain";
 }
 switch_int ($clothes_num) {
@@ -193,24 +194,30 @@ if ($logs_num >= 1 & testbit(%eadgar_bits, ^eadgar_given_logs) = ^false) {
 } else {
     $logs_str = "no logs";
     // This is to match Soup's OSRS video.
-    // The player gives Eadgar the logs first, then returns with the dirty clothes on a second trip while still carrying
-    // a second set of logs for making a fire later. The player's dialog reads "I have no logs" while turning in the clothes,
+    // The player gives Eadgar the logs first, then returns later with the dirty clothes, while still carrying
+    // a second set of logs for making a fire. The player's dialog reads "I have no logs" while turning in the clothes,
     // even though there are actually logs in the inventory.
-    // TODO check if this also happens with grain, chickens, and possibly even dirty clothes if it's possible to dupe them
 }
 
 if ($chickens_num > 0) {
     inv_del(inv, raw_chicken, $chickens_num);
+} else {
+    $chickens_str = "no chickens";
 }
-
+// TODO check if this "no X" dialog behavior is consistent for grain and chickens also
+// I forgot to check these, but for now I'm assuming it is
 if ($grain_num > 0) {
     inv_del(inv, grain, $grain_num);
+} else {
+    $grain_str = "no grain";
 }
 
 if ($clothes_num >= 1 & testbit(%eadgar_bits, ^eadgar_given_clothes) = ^false) {
-    inv_del(inv, eadgar_dirty_druid_robe, $clothes_num); // todo check if it's possible to get dupes of this and see and what the quest does if turning in this step with dupes
+    inv_del(inv, eadgar_dirty_druid_robe, 1); // only one is taken when turning in
     %eadgar_bits = setbit(%eadgar_bits, ^eadgar_given_clothes);
-} // might need an else here if it's possible to come back with a duped robe in the event that it affects dialog like with logs...?
+} else {
+    $clothes_str = "no dirty clothes"; // when turning in other items with drop-tricked clothes in the inventory, the player's dialog says "no dirty clothes"
+}
 
 // increment what we've brought
 %eadgar_chickens = calc(%eadgar_chickens + $chickens_num);
@@ -250,31 +257,47 @@ if(testbit(%eadgar_bits, ^eadgar_given_logs) ! 1 | $chickens_needed > 0 | $grain
     @eadgar_thats_everything;
 }
 
+[debugproc,eadgar_resetitems]
+if(p_finduid(uid) = true) {
+    %eadgar_bits = clearbit(%eadgar_bits, ^eadgar_given_logs);
+    %eadgar_bits = clearbit(%eadgar_bits, ^eadgar_given_clothes);
+    %eadgar_chickens = 0;
+    %eadgar_grain = 0;
+}
+
 [label,eadgar_thats_everything]
-// dialog from soup's vid, todo mesanims though these should be mostly good
-~chatnpc("<p,happy>That's everything!");
-// kinda odd this is two separate chatnpc's, is something being checked here?
+// rsprox/branon
+~chatnpc("<p,neutral>That's everything!");
 ~chatnpc("<p,happy>Good, good, everything is almost finished.");
 ~chatnpc("<p,neutral>Of course, we can't just give him the dummy and expect to get anything useful out of him.");
-~chatplayer("<p,quiz>Oh?");
+~chatplayer("<p,neutral>Oh?");
 ~chatnpc("<p,neutral>No, of course not. We need to make sure he'll tell you what you need to know.");
 ~chatplayer("<p,quiz>And how do we do that?");
 ~chatnpc("<p,neutral>I happen to know that the trolls are susceptible to a|certain kind of plant that grows around this mountain.|I call it Troll Thistle. If properly prepared, it can|be made into a sort of Troll truth potion."); // linebreaks from runeweb 2004
+@eadgar_how_prepare_troll_truth_potion;
+
+[label,eadgar_how_prepare_troll_truth_potion]
+// rsprox/branon
 ~chatplayer("<p,quiz>How do you prepare it?");
 ~chatnpc("<p,neutral>You'll have to dry it in a fire, then grind it and mix it into a potion with Ranarr weed.");
+%eadgar_quest = ^eadgar_needs_potion;
 ~chatplayer("<p,neutral>Okay, I'll be back with that soon.");
-%eadgar_quest = ^eadgar_given_all_items; // todo unsure if this is where the varp really updates
 @eadgar_anything_else_default_tree;
 
 [label,eadgar_got_troll_truth_potion]
+// rsprox/branon
 if(inv_total(inv, eadgar_ground_troll_thistle_potion) > 0) {
-    ~chatplayer("<p,neutral>I've got the troll truth potion.");
-    ~chatnpc("<p,happy>Excellent, hand it here. Now just go fetch that poor parrot back, it's probably had enough by now.");
-    // item is deleted here
-    inv_del(inv, eadgar_ground_troll_thistle_potion, 1); // what happens if you have multiple (if possible)?
+    ~chatplayer("<p,happy>I've got the troll truth potion.");
+    // Jagex appears to have changed this line at some point after 2014: https://youtu.be/945tUgBj3SM?t=860 
+    // Eadgar says "thank you" instead of "hand it here" in OSRS now   
+    ~chatnpc("<p,happy>Excellent, hand it here. Now just go fetch that poor parrot back, it's probably had enough by now."); 
+    inv_del(inv, eadgar_ground_troll_thistle_potion, 1); // only one is taken
     %eadgar_quest = ^eadgar_given_potion;
 } else {
-    // presumably there is dialog here
+    // rsprox/branon
+    ~chatplayer("<p,quiz>How do I make the troll truth potion again?");
+    ~chatnpc("<p,neutral>Troll Thistle grows around this mountain. If properly prepared, it can be made into a sort of Troll truth potion.");
+    @eadgar_how_prepare_troll_truth_potion;
 }
 
 [label,eadgar_retrieved_parrot]
@@ -331,17 +354,22 @@ if(%eadgar_quest = ^eadgar_got_burnt_meat) {
 }
 
 [oploc1,eadgar_storeroomdoor]
-if(coord = 0_44_157_53_37) { // just let them out i guess? todo check if this is correct and also if door stays unlocked after unlocking once + can key be retrieved after unlocking
-    ~open_and_close_door(eadgar_storeroomdoor, ~check_axis(coord, loc_coord, loc_angle), false);
+if(coord = 0_44_157_53_37) {
+    @eadgar_storeroom_open;
 } else {
-    if(inv_total(inv, eadgar_troll_storeroom_key) > 0 & %eadgar_quest = ^eadgar_spoken_burntmeat2) {
+    if(%eadgar_quest = ^eadgar_unlocked_storeroom) {
+        @eadgar_storeroom_open;
+    } else if(inv_total(inv, eadgar_troll_storeroom_key) > 0 & %eadgar_quest = ^eadgar_got_burnt_meat) {
         mes("You unlock the door.");
-        inv_del(inv, eadgar_troll_storeroom_key, 1);
-        ~open_and_close_door(eadgar_storeroomdoor, ~check_axis(coord, loc_coord, loc_angle), false);
+        inv_del(inv, eadgar_troll_storeroom_key, 1); // only one key is taken
+        @eadgar_storeroom_open;
     } else {
         mes("You need to find the right key to open this door.");
     }
 }
+
+[label,eadgar_storeroom_open]
+~open_and_close_door(eadgar_storeroomdoor, ~check_axis(coord, loc_coord, loc_angle), false);
 
 // big greetz to Ashie for this code
 [ai_timer,_troll_sguard]
@@ -361,7 +389,7 @@ if (huntnext = true) {
 [oploc1,eadgar_crate_goutweed]
 if(npc_find(0_44_157_41_27, eadgar_storeroom_guard, 4, 0) = true) {
     // guess based on osrs videos, it's pretty centered vertically but looks scaled down slightly
-    // https://web.archive.org/web/20051025140652im_/http://www.runeweb.net/fireball/Eadgars%20Ruse%20Images/Eadgar18.PNG
+    // todo change to match https://web.archive.org/web/20051025140652im_/http://www.runeweb.net/fireball/Eadgars%20Ruse%20Images/Eadgar18.PNG
     ~objbox(eadgar_goutweed_herb, "You've found some goutweed!", 225, 0, calc(^objbox_height / 4));
     inv_add(inv, eadgar_goutweed_herb, 1); // what happens if inv is full?
     npc_say("Hm?");

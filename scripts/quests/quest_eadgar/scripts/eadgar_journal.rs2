@@ -90,10 +90,10 @@ if ($quest_progress = ^eadgar_needs_items) {
     $new_text = append($new_text, $items_remaining);
 } 
 
-if($quest_progress >= ^eadgar_given_all_items) {
+if($quest_progress >= ^eadgar_needs_potion) {
     // https://youtu.be/945tUgBj3SM?t=775 - no period at the end of the new text
     $prev_text = append($prev_text, "|@str@Eadgar wants to make a fake human to give the troll cook. I|@str@gave Eadgar everything he needed.");
-    if($quest_progress = ^eadgar_given_all_items) {
+    if($quest_progress = ^eadgar_needs_potion) {
         $new_text = append($prev_text, "|@dbl@I need to make a troll truth potion by putting @dre@dried, @dre@ground|@dre@troll thistle @dbl@in a @dre@potion of ranarr weed"); 
     }
 }
