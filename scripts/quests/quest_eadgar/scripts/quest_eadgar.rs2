@@ -121,20 +121,13 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
 @eadgar_scarecrow_items;
 
 [oploc1,eadgar_rack]
-// presumably this does something before starting the quest
-// then before and after storing the parrot
-// during the interim quest stages (troll thistle potion)
-// then maybe before and after picking it up again?
-// and then possibly after the quest?
-if(%eadgar_quest = ^eadgar_given_potion) {
+if(%eadgar_quest = ^eadgar_needs_educated_parrot) {
     ~mesbox("You look under the rack and find the drunk parrot.");
     ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Ah, hello Sir. Could you please free me?|I seem to have ... OW! What are you doing?|That's my spleen!"); // linebreaks from runeweb 2004
     ~chatplayer("<p,neutral>I think it's probably heard enough.");
     inv_add(inv, eadgar_drunk_parrot, 1);
-    %eadgar_quest = ^eadgar_retrieved_parrot;
+    %eadgar_quest = ^eadgar_got_educated_parrot;
 } else {
-    // osrs, from Ashie
-    // there are other interactions missing here but this is one of them, for now
     ~mesbox("You look under the rack but find nothing.");
 }
 
@@ -146,11 +139,10 @@ switch_obj(last_useitem) {
 
 [label,eadgar_hide_parrot]
 if(%eadgar_quest = ^eadgar_explained_plan) {
-    inv_del(inv, eadgar_drunk_parrot, 1);
-    mes("You hide the parrot under the torture rack."); //osrs
     %eadgar_quest = ^eadgar_hid_parrot;
-} else if(%eadgar_quest >= ^eadgar_retrieved_parrot) {
-    // OSRS wiki
+    mes("You hide the parrot under the torture rack.");
+    inv_del(inv, eadgar_drunk_parrot, 1);
+} else {
     mes("Why would you want to do that?");
 }
 
@@ -325,9 +317,15 @@ loc_change(eadgar_kitchen_drawers, 300);
 p_arrivedelay;
 mes("You search the drawers...");
 p_delay(0);
-if(%eadgar_quest = ^eadgar_spoken_burntmeat2) { // todo what if inv is full here or we already have a key?
-    mes("You open the fake bottom of the drawer and find the storeroom key.");
-    inv_add(inv, eadgar_troll_storeroom_key, 1);
+if(%eadgar_quest = ^eadgar_got_burnt_meat) {
+    if(inv_total(inv, eadgar_troll_storeroom_key) = 0 & inv_total(bank, eadgar_troll_storeroom_key) = 0) {
+        if(inv_freespace(inv) > 0) {
+            mes("You open the fake bottom of the drawer and find the storeroom key.");
+            inv_add(inv, eadgar_troll_storeroom_key, 1);
+        } else {
+            mes("You open the fake bottom of the drawer and see a key, but don't have space to take it.");
+        }
+    }
 } else {
     mes("You don't find anything.");
 }

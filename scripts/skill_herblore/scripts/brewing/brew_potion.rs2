@@ -119,6 +119,9 @@ if ($current_level < $herb_level) {
     if($struct = blamish_oil) {
         ~mesbox("You need level 25 Herblore to make this potion.");
         return(false);
+    } else if($struct = eadgar_ground_troll_thistle_potion) {
+        ~mesbox("You need level 31 Herblore to make this potion.");
+        return(false);
     }
     // https://youtu.be/VthR9A85TQU?t=159
     ~mesbox("You need a Herblore level of at least <tostring($herb_level)> to make this potion.");
