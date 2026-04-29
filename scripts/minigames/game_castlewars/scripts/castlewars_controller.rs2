@@ -159,7 +159,7 @@ if ($winner = ^castlewars_team_guthix) {
     inv_add(inv, castlewars_ticket, 3);
     ~objbox(castlewars_ticket, "You won!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));
 } else {
-    inv_add(inv, castlewars_ticket, 1);
+    // no tickets https://oldschool.runescape.wiki/w/Update:Architectural_Alliance
     ~objbox(castlewars_ticket, "You lost!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));
 }
 
