@@ -195,8 +195,12 @@ while ($i < enum_getoutputcount(castlewars_rocks_coords)) {
     $i = add($i, 1);
 }
 
-%castlewars_saradomin_bits = 0;
-%castlewars_zamorak_bits = 0;
+// for some reason tunnel2's status bits dont clear ?
+// - does this in osrs to this day lol
+// - 2006 https://youtu.be/CHKF3kKca-A?t=2
+// - 2006 https://youtu.be/4mpkLKb3LAM?t=69
+%castlewars_saradomin_bits = clearbit_range(%castlewars_saradomin_bits, 0, ^castlewars_tunnel1_bit);
+%castlewars_zamorak_bits = clearbit_range(%castlewars_zamorak_bits, 0, ^castlewars_tunnel1_bit);
 %npc_int2 = add(map_clock, 2500);
 
 ~castlewars_flag_reset(castlewars_saradomin_banner);
