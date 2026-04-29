@@ -440,7 +440,7 @@ if(coord = 0_44_157_53_37) {
 } else {
     if(%eadgar_quest = ^eadgar_unlocked_storeroom) {
         @eadgar_storeroom_open;
-    } else if(inv_total(inv, eadgar_troll_storeroom_key) > 0 & %eadgar_quest = ^eadgar_got_burnt_meat) {
+    } else if(inv_total(inv, eadgar_troll_storeroom_key) > 0 & %eadgar_quest = ^eadgar_got_burnt_meat) { // todo any sound for unlocking?
         mes("You unlock the door.");
         inv_del(inv, eadgar_troll_storeroom_key, 1); // only one key is taken
         @eadgar_storeroom_open;
@@ -450,7 +450,7 @@ if(coord = 0_44_157_53_37) {
 }
 
 [label,eadgar_storeroom_open]
-~open_and_close_door(eadgar_storeroomdoor, ~check_axis(coord, loc_coord, loc_angle), false);
+~open_and_close_door(eadgar_storeroomdoor, ~check_axis(coord, loc_coord, loc_angle), false); // todo any sound for opening?
 
 // big greetz to Ashie for this code
 [ai_timer,_troll_sguard]
@@ -499,4 +499,6 @@ walktrigger(stunned);
 session_log(^log_adventure, "Quest complete: Eadgar's Ruse");
 %eadgar_quest = ^eadgar_complete;
 stat_advance(herblore, 110000);
-~send_quest_complete(questlist:eadgar, eadgar_goutweed_herb, 250, ^eadgar_questpoints, "You have completed\\nEadgar's Ruse!");
+// https://web.archive.org/web/20051025140652im_/http://www.runeweb.net/fireball/Eadgars%20Ruse%20Images/Eadgar19.PNG
+// no apostrophe
+~send_quest_complete(questlist:eadgar, eadgar_goutweed_herb, 250, ^eadgar_questpoints, "You have completed\\nEadgars Ruse!");

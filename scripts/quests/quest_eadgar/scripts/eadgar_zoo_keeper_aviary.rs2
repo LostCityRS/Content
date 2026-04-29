@@ -69,7 +69,7 @@ if(%eadgar_quest >= ^eadgar_explained_plan) { // on or after this stage, the par
 // this includes post-quest: although eadgar won't actually give you a parrot after quest completion, the aviary hatch interaction remains the same
     ~chatplayer("<p,confused>The parrott flew off, I wonder where it went? Silly thing prefered Eadgar to me!");
     mes("The parrott flew off, you need to find it again.");
-    return;
+    return; // todo check if alco-chunks are deleted here
 }
 inv_del(inv, eadgar_alco_chunks, 1);
 queue(eadgar_get_parrot, 0, 0); // guessing it's queued here

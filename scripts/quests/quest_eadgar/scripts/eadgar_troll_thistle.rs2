@@ -1,25 +1,27 @@
-// thistle locations - from loc ID 3812 (eadgar_troll_thistle_base in m45_57.jm2)
-// 0_45_57_03_22
-// 0_45_57_07_27
-// 0_45_57_11_28
-// 0_45_57_12_28
-// 0_45_57_22_26
-
 // picking, drying, and grinding troll thistle is allowed at any point before/during/after the quest
 [opnpc1,eadgar_troll_thistle]
 mes("You pick the Troll Thistle.");
 sound_synth(pick, 0, 0);
 // should drop to the ground if inv is full
 inv_add(inv, eadgar_troll_thistle, 1);
+@eadgar_troll_thistle_move(npc_coord);
+
+[label,eadgar_troll_thistle_move](coord $coord)
+def_coord $newcoord;
 switch_int(random(5)) {
-    // todo i think this should exclude the npc's current position
-    // also it doesn't seem to face the correct direction currently
-    case 0 : npc_tele(0_45_57_03_22);
-    case 1 : npc_tele(0_45_57_07_27);
-    case 2 : npc_tele(0_45_57_11_28);
-    case 3 : npc_tele(0_45_57_12_28);
-    case 4 : npc_tele(0_45_57_22_26);
+    // thistle locations - from loc ID 3812 (eadgar_troll_thistle_base in m45_57.jm2)
+    case 0 : $newcoord = 0_45_57_03_22;
+    case 1 : $newcoord = 0_45_57_07_27;
+    case 2 : $newcoord = 0_45_57_11_28;
+    case 3 : $newcoord = 0_45_57_12_38;
+    case 4 : $newcoord = 0_45_57_22_26;
 }
+if($newcoord = npc_coord) {
+    @eadgar_troll_thistle_move(npc_coord); // choose another
+} else {
+    npc_tele($newcoord);
+}
+
 
 [opheldu,eadgar_dried_troll_thistle]
 if(last_useitem = ranarrvial) {
