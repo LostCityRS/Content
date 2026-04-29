@@ -8,7 +8,7 @@ switch_int(%eadgar_quest) {
     case ^eadgar_hid_parrot : @eadgar_hid_parrot;
     case ^eadgar_needs_items : @eadgar_how_are_you_getting_on;
     case ^eadgar_needs_potion : @eadgar_got_troll_truth_potion;
-    case ^eadgar_retrieved_parrot : @eadgar_retrieved_parrot;
+    case ^eadgar_got_educated_parrot : @eadgar_retrieved_parrot;
 }
 
 [label,eadgar_quest_initial_tree]
@@ -26,7 +26,7 @@ switch_int(~p_choice4("I need to find some goutweed.", 1, "Why do you live so cl
 
 [label,eadgar_need_goutweed]
 // dialog source https://youtu.be/tEsRQ9fXIU?t=150
-// mesanims should be good here
+// mesanims rsprox/branon
 ~chatplayer("<p,neutral>I need to find some goutweed. Sanfew said you might be able to help.");
 ~chatnpc("<p,quiz>Sanfew, you say? Ah, haven't seen him in a while...");
 if(%eadgar_quest = ^eadgar_spoken_burntmeat_first) {
@@ -36,24 +36,25 @@ if(%eadgar_quest = ^eadgar_spoken_burntmeat_first) {
 }
 
 [label,eadgar_goutweed_advice]
+// rsprox/indio
 ~chatnpc("<p,neutral>Goutweed is used as an ingredient in troll cooking. You should ask one of their cooks.");
 %eadgar_quest = ^eadgar_spoken_eadgar_first;
 
 [label,eadgar_talked_to_troll_cook]
-// source from osrs vids, todo mesanims from rsprox
 if(%eadgar_quest = ^eadgar_spoken_eadgar_first) { // this is only used if the player goes to eadgar first after sanfew
     // mesanim rsprox/indio
     ~chatnpc("<p,neutral>Oh, it's you. Have you talked to the troll cook yet?");
 }
 if(%eadgar_quest = ^eadgar_spoken_burntmeat_first | %eadgar_quest = ^eadgar_spoken_burntmeat_second) { // this dialog is used if burntmeat has been spoken to at all, regardless of order
+    // rsprox/branon
     ~chatplayer("<p,sad>I talked to the troll cook but he wouldn't tell me anything, and now he wants me to find him some tasty human for his stew.");
     ~chatnpc("<p,sad>Oh dear, that's no good. You can't just go hand over a human to those trolls...");
     ~chatnpc("<p,happy>Aha! I have a plan!");
-    ~chatplayer("<p,neutral>Really?");
+    ~chatplayer("<p,happy>Really?");
     %eadgar_quest = ^eadgar_needs_parrot; 
     ~chatnpc("<p,happy>Yes! It's bound to work. First of all, I will need a parrot!");
-    ~chatplayer("<p,quiz>A PARROT? Where am I going to find one of those?");
-    ~chatnpc("<p,neutral>At the zoo, where else?");
+    ~chatplayer("<p,confused>A PARROT? Where am I going to find one of those?");
+    ~chatnpc("<p,happy>At the zoo, where else?");
 } else {
     // mesanim rsprox/indio
     ~chatplayer("<p,neutral>Not yet.");
@@ -62,68 +63,67 @@ if(%eadgar_quest = ^eadgar_spoken_burntmeat_first | %eadgar_quest = ^eadgar_spok
 @eadgar_anything_else_default_tree;
 
 [label,eadgar_got_parrot_yet]
-~chatnpc("<p,quiz>Oh, it's you. Have you got me a parrot yet?");
+// rsprox/branon
+~chatnpc("<p,neutral>Oh, it's you. Have you got me a parrot yet?");
 if(inv_total(inv, eadgar_drunk_parrot) > 0) {
     ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Raaawk! Polly wanna cracker!");
-    ~chatplayer("<p,quiz>Here it is! How are you going to explain your plan?");
+    ~chatplayer("<p,happy>Here it is! How are you going to explain your plan?");
     ~chatnpc("<p,happy>Yes, yes, of course. It's quite ingenious really!");
     ~chatnpc("<p,neutral>What we need is something that looks like a human,|sounds like a human, smells like a human and tastes|like a human."); //linebreaks from from runeweb, one of the few 2004-era images we have of this quest
     ~chatplayer("<p,quiz>How are we going to make it look like a human?");
     ~chatnpc("<p,neutral>We'll just make a scarecrow. We'll need logs, and 10 sheaves of wheat for stuffing.");
     ~chatplayer("<p,quiz>How are we going to make it sound like a human?");
-    ~chatnpc("<p,neutral>That's what the parrot's for, of course.");
-    ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Who's a pretty boy then?");
+    ~chatnpc("<p,happy>That's what the parrot's for, of course.");
+    ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Who's a pretty boy then?"); // mesanim lore_bird_chathead_quizical
     ~chatnpc("<p,neutral>Although the trolls might get suspicious if it doesn't say what they expect a human to say...");
     ~chatnpc("<p,neutral>You should hide it for a while somewhere it can pick up some more appropriate catchphrases.");
     ~chatplayer("<p,quiz>How are we going to make it smell like a human?");
     ~chatnpc("<p,neutral>Well, we'll need to dress it up anyway; if we use dirty clothes it'll smell human to the trolls.");
     ~chatnpc("<p,neutral>I'm a man of few clothes myself, so you might want to ask old Sanfew about that one.");
     ~chatplayer("<p,quiz>And how are we going to make it taste like a human?");
-    ~chatnpc("<p,neutral>That's easy, we'll just stuff it with a few chickens. Everything tastes like chicken! Five raw chickens should be enough!");
+    ~chatnpc("<p,happy>That's easy, we'll just stuff it with a few chickens. Everything tastes like chicken! Five raw chickens should be enough!");
     %eadgar_quest = ^eadgar_explained_plan;
-    ~chatnpc("<p,quiz>That's the plan. Anything else I can do for you?");
+    ~chatnpc("<p,neutral>That's the plan. Anything else I can do for you?");
     @eadgar_default_tree;
 } else {
-    // osrs wiki. needs mesanims
-    ~chatplayer("<p,sad>I haven't been able to find one yet.");
-    ~chatnpc("<p,neutral>Well, go see if the zoo have one."); // "have" instead of "has" appears to be authentic
+    // rsprox/branon
+    ~chatplayer("<p,neutral>I haven't been able to find one yet.");
+    ~chatnpc("<p,neutral>Well, go see if the zoo have one."); // "have" instead of "has" is authentic, still present in OSRS
     @multi2("Where's the zoo?", eadgar_where_zoo, "Okay, I'll be right back.", eadgar_brb); 
 }
 
-// wiki, need mesanims
 [label,eadgar_where_zoo]
+// rsprox/branon
 ~chatplayer("<p,quiz>Where's the zoo?");
 ~chatnpc("<p,neutral>It's in Ardougne, south west of here.");
 @eadgar_brb;
 
-// wiki, need mesanims
 [label,eadgar_brb]
+// rsprox/branon
 ~chatplayer("<p,neutral>Okay, I'll be right back.");
 @eadgar_anything_else_default_tree;
 
 // if we've shown the parrot to eadgar but haven't hidden it yet
 // this blocks turning in the other scarecrow supplies
 // TODO probably special dialog if you trigger this with no parrot in inv + also haven't hidden one?
-// also mesanims
 [label,eadgar_what_do_with_parrot]
+// rsprox/branon
 ~chatplayer("<p,quiz>What should I do with this parrot?");
 ~chatnpc("<p,neutral>I told you, put it somewhere it'll learn to say the sort of thing the trolls will expect it to say.");
 ~chatnpc("<p,neutral>That is likely to be screaming. There's bound to be a good spot somewhere in the troll prison.");
-~chatnpc("<p,quiz>Anything else I can do for you?");
-// todo there's another fairly extensive dialog tree if eadgar is talked to after bringing him the parrot
-// "What should I do with this parrot?" -> Eadgar answers, then after "Anything else I can do for you?"
-// there's a bunch of recap dialog options about how to make the scarecrow seem human
 @eadgar_scarecrow_tree; // first available entrypoint to this i think, need to determine if there are any others
 
 [label,eadgar_how_are_you_getting_on]
-~chatnpc("<p,quiz>How are you getting on?");
+// rsprox/branon
+~chatnpc("<p,neutral>How are you getting on?");
 @eadgar_scarecrow_items;
 
 [oploc1,eadgar_rack]
+// rsprox/branon
 if(%eadgar_quest = ^eadgar_needs_educated_parrot) {
     ~mesbox("You look under the rack and find the drunk parrot.");
     ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Ah, hello Sir. Could you please free me?|I seem to have ... OW! What are you doing?|That's my spleen!"); // linebreaks from runeweb 2004
-    ~chatplayer("<p,neutral>I think it's probably heard enough.");
+    ~chatplayer("<p,happy>I think it's probably heard enough.");
     inv_add(inv, eadgar_drunk_parrot, 1);
     %eadgar_quest = ^eadgar_got_educated_parrot;
 } else {
@@ -146,13 +146,44 @@ if(%eadgar_quest = ^eadgar_explained_plan) {
 }
 
 [label,eadgar_hid_parrot]
-~chatplayer("<p,neutral>I hid the parrot under the rack in the troll prison.");
-~chatnpc("<p,neutral>Good work. How about those other items?");
+// rsprox/branon
+~chatplayer("<p,happy>I hid the parrot under the rack in the troll prison.");
+~chatnpc("<p,happy>Good work. How about those other items?");
 %eadgar_quest = ^eadgar_needs_items;
 @eadgar_scarecrow_items;
 
 [label,eadgar_scarecrow_tree]
-mes("todo");
+// rsprox/branon
+~chatnpc("<p,quiz>Anything else I can do for you?");
+@multi5("How are we going to make it look like a human?", eadgar_scarecrow_look, "How are we going to make it sound like a human?", eadgar_scarecrow_sound,
+        "How are we going to make it smell like a human?", eadgar_scarecrow_smell, "How are we going to make it taste like a human?", eadgar_scarecrow_taste,
+        "More", eadgar_default_tree);
+
+[label,eadgar_scarecrow_look]
+// rsprox/branon
+~chatplayer("<p,quiz>How are we going to make it look like a human?");
+~chatnpc("<p,neutral>We'll just make a scarecrow. We'll need logs, and 10 sheaves of wheat for stuffing.");
+@eadgar_scarecrow_tree;
+
+[label,eadgar_scarecrow_sound]
+// rsprox/branon
+~chatplayer("<p,quiz>How are we going to make it sound like a human?");
+~chatnpc("<p,happy>That's what the parrot's for, of course.");
+~chatnpc("<p,neutral>You should hide it for a while somewhere it can pick up some more appropriate catchphrases.");
+@eadgar_scarecrow_tree;
+
+[label,eadgar_scarecrow_smell]
+// rsprox/branon
+~chatplayer("<p,quiz>How are we going to make it smell like a human?");
+~chatnpc("<p,neutral>Well, we'll need to dress it up anyway; if we use dirty clothes it'll smell human to the trolls.");
+~chatnpc("<p,neutral>I'm a man of few clothes myself, so you might want to ask old Sanfew about that one.");
+@eadgar_scarecrow_tree;
+
+[label,eadgar_scarecrow_taste]
+// rsprox/branon
+~chatplayer("<p,quiz>How are we going to make it smell like a human?");
+~chatnpc("<p,happy>That's easy, we'll just stuff it with a few chickens. Everything tastes like chicken! Five raw chickens should be enough.");
+@eadgar_scarecrow_tree;
 
 [label,eadgar_scarecrow_items]
 def_int $logs_num = inv_total(inv, logs);
@@ -229,6 +260,7 @@ def_int $chickens_needed = calc(5 - %eadgar_chickens);
 def_int $grain_needed = calc(10 - %eadgar_grain);
 def_int $clothes_needed = calc(1 - $clothes_num);
 
+// rsprox/branon
 ~chatplayer("<p,neutral>I have <$logs_str>, <$chickens_str>, <$grain_str> and <$clothes_str>.");
 
 // if not all items are delivered, dialog goes back to default tree after eadgar tells you what else is needed
@@ -251,6 +283,7 @@ if(testbit(%eadgar_bits, ^eadgar_given_logs) ! 1 | $chickens_needed > 0 | $grain
         case 1 : $clothes_str = "no dirty clothes";
         case 0 : $clothes_str = "the dirty clothes";
     }
+    // rsprox/branon
     ~chatnpc("<p,neutral>You now need <$logs_str>, <$chickens_str>, <$grain_str> and <$clothes_str>.");
     @eadgar_anything_else_default_tree;
 } else {
@@ -301,25 +334,31 @@ if(inv_total(inv, eadgar_ground_troll_thistle_potion) > 0) {
 }
 
 [label,eadgar_retrieved_parrot]
+
 if(inv_total(inv, eadgar_drunk_parrot) > 0) {
+    // todo skipped this leaf in my run, need mesanims here
     ~chatplayer("<p,neutral>I've brought the parrot.");
     ~chatnpc("<p,happy>Hand it here...there we go! Can you tell this isn't a bona fide human being? I sure can't!");
-    
-    // not sure which npc this is
-    ~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>What am I doing here? Ow! Where's the rest of the|Guard? Agh! I won't tell you anything!"); // linebreaks from runeweb 2004
-    
-    // to match OSRS videos - the drunk parrot/fake man swap is queued
-    // and does not occur until the player clicks through or cancels eadgar's default dialog tree
-    queue(eadgar_get_fake_man, 0, 0);
-    @eadgar_default_tree; // todo check to make sure this being a label doesn't mess with the queue
+    @eadgar_give_fake_man;
 } else {
-    // presumably something here for if you grabbed but lost the parrot?
-    // also need dialog for if you haven't gone back for it yet
+    // rsprox/branon
+    ~chatnpc("<p,quiz>Oh, it's you. You didn't lose your parrot did you? One flew over here and I managed to capture it.");
+    ~chatplayer("<p,idle>..."); // chatidleneu1
+    ~chatnpc("<p,quiz>That's what I thought.");
+    ~chatnpc("<p,happy>Just give me a moment...there we go! Can you tell this isn't a bona fide human being? I sure can't!");
+    @eadgar_give_fake_man;
 }
 
-[queue,eadgar_get_fake_man]
-inv_del(inv, eadgar_drunk_parrot, 1);
+[label,eadgar_give_fake_man]
+// to match OSRS videos - the drunk parrot/fake man swap is queued
+// and does not occur until the player clicks through or cancels eadgar's default dialog tree
+queue(eadgar_fake_man, 0, 0);
+~chatnpc_specific("Fake man", eadgar_parrotts, "<p,neutral>What am I doing here? Ow! Where's the rest of the|Guard? Agh! I won't tell you anything!"); // linebreaks from runeweb 2004
+@eadgar_default_tree;
+
+[queue,eadgar_fake_man]
 inv_add(inv, eadgar_fake_man, 1);
+inv_del(inv, eadgar_drunk_parrot, 1);
 %eadgar_quest = ^eadgar_got_fake_man;
 
 [oploc1,eadgar_kitchen_drawers]
@@ -413,3 +452,9 @@ spotanim_pl(spotanim_291, 124, 0);
 %action_delay = calc(map_clock + 2);
 %stunned = calc(map_clock + 2);
 walktrigger(stunned);
+
+[queue,eadgar_quest_complete]
+session_log(^log_adventure, "Quest complete: Eadgar's Ruse");
+%eadgar_quest = ^eadgar_complete;
+stat_advance(herblore, 110000);
+~send_quest_complete(questlist:eadgar, eadgar_goutweed_herb, 250, ^eadgar_questpoints, "You have completed\\nEadgar's Ruse!");

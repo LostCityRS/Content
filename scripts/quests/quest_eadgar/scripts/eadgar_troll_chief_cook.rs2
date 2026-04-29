@@ -22,9 +22,9 @@ if(%eadgar_quest = ^eadgar_got_fake_man & inv_total(inv, eadgar_fake_man) > 0) {
     inv_del(inv, eadgar_fake_man, 1);
     inv_add(inv, burnt_meat, 1);
     ~chatplayer("<p,neutral>This is burnt meat.");
-    // my run missed these two, need them from indio
+    // my run missed mesanims for these two, todo verify at some point
     ~chatnpc("<p,neutral>It first thing I ever try to cook! Very precious to Burntmeat.");
-    ~chatplayer("<p,quiz>Thank you... and how's the stew?");
+    ~chatplayer("<p,neutral>Thank you... and how's the stew?");
     @burntmeat_gave_fake_man;
 } else {
     ~chatplayer("<p,neutral>Er, hi.");

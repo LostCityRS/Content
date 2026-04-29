@@ -1,23 +1,34 @@
 [opnpc1,sanfew]
-if(%druidquest = ^druid_spoken_sanfew) {
-    @druid_sanfew_give_ingredients;
-}
-~chatnpc("<p,quiz>What can I do for you young 'un?");
-if(%druidquest = ^druid_started) {
-    @multi2("I've been sent to help purify the Varrock stone circle.", druid_sanfew_information, "Actually I don't need to speak to you.", sanfew_dont_need);
-} else if(%druidquest >= ^druid_given_ingredients) {
-    @multi2("Have you any more work for me, to help reclaim the circle?", sanfew_more_work, "Actually I don't need to speak to you.", sanfew_dont_need);
-} else if(%druidquest = ^druid_not_started) {
-    @multi2("I've heard you druids might be able to teach me herblore.", sanfew_teach_herblore, "Actually I don't need to speak to you.", sanfew_dont_need);
-}
+if(%eadgar_quest = ^eadgar_unlocked_storeroom & inv_total(inv, eadgar_goutweed_herb) > 0) { 
+    @sanfew_complete_eadgar;
+} 
 if(%eadgar_quest >= ^eadgar_started) {
     @multi2("What was I meant to be doing again?", eadgar_sanfew_reminder, "Actually I don't need to speak to you.", sanfew_dont_need);
-}
-if(%eadgar_quest = ^eadgar_needs_items) {
+} else if(%eadgar_quest = ^eadgar_needs_items) {
     if(inv_total(inv, eadgar_dirty_druid_robe) = 0 & inv_total(bank, eadgar_dirty_druid_robe) = 0) {
         @eadgar_sanfew_dirty_clothes;
     }
 }
+if(%druidquest = ^druid_spoken_sanfew) {
+    @druid_sanfew_give_ingredients;
+}
+~chatnpc("<p,quiz>What can I do for you young 'un?");
+if(%eadgar_quest = ^eadgar_complete) {
+    if(inv_total(inv, eadgar_goutweed_herb) > 0) {
+        @multi3("I have some more goutweed for you.", sanfew_goutweed_exchange, "Have you any more work for me, to help reclaim the circle?", sanfew_more_work, "Actually I don't need to speak to you.", sanfew_dont_need);
+    } else {
+        @sanfew_postquest;
+    }
+} else if(%druidquest = ^druid_started) {
+    @multi2("I've been sent to help purify the Varrock stone circle.", druid_sanfew_information, "Actually I don't need to speak to you.", sanfew_dont_need);
+} else if(%druidquest >= ^druid_given_ingredients) {
+    @sanfew_postquest;
+} else if(%druidquest = ^druid_not_started) {
+    @multi2("I've heard you druids might be able to teach me herblore.", sanfew_teach_herblore, "Actually I don't need to speak to you.", sanfew_dont_need);
+}
+
+[label,sanfew_postquest]
+@multi2("Have you any more work for me, to help reclaim the circle?", sanfew_more_work, "Actually I don't need to speak to you.", sanfew_dont_need);
 
 [label,druid_sanfew_information]
 ~chatplayer("<p,neutral>I've been sent to assist you with the ritual to purify the Varrockian stone circle.");
@@ -95,7 +106,7 @@ if(%death_equiproom = ^death_complete & %troll_quest = ^troll_complete) {
         // Before my run of the quest in OSRS, I tried starting the quest with Death Plateau and Troll Stronghold completed but under 31 Herblore and I got:
         ~chatnpc("<p,neutral>Not just yet, young 'un.");
         // The wiki says there should be different dialog (below) but I'm skeptical of the spelling ("'m" versus "I'm")
-        // and also this line didn't show up for me, so...
+        // and also this line didn't show up for me, so... TODO I guess?
         //~chatnpc("<p,sad>'m afraid you are not yet learned enough in the art of Herblore to be able to help me, adventurer...");
         ~mesbox("You do not meet all of the requirements to start the Eadgar's Ruse quest.");
     }
@@ -131,3 +142,14 @@ if(%death_equiproom = ^death_complete & %troll_quest = ^troll_complete) {
 ~chatnpc("<p,confused>Now why would he need that?");
 ~chatplayer("<p,neutral>It's a long story.");
 ~chatnpc("<p,neutral>Never mind then... I think Tegid is doing his laundry|outside. You could ask him if you can borrow one of|his dirty robes."); // linebreaks from runeweb 2004
+
+[label,sanfew_complete_eadgar]
+inv_del(inv, eadgar_goutweed_herb, 1);
+queue(eadgar_quest_complete, 0, 0);
+// rsprox/branon
+~chatplayer("<p,happy>I have some goutweed!");
+~chatnpc("<p,happy>Excellent! I will be able to complete the next part of the|ritual now. I will teach you a new spell and give you|some of my knowledge in herblore as a token of thanks."); // https://www.global-rs.com/img/eadgarsruse_congrats.gif
+~chatnpc("<p,neutral>If you ever come across more goutweed, bring it to me; I don't need any more for the ritual, but it's still quite difficult for me to get. I'll exchange it for some other herbs.");
+
+[label,sanfew_goutweed_exchange]
+mes("todo");
