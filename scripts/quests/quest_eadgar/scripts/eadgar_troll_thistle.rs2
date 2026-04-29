@@ -22,6 +22,12 @@ if($newcoord = npc_coord) {
     npc_tele($newcoord);
 }
 
+[opheldu,eadgar_troll_thistle]
+if(last_useitem = ranarrvial) {
+    mes("I need to dry it in a fire first."); // different mes than opheldu the other way around
+}
+
+[label,eadgar_dried_troll_thistle_mes] mes("It's too big to fit in the vial."); // this is used in two places
 
 [opheldu,eadgar_dried_troll_thistle]
 if(last_useitem = ranarrvial) {
@@ -40,9 +46,6 @@ if(%eadgar_quest = ^eadgar_needs_potion) {
     // osrs, from Ashie
     ~chatplayer("<p,confused>Hmmm...perhaps I shouldn't try and mix these together. It might have unpredictable results...");
 }
-
-[label,eadgar_troll_thistle_mes] mes("I need to dry it over a fire first.");
-[label,eadgar_dried_troll_thistle_mes] mes("It's too big to fit in the vial.");
 
 // fresh & dried thistle both inv_del on drop
 // ground thistle and mixed potion both drop normally (but are untradeable)

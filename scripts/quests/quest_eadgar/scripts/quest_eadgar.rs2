@@ -144,7 +144,14 @@ if(inv_freespace(inv) > 0) {
 
 [oploc1,eadgar_rack]
 // rsprox/branon
-if(%eadgar_quest = ^eadgar_needs_parrot_back) {
+if(%eadgar_quest = ^eadgar_hid_parrot) {
+    switch_int(random(2)) {
+        case 0 : ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Polly wanna cracker!");
+        case 1 : ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Pieces of eight! Pieces of eight!");
+        case 2 : ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Who's a pretty boy then?");
+    }
+    ~chatplayer("<p,neutral>I don't think it's done yet.");
+} else if(%eadgar_quest = ^eadgar_needs_parrot_back) {
     ~mesbox("You look under the rack and find the drunk parrot.");
     ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Ah, hello Sir. Could you please free me?|I seem to have ... OW! What are you doing?|That's my spleen!"); // linebreaks from runeweb 2004
     ~chatplayer("<p,happy>I think it's probably heard enough.");
@@ -391,7 +398,7 @@ if(inv_total(inv, eadgar_fake_man) > 0) { // bank is not checked here
 } else {
     ~chatplayer("<p,sad>No. I lost it.");
     ~chatnpc("<p,angry>You bumbling imbecile!");
-    inv_add(inv, eadgar_fake_man, 1); // this appears to be added in dialog (not queue) and dropped to the ground according to packet capture, todo verify behavior against my video
+    inv_add(inv, eadgar_fake_man, 1); // this appears to be added in dialog (not queued) and drops to the ground here if inv is full
     ~chatnpc("<p,angry>Never mind, here's one I prepared earlier.");
 }
 @eadgar_anything_else_default_tree;
@@ -467,7 +474,7 @@ if (huntnext = true) {
     return;
 }
 
-[oploc1,eadgar_crate_goutweed]
+[oploc1,eadgar_crate_goutweed] // todo what happens if you hold the objbox open and get hit by a patrolling guard?
 if(npc_find(0_44_157_41_27, eadgar_storeroom_guard, 4, 0) = true) {
     // guess based on osrs videos, it's pretty centered vertically but looks scaled down slightly
     // todo change to match https://web.archive.org/web/20051025140652im_/http://www.runeweb.net/fireball/Eadgars%20Ruse%20Images/Eadgar18.PNG

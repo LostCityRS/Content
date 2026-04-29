@@ -72,7 +72,7 @@ if(%eadgar_quest >= ^eadgar_explained_plan) { // on or after this stage, the par
     return; // todo check if alco-chunks are deleted here
 }
 inv_del(inv, eadgar_alco_chunks, 1);
-queue(eadgar_get_parrot, 0, 0); // guessing it's queued here
+queue(eadgar_get_parrot, 0, 0); // appears to be queued here judging by indio's clip
 ~mesbox("You manage to attract a parrot and catch it.");
 ~chatplayer("<p,happy>Hah! Got you now!");
 ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Sqwaawk...*hic*"); // this chathead doesn't seem to exist in 274 but will be lunar_captains_parrot in 2006, something else in 2005...? https://web.archive.org/web/20060114030943im_/http://www.runeweb.net/fireball/Eadgars%20Ruse%20Images/Eadgar12.PNG

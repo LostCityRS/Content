@@ -156,7 +156,9 @@ def_int $experience = db_getfield($data,cooking_generic:experience,0);
 
 // i put this in a label so its easier to transition to weak queues later on
 [label,cook_item](boolean $passes_roll, seq $anim, string $cookmessage, string $succesmessage, string $burnmessage, obj $uncooked_item, namedobj $cooked_item, namedobj $burnt_item, namedobj $additional_item, int $experience)
-mes($cookmessage);
+if($uncooked_item ! eadgar_troll_thistle) { // no cookmessage for this
+    mes($cookmessage);
+}
 anim($anim, 0);
 sound_synth(fry, 0, 0);
 switch_obj($uncooked_item) {

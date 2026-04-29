@@ -34,9 +34,8 @@ if(last_useitem = ground_bat_bones) {
 ~attempt_brew_potion(last_useslot, last_slot);
 
 [opheldu,ranarrvial]
-// maybe the troll thistle stuff shouldn't be here if the mes isn't given both ways
 switch_obj(last_useitem) {
-    case eadgar_troll_thistle : @eadgar_troll_thistle_mes;
+    case eadgar_troll_thistle : mes("I need to dry it over a fire first."); // different mes than opheldu the other way around
     case eadgar_dried_troll_thistle : @eadgar_dried_troll_thistle_mes;
     case default : ~attempt_brew_potion(last_useslot, last_slot);        
 }
