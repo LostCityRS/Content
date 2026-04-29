@@ -1,3 +1,53 @@
+[ai_queue3,_category_348]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+~trail_easycluedrop(128, npc_coord);
+
+def_int $random = random(128);
+
+if ($random < 1) {
+    obj_add(npc_coord, iron_dagger, 1, ^lootdrop_duration);
+} else if ($random < 3) {
+    obj_add(npc_coord, bronze_med_helm,1 , ^lootdrop_duration);
+} else if ($random < 25) {
+    if (map_members = ^true) {
+        obj_add(npc_coord, bolt, ~random_range(2,12), ^lootdrop_duration);
+    }
+} else if ($random < 28) {
+    obj_add(npc_coord, bronze_arrow, 7, ^lootdrop_duration);
+} else if ($random < 30) {
+    obj_add(npc_coord, earthrune, 4, ^lootdrop_duration);
+} else if ($random < 32) {
+    obj_add(npc_coord, firerune, 6, ^lootdrop_duration); 
+} else if ($random < 34) {
+    obj_add(npc_coord, mindrune, 9, ^lootdrop_duration);
+} else if ($random < 35) {
+    obj_add(npc_coord, chaosrune, 2, ^lootdrop_duration); 
+} else if ($random < 58) {
+    obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+} else if ($random < 96) {
+    obj_add(npc_coord, coins, 3, ^lootdrop_duration);
+} else if ($random < 105) {
+    obj_add(npc_coord, coins, 5, ^lootdrop_duration);
+} else if ($random < 109) {
+    obj_add(npc_coord, coins, 15, ^lootdrop_duration);
+} else if ($random < 110) {
+    obj_add(npc_coord, coins, 25, ^lootdrop_duration);
+} else if ($random < 115) {
+    obj_add(npc_coord, fishing_bait, 1, ^lootdrop_duration);
+} else if ($random < 117) {
+    obj_add(npc_coord, copper_ore, 1, ^lootdrop_duration);
+} else if ($random < 119) {
+    obj_add(npc_coord, earth_talisman, 1, ^lootdrop_duration);
+} else if ($random < 120) {
+    obj_add(npc_coord, cabbage, 1, ^lootdrop_duration);
+}
+
 [opnpc1,_category_348]
 if(compare(nc_name(npc_type),"Afflicted") = 0) {
     @afflicted_talk;
@@ -7,7 +57,7 @@ if(compare(nc_name(npc_type),"Afflicted") = 0) {
 
 [label,afflicted_talk]
 ~chatnpc("<p,shock><~generate_afflicted_speech>");
-~chatnpc("@dbl@~ This person doesn't make any sense at all. ~");
+~chatnpc("<p,shock>@dbl@~ This person doesn't make any sense at all. ~");
 
 [opnpcu,_category_348]
 if(oc_category(last_useitem) = category_108 & compare(nc_name(npc_type),"Afflicted") = 0) {
@@ -15,7 +65,7 @@ if(oc_category(last_useitem) = category_108 & compare(nc_name(npc_type),"Afflict
     npc_anim(null, 0);
     npc_changetype(npc_param(next_npc_type), 50); //50 ticks osrs
     queue(207_cure_affliction_reward, 0, 0);
-    ~chatnpc("<p,happy>Oh... thank you, you used the serum on me. Here have|something for your trouble");
+    ~chatnpc("<p,happy>Oh... thank you, you used the serum on me. Here have|something for your trouble.");
     //17 May 2005 (Update):
     //Serum 208 can now be used on afflicted for better rewards.
 // } else if(oc_category(last_useitem) = category_109 & compare(nc_name(npc_type),"Afflicted") = 0) {

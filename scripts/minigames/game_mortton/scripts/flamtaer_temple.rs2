@@ -133,21 +133,23 @@ if(%temple_sanctity_p < 100) {
 }
 
 //1 exp per 2 resources spent
-stat_advance(crafting, divide($resource_amount,2));
+stat_advance(crafting, divide(multiply($resource_amount,10),2));
 
 def_int $current_wall_state = loc_param(temple_wall_level);
 //todo: Find better breakpoints
-switch_int($current_wall_state) {
-    case 0 : if(%current_temple_build > 300) loc_change(loc_param(next_loc_stage), 9000);
-    case 1 : if(%current_temple_build > 700) loc_change(loc_param(next_loc_stage), 9000);
-    case 2 : if(%current_temple_build > 1100) loc_change(loc_param(next_loc_stage), 9000);
-    case 3 : if(%current_temple_build > 1500) loc_change(loc_param(next_loc_stage), 9000);
-    case 4 : if(%current_temple_build > 1900) loc_change(loc_param(next_loc_stage), 9000);
-    case 5 : if(%current_temple_build > 2300) loc_change(loc_param(next_loc_stage), 9000);
-    case 6 : if(%current_temple_build > 2700) loc_change(loc_param(next_loc_stage), 9000);
-    case 7 : if(%current_temple_build > 3100) loc_change(loc_param(next_loc_stage), 9000);
-    case 8 : if(%current_temple_build > 3500) loc_change(loc_param(next_loc_stage), 9000);
-    case 9 : if(%current_temple_build > 3900) loc_change(loc_param(next_loc_stage), 9000);
+if(loc_param(next_loc_stage) ! null) {
+    switch_int($current_wall_state) {
+        case 0 : if(%current_temple_build > 300) loc_change(loc_param(next_loc_stage), 9000);
+        case 1 : if(%current_temple_build > 700) loc_change(loc_param(next_loc_stage), 9000);
+        case 2 : if(%current_temple_build > 1100) loc_change(loc_param(next_loc_stage), 9000);
+        case 3 : if(%current_temple_build > 1500) loc_change(loc_param(next_loc_stage), 9000);
+        case 4 : if(%current_temple_build > 1900) loc_change(loc_param(next_loc_stage), 9000);
+        case 5 : if(%current_temple_build > 2300) loc_change(loc_param(next_loc_stage), 9000);
+        case 6 : if(%current_temple_build > 2700) loc_change(loc_param(next_loc_stage), 9000);
+        case 7 : if(%current_temple_build > 3100) loc_change(loc_param(next_loc_stage), 9000);
+        case 8 : if(%current_temple_build > 3500) loc_change(loc_param(next_loc_stage), 9000);
+        case 9 : if(%current_temple_build > 3900) loc_change(loc_param(next_loc_stage), 9000);
+    }
 }
 
 anim(human_pickuptable, 0);
@@ -167,28 +169,69 @@ if (inv_total(inv, tinderbox) < 1) {
     mes("You need a tinderbox to light the fire altar.");
     return;
 }
-@try_light_altar;
 
-[oplocu,templefire_altar_nofire]
-if(last_useitem = tinderbox) {
-    @try_light_altar;
-} else {
-    ~displaymessage(^dm_default);
+if (%morttonquest < ^mortton_can_light_altar) {
+    ~mesbox("You need to have repaired or reinforced the walls of the temple|before you can light the sacred flame.");
+    return;
 }
 
-[label,try_light_altar]
 if(%temple_sanctity_p < 10) {
     ~mesbox("You haven't sanctified enough of the temple to allow you to light the|fire. Repair or reinforce the wall to increase your sanctity. You|need at least 10% Sanctity to attempt to light the fire.");
     return;
 }
-//todo: light temple logic
-//action delay check
-mes("You attempt to light the fire altar.");
-//stat random mes fail
-mes("You don't manage to light the fire this time.");
-//stat random mes success
-mes("You light the temple fire.");
-loc_change(templefire_altar, 99);
+
+if (%action_delay < map_clock) {
+    %action_delay = calc(map_clock + 3);
+    mes("You attempt to light the fire altar.");
+} else if (%action_delay = map_clock) {
+    @try_light_altar;
+}
+anim(human_pickuptable, 0);
+p_oploc(3);
+
+[oplocu,templefire_altar_nofire]
+if(last_useitem = tinderbox) {
+    if (%morttonquest < ^mortton_can_light_altar) {
+        ~mesbox("You need to have repaired or reinforced the walls of the temple|before you can light the sacred flame.");
+        return;
+    }
+
+    if(%temple_sanctity_p < 10) {
+        ~mesbox("You haven't sanctified enough of the temple to allow you to light the|fire. Repair or reinforce the wall to increase your sanctity. You|need at least 10% Sanctity to attempt to light the fire.");
+        return;
+    }
+
+    if (%action_delay < map_clock) {
+        %action_delay = calc(map_clock + 3);
+        mes("You attempt to light the fire altar.");
+    } else if (%action_delay = map_clock) {
+        @try_light_altar;
+    }
+    anim(human_pickuptable, 0);
+    p_oploc(3);
+} else {
+    ~displaymessage(^dm_default);
+}
+
+[oploc3,templefire_altar_nofire]
+if (%action_delay < map_clock) {
+    %action_delay = calc(map_clock + 3);
+    anim(human_pickuptable, 0);
+} else if (%action_delay = map_clock) {
+    @try_light_altar;
+}
+p_oploc(3);
+
+[label,try_light_altar]
+// Guess
+if(stat_random(firemaking, 100, 250) = false) {
+    mes("You don't manage to light the fire this time.");
+    p_oploc(3);
+} else {
+    mes("You light the temple fire.");
+    loc_change(templefire_altar, 99);
+    stat_advance(firemaking, 1600);
+}
 
 [queue,update_flamtaer_overlay]
 %temple_resources_p = divide(%temple_resources, 150);
@@ -236,6 +279,11 @@ inv_del(inv, woodplank, 1);
 
 [oplocu,templefire_altar]
 if (oc_category(last_useitem) = category_110) {
+    if (%morttonquest < ^mortton_can_light_altar) {
+        ~mesbox("You need to have repaired or reinforced the walls of the temple|before you can use the sacred flame.");
+        return;
+    }
+
     if(%temple_sanctity_p < 10) {
         ~mesbox("You need to increase your sanctity to at least 10% before you can|use the sacred flame. Using the sacred flame reduces your sanctity.");
         return;
@@ -246,12 +294,20 @@ if (oc_category(last_useitem) = category_110) {
     def_int $sanc_drain = divide(multiply(multiply(9, $doses), 30), 1000);
     %temple_sanctity = sub(%temple_sanctity, $sanc_drain);
 
-    inv_setslot(inv, $slot, oc_param($obj, next_obj_stage_temple), 1);
+    inv_setslot(inv, $slot, oc_param($obj, next_obj_stage), 1);
     sound_synth(oil_pour, 0, 0);
     anim(human_pickuptable, 0);
     mes("You carefully sanctify the oil in the sacred flame.");
+    if (%morttonquest = ^mortton_can_light_altar) {
+        %morttonquest = ^mortton_created_sacred_oil;
+    }
     return;
 } else if (oc_category(last_useitem) = category_108) {
+    if (%morttonquest < ^mortton_can_light_altar) {
+        ~mesbox("You need to have repaired or reinforced the walls of the temple|before you can use the sacred flame.");
+        return;
+    }
+
     if(%temple_sanctity_p < 20) {
         //Was fixed to be 20% later
         ~mesbox("You need to increase your sanctity to %20 before you can use the|sacred flame for this purpose.  Using the sacred flame reduces your|sanctity.");
@@ -275,5 +331,3 @@ if (oc_category(last_useitem) = category_110) {
     return;
 }
 ~displaymessage(^dm_default);
-
-//todo finished temple midi

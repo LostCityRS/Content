@@ -1,6 +1,6 @@
 [oploc1,shadelairentrancel]
 p_arrivedelay;
-if(testbit(%morttonmulti, ^mortton_unlocked_shade_lair) = ^false & ~get_shadekeys_total = 0) {
+if(testbit(%morttonmulti, ^mortton_unlocked_shade_lair) = ^false | ~get_shadekeys_total = 0) {
     mes("The door seems locked. Perhaps you need a key.");
     sound_synth(locked, 0, 0);
     return;
@@ -18,7 +18,7 @@ p_teleport(0_54_151_37_61);
 
 [oploc1,shadelairentrancer]
 p_arrivedelay;
-if(testbit(%morttonmulti, ^mortton_unlocked_shade_lair) = ^false & ~get_shadekeys_total = 0) {
+if(testbit(%morttonmulti, ^mortton_unlocked_shade_lair) = ^false | ~get_shadekeys_total = 0) {
     mes("The door seems locked. Perhaps you need a key.");
     sound_synth(locked, 0, 0);
     return;

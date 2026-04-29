@@ -1,70 +1,45 @@
 [opnpc3,razmire_keelgan]
-//todo does this happen here
 if (testbit(%morttonmulti, ^mortton_cured_razmire) = ^false & testbit(%morttonmulti, ^mortton_used_perm_serum_on_razmire) = ^false) {
     npc_changetype(razmire_keelgan_afflicted,200);
     @afflicted_talk;
 }
 if(%morttonquest >= ^mortton_shades_to_razmire) {
     @razmire_general_open;
-} //todo: mes at different stages before this?
+} else if(%morttonquest > ^mortton_kill_shades & %morttonquest < ^mortton_shades_to_razmire) {
+    @razmire_killed_shades;
+} else {
+    @razmire_stores_closed_general;
+}
 
 [opnpc4,razmire_keelgan]
-//todo does this happen here
 if (testbit(%morttonmulti, ^mortton_cured_razmire) = ^false & testbit(%morttonmulti, ^mortton_used_perm_serum_on_razmire) = ^false) {
     npc_changetype(razmire_keelgan_afflicted,200);
     @afflicted_talk;
 }
 if(%morttonquest >= ^mortton_shades_to_razmire) {
     @razmire_building_open;
-} //todo: mes at different stages before this?
-
-[opnpcu,razmire_keelgan]
-if(oc_category(last_useitem) = category_108) {
-    inv_setslot(inv, last_useslot, oc_param(last_useitem, next_obj_stage), 1);
-    if(%morttonquest < ^mortton_made_serum) {
-        npc_changetype(razmire_keelgan,1);
-        ~chatnpc("<p,confused>The serum it works...but it's not too fresh, make some|yourself and then it might work for longer.");
-        @afflicted_talk;
-    }
-    npc_changetype(razmire_keelgan,200);
-    longqueue(razmire_reset, 200, 0, ^accelerate);
-    %morttonmulti = setbit(%morttonmulti, ^mortton_cured_razmire);
-    if (testbit(%morttonmulti, ^mortton_used_perm_serum_on_razmire) = ^true) {
-        ~chatnpc("<p,happy>You've already used the permanent serum on me, you|don't need to use that any more.");
-    }
-    @razmire_talk;
-} else if(oc_category(last_useitem) = category_109) {
-    inv_setslot(inv, last_useslot, oc_param(last_useitem, next_obj_stage), 1);
-    npc_changetype(razmire_keelgan,200);
-    longqueue(razmire_reset, 200, 0, ^accelerate);
-    %morttonmulti = setbit(%morttonmulti, ^mortton_cured_razmire);
-    if (testbit(%morttonmulti, ^mortton_used_perm_serum_on_razmire) = ^true) {
-        ~chatnpc("<p,happy>You've already used the permanent serum on me, you|don't need to use that any more.");
-    } else {
-        %morttonmulti = setbit(%morttonmulti, ^mortton_cured_razmire);
-        queue(razmire_perm_serum_reward, 0, 0);
-        ~chatnpc("<p,happy>Well done - I feel this serum is really working on me.|I think you've cracked it, my friend! I'd like to give|you something for your trouble!");
-    }
-    @razmire_talk;
+} else if(%morttonquest > ^mortton_kill_shades & %morttonquest < ^mortton_shades_to_razmire) {
+    @razmire_killed_shades;
 } else {
-    ~displaymessage(^dm_default);
+    @razmire_stores_closed_builders;
 }
 
-[queue,razmire_perm_serum_reward]
-//Guess https://oldschool.runescape.wiki/w/Transcript:Ulsquire_Shauncy#Using_Serum_208_on_him
-def_int $count = ~random_range(180,220);
-inv_add(inv, coins, $count);
-~objbox(coins,"Razmire gives you <tostring($count)> gold coins.", 250, 0, 0);
+[opnpcu,razmire_keelgan]
+@razmire_use_item;
 
 [opnpcu,razmire_keelgan_afflicted]
+@razmire_use_item;
+
+[label,razmire_use_item]
 if(oc_category(last_useitem) = category_108) {
-    inv_setslot(inv, last_useslot, oc_param(last_useitem, next_obj_stage), 1);
     if(%morttonquest < ^mortton_made_serum) {
         npc_changetype(razmire_keelgan,1);
+        inv_setslot(inv, last_useslot, oc_param(last_useitem, next_obj_stage), 1);
         ~chatnpc("<p,confused>The serum it works...but it's not too fresh, make some|yourself and then it might work for longer.");
         @afflicted_talk;
     }
     npc_changetype(razmire_keelgan,200);
+    inv_setslot(inv, last_useslot, oc_param(last_useitem, next_obj_stage), 1);
     longqueue(razmire_reset, 200, 0, ^accelerate);
     %morttonmulti = setbit(%morttonmulti, ^mortton_cured_razmire);
     if (testbit(%morttonmulti, ^mortton_used_perm_serum_on_razmire) = ^true) {
@@ -72,16 +47,18 @@ if(oc_category(last_useitem) = category_108) {
     }
     @razmire_talk;
 } else if(oc_category(last_useitem) = category_109) {
-    inv_setslot(inv, last_useslot, oc_param(last_useitem, next_obj_stage), 1);
     npc_changetype(razmire_keelgan,200);
-    longqueue(razmire_reset, 200, 0, ^accelerate);
-    %morttonmulti = setbit(%morttonmulti, ^mortton_cured_razmire);
-    if (testbit(%morttonmulti, ^mortton_used_perm_serum_on_razmire) = ^true) {
-        ~chatnpc("<p,happy>You've already used the permanent serum on me, you|don't need to use that any more.");
-    } else {
-        %morttonmulti = setbit(%morttonmulti, ^mortton_cured_razmire);
-        queue(razmire_perm_serum_reward, 0, 0);
+    if (testbit(%morttonmulti, ^mortton_used_perm_serum_on_razmire) = ^false) {
+        def_int $last_useslot = last_useslot;
+        def_obj $last_useitem = last_useitem;
         ~chatnpc("<p,happy>Well done - I feel this serum is really working on me.|I think you've cracked it, my friend! I'd like to give|you something for your trouble!");
+        %morttonmulti = setbit(%morttonmulti, ^mortton_used_perm_serum_on_razmire);
+        inv_setslot(inv, $last_useslot, oc_param($last_useitem, next_obj_stage), 1);
+        def_int $count = ~random_range(180,220);
+        inv_add(inv, coins, $count);
+        ~objbox(coins,"Razmire gives you <tostring($count)> gold coins.", 250, 0, 0);
+    } else {
+        ~chatnpc("<p,happy>You've already used the permanent serum on me, you|don't need to use that any more.");
     }
     @razmire_talk;
 } else {
@@ -136,19 +113,19 @@ if(%morttonquest < ^mortton_kill_shades) {
 } else if(%morttonquest >= ^mortton_shades_to_razmire & %morttonquest <= ^mortton_ulsquire_temple) {
     ~chatnpc("<p,happy>Hello again...what can I do for you now?");
     @razmire_store_selection;
-} else if(%morttonquest >= ^mortton_rebuild_temple & %morttonquest <= ^mortton_can_light_altar) {
+} else if(%morttonquest = ^mortton_rebuild_temple) {
     ~chatplayer("<p,neutral>Hello there, I've started repairing the temple.");
     ~chatnpc("<p,happy>That's great, carry on the good work.");
     @razmire_questions_post_rebuild;
-} else if(%morttonquest >= ^mortton_created_sacred_oil & %morttonquest <= ^mortton_logs_on_pyre) {
-    @razmire_store_selection_post_oil;
+} else if(%morttonquest >= ^mortton_can_light_altar & %morttonquest <= ^mortton_logs_on_pyre) {
+    @razmire_store_post_oil;
 } else if(%morttonquest >= ^mortton_lit_pyre) {
     if (testbit(%morttonmulti, ^mortton_unlocked_shade_lair) = ^false) {
         ~chatplayer("<p,neutral>Hey, I've laid a Shade to rest, can you tell me where|the Shade lair is now?");
         %morttonmulti = setbit(%morttonmulti, ^mortton_unlocked_shade_lair);
         ~chatnpc("<p,neutral>Yeah, great job on putting that Shade to rest. The|entrance to the Shade Lair is due North of my shop.|Good hunting in the lair my friend!");
     }
-    @razmire_store_selection_post_oil;
+    @razmire_store_post_oil;
 }
 
 [label,razmire_questions_post_rebuild]
@@ -177,7 +154,7 @@ if(%morttonquest < ^mortton_kill_shades) {
 ~chatnpc("<p,neutral>My name is Razmire Keelgan, I run a couple of shops|in Mort'ton but don't get much custom these days.");
 ~chatplayer("<p,neutral>Which stores do you run?");
 ~chatnpc("<p,neutral>I run a general store with a few useful items, and I|have a building supplies store, I'm hoping that when|things get better down here, people will want to buy|items to repair their buildings.");
-@multi3("Can I see your general store please", razmire_stores_closed, "Can I see your build supplies store please", razmire_stores_closed, "I have other questions for you.", razmire_questions);
+@multi3("Can I see your general store please", razmire_stores_closed_general, "Can I see your build supplies store please", razmire_stores_closed_builders, "I have other questions for you.", razmire_questions);
 
 [label,razmire_place]
 ~chatplayer("<p,neutral>What is this place?");
@@ -211,7 +188,12 @@ if(%morttonquest < ^mortton_kill_shades) {
 ~chatnpc("<p,neutral>Life is a daily struggle with those Shades around here.|They attack when you least expect it...it's terrifying! I|tell you what, if you kill five of those Shades I'll see if I|can help you out! Is it a deal?");
 @multi3_header("Yes, I'll dispatch those dark and evil creatures.", razmire_yes, "Sorry, not right now, I need to do something else first.", razmire_not_now, "I have another question.", razmire_questions,"Kill five Shades?");
 
-[label,razmire_stores_closed]
+[label,razmire_stores_closed_general]
+~chatnpc("<p,neutral>Well to be honest, all of my stock is packed away right|now seeing as the town is all overrun with these Shades.|I tell you what. You put an end to five Shades for me|and I'll open the store for you!");
+~chatnpc("<p,neutral>I have details on that dilapidated temple to the North.|These shades have a purpose - they jealously guard|their burial treasure! If you can do me some favours, I|could help you to locate it!");
+@multi3_header("Yes, I'll dispatch those dark and evil creatures.", razmire_yes, "Sorry, not right now, I need to do something else first.", razmire_not_now, "I have another question.", razmire_questions,"Kill five Shades?");
+
+[label,razmire_stores_closed_builders]
 ~chatnpc("<p,neutral>Well to be honest, all of my stock is packed away right|now seeing as the town is all overrun with these Shades.|I tell you what. You put an end to five Shades for me|and I'll open the store for you!");
 ~chatnpc("<p,neutral>I have details on that dilapidated temple to the North.|These shades have a purpose - they jealously guard|their burial treasure! If you can do me some favours, I|could help you to locate it!");
 @multi2_header("Yes, I'll dispatch those dark and evil creatures.", razmire_yes, "Sorry, not right now, I need to do something else first.", razmire_not_now, "Kill five Shades for Razmire?");
@@ -262,6 +244,11 @@ if(%morttonquest < ^mortton_kill_shades) {
 
 [label,razmire_thanks]
 ~chatplayer("<p,neutral>Ok, thanks");
+
+[label,razmire_killed_shades]
+~chatnpc("<p,neutral>Have you killed those Shades yet?");
+~chatplayer("<p,neutral>No, sorry, not yet.");
+~chatnpc("<p,neutral>Well, come back when you have.");
 
 //osrs uses razmire as an npc controller, 
 //confirmed because if he changes types then the timer cadence changes too

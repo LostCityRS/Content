@@ -42,10 +42,6 @@ inv_setslot(inv, $logs_slot, $product, 1);
 stat_advance(firemaking, struct_param($struct, pyre_create_experience));
 
 [oplocu,temple_pyre]
-if(%morttonquest < ^mortton_created_pyre_logs) {
-    mes("You can't do that until you have made your own funeral pyre logs.");
-    return;
-}
 if(last_useitem = hollow_bark) {
     mes("You can't make a pyre with that kind of log.");
     return;
@@ -55,6 +51,10 @@ if(oc_category(last_useitem) = category_22) {
     return;
 }
 if(oc_category(last_useitem) = category_2050) {
+    if(%morttonquest < ^mortton_created_pyre_logs) {
+        mes("You can't do that until you have made your own funeral pyre logs.");
+        return;
+    }
     @add_logs_to_funeral_pyre(last_useitem);
 }
 ~displaymessage(^dm_default);

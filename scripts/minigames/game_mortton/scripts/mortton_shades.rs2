@@ -1,4 +1,10 @@
+[ai_queue3,shadeshadow_level1]
+@level1_shade_death;
+
 [ai_queue3,shade_level1]
+@level1_shade_death;
+
+[label,level1_shade_death]
 gosub(npc_death);
 if (npc_findhero = ^false) {
     return;
@@ -7,6 +13,21 @@ if (npc_findhero = ^false) {
 obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
 longqueue(shadeattack_reset, 5, 0, ^accelerate); //5 ticks osrs
 
+if(%morttonquest >= ^mortton_kill_shades & %morttonquest < ^mortton_killed_5_shades) {
+    queue(mortton_quest_shade_kill, 0, 0);
+}
+
+if(~inzone_coord_pair_table(mortton_temple_zones, coord) = true & %morttonquest > ^mortton_shades_to_ulsquire) {
+    if_openoverlay(flamtaer_status);
+    if(%temple_sanctity_p < 100) {
+        %temple_sanctity = add(%temple_sanctity, 60);
+    }
+    if(gettimer(sanctity_drain) = ^false) {
+        settimer(sanctity_drain, 100);
+    }
+}
+
+[queue,mortton_quest_shade_kill]
 if(%morttonquest = ^mortton_kill_shades) {
     %morttonquest = ^mortton_killed_1_shade;
     mes("That's one Shade!");
@@ -24,67 +45,74 @@ if(%morttonquest = ^mortton_kill_shades) {
     mes("That's all five Shades!");
 }
 
-if(~inzone_coord_pair_table(mortton_temple_zones, coord) = true & %morttonquest > ^mortton_shades_to_ulsquire) {
-    if_openoverlay(flamtaer_status);
-    queue(update_flamtaer_overlay, 0, 0); //todo does this update here
-    if(%temple_sanctity_p < 100) {
-        %temple_sanctity = add(%temple_sanctity, 60);
-        %temple_sanctity_p = divide(%temple_sanctity, 30);
-    }
-    if(gettimer(sanctity_drain) = ^false) {
-        settimer(sanctity_drain, 100);
-    }
-}
-
 [queue,shadeattack_reset]
 %morttonmulti = clearbit(%morttonmulti, ^shadeattack);
 
 [ai_queue2,shadeshadow_level1]
 ~npc_default_damage(last_int);
+npc_queue(13, 0, 0);
+
+[ai_queue13,shadeshadow_level1]
 npc_anim(null, 0);
-npc_changetype(npc_param(next_npc_type), 95); //todo 95 ticks osrs todo: This isnt revert but change again..?
+npc_changetype(npc_param(next_npc_type), 500);
 npc_anim(shade_rise, 0);
 npc_setmode(none);
 npc_walk(npc_coord);
 npc_delay(1);
 npc_anim(null, 0);
-npc_setmode(null);
 if (finduid(%npc_aggressive_player) = true) {
-    %morttonmulti = setbit(%morttonmulti, ^shadeattack);
-    longqueue(shadeattack_reset, 100, 0, ^accelerate);
-    sound_synth(shade_appear, 0, 0); //This is area sound in osrs. Should it exist in 04?
-    %npc_attacking_uid = %npc_aggressive_player;
+    npc_setmode(opplayer2);
+    %npc_attacking_uid = uid;
     %aggressive_npc = npc_uid;
 }
+%npc_int = 10;
+npc_settimer(~random_range(5,15));
+
+[ai_queue14,shade_level1]
+%npc_int = 10;
 
 [ai_opplayer2,shadeshadow_level1] 
 //They did not do the shade rise anim when transforming from hunting in old videos
 //https://youtu.be/3d4dxPVz-7k?si=VjWR5sOid5NHU_V-&t=411
 //https://youtu.be/Cgfa0ebrSac?si=mHSBgvg_rRdqOm1J&t=70
-npc_changetype(npc_param(next_npc_type), 95);
+if (npc_stat(hitpoints) = 0) {
+    return;
+}
+
+if(%npc_aggressive_player ! uid & testbit(%morttonmulti, ^shadeattack) = ^false) {
+    //guess on distance.
+    .npc_findall(npc_coord, shadeshadow_level1, 10, ^vis_lineofsight);
+    while (.npc_findnext = true) {
+        if(.npc_getmode = wander) {
+            .npc_setmode(opplayer2);
+            .%npc_aggressive_player = uid;
+        }
+    }
+}
+
+%morttonmulti = setbit(%morttonmulti, ^shadeattack);
+clearqueue(shadeattack_reset);
+longqueue(shadeattack_reset, 100, 0, ^accelerate);
+sound_synth(shade_appear, 0, 0); //This is area sound in osrs. Should it exist in 04?
+npc_changetype(npc_param(next_npc_type), 500);
+%npc_attacking_uid = uid;
+%aggressive_npc = npc_uid;
+npc_queue(14, 0, 95);
 ~shade_attack;
 
 [ai_opplayer2,shade_level1]
-//todo is set here or no?
-%morttonmulti = setbit(%morttonmulti, ^shadeattack);
-longqueue(shadeattack_reset, 100, 0, ^accelerate);
 ~shade_attack;
 
 [ai_queue2,shade_level1]
 ~npc_default_damage(last_int);
-
-if (finduid(%npc_aggressive_player) = true) {
-    %morttonmulti = setbit(%morttonmulti, ^shadeattack);
-    longqueue(shadeattack_reset, 100, 0, ^accelerate);
-    %npc_attacking_uid = %npc_aggressive_player;
-    %aggressive_npc = npc_uid;
-}
+npc_settimer(~random_range(5,15));
 
 [proc,shade_attack]
 if (%npc_action_delay > map_clock) {
     return;
 }
 if (~npc_check_notcombat = false) {
+    npc_changetype(shadeshadow_level1, ^max_32bit_int);
     npc_setmode(null);
     return;
 }
@@ -149,7 +177,7 @@ if (npc_getmode = opplayer2 | %current_temple_build = 0) {
 }
 
 if (distance(npc_coord, ^mortton_temple_shadow_transform_center_coord) <= 5) {
-    npc_changetype_keepall(shade_level1, 500); //todo: How long
+    npc_changetype_keepall(shade_level1, ^max_32bit_int);
     npc_anim(shade_rise, 0);
     npc_setmode(none);
     npc_walk(npc_coord);
@@ -159,7 +187,15 @@ if (distance(npc_coord, ^mortton_temple_shadow_transform_center_coord) <= 5) {
 }
 
 [ai_timer,shade_level1]
-if (npc_getmode = opplayer2) {
+if (%npc_int = 10) {
+    npc_setmode(wander);
+    %npc_int = 0;
+    npc_changetype(shadeshadow_level1, ^max_32bit_int);
+    npc_settimer(~random_range(1,7));
+    return;
+}
+
+if(npc_getmode = opplayer2) {
     npc_settimer(~random_range(1,7));
     return;
 }

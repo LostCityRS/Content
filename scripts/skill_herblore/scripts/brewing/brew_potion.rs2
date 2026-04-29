@@ -103,6 +103,11 @@ if (map_members = ^false) {
     return(false);
 }
 
+if($struct = ashesvial & %morttonquest < ^mortton_read_diary) {
+    mes("You're not sure what effect this might have.");
+    return(false);
+}
+
 if($struct = ardrigal_mixture & %legendsquest < ^legends_talk_gujuo_pool) {
     mes("You're not really sure what you would make out of this.");
     return(false);

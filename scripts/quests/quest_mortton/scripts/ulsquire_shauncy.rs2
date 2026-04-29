@@ -1,36 +1,10 @@
 [opnpcu,ulsquire_shauncy]
-if(oc_category(last_useitem) = category_108) {
-    inv_setslot(inv, last_useslot, oc_param(last_useitem, next_obj_stage), 1);
-    if(%morttonquest < ^mortton_made_serum) {
-        npc_changetype(ulsquire_shauncy,1);
-        ~chatnpc("<p,confused>The serum it works...but it's not too fresh, make some|yourself and then it might work for longer.");
-        @afflicted_talk;
-    }
-    npc_changetype(ulsquire_shauncy,200);
-    longqueue(ulsquire_reset, 200, 0, ^accelerate);
-    %morttonmulti = setbit(%morttonmulti, ^mortton_cured_ulsquire);
-    if (testbit(%morttonmulti, ^mortton_used_perm_serum_on_ulsquire) = ^true) {
-        ~chatnpc("<p,happy>You've already used the permanent serum on me, you|don't need to use that any more.");
-    }
-    @ulsquire_talk;
-} else if(oc_category(last_useitem) = category_109) {
-    inv_setslot(inv, last_useslot, oc_param(last_useitem, next_obj_stage), 1);
-    npc_changetype(ulsquire_shauncy,200);
-    longqueue(ulsquire_reset, 200, 0, ^accelerate);
-    %morttonmulti = setbit(%morttonmulti, ^mortton_cured_ulsquire);
-    if (testbit(%morttonmulti, ^mortton_used_perm_serum_on_ulsquire) = ^true) {
-        ~chatnpc("<p,happy>You've already used the permanent serum on me, you|don't need to use that any more.");
-    } else {
-        %morttonmulti = setbit(%morttonmulti, ^mortton_cured_ulsquire);
-        queue(ulsquire_perm_serum_reward, 0, 0);
-        ~chatnpc("<p,happy>Well done - I feel this serum is really working on me.|I think you've cracked it, my friend! I'd like to give|you something for your trouble!");
-    }
-    @ulsquire_talk;
-} else {
-    ~displaymessage(^dm_default);
-}
+@ulsquire_use_item;
 
 [opnpcu,ulsquire_shauncy_afflicted]
+@ulsquire_use_item;
+
+[label,ulsquire_use_item]
 if(oc_category(last_useitem) = category_108) {
     inv_setslot(inv, last_useslot, oc_param(last_useitem, next_obj_stage), 1);
     if(%morttonquest < ^mortton_made_serum) {
@@ -46,27 +20,25 @@ if(oc_category(last_useitem) = category_108) {
     }
     @ulsquire_talk;
 } else if(oc_category(last_useitem) = category_109) {
-    inv_setslot(inv, last_useslot, oc_param(last_useitem, next_obj_stage), 1);
     npc_changetype(ulsquire_shauncy,200);
-    longqueue(ulsquire_reset, 200, 0, ^accelerate);
-    %morttonmulti = setbit(%morttonmulti, ^mortton_cured_ulsquire);
     if (testbit(%morttonmulti, ^mortton_used_perm_serum_on_ulsquire) = ^true) {
         ~chatnpc("<p,happy>You've already used the permanent serum on me, you|don't need to use that any more.");
+        return;
     } else {
-        %morttonmulti = setbit(%morttonmulti, ^mortton_cured_ulsquire);
-        queue(ulsquire_perm_serum_reward, 0, 0);
+        def_int $last_useslot = last_useslot;
+        def_obj $last_useitem = last_useitem;
         ~chatnpc("<p,happy>Well done - I feel this serum is really working on me.|I think you've cracked it, my friend! I'd like to give|you something for your trouble!");
+        %morttonmulti = setbit(%morttonmulti, ^mortton_used_perm_serum_on_ulsquire);
+        inv_setslot(inv, $last_useslot, oc_param($last_useitem, next_obj_stage), 1);
+        //Guess https://oldschool.runescape.wiki/w/Transcript:Ulsquire_Shauncy#Using_Serum_208_on_him
+        def_int $count = ~random_range(180,220);
+        inv_add(inv, coins, $count);
+        ~objbox(coins,"Ulsquire gives you <tostring($count)> gold coins.", 250, 0, 0);
     }
     @ulsquire_talk;
 } else {
     ~displaymessage(^dm_default);
 }
-
-[queue,ulsquire_perm_serum_reward]
-//Guess https://oldschool.runescape.wiki/w/Transcript:Ulsquire_Shauncy#Using_Serum_208_on_him
-def_int $count = ~random_range(180,220);
-inv_add(inv, coins, $count);
-~objbox(coins,"Ulsquire gives you <tostring($count)> gold coins.", 250, 0, 0);
 
 [queue,ulsquire_reset]
 %morttonmulti = clearbit(%morttonmulti, ^mortton_cured_ulsquire);
@@ -101,11 +73,12 @@ if(%morttonquest < ^mortton_kill_shades) {
 } else if(%morttonquest = ^mortton_shades_to_razmire) {
     ~chatplayer("<p,neutral>Razmire said to come and talk to you.");
     ~chatnpc("<p,sad>Oh yes, well, that's very nice.");
-    ~chatplayer("<p,neutral>I just slayed 5 shades for Razmire, he said you might|be interested in seeing some shade remains?");
     if(inv_total(inv, shade_bones1) < 1) {
+        ~chatplayer("<p,neutral>I just slayed five shades for Razmire. He said that you|might be interested in seeing the shade remains.|Unfortunately I don't have any with me at the|moment...");
         ~chatnpc("<p,sad>That is a shame, I would have liked to have seen the|remains. Razmire was right. I'm keen to study them|and perhaps see if I can work out a way to put their|spirits to rest.");
         return;
     } else {
+        ~chatplayer("<p,neutral>I just slayed 5 shades for Razmire, he said you might|be interested in seeing some shade remains?");
         ~chatnpc("<p,neutral>Oh yes, that would be interesting!");
         inv_del(inv, shade_bones1, 1);
         %morttonquest = ^mortton_shades_to_ulsquire;
@@ -152,8 +125,7 @@ if(%morttonquest < ^mortton_kill_shades) {
 [label,ulsquire_temple_built]
 ~chatplayer("<p,neutral>What should I do when the temple is built?");
 ~chatnpc("<p,neutral>I've researched this much, it seems that the temple was|dedicated to the worship of elemental flame or fire. The|sacred flame was said to be very holy and was used|somehow to sanctify oil for use in cremations.");
-if (testbit(%morttonmulti, ^mortton_shades_dampe_intro) = ^false) {
-    //todo: Special dialogue if inv is full?
+if (testbit(%morttonmulti, ^mortton_shades_dampe_intro) = ^false & inv_freespace(inv) ! 0) {
     ~chatnpc("<p,neutral>The pagans believed that sacred oil sanctified the|cremation ceremony and thus helped the deceased pass|onto the next life, and it helped the logs to burn! In|case there's any truth in the story, have this!");
     %morttonmulti = setbit(%morttonmulti, ^mortton_shades_dampe_intro);
     inv_add(inv, oliveoil3, 1);
