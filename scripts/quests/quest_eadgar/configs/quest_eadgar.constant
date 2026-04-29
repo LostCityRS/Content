@@ -9,64 +9,12 @@
 ^eadgar_hid_parrot = 60
 ^eadgar_needs_items = 70
 ^eadgar_needs_potion = 80
-^eadgar_needs_educated_parrot = 85
-^eadgar_got_educated_parrot = 86
+^eadgar_needs_parrot_back = 85
+^eadgar_got_parrot_back = 86
 ^eadgar_got_fake_man = 87
 ^eadgar_got_burnt_meat = 90
 ^eadgar_unlocked_storeroom = 100
 ^eadgar_complete = 110
-
-
-
-
-
-//^eadgar_spoken_sanfew = 1 // started quest
-
-//^eadgar_spoken_eadgar = 2 // met eadgar
-
-//^eadgar_spoken_burntmeat = 3 // asked burntmeat what he needs in exchange for goutweed
-
-//^eadgar_spoken_eadgar2 = 4 // spoken to eadgar after speaking to burntmeat, told to get parrot
-
-//^eadgar_caught_parrot = 5 // unsure if this is needed since we can check inv
-
-//^eadgar_spoken_eadgar3 = 6 // spoken to eadgar with a parrot in inv (told full plan for scarecrow)
-
-//^eadgar_hid_parrot = 7 // hid the parrot under the torture rack
-
-//^eadgar_spoken_eadgar4 = 8 // spoken to eadgar after hiding the parrot
-
-//^eadgar_spoken_sanfew2 = 9 // spoken to sanfew about dirty clothes
-// should be available any time after eadgar_spoken_eadgar3 when eadgar explains the whole plan
-// not necessarily limited to after the player hides the parrot?
-
-//^eadgar_spoken_tegid = 10
-
-//^eadgar_given_all_items = 11 // given all scarecrow items to eadgar
-
-^eadgar_made_potion = 12 // quest journal updates after having made the potion
-// but would this maybe be a varbit? it strikes me as odd to increment a varp based on
-// having made an item (that you could lose...)
-// raises the question of what the journal says if you make the potion and then lose it
-// or if interactions with eadgar/these items would be any different if you have to remake
-
-^eadgar_given_potion = 13
-
-^eadgar_retrieved_parrot = 14
-
-//^eadgar_got_fake_man = 15
-
-^eadgar_gave_fake_man = 16
-
-// probably one in here for giving the fake man and getting the burnt meat?
-
-^eadgar_spoken_burntmeat2 = 17 // learned location of key to storeroom
-
-//^eadgar_unlocked_storeroom = 18
-
-^eadgar_got_goutweed = 19 // might not be a varp tick, in RS3 the journal reverts to previous state if goutweed is dropped
-
-//^eadgar_complete = 99
 
 // varbits
 ^eadgar_pete_dialog_1 = 0

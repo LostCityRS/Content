@@ -4,11 +4,13 @@ switch_int(%eadgar_quest) {
     case ^eadgar_spoken_eadgar_first : @eadgar_talked_to_troll_cook;
     case ^eadgar_spoken_burntmeat_first : @eadgar_need_goutweed; // dialog jumps straight here if the player talks to burntmeat first
     case ^eadgar_needs_parrot : @eadgar_got_parrot_yet;
-    case ^eadgar_explained_plan : @eadgar_what_do_with_parrot;
+    case ^eadgar_explained_plan : @eadgar_hasnt_hidden_parrot;
     case ^eadgar_hid_parrot : @eadgar_hid_parrot;
     case ^eadgar_needs_items : @eadgar_how_are_you_getting_on;
     case ^eadgar_needs_potion : @eadgar_got_troll_truth_potion;
-    case ^eadgar_got_educated_parrot : @eadgar_retrieved_parrot;
+    case ^eadgar_needs_parrot_back : @eadgar_retrieved_parrot;
+    case ^eadgar_got_fake_man : @eadgar_given_fake_man_yet;
+    case ^eadgar_got_burnt_meat, ^eadgar_unlocked_storeroom : @eadgar_did_the_plan_work; // todo is this dialog available after receiving the burnt meat or only after unlocking the storeroom? using both for now
 }
 
 [label,eadgar_quest_initial_tree]
@@ -103,15 +105,37 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
 ~chatplayer("<p,neutral>Okay, I'll be right back.");
 @eadgar_anything_else_default_tree;
 
-// if we've shown the parrot to eadgar but haven't hidden it yet
-// this blocks turning in the other scarecrow supplies
-// TODO probably special dialog if you trigger this with no parrot in inv + also haven't hidden one?
+// if we've shown the parrot to eadgar but haven't hidden it yet, this dialog blocks turning in the other scarecrow supplies
+[label,eadgar_hasnt_hidden_parrot]
+if(inv_total(inv, eadgar_drunk_parrot) > 0 | inv_total(bank, eadgar_drunk_parrot) > 0) { // from indio's run, eadgar won't give another parrot if it's banked or in inventory
+    @eadgar_what_do_with_parrot;
+} else { // player has lost the parrot after showing it to eadgar
+    @eadgar_lost_parrot;
+}
+
 [label,eadgar_what_do_with_parrot]
 // rsprox/branon
 ~chatplayer("<p,quiz>What should I do with this parrot?");
 ~chatnpc("<p,neutral>I told you, put it somewhere it'll learn to say the sort of thing the trolls will expect it to say.");
 ~chatnpc("<p,neutral>That is likely to be screaming. There's bound to be a good spot somewhere in the troll prison.");
-@eadgar_scarecrow_tree; // first available entrypoint to this i think, need to determine if there are any others
+@eadgar_scarecrow_tree; // only time this dialog tree is accessible!
+
+[proc,eadgar_lost_parrot_start] // this dialog is used in two places and needs to resume execution in both, so i made it a proc
+// rsprox/branon
+~chatnpc("<p,quiz>Oh, it's you. You didn't lose your parrot did you? One flew over here and I managed to capture it.");
+~chatplayer("<p,idle>..."); // chatidleneu1
+
+[label,eadgar_lost_parrot]
+~eadgar_lost_parrot_start;
+if(inv_freespace(inv) > 0) {
+    inv_add(inv, eadgar_drunk_parrot, 1);
+    // rsprox/branon
+    ~chatnpc("<p,quiz>That's what I thought. Have it back.");
+} else {
+    // rsprox/indio
+    ~chatnpc("<p,quiz>That's what I thought. Clear some space and take it back.");
+}
+@eadgar_what_do_with_parrot; // this always fires regardless of if the player has space (and actually gets the parrot back) or not
 
 [label,eadgar_how_are_you_getting_on]
 // rsprox/branon
@@ -120,12 +144,12 @@ if(inv_total(inv, eadgar_drunk_parrot) > 0) {
 
 [oploc1,eadgar_rack]
 // rsprox/branon
-if(%eadgar_quest = ^eadgar_needs_educated_parrot) {
+if(%eadgar_quest = ^eadgar_needs_parrot_back) {
     ~mesbox("You look under the rack and find the drunk parrot.");
     ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Ah, hello Sir. Could you please free me?|I seem to have ... OW! What are you doing?|That's my spleen!"); // linebreaks from runeweb 2004
     ~chatplayer("<p,happy>I think it's probably heard enough.");
     inv_add(inv, eadgar_drunk_parrot, 1);
-    %eadgar_quest = ^eadgar_got_educated_parrot;
+    %eadgar_quest = ^eadgar_got_parrot_back;
 } else {
     ~mesbox("You look under the rack but find nothing.");
 }
@@ -325,7 +349,7 @@ if(inv_total(inv, eadgar_ground_troll_thistle_potion) > 0) {
     // Eadgar says "thank you" instead of "hand it here" in OSRS now   
     ~chatnpc("<p,happy>Excellent, hand it here. Now just go fetch that poor parrot back, it's probably had enough by now."); 
     inv_del(inv, eadgar_ground_troll_thistle_potion, 1); // only one is taken
-    %eadgar_quest = ^eadgar_given_potion;
+    %eadgar_quest = ^eadgar_needs_parrot_back;
 } else {
     // rsprox/branon
     ~chatplayer("<p,quiz>How do I make the troll truth potion again?");
@@ -334,20 +358,17 @@ if(inv_total(inv, eadgar_ground_troll_thistle_potion) > 0) {
 }
 
 [label,eadgar_retrieved_parrot]
-
 if(inv_total(inv, eadgar_drunk_parrot) > 0) {
     // todo skipped this leaf in my run, need mesanims here
     ~chatplayer("<p,neutral>I've brought the parrot.");
     ~chatnpc("<p,happy>Hand it here...there we go! Can you tell this isn't a bona fide human being? I sure can't!");
-    @eadgar_give_fake_man;
 } else {
     // rsprox/branon
-    ~chatnpc("<p,quiz>Oh, it's you. You didn't lose your parrot did you? One flew over here and I managed to capture it.");
-    ~chatplayer("<p,idle>..."); // chatidleneu1
+    ~eadgar_lost_parrot_start;
     ~chatnpc("<p,quiz>That's what I thought.");
     ~chatnpc("<p,happy>Just give me a moment...there we go! Can you tell this isn't a bona fide human being? I sure can't!");
-    @eadgar_give_fake_man;
 }
+@eadgar_give_fake_man;
 
 [label,eadgar_give_fake_man]
 // to match OSRS videos - the drunk parrot/fake man swap is queued
@@ -357,9 +378,30 @@ queue(eadgar_fake_man, 0, 0);
 @eadgar_default_tree;
 
 [queue,eadgar_fake_man]
+%eadgar_quest = ^eadgar_got_fake_man;
 inv_add(inv, eadgar_fake_man, 1);
 inv_del(inv, eadgar_drunk_parrot, 1);
-%eadgar_quest = ^eadgar_got_fake_man;
+
+[label,eadgar_given_fake_man_yet]
+// rsprox/branon
+~chatnpc("<p,quiz>Have you given the fake man to the troll cook yet?");
+if(inv_total(inv, eadgar_fake_man) > 0) { // bank is not checked here
+    ~chatplayer("<p,neutral>Not yet.");
+    ~chatnpc("<p,neutral>Go on then, give it to the cook!");
+} else {
+    ~chatplayer("<p,sad>No. I lost it.");
+    ~chatnpc("<p,angry>You bumbling imbecile!");
+    inv_add(inv, eadgar_fake_man, 1); // this appears to be added in dialog (not queue) and dropped to the ground according to packet capture, todo verify behavior against my video
+    ~chatnpc("<p,angry>Never mind, here's one I prepared earlier.");
+}
+@eadgar_anything_else_default_tree;
+
+[label,eadgar_did_the_plan_work]
+// rsprox/branon
+~chatnpc("<p,quiz>Well? Did the plan work?");
+~chatplayer("<p,happy>Yes! I can get into the storeroom now.");
+~chatnpc("<p,happy>Glad to hear it!");
+@eadgar_anything_else_default_tree;
 
 [oploc1,eadgar_kitchen_drawers]
 p_arrivedelay;
