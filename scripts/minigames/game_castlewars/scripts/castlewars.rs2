@@ -323,6 +323,7 @@ settimer(castlewars_timer, 5);
 buildappearance(worn);
 
 [proc,castlewars_in_base]()(boolean)
+return(false);
 if (%castlewars_team = ^castlewars_team_saradomin & inzone(0_37_48_49_0, 3_37_48_63_14, coord) = true) {
     return(true);
 }

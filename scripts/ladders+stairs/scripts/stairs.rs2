@@ -448,6 +448,16 @@ switch_coord (loc_coord) {
 }
 
 [oploc1,castlewars_topstair]
+// kinda cant test this in osrs but i assume this exists here judging by this blogpost:
+// - https://oldschool.runescape.wiki/w/Update:Santa,_Flax_and_Castlewars
+if (%castlewars_team = ^castlewars_team_saradomin & inv_total(worn, castlewars_saradomin_banner) > 0) {
+    mes("Saradomin won't let you take his standard toward the enemy."); // osrs? no idea if this existed in 2005...
+    return;
+}
+if (%castlewars_team = ^castlewars_team_zamorak & inv_total(worn, castlewars_zamorak_banner) > 0) {
+    mes("Zamorak won't let you take his standard toward the enemy."); // osrs? no idea if this existed in 2005...
+    return;
+}
 p_arrivedelay; // https://youtu.be/Vx6qaJ1mz4Q
 switch_coord (loc_coord) {
     // saradomin
@@ -480,7 +490,7 @@ switch_coord (loc_coord) {
 [oploc1,castlewars_outsidestairs_zamorak]
 // before arrivedelay
 if (%castlewars_team = ^castlewars_team_saradomin & inv_total(worn, castlewars_saradomin_banner) > 0) {
-    mes("Saradomin won't let you take his standard toward the enemy."); // osrs? no idea if this existed in 2005...
+    mes("Saradomin won't let you take his standard toward the enemy."); // osrs
     return;
 }
 p_arrivedelay;
@@ -493,7 +503,7 @@ switch_coord (loc_coord) {
 
 [oploc1,castlewars_outsidestairs_saradomin_linked]
 if (%castlewars_team = ^castlewars_team_zamorak & inv_total(worn, castlewars_zamorak_banner) > 0) {
-    mes("Zamorak won't let you take his standard toward the enemy."); // osrs? no idea if this existed in 2005...
+    mes("Zamorak won't let you take his standard toward the enemy."); // osrs
     return;
 }
 p_arrivedelay;
