@@ -103,7 +103,7 @@ if (map_members = ^false) {
     return(false);
 }
 
-if($struct = ashesvial & %morttonquest < ^mortton_read_diary) {
+if(($struct = ashesvial | $struct = mort_serum3_tarrominvial | $struct = mort_serum3_ashesvial) & %morttonquest < ^mortton_read_diary) {
     mes("You're not sure what effect this might have.");
     return(false);
 }
