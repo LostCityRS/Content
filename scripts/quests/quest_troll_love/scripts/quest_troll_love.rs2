@@ -6,7 +6,6 @@ TODO LIST:
 - Recheck Chill effect (If you enter the area of chill, leave after a couple ticks, and re-enter, does the timer reset to 10 ticks?)
 - Re-do first sled cutscene (Missing engine 'run' command?)
 - Implement second sled cutscene
-- Stop other anims (woodcutting, teleporting, etc) when riding sled
 - Recheck order of events on OSRS when teleporting from Trollweiss Mountain with sled equipped
 - Recheck what happens when you leave Trollweiss Mountain with no inventory space (does sled get deleted rather than unequipped?)
 - Implement Arrg boss fight properly (Hits with both ranged and melee)
@@ -119,6 +118,7 @@ if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) {
 if (inzone(^sled_lower_coord, ^sled_upper_coord, coord) = true) {
     ~equip(last_slot);
     ~update_bas;
+    p_animprotect(^true);
     return(true);
 }
 mes("You cannot use that here!");
