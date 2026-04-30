@@ -59,6 +59,9 @@ p_delay(2);
 if (stat(hitpoints) = 0) {
     return;
 }
+if (~in_castlewars_game(coord) = true | ~in_castlewars_waitingroom(coord) = true) {
+    return; // https://youtu.be/Yk7DSYxGucE?t=111 Random event is supposed to teleport you & note. But he only notes
+}
 p_telejump($coord);
 anim(null, 0);
 // todo: ensure this proc is used for other teleports too
