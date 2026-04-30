@@ -2,7 +2,7 @@
 if(%eadgar_quest = ^eadgar_unlocked_storeroom & inv_total(inv, eadgar_goutweed_herb) > 0) { 
     @sanfew_complete_eadgar;
 } 
-if(%eadgar_quest >= ^eadgar_started) {
+if(%eadgar_quest >= ^eadgar_started & %eadgar_quest ! ^eadgar_complete) {
     @multi2("What was I meant to be doing again?", eadgar_sanfew_reminder, "Actually I don't need to speak to you.", sanfew_dont_need);
 } else if(%eadgar_quest = ^eadgar_needs_items) {
     if(inv_total(inv, eadgar_dirty_druid_robe) = 0 & inv_total(bank, eadgar_dirty_druid_robe) = 0) {
@@ -152,4 +152,12 @@ queue(eadgar_quest_complete, 0, 0);
 ~chatnpc("<p,neutral>If you ever come across more goutweed, bring it to me; I don't need any more for the ritual, but it's still quite difficult for me to get. I'll exchange it for some other herbs.");
 
 [label,sanfew_goutweed_exchange]
-mes("todo");
+// swap happens right away
+def_int $herbs = inv_total(inv, eadgar_goutweed_herb);
+inv_del(inv, eadgar_goutweed_herb, $herbs);
+while($herbs > 0) {
+    inv_add(inv, ~randomherb);
+    $herbs = sub($herbs, 1);
+}
+~chatplayer("<p,happy>I have some more goutweed for you.");
+~chatnpc("<p,happy>Ah, good. Here are some herbs in exchange.");
