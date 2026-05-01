@@ -101,8 +101,8 @@ if (%damagestyle = ^style_ranged_rapid) {
 }
 // doesnt use spotanim/proj for range! player_combat_stat should handle max hit logic
 // Also means it doesnt check for ammo, so you can literally be at 0 ammo and you can still range the door!
-anim(%com_attackanim, 0);
-sound_synth(%com_attacksound, 0, 0);
+if (%com_attackanim ! null) anim(%com_attackanim, 0);
+if (%com_attacksound ! null) sound_synth(%com_attacksound, 0, 0);
 def_int $damage = 0;
 if (~castlewars_door_roll = true) {
     // 0 crush at (6 max hit):
