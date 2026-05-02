@@ -4,6 +4,7 @@ if(%eadgar_quest > ^eadgar_spoken_eadgar_first & %eadgar_quest < ^eadgar_got_fak
     // rsprox/branon
     ~chatnpc("<p,neutral>Did you find tasty human?");
     ~chatplayer("<p,neutral>Erm, not yet, but I'm working on it...");
+    return;
 }
 if(%eadgar_quest = ^eadgar_got_burnt_meat) {
     // rsprox/branon
@@ -33,7 +34,7 @@ if(%eadgar_quest = ^eadgar_got_fake_man & inv_total(inv, eadgar_fake_man) > 0) {
     ~chatnpc("<p,neutral>Hmm. Burntmeat think you probably right. What human doing here?");
 }
 // in OSRS it's possible to skip eadgar initially and talk to burntmeat first
-if(%eadgar_quest = ^eadgar_started) {
+if(%eadgar_quest = ^eadgar_started | %eadgar_quest = ^eadgar_spoken_eadgar_first) {
     // rsprox/branon
     ~chatplayer("<p,neutral>I'm on a quest to find some goutweed.");
     ~chatnpc("<p,laugh>Bwahahaha! Burntmeat not give his greatest cooking secret away so easily!");

@@ -1,14 +1,15 @@
 [label,eadgar_quest_dialog]
 switch_int(%eadgar_quest) {
     case ^eadgar_started : @eadgar_quest_initial_tree;
-    case ^eadgar_spoken_eadgar_first : @eadgar_talked_to_troll_cook;
+    case ^eadgar_spoken_eadgar_first, ^eadgar_spoken_burntmeat_second : @eadgar_talked_to_troll_cook;
     case ^eadgar_spoken_burntmeat_first : @eadgar_need_goutweed; // dialog jumps straight here if the player talks to burntmeat first
     case ^eadgar_needs_parrot : @eadgar_got_parrot_yet;
     case ^eadgar_explained_plan : @eadgar_hasnt_hidden_parrot;
     case ^eadgar_hid_parrot : @eadgar_hid_parrot;
     case ^eadgar_needs_items : @eadgar_how_are_you_getting_on;
     case ^eadgar_needs_potion : @eadgar_got_troll_truth_potion;
-    case ^eadgar_needs_parrot_back : @eadgar_retrieved_parrot;
+    case ^eadgar_needs_parrot_back : @eadgar_needs_parrot_back;
+    case ^eadgar_got_parrot_back : @eadgar_got_parrot_back;
     case ^eadgar_got_fake_man : @eadgar_given_fake_man_yet;
     case ^eadgar_got_burnt_meat, ^eadgar_unlocked_storeroom : @eadgar_did_the_plan_work; // todo is this dialog available after receiving the burnt meat or only after unlocking the storeroom? using both for now
 }
@@ -304,10 +305,12 @@ if(testbit(%eadgar_bits, ^eadgar_given_logs) ! 1 | $chickens_needed > 0 | $grain
     }
     switch_int ($chickens_needed) {
         case 0 : $chickens_str = "no chickens";
+        case 1 : $chickens_str = "one chicken";
         case default : $chickens_str = "<tostring($chickens_needed)> chickens";
     }
     switch_int ($grain_needed) {
         case 0 : $grain_str = "no grain";
+        case 1 : $grain_str = "one bundle of grain";
         case default : $grain_str = "<tostring($grain_needed)> bundles of grain";
     }
     switch_int (testbit(%eadgar_bits, ^eadgar_given_clothes)) {
@@ -364,7 +367,13 @@ if(inv_total(inv, eadgar_ground_troll_thistle_potion) > 0) {
     @eadgar_how_prepare_troll_truth_potion;
 }
 
-[label,eadgar_retrieved_parrot]
+[label,eadgar_needs_parrot_back]
+// rsprox/branon
+~chatnpc("<p,quiz>Did you get that parrot back?");
+~chatplayer("<p,neutral>Not yet.");
+~chatnpc("<p,neutral>Hurry up then.");
+
+[label,eadgar_got_parrot_back]
 if(inv_total(inv, eadgar_drunk_parrot) > 0) {
     // todo skipped this leaf in my run, need mesanims here
     ~chatplayer("<p,neutral>I've brought the parrot.");
@@ -428,14 +437,12 @@ loc_change(eadgar_kitchen_drawers, 300);
 p_arrivedelay;
 mes("You search the drawers...");
 p_delay(0);
-if(%eadgar_quest = ^eadgar_got_burnt_meat) {
-    if(inv_total(inv, eadgar_troll_storeroom_key) = 0 & inv_total(bank, eadgar_troll_storeroom_key) = 0) {
-        if(inv_freespace(inv) > 0) {
-            mes("You open the fake bottom of the drawer and find the storeroom key.");
-            inv_add(inv, eadgar_troll_storeroom_key, 1);
-        } else {
-            mes("You open the fake bottom of the drawer and see a key, but don't have space to take it.");
-        }
+if(%eadgar_quest = ^eadgar_got_burnt_meat & inv_total(inv, eadgar_troll_storeroom_key) = 0 & inv_total(bank, eadgar_troll_storeroom_key) = 0) {
+    if(inv_freespace(inv) > 0) {
+        mes("You open the fake bottom of the drawer and find the storeroom key.");
+        inv_add(inv, eadgar_troll_storeroom_key, 1);
+    } else {
+        mes("You open the fake bottom of the drawer and see a key, but don't have space to take it.");
     }
 } else {
     mes("You don't find anything.");
@@ -448,6 +455,7 @@ if(coord = 0_44_157_53_37) {
     if(%eadgar_quest = ^eadgar_unlocked_storeroom) {
         @eadgar_storeroom_open;
     } else if(inv_total(inv, eadgar_troll_storeroom_key) > 0 & %eadgar_quest = ^eadgar_got_burnt_meat) { // todo any sound for unlocking?
+        %eadgar_quest = ^eadgar_unlocked_storeroom;
         mes("You unlock the door.");
         inv_del(inv, eadgar_troll_storeroom_key, 1); // only one key is taken
         @eadgar_storeroom_open;

@@ -1,18 +1,19 @@
 [opnpc1,sanfew]
-if(%eadgar_quest = ^eadgar_unlocked_storeroom & inv_total(inv, eadgar_goutweed_herb) > 0) { 
-    @sanfew_complete_eadgar;
-} 
-if(%eadgar_quest >= ^eadgar_started & %eadgar_quest ! ^eadgar_complete) {
-    @multi2("What was I meant to be doing again?", eadgar_sanfew_reminder, "Actually I don't need to speak to you.", sanfew_dont_need);
-} else if(%eadgar_quest = ^eadgar_needs_items) {
-    if(inv_total(inv, eadgar_dirty_druid_robe) = 0 & inv_total(bank, eadgar_dirty_druid_robe) = 0) {
-        @eadgar_sanfew_dirty_clothes;
-    }
-}
 if(%druidquest = ^druid_spoken_sanfew) {
     @druid_sanfew_give_ingredients;
 }
 ~chatnpc("<p,quiz>What can I do for you young 'un?");
+if(%eadgar_quest = ^eadgar_unlocked_storeroom & inv_total(inv, eadgar_goutweed_herb) > 0) { //this should fire AFTER "What can I do for you young 'un?"
+    @sanfew_complete_eadgar;
+} else if(%eadgar_quest >= ^eadgar_started & %eadgar_quest <= ^eadgar_unlocked_storeroom) {
+    if(%eadgar_quest = ^eadgar_needs_items) {
+        if(inv_total(inv, eadgar_dirty_druid_robe) = 0 & inv_total(bank, eadgar_dirty_druid_robe) = 0) {
+            @eadgar_sanfew_dirty_clothes;
+        } else {
+            @multi2("What was I meant to be doing again?", eadgar_sanfew_reminder, "Actually I don't need to speak to you.", sanfew_dont_need);
+        }
+    }
+}
 if(%eadgar_quest = ^eadgar_complete) {
     if(inv_total(inv, eadgar_goutweed_herb) > 0) {
         @multi3("I have some more goutweed for you.", sanfew_goutweed_exchange, "Have you any more work for me, to help reclaim the circle?", sanfew_more_work, "Actually I don't need to speak to you.", sanfew_dont_need);

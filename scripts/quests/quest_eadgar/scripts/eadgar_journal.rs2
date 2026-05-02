@@ -128,8 +128,9 @@ if($quest_progress >= ^eadgar_got_fake_man) {
 }
 
 if($quest_progress >= ^eadgar_got_burnt_meat) {
-    // from my run of the quest in OSRS, capitalization ("Troll Cook"/"troll cook") and linebreaks differ from RS3!
-    $prev_text = append($prev_text, " and gave it to the Troll Cook. The Troll|@str@Cook told me the key to the storeroom is in a fake bottom in|@str@the kitchen drawers.");
+    // from my run of the quest in OSRS, capitalization ("Troll Cook"/"troll cook") and linebreaks differ from RS3
+    // but 2007 linebreaks don't quite work for the prev_text here so I split them where they fell
+    $prev_text = append($prev_text, " and gave it to the Troll Cook.|@str@The Troll Cook told me the key to the storeroom is in a|@str@fake bottom in the kitchen drawers.");
     if($quest_progress = ^eadgar_got_burnt_meat) {
         $new_text = append($prev_text, "||@dbl@I should get the @dre@key to the storeroom @dbl@and unlock it.");
     }
