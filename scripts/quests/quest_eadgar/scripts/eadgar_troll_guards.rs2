@@ -13,81 +13,211 @@ if($type = troll_sguard6) { return(7); } else
 if($type = troll_sguard7) { return(3); } else
 if($type = troll_sguard8) { return(6); }
 
+// returns the facing direction for the given guard during the given stage of the patrol
+// uses the guard's current coordinates, since every tile is unique to a single patrol stage
+// and even reused tiles have unique facing directions 
+// $type: troll_sguard1-8
+// returns: 0 = north, 1 = south, 2 = east, 3 = west, 4 = northeast, 5 = southwest
+
+[proc,troll_sguard_patrol_direction](npc $type)(int)
+if($type = troll_sguard1) {
+    switch_int(%npc_int) {
+        case 0 : return(0); // north
+        case 1 : return(2); // east
+        case 2 : return(1); // south
+        case 3 : return(3); // west
+    }
+} else if($type = troll_sguard2) {
+    switch_int(%npc_int) {
+        case 0 : return(3); // west
+        case 1 : return(1); // south
+        case 2 : return(2); // east
+        case 3 : return(0); // north
+    }
+} else if($type = troll_sguard3) {
+    switch_int(%npc_int) {
+        case 0 : return(3); // west
+        case 1 : return(1); // south
+        case 2 : return(2); // east
+        case 3 : return(0); // north
+    }    
+} else if($type = troll_sguard4) {
+    switch_int(%npc_int) {
+        case 0 : return(0); // north 
+        case 1 : return(2); // east
+        case 2 : return(1); // south
+        case 3 : return(3); // west
+        case 4 : return(1); // south
+        case 5 : return(3); // west
+    }    
+} else if($type = troll_sguard5) {
+    switch_int(%npc_int) {
+        case 0 : return(1); // south
+        case 1 : return(2); // east
+        case 2 : return(5); // diagonal southwest
+        case 3 : return(2); // east
+        case 4 : return(4); // diagonal northeast
+        case 5 : return(0); // north
+        case 6 : return(3); // west
+    }    
+} else if($type = troll_sguard6) {
+    switch_int(%npc_int) {
+        case 0 : return(0); // north
+        case 1 : return(3); // west
+        case 2 : return(1); // south
+        case 3 : return(3); // west
+        case 4 : return(1); // south
+        case 5 : return(2); // east
+        case 6 : return(0); // north
+        case 7 : return(2); // east
+    }    
+} else if($type = troll_sguard7) {
+    switch_int(%npc_int) {
+        case 0 : return(2); // east
+        case 1 : return(0); // north
+        case 2 : return(3); // west
+        case 3 : return(1); // south
+    }    
+} else if($type = troll_sguard8) {
+    switch_int(%npc_int) {
+        case 0 : return(2); // east
+        case 1 : return(1); // south
+        case 2 : return(5); // southwest
+        case 3 : return(3); // west
+        case 4 : return(4); // northeast
+        case 5 : return(3); // west
+        case 6 : return(0); // north
+    }    
+}
+
 // returns the destination coordinate for this stage of the patrol
 // $type: which npc (troll_sguard1-8)
 [proc,troll_sguard_patrol_coord](npc $type)(coord)
 if($type = troll_sguard1) {
     switch_int(%npc_int) {
-        case 0 : return(0_44_157_34_44);
-        case 1 : return(0_44_157_43_44);
-        case 2 : return(0_44_157_43_41);
-        case 3 : return(0_44_157_34_41);
+        case 0 : return(0_44_157_34_44); // north
+        // stage 1 headed north (coordx(npc_coord) >= 34 & coordx(npc_coord) <= 43))
+        case 1 : return(0_44_157_43_44); // east
+        // stage 2 headed east (coordz(npc_coord) <= 44 & coordz(npc_coord) >= 41))
+        case 2 : return(0_44_157_43_41); // south
+        // stage 3 headed south (coordx(npc_coord) <= 43 & coordx(npc_coord) >= 34))
+        case 3 : return(0_44_157_34_41); // west
+        // stage 4 headed west (coordz(npc_coord) >= 41 & coordz(npc_coord) <= 44))
     }
 } else if($type = troll_sguard2) {
     switch_int(%npc_int) {
-        case 0 : return(0_44_157_34_41);
-        case 1 : return(0_44_157_34_38);
-        case 2 : return(0_44_157_39_38);
-        case 3 : return(0_44_157_39_41);
+        case 0 : return(0_44_157_34_41); // west
+        // stage 1 headed west (coordz(npc_coord) <= 41 & coordz(npc_coord) >= 38))
+        case 1 : return(0_44_157_34_38); // south
+        // stage 2 headed south (coordx(npc_coord) >= 34 & coordx(npc_coord) <= 39))
+        case 2 : return(0_44_157_39_38); // east
+        // stage 3 headed east (coordz(npc_coord) >= 38 & coordz(npc_coord) <= 43))
+        case 3 : return(0_44_157_39_41); // north
+        // stage 4 headed north (coordx(npc_coord) <= 39 & coordx(npc_coord) >= 34))
     }
 } else if($type = troll_sguard3) {
     switch_int(%npc_int) {
-        case 0 : return(0_44_157_39_41);
-        case 1 : return(0_44_157_39_38);
-        case 2 : return(0_44_157_43_38);
-        case 3 : return(0_44_157_43_41);
+        case 0 : return(0_44_157_39_41); // west
+        // stage 1 headed west (coordz(npc_coord) <= 41 & coordz(npc_coord) >= 38))
+        case 1 : return(0_44_157_39_38); // south
+        // stage 2 headed south (coordx(npc_coord) >= 39 & coordx(npc_coord) <= 43))
+        case 2 : return(0_44_157_43_38); // east
+        // stage 3 headed east (coordz(npc_coord >= 38 & coordz(npc_coord) <= 41))
+        case 3 : return(0_44_157_43_41); // north
+        // stage 4 headed north (coordx(npc_coord) <= 43 & coordx(npc_coord) >= 39))
     }    
 } else if($type = troll_sguard4) {
     switch_int(%npc_int) {
-        case 0 : return(0_44_157_34_38);
-        case 1 : return(0_44_157_38_38);
-        case 2 : return(0_44_157_38_34);
-        case 3 : return(0_44_157_36_34);
-        case 4 : return(0_44_157_36_30);
-        case 5 : return(0_44_157_34_30);
+        case 0 : return(0_44_157_34_38); // north 
+        case 1 : return(0_44_157_38_38); // east
+        case 2 : return(0_44_157_38_34); // south
+        case 3 : return(0_44_157_36_34); // west
+        case 4 : return(0_44_157_36_30); // south
+        case 5 : return(0_44_157_34_30); // west
     }    
 } else if($type = troll_sguard5) {
     switch_int(%npc_int) {
-        case 0 : return(0_44_157_45_32);
-        case 1 : return(0_44_157_47_32);
-        case 2 : return(0_44_157_44_29);
-        case 3 : return(0_44_157_45_29);
-        case 4 : return(0_44_157_48_32);
-        case 5 : return(0_44_157_48_37);
-        case 6 : return(0_44_157_45_37);
+        case 0 : return(0_44_157_45_32); // south
+        case 1 : return(0_44_157_47_32); // east
+        case 2 : return(0_44_157_44_29); // southwest
+        case 3 : return(0_44_157_45_29); // east
+        case 4 : return(0_44_157_48_32); // northeast
+        case 5 : return(0_44_157_48_37); // north
+        case 6 : return(0_44_157_45_37); // west
     }    
 } else if($type = troll_sguard6) {
     switch_int(%npc_int) {
-        case 0 : return(0_44_157_39_34);
-        case 1 : return(0_44_157_36_34);
-        case 2 : return(0_44_157_36_30);
-        case 3 : return(0_44_157_34_30);
-        case 4 : return(0_44_157_34_27);
-        case 5 : return(0_44_157_37_27);
-        case 6 : return(0_44_157_37_29);
-        case 7 : return(0_44_157_39_29);
+        case 0 : return(0_44_157_39_34); // north
+        case 1 : return(0_44_157_36_34); // west
+        case 2 : return(0_44_157_36_30); // south
+        case 3 : return(0_44_157_34_30); // west
+        case 4 : return(0_44_157_34_27); // south
+        case 5 : return(0_44_157_37_27); // east
+        case 6 : return(0_44_157_37_29); // north
+        case 7 : return(0_44_157_39_29); // east
     }    
 } else if($type = troll_sguard7) {
     switch_int(%npc_int) {
-        case 0 : return(0_44_157_42_28);
-        case 1 : return(0_44_157_42_34);
-        case 2 : return(0_44_157_39_34);
-        case 3 : return(0_44_157_39_28);
+        case 0 : return(0_44_157_42_28); // east
+        case 1 : return(0_44_157_42_34); // north
+        case 2 : return(0_44_157_39_34); // west
+        case 3 : return(0_44_157_39_28); // south
     }    
 } else if($type = troll_sguard8) {
     switch_int(%npc_int) {
-        case 0 : return(0_44_157_48_37);
-        case 1 : return(0_44_157_48_32);
-        case 2 : return(0_44_157_45_29);
-        case 3 : return(0_44_157_44_29);
-        case 4 : return(0_44_157_47_32);
-        case 5 : return(0_44_157_45_32);
-        case 6 : return(0_44_157_45_37);
+        case 0 : return(0_44_157_48_37); // east
+        case 1 : return(0_44_157_48_32); // south
+        case 2 : return(0_44_157_45_29); // southwest
+        case 3 : return(0_44_157_44_29); // west
+        case 4 : return(0_44_157_47_32); // northeast
+        case 5 : return(0_44_157_45_32); // west
+        case 6 : return(0_44_157_45_37); // north
     }    
 }
 
-[ai_timer,_troll_sguard]
-npc_say("<nc_debugname(npc_type)> <tostring(%npc_int)>");
+
+// guard5 stage3 (east) should not alert on player at 46_29
+
+/*[ai_timer,_troll_sguard]
+//npc_say("<nc_debugname(npc_type)> <tostring(%npc_int)>");
+def_int $directiondebug = ~troll_sguard_patrol_direction(npc_type);
+        switch_int($directiondebug) {
+            case 4 : //northeast
+                npc_say("<nc_debugname(npc_type)> <tostring(%npc_int)> NE");
+            case 5 : //southwest
+                npc_say("<nc_debugname(npc_type)> <tostring(%npc_int)> SW");
+            case 0 : //north
+                npc_say("<nc_debugname(npc_type)> <tostring(%npc_int)> N");
+            case 1 : //south
+                npc_say("<nc_debugname(npc_type)> <tostring(%npc_int)> S");
+            case 2 : //east
+                npc_say("<nc_debugname(npc_type)> <tostring(%npc_int)> E");
+            case 3 : //west
+                npc_say("<nc_debugname(npc_type)> <tostring(%npc_int)> W");
+        }
+huntall(npc_coord, 1, 0);
+ if(huntnext = true) {
+    if(p_finduid(uid) = true) {
+        def_int $direction = ~troll_sguard_patrol_direction(npc_type);
+        // determine if the player's coord is on the tile in front of the guard by determining the facing direction
+        // coordinates are mapped as localX and localZ, with X being west/east and Z being north/south
+        // each patrol stage is a straight line so will only have one facing direction (~troll_sguard_patrol_direction)
+        switch_int($direction) {
+            case 4 : //northeast
+                if(coordx(coord) > coordx(npc_coord) & coordz(coord) > coordz(npc_coord)) { ~eadgar_troll_whack; }
+            case 5 : //southwest
+                if(coordx(coord) < coordx(npc_coord) & coordz(coord) < coordz(npc_coord)) { ~eadgar_troll_whack; }
+            case 0 : //north
+                if(coordz(coord) > coordz(npc_coord) & coordx(coord) = coordx(npc_coord)) { ~eadgar_troll_whack; }
+            case 1 : //south
+                if(coordz(coord) < coordz(npc_coord) & coordx(coord) = coordx(npc_coord)) { ~eadgar_troll_whack; }
+            case 2 : //east
+                if(coordx(coord) > coordx(npc_coord) & coordz(coord) = coordz(npc_coord)) { ~eadgar_troll_whack; }
+            case 3 : //west
+                if(coordx(coord) < coordx(npc_coord) & coordz(coord) = coordz(npc_coord)) { ~eadgar_troll_whack; }
+        }
+    }
+ }
 if(npc_coord = ~troll_sguard_patrol_coord(npc_type)) { // if we've arrived at this stage's destination
     if(%npc_int = ~troll_sguard_max_patrol_stage(npc_type)) { // and if this stage is the final stage
         %npc_int = 0; // then restart the loop
@@ -96,3 +226,17 @@ if(npc_coord = ~troll_sguard_patrol_coord(npc_type)) { // if we've arrived at th
     }
 } 
 npc_walk(~troll_sguard_patrol_coord(npc_type)); // finally, walk whichever stage we're at for this cycle
+    // +Z = north
+    // coordz(coord) > coordz(npc_coord)
+    // -Z = south
+    // coordz(coord) < coordz(npc_coord)
+    // +X = east
+    // coordx(coord) > coordx(npc_coord)
+    // -X = west
+    // coordx(coord) < coordx(npc_coord)
+    // +X and +Z = northeast
+    // coordx(coord) > coordx(npc_coord) & coordz(coord) > coordz(npc_coord)
+    // -X and -Z = southwest
+    // coordx(coord) < coordx(npc_coord) & coordz(coord) < coordz(npc_coord)
+    */
+
