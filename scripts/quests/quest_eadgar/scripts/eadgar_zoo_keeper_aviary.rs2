@@ -1,5 +1,4 @@
-// all dialog sourced from soup's osrs vid
-// mesanim rsprox/branon
+// mesanims rsprox/branon
 [opnpc1,eadgar_zoo_keeper_aviary]
 ~chatnpc("<p,happy>Good day, good day. Come to admire the new parrot aviary have we?");
 switch_int(~p_choice3("It's very nice.", 1, "When did you add it?", 2, "What do you feed them?", 3)) {
@@ -51,6 +50,7 @@ if (testbit(%eadgar_bits, ^eadgar_pete_dialog_1) = ^true & testbit(%eadgar_bits,
 }
 
 [oplocu,eadgar_aviary_wall_hatch]
+// mesanims rsprox/branon
 switch_obj(last_useitem) {
     case eadgar_alco_chunks : @eadgar_catch_parrot;
     case pineapple_chunks : @eadgar_aviary_pineapple_chunks;
@@ -78,9 +78,9 @@ queue(eadgar_get_parrot, 0, 0); // appears to be queued here judging by indio's 
 ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Sqwaawk...*hic*"); // this chathead doesn't seem to exist in 274 but will be lunar_captains_parrot in 2006, something else in 2005...? https://web.archive.org/web/20060114030943im_/http://www.runeweb.net/fireball/Eadgars%20Ruse%20Images/Eadgar12.PNG
 if(.npc_find(coord, eadgar_zoo_keeper_aviary, 14, 0) = true) {
     ~.chatnpc("<p,angry>Hey! What are you doing with that parrot?");
-    ~chatplayer("<p,neutral>Nothing.");
-    ~.chatnpc("<p,angry>It looks drunk! You should NEVER feed alcohol to a parrot!");
-    ~chatplayer("<p,neutral>Well, good thing I found it! I'll just take it to the vet for you, shall I?"); // not sure which mesanim this is
+    ~chatplayer("<p,shifty>Nothing.");
+    ~.chatnpc("<p,scared>It looks drunk! You should NEVER feed alcohol to a parrot!");
+    ~chatplayer("<p,happy>Well, good thing I found it! I'll just take it to the vet for you, shall I?"); // not sure which mesanim this is
     ~.chatnpc("<p,happy>Oh, thank you! We're ever so busy here at the Zoo.");
 }
 
