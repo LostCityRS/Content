@@ -29,6 +29,9 @@ if (random(16) = 0) {
 }
 
 ~trawler_catch_fish($player_count);
+
+~trawler_overlay_huntall;
+
 npc_settimer(5); // this is important
 
 [ai_timer,murphy_halfsunk]
@@ -65,6 +68,9 @@ if (random(16) = 0) {
 }
 
 ~trawler_catch_fish($player_count);
+
+~trawler_overlay_huntall;
+
 npc_settimer(5); // this is important
 
 
@@ -144,7 +150,7 @@ while ($i < enum_getoutputcount(trawler_hulls) & $leak_count < $max_leaks) {
 // https://youtu.be/Yzu2wp2hJOw?list=PLn23LiLYLb1b7Lj_u-lnuUOa40FGWslbp This game, each player got 20 fish
 // with a final caught of 1697. Means a 1/10 chance per roll for each player
 [proc,trawler_catch_fish](int $player_count)
-if (~trawler_net_ripped = true) {
+if (~trawler_net_ripped = ^true) {
     return;
 }
 def_int $i = 0;
