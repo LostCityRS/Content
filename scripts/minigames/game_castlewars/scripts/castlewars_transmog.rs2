@@ -44,7 +44,7 @@ if_settab(null, ^tab_magic);
 if_settab(null, ^tab_player_controls);
 if_settab(null, ^tab_game_options);
 
-//p_transmogrify($npc_type);
+p_transmogrify($npc_type);
 if ($npc_type = castlewars_imp) ~bas_set(imp_ready, imp_walk, imp_walk, imp_walk, imp_walk, imp_walk, null);
 else if ($npc_type = castlewars_sheep) ~bas_set(sheep_ready, sheep_walk, sheep_walk, sheep_walk, sheep_walk, sheep_walk, null);
 else if ($npc_type = castlewars_rabbit) ~bas_set(rabbit_ready, rabbit_walk, rabbit_walk, rabbit_walk, rabbit_walk, rabbit_walk, null);
@@ -54,4 +54,4 @@ p_animprotect(^true);
 ~initalltabs;
 ~update_bas;
 p_animprotect(^false);
-// p_transmogrify(null); // ?
+p_transmogrify(null); // ?
