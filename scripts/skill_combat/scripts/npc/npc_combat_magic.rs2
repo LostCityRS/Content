@@ -124,19 +124,39 @@ def_stat $stat;
 def_int $constant;
 def_int $percent;
 def_int $i = 0;
+def_int $drained = 0;
+def_int $spell = db_getfield($spell_data, magic_spell_table:spell, 0);
 while ($i < db_getfieldcount($spell_data, magic_spell_table:stat_change)) {
     $stat, $constant, $percent = db_getfield($spell_data, magic_spell_table:stat_change, $i);
-    if ($constant > 0 & $percent > 0) {
-        // if both positive assume statadd
-        // nothing ever uses this but i guess if someone wants to add some heal spell or something
-        stat_add($stat, $constant, $percent);
+    if ($spell = ^flames_of_zamorak | $spell = ^claws_of_guthix | $spell = ^saradomin_strike) {
+        if (stat($stat) < stat_base($stat)) { // https://oldschool.runescape.wiki/w/Update:Contact!
+            $i = add($i, 1);
+        } else {
+            if ($constant > 0 & $percent > 0) {
+                stat_add($stat, $constant, $percent);
+            } else {
+                if ($constant < 0) $constant = multiply($constant, -1);
+                if ($percent < 0) $percent = multiply($percent, -1);
+                if ($drained = 0) mes("You feel weakened.");
+                stat_sub($stat, $constant, $percent);
+                $drained = 1;
+            }
+            $i = add($i, 1);
+        }
     } else {
-        if ($constant < 0) $constant = multiply($constant, -1);
-        if ($percent < 0) $percent = multiply($percent, -1);
-        if($i = 0) mes("You feel weakened."); // mes should only show once for spells that lower multiple stats
-        stat_sub($stat, $constant, $percent);
+        if ($constant > 0 & $percent > 0) {
+            // if both positive assume statadd
+            // nothing ever uses this but i guess if someone wants to add some heal spell or something
+            stat_add($stat, $constant, $percent);
+        } else {
+            if ($constant < 0) $constant = multiply($constant, -1);
+            if ($percent < 0) $percent = multiply($percent, -1);
+            if ($drained = 0) mes("You feel weakened."); // mes should only show once for spells that lower multiple stats
+            stat_sub($stat, $constant, $percent);
+            $drained = 1;
+        }
+        $i = add($i, 1);
     }
-    $i = add($i, 1);
 }
 
 [proc,npc_freeze_effect](dbrow $spell_data)
