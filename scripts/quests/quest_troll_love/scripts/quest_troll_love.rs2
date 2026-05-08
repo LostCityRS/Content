@@ -1,0 +1,203 @@
+/*
+TODO LIST:
+- Recheck what appears in Quest Journal if you give Dunstan maple logs instead of yew logs, when making a sled for the first time. (Does it use a separate varp to track which item was given?)
+  I only have RSProx logs from giving yew logs, so my journal shows 'yew' too.
+- Recheck Dunstan's dialogue in Burthorpe before, during & after quest on OSRS (2 ops; Talk about quest, talk about something else?)
+- Recheck Chill effect (If you enter the area of chill, leave after a couple ticks, and re-enter, does the timer reset to 10 ticks?)
+- Re-do first sled cutscene (Missing engine 'run' command?)
+- Implement second sled cutscene
+- Recheck order of events on OSRS when teleporting from Trollweiss Mountain with sled equipped
+- Recheck what happens when you leave Trollweiss Mountain with no inventory space (does sled get deleted rather than unequipped?)
+- Implement Arrg boss fight properly (Hits with both ranged and melee)
+- Figure out mesanims for Ug's final dialogue
+- Implement the 'Quest Complete' quest journal entry
+*/
+
+
+[debugproc,trcs] // Teleport to first slope cutscene
+if (p_finduid(uid) = true) p_teleport(0_43_59_20_60);
+
+[debugproc,trarrg] // Teleport to Arrg in Stronghold
+if (p_finduid(uid) = true) p_teleport(1_44_157_12_46);
+
+[oploc1,trollromance_piste_walk_barrier_down] // TODO: Trigger for both the top ride (0_43_59), and the bottom ride (0_43_58)
+if (inv_total(worn, trollromance_toboggon_waxed) < 1) {
+    mes("You need to have a waxed sled equipped!");
+    return;
+}
+~trollromance_first_sled_ride;
+
+[oploc1,trollromance_piste_walk_barrier_up] // On OSRS, NIH message when attempting to go back up the snow hill
+~displaymessage(^dm_default);
+
+[oploc1,trollromance_caveentrance] // Tunnel entrance north-west of Trollheim
+p_teleport(0_43_159_51_11);
+
+[oploc1,trollromance_piste_tunnel_bottom] // Tunnel entrance in cave from Trollheim, back to Trollheim
+p_teleport(0_44_58_6_32);
+
+[oploc1,trollromance_snow_cavewall_crevis] // Crevasse out to Trollweiss Mountain
+p_teleport(0_43_60_26_29);
+
+[oploc1,trollromance_piste_top] // Tunnel entrance back towards Trollheim from Trollweiss Mountain
+~unequip_trollromance_sled;
+p_teleport(0_43_159_20_55);
+
+[oploc1,trollromance_piste_exit_tunnel_exit] // Tunnel entrance towards Rellekka cave from Trollweiss Mountain
+~unequip_trollromance_sled;
+p_teleport(0_43_158_47_22);
+
+[oploc1,trollromance_piste_exit_tunnel_top] // Tunnel entrance towards Trollweiss Mountain from Rellekka cave
+p_teleport(0_43_58_45_7);
+
+[oploc1,trollromance_piste_exit_tunnel_bottom] // Tunnel entrance towards Rellekka from Rellekka cave
+p_teleport(0_42_58_42_1);
+
+[oploc1,trollromance_stronghold_exit_tunnel] // Tunnel entrance towards Rellekka cave from Rellekka
+p_teleport(0_43_158_21_50);
+
+[oploc2,trollromance_rareflowers]
+if (inv_freespace(inv) = 0) {
+    ~chatplayer("<p,sad>I know it's only a flower, but I haven't got enough space...");
+    return;
+}
+if (%troll_love = ^troll_love_waxed_sled) %troll_love = ^troll_love_picked_trollweiss;
+anim(human_pickuptrollweiss_down, 0);
+p_delay(0);
+anim(human_pickuptrollweiss_up, 0);
+inv_add(inv, trollromance_rare_flower, 1);
+
+[proc,trollromance_dunstan_has_materials]()(boolean)
+if (inv_total(inv, yew_logs) > 0 | inv_total(inv, maple_logs) > 0) {
+    if (inv_total(inv, iron_bar) > 0 & inv_total(inv, rope) > 0) {
+        return (true);
+    }
+}
+return (false);
+
+[opheldu,bucket_wax]
+if(last_useitem = swamp_tar) { // Troll Romance quest
+    @make_sled_wax;
+}
+~displaymessage(^dm_default);
+
+[label,make_sled_wax]
+if (inv_total(inv, cake_tin) < 1) {
+    mes("You need something to put the wax in... like a cake tin.");
+    return;
+}
+mes("You make some sled wax.");
+inv_del(inv, bucket_wax, 1);
+inv_del(inv, swamp_tar, 1);
+inv_del(inv, cake_tin, 1);
+inv_add(inv, trollromance_wax, 1);
+
+[opheldu,trollromance_wax]
+if(last_useitem = trollromance_toboggon) { // Troll Romance quest
+    @make_waxed_sled;
+}
+~displaymessage(^dm_default);
+
+[label,make_waxed_sled]
+mes("You wax the sled. You're now ready to go.");
+if (%troll_love = ^troll_love_dunstan_made_sled) %troll_love = ^troll_love_waxed_sled;
+anim(trollromance_toboggan_waxing, 0);
+inv_del(inv, trollromance_toboggon, 1);
+inv_del(inv, trollromance_wax, 1);
+inv_add(inv, trollromance_toboggon_waxed, 1);
+inv_add(inv, cake_tin, 1);
+sound_synth(wax_sled, 0, 0);
+
+[proc,unequip_trollromance_sled]
+if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) {
+    ~unequip(^wearpos_rhand);
+    ~update_bas;
+}
+
+[proc,can_ride_sled]()(boolean)
+if (inzone(^sled_lower_coord, ^sled_upper_coord, coord) = true) {
+    ~equip(last_slot);
+    ~update_bas;
+    p_animprotect(^true);
+    return(true);
+}
+mes("You cannot use that here!");
+~unequip_trollromance_sled; // Safety, but shouldn't really be hit
+return(false);
+
+[opheld2,trollromance_toboggon_waxed]
+~can_ride_sled;
+
+[proc,trollromance_first_sled_ride] // Does the job, but not quite accurate... TODO: Needs reworked!
+if_close;
+p_teleport(0_43_59_20_58);
+~bas_set(trollromance_toboggan_ready, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving);
+say("Here we go!");
+sound_synth(sled_start, 0, 0);
+p_delay(0);
+p_teleport(0_43_59_18_56);
+p_delay(0);
+p_teleport(0_43_59_18_54);
+p_delay(0);
+p_teleport(0_43_59_18_52);
+p_delay(0);
+p_teleport(0_43_59_17_50);
+p_delay(0);
+sound_synth(sled_loop, 5, 0);
+p_teleport(0_43_59_17_48);
+p_delay(0);
+p_teleport(0_43_59_17_46);
+p_delay(0);
+p_teleport(0_43_59_17_44);
+p_delay(0);
+p_teleport(0_43_59_17_42);
+p_delay(0);
+p_teleport(0_43_59_19_40);
+p_delay(0);
+p_teleport(0_43_59_21_38);
+p_delay(0);
+cam_moveto(0_43_59_18_46, 300, 20, 50);
+cam_lookat(0_43_59_21_33, 300, 50, 50);
+p_teleport(0_43_59_23_36);
+p_delay(0);
+p_teleport(0_43_59_25_34);
+p_delay(0);
+p_teleport(0_43_59_27_32);
+cam_moveto(0_43_59_35_36, 300, 20, 50);
+cam_lookat(0_43_59_28_31, 300, 50, 50);
+p_delay(0);
+p_teleport(0_43_59_29_30);
+sound_synth(sled_jump, 0, 0);
+p_delay(0);
+p_teleport(0_43_59_31_28);
+~bas_set_all(trollromance_toboggan_flying);
+p_delay(0);
+p_teleport(0_43_59_33_26);
+p_delay(0);
+p_teleport(0_43_59_34_24);
+~bas_set(trollromance_toboggan_ready, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving);
+sound_synth(sled_stop, 0, 0);
+cam_reset;
+p_delay(1);
+say("That was quite a ride!");
+p_delay(1);
+~update_bas;
+p_teleport(0_43_59_38_18);
+facesquare(loc_coord);
+stat_advance(agility, 250);
+
+// TODO: Immplement second slope cutscene
+
+
+[queue,trollromance_quest_complete]
+// https://web.archive.org/web/20060428042217/http://runescape.salmoneus.net/quests/TrollRomance/trollrmcecomplt.png
+session_log(^log_adventure, "Quest complete: Troll Romance");
+%troll_love = ^troll_love_complete;
+// Gems given in the below order as per: https://youtu.be/V88fh4k0Po4?si=Gyb2h6BI9566rs3Z&t=969
+inv_add(inv, uncut_diamond, 1);
+inv_add(inv, uncut_ruby, 2);
+inv_add(inv, uncut_emerald, 4);
+stat_advance(agility, 80000);
+stat_advance(strength, 40000);
+// Below possibly also includes these rewards: "\\n8000 Agility XP\\n4000 Strength XP" but currently the "8000 Agility XP" overlaps on the same line...
+~send_quest_complete(questlist:troll_love, trollromance_rare_flower, 250, ^troll_love_questpoints, "You have completed the Troll Romance Quest!", "7 Uncut Gems");
