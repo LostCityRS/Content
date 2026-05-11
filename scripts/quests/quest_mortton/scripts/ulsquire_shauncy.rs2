@@ -63,6 +63,8 @@ if (testbit(%morttonmulti, ^mortton_used_serum_on_ulsquire) = ^false) {
     ~chatnpc("<p,happy>Ah, excellent, you've made your own serum and it|seems to work well! Many thanks for using the Serum|on me! But beware, I may start to change back soon!");
 } else {
     ~chatnpc("<p,happy>Ah, hello again, what can I do for you now?");
+    ~chatplayer("<p,neutral>Hello there.");
+    ~chatnpc("<p,happy>Hello again! Many thanks for helping us to solve the riddle with the Shades, we can start to work now putting all those Shade spirits to rest and get a little bit of a reward to go along with it!");
 }
 if(%morttonquest < ^mortton_kill_shades) {
     @ulsquire_questions;
