@@ -222,6 +222,9 @@ if (%desertrescue = ^desertrescue_complete) {
 if (%itwatchtower >= ^itwatchtower_complete) {
     $questpoints = add($questpoints, ^itwatchtower_questpoints); 
 }
+if (%misc_quest >= ^misc_complete) {
+    $questpoints = add($questpoints, ^misc_questpoints); 
+}
 if (%legendsquest = ^legends_complete) {
     $questpoints = add($questpoints, ^legends_questpoints); 
 }
@@ -310,6 +313,7 @@ if (testbit(%ibanmulti, ^upass_started_bit) = ^true & %upass ! ^upass_complete) 
 ~send_quest_progress_colour(questlist:crest, %crestquest, ^crest_complete);
 ~send_quest_progress_colour(questlist:desertrescue, %desertrescue, ^desertrescue_complete);
 ~send_quest_progress_colour(questlist:itwatchtower, %itwatchtower, ^itwatchtower_complete);
+~send_quest_progress_colour(questlist:misc, %misc_quest, ^misc_complete);
 ~send_quest_progress_colour(questlist:legends, %legendsquest, ^legends_complete);
 ~send_quest_progress_colour(questlist:elemental_workshop, %elemental_workshop_bits, sub(pow(2, ^elemental_workshop_complete), 1));
 ~send_quest_progress_colour(questlist:priestperil, %priestperil, ^priestperil_complete);
