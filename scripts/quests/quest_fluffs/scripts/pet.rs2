@@ -108,31 +108,31 @@ if (%npc_attacking_uid ! uid | %follower_uid ! npc_uid) {
     mes("This is not your cat."); //imgur.com/acr5ER2
     return;
 }
-switch_obj(last_useitem) {
-    case ball_of_wool : //timing and p_delay is guessed off videos
-        %cat_growth = setbit_range_toint(%cat_growth, 6, 5, 10); //51 minutes without warning (6 to 40)
-        anim(human_pickupfloor, 0);
-        npc_anim(cat_rollingover, 40); 
-        npc_say("Purr!");
-        p_delay(2);
-        ~chatplayer("<p,happy>That kitten loves to play with that ball of wool.|I think it is its favourite."); //guessed linebreak
-    case bucket_milk : //https://youtu.be/1vY_uGOq6qM&t=97s
-        %cat_growth = setbit_range_toint(%cat_growth, 0, 0, 4);
-        inv_del(inv, last_useitem, 1);
-        inv_add(inv, bucket_empty, 1);
-        anim(human_pickupfloor, 0);
-        p_delay(0);
-        mes("The kitten laps up the milk.");
-        npc_say("Purpurr");
-    case raw_shrimp, raw_anchovies, raw_sardine, raw_trout, trout, raw_salmon, salmon, raw_tuna, tuna :
-        %cat_growth = setbit_range_toint(%cat_growth, 0, 0, 4);
-        def_string $fishname = lowercase(oc_name(last_useitem));
-        inv_del(inv, last_useitem, 1);
-        anim(human_pickupfloor, 0);
-        p_delay(0);
-        mes("The kitten gobbles up the <$fishname>."); //youtu.be/suusfGcvi1w?t=195
-        npc_say("Purr!");
-    case default : ~displaymessage(^dm_default);
+if(last_useitem = ball_of_wool) { //timing and p_delay is guessed off videos
+    %cat_growth = setbit_range_toint(%cat_growth, 6, 5, 10); //51 minutes without warning (6 to 40)
+    anim(human_pickupfloor, 0);
+    npc_anim(cat_rollingover, 40); 
+    npc_say("Purr!");
+    p_delay(2);
+    ~chatplayer("<p,happy>That kitten loves to play with that ball of wool.|I think it is its favourite."); //guessed linebreak
+} else if(last_useitem = bucket_milk) { //https://youtu.be/1vY_uGOq6qM&t=97s
+    %cat_growth = setbit_range_toint(%cat_growth, 0, 0, 4);
+    inv_del(inv, last_useitem, 1);
+    inv_add(inv, bucket_empty, 1);
+    anim(human_pickupfloor, 0);
+    p_delay(0);
+    mes("The kitten laps up the milk.");
+    npc_say("Purpurr");
+} else if(oc_category(last_useitem) = category_57 | oc_category(last_useitem) = category_58) {
+    %cat_growth = setbit_range_toint(%cat_growth, 0, 0, 4);
+    def_string $fishname = lowercase(oc_name(last_useitem));
+    inv_del(inv, last_useitem, 1);
+    anim(human_pickupfloor, 0);
+    p_delay(0);
+    mes("The kitten gobbles up the <$fishname>."); //youtu.be/suusfGcvi1w?t=195
+    npc_say("Purr!");
+} else {
+    ~displaymessage(^dm_default);
 }
 
 [opnpc1,_petcat]
