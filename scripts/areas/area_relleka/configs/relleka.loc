@@ -735,6 +735,9 @@ active=yes
 ambient=30
 contrast=30
 op1=Open
+category=door_closed
+param=next_loc_stage,viking_abode_door_open
+
 
 [viking_abode_door_open]
 name=Door
@@ -744,6 +747,9 @@ active=yes
 ambient=30
 contrast=30
 op1=Close
+category=door_opened
+param=next_loc_stage,viking_abode_door
+
 
 [viking_door_inactive]
 model=viking_bard_backstage_door
