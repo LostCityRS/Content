@@ -3,7 +3,7 @@
 switch_obj (last_useitem) 
 {
     case logs, oak_logs, willow_logs, maple_logs, yew_logs, magic_logs : 
-        // Authentically no feedback at all.
+        mes("You place the nib on the end of the log to make a crude pen.");
         inv_del(inv, misc_giant_nib, 1);
         inv_del(inv, last_useitem, 1);
         inv_add(inv, misc_giant_pen, 1);
