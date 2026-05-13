@@ -139,30 +139,30 @@ switch_int (%misc_quest) {
 
 [label,howtogaintrust]
 ~chatplayer("<p,confused>How am I supposed to get the <text_gender("princess", "prince")> to marry me?");
-// if (gender = ^gender_male) {
-//     switch_int (%misc_marry_astrid) {
-//         case 0 : ~chatnpc("<p,shifty>I think you may find that talking to her would be a good way to start.");
-//         case 1 : 
-//             ~chatnpc("<p,shifty>I have watched the admirers come and go, trying to win her heart, and I can tell you this is no easy task.");
-//             ~chatnpc("<p,shifty>You can hardly go wrong with a gift of flowers, and of course talking to her is important.");
-//             ~chatnpc("<p,shifty>I also hear she favours suitors who knows how to dance.");
-//         case 2 : ~chatnpc("<p,shifty>You seemed to have impressed her at least somewhat. She is quite the archer, collects bows, if you take my meaning...");
-//         case 3 : 
-//             ~chatnpc("<p,shifty>She has grown very fond of you; you would do well to show you are fond of her too.");
-//             ~chatnpc("<p,shifty>When the time comes to actually ask for her hand in marriage, do not forget the engagement ring.");
-//         case 4 : ~chatnpc("<p,shifty>You are already married to her.");
-//     }
-// } else {
-//     switch_int (%misc_marry_brand) {
-//         case 0 : ~chatnpc("<p,shifty>I think you may find that talking to him would be a good way to start.");
-//         case 1 : ~chatnpc("<p,shifty>You could hardly go wrong with a gift of flowers, and of course talking to him is important. He is also very receptive of praise for his musical performance.");
-//         case 2 : ~chatnpc("<p,shifty>You seem to have impressed him at least somewhat. He has quite the sweet tooth, and is very fond of cake, if you take my meaning...");
-//         case 3 : 
-//             ~chatnpc("<p,shifty>He has grown very fond of you; you would do well to show you are fond of him too.");
-//             ~chatnpc("<p,shifty>When the time comes to actually ask for his hand in marriage, do not forget the engagement ring.");
-//         case 4 : ~chatnpc("<p,shifty>You are already married to him.");
-//     }
-// }
+if (gender = ^gender_male) {
+    switch_int (%misc_affection) {
+        case 0 : ~chatnpc("<p,shifty>I think you may find that talking to her would be a good way to start.");
+        case 1 : 
+            ~chatnpc("<p,shifty>I have watched the admirers come and go, trying to win her heart, and I can tell you this is no easy task.");
+            ~chatnpc("<p,shifty>You can hardly go wrong with a gift of flowers, and of course talking to her is important.");
+            ~chatnpc("<p,shifty>I also hear she favours suitors who knows how to dance.");
+        case 2 : ~chatnpc("<p,shifty>You seemed to have impressed her at least somewhat. She is quite the archer, collects bows, if you take my meaning...");
+        case 3 : 
+            ~chatnpc("<p,shifty>She has grown very fond of you; you would do well to show you are fond of her too.");
+            ~chatnpc("<p,shifty>When the time comes to actually ask for her hand in marriage, do not forget the engagement ring.");
+        case 4 : ~chatnpc("<p,shifty>You are already married to her.");
+    }
+} else {
+    switch_int (%misc_affection) {
+        case 0 : ~chatnpc("<p,shifty>I think you may find that talking to him would be a good way to start.");
+        case 1 : ~chatnpc("<p,shifty>You could hardly go wrong with a gift of flowers, and of course talking to him is important. He is also very receptive of praise for his musical performance.");
+        case 2 : ~chatnpc("<p,shifty>You seem to have impressed him at least somewhat. He has quite the sweet tooth, and is very fond of cake, if you take my meaning...");
+        case 3 : 
+            ~chatnpc("<p,shifty>He has grown very fond of you; you would do well to show you are fond of him too.");
+            ~chatnpc("<p,shifty>When the time comes to actually ask for his hand in marriage, do not forget the engagement ring.");
+        case 4 : ~chatnpc("<p,shifty>You are already married to him.");
+    }
+}
 
 [label,whatelsecanyoutellme]
 ~chatnpc("<p,shifty>What would you like to know, <text_gender("Sir", "Madam")>.");

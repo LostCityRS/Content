@@ -1,0 +1,385 @@
+[opnpc1,misc_prince_brand]
+if (%misc_quest >= 100) {
+    @brand_afterthronequest;
+} else if (%misc_quest = 40) {
+    @brand_duringthronequeststage40;
+} else if (%misc_quest = 50 | %misc_quest = 60) {
+    if (inv_total(inv, misc_awful_anthem) >= 1 | inv_total(inv, misc_good_anthem) >= 1) {
+        @brand_duringthronequest;
+    } else {
+        @brand_duringthronequeststage50;
+    }
+} else if (%misc_quest >= 10) {
+    @brand_duringthronequest;
+} else {
+    @brand_beforethronequest;
+}
+
+[proc,brand_random_nonsense]()(string)
+switch_int (random(14)) {
+    case 0 : return ("Beards? Dangerous, flammable and make you look mad!");
+    case 1 : return ("Care to sign my petition for pet frogs?");
+    case 2 : return ("Cattle prod? Weapon of choice I reckon.");
+    case 3 : return ("Don't threaten me with a dead fish!");
+    case 4 : return ("He is clearly 1 cup short of a full service.");
+    case 5 : return ("I'm a little teapot, short and stout...");
+    case 6 : return ("I'm rubber you're glue.........!");
+    case 7 : return ("Lies!!! It's all lies!!!");
+    case 8 : return ("Look over there! A King Black Dragon!");
+    case 9 : return ("Lumbridge? No, I wouldn't be seen dead there.");
+    case 10 : return ("Nah, that Kalphite was weedier than your garden.");
+    case 11 : return ("Selling ring of poverty 30 mil!");
+    case 12 : return ("Sneaky sneaky stick da chompy.");
+    case 13 : return ("What level do you need to cook cats?");
+}
+
+[label,brand_beforethronequest]
+~chatnpc("<p,neutral>Good day, <text_gender("Sir", "Madam")>.");
+~chatplayer("<p,neutral>Good day, Your Royal Highness.");
+
+[label,brand_duringthronequeststage40]
+~chatplayer("<p,neutral>I need someone to compose a new anthem for Etceteria.");
+~chatnpc("<p,neutral>You've come to the right bard! I'll write one for you immediately!");
+~chatplayer("<p,neutral>You can take your time, really...");
+~chatnpc("<p,neutral>No problem, I'm already done! Here, listen!");
+~chatnpc("<p,neutral>'Etceteria, Etceteria, Oh what a great country it is, Etceteria, Etceteria, So I wrote a song about it.'");
+~chatnpc("<p,neutral>'It's somewhere in the sea, And it looks very nice, If it weren't for your ancestors, It wouldn't be there at all,'");
+~chatnpc("<p,neutral>'And when things aren't going too well, We sing this lovely song, And then we'll all feel so much better, It won't take very long.'");
+inv_add(inv, misc_awful_anthem, 1);
+if (%misc_quest = 40) {
+    %misc_quest = 50;
+}
+~chatnpc("<p,neutral>Here's a copy, you can keep it!");
+~chatplayer("<p,shifty>...that's lovely, thanks.");
+~chatnpc("<p,neutral>Don't mention it, <text_gender("Sir", "Madam")>.");
+
+[label,brand_duringthronequeststage50]
+~chatplayer("<p,neutral>I lost my copy of the *ahem* theme you composed...");
+~chatnpc("<p,neutral>Fear not! I made many, many more!");
+inv_add(inv, misc_awful_anthem, 1);
+~chatnpc("<p,neutral>Here's a copy, you can keep it!");
+~chatplayer("<p,neutral>...that's lovely, thanks.");
+~chatnpc("<p,neutral>Don't mention it, <text_gender("Sir", "Madam")>.");
+
+[label,brand_duringthronequest]
+if (gender = ^gender_male) {
+    @brand_beforethronequest;
+} else {
+    switch_int (%misc_affection) {
+        case 0 : @brand_throneofmiscellaniamarriagestage0;
+        case 1 : @brand_throneofmiscellaniamarriagestage1;
+        case 2 : @brand_throneofmiscellaniamarriagestage2;
+        case 3 : @brand_throneofmiscellaniamarriagestage3;
+        case 4 : @brand_throneofmiscellaniamarriagestage4;
+    }
+}
+
+[label,brand_whattheheck]
+~chatplayer(~brand_random_nonsense());
+~chatnpc("<p,confused>...What?");
+
+[label,brand_throneofmiscellaniamarriagestage0]
+~chatnpc("<p,neutral>Good day, Madam.");
+~chatplayer("<p,neutral>Good day, Your Royal Highness.");
+~chatplayer("<p,neutral>As I'm sure you are aware, your father the King is seeking someone to rule the Kingdom in his stead. I have put myself forward, but in order for me to become ruler...");
+~chatnpc("<p,neutral>...you have to marry somebody in the royal family, namely myself?");
+~chatplayer("<p,neutral>Yes, Your Royal Highness.");
+~chatnpc("<p,laugh>Ahahahaha!");
+~chatnpc("<p,confused>Come now, what interest would I have in a crass adventurer like yourself? What would you know of the poetry that flows through my veins like an avalanche through a peaceful mountain village?");
+~chatplayer("<p,shifty>I think you may find I know good poetry when I see it, Your Royal Highness...");
+~chatnpc("<p,neutral>This may be the case. I am willing to give you a chance; if you impress me enough, I will consider accepting to marry you.");
+%misc_affection = 1;
+
+[label,brand_throneofmiscellaniamarriagestage1]
+if (%misc_s1_d1 = 1 & %misc_s1_d2 = 1 & %misc_s1_d3 = 1 & %misc_s1_give = 1 & %misc_s1_emote = 1) {
+    @brand_randomset1finish;
+}
+if (%misc_s1_d1 = 0) {
+    @brand_randomset1branch1;
+} else if (%misc_s1_d2 = 0) {
+    @brand_randomset1branch2;
+} else if (%misc_s1_d3 = 0) {
+    @brand_randomset1branch3;
+} else {
+    @brand_beforethronequest;
+}
+
+[label,brand_randomset1branch1]
+~chatnpc("<p,neutral>I composed a poem, would you like to hear it?");
+~chatplayer("<p,neutral>Of course, I'd love to.");
+~chatnpc("<p,happy>I got up morning, and had an egg for breakfast.");
+@multi4(
+    "And then what happened?", brand_whathappened,
+    "Be still, my heart.", brand_bestillmyheart,
+    "That doesn't even rhyme!", brand_sucksatrhyming,
+    ~brand_random_nonsense(), brand_whattheheck
+);
+
+[label,brand_whathappened]
+~chatplayer("<p,confused>And then what happened?");
+~chatnpc("<p,neutral>No, that's the whole poem.");
+~chatplayer("<p,neutral>Oh. I see.");
+
+[label,brand_bestillmyheart]
+~chatplayer("<p,happy>Be still, my heart.");
+~chatnpc("<p,happy>I'm glad you liked it.");
+%misc_s1_d1 = 1;
+
+[label,brand_sucksatrhyming]
+~chatplayer("<p,confused>That doesn't even rhyme!");
+~chatnpc("<p,angry>Quiet! What would you know about poetry?");
+
+[label,brand_randomset1branch2]
+~chatplayer("<p,neutral>I am surprised you do not have hordes of admirers vying to be your significant other, Your Highness.");
+~chatnpc("<p,neutral>And why do you think that might be, <text_gender("sir", "madam")>?");
+@multi4(
+    "No-one's ever heard of you.", brand_nooneheard,
+    "They don't understand your poetry as I do.", brand_understandpoetry,
+    "They're all already married.", brand_alreadymarried,
+    ~brand_random_nonsense(), brand_whattheheck
+);
+
+[label,brand_nooneheard]
+~chatplayer("<p,neutral>No-one's ever heard of you.");
+~chatnpc("<p,angry>I am insulted, <text_gender("sir", "madam")>!");
+
+[label,brand_understandpoetry]
+~chatplayer("<p,neutral>They don't understand your poetry as I do.");
+~chatnpc("<p,neutral>Mmm, a very good answer, <text_gender("sir", "madam")>.");
+%misc_s1_d2 = 1;
+
+[label,brand_alreadymarried]
+~chatplayer("<p,neutral>They're all already married.");
+~chatnpc("<p,confused>Hm, no, I don't think that's the right reason.");
+
+
+[label,brand_randomset1branch3]
+~chatplayer("<p,neutral>So, you practice the harp? I see you have one over there.");
+~chatnpc("<p,neutral>Yes; I play the lyre and the harp, and compose songs, poems and sagas to move you, to delight you and entertain you! Sadly, my father does not think much of the art. What do you think?");
+@multi4(
+    "You should listen to your father.", brand_listentodaddy,
+    "You will be the greatest bard!", brand_greatestbard,
+    "You're an awful bard.", brand_awfulbard,
+    ~brand_random_nonsense(), brand_whattheheck
+);
+
+[label,brand_listentodaddy]
+~chatplayer("<p,neutral>You should listen to your father.");
+~chatnpc("<p,neutral>I'm sorry you feel that way.");
+
+[label,brand_greatestbard]
+~chatplayer("<p,neutral>You will be the greatest bard!");
+~chatnpc("<p,neutral>I'm so glad you agree!");
+%misc_s1_d3 = 1;
+
+[label,brand_awfulbard]
+~chatplayer("<p,neutral>You're an awful bard.");
+~chatnpc("<p,angry>I am insulted, <text_gender("sir", "madam")>!");
+
+[label,brand_randomset1finish]
+~chatnpc("<p,neutral>You have perhaps more poetry in your soul than I first thought, Madam...");
+~chatplayer("<p,neutral>I'm flattered to hear you say so, Your Royal Highness.");
+~chatnpc("<p,shock>Oh, but I realise you have not yet told me your name!");
+~chatplayer("<p,neutral>My name is <~get_viking_name>, Your Highness.");
+~chatnpc("<p,neutral>Then I shall I call you <~get_viking_name>, Madam, and you shall call me Prince.");
+%misc_affection = 2;
+
+[label,brand_afterdatingmaterial]
+~chatnpc("<p,neutral>Good day, <~get_viking_name>.");
+~chatplayer("<p,neutral>Good day, my Prince.");
+
+[label,brand_throneofmiscellaniamarriagestage2]
+if (%misc_s2_d1 = 1 & %misc_s2_d2 = 1 & %misc_s2_d3 = 1 & %misc_s2_give = 1) {
+    @brand_randomset2finish;
+}
+if (%misc_s2_d1 = 0) {
+    @brand_randomset2branch1;
+} else if (%misc_s2_d2 = 0) {
+    @brand_randomset2branch2;
+} else if (%misc_s2_d3 = 0) {
+    @brand_randomset2branch3;
+} else {
+    @brand_afterdatingmaterial;
+}
+
+[label,brand_randomset2branch1]
+~chatplayer("<p,neutral>What would you do if you ruled this Kingdom?");
+~chatnpc("<p,neutral>Oh, I would never concern myself with such trivial matters as those involved in ruling a Kingdom. My interests lie solely in the arts.");
+@multi4(
+    "A much nobler pursuit, to be sure.", brand_nobelpursuit,
+    "If only you were any good at them...", brand_yousobad,
+    "You're just afraid of responsibility.", brand_afraidofres,
+    ~brand_random_nonsense(), brand_whattheheck
+);
+
+[label,brand_nobelpursuit]
+~chatplayer("<p,neutral>A much nobler pursuit, to be sure.");
+~chatnpc("<p,neutral>I am glad you agree.");
+%misc_s2_d1 = 1;
+
+[label,brand_yousobad]
+~chatplayer("<p,happy>If only you were any good at them...");
+~chatnpc("<p,angry>I am insulted, <~get_viking_name>!");
+
+[label,brand_afraidofres]
+~chatplayer("<p,laugh>You're just afraid of responsibility.");
+~chatnpc("<p,sad>Perhaps you are right...");
+
+[label,brand_randomset2branch2]
+~chatnpc("<p,neutral>I composed a saga, would you like to hear it?");
+~chatplayer("<p,neutral>I don't know if I have time for a whole saga...");
+~chatnpc("<p,neutral>Don't worry, it's quite short. Here we go!");
+~chatnpc("<p,neutral>Once upon a time there was a Prince, And Brand was his name, He always had a song in his heart, And a rhyme in his head,");
+~chatnpc("<p,neutral>And he became the world's greatest bard, And delighted one and all, With his songs and sagas, And Brand was his name!");
+@multi4(
+    "How inspiring!", brand_howinspiring,
+    "I think my ears are bleeding.", brand_earsarebleeding,
+    "That's not a saga!", brand_thatsnotasaga,
+    ~brand_random_nonsense(), brand_whattheheck
+);
+
+[label,brand_howinspiring]
+~chatplayer("<p,happy>How inspiring!");
+~chatnpc("<p,neutral>Thank you! I thought I would compose something for future generations, to tell them my story.");
+%misc_s2_d2 = 1;
+
+[label,brand_earsarebleeding]
+~chatplayer("<p,neutral>I think my ears are bleeding.");
+~chatnpc("<p,angry>If you don't appreciate my singing, you are free to leave!");
+
+[label,brand_thatsnotasaga]
+~chatplayer("<p,neutral>That's not a saga!");
+~chatnpc("<p,sad>It's a short one, I'll admit...");
+
+[label,brand_randomset2branch3]
+~chatplayer("<p,neutral>So, why did you decide to become a bard?");
+~chatnpc("<p,neutral>Poetry and music have always fascinated me. I am drawn to them like a moth to an overenthusiastic mage who has set himself on fire.");
+@multi4(
+    "How poetic.", brand_howpoetic,
+    "Wait, are you the moth or the mage?", brand_mothormage,
+    "That's a strange metaphor...", brand_strangemetaphor,
+    ~brand_random_nonsense(), brand_whattheheck
+);
+
+[label,brand_howpoetic]
+~chatplayer("<p,happy>How poetic.");
+~chatnpc("<p,neutral>Why thank you. Sometimes I amaze even myself.");
+%misc_s2_d3 = 1;
+
+[label,brand_mothormage]
+~chatplayer("<p,confused>Wait, are you the moth or the mage?");
+~chatnpc("<p,angry>The moth!");
+
+[label,brand_strangemetaphor]
+~chatplayer("<p,neutral>That's a strange metaphor...");
+~chatnpc("<p,confused>It is a simile, but what do you know of poetry?");
+
+[label,brand_randomset2finish]
+~chatnpc("<p,happy>I must admit I am growing quite fond of you, <~get_viking_name>.");
+~chatplayer("<p,confused>Could it be, my Prince, that you would consider wedding a crass adventurer such as myself?");
+~chatnpc("<p,happy>Not yet, my darling; let us just say my heart is a maze of inescapable tunnels, and you are the light at the end of one of them.");
+%misc_affection = 3;
+
+[label,brand_almostweddingmaterial]
+~chatnpc("<p,neutral>Hello, dear.");
+~chatplayer("<p,neutral>Good day, my Prince.");
+
+[label,brand_throneofmiscellaniamarriagestage3]
+// You end by giving a ring.
+if (%misc_s3_d1 = 0) {
+    @brand_randomset3branch1;
+} else if (%misc_s3_d2 = 0) {
+    @brand_randomset3branch2;
+} else if (%misc_s3_d3 = 0) {
+    @brand_randomset3branch3;
+} else {
+    @brand_almostweddingmaterial;
+}
+
+[label,brand_randomset3branch1]
+~chatnpc("<p,neutral>I wrote a song about you. Would you like to hear it?");
+~chatplayer("<p,neutral>I'd love to!");
+~chatnpc("<p,neutral>Your hair is like a waterfall, Or perhaps a bramble bush, Your eyes are like an ocean on which, I want to sail the ship of our connection!");
+@multi4(
+    "Eyes...ship...sail...what?", brand_eyesshipsail,
+    "That was awful!", brand_thatwasawful,
+    "That was lovely. I'm touched!", brand_thatwaslovely,
+    ~brand_random_nonsense(), brand_whattheheck
+);
+
+[label,brand_eyesshipsail]
+~chatplayer("<p,neutral>Eyes...ship...sail...what?");
+~chatnpc("<p,angry>Was it really that hard to understand?");
+
+[label,brand_thatwasawful]
+~chatplayer("<p,laugh>That was awful!");
+~chatnpc("<p,angry>Fine! See if I write you any more songs!");
+
+[label,brand_thatwaslovely]
+~chatplayer("<p,happy>That was lovely. I'm touched!");
+~chatnpc("<p,happy>I'm glad you liked it, my dear.");
+%misc_s3_d1 = 1;
+
+[label,brand_randomset3branch2]
+~chatnpc("<p,neutral>Tell me, have you ever composed any poems yourself?");
+@multi4(
+    "I wouldn't presume to have the skill...", brand_noskill,
+    "Not really, but it can't be that hard.", brand_cantbehard,
+    "There once was a man from Varrock...", brand_onceamanfrom,
+    ~brand_random_nonsense(), brand_whattheheck
+);
+
+[label,brand_noskill]
+~chatplayer("<p,laugh>I wouldn't presume to have the skill...");
+~chatnpc("<p,neutral>You're right, it takes great skill and inspiration to be a great poet such as myself.");
+%misc_s3_d2 = 1;
+
+[label,brand_cantbehard]
+~chatplayer("<p,neutral>Not really, but it can't be that hard.");
+~chatnpc("<p,confused>You don't seem to understand poetry at all...");
+
+[label,brand_onceamanfrom]
+~chatplayer("<p,confused>There once was a man from Varrock...");
+~chatnpc("<p,angry>Don't lower the art of poetry with such bawdy rhymes!");
+
+[label,brand_randomset3branch3]
+~chatplayer("<p,neutral>What do you think of your sister?");
+~chatnpc("<p,neutral>We don't always see eye-to-eye, but she understands my art better than our father.");
+@multi4(
+    "I'm glad to hear it.", brand_gladtohearit,
+    "What art is that?", brand_whatartisthat,
+    "You should listen to your father.", brand_listentoyourfather,
+    ~brand_random_nonsense(), brand_whattheheck
+);
+
+[label,brand_gladtohearit]
+~chatplayer("<p,happy>I'm glad to hear it.");
+~chatnpc("<p,neutral>Of course, she couldn't understand as well as you do, my dear.");
+%misc_s3_d3 = 1;
+
+[label,brand_whatartisthat]
+~chatplayer("<p,neutral>What art is that?");
+~chatnpc("<p,neutral>Music and poetry. Surely you haven't forgotten already?");
+
+[label,brand_listentoyourfather]
+~chatplayer("<p,neutral>You should listen to your father.");
+~chatnpc("<p,neutral>I'm sorry you think so.");
+
+[label,brand_throneofmiscellaniamarriagestage4]
+@brand_afterthronequest;
+
+[label,brand_afterthronequest]
+if (gender = ^gender_male) {
+    @brand_whyareyoumale;
+} else {
+    @brand_engageddialogue;
+}
+
+[label,brand_engageddialogue]
+~chatnpc("<p,neutral>Hello, dear.");
+~chatplayer("<p,neutral>Hello. Have you found a priest for our marriage yet?");
+~chatnpc("<p,neutral>I'm afraid not, dear. I don't think there is one to be had on these islands for love nor money...");
+~chatnpc("<p,neutral>Do not fear, though; I shall call for you as soon as one is found.");
+
+[label,brand_whyareyoumale]
+~chatnpc("<p,sad>Ah, <~get_viking_name>, how I wish you were still a woman. You were such a great muse.");
