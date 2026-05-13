@@ -1,0 +1,30 @@
+[opnpc1,misc_flowergirl]
+~chatnpc("<p,neutral>Hello.");
+~chatplayer("<p,neutral>Good day. What are you doing?");
+~chatnpc("<p,neutral>I'm selling flowers, 15gp for three. Would you like some?");
+if (inv_total(inv, coins) >= 15) {
+    @flower_girl_enough_coins;
+} else {
+    @flower_girl_not_enough_coins;
+}
+
+
+[label,flower_girl_enough_coins]
+@multi2(
+    "Yes, please.", flower_girl_yes_please,
+    "No, thank you.", flower_girl_no_thanks
+);
+
+[label,flower_girl_yes_please]
+~chatplayer("<p,neutral>Yes, please");
+~chatnpc("<p,neutral>Thank you! Here you go.");
+if (inv_total(inv, coins) >= 15) {
+    inv_del(inv, coins, 15);
+    inv_add(inv, flowers_waterfall_quest_mixed, 1);
+}
+
+[label,flower_girl_no_thanks]
+~chatplayer("<p,neutral>No, thank you.");
+
+[label,flower_girl_not_enough_coins]
+~chatplayer("<p,neutral>I don't have enough money.");
