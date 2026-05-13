@@ -1,6 +1,7 @@
 [if_button,questlist:misc]
 def_string $x;
 def_string $n = "Throne of Miscellania";
+// ::tele 0,39,60
 
 if(%misc_quest = 0) {
     $x = append($x, "@dbl@I can start this quest by talking to @dre@King Vargas@dbl@ in|");

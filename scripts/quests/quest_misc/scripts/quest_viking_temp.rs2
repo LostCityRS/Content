@@ -1,0 +1,49 @@
+
+// THIS FILE IS TEMP. DELETE FOR VIKING QUEST FILE LATER
+// SHOULD BE DROP IN. WILL USE THE SAME VIKING NAME AS THAT
+
+// [proc,generate_viking_name]
+// %godbook_multi = setbit_range_toint(%godbook_multi, random(16), ^viking_name_lower1, ^viking_name_upper1);
+// %godbook_multi = setbit_range_toint(%godbook_multi, random(16), ^viking_name_lower2, ^viking_name_upper2);
+
+[proc,get_viking_name]()(string)
+def_string $s1 = "Rak";
+def_string $s2 = "lak";
+
+switch_int(1) {
+    case 1 : $s1 = "Bal";
+    case 2 : $s1 = "Bar";
+    case 3 : $s1 = "Dal";
+    case 4 : $s1 = "Dar";
+    case 5 : $s1 = "Den";
+    case 6 : $s1 = "Dok";
+    case 7 : $s1 = "Jar";
+    case 8 : $s1 = "Jik";
+    case 9 : $s1 = "Lar";
+    case 10 : $s1 = "Ral";
+    case 11 : $s1 = "Ril";
+    case 12 : $s1 = "Sig";
+    case 13 : $s1 = "Tal";
+    case 14 : $s1 = "Thor";
+    case 15 : $s1 = "Ton";
+}
+
+switch_int(5) {
+    case 1 : $s2 = "dar";
+    case 2 : $s2 = "dor";
+    case 3 : $s2 = "dur";
+    case 4 : $s2 = "kal";
+    case 5 : $s2 = "kar";
+    case 6 : $s2 = "kir";
+    case 7 : $s2 = "kur";
+    case 8 : $s2 = "lah";
+    case 9 : $s2 = "lim";
+    case 10 : $s2 = "lor";
+    case 11 : $s2 = "rak";
+    case 12 : $s2 = "tin";
+    case 13 : $s2 = "ton";
+    case 14 : $s2 = "tor";
+    case 15 : $s2 = "vald";
+}
+
+return (append($s1, $s2));
