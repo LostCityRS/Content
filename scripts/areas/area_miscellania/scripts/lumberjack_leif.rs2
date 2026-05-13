@@ -1,0 +1,20 @@
+[opnpc1,misc_lumberjack]
+if (%misc_quest = ^misc_complete) {
+    ~chatnpc("<~man_misc_mesanim>Good day, Your Royal Highness.");
+} else {
+    ~chatnpc("<~man_misc_mesanim>Hello.");
+}
+@multi2(
+    "Lumberjack Leif.", leif_main_talk,
+    "Your approval rating.", approval_rating
+);
+
+[label,leif_main_talk]
+~chatplayer("<p,neutral>Good day. What are you doing?");
+~chatnpc("<~man_misc_mesanim>I'm cutting down maple trees for their wood. It's a living.");
+~chatplayer("<p,neutral>Good luck with that.");
+if (%misc_quest = ^misc_complete) {
+    ~chatnpc("<~man_misc_mesanim>Thank you, Your Royal Highness.");
+} else {
+    ~chatnpc("<~man_misc_mesanim>Thanks.");
+}

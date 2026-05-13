@@ -19,7 +19,11 @@ if (%misc_quest = ^misc_complete) {
 
 [label,gunnhild_good_luck]
 ~chatplayer("<p,neutral>Good luck with that.");
-~chatnpc("<~man_misc_mesanim>Thanks.");
+if (%misc_quest = ^misc_complete) {
+    ~chatnpc("<~man_misc_mesanim>Thank you, Your Royal Highness.");
+} else {
+    ~chatnpc("<~man_misc_mesanim>Thanks.");
+}
 
 [label,gunnhild_buy_stuff]
 ~chatplayer("<p,neutral>What do you have for sale?");
