@@ -61,10 +61,8 @@ if (testbit(%morttonmulti, ^mortton_cured_ulsquire) = ^true | testbit(%morttonmu
 if (testbit(%morttonmulti, ^mortton_used_serum_on_ulsquire) = ^false) {
     %morttonmulti = setbit(%morttonmulti, ^mortton_used_serum_on_ulsquire);
     ~chatnpc("<p,happy>Ah, excellent, you've made your own serum and it|seems to work well! Many thanks for using the Serum|on me! But beware, I may start to change back soon!");
-} else {
+} else { 
     ~chatnpc("<p,happy>Ah, hello again, what can I do for you now?");
-    ~chatplayer("<p,neutral>Hello there.");
-    ~chatnpc("<p,happy>Hello again! Many thanks for helping us to solve the riddle with the Shades, we can start to work now putting all those Shade spirits to rest and get a little bit of a reward to go along with it!");
 }
 if(%morttonquest < ^mortton_kill_shades) {
     @ulsquire_questions;
@@ -109,7 +107,13 @@ if(%morttonquest < ^mortton_kill_shades) {
     ~chatplayer("<p,neutral>I've put the Shade's spirit to rest!");
     //Why so sad friend :( authentic
     ~chatnpc("<p,sad>Great! Well done my friend!");
-    queue(mortton_quest_complete, 0, 0);
+} else if (%morttonquest = ^mortton_quest_complete) {
+    ~chatnpc("<p,happy>Ah, hello again, what can I do for you now?");
+    ~chatplayer("<p,neutral>Hello there.");
+    ~chatnpc("<p,happy>Hello again! Many thanks for helping us to solve the riddle with the Shades, we can start to work now putting all those Shade spirits to rest and get a little bit of a reward to go along with it!");
+}
+else if (%morttonquest = ^mortton_lit_pyre) {
+queue(mortton_quest_complete, 0, 0);
 }
 
 [label,ulsquire_thanks]
