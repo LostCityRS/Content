@@ -383,3 +383,58 @@ if (gender = ^gender_male) {
 
 [label,brand_whyareyoumale]
 ~chatnpc("<p,sad>Ah, <~get_viking_name>, how I wish you were still a woman. You were such a great muse.");
+
+[proc,prince_brand_handle_emote](seq $anim)
+if (%misc_affection = 0) {
+    switch_seq ($anim) {
+        case emote_bow, emote_wave, human_cave_goblin_bow : ~chatnpc("<p,neutral>Hello!");
+        case emote_angry, emote_cry, emote_panic : ~chatnpc("<p,confused>What's wrong?");
+        case emote_cheer, emote_clap : ~chatnpc("<p,neutral>Thank you.");
+        case emote_beckon : ~chatnpc("<p,neutral>I'm staying right here.");
+        case emote_laugh : ~chatnpc("<p,confused>What's so funny?");
+        case emote_jump_with_joy, emote_ya_boo_sucks, emote_fremmenik_salute : ~chatnpc("<p,neutral>Hmph!");
+        case emote_dance, emote_dance_scottish, emote_dance_spin, emote_dance_headbang, zombie_dance, human_cave_goblin_dance : ~chatnpc("<p,neutral>You dance well.");
+        case emote_blow_kiss : ~chatnpc("<p,neutral>Sorry, but I'm not interested.");
+    }
+} else if (%misc_affection = 1) {
+    switch_seq ($anim) {
+        case emote_bow, emote_wave, human_cave_goblin_bow : ~chatnpc("<p,neutral>Hello!");
+        case emote_angry, emote_cry, emote_fremmenik_salute, emote_panic : ~chatnpc("<p,confused>What's wrong, Madam?");
+        case emote_cheer, emote_clap : ~chatnpc("<p,neutral>Thank you. It's nice to be appreciated.");
+        case emote_beckon : ~chatnpc("<p,neutral>I'm staying right here.");
+        case emote_laugh : ~chatnpc("<p,confused>What's so funny, Madam?");
+        case emote_jump_with_joy, emote_ya_boo_sucks, emote_glass_box, emote_climbing_rope, emote_mime_lean, emote_glass_wall : ~chatnpc("<p,laugh>You are silly!");
+        case emote_dance, emote_dance_scottish, emote_dance_spin, emote_dance_headbang, zombie_dance, human_cave_goblin_dance : {
+            %misc_s1_emote = 1;
+            ~chatnpc("<p,neutral>You dance well, Madam.");
+        }
+        case emote_blow_kiss : ~chatnpc("<p,shock>Let's not get ahead of ourselves now, Madam?");
+    }
+} else if (%misc_affection = 2) {
+    switch_seq ($anim) {
+        case emote_bow, emote_wave, human_cave_goblin_bow : ~chatnpc("<p,neutral>Hello!");
+        case emote_angry, emote_cry, emote_fremmenik_salute, emote_panic : ~chatnpc("<p,confused>What's wrong, <~get_viking_name>?");
+        case emote_cheer : ~chatnpc("<p,neutral>Thank you. It's nice to be appreciated.");
+        case emote_beckon : ~chatnpc("<p,neutral>I'm staying right here.");
+        case emote_laugh : ~chatnpc("<p,confused>What's so funny, <~get_viking_name>?");
+        case emote_jump_with_joy, emote_ya_boo_sucks, emote_glass_box, emote_climbing_rope, emote_mime_lean, emote_glass_wall : ~chatnpc("<p,neutral>You are silly!");
+        case emote_dance, emote_dance_scottish, emote_dance_spin, emote_dance_headbang, zombie_dance, human_cave_goblin_dance : ~chatnpc("<p,neutral>You dance well, <~get_viking_name>.");
+        case emote_blow_kiss : ~chatnpc("<p,shock>Let's not get ahead of ourselves now, <~get_viking_name>!");
+        case emote_clap : ~chatnpc("<p,neutral>Thank you, <~get_viking_name>.");
+    }
+} else if (%misc_affection = 3) {
+    switch_seq ($anim) {
+        case emote_bow, emote_wave, human_cave_goblin_bow : ~chatnpc("<p,neutral>Hello!");
+        case emote_angry, emote_cry, emote_fremmenik_salute, emote_panic : ~chatnpc("<p,confused>What's wrong, dear?");
+        case emote_cheer : ~chatnpc("<p,neutral>Thank you. It's nice to be appreciated.");
+        case emote_beckon : ~chatnpc("<p,neutral>I'm staying right here.");
+        case emote_laugh : ~chatnpc("<p,confused>What's so funny, dear?");
+        case emote_jump_with_joy, emote_ya_boo_sucks, emote_fremmenik_salute : ~chatnpc("<p,neutral>You are silly!");
+        case emote_dance, emote_dance_scottish, emote_dance_spin, emote_dance_headbang, zombie_dance, human_cave_goblin_dance : ~chatnpc("<p,neutral>You dance well, dear.");
+        case emote_blow_kiss : {
+            %misc_s3_emote = 1;
+            ~chatnpc("<p,neutral>You flatter me, my dear.");
+        }
+        case emote_clap : ~chatnpc("<p,neutral>Thank you, dear.");
+    }
+}
