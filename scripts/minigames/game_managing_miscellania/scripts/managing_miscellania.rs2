@@ -1,0 +1,84 @@
+/**
+ * Managing Miscellania is a daily minigame that lets you control Miscellania and Etceteria
+ *
+ * There seems to be 3 updates:
+ * - Throne of Miscellania (Without flax) early 2005
+ * - Throne of Miscellania (With flax) late 2005
+ * - Royal Trouble (With Etceteria) 2006
+ *
+ */
+[proc,open_manage_miscellania_interface]
+if_openmain(inter_210);
+%if1 = calc(10 - %misc_points_mine - %misc_points_wood - %misc_points_herb - %misc_points_fish);
+%misc_coffers = 100000;
+if_settext(inter_210:com_87, tostring(%misc_coffers));
+
+// Mining Up
+[if_button,inter_210:com_11]
+if (%if1 > 0) {
+    %if1 = max(sub(%if1, 1), 0);
+    %misc_points_mine = min(add(%misc_points_mine, 1), 10);
+}
+
+// Mining Down
+[if_button,inter_210:com_12]
+if (%misc_points_mine > 0) {
+    %misc_points_mine = max(sub(%misc_points_mine, 1), 0);
+    %if1 = min(add(%if1, 1), 10);
+}
+// Wood Up
+[if_button,inter_210:com_46]
+if (%if1 > 0) {
+    %if1 = max(sub(%if1, 1), 0);
+    %misc_points_wood = min(add(%misc_points_wood, 1), 10);
+}
+
+// Wood Down
+[if_button,inter_210:com_47]
+if (%misc_points_wood > 0) {
+    %misc_points_wood = max(sub(%misc_points_wood, 1), 0);
+    %if1 = min(add(%if1, 1), 10);
+}
+// Herb Up
+[if_button,inter_210:com_27]
+if (%if1 > 0) {
+    %if1 = max(sub(%if1, 1), 0);
+    %misc_points_herb = min(add(%misc_points_herb, 1), 10);
+}
+
+// Herb Down
+[if_button,inter_210:com_28]
+if (%misc_points_herb > 0) {
+    %misc_points_herb = max(sub(%misc_points_herb, 1), 0);
+    %if1 = min(add(%if1, 1), 10);
+}
+// Fishing Up
+[if_button,inter_210:com_62]
+if (%if1 > 0) {
+    %if1 = max(sub(%if1, 1), 0);
+    %misc_points_fish = min(add(%misc_points_fish, 1), 10);
+}
+
+// Fishing Down
+[if_button,inter_210:com_63]
+if (%misc_points_fish > 0) {
+    %misc_points_fish = max(sub(%misc_points_fish, 1), 0);
+    %if1 = min(add(%if1, 1), 10);
+}
+
+// Fishing Cooked
+[if_button,inter_210:com_108]
+%misc_cooked = togglebit(%misc_cooked, 0);
+
+// Help Button
+[if_button,inter_210:com_95]
+%if2 = togglebit(%if2, 0);
+
+// Deposit
+[if_button,inter_210:com_88]
+
+// Withdraw
+[if_button,inter_210:com_89]
+
+
+[proc,calculate_miscellania_goods]
