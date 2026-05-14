@@ -351,6 +351,97 @@ if (gender = ^gender_male) {
 [label,astrid_whyareyoufemale]
 ~chatnpc("<p,sad>Now please, find some way to turn back into a man...");
 
+// // FOR ITEMS
+
+[opnpcu,misc_princess_astrid]
+if (%misc_affection = 0) {
+    ~chatnpc("<p,neutral>No thank you, Sir.");
+    return;
+}
+switch_obj (last_useitem) {
+    case gold_ring, sapphire_ring, emerald_ring, ruby_ring, diamond_ring, dragonstone_ring, ring_of_life, ring_of_wealth : 
+        @astrid_item_ring;
+    case flowers_waterfall_quest_mixed : 
+        @astrid_item_flowers;
+    case shortbow, longbow, oak_shortbow, oak_longbow, willow_shortbow, willow_longbow, maple_shortbow, maple_longbow, yew_shortbow, yew_longbow, magic_shortbow, magic_longbow : 
+        @astrid_item_bow;
+    case default :
+        ~chatnpc("<p,neutral>I couldn't possibly accept this.");
+}
+
+[label,astrid_item_ring]
+if (%misc_affection = 3 & %misc_s3_d1 = 1 & %misc_s3_d2 = 1 & %misc_s3_d3 = 1 & %misc_s3_emote = 1) {
+    ~chatnpc("<p,happy>Is this for me? Really?");
+    @multi2(
+        "Yes", astrid_ring_yes,
+        "No", astrid_ring_no
+    );
+} else {
+    ~chatnpc("<p,neutral>I couldn't possibly accept this.");
+}
+
+[label,astrid_ring_yes]
+inv_del(inv, last_useitem, 1);
+~chatplayer("<p,neutral>Princess Astrid, will you marry me?");
+~chatnpc("<p,happy>Oh, my dear, I thought you'd never ask! Of course I'll marry you!");
+~chatnpc("<p,happy>We'll have to put off the actual ceremony until we can find a priest, but you can tell my father I have agreed to marry you.");
+%misc_affection = 4;
+
+[label,astrid_ring_no]
+~chatplayer("<p,neutral>No, I was just showing you.");
+~chatnpc("<p,neutral>Oh, all right.");
+
+[label,astrid_item_flowers]
+if (%misc_affection = 1) {
+    if (%misc_s1_give = 1) {
+    ~chatnpc("<p,neutral>You've already given me some, but thank you.");
+    } else {
+        ~chatnpc("<p,happy>Are these for me? Really?");
+        @multi2(
+            "Yes", astrid_flowers_yes,
+            "No", astrid_flowers_no
+        );
+    }
+} else {
+    ~chatnpc("<p,neutral>I couldn't possibly accept this.");
+}
+
+[label,astrid_flowers_yes]
+inv_del(inv, last_useitem, 1);
+~chatplayer("<p,neutral>Of course, Your Royal Highness.");
+~chatnpc("<p,happy>Thank you! They're lovely!");
+%misc_s1_give = 1;
+
+[label,astrid_flowers_no]
+~chatplayer("<p,neutral>No, I was just showing you.");
+~chatnpc("<p,neutral>Oh, all right.");
+
+[label,astrid_item_bow]
+if (%misc_affection = 2) {
+    if (%misc_s2_give = 1) {
+        ~chatnpc("<p,neutral>You've already given me one, but thank you.");
+    } else {
+        ~chatnpc("<p,happy>Is this for me? Really?");
+        @multi2(
+            "Yes", astrid_bow_yes,
+            "No", astrid_bow_no
+        );
+    }
+} else {
+    ~chatnpc("<p,neutral>I couldn't possibly accept this.");
+}
+
+[label,astrid_bow_yes]
+inv_del(inv, last_useitem, 1);
+~chatplayer("<p,neutral>Of course, Princess.");
+~chatnpc("<p,happy>Thank you! It's lovely!");
+%misc_s2_give = 1;
+
+[label,astrid_bow_no]
+~chatplayer("<p,neutral>No, I was just showing you.");
+~chatnpc("<p,neutral>Oh, all right.");
+
+// // FOR EMOTES
 
 [proc,princess_astrid_handle_emote](seq $anim)
 if (%misc_affection = 0) {

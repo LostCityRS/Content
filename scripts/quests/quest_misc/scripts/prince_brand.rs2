@@ -384,6 +384,98 @@ if (gender = ^gender_male) {
 [label,brand_whyareyoumale]
 ~chatnpc("<p,sad>Ah, <~get_viking_name>, how I wish you were still a woman. You were such a great muse.");
 
+// // FOR ITEMS
+
+[opnpcu,misc_prince_brand]
+if (%misc_affection = 0) {
+    ~chatnpc("<p,neutral>No thank you, Madam.");
+    return;
+}
+switch_obj (last_useitem) {
+    case gold_ring, sapphire_ring, emerald_ring, ruby_ring, diamond_ring, dragonstone_ring, ring_of_life, ring_of_wealth : 
+        @brand_item_ring;
+    case flowers_waterfall_quest_mixed : 
+        @brand_item_flowers;
+    case cake, chocolate_cake, partial_cake, partial_chocolate_cake, cake_slice, chocolate_slice : 
+        @brand_item_cake;
+    case default :
+        ~chatnpc("<p,neutral>I couldn't possibly accept this.");
+}
+
+[label,brand_item_ring]
+if (%misc_affection = 3 & %misc_s3_d1 = 1 & %misc_s3_d2 = 1 & %misc_s3_d3 = 1 & %misc_s3_emote = 1) {
+    ~chatnpc("<p,happy>Is this for me? Really?");
+    @multi2(
+        "Yes", brand_ring_yes,
+        "No", brand_ring_no
+    );
+} else {
+    ~chatnpc("<p,neutral>I couldn't possibly accept this.");
+}
+
+[label,brand_ring_yes]
+inv_del(inv, last_useitem, 1);
+~chatplayer("<p,neutral>Prince Brand, will you marry me?");
+~chatnpc("<p,happy>My heart is an open book to you, my darling, and all the pages say yes... \"Yes\"!");
+~chatnpc("<p,happy>We'll have to put off the actual ceremony until we can find a priest, but you can tell my father I have agreed to marry you.");
+%misc_affection = 4;
+
+[label,brand_ring_no]
+~chatplayer("<p,neutral>No, I was just showing you.");
+~chatnpc("<p,neutral>Oh, all right.");
+
+[label,brand_item_flowers]
+if (%misc_affection = 1) {
+    if (%misc_s1_give = 1) {
+        ~chatnpc("<p,neutral>You've already given me some, but thank you.");
+    } else {
+        ~chatnpc("<p,happy>Are these for me? Really?");
+        @multi2(
+            "Yes", brand_flowers_yes,
+            "No", brand_flowers_no
+        );
+    }
+} else {
+    ~chatnpc("<p,neutral>I couldn't possibly accept this.");
+}
+
+[label,brand_flowers_yes]
+inv_del(inv, last_useitem, 1);
+~chatplayer("<p,neutral>Of course, Your Royal Highness.");
+~chatnpc("<p,happy>Thank you! They're lovely!");
+%misc_s1_give = 1;
+
+[label,brand_flowers_no]
+~chatplayer("<p,neutral>No, I was just showing you.");
+~chatnpc("<p,neutral>Oh, all right.");
+
+[label,brand_item_cake]
+if (%misc_affection = 2) {
+    if (%misc_s2_give = 1) {
+        ~chatnpc("<p,neutral>You've already given me one, but thank you.");
+    } else {
+        ~chatnpc("<p,happy>Is this for me? Really?");
+        @multi2(
+            "Yes", brand_cake_yes,
+            "No", brand_cake_no
+        );
+    }
+} else {
+    ~chatnpc("<p,neutral>I couldn't possibly accept this.");
+}
+
+[label,brand_cake_yes]
+inv_del(inv, last_useitem, 1);
+~chatplayer("<p,neutral>Of course, Prince.");
+~chatnpc("<p,happy>Thank you! It's lovely!");
+%misc_s2_give = 1;
+
+[label,brand_cake_no]
+~chatplayer("<p,neutral>No, I was just showing you.");
+~chatnpc("<p,neutral>Oh, all right.");
+
+// // FOR EMOTES
+
 [proc,prince_brand_handle_emote](seq $anim)
 if (%misc_affection = 0) {
     switch_seq ($anim) {
