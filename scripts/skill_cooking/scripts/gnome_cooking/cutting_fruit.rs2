@@ -68,8 +68,8 @@ if ($fruit = lime) {
     $y2 = 0;
 }
 def_namedobj $product = ~multiobj2("Would you like to...", 
-    $sliced, 0, $y1, 175, "\\n\\n\\n\\nSlice the <lowercase(oc_name($fruit))>.", 0, 0,
-    $diced, 0, $y2, 175, "\\n\\n\\n\\nDice the <lowercase(oc_name($fruit))>.", 0, 0
+    $sliced, 0, $y1, 175, "\\n\\n\\n\\nSlice the <lowercase(oc_name($fruit))>.", 5, -1,
+    $diced, 0, $y2, 175, "\\n\\n\\n\\nDice the <lowercase(oc_name($fruit))>.", 4, -1
 );
 if ($product = null) {
     ~displaymessage(^dm_default);
