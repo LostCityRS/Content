@@ -594,10 +594,12 @@ while ($page < $pagetotal) {
     $page = calc($page + 1);
 }
 
-[proc,multiobj2](string $title, namedobj $obj1, int $x1, int $y1, int $scale1, string $string1, namedobj $obj2, int $x2, int $y2, int $scale2, string $string2)(namedobj)
+[proc,multiobj2](string $title, namedobj $obj1, int $x1, int $y1, int $scale1, string $string1, int $sx1, int $sy1, namedobj $obj2, int $x2, int $y2, int $scale2, string $string2, int $sx2, int $sy2)(namedobj)
 // reset any positions out of place
 if_setposition(multiobj2:obj1, $x1, $y1);
+if_setposition(multiobj2:objtext1, $sx1, $sy1);
 if_setposition(multiobj2:obj2, $x2, $y2);
+if_setposition(multiobj2:objtext2, $sx2, $sy2);
 
 if_settext(multiobj2:title, $title);
 if_setobject(multiobj2:obj1, $obj1, $scale1);
