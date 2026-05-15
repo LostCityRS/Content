@@ -8,7 +8,7 @@ def_string $new_text;
 
 if($quest_progress < ^eadgar_started) {
     // https://youtu.be/945tUgBj3SM?t=14
-    $prev_text = "@dbl@I can start this quest by speaking to @dre@Sanfew@dbl@ after|@dbl@completing the @dre@Druidic Ritual@dbl@ quest in @dre@Taverley@dbl@. To complete|@dbl@this quest I need @dre@Level 31 Herblore@dbl@. I also need to have|@dbl@rescued @dre@Mad Eadgar@dbl@ from the @dre@Troll Stronghold";
+    $new_text = "@dbl@I can start this quest by speaking to @dre@Sanfew@dbl@ after|@dbl@completing the @dre@Druidic Ritual@dbl@ quest in @dre@Taverley@dbl@. To complete|@dbl@this quest I need @dre@Level 31 Herblore@dbl@. I also need to have|@dbl@rescued @dre@Mad Eadgar@dbl@ from the @dre@Troll Stronghold";
 } else {
     // https://youtu.be/945tUgBj3SM?t=118
     // this starts out strikethrough and all subsequent journal updates follow from here
