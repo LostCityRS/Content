@@ -320,6 +320,7 @@ if (testbit(%ibanmulti, ^upass_started_bit) = ^true & %upass ! ^upass_complete) 
 ~send_quest_progress_colour(questlist:regicide, %regicide_quest, ^regicide_complete);
 ~send_quest_progress_colour(questlist:viking, %viking, ^viking_complete);
 ~send_quest_progress_colour(questlist:horror, %horrorquest, ^horror_complete);
+~send_quest_progress_colour(questlist:eadgar, %eadgar_quest, ^eadgar_complete);
 if_settab(questlist, ^tab_quest_journal);
 
 if (%drunkmonkquest >= ^drunkmonk_spoken_to_omad) {

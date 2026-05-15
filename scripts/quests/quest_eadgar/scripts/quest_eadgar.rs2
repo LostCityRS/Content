@@ -487,6 +487,7 @@ if(npc_find(0_44_157_41_27, eadgar_storeroom_guard, 4, 0) = true) {
     // guess based on osrs videos, it's pretty centered vertically but looks scaled down slightly
     // todo change to match https://web.archive.org/web/20051025140652im_/http://www.runeweb.net/fireball/Eadgars%20Ruse%20Images/Eadgar18.PNG
     ~objbox(eadgar_goutweed_herb, "You've found some goutweed!", 225, 0, calc(^objbox_height / 4));
+    if_close;
     inv_add(inv, eadgar_goutweed_herb, 1); // what happens if inv is full?
     npc_say("Hm?");
     npc_facesquare(coord);

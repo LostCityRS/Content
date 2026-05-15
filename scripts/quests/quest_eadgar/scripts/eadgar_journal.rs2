@@ -148,7 +148,7 @@ if($quest_progress >= ^eadgar_unlocked_storeroom) {
 
 if($quest_progress = ^eadgar_complete) {
     // from my run of the quest in OSRS (RS3 is the same aside from linebreaks)
-    $prev_text = append($prev_text, "|@str@I snuck into the storeroom and got some goutweed. I gave it to|@str@Sanfew and he taught me the Trollheim Teleport spell.");
+    $prev_text = append($prev_text, "|@str@I snuck into the storeroom and got some goutweed. I gave|@str@ it to Sanfew and he taught me the Trollheim Teleport spell.");
     $new_text = append($prev_text, "||@dre@QUEST COMPLETE!");
 }
 

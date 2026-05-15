@@ -1,5 +1,15 @@
 /* Moved to the Eadgar's Ruse directory in 274 since this is Burntmeat's first quest-related appearance */
 [opnpc1,eadgar_troll_chief_cook]
+@eadgar_talk_to_troll_cook;
+
+[opnpcu,eadgar_troll_chief_cook]
+if (last_useitem = eadgar_fake_man) {
+    @eadgar_talk_to_troll_cook;
+} else {
+    ~displaymessage(^dm_default);
+}
+
+[label,eadgar_talk_to_troll_cook]
 if(%eadgar_quest > ^eadgar_spoken_eadgar_first & %eadgar_quest < ^eadgar_got_fake_man) {
     // rsprox/branon
     ~chatnpc("<p,neutral>Did you find tasty human?");
