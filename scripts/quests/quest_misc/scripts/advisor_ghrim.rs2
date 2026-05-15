@@ -222,22 +222,22 @@ if (gender = ^gender_male) {
 [label,hasresourcescollected]
 ~chatnpc("<p,shifty>Your approval rating is %misc_approval_percent. Would you like to collect the resources gathered by your subjects?");
 @multi2(
-    "Yes", yes,
-    "No", no
+    "Yes", misc_resource_collected_yes,
+    "No", misc_resource_collected_no
 );
 
 [label,hasnoresourcescollected]
 ~chatnpc("<p,shifty>Your approval rating is %misc_approval_percent. I'm afraid your subjects have not yet collected anything.");
 ~chatnpc("<p,shifty>This is how your subjects are distributing their effort.");
-// ~open_interface(managing_miscellania);
+~open_manage_miscellania_interface;
 
-[label,yes]
+[label,misc_resource_collected_yes]
 ~chatplayer("<p,neutral>Yes, please.");
 ~chatnpc("<p,shifty>Here is a list of what your subjects have collected.");
 // ~open_interface(resource_collection);
 
-[label,no]
+[label,misc_resource_collected_no]
 ~chatplayer("<p,neutral>No, thank you.");
 ~chatnpc("<p,shifty>Very well, Your Royal Highness.");
 ~chatnpc("<p,shifty>This is how your subjects are distributing their effort.");
-// ~open_interface(managing_miscellania);
+~open_manage_miscellania_interface;
