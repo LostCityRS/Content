@@ -120,6 +120,15 @@ return(true);
 [proc,pvm_freeze_allowed](dbrow $spell_data)(boolean)
 // check if npc is already frozen
 if (db_getfield($spell_data, magic_spell_table:freeze_time, 0) > 0) {
+    if (npc_category = castlewars_barricade) {
+        switch_int (db_getfield($spell_data, magic_spell_table:spell, 0)) {
+            case ^snare : mes("You can't snare that."); // osrs
+            case ^bind : mes("You can't bind that."); // osrs 
+            case ^entangle : mes("You can't entangle that."); // guess
+        }
+        return(false);
+    }
+    
     if (%npc_stunned > map_clock) {
         mes("Your target is already held by a magical force.");
         return(false);
@@ -143,6 +152,10 @@ def_npc_stat $npc_stat;
 def_int $i = 0;
 def_int $spell = db_getfield($spell_data, magic_spell_table:spell, 0);
 while ($i < db_getfieldcount($spell_data, magic_spell_table:stat_change) & $spell ! ^flames_of_zamorak & $spell ! ^claws_of_guthix & $spell ! ^saradomin_strike) {
+    if (npc_category = castlewars_barricade) {
+        mes("You can't weaken that.");
+        return (false);
+    }
     $stat, $constant, $percent = db_getfield($spell_data, magic_spell_table:stat_change, $i);
     $npc_stat = ~convert_stat_to_npc_stat($stat);
     if (npc_stat($npc_stat) < npc_basestat($npc_stat)) {

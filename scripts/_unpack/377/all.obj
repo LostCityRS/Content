@@ -5337,6 +5337,7 @@ womanwear=obj_priest_robe_womanwear,0
 wearpos=legs
 weight=2lb
 param=prayerbonus,6
+param=saradominitem,^true
 
 [cert_monkrobebottom]
 certlink=monkrobebottom
@@ -5361,6 +5362,7 @@ wearpos=torso
 wearpos2=arms
 weight=2lb
 param=prayerbonus,5
+param=saradominitem,^true
 
 [cert_monkrobetop]
 certlink=monkrobetop
@@ -12965,7 +12967,7 @@ womanwear=obj_priest_robe_womanwear,0
 members=yes
 wearpos=legs
 weight=2lb
-param=zamorakitem,1
+param=zamorakitem,^true
 param=magicattack,2
 param=magicdefence,3
 param=prayerbonus,3
@@ -12993,7 +12995,7 @@ members=yes
 wearpos=torso
 wearpos2=arms
 weight=2lb
-param=zamorakitem,1
+param=zamorakitem,^true
 param=magicattack,2
 param=magicdefence,3
 param=prayerbonus,3
@@ -22780,6 +22782,7 @@ param=crushdefence,2
 param=magicdefence,2
 param=rangedefence,2
 param=prayerbonus,8
+param=saradominitem,^true
 
 [cert_blessedstar]
 certlink=blessedstar
@@ -22867,6 +22870,7 @@ param=magicattack,2
 param=rangeattack,2
 param=prayerbonus,8
 tradeable=no
+param=zamorakitem,^true
 
 [amulet_of_strength]
 name=Amulet of strength
@@ -26421,6 +26425,7 @@ param=destroy_death,^true
 param=lose_cape_message,Guthix reclaims the cape as it touches the ground.
 tradeable=no
 param=lose_cape_message,Saradomin reclaims the cape as it touches the ground.
+param=saradominitem,^true
 
 [guthix_cape]
 name=Guthix cape
@@ -26455,6 +26460,7 @@ param=magicdefence,10
 param=destroy_death,^true
 param=lose_cape_message,Guthix reclaims the cape as it touches the ground.
 tradeable=no
+param=guthixitem,^true
 
 [zamorak_cape]
 name=Zamorak cape
@@ -26489,6 +26495,7 @@ param=magicdefence,10
 param=destroy_death,^true
 param=lose_cape_message,Zamorak reclaims the cape as it touches the ground.
 tradeable=no
+param=zamorakitem,^true
 
 [saradomin_staff]
 name=Saradomin staff
@@ -26520,6 +26527,7 @@ param=crushattack_anim,human_blunt_pound
 param=defend_anim,human_blunt_block
 param=crush_sound,staff_hit
 tradeable=no
+param=saradominitem,^true
 
 [guthix_staff]
 name=Guthix staff
@@ -26551,6 +26559,7 @@ param=crushattack_anim,human_blunt_pound
 param=defend_anim,human_blunt_block
 param=crush_sound,staff_hit
 tradeable=no
+param=guthixitem,^true
 
 [zamorak_staff]
 name=Zamorak staff
@@ -26583,6 +26592,7 @@ param=crushattack_anim,human_blunt_pound
 param=defend_anim,human_blunt_block
 param=crush_sound,staff_hit
 tradeable=no
+param=zamorakitem,^true
 
 [princeskey]
 name=Bronze key
@@ -29886,6 +29896,7 @@ param=slashdefence,80
 param=crushdefence,72
 param=magicdefence,-6
 param=rangedefence,80
+param=zamorakitem,^true
 
 [cert_rune_platebody_zamorak]
 certlink=rune_platebody_zamorak
@@ -29918,6 +29929,7 @@ param=slashdefence,49
 param=crushdefence,47
 param=magicdefence,-4
 param=rangedefence,49
+param=zamorakitem,^true
 
 [cert_rune_platelegs_zamorak]
 certlink=rune_platelegs_zamorak
@@ -29954,6 +29966,7 @@ param=slashdefence,32
 param=crushdefence,27
 param=magicdefence,-1
 param=rangedefence,30
+param=zamorakitem,^true
 
 [cert_rune_full_helm_zamorak]
 certlink=rune_full_helm_zamorak
@@ -29989,6 +30002,7 @@ param=crushdefence,46
 param=magicdefence,-1
 param=rangedefence,46
 param=defend_anim,human_shield_defence
+param=zamorakitem,^true
 
 [cert_rune_kiteshield_zamorak]
 certlink=rune_kiteshield_zamorak
@@ -30029,6 +30043,7 @@ param=slashdefence,80
 param=crushdefence,72
 param=magicdefence,-6
 param=rangedefence,80
+param=saradominitem,^true
 
 [cert_rune_platebody_saradomin]
 certlink=rune_platebody_saradomin
@@ -30061,6 +30076,7 @@ param=slashdefence,49
 param=crushdefence,47
 param=magicdefence,-4
 param=rangedefence,49
+param=saradominitem,^true
 
 [cert_rune_platelegs_saradomin]
 certlink=rune_platelegs_saradomin
@@ -30097,6 +30113,7 @@ param=slashdefence,32
 param=crushdefence,27
 param=magicdefence,-1
 param=rangedefence,30
+param=saradominitem,^true
 
 [cert_rune_full_helm_saradomin]
 certlink=rune_full_helm_saradomin
@@ -30132,6 +30149,7 @@ param=crushdefence,46
 param=magicdefence,-1
 param=rangedefence,46
 param=defend_anim,human_shield_defence
+param=saradominitem,^true
 
 [cert_rune_kiteshield_saradomin]
 certlink=rune_kiteshield_saradomin
@@ -30170,6 +30188,7 @@ param=slashdefence,80
 param=crushdefence,72
 param=magicdefence,-6
 param=rangedefence,80
+param=guthixitem,^true
 
 [cert_rune_platebody_guthix]
 certlink=rune_platebody_guthix
@@ -30202,6 +30221,7 @@ param=slashdefence,49
 param=crushdefence,47
 param=magicdefence,-4
 param=rangedefence,49
+param=guthixitem,^true
 
 [cert_rune_platelegs_guthix]
 certlink=rune_platelegs_guthix
@@ -30238,6 +30258,7 @@ param=slashdefence,32
 param=crushdefence,27
 param=magicdefence,-1
 param=rangedefence,30
+param=guthixitem,^true
 
 [cert_rune_full_helm_guthix]
 certlink=rune_full_helm_guthix
@@ -30273,6 +30294,7 @@ param=crushdefence,46
 param=magicdefence,-1
 param=rangedefence,46
 param=defend_anim,human_shield_defence
+param=guthixitem,^true
 
 [cert_rune_kiteshield_guthix]
 certlink=rune_kiteshield_guthix
@@ -40212,6 +40234,7 @@ manwear=obj_black_plateskirt_trim_manwear,0
 womanwear=obj_black_plateskirt_trim_womanwear,0
 wearpos=legs
 weight=20lb
+param=zamorakitem,^true
 
 [rune_plateskirt_saradomin]
 name=Saradomin skirt
@@ -40235,6 +40258,7 @@ manwear=obj_black_plateskirt_trim_manwear,0
 womanwear=obj_black_plateskirt_trim_womanwear,0
 wearpos=legs
 weight=20lb
+param=saradominitem,^true
 
 [rune_plateskirt_guthix]
 name=Guthix plateskirt
@@ -40258,6 +40282,7 @@ manwear=obj_black_plateskirt_trim_manwear,0
 womanwear=obj_black_plateskirt_trim_womanwear,0
 wearpos=legs
 weight=20lb
+param=guthixitem,^true
 
 [rune_platebody_goldplate]
 name=Gilded platebody
@@ -45046,6 +45071,7 @@ womanwear=obj_unfinished_saradominbook_manwear,6
 cost=200
 weight=1kg
 wearpos=lefthand
+param=saradominitem,^true
 
 [saradominbook_complete]
 name=Holy book
@@ -45071,6 +45097,7 @@ womanwear=obj_unfinished_saradominbook_manwear,6
 cost=200
 weight=1kg
 wearpos=lefthand
+param=saradominitem,^true
 
 [unfinished_zamorakbook]
 name=Damaged book
@@ -45095,6 +45122,7 @@ womanwear=obj_unfinished_saradominbook_manwear,6
 cost=200
 weight=1kg
 wearpos=lefthand
+param=zamorakitem,^true
 
 [zamorakbook_complete]
 name=Unholy book
@@ -45119,6 +45147,7 @@ womanwear=obj_unfinished_saradominbook_manwear,6
 cost=200
 weight=1kg
 wearpos=lefthand
+param=zamorakitem,^true
 
 [unfinished_guthixbook]
 name=Damaged book
@@ -45143,6 +45172,7 @@ womanwear=obj_unfinished_saradominbook_manwear,6
 cost=200
 weight=1kg
 wearpos=lefthand
+param=guthixitem,^true
 
 [guthixbook_complete]
 name=Book of balance
@@ -45167,6 +45197,7 @@ womanwear=obj_unfinished_saradominbook_manwear,6
 cost=200
 weight=1kg
 wearpos=lefthand
+param=guthixitem,^true
 
 [horror_diary1]
 name=Journal
@@ -47173,447 +47204,6 @@ model=obj_priest_robe
 2dyof=1
 2dzoom=1940
 2dxan=572
-
-[castlewars_saradomin_banner]
-name=Saradomin banner
-desc=The Saradomin Team Standard.
-model=obj_castlewars_saradomin_banner
-2dyof=6
-2dzoom=2060
-2dxan=464
-iop2=Wield
-manwear=obj_castlewars_saradomin_banner_manwear,0
-womanwear=obj_castlewars_saradomin_banner_manwear,6
-members=yes
-wearpos=righthand
-wearpos2=lefthand
-weight=5lb
-
-[cert_castlewars_saradomin_banner]
-certlink=castlewars_saradomin_banner
-certtemplate=template_for_cert
-
-[castlewars_zamorak_banner]
-name=Zamorak banner
-desc=The Zamorak Team Standard.
-model=obj_castlewars_zamorak_banner
-2dyof=6
-2dzoom=2060
-2dxan=464
-iop2=Wield
-manwear=obj_castlewars_zamorak_banner_manwear,0
-womanwear=obj_castlewars_zamorak_banner_manwear,6
-members=yes
-wearpos=righthand
-wearpos2=lefthand
-weight=5lb
-
-[cert_castlewars_zamorak_banner]
-certlink=castlewars_zamorak_banner
-certtemplate=template_for_cert
-
-[castlewars_cloak_saradomin]
-name=Hooded cloak
-desc=The colours of Saradomin.
-recol1s=14724
-recol1d=11736
-recol2s=8386
-recol2d=14873
-recol3s=6272
-recol3d=2251
-recol4s=31649
-recol4d=30646
-model=obj_red_cape
-2dxof=3
-2dyof=6
-2dzoom=2140
-2dyan=948
-2dxan=400
-iop2=Wear
-manwear=obj_castlewars_cloak_saradomin_manwear,0
-womanwear=obj_castlewars_cloak_saradomin_womanwear,0
-manhead=obj_castlewars_cloak_saradomin_manhead
-womanhead=obj_castlewars_cloak_saradomin_womanhead
-members=yes
-team=1
-wearpos=back
-wearpos2=hat
-wearpos3=head
-weight=1g
-
-[castlewars_cloak_zamorak]
-name=Hooded cloak
-desc=The colours of Zamorak.
-recol1s=14724
-recol1d=19684
-recol2s=8386
-recol2d=19750
-recol3s=6272
-recol3d=13441
-recol4s=31649
-recol4d=7266
-model=obj_red_cape
-2dxof=3
-2dyof=6
-2dzoom=2140
-2dyan=948
-2dxan=400
-iop2=Wear
-manwear=obj_castlewars_cloak_saradomin_manwear,0
-womanwear=obj_castlewars_cloak_saradomin_womanwear,0
-manhead=obj_castlewars_cloak_saradomin_manhead
-womanhead=obj_castlewars_cloak_saradomin_womanhead
-members=yes
-team=2
-wearpos=back
-wearpos2=hat
-wearpos3=head
-weight=1g
-
-[castlewars_catapult_rock]
-name=Rock
-desc=I can use this with the catapult.
-model=obj_castlewars_catapult_rock
-2dxof=-1
-2dyof=-2
-2dzoom=1220
-2dyan=1788
-2dxan=52
-members=yes
-weight=5kg
-
-[cert_castlewars_catapult_rock]
-certlink=castlewars_catapult_rock
-certtemplate=template_for_cert
-
-[castlewars_explosives_potion]
-name=Explosive potion
-desc=I could use this to destroy things...
-recol1s=15855
-recol1d=29217
-model=obj_strength4
-2dyof=-1
-2dzoom=550
-2dyan=1996
-2dxan=84
-members=yes
-weight=35g
-
-[cert_castlewars_explosives_potion]
-certlink=castlewars_explosives_potion
-certtemplate=template_for_cert
-
-[castlewars_climbing_rope]
-name=Climbing rope
-desc=Should be long enough to scale castle walls.
-recol1s=11524
-recol1d=7296
-model=pileofrope_8
-2dxof=-2
-2dyof=-30
-2dzoom=1240
-2dyan=1976
-2dxan=188
-members=yes
-weight=3lb
-
-[cert_castlewars_climbing_rope]
-certlink=castlewars_climbing_rope
-certtemplate=template_for_cert
-
-[castlewars_bandages]
-name=Bandages
-desc=A box of bandages for healing.
-model=obj_castlewars_bandages
-2dxof=-1
-2dzoom=1200
-2dyan=1884
-2dxan=436
-iop1=Heal
-members=yes
-weight=1g
-
-[cert_castlewars_bandages]
-certlink=castlewars_bandages
-certtemplate=template_for_cert
-
-[castlewars_toolkit]
-name=Toolbox
-desc=I can use this to repair things.
-model=obj_castlewars_toolkit
-2dxof=5
-2dyof=-5
-2dzoom=1310
-2dyan=1704
-2dxan=136
-members=yes
-weight=1g
-
-[cert_castlewars_toolkit]
-certlink=castlewars_toolkit
-certtemplate=template_for_cert
-
-[castlewars_barricade]
-name=Barricade
-desc=Use these to block enemy team movement.
-model=castlewars_barricade_8
-2dyof=-27
-2dzoom=2760
-2dyan=1816
-2dxan=104
-iop1=Set-up
-members=yes
-weight=5kg
-
-[cert_castlewars_barricade]
-certlink=castlewars_barricade
-certtemplate=template_for_cert
-
-[castlewars_manual]
-name=Castlewars manual
-desc=It's a manual for castlewars.
-recol1s=13472
-recol1d=11558
-recol2s=29594
-recol2d=29557
-recol3s=20033
-recol3d=6340
-recol4s=15855
-recol4d=6340
-model=obj_digsitebook
-cost=5
-2dxof=1
-2dyof=-21
-2dzoom=830
-2dyan=116
-2dxan=244
-members=yes
-iop1=Read
-weight=18oz
-
-[castlewars_no0]
-model=obj_castlewars_no0
-2dxof=-1
-2dyof=1
-2dzoom=2180
-2dxan=520
-members=yes
-
-[castlewars_no1]
-model=obj_castlewars_no1
-2dxof=-1
-2dyof=1
-2dzoom=2180
-2dxan=520
-members=yes
-
-[castlewars_no2]
-model=obj_castlewars_no2
-2dxof=-1
-2dyof=1
-2dzoom=2180
-2dxan=520
-members=yes
-
-[castlewars_no3]
-model=obj_castlewars_no3
-2dxof=-1
-2dyof=1
-2dzoom=2180
-2dxan=520
-members=yes
-
-[castlewars_no4]
-model=obj_castlewars_no4
-2dxof=-1
-2dyof=1
-2dzoom=2180
-2dxan=520
-members=yes
-
-[castlewars_no5]
-model=obj_castlewars_no5
-2dxof=-1
-2dyof=1
-2dzoom=2180
-2dxan=520
-members=yes
-
-[castlewars_no6]
-model=obj_castlewars_no6
-2dxof=-1
-2dyof=1
-2dzoom=2180
-2dxan=520
-members=yes
-
-[castlewars_no7]
-model=obj_castlewars_no7
-2dxof=-1
-2dyof=1
-2dzoom=2180
-2dxan=520
-members=yes
-
-[castlewars_no8]
-model=obj_castlewars_no8
-2dxof=-1
-2dyof=1
-2dzoom=2180
-2dxan=520
-members=yes
-
-[castlewars_no9]
-model=obj_castlewars_no9
-2dxof=-1
-2dyof=1
-2dzoom=2180
-2dxan=520
-members=yes
-
-[castlewars_catapult]
-model=catapult_8
-members=yes
-2dxof=11
-2dyof=-72
-2dzoom=5270
-2dyan=1848
-2dzan=2028
-2dxan=188
-
-[castlewars_ticket]
-name=Castle wars ticket
-desc=I can exchange these for further items.
-recol1s=19150
-recol1d=18888
-model=obj_agilityarena_ticket
-cost=1
-2dzoom=1160
-2dyan=1888
-2dzan=8
-2dxan=308
-members=yes
-stackable=yes
-weight=5g
-
-[castlewars_sword]
-name=Decorative sword
-desc=A very decorative sword.
-recol1s=9523
-recol1d=19489
-recol2s=12703
-recol2d=20
-recol3s=17983
-recol3d=20
-recol4s=24351
-recol4d=20
-recol5s=15871
-recol5d=20
-recol6s=32767
-recol6d=22203
-cost=500
-members=yes
-model=obj_faladian_sword
-2dxof=6
-2dyof=-49
-2dzoom=1530
-2dyan=408
-2dxan=224
-manwear=obj_faladian_sword_manwear,0
-womanwear=obj_faladian_sword_manwear,6
-iop2=Wield
-wearpos=righthand
-weight=56oz
-
-[castlewars_armour_body]
-name=Decorative armour
-desc=Very decorative armour.
-recol1s=15855
-recol1d=19489
-recol2s=10570
-recol2d=20
-cost=2000
-model=obj_khazard_platemail
-members=yes
-2dxof=-1
-2dzoom=1250
-2dxan=488
-iop2=Wear
-manwear=obj_khazard_platemail_manwear,0
-manwear2=obj_iron_platebody_manwear2
-womanwear=obj_khazard_platemail_womanwear,0
-womanwear2=obj_iron_platebody_womanwear2
-wearpos=torso
-wearpos2=arms
-weight=19lb
-
-[castlewars_armour_legs]
-name=Decorative armour
-desc=Very decorative armour.
-recol1s=15855
-recol1d=20
-recol2s=10570
-recol2d=19489
-recol3s=14798
-recol3d=20
-cost=1000
-members=yes
-model=obj_iron_platelegs
-2dyof=-8
-2dzoom=1740
-2dxan=444
-iop2=Wear
-manwear=obj_iron_platelegs_manwear,0
-womanwear=obj_iron_platelegs_womanwear,0
-wearpos=legs
-weight=20lb
-
-[castlewars_med_helm]
-name=Decorative helm
-desc=A very decorative helm.
-recol1s=15360
-recol1d=20
-recol2s=15855
-recol2d=19489
-cost=300
-model=obj_khazard_helmet
-members=yes
-2dxof=1
-2dyof=-4
-2dzoom=640
-2dyan=156
-2dxan=108
-iop2=Wear
-manwear=obj_khazard_helmet_manwear,0
-womanwear=obj_khazard_helmet_womanwear,0
-manhead=obj_khazard_helmet_manhead
-womanhead=obj_khazard_helmet_womanhead
-wearpos=hat
-wearpos2=head
-weight=3lb
-
-[castlewars_shield]
-name=Decorative shield
-desc=A very decorative shield.
-recol1s=15855
-recol1d=19489
-recol2s=7296
-recol2d=20
-recol3s=14798
-recol3d=20
-model=obj_bronze_kiteshield
-members=yes
-2dxof=-6
-2dyof=-14
-2dzoom=1560
-2dyan=1104
-2dxan=344
-iop2=Wear
-cost=850
-manwear=obj_bronze_kiteshield_manwear,0
-womanwear=obj_bronze_kiteshield_manwear,6
-wearpos=lefthand
-weight=10lb
 
 [damp_tinderbox]
 name=Damp tinderbox
@@ -53031,348 +52621,6 @@ womanhead=obj_mdaughter_bear_helmet_womanhead
 members=yes
 wearpos=hat
 wearpos2=head
-weight=1lb
-
-[castlewars_sword_2]
-name=Decorative sword
-desc=A very decorative sword.
-recol1s=9523
-recol1d=24311
-recol2s=12703
-recol2d=7413
-recol3s=17983
-recol3d=7413
-recol4s=24351
-recol4d=7413
-recol5s=15871
-recol5d=7413
-recol6s=32767
-recol6d=22203
-cost=1300
-members=yes
-model=obj_faladian_sword
-2dxof=6
-2dyof=-49
-2dzoom=1530
-2dyan=408
-2dxan=224
-manwear=obj_faladian_sword_manwear,0
-womanwear=obj_faladian_sword_manwear,6
-iop2=Wield
-wearpos=righthand
-weight=56oz
-
-[castlewars_armour_body_2]
-name=Decorative armour
-desc=Very decorative armour.
-recol1s=15855
-recol1d=24311
-recol2s=10570
-recol2d=7413
-cost=5200
-model=obj_khazard_platemail
-members=yes
-2dxof=-1
-2dzoom=1250
-2dxan=488
-iop2=Wear
-manwear=obj_khazard_platemail_manwear,0
-manwear2=obj_iron_platebody_manwear2
-womanwear=obj_khazard_platemail_womanwear,0
-womanwear2=obj_iron_platebody_womanwear2
-wearpos=torso
-wearpos2=arms
-weight=19lb
-
-[castlewars_armour_legs_2]
-name=Decorative armour
-desc=Very decorative armour.
-recol1s=15855
-recol1d=7413
-recol2s=10570
-recol2d=24311
-recol3s=14798
-recol3d=7413
-cost=2600
-members=yes
-model=obj_iron_platelegs
-2dyof=-8
-2dzoom=1740
-2dxan=444
-iop2=Wear
-manwear=obj_iron_platelegs_manwear,0
-womanwear=obj_iron_platelegs_womanwear,0
-wearpos=legs
-weight=20lb
-
-[castlewars_med_helm_2]
-name=Decorative helm
-desc=A very decorative helm.
-recol1s=15360
-recol1d=7413
-recol2s=15855
-recol2d=24311
-recol3s=15393
-recol3d=7413
-cost=780
-model=obj_khazard_helmet
-members=yes
-2dxof=1
-2dyof=-4
-2dzoom=640
-2dyan=156
-2dxan=108
-iop2=Wear
-manwear=obj_khazard_helmet_manwear,0
-womanwear=obj_khazard_helmet_womanwear,0
-manhead=obj_khazard_helmet_manhead
-womanhead=obj_khazard_helmet_womanhead
-wearpos=hat
-wearpos2=head
-weight=3lb
-
-[castlewars_shield_2]
-name=Decorative shield
-desc=A very decorative shield.
-recol1s=15855
-recol1d=24311
-recol2s=7296
-recol2d=7413
-recol3s=14798
-recol3d=7413
-model=obj_bronze_kiteshield
-members=yes
-2dxof=-6
-2dyof=-14
-2dzoom=1560
-2dyan=1104
-2dxan=344
-iop2=Wear
-cost=2210
-manwear=obj_bronze_kiteshield_manwear,0
-womanwear=obj_bronze_kiteshield_manwear,6
-wearpos=lefthand
-weight=10lb
-
-[castlewars_sword_3]
-name=Decorative sword
-desc=A very decorative sword.
-recol1s=9523
-recol1d=21092
-recol2s=12703
-recol2d=3173
-recol3s=17983
-recol3d=3173
-recol4s=24351
-recol4d=3173
-recol5s=15871
-recol5d=3173
-recol6s=32767
-recol6d=22203
-cost=3200
-members=yes
-model=obj_faladian_sword
-2dxof=6
-2dyof=-49
-2dzoom=1530
-2dyan=408
-2dxan=224
-manwear=obj_faladian_sword_manwear,0
-womanwear=obj_faladian_sword_manwear,6
-iop2=Wield
-wearpos=righthand
-weight=56oz
-
-[castlewars_armour_body_3]
-name=Decorative armour
-desc=Very decorative armour.
-recol1s=15855
-recol1d=21092
-recol2s=10570
-recol2d=3173
-cost=12800
-model=obj_khazard_platemail
-members=yes
-2dxof=-1
-2dzoom=1250
-2dxan=488
-iop2=Wear
-manwear=obj_khazard_platemail_manwear,0
-manwear2=obj_iron_platebody_manwear2
-womanwear=obj_khazard_platemail_womanwear,0
-womanwear2=obj_iron_platebody_womanwear2
-wearpos=torso
-wearpos2=arms
-weight=19lb
-
-[castlewars_armour_legs_3]
-name=Decorative armour
-desc=Very decorative armour.
-recol1s=15855
-recol1d=3173
-recol2s=10570
-recol2d=21092
-recol3s=14798
-recol3d=3173
-cost=6400
-members=yes
-model=obj_iron_platelegs
-2dyof=-8
-2dzoom=1740
-2dxan=444
-iop2=Wear
-manwear=obj_iron_platelegs_manwear,0
-womanwear=obj_iron_platelegs_womanwear,0
-wearpos=legs
-weight=20lb
-
-[castlewars_med_helm_3]
-name=Decorative helm
-desc=A very decorative helm.
-recol1s=15360
-recol1d=3173
-recol2s=15855
-recol2d=21092
-recol3s=15393
-recol3d=3173
-cost=1920
-model=obj_khazard_helmet
-members=yes
-2dxof=1
-2dyof=-4
-2dzoom=640
-2dyan=156
-2dxan=108
-iop2=Wear
-manwear=obj_khazard_helmet_manwear,0
-womanwear=obj_khazard_helmet_womanwear,0
-manhead=obj_khazard_helmet_manhead
-womanhead=obj_khazard_helmet_womanhead
-wearpos=hat
-wearpos2=head
-weight=3lb
-
-[castlewars_shield_3]
-name=Decorative shield
-desc=A very decorative shield.
-recol1s=15855
-recol1d=21092
-recol2s=7296
-recol2d=3173
-recol3s=14798
-recol3d=3173
-model=obj_bronze_kiteshield
-members=yes
-2dxof=-6
-2dyof=-14
-2dzoom=1560
-2dyan=1104
-2dxan=344
-iop2=Wear
-cost=5440
-manwear=obj_bronze_kiteshield_manwear,0
-womanwear=obj_bronze_kiteshield_manwear,6
-wearpos=lefthand
-weight=10lb
-
-[castlewars_hood_saradomin_prize]
-name=Castlewars hood
-desc=The colours of Saradomin.
-recol1s=14724
-recol1d=11736
-recol2s=8386
-recol2d=14873
-recol3s=6272
-recol3d=2251
-recol4s=31649
-recol4d=30646
-model=obj_ham_hood
-2dzoom=730
-2dyan=2036
-iop2=Wear
-manwear=obj_castlewars_hood_saradomin_prize_manwear,0
-womanwear=obj_castlewars_hood_saradomin_prize_womanwear,0
-manhead=obj_castlewars_cloak_saradomin_manhead
-womanhead=obj_castlewars_cloak_saradomin_womanhead
-members=yes
-wearpos=hat
-wearpos2=head
-weight=1lb
-
-[castlewars_cloak_saradomin_prize]
-name=Castlewars cloak
-desc=A fine castlewars Cape.
-recol1s=14724
-recol1d=11736
-recol2s=8386
-recol2d=14873
-recol3s=15360
-recol3d=2251
-recol4s=6272
-recol4d=372
-recol5s=31649
-recol5d=30646
-cost=100
-model=obj_red_cape
-2dxof=3
-2dyof=6
-2dzoom=2140
-2dyan=948
-2dxan=400
-iop2=Wear
-manwear=obj_castlewars_cloak_saradomin_prize_manwear,0
-womanwear=obj_castlewars_cloak_saradomin_prize_manwear,6
-members=yes
-wearpos=back
-weight=1lb
-
-[castlewars_hood_zamorak_prize]
-name=Castlewars hood
-desc=The colours of Zamorak.
-recol1s=14724
-recol1d=19684
-recol2s=8386
-recol2d=19750
-recol3s=6272
-recol3d=13441
-recol4s=31649
-recol4d=7266
-model=obj_ham_hood
-2dzoom=730
-2dyan=2036
-iop2=Wear
-manwear=obj_castlewars_hood_saradomin_prize_manwear,0
-womanwear=obj_castlewars_hood_saradomin_prize_womanwear,0
-manhead=obj_castlewars_cloak_saradomin_manhead
-womanhead=obj_castlewars_cloak_saradomin_womanhead
-members=yes
-wearpos=hat
-wearpos2=head
-weight=1lb
-
-[castlewars_cloak_zamorak_prize]
-name=Castlewars cloak
-desc=A fine castlewars Cape.
-recol1s=14724
-recol1d=19684
-recol2s=8386
-recol2d=19750
-recol3s=6272
-recol3d=13441
-recol4s=31649
-recol4d=7266
-cost=100
-model=obj_red_cape
-2dxof=3
-2dyof=6
-2dzoom=2140
-2dyan=948
-2dxan=400
-iop2=Wear
-manwear=obj_castlewars_cloak_saradomin_prize_manwear,0
-womanwear=obj_castlewars_cloak_saradomin_prize_manwear,6
-members=yes
-wearpos=back
 weight=1lb
 
 [giant_frog_legs]
@@ -80681,6 +79929,7 @@ cost=625
 wearpos=righthand
 wearpos2=lefthand
 weight=5lb
+param=guthixitem,^true
 
 [cert_makinghistory_guthix_polestaff]
 certlink=makinghistory_guthix_polestaff
@@ -80704,6 +79953,7 @@ cost=625
 wearpos=righthand
 wearpos2=lefthand
 weight=5lb
+param=saradominitem,^true
 
 [cert_makinghistory_saradomin_polestaff]
 certlink=makinghistory_saradomin_polestaff
@@ -80727,6 +79977,7 @@ cost=625
 wearpos=righthand
 wearpos2=lefthand
 weight=5lb
+param=zamorakitem,^true
 
 [cert_makinghistory_zamorak_polestaff]
 certlink=makinghistory_zamorak_polestaff

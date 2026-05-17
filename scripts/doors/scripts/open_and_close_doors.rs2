@@ -178,3 +178,15 @@ loc_change(inviswall, 3);
 def_int $rotation = modulo(add($angle, 1), 4);
 if($mirrored = true) $rotation = modulo(add($angle, 3), 4);
 loc_add(movecoord($loc_coord, $x, 0, $z), $replacement, $rotation, $shape, 3);
+
+[proc,walk_through_door]
+if (~check_axis_locactive(coord) = false) {
+    p_teleport(loc_coord);
+    p_delay(0);
+    return;
+}
+if (loc_coord ! coord) {
+    p_teleport(loc_coord);
+    p_delay(0);
+}
+p_teleport(~movecoord_indirection(coord, modulo(add(loc_angle, 3), 4), 1));

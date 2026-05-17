@@ -211,3 +211,19 @@ p_arrivedelay;
 
 [oploc1,roving_golrie_ladder_from_cellar]
 ~climb_ladder(0_39_49_37_20, true);
+
+[oploc1,castlewars_saradomin_spawnladder]
+p_arrivedelay;
+~climb_ladder(movecoord(coord, 0, 1, 0), true);
+
+[oploc1,castlewars_zamorak_spawnladder]
+p_arrivedelay;
+~climb_ladder(movecoord(coord, 0, 1, 0), true);
+
+[oploc1,castlewars_laddertop]
+p_arrivedelay;
+~climb_ladder(movecoord(coord, 0, -1, 0), true); // https://youtu.be/rrYcZsMBOgM?t=79
+
+[oploc1,castlewars_ladder_cellar_directional]
+p_arrivedelay;
+~climb_ladder(movecoord(coord, 0, 0, 6400), true);

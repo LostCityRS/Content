@@ -1,0 +1,111 @@
+[label,castlewars_ticket_exchange]
+inv_transmit(inv, inter_269:com_0);
+inv_transmit(castlewars_trade_tickets, inter_219:com_90);
+inv_transmit(castlewars_trade_coins, inter_219:com_91);
+if_openmain_side(inter_219, inter_269);
+
+[if_close,inter_219]
+inv_stoptransmit(inter_269:com_0);
+inv_stoptransmit(inter_219:com_90);
+inv_stoptransmit(inter_219:com_91);
+
+// https://youtu.be/ikUHSTz0YyQ
+// https://youtu.be/BlH7c7FBAUQ
+// https://youtu.be/cxwsDEjkl8M
+[inv_button1,inter_219:com_90]
+def_obj $item = inv_getobj(castlewars_trade_tickets, last_slot);
+def_string $item_name = oc_name($item);
+def_int $item_value = enum(obj, int, castlewars_ticket_exchange, $item);
+mes("The <lowercase($item_name)> costs <tostring($item_value)> tickets.");
+
+
+// buy value
+[inv_button1,inter_219:com_91]
+def_obj $item = inv_getobj(castlewars_trade_coins, last_slot);
+def_string $item_name = oc_name($item);
+def_int $item_value = oc_cost($item);
+mes("<$item_name>: currently costs <tostring($item_value)>gp."); // todo: confirm
+
+// sell value
+[inv_button1,inter_269:com_0]
+def_obj $item = oc_uncert(inv_getobj(inv, last_slot));
+def_string $item_name = oc_name($item);
+if ($item = castlewars_manual) {
+    mes("<$item_name>: shop will buy for 0gp."); // todo: confirm
+    return;
+}
+def_int $item_value = enum(obj, int, castlewars_ticket_exchange, $item);
+if ($item_value = null) {
+    mes("You can't sell this item to this shop."); // https://youtu.be/BlH7c7FBAUQ?t=8
+    return;
+}
+mes("The <lowercase($item_name)> sells for <tostring($item_value)> tickets."); // https://youtu.be/oqwXfZX_x_M?t=496
+
+// sell
+[inv_button2,inter_269:com_0]
+def_obj $item = oc_uncert(inv_getobj(inv, last_slot));
+if ($item = castlewars_manual) {
+    if(inv_itemspace(castlewars_trade_coins, $item, 1, inv_size(castlewars_trade_coins)) = false) {
+        mes("The shop has run out of space.");
+        return;
+    }
+    inv_moveitem_uncert(inv, castlewars_trade_coins, $item, 1);
+    return;
+}
+def_int $item_value = enum(obj, int, castlewars_ticket_exchange, $item);
+if ($item_value = null) {
+    mes("You can't sell this item to this shop."); // https://youtu.be/BlH7c7FBAUQ?t=8
+    return;
+}
+if (inv_itemspace(inv, castlewars_ticket, $item_value, inv_size(inv)) = false) { // max stack of tickets lol
+    mes("You don't have enough inventory space.");
+    return;
+}
+// Check if the shop will have enough space to hold the obj
+if(inv_itemspace(castlewars_trade_tickets, $item, 1, inv_size(castlewars_trade_tickets)) = false) {
+    mes("The shop has run out of space.");
+    return;
+}
+inv_moveitem_uncert(inv, castlewars_trade_tickets, $item, 1);
+inv_add(inv, castlewars_ticket, $item_value);
+
+// buy
+[inv_button2,inter_219:com_90]
+def_obj $item = oc_uncert(inv_getobj(castlewars_trade_tickets, last_slot));
+def_int $item_value = enum(obj, int, castlewars_ticket_exchange, $item);
+def_int $tickets = inv_total(inv, castlewars_ticket);
+if ($item_value > $tickets) {
+    mes("You dont have enough tickets to buy this item."); // https://youtu.be/BlH7c7FBAUQ?t=14
+    return;
+}
+if (inv_total(castlewars_trade_tickets, $item) <= 0) {
+    mes("The shop has run out of stock."); // todo: confirm
+    return;
+}
+if ($item_value ! $tickets & inv_freespace(inv) = 0) { // none of the items are stackable so, this is the easy way to do it
+    mes("You don't have enough inventory space."); // todo: confirm
+    return;
+}
+
+inv_del(inv, castlewars_ticket, $item_value);
+inv_moveitem_uncert(castlewars_trade_tickets, inv, $item, 1);
+
+[inv_button2,inter_219:com_91]
+def_obj $item = oc_uncert(inv_getobj(castlewars_trade_coins, last_slot));
+def_int $item_value = oc_cost($item);
+def_int $coins = inv_total(inv, coins);
+if ($item_value > $coins) {
+    mes("You don't have enough coins."); // todo: confirm
+    return;
+}
+if (inv_total(castlewars_trade_coins, $item) <= 0) {
+    mes("The shop has run out of stock."); // todo: confirm
+    return;
+}
+if ($item_value ! $coins & inv_freespace(inv) = 0) { // none of the items are stackable so, this is the easy way to do it
+    mes("You don't have enough inventory space."); // todo: confirm
+    return;
+}
+
+inv_del(inv, coins, $item_value);
+inv_moveitem_uncert(castlewars_trade_coins, inv, $item, 1);

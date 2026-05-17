@@ -77,6 +77,8 @@ if (%tutorial < ^tutorial_complete & ~in_tutorial_island(coord) = true) {
     @start_tutorial;
 }
 
+~castlewars_login;
+
 ~initalltabs;
 ~update_all(inv_getobj(worn, ^wearpos_rhand));
 cam_reset;
