@@ -1,0 +1,387 @@
+[if_button,questlist:deserttreasure]
+def_string $x;
+def_string $n = "Desert Treasure";
+// ::tele 0,49,47
+
+// fd_ means four diamonds
+// fd_fw_warningspam - I think this is the warning the fire warrior doing shit
+
+// I need the following rsprox
+// - What happens if I try to enter the smokey well before starting DT? // https://forums.d2jsp.org/topic.php?t=50680900 "it says he doesn't wanna go in for no reason..."
+// - What does the archaeologist say before the start of the diamond, or collecting 1,2,3,4 diamonds?
+// - The entire subquests for each one at EVERY point. Lots of videos do not capture the questlog.
+
+
+if(%deserttreasure = 0) {
+$x = append($x, "@dbl@I can start this quest by speaking to @dre@The Archaeologist@dbl@|");
+    $x = append($x, "@dbl@who is exploring the @dre@Bedabin Camp@dbl@ South West of the|");
+    $x = append($x, "@dre@Shantay Pass@dbl@.|");
+    $x = append($x, "@dbl@To complete this quest I will need:|");
+    // Skill Requirements
+    if (stat_base(slayer) >= 10) {
+        $x = append($x, "@str@Level 10 Slayer|");
+    } else {
+        $x = append($x, "@dre@Level 10 Slayer|");
+    }
+    if (stat_base(firemaking) >=  50) {
+        $x = append($x, "@str@Level 50 Firemaking|");
+    } else {
+        $x = append($x, "@dre@Level 50 Firemaking|");
+    }
+    if (stat_base(magic) >=  50) {
+        $x = append($x, "@str@Level 50 Magic|");
+    } else {
+        $x = append($x, "@dre@Level 50 Magic|");
+    }
+    if (stat_base(thieving) >=  50) {
+        $x = append($x, "@str@Level 53 Thieving|");
+    } else {
+        $x = append($x, "@dre@Level 53 Thieving|");
+    }
+
+    if (%itexamlevel = ^itexam_complete & %desertrescue >= ^desertrescue_complete & (%ikov >= ^ikov_completed_armadyl | %ikov >= ^ikov_completed_lucien) & %priestperil >= ^priest_complete & %waterfall_quest >= ^waterfall_complete & %troll_quest >= ^troll_complete) {
+        $x = append($x, "@dbl@I have completed all of the required quests:|");
+    } else {
+        $x = append($x, "@dbl@I must have completed the following quests:|");
+    }
+
+    // Quest Requirements
+    if (%itexamlevel = ^itexam_complete) {
+        $x = append($x, "@str@The Digsite Quest|");
+    } else {
+        $x = append($x, "@dre@The Digsite Quest|");
+    }
+    if (%desertrescue >= ^desertrescue_complete) {
+        $x = append($x, "@str@The Tourist Trap|");
+    } else {
+        $x = append($x, "@dre@The Tourist Trap|");
+    }
+    if (%ikov >= ^ikov_completed_armadyl | %ikov >= ^ikov_completed_lucien) {
+        $x = append($x, "@str@The Temple of Ikov|");
+    } else {
+        $x = append($x, "@dre@The Temple of Ikov|");
+    }
+    if (%priestperil >= ^priest_complete) {
+        $x = append($x, "@str@Priest In Peril|");
+    } else {
+        $x = append($x, "@dre@Priest In Peril|");
+    }
+    if (%waterfall_quest >= ^waterfall_complete) {
+        $x = append($x, "@str@Waterfall Quest|");
+    } else {
+        $x = append($x, "@dre@Waterfall Quest|");
+    }
+    if (%troll_quest >= ^troll_complete) {
+        $x = append($x, "@str@Troll Stronghold|");
+    } else {
+        $x = append($x, "@dre@Troll Stronghold|");
+    }
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 1
+if (%deserttreasure = 1) {
+$x = append($x, "@dbl@The @dre@archaeologist@dbl@ has given me some @dre@etchings from a@dbl@|");
+$x = append($x, "@dre@stone tablet@dbl@ that he discovered in the desert somewhere,|");
+$x = append($x, "@dbl@and asked me to take it to an archaeological expert called|");
+$x = append($x, "@dre@Terry Balando@dbl@ at the Varrock @dre@digsite@dbl@.|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 2
+if (%deserttreasure = 2) {
+    $x = append($x, "@str@I took some etchings of a stone tablet discovered by the|");
+    $x = append($x, "@str@archaeologist in the desert to Terry Balando at the|");
+    $x = append($x, "@str@Varrock digsite.|");
+    $x = append($x, "@dbl@I should get the @dre@translation notes@dbl@ from @dre@Terry Balando@dbl@|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 3
+if (%deserttreasure = 3) {
+    $x = append($x, "@str@I took some etchings of a stone tablet discovered by the|");
+    $x = append($x, "@str@archaeologist in the desert to Terry Balando at the|");
+    $x = append($x, "@str@Varrock digsite.|");
+    $x = append($x, "@dbl@Terry Balando made some quick @dre@translation notes@dbl@ of the|");
+    $x = append($x, "@dbl@tablet and asked me to return them to the @dre@archaeologist@dbl@ in|");
+    $x = append($x, "@dbl@the @dre@Bedabin Camp@dbl@.|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 4
+if (%deserttreasure = 4) {
+    $x = append($x, "@str@I took some etchings of a stone tablet discovered by the|");
+    $x = append($x, "@str@archaeologist in the desert to Terry Balando at the|");
+    $x = append($x, "@str@Varrock digsite.|");
+    $x = append($x, "@str@He made a rough translation, which I returned to the|");
+    $x = append($x, "@str@archaeologist.|");
+    $x = append($x, "@dbl@I should find out what the @dre@archaeologist@dbl@ has to say about|");
+    $x = append($x, "@dbl@the @dre@translation notes@dbl@.|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 5
+$x = append($x, "@str@The archaeologist I met in the desert seemed to think that|");
+$x = append($x, "@str@there was some hidden treasure in the desert somewhere,|");
+$x = append($x, "@str@I agreed to help him find it in return for a fifty percent|");
+$x = append($x, "@str@share of whatever we found.|");
+if (%deserttreasure = 5) {
+    $x = append($x, "@dbl@I should head South to the @dre@Bandit Camp@dbl@ and try to find out|");
+    $x = append($x, "@dbl@more about this @dre@treasure@dbl@.|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 6
+$x = append($x, "@str@I headed South and found a Bandit Camp.|");
+$x = append($x, "@str@After some searching, the barman let slip some|");
+$x = append($x, "@str@information about the 'Four Diamonds of Azzanadra'.|");
+if (%deserttreasure = 6) {
+    $x = append($x, "@dbl@I should ask around the @dre@Bandit Camp@dbl@ and see if anyone|");
+    $x = append($x, "@dbl@else has any information about the @dre@Four Diamonds of@dbl@|");
+    $x = append($x, "@dre@Azzanadra@dbl@|");
+    ~quest_journal($n, $x);
+    return;
+}
+// Stage 7
+$x = append($x, "@str@I asked around the Bandit Camp and discovered someone|");
+$x = append($x, "@str@who was willing to help me find the diamonds, by using a|");
+$x = append($x, "@str@magic spell and some scrying glasses.|");
+if (%deserttreasure = 7) {
+    $x = append($x, "@dbl@To make the scrying glasses I need to bring the following|");
+    $x = append($x, "@dbl@items to Eblis:|");
+    if (%fd_magiclog >= 12) {
+        $x = append($x, "@str@I have brought him all 12 Magic logs|");
+    } else {
+        $x = append($x, "@dre@12 Magic logs@dbl@|");
+    } 
+    if (%fd_steelbar >= 6) {
+        $x = append($x, "@str@I have brought him all 6 Steel bars|");
+    } else {
+        $x = append($x, "@dre@6 Steel bars@dbl@|");
+    }
+    if (%fd_glass >= 6) {
+        $x = append($x, "@str@I have brought him all 6 Molten glass|");
+    } else {
+        $x = append($x, "@dre@6 Molten glass@dbl@|");
+    }
+
+    if (%fd_bones >= 1) {
+        $x = append($x, "@str@I have brought him some bones|");
+    } else {
+        $x = append($x, "@dre@Some bones@dbl@|");
+    } 
+    if (%fd_ash >= 1) { // assuming standard variable hooks for the remaining items
+        $x = append($x, "@str@I have brought him some ash|");
+    } else {
+        $x = append($x, "@dre@Some ash@dbl@|");
+    }
+    if (%fd_charcoal >= 1) {
+        $x = append($x, "@str@I have brought him some charcoal|");
+    } else {
+        $x = append($x, "@dre@Some charcoal@dbl@|");
+    }
+    if (%fd_bloodrune >= 1) {
+        $x = append($x, "@str@I have brought him a blood rune|");
+    } else {
+        $x = append($x, "@dre@A blood rune@dbl@|");
+    }
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 8 --> 10 (to try to match varbit 358, value 10 is when Eblis appears at mirrors.)
+if (%deserttreasure = 8) {
+    $x = append($x, "@str@I brought Eblis the ingredients so that he could cast the|");
+    $x = append($x, "@str@spell to see the places touched by the magic of the|");
+    $x = append($x, "@str@diamonds.|");
+    $x = append($x, "@dbl@I should head @dre@East into the desert@dbl@ and meet Eblis where he|");
+    $x = append($x, "@dbl@has set up the scrying glasses, and use them to try and|");
+    $x = append($x, "@dbl@track down the @dre@Four Diamonds of Azzanadra@dbl@.|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 9
+if (%deserttreasure = 9) {
+    $x = append($x, "@str@I brought Eblis the ingredients so that he could cast the|");
+    $x = append($x, "@str@spell to see the places touched by the magic of the|");
+    $x = append($x, "@str@diamonds.|");
+    // Appears when you use the scrying glasses? or maybe appears when you clear all 4 diamonds?
+    $x = append($x, "|");
+    $x = append($x, "@str@I headed East into the desert and used the scrying|");
+    $x = append($x, "@str@glasses set up for me there by Eblis to try and find the|");
+    $x = append($x, "@str@Four Diamonds of Azzanadra.|");
+    $x = append($x, "|");
+    // DIAMOND OF BLOOD (DESSOUS)
+        if (%fdvw_subquest = 4) {
+            $x = append($x, "@str@I defeated a vampire named Dessous to claim the Diamond|");
+            $x = append($x, "@str@of Blood.|");
+        } else if (%fdvw_subquest >= 3) {
+            $x = append($x, "@str@I discovered that the location of the Diamond of Blood was|");
+            $x = append($x, "@str@somewhere in Morytania, and in the possession of a|");
+            $x = append($x, "@str@vampire warrior named Dessous.|");
+            $x = append($x, "@str@I don't fully trust Malek, but he has agreed to help me kill|");
+            $x = append($x, "@str@Dessous.|");
+            $x = append($x, "@str@I made a special blessed pot, filled with blood, garlic and|");
+            $x = append($x, "@str@spices, which I used to lure Dessous from his tomb.|");
+            $x = append($x, "@str@I managed to defeat the vampire warrior Dessous, but|");
+            $x = append($x, "@str@there was no sign of the Diamond of Blood anywhere.|");
+            $x = append($x, "@dbl@I should find out what game @dre@Malek@dbl@ has been playing with|");
+            $x = append($x, "@dbl@me, and where I can actually find the @dre@Diamond of Blood@dbl@.|");
+        } else if (%fdvw_subquest >= 2) {
+            $x = append($x, "@str@I discovered that the location of the Diamond of Blood was|");
+            $x = append($x, "@str@somewhere in Morytania, and in the possession of a|");
+            $x = append($x, "@str@vampire warrior named Dessous.|");
+            $x = append($x, "@str@I don't fully trust Malek, but he has agreed to help me kill|");
+            $x = append($x, "@str@Dessous.|");
+            $x = append($x, "@dbl@Apparently I can find an old @dre@assistant of Count Draynor@dbl@ in|");
+            $x = append($x, "@dbl@the @dre@sewers of Draynor Village@dbl@, who will be able to help me|");
+            $x = append($x, "@dbl@make a @dre@sacrificial pot@dbl@|");
+            $x = append($x, "@dbl@I then need to take that @dre@sacrificial pot@dbl@ to @dre@Entrana@dbl@ and get|");
+            $x = append($x, "@dbl@it blessed by the @dre@head priest@dbl@|");
+            $x = append($x, "@dbl@When I have done that, I should return to @dre@Malak@dbl@, and he will|");
+            $x = append($x, "@dbl@provide me with some @dre@fresh blood@dbl@|");
+            $x = append($x, "@dbl@I then need to add @dre@garlic@dbl@ and @dre@spices@dbl@ to the pot in order to|");
+            $x = append($x, "@dbl@lure Dessous from his tomb.|");
+            $x = append($x, "@dbl@When I have done all of this, I must @dre@kill Dessous!@dbl@|");
+        } else if (%fdvw_subquest >= 1) {
+            $x = append($x, "@str@I discovered that the location of the Diamond of Blood was|");
+            $x = append($x, "@str@somewhere in Morytania, and in the possession of a|");
+            $x = append($x, "@str@vampire warrior named Dessous.|");
+            $x = append($x, "@dbl@I should speak to @dre@Malek@dbl@ again and find out how exactly I|");
+            $x = append($x, "@dbl@can kill @dre@Dessous@dbl@.|");
+        } else {
+            $x = append($x, "@dbl@I can use the @dre@scrying glasses@dbl@ to help find the|");
+            $x = append($x, "@dre@Diamond of Blood@dbl@.|");
+        }
+        $x = append($x, "|");
+
+        // DIAMOND OF SMOKE (FAREED)
+        if (%fd_killed_firewarrior >= 1) {
+            $x = append($x, "@str@I defeated a fire warrior, and now have the Diamond of|");
+            $x = append($x, "@str@Smoke.|");
+        } else if (%fd_firechest >= 1) {
+            $x = append($x, "@str@I entered a smokey well and lit up the path. I found a|");
+            $x = append($x, "@str@key in a chest.|");
+            $x = append($x, "@dbl@I should find out what the @dre@key@dbl@ unlocks.|");
+        } else {
+            $x = append($x, "@dbl@I can use the @dre@scrying glasses@dbl@ to help find the|");
+            $x = append($x, "@dre@Diamond of Smoke@dbl@.|");
+        }
+        $x = append($x, "|");
+
+        // DIAMOND OF ICE (KAMIL)
+        if (%fd_icewarrior_subquest = 6) {
+            $x = append($x, "@str@I defeated a warrior named Kamil, and now have the|");
+            $x = append($x, "@str@Diamond of Ice.|");
+        } else if (%fd_icewarrior_subquest >= 3) {
+            $x = append($x, "@str@I met a crying ice troll child to the North of Trollheim.|");
+            $x = append($x, "@str@I managed to cheer him up slightly with a sweet treat.|");
+            $x = append($x, "@str@After speaking with him, I discovered that his parents had|");
+            $x = append($x, "@str@been hurt by a 'bad man' who had the Diamond of Ice, and I|");
+            $x = append($x, "@str@agreed to help him rescue them.|");
+            $x = append($x, "@str@While heading through the icy area, I was attacked by an|");
+            $x = append($x, "@str@ice warrior named Kamil, and managed to defeat him.|");
+            $x = append($x, "@str@Was this the 'bad man' the troll child has spoken of?|");
+            $x = append($x, "@dbl@I should head further into the icy area to try and find|");
+            $x = append($x, "@dbl@them.|");
+        } else if (%fd_icewarrior_subquest >= 2) {
+            $x = append($x, "@str@I met a crying ice troll child to the North of Trollheim.|");
+            $x = append($x, "@str@I managed to cheer him up slightly with a sweet treat.|");
+            $x = append($x, "@str@After speaking with him, I discovered that his parents had|");
+            $x = append($x, "@str@been hurt by a 'bad man' who had the Diamond of Ice, and I|");
+            $x = append($x, "@str@agreed to help him rescue them.|");
+            $x = append($x, "@dbl@I should head further into the icy area to try and find|");
+            $x = append($x, "@dbl@them.|");
+        } else if (%fd_icewarrior_subquest >= 1) { // probably [fd_trollchild_intro]
+            $x = append($x, "@str@I met a crying ice troll child to the North of Trollheim.|");
+            $x = append($x, "@dbl@I should cheer him up with something sweet.|");
+        } else {
+            $x = append($x, "@dbl@I can use the @dre@scrying glasses@dbl@ to help find the|");
+            $x = append($x, "@dre@Diamond of Ice@dbl@.|");
+        }
+        $x = append($x, "|");
+
+        // DIAMOND OF SHADOW (DAMIS)
+        if (%fd_shadowwarrior_quest = 4) {
+            $x = append($x, "@str@I defeated a warrior named Damis, and now have the|");
+            $x = append($x, "@str@Diamond of Shadow.|");
+        } else if (%fd_shadowwarrior_quest >= 3) {
+            $x = append($x, "@str@A travelling merchant named Rasolo had some information|");
+            $x = append($x, "@str@about the Diamond of Shadow.|");
+            $x = append($x, "@str@Apparently it was owned by an invisible warrior, who I|");
+            $x = append($x, "@str@needed a special ring to see.|");
+            $x = append($x, "@str@Rasolo owned such a ring, but would only trade it in return|");
+            $x = append($x, "@str@for a gilded cross stolen from him by a bandit named|");
+            $x = append($x, "@str@Laheeb.|");
+            $x = append($x, "@str@I found Laheeb's treasure chest, and managed to bypass|");
+            $x = append($x, "@str@the traps on it to take the gilded cross, which I returned to|");
+            $x = append($x, "@str@Rasolo.|");
+            $x = append($x, "@str@In return, he gave me the Ring of Visibility.|");
+            $x = append($x, "@dbl@I should put the @dre@Ring of Visibility@dbl@ on and try and find the|");
+            $x = append($x, "@dbl@hidden home of @dre@Damis@dbl@ - Rasolo suggested it was very|");
+            $x = append($x, "@dbl@close by to where he is...|");
+        } else if (%fd_shadowwarrior_quest >= 2) {
+            $x = append($x, "@str@A travelling merchant named Rasolo had some information|");
+            $x = append($x, "@str@about the Diamond of Shadow.|");
+            $x = append($x, "@str@Apparently it was owned by an invisible warrior, who I|");
+            $x = append($x, "@str@needed a special ring to see.|");
+            $x = append($x, "@str@Rasolo owned such a ring, but would only trade it in return|");
+            $x = append($x, "@str@for a gilded cross stolen from him by a bandit named|");
+            $x = append($x, "@str@Laheeb.|");
+            $x = append($x, "@str@I found Laheeb's treasure chest, and managed to bypass|");
+            $x = append($x, "@str@the traps on it to take the gilded cross.|");
+            $x = append($x, "@dbl@I need to return the @dre@gilded cross@dbl@ to @dre@Rasolo@dbl@.|");
+        } else if (%fd_shadowwarrior_quest >= 1) {
+            $x = append($x, "@str@A travelling merchant named Rasolo had some information|");
+            $x = append($x, "@str@about the Diamond of Shadow.|");
+            $x = append($x, "@str@Apparently it was owned by an invisible warrior, who I|");
+            $x = append($x, "@str@needed a special ring to see.|");
+            $x = append($x, "@str@Rasolo owned such a ring, but would only trade it in return|");
+            $x = append($x, "@str@for a gilded cross stolen from him by a bandit named|");
+            $x = append($x, "@str@Laheeb.|");
+            $x = append($x, "@dbl@I need to find @dre@Laheeb's loot@dbl@ and retrieve the stolen @dre@gilded@dbl@|");
+            $x = append($x, "@dre@cross@dbl@.|");
+        } else {
+            $x = append($x, "@dbl@I can use the @dre@scrying glasses@dbl@ to help find the|");
+            $x = append($x, "@dre@Diamond of Shadow@dbl@.|");
+        }
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 10
+$x = append($x, "@str@I found all four diamonds using this spell|");
+if (%deserttreasure = 10) {
+    $x = append($x, "@dbl@Now that I have recovered all of the @dre@Diamonds of@dbl@|");
+    $x = append($x, "@dre@Azzanadra@dbl@ I should take them all to @dre@Eblis@dbl@ and find out what|");
+    $x = append($x, "@dbl@is so special about them.|");
+}
+
+// Stage 11
+if (%deserttreasure = 11) {
+    $x = append($x, "@dbl@I should explore the @dre@pyramid@dbl@ and see what @dre@treasure@dbl@ awaits|");
+    $x = append($x, "@dbl@me!|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 100 (Quest Complete)
+if (%deserttreasure = 100) {
+    $x = append($x, "@str@At the heart of the pyramid I found a strange being, who|");
+    $x = append($x, "@str@gave me some powerful new magic spells.|");
+    $x = append($x, "@str@I can switch between my old spells and my new spells any|");
+    $x = append($x, "@str@time by using the altar there, and can avoid the traps by|");
+    $x = append($x, "@str@using the secret passage.|");
+    $x = append($x, "|");
+    $x = append($x, "|");
+    $x = append($x, "<col=FF0000>QUEST COMPLETE!</col>");
+    ~quest_journal($n, $x);
+    return;
+}

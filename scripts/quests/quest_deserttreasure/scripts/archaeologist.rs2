@@ -1,0 +1,227 @@
+[opnpc1,fourdiamonds_indiana]
+switch_int (%deserttreasure) {
+    case 0 :
+        @archaeologist_quest_stage_0;
+    case 1, 2 :
+        @archaeologist_quest_stage_1_2;
+    case 3 :
+        @archaeologist_quest_stage_3;
+    case 4 :
+        @archaeologist_quest_stage_4;
+    case 5 :
+        @archaeologist_quest_stage_5;
+    case 6, 7, 8 :
+        @archaeologist_quest_stage_6_7_8;
+    case 9, 10, 11, 12, 13 :
+        @archaeologist_quest_stage_9;
+    case 14 :
+        @archaeologist_quest_stage_10;
+    case ^deserttreasure_complete :
+        @archaeologist_quest_stage_complete;
+}
+
+[label,archaeologist_quest_stage_0]
+~chatplayer("<p,neutral>Hello there.");
+// Check quest requirements
+if (%itexamlevel = ^itexam_complete & %desertrescue >= ^desertrescue_complete & (%ikov >= ^ikov_completed_armadyl | %ikov >= ^ikov_completed_lucien) & %priestperil >= ^priest_complete & %waterfall_quest >= ^waterfall_complete & %troll_quest >= ^troll_complete & stat_base(slayer) >= 10 & stat_base(firemaking) >=  50 & stat_base(magic) >=  50 & stat_base(thieving) >=  50) {
+    @archaeologist_stage_0_req_satisfied;
+} else {
+    ~mesbox("He seems to be lost in his own thoughts...");
+}
+
+[label,archaeologist_stage_0_req_satisfied]
+~chatnpc("<p,neutral>Howdy stranger. What brings you out to these parts?");
+@archaeologist_stage_0_options;
+
+[label,archaeologist_stage_0_options]
+@multi4(
+    "What are you doing here?", archaeologist_doing_here,
+    "Do you have any quests?", archaeologist_have_quests,
+    "Who are you?", archaeologist_who_are_you,
+    "Nothing really.", archaeologist_nothing_really
+);
+
+[label,archaeologist_doing_here]
+~chatplayer("<p,neutral>Nothing much - What are you doing here?|It doesn't seem like there's much to do out here in the|desert!");
+~chatnpc("<p,neutral>Well, that's where you'd be wrong.|I work for the Archaeological Society of Varrock, and|have been excavating around here recently.");
+~chatnpc("<p,neutral>Was there something you specifically wanted?");
+@archaeologist_stage_0_options;
+
+[label,archaeologist_have_quests]
+~chatplayer("<p,happy>Do you have any quests?|Call it a hunch, but you look like the type of man who|might...");
+~chatnpc("<p,confused>Well, it's funny you should say that.|I'm not sure if I would really call it a quest as such,|but I found this ancient stone tablet in one of my|excavations, and it would really help me out if you");
+~chatnpc("<p,happy>could go and take it back to the digsite for me and get|it examined.");
+~chatnpc("<p,neutral>It's very old, and I don't recognise any of the|inscriptions on it.");
+@multi2(
+    "Yes, I'll help you.", archaeologist_accept_quest,
+    "No thanks, I don't want to help.", archaeologist_decline_quest
+);
+
+[label,archaeologist_accept_quest]
+inv_add(inv, four_diamonds_etchings, 1);
+~chatplayer("<p,neutral>Sure, I was heading that way anyway.|Any particular person at the digsite you want me to|talk to?");
+~chatnpc("<p,neutral>His name's Terry Balando. Give it to nobody but him.|I'm sorry, I can't entrust you with the actual tablet I|found, but it is far too valuable to give away, but I took|these etchings - they should be enough for him to make");
+~chatnpc("<p,neutral>a preliminary translation on.|Come back and let me know what he says, I would hate|to waste my time excavating anything that isn't worth|my time as a world famous archaeologist!");
+if (%deserttreasure = 0) {
+    %deserttreasure = 1;
+}
+
+[label,archaeologist_decline_quest]
+~chatplayer("<p,neutral>No thanks. Playing delivery boy doesn't really sound like much fun to me.");
+~chatnpc("<p,neutral>Well, okay. Can't say as I blame you for thinking that. I'll go take it there myself later I guess.");
+
+[label,archaeologist_who_are_you]
+~chatplayer("<p,confused>Who are you, anyway?");
+~chatnpc("<p,shock>You don't recognize me???|I am the world famous Asgarnia Smith, Archaeologist|extraordinaire!");
+~chatnpc("<p,confused>I am the one who discovered the long forgotten|Temple of Ikov!|The one who unearthed the strange trap filled arena|in Brimhaven!");
+~chatnpc("<p,confused>I'm the leading archaeological expert of our time!|I was voted archaeologist of the year four years|running by the Varrock Herald! Are you REALLY|sure you've never heard of me?");
+~chatplayer("<p,confused>No, I really haven't.");
+~chatnpc("<p,shock>Well then, I'm confused.|Why did you come over and speak to me if you don't|know who I am? What do you want?");
+@archaeologist_stage_0_options;
+
+[label,archaeologist_nothing_really]
+~chatplayer("<p,neutral>Nothing really. I'm just wandering around for no good reason.");
+~chatnpc("<p,neutral>Uh-huh. Well, if you'll excuse me, I have a lot more work to do before I can bed down for the night.");
+
+[label,archaeologist_quest_stage_1_2]
+~chatnpc("<p,neutral>So what did Terry Balando say about those etchings? Did he give you a translation for me?");
+~chatplayer("<p,neutral>Um...yeah...about that... I kind of didn't go and speak to him yet...");
+~chatnpc("<p,neutral>Well what are you waiting for? A written invitation? All I want you to do is take those etchings up to the digsite for me!");
+~chatplayer("<p,neutral>Okay, I'll do that then.");
+
+[label,archaeologist_quest_stage_3]
+~chatplayer("<p,happy>Hello there.");
+~chatnpc("<p,neutral>So what did Terry Balando say about those etchings? Did he give you a translation for me?");
+if (inv_total(inv, four_diamonds_translation_primer) >= 1) {
+    @archaeologist_has_translation;
+} else {
+    @archaeologist_no_translation;
+}
+
+[label,archaeologist_no_translation]
+~chatplayer("<p,neutral>Yeah, he did. But I don't have it with me.");
+~chatnpc("<p,neutral>...");
+~chatnpc("<p,neutral>I see.");
+~chatnpc("<p,neutral>Well could you go and get me that translation? It could be vital!");
+
+[label,archaeologist_has_translation]
+~chatplayer("<p,neutral>Yeah, he did. I have it here in this book.");
+~chatnpc("<p,neutral>Did you take a read of this? It will do you good to understand how this profession works. Here, have a read.");
+@multi2(
+    "Read book", archaeologist_read_book,
+    "Don't read book", archaeologist_dont_read_book
+);
+
+[label,archaeologist_read_book]
+// Custom trigger context used to open interfaces safely in modern systems
+//~open_book_interface(fancy_book_3_49); 
+
+[label,archaeologist_dont_read_book]
+~chatplayer("<p,neutral>Yeah, I did. Kind of boring really.");
+~chatnpc("<p,neutral>Excellent. Just give me a moment to read this, and talk to me again in a second.");
+if (%deserttreasure = 3) {
+    inv_del(inv, four_diamonds_translation_primer, 1);
+    %deserttreasure = 4;
+}
+
+[label,archaeologist_quest_stage_4]
+~chatplayer("<p,neutral>Hello there.");
+~chatnpc("<p,neutral>Hmmm. Interesting. It seems to me like there's some kind of treasure hidden out in the desert.");
+~chatnpc("<p,neutral>So what do you say? Fancy being a treasure hunter like me?");
+~chatplayer("<p,neutral>Uh... don't you mean archaeologist?");
+~chatnpc("<p,neutral>Yeeees... An archaeologist...");
+~chatnpc("<p,neutral>It's all this hot sun getting to me I think.");
+~chatnpc("<p,neutral>Well anyway, let's just assume there is a treasure hidden in the desert somewhere, and let's just say for the sake of argument that maybe if I found a big stash of gold and treasure I wouldn't necessarily just hand it|all over to the Museum of Varrock.");
+~chatnpc("<p,neutral>Let's also say, purely hypothetically, that if there were such a big stash of treasure and someone were to help me find it, then that hypothetical person might be entitled to, oh, let's say a purely for the sake of|argument thirty percent split...");
+~chatplayer("<p,neutral>Fifty percent.");
+~chatnpc("<p,neutral>That's right!");
+~chatnpc("<p,neutral>A purely for the sake of argument fifty-fifty split on this hypothetical treasure, should it exist...");
+~chatnpc("<p,neutral>Do you see where I'm going with this?");
+~chatplayer("<p,neutral>You want me to help you find some treasure for a fifty percent share, as long as I don't tell anybody, and your reputation as an esteemed archaeologist with the Museum of Varrock remains intact, and nobody|discovers you're actually just a treasure hunter?");
+~chatnpc("<p,neutral>Uh... yes, but the way you said it makes it sound like I'm doing something wrong...");
+~chatnpc("<p,neutral>So what do you say? Partners?");
+@archaeologist_stage_4_options;
+
+[label,archaeologist_stage_4_options]
+@multi2(
+    "Help him", archaeologist_help_him,
+    "Don't help him", archaeologist_dont_help_him
+);
+
+[label,archaeologist_help_him]
+~chatplayer("<p,neutral>Well... I guess nobody is really going to lose out on anything, and we don't even know if there is any treasure...");
+~chatplayer("<p,neutral>Aw, go on then. Count me in.");
+~chatnpc("<p,neutral>Good <text_gender("lad","lass")>! Well, if we split up we'll be able to find treasure quicker.");
+~chatnpc("<p,neutral>I'll continue searching around here in this Bedabin Camp, you head due South to the Bandit Village. If either of us find anything, we'll come find each other and say what, okay?");
+~chatnpc("<p,neutral>You head due South, see what you can find out about this tablet.");
+if (%deserttreasure = 4) {
+    %deserttreasure = 5;
+}
+
+[label,archaeologist_dont_help_him]
+~chatplayer("<p,neutral>This all sounds very immoral, and I don't want any part of your seedy little schemes.");
+~chatnpc("<p,neutral>Aw, c'mon, cut me a break here man! Look, nobody is really getting hurt, right? This treasure is either going to lie around in some underground ruin, or lie around in some museum for|people to look at!");
+~chatnpc("<p,neutral>It makes sense for the people to go to all the risk to get a little payback for it, right? Besides, anything of real historical value we can hand over to the museum - we'll just keep the cash for|ourselves!");
+~chatnpc("<p,neutral>C'mon... what do you say? Partners?");
+@multi2(
+    "Help him", archaeologist_help_him,
+    "Don't help him", archaeologist_decline_permanently
+);
+
+[label,archaeologist_decline_permanently]
+~chatplayer("<p,neutral>I don't trust anything about your little scheme, including you! I want nothing to do with this!");
+~chatnpc("<p,neutral>Eh, you'll come running back when you realize just how much money we could be talking here.");
+~chatnpc("<p,neutral>I'll see you again when you come crawling back, begging to be cut in on the deal.");
+
+[label,archaeologist_quest_stage_5]
+~chatplayer("<p,neutral>Hello there.");
+~chatnpc("<p,neutral>Hello again. You find any signs of that treasure yet?");
+~chatplayer("<p,neutral>Not yet...");
+~chatnpc("<p,neutral>Well, head south to that bandit camp. I bet if there's anything out here, they'll know about it. Don't let on it might be valuable though! Those thieves will steal it as soon as look at you!");
+
+[label,archaeologist_quest_stage_6_7_8]
+~chatplayer("<p,neutral>Hello there.");
+~chatnpc("<p,neutral>Hello again. You find any signs of that treasure yet?");
+~chatplayer("<p,neutral>Not as such... Although I think I'm onto something of a promising lead...");
+~chatplayer("<p,neutral>Did you ever hear of something called the Diamonds of Azzanadra?");
+~chatnpc("<p,neutral>Diamonds of Azzanadra? That sounds very promising indeed!");
+~chatplayer("<p,neutral>So you have heard of them?");
+~chatnpc("<p,neutral>Nope, never heard of them before, but you said diamonds! Diamonds are always promising!");
+
+[label,archaeologist_quest_stage_9]
+~chatplayer("<p,neutral>Hello there.");
+~chatnpc("<p,neutral>Hello again.|How's the treasure hunting going?");
+~chatplayer("<p,neutral>Well, I've found four diamonds.");
+~chatnpc("<p,shock>What?|But you've been gone ages!");
+~chatnpc("<p,confused>C'mon, you can be square with me, you must have found|more treasure than just four measly diamonds by now!");
+~chatplayer("<p,neutral>No, I really haven't.");
+~chatnpc("<p,neutral>Hmmm.|Well, okay a deal is a deal.|Hand two of them over.");
+~chatplayer("<p,neutral>Actually, I think I'm going to need them to gain access to|the real treasure...");
+~chatnpc("<p,shock>REALLY?|Great, I love treasure!");
+~chatnpc("<p,neutral>Don't worry about two measly diamonds if you think|they'll lead to something better!");
+~chatnpc("<p,happy>I don't usually get out of bed for less than a hundred|gold bars!");
+
+[label,archaeologist_quest_stage_10]
+~chatplayer("<p,neutral>Hello there.");
+~chatnpc("<p,neutral>Hello again, apprentice archaeologist.|How's the treasure hunting going?");
+~chatplayer("<p,neutral>Well... I found four diamonds...");
+~chatnpc("<p,happy>Great!|Pass me my share, and it's a good job all around!");
+~chatplayer("<p,neutral>Um... sorry, I can't.");
+~chatnpc("<p,confused>Huh?|You're not trying to break a deal here are ya???");
+~chatplayer("<p,neutral>No, it's just...|There were these weird pillars around this pyramid...");
+~chatnpc("<p,neutral>Yes?");
+~chatplayer("<p,neutral>Um...|Well...");
+~chatplayer("<p,neutral>They kind of...|ate the diamonds...");
+~chatnpc("<p,shock>Pyramid columns ate your diamonds?|That's a crazy story kid.");
+~chatnpc("<p,confused>Why would you go putting diamonds into them in the|first place anyway?|Diamonds!|Of all things!");
+~chatplayer("<p,neutral>Well, I have this feeling there is some better|treasure inside that pyramid, and I needed to put the|diamonds in to gain entrance.");
+~chatnpc("<p,neutral>Well what are you wasting time talking to me for?");
+~chatnpc("<p,happy>Go get me some treasure, pal!");
+
+[label,archaeologist_quest_stage_complete]
+~chatplayer("<p,neutral>Hello there.");
+~chatnpc("<p,neutral>Hello again. You find any signs of that treasure yet?");
+~chatplayer("<p,neutral>Well... not as such, but I unleashed a powerful demon|from its tomb in return for unbelievable magical power.");
+~chatnpc("<p,confused>So... no gold then?");
+~chatplayer("<p,neutral>Not as such, no. Sorry about that.");
+~chatnpc("<p,sad>Aw... I was hoping to go abroad on holiday|this year. Maybe I'll go check out Karamja next, I hear|there's treasure to be found there...");
