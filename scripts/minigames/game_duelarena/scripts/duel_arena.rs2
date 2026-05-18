@@ -6,6 +6,7 @@ if (~inzone_coord_pair_table(gnomeball_zones, coord) = true) {
 p_aprange(0);
 
 [opplayer1,_]
+p_stopaction;
 if (~inzone_coord_pair_table(gnomeball_zones, coord) = true) {
     @pvp_gnomeball_pass;
     return;
