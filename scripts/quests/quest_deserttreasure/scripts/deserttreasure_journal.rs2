@@ -4,7 +4,7 @@ def_string $n = "Desert Treasure";
 // ::tele 0,49,47
 
 // fd_ means four diamonds
-// fd_fw_warningspam - I think this is the warning the fire warrior doing shit
+// fd_fw_warningspam - I think this is the warning for the torch lighting warnings?
 
 // I need the following rsprox
 // - What happens if I try to enter the smokey well before starting DT? // https://forums.d2jsp.org/topic.php?t=50680900 "it says he doesn't wanna go in for no reason..."
@@ -125,7 +125,7 @@ if (%deserttreasure = 4) {
     return;
 }
 
-// Stage 5
+// Stage 5,6,7
 $x = append($x, "@str@The archaeologist I met in the desert seemed to think that|");
 $x = append($x, "@str@there was some hidden treasure in the desert somewhere,|");
 $x = append($x, "@str@I agreed to help him find it in return for a fifty percent|");
@@ -137,7 +137,7 @@ if (%deserttreasure = 5) {
     return;
 }
 
-// Stage 6
+// Stage 8
 $x = append($x, "@str@I headed South and found a Bandit Camp.|");
 $x = append($x, "@str@After some searching, the barman let slip some|");
 $x = append($x, "@str@information about the 'Four Diamonds of Azzanadra'.|");
@@ -148,6 +148,7 @@ if (%deserttreasure = 6) {
     ~quest_journal($n, $x);
     return;
 }
+
 // Stage 7
 $x = append($x, "@str@I asked around the Bandit Camp and discovered someone|");
 $x = append($x, "@str@who was willing to help me find the diamonds, by using a|");

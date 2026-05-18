@@ -1,0 +1,80 @@
+
+
+
+
+// Stage 10
+
+[proc,desert_treasure_oblix_check](obj $last_useitem, obj $pillar_object)(boolean)
+if (last_useitem = fd_blood_diamond | last_useitem = fd_icediamond | last_useitem = fd_diamond_fire | last_useitem = fd_dark_diamond ) {
+    if (stat_base(magic) <  50) {
+        mes("You are not a powerful enough mage to breach the protective aura.");
+        mes("You need a magic level of at least 50 to enter the Pyramid.");
+        return (false);
+    }
+    if (%deserttreasure < 10) {
+        // INAUTHENTIC
+        // Maybe possible to get diamond and place them into the column immediately?
+        mes("You need all 4 diamonds with you.");
+        return (false);
+    }
+    if (last_useitem = $pillar_object) {
+        mes("The diamond is absorbed into the pillar.");
+        return (true);
+    } else {
+        mes("That doesn't appear to be the correct diamond...");
+    }
+} else {
+    ~displaymessage(^dm_default);
+    return (false);
+}
+
+
+[oplocu,desert_treasure_oblix1]
+if (~desert_treasure_oblix_check(last_useitem, fd_blood_diamond) = true) {
+    inv_del(inv, last_useitem, 1);
+    %fd_column_blood = 1;
+}
+
+[oplocu,desert_treasure_oblix2]
+if (~desert_treasure_oblix_check(last_useitem, fd_diamond_fire) = true) {
+    inv_del(inv, last_useitem, 1);
+    %fd_column_fire = 1;
+}
+
+[oplocu,desert_treasure_oblix3]
+if (~desert_treasure_oblix_check(last_useitem, fd_icediamond) = true) {
+    inv_del(inv, last_useitem, 1);
+    %fd_column_ice = 1;
+}
+
+[oplocu,desert_treasure_oblix4]
+if (~desert_treasure_oblix_check(last_useitem, fd_dark_diamond) = true) {
+    inv_del(inv, last_useitem, 1);
+    %fd_column_shadow = 1;
+}
+
+// Stage 14
+
+[oploc1,four_diamonds_door_1]
+if (%deserttreasure = ^deserttreasure_all_diamonds_placed) {
+
+} else {
+    mes("A mystical power has sealed this door...");
+}
+[oploc1,four_diamonds_door_mirror]
+if (%deserttreasure = ^deserttreasure_all_diamonds_placed) {
+
+} else {
+    mes("A mystical power has sealed this door...");
+}
+
+
+// Stage Complete
+
+// What this fuck is this typo
+[oploc1,desert_trasure_back_door_skew]
+if (%deserttreasure = ^deserttreasure_complete) {
+
+} else {
+    mes("This passage does not seem to lead anywhere...");
+}
