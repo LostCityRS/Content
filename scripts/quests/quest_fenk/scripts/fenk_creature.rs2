@@ -1,0 +1,45 @@
+[opnpc1,fenk_creature]
+switch_int(%fenk_quest) {
+    case ^fenk_spoke_again :
+        @creature_first_meet;
+    case ^fenk_creature_convince :
+        @creature_how_to_stop;
+}
+
+[label,creature_first_meet]
+~chatplayer("<p,neutral>I am commanded to destroy you, creature!");
+~chatnpc("<p,neutral>Oh that's *hic* not very *hic* nice ...");
+~chatplayer("<p,neutral>Are you feeling ok?");
+~chatnpc("<p,neutral>Abso *hic* lutely. Never *buuurrp* better.");
+~chatplayer("<p,neutral>You don't look very dangerous.");
+~chatnpc("<p,neutral>How *hic* do I look?");
+~chatplayer("<p,neutral>You really don't know, do you? Have a look for yourself.");
+~mesbox("The creature stumbles over towards the mirror, focuses upon his reflection and...");
+~chatnpc("<p,neutral>AAAAARRGGGGHHHH!");
+~mesbox("The creature becomes instantly sober, horror all too evident in his undead eyes.");
+~chatplayer("<p,neutral>I'm sorry. I suppose I'm partly to blame for this.");
+~chatnpc("<p,neutral>No - it was him I wager - Fenkenstrain - wasn't it? He's brought me back to life!");
+~chatplayer("<p,neutral>Who are - were - you?");
+~chatnpc("<p,neutral>I was Rologarth, Lord of the North Coast - this castle was once mine. Fenkenstrain was the castle doctor.");
+~chatplayer("<p,neutral>So the castle wasn't really abandoned when he found it?");
+~chatnpc("<p,neutral>Is that what he told you? No, no, this castle was once full of people and life. Fenkenstrain advised me to sell them to the vampyres, which - I am sad to say - I did.");
+~chatplayer("<p,neutral>I found your brain in a jar in Canifis, so he must have sold you too.");
+~chatnpc("<p,neutral>Of that I will not speak. There lie memories that should rest with the dead, the living unable to bear them.");
+~chatplayer("<p,neutral>That's it - I'm leaving this dreadful place, whether I get paid or not. Is there anything I can do for you before I leave?");
+~chatnpc("<p,neutral>Only one - please stop Fenkenstrain from carrying on his experiments, once and for all, so that no other poor soul has to endure suffering such as that of my people and I.");
+%fenk_quest = ^fenk_creature_convince;
+
+[label,creature_how_to_stop]
+~chatplayer("<p,confused>Do you know how I can stop Fenkenstrain's experiments?");
+~chatnpc("<p,neutral>Take the Ring of Charos from him.");
+~chatplayer("<p,confused>What is this ring?");
+~chatnpc("<p,neutral>It was my birthright, passed down to me through the ages, its origin forgotten.");
+~chatnpc("<p,neutral>The Ring of Charos has many powers, but Fenkenstrain has bent them to his down evil purposes. Without the power of the ring, he will not be able to raise the dead from their sleep.");
+~chatnpc("<p,neutral>It has one other, extremely important use - it confuses the werewolves' senses, making them believe that they smell one of their own kind. Without the ring, Fenkenstrain will be at their mercy.");
+
+[opnpc1,fenk_creature_released]
+~chatnpc("<p,neutral>How goes it, friend?");
+~chatplayer("<p,neutral>I stole the Ring of Charos from Fenkenstrain.");
+~chatnpc("<p,neutral>I saw him climb up into the Tower to hide. It doesn't matter - soon the werewolves will come for him, and his experiments will be forever ceased.");
+~chatplayer("<p,confused>Do you want the ring back? It is yours after all.");
+~chatnpc("<p,neutral>No, you keep it, my friend. Werewolves hunger for the scent of live flesh - I have no need for the ring. I have my castle back, if not my soul.");
