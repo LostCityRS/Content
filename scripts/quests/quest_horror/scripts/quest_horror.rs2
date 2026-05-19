@@ -482,12 +482,15 @@ while (npc_findnext = true) {
     }
 }
 
-[queue,quest_horror_complete]
+[queue,quest_horror_end]
 if(inzone(0_39_72_0_0, 0_39_72_63_63, coord) = false) {
     return;
 }
-queue(horror_postquest_dialogue, 0, 0);
 p_teleport(1_39_156_19_17);
+queue(quest_horror_complete, 0, 0);
+queue(horror_postquest_dialogue, 0, 0);
+
+[queue,quest_horror_complete]
 stat_advance(magic, 46620);
 stat_advance(strength, 46620);
 stat_advance(ranged, 46620);

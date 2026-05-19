@@ -221,7 +221,7 @@ if (npc_findhero = ^false) {
 }
 if (%npc_aggressive_player = uid) { // should always be true but just incase
     if(%horrorquest = ^horror_defeated_dagjr) {
-        queue(quest_horror_complete, 0, 0);
+        queue(quest_horror_end, 0, 0);
     }
 }
 
