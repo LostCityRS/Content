@@ -170,7 +170,14 @@ if (p_finduid(uid) = true) {
                 case 59 : queue(eadgar_quest_complete, 0, 0);
                 case 60 : queue(mortton_quest_complete, 0, 0);
                 case 61 : queue(viking_quest_complete, 0, 0);
-                case 62 : queue(quest_horror_complete, 0, 0);
+                case 62 :
+                    stat_advance(magic, 46620);
+                    stat_advance(strength, 46620);
+                    stat_advance(ranged, 46620);
+                    inv_add(inv, horror_casket, 1);
+                    %horrorquest = ^horror_complete;
+                    session_log(^log_adventure, "Quest complete: Horror from the Deep");
+                    ~send_quest_complete(questlist:horror, horror_casket, 225, ^horror_questpoints, "You have survived the\\nHorror From The Deep!");
                 case default : mes("Quest not found.");
             }
         } else if ($choice3 = 1) {
@@ -428,7 +435,13 @@ queue(quest_regicide_complete, 0, 0);
 queue(eadgar_quest_complete, 0, 0);
 queue(mortton_quest_complete, 0, 0);
 queue(viking_quest_complete, 0, 0);
-queue(quest_horror_complete, 0, 0);
+    stat_advance(magic, 46620);
+    stat_advance(strength, 46620);
+    stat_advance(ranged, 46620);
+    inv_add(inv, horror_casket, 1);
+    %horrorquest = ^horror_complete;
+    session_log(^log_adventure, "Quest complete: Horror from the Deep");
+    ~send_quest_complete(questlist:horror, horror_casket, 225, ^horror_questpoints, "You have survived the\\nHorror From The Deep!");
 
 ~update_questlist;
 mes("All quests have been completed.");
