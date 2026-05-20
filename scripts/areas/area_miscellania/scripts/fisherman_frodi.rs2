@@ -6,7 +6,7 @@ if (%misc_quest = ^misc_complete) {
 }
 @multi2(
     "Fisherman Frodi.", frodi_main_talk,
-    "Your approval rating.", approval_rating
+    "Your approval rating.", misc_quest_approval_rating
 );
 [label,frodi_main_talk]
 if (%misc_quest = ^misc_complete) {

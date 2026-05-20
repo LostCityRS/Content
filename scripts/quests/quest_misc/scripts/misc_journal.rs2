@@ -128,7 +128,7 @@ $x = append($x, "@red@QUEST COMPLETE!");
 
 // Standalone Marriage Sub-Quest Logic
 [proc,marriage_sub_quest](string $x)(string)
-if (%misc_quest < 100) {
+if (%misc_quest < ^misc_complete) {
     $x = append($x, "|");
 }
 if (%misc_affection >= 4) {

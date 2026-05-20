@@ -1,3 +1,8 @@
+// For facing npc that has nomove. timer=4 in npc file.
+[ai_timer,misc_king_vargas]
+npc_facesquare(1_39_60_25_19);
+
+
 [opnpc1,misc_king_vargas]
 switch_int (%misc_quest) {
     case 0 :
@@ -6,7 +11,10 @@ switch_int (%misc_quest) {
         @king_vargas_quest_stage_10;
     case 20 :
         @king_vargas_quest_stage_20;
-    case 30, 40, 50, 60 :
+    case 30, 
+            40, 
+            50, 
+            60 :
         @king_vargas_quest_stage_30;
     case 70 :
         @king_vargas_quest_stage_70;

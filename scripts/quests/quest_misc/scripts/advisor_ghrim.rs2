@@ -1,3 +1,7 @@
+// For facing npc that has nomove. timer=25 in npc file.
+[ai_timer,misc_advisor_ghrim]
+npc_facesquare(1_39_60_4_17);
+
 [opnpc1,misc_advisor_ghrim]
 switch_int (%misc_quest) {
     case 0 :
@@ -112,16 +116,35 @@ if (inv_total(inv, misc_awful_anthem) >= 1) {
 @generictalk;
 
 [label,generictalk]
-@multi4(
-    "What am I meant to be doing again?", whatshouldIdo,
-    "How do I make peace with Etceteria?", howtomakepeace,
-    "How am I supposed to get the <text_gender("princess", "prince")> to marry me?", howtogaintrust,
-    "Is there anything else you can tell me?", whatelsecanyoutellme
-);
+if (%misc_affection < 4) {
+    @multi4(
+        "What am I meant to be doing again?", whatshouldIdo,
+        "How do I make peace with Etceteria?", howtomakepeace,
+        "How am I supposed to get the <text_gender("princess", "prince")> to marry me?", howtogaintrust,
+        "Is there anything else you can tell me?", whatelsecanyoutellme
+    );
+} else {
+    @multi3(
+        "What am I meant to be doing again?", whatshouldIdo,
+        "How do I make peace with Etceteria?", howtomakepeace,
+        "Is there anything else you can tell me?", whatelsecanyoutellme
+    );
+}
 
 [label,whatshouldIdo]
 ~chatplayer("<p,confused>What am I meant to be doing again?");
-~chatnpc("<p,shifty>Negotiating peace with Etceteria, <text_gender("Sir", "Madam")>.");
+if (%misc_quest < ^misc_king_signed_treaty) {
+    ~chatnpc("<p,shifty>Negotiating peace with Etceteria, <text_gender("Sir", "Madam")>.");
+} else if (%misc_affection < 4) {
+    ~chatnpc("<p,shifty>Wooing the fair <text_gender("Princess Astrid", "Prince Brand")>, <text_gender("Sir", "Madam")>.");
+} else {
+        ~chatnpc("<p,shifty>Gaining the support of the population, <text_gender("Sir", "Madam")>. Currently, <~misc_approval_percentage>% of the population supports you.");
+    if (%misc_approval < 95) {
+        ~chatnpc("<p,shifty>You will need 75 % of the population in your support in order to become Regent.");
+    } else {
+        ~chatnpc("<p,shifty>This is enough for you to become Regent; I should talk to King Vargas if I were you.");
+    }
+}
 
 [label,howtomakepeace]
 ~chatplayer("<p,confused>How do I make peace with Etceteria?");
@@ -137,6 +160,7 @@ switch_int (%misc_quest) {
     case 90 : ~chatnpc("<p,shifty>You should get the support of the population.");
 }
 
+// This option actually disappears when you are married.
 [label,howtogaintrust]
 ~chatplayer("<p,confused>How am I supposed to get the <text_gender("princess", "prince")> to marry me?");
 if (gender = ^gender_male) {
@@ -150,7 +174,7 @@ if (gender = ^gender_male) {
         case 3 : 
             ~chatnpc("<p,shifty>She has grown very fond of you; you would do well to show you are fond of her too.");
             ~chatnpc("<p,shifty>When the time comes to actually ask for her hand in marriage, do not forget the engagement ring.");
-        case 4 : ~chatnpc("<p,shifty>You are already married to her.");
+        // case 4 : ~chatnpc("<p,shifty>You are already married to her.");
     }
 } else {
     switch_int (%misc_affection) {
@@ -160,7 +184,7 @@ if (gender = ^gender_male) {
         case 3 : 
             ~chatnpc("<p,shifty>He has grown very fond of you; you would do well to show you are fond of him too.");
             ~chatnpc("<p,shifty>When the time comes to actually ask for his hand in marriage, do not forget the engagement ring.");
-        case 4 : ~chatnpc("<p,shifty>You are already married to him.");
+        // case 4 : ~chatnpc("<p,shifty>You are already married to him.");
     }
 }
 
@@ -190,6 +214,8 @@ if (gender = ^gender_male) {
 [label,tellmeaboutsigrid]
 ~chatplayer("<p,confused>What can you tell me about Queen Sigrid?");
 ~chatnpc("<p,shifty>Queen Sigrid is quite envious of King Vargas, since he has the larger kingdom.");
+
+
 
 [label,advisor_ghrim_quest_stage_100]
 ~chatnpc("<p,shifty>Greetings, Your Royal Highness.");

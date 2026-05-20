@@ -1,0 +1,9 @@
+[debugproc,misc_quest_reset]
+if (p_finduid(uid) = true) {
+    %misc_quest = ^misc_not_started;
+    %misc_grantedaudience = 0;
+    %misc_approval = 0;
+    %misc_affection = 0;
+    ~send_quest_progress_colour(questlist:misc, %misc_quest, ^misc_complete);
+    p_telejump(1_39_60_10_14);
+}
