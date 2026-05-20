@@ -82,83 +82,81 @@ if (%misc_points_fish > 0) {
 [if_button,inter_210:com_89]
 
 
-// We will use varp_360 for the last time calculation.
-[proc,calculate_miscellania_goods]
-def_int $current_time_mins = date_minutes;
-def_int $last_time_mins = %varp_360;
-def_int $coffer_total = %misc_coffers;
-def_int $approval_rating = %misc_approval;
-def_int $resource_pts = 0;
+// Most of these comments are direct from the OSRS Managing Miscellania calculation image.
+// "Daily" Update
+[proc,manage_misc_daily_update]
+// We store a time in minutes when it last updated, %misc_last_update, first set when fire visiting Miscellania
+// Fetch varps and varbits
+def_int $currenttime = date_minutes;
+def_int $misc_last_update = %varp_360; // This is a guess. We will use varp_360 as %misc_last_update.
+def_int $CofferTotal = %misc_coffers;
+def_int $Approval = %misc_approval;
+def_int $ResourcePts = %varbit_71; // It literally has max 262143 https://chisel.weirdgloop.org/varbs/display?varbit=71
 
-// --- Safety check: Limit to 30 days ---
-def_int $max_catchup_mins = multiply(30, ^MISCELLANIA_INTERVAL);
-if ($current_time_mins > add($last_time_mins, $max_catchup_mins)) {
-    $last_time_mins = sub($current_time_mins, $max_catchup_mins);
+// We compare it to the current time, but if it has been more than 30 days, we pretend you last updated 30 days ago.
+if (calc($currenttime - $misc_last_update) > calc(^MISCELLANIA_INTERVAL * 30)) {
+    $misc_last_update = calc($currenttime - ^MISCELLANIA_INTERVAL * 30);
 }
 
-// --- Main Calculation Loop
-def_int $i = 1;
-while ($i <= 30) {
-    if (sub($current_time_mins, $last_time_mins) >= ^MISCELLANIA_INTERVAL) {
-        if ($coffer_total > 0) {
-            // reductionAmount = 5 + cofferTotal * tax / 100
-            def_int $reduction_amount = add(5, divide(multiply($coffer_total, ^MISCELLANIA_TAX_RATE), 100));
-            $coffer_total = sub($coffer_total, $reduction_amount);
-            
-            // workerEffectiveness = reductionAmount * 100 / 8333 * effectiveness / 100
-            // We multiply first to keep precision in integer math
-            def_int $worker_effectiveness = divide(multiply(divide(multiply($reduction_amount, 100), 8333), ^MISCELLANIA_EFFECTIVENESS_RATE), 100);
-            
-            // resourcePts += workerEffectiveness/100 * approvalRating * 127/100
-            def_int $added_pts = divide(multiply(multiply(divide($worker_effectiveness, 100), $approval_rating), 127), 100);
-            $resource_pts = add($resource_pts, $added_pts);
-            
-            // Cap at 262143
-            if ($resource_pts > 262143) {
-                $resource_pts = 262143;
-            }
+// Then for every 1440 minutes in currenttime - %misc_last_update
+while (calc($currenttime - $misc_last_update) >= ^MISCELLANIA_INTERVAL) {
+    // Money in coffer?
+    if ($CofferTotal > 0) {
+        // Yes
+
+        // Calc coffer ReductionAmt = 5 + CofferTotal / 10
+        def_int $ReductionAmt = calc(5 + $CofferTotal / 10);
+        $CofferTotal = calc($CofferTotal - $ReductionAmt);
+        
+        // Calc Worker effectiveness = ReductionAmt x 100/8333
+        def_int $WorkerEffectiveness = calc($ReductionAmt * 100 / 8333);
+        
+        // Update resource pts resourcePts += workerEffectiveness/100 * approvalRating * 127/100
+        def_int $added_pts = divide(multiply(multiply(divide($WorkerEffectiveness, 100), $Approval), 127), 100);
+        $ResourcePts = calc($ResourcePts + $WorkerEffectiveness / 100 * $Approval * 127 / 100);
+        
+        // This is capped at 262,143
+        if ($ResourcePts > 262143) {
+            $ResourcePts = 262143;
         }
-        
-        // Reduce Approval: 1% if Royal Trouble complete, 2.5% (represented as 25/1000) otherwise
-        def_int $loss_factor = 25;
-        // if (%royal_trouble = ^royal_trouble_complete) { $loss_factor = 10; } // Only when royal_trouble is added
-        
-        // approvalRating -= (approvalRating * factor / 1000)
-        def_int $approval_loss = divide(multiply($approval_rating, $loss_factor), 1000);
-        $approval_rating = sub($approval_rating, $approval_loss);
-        
-        $last_time_mins = add($last_time_mins, ^MISCELLANIA_INTERVAL);
-        $i = add($i, 1);
-    } else {
-        // Break condition (Runescript lacks break, so we force the counter)
-        $i = 31;
     }
+    
+    // Update Approval rating, decreasing towards 32%, but more slowly with Royal Trouble completed.
+    // Wiki states: 2.5% loss percent with throne of miscellania, 1% with royal trouble.
+    $Approval = calc($Approval * 25 / 1000); // Royal trouble would be 10 / 1000
+    // Repeat until out of 1440 minute chunks - each iteration adding 1440 to %misc_last_update
+    $misc_last_update = calc($misc_last_update + ^MISCELLANIA_INTERVAL);
 }
 
-// --- Save Back State ---
-%misc_coffers = $coffer_total;
-%misc_approval = $approval_rating;
-%varp_360 = $last_time_mins;
+// Save varps and varbits
+%misc_coffers = $CofferTotal;
+%misc_approval = $Approval;
+%varp_360 = $misc_last_update;
+%varbit_71 = $ResourcePts;
 
-// --- Rewards Calculation ---
-// Runescript doesn't have HashMaps. We directly call ~add_to_misc_reward_buffer(item, quantity)
 
-// Wood (InverseCost = 160)
-def_int $wood_qty = divide(multiply(multiply(160, $resource_pts), %misc_points_wood), 2048);
+// Most of these comments are direct from the OSRS Managing Miscellania calculation image.
+// Resource Generation
+[proc,manage_misc_resource_generation]
+// Fetch varps and varbits
+def_int $ResourcePts = %varbit_71;
+
+// Wood[Maple Logs] (InverseCost = 160)
+def_int $wood_qty = calc(160 * $ResourcePts * %misc_points_wood / 2048);
 if ($wood_qty > 0) {
 //     ~add_to_misc_reward_buffer(^maple_logs, $wood_qty);
 //     ~add_misc_chance_reward(^NESTS_TABLE, divide($wood_qty, 100));
 }
 
 // Coal (InverseCost = 98)
-def_int $coal_qty = divide(multiply(multiply(98, $resource_pts), %misc_points_mine), 2048);
+def_int $coal_qty = calc(98 * $ResourcePts * %misc_points_wood / 2048);
 if ($coal_qty > 0) {
 //     ~add_to_misc_reward_buffer(^coal, $coal_qty);
 //     ~add_misc_chance_reward(^GEMS_TABLE, divide(add($coal_qty, 100), 200));
 }
 
 // Fish (InverseCost = 158)
-def_int $fish_qty = divide(multiply(multiply(158, $resource_pts), %misc_points_fish), 2048);
+def_int $fish_qty = divide(multiply(multiply(158, $ResourcePts), %misc_points_fish), 2048);
 if ($fish_qty > 0) {
 // TODO: remember to care about cooked checkbox.
 //     def_obj $tuna = ^raw_tuna;
@@ -173,7 +171,7 @@ if ($fish_qty > 0) {
 }
 
 // Herbs (InverseCost = 11) / Flax later at (InverseCost = 224)
-def_int $herb_qty = divide(multiply(multiply(11, $resource_pts), %misc_points_herb), 2048);
+def_int $herb_qty = divide(multiply(multiply(11, $ResourcePts), %misc_points_herb), 2048);
 if ($herb_qty > 0) {
 //     if (%attribute_option_herbs = 1) {
 //         ~add_to_misc_reward_buffer(^flax, $herb_qty);
@@ -183,3 +181,4 @@ if ($herb_qty > 0) {
 //         ~add_misc_chance_reward(^SEEDS_TABLE, divide($herb_qty, 11));
 //     }
 }
+%varbit_71 = 0;
