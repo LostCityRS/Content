@@ -6,12 +6,12 @@
  * - Throne of Miscellania (With flax) late 2005
  * - Royal Trouble (With Etceteria) 2006
  *
+ * === WARNING VERY SENSITIVE CALCULATIONS WITH COINS AND RESOURCES HERE ===
  */
 [proc,open_manage_miscellania_interface]
 if_openmain(inter_210);
 %if1 = calc(10 - %misc_points_mine - %misc_points_wood - %misc_points_herb - %misc_points_fish);
 %if2 = 0;
-%misc_coffers = 100000;
 if_settext(inter_210:com_87, tostring(%misc_coffers));
 
 // Mining Up
@@ -77,9 +77,26 @@ if (%misc_points_fish > 0) {
 
 // Deposit
 [if_button,inter_210:com_88]
+p_countdialog;
+def_int $deposit_amt = last_int;
+if(inv_total(bank, coins) >= $deposit_amt) {
+    inv_del(bank, coins, $deposit_amt);
+    // whatever amount added, only add the diff to hold 500000
+    ~mesbox("Added <tostring($deposit_amt)> coins to the coffers."); // http://youtu.be/AHygmc-5hwI
+    %misc_coffers = add(%misc_coffers, $deposit_amt);
+}
+~open_manage_miscellania_interface;
 
 // Withdraw
 [if_button,inter_210:com_89]
+p_countdialog;
+def_int $withdraw_amt = last_int;
+if(%misc_coffers >= $withdraw_amt) {
+    %misc_coffers = sub(%misc_coffers, $withdraw_amt);
+    inv_add(bank, coins, $withdraw_amt);
+    ~mesbox("Withdrew <tostring($withdraw_amt)> coins."); // http://youtu.be/AHygmc-5hwI
+}
+~open_manage_miscellania_interface;
 
 
 // Most of these comments are direct from the OSRS Managing Miscellania calculation image.

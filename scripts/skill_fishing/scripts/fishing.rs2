@@ -101,11 +101,7 @@ if ($fish2 ! null) { // if fish2 isnt null and roll for 2nd fish passes
             inv_del(inv, $bait, 1);
         }
         // give fish and display message
-        if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
-            // For Throne of Miscellania, you don't get the fish.
-        } else {
-            inv_add(inv, $fish2, 1);
-        }
+        inv_add(inv, $fish2, 1);
         stat_advance(fishing, struct_param($struct2, productexp));
         mes(struct_param($struct2, productmessage));
         return;
