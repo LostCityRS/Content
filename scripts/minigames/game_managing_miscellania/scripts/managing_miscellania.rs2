@@ -140,45 +140,120 @@ while (calc($currenttime - $misc_last_update) >= ^MISCELLANIA_INTERVAL) {
 [proc,manage_misc_resource_generation]
 // Fetch varps and varbits
 def_int $ResourcePts = %varbit_71;
+def_int $CurrentSlot = 0;
 
 // Wood[Maple Logs] (InverseCost = 160)
 def_int $wood_qty = calc(160 * $ResourcePts * %misc_points_wood / 2048);
 if ($wood_qty > 0) {
-//     ~add_to_misc_reward_buffer(^maple_logs, $wood_qty);
-//     ~add_misc_chance_reward(^NESTS_TABLE, divide($wood_qty, 100));
+    inv_setslot(misc_resources_collected, $CurrentSlot, maple_logs, $wood_qty);
+    $CurrentSlot = add($CurrentSlot, 1);
+    // For 2005, add nest drops. 1 nest per 100.
 }
 
 // Coal (InverseCost = 98)
 def_int $coal_qty = calc(98 * $ResourcePts * %misc_points_wood / 2048);
 if ($coal_qty > 0) {
-//     ~add_to_misc_reward_buffer(^coal, $coal_qty);
-//     ~add_misc_chance_reward(^GEMS_TABLE, divide(add($coal_qty, 100), 200));
+    inv_setslot(misc_resources_collected, $CurrentSlot, coal, $coal_qty);
+    $CurrentSlot = add($CurrentSlot, 1);
+    // For 2005, add gems drops. 1 gem for 100 coal, 1 per 200 thereafter
 }
 
 // Fish (InverseCost = 158)
 def_int $fish_qty = divide(multiply(multiply(158, $ResourcePts), %misc_points_fish), 2048);
 if ($fish_qty > 0) {
-// TODO: remember to care about cooked checkbox.
-//     def_obj $tuna = ^raw_tuna;
-//     def_obj $sword = ^raw_swordfish;
-//     if (%attribute_option_fishing = 1) {
-//         $tuna = ^tuna;
-//         $sword = ^swordfish;
-//     }
-//     ~add_to_misc_reward_buffer($tuna, divide($fish_qty, 2));
-//     ~add_to_misc_reward_buffer($sword, divide(multiply($fish_qty, 15), 100));
-//     ~add_misc_chance_reward(^LOOTS_TABLE, divide(divide($fish_qty, 2), 100));
+    if (%misc_cooked = 1) {
+        inv_setslot(misc_resources_collected, $CurrentSlot, tuna, calc($fish_qty / 2)); // 50% Quantity
+        $CurrentSlot = add($CurrentSlot, 1);
+        inv_setslot(misc_resources_collected, $CurrentSlot, swordfish, calc($fish_qty * 3 / 20)); // 15% Quantity
+        $CurrentSlot = add($CurrentSlot, 1);
+    } else {
+        inv_setslot(misc_resources_collected, $CurrentSlot, raw_tuna, calc($fish_qty / 2)); // 50% Quantity
+        $CurrentSlot = add($CurrentSlot, 1);
+        inv_setslot(misc_resources_collected, $CurrentSlot, raw_swordfish, calc($fish_qty * 3 / 20)); // 15% Quantity
+        $CurrentSlot = add($CurrentSlot, 1);
+    }
+    // For 2005, 1 loot per 100 tuna
 }
 
+// Herb inits
+def_obj $rolled_herb = null;
+def_int $rolled_qty = 0;
+def_int $guam_count = 0;
+def_int $marentill_count = 0;
+def_int $tarromin_count = 0;
+def_int $harralander_count = 0;
+def_int $ranarr_count = 0;
+def_int $irit_count = 0;
+def_int $avantoe_count = 0;
+def_int $kwuarm_count = 0;
+def_int $cadantine_count = 0;
+def_int $lantadyme_count = 0;
+def_int $dwarf_weed_count = 0;
 // Herbs (InverseCost = 11) / Flax later at (InverseCost = 224)
 def_int $herb_qty = divide(multiply(multiply(11, $ResourcePts), %misc_points_herb), 2048);
-if ($herb_qty > 0) {
-//     if (%attribute_option_herbs = 1) {
-//         ~add_to_misc_reward_buffer(^flax, $herb_qty);
-//         ~add_misc_chance_reward(^SEEDS_TABLE, divide($herb_qty, 600));
-//     } else {
-//         ~add_misc_chance_reward(^HERBS_TABLE, $herb_qty);
-//         ~add_misc_chance_reward(^SEEDS_TABLE, divide($herb_qty, 11));
-//     }
+while ($herb_qty > 0) {
+    $rolled_herb, $rolled_qty = ~randomherb();
+    inv_add(misc_resources_collected, ~randomherb);
+    $herb_qty = sub($herb_qty, 1);
+    switch_obj ($rolled_herb) {
+        case unidentified_guam : $guam_count = calc($guam_count + $rolled_qty);
+        case unidentified_marentill : $marentill_count = calc($marentill_count + $rolled_qty);
+        case unidentified_tarromin : $tarromin_count = calc($tarromin_count + $rolled_qty);
+        case unidentified_harralander : $harralander_count = calc($harralander_count + $rolled_qty);
+        case unidentified_ranarr : $ranarr_count = calc($ranarr_count + $rolled_qty);
+        case unidentified_irit : $irit_count = calc($irit_count + $rolled_qty);
+        case unidentified_avantoe : $avantoe_count = calc($avantoe_count + $rolled_qty);
+        case unidentified_kwuarm : $kwuarm_count = calc($kwuarm_count + $rolled_qty);
+        case unidentified_cadantine : $cadantine_count = calc($cadantine_count + $rolled_qty);
+        case unidentified_lantadyme : $lantadyme_count = calc($lantadyme_count + $rolled_qty);
+        case unidentified_dwarf_weed : $dwarf_weed_count = calc($dwarf_weed_count + $rolled_qty);
+    }
+    
+    $herb_qty = sub($herb_qty, 1);
+}
+// I hate this code so much.
+if ($guam_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_guam, $guam_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($marentill_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_marentill, $marentill_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($tarromin_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_tarromin, $tarromin_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($harralander_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_harralander, $harralander_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($ranarr_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_ranarr, $ranarr_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($irit_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_irit, $irit_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($avantoe_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_avantoe, $avantoe_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($kwuarm_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_kwuarm, $kwuarm_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($cadantine_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_cadantine, $cadantine_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($lantadyme_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_lantadyme, $lantadyme_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($dwarf_weed_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_dwarf_weed, $dwarf_weed_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
 }
 %varbit_71 = 0;

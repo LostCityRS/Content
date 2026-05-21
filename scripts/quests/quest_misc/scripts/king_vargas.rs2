@@ -23,7 +23,7 @@ switch_int (%misc_quest) {
     case 90 :
         @king_vargas_quest_stage_90;
     case ^misc_complete :
-        ~chatnpc("<p,happy>Welcome back, Regent <~get_viking_name>!");
+        @king_vargas_quest_stage_100;
 }
 
 [label,king_vargas_quest_stage_0]
@@ -175,3 +175,9 @@ if (%misc_quest = 90) {
     session_log(^log_adventure, "Quest complete: Throne of Miscellania");
     ~send_quest_complete(questlist:misc, misc_giant_pen, 250, ^misc_questpoints, "You have completed the Throne of Miscellania Quest!", "Your subjects will collect|resources for you");
 }
+
+[label,king_vargas_quest_stage_100]
+~chatplayer("<p,neutral>Your Majesty.");
+~chatnpc("<p,confused>How is the kingdom faring?");
+~chatplayer("<p,neutral>Everything is fine, Your Majesty.");
+~chatnpc("<p,neutral>Remember, speak to Ghrim if you require assistance.");

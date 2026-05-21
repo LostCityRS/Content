@@ -2,7 +2,12 @@
 [ai_timer,misc_advisor_ghrim]
 npc_facesquare(1_39_60_4_17);
 
+// Few choices
+// inter_95 which is the deposit box.
 [opnpc1,misc_advisor_ghrim]
+~manage_misc_resource_generation;
+
+// return;
 switch_int (%misc_quest) {
     case 0 :
         @advisor_ghrim_quest_stage_0;
@@ -228,7 +233,6 @@ if (gender = ^gender_male) {
 [label,whattodo]
 ~chatplayer("<p,confused>What am I meant to be doing again?");
 ~chatnpc("<p,shifty>Ruling the kingdom, Your Royal Highness.");
-~chatnpc("<p,shifty>And making sure that the king doesn't cause any more trouble.");
 
 [label,howmanagekingdom]
 ~chatplayer("<p,confused>How do I manage the kingdom?");
@@ -238,32 +242,35 @@ if (gender = ^gender_male) {
 [label,howfaring]
 ~chatplayer("<p,confused>How is the Kingdom faring?");
 ~chatnpc("<p,shifty>Your subjects are content, Your Highness.");
-// ~calc_misc_resources;
-// if (%misc_reward_count >= 2) {
-//     @hasresourcescollected;
-// } else {
-//     @hasnoresourcescollected;
-// }
+if (%varbit_71 > 0) {
+    @hasresourcescollected;
+} else {
+    @hasnoresourcescollected;
+}
 
 [label,hasresourcescollected]
-~chatnpc("<p,shifty>Your approval rating is %misc_approval_percent. Would you like to collect the resources gathered by your subjects?");
+~chatnpc("<p,shifty>Your approval rating is <~misc_approval_percentage>%. Would you like to collect the resources gathered by your subjects?");
 @multi2(
     "Yes", misc_resource_collected_yes,
     "No", misc_resource_collected_no
 );
 
 [label,hasnoresourcescollected]
-~chatnpc("<p,shifty>Your approval rating is %misc_approval_percent. I'm afraid your subjects have not yet collected anything.");
-~chatnpc("<p,shifty>This is how your subjects are distributing their effort.");
-~open_manage_miscellania_interface;
+~chatnpc("<p,shifty>Your approval rating is <~misc_approval_percentage>%. I'm afraid your subjects have not yet collected anything.");
+@misc_open_manage_misc_interface;
 
 [label,misc_resource_collected_yes]
 ~chatplayer("<p,neutral>Yes, please.");
 ~chatnpc("<p,shifty>Here is a list of what your subjects have collected.");
-// ~open_interface(resource_collection);
+~mesbox("24 Maple Logs|13 Tuna|15 Swordfish|10 Herbs|3 Coal"); //2005+ Later when UI exists: ~open_interface(resource_collection);
+~chatnpc("<p,shifty>I shall tell your subjects to deliver your resources to your storage right away, Your Royal Highness.");
+@misc_open_manage_misc_interface;
 
 [label,misc_resource_collected_no]
 ~chatplayer("<p,neutral>No, thank you.");
 ~chatnpc("<p,shifty>Very well, Your Royal Highness.");
+@misc_open_manage_misc_interface;
+
+[label,misc_open_manage_misc_interface]
 ~chatnpc("<p,shifty>This is how your subjects are distributing their effort.");
 ~open_manage_miscellania_interface;

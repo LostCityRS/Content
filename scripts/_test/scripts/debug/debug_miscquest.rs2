@@ -7,3 +7,17 @@ if (p_finduid(uid) = true) {
     ~send_quest_progress_colour(questlist:misc, %misc_quest, ^misc_complete);
     p_telejump(1_39_60_10_14);
 }
+
+[debugproc,misc_30_days]
+if (p_finduid(uid) = true) {
+    def_int $currenttime = date_minutes;
+    %varp_360 = calc($currenttime - ^MISCELLANIA_INTERVAL * 30);
+    mes("reset misc");
+}
+
+[debugproc,misc_view_resources]
+if (p_finduid(uid) = true) {
+    if_openmain(inter_95);
+    if_settext(inter_95:com_60, "Resources Collected");
+    inv_transmit(misc_resources_collected, inter_95:com_62);
+}
