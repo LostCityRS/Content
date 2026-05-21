@@ -85,7 +85,7 @@ if (%misc_points_fish > 0) {
 // Most of these comments are direct from the OSRS Managing Miscellania calculation image.
 // "Daily" Update
 [proc,manage_misc_daily_update]
-// We store a time in minutes when it last updated, %misc_last_update, first set when fire visiting Miscellania
+// We store a time in minutes when it last updated, %misc_last_update, first set when first visiting Miscellania
 // Fetch varps and varbits
 def_int $currenttime = date_minutes;
 def_int $misc_last_update = %varp_360; // This is a guess. We will use varp_360 as %misc_last_update.
@@ -123,7 +123,7 @@ while (calc($currenttime - $misc_last_update) >= ^MISCELLANIA_INTERVAL) {
     
     // Update Approval rating, decreasing towards 32%, but more slowly with Royal Trouble completed.
     // Wiki states: 2.5% loss percent with throne of miscellania, 1% with royal trouble.
-    $Approval = calc($Approval * 25 / 1000); // Royal trouble would be 10 / 1000
+    $Approval = calc($Approval * 975 / 1000); // Royal trouble would be 990 / 1000
     // Repeat until out of 1440 minute chunks - each iteration adding 1440 to %misc_last_update
     $misc_last_update = calc($misc_last_update + ^MISCELLANIA_INTERVAL);
 }
@@ -137,7 +137,7 @@ while (calc($currenttime - $misc_last_update) >= ^MISCELLANIA_INTERVAL) {
 
 // Most of these comments are direct from the OSRS Managing Miscellania calculation image.
 // Resource Generation
-[proc,manage_misc_resource_generation]
+[proc,manage_misc_resource_generation]()(string)
 // Fetch varps and varbits
 def_int $ResourcePts = %varbit_71;
 def_int $CurrentSlot = 0;
@@ -151,7 +151,7 @@ if ($wood_qty > 0) {
 }
 
 // Coal (InverseCost = 98)
-def_int $coal_qty = calc(98 * $ResourcePts * %misc_points_wood / 2048);
+def_int $coal_qty = calc(98 * $ResourcePts * %misc_points_mine / 2048);
 if ($coal_qty > 0) {
     inv_setslot(misc_resources_collected, $CurrentSlot, coal, $coal_qty);
     $CurrentSlot = add($CurrentSlot, 1);
@@ -159,7 +159,7 @@ if ($coal_qty > 0) {
 }
 
 // Fish (InverseCost = 158)
-def_int $fish_qty = divide(multiply(multiply(158, $ResourcePts), %misc_points_fish), 2048);
+def_int $fish_qty =  calc(158 * $ResourcePts * %misc_points_fish / 2048);
 if ($fish_qty > 0) {
     if (%misc_cooked = 1) {
         inv_setslot(misc_resources_collected, $CurrentSlot, tuna, calc($fish_qty / 2)); // 50% Quantity
@@ -190,11 +190,10 @@ def_int $cadantine_count = 0;
 def_int $lantadyme_count = 0;
 def_int $dwarf_weed_count = 0;
 // Herbs (InverseCost = 11) / Flax later at (InverseCost = 224)
-def_int $herb_qty = divide(multiply(multiply(11, $ResourcePts), %misc_points_herb), 2048);
-while ($herb_qty > 0) {
+def_int $herb_qty =  calc(11 * $ResourcePts * %misc_points_herb / 2048);
+def_int $herb_count = $herb_qty;
+while ($herb_count > 0) {
     $rolled_herb, $rolled_qty = ~randomherb();
-    inv_add(misc_resources_collected, ~randomherb);
-    $herb_qty = sub($herb_qty, 1);
     switch_obj ($rolled_herb) {
         case unidentified_guam : $guam_count = calc($guam_count + $rolled_qty);
         case unidentified_marentill : $marentill_count = calc($marentill_count + $rolled_qty);
@@ -208,8 +207,7 @@ while ($herb_qty > 0) {
         case unidentified_lantadyme : $lantadyme_count = calc($lantadyme_count + $rolled_qty);
         case unidentified_dwarf_weed : $dwarf_weed_count = calc($dwarf_weed_count + $rolled_qty);
     }
-    
-    $herb_qty = sub($herb_qty, 1);
+    $herb_count = sub($herb_count, 1);
 }
 // I hate this code so much.
 if ($guam_count > 0) {
@@ -257,3 +255,35 @@ if ($dwarf_weed_count > 0) {
     $CurrentSlot = calc($CurrentSlot + 1);
 }
 %varbit_71 = 0;
+
+
+// This later will be not needed when the UI for showing resources exists.
+def_string $resourceStr = "";
+if ($wood_qty > 0) {
+    $resourceStr = "<$resourceStr> <tostring($wood_qty)> Maple Logs|";
+}
+if ($coal_qty > 0) {
+    $resourceStr = "<$resourceStr> <tostring($coal_qty)> Coal|";
+}
+if (calc($fish_qty / 2) > 0) {
+    if (%misc_cooked = 1) {
+        $resourceStr = "<$resourceStr> <tostring(calc($fish_qty / 2))> Tuna|";
+    } else {
+        $resourceStr = "<$resourceStr> <tostring(calc($fish_qty / 2))> Raw Tuna|";
+    }
+}
+if (calc($fish_qty * 3 / 20) > 0) {
+    if (%misc_cooked = 1) {
+        $resourceStr = "<$resourceStr> <tostring(calc($fish_qty * 3 / 20))> Swordfish|";
+    } else {
+        $resourceStr = "<$resourceStr> <tostring(calc($fish_qty * 3 / 20))> Raw Swordfish|";
+    }
+}
+if ($herb_qty > 0) {
+    $resourceStr = "<$resourceStr> <tostring($herb_qty)> Herbs|";
+}
+// To offset the empty string
+if (string_length($resourceStr) = 0) {
+    $resourceStr = "No Resources|";
+}
+return (substring($resourceStr, 0, calc(string_length($resourceStr) - 1)));

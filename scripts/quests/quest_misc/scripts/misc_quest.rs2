@@ -1,3 +1,13 @@
+// Anytime you enter the mapzone, the manage misc calculations will start.
+[mapzone,0_39_60]
+mes("Welcome to Misc Level 0");
+// We store a time in minutes when it last updated, %misc_last_update, first set when first visiting Miscellania
+// def_int $misc_last_update = %varp_360;
+if (%varp_360 = 0) {
+    %varp_360 = date_minutes;
+    %misc_approval = 31; // Start at 25%
+}
+~manage_misc_daily_update
 
 [opheldu,misc_giant_nib]
 switch_obj (last_useitem) 

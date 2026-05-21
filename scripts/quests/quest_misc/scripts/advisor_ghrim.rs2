@@ -2,12 +2,9 @@
 [ai_timer,misc_advisor_ghrim]
 npc_facesquare(1_39_60_4_17);
 
-// Few choices
-// inter_95 which is the deposit box.
-[opnpc1,misc_advisor_ghrim]
-~manage_misc_resource_generation;
+// IMPORTANT/IMPORTANT/IMPORTANT : manage_misc_resource_generation CALCS RESOURCES 
 
-// return;
+[opnpc1,misc_advisor_ghrim]
 switch_int (%misc_quest) {
     case 0 :
         @advisor_ghrim_quest_stage_0;
@@ -261,8 +258,13 @@ if (%varbit_71 > 0) {
 
 [label,misc_resource_collected_yes]
 ~chatplayer("<p,neutral>Yes, please.");
+// Calculate if there is enough space in the bank for this shit.
 ~chatnpc("<p,shifty>Here is a list of what your subjects have collected.");
-~mesbox("24 Maple Logs|13 Tuna|15 Swordfish|10 Herbs|3 Coal"); //2005+ Later when UI exists: ~open_interface(resource_collection);
+def_string $resource_str = ~manage_misc_resource_generation; // IMPT: THIS LINE DOES THE CALCULATION 
+// Dump all the shit in the bank
+~bank_deposit_all_misc_resources;
+~mesbox($resource_str);
+//2005+ Later when UI exists, instead of the above: ~open_interface(resource_collection);
 ~chatnpc("<p,shifty>I shall tell your subjects to deliver your resources to your storage right away, Your Royal Highness.");
 @misc_open_manage_misc_interface;
 
@@ -274,3 +276,17 @@ if (%varbit_71 > 0) {
 [label,misc_open_manage_misc_interface]
 ~chatnpc("<p,shifty>This is how your subjects are distributing their effort.");
 ~open_manage_miscellania_interface;
+
+
+[proc,bank_deposit_all_misc_resources]
+def_int $slot = 0;
+while ($slot < 10) {
+    def_obj $item = inv_getobj(misc_resources_collected, $slot);
+    if ($item = null) {
+    } else {
+        def_int $number = inv_total(misc_resources_collected, $item);
+        ~bank_deposit_request(misc_resources_collected, $item, $number, $slot);
+    }
+    $slot = add($slot, 1);
+}
+inv_clear(misc_resources_collected);
