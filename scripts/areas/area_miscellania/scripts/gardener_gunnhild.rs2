@@ -25,30 +25,38 @@ if (%misc_quest = ^misc_complete) {
     ~chatnpcnoturn("<~man_misc_mesanim>Thanks.");
 }
 
+// Below here, gunnhild sells rakes and iron sickles.
+// Before the patch turned into a weeding patch, it is a bunch of herbs around that you can weed with an IRON SICKLE.
+// After the patch turned into a weeding patch, it is a square of unwalkable weeds that you can weed only with a RAKE.
+// The conversation is modified so that you can only get an iron sickle before the rake exists in June 2005.
+
 [label,gunnhild_buy_stuff]
 ~chatplayer("<p,neutral>What do you have for sale?");
-~chatnpcnoturn("<p,neutral>At the moment I'm selling garden rakes and iron sickles. They're 15gp each, if you'd like one?");
-@multi4(
-    "I'd like a rake, please.", gunnhild_buy_rake,
+// ~chatnpcnoturn("<p,neutral>At the moment I'm selling garden rakes and iron sickles. They're 15gp each, if you'd like one?");
+~chatnpcnoturn("<p,neutral>At the moment I'm selling iron sickles. They're 15gp each, if you'd like one?");
+@multi3(
+    // "I'd like a rake, please.", gunnhild_buy_rake,
     "I'd like an iron sickle, please.", gunnhild_buy_sickle,
     "No, thank you.", gunnhild_no_thanks,
     "What are iron sickles for?", gunnhild_sickle_info
 );
 
-[label,gunnhild_buy_rake]
-~chatplayer("<p,neutral>I'd like a rake, please.");
-if (inv_total(inv, coins) >= 15) {
-    inv_del(inv, coins, 15);
-    inv_add(inv, rake, 1);
-    ~chatnpcnoturn("<p,neutral>Thank you! Here you go.");
-}
+// [label,gunnhild_buy_rake]
+// ~chatplayer("<p,neutral>I'd like a rake, please.");
+// if (inv_total(inv, coins) >= 15) {
+//     inv_del(inv, coins, 15);
+//     inv_add(inv, rake, 1);
+//     ~chatnpcnoturn("<p,neutral>Thank you! Here you go.");
+// }
 
 [label,gunnhild_buy_sickle]
-~chatplayer("<p,neutral>I'd like an iron sickle, please.");
 if (inv_total(inv, coins) >= 15) {
+    ~chatplayer("<p,neutral>I'd like an iron sickle, please.");
     inv_del(inv, coins, 15);
     inv_add(inv, iron_sickle, 1);
     ~chatnpcnoturn("<p,neutral>Thank you! Here you go.");
+} else {
+    ~chatplayer("<p,neutral>I don't have enough money.");
 }
 
 [label,gunnhild_no_thanks]
@@ -56,4 +64,6 @@ if (inv_total(inv, coins) >= 15) {
 
 [label,gunnhild_sickle_info]
 ~chatplayer("<~man_misc_mesanim>What are iron sickles for?");
-~chatnpcnoturn("<~man_misc_mesanim>I can't think of anything just now. But you can buy one if you like!");
+// This is authentic, but before it became a farming patch, this is actually used to cut weeds. // https://runescape.wiki/w/Iron_sickle
+// ~chatnpcnoturn("<~man_misc_mesanim>I can't think of anything just now. But you can buy one if you like!");
+~chatnpcnoturn("<~man_misc_mesanim>You can use it to cut weeds from the herbs around here."); // Not authentic, guessed.

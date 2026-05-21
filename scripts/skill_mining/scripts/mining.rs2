@@ -137,6 +137,14 @@ if (random($chance) = ^true) {
     if(inzone(^crest_perfect_mine_lower_bound, ^crest_perfect_mine_upper_bound, coord) = true) {
         $output = perfect_gold_ore;
     }
+    if(inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
+        // For Throne of Miscellania, you don't get the ore.
+        %misc_approval = add(%misc_approval, 1);
+        if (npc_find(0_39_60_30_53, misc_miner, 2, 0) = true) { npc_say("Thanks!"); }
+        stat_advance(mining, db_getfield($data, mining_table:rock_exp, 0));
+        mes("You manage to mine some <db_getfield($data, mining_table:ore_name, 0)> and give them to Miner Magnus.");
+        return;
+    }
     inv_add(inv, $output, 1);
     stat_advance(mining, db_getfield($data, mining_table:rock_exp, 0));
     mes("You manage to mine some <db_getfield($data, mining_table:ore_name, 0)>.");
