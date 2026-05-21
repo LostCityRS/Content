@@ -1,17 +1,18 @@
 // Anytime you enter the mapzone, the manage misc calculations will start.
 [mapzone,0_39_60]
-mes("Welcome to Misc Level 0");
+mes("TEMP: Welcome to Miscellania Check");
 // We store a time in minutes when it last updated, %misc_last_update, first set when first visiting Miscellania
 // def_int $misc_last_update = %varp_360;
 if (%varp_360 = 0) {
     %varp_360 = date_minutes;
-    %misc_approval = 31; // Start at 25%
+    %misc_approval = ^MISC_APPROVAL_25_PERCENT; // Start at 25%
 }
-~manage_misc_daily_update
+mes("TEMP: Before daily update misc_last_update=<tostring(%varp_360)> misc_approval=<tostring(%misc_approval)>");
+~manage_misc_daily_update;
+mes("TEMP: After daily update misc_last_update=<tostring(%varp_360)> misc_approval=<tostring(%misc_approval)>");
 
 [opheldu,misc_giant_nib]
-switch_obj (last_useitem) 
-{
+switch_obj (last_useitem) {
     case logs, oak_logs, willow_logs, maple_logs, yew_logs, magic_logs : 
         mes("You place the nib on the end of the log to make a crude pen.");
         inv_del(inv, misc_giant_nib, 1);

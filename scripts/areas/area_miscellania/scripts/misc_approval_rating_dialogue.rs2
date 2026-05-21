@@ -4,21 +4,21 @@ return (tostring(divide(multiply(%misc_approval, 100), 127)));
 [label,misc_quest_approval_rating]
 ~chatplayer("<p,neutral>What do people think of me around here?");
 if (%misc_quest = ^misc_complete) {
-    if (%misc_approval >= 95) {
+    if (%misc_approval >= ^MISC_APPROVAL_75_PERCENT) {
         ~chatnpc("<p,happy>You are universally adored, Your Royal Highness. At the last poll, <~misc_approval_percentage>% of the population supported you.");
-    } else if (%misc_approval >= 63) {
+    } else if (%misc_approval >= ^MISC_APPROVAL_50_PERCENT) {
         ~chatnpc("<p,happy>You are well regarded, Your Royal Highness. At the last poll, <~misc_approval_percentage>% of the population supported you.");
-    } else if (%misc_approval >= 31) {
+    } else if (%misc_approval >= ^MISC_APPROVAL_25_PERCENT) {
         ~chatnpc("<p,shifty>Your people are growing dissatisfied with the regime, Your Royal Highness. At the last poll, <~misc_approval_percentage>% of the population supported you.");
     } else {
         ~chatnpc("<p,angry>Your people grow restless, Your Royal Highness. At the last poll, <~misc_approval_percentage>% of the population supported you.");
     }
 } else {
-    if (%misc_approval >= 95) {
+    if (%misc_approval >= ^MISC_APPROVAL_75_PERCENT) {
         ~chatnpc("<p,happy>You seem remarkably popular for a newcomer to these lands. At the last poll, <~misc_approval_percentage>% of the population liked you.");
-    } else if (%misc_approval >= 63) {
+    } else if (%misc_approval >= ^MISC_APPROVAL_50_PERCENT) {
         ~chatnpc("<p,happy>You haven't been here for very long, but people are reasonably fond of you. At the last poll, <~misc_approval_percentage>% of the population liked you.");
-    } else if (%misc_approval >= 31) {
+    } else if (%misc_approval >= ^MISC_APPROVAL_25_PERCENT) {
         ~chatnpc("<p,shifty>You haven't really won the heart of the locals, if you see what I mean. At the last poll, only <~misc_approval_percentage>% of the population liked you.");
     } else {
         ~chatnpc("<p,angry>You've not been making many friends since you arrived here. At the last poll, only <~misc_approval_percentage>% of the population liked you.");
@@ -26,11 +26,11 @@ if (%misc_quest = ^misc_complete) {
 }
 
 [proc,man_misc_mesanim]()(string)
-if (%misc_approval >= 95) {
+if (%misc_approval >= ^MISC_APPROVAL_75_PERCENT) {
     return ("<p,happy>");
-} else if (%misc_approval >= 63) {
+} else if (%misc_approval >= ^MISC_APPROVAL_50_PERCENT) {
     return ("<p,happy>");
-} else if (%misc_approval >= 31) {
+} else if (%misc_approval >= ^MISC_APPROVAL_25_PERCENT) {
     return ("<p,shifty>");
 } else {
     return ("<p,angry>");

@@ -149,7 +149,7 @@ if (%misc_affection >= 4) {
 @king_vargas_ispopulationhappy;
 
 [label,king_vargas_ispopulationhappy]
-if (%misc_approval >= 95) {
+if (%misc_approval >= ^MISC_APPROVAL_75_PERCENT) {
     ~chatnpc("<p,neutral>Ghrim tells me that the population would be glad to have you as a ruler.");
 } else {
     ~chatnpc("<p,neutral>Ghrim tells me that the population is not yet very supportive... You should try to gain their support.");
@@ -157,7 +157,7 @@ if (%misc_approval >= 95) {
 @king_vargas_finalcheck;
 
 [label,king_vargas_finalcheck]
-if (%misc_affection >= 4 & %misc_approval >= 95) {
+if (%misc_affection >= 4 & %misc_approval >= ^MISC_APPROVAL_75_PERCENT) {
     @king_vargas_quest_satisfied;
 }
 // Ends conversation here if not satisfied

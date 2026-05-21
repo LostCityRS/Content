@@ -110,8 +110,8 @@ if (%misc_quest = 80) {
 // Stage 90
 $x = append($x, "@str@I gave the King the giant pen, and he signed the treaty.|");
 if (%misc_quest = 90) {
-    // Authentic: Logic shows this line only if approval is below ~75% (95/127)
-    if (%misc_approval < 95) {
+    // Authentic: Logic shows this line only if approval is below ~75% (96/127)
+    if (%misc_approval < ^MISC_APPROVAL_75_PERCENT) {
         $x = append($x, "|@dbl@I need to get the @dre@support@dbl@ of the population.|");
     } else {
     // The line authentically disappears, leaving the quest log with nothing to guide the player.
