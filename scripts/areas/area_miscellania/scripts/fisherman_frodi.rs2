@@ -1,8 +1,8 @@
 [opnpc1,misc_fisherman]
 if (%misc_quest = ^misc_complete) {
-    ~chatnpc("<~man_misc_mesanim>Good day, Your Royal Highness.");
+    ~chatnpcnoturn("<~man_misc_mesanim>Good day, Your Royal Highness.");
 } else {
-    ~chatnpc("<~man_misc_mesanim>Hello.");
+    ~chatnpcnoturn("<~man_misc_mesanim>Hello.");
 }
 @multi2(
     "Fisherman Frodi.", frodi_main_talk,
@@ -10,10 +10,10 @@ if (%misc_quest = ^misc_complete) {
 );
 [label,frodi_main_talk]
 if (%misc_quest = ^misc_complete) {
-    ~chatnpc("<~man_misc_mesanim>You know very well what I'm doing, Your Royal Highness.");
+    ~chatnpcnoturn("<~man_misc_mesanim>You know very well what I'm doing, Your Royal Highness.");
     ~chatplayer("<p,neutral>Just teasing!");
 } else {
-    ~chatnpc("<~man_misc_mesanim>I'm painting my toenails... what's it look like I'm doing? Silly outsider...");
+    ~chatnpcnoturn("<~man_misc_mesanim>I'm painting my toenails... what's it look like I'm doing? Silly outsider...");
     ~chatplayer("<p,neutral>Erm, good luck with that.");
-    ~chatnpc("<~man_misc_mesanim>Thanks.");
+    ~chatnpcnoturn("<~man_misc_mesanim>Thanks.");
 }

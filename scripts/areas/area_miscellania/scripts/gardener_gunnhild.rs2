@@ -1,8 +1,8 @@
 [opnpc1,misc_gardener]
 if (%misc_quest = ^misc_complete) {
-    ~chatnpc("<~man_misc_mesanim>Good day, Your Royal Highness.");
+    ~chatnpcnoturn("<~man_misc_mesanim>Good day, Your Royal Highness.");
 } else {
-    ~chatnpc("<~man_misc_mesanim>Hello.");
+    ~chatnpcnoturn("<~man_misc_mesanim>Hello.");
 }
 @multi2(
     "Gardener Gunnhild.", gunnhild_main_talk,
@@ -11,7 +11,7 @@ if (%misc_quest = ^misc_complete) {
 
 [label,gunnhild_main_talk]
 ~chatplayer("<p,neutral>Good day. What are you doing?");
-~chatnpc("<~man_misc_mesanim>I'm weeding this herb garden. It's hard work! I also sell a few gardening supplies.");
+~chatnpcnoturn("<~man_misc_mesanim>I'm weeding this herb garden. It's hard work! I also sell a few gardening supplies.");
 @multi2(
     "Good luck with that.", gunnhild_good_luck,
     "What do you have for sale?", gunnhild_buy_stuff
@@ -20,14 +20,14 @@ if (%misc_quest = ^misc_complete) {
 [label,gunnhild_good_luck]
 ~chatplayer("<p,neutral>Good luck with that.");
 if (%misc_quest = ^misc_complete) {
-    ~chatnpc("<~man_misc_mesanim>Thank you, Your Royal Highness.");
+    ~chatnpcnoturn("<~man_misc_mesanim>Thank you, Your Royal Highness.");
 } else {
-    ~chatnpc("<~man_misc_mesanim>Thanks.");
+    ~chatnpcnoturn("<~man_misc_mesanim>Thanks.");
 }
 
 [label,gunnhild_buy_stuff]
 ~chatplayer("<p,neutral>What do you have for sale?");
-~chatnpc("<p,neutral>At the moment I'm selling garden rakes and iron sickles. They're 15gp each, if you'd like one?");
+~chatnpcnoturn("<p,neutral>At the moment I'm selling garden rakes and iron sickles. They're 15gp each, if you'd like one?");
 @multi4(
     "I'd like a rake, please.", gunnhild_buy_rake,
     "I'd like an iron sickle, please.", gunnhild_buy_sickle,
@@ -40,7 +40,7 @@ if (%misc_quest = ^misc_complete) {
 if (inv_total(inv, coins) >= 15) {
     inv_del(inv, coins, 15);
     inv_add(inv, rake, 1);
-    ~chatnpc("<p,neutral>Thank you! Here you go.");
+    ~chatnpcnoturn("<p,neutral>Thank you! Here you go.");
 }
 
 [label,gunnhild_buy_sickle]
@@ -48,7 +48,7 @@ if (inv_total(inv, coins) >= 15) {
 if (inv_total(inv, coins) >= 15) {
     inv_del(inv, coins, 15);
     inv_add(inv, iron_sickle, 1);
-    ~chatnpc("<p,neutral>Thank you! Here you go.");
+    ~chatnpcnoturn("<p,neutral>Thank you! Here you go.");
 }
 
 [label,gunnhild_no_thanks]
@@ -56,4 +56,4 @@ if (inv_total(inv, coins) >= 15) {
 
 [label,gunnhild_sickle_info]
 ~chatplayer("<~man_misc_mesanim>What are iron sickles for?");
-~chatnpc("<~man_misc_mesanim>I can't think of anything just now. But you can buy one if you like!");
+~chatnpcnoturn("<~man_misc_mesanim>I can't think of anything just now. But you can buy one if you like!");
