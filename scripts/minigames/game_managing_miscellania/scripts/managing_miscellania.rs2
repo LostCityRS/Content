@@ -78,12 +78,39 @@ if (%misc_points_fish > 0) {
 // Deposit
 [if_button,inter_210:com_88]
 p_countdialog;
-def_int $deposit_amt = last_int;
-if(inv_total(bank, coins) >= $deposit_amt) {
-    inv_del(bank, coins, $deposit_amt);
-    // whatever amount added, only add the diff to hold 500000
-    ~mesbox("Added <tostring($deposit_amt)> coins to the coffers."); // http://youtu.be/AHygmc-5hwI
-    %misc_coffers = add(%misc_coffers, $deposit_amt);
+def_int $requested_deposit = last_int;
+
+def_int $coffer_space = sub(500000, %misc_coffers);
+def_int $deposit_amt = $requested_deposit;
+if ($deposit_amt > $coffer_space) {
+    $deposit_amt = $coffer_space;
+}
+if ($deposit_amt > 0) {
+    def_int $inv_coins = inv_total(inv, coins);
+    def_int $bank_coins = inv_total(bank, coins);
+    def_int $total_available = add($inv_coins, $bank_coins);
+
+    if ($total_available >= $deposit_amt) {
+        def_int $taken_from_inv = 0;
+        def_int $taken_from_bank = 0;
+        if ($inv_coins >= $deposit_amt) {
+            $taken_from_inv = $deposit_amt;
+        } else {
+            $taken_from_inv = $inv_coins;
+        }
+        
+        if ($taken_from_inv > 0) {
+            inv_del(inv, coins, $taken_from_inv);
+        }
+        $taken_from_bank = sub($deposit_amt, $taken_from_inv);
+        if ($taken_from_bank > 0) {
+            inv_del(bank, coins, $taken_from_bank);
+        }
+        %misc_coffers = add(%misc_coffers, $deposit_amt);
+        ~mesbox("Added <tostring($deposit_amt)> coins to the coffers."); // http://youtu.be/AHygmc-5hwI
+    } else {
+        ~mesbox("Not enough coins.");
+    }
 }
 ~open_manage_miscellania_interface;
 
@@ -92,6 +119,9 @@ if(inv_total(bank, coins) >= $deposit_amt) {
 p_countdialog;
 def_int $withdraw_amt = last_int;
 if(%misc_coffers >= $withdraw_amt) {
+    if ($withdraw_amt > %misc_coffers) {
+        $withdraw_amt = %misc_coffers;
+    }
     %misc_coffers = sub(%misc_coffers, $withdraw_amt);
     inv_add(bank, coins, $withdraw_amt);
     ~mesbox("Withdrew <tostring($withdraw_amt)> coins."); // http://youtu.be/AHygmc-5hwI
