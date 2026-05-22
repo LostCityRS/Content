@@ -1,0 +1,86 @@
+// quest_routequest
+// Sources:
+// RS3 Wiki
+// OSRS Wiki
+// OSRS with rsprox
+// Some unrecorded RS3 walkthroughs
+// RS3 walkthrough https://www.youtube.com/watch?v=dYlo5fpLg-A
+// Mid-2007 - https://www.youtube.com/watch?v=9FWqA3_PG0c
+// Jan 2009 - https://www.youtube.com/watch?v=pNz0_8VjqPc
+// Oct 2011 - https://www.youtube.com/watch?v=hX65UDk-Vy8
+// Aug 2011 - https://www.youtube.com/watch?v=15R6DbtnwAc
+// RuneHQ 2005/03 - https://web.archive.org/web/20050318044237/http://runehq.com:80/cacheguides/viewquestguide00441.htm
+// Global-RS 2008/03 - https://web.archive.org/web/20080329021725/http://www.global-rs.com/quests/insearchofthemyreque/ 
+// OSRS 2016 - https://www.youtube.com/watch?v=5nmYFHdAXAQ
+// OSRS 2016[2] - https://www.youtube.com/watch?v=Xfej2XE12As
+// OSRS 2016[3] - https://www.youtube.com/watch?v=sB-GSLW5crI
+[proc,routequest_has_weapons]()(boolean)
+if(inv_total(inv, steel_longsword) < 1 | inv_total(inv, steel_sword) < 2 | inv_total(inv, steel_dagger) < 1
+    | inv_total(inv, steel_mace) < 1 | inv_total(inv, steel_warhammer) < 1) {
+    return (false);
+}
+return (true);
+
+[debugproc,setroute](int $var)
+if (p_finduid(uid) = true)
+%routequest = $var;
+mes("Set routequest to: <tostring($var)>.");
+~send_quest_progress(questlist:routequest, %routequest, ^routequest_complete);
+
+[debugproc,fliproutebit](int $var)
+if (p_finduid(uid) = true)
+%routequest_myreque_bits = togglebit(%routequest_myreque_bits, $var);
+def_int $bitval = testbit(%routequest_myreque_bits, $var);
+mes("Set bit <tostring($var)> to <tostring($bitval)>.");
+
+[debugproc,resetrungs]
+if (p_finduid(uid) = true) {
+    %bridgerung1 = 0;
+    %bridgerung2 = 0;
+    %bridgerung3 = 0;
+}
+
+[debugproc,testroom](int $var)
+if (p_finduid(uid) = true) {
+    if(npc_find(3_54_153_43_57, route_veliaf_hurtz, 30, 0) = true) {
+        @route_attempt_enter_cutscene($var);
+    }
+}
+
+[debugproc,cutcam]
+if (p_finduid(uid) = true) {
+    def_coord $roomcoords = 3_54_153_50_45;
+    cam_moveto(movecoord($roomcoords, 0, 0, 6), 500, 232, 100);
+    cam_lookat(movecoord($roomcoords, -1, 0, -5), 100, 232, 100);
+    p_delay(4);
+    cam_moveto(movecoord($roomcoords, 0, 0, 6), 500, 2, 2);
+    cam_lookat(movecoord($roomcoords, 0, 0, 0), 125, 2, 2);
+    p_delay(4);
+    cam_reset;
+}
+
+[debugproc,camtest](int $x, int $y, int $h)
+if (p_finduid(uid) = true) {
+    def_coord $roomcoords = 3_54_153_50_45;
+    mes("camtest <tostring($x)>;0;<tostring($y)> - <tostring($h)>");
+    cam_moveto(movecoord($roomcoords, $x, 0, $y), $h, 232, 100);
+}
+[debugproc,camlook](int $x, int $y, int $h)
+if (p_finduid(uid) = true) {
+    def_coord $roomcoords = 3_54_153_50_45;
+    mes("camlook <tostring($x)>;0;<tostring($y)> - <tostring($h)>");
+    cam_lookat(movecoord($roomcoords, $x, 0, $y), $h, 232, 100);
+}
+[debugproc,camreset]
+if (p_finduid(uid) = true) {
+    cam_reset;
+}
+[queue,routequest_complete]
+%routequest = ^routequest_complete;
+stat_advance(attack, 6000);
+stat_advance(defence, 6000);
+stat_advance(strength, 6000);
+stat_advance(hitpoints, 6000);
+stat_advance(crafting, 6000);
+session_log(^log_adventure, "Quest complete: In Search of the Myreque");
+~send_quest_complete(questlist:routequest, steel_sword, 200, ^routequest_questpoints, "'In Search of the Myreque' completed!", "Quick Route to Mort'ton|600 XP each in of: Attack, Defence, Strength, Hitpoints, Crafting");

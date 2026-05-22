@@ -1,5 +1,4 @@
 [oplocu,golem_statuetted]
-// todo: check anim/synth
 if(%golem_a ! ^golem_finished_b | last_useitem ! golem_statuette) {
     ~displaymessage(^dm_default);
     return;

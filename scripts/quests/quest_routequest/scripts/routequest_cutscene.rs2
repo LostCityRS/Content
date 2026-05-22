@@ -1,0 +1,202 @@
+[label,route_attempt_enter_cutscene](int $override)
+%roomnum = 0;
+// there are 6 rooms, but 2 of them are trashed or have weird landscape
+// likely same system as The Giant Dwarf - https://www.reddit.com/r/2007scape/comments/12eq29y/fun_fact_nobody_knows_what_happens_if_more_than/
+if (map_playercount(2_54_153_43_57, 2_54_153_62_34) > 0) {
+    if (map_playercount(1_54_153_5_27, 1_54_153_24_4) > 0) {
+        if (map_playercount(1_54_153_43_57, 1_54_153_62_34) > 0) {
+            if (map_playercount(2_54_153_5_57, 2_54_153_24_34) > 0) {
+                // all 4 cutscene rooms are full!!
+                // guessed - this code path has likely never hit when it was live in either games.
+                ~chatnpc("<p,neutral>I'm sorry but I'm still a bit busy at the moment.");
+                return;
+            } else  {
+                %roomnum = 4;
+            }
+        } else {
+            %roomnum = 3;
+        }
+    } else {
+        %roomnum = 2;
+    }
+} else {
+    %roomnum = 1;
+}
+
+if($override ! 0) {
+    %roomnum = $override;
+}
+
+// roomnum 2 - coordx -38
+// roomnum 3 - coordx -38 coordz -30
+
+if(%roomnum = 0 | %roomnum > 4) {
+    mes("Invalid cutscene room.");
+    return;
+}
+mes("got rooomnum <tostring(%roomnum)>");
+def_coord $roomcoords = ~route_cutscene_get_teleport;
+p_telejump($roomcoords);
+~route_cleanup_cutscene_room($roomcoords);
+
+%cutscene_status = 1;
+minimap_toggle(2);
+
+// spawn npcs
+
+def_coord $veliaf_coord = movecoord($roomcoords, 0, 0, 1);
+def_coord $sani_coord = movecoord($roomcoords, 2, 0, 0);
+def_coord $harold_coord = movecoord($roomcoords, -2, 0, 0);
+def_coord $vanstrom_coord = movecoord($roomcoords, 0, 0, -1);
+
+// no clue what the duration could be.
+npc_add($veliaf_coord, route_veliaf_hurtz, 1000);
+npc_add($sani_coord, route_sani_piliu, 1000);
+def_npc_uid $sani_uid = npc_uid;
+
+npc_add($harold_coord, route_harold_evans, 1000);
+npc_add(movecoord($roomcoords, 5, 0, 5), route_ivan_strom, 1000);
+npc_add(movecoord($roomcoords, 6, 0, 1), route_polmafi_ferdygris, 1000);
+npc_add(movecoord($roomcoords, 5, 0, -3), route_radigad_ponfit, 1000);
+
+npc_find($roomcoords, route_veliaf_hurtz, 2, 0);
+~chatnpc("<p,shock>Hey, what's that mist coming in through the door!|! TEAM WE HAVE A VAMPIRE IN THE ROOM !");
+mes("You see a shifting mist enter the room!");
+npc_add(movecoord($roomcoords, -2, 0, -5), route_vanstrom_vampire_misty, 1000);
+p_stopaction;
+
+cam_moveto(movecoord($roomcoords, 0, 0, 6), 500, 232, 1000);
+cam_lookat(movecoord($roomcoords, -1, 0, -5), 100, 232, 1000);
+
+npc_walk($vanstrom_coord);
+p_delay(4);
+npc_del;
+
+// Move camera
+npc_add($vanstrom_coord, route_vanstrom_klause, 1000);
+cam_moveto(movecoord($roomcoords, 0, 0, 6), 500, 2, 2);
+cam_lookat($roomcoords, 125, 2, 2);
+
+// turn facesquare manually
+npc_facesquare(coord);
+facesquare(npc_coord);
+~chatnpcnoturn("<p,angry>Ha...ha...ha...you took me straight to them!");
+~route_cutscene_say_macro("<p,angry>", "The little dears are going to wonder which side you're on!");
+
+// Set Vanstrom as secondary npc
+if (.npc_find($roomcoords, route_vanstrom_klause, 20, 0) = false) {
+    mes("Cutscene error. Please report this issue.");
+    ~route_cleanup_cutscene_room($roomcoords);
+    ~bailout_route_cutscene;
+    return;
+}
+// Vanstrom should face Sani.
+.npc_facesquare($sani_coord);
+// Sani should face Vanstrom
+npc_find($roomcoords, route_sani_piliu, 20, 0);
+npc_facesquare($vanstrom_coord);
+// Player should face Sani
+facesquare($sani_coord);
+
+// Jumpcut to Sani.
+cam_moveto(movecoord($roomcoords, 0, 0, 6), 500, 232, 100);
+cam_lookat($sani_coord, 175, 232, 100);
+
+~route_cutscene_say_macro("<p,sad>", "It's Vanstrom...we're dead...");
+
+// Vanstrom kills Sani and moves camera to Harold
+// Camera positioning isn't quite right... but it's close enough.
+cam_lookat($harold_coord, 300, 1, 1);
+.npc_anim(human_throw, 0);
+.spotanim_npc(rune_tknife_launch, 96, 0);
+~npc_projectile($vanstrom_coord, npc_uid, steel_tknife_travel, 40, 36, 32, 15, 0, 11, 5);
+queue(route_cutscene_sani_death, 0, 0);
+~.route_cutscene_say_macro("<p,angry>", "Quite right....");
+
+cam_lookat(movecoord($roomcoords, -1, 0, -15), 100, 232, 100);
+cam_lookat(movecoord($roomcoords, -2, 0, -2), 100, 1, 2);
+
+npc_find($harold_coord, route_harold_evans, 1, 0);
+.npc_facesquare($harold_coord);
+npc_facesquare($vanstrom_coord);
+.npc_anim(human_throw, 0);
+.spotanim_npc(rune_tknife_launch, 96, 0);
+~npc_projectile($vanstrom_coord, npc_uid, steel_tknife_travel, 40, 36, 32, 15, 0, 11, 5);
+~.route_cutscene_say_macro("<p,angry>", "Sorry, Harold, you too!");
+p_delay(0);
+npc_anim(human_unarmedblock, 0);
+p_delay(0);
+npc_say("Ahhhhh!");
+npc_damage(^hitmark_damage, 30);
+npc_anim(human_death_backwards, 0);
+p_delay(1);
+
+// Set Vanstrom as primary again so we can changetype.
+npc_find($vanstrom_coord, route_vanstrom_klause, 1, 0);
+npc_changetype(route_vanstrom_transform, 1000);
+npc_facesquare(coord);
+//npc_anim(wings_ready, 50);
+npc_anim(human_ready, 50);
+~route_cutscene_say_macro("<p,angry>", "And... now I'm going to finish the rest of them off...");
+p_delay(2);
+npc_changetype(route_vanstrom_vampire, 1000);
+npc_anim(wings_launch, 0);
+
+~route_cutscene_say_macro("<p,angry>", "With my little pet!");
+npc_anim(wings_summon, 0);
+.npc_find($veliaf_coord, route_veliaf_hurtz, 1, 0);
+~npc_projectile($vanstrom_coord, .npc_uid, summon_spell, 43, 31, 51, 16, -5, 64, 10);
+~route_cutscene_say_macro("<p,angry>", "Ha ha ha ha ha");
+
+//~route_cleanup_cutscene_room($roomcoords);
+//~bailout_route_cutscene;
+
+[queue,route_cutscene_sani_death]
+def_coord $roomcoords = ~route_cutscene_get_teleport;
+if (npc_find($roomcoords, route_sani_piliu, 20, 0) = true) {
+    p_delay(0);
+    npc_anim(human_unarmedblock, 0);
+    p_delay(0);
+    npc_say("Ahhhhh!");
+    npc_damage(^hitmark_damage, 30);
+    npc_anim(human_death_backwards, 0);
+    p_delay(1);
+}
+
+[proc,route_cutscene_get_teleport]()(coord)
+switch_int(%roomnum) {
+    case 1 : return (2_54_153_50_45);
+    case 2 : return (1_54_153_12_15);
+    case 3 : return (1_54_153_50_45);
+    case 4 : return (2_54_153_12_45);
+}
+return (0_54_153_50_45);
+
+[proc,route_cutscene_say_macro](string $expression, string $text)
+npc_say($text);
+mes("<npc_name> : <$text>");
+~chatnpc_specific(npc_name, npc_type, "<$expression><$text>");
+
+[proc,.route_cutscene_say_macro](string $expression, string $text)
+.npc_say($text);
+mes("<.npc_name> : <$text>");
+~chatnpc_specific(.npc_name, .npc_type, "<$expression><$text>");
+
+[proc,bailout_route_cutscene]
+cam_reset();
+%cutscene_status = 0;
+minimap_toggle(0);
+%roomnum = 0;
+p_telejump(~route_cutscene_get_teleport);
+
+[proc,route_cleanup_cutscene_room](coord $roomcoords)
+if(npc_find($roomcoords, route_veliaf_hurtz, 20, 0) = true) npc_del;
+if(npc_find($roomcoords, route_sani_piliu, 20, 0) = true) npc_del;
+if(npc_find($roomcoords, route_harold_evans, 20, 0) = true) npc_del;
+if(npc_find($roomcoords, route_ivan_strom, 20, 0) = true) npc_del;
+if(npc_find($roomcoords, route_polmafi_ferdygris, 20, 0) = true) npc_del;
+if(npc_find($roomcoords, route_radigad_ponfit, 20, 0) = true) npc_del;
+if(npc_find($roomcoords, route_vanstrom_vampire_misty, 20, 0) = true) npc_del;
+if(npc_find($roomcoords, route_vanstrom_klause, 20, 0) = true) npc_del;
+if(npc_find($roomcoords, route_vanstrom_transform, 20, 0) = true) npc_del;
+if(npc_find($roomcoords, route_vanstrom_vampire, 20, 0) = true) npc_del;
