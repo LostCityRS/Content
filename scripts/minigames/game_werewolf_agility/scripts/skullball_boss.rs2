@@ -1,0 +1,58 @@
+[opnpc1,werewolf_skullballboss]
+if (inv_total(worn, ring_of_charos) = 1 | inv_total(worn, ring_of_charos_unlocked) = 1) {
+    @skullballinprogress;
+    // if (%skullball_instance = 1) {
+    //     @skullballinprogress;
+    // } else {
+    //     @noskullball;
+    // }
+} else {
+    @ishuman;
+}
+
+[label,ishuman]
+~chatnpc("<p,shifty>Grrr - you don't belong in here, human!");
+
+[label,skullballinprogress]
+@multi3(
+    "What are the instructions for using the skullball course?", explainskullball, 
+    "I seem to have lost my ball - can I have another one?", lostskullball, 
+    "I give up, I can't do it - take my ball away.", clearskullball
+);
+
+[label,noskullball]
+@multi2(
+    "I would like to do the skullball course.", checkskullball, 
+    "What are the instructions for using the skullball course?", explainskullball
+);
+
+[label,checkskullball]
+~chatplayer("<p,neutral>I would like to do the skullball course.");
+if (stat(agility) < 25) {
+    @requirementnotmet;
+} else {
+    @startskullball;
+}
+
+[label,requirementnotmet]
+~mesbox("You need an Agility level of at least 25 to do this.");
+
+[label,startskullball]
+// ~skullball_startcourse;
+
+[label,lostskullball]
+~chatplayer("<p,confused>I seem to have lost my ball - can I have another one?");
+~chatnpc("<p,shifty>No problem, here's another one. You'll have to start from the beginning again, but the timer will be restarted too.");
+// ~skullball_startcourse;
+
+[label,clearskullball]
+~chatplayer("<p,neutral>I give up, I can't do it - take my ball away.");
+~chatnpc("<p,shifty>Oh dear, such a defeatist.");
+// ~skullball_startcourse;
+
+[label,explainskullball]
+~chatplayer("<p,confused>What are the instructions for using the skullball course?");
+~chatnpc("<p,shifty>The skullball comes out of one of these four spawnholes. Just kick the ball through the middle of each goal, through the skeleton's feet.");
+~chatnpc("<p,shifty>There are 10 goals, which you must complete in order, and one final goal.");
+~chatnpc("<p,shifty>An arrow will point to your ball, just in case lots of people are using the course at the same time as yourself.");
+~chatnpc("<p,shifty>The better your time, the more agility XP you will be awarded. The timer starts when you score your first goal.");
