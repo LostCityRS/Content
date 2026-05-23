@@ -452,7 +452,7 @@ if(%eadgar_quest = ^eadgar_got_burnt_meat & inv_total(inv, eadgar_troll_storeroo
 if(coord = 0_44_157_53_37) {
     @eadgar_storeroom_open;
 } else {
-    if(%eadgar_quest = ^eadgar_unlocked_storeroom) {
+    if(%eadgar_quest >= ^eadgar_unlocked_storeroom) {
         @eadgar_storeroom_open;
     } else if(inv_total(inv, eadgar_troll_storeroom_key) > 0 & %eadgar_quest = ^eadgar_got_burnt_meat) { // todo any sound for unlocking?
         %eadgar_quest = ^eadgar_unlocked_storeroom;
