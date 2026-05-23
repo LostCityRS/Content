@@ -39,12 +39,42 @@ else: shoot south
 // waa_stepping_stone
 [aploc1,loc_5138]
 p_arrivedelay;
-if (distance(loc_coord, coord) > 2) {
+if (coord = 0_55_154_18_17 & loc_coord = 0_55_154_18_19) {
+    ~agility_exactmove(human_jump_stones, 0, 0, coord, loc_coord, 0, 20, ^exact_north, false);
+} else if (coord = 0_55_154_18_19 & loc_coord = 0_55_154_18_21) {
+    ~agility_exactmove(human_jump_stones, 0, 0, coord, loc_coord, 0, 20, ^exact_north, false);
+} else if (coord = 0_55_154_18_21 & loc_coord = 0_55_154_20_21) {
+    ~agility_exactmove(human_jump_stones, 0, 0, coord, loc_coord, 0, 20, ^exact_east, false);
+} else if (coord = 0_55_154_20_21 & loc_coord = 0_55_154_20_23) {
+    ~agility_exactmove(human_jump_stones, 0, 0, coord, loc_coord, 0, 20, ^exact_north, false);
+} else if (coord = 0_55_154_20_23 & loc_coord = 0_55_154_20_25) {
+    ~agility_exactmove(human_jump_stones, 0, 0, coord, loc_coord, 0, 20, ^exact_north, false);
+} else {
     p_aprange(2);
-    return;
 }
-mes("jump");
-switch_coord (coord) {
-    case 0_55_154_18_21 : ~agility_force_move(10, human_jump_stones, movecoord(coord, 2, 0, 0));
-    case default : ~agility_force_move(10, human_jump_stones, movecoord(coord, 0, 0, 2));
+
+// waa_hurdle
+[oploc1,loc_5133] ~waa_jump_hurdle;
+[oploc1,loc_5134] ~waa_jump_hurdle;
+[oploc1,loc_5135] ~waa_jump_hurdle;
+[proc,waa_jump_hurdle]
+p_arrivedelay;
+if (coordz(coord) < coordz(loc_coord) ) {
+    ~agility_exactmove(human_jump_hurdle, 0, 0, coord, movecoord(coord, 0, 0, 2), 0, 30, ^exact_north, false);
 }
+
+// waa_pipe
+[oploc1,loc_5152]
+if (coordz(coord) < coordz(loc_coord) ) {
+    ~agility_exactmove(human_doublepipesqueeze, 30, 5, coord, movecoord(coord, 0, 0, 6), 30, 126, ^exact_north, true);
+}
+
+// waa_skull_slope
+[oploc1,loc_5136]
+~agility_force_move(0, human_climbing, movecoord(coord, -3, 0, 0));
+
+// waa_zip_line 0,55,154,8,54
+[oploc1,loc_5139]
+~agility_exactmove(zipline_slide, 30, 0, coord, movecoord(coord, 0, 0, -40), 0, 300, ^exact_south, false);
+p_delay(1);
+anim(null, 0);
