@@ -1,11 +1,12 @@
+// https://youtu.be/4q9XA9QXxEM <-- Shows that skullball boss doesn't turn to look at you while you talk to him for the ball.
 [opnpc1,werewolf_skullballboss]
 if (inv_total(worn, ring_of_charos) = 1 | inv_total(worn, ring_of_charos_unlocked) = 1) {
-    @skullballinprogress;
-    // if (%skullball_instance = 1) {
-    //     @skullballinprogress;
-    // } else {
-    //     @noskullball;
-    // }
+    // @skullballinprogress;
+    if (npc_finduid(%varp_398) = true) { // varp_398 is guessed and temp stores ball npc uid.
+        @skullballinprogress;
+    } else {
+        @noskullball;
+    }
 } else {
     @ishuman;
 }
@@ -38,12 +39,12 @@ if (stat(agility) < 25) {
 ~mesbox("You need an Agility level of at least 25 to do this.");
 
 [label,startskullball]
-// ~skullball_startcourse;
+~skullball_startcourse;
 
 [label,lostskullball]
 ~chatplayer("<p,confused>I seem to have lost my ball - can I have another one?");
 ~chatnpc("<p,shifty>No problem, here's another one. You'll have to start from the beginning again, but the timer will be restarted too.");
-// ~skullball_startcourse;
+~skullball_startcourse;
 
 [label,clearskullball]
 ~chatplayer("<p,neutral>I give up, I can't do it - take my ball away.");

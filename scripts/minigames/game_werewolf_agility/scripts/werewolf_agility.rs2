@@ -21,12 +21,32 @@ p_arrivedelay;
 ~climb_ladder(0_55_54_24_8, true);
 
 
-// npc_add($coord, $boss, 1000);
+[proc,skullball_startcourse]
+hint_stop;
+npc_add(0_55_154_34_5, waa_skullball, 1000);
+~npc_forcewalk(0_55_154_34_8);
+hint_npc;
 // npc_anim(npc_param(spawn_anim), 0);
 // npc_setmode(null);
 // %npc_action_delay = add(map_clock, $action_delay);
 // %npc_aggressive_player = uid;
 // %npc_lastcombat = add(map_clock, 8);
+
+// Skullball Tap
+[opnpc1,waa_skullball]
+p_arrivedelay;
+anim(kick_skull_ball, 0);
+~npc_forcewalk(movecoord(npc_coord, sub(coordx(npc_coord), coordx(coord)), 0, sub(coordz(npc_coord), coordz(coord))) );
+
+
+// Skullball Kick
+[opnpc3,waa_skullball]
+
+// Skullball Shoot
+[opnpc4,waa_skullball]
+
+// Skullball Show Goal
+[opnpc5,waa_skullball]
 
 // mes("That isn't your ball!")
 /**
@@ -40,6 +60,12 @@ else: shoot south
 [aploc1,loc_5138]
 p_arrivedelay;
 if (coord = 0_55_154_18_17 & loc_coord = 0_55_154_18_19) {
+    if (npc_find(0_55_154_20_17, werewolf_trainer_start, 1, 0) = true) { 
+        npc_facesquare(movecoord(npc_coord, 0, 0, 1));
+        npc_say("FETCH!!!!!"); 
+        npc_anim(waa_werewolf_stick_throw, 0);
+        ~coord_projectile(0_55_154_20_17, 0_55_154_20_27, waa_stick_travel, 0, 0, 30, 0, 10, 11, 5);
+    }
     ~agility_exactmove(human_jump_stones, 0, 0, coord, loc_coord, 0, 20, ^exact_north, false);
 } else if (coord = 0_55_154_18_19 & loc_coord = 0_55_154_18_21) {
     ~agility_exactmove(human_jump_stones, 0, 0, coord, loc_coord, 0, 20, ^exact_north, false);
@@ -60,13 +86,18 @@ if (coord = 0_55_154_18_17 & loc_coord = 0_55_154_18_19) {
 [proc,waa_jump_hurdle]
 p_arrivedelay;
 if (coordz(coord) < coordz(loc_coord) ) {
+    sound_synth(jump, 0, 0);
     ~agility_exactmove(human_jump_hurdle, 0, 0, coord, movecoord(coord, 0, 0, 2), 0, 30, ^exact_north, false);
 }
 
 // waa_pipe
 [oploc1,loc_5152]
 if (coordz(coord) < coordz(loc_coord) ) {
-    ~agility_exactmove(human_doublepipesqueeze, 30, 5, coord, movecoord(coord, 0, 0, 6), 30, 126, ^exact_north, true);
+    ~agility_exactmove(human_doublepipesqueeze, 30, 3, coord, movecoord(coord, 0, 0, 3), 30, 126, ^exact_north, true);
+    sound_synth(squeeze_in, 0, 0);
+    ~change_merged_loc(movecoord(coord, 0, 0, 1));
+    ~agility_exactmove(human_doublepipesqueeze, 30, 3, coord, movecoord(coord, 0, 0, 3), 30, 126, ^exact_north, true);
+    sound_synth(squeeze_out, 0, 0);
 }
 
 // waa_skull_slope
@@ -74,7 +105,24 @@ if (coordz(coord) < coordz(loc_coord) ) {
 ~agility_force_move(0, human_climbing, movecoord(coord, -3, 0, 0));
 
 // waa_zip_line 0,55,154,8,54
-[oploc1,loc_5139]
-~agility_exactmove(zipline_slide, 30, 0, coord, movecoord(coord, 0, 0, -40), 0, 300, ^exact_south, false);
-p_delay(1);
+[oploc1,loc_5139] ~waa_zip_line;
+[oploc1,loc_5140] ~waa_zip_line;
+[oploc1,loc_5141] ~waa_zip_line;
+[proc,waa_zip_line]
+p_arrivedelay;
+~forcemove(0_55_154_8_54);
+facesquare(movecoord(coord, 0, 0, -1));
+anim(zipline_bite, 0);
+p_delay(2);
+~agility_exactmove(zipline_slide, 0, 0, coord, movecoord(coord, 0, 0, -9), 0, 120, ^exact_south, false);
+p_delay(2);
+// Failpoint 1
+~agility_exactmove(zipline_slide, 0, 0, movecoord(coord, 0, 0, 1), movecoord(coord, 0, 0, -9), 0, 120, ^exact_south, false);
+p_delay(2);
+// Failpoint 2
+~agility_exactmove(zipline_slide, 0, 0, movecoord(coord, 0, 0, 1), movecoord(coord, 0, 0, -9), 0, 120, ^exact_south, false);
+p_delay(2);
+// Failpoint 3
+~agility_exactmove(zipline_slide, 0, 0, movecoord(coord, 0, 0, 1), movecoord(coord, 0, 0, -9), 0, 120, ^exact_south, false);
+p_delay(2);
 anim(null, 0);
