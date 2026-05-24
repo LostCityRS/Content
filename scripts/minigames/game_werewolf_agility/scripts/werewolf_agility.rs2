@@ -18,13 +18,20 @@ loc_change(loc_5131, 500);
 // waa_ladder_exit
 [oploc1,loc_5130]
 p_arrivedelay;
-~climb_ladder(0_55_54_24_8, true);
+~climb_ladder(0_55_54_23_7, true);
 
-
+// Skullball Start
 [proc,skullball_startcourse]
+if_close;
 hint_stop;
-npc_add(0_55_154_34_5, waa_skullball, 1000);
-~npc_forcewalk(0_55_154_34_8);
+switch_int(random(4)) {
+    case 0 : npc_add(0_55_154_32_3, waa_skullball, 1000);
+    case 1 : npc_add(0_55_154_34_4, waa_skullball, 1000);
+    case 2 : npc_add(0_55_154_35_4, waa_skullball, 1000);
+    case 3 : npc_add(0_55_154_37_3, waa_skullball, 1000);
+}
+%npc_aggressive_player = uid; // We assign the agressive player to know who owns the skullball.
+~npc_forcewalk(movecoord(npc_coord, 0, 0, 4));
 hint_npc;
 // npc_anim(npc_param(spawn_anim), 0);
 // npc_setmode(null);
@@ -36,14 +43,32 @@ hint_npc;
 [opnpc1,waa_skullball]
 p_arrivedelay;
 anim(kick_skull_ball, 0);
-~npc_forcewalk(movecoord(npc_coord, sub(coordx(npc_coord), coordx(coord)), 0, sub(coordz(npc_coord), coordz(coord))) );
-
+~npc_forcewalk(movecoord(
+    npc_coord, 
+    sub(coordx(npc_coord), coordx(coord)), 
+    0, 
+    sub(coordz(npc_coord), coordz(coord))
+));
 
 // Skullball Kick
 [opnpc3,waa_skullball]
+~npc_forcewalk(movecoord(
+    npc_coord, 
+    multiply(sub(coordx(npc_coord), coordx(coord)), 4), 
+    0, 
+    multiply(sub(coordz(npc_coord), coordz(coord)), 4)
+));
+
 
 // Skullball Shoot
 [opnpc4,waa_skullball]
+~npc_forcewalk(movecoord(
+    npc_coord, 
+    multiply(sub(coordx(npc_coord), coordx(coord)), 9), 
+    0, 
+    multiply(sub(coordz(npc_coord), coordz(coord)), 9)
+));
+
 
 // Skullball Show Goal
 [opnpc5,waa_skullball]
@@ -65,6 +90,8 @@ if (coord = 0_55_154_18_17 & loc_coord = 0_55_154_18_19) {
         npc_say("FETCH!!!!!"); 
         npc_anim(waa_werewolf_stick_throw, 0);
         ~coord_projectile(0_55_154_20_17, 0_55_154_20_27, waa_stick_travel, 0, 0, 30, 0, 10, 11, 5);
+        def_coord $random_stick_coord = map_findsquare(0_55_154_22_56,0, 2, ^map_findsquare_lineofwalk);
+        obj_add($random_stick_coord, waa_stick, 1, ^lootdrop_duration);
     }
     ~agility_exactmove(human_jump_stones, 0, 0, coord, loc_coord, 0, 20, ^exact_north, false);
 } else if (coord = 0_55_154_18_19 & loc_coord = 0_55_154_18_21) {
