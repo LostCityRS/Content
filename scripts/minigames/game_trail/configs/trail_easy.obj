@@ -637,6 +637,9 @@ category=trail_clue_easy
 param=trail_desc,Search the drawers found upstairs|in East Ardougne's houses.
 tradeable=no
 
+// TODO: Probably changed to upstairs Oct 2005 when boxes get moved? Unsure if its east or west crate either, picking west due to matching later loc
+// param=trail_desc,A crate found in the|tower of a church is|your next location.
+// param=trail_coord,1_40_51_52_40
 [trail_clue_easy_vague004]
 name=Clue scroll
 desc=A clue!
@@ -650,8 +653,8 @@ model=model_3374_obj
 iop1=Read
 weight=20g
 category=trail_clue_easy
-param=trail_desc,A crate found in the|tower of a church is|your next location.
-param=trail_coord,1_40_51_52_40
+param=trail_desc,A crate found in the|ground floor of a church is|your next location.
+param=trail_coord,0_40_51_49_40
 param=trail_loc,^true
 tradeable=no
 
