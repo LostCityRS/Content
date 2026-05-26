@@ -253,7 +253,7 @@ if($num_of_walls_fully_repaired > 0) {
 
 [label,mortton_temple_not_enough_resources]
 //TODO: Find source, guess from osrs but no timber beams or flamtaer bag in mes
-~mesbox("~ Repairing the temple ~|@dbl@To repair the temple you need to increase your material resource|@dbl@pool by bringing limestone bricks, wooden planks and swamp paste|@dbl@in your inventory.");
+~mesbox("~ Repairing the temple ~|@dbl@To repair the temple you need to increase your material resource|pool by bringing limestone bricks, wooden planks and swamp paste|in your inventory.");
 def_string $planks = "Wooden planks";
 if (inv_total(inv,woodplank) > 0) {
     $planks = append("@str@", $planks);
