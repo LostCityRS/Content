@@ -11,11 +11,6 @@ if (finduid(%npc_aggressive_player) = false) {
 
 if (npc_stat(hitpoints) <= npc_param(retreat)) {
     npc_setmode(playerescape);
-} else {
-    npc_setmode(opplayer2);
-    if (npc_inrange = false) {
-        npc_setmode(playerescape);
-    }
 }
 
 if (~npc_retal_ready = false) {
@@ -24,6 +19,13 @@ if (~npc_retal_ready = false) {
 
 %npc_action_delay = add(map_clock, divide(npc_param(attackrate), 2)); // flinch
 %npc_attacking_uid = %npc_aggressive_player;
+
+if(npc_getmode ! playerescape) {
+    npc_setmode(opplayer2);
+    if (npc_inrange = false) {
+        npc_setmode(playerescape);
+    }
+}
 
 // mostly used for ranged and magic npc's
 [proc,npc_default_retaliate_ap]
@@ -34,11 +36,6 @@ if (finduid(%npc_aggressive_player) = false) {
 // default to ap
 if (npc_stat(hitpoints) <= npc_param(retreat)) {
     npc_setmode(playerescape);
-} else {
-    npc_setmode(applayer2);
-    if (npc_inrange = false) {
-        npc_setmode(playerescape);
-    }
 }
 
 if (~npc_retal_ready = false) {
@@ -47,6 +44,13 @@ if (~npc_retal_ready = false) {
 
 %npc_action_delay = add(map_clock, divide(npc_param(attackrate), 2));
 %npc_attacking_uid = %npc_aggressive_player;
+
+if(npc_getmode ! playerescape) {
+    npc_setmode(applayer2);
+    if (npc_inrange = false) {
+        npc_setmode(playerescape);
+    }
+}
 
 
 // a default melee attack script.

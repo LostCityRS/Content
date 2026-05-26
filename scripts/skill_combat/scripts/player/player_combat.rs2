@@ -109,7 +109,7 @@ if (map_multiway(npc_coord) = false) {
         return(false);
     }
     // npc has been attacked in the last 8 ticks, and not by the current player
-    if ((add(%npc_lastcombat, 8) > map_clock & %npc_aggressive_player ! uid)) {
+    if ((add(%npc_lastcombat, 8) > map_clock & %npc_aggressive_player ! uid & finduid(%npc_aggressive_player) = true)) {
         mes("Someone else is fighting that.");
         return(false);
     }
@@ -134,7 +134,7 @@ if (map_multiway(npc_coord) = false) {
         return(false);
     }
     // npc has been attacked in the last 8 ticks, and not by the current player
-    if ((add(%npc_lastcombat, 8) > map_clock & %npc_aggressive_player ! uid)) {
+    if ((add(%npc_lastcombat, 8) > map_clock & %npc_aggressive_player ! uid & finduid(%npc_aggressive_player) = true)) {
         mes("Someone else is fighting that.");
         return(false);
     }
