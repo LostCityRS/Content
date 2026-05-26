@@ -9,12 +9,12 @@ if (%desertrescue = ^desertrescue_not_started) {
     if (stat_base(fletching) < 10) {
         $x = append($x, "@dre@Level 10 Fletching.|");
     } else {
-        $x = append($x, "@str@@bla@Level 10 Fletching.|");
+        $x = append($x, "@str@Level 10 Fletching.|");
     }
     if (stat_base(smithing) < 20) {
         $x = append($x, "@dre@Level 20 Smithing.|");
     } else {
-        $x = append($x, "@str@@bla@Level 20 Smithing.|");
+        $x = append($x, "@str@Level 20 Smithing.|");
     }
     if ((stat_base(smithing) >= 20) & (stat_base(fletching) >= 10)) {
         $x = append($x, "@dbl@I have all the @dre@requirements@dbl@ to begin and complete this|");
@@ -125,17 +125,17 @@ if (%desertrescue = ^desertrescue_shown_plans_shabim) {
     $x = append($x, "@dre@Al Shabim@dbl@ will give me a @dre@'Tenti' pineapple@dbl@ if I make him a|");
     $x = append($x, "@dre@prototype@dbl@ of the @dre@new secret throwing weapon.|");
     if ((inv_total(inv, hammer) >= 1) & (inv_total(inv, feather) >= 10) & (inv_total(inv, bronze_bar) >= 1)) {
-        $x = append($x, "@str@@bla@I have all the items I need to make the weapon.|");
+        $x = append($x, "@str@I have all the items I need to make the weapon.|");
     } else {
         $x = append($x, "@dbl@To make the weapon, I will need the following:-|");
     }
-    if (inv_total(inv, hammer) >= 1) { $x = append($x, "@str@@bla@Hammer|"); }
+    if (inv_total(inv, hammer) >= 1) { $x = append($x, "@str@Hammer|"); }
     else { $x = append($x, "@dre@Hammer|"); }
 
-    if (inv_total(inv, feather) >= 10) { $x = append($x, "@str@@bla@Feathers|"); }
+    if (inv_total(inv, feather) >= 10) { $x = append($x, "@str@Feathers|"); }
     else { $x = append($x, "@dre@Feathers|"); }
 
-    if (inv_total(inv, bronze_bar) >= 1) { $x = append($x, "@str@@bla@Bronze bar|"); }
+    if (inv_total(inv, bronze_bar) >= 1) { $x = append($x, "@str@Bronze bar|"); }
     else { $x = append($x, "@dre@Bronze bar|"); }
     ~quest_journal($n, $x);
     return;

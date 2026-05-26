@@ -18,12 +18,12 @@ if(%horrorquest = ^horror_complete) {
     $text = append($text, "@str@I recovered a spare key from Larrissa's cousin Gunnjorn|@str@and ");
     $text = append($text, "@str@repaired the bridge to Rellekka with some planks.|");
     $text = append($text, "@str@After I entered the lighthouse, and repaired the lighting|");
-    $text = append($text, "@str@@str@mechanism, I discovered a strange wall that blocked the|");
-    $text = append($text, "@str@@str@entrance to an underground cavern, where Jossik was.|");
+    $text = append($text, "@str@mechanism, I discovered a strange wall that blocked the|");
+    $text = append($text, "@str@entrance to an underground cavern, where Jossik was.|");
     $text = append($text, "@str@After I killed some strange sea monsters, I managed to @str@get|");
     $text = append($text, "@str@Jossik out of the cavern and back to the lighthouse.|");
     $text = append($text, "@str@I found a strange casket on the dead body of the sea|");
-    $text = append($text, "@str@@str@monster, which Jossik said he could tell me about.|||");
+    $text = append($text, "@str@monster, which Jossik said he could tell me about.|||");
     $text = append($text, "@red@QUEST COMPLETE!");
     ~quest_journal("Horror from the Deep", $text);
     return;
