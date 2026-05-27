@@ -85,7 +85,7 @@ else: shoot south
 [aploc1,loc_5138]
 p_arrivedelay;
 if (coord = 0_55_154_18_17 & loc_coord = 0_55_154_18_19) {
-    if (npc_find(0_55_154_20_17, werewolf_trainer_start, 1, 0) = true) { 
+    if (inv_total(inv, waa_stick) = 0 & npc_find(0_55_154_20_17, werewolf_trainer_start, 1, 0) = true) { 
         npc_facesquare(movecoord(npc_coord, 0, 0, 1));
         npc_say("FETCH!!!!!"); 
         npc_anim(waa_werewolf_stick_throw, 0);
@@ -113,8 +113,11 @@ if (coord = 0_55_154_18_17 & loc_coord = 0_55_154_18_19) {
 [proc,waa_jump_hurdle]
 p_arrivedelay;
 if (coordz(coord) < coordz(loc_coord) ) {
-    sound_synth(jump, 0, 0);
+    sound_synth(hurdle, 0, 0);
     ~agility_exactmove(human_jump_hurdle, 0, 0, coord, movecoord(coord, 0, 0, 2), 0, 30, ^exact_north, false);
+} else {
+    // https://youtu.be/mwyd29YHyD8
+    mes("Don't look backwards - keep going forwards!");
 }
 
 // waa_pipe
@@ -127,11 +130,23 @@ if (coordz(coord) < coordz(loc_coord) ) {
     sound_synth(squeeze_out, 0, 0);
 }
 
+[proc,waa_agility_exactmove](seq $anim, int $anim_delay, int $movement_delay, coord $start_coord, coord $end_coord, int $start_cycle, int $end_cycle, int $direction, boolean $merge_with_loc)
+anim($anim, $anim_delay);
+p_exactmove($start_coord, $end_coord, $start_cycle, $end_cycle, $direction);
+p_delay($movement_delay);
+
+
+
 // waa_skull_slope
 [oploc1,loc_5136]
 ~agility_force_move(0, human_climbing, movecoord(coord, -3, 0, 0));
 
 // waa_zip_line 0,55,154,8,54
+// The 2 videos with the old models.
+// 2:47.5 - 2:52.5 = 5s // https://youtu.be/QnQZ0ayGy28
+// 3:21.5 - 3:26.5 = 5s // https://youtu.be/fmzzLy5fXK4
+// Just to compare, slightly newer models, still same timing.
+// 1:16.9 - 1:21.9 = 5s // https://youtu.be/hQ1B_F7OXBs
 [oploc1,loc_5139] ~waa_zip_line;
 [oploc1,loc_5140] ~waa_zip_line;
 [oploc1,loc_5141] ~waa_zip_line;
@@ -139,17 +154,21 @@ if (coordz(coord) < coordz(loc_coord) ) {
 p_arrivedelay;
 ~forcemove(0_55_154_8_54);
 facesquare(movecoord(coord, 0, 0, -1));
+mes("You bravely cling on to the death slide by your teeth...");
 anim(zipline_bite, 0);
-p_delay(2);
-~agility_exactmove(zipline_slide, 0, 0, coord, movecoord(coord, 0, 0, -9), 0, 120, ^exact_south, false);
-p_delay(2);
-// Failpoint 1
-~agility_exactmove(zipline_slide, 0, 0, movecoord(coord, 0, 0, 1), movecoord(coord, 0, 0, -9), 0, 120, ^exact_south, false);
-p_delay(2);
-// Failpoint 2
-~agility_exactmove(zipline_slide, 0, 0, movecoord(coord, 0, 0, 1), movecoord(coord, 0, 0, -9), 0, 120, ^exact_south, false);
-p_delay(2);
-// Failpoint 3
-~agility_exactmove(zipline_slide, 0, 0, movecoord(coord, 0, 0, 1), movecoord(coord, 0, 0, -9), 0, 120, ^exact_south, false);
-p_delay(2);
+sound_synth(bite, 0, 0);
+p_delay(1);
+say("WAAAAAARRRGGGHHHH!!!!!!");
+sound_synth(deathslide, 0, 0);
+anim(zipline_slide, 0);
+p_exactmove(0_55_154_8_54, 0_55_154_8_17, 0, 225, ^exact_south);
+p_delay(7);
+mes("... and land safely on your feet.");
+// ~waa_agility_exactmove(zipline_slide, 0, 2, 0_55_154_8_54, 0_55_154_8_44, 0, 80, ^exact_south, false);
+// // Failpoint 1
+// ~waa_agility_exactmove(zipline_slide, 0, 2, 0_55_154_8_44, 0_55_154_8_34, 0, 80, ^exact_south, false);
+// // Failpoint 2
+// ~waa_agility_exactmove(zipline_slide, 0, 2, 0_55_154_8_34, 0_55_154_8_24, 0, 80, ^exact_south, false);
+// // Failpoint 3
+// ~waa_agility_exactmove(zipline_slide, 0, 2, 0_55_154_8_24, 0_55_154_8_17, 0, 80, ^exact_south, false);
 anim(null, 0);
