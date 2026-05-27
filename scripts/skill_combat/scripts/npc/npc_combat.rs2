@@ -20,7 +20,7 @@ if (~npc_retal_ready = false) {
 %npc_action_delay = add(map_clock, divide(npc_param(attackrate), 2)); // flinch
 %npc_attacking_uid = %npc_aggressive_player;
 
-if(npc_getmode ! playerescape) {
+if (npc_stat(hitpoints) > npc_param(retreat)) {
     npc_setmode(opplayer2);
     if (npc_inrange = false) {
         npc_setmode(playerescape);
@@ -45,7 +45,7 @@ if (~npc_retal_ready = false) {
 %npc_action_delay = add(map_clock, divide(npc_param(attackrate), 2));
 %npc_attacking_uid = %npc_aggressive_player;
 
-if(npc_getmode ! playerescape) {
+if (npc_stat(hitpoints) > npc_param(retreat)) {
     npc_setmode(applayer2);
     if (npc_inrange = false) {
         npc_setmode(playerescape);
