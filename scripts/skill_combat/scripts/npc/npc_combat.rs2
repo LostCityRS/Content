@@ -306,7 +306,7 @@ return (false);
 
 
 [proc,npc_retal_ready]()(boolean)
-if ((add(%npc_action_delay, 8) < map_clock) | (npc_getmode ! applayer2 & npc_getmode ! opplayer2 & npc_getmode ! playerescape)) {
+if ((add(%npc_action_delay, 8) < map_clock) | (npc_getmode ! applayer2 & npc_getmode ! opplayer2)) {
     return (true);
 }
 return (false);
