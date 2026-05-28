@@ -291,7 +291,7 @@ if (oc_category(last_useitem) = category_110) {
     def_obj $obj = last_useitem;
     def_int $slot = last_useslot;
     def_int $doses = oc_param($obj, dose_count);
-    def_int $sanc_drain = divide(multiply(multiply(9, $doses), 30), 1000);
+    def_int $sanc_drain = divide(multiply(multiply(9, $doses), 30), 10);
     %temple_sanctity = sub(%temple_sanctity, $sanc_drain);
 
     inv_setslot(inv, $slot, oc_param($obj, next_obj_stage), 1);

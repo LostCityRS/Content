@@ -323,7 +323,7 @@ if(npc_finduid($uid) = true & (npc_type = viking_enemy1 | npc_type = viking_enem
 }
 
 [queue,viking_defeat](npc_uid $uid)
-mes("Congratulations! You have completed the warriors trial.");
+mes("Congratulations! You have completed the warriors trial!");
 if(~get_viking_thorvald_progress < ^thorvald_complete) {
     %viking = add(%viking, 1);
     ~set_viking_thorvald_progress(^thorvald_complete);
@@ -418,7 +418,7 @@ if(npc_finduid($uid) = true) {
 stat_heal(hitpoints, 0, 100);
 stat_heal(prayer, 0, 100);
 mes("...still alive somehow?");
-mes("Congratulations! You have completed the warrior's trial.");
+mes("Congratulations! You have passed the warrior's trial!");
 if(npc_find(movecoord(coord, 0, -1, 0), viking_thorvald, 5, 0) = true) {
     ~chatnpc("<p,laugh>Hahaha! Well fought outerlander! Now come down from there, you have passed my trial with flying colours!");
     ~chatplayer("<p,confused>But... I don't understand... I did not manage to beat Koschei...");

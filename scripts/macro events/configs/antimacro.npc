@@ -184,7 +184,8 @@ hitpoints=25
 attack=9
 strength=9
 defence=9
-ranged=8
+// ranged=8
+param=damagetype,^crush_style
 param=attack_anim,golem_attack
 param=defend_anim,golem_block
 param=death_anim,golem_death
@@ -194,6 +195,7 @@ param=death_sound,null
 param=death_drop,null
 category=macro_event_rock_golem
 param=combat_xp_multiplier,25
+// Ranged attack was added sometime in 2005-2006 so the NPC doesn't need ranged stats either. + damagetype is ranged on the OSRS side.
 
 [macro_golemguardian_2]
 name=Rock Golem
@@ -218,7 +220,8 @@ hitpoints=40
 attack=22
 strength=22
 defence=22
-ranged=20
+// ranged=20
+param=damagetype,^crush_style
 param=attack_anim,golem_attack
 param=defend_anim,golem_block
 param=death_anim,golem_death
@@ -228,6 +231,7 @@ param=death_sound,null
 param=death_drop,null
 category=macro_event_rock_golem
 param=combat_xp_multiplier,25
+// Ranged attack was added sometime in 2005-2006 so the NPC doesn't need ranged stats either. + damagetype is ranged on the OSRS side.
 
 [macro_golemguardian_3]
 name=Rock Golem
@@ -252,7 +256,8 @@ hitpoints=60
 attack=38
 strength=38
 defence=38
-ranged=35
+// ranged=35
+param=damagetype,^crush_style
 param=attack_anim,golem_attack
 param=defend_anim,golem_block
 param=death_anim,golem_death
@@ -262,6 +267,7 @@ param=death_sound,null
 param=death_drop,null
 category=macro_event_rock_golem
 param=combat_xp_multiplier,25
+// Ranged attack was added sometime in 2005-2006 so the NPC doesn't need ranged stats either. + damagetype is ranged on the OSRS side.
 
 [macro_golemguardian_4]
 name=Rock Golem
@@ -286,7 +292,8 @@ hitpoints=85
 attack=65
 strength=65
 defence=65
-ranged=70
+// ranged=70
+param=damagetype,^crush_style
 param=attack_anim,golem_attack
 param=defend_anim,golem_block
 param=death_anim,golem_death
@@ -296,6 +303,7 @@ param=death_sound,null
 param=death_drop,null
 category=macro_event_rock_golem
 param=combat_xp_multiplier,25
+// Ranged attack was added sometime in 2005-2006 so the NPC doesn't need ranged stats either. + damagetype is ranged on the OSRS side.
 
 [macro_golemguardian_5]
 name=Rock Golem
@@ -320,7 +328,8 @@ hitpoints=120
 attack=100
 strength=100
 defence=100
-ranged=75
+// ranged=75
+param=damagetype,^crush_style
 param=attack_anim,golem_attack
 param=defend_anim,golem_block
 param=death_anim,golem_death
@@ -330,6 +339,7 @@ param=death_sound,null
 param=death_drop,null
 category=macro_event_rock_golem
 param=combat_xp_multiplier,25
+// Ranged attack was added sometime in 2005-2006 so the NPC doesn't need ranged stats either. + damagetype is ranged on the OSRS side.
 
 [macro_golemguardian_6]
 name=Rock Golem
@@ -354,7 +364,8 @@ hitpoints=170
 attack=130
 strength=130
 defence=130
-ranged=80
+// ranged=80
+param=damagetype,^crush_style
 param=attack_anim,golem_attack
 param=defend_anim,golem_block
 param=death_anim,golem_death
@@ -364,6 +375,7 @@ param=death_sound,null
 param=death_drop,null
 category=macro_event_rock_golem
 param=combat_xp_multiplier,25
+// Ranged attack was added sometime in 2005-2006 so the NPC doesn't need ranged stats either. + damagetype is ranged on the OSRS side.
 
 [macro_zombie1]
 minimap=no
@@ -824,12 +836,12 @@ strength=9
 defence=9
 // i assume the stats are identical to other random events
 category=macro_event_watchman
+param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
 param=defend_anim,human_blunt_def
 param=attack_sound,mace_crush
 // param=defend_sound, TODO Try to figure out what the original sound was.
 // guesses defend_sound blade3_mail (This information is taken from watchman.)
-param=damagetype,^crush_style
 param=combat_xp_multiplier,25
 // defend_sound blade3_mail
 // https://storage.googleapis.com/tannerdino/images/watchman.PNG here we can see defend animation.
@@ -861,12 +873,12 @@ attack=22
 strength=22
 defence=22
 category=macro_event_watchman
+param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
 param=defend_anim,human_blunt_def
 param=attack_sound,mace_crush
 // param=defend_sound, TODO Try to figure out what the original sound was.
 // guesses defend_sound blade3_mail (This information is taken from watchman.)
-param=damagetype,^crush_style
 param=combat_xp_multiplier,25
 // defend_sound blade3_mail (This information is taken from watchman.)
 
@@ -897,12 +909,12 @@ attack=38
 strength=38
 defence=38
 category=macro_event_watchman
+param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
 param=defend_anim,human_blunt_def
 param=attack_sound,mace_crush
 // param=defend_sound, TODO Try to figure out what the original sound was.
 // guesses defend_sound blade3_mail (This information is taken from watchman.)
-param=damagetype,^crush_style
 param=combat_xp_multiplier,25
 // defend_sound blade3_mail (This information is taken from watchman.)
 
@@ -933,12 +945,12 @@ attack=65
 strength=65
 defence=65
 category=macro_event_watchman
+param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
 param=defend_anim,human_blunt_def
 param=attack_sound,mace_crush
 // param=defend_sound, TODO Try to figure out what the original sound was.
 // guesses defend_sound blade3_mail (This information is taken from watchman.)
-param=damagetype,^crush_style
 param=combat_xp_multiplier,25
 // defend_sound blade3_mail (This information is taken from watchman.)
 
@@ -969,12 +981,12 @@ attack=100
 strength=100
 defence=100
 category=macro_event_watchman
+param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
 param=defend_anim,human_blunt_def
 param=attack_sound,mace_crush
 // param=defend_sound, TODO Try to figure out what the original sound was.
 // guesses defend_sound blade3_mail (This information is taken from watchman.)
-param=damagetype,^crush_style
 param=combat_xp_multiplier,25
 // defend_sound blade3_mail (This information is taken from watchman.)
 
@@ -1005,12 +1017,12 @@ attack=130
 strength=130
 defence=130
 category=macro_event_watchman
+param=damagetype,^crush_style
 param=attack_anim,human_blunt_pound
 param=defend_anim,human_blunt_def
 param=attack_sound,mace_crush
 // param=defend_sound, TODO Try to figure out what the original sound was.
 // guesses defend_sound blade3_mail (This information is taken from watchman.)
-param=damagetype,^crush_style
 param=combat_xp_multiplier,25
 // defend_sound blade3_mail (This information is taken from watchman.)
 

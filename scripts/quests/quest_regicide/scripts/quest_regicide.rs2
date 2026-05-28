@@ -672,6 +672,9 @@ if(last_useitem = ball_of_wool) {
 }
 ~displaymessage(^dm_default);
 
+[oplocu,regicide_furnace]
+@use_furnace;
+
 [opheldu,regicide_quicklime]
 if(last_useitem = pestle_and_mortar) {
     inv_del(inv, regicide_quicklime, 1);
