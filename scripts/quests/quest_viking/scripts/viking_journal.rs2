@@ -2,14 +2,10 @@
 def_string $text;
 if (%viking = ^viking_not_started) {
     // https://youtu.be/YUIvEgcvl5c?si=bGb8qyGR_XEP_kQ3&t=64
-    $text = append($text, "@dbl@I can start this quest by speaking to @dre@Chieftain Brundt@dbl@ in|");
-    $text = append($text, "@dbl@The @dre@Fremennik Longhall@dbl@, which is in the town of @dre@Rellekka@dbl@ to|");
-    $text = append($text, "@dbl@the north of @dre@Sinclair Mansion@dbl@.|");
+    $text = append($text, "@dbl@I can start this quest by speaking to @dre@Chieftain Brundt@dbl@ in the @dre@Fremennik Longhall@dbl@, which is in the town of @dre@Rellekka@dbl@ to the north of @dre@Sinclair Mansion@dbl@.|");
     $text = append($text, "@dbl@To complete the quest I need:|");
-    $text = append($text, "@dre@Level 40 Woodcutting|");
-    $text = append($text, "@dre@Level 40 Crafting|");
-    $text = append($text, "@dre@Level 25 Fletching|");
-    $text = append($text, "@dbl@I must also be able to defeat a @dre@level 69 enemy@dbl@ and must|@dbl@not be afraid of @dre@combat without any weapons or armour");
+    $text = append($text, "@dre@Level 40 Woodcutting|Level 40 Crafting|Level 25 Fletching|");
+    $text = append($text, "@dbl@I must also be able to defeat a @dre@level 69 enemy@dbl@ and must not be afraid of @dre@combat without any weapons or armour");
     ~quest_journal("The Fremennik Trials", $text);
     return;
 }
