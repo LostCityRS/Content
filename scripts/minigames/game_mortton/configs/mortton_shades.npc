@@ -32,6 +32,7 @@ timer=1
 param=next_npc_type,shade_level1
 // guess
 huntrange=3
+category=shade
 
 [shade_level1]
 name=Loar Shade
@@ -65,7 +66,9 @@ param=defend_sound,shade_hit
 param=death_sound,shade_death
 param=death_drop,shade_bones1
 param=undead,^true
+param=shadeshadow,shadeshadow_level1
 timer=1
+category=shade
 // huntrange= TODO
 
 [shade_heaven]
@@ -96,7 +99,8 @@ op2=Attack
 vislevel=60
 wanderrange=5
 maxrange=11
-// respawnrate= TODO
+blockwalk=none
+respawnrate=50
 hitpoints=56
 attack=64
 strength=47
@@ -112,10 +116,12 @@ param=defend_sound,shade_hit
 param=death_sound,shade_death
 param=death_drop,shade_bones2
 param=undead,^true
+param=next_npc_type,shade_level2
 huntmode=shades
 // guess
 huntrange=3
-// TODO immune to poison
+timer=1
+category=shade
 
 [shade_level2]
 name=Phrin Shade
@@ -132,7 +138,7 @@ alwaysontop=yes
 vislevel=60
 wanderrange=5
 maxrange=11
-// respawnrate= TODO
+respawnrate=50
 hitpoints=56
 attack=64
 strength=47
@@ -148,9 +154,11 @@ param=defend_sound,shade_hit
 param=death_sound,shade_death
 param=death_drop,shade_bones2
 param=undead,^true
+param=shadeshadow,shadeshadow_level2
 huntmode=cowardly
 // huntrange= TODO
-// immune to poison
+timer=1
+category=shade
 
 [shadeshadow_level3]
 name=Riyl Shadow
@@ -164,7 +172,8 @@ op2=Attack
 vislevel=80
 wanderrange=5
 maxrange=11
-// respawnrate= TODO
+blockwalk=none
+respawnrate=50
 hitpoints=76
 attack=88
 strength=55
@@ -180,10 +189,12 @@ param=defend_sound,shade_hit
 param=death_sound,shade_death
 param=death_drop,shade_bones3
 param=undead,^true
+param=next_npc_type,shade_level3
 huntmode=shades
 // guess
 huntrange=3
-// immune to poison
+timer=1
+category=shade
 
 [shade_level3]
 name=Riyl Shade
@@ -200,7 +211,7 @@ alwaysontop=yes
 vislevel=80
 wanderrange=5
 maxrange=11
-// respawnrate= TODO
+respawnrate=50
 hitpoints=76
 attack=88
 strength=55
@@ -216,9 +227,11 @@ param=defend_sound,shade_hit
 param=death_sound,shade_death
 param=death_drop,shade_bones3
 param=undead,^true
+param=shadeshadow,shadeshadow_level3
 huntmode=cowardly
 // huntrange= TODO
-// immune to poison
+timer=1
+category=shade
 
 [shadeshadow_level4]
 name=Asyn Shadow
@@ -232,7 +245,8 @@ op2=Attack
 vislevel=100
 wanderrange=7
 maxrange=11
-// respawnrate= TODO
+blockwalk=none
+respawnrate=50
 hitpoints=90
 attack=102
 strength=84
@@ -248,10 +262,12 @@ param=defend_sound,shade_hit
 param=death_sound,shade_death
 param=death_drop,shade_bones4
 param=undead,^true
+param=next_npc_type,shade_level4
 huntmode=shades
 // guess
 huntrange=3
-// immune to poison
+timer=1
+category=shade
 
 [shade_level4]
 name=Asyn Shade
@@ -268,7 +284,7 @@ alwaysontop=yes
 vislevel=100
 wanderrange=7
 maxrange=11
-// respawnrate= TODO
+respawnrate=50
 hitpoints=90
 attack=102
 strength=84
@@ -284,9 +300,11 @@ param=defend_sound,shade_hit
 param=death_sound,shade_death
 param=death_drop,shade_bones4
 param=undead,^true
+param=shadeshadow,shadeshadow_level4
 huntmode=cowardly
 // huntrange= TODO
-// immune to poison
+timer=1
+category=shade
 
 [shadeshadow_level5]
 name=Fiyr Shadow
@@ -298,7 +316,8 @@ op2=Attack
 vislevel=120
 wanderrange=7
 maxrange=11
-// respawnrate= TODO
+blockwalk=none
+respawnrate=50
 hitpoints=110
 attack=120
 strength=100
@@ -314,10 +333,12 @@ param=defend_sound,shade_hit
 param=death_sound,shade_death
 param=death_drop,shade_bones5
 param=undead,^true
+param=next_npc_type,shade_level5
 huntmode=shades
 // guess
 huntrange=3
-// immune to poison
+timer=1
+category=shade
 
 [shade_level5]
 name=Fiyr Shade
@@ -332,7 +353,7 @@ alwaysontop=yes
 vislevel=120
 wanderrange=7
 maxrange=11
-// respawnrate= TODO
+respawnrate=50
 hitpoints=110
 attack=120
 strength=100
@@ -348,6 +369,8 @@ param=defend_sound,shade_hit
 param=death_sound,shade_death
 param=death_drop,shade_bones5
 param=undead,^true
+param=shadeshadow,shadeshadow_level5
 huntmode=cowardly
 // huntrange= TODO
-// immune to poison
+timer=1
+category=shade
