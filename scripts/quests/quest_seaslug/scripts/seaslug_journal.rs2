@@ -22,7 +22,7 @@ switch_int (%seaslugquest) {
 
         if (inv_total(inv, swamppaste) < 1) {
             $text = append($text, "@dbl@I've spoken to @dre@Holgart@dbl@, but his boat is broken.|@dbl@He needs me to bring him some @dre@Swamp Paste@dbl@.||");
-            $text = append($text, "@dbl@I've can make @dre@Swamp Paste@dbl@ by mixing @dre@Swamp Tar@dbl@ with|@dre@Flour@dbl@ and then heating the mixture on a @dre@Fire@dbl@.|");
+            $text = append($text, "@dbl@I can make @dre@Swamp Paste@dbl@ by mixing @dre@Swamp Tar@dbl@ with|@dre@Flour@dbl@ and then heating the mixture on a @dre@Fire@dbl@.|");
             $text = append($text, "@dbl@I can find @dre@Swamp Tar@dbl@ in the @dre@Swamp South of Lumbridge@dbl@.||");
         } else {
             $text = append($text, "@dbl@I need to take the @dre@Swamp Paste@dbl@ to @dre@Holgart@dbl@ He's near|@dre@Caroline@dbl@, they're @dre@East of Ardougne@dbl@.||");
