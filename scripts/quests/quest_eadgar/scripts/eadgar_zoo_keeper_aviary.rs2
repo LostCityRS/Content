@@ -25,6 +25,7 @@ switch_int(~p_choice3("It's very nice.", 1, "When did you add it?", 2, "What do 
 %eadgar_bits = setbit(%eadgar_bits, ^eadgar_pete_dialog_2);
 
 [opheldu,vodka] @opheldu_liquor(vodka);
+// vodka works both ways, other liquors only work one way (chunks -> alcohol), NIH otherwise  
 [opheldu,gin] @opheldu_liquor(gin);
 [opheldu,brandy] @opheldu_liquor(brandy);
 [opheldu,whisky] @opheldu_liquor(whisky);
