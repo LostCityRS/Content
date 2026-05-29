@@ -162,7 +162,7 @@ say("WAAAAAARRRGGGHHHH!!!!!!");
 sound_synth(deathslide, 0, 0);
 anim(zipline_slide, 0);
 p_exactmove(0_55_154_8_54, 0_55_154_8_17, 0, 225, ^exact_south);
-p_delay(7);
+p_delay(7); // For odd reasons 7*6 = 4200 ms matches videos.
 mes("... and land safely on your feet.");
 // ~waa_agility_exactmove(zipline_slide, 0, 2, 0_55_154_8_54, 0_55_154_8_44, 0, 80, ^exact_south, false);
 // // Failpoint 1
