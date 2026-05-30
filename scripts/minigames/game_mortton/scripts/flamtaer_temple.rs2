@@ -326,7 +326,7 @@ if (oc_category(last_useitem) = category_110) {
     //Todo: Guess since it is called serum 208 now
     if(testbit(%morttonmulti, ^mortton_made_perm_serum) = ^false) {
         %morttonmulti = setbit(%morttonmulti, ^mortton_made_perm_serum);
-        ~objbox(oc_param($obj, next_obj_stage_temple), "You sanctify serum 207 in the sacred flame and|rename it to serum 207(p).", 250, 0, 0);
+        ~objbox(oc_param($obj, next_obj_stage_temple), "You sanctify serum 207 in the sacred flame and|rename it to serum 207(p).", 200, 0, ^objbox_height);
     }
     return;
 }

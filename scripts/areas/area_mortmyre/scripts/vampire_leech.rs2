@@ -28,6 +28,9 @@ def_boolean $hit = false;
 // https://x.com/JagexAsh/status/1368496987356737537 1/5 Chance of reducing each individual skill by one
 if (randominc($attack_roll) > randominc($defence_roll)) {
     $damage = randominc($maxhit);
+    if (~check_protect_prayer(^melee_style) = true) { 
+        $damage = 0;
+    }
     ~leech_reduce_stats;
 }
 
