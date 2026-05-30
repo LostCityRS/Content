@@ -1,19 +1,57 @@
+[debugproc,misc_tele]
+if (p_finduid(uid) = true) {
+    p_telejump(1_39_60_10_14);
+}
+
 [debugproc,misc_quest_reset]
 if (p_finduid(uid) = true) {
     %misc_quest = ^misc_not_started;
     %misc_grantedaudience = 0;
-    %misc_approval = 0;
+    %misc_approval = ^MISC_APPROVAL_25_PERCENT;
     %misc_affection = 0;
     ~send_quest_progress_colour(questlist:misc, %misc_quest, ^misc_complete);
     p_telejump(1_39_60_10_14);
 }
 
+[debugproc,misc_quest_finish]
+if (p_finduid(uid) = true) {
+    %misc_quest = ^misc_complete;
+    %misc_grantedaudience = 1;
+    %misc_approval = ^MISC_APPROVAL_100_PERCENT;
+    %misc_affection = 4;
+    ~send_quest_progress_colour(questlist:misc, %misc_quest, ^misc_complete);
+}
+
+
+
 [debugproc,misc_30_days]
 if (p_finduid(uid) = true) {
     def_int $currenttime = date_minutes;
     %varp_360 = calc($currenttime - ^MISCELLANIA_INTERVAL * 30);
-    mes("reset misc");
+    mes("misc_30_days");
 }
+
+[debugproc,misc_update]
+if (p_finduid(uid) = true) {
+    ~manage_misc_daily_update;
+    mes("daily update ran");
+}
+
+[debugproc,misc_print]
+if (p_finduid(uid) = true) {
+    mes("DEBUG MISCELLANIA");
+    mes("Approval: <tostring(%misc_approval)> Workers: Mine-<tostring(%misc_points_mine)> Wood-<tostring(%misc_points_wood)> Herb-<tostring(%misc_points_herb)> Fish-<tostring(%misc_points_fish)>");
+    mes("ResourcePts(%varbit_71): <tostring(%varbit_71)>");
+    mes("In Minutes - %currenttime(date_minutes): <tostring(date_minutes)>");
+    mes("In Minutes - %misc_last_update(%varp_360): <tostring(%varp_360)>");
+    mes("%CofferTotal: <tostring(%misc_coffers)>");
+}
+
+[debugproc,bank]
+if (p_finduid(uid) = false) {
+    return;
+}
+@openbank;
 
 [debugproc,misc_view_resources]
 if (p_finduid(uid) = true) {

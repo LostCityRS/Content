@@ -20,53 +20,51 @@ if (%if1 > 0) {
     %if1 = max(sub(%if1, 1), 0);
     %misc_points_mine = min(add(%misc_points_mine, 1), 10);
 }
-
 // Mining Down
 [if_button,inter_210:com_12]
 if (%misc_points_mine > 0) {
     %misc_points_mine = max(sub(%misc_points_mine, 1), 0);
     %if1 = min(add(%if1, 1), 10);
 }
+
 // Wood Up
 [if_button,inter_210:com_46]
 if (%if1 > 0) {
     %if1 = max(sub(%if1, 1), 0);
     %misc_points_wood = min(add(%misc_points_wood, 1), 10);
 }
-
 // Wood Down
 [if_button,inter_210:com_47]
 if (%misc_points_wood > 0) {
     %misc_points_wood = max(sub(%misc_points_wood, 1), 0);
     %if1 = min(add(%if1, 1), 10);
 }
+
 // Herb Up
 [if_button,inter_210:com_27]
 if (%if1 > 0) {
     %if1 = max(sub(%if1, 1), 0);
     %misc_points_herb = min(add(%misc_points_herb, 1), 10);
 }
-
 // Herb Down
 [if_button,inter_210:com_28]
 if (%misc_points_herb > 0) {
     %misc_points_herb = max(sub(%misc_points_herb, 1), 0);
     %if1 = min(add(%if1, 1), 10);
 }
+
 // Fishing Up
 [if_button,inter_210:com_62]
 if (%if1 > 0) {
     %if1 = max(sub(%if1, 1), 0);
     %misc_points_fish = min(add(%misc_points_fish, 1), 10);
 }
-
 // Fishing Down
 [if_button,inter_210:com_63]
 if (%misc_points_fish > 0) {
     %misc_points_fish = max(sub(%misc_points_fish, 1), 0);
     %if1 = min(add(%if1, 1), 10);
 }
-
 // Fishing Cooked
 [if_button,inter_210:com_108]
 %misc_cooked = togglebit(%misc_cooked, 0);
@@ -152,15 +150,14 @@ while (calc($currenttime - $misc_last_update) >= ^MISCELLANIA_INTERVAL) {
         // Yes
 
         // Calc coffer ReductionAmt = 5 + CofferTotal / 10
-        def_int $ReductionAmt = calc(5 + $CofferTotal / 10);
+        def_int $ReductionAmt = calc(5 + ($CofferTotal / 10));
         $CofferTotal = calc($CofferTotal - $ReductionAmt);
         
         // Calc Worker effectiveness = ReductionAmt x 100/8333
         def_int $WorkerEffectiveness = calc($ReductionAmt * 100 / 8333);
         
         // Update resource pts resourcePts += workerEffectiveness/100 * approvalRating * 127/100
-        def_int $added_pts = divide(multiply(multiply(divide($WorkerEffectiveness, 100), $Approval), 127), 100);
-        $ResourcePts = calc($ResourcePts + $WorkerEffectiveness / 100 * $Approval * 127 / 100);
+        $ResourcePts = calc($ResourcePts + (($WorkerEffectiveness / 100) * $Approval)); // Note approval is already in range 0-127
         
         // This is capped at 262,143
         if ($ResourcePts > 262143) {
