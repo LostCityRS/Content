@@ -5,6 +5,7 @@ if (oc_param(last_useitem, weapon_poisoned) ! null) {
 ~displaymessage(^dm_default);
 
 [opheldu,tbwt_cleaning_cloth]
+if(~other_cleaning_cloth_uses = true) { return; };
 @clean_weapon_poison(last_useslot);
 
 [opheldu,tbwt_poisonous_karambwan_paste]
@@ -132,3 +133,20 @@ if (oc_category($weapon) = weapon_spear) {
 }
 
 mes(oc_param($weapon, tbwt_weapon_poisoned_message));
+
+// Cleaning cloth isn't limited to only cleaning off poison.
+[proc,other_cleaning_cloth_uses]()(boolean)
+if (last_useitem = oily_fishing_rod) {
+    mes("You carefully wipe the oil off your rod.");
+    inv_setslot(inv, last_useslot, fishing_rod, 1);
+    return (true);
+}
+return (false);
+
+[opheldu,oily_fishing_rod] // Probably a simpler version of https://youtu.be/qfrMSnLa04w
+if (last_useitem = tbwt_cleaning_cloth) {
+    inv_setslot(inv, last_slot, fishing_rod, 1);
+    mes("You carefully wipe the oil off your rod.");
+} else {
+    ~displaymessage(^dm_default);
+}
