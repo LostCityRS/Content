@@ -246,6 +246,9 @@ if (%viking = ^viking_complete) {
 if (%horrorquest = ^horror_complete) {
     $questpoints = add($questpoints, ^horror_questpoints); 
 }
+if (%eadgar_quest = ^eadgar_complete) {
+    $questpoints = add($questpoints, ^eadgar_questpoints); 
+}
 return ($questpoints);
 
 [proc,update_questlist]
