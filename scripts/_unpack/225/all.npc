@@ -255,8 +255,7 @@ param=strengthbonus,6
 param=damagetype,^stab_style
 param=attack_anim,human_farmersfork_stab
 param=defend_anim,human_farmersfork_def
-param=attack_sound,staff_stab
-// osrs attack_sound farmersfork_stab
+param=attack_sound,farmersfork_stab
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3114
 
@@ -334,8 +333,7 @@ param=damagetype,^stab_style
 param=attack_anim,human_sword_stab
 param=defend_anim,human_sword_def
 param=attack_sound,stabsword_stab
-// param=defend_sound, TODO
-// osrs defend_sound blade4
+param=defend_sound,blade4
 category=guard
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3254
@@ -788,7 +786,7 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,stabsword_slash
-param=defend_sound,swordclash4
+param=defend_sound,blade5
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3297
 
@@ -908,7 +906,7 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,stabsword_slash
-param=defend_sound,swordclash4
+param=defend_sound,blade5
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_3300
 
 [yanille_watchman]
@@ -941,8 +939,7 @@ param=crushdefence,19
 param=magicdefence,-4
 param=rangedefence,16
 param=damagetype,^crush_style
-// param=defend_sound, TODO
-// osrs defend_sound blade3_mail
+param=defend_sound,blade3_mail
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5420
 
@@ -982,8 +979,7 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_slash
-// param=defend_sound, TODO
-// osrs defend_sound blade3_mail
+param=defend_sound,blade3_mail
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_5421
 
@@ -3257,11 +3253,9 @@ param=attack_anim,dwarf_attack
 param=defend_anim,dwarf_block
 param=death_anim,dwarf_death
 param=attack_sound,baxe_crush
-// param=defend_sound, TODO
-// param=death_sound, TODO
-// osrs sounds dwarf_hit, dwarf_death
+param=defend_sound,dwarf_hit
+param=death_sound,dwarf_death
 // osrs stats and Vislvl match 1:1
-// TODO Try to find out what sounds dwarf used as defend and death sounds in 2004-2005.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_290
 
 [dwarf_chaos]
@@ -3302,13 +3296,11 @@ param=attack_anim,dwarf_attack
 param=defend_anim,dwarf_block
 param=death_anim,dwarf_death
 param=attack_sound,warhammer_crush
-// param=defend_sound, TODO
-// param=death_sound, TODO
-// osrs sounds dwarf_hit, dwarf_death
+param=defend_sound,dwarf_hit
+param=death_sound,dwarf_death
 huntmode=cowardly
 huntrange=1
 // osrs stats and Vislvl match 1:1
-// TODO Try to find out what sounds dwarf used as defend and death sounds in 2004-2005.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_291
 
 [dwarf_mountain]
@@ -3340,11 +3332,9 @@ param=attack_anim,dwarf_attack
 param=defend_anim,dwarf_block
 param=death_anim,dwarf_death
 param=attack_sound,warhammer_crush
-// param=defend_sound, TODO
-// param=death_sound, TODO
-// osrs sounds dwarf_hit, dwarf_death
+param=defend_sound,dwarf_hit
+param=death_sound,dwarf_death
 // osrs stats and Vislvl match 1:1
-// TODO Try to find out what sounds dwarf used as defend and death sounds in 2004-2005.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_292
 
 [dwarf_mountain2]
@@ -3376,9 +3366,8 @@ param=attack_anim,dwarf_attack
 param=defend_anim,dwarf_block
 param=death_anim,dwarf_death
 param=attack_sound,warhammer_crush
-// param=defend_sound, TODO
-// param=death_sound, TODO
-// TODO Try to find out what sounds dwarf used as defend and death sounds in 2004-2005.
+param=defend_sound,dwarf_hit
+param=death_sound,dwarf_death
 // params, stats, animations, sounds is competely guess. the npc data no longer exists in the cache.. mostly taken other dwarves.
 
 [hobgoblin_unarmed]
@@ -3484,7 +3473,7 @@ param=attack_anim,human_axe_chop
 param=defend_anim,human_axe_def
 param=death_anim,human_transdeath
 param=attack_sound,warhammer_crush
-param=defend_sound,swordclash4
+param=defend_sound,blade5
 huntmode=cowardly
 huntrange=5
 // hunt - https://www.youtube.com/watch?v=T2ztjZEch5Y&t=153s
@@ -5824,8 +5813,7 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,stabsword_slash
-// param=defend_sound, TODO
-// osrs defend_sound big_bar_mail
+param=defend_sound,big_bar_mail
 // osrs stats and Vislvl match 1:1
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4926
 

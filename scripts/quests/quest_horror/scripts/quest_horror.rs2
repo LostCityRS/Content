@@ -302,7 +302,7 @@ if(coordz(coord) < coordz(loc_coord)) {
 loc_change(inviswall, 3);
 p_teleport(movecoord(loc_coord, 0, 0, -1));
 loc_add(movecoord(loc_coord, 0, 0, -1), horror_far_left_door_inactive, 0, wall_straight, 3);
-sound_synth(sound_752, 0, 0);
+sound_synth(strangedoor_open, 0, 0);
 longqueue(strangedoorsound, 1, 0, ^discard);
 
 [oploc1,horror_far_right_door]
@@ -317,7 +317,7 @@ if(coordz(coord) >= coordz(loc_coord)) {
 loc_change(inviswall, 3);
 p_teleport(loc_coord);
 loc_add(movecoord(loc_coord, 0, 0, -1), horror_far_right_door_inactive, 0, wall_straight, 3);
-sound_synth(sound_752, 0, 0);
+sound_synth(strangedoor_open, 0, 0);
 longqueue(strangedoorsound, 1, 0, ^discard);
 
 [queue,strangedoorsound]
