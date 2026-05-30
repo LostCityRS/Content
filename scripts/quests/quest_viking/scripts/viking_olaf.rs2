@@ -61,7 +61,7 @@ if(%viking = ^viking_not_started) {
             ~chatnpc("<p,happy>That is great news outerlander! We always need more music lovers here!");
     }
 } else if(%viking = ^viking_complete) {
-    ~chatnpc("<p,quiz>'Hello again to you <~get_viking_name>. Us bards should stick together, what?");
+    ~chatnpc("<p,quiz>Hello again to you <~get_viking_name>. Us bards should stick together, what?");
     switch_int(~p_choice2("I was wondering...", 1, "I forget now...", 2)) { // options from rs3
         case 1 : // osrs grammar here, rs3 looks to be fixed
             ~chatplayer("<p,quiz>I was wondering... Can I learn to play my lyre again?");
