@@ -370,7 +370,8 @@ switch_int($op) {
         p_delay(2);
         say("This is Saradomin's wisdom.");
 }
-%sa_energy = sub(%sa_energy, 250);
+~set_sa_timer;
+~sub_sa_energy(250);
 
 [opheld3,zamorakbook_complete]
 if(%sa_energy < 250) {
@@ -434,7 +435,8 @@ switch_int($op) {
         p_delay(2);
         say("Zamorak give me strength!");
 }
-%sa_energy = sub(%sa_energy, 250);
+~set_sa_timer;
+~sub_sa_energy(250);
 
 [opheld3,guthixbook_complete]
 if(%sa_energy < 250) {
@@ -498,4 +500,5 @@ switch_int($op) {
         p_delay(2);
         say("May Guthix bring you balance.");
 }
-%sa_energy = sub(%sa_energy, 250);
+~set_sa_timer;
+~sub_sa_energy(250);
