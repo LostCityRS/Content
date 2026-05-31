@@ -65,8 +65,7 @@ if ($quest_progress = ^eadgar_needs_items) {
     def_int $grain_needed = calc(10 - %eadgar_grain);
     def_string $items_remaining = "@dre@";
     if(testbit(%eadgar_bits, ^eadgar_given_logs) ! 1) {
-        // TODO the string for logs needs verified as far as formatting, the rest match OSRS including plural vs singular for >1 vs 1
-        $items_remaining = append($items_remaining, "|Some Logs");
+        $items_remaining = append($items_remaining, "|Logs");
     }
     if($chickens_needed > 0) {
         if($chickens_needed > 1) {
