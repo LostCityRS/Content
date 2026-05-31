@@ -314,7 +314,7 @@ if(%horror_balancepage1 = ^true & %horror_balancepage2 = ^true & %horror_balance
 
 [opheld3,saradominbook_complete]
 if(%sa_energy < 250) {
-    // https://media.discordapp.net/attachments/1510562081072611388/1510612185150132295/image.png?ex=6a1d72ba&is=6a1c213a&hm=287878b463785335651c2661140cffbcdb2c762a4ae0659f439cd2f93a673099&=&format=webp&quality=lossless
+    // https://i.imgur.com/onxUvRr.png
     mes("You do not have enough Special Energy to preach.");
     return;
 }
@@ -371,12 +371,11 @@ switch_int($op) {
         p_delay(2);
         say("This is Saradomin's wisdom.");
 }
-~set_sa_timer;
 ~sub_sa_energy(250);
 
 [opheld3,zamorakbook_complete]
 if(%sa_energy < 250) {
-    // https://media.discordapp.net/attachments/1510562081072611388/1510612185150132295/image.png?ex=6a1d72ba&is=6a1c213a&hm=287878b463785335651c2661140cffbcdb2c762a4ae0659f439cd2f93a673099&=&format=webp&quality=lossless
+    // https://i.imgur.com/onxUvRr.png
     mes("You do not have enough Special Energy to preach.");
     return;
 }
@@ -437,12 +436,11 @@ switch_int($op) {
         p_delay(2);
         say("Zamorak give me strength!");
 }
-~set_sa_timer;
 ~sub_sa_energy(250);
 
 [opheld3,guthixbook_complete]
 if(%sa_energy < 250) {
-    // https://media.discordapp.net/attachments/1510562081072611388/1510612185150132295/image.png?ex=6a1d72ba&is=6a1c213a&hm=287878b463785335651c2661140cffbcdb2c762a4ae0659f439cd2f93a673099&=&format=webp&quality=lossless
+    // https://i.imgur.com/onxUvRr.png
     mes("You do not have enough Special Energy to preach.");
     return;
 }
@@ -503,5 +501,4 @@ switch_int($op) {
         p_delay(2);
         say("May Guthix bring you balance.");
 }
-~set_sa_timer;
 ~sub_sa_energy(250);
