@@ -204,7 +204,9 @@ sound_synth(smokepuff, 0, 0);
 %mortton_current_shade = null;
 loc_findallzone($coord);
 if(loc_findnext = true) {
-    loc_change(temple_pyre, 1);
+    if(loc_coord = $coord) {
+        loc_change(temple_pyre, 1);
+    }
 }
 if(npc_find(~get_pyre_coord($coord, $rotation), shade_heaven, 0, 0) = true) {
     npc_del;
