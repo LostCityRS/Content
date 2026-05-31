@@ -76,8 +76,13 @@ if (%action_delay < map_clock) {
         loc_change($loc_transform, $respawn);
         sound_synth(sickle_stab, 0, 0);
         anim(null, 0);
-        %misc_approval = add(%misc_approval, 1);
-        if (npc_find(0_39_60_29_10, misc_gardener, 2, 0) = true) { npc_say("Thanks!"); }
+        if (%misc_approval < 127) { %misc_approval = add(%misc_approval, 1); }
+        if (npc_find(0_39_60_29_10, misc_gardener, 2, 0) = true) { 
+            npc_say("Thanks!"); 
+            if (%misc_approval >= 127) {
+                ~chatnpcnoturn("<p,happy> Don't trouble yourself further, Your Highness, you've already done so much!");
+            }
+        }
         mes("You manage to cut some weeds and give them to Gardener Gunnhild.");
         return;
     }

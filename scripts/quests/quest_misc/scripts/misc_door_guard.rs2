@@ -15,7 +15,7 @@ if (%heroquest = ^hero_complete) {
 
 [opnpc1,misc_ulby_doorguard]
 if (%heroquest = ^hero_complete) {
-    if (%misc_grantedaudience = 1 | %misc_quest > 0) {
+    if (%misc_grantedaudience = 1 | %misc_quest > ^misc_not_started) {
         @doorpass;
     } else {
         @doornotyetpass;
@@ -39,5 +39,8 @@ if (%heroquest = ^hero_complete) {
 %misc_grantedaudience = 1;
 
 [label,doorpass]
-~chatnpc("<p,happy>Welcome back, <text_gender("Sir", "Madam")>.");
-// Later upgrade to your highness.
+if (%misc_quest = ^misc_complete) {
+    ~chatnpc("<p,happy>Welcome back, Your Highness.");
+} else {
+    ~chatnpc("<p,happy>Welcome back, <text_gender("Sir", "Madam")>.");
+}

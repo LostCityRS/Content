@@ -25,6 +25,7 @@ if (%misc_quest = ^misc_complete) {
     }
 }
 
+// man_misc = Managing Miscellania
 [proc,man_misc_mesanim]()(string)
 if (%misc_approval >= ^MISC_APPROVAL_75_PERCENT) {
     return ("<p,happy>");

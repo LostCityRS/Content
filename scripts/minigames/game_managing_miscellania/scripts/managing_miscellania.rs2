@@ -78,7 +78,7 @@ if (%misc_points_fish > 0) {
 p_countdialog;
 def_int $requested_deposit = last_int;
 
-def_int $coffer_space = sub(500000, %misc_coffers);
+def_int $coffer_space = sub(5000000, %misc_coffers);
 def_int $deposit_amt = $requested_deposit;
 if ($deposit_amt > $coffer_space) {
     $deposit_amt = $coffer_space;
@@ -151,6 +151,10 @@ while (calc($currenttime - $misc_last_update) >= ^MISCELLANIA_INTERVAL) {
 
         // Calc coffer ReductionAmt = 5 + CofferTotal / 10
         def_int $ReductionAmt = calc(5 + ($CofferTotal / 10));
+        // The amount withdrawn from the coffers is equivalent to 10% of the balance in the coffer up to a maximum of 50,000 coins, or 75,000 coins after Royal Trouble.
+        // If the max amount of coins is able to be subtracted, a clean 10% will be taken out of the coffers. Otherwise, 10% will be taken out, and then an additional 5 coins.
+        if ($ReductionAmt > 50000) { $ReductionAmt = 50000; }
+        if (calc($CofferTotal - $ReductionAmt) < 0) { $ReductionAmt = $CofferTotal; } // If you have less than 5 coins... makes sure CoffersTotal doesn't go negative.
         $CofferTotal = calc($CofferTotal - $ReductionAmt);
         
         // Calc Worker effectiveness = ReductionAmt x 100/8333

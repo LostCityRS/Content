@@ -128,8 +128,13 @@ if (stat_random(woodcutting, $tree_chance_low, $tree_chance_high) = true) {
     def_namedobj $product = db_getfield($data, woodcutting_trees:product, 0);
     if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
         // Miscellania has a different messaging.
-        %misc_approval = add(%misc_approval, 1);
-        if (npc_find(0_39_60_54_29, misc_lumberjack, 2, 0) = true) { npc_say("Thanks!"); }
+        if (%misc_approval < 127) { %misc_approval = add(%misc_approval, 1); }
+        if (npc_find(0_39_60_54_29, misc_lumberjack, 2, 0) = true) { 
+            npc_say("Thanks!");
+            if (%misc_approval >= 127) {
+                ~chatnpcnoturn("<p,happy> Don't trouble yourself further, Your Highness, you've already done so much!");
+            }
+        }
         mes("You get some <lowercase(oc_name($product))> and give them to Lumberjack Leif.");
     } else {
         mes("You get some <lowercase(oc_name($product))>.");
