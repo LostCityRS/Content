@@ -284,7 +284,7 @@ if (oc_category(last_useitem) = category_110) {
         return;
     }
 
-    if(%temple_sanctity_p < 10) {
+    if(%temple_sanctity < 300) {
         ~mesbox("You need to increase your sanctity to at least 10% before you can|use the sacred flame. Using the sacred flame reduces your sanctity.");
         return;
     }
@@ -308,7 +308,7 @@ if (oc_category(last_useitem) = category_110) {
         return;
     }
 
-    if(%temple_sanctity_p < 20) {
+    if(%temple_sanctity < 600 ) {
         //Was fixed to be 20% later
         ~mesbox("You need to increase your sanctity to %20 before you can use the|sacred flame for this purpose.  Using the sacred flame reduces your|sanctity.");
         return;
