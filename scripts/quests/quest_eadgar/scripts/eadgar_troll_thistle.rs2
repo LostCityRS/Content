@@ -37,7 +37,9 @@ if(last_useitem = ranarrvial) {
     ~attempt_grind_ingredient(last_useslot, last_slot);
 }
 
-[opheldu,eadgar_ground_troll_thistle]
+[opheldu,eadgar_ground_troll_thistle] @eadgar_mix_troll_truth_potion;
+
+[label,eadgar_mix_troll_truth_potion]
 if(%eadgar_quest = ^eadgar_needs_potion) {
     ~attempt_brew_potion(last_useslot, last_slot);
 } else if(%eadgar_quest > ^eadgar_needs_potion) {
