@@ -147,7 +147,7 @@ if(inv_freespace(inv) > 0) {
 [oploc1,eadgar_rack]
 // rsprox/branon
 if(%eadgar_quest >= ^eadgar_hid_parrot & %eadgar_quest <= ^eadgar_needs_potion) {
-    switch_int(random(2)) {
+    switch_int(randominc(2)) {
         case 0 : ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Polly wanna cracker!");
         case 1 : ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Pieces of eight! Pieces of eight!");
         case 2 : ~chatnpc_specific("Parrot", eadgar_parrotts, "<p,neutral>Who's a pretty boy then?");
