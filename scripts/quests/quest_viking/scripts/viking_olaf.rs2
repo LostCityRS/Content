@@ -472,7 +472,7 @@ mes("You feel the musical ability from the Fossegrimen leave you...");
 %viking_bits = clearbit(%viking_bits, ^viking_rock_stew);
 ~set_viking_olaf_progress(^olaf_complete);
 def_int $totalinv = inv_total(inv, viking_enchanted_strung_lyre);
-def_int $totalbank = inv_total(inv, viking_enchanted_strung_lyre);
+def_int $totalbank = inv_total(bank, viking_enchanted_strung_lyre);
 if($totalinv > 0) {
     inv_del(inv, viking_enchanted_strung_lyre, $totalinv);
     inv_add(inv, viking_strung_lyre, $totalinv);

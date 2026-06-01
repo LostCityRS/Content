@@ -76,7 +76,7 @@ switch_int(%chompybird) {
         @where_to_put_toadies;
     // Maybe chompy_ate_toad has a separate set of dialogue, but in normal circumstances the stage
     // advances to rantz_tried_to_shoot_chompy too quickly to tell.
-    case ^chompybird_dropped_toad, ^chompybird_chompy_ate_toad :
+    case ^chompybird_dropped_toad, ^chompybird_chompy_bird_spawned :
         ~chatplayer("<p,neutral>There you go, I've placed the bait.");
         ~chatnpc("<p,happy>Goodz, me now waits for da chompy! It shouldn't be long now. Sneaky... sneaky...");
         ~chatplayer("<p,neutral>Yes, I know... stick da chompy!");

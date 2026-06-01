@@ -815,7 +815,7 @@ minimap_toggle(0);
 minimap_toggle(1);
 huntall(loc_coord, 1, 0);
 while (.huntnext = true) {
-    if(.%boardgames_viewing = 0) {
+    if(.%boardgames_viewing = 0 & .%boardgames_ingame = 1) {
         if(.%boardgames_control = 1) {
             %boardgames_tablenum = .%boardgames_tablenum;
             if_setobject(boardgames_runelink_view:p2_rune, ~get_boardgames_rune_obj(.%boardgames_piece), 72);

@@ -7,7 +7,8 @@
     npc_anim(chompy_landing, 0);
     npc_say("Sqwirk!");
     if(finduid(%npc_attacking_uid) = true) {
-        if (%chompybird >= ^chompybird_chompy_ate_toad & %chompybird < ^chompybird_rantz_gave_player_bow) {
+        if (%chompybird < ^chompybird_rantz_gave_player_bow) {
+            queue(chompy_bird_spawned, 0, 0);
             npc_queue(11, 0, add(15, random(10)));
         }
         hint_npc;
@@ -50,14 +51,14 @@ if (.npc_finduid(%chompy_attacking_toad) = true & distance(npc_coord, .npc_coord
     .npc_delay(1);
     .npc_del;
     npc_setmode(null);
-    if (p_finduid(%npc_attacking_uid) = true) {
-        if (%chompybird = ^chompybird_dropped_toad) {
-            %chompybird = ^chompybird_chompy_ate_toad;
-        }
-    }
 } else {
     npc_setmode(null);
     npc_sethuntmode(chompybird);
+}
+
+[queue,chompy_bird_spawned]
+if (%chompybird = ^chompybird_dropped_toad) {
+    %chompybird = ^chompybird_chompy_bird_spawned;
 }
 
 [ai_timer,chompy_bird]

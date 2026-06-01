@@ -183,25 +183,50 @@ if($op = 2) {
 @peer_deposit;
 
 [label,peer_deposit]
-def_int $space_needed = 0;
-$space_needed = add($space_needed, ~moveallinv_itemspace2(inv, bank));
-$space_needed = add($space_needed, ~moveallinv_itemspace2(worn, bank));
-if(inv_freespace(bank) < $space_needed | inv_totalparam(inv, unbankable) > 0 | inv_totalparam(worn, unbankable) > 0) {
-    ~chatnpc("<p,neutral>I am sorry outerlander, the spell is not working.");
-    return;
-}
-
-~moveallinv(inv, bank);
-def_int $size = inv_size(worn);
+def_int $size = inv_size(inv);
+def_int $dep_count;
 def_int $i = 0;
 def_obj $obj;
+def_int $fail = ^false;
+while ($i < $size) {
+    $obj = inv_getobj(inv, $i);
+    if ($obj ! null) {
+        if (~bank_check_nobreak($obj, ^false) = false) {
+            if(~bank_deposit_request(inv, $obj, inv_total(inv, $obj), $i, ^false) = true) {
+                $dep_count = add($dep_count, 1);
+            } else {
+                $fail = ^true;
+            }
+        } else {
+            $fail = ^true;
+        }
+    }
+    $i = add($i, 1);
+}
+
+$size = inv_size(worn);
+$i = 0;
 while ($i < $size) {
     $obj = inv_getobj(worn, $i);
     if ($obj ! null) {
-        inv_moveitem(worn, bank, $obj, inv_total(worn, $obj));
-        ~update_all($obj); // based off rsprox logs it does update_all (and plays unequip sounds) for ea item
+        if (~bank_check_nobreak($obj, ^false) = false) {
+            if(~bank_deposit_request(worn, $obj, inv_total(worn, $obj), $i, ^false) = true) {
+                $dep_count = add($dep_count, 1);
+            } else {
+                $fail = ^true;
+            }
+        } else {
+            $fail = ^true;
+        }
     }
     $i = add($i, 1);
+}
+
+if($fail = ^true) {
+    if($dep_count > 0) mes("Some of your items cannot be stored in the bank.");
+    else mes("Your items cannot be stored in the bank.");
+    ~chatnpc("<p,sad>I am sorry outerlander, the spell is not working.");
+    return;
 }
 ~chatnpc("<p,neutral>The task is done. I wish you luck with your test, outerlander.");
 
