@@ -279,7 +279,7 @@ $grain_num = min(calc(10 - %eadgar_grain), $grain_num);
 
 // videos show items are removed here, immediately before the player's "I have XYZ" dialog fires
 if ($logs_num >= 1 & testbit(%eadgar_bits, ^eadgar_given_logs) = ^false) {
-    inv_del(inv, logs, 1);
+    inv_del(inv, $log_type, 1);
     %eadgar_bits = setbit(%eadgar_bits, ^eadgar_given_logs);
 } else {
     $logs_str = "no logs";
@@ -288,7 +288,7 @@ if ($logs_num >= 1 & testbit(%eadgar_bits, ^eadgar_given_logs) = ^false) {
     //
     // Player gives Eadgar ALL of a required item (1 logs for example)
     // Player returns later with other items, while still carrying an extra of the previous item (1 extra logs to make a fire)
-    // The player's dialog will reads "I have no logs" while turning in other items, even though there are actually logs in the inventory.
+    // The player's dialog will read "I have no logs" while turning in other items, even though there are actually logs in the inventory.
 }
 
 if ($chickens_num > 0) {
