@@ -7,24 +7,6 @@ if (%misc_quest >= 100) {
     @astrid_beforethronequest;
 }
 
-[proc,astrid_random_nonsense]()(string)
-switch_int (random(14)) {
-    case 0 : return ("Beards? Dangerous, flammable and make you look mad!");
-    case 1 : return ("Care to sign my petition for pet frogs?");
-    case 2 : return ("Cattle prod? Weapon of choice I reckon.");
-    case 3 : return ("Don't threaten me with a dead fish!");
-    case 4 : return ("He is clearly 1 cup short of a full service.");
-    case 5 : return ("I'm a little teapot, short and stout...");
-    case 6 : return ("I'm rubber you're glue.........!");
-    case 7 : return ("Lies!!! It's all lies!!!");
-    case 8 : return ("Look over there! A King Black Dragon!");
-    case 9 : return ("Lumbridge? No, I wouldn't be seen dead there.");
-    case 10 : return ("Nah, that Kalphite was weedier than your garden.");
-    case 11 : return ("Selling ring of poverty 30 mil!");
-    case 12 : return ("Sneaky sneaky stick da chompy.");
-    case 13 : return ("What level do you need to cook cats?");
-}
-
 [label,astrid_beforethronequest]
 ~chatnpc("<p,neutral>Good day, <text_gender("Sir", "Madam")>.");
 ~chatplayer("<p,neutral>Good day, Your Royal Highness.");
@@ -41,9 +23,6 @@ if (gender = ^gender_male) {
 } else {
     @astrid_beforethronequest;
 }
-
-[label,astrid_whattheheck]
-~chatnpc("<p,confused>...What?");
 
 [label,astrid_throneofmiscellaniamarriagestage0]
 ~chatnpc("<p,neutral>Good day, <text_gender("Sir", "Madam")>.");
@@ -73,11 +52,10 @@ if (%misc_s1_d1 = 0) {
 [label,astrid_randomset1branch1]
 ~chatplayer("<p,neutral>So, you practice archery? I see you have a bow mounted on your wall.");
 ~chatnpc("<p,neutral>Yes; my father thinks it is a cowardly art, but I find there is just as much courage, and more skill, involved in going into combat with just a bow and quiver. What do you think?");
-@multi4(
+@multi4miscrand(
     "Archers are all cowards!", astrid_archerscowards,
     "Archery is a noble art!", astrid_archerynobleart,
-    "You should listen to your father.", astrid_youshouldlistentodaddy,
-    "Um... nice weather?", astrid_whattheheck
+    "You should listen to your father.", astrid_youshouldlistentodaddy
 );
 
 [label,astrid_archerscowards]
@@ -97,11 +75,10 @@ if (%misc_s1_d1 = 0) {
 ~chatplayer("<p,neutral>So, tell me about all these other admirers you have.");
 ~chatnpc("<p,neutral>They never cease to bother me. They swarm around me like flies, all hoping to win my heart.");
 ~chatnpc("<p,neutral>Perhaps I should use them for target practice!");
-@multi4(
+@multi4miscrand(
     "I don't know why they bother...", astrid_whydoyoubother,
     "You monster!", astrid_youmonstertargetpractice,
-    "Hahahaha!", astrid_laughingattargetpractice,
-    "I like pie.", astrid_whattheheck
+    "Hahahaha!", astrid_laughingattargetpractice
 );
 
 [label,astrid_whydoyoubother]
@@ -122,11 +99,10 @@ if (%misc_s1_d1 = 0) {
 [label,astrid_randomset1branch3]
 ~chatplayer("<p,neutral>What do you think of Advisor Ghrim?");
 ~chatnpc("<p,neutral>He's a bit scary sometimes, but he's always so nice to me! When I was young, I called him Uncle Ghrim.");
-@multi4(
+@multi4miscrand(
     "I think he's far too grumpy.", astrid_heisgrumpyboi,
     "He's been very helpful.", astrid_heisveryhelpful,
-    "No wonder you turned out like this...", astrid_nowonderyouturnout,
-    "Is he a wizard?", astrid_whattheheck
+    "No wonder you turned out like this...", astrid_nowonderyouturnout
 );
 
 [label,astrid_heisgrumpyboi]
@@ -173,11 +149,10 @@ if (%misc_s2_d1 = 0) {
 [label,astrid_randomset2branch1]
 ~chatplayer("<p,neutral>What would you do if you ruled this Kingdom?");
 ~chatnpc("<p,neutral>Very little. It's not as if there's much to it... I might try to set up trade with other islands.");
-@multi4(
+@multi4miscrand(
     "That's not very enterprising.", astrid_notenterprising,
     "That sounds like a good idea.", astrid_goodidea,
-    "What a silly idea!", astrid_sillyidea,
-    "Can I have a sandwich?", astrid_whattheheck
+    "What a silly idea!", astrid_sillyidea
 );
 
 [label,astrid_notenterprising]
@@ -198,11 +173,10 @@ if (%misc_s2_d1 = 0) {
 ~chatnpc("<p,neutral>Well, nothing very exciting ever happened until my father declared war on Etceteria...");
 ~chatplayer("<p,neutral>Why did he do that?");
 ~chatnpc("<p,neutral>Queen Sigrid of Etceteria insulted him.");
-@multi4(
+@multi4miscrand(
     "Hahahaha!", astrid_laughingathistory,
     "He probably deserved it.", astrid_hedeservedit,
-    "What happened next?", astrid_whathappenednext,
-    "Who is Sigrid?", astrid_whattheheck
+    "What happened next?", astrid_whathappenednext
 );
 
 [label,astrid_laughingathistory]
@@ -222,11 +196,10 @@ if (%misc_s2_d1 = 0) {
 [label,astrid_randomset2branch3]
 ~chatplayer("<p,neutral>So why are you so interested in archery?");
 ~chatnpc("<p,neutral>I'm not sure. Even when I was little, archery always fascinated me.");
-@multi4(
+@multi4miscrand(
     "I'm quite fond of it myself.", astrid_fondofitmyself,
     "You should stick to knitting.", astrid_sticktoknitting,
-    "You should try swordfighting instead.", astrid_tryswordfighting,
-    "Bows are long.", astrid_whattheheck
+    "You should try swordfighting instead.", astrid_tryswordfighting
 );
 
 [label,astrid_fondofitmyself]
@@ -266,11 +239,10 @@ if (%misc_s3_d1 = 0) {
 
 [label,astrid_randomset3branch1]
 ~chatnpc("<p,neutral>So, my dear, what do you think of Miscellania?");
-@multi4(
+@multi4miscrand(
     "It's a lovely little country.", astrid_itslovely,
     "It's boring.", astrid_itsboring,
-    "Well, I've seen better...", astrid_seenbetter,
-    "Where is the exit?", astrid_whattheheck
+    "Well, I've seen better...", astrid_seenbetter
 );
 
 [label,astrid_itslovely]
@@ -289,11 +261,10 @@ if (%misc_s3_d1 = 0) {
 [label,astrid_randomset3branch2]
 ~chatplayer("<p,neutral>What do you think of your brother?");
 ~chatnpc("<p,neutral>We don't always get along, but I'm sure he's a nice guy at heart.");
-@multi4(
+@multi4miscrand(
     "And what a great bard he makes!", astrid_greatbard,
     "I have heard better drains!", astrid_betterdrains,
-    "I really don't like him.", astrid_dontlikehim,
-    "He has nice hair.", astrid_whattheheck
+    "I really don't like him.", astrid_dontlikehim
 );
 
 [label,astrid_greatbard]
@@ -312,11 +283,10 @@ if (%misc_s3_d1 = 0) {
 [label,astrid_randomset3branch3]
 ~chatplayer("<p,neutral>Do you go out into battle often?");
 ~chatnpc("<p,neutral>Not often, no. I sometimes go hunting...");
-@multi4(
+@multi4miscrand(
     "And you call yourself an archer?", astrid_callyourselfarcher,
     "Hunting the mighty rabbits outside the castle?", astrid_mightyrabbits,
-    "I suppose you don't have much opportunity to.", astrid_noopportunity,
-    "Rabbits are fast.", astrid_whattheheck
+    "I suppose you don't have much opportunity to.", astrid_noopportunity
 );
 
 [label,astrid_callyourselfarcher]

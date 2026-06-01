@@ -15,24 +15,6 @@ if (%misc_quest >= 100) {
     @brand_beforethronequest;
 }
 
-[proc,brand_random_nonsense]()(string)
-switch_int (random(14)) {
-    case 0 : return ("Beards? Dangerous, flammable and make you look mad!");
-    case 1 : return ("Care to sign my petition for pet frogs?");
-    case 2 : return ("Cattle prod? Weapon of choice I reckon.");
-    case 3 : return ("Don't threaten me with a dead fish!");
-    case 4 : return ("He is clearly 1 cup short of a full service.");
-    case 5 : return ("I'm a little teapot, short and stout...");
-    case 6 : return ("I'm rubber you're glue.........!");
-    case 7 : return ("Lies!!! It's all lies!!!");
-    case 8 : return ("Look over there! A King Black Dragon!");
-    case 9 : return ("Lumbridge? No, I wouldn't be seen dead there.");
-    case 10 : return ("Nah, that Kalphite was weedier than your garden.");
-    case 11 : return ("Selling ring of poverty 30 mil!");
-    case 12 : return ("Sneaky sneaky stick da chompy.");
-    case 13 : return ("What level do you need to cook cats?");
-}
-
 [label,brand_beforethronequest]
 ~chatnpc("<p,neutral>Good day, <text_gender("Sir", "Madam")>.");
 ~chatplayer("<p,neutral>Good day, Your Royal Highness.");
@@ -74,10 +56,6 @@ if (gender = ^gender_male) {
     }
 }
 
-[label,brand_whattheheck]
-~chatplayer(~brand_random_nonsense());
-~chatnpc("<p,confused>...What?");
-
 [label,brand_throneofmiscellaniamarriagestage0]
 ~chatnpc("<p,neutral>Good day, Madam.");
 ~chatplayer("<p,neutral>Good day, Your Royal Highness.");
@@ -108,11 +86,10 @@ if (%misc_s1_d1 = 0) {
 ~chatnpc("<p,neutral>I composed a poem, would you like to hear it?");
 ~chatplayer("<p,neutral>Of course, I'd love to.");
 ~chatnpc("<p,happy>I got up morning, and had an egg for breakfast.");
-@multi4(
+@multi4miscrand(
     "And then what happened?", brand_whathappened,
     "Be still, my heart.", brand_bestillmyheart,
-    "That doesn't even rhyme!", brand_sucksatrhyming,
-    ~brand_random_nonsense(), brand_whattheheck
+    "That doesn't even rhyme!", brand_sucksatrhyming
 );
 
 [label,brand_whathappened]
@@ -132,11 +109,10 @@ if (%misc_s1_d1 = 0) {
 [label,brand_randomset1branch2]
 ~chatplayer("<p,neutral>I am surprised you do not have hordes of admirers vying to be your significant other, Your Highness.");
 ~chatnpc("<p,neutral>And why do you think that might be, <text_gender("sir", "madam")>?");
-@multi4(
+@multi4miscrand(
     "No-one's ever heard of you.", brand_nooneheard,
     "They don't understand your poetry as I do.", brand_understandpoetry,
-    "They're all already married.", brand_alreadymarried,
-    ~brand_random_nonsense(), brand_whattheheck
+    "They're all already married.", brand_alreadymarried
 );
 
 [label,brand_nooneheard]
@@ -156,11 +132,10 @@ if (%misc_s1_d1 = 0) {
 [label,brand_randomset1branch3]
 ~chatplayer("<p,neutral>So, you practice the harp? I see you have one over there.");
 ~chatnpc("<p,neutral>Yes; I play the lyre and the harp, and compose songs, poems and sagas to move you, to delight you and entertain you! Sadly, my father does not think much of the art. What do you think?");
-@multi4(
+@multi4miscrand(
     "You should listen to your father.", brand_listentodaddy,
     "You will be the greatest bard!", brand_greatestbard,
-    "You're an awful bard.", brand_awfulbard,
-    ~brand_random_nonsense(), brand_whattheheck
+    "You're an awful bard.", brand_awfulbard
 );
 
 [label,brand_listentodaddy]
@@ -205,11 +180,10 @@ if (%misc_s2_d1 = 0) {
 [label,brand_randomset2branch1]
 ~chatplayer("<p,neutral>What would you do if you ruled this Kingdom?");
 ~chatnpc("<p,neutral>Oh, I would never concern myself with such trivial matters as those involved in ruling a Kingdom. My interests lie solely in the arts.");
-@multi4(
+@multi4miscrand(
     "A much nobler pursuit, to be sure.", brand_nobelpursuit,
     "If only you were any good at them...", brand_yousobad,
-    "You're just afraid of responsibility.", brand_afraidofres,
-    ~brand_random_nonsense(), brand_whattheheck
+    "You're just afraid of responsibility.", brand_afraidofres
 );
 
 [label,brand_nobelpursuit]
@@ -231,11 +205,10 @@ if (%misc_s2_d1 = 0) {
 ~chatnpc("<p,neutral>Don't worry, it's quite short. Here we go!");
 ~chatnpc("<p,neutral>Once upon a time there was a Prince, And Brand was his name, He always had a song in his heart, And a rhyme in his head,");
 ~chatnpc("<p,neutral>And he became the world's greatest bard, And delighted one and all, With his songs and sagas, And Brand was his name!");
-@multi4(
+@multi4miscrand(
     "How inspiring!", brand_howinspiring,
     "I think my ears are bleeding.", brand_earsarebleeding,
-    "That's not a saga!", brand_thatsnotasaga,
-    ~brand_random_nonsense(), brand_whattheheck
+    "That's not a saga!", brand_thatsnotasaga
 );
 
 [label,brand_howinspiring]
@@ -254,11 +227,10 @@ if (%misc_s2_d1 = 0) {
 [label,brand_randomset2branch3]
 ~chatplayer("<p,neutral>So, why did you decide to become a bard?");
 ~chatnpc("<p,neutral>Poetry and music have always fascinated me. I am drawn to them like a moth to an overenthusiastic mage who has set himself on fire.");
-@multi4(
+@multi4miscrand(
     "How poetic.", brand_howpoetic,
     "Wait, are you the moth or the mage?", brand_mothormage,
-    "That's a strange metaphor...", brand_strangemetaphor,
-    ~brand_random_nonsense(), brand_whattheheck
+    "That's a strange metaphor...", brand_strangemetaphor
 );
 
 [label,brand_howpoetic]
@@ -300,11 +272,10 @@ if (%misc_s3_d1 = 0) {
 ~chatnpc("<p,neutral>I wrote a song about you. Would you like to hear it?");
 ~chatplayer("<p,neutral>I'd love to!");
 ~chatnpc("<p,neutral>Your hair is like a waterfall, Or perhaps a bramble bush, Your eyes are like an ocean on which, I want to sail the ship of our connection!");
-@multi4(
+@multi4miscrand(
     "Eyes...ship...sail...what?", brand_eyesshipsail,
     "That was awful!", brand_thatwasawful,
-    "That was lovely. I'm touched!", brand_thatwaslovely,
-    ~brand_random_nonsense(), brand_whattheheck
+    "That was lovely. I'm touched!", brand_thatwaslovely
 );
 
 [label,brand_eyesshipsail]
@@ -322,11 +293,10 @@ if (%misc_s3_d1 = 0) {
 
 [label,brand_randomset3branch2]
 ~chatnpc("<p,neutral>Tell me, have you ever composed any poems yourself?");
-@multi4(
+@multi4miscrand(
     "I wouldn't presume to have the skill...", brand_noskill,
     "Not really, but it can't be that hard.", brand_cantbehard,
-    "There once was a man from Varrock...", brand_onceamanfrom,
-    ~brand_random_nonsense(), brand_whattheheck
+    "There once was a man from Varrock...", brand_onceamanfrom
 );
 
 [label,brand_noskill]
@@ -345,11 +315,10 @@ if (%misc_s3_d1 = 0) {
 [label,brand_randomset3branch3]
 ~chatplayer("<p,neutral>What do you think of your sister?");
 ~chatnpc("<p,neutral>We don't always see eye-to-eye, but she understands my art better than our father.");
-@multi4(
+@multi4miscrand(
     "I'm glad to hear it.", brand_gladtohearit,
     "What art is that?", brand_whatartisthat,
-    "You should listen to your father.", brand_listentoyourfather,
-    ~brand_random_nonsense(), brand_whattheheck
+    "You should listen to your father.", brand_listentoyourfather
 );
 
 [label,brand_gladtohearit]
