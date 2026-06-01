@@ -111,11 +111,12 @@ if(%death_equiproom = ^death_complete & %troll_quest = ^troll_complete) {
         @multi2("I'll do it.", sanfew_ill_do_it, "No thanks.", sanfew_no_thanks);
     } else {
         // Before my run of the quest in OSRS, I tried starting the quest with Death Plateau and Troll Stronghold completed but under 31 Herblore and I got:
-        ~chatnpc("<p,neutral>Not just yet, young 'un.");
-        // The wiki says there should be different dialog (below) but I'm skeptical of the spelling ("'m" versus "I'm")
-        // and also this line didn't show up for me, so... TODO I guess?
-        //~chatnpc("<p,sad>'m afraid you are not yet learned enough in the art of Herblore to be able to help me, adventurer...");
-        ~mesbox("You do not meet all of the requirements to start the Eadgar's Ruse quest.");
+        //~chatnpc("<p,neutral>Not just yet, young 'un.");
+        // OSRS wiki *says* there should be different dialog (below) but this wasn't the case when I checked OSRS
+        ~chatnpc("<p,sad>I'm afraid you are not yet learned enough in the art of Herblore to be able to help me, adventurer...");
+        // This line is also used in RS3 (but the mesbox afterwards is *not* - dialog simply ends)
+        // Relatively unsure which to use, but switched to the RS3 behavior as it feels older to me
+        //~mesbox("You do not meet all of the requirements to start the Eadgar's Ruse quest.");
     }
 } else {
     ~chatnpc("<p,neutral>Well, not right now I don't think young 'un. In fact, I need to make some more preparations myself for the ritual. Rest assured, if I need any more help I will ask you again.");
