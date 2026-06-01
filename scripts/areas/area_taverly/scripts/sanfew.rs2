@@ -119,6 +119,9 @@ if(%death_equiproom = ^death_complete & %troll_quest = ^troll_complete) {
         //~mesbox("You do not meet all of the requirements to start the Eadgar's Ruse quest.");
     }
 } else {
+    // TODO this might be the wrong dialog - this is the "generic" line for when Sanfew has no more quests for you (after Druidic Ritual/Eadgar's Ruse)
+    // there might be another line for specifically trying to start Eadgar's Ruse without quest prereqs completed
+    // I don't yet have a test case recorded for trying to start Eadgar's Ruse with Druidic Ritual completed but NOT Death Plateau/Troll Stronghold
     ~chatnpc("<p,neutral>Well, not right now I don't think young 'un. In fact, I need to make some more preparations myself for the ritual. Rest assured, if I need any more help I will ask you again.");
 }
 
@@ -131,10 +134,9 @@ if(%death_equiproom = ^death_complete & %troll_quest = ^troll_complete) {
 ~chatnpc("<p,happy>Thank you, adventurer!");
 
 [label,sanfew_no_thanks]
-// source https://oldschool.runescape.wiki/w/Transcript:Eadgar%27s_Ruse?oldid=15100939
-// todo need to verify mesanim for these, think i missed them
+// mesanims from RS3
 ~chatplayer("<p,neutral>No thanks.");
-~chatnpc("<p,neutral>Oh well. No doubt some other adventurer will eventually come who can help me.");
+~chatnpc("<p,sad>Oh well. No doubt some other adventurer will eventually come who can help me.");
 
 [label,eadgar_sanfew_reminder]
 // rsprox/branon
@@ -171,7 +173,7 @@ if(inv_total(inv, eadgar_goutweed_herb) > 0) {
     ~chatplayer("<p,happy>I have some more goutweed for you.");
     ~chatnpc("<p,happy>Ah, good. Here are some herbs in exchange.");
 } else {
-    //TODO: Check mesanims for these
-    ~chatplayer("<p,neutral>Did you say you needed more goutweed?");
+    //mesanims rsprox/branon
+    ~chatplayer("<p,quiz>Did you say you needed more goutweed?");
     ~chatnpc("<p,neutral>I don't need any more goutweed for the ritual, but it's still quite difficult for me to get. If you ever come across some, bring it to me; I'll exchange it for some other herbs.");
 }
