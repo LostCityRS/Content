@@ -102,7 +102,7 @@ if(oc_category(last_useitem) = category_2049) {
 
 [label,add_remains_to_funeral_pyre](obj $remains)
 if(getqueue(funeral_pyre_reward) > 0) {
-        mes("You've already set fire to a funeral pyre.");
+        mes("You've already set fire to a funeral pyre."); // todo: different mes? 
         return;
 }
 if(%pyre_loc = 0) {
@@ -127,7 +127,7 @@ mes("You place the shade's remains on the logs.");
 
 [oplocu,_category_2052]
 if(getqueue(funeral_pyre_reward) > 0) {
-        mes("You've already set fire to a funeral pyre."); // todo: different mes? 
+        mes("You've already set fire to a funeral pyre.");
         return;
 }
 
