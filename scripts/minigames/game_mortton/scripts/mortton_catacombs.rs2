@@ -16,6 +16,29 @@ if (loc_find(0_54_51_28_56, shadelairentrancer) = true) {
 p_delay(0);
 p_teleport(0_54_151_37_61);
 
+[oplocu,shadelairentrancel]
+def_obj $item = last_useitem;
+if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+p_arrivedelay;
+if(testbit(%morttonmulti, ^mortton_unlocked_shade_lair) = ^false | ~get_shadekeys_total = 0) {
+    mes("The door seems locked. Perhaps you need a key.");
+    sound_synth(locked, 0, 0);
+    return;
+}
+mes("You use your Shade key to unlock the door.");
+anim(human_pickuptable, 0);
+p_delay(0);
+sound_synth(iron_door_open, 0, 0);
+loc_change(shadelairdooropenl, 2);
+if (loc_find(0_54_51_28_56, shadelairentrancer) = true) {
+    loc_change(shadelairdooropenr, 2);
+}
+p_delay(0);
+p_teleport(0_54_151_37_61);
+} else {
+    ~displaymessage(^dm_default);
+}
+
 [oploc1,shadelairentrancer]
 p_arrivedelay;
 if(testbit(%morttonmulti, ^mortton_unlocked_shade_lair) = ^false | ~get_shadekeys_total = 0) {
@@ -33,6 +56,29 @@ if (loc_find(0_54_51_29_56, shadelairentrancel) = true) {
 }
 p_delay(0);
 p_teleport(0_54_151_37_61);
+
+[oplocu,shadelairentrancer]
+def_obj $item = last_useitem;
+if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+p_arrivedelay;
+if(testbit(%morttonmulti, ^mortton_unlocked_shade_lair) = ^false | ~get_shadekeys_total = 0) {
+    mes("The door seems locked. Perhaps you need a key.");
+    sound_synth(locked, 0, 0);
+    return;
+}
+mes("You use your Shade key to unlock the door.");
+anim(human_pickuptable, 0);
+p_delay(0);
+sound_synth(iron_door_open, 0, 0);
+loc_change(shadelairdooropenr, 2);
+if (loc_find(0_54_51_29_56, shadelairentrancel) = true) {
+    loc_change(shadelairdooropenl, 2);
+}
+p_delay(0);
+p_teleport(0_54_151_37_61);
+} else {
+    ~displaymessage(^dm_default);
+}
 
 [oploc1,shadelair_bronzedoor]
 switch_coord(loc_coord) {
