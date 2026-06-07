@@ -568,9 +568,9 @@ def_int $rank_change = ~calculate_rank_change($p2_rank, $p1_rank);
 if_setanim(boardgames_runelink:runeflash, null);
 if_setanim(boardgames_runelink:runeflash, runeflash_off);
 if_close;
-queue*(runelink_game_end_results, 0)($rank_change, $p1_rank, $p2_rank);
-
-[queue,runelink_game_end_results](int $rank_change, int $p1_rank, int $p2_rank)
+if(p_finduid(uid) = false) {
+    return;
+}
 p_teleport(movecoord(^runelink_room_tele_coord, ~random_range(-3, 3), %boardgames_challengeroom, ~random_range(-3, 3)));
 anim(null, 0);
 ~setup_runelink_view($p1_rank, $p2_rank);
@@ -626,7 +626,48 @@ if (.finduid(%duel2accept) = false) {
 if (.p_finduid(.uid) = false) {
     return;
 }
-.queue*(runelink_game_end_results, 0)($rank_change, $p1_rank, $p2_rank);
+.p_teleport(movecoord(^runelink_room_tele_coord, ~random_range(-3, 3), .%boardgames_challengeroom, ~random_range(-3, 3)));
+.anim(null, 0);
+~.setup_runelink_view($p1_rank, $p2_rank);
+
+if (.%boardgames_closemode = ^boardgames_draw) {
+    ~.music_jingle("boardgames draw");
+    .if_settext(boardgames_runelink_view:winner, "It's a draw!");
+    if (.%boardgames_closereason = ^runelink_fullboard_draw) {
+        .if_settext(boardgames_runelink_view:status1, "All columns where full.");
+    } else {
+        .if_settext(boardgames_runelink_view:status1, "A draw was agreed.");
+    }
+    .if_settext(boardgames_runelink_view:status2, "");
+} else if (.%boardgames_closemode = ^boardgames_win) {
+    ~.music_jingle("boardgames victory");
+    .if_settext(boardgames_runelink_view:winner, "You win!");
+    if (.%boardgames_closereason = ^runelink_connect_win) {
+        .if_settext(boardgames_runelink_view:status1, "Player got four in a row!");
+    } else {
+        .if_settext(boardgames_runelink_view:status1, "Player resigned.");
+    }
+
+    if(.%boardgames_rankedgame = 1 & add(.inv_totalcat(boardgames_boardinv, boardgames_piece), .inv_totalcat(boardgames_boardinv, draughts_king)) > 3) {
+        .if_settext(boardgames_runelink_view:status2, "Rank change: +<tostring($rank_change)>");
+    } else {
+        .if_settext(boardgames_runelink_view:status2, "");
+    }
+} else if (.%boardgames_closemode = ^boardgames_loss) {
+    ~.music_jingle("boardgames defeat");
+    .if_settext(boardgames_runelink_view:winner, "You lose!");
+    if (.%boardgames_closereason = ^runelink_connect_win) {
+        .if_settext(boardgames_runelink_view:status1, "Player got four in a row!");
+    } else {
+        .if_settext(boardgames_runelink_view:status1, "Player resigned.");
+    }
+
+    if(.%boardgames_rankedgame = 1 & add(.inv_totalcat(boardgames_boardinv, boardgames_piece), .inv_totalcat(boardgames_boardinv, draughts_king)) > 3) {
+        .if_settext(boardgames_runelink_view:status2, "Rank change: -<tostring($rank_change)>");
+    } else {
+        .if_settext(boardgames_runelink_view:status2, "");
+    }
+}
 
 [proc,setup_runelink_view](int $p1_rank, int $p2_rank)
 if (.finduid(%duel2accept) = false) {
