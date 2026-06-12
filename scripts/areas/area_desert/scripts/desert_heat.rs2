@@ -115,7 +115,7 @@ if(inv_total(inv, water_skin0) > 0) {
     mes("You should get a waterskin for any travelling in the desert.");
 }
 mes("You start dying of thirst while you're in the desert.");
-queue(damage_player, 0, ~random_range(1, 10));
+~queue_damage_player(0, ~random_range(1, 10));
 ~calculate_desertheat_timer;
 
 [mapzoneexit,0_49_46] ~clear_desertheat_timer;

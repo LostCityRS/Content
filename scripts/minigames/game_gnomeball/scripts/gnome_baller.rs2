@@ -28,7 +28,7 @@ npc_changetype_keepall(npc_param(gnome_hasball), ^max_32bit_int); // perm?
 npc_anim(midget_human_tackle, 0);
 
 p_stopaction;
-queue(damage_player, 0, add(random(2), 1));
+~queue_damage_player(0, add(random(2), 1));
 anim(human_tackled, 0);
 
 inv_delslot(worn, ^wearpos_rhand);

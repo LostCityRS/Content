@@ -28,7 +28,7 @@ if($rand < 3) {
     npc_say("Oouuaarrr!");
     if(~ghast_check_food = false) {
         mes("A supernatural force draws energy from you.");
-        queue(damage_player, 0, ~random_range(1,3)); // this doesnt put you in combat
+        ~queue_damage_player(0, ~random_range(1,3)); // this doesnt put you in combat
     }
 } else {
     npc_say("OOooooohhh");

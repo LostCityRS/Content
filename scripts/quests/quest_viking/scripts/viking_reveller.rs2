@@ -260,7 +260,7 @@ mes("The strange object you lit earlier explodes in your inventory!");
 say("Ow!");
 inv_del(inv, viking_firecracker_lit, $count);
 if($count > 1) inv_add(inv, viking_firecracker, sub($count, 1));
-queue(damage_player, 0, max(2, divide(stat(hitpoints), 25)));
+~queue_damage_player(0, max(2, divide(stat(hitpoints), 25)));
 
 [oplocu,viking_pipe_end_longhall]
 if(last_useitem = viking_firecracker_lit) {

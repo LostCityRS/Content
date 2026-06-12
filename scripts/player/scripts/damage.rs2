@@ -20,6 +20,26 @@ if (stat(hitpoints) = 0){
 [queue,damage_player](int $amount)
 ~damage_self($amount);
 
+// Clamps an incoming hit to the target's current hitpoints at ENQUEUE time.
+// This is what enables "tick eating": the damage is frozen to the victim's hp
+// the moment the hit is rolled, so healing before it lands lets them survive.
+// Must be called at the enqueue site (not inside the queue handler, which runs
+// at land time). ~clamp_hit operates on the active player; ~.clamp_hit on the
+// secondary (for player-vs-player and other .queue'd hits).
+[proc,clamp_hit](int $damage)(int)
+return(min($damage, stat(hitpoints)));
+
+[proc,.clamp_hit](int $damage)(int)
+return(min($damage, .stat(hitpoints)));
+
+// Enqueue helpers for the generic self-damage queue, clamped at enqueue time.
+// Prefer these over a raw queue(damage_player, ...) so the clamp can't be forgotten.
+[proc,queue_damage_player](int $delay, int $amount)
+queue(damage_player, $delay, ~clamp_hit($amount));
+
+[proc,.queue_damage_player](int $delay, int $amount)
+.queue(damage_player, $delay, ~.clamp_hit($amount));
+
 [proc,human_hit_sound]
 def_int $rand;
 def_synth $sound;

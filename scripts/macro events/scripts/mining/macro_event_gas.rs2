@@ -40,7 +40,7 @@ if (%macro_gas_counter < 4) {
 anim(null, 0);
 sound_synth(gas_explosion, 0, 0);
 spotanim_map(firewave_impact, loc_coord, 92, 0);
-queue(damage_player, 0, 10);
+~queue_damage_player(0, 10);
 %macro_gas_counter = 0;
 
 mes("A spark from your pickaxe ignites the gas!"); // https://imgur.com/Rjj4JqR

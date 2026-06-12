@@ -26,7 +26,7 @@ else if(%poison < 0){
     %poison = calc(%poison + 1);
     return;
 }
-queue(poison_damage,0,calc((%poison + 4)/5));
+queue(poison_damage, 0, ~clamp_hit(calc((%poison + 4)/5)));
 %poison = calc(%poison - 1);
 
 [queue,poison_damage](int $damage)

@@ -179,11 +179,11 @@ if(coordx(coord) > coordx(loc_coord)) {
 if (loc_find(coord, upass_speartrap) = true | loc_find(movecoord(coord, 0, 0, -1), upass_speartrap) = true) {
     loc_anim(speartrap_release);
     say("Ouch!");
-    queue(damage_player, 0, calc(((stat(hitpoints) * 10) / 100) + 1));
+    ~queue_damage_player(0, calc(((stat(hitpoints) * 10) / 100) + 1));
 } else if (loc_find(coord, upass_double_springtrap_trigger) = true) {
     if(loc_find(movecoord(loc_coord, -1, 0, 0), upass_double_springtrap) = true | loc_find(movecoord(loc_coord, 0, 0, -1), upass_double_springtrap) = true) loc_anim(double_springtrap_release);
     say("Ouch!");
-    queue(damage_player, 0, calc(((stat_base(hitpoints) * 8) / 100) + 1));
+    ~queue_damage_player(0, calc(((stat_base(hitpoints) * 8) / 100) + 1));
     world_delay(1);
     loc_anim(double_springtrap_reset);
 }

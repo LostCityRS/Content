@@ -31,7 +31,7 @@ if (loc_find(%macro_event_target_coord, chest_macro_gas) = true) { // set active
         // todo: figure out the mes for this thing
         sound_synth(gas_hiss, 0, 0);
         def_int $random_poison_damage = ~random_range(2, 3);
-        queue(poison_damage, 0, $random_poison_damage); // poison damage doesnt actually poison, its just a green hitsplat
+        queue(poison_damage, 0, ~clamp_hit($random_poison_damage)); // poison damage doesnt actually poison, its just a green hitsplat
     }
     settimer(poison_gas, 4);
 } else {

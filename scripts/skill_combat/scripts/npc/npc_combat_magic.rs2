@@ -111,7 +111,7 @@ sound_synth(db_getfield($spell_data, magic_spell_table:sound_success, 0), 0, 0);
 def_int $damage = randominc($maxhit);
 if ($maxhit ! null) {
     // npc vs player spells have no 1t extra damage delay. Whereas player vs npc spells do (osrs)
-    queue(combat_damage_player, calc($duration / 30), $damage);
+    ~queue_combat_damage_player(calc($duration / 30), $damage);
     // player anim for flinching doesnt exist, even in osrs
     // anim(~combat_defend_anim(inv_getobj(worn, ^wearpos_rhand)), $duration);
 }

@@ -7,7 +7,7 @@ if (~pvp_hit_roll(%damagetype) = true) {
     if (~.check_protect_prayer(^melee_style) = true) {
         $maxhit = scale(6, 10, $maxhit); // reduction of 40%
     }
-    $damage = min(randominc($maxhit), .stat(hitpoints)); // tick eating existed! https://oldschool.runescape.wiki/w/Update:The_Wintertodt
+    $damage = ~.clamp_hit(randominc($maxhit)); // tick eating existed! https://oldschool.runescape.wiki/w/Update:The_Wintertodt
     ~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
     both_heropoints($damage);
 }

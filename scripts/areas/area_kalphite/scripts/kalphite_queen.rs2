@@ -113,7 +113,7 @@ if ($duration = 0) { // first target
 }
 // mes("Distance: <tostring($total_distance)>, delay: <tostring($queue_delay)>");
 anim(%com_defendanim, $duration);
-queue(combat_damage_player, $queue_delay, $damage);
+~queue_combat_damage_player($queue_delay, $damage);
 queue*(playerhit_n_retaliate, $queue_delay)(npc_uid);
 return(coord, $duration, $total_distance);
 
@@ -142,7 +142,7 @@ while (huntnext = true & $i < 5) { // up to 5? https://youtu.be/ZHaxxMq3nVI?list
     }
 
     $duration = ~player_projectile(movecoord(npc_coord, 2, 0, 2), coord, uid, kalphite_spine, 30, 31, 0, 20, 0, 11, 5);
-    queue(combat_damage_player, divide($duration, 30), $damage);
+    ~queue_combat_damage_player(divide($duration, 30), $damage);
     queue*(playerhit_n_retaliate, divide($duration, 30))(npc_uid);
     sound_synth(kalphite_queen_spines, 0, 0);
     $i = add($i, 1);
@@ -221,7 +221,7 @@ while (huntnext = true & $i < 5) { // up to 5? https://youtu.be/ZHaxxMq3nVI?list
     }
 
     $duration = ~player_projectile(movecoord(npc_coord, 2, 0, 2), coord, uid, kalphite_queen_spine, 30, 31, 0, 20, 0, 11, 5);
-    queue(combat_damage_player, divide($duration, 30), $damage);
+    ~queue_combat_damage_player(divide($duration, 30), $damage);
     queue*(playerhit_n_retaliate, divide($duration, 30))(npc_uid);
     sound_synth(kalphite_queen_spines, 0, 0);
     $i = add($i, 1);

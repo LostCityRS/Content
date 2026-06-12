@@ -74,7 +74,7 @@ spotanim_map(shilomist, $mist_coord, 124, 3);
 huntall($mist_coord, 1, 0);
 while (huntnext = true) {
     if($counter = 0) mes("A green thick mist rises from the ground and starts choking you.");
-    queue(damage_player, 0, ~random_range(2,3));
+    ~queue_damage_player(0, ~random_range(2,3));
 }
 world_delay(3); // 4t, might be npc_queue on a zombie or something
 @zq_greenmist($mist_coord, calc($counter + 1));
@@ -848,7 +848,7 @@ def_int $choice = ~p_choice2("Yes, I'm quite sure.", 1, "No, I think I'll keep i
 if ($choice = 1) {
     ~mesbox("You start to slowly move the rocks to one side.");
     if(stat_random(agility, 75, 250) = false) {
-        queue(damage_player, 0, calc(((stat_base(hitpoints) * 10) / 100) + 1)); // assuming regular queue, strongqueue in OSRS
+        ~queue_damage_player(0, calc(((stat_base(hitpoints) * 10) / 100) + 1)); // assuming regular queue, strongqueue in OSRS
         ~mesbox("You accidentally knock some rocks and the ceiling starts to cave in.|Some rocks fall on you."); // this wont show up cause of damage in OSRS
         return;
     }
@@ -1169,8 +1169,8 @@ switch_int(~p_choice2_header("Yes I am sure.", 1, "No, I've reconsidered, I'll k
     case 1 :
         inv_del(inv, zqcrystal, 1);
         // NOT STONGQUEUE
-        if(stat(hitpoints) < 15) queue(damage_player, 0, calc((stat(hitpoints) * 50) / 100));
-        else queue(damage_player, 0, 10);
+        if(stat(hitpoints) < 15) ~queue_damage_player(0, calc((stat(hitpoints) * 50) / 100));
+        else ~queue_damage_player(0, 10);
         ~objbox(zqcrystal, "As you drop the crystal, it hits a rock and explodes. You are lascerated by shards of glass.", 250, 0, 0);
     case 2 : ~objbox(zqcrystal, "You decide to keep the Locating Crystal tucked into your inventory safe and sound.", 250, 0, 0);
 }

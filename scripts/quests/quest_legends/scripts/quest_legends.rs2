@@ -1603,7 +1603,7 @@ if(testbit(%legends_bits, ^legends_drank_bravery_potion) = ^true) {
         mes("You slip off the rope and fall...");
         p_delay(1);
         say("Ahhhhhhhhhhhh!");
-        queue(damage_player, 0, calc(stat_base(hitpoints) / 3));
+        ~queue_damage_player(0, calc(stat_base(hitpoints) / 3));
     } else {
         mes("And although fear stabs at your heart.");
         say("Gulp!");

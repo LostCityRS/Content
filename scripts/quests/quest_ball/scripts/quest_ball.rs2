@@ -32,7 +32,7 @@ if($leaving ! true & (%ballquest < ^ball_started | %ballquest = ^ball_complete))
 
 [oploc1,_ball_irongate]
 if(inv_total(worn, leather_gloves) = 0) {
-    queue(damage_player, 0, calc((stat(hitpoints) / 10) + 1));
+    ~queue_damage_player(0, calc((stat(hitpoints) / 10) + 1));
     ~mesbox("As your bare hands touch the gate you feel a shock.");
     return;
 }
@@ -188,7 +188,7 @@ while (npc_findnext = true) {
         stat_sub(attack, 1, 5);
         stat_sub(defence, 1, 5);
         ~npc_retaliate(0);
-        queue(damage_player, 0, calc(1 + ((stat(hitpoints) * 5) / 100)));
+        ~queue_damage_player(0, calc(1 + ((stat(hitpoints) * 5) / 100)));
         return;
     }
 }

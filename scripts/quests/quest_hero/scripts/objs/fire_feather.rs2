@@ -4,7 +4,7 @@ if (%heroquest = ^hero_not_started) {
   return;
 }
 if (inv_total(worn, ice_gloves) = 0) {
-  queue(damage_player, 0, calc((stat(hitpoints) / 8) + 1)); // OSRS wiki says "about 1/8 of current hp damage"
+  ~queue_damage_player(0, calc((stat(hitpoints) / 8) + 1)); // OSRS wiki says "about 1/8 of current hp damage"
   p_delay(1);
   mes("It is too hot to take. You need something cold to pick it up with.");
   say("Ouch!");

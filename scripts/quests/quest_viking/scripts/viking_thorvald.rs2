@@ -375,7 +375,7 @@ if (npc_stat(hitpoints) = 0) {
 if ($check_protect_prayer = true & ~check_protect_prayer(^melee_style) = true) { 
     $damage = 0;
 }
-queue*(combat_viking_damage_player, 0)($damage, npc_uid);
+queue*(combat_viking_damage_player, 0)(~clamp_hit($damage), npc_uid);
 queue*(playerhit_n_retaliate, 0)(npc_uid);
 
 //  this should be strong queued. Some damage is queued, some isnt
