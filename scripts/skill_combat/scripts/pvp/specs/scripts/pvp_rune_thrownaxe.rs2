@@ -89,7 +89,7 @@ if ($hit = true) {
     if (~.check_protect_prayer(^ranged_style) = true) {
         $maxhit = scale(6, 10, $maxhit); // reduction of 40%
     }
-    $damage = min(randominc($maxhit), .stat(hitpoints));
+    $damage = ~.clamp_hit(randominc($maxhit));
     ~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
     both_heropoints($damage);
 }

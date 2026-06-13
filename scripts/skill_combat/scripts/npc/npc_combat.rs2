@@ -342,6 +342,11 @@ switch_int ($style) {
 }
 error("style of <tostring($style)> not defined in switch for npc_combat_defencebonus");
 
+// Enqueue helper for npc->player combat damage, clamped to the player's hp at
+// enqueue time (enables tick eating). Prefer this over a raw queue(combat_damage_player,..).
+[proc,queue_combat_damage_player](int $delay, int $damage)
+queue(combat_damage_player, $delay, ~clamp_hit($damage));
+
 //  this should be strong queued. Some damage is queued, some isnt
 [queue,combat_damage_player](int $damage)
 if (inv_getobj(worn, ^wearpos_ring) = ring_of_recoil & map_members = ^true & npc_finduid(%aggressive_npc) = true & npc_hasop(2) = true & %npc_attacking_uid = uid & $damage > 0 & stat(hitpoints) > 0) {

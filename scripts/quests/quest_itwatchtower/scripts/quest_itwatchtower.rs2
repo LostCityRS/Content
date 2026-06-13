@@ -334,7 +334,7 @@ sound_synth(climb_wall, 0, 0);
 mes("You feel strangely heavier...");
 inv_del(inv, rockcake, 1);
 // on OSRS if you have 5 HP or less it will do hp / 2 instead to prevent death
-queue(damage_player, 0, 4);
+~queue_damage_player(0, 4);
 ~chatplayer("<p,shock>Ow! I nearly broke a tooth!");
 
 [oploc1,shuttanothchest1]

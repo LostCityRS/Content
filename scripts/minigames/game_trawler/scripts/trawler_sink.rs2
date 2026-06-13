@@ -61,7 +61,7 @@ cam_reset;
 if_close;
 p_teleport(^trawler_escape);
 ~update_all(null);
-queue(damage_player, 0, 2);
+~queue_damage_player(0, 2);
 mes("You make it to the shore tired and weary."); // rs3 is mes. Also https://youtu.be/sl6i7lK_re0?t=78
 
 

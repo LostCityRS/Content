@@ -19,7 +19,7 @@ anim(human_pickupfloor, 0);
 p_delay(2);
 def_int $rand = random(100);
 if ($rand < 2) {
-    queue(damage_player, 0, 1);
+    ~queue_damage_player(0, 1);
     ~chatplayer("<p,angry>Ow! There's something sharp in there!");
 } else if ($rand < 12) {
     inv_add(inv, needle, 1);

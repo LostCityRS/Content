@@ -43,7 +43,7 @@ if (npc_stat(hitpoints) = 0) {
 
 ~npc_set_attack_vars;
 queue*(playerhit_n_retaliate, 0)(npc_uid);
-queue(combat_damage_player, 0, $damage);
+~queue_combat_damage_player(0, $damage);
 
 [proc,leech_reduce_stats]
 if (random(5) = 0) {

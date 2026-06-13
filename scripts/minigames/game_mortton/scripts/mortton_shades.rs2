@@ -172,7 +172,7 @@ if (~check_protect_prayer(^melee_style) = true) {
 //OSRS moved this to inside the hit check at some point after ~2021?
 //In all old videos it always shows the hitsplat, even if the player does not actively start combat / retaliate because the attack missed.
 //https://youtu.be/Cgfa0ebrSac?si=zvUg4j1hTfAje3Bb&t=73
-queue(combat_damage_player, 0, $damage);
+~queue_combat_damage_player(0, $damage);
 
 if ($damage > 0) {
     spotanim_pl(shade_attack, 0, 0);

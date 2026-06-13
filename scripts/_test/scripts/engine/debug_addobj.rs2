@@ -7,6 +7,12 @@ if (p_finduid(uid) = true) {
     @please_finish;
 }
 
+// Drops a pile of 20 cowhides on the player's own tile for spam-click
+// interaction testing (MoveClick/OpObj packet-split repro).
+[debugproc,dropcowhides]
+obj_add(coord, cow_hide, 20, ^lootdrop_duration);
+mes("Dropped 20 cowhides on your tile.");
+
 [debugproc,addobj2](int $size)
 def_int $half = calc(($size / 2) * -1);
 

@@ -115,7 +115,7 @@ else if(coordx($dest) < coordx(coord)) $dir = ^exact_east;
 mes("You were hit by the saw blade!");
 anim(human_stumble_back, 30);
 p_exactmove(coord, $dest, 30, 56, $dir);
-queue(damage_player, 0, calc((stat(hitpoints) * 5 / 100) + 2));
+~queue_damage_player(0, calc((stat(hitpoints) * 5 / 100) + 2));
 
 [proc,random_fixed_bridge]()(loc)
 switch_int(random(3)) {

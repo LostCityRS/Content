@@ -222,8 +222,8 @@ if(.loc_find($trap4, regicide_trap_arrowtrip) = true) {
     ~coord_projectile(.loc_coord, coord, iron_arrow_travel, 4, 35, 0, 45, 40, 0, 0);
 }
 sound_synth(tripwire_with_arrows, 0, 0);
-queue(damage_player, 0, 5);
-queue(damage_player, 0, 5);
+~queue_damage_player(0, 5);
+~queue_damage_player(0, 5);
 
 [oploc1,regicide_pitfall_corner]
 p_delay(0);
