@@ -1,7 +1,4 @@
 [ai_queue1,kalphite_queen]
-if (random(^kalphite_worker_spawn_rate) = 0 & npc_stat(hitpoints) < 175) { // doesnt spawn until boss is under 175 ish hp https://youtu.be/ZHaxxMq3nVI?list=PLn23LiLYLb1YiomJ3wnXokdbgjE7-Lgt5&t=87
-    ~kalphite_worker_spawn;
-}
 ~npc_default_retaliate_ap;
 
 [ai_opplayer2,kalphite_queen] npc_setmode(applayer2);
@@ -26,6 +23,12 @@ switch_int($random) {
     case 1 : ~kalphite_queen_ranged_attack;
     case 2 : ~kalphite_melee_attack;
 }
+
+[ai_queue2,kalphite_queen]
+if (random(^kalphite_worker_spawn_rate) = 0) {
+    ~kalphite_worker_spawn;
+}
+~npc_default_damage(last_int);
 
 // #1 https://youtu.be/KTVznh5-S44?t=222
 // #2 https://youtu.be/AeMRG94A5KY?t=290
@@ -149,9 +152,6 @@ while (huntnext = true & $i < 5) { // up to 5? https://youtu.be/ZHaxxMq3nVI?list
 }
 
 [ai_queue1,kalphite_flyingqueen]
-if (random(^kalphite_worker_spawn_rate) = 0) {
-    ~kalphite_worker_spawn;
-}
 ~npc_default_retaliate_ap;
 
 [ai_applayer2,kalphite_flyingqueen]
@@ -176,6 +176,12 @@ switch_int($random) {
 }
 
 [ai_opplayer2,kalphite_flyingqueen] npc_setmode(applayer2);
+
+[ai_queue2,kalphite_flyingqueen]
+if (random(^kalphite_worker_spawn_rate) = 0) {
+    ~kalphite_worker_spawn;
+}
+~npc_default_damage(last_int);
 
 [proc,kalphite_flyingqueen_melee_attack]
 anim(%com_defendanim, 0);
