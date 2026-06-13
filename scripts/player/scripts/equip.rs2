@@ -74,15 +74,18 @@ if (p_finduid(uid) = true) {
         mes("You don't have enough free space to do that.");
         return;
     }
-    if($obj = elemental_shield) {
-        sound_synth(shield_appear, 0, 0);
-    }
-    if (oc_param($obj, specwep) = ^true) {
-        %sa_attack = ^false;
-    }
     inv_moveitem(worn, inv, $obj, sub($count, $overflow));
-    ~update_all($obj);
+    ~unequip_effect($obj);
 }
+
+[proc,unequip_effect](obj $obj)
+if($obj = elemental_shield) {
+    sound_synth(shield_appear, 0, 0);
+}
+if (oc_param($obj, specwep) = ^true) {
+    %sa_attack = ^false;
+}
+~update_all($obj);
 
 // used for duel arena, no weapon/no armour
 [proc,try_unequip](int $slot)

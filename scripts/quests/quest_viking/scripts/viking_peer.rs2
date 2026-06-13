@@ -191,7 +191,7 @@ def_int $fail = ^false;
 while ($i < $size) {
     $obj = inv_getobj(inv, $i);
     if ($obj ! null) {
-        if (~bank_check_nobreak($obj, ^false) = false) {
+        if (~bank_check_allowed($obj, ^false) = true) {
             if(~bank_deposit_request(inv, $obj, inv_total(inv, $obj), $i, ^false) = true) {
                 $dep_count = add($dep_count, 1);
             } else {
@@ -209,7 +209,7 @@ $i = 0;
 while ($i < $size) {
     $obj = inv_getobj(worn, $i);
     if ($obj ! null) {
-        if (~bank_check_nobreak($obj, ^false) = false) {
+        if (~bank_check_allowed($obj, ^false) = true) {
             if(~bank_deposit_request(worn, $obj, inv_total(worn, $obj), $i, ^false) = true) {
                 $dep_count = add($dep_count, 1);
             } else {

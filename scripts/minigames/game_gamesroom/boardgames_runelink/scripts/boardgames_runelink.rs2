@@ -547,7 +547,7 @@ def_int $p2_rank = .%boardgames_runelink_rank;
 
 def_int $rank_change = ~calculate_rank_change($p2_rank, $p1_rank);
 
-if (%boardgames_rankedgame = 1 & inv_totalcat(boardgames_boardinv, boardgames_piece) > 3) {
+    if(%boardgames_rankedgame = 1 & add(inv_totalcat(boardgames_boardinv, boardgames_piece), inv_totalcat(boardgames_boardinv, draughts_king)) > 3) {
     %boardgames_runelink_rank = add(%boardgames_runelink_rank, $rank_change);
     if (%boardgames_runelink_rank > 60000) {
         %boardgames_runelink_rank = 60000;
@@ -593,7 +593,7 @@ if (%boardgames_closemode = ^boardgames_draw) {
         if_settext(boardgames_runelink_view:status1, "Player resigned.");
     }
 
-    if(%boardgames_rankedgame = 1 & inv_totalcat(boardgames_boardinv, boardgames_piece) > 3) {
+    if(%boardgames_rankedgame = 1 & add(inv_totalcat(boardgames_boardinv, boardgames_piece), inv_totalcat(boardgames_boardinv, draughts_king)) > 3) {
         if_settext(boardgames_runelink_view:status2, "Rank change: +<tostring($rank_change)>");
     } else {
         if_settext(boardgames_runelink_view:status2, "");
@@ -607,7 +607,7 @@ if (%boardgames_closemode = ^boardgames_draw) {
         if_settext(boardgames_runelink_view:status1, "Player resigned.");
     }
 
-    if(%boardgames_rankedgame = 1 & inv_totalcat(boardgames_boardinv, boardgames_piece) > 3) {
+    if(%boardgames_rankedgame = 1 & add(inv_totalcat(boardgames_boardinv, boardgames_piece), inv_totalcat(boardgames_boardinv, draughts_king)) > 3) {
         if_settext(boardgames_runelink_view:status2, "Rank change: -<tostring($rank_change)>");
     } else {
         if_settext(boardgames_runelink_view:status2, "");
@@ -681,7 +681,7 @@ if (%boardgames_viewing = 0) {
     def_int $loser_rank = %boardgames_runelink_rank;
     def_int $rank_change = ~calculate_rank_change($loser_rank, $winner_rank);
 
-    if (%boardgames_rankedgame = 1 & inv_totalcat(boardgames_boardinv, boardgames_piece) > 3) {
+    if(%boardgames_rankedgame = 1 & add(inv_totalcat(boardgames_boardinv, boardgames_piece), inv_totalcat(boardgames_boardinv, draughts_king)) > 3) {
         .%boardgames_runelink_rank = add(.%boardgames_runelink_rank, $rank_change);
         if (.%boardgames_runelink_rank > 60000) {
             .%boardgames_runelink_rank = 60000;
@@ -702,7 +702,7 @@ if (%boardgames_viewing = 0) {
     if_settext(boardgames_runelink_view:winner, "You lose!");
     if_settext(boardgames_runelink_view:status1, "Player resigned.");
     
-    if(%boardgames_rankedgame = 1 & inv_totalcat(boardgames_boardinv, boardgames_piece) > 3) {
+    if(%boardgames_rankedgame = 1 & add(inv_totalcat(boardgames_boardinv, boardgames_piece), inv_totalcat(boardgames_boardinv, draughts_king)) > 3) {
         if_settext(boardgames_runelink_view:status2, "Rank change: -<tostring($rank_change)>");
     } else {
         if_settext(boardgames_runelink_view:status2, "");

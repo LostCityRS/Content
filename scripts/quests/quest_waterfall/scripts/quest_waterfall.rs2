@@ -359,10 +359,10 @@ if ($is_outside = true) {
     // https://youtu.be/D80JSlBEC6I?si=Q0kEbZAo-jI7mieo&t=271, both door and the key crate has punc fixed by release OSRS (aug 2007)
     mes("The key fits the gate");
     p_delay(2);
-    ~open_and_close_door(poshdooropen, $is_outside, false);
+    ~open_and_close_door(loc_1541, $is_outside, false);
     mes("You open the gate and walk through");
 } else {
-    ~open_and_close_door(poshdooropen, $is_outside, false);
+    ~open_and_close_door(loc_1541, $is_outside, false);
 }
 
 [oploc1,baxtorian_crate_waterfall_quest]

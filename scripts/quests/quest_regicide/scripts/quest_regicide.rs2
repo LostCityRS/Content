@@ -263,6 +263,10 @@ switch_int(loc_angle) {
             $dir = ^exact_east;
         }
 }
+def_coord $dest = movecoord(loc_coord, multiply(3,$dx), 0, multiply(3,$dz));
+if(map_blocked($start) = true | map_blocked($dest) = true) {
+    return;
+}
 if(coord ! $start) {
     p_teleport($start);
     p_delay(1);
@@ -273,7 +277,7 @@ if(stat_random(agility, 160, 300) = false) {
     ~agility_exactmove(agilityarena_dive_player, 20, 1, coord, movecoord(loc_coord, multiply(1,$dx), 0, multiply(1,$dz)), 30, 49, $dir, false);
     @regicide_pitfall_falldown;
 }
-~agility_exactmove(agilityarena_dive_player, 20, 1, coord, movecoord(loc_coord, multiply(3,$dx), 0, multiply(3,$dz)), 30, 49, $dir, false);
+~agility_exactmove(agilityarena_dive_player, 20, 1, coord, $dest, 30, 49, $dir, false);
 mes("... you manage to cross safely.");
 
 [label,regicide_pitfall_falldown]
@@ -476,7 +480,7 @@ if(loc_type = regicide_cross_over3) {
 ~chatnpc("<p,neutral>I remember you! You're the one who's working with them wicked elves. I will make you pay for that mistake.");
 ~npc_retaliate(0);
 
-[oploc1,loc_3941]
+[oploc1,regicide_old_camp_footprints]
 if(%regicide_quest = ^regicide_defeated_guard) {
     mes("I know where those tracks lead.");
 } else if(%regicide_quest = ^regicide_spoken_tracker2) {

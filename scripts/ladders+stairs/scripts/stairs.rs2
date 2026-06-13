@@ -1,4 +1,4 @@
-[oploc1,loc_1722]
+[oploc1,stairs]
 p_arrivedelay;
 // Climb up
 switch_coord (loc_coord) {
@@ -42,7 +42,7 @@ switch_coord (loc_coord) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc1,loc_1723]
+[oploc1,stairstop]
 p_arrivedelay;
 // Climb down
 switch_coord (loc_coord) {
@@ -87,7 +87,7 @@ switch_coord (loc_coord) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc1,loc_1728]
+[oploc1,yanillestairsdown]
 // no arrive delay on these stairs
 // Climb up
 switch_coord (loc_coord) {
@@ -95,7 +95,7 @@ switch_coord (loc_coord) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc1,loc_1729]
+[oploc1,yanillestairsup]
 // no arrive delay on these stairs
 // Climb up
 switch_coord (loc_coord) {
@@ -103,7 +103,7 @@ switch_coord (loc_coord) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc1,loc_1730]
+[oploc1,spookystairs]
 p_arrivedelay;
 // Climb up
 switch_coord (loc_coord) {
@@ -113,7 +113,7 @@ switch_coord (loc_coord) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc1,loc_1731]
+[oploc1,spookystairstop]
 p_arrivedelay;
 // Climb down
 switch_coord (loc_coord) {
@@ -124,7 +124,7 @@ switch_coord (loc_coord) {
 }
 
 
-[oploc1,loc_1733]
+[oploc1,stairs_cellar]
 p_arrivedelay;
 // Climb down
 switch_coord (loc_coord) {
@@ -164,7 +164,7 @@ switch_coord (loc_coord) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc1,loc_1737]
+[oploc1,outdoorstairs_wooden_bottom]
 p_arrivedelay;
 // Climb up
 switch_coord (loc_coord) {
@@ -178,7 +178,7 @@ switch_coord (loc_coord) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc1,loc_1738]
+[oploc1,spiralstairs]
 // Climb up
 switch_coord (loc_coord) {
     case 0_50_50_4_7 : p_telejump(1_50_50_5_9); // Lumbridge Castle South - level 0
@@ -235,7 +235,7 @@ switch_coord (loc_coord) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc1,loc_1739]
+[oploc1,spiralstairsmiddle]
 // Option for up/down
 switch_coord (loc_coord) {
     case 1_50_50_4_7 : @stair_options(2_50_50_5_9, 0_50_50_5_9); // Lumbridge Castle South - level 1
@@ -251,7 +251,7 @@ switch_coord (loc_coord) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc2,loc_1739]
+[oploc2,spiralstairsmiddle]
 // Climb-up
 switch_coord (loc_coord) {
     case 1_50_50_4_7 : p_telejump(2_50_50_5_9); // Lumbridge Castle South - level 1
@@ -267,7 +267,7 @@ switch_coord (loc_coord) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc3,loc_1739]
+[oploc3,spiralstairsmiddle]
 // Climb-down
 switch_coord (loc_coord) {
     case 1_50_50_4_7 : p_telejump(0_50_50_5_9); // Lumbridge Castle South - level 1
@@ -283,7 +283,7 @@ switch_coord (loc_coord) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc1,loc_1740]
+[oploc1,spiralstairstop]
 // Climb down
 switch_coord (loc_coord) {
     case 2_50_50_5_8 : p_telejump(1_50_50_5_9); // Lumbridge Castle South - level 2
@@ -340,7 +340,7 @@ switch_coord (loc_coord) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc1,loc_1742]
+[oploc1,spiralstairs_wooden]
 // Climb up - Tree Gnome Stronghold stairs
 switch_int (loc_angle) {
     case 0 : p_telejump(movecoord(loc_coord, 2, 1, 0));
@@ -350,7 +350,7 @@ switch_int (loc_angle) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc1,loc_1744]
+[oploc1,spiralstairstop_wooden]
 // Climb down - Tree Gnome Stronghold stairs
 switch_int (loc_angle) {
     case 0 : p_telejump(movecoord(loc_coord, 0, -1, -1));
@@ -360,7 +360,7 @@ switch_int (loc_angle) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc1,loc_2316]
+[oploc1,balance40up]
 // no arrive delay on these stairs
 // Climb up
 switch_coord (loc_coord) {
@@ -390,7 +390,7 @@ switch_coord (loc_coord) {
     case default : @unhandled_stairs(loc_coord);
 }
 
-[oploc1,loc_1725]
+[oploc1,woodenstairs]
 // No arrive delay
 switch_coord (loc_coord) {
     case 0_50_53_27_1 : p_telejump(1_50_53_30_1); // Blue moon inn - level 0

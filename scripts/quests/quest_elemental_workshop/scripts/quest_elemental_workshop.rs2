@@ -57,7 +57,7 @@ if(inv_total(inv, needle) > 0 | testbit(%elemental_workshop_bits, ^elemental_wor
 }
 inv_add(inv, needle, 1);
 mes("You find a needle.");
-%elemental_workshop_bits = setbit(%elemental_workshop_bits, ^elemental_workshop_leather_found);
+%elemental_workshop_bits = setbit(%elemental_workshop_bits, ^elemental_workshop_needle_found);
 
 [oploc1,elemental_workshop_box_4]
 if(inv_total(inv, leather) > 0 | testbit(%elemental_workshop_bits, ^elemental_workshop_leather_found) = ^true) {

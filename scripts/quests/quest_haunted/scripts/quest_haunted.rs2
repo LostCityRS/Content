@@ -43,7 +43,7 @@ if(last_useitem ! closet_key) {
 mes("You unlock the door.");
 mes("You go through the door.");
 sound_synth(locked, 0, 0);
-~open_and_close_door2(desertdoor_inactive, ~check_axis(coord, loc_coord, loc_angle), door_open);
+~open_and_close_door2(loc_1532, ~check_axis(coord, loc_coord, loc_angle), door_open);
 
 [oploc1,hauntedfountain]
 anim(human_pickpocket, 0);
@@ -174,14 +174,14 @@ if((loc_type = 1to2 & (testbit(%ernestlever, 0) = ^false & testbit(%ernestlever,
     | (loc_type = 3to6 & (testbit(%ernestlever, 1) = ^false & testbit(%ernestlever, 3) = ^true & testbit(%ernestlever, 5) = ^false))
     | (loc_type = 4to7 & (testbit(%ernestlever, 0) = ^true & testbit(%ernestlever, 1) = ^true & testbit(%ernestlever, 2) = ^false & testbit(%ernestlever, 3) = ^false & testbit(%ernestlever, 4) = ^false & testbit(%ernestlever, 5) = ^false))
     | (loc_type = 5to8 & ((testbit(%ernestlever, 2) = ^false & testbit(%ernestlever, 3) = ^true) | (testbit(%ernestlever, 0) = ^false & testbit(%ernestlever, 1) = ^false & testbit(%ernestlever, 2) = ^true & testbit(%ernestlever, 3) = ^true & testbit(%ernestlever, 4) = ^false & testbit(%ernestlever, 5) = ^true)))) {
-    ~open_and_close_door2(poordoor, ~check_axis(coord, loc_coord, loc_angle), door_open);
+    ~open_and_close_door2(loc_1535, ~check_axis(coord, loc_coord, loc_angle), door_open);
     return;
 }
 mes("This door is locked.");
 sound_synth(locked, 0, 0);
 
 [proc,change_ernest]
-if(npc_find(coord, ernest_the_chicken, 8, 0) = true) {
+if(npc_find(coord, questchicken, 8, 0) = true) {
     npc_changetype_keepall(ernest, 100);
 }
 

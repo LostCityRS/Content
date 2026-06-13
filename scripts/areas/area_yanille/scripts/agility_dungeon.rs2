@@ -1,4 +1,4 @@
-[oploc1,loc_2290]
+[oploc1,obstical_pipe4]
 if(stat(agility) < 49) {
     ~mesbox("You need 49 agility to squeeze through the pipe.");
     return;
@@ -27,7 +27,7 @@ p_delay(0);
 sound_synth(squeeze_in, 0, 0);
 stat_advance(agility, 75);
 
-[oploc1,loc_2303]
+[oploc1,balancing_ledge3]
 if(stat(agility) < 40) {
     ~mesbox("You need an Agility level of 40 to cross the ledge.");
     return;
@@ -82,7 +82,7 @@ anim($end_seq, 0);
 stat_advance(agility, 225);
 mes("You skillfully edge across the gap.");
 
-[oploc1,loc_2317]
+[oploc1,climbingcaverocks1]
 if(stat(agility) < 67) {
     ~mesbox("You need an Agility level of 67 to climb this pile of rubble.");
     return;
@@ -90,7 +90,7 @@ if(stat(agility) < 67) {
 ~agility_climb_up(55, 0_40_148_55_34);
 mes("You climb up the pile of rubble...");
 
-[oploc1,loc_2318]
+[oploc1,climbingcaverocks2]
 mes("You climb down the pile of rubble...");
 p_telejump(0_40_149_56_35);
 

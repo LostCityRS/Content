@@ -1,16 +1,16 @@
-[game_trawler_barrel1]
+[sinkingbarrel1]
 name=Barrel
 desc=It's a floating barrel.
 model=model_loc_2159
 op1=Climb-on
 
-[game_trawler_barrel2]
+[sinkingbarrel2]
 name=Barrel
 desc=It's a floating barrel.
 model=model_loc_2160
 op1=Climb-on
 
-[game_trawler_barrel3]
+[sinkingbarrel3]
 name=Barrel
 desc=It's a floating barrel.
 model=model_loc_2161
@@ -29,7 +29,7 @@ model=model_loc_2162
 length=2
 mirror=yes
 
-[game_trawler_fish_net1]
+[trawlernet_l]
 name=Trawler net
 desc=Smells like fish.
 model=model_loc_2164
@@ -37,7 +37,7 @@ width=2
 length=6
 op1=Inspect
 
-[game_trawler_fish_net2]
+[trawlernet_r]
 name=Trawler net
 desc=Smells like fish.
 model=model_loc_2164
@@ -46,7 +46,7 @@ length=6
 mirror=yes
 op1=Inspect
 
-[game_trawler_reward_net]
+[trawlernetland]
 name=Trawler net
 desc=Smells like fish.
 model=model_loc_2166
@@ -54,7 +54,7 @@ width=2
 length=2
 op1=Inspect
 
-[game_trawler_leak]
+[shipleak]
 name=Leak
 desc=Water is pouring in through the hole.
 model=model_loc_2167
@@ -64,7 +64,7 @@ op1=Fill
 blockwalk=no
 forceapproach=south
 
-[game_trawler_repaired_leak]
+[filledhole]
 name=Repaired leak
 desc=A patch of swamp tar has bunged up the hole.
 model=model_loc_2168
@@ -81,11 +81,11 @@ name=Spray
 desc=There's a strong wind whipping up the sea.
 model=model_loc_362
 
-[loc_2171]
+[ship_controls]
 model=model_loc_1785
 active=no
 
-[game_trawler_fish_net_broken1]
+[trawlernet_top_l]
 name=Trawler net
 desc=A huge net to catch little fish.
 model=model_loc_2172
@@ -93,7 +93,7 @@ width=2
 length=6
 op1=Inspect
 
-[game_trawler_fish_net_broken2]
+[trawlernet_top_r]
 name=Trawler net
 desc=A huge net to catch little fish.
 model=model_loc_2172
@@ -102,14 +102,14 @@ length=6
 mirror=yes
 op1=Inspect
 
-[game_trawler_ship_ladder_up]
+[trawler_ladder]
 name=Ship's ladder
 desc=The upper deck can be accessed with this ladder.
 model=model_loc_272
 op1=Climb-up
 sharelight=yes
 
-[game_trawler_ship_ladder_down]
+[trawler_laddertop]
 name=Ship's ladder
 desc=Back down to the main deck.
 model=model_loc_273
@@ -123,7 +123,7 @@ model=model_loc_2176
 width=2
 active=yes
 
-[game_trawler_hull]
+[shiphull_trawler]
 name=Hull
 desc=This old trawler has seen better days.
 model=model_loc_2177
@@ -131,7 +131,7 @@ width=2
 active=yes
 blockwalk=no
 
-[game_trawler_gangplank1]
+[trawler_gangplank]
 name=Gangplank
 desc=Handy for boarding boats.
 model=model_loc_69
@@ -139,7 +139,7 @@ op1=Cross
 active=yes
 sharelight=yes
 
-[game_trawler_gangplank2]
+[trawler_gangplankoff]
 name=Gangplank
 desc=Handy for boarding boats.
 model=model_loc_69

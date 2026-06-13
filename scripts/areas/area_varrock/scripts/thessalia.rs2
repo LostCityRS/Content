@@ -413,14 +413,13 @@ if (%if2 = 1) {
 
 @thessalia_finished_makeover;
 
-[if_button,player_kit_tailor_legs_woman:com_133] %if1 = 1;
-[if_button,player_kit_tailor_legs_woman:com_134] %if1 = 2;
-[if_button,player_kit_tailor_legs_woman:com_135] %if1 = 3;
-[if_button,player_kit_tailor_legs_woman:com_136] %if1 = 4;
-[if_button,player_kit_tailor_legs_woman:com_137] %if1 = 5;
-[if_button,player_kit_tailor_legs_woman:com_138] %if1 = 6;
-[if_button,player_kit_tailor_legs_woman:com_139] %if1 = 7;
-[if_button,player_kit_tailor_legs_woman:com_140] %if1 = 8;
+[if_button,player_kit_tailor_legs_woman:com_132] %if1 = 1;
+[if_button,player_kit_tailor_legs_woman:com_133] %if1 = 2;
+[if_button,player_kit_tailor_legs_woman:com_134] %if1 = 3;
+[if_button,player_kit_tailor_legs_woman:com_135] %if1 = 4;
+[if_button,player_kit_tailor_legs_woman:com_136] %if1 = 5;
+[if_button,player_kit_tailor_legs_woman:com_137] %if1 = 7;
+[if_button,player_kit_tailor_legs_woman:com_138] %if1 = 8;
 
 [if_button,player_kit_tailor_legs_woman:com_91] %if3 = 2;
 [if_button,player_kit_tailor_legs_woman:com_92] %if3 = 3;
@@ -464,8 +463,6 @@ if (%if1 = 1) {
     setidkit(woman_legs_turn_ups, $color);
 } else if (%if1 = 5) {
     setidkit(woman_legs_turn_ups_2, $color);
-} else if (%if1 = 6) {
-    setidkit(woman_legs_turn_ups_3, $color);
 } else if (%if1 = 7) {
     setidkit(woman_legs_turn_ups_4, $color);
 } else if (%if1 = 8) {

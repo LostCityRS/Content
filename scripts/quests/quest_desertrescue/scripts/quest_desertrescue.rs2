@@ -279,7 +279,7 @@ mes("The door seems to be pretty locked.");
 
 [oplocu,capt_siad_cell_door]
 if(last_useitem = thcelldoorkey) {
-    ~open_and_close_door2(poshdooropen, ~check_axis(coord, loc_coord, loc_angle), door_open);
+    ~open_and_close_door2(loc_1541, ~check_axis(coord, loc_coord, loc_angle), door_open);
     return;
 }
 ~displaymessage(^dm_default);

@@ -1,4 +1,4 @@
-[oploc1,gnome_log_balance]
+[oploc1,gnome_log_balance1]
 ~gnome_trainer_say("Okay get over that log, quick quick!");
 p_arrivedelay;
 mes("You walk carefully across the slippery log...");
@@ -7,7 +7,7 @@ sound_synth(log_balance, 4, 0);
 mes("...You make it safely to the other side.");
 ~update_gnome_varp(1);
 
-[oploc1,gnome_obstacle_net_1]
+[oploc1,obstical_net2]
 if(coordz(coord) <= coordz(loc_coord)) {
     mes("You can not do that from here.");
     return;
@@ -26,7 +26,7 @@ p_arrivedelay;
 mes("...To the platform above.");
 ~update_gnome_varp(3);
 
-[oploc1,gnome_balancing_rope]
+[oploc1,balancing_rope]
 p_arrivedelay;
 mes("You carefully cross the tightrope.");
 ~gnome_trainer_say("Come on scaredy cat, get across that rope!");
@@ -34,8 +34,8 @@ sound_synth(tightrope, 5, 0);
 ~agility_force_move(75, human_walk_logbalance, movecoord(coord, 6, 0, 0));
 ~update_gnome_varp(4);
 
-[oploc1,gnome_tree_branch_2] @climbdown_gnome_tree_branch;
-[oploc1,gnome_tree_branch_3] @climbdown_gnome_tree_branch;
+[oploc1,climbing_tree] @climbdown_gnome_tree_branch;
+[oploc1,climbing_tree2] @climbdown_gnome_tree_branch;
 
 [label,climbdown_gnome_tree_branch]
 mes("You climb down the tree...");
@@ -44,7 +44,7 @@ p_arrivedelay;
 mes("You land on the ground.");
 ~update_gnome_varp(5);
 
-[oploc1,gnome_obstacle_net_2]
+[oploc1,obstical_net3]
 if(coordz(coord) >= coordz(loc_coord)) {
     mes("You can not do that from here.");
     return;

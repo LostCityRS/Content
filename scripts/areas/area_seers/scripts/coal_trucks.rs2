@@ -1,4 +1,4 @@
-[oploc1,loc_2114]
+[oploc1,coal_truck]
 def_int $coal_to_remove = %coal_truck;
 def_string $coal_mes = "You remove the coal from the truck.";
 if($coal_to_remove = 0) {
@@ -19,7 +19,7 @@ sound_synth(mine, 0, 0);
 inv_add(inv, coal, $coal_to_remove);
 mes($coal_mes);
 
-[oplocu,loc_2114]
+[oplocu,coal_truck]
 if(last_useitem ! coal) {
     mes("The coal truck isn't meant to transport that.");
     return;

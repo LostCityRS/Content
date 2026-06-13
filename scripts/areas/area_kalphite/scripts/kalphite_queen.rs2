@@ -40,7 +40,7 @@ npc_facesquare(movecoord(npc_coord, 2, 0, -1));
 npc_delay(0);
 // npc_arrivedelay; // might replace this when the client can add+face on same tick
 
-.npc_add(npc_coord, kalphite_queen_form_swap, 3);
+.npc_add(npc_coord, kalphite_queen_dead, 3);
 .npc_anim(kalphite_crackopen, 0);
 ~sound_area(kalphite_crack_open, 0, movecoord(npc_coord, 2, 0, 2), 12);
 

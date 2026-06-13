@@ -41,22 +41,22 @@ sharelight=yes
 active=no
 resizey=200
 
-[loc_3623]
+[cracks_black2]
 model=loc_3623
 recol1s=0
 recol1d=6342
 
-[loc_3624]
+[cracks_black3]
 model=loc_3624
 recol1s=0
 recol1d=6342
 
-[loc_3625]
+[cracks_black4]
 model=loc_3625
 recol1s=0
 recol1d=6342
 
-[loc_3626]
+[macro_maze_wallhigh]
 name=Wall
 desc=It looks very sturdy.
 model=loc_3626
@@ -67,7 +67,7 @@ op1=Open
 model=loc_3627
 sharelight=yes
 
-[macro_maze_both_dir_wall]
+[macro_maze_walllow]
 name=Wall
 desc=It looks very sturdy.
 model=model_3334
@@ -77,7 +77,7 @@ op1=Open
 param=approach_direction,0
 category=macro_maze_wall_door
 
-[macro_maze_east_wall]
+[macro_maze_walllow_safe1]
 name=Wall
 desc=It looks very sturdy.
 model=model_3334
@@ -87,7 +87,7 @@ op1=Open
 param=approach_direction,1
 category=macro_maze_wall_door
 
-[macro_maze_west_wall]
+[macro_maze_walllow_safe2]
 name=Wall
 desc=It looks very sturdy.
 model=model_3334
@@ -97,7 +97,7 @@ op1=Open
 param=approach_direction,2
 category=macro_maze_wall_door
 
-[macro_maze_north_wall]
+[macro_maze_walllow_safe3]
 name=Wall
 desc=It looks very sturdy.
 model=model_3334
@@ -107,7 +107,7 @@ op1=Open
 param=approach_direction,2
 category=macro_maze_wall_door
 
-[macro_maze_west2_wall]
+[macor_maze_walllow_safe4]
 name=Wall
 desc=It looks very sturdy.
 model=model_3334
@@ -117,12 +117,12 @@ op1=Open
 param=approach_direction,1
 category=macro_maze_wall_door
 
-[macro_maze_opened_wall]
+[macro_maze_wallinactive]
 model=model_3334
 recol1s=9513
 recol1d=15855
 
-[loc_3634]
+[macro_maze_complete]
 name=Strange shrine
 desc=A shrine of the Gods!
 model=loc_3634
@@ -131,13 +131,13 @@ length=3
 width=3
 op1=Touch
 
-[loc_3635]
+[macro_maze_chest]
 name=Chest
 desc=I wonder what's inside...
 model=wooden_chest
 op1=Open
 
-[loc_3636]
+[macro_maze_chestempty]
 name=Chest
 desc=It looks empty.
 model=model_loc_76
@@ -148,41 +148,41 @@ name=godsorb
 model=loc_3637
 anim=godsorb
 
-[loc_3638]
+[macro_theatrewall]
 model=model_loc_1904
 recol1s=26423
 recol1d=2114
 sharelight=yes
 hillskew=yes
 
-[loc_3639]
+[macro_theatre_curtains_right]
 model=loc_3639
 active=no
 sharelight=yes
 
-[loc_3640]
+[macro_theatre_curtains_left]
 model=loc_3639
 active=no
 mirror=yes
 sharelight=yes
 
-[loc_3641]
+[macro_theatre_curtains_side]
 model=loc_3641
 active=no
 sharelight=yes
 
-[loc_3642]
+[macro_theatre_curtains_corner_left]
 model=loc_3642
 active=no
 sharelight=yes
 
-[loc_3643]
+[macro_theatre_curtains_corner_right]
 model=loc_3642
 active=no
 sharelight=yes
 mirror=yes
 
-[loc_3644]
+[macro_spotlight]
 name=Spotlight
 desc=That's really bright!
 model=loc_3644
@@ -193,13 +193,13 @@ contrast=40
 blockwalk=no
 blockrange=no
 
-[loc_3645]
+[macro_exitsign]
 model=loc_3645
 active=no
 ambient=80
 contrast=80
 
-[loc_3646]
+[macro_theatre_floor]
 model=model_loc_796
 recol1s=9409
 recol1d=7328
@@ -212,14 +212,14 @@ resizez=128
 resizex=128
 resizey=48
 
-[loc_3647]
+[macro_theatre_chair]
 model=model_loc_1088
 recol1s=10401
 recol1d=7298
 blockrange=no
 active=no
 
-[loc_3648]
+[dugupsoil1_macromaze]
 model=model_loc_184
 recol1s=13505
 recol1d=15855
@@ -230,7 +230,7 @@ recol3d=15855
 hillskew=yes
 forcedecor=yes
 
-[loc_3649]
+[dugupsoil2_macromaze]
 model=model_loc_185
 recol1s=13505
 recol1d=15855
@@ -252,11 +252,11 @@ recol3d=15855
 hillskew=yes
 forcedecor=yes
 
-[loc_3651]
+[macro_simplewall_theatre]
 model=loc_3651
 sharelight=yes
 
-[loc_3652]
+[macro_dark_fade]
 model=loc_3652
 
 [troll_climbingrocks]
@@ -551,7 +551,7 @@ recol1s=13537
 recol1d=18953
 blockwalk=no
 
-[loc_3834]
+[mapwall]
 model=loc_3834
 hillskew=yes
 
