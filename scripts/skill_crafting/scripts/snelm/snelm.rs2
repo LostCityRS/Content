@@ -13,7 +13,7 @@ inv_add(inv, oc_param($shell, next_obj_stage), 1);
 mes("You chisel the shell into a helmet.");
 anim(human_snailshellcutting, 0);
 stat_advance(crafting, 325);
-sound_synth(chisel, 0, 0);
+sound_synth(chisel, 1, 0);
 
 [proc,snelm_reduction](int $damage)(int)
 def_obj $head = inv_getobj(worn, ^wearpos_hat);

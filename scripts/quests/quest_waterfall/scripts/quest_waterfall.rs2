@@ -243,7 +243,7 @@ while($i < 8) {
 p_arrivedelay; // arrive delay on osrs
 mes("You slip and tumble over the water fall.");
 say("Ouch!");
-sound_synth(watersplash, 0, 0); // not sure if this sound plays here originally but it does in osrs
+sound_synth(watersplash, 1, 0); // not sure if this sound plays here originally but it does in osrs
 p_teleport(^waterfall_fail_coord);
 p_delay(2);
 mes("You are washed up by the river side.");
@@ -274,7 +274,7 @@ mes("Suddenly the corridor floods...");
 p_delay(2);
 mes("flushing you back into the river.");
 mes("You tumble over the waterfall...");
-sound_synth(watersplash, 0, 0); // not sure if this sound plays here originally but it does in osrs
+sound_synth(watersplash, 1, 0); // not sure if this sound plays here originally but it does in osrs
 p_teleport(^waterfall_fail_coord);
 p_delay(0);
 say("Ouch!");

@@ -40,7 +40,7 @@ if(%arenaquest = ^arena_sent_jail) {
         // Temp note: dur updated
         loc_change(inviswall, 3);
         loc_add(movecoord($loc_coord, $x, 0, $z), ctratgatea, modulo(add($angle, 1), 4), $shape, 3);
-        sound_synth(grate_open, 0, 0);
+        sound_synth(grate_open, 1, 0);
     }
     p_teleport(movecoord(coord, 0, 0, -1));
     p_delay(1);
@@ -62,7 +62,7 @@ if(%arenaquest = ^arena_sent_jail) {
         // Temp note: dur updated
         loc_change(inviswall, 3);
         loc_add(movecoord($loc_coord, $x, 0, $z), loc_1532, modulo(add($angle, 1), 4), $shape, 3);
-        sound_synth(door_open, 0, 0);
+        sound_synth(door_open, 1, 0);
     }
     ~forcemove(movecoord(coord, -4, 0, 4));
     npc_del;

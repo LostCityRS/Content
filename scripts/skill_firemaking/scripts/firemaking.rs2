@@ -54,7 +54,7 @@ if(inv_total(inv, tinderbox) < 1) {
 if (%action_delay < map_clock) {
     p_stopaction;
     anim(human_createfire, 0);
-    sound_synth(tinderbox_strike, 0, 0);
+    sound_synth(tinderbox_strike, 1, 0);
     mes("You attempt to light the logs.");
     %action_delay = calc(map_clock + 3);
 } else if (%action_delay = map_clock) {
@@ -69,7 +69,7 @@ if (%action_delay < map_clock) {
     } else {
         // if fails, then reattempt to light
         anim(human_createfire, 0);
-        sound_synth(tinderbox_strike, 0, 0);
+        sound_synth(tinderbox_strike, 1, 0);
         %action_delay = calc(map_clock + 4);
     }
 }
@@ -98,7 +98,7 @@ inv_dropslot(inv, coord, $slot, ^lootdrop_duration);
 if (%action_delay < map_clock) {
     p_stopaction;
     anim(human_createfire, 0);
-    sound_synth(tinderbox_strike, 0, 0);
+    sound_synth(tinderbox_strike, 1, 0);
     mes("You attempt to light the logs.");
     %action_delay = calc(map_clock + 3);
 } else if (%action_delay = map_clock) {
@@ -110,7 +110,7 @@ if (%action_delay < map_clock) {
     } else {
         // if fails, then reattempt to light
         anim(human_createfire, 0);
-        sound_synth(tinderbox_strike, 0, 0);
+        sound_synth(tinderbox_strike, 1, 0);
         %action_delay = calc(map_clock + 4);
     }
 }
@@ -119,7 +119,7 @@ p_opobj(4);
 [proc,firemaking_success](coord $fire_coord, obj $log)
 obj_del;
 stat_advance(firemaking, oc_param($log, productexp));
-sound_synth(fire_lit, 0, 0);
+sound_synth(fire_lit, 1, 0);
 facesquare($fire_coord);
 //mes("<tostring(map_clock)>, <tostring(%action_delay)>: The fire catches and the logs begin to burn.");
 mes("The fire catches and the logs begin to burn.");

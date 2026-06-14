@@ -4,7 +4,7 @@ if (%damagestyle = ^style_ranged_accurate | %damagestyle = ^style_ranged_longran
     return;
 }
 anim(%com_attackanim, 0);
-sound_synth(%com_attacksound, 0, 0);
+sound_synth(%com_attacksound, 1, 0);
 mes("You hit the dummy.");
 p_delay(0);
 if (stat_base(attack) < 8) {

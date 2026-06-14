@@ -82,7 +82,7 @@ if_close;
 [proc,macro_maze_open_chest](loc $other_chest)
 p_arrivedelay;
 anim(human_openchest, 0);
-sound_synth(chest_open, 0, 0);
+sound_synth(chest_open, 1, 0);
 p_delay(0);
 loc_change($other_chest, ^macro_maze_chest_ticks);
 ~macro_maze_calculate_chest_loot;

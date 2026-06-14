@@ -19,7 +19,7 @@ if (~player_in_combat_check = false) {
 mes("The monkey deftly avoids your melee attack! You aren't going to score a hit in");
 mes("hand-to-hand combat.");
 anim(%com_attackanim, 0);
-sound_synth(%com_attacksound, 0, 0);
+sound_synth(%com_attacksound, 1, 0);
 npc_setmode(playerescape);
 world_delay(2);
 npc_setmode(null);

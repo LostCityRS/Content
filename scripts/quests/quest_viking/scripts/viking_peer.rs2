@@ -532,12 +532,12 @@ def_int $last_slot = last_useslot;
 switch_obj(last_useitem) {
     case viking_jug_1, viking_jug_2, viking_jug_3 :
         anim(throw_bucketofwater, 0);
-        sound_synth(holy_water_pour, 0, 0);
+        sound_synth(holy_water_pour, 1, 0);
         inv_setslot(inv, $last_slot, viking_jug_empty, 1);
         mes("You empty the jug down the drain.");
     case viking_bucket_1, viking_bucket_2, viking_bucket_3, viking_bucket_4, viking_bucket_5 :
         anim(throw_bucketofwater, 0);
-        sound_synth(holy_water_pour, 0, 0);
+        sound_synth(holy_water_pour, 1, 0);
         inv_setslot(inv, $last_slot, viking_bucket_empty, 1);
         mes("You empty the bucket down the drain.");
     case viking_airtight_vase_water :
@@ -765,14 +765,14 @@ switch_obj(last_useitem) {
 [oploc1,viking_cupboardhigh]
 p_arrivedelay;
 anim(human_openhighcupboard, 0);
-sound_synth(cupboard_open, 0, 0);
+sound_synth(cupboard_open, 1, 0);
 p_delay(0);
 loc_change(viking_cupboardopen_high, 300);
 
 [oploc1,viking_cupboardopen_high]
 p_arrivedelay;
 anim(human_closehighcupboard, 0);
-sound_synth(cupboard_close, 0, 0);
+sound_synth(cupboard_close, 1, 0);
 p_delay(0);
 loc_change(viking_cupboardhigh, 300);
 
@@ -1024,12 +1024,12 @@ if($last_useitem = viking_red_wooden_coin) {
 
 [oploc1,viking_seer_trapdoor_closed]
 mes("The trapdoor opens...");
-sound_synth(door_open, 0, 0);
+sound_synth(door_open, 1, 0);
 loc_change(viking_seer_trapdoor_open, 500);
 
 [oploc2,viking_seer_trapdoor_open]
 mes("The trapdoor closes...");
-sound_synth(door_open, 0, 0);
+sound_synth(door_open, 1, 0);
 loc_change(viking_seer_trapdoor_closed, 500);
 
 [oploc1,viking_seers_door2]

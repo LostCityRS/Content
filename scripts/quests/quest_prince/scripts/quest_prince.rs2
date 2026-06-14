@@ -46,7 +46,7 @@ mes("You unlock the door.");
 [oploc1,alidoor]
 if(coordz(coord) > coordz(loc_coord)) {
     mes("The door is locked.");
-    sound_synth(locked, 0, 0);
+    sound_synth(locked, 1, 0);
     return;
 }
 ~open_and_close_metal_gate2(loc_1541, true, false);

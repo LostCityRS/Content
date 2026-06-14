@@ -84,7 +84,7 @@ if(%pyre_loc ! 0) {
 
 %pyre_loc = ~get_pyre_loc_id(loc_coord);
 anim(human_pickuptable, 0);
-sound_synth(log_down, 0, 0);
+sound_synth(log_down, 1, 0);
 inv_del(inv, $logs, 1);
 mes("You put some logs on the pyre.");
 if(%morttonquest < ^mortton_logs_on_pyre) {
@@ -121,7 +121,7 @@ clearqueue(clear_pyre_loc);
 longqueue(clear_pyre_loc, 49, 0, ^accelerate);
 loc_change(loc_param(next_loc_stage), 49); //49t osrs
 anim(human_pickuptable, 0);
-sound_synth(pick, 0, 0);
+sound_synth(pick, 1, 0);
 inv_del(inv, $remains, 1);
 mes("You place the shade's remains on the logs.");
 
@@ -197,7 +197,7 @@ if(%morttonquest < ^mortton_lit_pyre) {
     %morttonquest = ^mortton_lit_pyre;
 }
 spotanim_map(temple_pyre_fire, ~get_pyre_coord(loc_coord, loc_angle), 0, 30);
-sound_synth(fire_lit, 0, 0);
+sound_synth(fire_lit, 1, 0);
 stat_advance(firemaking, struct_param($funeral_pyre_struct, pyre_fm_experience));
 stat_advance(prayer,add(oc_param(%mortton_current_shade, pyre_shade_exp),struct_param($funeral_pyre_struct, pyre_shade_exp_bonus)));
 %pyre_loc = 0;
@@ -211,7 +211,7 @@ queue*(funeral_pyre_reward, 2)(loc_coord, loc_angle);  //2t min but can queue.
 [queue,funeral_pyre_reward](coord $coord, int $rotation)
 def_coord $pillar_coord = ~get_pyre_pillar_coord($coord, $rotation);
 spotanim_map(smokepuff_large, $pillar_coord, 96, 0);
-sound_synth(smokepuff, 0, 0);
+sound_synth(smokepuff, 1, 0);
 ~give_shade_rewards(%mortton_current_shade, $pillar_coord);
 %mortton_current_shade = null;
 loc_findallzone($coord);

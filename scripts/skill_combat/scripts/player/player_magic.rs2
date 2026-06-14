@@ -222,7 +222,7 @@ if ($maxhit ! null) {
     // npc_anim(npc_param(defend_anim), $duration); // delay npc this tick
     // npc sound
     if (npc_param(defend_sound) ! null) {
-        sound_synth(npc_param(defend_sound), 0, $duration); // delay 1 client tick for the hit queue
+        sound_synth(npc_param(defend_sound), 1, $duration); // delay 1 client tick for the hit queue
     }
     def_int $damage_capped = min($damage, npc_stat(hitpoints));
     ~give_combat_experience($damagestyle, $damage_capped, %npc_combat_xp_multiplier);

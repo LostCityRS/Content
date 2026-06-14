@@ -1,7 +1,7 @@
 // picking, drying, and grinding troll thistle is allowed at any point before/during/after the quest
 [opnpc1,eadgar_troll_thistle]
 mes("You pick the Troll Thistle.");
-sound_synth(pick, 0, 0);
+sound_synth(pick, 1, 0);
 // should drop to the ground if inv is full
 inv_add(inv, eadgar_troll_thistle, 1);
 @eadgar_troll_thistle_move(npc_coord);

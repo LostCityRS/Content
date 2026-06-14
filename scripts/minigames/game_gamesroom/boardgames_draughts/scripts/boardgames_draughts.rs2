@@ -648,7 +648,7 @@ if (~test_draughts_move($last_slot, $last_targetslot, $king) = true) {
         ~make_draughts_king($last_targetslot);
     }
 } else {
-    sound_synth(column_full, 0, 0);
+    sound_synth(column_full, 1, 0);
     inv_movetoslot(boardgames_boardinv, boardgames_boardinv, $last_slot, $last_slot);
     inv_movetoslot(boardgames_boardinv, boardgames_boardinv, $last_targetslot, $last_targetslot);
 }
@@ -663,9 +663,9 @@ if (.finduid(%duel2accept) = false) {
 
 def_namedobj $king = ~get_draughts_king(%boardgames_piece);
 inv_setslot(boardgames_boardinv, $slot, $king, 1);
-sound_synth(king, 0, 0);
+sound_synth(king, 1, 0);
 .inv_setslot(boardgames_boardinv, sub(63,$slot), $king, 1);
-.sound_synth(king, 0, 0);
+.sound_synth(king, 1, 0);
 
 [proc,make_draughts_move_for_opponent](int $last_slot, int $last_targetslot, boolean $king)
 if (.finduid(%duel2accept) = false) {
@@ -767,7 +767,7 @@ def_int $col = modulo($last_targetslot, 8);
 def_int $x = multiply($col, ^draughts_tile_size);
 def_int $y = multiply($row, ^draughts_tile_size);
 
-sound_synth(chesspiece_move, 0, 0);
+sound_synth(chesspiece_move, 1, 0);
 anim(human_sittingdown_move, 0);
 if_setanim(boardgames_draughts:runeflash, null);
 if_setposition(boardgames_draughts:runeflash, $x, $y);
@@ -785,7 +785,7 @@ def_int $col = modulo($last_targetslot, 8);
 def_int $x = multiply($col, ^draughts_tile_size);
 def_int $y = multiply($row, ^draughts_tile_size);
 
-.sound_synth(chesspiece_move, 0, 0);
+.sound_synth(chesspiece_move, 1, 0);
 .if_setanim(boardgames_draughts:runeflash, null);
 .if_setposition(boardgames_draughts:runeflash, $x, $y);
 .if_setanim(boardgames_draughts:runeflash, runeflash);

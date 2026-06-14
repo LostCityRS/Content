@@ -305,7 +305,7 @@ if_settext(boardgames_runelink:winner, "");
 [proc,test_runelink_move](int $column)(boolean)
 if (%boardgames_myturn = 0) {
     if_settext(boardgames_runelink:status1, "It is not your turn!");
-    sound_synth(column_full, 0, 0);
+    sound_synth(column_full, 1, 0);
     return (false);
 }
 
@@ -313,7 +313,7 @@ def_int $col_idx = sub($column, 1);
 
 if (inv_getobj(boardgames_boardinv, $col_idx) ! null) {
     if_settext(boardgames_runelink:status1, "This column is full!");
-    sound_synth(column_full, 0, 0);
+    sound_synth(column_full, 1, 0);
     return (false); 
 }
 
@@ -347,7 +347,7 @@ def_int $col = modulo($found_slot, 7);
 def_int $x = multiply($col, ^runelink_tile_size);
 def_int $y = multiply($row, ^runelink_tile_size);
 
-sound_synth(runelink_bottom, 0, 0);
+sound_synth(runelink_bottom, 1, 0);
 anim(human_sittingdown_move, 0);
 if_setanim(boardgames_runelink:runeflash, null);
 if_setposition(boardgames_runelink:runeflash, $x, $y);
@@ -380,7 +380,7 @@ def_int $col = modulo($found_slot, 7);
 def_int $x = multiply($col, ^runelink_tile_size);
 def_int $y = multiply($row, ^runelink_tile_size);
 
-.sound_synth(runelink_bottom, 0, 0);
+.sound_synth(runelink_bottom, 1, 0);
 .if_setanim(boardgames_runelink:runeflash, null);
 .if_setposition(boardgames_runelink:runeflash, $x, $y);
 .if_setanim(boardgames_runelink:runeflash, runeflash);

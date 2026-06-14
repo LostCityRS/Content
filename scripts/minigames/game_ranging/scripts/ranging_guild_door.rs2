@@ -1,6 +1,6 @@
 [oploc1,ranging_guild_door]
 if(coordx(coord) > coordx(loc_coord) | coordz(coord) < coordz(loc_coord)) {
-    sound_synth(door_open, 0, 0); // gate_open 
+    sound_synth(door_open, 1, 0); // gate_open 
     ~forcemove(movecoord(loc_coord, 1, 0, -1));
     def_int $x;
     def_int $z;
@@ -20,7 +20,7 @@ if(stat(ranged) < 40) { // todo: check if requirement is enforced from inside as
     }
     return;
 }
-sound_synth(door_open, 0, 0);
+sound_synth(door_open, 1, 0);
 ~forcemove(movecoord(loc_coord, -1, 0, 1));
 def_int $x;
 def_int $z;

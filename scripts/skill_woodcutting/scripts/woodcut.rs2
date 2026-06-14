@@ -69,7 +69,7 @@ if ($axe = null) {
 // https://youtu.be/T3IRz4hZcjc?si=4jBFvTwMwqPXuAxf&t=63
 // sound on first chop
 anim(oc_param($axe, woodcutting_anim), 0);
-sound_synth(woodchop, 0, 0);
+sound_synth(woodchop, 1, 0);
 mes("You swing your axe at the tree.");
 if (%action_delay = map_clock) {
     @get_logs($data, $axe);

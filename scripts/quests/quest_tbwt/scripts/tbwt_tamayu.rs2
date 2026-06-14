@@ -346,11 +346,11 @@ switch_int(random(2)) {
         .npc_anim(lion_attack, 0);
         huntall(npc_coord, 3, 0);
         while (huntnext = true) {
-            sound_synth(beast_attack, 0, 0);
+            sound_synth(beast_attack, 1, 0);
             switch_int(random(3)){
-                case 0 : sound_synth(human_hit2, 0, 0);
-                case 1 : sound_synth(human_hit4, 0, 0);
-                case 2 : sound_synth(human_hit_7, 0, 0);
+                case 0 : sound_synth(human_hit2, 1, 0);
+                case 1 : sound_synth(human_hit4, 1, 0);
+                case 2 : sound_synth(human_hit_7, 1, 0);
             }
         }
     case 1 : 
@@ -358,8 +358,8 @@ switch_int(random(2)) {
         .npc_anim(lion_block, 0);
         huntall(npc_coord, 3, 0);
         while (huntnext = true) {
-            sound_synth(beast_hit, 0, 0);
-            sound_synth(staff_stab, 0, 0);
+            sound_synth(beast_hit, 1, 0);
+            sound_synth(staff_stab, 1, 0);
         }
 }
 %npc_lastcombat = map_clock;

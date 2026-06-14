@@ -459,14 +459,14 @@ if(inv_total(inv, eadgar_fake_man) > 0) { // bank is not checked here
 [oploc1,eadgar_kitchen_drawers]
 p_arrivedelay;
 anim(human_openchest, 0);
-sound_synth(cupboard_open, 0, 0);
+sound_synth(cupboard_open, 1, 0);
 p_delay(0);
 loc_change(eadgar_kitchen_drawers_open, 300);
 
 [oploc1,eadgar_kitchen_drawers_open]
 p_arrivedelay;
 anim(human_closechest, 0);
-sound_synth(cupboard_close, 0, 0);
+sound_synth(cupboard_close, 1, 0);
 p_delay(0);
 loc_change(eadgar_kitchen_drawers, 300);
 
@@ -535,7 +535,7 @@ if_close;
 npc_say("!");
 npc_anim(eadgar_troll_axethrow, 0);
 ~player_projectile(npc_coord, coord, uid, spotanim_290, 40, 36, 41, 15, 5, 11, 5);
-sound_synth(throw_club, 0, 0);
+sound_synth(throw_club, 1, 0);
 queue(troll_guard_knockout, 2, 0);
 
 [ai_timer,eadgar_storeroom_guard]
@@ -563,7 +563,7 @@ if(npc_findexact(0_44_157_41_27, eadgar_storeroom_guard) = true) {
     npc_facesquare(coord);
     npc_anim(eadgar_troll_axethrow, 0);
     ~player_projectile(npc_coord, coord, uid, spotanim_290, 40, 36, 41, 15, 5, 11, 5);
-    sound_synth(throw_club, 0, 0);
+    sound_synth(throw_club, 1, 0);
     queue(troll_guard_knockout, 2, 0);
 }
 
@@ -572,7 +572,7 @@ if(inzone(0_44_157_0_0, 0_44_157_63_63, coord) = false) {
     return;
 }
 if_openoverlay(eadgar_fade_to_black);
-sound_synth(rock_impact, 0, 0);
+sound_synth(rock_impact, 1, 0);
 anim(eadgar_knockout, 0);
 ~damage_self(random(7)); // osrs wiki says 0-6 damage is possible
 queue(troll_guard_teleport, 1, 0);
@@ -587,7 +587,7 @@ if(inzone(0_44_157_0_0, 0_44_157_63_63, coord) = false) {
 }
 p_teleport(0_44_157_49_40);
 spotanim_pl(spotanim_291, 124, 0);
-sound_synth(stun_all, 0, 0);
+sound_synth(stun_all, 1, 0);
 
 [queue,eadgar_quest_complete]
 session_log(^log_adventure, "Quest complete: Eadgar's Ruse");

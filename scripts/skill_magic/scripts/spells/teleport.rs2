@@ -55,7 +55,7 @@ if (p_finduid(uid) = true) {
 if_close;
 p_stopaction;
 ~tele_checks;
-sound_synth(teleport_all, 0, 0);
+sound_synth(teleport_all, 1, 0);
 anim(human_castteleport, 0);
 spotanim_pl(teleport_casting, 92, 0);
 p_delay(2);

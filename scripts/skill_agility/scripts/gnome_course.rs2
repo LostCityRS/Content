@@ -71,13 +71,13 @@ if(%gnome_obstacle_pipe_used >= map_clock) {
 }
 %gnome_obstacle_pipe_used = calc(map_clock + 12);
 ~agility_exactmove(human_doublepipesqueeze, 30, 3, movecoord(loc_coord, 0, 0, -1), movecoord(loc_coord, 0, 0, 2), 30, 126, ^exact_north, true);
-sound_synth(squeeze_in, 0, 0);
+sound_synth(squeeze_in, 1, 0);
 p_delay(2);
 p_teleport(movecoord(coord, 0, 0, 1));
 p_delay(0);
 ~change_merged_loc(movecoord(coord, 0, 0, 1));
 ~agility_exactmove(human_doublepipesqueeze, 30, 3, coord, movecoord(coord, 0, 0, 3), 30, 126, ^exact_north, true);
-sound_synth(squeeze_in, 0, 0);
+sound_synth(squeeze_in, 1, 0);
 stat_advance(agility, 75);
 ~update_gnome_varp(7);
 

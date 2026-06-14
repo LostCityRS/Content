@@ -70,7 +70,7 @@ huntall(npc_coord, 2, ^vis_lineofsight);
 if (huntnext = true) {
     %npc_int = ^true;
     npc_say("Screech!");
-    sound_synth(chompy_bird_screech, 0, 0);
+    sound_synth(chompy_bird_screech, 1, 0);
     npc_setmode(playerescape);
 }
 
@@ -172,11 +172,11 @@ if (~player_npc_hit_roll(%damagetype) = true) {
 %npc_aggressive_player = uid;
 def_int $delay = add(~player_use_ogre_bow($ammo), 30); // osrs it seems to be delayed an extra tick
 anim(%com_attackanim, 0);
-sound_synth(%com_attacksound, 0, 0);
+sound_synth(%com_attacksound, 1, 0);
 // Chompies don't fight back
 npc_queue(2, $damage, calc($delay / 30)); // ai_queue2 takes uncapped damage (avoids npcs from tick healing)
 if (npc_param(defend_sound) ! null) {
-    sound_synth(npc_param(defend_sound), 0, sub($delay, 30)); // delay 1 client tick for the hit queue
+    sound_synth(npc_param(defend_sound), 1, sub($delay, 30)); // delay 1 client tick for the hit queue
 }
 
 p_opnpc(5);

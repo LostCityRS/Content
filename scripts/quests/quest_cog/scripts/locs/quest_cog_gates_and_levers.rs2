@@ -13,7 +13,7 @@ if ($is_inside = true) {
     // Temp note: dur does not need updated
     loc_del(500);
     loc_add(movecoord(loc_coord, 1, 0, 0), loc_1541, 3, loc_shape, 500);
-    sound_synth(grate_open, 0, 0);
+    sound_synth(grate_open, 1, 0);
 
     if(loc_find(0_40_150_31_61, ctlevera) = true) {
         // Temp note: dur does not need updated
@@ -30,7 +30,7 @@ p_delay(0);
 facesquare(movecoord(loc_coord,0, 0, -1));
 //anim 2141 on OSRS and RS3
 anim(human_leverdown, 0);
-sound_synth(lever, 0, 0);
+sound_synth(lever, 1, 0);
 // Temp note: dur does not need updated
 loc_del(500);
 loc_add(loc_coord, ctlevera2, loc_angle, loc_shape, 500);
@@ -46,7 +46,7 @@ p_delay(0);
 facesquare(movecoord(loc_coord,0, 0, -1));
 //anim 2141 on OSRS and RS3
 anim(human_leverdown, 0);
-sound_synth(lever, 0, 0);
+sound_synth(lever, 1, 0);
 // Temp note: dur does not need updated
 loc_del(500);
 loc_add(loc_coord, ctlevera, loc_angle, loc_shape, 500);
@@ -68,7 +68,7 @@ p_delay(0);
 facesquare(movecoord(loc_coord,0, 0, -1));
 //anim 2141 on OSRS and RS3
 anim(human_leverdown, 0);
-sound_synth(lever, 0, 0);
+sound_synth(lever, 1, 0);
 // Temp note: dur does not need updated
 loc_del(500);
 loc_add(loc_coord, $replacement_loc, loc_angle, loc_shape, 500);

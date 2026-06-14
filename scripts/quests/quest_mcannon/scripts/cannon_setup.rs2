@@ -301,5 +301,5 @@ if (%dropcannon = ^cannon_stage_base) {
 %dropcannon = ^cannon_stage_none;
 mes("You pick up the cannon,"); // https://youtu.be/TeQXQDaawO0?t=518
 mes("It's really heavy.");
-sound_synth(pick, 0, 0);
+sound_synth(pick, 1, 0);
 loc_del(1);

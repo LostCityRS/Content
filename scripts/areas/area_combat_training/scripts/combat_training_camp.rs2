@@ -55,7 +55,7 @@ if (%biodummy < 6) {
     return;
 }
 anim(%com_attackanim, 0);
-sound_synth(%com_attacksound, 0, 0);
+sound_synth(%com_attacksound, 1, 0);
 mes("You hit the dummy.");
 p_delay(3);
 

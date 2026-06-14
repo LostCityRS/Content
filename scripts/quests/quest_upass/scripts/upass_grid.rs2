@@ -1,6 +1,6 @@
 [oploc1,portcullis_lever_up]
 mes("You pull the lever...");
-sound_synth(lever, 0, 0);
+sound_synth(lever, 1, 0);
 // Temp note: dur updated !! nice even number :)
 loc_change(upass_lever_down, 15);
 p_delay(1);

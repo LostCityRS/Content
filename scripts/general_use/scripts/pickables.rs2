@@ -59,7 +59,7 @@ if(inv_freespace(inv) = 0) {
     }
     anim(human_pickupfloor, 0);
     p_delay(0);
-    sound_synth(pick, 0, 0);
+    sound_synth(pick, 1, 0);
     mes("You pick some flax.");
     inv_add(inv, flax, 1);
     loc_del(25); // 10t after update

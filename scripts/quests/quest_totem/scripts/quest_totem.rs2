@@ -108,7 +108,7 @@ if(testbit(%handelmort_traps_disabled, 21) = ^true) {
     return;
 }
 mes("As you climb the stairs you hear a click...");
-sound_synth(locked, 0, 0);
+sound_synth(locked, 1, 0);
 // todo: screen fade to blackout
 p_delay(2);
 mes("You have fallen through a trap!");

@@ -17,7 +17,7 @@ if (add(%ghast_delay, 26) > map_clock) { // 26t delay between being attacked by 
 if_close;
 ~npc_set_attack_vars;
 npc_anim(inv_ghast_attack, 0);
-sound_synth(ghast_attack, 0, 0);
+sound_synth(ghast_attack, 1, 0);
 def_int $rand = random(10);
 %npc_action_delay = add(map_clock, 4); 
 %ghast_delay = map_clock;
@@ -79,7 +79,7 @@ if (add(%ghast_delay, 26) > map_clock & %aggressive_npc ! null & %aggressive_npc
 anim(%com_defendanim, 0);
 npc_anim(npc_param(attack_anim), 0);
 if (npc_param(attack_sound) ! null) {
-    sound_synth(npc_param(attack_sound), 0, 0);
+    sound_synth(npc_param(attack_sound), 1, 0);
 }
 ~npc_meleeattack;
 
@@ -186,7 +186,7 @@ if (oc_category($consumable) = category_129) {
     inv_setslot(inv, $slot, piedish, 1);
 }
 inv_add(inv, rotten_food, 1);
-sound_synth(food_rot, 0, 0);
+sound_synth(food_rot, 1, 0);
 mes("You feel something attacking your backpack, and smell a terrible stench.");
 return (true);
 

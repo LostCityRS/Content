@@ -128,7 +128,7 @@ if(p_finduid(uid) = true) {
     p_stopaction;
     loc_anim(woodspring);
     mes("You set off the trap as you pass.");
-    sound_synth(springtrap, 0, 0);
+    sound_synth(springtrap, 1, 0);
     ~agility_exactmove(human_stumble_back, 10, 0, coord, $dest, 10, 56, $dir, false);
     ~damage_self(8);
 }
@@ -221,7 +221,7 @@ if(.loc_find($trap4, regicide_trap_arrowtrip) = true) {
     loc_anim(arrowtrip);
     ~coord_projectile(.loc_coord, coord, iron_arrow_travel, 4, 35, 0, 45, 40, 0, 0);
 }
-sound_synth(tripwire_with_arrows, 0, 0);
+sound_synth(tripwire_with_arrows, 1, 0);
 queue(damage_player, 0, 5);
 queue(damage_player, 0, 5);
 
@@ -271,7 +271,7 @@ if(coord ! $start) {
     p_teleport($start);
     p_delay(1);
 }
-sound_synth(jump_no_land, 0, 20);
+sound_synth(jump_no_land, 1, 20);
 if(stat_random(agility, 160, 300) = false) {
     mes("... you slip and fall.");
     ~agility_exactmove(agilityarena_dive_player, 20, 1, coord, movecoord(loc_coord, multiply(1,$dx), 0, multiply(1,$dz)), 30, 49, $dir, false);
@@ -457,7 +457,7 @@ if(distance(coord, $start) > 1) {
     return;
 }
 anim($seq, 30);
-sound_synth($synth, 0, $synth_delay);
+sound_synth($synth, 1, $synth_delay);
 p_locmerge(30, 94, $lb, $ub); 
 p_exactmove($start, $dest, 30, 94, $dir);
 p_delay(3);
@@ -516,7 +516,7 @@ if(last_useitem = regicide_barrel_lid_fused) {
     p_delay(1);
     anim(regicide_catapultwind, 0);
     loc_anim(winddown_catapult);
-    sound_synth(catapult_winch, 0, 0);
+    sound_synth(catapult_winch, 1, 0);
     if(.loc_find(0_34_49_10_47, regicide_catapult_left) = true) {
         .loc_anim(wind_catapult);
     }
@@ -534,7 +534,7 @@ if(last_useitem = regicide_barrel_lid_fused) {
         .loc_anim(trigger_catapult);
     }
     loc_anim(fire_catapult);
-    sound_synth(catapult_fire, 0, 0);
+    sound_synth(catapult_fire, 1, 0);
     ~coord_projectile(0_34_49_9_49, 0_34_49_10_6, spotanim_286, 138, 75, 50, 30, 170, 0, 0);
     %regicide_catapult_used = ^false;
     p_delay(4);
@@ -542,7 +542,7 @@ if(last_useitem = regicide_barrel_lid_fused) {
     p_teleport(0_36_71_10_6);
     p_delay(0);
     spotanim_map(spotanim_287, 0_36_71_10_6, 194, 100);
-    sound_synth(barrel_incoming, 0, 35);
+    sound_synth(barrel_incoming, 1, 35);
     ~coord_projectile(0_36_71_10_18, 0_36_71_10_7, spotanim_286, 112, 100, 10, 30, 90, 0, 0);
     p_delay(2);
     anim(regicide_player_vanish, 0);
@@ -588,7 +588,7 @@ if(last_useitem = regicide_barrel_lid_fused) {
     loc_add(0_36_71_7_6, regicide_tent_human_fire, 2, wall_straight, 10);
     loc_add(0_36_71_7_5, regicide_tent_human_fire, 1, wall_diagonalcorner, 10);
     loc_add(0_36_71_7_7, regicide_tent_human_fire, 2, wall_diagonalcorner, 10);
-    sound_synth(bigfire, 0, 0);
+    sound_synth(bigfire, 1, 0);
     p_delay(7);
     anim(regicide_player_vanish, 0);
     p_teleport(0_34_49_7_49);
@@ -656,12 +656,12 @@ if(%regicide_quest < ^regicide_spoken_iorwerth2) {
 // https://youtu.be/wwJXlduVaxE?si=jDQIFE4TMqyDFFvO&t=513
 mes("You put the lime stone in the furnace.");
 anim(human_furnace, 0);
-sound_synth(furnace, 0, 0);
+sound_synth(furnace, 1, 0);
 p_delay(3);
 inv_del(inv, limestone, 1);
 inv_add(inv, regicide_quicklime, 1);
 anim(human_furnace, 0);
-sound_synth(sizzle, 0, 0);
+sound_synth(sizzle, 1, 0);
 if(inv_totalcat(worn, armour_hands) > 0) {
     mes("You retrieve a block of quicklime.");
     return;
@@ -681,7 +681,7 @@ if(last_useitem = ball_of_wool) {
     }
     p_arrivedelay;
     anim(regicide_useloom, 0);
-    sound_synth(loom, 0, 0);
+    sound_synth(loom, 1, 0);
     p_delay(2);
     mes("You weave the balls of wool into a strip of cloth.");
     inv_del(inv, ball_of_wool, 4);
@@ -697,7 +697,7 @@ if(last_useitem = ball_of_wool) {
 if(last_useitem = pestle_and_mortar) {
     inv_del(inv, regicide_quicklime, 1);
     anim(human_herbing_grind, 0);
-    sound_synth(grind, 0, 0);
+    sound_synth(grind, 1, 0);
     if(inv_total(inv, pot_empty) = 0) {
         mes("You burn yourself on the caustic dust before spilling it on the ground.");
         mes("Maybe you need something to store it in.");

@@ -295,7 +295,7 @@ if (oc_category(last_useitem) = category_110) {
     %temple_sanctity = sub(%temple_sanctity, $sanc_drain);
 
     inv_setslot(inv, $slot, oc_param($obj, next_obj_stage), 1);
-    sound_synth(oil_pour, 0, 0);
+    sound_synth(oil_pour, 1, 0);
     anim(human_pickuptable, 0);
     mes("You carefully sanctify the oil in the sacred flame.");
     if (%morttonquest = ^mortton_can_light_altar) {
@@ -320,7 +320,7 @@ if (oc_category(last_useitem) = category_110) {
     %temple_sanctity = sub(%temple_sanctity, 600);
 
     inv_setslot(inv, $slot, oc_param($obj, next_obj_stage_temple), 1);
-    sound_synth(oil_pour, 0, 0);
+    sound_synth(oil_pour, 1, 0);
     anim(human_pickuptable, 0);
     mes("You carefully sanctify the oil in the sacred flame.");
     //Todo: Guess since it is called serum 208 now
