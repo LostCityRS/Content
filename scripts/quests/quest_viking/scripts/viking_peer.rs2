@@ -902,7 +902,7 @@ switch_obj(last_useitem) {
         mes("You fill the vase with water.");
     case viking_jug_3 :
         inv_del(inv, last_useitem, 1);
-        inv_add(inv, viking_bucket_empty, 1);
+        inv_add(inv, viking_jug_empty, 1);
         inv_del(inv, viking_airtight_vase, 1);
         inv_add(inv, viking_airtight_vase_water, 1);
         mes("You fill the vase with water.");
