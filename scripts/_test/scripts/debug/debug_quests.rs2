@@ -332,7 +332,7 @@ mes("Set Priest in Peril to: <tostring($var)>.");
 
 [debugproc,setppm](int $var)
 if (p_finduid(uid) = true)
-%priestperilvar = $var;
+%priestperil_mausoleum = $var;
 mes("Set Priest in Peril to: <tostring($var)>.");
 
 
@@ -343,7 +343,7 @@ mes("Priest in Peril is currently set to: <tostring(%priestperil)>.");
 
 [debugproc,getppm]
 if (p_finduid(uid) = true)
-mes("Priest in Peril Var is currently set to: <tostring(%priestperilvar)>.");
+mes("PIPMausoleum is currently set to: <tostring(%priestperil_mausoleum)>.");
 
 //Underground Pass
 [debugproc,upr]
