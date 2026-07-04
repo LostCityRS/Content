@@ -1554,6 +1554,33 @@ resizev=240
 vislevel=88
 param=slayer_category,^slayer_turoth
 
+[slayer_icefiend_1]
+name=Icefiend
+desc=A small ice demon.
+model1=npc_3406
+walkanim=pyrefiend_walk
+readyanim=pyrefiend_ready
+op2=Attack
+ambient=60
+contrast=60
+vislevel=13
+respawnrate=30
+hitpoints=15
+attack=10
+strength=10
+defence=12
+magic=1
+ranged=1
+param=attack_anim,pyrefiend_attack
+param=defend_anim,pyrefiend_defend
+param=death_anim,pyrefiend_death
+param=attack_sound,pyrefiend_attack
+param=defend_sound,pyrefiend_hit
+param=death_sound,pyrefiend_death
+param=slayer_category,^slayer_icefiend
+param=damagetype,^magic_style
+param=death_drop,ashes
+
 [slayer_pyrefiend_1]
 name=Pyrefiend
 desc=A small fire demon.
