@@ -21,7 +21,7 @@ switch_int (random(14)) {
 [label,multi4miscrand](string $string1, label $label1, string $string2, label $label2, string $string3, label $label3)
 def_string $nonsense = ~random_nonsense();
 def_int $choice = 0;
-switch_int (random(6)) {
+switch_int (random(6)) { // permutate the first 3 choices.
     case 0 : $choice = ~p_choice4($string1, 1, $string2, 2, $string3, 3, $nonsense, 4);
     case 1 : $choice = ~p_choice4($string1, 1, $string3, 3, $string2, 2, $nonsense, 4);
     case 2 : $choice = ~p_choice4($string2, 2, $string1, 1, $string3, 3, $nonsense, 4);
