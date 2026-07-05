@@ -132,6 +132,15 @@ if (%misc_affection < 4) {
         "Is there anything else you can tell me?", whatelsecanyoutellme
     );
 }
+// https://www.youtube.com/watch?v=i8MgNuRnHvI More to do
+
+
+[label,gainsupport]
+~chatplayer("<p,confused>How do I gain the support of the population?");
+~chatnpc("<p,shifty>King Vargas would often go and help out his subjects|in their daily tasks, when he was still able to do so, and|they loved him dearly for it.");
+~chatnpc("<p,shifty>Currently, <~misc_approval_percentage>% of the population supports you.");
+~chatnpc("<p,shifty>You will need 75 % of the population in your support|in order to become Regent."); // The space between 75 and % is authentic.
+
 
 [label,whatshouldIdo]
 ~chatplayer("<p,confused>What am I meant to be doing again?");
@@ -259,6 +268,10 @@ if (%varbit_71 > 0) {
 [label,misc_resource_collected_yes]
 ~chatplayer("<p,neutral>Yes, please.");
 // Calculate if there is enough space in the bank for this shit.
+// https://www.youtube.com/watch?v=QU6vixKduHo // May 28, 2012 If there ISNT ENOUGH SPACE
+// https://www.youtube.com/watch?v=PdDDQK201F4
+// ~chatnpc("<p,shifty>I'm afraid you will need X more free spaces in your bank to hold all the items your subjects have collected.");
+// ~chatnpc("<p,shifty>You will need to make some space in your bank for your subjects to deliver your resources, Your Royal Highness.");
 ~chatnpc("<p,shifty>Here is a list of what your subjects have collected.");
 def_string $resource_str = ~manage_misc_resource_generation; // IMPT: THIS LINE DOES THE CALCULATION 
 // Dump all the shit in the bank

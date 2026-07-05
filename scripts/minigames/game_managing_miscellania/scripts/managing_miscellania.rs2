@@ -5,6 +5,8 @@
  * - Throne of Miscellania (Without flax) early 2005
  * - Throne of Miscellania (With flax) late 2005
  * - Royal Trouble (With Etceteria) 2006
+ REMEMBER ADDING STEALING FROM STALLS!
+ https://www.youtube.com/watch?v=oO_nbXNN-8o
  *
  * === WARNING VERY SENSITIVE CALCULATIONS WITH COINS AND RESOURCES HERE ===
  */
@@ -78,7 +80,10 @@ if (%misc_points_fish > 0) {
 p_countdialog;
 def_int $requested_deposit = last_int;
 
+// https://www.youtube.com/watch?v=dmiq33o8kD0  ~mesbox("You are carrying X,XXX coins.|Enter an amount to deposit in the coffers.");
+
 def_int $coffer_space = sub(5000000, %misc_coffers);
+// https://www.youtube.com/watch?v=50lZ1wDRPvw ~mesbox("The coffers can only hold 5000000 coins.");
 def_int $deposit_amt = $requested_deposit;
 if ($deposit_amt > $coffer_space) {
     $deposit_amt = $coffer_space;
@@ -305,7 +310,7 @@ if ($dwarf_weed_count > 0) {
 %varbit_71 = 0;
 
 
-// This later will be not needed when the UI for showing resources exists.
+// This will be not needed when the UI for showing resources exists after a certain release(beyond #377 for sure).
 def_string $resourceStr = "";
 if ($wood_qty > 0) {
     $resourceStr = "<$resourceStr> <tostring($wood_qty)> Maple Logs|";
