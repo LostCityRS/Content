@@ -45,23 +45,24 @@ p_oploc(3);
 
 %action_delay = calc(map_clock + 4);
 
-def_int $crafting_bonus = 0;
-def_int $low_roll = 130;
-def_int $high_roll = 210;
-
 // flamtaer hammer gives +40 invisible boost:
 // https://x.com/JagexAsh/status/1297181159726735360
+def_int $crafting_bonus = 0;
 if(inv_total(inv,flamtaer_hammer) > 0) {
     $crafting_bonus = 40;
-    // add (high - low) * 40 / 98
-    $low_roll = add($low_roll, divide(multiply(sub($high_roll, $low_roll), $crafting_bonus), 98));
-    $high_roll = add($high_roll, divide(multiply(sub($high_roll, $low_roll), $crafting_bonus), 98));
 }
 
+// base success rates of 130, 210
 // this success rate is estimated based on observed data from osrs
 // samples were taken at low-20s, low-70s, 99, and 139 (99 with +40 flamtaer boost)
 // results: 95/161 at low-20s, 129/161 at low-70s, 131/161 at 99, 138/161 at 139.
 // TODO: larger samples should be taken to fine-tune the accuracy
+
+// to apply the boost, add ((high - low) * crafting_bonus / 98) to low/high rolls
+// if crafting_bonus is 0, values remain 130,210
+def_int $low_roll = add(130, divide(multiply(sub($high_roll, $low_roll), $crafting_bonus), 98));
+def_int $high_roll = add(210, divide(multiply(sub($high_roll, $low_roll), $crafting_bonus), 98));
+
 if (stat_random(crafting, $low_roll, $high_roll) = false) {
     anim(human_pickuptable, 0);
     p_oploc(3);
