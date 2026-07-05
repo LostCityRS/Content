@@ -49,7 +49,7 @@ def_int $crafting_bonus = 0;
 if(inv_total(inv,flamtaer_hammer) > 0) {
     $crafting_bonus = 40; //https://x.com/JagexAsh/status/1297181159726735360
 }
-def_int effective_crafting_lvl = add(stat_base(crafting),$crafting_bonus);
+def_int $effective_crafting_lvl = add(stat_base(crafting),$crafting_bonus);
 
 // this success rate is estimated based on observed data from osrs
 // samples were taken at low-20s, low-70s, 99, and 139 (99 with +40 flamtaer boost)
