@@ -60,8 +60,8 @@ if(inv_total(inv,flamtaer_hammer) > 0) {
 
 // to apply the boost, add ((high - low) * crafting_bonus / 98) to low/high rolls
 // if crafting_bonus is 0, values remain 130,210
-def_int $low_roll = add(130, divide(multiply(sub($high_roll, $low_roll), $crafting_bonus), 98));
-def_int $high_roll = add(210, divide(multiply(sub($high_roll, $low_roll), $crafting_bonus), 98));
+def_int $low_roll = add(130, divide(multiply(sub(210, 130), $crafting_bonus), 98));
+def_int $high_roll = add(210, divide(multiply(sub(210, 130), $crafting_bonus), 98));
 
 if (stat_random(crafting, $low_roll, $high_roll) = false) {
     anim(human_pickuptable, 0);
