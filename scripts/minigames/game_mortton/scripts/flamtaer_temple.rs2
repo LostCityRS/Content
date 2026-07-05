@@ -45,17 +45,17 @@ p_oploc(3);
 
 %action_delay = calc(map_clock + 4);
 
+def_int $crafting_bonus = 0;
 def_int $low_roll = 130;
 def_int $high_roll = 210;
-def_int $crafting_boost = 0;
 
 // flamtaer hammer gives +40 invisible boost:
 // https://x.com/JagexAsh/status/1297181159726735360
 if(inv_total(inv,flamtaer_hammer) > 0) {
-    $crafting_boost = 40;
+    $crafting_bonus = 40;
     // add (high - low) * 40 / 98
-    $low_roll = add($low_roll, divide(multiply(sub($high_roll, $low_roll), $crafting_boost), 98));
-    $high_roll = add($high_roll, divide(multiply(sub($high_roll, $low_roll), $crafting_boost), 98));
+    $low_roll = add($low_roll, divide(multiply(sub($high_roll, $low_roll), $crafting_bonus), 98));
+    $high_roll = add($high_roll, divide(multiply(sub($high_roll, $low_roll), $crafting_bonus), 98));
 }
 
 // this success rate is estimated based on observed data from osrs
@@ -104,7 +104,7 @@ if(%temple_repaired_p = 100) {
 }
 
 // resource contribution is a random value from 7 to (level+2)/2
-def_int $resource_amount = ~random_range(7,divide(add(add(stat(crafting), $crafting_boost), 2), 2));
+def_int $resource_amount = ~random_range(7,divide(add(add(stat(crafting), $crafting_bonus), 2), 2));
 
 if(gettimer(sanctity_drain) = ^false) {
     settimer(sanctity_drain, 100);
