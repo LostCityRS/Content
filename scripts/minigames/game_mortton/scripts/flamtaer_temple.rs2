@@ -43,18 +43,26 @@ p_oploc(3);
 
 [label,try_build_temple]
 
-%action_delay = calc(map_clock + 3);
+%action_delay = calc(map_clock + 4);
 
 def_int $crafting_bonus = 0;
 if(inv_total(inv,flamtaer_hammer) > 0) {
-    //Todo: Use invis boost in stat_randoms
     $crafting_bonus = 40; //https://x.com/JagexAsh/status/1297181159726735360
 }
+def_int effective_crafting_lvl = add(stat_base(crafting),$crafting_bonus);
 
-//Todo: Actual (best guess) roll. Seemed like a 40% chance of succeeding at 20 crafting 80% at 120+?
-if (stat_random(crafting, 85, 175) = false) {
+// this success rate is estimated based on observed data from osrs
+// samples were taken at low-20s, low-70s, 99, and 139 (99 with +40 flamtaer boost)
+// results: 95/161 at low-20s, 129/161 at low-70s, 131/161 at 99, 138/161 at 139
+// most likely the success rate caps at 99 and the difference is just variance.
+// larger samples could be taken to fine-tune the accuracy
+// TODO: min($effective_crafting_lvl, 99) can be removed when the engine command is
+// updated to cap success at 99
+if (stat_random(min($effective_crafting_lvl, 99), 130, 210) = false) {
     anim(human_pickuptable, 0);
     p_oploc(3);
+    // TODO: should execution stop here, or should we simply set resource_amount to 0 if this roll fails?
+    return;
 }
 
 if ((inv_total(inv,woodplank) > 0 & inv_total(inv,swamppaste) > 4 & inv_total(inv,limestonebrick) > 0) & %temple_resources < 15000) {
@@ -91,31 +99,8 @@ if(%temple_repaired_p = 100) {
     }
 }
 
-def_int $resource_amount = ~random_range(7,9); //minimum
-//todo: update roll odds
-//Not sure if it has different rolls for different levels and if it falls into lower band 
-//or if your level just decides how many resources
-//Find exact level breakpoint? Never received 60+ with 97 crafting
-if (add(stat_base(crafting),$crafting_bonus) > 98) {
-    if (stat_random(crafting, 5, 65) = true) {
-        //70 is max resources spent
-        //todo: Find (guess) minimum for this band?
-        $resource_amount = ~random_range(60,70);
-    }
-}
-//todo: update roll odds
-//Find exact level breakpoint? Seems to be 50
-if ($resource_amount < 10 & add(stat_base(crafting),$crafting_bonus) > 49) {
-    if (stat_random(crafting, 5, 65) = true) {
-        //todo: Find (guess) minimum + maximum for this band?
-        $resource_amount = ~random_range(35,59);
-    }
-}
-//todo: update roll odds
-if ($resource_amount < 10 & stat_random(crafting, 5, 65) = true) {
-    //todo: Find (guess) minimum + maximum for this band?
-    $resource_amount = ~random_range(10,35);
-}
+// resource contribution is a random value from 7 to (level+2)/2
+def_int $resource_amount = ~random_range(7,divide(add($effective_crafting_lvl, 2), 2));
 
 if(gettimer(sanctity_drain) = ^false) {
     settimer(sanctity_drain, 100);
@@ -133,7 +118,8 @@ if(%temple_sanctity_p < 100) {
 }
 
 //1 exp per 2 resources spent
-stat_advance(crafting, divide(multiply($resource_amount,10),2));
+// xp given is always integer. I tested on rs3, which will show decimals in xp drops
+stat_advance(crafting, multiply(divide($resource_amount, 2), 10));
 
 def_int $current_wall_state = loc_param(temple_wall_level);
 //todo: Find better breakpoints
