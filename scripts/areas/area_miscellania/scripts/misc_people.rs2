@@ -1,68 +1,29 @@
 [opnpc1,misc_man_1] // Ragnar
 @misc_people_default_talk;
-
 [opnpc1,misc_man_2] // Einar (2nd Floor Throne Room.)
 @misc_people_default_talk;
-
 [opnpc1,misc_man_3] // Alrik
 @misc_people_default_talk;
-
 [opnpc1,misc_man_4] // Skraeling (Guard)
 @misc_people_default_talk;
-
 [opnpc1,misc_man_5] // Broddi
 @misc_people_default_talk;
-
 [opnpc1,misc_man_6] // Skraeling (Guard)
 @misc_people_default_talk;
-
 [opnpc1,misc_man_7] // Ragnvald
 @misc_people_default_talk;
-
 [opnpc1,misc_woman_1] // Thorhild
 @misc_people_default_talk;
-
 [opnpc1,misc_woman_2] // Halla
 @misc_people_default_talk;
-
 [opnpc1,misc_woman_3] // Yrsa
 @misc_people_default_talk;
-
 [opnpc1,misc_woman_4] // Rannveig
 @misc_people_default_talk;
-
 [opnpc1,misc_woman_5] // Thora
 @misc_people_default_talk;
-
 [opnpc1,misc_woman_6] // Valgerd
 @misc_people_default_talk;
-
-[label,misc_people_default_talk]
-~chatplayer("<p,neutral>Hello.");
-if (%misc_quest = ^misc_complete) {
-    ~chatnpc("<p,neutral>Good day, Your Royal Highness.");
-} else {
-    ~chatnpc("<p,neutral>Good day.");
-}
-
-[label,misc_people_on_attack]
-switch_int(random(6)) {
-    case 0 : npc_say("Oi!");
-    case 1 : npc_say("Rahr!");
-    case 2 : npc_say("No!");
-    case 3 : npc_say("Grr!");
-}
-@player_combat_start;
-
-[label,misc_people_on_death]
-if (npc_stat(hitpoints) = 0) {
-    switch_int(random(6)) {
-        case 0 : npc_say("Aargh!");
-        case 1 : npc_say("I'm a gooner!");
-        case 2 : npc_say("It's no use, I'm done for!!");
-        case 3 : npc_say("Uggh!");
-    }
-}
 
 [opnpc2,misc_man_1]
 @misc_people_on_attack;
@@ -91,29 +52,28 @@ if (npc_stat(hitpoints) = 0) {
 [opnpc2,misc_woman_6]
 @misc_people_on_attack;
 
-[ai_opplayer2,misc_man_1]
-@misc_people_on_death;
-[ai_opplayer2,misc_man_2]
-@misc_people_on_death;
-[ai_opplayer2,misc_man_3]
-@misc_people_on_death;
-[ai_opplayer2,misc_man_4]
-@misc_people_on_death;
-[ai_opplayer2,misc_man_5]
-@misc_people_on_death;
-[ai_opplayer2,misc_man_6]
-@misc_people_on_death;
-[ai_opplayer2,misc_man_7]
-@misc_people_on_death;
-[ai_opplayer2,misc_woman_1]
-@misc_people_on_death;
-[ai_opplayer2,misc_woman_2]
-@misc_people_on_death;
-[ai_opplayer2,misc_woman_3]
-@misc_people_on_death;
-[ai_opplayer2,misc_woman_4]
-@misc_people_on_death;
-[ai_opplayer2,misc_woman_5]
-@misc_people_on_death;
-[ai_opplayer2,misc_woman_6]
-@misc_people_on_death;
+[label,misc_people_default_talk]
+~chatplayer("<p,neutral>Hello.");
+if (%misc_quest = ^misc_complete) {
+    ~chatnpc("<p,neutral>Good day, Your Royal Highness.");
+} else {
+    ~chatnpc("<p,neutral>Good day.");
+}
+
+[label,misc_people_on_attack]
+if (npc_stat(hitpoints) = 0) {
+    switch_int(random(6)) {
+        case 0 : npc_say("Aargh!");
+        case 1 : npc_say("I'm a gooner!");
+        case 2 : npc_say("It's no use, I'm done for!!");
+        case 3 : npc_say("Uggh!");
+    }
+} else if (~player_in_combat_check = false) {
+    switch_int(random(6)) {
+        case 0 : npc_say("Oi!");
+        case 1 : npc_say("Rahr!");
+        case 2 : npc_say("No!");
+        case 3 : npc_say("Grr!");
+    }
+}
+@player_combat_start;
