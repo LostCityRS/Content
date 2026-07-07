@@ -1,3 +1,5 @@
+// Note: Gunnhild is at 0,30,12 instead of 0,29,10 because of the dummy weed position that she is weeding at.
+
 [opnpc1,misc_gardener]
 if (%misc_quest = ^misc_complete) {
     ~chatnpcnoturn("<~man_misc_mesanim>Good day, Your Royal Highness.");
@@ -67,3 +69,6 @@ if (inv_total(inv, coins) >= 15) {
 // This is authentic, but before it became a farming patch, this is actually used to cut weeds. // https://runescape.wiki/w/Iron_sickle
 // ~chatnpcnoturn("<~man_misc_mesanim>I can't think of anything just now. But you can buy one if you like!");
 ~chatnpcnoturn("<~man_misc_mesanim>You can use it to cut weeds from the herbs around here."); // Not authentic, guessed.
+
+[oploc1,misc_dummy_heather_normal]
+~mesbox("Gardener Gunnhild is already weeding that herb.");
