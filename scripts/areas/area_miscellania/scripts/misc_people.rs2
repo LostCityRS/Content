@@ -69,6 +69,11 @@ if (npc_stat(hitpoints) = 0) {
         case 3 : npc_say("Uggh!");
     }
 } else if (~player_in_combat_check = false) {
+    if (%misc_approval >= 6) { 
+        %misc_approval = sub(%misc_approval, 6); 
+    } else { 
+        %misc_approval = 0; 
+    }
     switch_int(random(6)) {
         case 0 : npc_say("Oi!");
         case 1 : npc_say("Rahr!");
