@@ -62,5 +62,8 @@ if(inv_freespace(inv) = 0) {
     sound_synth(pick, 1, 0);
     mes("You pick some flax.");
     inv_add(inv, flax, 1);
-    loc_del(25); // 10t after update
+
+    if (random(16) < 3) {
+        loc_del(10);
+    }
 }
