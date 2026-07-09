@@ -1,0 +1,892 @@
+[castlewars_saradomin_stand]
+name=Standard Stand
+desc=There should be a standard here!
+model=castlewars_saradomin_stand
+retex1s=mossybricks
+retex1d=elfbrick
+recol2s=6340
+recol2d=17932
+op1=Capture
+blockrange=no
+
+[castlewars_zamorak_stand]
+name=Standard Stand
+desc=There should be a standard here!
+model=castlewars_saradomin_stand
+blockrange=no
+op1=Capture
+
+[castlewars_catapult_zamorak]
+name=Catapult
+desc=It's a war machine.
+model=catapult
+recol1s=8386
+recol1d=6273
+recol2s=6272
+recol2d=5216
+recol3s=13741
+recol3d=11560
+width=3
+length=3
+active=yes
+blockrange=no
+op1=Operate
+mapscene=30
+
+[castlewars_catapult_saradomin]
+name=Catapult
+desc=It's a war machine.
+model=catapult
+recol1s=13741
+recol1d=11560
+width=3
+length=3
+active=yes
+blockrange=no
+op1=Operate
+mapscene=30
+
+[castlewars_catapult_zamorak_broken]
+name=Catapult
+desc=The catapult is damaged.
+model=castlewars_catapult_zamorak_broken
+recol1s=8386
+recol1d=5285
+recol2s=6272
+recol2d=3171
+recol3s=10434
+recol3d=3171
+width=3
+length=3
+active=yes
+blockrange=no
+op1=Repair
+mapscene=30
+
+[castlewars_catapult_saradomin_broken]
+name=Catapult
+desc=The catapult is damaged.
+model=castlewars_catapult_zamorak_broken
+recol1s=9513
+recol1d=5285
+recol2s=8386
+recol2d=3171
+recol3s=6272
+recol3d=3171
+recol4s=10434
+recol4d=3171
+width=3
+length=3
+active=yes
+blockrange=no
+op1=Repair
+mapscene=30
+
+[castlewars_saradomin_tele]
+name=Saradomin Portal
+desc=A portal to join the Saradomin team.
+model=glowing_circle
+recol1s=31658
+recol1d=349
+anim=glowingcircle
+ambient=100
+contrast=100
+resizex=256
+resizey=256
+resizez=256
+length=2
+width=2
+blockrange=no
+op1=Enter
+
+[castlewars_zamorak_tele]
+name=Zamorak Portal
+desc=A portal to join the Zamorak team.
+model=glowing_circle
+recol1s=31658
+recol1d=30753
+anim=glowingcircle
+ambient=100
+contrast=100
+resizex=256
+resizey=256
+resizez=256
+length=2
+width=2
+blockrange=no
+op1=Enter
+
+[castlewars_saradomin_exit]
+name=Portal
+desc=A portal to leave the Saradomin team.
+model=glowing_circle
+recol1s=31658
+recol1d=349
+anim=glowingcircle
+ambient=100
+contrast=100
+resizex=256
+resizey=256
+resizez=256
+length=2
+width=2
+blockrange=no
+op1=Exit
+
+[castlewars_zamorak_exit]
+name=Portal
+desc=A portal to leave the Zamorak team.
+model=glowing_circle
+recol1s=31658
+recol1d=30753
+anim=glowingcircle
+ambient=100
+contrast=100
+resizex=256
+resizey=256
+resizez=256
+length=2
+width=2
+blockrange=no
+op1=Exit
+
+[castlewars_saradomin_quit]
+name=Portal
+desc=A portal to leave the Saradomin team.
+model=glowing_circle
+recol1s=31658
+recol1d=349
+anim=glowingcircle
+ambient=100
+contrast=100
+resizex=256
+resizey=256
+resizez=256
+length=2
+width=2
+blockrange=no
+op1=Leave
+
+[castlewars_zamorak_quit]
+name=Portal
+desc=A portal to leave the Zamorak team.
+model=glowing_circle
+recol1s=31658
+recol1d=30753
+anim=glowingcircle
+ambient=100
+contrast=100
+resizex=256
+resizey=256
+resizez=256
+length=2
+width=2
+blockrange=no
+op1=Leave
+
+[castlewars_random_tele]
+name=Guthix Portal
+desc=A portal to join a random team.
+model=glowing_circle
+recol1s=31658
+recol1d=1006
+anim=glowingcircle
+ambient=100
+contrast=100
+resizex=256
+resizey=256
+resizez=256
+length=2
+width=2
+op1=Enter
+blockrange=no
+
+[castlewars_wall_saradomin]
+model=openbankdoorr
+retex1s=wall
+retex1d=elfbrick
+recol2s=6342
+recol2d=5248
+wallwidth=32
+sharelight=yes
+occlude=yes
+
+[castlewars_castlebattlements_saradomin]
+model=oldcastlebattlements
+retex1s=wall
+retex1d=elfbrick
+sharelight=yes
+blockrange=no
+
+[castlewars_steping_stone]
+name=Stepping stone
+desc=A very slippery stepping stone
+model=castlewars_steping_stone
+op1=Jump-to
+active=yes
+blockrange=no
+
+[castlewars_barricade]
+name=Barricade
+desc=A spiky barricade.
+model=castlewars_barricade
+blockrange=no
+
+[castlewars_barricade_burning]
+name=Barricade
+desc=A spiky barricade.
+model=castlewars_barricade
+model2=castlewars_barricade_burning
+recol1s=14628
+recol1d=11458
+recol2s=28306
+recol2d=23021
+anim=fire
+blockrange=no
+ambient=40
+contrast=40
+
+[castlewars_saradomin_maindoorr]
+name=Large door
+desc=A large double door.
+model=lefayeunopenabledoorl
+op1=Open
+op2=Attack
+mirror=yes
+raiseobject=no
+category=door_right_closed
+param=next_loc_stage,castlewars_saradomin_maindoorr_open
+
+[castlewars_saradomin_maindoorl]
+name=Large door
+desc=A large double door.
+model=lefayeunopenabledoorl
+op1=Open
+op2=Attack
+raiseobject=no
+category=door_left_closed
+param=next_loc_stage,castlewars_saradomin_maindoorl_open
+
+[castlewars_saradomin_maindoorr_open]
+name=Large door
+desc=A large double door.
+model=lefayeunopenabledoorl
+op1=Close
+mirror=yes
+raiseobject=no
+category=door_right_open
+param=next_loc_stage,castlewars_saradomin_maindoorr
+
+[castlewars_saradomin_maindoorl_open]
+name=Large door
+desc=A large double door.
+model=lefayeunopenabledoorl
+op1=Close
+raiseobject=no
+category=door_left_open
+param=next_loc_stage,castlewars_saradomin_maindoorl
+
+[castlewars_zamorak_maindoorr]
+name=Large door
+desc=A large double door.
+model=lefayeunopenabledoorl
+op1=Open
+op2=Attack
+mirror=yes
+raiseobject=no
+category=door_right_closed
+param=next_loc_stage,castlewars_zamorak_maindoorr_open
+
+[castlewars_zamorak_maindoorl]
+name=Large door
+desc=A large double door.
+model=lefayeunopenabledoorl
+op1=Open
+op2=Attack
+raiseobject=no
+category=door_left_closed
+param=next_loc_stage,castlewars_zamorak_maindoorl_open
+
+[castlewars_zamorak_maindoorr_open]
+name=Large door
+desc=A large double door.
+model=lefayeunopenabledoorl
+op1=Close
+mirror=yes
+raiseobject=no
+category=door_right_open
+param=next_loc_stage,castlewars_zamorak_maindoorr
+
+[castlewars_zamorak_maindoorl_open]
+name=Large door
+desc=A large double door.
+model=lefayeunopenabledoorl
+op1=Close
+raiseobject=no
+category=door_left_open
+param=next_loc_stage,castlewars_zamorak_maindoorl
+
+[castlewars_saradomin_brokendoorl]
+name=Broken door
+desc=A large broken door.
+model=castlewars_saradomin_brokendoorl
+blockrange=no
+active=yes
+op1=Repair
+
+[castlewars_saradomin_brokendoorr]
+name=Broken door
+desc=A large broken door.
+model=castlewars_saradomin_brokendoorl
+blockrange=no
+mirror=yes
+active=yes
+op1=Repair
+
+[castlewars_zamorak_brokendoorl]
+name=Broken door
+desc=A large broken door.
+model=castlewars_saradomin_brokendoorl
+blockrange=no
+active=yes
+op1=Repair
+
+[castlewars_zamorak_brokendoorr]
+name=Broken door
+desc=A large broken door.
+model=castlewars_saradomin_brokendoorl
+blockrange=no
+mirror=yes
+active=yes
+op1=Repair
+
+[castlewars_banner_red]
+model=castlewars_banner_red
+active=no
+
+[castlewars_banner_blue]
+model=castlewars_banner_blue
+active=no
+
+[castlewars_blocked_tunnel_1]
+name=Rocks
+desc=We could use our pickaxes to get past these...
+model=castlewars_blocked_tunnel1
+blockrange=no
+length=2
+width=2
+op1=Mine
+op3=hidden
+
+[castlewars_blocked_tunnel_2]
+name=Rocks
+desc=We can almost get past these...
+model=castlewars_blocked_tunnel2
+blockrange=no
+length=2
+width=2
+op1=Mine
+op3=hidden
+
+[castlewars_blocked_tunnel_3]
+model=castlewars_blocked_tunnel3
+blockrange=no
+blockwalk=no
+length=2
+width=2
+active=no
+
+[castlewars_blocked_tunnel_3_topright]
+model=castlewars_blocked_tunnel_3_topright
+forcedecor=yes
+
+[castlewars_blocked_tunnel_3_topleft]
+model=castlewars_blocked_tunnel_3_topleft
+forcedecor=yes
+
+[castlewars_blocked_tunnel_3_bottomright]
+model=castlewars_blocked_tunnel_3_bottomright
+forcedecor=yes
+
+[castlewars_blocked_tunnel_3_bottomleft]
+model=castlewars_blocked_tunnel_3_bottomleft
+forcedecor=yes
+
+[castlewars_battlements_rope_3]
+name=Climbing Rope
+desc=Should be long enough to scale castle walls.
+model=castlewars_battlements_rope3
+width=2
+active=yes
+op1=Climb
+
+[castlewars_battlements_saradomin_blockrange]
+model=oldcastlebattlements
+retex1s=wall
+retex1d=elfbrick
+sharelight=yes
+
+[castlewars_battlements_saradomin_climbable]
+name=Battlements
+desc=Maybe I could tie a rope to this...
+model=oldcastlebattlements
+retex1s=wall
+retex1d=elfbrick
+active=yes
+sharelight=yes
+blockrange=no
+
+[castlewars_battlements_zamorak_climbable]
+name=Battlements
+desc=Maybe I could tie a rope to this...
+model=oldcastlebattlements
+retex1s=wall
+retex1d=mossybricks
+active=yes
+sharelight=yes
+blockrange=no
+
+[castlewars_cavewall_rockslide]
+name=Cave wall
+desc=It doesn't look very stable...
+model=cavewall_face1
+sharelight=yes
+occlude=yes
+hillskew=yes
+active=yes
+op1=Collapse
+op3=hidden
+
+[castlewars_stair_zero_a]
+model=castlewars_stair_zeroa
+retex1s=mossybricks
+retex1d=elfbrick
+recol2s=15855
+recol2d=16872
+active=no
+
+[castlewars_stair_zero_b]
+model=castlewars_stair_zero_b
+retex1s=mossybricks
+retex1d=elfbrick
+recol2s=15855
+recol2d=16872
+active=no
+
+[castlewars_stair_zero_c]
+model=castlewars_stair_zeroc
+retex1s=mossybricks
+retex1d=elfbrick
+recol2s=15855
+recol2d=16872
+active=no
+
+[castlewars_stair_zero_a_mirr]
+model=castlewars_stair_zeroa
+retex1s=mossybricks
+retex1d=elfbrick
+recol2s=15855
+recol2d=16872
+mirror=yes
+active=no
+
+[castlewars_stair_zero_b_mirr]
+model=castlewars_stair_zero_b
+retex1s=mossybricks
+retex1d=elfbrick
+recol2s=15855
+recol2d=16872
+mirror=yes
+active=no
+
+[castlewars_stair_zero_c_mirr]
+model=castlewars_stair_zeroc
+retex1s=mossybricks
+retex1d=elfbrick
+recol2s=15855
+recol2d=16872
+mirror=yes
+active=no
+
+[castlewars_table_bandages]
+name=Table
+desc=There are some bandages on this table.
+model=bigtable
+model2=grandtree_ladderbottom
+width=2
+blockrange=no
+op1=Take-from
+
+[castlewars_table_toolbox]
+name=Table
+desc=There are some toolboxes on this table.
+model=bigtable
+model2=castlewars_table_toolbox
+width=2
+blockrange=no
+op1=Take-from
+
+[castlewars_table_rocks]
+name=Table
+desc=There's some rock I can use with the catapult here.
+model=bigtable
+model2=castlewars_table_rocks
+width=2
+blockrange=no
+op1=Take-from
+
+[castlewars_table_barricades]
+name=Table
+desc=There are some barricades here.
+model=bigtable
+model2=castlewars_table_barricades
+width=2
+op1=Take-from
+
+[castlewars_table_rope]
+name=Table
+desc=There is some rope here.
+model=bigtable
+model2=castlewars_table_rope
+recol1s=11524
+recol1d=7296
+width=2
+blockrange=no
+op1=Take-from
+
+[castlewars_table_potion]
+name=Table
+desc=There are some explosive potions here.
+model=bigtable
+model2=castlewars_table_potion
+recol1s=15855
+recol1d=29217
+width=2
+blockrange=no
+op1=Take-from
+
+[castlewars_table_pickaxes]
+name=Table
+desc=There are some pickaxes on this table.
+model=bigtable
+model2=castlewars_table_pickaxes
+recol1s=15855
+recol1d=8354
+width=2
+blockrange=no
+op1=Take-from
+
+[castlewars_saradomin_sidedoor]
+name=Door
+desc=An elf-fashioned door.
+model=door1
+retex1s=wall
+retex1d=elfdoor
+recol2s=6342
+recol2d=11458
+active=yes
+op1=Unlock
+raiseobject=no
+param=next_loc_stage,castlewars_saradomin_sidedoor_open
+
+[castlewars_saradomin_sidedoor_open]
+name=Door
+desc=An elf-fashioned door.
+model=door1
+retex1s=wall
+retex1d=elfdoor
+recol2s=6342
+recol2d=11458
+active=yes
+op1=Lock
+raiseobject=no
+param=next_loc_stage,castlewars_saradomin_sidedoor
+
+[castlewars_zamorak_sidedoor]
+name=Door
+desc=The door is closed.
+model=door
+active=yes
+op1=Unlock
+raiseobject=no
+param=next_loc_stage,castlewars_zamorak_sidedoor_open
+
+[castlewars_zamorak_sidedoor_open]
+name=Door
+desc=The door is open.
+model=door
+active=yes
+op1=Lock
+raiseobject=no
+param=next_loc_stage,castlewars_zamorak_sidedoor
+
+[castlewars_saradomin_spawndoor]
+name=Energy Barrier
+desc=Only the Saradomin team may pass.
+model=castlewars_saradomin_spawndoor
+recol1s=15855
+recol1d=349
+active=yes
+op1=Pass
+anim=castlewars_portalglow
+raiseobject=no
+ambient=100
+contrast=100
+
+[castlewars_zamorak_spawndoor]
+name=Energy Barrier
+desc=Only the Zamorak team may pass.
+model=castlewars_saradomin_spawndoor
+recol1s=15855
+recol1d=30753
+active=yes
+op1=Pass
+raiseobject=no
+anim=castlewars_portalglow
+ambient=100
+contrast=100
+
+[castlewars_saradomin_spawntrapdoor]
+name=Trapdoor
+desc=I wonder what's under it?
+model=ikov_trapdoor
+active=yes
+op1=Open
+raiseobject=no
+
+[castlewars_zamorak_spawntrapdoor]
+name=Trapdoor
+desc=I wonder what's under it?
+model=ikov_trapdoor
+active=yes
+op1=Open
+raiseobject=no
+
+[castlewars_stair_oldzero_a]
+model=castlewars_stair_zeroa
+recol1s=15855
+recol1d=6272
+active=no
+
+[castlewars_stair_oldzero_b]
+model=castlewars_stair_zero_b
+recol1s=15855
+recol1d=6272
+active=no
+
+[castlewars_stair_oldzero_c]
+model=castlewars_stair_zeroc
+recol1s=15855
+recol1d=6272
+active=no
+
+[castlewars_stair_oldzero_a_mirr]
+model=castlewars_stair_zeroa
+recol1s=15855
+recol1d=6272
+mirror=yes
+active=no
+
+[castlewars_stair_oldzero_b_mirr]
+model=castlewars_stair_zero_b
+recol1s=15855
+recol1d=6272
+mirror=yes
+active=no
+
+[castlewars_stair_oldzero_c_mirr]
+model=castlewars_stair_zeroc
+recol1s=15855
+recol1d=6272
+mirror=yes
+active=no
+
+[castlewars_stair_thin_a]
+model=castlewars_stair_thina
+recol1s=15855
+recol1d=6272
+active=no
+
+[castlewars_stair_thin_b]
+model=castlewars_stair_thin_b
+recol1s=15855
+recol1d=6272
+active=no
+
+[castlewars_stair_thin_c]
+model=castlewars_stair_thinc
+recol1s=15855
+recol1d=6272
+active=no
+
+[castlewars_tap]
+name=Tap
+desc=Water comes out of this.
+model=viking_seers_tap
+active=yes
+
+[castlewars_bankchest]
+name=Bank chest
+desc=It's open.
+model=arena_guard_chest_open
+op1=Use
+forceapproach=north
+
+[castlewars_scoreboard]
+name=Scoreboard
+desc=Keep track of which team has the most victories.
+model=castlewars_scoreboard
+active=yes
+ambient=50
+op1=View
+
+[castlewars_saradomin_banner]
+name=Saradomin Standard
+desc=The Saradomin Team Standard.
+model=castlewars_saradomin_banner
+op1=Take
+anim=castlewars_banner
+mapscene=28
+
+[castlewars_zamorak_banner]
+name=Zamorak Standard
+desc=The Zamorak Team Standard.
+model=castlewars_zamorak_banner
+op1=Take
+anim=castlewars_banner
+mapscene=29
+
+[castlewars_saradomin_banner+stand]
+name=Saradomin Standard
+desc=The Saradomin Team Standard.
+model=castlewars_saradomin_banner
+model2=castlewars_saradomin_stand
+retex1s=mossybricks
+retex1d=elfbrick
+recol2s=6340
+recol2d=17932
+op1=Capture
+anim=castlewars_banner
+mapscene=28
+
+[castlewars_zamorak_banner+stand]
+name=Zamorak Standard
+desc=The Zamorak Team Standard.
+model=castlewars_zamorak_banner
+model2=castlewars_saradomin_stand
+op1=Capture
+anim=castlewars_banner
+mapscene=29
+
+[castlewars_catapult_zamorak_burning]
+name=Catapult
+desc=It's on fire!
+model=castlewars_catapult_zamorak_burning
+model2=castlewars_catapult_zamorak_burningi2
+recol1s=9513
+recol1d=6342
+recol2s=8386
+recol2d=6275
+recol3s=6272
+recol3d=6275
+recol4s=13741
+recol4d=11560
+anim=catapult_fire
+width=3
+length=3
+active=yes
+blockrange=no
+ambient=40
+contrast=40
+mapscene=30
+
+[castlewars_catapult_saradomin_burning]
+name=Catapult
+desc=It's on fire!
+model=castlewars_catapult_zamorak_burning
+model2=castlewars_catapult_zamorak_burningi2
+recol1s=9513
+recol1d=6342
+recol2s=8386
+recol2d=6275
+recol3s=6272
+recol3d=6275
+recol4s=13741
+recol4d=11560
+anim=catapult_fire
+width=3
+length=3
+active=yes
+blockrange=no
+ambient=40
+contrast=40
+mapscene=30
+
+[castlewars_saradomin_banner+stand_inactive]
+model=castlewars_saradomin_banner
+model2=castlewars_saradomin_stand
+retex1s=mossybricks
+retex1d=elfbrick
+recol2s=6340
+recol2d=17932
+active=no
+anim=castlewars_banner
+
+[castlewars_zamorak_banner+stand_inactive]
+model=castlewars_zamorak_banner
+model2=castlewars_saradomin_stand
+retex1s=mossybricks
+retex1d=elfbrick
+recol2s=6340
+recol2d=17932
+active=no
+anim=castlewars_banner
+
+[castlewars_castlebattlements_zamorak]
+model=oldcastlebattlements
+retex1s=wall
+retex1d=mossybricks
+sharelight=yes
+blockrange=no
+
+[castlewars_barrel]
+name=Barrel
+desc=A wooden barrel for storage.
+model=barrel
+blockrange=no
+
+[castlewars_laddertop]
+name=Ladder
+desc=I can climb down this.
+model=ladder2
+active=yes
+op1=Climb-down
+mapscene=7
+forceapproach=south
+
+[castlewars_ladder_cellar_directional]
+name=Ladder
+desc=I can climb down this.
+model=loc_1754
+active=yes
+op1=Climb-down
+mapscene=7
+forceapproach=north
+
+[castlewars_saradomin_spawnladder]
+name=Ladder
+desc=I can climb this.
+model=ladder
+active=yes
+op1=Climb-up
+mapscene=7
+forceapproach=north
+
+[castlewars_zamorak_spawnladder]
+name=Ladder
+desc=I can climb this.
+model=ladder
+active=yes
+op1=Climb-up
+mapscene=7
+forceapproach=north

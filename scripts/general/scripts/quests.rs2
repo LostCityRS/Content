@@ -50,7 +50,12 @@ switch_component ($component) {
 // Update Quest Tab color
 if_setcolour($component, ^green_rgb);
 if_settab(questlist, ^tab_quest_journal);
-mes("Congratulations! Quest complete!");
+switch_component ($component) {
+    case questlist:troll_love : 
+        mes("Congratulations! You've helped a lonely troll find love. Quest complete!");
+    case default : 
+        mes("Congratulations! Quest complete!");
+}
 
 [proc,update_questpoints]
 def_int $questpointrecount = ~count_questpoints;
@@ -235,6 +240,9 @@ if (%death_equiproom = ^death_complete) {
 if (%troll_quest = ^troll_complete) {
     $questpoints = add($questpoints, ^troll_questpoints); 
 }
+if (%troll_love = ^troll_love_complete) {
+    $questpoints = add($questpoints, ^troll_love_questpoints); 
+}
 if (%golem_a = ^golem_complete) {
     $questpoints = add($questpoints, ^golem_questpoints);
 }
@@ -307,6 +315,8 @@ if (testbit(%ibanmulti, ^upass_started_bit) = ^true & %upass ! ^upass_complete) 
 ~send_quest_progress_colour(questlist:priestperil, %priestperil, ^priestperil_complete);
 ~send_quest_progress_colour(questlist:druidspirit, %druidspirit, ^druidspirit_complete);
 ~send_quest_progress_colour(questlist:death, %death_equiproom, ^death_complete);
+~send_quest_progress_colour(questlist:troll, %troll_quest, ^troll_complete);
+~send_quest_progress_colour(questlist:troll_love, %troll_love, ^troll_love_complete);
 ~send_quest_progress_colour(questlist:golem, %golem_a, ^golem_complete);
 if_settab(questlist, ^tab_quest_journal);
 

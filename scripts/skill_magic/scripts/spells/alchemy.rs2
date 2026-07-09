@@ -110,4 +110,9 @@ switch_obj($item) {
             return(false);
         }
 }
+// this goes after all these alchemy checks
+if (~in_castlewars_game(coord) = true | ~in_castlewars_waitingroom(coord) = true) {
+    mes("You can't use this spell inside the Castle Wars arena."); // osrs
+    return(false);
+}
 return(true);

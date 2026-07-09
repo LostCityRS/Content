@@ -9,8 +9,11 @@ say("Ouch!");
 ~damage_self(3);
 
 [opheldu,swamp_tar]
-if(last_useitem = pot_flour) {
+if(last_useitem = pot_flour) { // Sea Slug quest
     @make_swamp_paste;
+}
+if(last_useitem = bucket_wax) { // Troll Romance quest
+    @make_sled_wax;
 }
 ~displaymessage(^dm_default);
 

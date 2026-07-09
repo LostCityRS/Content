@@ -1,14 +1,14 @@
-[proc,trawler_net_ripped]()(boolean)
+[proc,trawler_net_ripped]()(int)
 if (loc_find(^trawler_start_net1, game_trawler_fish_net_broken1) = true) {
-    return(true);
+    return(^true);
 }
 if (loc_find(^trawler_start_net2, game_trawler_fish_net_broken2) = true) {
-    return(true);
+    return(^true);
 }
-return(false);
+return(^false);
 
 [proc,trawler_rip_net]
-if (~trawler_net_ripped = true) {
+if (~trawler_net_ripped = ^true) {
     return;
 }
 if (loc_find(^trawler_start_net1, game_trawler_fish_net1) = true) {
@@ -41,8 +41,7 @@ while (huntnext = true) {
 }
 
 [queue,trawler_player_rip_net]
-mes("The net has ripped!");
-~mesbox("The net has ripped!|You can't catch anything whilst the net is ripped!"); // https://imgur.com/sIkyhcN
+mes("The net has ripped!"); // https://youtu.be/7-gUR40Nr8M queued yes
 
 [oploc1,game_trawler_fish_net1]
 anim(human_pickupfloor, 0);

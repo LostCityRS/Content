@@ -1,4 +1,9 @@
 [label,pvm_dragon_spear_sa]
+if (npc_category = castlewars_barricade) {
+    mes("You can't use this special attack on the barricades.");
+    %sa_attack = ^false;
+    return;
+}
 p_stopaction;
 ~set_sa_vars(oc_param(inv_getobj(worn, ^wearpos_rhand), sa_energy));
 spotanim_pl(sp_attack_shove_spotanim, 96, 0);

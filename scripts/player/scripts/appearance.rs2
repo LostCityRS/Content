@@ -113,9 +113,9 @@ if (p_finduid(uid) = true) {
 ~update_bas; // update appearance
 ~update_bonuses; // update bonuses if
 ~update_weight; // update weight
-// if (%tutorial_progress > ^newbie_combat_instructor_unequipping_items) { re-enable later
+if (%tutorial > ^newbie_combat_instructor_unequipping_items) {
 ~update_weapon_category($previous_weapon); // the attack tab weapon category
-// }
+}
 ~player_combat_stat; // update combat varps
 
 [proc,.update_all](obj $previous_weapon)
@@ -140,3 +140,6 @@ if (.p_finduid(.uid) = true) {
 ~.update_weapon_category($previous_weapon); // the attack tab weapon category
 //}
 ~.player_combat_stat; // update combat varps
+
+[queue,update_all]
+~update_all(null);

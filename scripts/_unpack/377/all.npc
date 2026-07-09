@@ -3225,6 +3225,7 @@ param=death_sound,giant_death
 param=death_drop,big_bones
 huntmode=cowardly
 huntrange=2
+param=slayer_category,^slayer_mossgiant
 
 [jogre]
 name=Jogre
@@ -35906,40 +35907,6 @@ recol2s=7488
 recol2d=3233
 vislevel=1
 
-[castlewars_judge]
-name=Lanthus
-desc=He must run this place.
-model1=idk_man_hair_cropped
-model2=idk_man_jaw_long
-model3=obj_priest_gown_manwear
-model4=obj_viking_top_darkbrown_manwear
-model5=obj_cert_drill_top_manwear3
-model6=idk_man_legs_turn_ups
-model7=obj_ikov_bootsoflightness_manwear
-model8=idk_man_torso_dark_buttons
-model9=obj_cape_of_legends_manwear
-model10=npc_councillor_halgrive
-recol1s=6273
-recol1d=15855
-recol2s=24075
-recol2d=30417
-recol3s=14724
-recol3d=24937
-recol4s=5120
-recol4d=0
-recol5s=2340
-recol5d=0
-recol6s=32727
-recol6d=0
-vislevel=hide
-walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
-readyanim=human_ready
-op1=Talk-to
-op4=Trade-with
-head1=idk_man_hair_cropped_head
-head2=npc_councillor_halgrive_head
-head3=idk_man_jaw_long_head
-
 [puzzle_cart]
 name=Mine cart
 desc=Big, metal, and wheeled.
@@ -35980,99 +35947,6 @@ alwaysontop=yes
 vislevel=hide
 head1=obj_leather_cowl_manhead2
 head2=idk_man_jaw_short_head
-
-[castlewars_sheep]
-name=Sheep
-desc=White and fluffy.
-model1=npc_sheepsheeredi2
-model2=npc_sheepunsheered
-model3=npc_sheepsheeredi3
-recol1s=15853
-recol1d=5285
-walkanim=sheep_walk
-readyanim=sheep_ready
-resizeh=108
-resizev=108
-ambient=30
-vislevel=1
-
-[castlewars_rabbit]
-name=Rabbit
-desc=Bright eyes.
-model1=spot_smoke_devil_smoke_player_spotanim
-recol1s=15777
-recol1d=29495
-recol2s=30620
-recol2d=29495
-readyanim=rabbit_ready
-walkanim=rabbit_walk
-resizeh=168
-resizev=168
-ambient=30
-vislevel=1
-
-[castlewars_imp]
-name=Imp
-desc=A cheeky little imp.
-model1=npc_imp
-recol1s=2240
-recol1d=10240
-recol2s=6144
-recol2d=13378
-recol3s=32767
-recol3d=23147
-recol4s=31649
-recol4d=8455
-walkanim=imp_walk
-readyanim=imp_ready
-resizeh=132
-resizev=132
-ambient=30
-vislevel=1
-
-[castlewars_barricade_saradomin]
-name=Barricade
-desc=A spiky barricade.
-model1=castlewars_barricade_8
-minimap=no
-vislevel=hide
-op2=Attack
-
-[castlewars_barricade_burning_saradomin]
-name=Barricade
-desc=A spiky barricade.
-model1=castlewars_barricade_8
-model2=castlewars_barricade_burning_8
-recol1s=14628
-recol1d=11458
-recol2s=28306
-recol2d=23021
-minimap=no
-vislevel=hide
-readyanim=fire
-op2=Attack
-
-[castlewars_barricade_zamorak]
-name=Barricade
-desc=A spiky barricade.
-model1=castlewars_barricade_8
-minimap=no
-vislevel=hide
-op2=Attack
-
-[castlewars_barricade_burning_zamorak]
-name=Barricade
-desc=A spiky barricade.
-model1=castlewars_barricade_8
-model2=castlewars_barricade_burning_8
-recol1s=14628
-recol1d=11458
-recol2s=28306
-recol2d=23021
-minimap=no
-vislevel=hide
-readyanim=fire
-op2=Attack
 
 [possessed_pickaxe]
 name=Possessed Pickaxe
@@ -36281,268 +36155,6 @@ op1=Talk-to
 head1=obj_leather_cowl_manhead2
 head2=idk_man_jaw_long_head
 head3=obj_santa_hat_manhead
-
-[trollromance_ug]
-name=Ug
-desc=A frail little troll.
-model1=poh_troll_8
-model2=poh_trolli3_8
-model3=npc_1099
-model4=npc_1095i5
-model5=npc_1553
-recol1s=15855
-recol1d=14761
-walkanim=troll_walk
-readyanim=trollromance_cry_test
-op1=Talk-to
-resizeh=124
-resizev=124
-vislevel=hide
-head1=npc_1553_head
-head2=npc_1125_headi2
-
-[trollromance_aga]
-name=Aga
-desc=A beautiful troll.
-model1=npc_1554
-model2=npc_1554i2
-model3=npc_1099
-recol1s=15855
-recol1d=15752
-recol2s=15919
-recol2d=14662
-walkanim=troll_walk
-readyanim=troll_ready
-op1=Talk-to
-vislevel=hide
-head1=npc_1554_head
-
-[trollromance_arrg]
-name=Arrg
-desc=A massive, scary-looking troll.
-model1=npc_1096
-model2=npc_1095
-model3=poh_trolli2_8
-model4=npc_1115
-model5=npc_1095i3
-model6=npc_1116
-recol1s=15855
-recol1d=11558
-recol2s=15919
-recol2d=11492
-walkanim=troll_walk
-readyanim=troll_ready
-op1=Talk-to
-size=2
-resizeh=150
-resizev=150
-vislevel=113
-head1=npc_1125_head
-
-[trollromance_arrg_attackable]
-name=Arrg
-desc=A massive, scary-looking troll.
-model1=npc_1096
-model2=npc_1095
-model3=poh_trolli2_8
-model4=npc_1115
-model5=npc_1095i3
-model6=npc_1116
-recol1s=15855
-recol1d=11558
-recol2s=15919
-recol2d=11492
-walkanim=troll_walk
-readyanim=troll_ready
-op2=Attack
-size=2
-resizeh=150
-resizev=150
-vislevel=113
-head1=npc_1125_head
-
-[trollromance_eat_test]
-name=Ug
-desc=A frail little troll.
-model1=poh_troll_8
-model2=poh_trolli3_8
-model3=npc_1099
-model4=npc_1095i5
-model5=npc_1557
-recol1s=15855
-recol1d=14761
-walkanim=troll_walk
-readyanim=trollromance_eat
-op1=Talk-to
-resizeh=124
-resizev=124
-vislevel=1
-head1=npc_1553_head
-head2=npc_1125_headi2
-
-[trollromance_ice_wolf_1]
-name=Ice wolf
-desc=Not mans' best friend.
-model1=npc_wolf
-recol1s=15855
-recol1d=23254
-recol2s=23254
-recol2d=28539
-size=2
-walkanim=dog_walk
-readyanim=dog_ready
-op2=Attack
-vislevel=96
-
-[trollromance_ice_wolf_2]
-name=Ice wolf
-desc=Not mans' best friend.
-model1=npc_wolf
-recol1s=15855
-recol1d=23254
-recol2s=23254
-recol2d=28539
-size=2
-walkanim=dog_walk
-readyanim=dog_ready
-op2=Attack
-resizev=110
-resizeh=110
-vislevel=132
-
-[trollromance_icetroll_melee1]
-name=Ice Troll
-desc=Brrrrr...he must be cold!
-model1=npc_1560
-model2=npc_1560i2
-model3=poh_trolli2_8
-model4=npc_1097
-recol1s=15855
-recol1d=30655
-recol2s=15919
-recol2d=25375
-walkanim=troll_walk
-readyanim=troll_ready
-resizeh=134
-resizev=134
-op2=Attack
-vislevel=124
-
-[trollromance_icetroll_melee2]
-name=Ice Troll
-desc=Brrrrr...he must be cold!
-model1=poh_troll_8
-model2=npc_1095
-model3=npc_1099
-model4=npc_1561
-recol1s=15855
-recol1d=24379
-recol2s=15919
-recol2d=22232
-recol3s=10501
-recol3d=32767
-walkanim=troll_walk
-readyanim=troll_ready
-resizeh=128
-resizev=128
-op2=Attack
-vislevel=123
-
-[trollromance_icetroll_melee3]
-name=Ice Troll
-desc=Brrrrr...he must be cold!
-model1=npc_1560
-model2=poh_trolli3_8
-model3=poh_trolli2_8
-model4=npc_1097
-model5=npc_1562
-recol1s=15855
-recol1d=21147
-recol2s=15919
-recol2d=19031
-walkanim=troll_walk_shield
-readyanim=troll_ready_shield
-resizeh=139
-resizev=139
-op2=Attack
-vislevel=120
-
-[trollromance_icetroll_melee4]
-name=Ice Troll
-desc=Brrrrr...he must be cold!
-model1=npc_1560
-model2=npc_1560i2
-model3=npc_1099
-model4=npc_1096i3
-recol1s=15855
-recol1d=19028
-recol2s=15919
-recol2d=16914
-recol3s=10501
-recol3d=32767
-walkanim=troll_walk
-readyanim=troll_ready
-resizeh=134
-resizev=134
-op2=Attack
-vislevel=121
-
-[trollromance_icetroll_melee5]
-name=Ice Troll
-desc=Brrrrr...he must be cold!
-model1=npc_1560
-model2=npc_1560i2
-model3=poh_trolli2_8
-model4=npc_1097
-model5=npc_1562
-recol1s=15855
-recol1d=21371
-recol2s=15919
-recol2d=21173
-walkanim=troll_walk_shield
-readyanim=troll_ready_shield
-resizeh=138
-resizev=138
-op2=Attack
-vislevel=120
-
-[trollromance_icetroll_melee6]
-name=Ice Troll
-desc=Brrrrr...he must be cold!
-model1=npc_1096
-model2=poh_trolli3_8
-model3=npc_1099
-model4=npc_1561
-recol1s=15855
-recol1d=27647
-recol2s=15919
-recol2d=25375
-recol3s=10501
-recol3d=32767
-walkanim=troll_walk
-readyanim=troll_ready
-resizeh=125
-resizev=125
-op2=Attack
-vislevel=120
-
-[trollromance_icetroll_melee7]
-name=Ice Troll
-desc=Brrrrr...he must be cold!
-model1=npc_1560
-model2=npc_1560i2
-model3=npc_1099
-model4=npc_1097
-recol1s=15855
-recol1d=23544
-recol2s=15919
-recol2d=19445
-walkanim=troll_walk
-readyanim=troll_ready
-resizeh=134
-resizev=134
-op2=Attack
-vislevel=121
 
 [route_cyreg_paddlehorn]
 name=Cyreg Paddlehorn
@@ -37065,6 +36677,7 @@ param=death_sound,giant_death
 param=death_drop,big_bones
 huntmode=cowardly
 huntrange=2
+param=slayer_category,^slayer_mossgiant
 
 [mossgiant3]
 name=Moss giant
@@ -37106,6 +36719,7 @@ param=death_sound,giant_death
 param=death_drop,big_bones
 huntmode=cowardly
 huntrange=2
+param=slayer_category,^slayer_mossgiant
 
 [dog_wild]
 name=Wild dog

@@ -19,9 +19,6 @@ while (loc_findnext = true & $locsChanged < 4) {
         $locsChanged = calc($locsChanged + 1);
     }
 }
-//world_delay(5); //doesn't work with the p_ scripts required until the engine lets you get players in an area
-//get all players within 3 squares of the center
-//teleport them to a random obelisk
 switch_int(random(6))
 {
     case 0 : $destination = ^obelisk_one;
@@ -32,24 +29,18 @@ switch_int(random(6))
     case 5 : $destination = ^obelisk_six;
 }
 
-//player_findallzone doesn't actually work, so for now this is using player only
-// player_findallzone($center_coord);
-// while (player_findnext = true & $locsChanged < 4) {
-//     if(distance(coord, $center_coord) <= 2) {
-//         anim(teleport_other_casting, 0);
-//         anim(human_castteleport, 0);
-//         spotanim_pl(teleport_other_impact, 92, 0);
-//         p_delay(2);
-//         p_telejump($destination);
-//         anim(null, 0);
-//     }
-// }
+world_delay(5);
+huntall($center_coord, 2, 0);
+while (huntnext = true) {
+    if (finduid(uid) = true) {
+        queue*(wilderness_obelisk_teleport_after_timer, 0)(map_findsquare($destination, 0, 2, ^map_findsquare_lineofwalk));
+    }
+}
 
+[queue,wilderness_obelisk_teleport_after_timer](coord $destination)
 anim(teleport_other_casting, 0);
 anim(human_castteleport, 0);
 spotanim_pl(teleport_other_impact, 92, 0);
 p_delay(2);
 p_telejump($destination);
-
 anim(null, 0);
-
