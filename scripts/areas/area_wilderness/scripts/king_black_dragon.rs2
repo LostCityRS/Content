@@ -296,8 +296,8 @@ mes("You pull the lever...");
 p_delay(0);
 
 
-~player_teleport_normal(0_42_153_29_10); // not sure if its an area or just right next to the lever
-mes("...And teleport into the Dragon's lair."); // changed to "Lair" (uppercase), on rev 317
+~player_teleport_normal(0_35_73_31_8);
+mes("...And teleport into the Dragon's Lair.");
 
 [oploc1,dragonkingoutlever]
 p_arrivedelay;
@@ -311,4 +311,4 @@ mes("You pull the lever...");
 p_delay(0);
 
 ~player_teleport_normal(0_47_160_59_14); // not sure if its an area or just right next to the lever
-mes("...And teleport out of the Dragon's lair."); // changed to "Lair" (uppercase), on rev 317
+mes("...And teleport out of the Dragon's Lair.");
