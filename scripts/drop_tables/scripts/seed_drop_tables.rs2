@@ -1,0 +1,114 @@
+[proc,roll_general_seed_table](int $level)(namedobj, int)
+if (map_members = ^false) {
+    return (coins, 5);
+}
+
+def_int $roll = random(calc($level * 10));
+
+if ($roll < 484) {
+    def_int $random = random(1000);
+    if ($random < 368) {
+        return (potato_seed, 4);
+    } else if ($random < 644) {
+        return (onion_seed, 4);
+    } else if ($random < 828) {
+        return (cabbage_seed, 4);
+    } else if ($random < 920) {
+        return (tomato_seed, 3);
+    } else if ($random < 966) {
+        return (sweetcorn_seed, 3);
+    } else if ($random < 989) {
+        return (strawberry_seed, 2);
+    } else {
+        return (watermelon_seed, 2);
+    }
+}
+else if ($roll < 727) {
+    def_int $random = random(1000);
+    if ($random < 229) {
+        return (barley_seed, 1);
+    } else if ($random < 457) {
+        return (hammerstone_hop_seed, 1);
+    } else if ($random < 629) {
+        return (asgarnian_hop_seed, 1);
+    } else if ($random < 800) {
+        return (jute_seed, 1);
+    } else if ($random < 914) {
+        return (yanillian_hop_seed, 1);
+    } else if ($random < 972) {
+        return (krandorian_hop_seed, 1);
+    } else {
+        return (wildblood_hop_seed, 1);
+    }
+}
+else if ($roll < 849) {
+    def_int $random = random(1000);
+    if ($random < 376) {
+        return (marigold_seed, 1);
+    } else if ($random < 625) {
+        return (nasturtium_seed, 1);
+    } else if ($random < 786) {
+        return (rosemary_seed, 1);
+    } else if ($random < 905) {
+        return (woad_seed, 1);
+    } else {
+        return (limpwurt_seed, 1);
+    }
+}
+else if ($roll < 946) {
+    def_int $random = random(1000);
+    if ($random < 400) {
+        return (redberry_bush_seed, 1);
+    } else if ($random < 680) {
+        return (cadavaberry_bush_seed, 1);
+    } else if ($random < 880) {
+        return (dwellberry_bush_seed, 1);
+    } else if ($random < 960) {
+        return (jangerberry_bush_seed, 1);
+    } else if ($random < 989) {
+        return (whiteberry_bush_seed, 1);
+    } else {
+        return (poisonivy_bush_seed, 1);
+    }
+}
+else if ($roll < 994) {
+    def_int $random = random(1000);
+    if ($random < 320) {
+        return (guam_seed, 1);
+    } else if ($random < 538) {
+        return (marrentill_seed, 1);
+    } else if ($random < 687) {
+        return (tarromin_seed, 1);
+    } else if ($random < 788) {
+        return (harralander_seed, 1);
+    } else if ($random < 857) {
+        return (ranarr_seed, 1);
+    } else if ($random < 904) {
+        return (toadflax_seed, 1);
+    }  else if ($random < 936) {
+        return (irit_seed, 1);
+    }  else if ($random < 957) {
+        return (avantoe_seed, 1);
+    }  else if ($random < 972) {
+        return (kwuarm_seed, 1);
+    }  else if ($random < 982) {
+        return (snapdragon_seed, 1);
+    }  else if ($random < 989) {
+        return (cadantine_seed, 1);
+    }  else if ($random < 994) {
+        return (lantadyme_seed, 1);
+    }  else if ($random < 997) {
+        return (dwarf_weed_seed, 1);
+    }  else {
+        return (torstol_seed, 1);
+    }
+} else {
+    def_int $random = random(1000);
+    if ($random < 500) {
+        return (mushroom_seed, 1);
+    } else if ($random < 800) {
+        return (belladonna_seed, 1);
+    } else {
+        return (cactus_seed, 1);
+    }
+}
