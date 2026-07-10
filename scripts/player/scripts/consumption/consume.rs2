@@ -1,13 +1,13 @@
 // ************************* TRIGGERS **************************
 // normal food
-[opheld1,_category_5] @player_consume_item(consume_effect_stat, 2, 3);
-[opheld1,_category_58] @player_consume_item(consume_effect_stat, 2, 3);
-[opheld1,_category_59] @player_consume_item(consume_effect_stat, 2, 3);
-[opheld1,_category_86] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld1,_meat] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld1,_fish] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld1,_miscfood] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld1,_fruit] @player_consume_item(consume_effect_stat, 2, 3);
 [opheld1,tbwt_sliced_banana] @player_consume_item(consume_effect_stat, 2, 3);
 [opheld1,rottenapples] ~displaymessage(^dm_default);
-[opheld1,_category_120] @player_consume_item(consume_effect_stat, 2, 3);
-[opheld1,_category_131] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld1,_cocktail_ingredient] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld1,_veg] @player_consume_item(consume_effect_stat, 2, 3);
 [opheld1,pineapple]
 mes("You cant eat it whole; maybe you should cut it up.");
 [opheld1,_alcoholic_drinks] @player_consume_item(consume_effect_stat, 2, 3);
@@ -62,7 +62,7 @@ switch_obj(last_item) {
 [opheld3,_gnome_unf_odd_cocktail] @player_consume_item(consume_effect_stat2, 2, 3); // odd cocktails
 
 // pies
-[opheld1,_category_129]
+[opheld1,_pie]
 def_int $eat_delay = 0;
 if (oc_param(last_item, next_obj_stage) = piedish) {
     $eat_delay = 1;
@@ -70,7 +70,7 @@ if (oc_param(last_item, next_obj_stage) = piedish) {
 @player_consume_item(consume_effect_stat2, $eat_delay, 3);
 
 // cakes
-[opheld1,_category_130]
+[opheld1,_cake]
 def_int $eat_delay = 1;
 if (oc_param(last_item, next_obj_stage) = null) {
     $eat_delay = 2;
@@ -78,7 +78,7 @@ if (oc_param(last_item, next_obj_stage) = null) {
 @player_consume_item(consume_effect_stat2, $eat_delay, 3);
 
 // pizzas
-[opheld1,_category_132]
+[opheld1,_pizza]
 def_int $eat_delay = 0;
 if (oc_param(last_item, next_obj_stage) = null) {
     $eat_delay = 1;

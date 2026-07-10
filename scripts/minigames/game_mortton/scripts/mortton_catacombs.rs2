@@ -18,7 +18,7 @@ p_teleport(0_54_151_37_61);
 
 [oplocu,shadelairentrancel]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
 p_arrivedelay;
 if(testbit(%morttonmulti, ^mortton_unlocked_shade_lair) = ^false | ~get_shadekeys_total = 0) {
     mes("The door seems locked. Perhaps you need a key.");
@@ -59,7 +59,7 @@ p_teleport(0_54_151_37_61);
 
 [oplocu,shadelairentrancer]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
 p_arrivedelay;
 if(testbit(%morttonmulti, ^mortton_unlocked_shade_lair) = ^false | ~get_shadekeys_total = 0) {
     mes("The door seems locked. Perhaps you need a key.");
@@ -89,7 +89,7 @@ switch_coord(loc_coord) {
 [oploc1,shadelair_steeldoor]
 def_boolean $entering = ~check_axis(coord, loc_coord, loc_angle);
 if($entering = true) {
-    if(inv_totalcat(inv, category_113) = 0 & inv_totalcat(inv, category_114) = 0 & inv_totalcat(inv, category_115) = 0) {
+    if(inv_totalcat(inv, shadekey_steel) = 0 & inv_totalcat(inv, shadekey_black) = 0 & inv_totalcat(inv, shadekey_silver) = 0) {
         mes("You need a key to open this door.");
         return;
     }
@@ -99,7 +99,7 @@ if($entering = true) {
 [oploc1,shadelair_blackdoor]
 def_boolean $entering = ~check_axis(coord, loc_coord, loc_angle);
 if($entering = true) {
-    if(inv_totalcat(inv, category_114) = 0 & inv_totalcat(inv, category_115) = 0) {
+    if(inv_totalcat(inv, shadekey_black) = 0 & inv_totalcat(inv, shadekey_silver) = 0) {
         mes("You need a key to open this door.");
         return;
     }
@@ -109,7 +109,7 @@ if($entering = true) {
 [oploc1,shadelair_silverdoor]
 def_boolean $entering = ~check_axis(coord, loc_coord, loc_angle);
 if($entering = true) {
-    if(inv_totalcat(inv, category_115) = 0) {
+    if(inv_totalcat(inv, shadekey_silver) = 0) {
         mes("You need a key to open this door.");
         return;
     }
@@ -133,10 +133,10 @@ p_teleport(0_54_51_29_58);
 
 [proc,get_shadekeys_total]()(int)
 def_int $total = 0;
-$total = add($total, inv_totalcat(inv, category_112)); //bronze
-$total = add($total, inv_totalcat(inv, category_113)); //steel
-$total = add($total, inv_totalcat(inv, category_114)); //black
-$total = add($total, inv_totalcat(inv, category_115)); //silver
+$total = add($total, inv_totalcat(inv, shadekey_bronze)); //bronze
+$total = add($total, inv_totalcat(inv, shadekey_steel)); //steel
+$total = add($total, inv_totalcat(inv, shadekey_black)); //black
+$total = add($total, inv_totalcat(inv, shadekey_silver)); //silver
 return ($total);
 
 [oploc1,shadechest_bronze_bloodred]
@@ -151,7 +151,7 @@ inv_del(inv, shadekey_bronze_bloodred, 1);
 
 [oplocu,shadechest_bronze_bloodred]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_bronze_bloodred) {
         mes("You need a bronze key with a red trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -174,7 +174,7 @@ inv_del(inv, shadekey_bronze_brown, 1);
 
 [oplocu,shadechest_bronze_brown]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_bronze_brown) {
         mes("You need a bronze key with a brown trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -197,7 +197,7 @@ inv_del(inv, shadekey_bronze_crimson, 1);
 
 [oplocu,shadechest_bronze_crimson]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_bronze_crimson) {
         mes("You need a bronze key with a crimson trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -220,7 +220,7 @@ inv_del(inv, shadekey_bronze_black, 1);
 
 [oplocu,shadechest_bronze_black]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_bronze_black) {
         mes("You need a bronze key with a black trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -243,7 +243,7 @@ inv_del(inv, shadekey_bronze_purple, 1);
 
 [oplocu,shadechest_bronze_purple]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_bronze_purple) {
         mes("You need a bronze key with a purple trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -266,7 +266,7 @@ inv_del(inv, shadekey_steel_bloodred, 1);
 
 [oplocu,shadechest_steel_bloodred]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_steel_bloodred) {
         mes("You need a steel key with a red trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -289,7 +289,7 @@ inv_del(inv, shadekey_steel_brown, 1);
 
 [oplocu,shadechest_steel_brown]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_steel_brown) {
         mes("You need a steel key with a brown trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -312,7 +312,7 @@ inv_del(inv, shadekey_steel_crimson, 1);
 
 [oplocu,shadechest_steel_crimson]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_steel_crimson) {
         mes("You need a steel key with a crimson trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -335,7 +335,7 @@ inv_del(inv, shadekey_steel_black, 1);
 
 [oplocu,shadechest_steel_black]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_steel_black) {
         mes("You need a steel key with a black trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -358,7 +358,7 @@ inv_del(inv, shadekey_steel_purple, 1);
 
 [oplocu,shadechest_steel_purple]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_steel_purple) {
         mes("You need a steel key with a purple trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -381,7 +381,7 @@ inv_del(inv, shadekey_black_bloodred, 1);
 
 [oplocu,shadechest_black_bloodred]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_black_bloodred) {
         mes("You need a black key with a red trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -404,7 +404,7 @@ inv_del(inv, shadekey_black_brown, 1);
 
 [oplocu,shadechest_black_brown]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_black_brown) {
         mes("You need a black key with a brown trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -427,7 +427,7 @@ inv_del(inv, shadekey_black_crimson, 1);
 
 [oplocu,shadechest_black_crimson]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_black_crimson) {
         mes("You need a black key with a crimson trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -450,7 +450,7 @@ inv_del(inv, shadekey_black_black, 1);
 
 [oplocu,shadechest_black_black]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_black_black) {
         mes("You need a black key with a black trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -473,7 +473,7 @@ inv_del(inv, shadekey_black_purple, 1);
 
 [oplocu,shadechest_black_purple]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_black_purple) {
         mes("You need a black key with a purple trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -496,7 +496,7 @@ inv_del(inv, shadekey_silver_bloodred, 1);
 
 [oplocu,shadechest_silver_bloodred]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_silver_bloodred) {
         mes("You need a silver key with a red trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -519,7 +519,7 @@ inv_del(inv, shadekey_silver_brown, 1);
 
 [oplocu,shadechest_silver_brown]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_silver_brown) {
         mes("You need a silver key with a brown trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -542,7 +542,7 @@ inv_del(inv, shadekey_silver_crimson, 1);
 
 [oplocu,shadechest_silver_crimson]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_silver_crimson) {
         mes("You need a silver key with a crimson trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -565,7 +565,7 @@ inv_del(inv, shadekey_silver_black, 1);
 
 [oplocu,shadechest_silver_black]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_silver_black) {
         mes("You need a silver key with a black trim to open this chest.");
         sound_synth(locked, 1, 0);
@@ -588,7 +588,7 @@ inv_del(inv, shadekey_silver_purple, 1);
 
 [oplocu,shadechest_silver_purple]
 def_obj $item = last_useitem;
-if (oc_category($item) = category_112 | oc_category($item) = category_113 | oc_category($item) = category_114 | oc_category($item) = category_115) {
+if (oc_category($item) = shadekey_bronze | oc_category($item) = shadekey_steel | oc_category($item) = shadekey_black | oc_category($item) = shadekey_silver) {
     if ($item ! shadekey_silver_purple) {
         mes("You need a silver key with a purple trim to open this chest.");
         sound_synth(locked, 1, 0);

@@ -10,6 +10,61 @@ model=model_2480_obj
 weight=4g
 param=crafting_jewelry_struct,unstrung_symbol
 
+[stringstar]
+name=Unblessed symbol
+desc=A symbol of Saradomin.
+cost=200
+model=model_2462_obj
+recol1s=29441
+recol1d=24311
+recol2s=13537
+recol2d=32767
+recol3s=8321
+recol3d=32767
+2dxof=-3
+2dyof=-235
+2dzoom=990
+2dyan=96
+2dxan=260
+iop2=Wear
+wearpos=front
+manwear=model_280_obj_wear,0
+manwear2=model_284_obj_wear
+womanwear=model_444_obj_wear,0
+womanwear2=model_448_obj_wear
+weight=7g
+
+[blessedstar]
+name=Holy symbol
+desc=A blessed holy symbol of Saradomin.
+cost=300
+model=model_2462_obj
+recol1s=29441
+recol1d=24311
+recol2s=13537
+recol2d=32767
+recol3s=8321
+recol3d=32767
+2dxof=-3
+2dyof=-235
+2dzoom=990
+2dyan=96
+2dxan=260
+iop2=Wear
+wearpos=front
+manwear=model_280_obj_wear,0
+manwear2=model_284_obj_wear
+womanwear=model_444_obj_wear,0
+womanwear2=model_448_obj_wear
+weight=7g
+param=stabdefence,2
+param=slashdefence,2
+param=crushdefence,2
+param=magicdefence,2
+param=rangedefence,2
+param=prayerbonus,8
+param=saradominitem,1
+
 [nostringsnake]
 name=Unstrung emblem
 desc=It needs a string so I can wear it.
@@ -25,6 +80,71 @@ recol1d=24311
 weight=4g
 members=yes
 param=crafting_jewelry_struct,unstrung_emblem
+tradeable=no
+// Try to find out if the item was tradeable on the rs2 side or not.
+
+[stringsnake]
+name=Unpowered symbol
+desc=An unblessed symbol of Zamorak.
+cost=200
+model=model_2670_obj
+recol1s=25249
+recol1d=24311
+recol2s=13537
+recol2d=32767
+recol3s=8321
+recol3d=32767
+recol4s=31649
+recol4d=24311
+2dyof=-5
+2dzoom=630
+2dyan=120
+2dxan=412
+wearpos=front
+members=yes
+manwear=model_280_obj_wear,0
+manwear2=model_286_obj_wear
+womanwear=model_444_obj_wear,0
+womanwear2=model_450_obj_wear
+iop2=Wear
+weight=7g
+tradeable=no
+// Try to find out if the item was tradeable on the rs2 side or not.
+
+[blessedsnake]
+name=Unholy symbol
+desc=An unholy symbol of Zamorak.
+cost=200
+members=yes
+model=model_2670_obj
+recol1s=25249
+recol1d=24311
+recol2s=13537
+recol2d=32767
+recol3s=8321
+recol3d=32767
+recol4s=31649
+recol4d=24311
+2dyof=-5
+2dzoom=630
+2dyan=120
+2dxan=412
+wearpos=front
+manwear=model_280_obj_wear,0
+manwear2=model_286_obj_wear
+womanwear=model_444_obj_wear,0
+womanwear2=model_450_obj_wear
+iop2=Wear
+weight=7g
+param=stabattack,2
+param=slashattack,2
+param=crushattack,2
+param=magicattack,2
+param=rangeattack,2
+param=prayerbonus,8
+param=zamorakitem,1
+tradeable=no
+// Try to find out if the item was tradeable on the rs2 side or not.
 
 [silver_sickle]
 name=Silver sickle
@@ -40,7 +160,7 @@ iop2=Wield
 manwear=obj_2961_manwear,0
 womanwear=obj_2961_manwear,6
 members=yes
-category=weapon_slash
+category=weapon_hacksword
 wearpos=righthand
 weight=56oz
 param=slashdefence,1

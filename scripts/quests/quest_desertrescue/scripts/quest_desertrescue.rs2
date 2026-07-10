@@ -634,7 +634,7 @@ if(last_useitem = bronze_bar | last_useitem = thcaptplans) {
         case 2 :
             ~mesbox("You decide not to follow the technical plans.");
     }
-} else if (oc_category(last_useitem) = category_151) {
+} else if (oc_category(last_useitem) = metal_bar) {
     ~mesbox("You're not sure what experimental techniques to use with this metal.");
 } else {
     ~displaymessage(^dm_default);

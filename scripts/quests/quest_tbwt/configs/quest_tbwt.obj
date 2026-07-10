@@ -1,0 +1,328 @@
+[tbwt_raw_karambwan]
+name=Raw karambwan
+desc=A raw green octopus.
+cost=200
+members=yes
+model=obj_3142
+2dyof=7
+2dzoom=1800
+2dyan=56
+2dxan=388
+weight=700g
+category=raw_fish
+param=grindable_ingredient_refined,tbwt_raw_karambwan_paste
+param=grindable_ingredient_message,You grind the raw Karambwan to form a sticky paste.
+
+[tbwt_cooked_karambwan]
+name=Cooked karambwan
+recol1s=6436
+recol1d=28500
+desc=Cooked octopus. It looks very nutritious.
+cost=250
+members=yes
+model=obj_3142
+2dyof=7
+2dzoom=1800
+2dyan=56
+2dxan=388
+iop1=Eat
+weight=650g
+category=58
+param=grindable_ingredient_refined,tbwt_cooked_karambwan_paste
+param=grindable_ingredient_message,You grind the cooked Karambwan to form a sticky paste.
+
+[tbwt_poorly_cooked_karambwan]
+name=Cooked karambwan
+recol1s=6436
+recol1d=18260
+desc=Cooked octopus. It looks a little suspect.
+cost=250
+members=yes
+model=obj_3142
+2dyof=7
+2dzoom=1800
+2dyan=56
+2dxan=388
+iop1=Eat
+weight=650g
+category=58
+tradeable=no
+param=grindable_ingredient_refined,tbwt_poisonous_karambwan_paste
+param=grindable_ingredient_message,You grind the cooked Karambwan to form a sticky paste.
+
+[tbwt_burnt_karambwan]
+name=Burnt karambwan
+recol1s=6436
+recol1d=10570
+desc=Burnt octopus.
+cost=1
+members=yes
+model=obj_3142
+2dyof=7
+2dzoom=1800
+2dyan=56
+2dxan=388
+weight=600g
+category=burnt_fish
+
+[tbwt_raw_karambwanji]
+name=Raw karambwanji
+desc=Small brightly coloured tropical fish.
+cost=10
+members=yes
+model=obj_3150
+2dxof=6
+2dyof=6
+2dzoom=1000
+2dxan=464
+weight=140g
+category=raw_fish
+tradeable=no
+param=grindable_ingredient_refined,tbwt_raw_karambwanji_paste
+param=grindable_ingredient_message,You grind the raw Karambwanji to form a sticky paste.
+
+[tbwt_cooked_karambwanji]
+name=Karambwanji
+recol1s=10857
+recol1d=20082
+recol2s=1289
+recol2d=8488
+recol3s=25193
+recol3d=23419
+desc=Small brightly coloured tropical fish. Looks tasty.
+cost=10
+members=yes
+model=obj_3150
+2dxof=6
+2dyof=6
+2dzoom=1000
+2dxan=464
+iop1=Eat
+weight=120g
+category=fish
+param=grindable_ingredient_refined,tbwt_cooked_karambwanji_paste
+param=grindable_ingredient_message,You grind the cooked Karambwanji to form a sticky paste.
+
+[tbwt_raw_karambwan_paste]
+name=Karambwan paste
+recol1s=10566
+recol1d=6436
+desc=Freshly made octopus paste.
+cost=15
+members=yes
+model=obj_3152
+2dxof=4
+2dyof=20
+2dzoom=2250
+2dyan=1980
+2dxan=320
+weight=10g
+tradeable=no
+
+[tbwt_poisonous_karambwan_paste]
+name=Karambwan paste
+recol1s=10566
+recol1d=18260
+desc=Freshly made octopus paste. This smells quite nauseating.
+cost=15
+members=yes
+model=obj_3152
+2dxof=4
+2dyof=20
+2dzoom=2250
+2dyan=1980
+2dxan=320
+weight=10g
+tradeable=no
+
+[tbwt_cooked_karambwan_paste]
+name=Karambwan paste
+recol1s=10566
+recol1d=28500
+desc=Freshly made octopus paste.
+cost=15
+members=yes
+model=obj_3152
+2dxof=4
+2dyof=20
+2dzoom=2250
+2dyan=1980
+2dxan=320
+weight=10g
+tradeable=no
+
+[tbwt_raw_karambwanji_paste]
+name=Karambwanji paste
+recol1s=10566
+recol1d=10857
+desc=This paste smells of raw fish.
+cost=15
+members=yes
+model=obj_3152
+2dxof=4
+2dyof=20
+2dzoom=2250
+2dyan=1980
+2dxan=320
+weight=10g
+tradeable=no
+
+[tbwt_cooked_karambwanji_paste]
+name=Karambwanji paste
+recol1s=10566
+recol1d=20082
+desc=This paste smells of cooked fish.
+cost=15
+members=yes
+model=obj_3152
+2dxof=4
+2dyof=20
+2dzoom=2250
+2dyan=1980
+2dxan=320
+weight=10g
+tradeable=no
+
+[tbwt_karambwan_vessel]
+name=Karambwan vessel
+desc=A wide bodied and thin necked vessel, encrusted with sea salt.
+cost=5
+members=yes
+model=obj_3157
+2dzoom=940
+2dxan=72
+manwear=obj_3157_manwear,0
+womanwear=obj_3157_manwear,6
+wearpos=righthand
+weight=3kg
+
+[tbwt_crafting_manual]
+name=Crafting manual
+desc=A set of instructions explaining how to construct a Karambwan vessel.
+cost=5
+members=yes
+model=model_2600_obj
+2dxof=1
+2dyof=7
+2dzoom=1040
+2dyan=120
+2dxan=380
+weight=50g
+tradeable=no
+
+[tbwt_sliced_banana]
+name=Sliced banana
+desc=You swear you had more than three slices before.
+cost=2
+model=model_2772_obj
+2dzoom=920
+2dxan=232
+iop1=Eat
+weight=1oz
+
+[tbwt_sliced_banana_in_karamja_rum]
+name=Karamjan rum
+desc=The Karamjan rum has slices of banana floating in it.
+cost=30
+model=model_2660_obj
+2dyof=-1
+2dzoom=970
+2dyan=1888
+2dxan=104
+manwear=obj_3164_manwear,0
+womanwear=obj_3164_manwear,6
+weight=2lb
+tradeable=no
+
+[tbwt_banana_in_karamja_rum]
+name=Karamjan rum
+desc=A banana has been stuffed into the neck of this bottle.
+cost=30
+model=obj_3165
+2dzoom=1560
+weight=2lb
+tradeable=no
+
+[tbwt_monkey_corpse]
+name=Monkey corpse
+desc=It's the body of a dead monkey.
+members=yes
+model=obj_3166
+2dxof=9
+2dzoom=1380
+2dyan=188
+2dxan=112
+weight=1kg
+tradeable=no
+
+[tbwt_monkey_skin]
+name=Monkey skin
+recol1s=32767
+recol1d=9409
+desc=It's the skin of a (hopefully) dead monkey.
+cost=10
+members=yes
+model=model_2338_obj
+2dzoom=1510
+2dyan=2028
+2dxan=468
+weight=300g
+tradeable=no
+
+[tbwt_seaweed_in_monkey_skin_sandwich]
+name=Seaweed sandwich
+desc=A 'Seaweed in Monkey Skin' sandwich. Perfect for statue repair.
+members=yes
+model=obj_3168
+2dyof=10
+2dzoom=790
+2dyan=1816
+2dxan=344
+iop1=Eat
+weight=500g
+tradeable=no
+category=miscfood
+
+[tbwt_seaweed_in_monkey_corpse]
+name=Stuffed monkey
+desc=A body of a dead monkey, tastefully stuffed with seaweed.
+members=yes
+model=obj_3169
+2dxof=9
+2dzoom=1380
+2dyan=188
+2dxan=112
+weight=1200g
+tradeable=no
+
+[banana_left]
+name=Banana left
+desc=Mmm this looks tasty.
+cost=2
+iop1=Eat
+model=inv_bannana
+2dxof=9
+2dyof=10
+2dzoom=930
+2dyan=1944
+2dxan=280
+manwear=obj_3177_manwear,0
+womanwear=obj_3177_manwear,6
+category=category_15
+wearpos=lefthand
+weight=1oz
+tradeable=no
+// param=param_148,-1
+
+[tbwt_cleaning_cloth]
+name=Cleaning cloth
+recol1s=27412
+recol1d=26266
+desc=A spirit soaked piece of silk which can be used to remove poison.
+cost=60
+model=model_2725_obj
+2dyof=-15
+2dzoom=1360
+2dxan=368
+members=yes
+weight=1kg

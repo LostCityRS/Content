@@ -1,8 +1,8 @@
 // trigger for logs on ground
-[opobj4,_category_22]
+[opobj4,_logs]
 @light_logs_ground;
 
-[opobju,_category_22]
+[opobju,_logs]
 if (last_useitem = tinderbox) {
     @light_logs_ground;
 } else {
@@ -22,7 +22,7 @@ if (last_useitem = newbielogs) {
 } else if(last_useitem = viking_firecracker) {
     @viking_light_firecracker;
 } else switch_category(oc_category(last_useitem)) {
-    case category_22 : @light_logs_inv(last_useslot);
+    case logs : @light_logs_inv(last_useslot);
     case light_source_unlit : @ignite_light_source(last_useitem);
     case default : ~displaymessage(^dm_default);
 }

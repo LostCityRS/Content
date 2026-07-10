@@ -22,7 +22,7 @@ switch_obj (last_useitem)
     case tbwt_burnt_jogre_bones : mes("These Jogre bones are already burnt!");
     case limestone : @regicide_heat_quicklime;
     case default :
-        if (oc_category(last_useitem) = category_91) {
+        if (oc_category(last_useitem) = ore) {
             @smelt_ore_single(last_useitem);
         }
         ~displaymessage(^dm_default);

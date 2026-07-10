@@ -99,18 +99,7 @@ desc=A plank of wood!
 2dyan=148
 2dxan=356
 weight=800g
-category=category_475
-
-[christmas_cracker]
-name=Christmas cracker
-desc=I need to pull this
-model=model_2637_obj
-2dxof=-3
-2dyof=40
-2dzoom=630
-2dyan=1728
-2dxan=272
-weight=200g
+category=plank
 
 [skull]
 name=Skull
@@ -203,7 +192,7 @@ iop2=Wield
 wearpos=righthand
 manwear=model_566_obj_wear,0
 womanwear=model_566_obj_wear,6
-category=weapon_slash
+category=weapon_hacksword
 weight=3lb
 param=slashattack,6
 param=crushattack,-2
@@ -228,27 +217,15 @@ recol3d=12448
 2dyan=36
 2dxan=116
 weight=1g
+dummyitem=inv_only
 
-// jagex name
 [highwayman_mask]
 model=model_2500_obj
 2dxof=3
 2dzoom=290
 2dyan=224
 2dxan=488
-
-[discofreturning]
-name=Disk of returning
-desc=Used to get out of Thordur's blackhole
-cost=12
-model=model_2724_obj
-2dyof=2
-2dzoom=880
-2dyan=232
-2dzan=260
-2dxan=460
-weight=1lb
-param=party_clean_exempt,^true
+dummyitem=inv_only
 
 [edgevilledungeonkey]
 name=Brass key
@@ -597,60 +574,6 @@ param=magicdefence,7
 param=rangedefence,7
 tradeable=no
 
-[ibanstaff]
-members=yes
-model=model_2569_obj
-2dyof=-15
-2dzoom=1640
-2dyan=1464
-2dxan=196
-name=Staff of iban
-desc=A Magical staff.
-desc=A highly magical staff.
-cost=42500
-iop2=Wield
-wearpos=righthand
-category=weapon_staff
-manwear=model_514_obj_wear,0
-womanwear=model_514_obj_wear,6
-weight=5lb
-param=stabattack,10
-param=slashattack,-1
-param=crushattack,40
-param=magicattack,10
-param=stabdefence,2
-param=slashdefence,3
-param=crushdefence,1
-param=magicdefence,10
-param=strengthbonus,50
-param=attackrate,5
-param=ready_baseanim,human_staffready
-param=walk_f_baseanim,human_halberdwalk_f
-param=walk_b_baseanim,human_halberdwalk_b
-param=walk_l_baseanim,human_halberdwalk_l
-param=walk_r_baseanim,human_halberdwalk_r
-param=running_baseanim,human_halberdrunning
-param=turnonspot_baseanim,human_halberdturnonspot
-param=crushattack_anim,human_blunt_pound
-param=defend_anim,human_blunt_block
-param=crush_sound,staff_hit
-tradeable=no
-// param=crushattack_anim,human_axe_chop
-// osrs crush attack sound newstaff / crush attack sound is a guess.
-
-[brokenibanstaff]
-name=Broken iban staff
-desc=The staff is unusable in this state.
-model=model_2835_obj
-2dxof=8
-2dzoom=1410
-2dyan=1896
-2dxan=216
-members=yes
-cost=20
-weight=4lb
-tradeable=no
-
 [farmers_fork]
 name=Farmers fork
 model=model_2411_obj
@@ -660,6 +583,11 @@ model=model_2411_obj
 2dyan=904
 2dxan=812
 weight=5lb
+param=stabdefence,3
+param=slashdefence,4
+param=crushdefence,4
+param=strengthbonus,3
+dummyitem=inv_only
 
 [halberd]
 name=Halberd
@@ -670,6 +598,7 @@ model=model_2791_obj
 2dyan=400
 2dxan=224
 weight=10lb
+dummyitem=inv_only
 
 [warhammer]
 name=Warhammer
@@ -680,6 +609,7 @@ model=model_2731_obj
 2dyan=456
 2dxan=344
 weight=4lb
+dummyitem=inv_only
 
 [javelin]
 name=Javelin
@@ -690,38 +620,7 @@ model=model_2763_obj
 2dyan=1964
 2dxan=268
 weight=3lb
-
-[scythe]
-name=Scythe
-category=weapon_scythe
-model=model_2511_obj
-2dxof=1
-2dyof=17
-2dzoom=1930
-2dyan=20
-2dxan=336
-iop2=Wield
-wearpos=righthand
-wearpos2=lefthand
-manwear=model_507_obj_wear,0
-womanwear=model_507_obj_wear,0
-weight=7lb
-param=stabattack,3
-param=slashattack,8
-param=crushattack,3
-param=slashdefence,3
-param=crushdefence,1
-param=strengthbonus,10
-param=ready_baseanim,human_ready_scythe
-param=attackrate,7
-param=slashattack_anim,human_scythe_sweep
-param=crushattack_anim,human_scythe_lunge
-param=stabattack_anim,human_scythe_slash
-param=defend_anim,human_scythe_block
-param=stab_sound,scythe_stab
-param=slash_sound,scythe_slash
-param=crush_sound,scythe_double
-tradeable=no
+dummyitem=inv_only
 
 [archery_ticket]
 name=Archery ticket
@@ -750,7 +649,7 @@ recol1d=15871
 2dxan=84
 weight=20g
 members=yes
-tradeable=no
+dummyitem=inv_only
 
 [seasluginv]
 cost=4
@@ -812,31 +711,6 @@ cost=0
 weight=2oz
 tradeable=no
 
-[amulet_of_accuracy]
-name=Amulet of accuracy
-desc=It increases my aim.
-cost=100
-model=model_2796_obj
-recol1s=13537
-recol1d=15855
-recol2s=31649
-recol2d=31175
-2dxof=1
-2dyof=16
-2dzoom=620
-2dyan=68
-2dxan=424
-iop2=Wear
-wearpos=front
-manwear=model_280_obj_wear,0
-womanwear=model_444_obj_wear,0
-weight=10g
-param=stabattack,4
-param=slashattack,4
-param=crushattack,4
-param=magicattack,4
-param=rangeattack,4
-
 [lockpick]
 name=Lockpick
 model=model_2727_obj
@@ -848,7 +722,7 @@ model=model_2727_obj
 members=yes
 cost=20
 weight=10g
-category=category_715
+category=lockpick
 
 [garlic]
 name=Garlic
@@ -859,79 +733,6 @@ model=model_loc_3366_8
 2dyan=116
 2dxan=116
 weight=1oz
-
-[ice_gloves]
-name=Ice gloves
-desc=These will keep my hands cold!
-cost=6
-model=model_2649_obj
-recol1s=9473
-recol1d=14175
-recol2s=10468
-recol2d=14175
-2dxof=8
-2dyof=-8
-2dzoom=930
-2dyan=828
-2dxan=420
-iop2=Wear
-wearpos=hands
-manwear=model_179_obj_wear,0
-womanwear=model_356_obj_wear,0
-weight=8oz
-members=yes
-param=slashdefence,3
-param=crushdefence,4
-param=rangedefence,2
-tradeable=no
-
-[oily_fishing_rod]
-name=Oily fishing rod
-desc=Useful for catching lava eels.
-cost=15
-model=model_2828_obj
-2dxof=-3
-2dyof=8
-2dzoom=1080
-2dyan=136
-2dxan=328
-weight=3lb
-members=yes
-tradeable=no
-
-// rename: cert_grip_keys
-[obj_1589]
-tradeable=no
-
-[dusty_key]
-name=Dusty key
-desc=I wonder what this unlocks?
-members=yes
-model=model_2372_obj
-recol1s=31393
-recol1d=22945
-2dxof=-3
-2dyof=5
-2dzoom=700
-2dyan=20
-2dxan=328
-weight=10g
-tradeable=no
-
-[jail_key]
-name=Jail key
-desc=Key to a cell.
-members=yes
-model=model_2372_obj
-recol1s=31393
-recol1d=22945
-2dxof=-3
-2dyof=5
-2dzoom=700
-2dyan=20
-2dxan=328
-weight=10g
-tradeable=no
 
 [desert_shirt]
 name=Desert shirt
@@ -986,7 +787,7 @@ recol2d=32767
 2dxan=152
 wearpos=feet
 iop2=Wear
-category=category_118
+category=armour_misc
 weight=8oz
 members=yes
 manwear=model_185_obj_wear,0
@@ -1025,26 +826,26 @@ tradeable=no
 
 // rename: cert_blondwig
 [obj_2420]
-tradeable=no
+dummyitem=inv_only
 
 // rename: cert_plainwig
 [obj_2422]
-tradeable=no
+dummyitem=inv_only
 
 // rename: cert_skinpaste
 [obj_2425]
-tradeable=no
+dummyitem=inv_only
 
 // rename: cert_ground_charcoal
 [obj_2480]
-tradeable=no
+dummyitem=inv_only
 
 [newbieshrimp]
-tradeable=no
+dummyitem=inv_only
 
 // rename: cert_newbieshrimp
 [obj_2513]
-tradeable=no
+dummyitem=inv_only
 
 [rotten_tomato]
 model=model_2632_obj
@@ -1061,75 +862,3 @@ desc=Pretty smelly.
 cost=1
 weight=80g
 members=yes
-
-[horsey_brown]
-cost=100
-name=Toy horsey
-desc=A brown toy horse.
-model=model_3339_obj
-manwear=model_3333_obj_wear,0
-womanwear=model_3333_obj_wear,6
-2dxof=1
-2dyof=-2
-2dzoom=920
-2dyan=1732
-2dxan=40
-weight=50g
-iop1=Play-with
-
-[horsey_white]
-cost=100
-name=Toy horsey
-desc=A white toy horse.
-model=model_3339_obj
-recol1s=12547
-recol1d=22200
-recol2s=8385
-recol2d=17972
-manwear=model_3333_obj_wear,0
-womanwear=model_3333_obj_wear,6
-2dxof=1
-2dyof=-2
-2dzoom=920
-2dyan=1732
-2dxan=40
-weight=50g
-iop1=Play-with
-
-[horsey_black]
-cost=100
-name=Toy horsey
-desc=A black toy horse.
-model=model_3339_obj
-recol1s=12547
-recol1d=4195
-recol2s=8385
-recol2d=4195
-manwear=model_3333_obj_wear,0
-womanwear=model_3333_obj_wear,6
-2dxof=1
-2dyof=-2
-2dzoom=920
-2dyan=1732
-2dxan=40
-weight=50g
-iop1=Play-with
-
-[horsey_grey]
-cost=100
-name=Toy horsey
-desc=A grey toy horse.
-model=model_3339_obj
-recol1s=12547
-recol1d=11593
-recol2s=8385
-recol2d=8422
-manwear=model_3333_obj_wear,0
-womanwear=model_3333_obj_wear,6
-2dxof=1
-2dyof=-2
-2dzoom=920
-2dyan=1732
-2dxan=40
-weight=50g
-iop1=Play-with

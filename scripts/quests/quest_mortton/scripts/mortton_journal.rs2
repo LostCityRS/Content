@@ -101,7 +101,7 @@ if (%morttonquest = ^mortton_ulsquire_temple) {
 
 if (%morttonquest = ^mortton_rebuild_temple) {
     $text = append($text, "@dbl@I've started @dre@rebuilding@dbl@ the @dre@temple@dbl@ using @dre@limestone bricks@dbl@, @dre@wooden planks@dbl@ and @dre@nails@dbl@. I wonder what @dre@power@dbl@ the @dre@temple@dbl@ has, if any?|");
-    if (inv_totalcat(inv, category_110) > 0) {
+    if (inv_totalcat(inv, olive_oil) > 0) {
         $text = append($text, "@dbl@I have some @dre@olive oil@dbl@ which @dre@Ulsquire@dbl@ said may be useful when the @dre@temple@dbl@ is constructed.");
     }
 }

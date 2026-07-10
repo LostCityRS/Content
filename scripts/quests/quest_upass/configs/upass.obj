@@ -6,6 +6,59 @@ womanwear=model_549_obj_wear,6
 weight=2lb
 dummyitem=graphic_only
 
+[ibanstaff]
+members=yes
+model=model_2569_obj
+2dyof=-15
+2dzoom=1640
+2dyan=1464
+2dxan=196
+name=Staff of iban
+desc=A Magical staff.
+desc=A highly magical staff.
+cost=42500
+iop2=Wield
+wearpos=righthand
+category=weapon_staff
+manwear=model_514_obj_wear,0
+womanwear=model_514_obj_wear,6
+weight=5lb
+param=stabattack,10
+param=slashattack,-1
+param=crushattack,40
+param=magicattack,10
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,10
+param=strengthbonus,50
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=walk_f_baseanim,human_halberdwalk_f
+param=walk_b_baseanim,human_halberdwalk_b
+param=walk_l_baseanim,human_halberdwalk_l
+param=walk_r_baseanim,human_halberdwalk_r
+param=running_baseanim,human_halberdrunning
+param=turnonspot_baseanim,human_halberdturnonspot
+param=crushattack_anim,human_blunt_pound
+param=defend_anim,human_blunt_block
+param=crush_sound,staff_hit
+tradeable=no
+// osrs crush attack sound newstaff / crush attack sound is a guess.
+
+[brokenibanstaff]
+name=Broken iban staff
+desc=The staff is unusable in this state.
+model=model_2835_obj
+2dxof=8
+2dzoom=1410
+2dyan=1896
+2dxan=216
+members=yes
+cost=20
+weight=4lb
+tradeable=no
+
 [swamprocks1]
 name=Rock
 desc=A chunk of rock.
@@ -236,7 +289,7 @@ iop2=Wear
 wearpos=hands
 manwear=model_179_obj_wear,0
 womanwear=model_356_obj_wear,0
-category=category_16
+category=armour_hands
 param=stabattack,2
 param=slashattack,2
 param=crushattack,2

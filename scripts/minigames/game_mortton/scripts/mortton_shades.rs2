@@ -255,7 +255,7 @@ if(%current_temple_aggro > 0 & %npc_int = 0) {
 npc_setmode(null);
 npc_settimer(~random_range(1,7));
 
-[ai_aploc3,_category_226]
+[ai_aploc3,_templewall]
 if (%npc_action_delay > map_clock) {
     return;
 }

@@ -157,7 +157,7 @@ mes("You stuff the banana into the neck of the bottle. You begin to wonder why."
 
 [opheldu,tbwt_monkey_corpse]
 def_obj $item = last_useitem;
-if ((oc_category($item) = weapon_polearm) | (oc_category($item) = weapon_spear) | (oc_category($item) = weapon_slash) | (oc_category($item) = weapon_stab) | ($item = knife)) {
+if ((oc_category($item) = weapon_polearm) | (oc_category($item) = weapon_spear) | (oc_category($item) = weapon_hacksword) | (oc_category($item) = weapon_stabsword) | ($item = knife)) {
     mes("You don't know how to skin a monkey ... yet.");
     return;
 } else if ($item = seaweed) {
@@ -180,7 +180,7 @@ switch_obj(last_useitem) {
 
 [opheldu,banana]
 def_obj $item = last_useitem;
-if ((oc_category($item) = weapon_polearm) | (oc_category($item) = weapon_spear) | (oc_category($item) = weapon_slash) | (oc_category($item) = weapon_stab) | ($item = knife)) {
+if ((oc_category($item) = weapon_polearm) | (oc_category($item) = weapon_spear) | (oc_category($item) = weapon_hacksword) | (oc_category($item) = weapon_stabsword) | ($item = knife)) {
     @slice_banana;
 } else if($item = karamja_rum) {
     @make_banana_rum;

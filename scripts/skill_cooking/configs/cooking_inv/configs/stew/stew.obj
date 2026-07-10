@@ -1,4 +1,3 @@
-//guess
 [stew1]
 name=Incomplete stew
 desc=I need to add some meat too.
@@ -11,7 +10,6 @@ recol1d=14800
 2dxan=204
 weight=1kg
 
-//guess
 [stew2]
 name=Incomplete stew
 desc=I need to add some potato too.
@@ -24,7 +22,34 @@ recol1d=14800
 2dxan=204
 weight=1200g
 
-//guess
+[uncooked_stew]
+name=Uncooked stew
+desc=I need to cook this.
+cost=10
+model=model_2367_obj
+recol1s=21119
+recol1d=19974
+2dzoom=910
+2dyan=1856
+2dxan=204
+weight=1500g
+category=cooking_generic
+
+[stew]
+iop1=Eat
+name=Stew
+desc=It's a meat and potato stew.
+cost=20
+model=model_2367_obj
+recol1s=21119
+recol1d=11488
+2dzoom=910
+2dyan=1856
+2dxan=204
+weight=1500g
+category=miscfood
+param=next_obj_stage,bowl_empty
+
 [burnt_stew]
 name=Burnt stew
 desc=Eew, it's horribly burnt.
@@ -38,7 +63,48 @@ recol1d=4228
 iop1=Empty Bowl
 weight=1300g
 
-//guess
+[spicespot]
+name=Spice
+desc=This could liven up an otherwise bland stew.
+cost=230
+model=model_2431_obj
+2dyof=-1
+2dzoom=710
+2dyan=160
+2dxan=136
+weight=200g
+members=yes
+
+[uncooked_curry]
+name=Uncooked curry
+desc=I need to cook this.
+cost=10
+model=model_2367_obj
+recol1s=21119
+recol1d=31201
+2dzoom=910
+2dyan=1856
+2dxan=204
+weight=1500g
+members=yes
+category=cooking_generic
+
+[curry]
+iop1=Eat
+name=Curry
+desc=It's a spicy hot curry.
+cost=20
+model=model_2367_obj
+recol1s=21119
+recol1d=22881
+2dzoom=910
+2dyan=1856
+2dxan=204
+weight=1500g
+category=miscfood
+members=yes
+param=next_obj_stage,bowl_empty
+
 [burnt_curry]
 name=Burnt curry
 desc=Eew, it's horribly burnt.
@@ -52,50 +118,3 @@ recol1d=4228
 members=yes
 iop1=Empty Bowl
 weight=1300g
-
-[potato]
-name=Potato
-desc=This could be used to make a good stew.
-cost=1
-model=model_2766_obj
-2dxof=2
-2dyof=1
-2dzoom=940
-2dyan=1860
-2dxan=156
-weight=500g
-category=category_131
-param=gnome_cooking_ingredient,^true
-
-//guess
-[stew]
-iop1=Eat
-name=Stew
-desc=It's a meat and potato stew.
-cost=20
-model=model_2367_obj
-recol1s=21119
-recol1d=11488
-2dzoom=910
-2dyan=1856
-2dxan=204
-weight=1500g
-category=category_59
-param=next_obj_stage,bowl_empty
-
-//guess
-[curry]
-iop1=Eat
-name=Curry
-desc=It's a spicy hot curry.
-cost=20
-model=model_2367_obj
-recol1s=21119
-recol1d=22881
-2dzoom=910
-2dyan=1856
-2dxan=204
-weight=1500g
-category=category_59
-members=yes
-param=next_obj_stage,bowl_empty

@@ -1,8 +1,8 @@
-[opheldu,_category_111]
-if(oc_category(last_item) = category_111) {
+[opheldu,_sacred_oil]
+if(oc_category(last_item) = sacred_oil) {
     @decant_potion(last_item, last_useitem);
 }
-if (oc_category(last_item) = category_22 & last_item ! achey_tree_logs) {
+if (oc_category(last_item) = logs & last_item ! achey_tree_logs) {
     if(%morttonquest < ^mortton_created_sacred_oil) {
         mes("This sacred oil doesn't seem fresh. You should make your own.");
         return;
@@ -46,7 +46,7 @@ if(last_useitem = hollow_bark) {
     mes("You can't make a pyre with that kind of log.");
     return;
 }
-if(oc_category(last_useitem) = category_22) {
+if(oc_category(last_useitem) = logs) {
     ~objbox(last_useitem, "These logs won't burn hot enough to cremate the dead.|You need to make pyre logs.", 200, 0, 0);
     return;
 }

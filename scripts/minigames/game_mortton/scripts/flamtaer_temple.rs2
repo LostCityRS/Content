@@ -1,4 +1,4 @@
-[oploc1,_category_226]
+[oploc1,_templewall]
 p_arrivedelay;
 if(%morttonquest < ^mortton_ulsquire_temple) {
     ~mesbox("You're not sure how you would go about fixing this.");
@@ -32,7 +32,7 @@ if (%temple_resources > 100 | (inv_total(inv,woodplank) > 0 & inv_total(inv,swam
     @mortton_temple_not_enough_resources;
 }
 
-[oploc3,_category_226]
+[oploc3,_templewall]
 if (%action_delay < map_clock) {
     %action_delay = calc(map_clock + 3);
 } else if (%action_delay = map_clock) {
@@ -278,7 +278,7 @@ inv_del(inv, woodplank, 1);
 %temple_resources = add(%temple_resources, 800);
 
 [oplocu,templefire_altar]
-if (oc_category(last_useitem) = category_110) {
+if (oc_category(last_useitem) = olive_oil) {
     if (%morttonquest < ^mortton_can_light_altar) {
         ~mesbox("You need to have repaired or reinforced the walls of the temple|before you can use the sacred flame.");
         return;
@@ -302,7 +302,7 @@ if (oc_category(last_useitem) = category_110) {
         %morttonquest = ^mortton_created_sacred_oil;
     }
     return;
-} else if (oc_category(last_useitem) = category_108) {
+} else if (oc_category(last_useitem) = mortserum) {
     if (%morttonquest < ^mortton_can_light_altar) {
         ~mesbox("You need to have repaired or reinforced the walls of the temple|before you can use the sacred flame.");
         return;

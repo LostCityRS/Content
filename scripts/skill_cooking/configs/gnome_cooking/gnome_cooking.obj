@@ -1,70 +1,3 @@
-[spicespot]
-name=Spice
-desc=This could liven up an otherwise bland stew.
-cost=230
-model=model_2431_obj
-2dyof=-1
-2dzoom=710
-2dyan=160
-2dxan=136
-weight=200g
-members=yes
-
-[dwellberries]
-name=Dwellberries
-desc=Some rather pretty blue berries.
-cost=4
-iop1=Eat
-members=yes
-model=model_2808_obj
-2dxof=6
-2dyof=-3
-2dzoom=1100
-2dyan=1856
-2dxan=180
-category=category_120
-weight=14g
-param=gnome_cooking_ingredient,^true
-param=gnome_cocktail_ingredient,^true
-param=batta_message,You add the dwell berries to the gnome batta.
-
-[equa_leaves]
-name=Equa leaves
-desc=Small sweet smelling leaves.
-cost=2
-iop1=Eat
-members=yes
-model=model_2743_obj
-2dxof=1
-2dzoom=730
-2dyan=644
-2dxan=664
-category=category_120
-weight=14g
-param=gnome_topping,^true
-param=gnome_cooking_ingredient,^true
-param=gnome_cocktail_ingredient,^true
-param=cocktail_message,You sprinkle the leaves over the drink.
-param=batta_message,You sprinkle the equa leaves over the gnome batta.
-param=crunchies_message,You mix the equa leaves into the dough.
-
-[pot_of_cream]
-name=Pot of cream
-desc=Fresh cream.
-cost=2
-iop1=Eat
-members=yes
-model=model_2636_obj
-2dxof=1
-2dyof=-1
-2dzoom=580
-2dyan=1900
-2dxan=128
-category=category_120
-weight=200g
-param=gnome_topping,^true
-param=cocktail_message,You pour the thick cream into the drink.
-
 [swamp_toad]
 iop1=Remove-legs
 name=Swamp toad
@@ -79,7 +12,6 @@ model=model_2622_obj
 2dxan=352
 weight=500g
 
-//guess
 [toads_legs]
 iop1=Eat
 name=Toad's legs
@@ -93,6 +25,7 @@ model=model_2668_obj
 2dyan=1960
 2dxan=340
 weight=150g
+category=gnomefood
 param=gnome_cooking_ingredient,^true
 param=brew_potion_struct,3dose1agility
 category=gnome_premade_and_toadlegs_kingworm
@@ -110,6 +43,7 @@ model=model_2668_obj
 2dyan=1960
 2dxan=340
 weight=150g
+// category=gnomefood
 category=gnome_premade_and_toadlegs_kingworm
 
 [spicy_toads_legs]
@@ -125,6 +59,7 @@ model=model_2668_obj
 2dyan=1960
 2dxan=340
 weight=150g
+// category=gnomefood
 category=gnome_premade_and_toadlegs_kingworm
 
 [seasoned_toads_legs]
@@ -140,6 +75,7 @@ model=model_2668_obj
 2dyan=1960
 2dxan=340
 weight=150g
+// category=gnomefood
 category=gnome_premade_and_toadlegs_kingworm
 param=gnome_cooking_ingredient,^true
 param=batta_message,You add the seasoned toad's legs to the gnome batta.
@@ -157,6 +93,7 @@ model=model_2519_obj
 2dyan=1748
 2dxan=404
 weight=100g
+// category=gnomefood
 category=gnome_premade_and_toadlegs_kingworm
 param=gnome_cooking_ingredient,^true
 param=batta_message,You add the spicy king worm to the gnome batta.
@@ -174,6 +111,7 @@ model=model_2519_obj
 2dyan=1748
 2dxan=404
 weight=120g
+// category=gnomefood
 param=gnome_cooking_ingredient,^true
 category=gnome_premade_and_toadlegs_kingworm
 

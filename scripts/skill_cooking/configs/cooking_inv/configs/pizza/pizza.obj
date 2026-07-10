@@ -1,3 +1,64 @@
+[pizza_base]
+name=Pizza base
+desc=I need to add some tomato next.
+cost=4
+model=model_2455_obj
+recol1s=14790
+recol1d=29492
+2dyof=1
+2dzoom=990
+2dyan=176
+2dxan=260
+weight=100g
+
+[incomplete_pizza]
+name=Incomplete pizza
+desc=I need to add some cheese next.
+cost=10
+model=model_2457_obj
+recol1s=14790
+recol1d=29492
+recol2s=15360
+recol2d=19489
+2dyof=1
+2dzoom=990
+2dyan=176
+2dxan=260
+weight=600g
+
+[uncooked_pizza]
+name=Uncooked pizza
+desc=This needs cooking.
+cost=25
+model=model_2564_obj
+recol1s=14790
+recol1d=29492
+recol2s=15360
+recol2d=19489
+2dyof=1
+2dzoom=990
+2dyan=176
+2dxan=260
+weight=800g
+
+[plain_pizza]
+iop1=Eat
+name=Plain pizza
+desc=A cheese and tomato pizza.
+model=model_2564_obj
+recol1s=14790
+recol1d=21035
+recol2s=15360
+recol2d=19489
+2dyof=1
+2dzoom=990
+2dyan=176
+2dxan=260
+cost=40
+weight=800g
+category=pizza
+param=next_obj_stage,half_plain_pizza
+
 [half_plain_pizza]
 iop1=Eat
 name=1/2 plain pizza
@@ -14,7 +75,7 @@ recol2d=19489
 2dyan=1848
 2dxan=272
 weight=400g
-category=category_132
+category=pizza
 
 [meat_pizza]
 iop1=Eat
@@ -33,7 +94,7 @@ recol3d=19489
 2dyan=176
 2dxan=260
 weight=900g
-category=category_132
+category=pizza
 param=next_obj_stage,half_meat_pizza
 
 [half_meat_pizza]
@@ -54,7 +115,7 @@ recol3d=19489
 2dyan=1848
 2dxan=272
 weight=450g
-category=category_132
+category=pizza
 
 [anchovie_pizza]
 iop1=Eat
@@ -73,7 +134,7 @@ recol3d=19489
 2dyan=176
 2dxan=260
 weight=900g
-category=category_132
+category=pizza
 param=next_obj_stage,half_anchovie_pizza
 
 [half_anchovie_pizza]
@@ -94,7 +155,7 @@ recol3d=19489
 2dyan=1848
 2dxan=272
 weight=450g
-category=category_132
+category=pizza
 
 [pineapple_pizza]
 iop1=Eat
@@ -113,7 +174,7 @@ recol3d=19489
 2dyan=176
 2dxan=260
 weight=900g
-category=category_132
+category=pizza
 members=yes
 param=next_obj_stage,half_pineapple_pizza
 
@@ -135,26 +196,8 @@ recol3d=19489
 2dyan=1848
 2dxan=272
 weight=450g
-category=category_132
+category=pizza
 members=yes
-
-[plain_pizza]
-iop1=Eat
-name=Plain pizza
-desc=A cheese and tomato pizza.
-model=model_2564_obj
-recol1s=14790
-recol1d=21035
-recol2s=15360
-recol2d=19489
-2dyof=1
-2dzoom=990
-2dyan=176
-2dxan=260
-cost=40
-weight=800g
-category=category_132
-param=next_obj_stage,half_plain_pizza
 
 [burnt_pizza]
 name=Burnt pizza
@@ -184,8 +227,8 @@ model=model_2632_obj
 2dyan=1900
 2dxan=208
 weight=80g
-category=category_86
-category=category_131
+category=fruit
+category=veg
 param=gnome_cooking_ingredient,^true
 param=ugthanki_kebab_struct,tomato_kebab
 
@@ -199,34 +242,6 @@ model=model_2365_obj
 2dyan=1812
 2dxan=116
 weight=200g
-category=category_59
+category=miscfood
 param=gnome_cooking_ingredient,^true
 param=batta_message,You crumble cheese over the gnome batta.
-
-[pizza_base]
-name=Pizza base
-desc=I need to add some tomato next.
-cost=4
-model=model_2455_obj
-recol1s=14790
-recol1d=29492
-2dyof=1
-2dzoom=990
-2dyan=176
-2dxan=260
-weight=100g
-
-[incomplete_pizza]
-name=Incomplete pizza
-desc=I need to add some cheese next.
-cost=10
-model=model_2457_obj
-recol1s=14790
-recol1d=29492
-recol2s=15360
-recol2d=19489
-2dyof=1
-2dzoom=990
-2dyan=176
-2dxan=260
-weight=600g

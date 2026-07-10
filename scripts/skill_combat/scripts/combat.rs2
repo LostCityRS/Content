@@ -19,15 +19,15 @@ if ($weapon = null | (map_members = ^false & oc_members($weapon) = true)) {
 // todo: allow outputtype=dbrow
 // return(enum(category, dbrow, combat_style_enum, oc_category($weapon)));
 switch_category(oc_category($weapon)) {
-    case weapon_2h_sword : return(weapon_2h_sword_table);
+    case weapon_heavysword : return(weapon_heavysword_table);
     case weapon_axe : return(weapon_axe_table);
     case weapon_blunt : return(weapon_blunt_table); // https://i.imgur.com/jFiwBP8.png
     case weapon_pickaxe : return(weapon_pickaxe_table);
     case weapon_scythe : return(weapon_scythe_table);
-    case weapon_slash : return(weapon_slash_table);
+    case weapon_hacksword : return(weapon_hacksword_table);
     case weapon_spear : return(weapon_spear_table);
     case weapon_spiked : return(weapon_spiked_table);
-    case weapon_stab : return(weapon_stab_table);
+    case weapon_stabsword : return(weapon_stabsword_table);
     case weapon_bow : return(weapon_bow_table);
     case weapon_crossbow : return(weapon_crossbow_table);
     case weapon_thrown : return(weapon_thrown_table);

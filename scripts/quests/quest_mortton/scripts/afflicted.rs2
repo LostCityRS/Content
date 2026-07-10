@@ -60,7 +60,7 @@ if(compare(nc_name(npc_type),"Afflicted") = 0) {
 ~chatnpc("<p,shock>@dbl@~ This person doesn't make any sense at all. ~");
 
 [opnpcu,_category_348]
-if(oc_category(last_useitem) = category_108 & compare(nc_name(npc_type),"Afflicted") = 0) {
+if(oc_category(last_useitem) = mortserum & compare(nc_name(npc_type),"Afflicted") = 0) {
     inv_setslot(inv, last_useslot, oc_param(last_useitem, next_obj_stage), 1);
     npc_anim(null, 0);
     npc_changetype(npc_param(next_npc_type), 50); //50 ticks osrs
@@ -68,7 +68,7 @@ if(oc_category(last_useitem) = category_108 & compare(nc_name(npc_type),"Afflict
     ~chatnpc("<p,happy>Oh... thank you, you used the serum on me. Here have|something for your trouble.");
     //17 May 2005 (Update):
     //Serum 208 can now be used on afflicted for better rewards.
-// } else if(oc_category(last_useitem) = category_109 & compare(nc_name(npc_type),"Afflicted") = 0) {
+// } else if(oc_category(last_useitem) = mortserum_perm & compare(nc_name(npc_type),"Afflicted") = 0) {
 //     inv_setslot(inv, last_useslot, oc_param(last_useitem, next_obj_stage), 1);
 //     npc_anim(null, 0);
 //     npc_changetype(npc_param(next_npc_type), 50); //50 ticks osrs

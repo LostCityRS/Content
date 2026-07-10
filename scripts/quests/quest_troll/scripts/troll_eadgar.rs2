@@ -58,11 +58,11 @@ switch_int(~p_choice3("Why do you live so close to the trolls?", 1, "What do you
 switch_int(~p_choice2("I'd like some mountain goat stew, please.", 1, "No thanks, Eadgar.", 2)) {
     case 1 :
         ~chatplayer("<p,neutral>I'd like some mountain goat stew, please.");
-        if(inv_totalcat(inv, category_22) = 0) {
+        if(inv_totalcat(inv, logs) = 0) {
             ~chatnpc("<p,angry>You don't have any logs! I may be mad, but I'm not stupid!");
             return;
         }
-        ~inv_delcat(inv, category_22);
+        ~inv_delcat(inv, logs);
         ~chatnpc("<p,happy>Here you go! Enjoy!");
         if_close;
         mes("You get a bowl of mountain goat stew.");

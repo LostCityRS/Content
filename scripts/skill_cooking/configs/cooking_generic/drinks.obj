@@ -1,0 +1,198 @@
+[asgarnian_ale]
+name=Asgarnian ale
+desc=Probably the finest ale in Asgarnia.
+cost=2
+iop1=Drink
+model=model_2491_obj
+recol1s=25025
+recol1d=20801
+recol2s=31367
+recol2d=24995
+2dxof=-3
+2dyof=2
+2dzoom=660
+2dyan=1904
+2dxan=140
+weight=550g
+category=alcoholic_drinks
+param=next_obj_stage,beer_glass
+
+[wizards_mind_bomb]
+name=Wizard's mind bomb
+desc=It's got strange bubbles in it.
+cost=2
+iop1=Drink
+model=model_2491_obj
+recol1s=25025
+recol1d=15860
+recol2s=31367
+recol2d=17974
+2dxof=-3
+2dyof=2
+2dzoom=660
+2dyan=1904
+2dxan=140
+weight=550g
+category=alcoholic_drinks
+param=next_obj_stage,beer_glass
+
+[greenmans_ale]
+name=Greenman's ale
+desc=A glass of frothy ale.
+cost=2
+iop1=Drink
+members=yes
+model=model_2491_obj
+recol1s=25025
+recol1d=20801
+recol2s=31367
+recol2d=24995
+2dxof=-3
+2dyof=2
+2dzoom=660
+2dyan=1904
+2dxan=140
+weight=550g
+category=alcoholic_drinks
+param=next_obj_stage,beer_glass
+
+[dragon_bitter]
+name=Dragon bitter
+desc=A glass of bitter.
+cost=2
+iop1=Drink
+members=yes
+model=model_2491_obj
+recol1s=25025
+recol1d=15521
+recol2s=31367
+recol2d=19748
+2dxof=-3
+2dyof=2
+2dzoom=660
+2dyan=1904
+2dxan=140
+weight=550g
+category=alcoholic_drinks
+param=next_obj_stage,beer_glass
+
+[dwarven_stout]
+name=Dwarven stout
+desc=A pint of thick dark beer.
+cost=2
+iop1=Drink
+model=model_2491_obj
+recol1s=25025
+recol1d=2114
+recol2s=31367
+recol2d=8456
+2dxof=-3
+2dyof=2
+2dzoom=660
+2dyan=1904
+2dxan=140
+weight=550g
+category=alcoholic_drinks
+param=next_obj_stage,beer_glass
+
+[grog]
+name=Grog
+desc=A murky glass of some sort of drink.
+cost=3
+iop1=Drink
+members=yes
+model=model_2491_obj
+recol1s=25025
+recol1d=10698
+recol2s=31367
+recol2d=11819
+2dxof=-3
+2dyof=2
+2dzoom=660
+2dyan=1904
+2dxan=140
+weight=550g
+category=alcoholic_drinks
+param=next_obj_stage,beer_glass
+
+[beer]
+name=Beer
+desc=A glass of frothy ale.
+cost=2
+iop1=Drink
+model=model_2491_obj
+2dxof=-3
+2dyof=2
+2dzoom=660
+2dyan=1904
+2dxan=140
+weight=550g
+category=alcoholic_drinks
+param=next_obj_stage,beer_glass
+
+[beer_glass]
+name=Beer glass
+desc=I need to fill this with beer.
+cost=2
+model=model_2548_obj
+2dxof=-3
+2dyof=2
+2dzoom=660
+2dyan=1904
+2dxan=140
+weight=50g
+param=crafting_glass_struct,beer_glass
+
+[cup_of_tea]
+name=Cup of tea
+desc=A nice cup of tea.
+cost=10
+iop1=Drink
+model=model_2468_obj
+2dxof=-1
+2dyof=-2
+2dzoom=500
+2dyan=1980
+2dxan=156
+weight=150g
+members=yes
+param=next_obj_stage,cup_empty
+
+[cup_empty]
+name=Empty cup
+desc=An empty cup.
+cost=2
+model=model_2347_obj
+recol1s=18991
+recol1d=32767
+recol2s=14764
+recol2d=21140
+recol3s=15821
+recol3d=27482
+2dxof=-1
+2dyof=-2
+2dzoom=500
+2dyan=1980
+2dxan=156
+weight=50g
+members=yes
+
+[moonlight_mead]
+name=Moonlight mead
+desc=A foul smelling brew.
+recol1s=25025
+recol1d=11330
+recol2s=31367
+recol2d=14468
+cost=5
+iop1=Drink
+members=yes
+model=model_2491_obj
+2dxof=-3
+2dyof=2
+2dzoom=660
+2dyan=1904
+2dxan=140
+weight=550g
+category=alcoholic_drinks
+param=next_obj_stage,beer_glass

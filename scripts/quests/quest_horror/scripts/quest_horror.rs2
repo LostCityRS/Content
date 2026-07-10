@@ -393,7 +393,7 @@ if($obj = airrune) {
     return;
 }
 // seems like any stab or slash weapon works (daggers, swords, longswords, scimitars, includes stuff like dark dagger and excalibur)
-if(oc_category($obj) = weapon_stab | oc_category($obj) = weapon_slash) {
+if(oc_category($obj) = weapon_stabsword | oc_category($obj) = weapon_hacksword) {
     if(%horrorsword = ^true) {
         mes("There is no space to put a weapon into the wall.");
         return;

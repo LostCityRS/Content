@@ -20,6 +20,9 @@ param=slashdefence,15
 param=crushdefence,19
 param=magicdefence,-3
 param=rangedefence,12
+// param=defend_sound,blade3_mail
+// blade3_mail original??     //osrs blade3
+// osrs defend sounds blade3_1 blade3_2 blade3_3 blade3_4 blade3_5
 
 [bronze_chainbody]
 name=Bronze chainbody
@@ -44,6 +47,8 @@ param=slashdefence,11
 param=crushdefence,13
 param=magicdefence,-3
 param=rangedefence,9
+// param=defend_sound,big_bar_mail
+// osrs defend sounds big_bar_mail_1 big_bar_mail_2 big_bar_mail_3 big_bar_mail_4 big_bar_mail_5
 
 [steel_chainbody]
 name=Steel chainbody
@@ -64,6 +69,8 @@ param=slashdefence,25
 param=crushdefence,30
 param=magicdefence,-3
 param=rangedefence,19
+// param=defend_sound,blade2_mail
+// osrs defend sounds blade2_mail_1 blade2_mail_2 blade2_mail_3 blade2_mail_4 blade2_mail_5
 
 [black_chainbody]
 name=Black chainbody
@@ -86,6 +93,8 @@ param=slashdefence,32
 param=crushdefence,39
 param=magicdefence,-3
 param=rangedefence,24
+// param=defend_sound,steel_mail
+// osrs defend sounds steel_mail_1 steel_mail_2 steel_mail_3 steel_mail_4 steel_mail_5
 
 [mithril_chainbody]
 name=Mithril chainbody
@@ -109,6 +118,8 @@ param=slashdefence,35
 param=crushdefence,42
 param=magicdefence,-3
 param=rangedefence,27
+// param=defend_sound,steel2_mail
+// osrs defend sounds steel2_mail_1 steel2_mail_2 steel2_mail_3 steel2_mail_4 steel2_mail_5
 
 [adamant_chainbody]
 name=Adamant chainbody
@@ -132,6 +143,8 @@ param=slashdefence,50
 param=crushdefence,61
 param=magicdefence,-3
 param=rangedefence,38
+// param=defend_sound,sword_hit2_mail
+// osrs defend sounds sword_hit2_mail_1 sword_hit2_mail_2 sword_hit2_mail_3 sword_hit2_mail_4 sword_hit2_mail_5
 
 [rune_chainbody]
 cost=50000
@@ -146,8 +159,8 @@ manwear=model_301_obj_wear,0
 womanwear=model_464_obj_wear,0
 name=Rune chainbody
 desc=A series of connected metal rings.
-category=armour_body
 iop2=Wear
+category=armour_body
 weight=15lb
 param=magicattack,-15
 param=stabdefence,63
@@ -155,6 +168,8 @@ param=slashdefence,72
 param=crushdefence,78
 param=magicdefence,-3
 param=rangedefence,65
+// param=defend_sound,swordclash3_mail
+// osrs defend sounds swordclash3_mail_1 swordclash3_mail_2 swordclash3_mail_3 swordclash3_mail_4 swordclash3_mail_5
 
 [dragon_chainbody]
 name=Dragon chainbody
@@ -174,11 +189,16 @@ womanwear2=model_337_npc
 members=yes
 wearpos=torso
 wearpos2=arms
-weight=15lb
 category=armour_body
+weight=15lb
 param=magicattack,-15
 param=stabdefence,81
 param=slashdefence,93
 param=crushdefence,98
 param=magicdefence,-3
 param=rangedefence,82
+// param=defend_sound,swordclash4_mail
+// This is the only remaining sound using the name Mail that is unused.
+// this probably belongs to this one. swordclash4_mail
+// dragon_mail  not exist
+// osrs defend sounds dragon_mail_1 dragon_mail_2 dragon_mail_3 dragon_mail_4 dragon_mail_5

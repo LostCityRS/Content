@@ -4,20 +4,20 @@ if(oc_category(last_useitem) = potion) {
 }
 ~displaymessage(^dm_default);
 
-[opheldu,_category_108]
-if(oc_category(last_useitem) = category_108) {
+[opheldu,_mortserum]
+if(oc_category(last_useitem) = mortserum) {
     @decant_potion(last_item, last_useitem);
 }
 ~displaymessage(^dm_default);
 
-[opheldu,_category_109]
-if(oc_category(last_useitem) = category_109) {
+[opheldu,_mortserum_perm]
+if(oc_category(last_useitem) = mortserum_perm) {
     @decant_potion(last_item, last_useitem);
 }
 ~displaymessage(^dm_default);
 
-[opheldu,_category_110]
-if(oc_category(last_useitem) = category_110) {
+[opheldu,_olive_oil]
+if(oc_category(last_useitem) = olive_oil) {
     @decant_potion(last_item, last_useitem);
 }
 ~displaymessage(^dm_default);

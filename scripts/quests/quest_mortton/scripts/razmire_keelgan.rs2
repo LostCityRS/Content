@@ -31,7 +31,7 @@ if(%morttonquest >= ^mortton_shades_to_razmire) {
 @razmire_use_item;
 
 [label,razmire_use_item]
-if(oc_category(last_useitem) = category_108) {
+if(oc_category(last_useitem) = mortserum) {
     if(%morttonquest < ^mortton_made_serum) {
         npc_changetype(razmire_keelgan,1);
         inv_setslot(inv, last_useslot, oc_param(last_useitem, next_obj_stage), 1);
@@ -46,7 +46,7 @@ if(oc_category(last_useitem) = category_108) {
         ~chatnpc("<p,happy>You've already used the permanent serum on me, you|don't need to use that any more.");
     }
     @razmire_talk;
-} else if(oc_category(last_useitem) = category_109) {
+} else if(oc_category(last_useitem) = mortserum_perm) {
     npc_changetype(razmire_keelgan,200);
     if (testbit(%morttonmulti, ^razmire_perm_serum_used) = ^false) {
         def_int $last_useslot = last_useslot;

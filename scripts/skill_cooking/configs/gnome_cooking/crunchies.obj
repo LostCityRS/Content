@@ -1,66 +1,9 @@
-[premade_worm_crunchies]
-name=Worm crunchies
-desc=It actually smells quite good.
-model=model_2753_obj
-recol1s=3104
-recol1d=29459
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-cost=85
-weight=250g
-category=gnome_premade_and_toadlegs_kingworm
-
-[premade_chocchip_crunchies]
-name=Chocchip crunchies
-desc=Yum... smells good.
-model=model_2753_obj
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-cost=85
-weight=250g
-category=gnome_premade_and_toadlegs_kingworm
-
-[premade_spicy_crunchies]
-name=Spicy crunchies
-desc=Yum... smells good.
-model=model_2753_obj
-recol1s=3104
-recol1d=31105
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-cost=85
-weight=250g
-category=gnome_premade_and_toadlegs_kingworm
-
-[premade_toad_crunchies]
-name=Toad crunchies
-desc=It actually smells quite good.
-model=model_2753_obj
-recol1s=3104
-recol1d=512
-2dxof=-2
-2dzoom=650
-2dxan=220
-iop1=Eat
-members=yes
-cost=85
-weight=250g
-category=gnome_premade_and_toadlegs_kingworm
-
 [spoilt_crunchies]
 iop1=Eat
 name=Odd crunchies
 desc=These crunchies don't look very appetising.
 category=gnome_unf_odd_crunchies
+// category=crunchies
 cost=2
 members=yes
 model=model_2352_obj
@@ -113,12 +56,14 @@ model=model_2723_obj
 2dyan=1664
 2dxan=252
 weight=400g
+// category=aluft_raw
 tradeable=no
 
 [unfinished_worm_crunchies]
 name=Unfinished crunchy
 desc=These crunchies are just missing those little finishing touches.
 category=gnome_unf_odd_crunchies
+// category=crunchies
 model=model_2753_obj
 recol1s=3104
 recol1d=29459
@@ -132,6 +77,7 @@ param=gnome_cooking_type,2
 
 [worm_crunchies]
 category=gnome_crunchies
+// category=finished_crunchies
 cost=2
 name=Worm crunchies
 desc=It actually smells quite good.
@@ -149,6 +95,7 @@ members=yes
 name=Unfinished crunchy
 desc=These crunchies are just missing those little finishing touches.
 category=gnome_unf_odd_crunchies
+// category=crunchies
 model=model_2753_obj
 2dxof=-2
 2dzoom=650
@@ -160,6 +107,7 @@ param=gnome_cooking_type,2
 
 [chocchip_crunchies]
 category=gnome_crunchies
+// category=finished_crunchies
 cost=2
 name=Chocchip crunchies
 desc=Yum... smells good.
@@ -176,6 +124,7 @@ members=yes
 name=Unfinished crunchy
 desc=These crunchies are just missing those little finishing touches.
 category=gnome_unf_odd_crunchies
+// category=crunchies
 model=model_2753_obj
 recol1s=3104
 recol1d=31105
@@ -189,6 +138,7 @@ param=gnome_cooking_type,2
 
 [spicy_crunchies]
 category=gnome_crunchies
+// category=finished_crunchies
 cost=2
 name=Spicy crunchies
 desc=Yum... smells good.
@@ -206,6 +156,7 @@ members=yes
 name=Unfinished crunchy
 desc=These crunchies are just missing those little finishing touches.
 category=gnome_unf_odd_crunchies
+// category=crunchies
 model=model_2753_obj
 recol1s=3104
 recol1d=512
@@ -222,6 +173,7 @@ name=Toad crunchies
 desc=It actually smells quite good.
 cost=2
 category=gnome_crunchies
+// category=finished_crunchies
 model=model_2753_obj
 recol1s=3104
 recol1d=512
@@ -231,3 +183,65 @@ recol1d=512
 members=yes
 iop1=Eat
 weight=250g
+
+[premade_worm_crunchies]
+name=Worm crunchies
+desc=It actually smells quite good.
+model=model_2753_obj
+recol1s=3104
+recol1d=29459
+2dxof=-2
+2dzoom=650
+2dxan=220
+iop1=Eat
+members=yes
+cost=85
+weight=250g
+category=gnome_premade_and_toadlegs_kingworm
+// category=gnomefood
+
+[premade_chocchip_crunchies]
+name=Chocchip crunchies
+desc=Yum... smells good.
+model=model_2753_obj
+2dxof=-2
+2dzoom=650
+2dxan=220
+iop1=Eat
+members=yes
+cost=85
+weight=250g
+category=gnome_premade_and_toadlegs_kingworm
+// category=gnomefood
+
+[premade_spicy_crunchies]
+name=Spicy crunchies
+desc=Yum... smells good.
+model=model_2753_obj
+recol1s=3104
+recol1d=31105
+2dxof=-2
+2dzoom=650
+2dxan=220
+iop1=Eat
+members=yes
+cost=85
+weight=250g
+category=gnome_premade_and_toadlegs_kingworm
+// category=gnomefood
+
+[premade_toad_crunchies]
+name=Toad crunchies
+desc=It actually smells quite good.
+model=model_2753_obj
+recol1s=3104
+recol1d=512
+2dxof=-2
+2dzoom=650
+2dxan=220
+iop1=Eat
+members=yes
+cost=85
+weight=250g
+category=gnome_premade_and_toadlegs_kingworm
+// category=gnomefood

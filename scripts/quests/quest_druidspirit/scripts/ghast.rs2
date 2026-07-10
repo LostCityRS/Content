@@ -182,7 +182,7 @@ if($consumable = null) { // shouldnt hit this!
     return (false); 
 }
 inv_delslot(inv, $slot);
-if (oc_category($consumable) = category_129) {
+if (oc_category($consumable) = pie) {
     inv_setslot(inv, $slot, piedish, 1);
 }
 inv_add(inv, rotten_food, 1);
@@ -192,11 +192,11 @@ return (true);
 
 
 [proc,is_food_item](obj $slotobj)(boolean)
-if(oc_category($slotobj) = category_5 | oc_category($slotobj) = category_58 | oc_category($slotobj) = category_59 | oc_category($slotobj) = category_86 | $slotobj = rottenapples |
-    oc_category($slotobj) = category_120 | oc_category($slotobj) = category_131 | $slotobj = pineapple | $slotobj = kebab | $slotobj = ugthanki_kebab_bad | $slotobj = ugthanki_kebab |
+if(oc_category($slotobj) = meat | oc_category($slotobj) = fish | oc_category($slotobj) = miscfood | oc_category($slotobj) = fruit | $slotobj = rottenapples |
+    oc_category($slotobj) = cocktail_ingredient | oc_category($slotobj) = veg | $slotobj = pineapple | $slotobj = kebab | $slotobj = ugthanki_kebab_bad | $slotobj = ugthanki_kebab |
     $slotobj = curry | $slotobj = stew | oc_category($slotobj) = gnome_crunchies | oc_category($slotobj) = gnome_unf_odd_crunchies | oc_category($slotobj) = gnome_batta |
     oc_category($slotobj) = gnome_unf_odd_batta | oc_category($slotobj) = gnome_bowl | oc_category($slotobj) = gnome_unf_odd_bowl |
-    oc_category($slotobj) = gnome_premade_and_toadlegs_kingworm | oc_category($slotobj) = category_129 | oc_category($slotobj) = category_132) {
+    oc_category($slotobj) = gnome_premade_and_toadlegs_kingworm | oc_category($slotobj) = pie | oc_category($slotobj) = pizza) {
     return (true);
 }
 return (false);

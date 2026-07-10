@@ -5,7 +5,7 @@
 @ulsquire_use_item;
 
 [label,ulsquire_use_item]
-if(oc_category(last_useitem) = category_108) {
+if(oc_category(last_useitem) = mortserum) {
     inv_setslot(inv, last_useslot, oc_param(last_useitem, next_obj_stage), 1);
     if(%morttonquest < ^mortton_made_serum) {
         npc_changetype(ulsquire_shauncy,1);
@@ -19,7 +19,7 @@ if(oc_category(last_useitem) = category_108) {
         ~chatnpc("<p,happy>You've already used the permanent serum on me, you|don't need to use that any more.");
     }
     @ulsquire_talk;
-} else if(oc_category(last_useitem) = category_109) {
+} else if(oc_category(last_useitem) = mortserum_perm) {
     npc_changetype(ulsquire_shauncy,200);
     if (testbit(%morttonmulti, ^ulsquire_perm_serum_used) = ^true) {
         ~chatnpc("<p,happy>You've already used the permanent serum on me, you|don't need to use that any more.");

@@ -12,6 +12,31 @@ model=model_3065_obj
 2dxan=60
 tradeable=no
 
+[christmas_cracker]
+name=Christmas cracker
+desc=I need to pull this
+model=model_2637_obj
+2dxof=-3
+2dyof=40
+2dzoom=630
+2dyan=1728
+2dxan=272
+weight=200g
+param=party_clean_exempt,^true
+
+[discofreturning]
+name=Disk of returning
+desc=Used to get out of Thordur's blackhole
+cost=12
+model=model_2724_obj
+2dyof=2
+2dzoom=880
+2dyan=232
+2dzan=260
+2dxan=460
+weight=1lb
+param=party_clean_exempt,^true
+
 [bunnyears]
 name=Bunny ears
 desc=A rabbit-like adornment.
@@ -224,3 +249,35 @@ womanhead=model_3187_obj_wear
 2dxan=516
 iop2=Wear
 param=party_clean_exempt,^true
+
+[scythe]
+name=Scythe
+category=weapon_scythe
+model=model_2511_obj
+2dxof=1
+2dyof=17
+2dzoom=1930
+2dyan=20
+2dxan=336
+iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
+manwear=model_507_obj_wear,0
+womanwear=model_507_obj_wear,0
+weight=7lb
+param=stabattack,3
+param=slashattack,8
+param=crushattack,3
+param=slashdefence,3
+param=crushdefence,1
+param=strengthbonus,10
+param=attackrate,7
+param=ready_baseanim,human_ready_scythe
+param=slashattack_anim,human_scythe_sweep
+param=crushattack_anim,human_scythe_lunge
+param=stabattack_anim,human_scythe_slash
+param=defend_anim,human_scythe_block
+param=stab_sound,scythe_stab
+param=slash_sound,scythe_slash
+param=crush_sound,scythe_double
+tradeable=no

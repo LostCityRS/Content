@@ -266,7 +266,7 @@ if(last_useitem = elemental_workshop_bar) {
     stat_advance(smithing, 200);
     if(testbit(%elemental_workshop_bits, ^elemental_workshop_complete) = ^false) queue(elemental_workshop_quest_complete, 0, 0);
 }
-else if (oc_category(last_useitem) = category_151) ~objbox(last_useitem, "The workbench is not made to work this type of metal.", 250, 0, 0);
+else if (oc_category(last_useitem) = metal_bar) ~objbox(last_useitem, "The workbench is not made to work this type of metal.", 250, 0, 0);
 else ~displaymessage(^dm_default);
 
 [queue,elemental_workshop_quest_complete]

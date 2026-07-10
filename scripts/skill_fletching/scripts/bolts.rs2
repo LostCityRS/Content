@@ -1,5 +1,5 @@
 // bolts
-[opheldu,_category_530]
+[opheldu,_xbows_bolt_tip]
 switch_obj(last_useitem) {
     case bolt : @make_bolts(last_item);
     case default : ~displaymessage(^dm_default);
@@ -7,7 +7,7 @@ switch_obj(last_useitem) {
 [opheldu,bolt]
 switch_obj(last_useitem) {
     case default :
-        if (oc_category(last_useitem) = category_530) {
+        if (oc_category(last_useitem) = xbows_bolt_tip) {
             @make_bolts(last_useitem);
         } else {
             ~displaymessage(^dm_default);

@@ -1,43 +1,13 @@
-[grip_keys]
-name=Grips' keyring
-desc=Some keys on a keyring.
-members=yes
-model=model_2372_obj
-recol1s=31393
-recol1d=22945
-2dxof=-3
-2dyof=5
-2dzoom=700
-2dyan=20
-2dxan=328
-weight=25g
-tradeable=no
-
-[id_papers]
-name=Id papers
-desc=Apparently my name is Hartigen.
-model=model_2600_obj
-members=yes
-2dxof=1
-2dyof=7
-2dzoom=1040
-2dyan=120
-2dxan=380
-weight=10g
-tradeable=no
-
-[misc_key]
-name=Miscellaneous key
-desc=I wonder what this unlocks?
-model=model_2372_obj
-recol1s=31393
-recol1d=22945
-2dxof=-3
-2dyof=5
-2dzoom=700
-2dyan=20
-2dxan=328
-weight=10g
+[petecandlestick]
+name=Pete's candlestick
+desc=Scarface Pete's Candlestick.
+cost=5
+model=model_2505_obj
+2dyof=-3
+2dzoom=620
+2dyan=1628
+2dxan=184
+weight=500g
 members=yes
 
 [master_thief_armband]
@@ -54,17 +24,30 @@ weight=25g
 members=yes
 tradeable=no
 
-[petecandlestick]
-name=Pete's candlestick
-desc=Scarface Pete's Candlestick.
-cost=5
-model=model_2505_obj
-2dyof=-3
-2dzoom=620
-2dyan=1628
-2dxan=184
-weight=500g
+[ice_gloves]
+name=Ice gloves
+desc=These will keep my hands cold!
+cost=6
+model=model_2649_obj
+recol1s=9473
+recol1d=14175
+recol2s=10468
+recol2d=14175
+2dxof=8
+2dyof=-8
+2dzoom=930
+2dyan=828
+2dxan=420
+iop2=Wear
+wearpos=hands
+manwear=model_179_obj_wear,0
+womanwear=model_356_obj_wear,0
+weight=8oz
 members=yes
+param=slashdefence,3
+param=crushdefence,4
+param=rangedefence,2
+tradeable=no
 
 [hot_feather]
 name=Fire feather
@@ -80,4 +63,94 @@ recol1d=31041
 2dxan=428
 weight=2g
 members=yes
+tradeable=no
+
+[id_papers]
+name=Id papers
+desc=Apparently my name is Hartigen.
+model=model_2600_obj
+members=yes
+2dxof=1
+2dyof=7
+2dzoom=1040
+2dyan=120
+2dxan=380
+weight=10g
+tradeable=no
+
+[oily_fishing_rod]
+name=Oily fishing rod
+desc=Useful for catching lava eels.
+cost=15
+model=model_2828_obj
+2dxof=-3
+2dyof=8
+2dzoom=1080
+2dyan=136
+2dxan=328
+weight=3lb
+members=yes
+tradeable=no
+
+[misc_key]
+name=Miscellaneous key
+desc=I wonder what this unlocks?
+model=model_2372_obj
+recol1s=31393
+recol1d=22945
+2dxof=-3
+2dyof=5
+2dzoom=700
+2dyan=20
+2dxan=328
+weight=10g
+members=yes
+
+[grip_keys]
+name=Grips' keyring
+desc=Some keys on a keyring.
+members=yes
+model=model_2372_obj
+recol1s=31393
+recol1d=22945
+2dxof=-3
+2dyof=5
+2dzoom=700
+2dyan=20
+2dxan=328
+weight=25g
+tradeable=no
+
+// rename: cert_grip_keys
+[obj_1589]
+tradeable=no
+
+[dusty_key]
+name=Dusty key
+desc=I wonder what this unlocks?
+members=yes
+model=model_2372_obj
+recol1s=31393
+recol1d=22945
+2dxof=-3
+2dyof=5
+2dzoom=700
+2dyan=20
+2dxan=328
+weight=10g
+tradeable=no
+
+[jail_key]
+name=Jail key
+desc=Key to a cell.
+members=yes
+model=model_2372_obj
+recol1s=31393
+recol1d=22945
+2dxof=-3
+2dyof=5
+2dzoom=700
+2dyan=20
+2dxan=328
+weight=10g
 tradeable=no

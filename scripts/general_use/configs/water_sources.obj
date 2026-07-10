@@ -1,84 +1,3 @@
-[jug_empty]
-name=Jug
-desc=This jug is empty.
-model=model_2390_obj
-recol1s=32767
-recol1d=15855
-2dxof=1
-2dyof=100
-2dzoom=600
-2dyan=84
-2dxan=260
-cost=1
-weight=1lb
-param=next_obj_stage,jug_water
-
-[jug_water]
-name=Jug of water
-desc=It's full of water.
-model=model_2390_obj
-recol1s=32767
-recol1d=15871
-2dxof=1
-2dyof=100
-2dzoom=600
-2dyan=84
-2dxan=260
-cost=1
-weight=1kg
-param=is_water_source,^true
-param=next_obj_stage,jug_empty
-
-[bucket_empty]
-name=Bucket
-desc=It's a wooden bucket.
-cost=2
-model=model_2397_obj
-manwear=model_543_obj_wear,0
-womanwear=model_543_obj_wear,6
-2dyof=-18
-2dzoom=1020
-2dyan=1688
-2dxan=204
-weight=1kg
-param=next_obj_stage,bucket_water
-
-[bucket_water]
-name=Bucket of water
-desc=It's a bucket of water.
-cost=6
-model=model_2504_obj
-2dyof=-18
-2dzoom=1020
-2dyan=1688
-2dxan=204
-weight=3kg
-param=is_water_source,^true
-param=next_obj_stage,bucket_empty
-
-[bowl_water]
-name=Bowl of water
-desc=It's a bowl of water.
-cost=4
-model=model_2367_obj
-2dzoom=910
-2dyan=1856
-2dxan=204
-weight=2lb
-param=is_water_source,^true
-param=next_obj_stage,bowl_empty
-
-[bowl_empty]
-name=Bowl
-desc=Useful for mixing things.
-cost=4
-model=model_2807_obj
-2dzoom=910
-2dyan=1856
-2dxan=204
-weight=1lb
-param=next_obj_stage,bowl_water
-
 [water_skin4]
 name=Waterskin(4)
 desc=A full waterskin with four portions of water.
@@ -156,3 +75,84 @@ model=model_2699_obj
 2dyan=156
 2dxan=52
 param=next_obj_stage,water_skin1
+
+[bowl_water]
+name=Bowl of water
+desc=It's a bowl of water.
+cost=4
+model=model_2367_obj
+2dzoom=910
+2dyan=1856
+2dxan=204
+weight=2lb
+param=is_water_source,^true
+param=next_obj_stage,bowl_empty
+
+[bowl_empty]
+name=Bowl
+desc=Useful for mixing things.
+cost=4
+model=model_2807_obj
+2dzoom=910
+2dyan=1856
+2dxan=204
+weight=1lb
+param=next_obj_stage,bowl_water
+
+[bucket_empty]
+name=Bucket
+desc=It's a wooden bucket.
+cost=2
+model=model_2397_obj
+manwear=model_543_obj_wear,0
+womanwear=model_543_obj_wear,6
+2dyof=-18
+2dzoom=1020
+2dyan=1688
+2dxan=204
+weight=1kg
+param=next_obj_stage,bucket_water
+
+[bucket_water]
+name=Bucket of water
+desc=It's a bucket of water.
+cost=6
+model=model_2504_obj
+2dyof=-18
+2dzoom=1020
+2dyan=1688
+2dxan=204
+weight=3kg
+param=is_water_source,^true
+param=next_obj_stage,bucket_empty
+
+[jug_empty]
+name=Jug
+desc=This jug is empty.
+model=model_2390_obj
+recol1s=32767
+recol1d=15855
+2dxof=1
+2dyof=100
+2dzoom=600
+2dyan=84
+2dxan=260
+cost=1
+weight=1lb
+param=next_obj_stage,jug_water
+
+[jug_water]
+name=Jug of water
+desc=It's full of water.
+model=model_2390_obj
+recol1s=32767
+recol1d=15871
+2dxof=1
+2dyof=100
+2dzoom=600
+2dyan=84
+2dxan=260
+cost=1
+weight=1kg
+param=is_water_source,^true
+param=next_obj_stage,jug_empty

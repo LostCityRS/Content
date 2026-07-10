@@ -7,7 +7,7 @@ switch_obj(last_useitem) {
     case viking_musical_tree_branch : @craft_unstrung_lyre;
     case banana : @slice_banana;
     case default :
-        if (oc_category(last_useitem) = category_22) {
+        if (oc_category(last_useitem) = logs) {
             @fletch_log(last_useitem);
         } else {
             ~displaymessage(^dm_default);

@@ -113,7 +113,7 @@ if ($data = null) {
 // roll for gem
 def_int $chance = 256;
 def_obj $neck = inv_getobj(worn, ^wearpos_front);
-if ($neck ! null & oc_category($neck) = category_557 & map_members = ^true) {
+if ($neck ! null & oc_category($neck) = amulet_of_glory_charged & map_members = ^true) {
     $chance = 86;
 }
 if (random($chance) = ^true) {
@@ -158,7 +158,7 @@ if ($data = null) {
 // roll for gem
 def_int $chance = 256;
 def_obj $neck = inv_getobj(worn, ^wearpos_front);
-if ($neck ! null & oc_category($neck) = category_557 & map_members = ^true) {
+if ($neck ! null & oc_category($neck) = amulet_of_glory_charged & map_members = ^true) {
     $chance = 86;
 }
 if (random($chance) = ^true) {
@@ -208,7 +208,7 @@ def_int $low;
 def_int $high;
 $low, $high = db_getfield($data, mining_table:rock_successchance, 0);
 def_obj $neck = inv_getobj(worn, ^wearpos_front);
-if ($neck ! null & oc_category($neck) = category_557 & map_members = ^true) {
+if ($neck ! null & oc_category($neck) = amulet_of_glory_charged & map_members = ^true) {
     $low = multiply($low, 3);
     $high = multiply($high, 3);
 }

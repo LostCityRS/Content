@@ -125,7 +125,7 @@ model=model_2476_obj
 stackable=yes
 cost=2
 weight=2g
-category=category_532
+category=feather
 
 [shrimp]
 name=Shrimps
@@ -137,7 +137,7 @@ model=model_2590_obj
 cost=5
 iop1=Eat
 weight=100g
-category=category_58
+category=fish
 
 [raw_shrimp]
 name=Raw shrimps
@@ -152,7 +152,7 @@ recol2d=30319
 2dxan=272
 cost=5
 weight=120g
-category=category_57
+category=raw_fish
 param=fishing_struct,fishing_struct_shrimps
 
 [anchovies]
@@ -169,7 +169,7 @@ recol2d=10613
 cost=15
 iop1=Eat
 weight=100g
-category=category_58
+category=fish
 param=pizza_topping_struct,anchovy_topping
 
 [raw_anchovies]
@@ -185,7 +185,7 @@ recol2d=17971
 2dxan=272
 cost=15
 weight=120g
-category=category_57
+category=raw_fish
 param=fishing_struct,fishing_struct_anchovies
 
 [burntfish1]
@@ -201,38 +201,7 @@ recol2d=7399
 2dxan=272
 cost=1
 weight=80g
-category=category_116
-
-[tbwt_raw_karambwan]
-name=Raw karambwan
-desc=A raw green octopus.
-cost=200
-members=yes
-model=obj_3142
-2dyof=7
-2dzoom=1800
-2dyan=56
-2dxan=388
-weight=700g
-category=category_57
-param=grindable_ingredient_refined,tbwt_raw_karambwan_paste
-param=grindable_ingredient_message,You grind the raw Karambwan to form a sticky paste.
-
-[tbwt_raw_karambwanji]
-name=Raw karambwanji
-desc=Small brightly coloured tropical fish.
-cost=10
-members=yes
-model=obj_3150
-2dxof=6
-2dyof=6
-2dzoom=1000
-2dxan=464
-weight=140g
-category=category_57
-tradeable=no
-param=grindable_ingredient_refined,tbwt_raw_karambwanji_paste
-param=grindable_ingredient_message,You grind the raw Karambwanji to form a sticky paste.
+category=burnt_fish
 
 [sardine]
 name=Sardine
@@ -251,7 +220,7 @@ recol2d=22031
 cost=10
 iop1=Eat
 weight=120g
-category=category_58
+category=fish
 
 [raw_sardine]
 name=Raw sardine
@@ -269,7 +238,7 @@ recol2d=18417
 2dxan=320
 cost=10
 weight=140g
-category=category_57
+category=raw_fish
 param=fishing_struct,fishing_struct_sardine
 
 [salmon]
@@ -287,7 +256,7 @@ recol2d=30255
 cost=50
 iop1=Eat
 weight=500g
-category=category_58
+category=fish
 
 [raw_salmon]
 name=Raw salmon
@@ -303,7 +272,7 @@ recol2d=29331
 2dxan=532
 cost=50
 weight=550g
-category=category_57
+category=raw_fish
 param=fishing_struct,fishing_struct_salmon
 
 [trout]
@@ -321,7 +290,7 @@ recol2d=22031
 cost=20
 iop1=Eat
 weight=400g
-category=category_58
+category=fish
 
 [raw_trout]
 name=Raw trout
@@ -337,7 +306,7 @@ recol2d=32767
 2dxan=532
 cost=20
 weight=450g
-category=category_57
+category=raw_fish
 param=fishing_struct,fishing_struct_trout
 
 [giant_carp]
@@ -355,7 +324,7 @@ recol2d=27228
 cost=50
 iop1=Eat
 weight=500g
-category=category_58
+category=fish
 members=yes
 tradeable=no
 
@@ -373,7 +342,7 @@ recol2d=15
 2dxan=532
 cost=50
 weight=550g
-category=category_57
+category=raw_fish
 members=yes
 tradeable=no
 
@@ -392,7 +361,7 @@ recol2d=10613
 cost=25
 iop1=Eat
 weight=400g
-category=category_58
+category=fish
 members=yes
 
 [raw_cod]
@@ -409,7 +378,7 @@ recol2d=17971
 2dxan=532
 cost=25
 weight=450g
-category=category_57
+category=raw_fish
 members=yes
 
 [burntfish2]
@@ -426,7 +395,7 @@ recol2d=10570
 2dxan=532
 cost=1
 weight=350g
-category=category_116
+category=burnt_fish
 
 [raw_herring]
 name=Raw herring
@@ -443,7 +412,7 @@ recol2d=32767
 2dxan=436
 cost=15
 weight=550g
-category=category_57
+category=raw_fish
 param=fishing_struct,fishing_struct_herring
 
 [herring]
@@ -462,7 +431,7 @@ recol2d=22031
 cost=15
 iop1=Eat
 weight=500g
-category=category_58
+category=fish
 
 [raw_pike]
 name=Raw pike
@@ -478,7 +447,7 @@ recol2d=22517
 2dxan=532
 cost=25
 weight=550g
-category=category_57
+category=raw_fish
 param=fishing_struct,fishing_struct_pike
 
 [pike]
@@ -495,7 +464,7 @@ recol2d=12938
 2dxan=532
 cost=25
 weight=500g
-category=category_58
+category=fish
 iop1=Eat
 
 [raw_mackerel]
@@ -513,7 +482,7 @@ recol2d=29588
 2dxan=436
 cost=17
 weight=350g
-category=category_57
+category=raw_fish
 members=yes
 
 [mackerel]
@@ -532,7 +501,7 @@ recol2d=22052
 cost=17
 iop1=Eat
 weight=300g
-category=category_58
+category=fish
 members=yes
 
 [burntfish3]
@@ -550,7 +519,7 @@ recol2d=10570
 2dxan=436
 cost=1
 weight=300g
-category=category_116
+category=burnt_fish
 
 [raw_tuna]
 name=Raw tuna
@@ -566,7 +535,7 @@ recol2d=32767
 2dxan=464
 cost=100
 weight=450g
-category=category_57
+category=raw_fish
 param=fishing_struct,fishing_struct_tuna
 
 [tuna]
@@ -584,7 +553,7 @@ recol2d=22031
 cost=100
 iop1=Eat
 weight=400g
-category=category_58
+category=fish
 
 [raw_bass]
 name=Raw bass
@@ -600,7 +569,7 @@ recol2d=29331
 2dxan=464
 cost=120
 weight=400g
-category=category_57
+category=raw_fish
 members=yes
 
 [bass]
@@ -618,7 +587,7 @@ recol2d=30255
 cost=120
 iop1=Eat
 weight=350g
-category=category_58
+category=fish
 members=yes
 
 [burntfish4]
@@ -635,7 +604,7 @@ recol2d=10570
 2dxan=464
 cost=1
 weight=300g
-category=category_116
+category=burnt_fish
 
 [burntfish5]
 name=Burnt fish
@@ -653,7 +622,7 @@ model=model_2357_obj
 2dzan=1964
 2dxan=320
 weight=300g
-category=category_116
+category=burnt_fish
 
 [raw_swordfish]
 name=Raw swordfish
@@ -669,7 +638,7 @@ recol2d=29437
 2dxan=368
 cost=200
 weight=500g
-category=category_57
+category=raw_fish
 param=fishing_struct,fishing_struct_swordfish
 
 [swordfish]
@@ -687,7 +656,7 @@ recol2d=23000
 cost=200
 iop1=Eat
 weight=450g
-category=category_58
+category=fish
 
 [burnt_swordfish]
 name=Burnt swordfish
@@ -703,7 +672,7 @@ recol2d=10570
 2dxan=368
 cost=1
 weight=400g
-category=category_116
+category=burnt_fish
 
 [raw_lobster]
 name=Raw lobster
@@ -718,7 +687,7 @@ recol1d=15554
 2dxan=324
 cost=150
 weight=400g
-category=category_57
+category=raw_fish
 param=fishing_struct,fishing_struct_lobster
 
 [lobster]
@@ -733,7 +702,7 @@ model=model_2804_obj
 cost=150
 iop1=Eat
 weight=350g
-category=category_58
+category=fish
 
 [burnt_lobster]
 name=Burnt lobster
@@ -748,7 +717,7 @@ recol1d=7399
 2dxan=324
 cost=1
 weight=300g
-category=category_116
+category=burnt_fish
 
 [raw_shark]
 name=Raw shark
@@ -763,7 +732,7 @@ recol1d=22197
 2dxan=344
 cost=300
 weight=700g
-category=category_57
+category=raw_fish
 members=yes
 param=fishing_struct,fishing_struct_shark
 
@@ -783,7 +752,7 @@ recol2d=13573
 cost=300
 iop1=Eat
 weight=650g
-category=category_58
+category=fish
 members=yes
 
 [burnt_shark]
@@ -801,7 +770,7 @@ recol2d=10570
 2dxan=344
 cost=1
 weight=600g
-category=category_116
+category=burnt_fish
 members=yes
 
 [raw_mantaray]
@@ -818,7 +787,7 @@ recol2d=10613
 2dxan=376
 cost=500
 weight=450g
-category=category_57
+category=raw_fish
 members=yes
 param=fishing_struct,fishing_struct_mantaray
 
@@ -837,7 +806,7 @@ recol2d=13573
 cost=500
 iop1=Eat
 weight=400g
-category=category_58
+category=fish
 members=yes
 
 [burnt_mantaray]
@@ -854,7 +823,7 @@ recol2d=10570
 2dxan=376
 cost=1
 weight=350g
-category=category_116
+category=burnt_fish
 members=yes
 
 [raw_seaturtle]
@@ -868,7 +837,7 @@ members=yes
 2dyan=1740
 2dxan=236
 weight=400g
-category=category_57
+category=raw_fish
 param=fishing_struct,fishing_struct_seaturtle
 
 [seaturtle]
@@ -886,7 +855,7 @@ recol2d=14592
 cost=500
 iop1=Eat
 weight=350g
-category=category_58
+category=fish
 members=yes
 
 [burnt_seaturtle]
@@ -904,7 +873,7 @@ members=yes
 2dyan=1740
 2dxan=236
 weight=320g
-category=category_116
+category=burnt_fish
 
 [seaweed]
 name=Seaweed
@@ -932,7 +901,7 @@ model=model_2370_obj
 cost=2
 iop1=Eat
 weight=250g
-category=category_59
+category=miscfood
 members=yes
 
 [casket]
@@ -1002,6 +971,46 @@ cost=1400
 weight=4g
 members=yes
 
+[raw_lava_eel]
+name=Raw lava eel
+desc=A very strange eel.
+cost=150
+members=yes
+model=model_2427_obj
+recol1s=15855
+recol1d=31393
+recol2s=11628
+recol2d=31041
+2dxof=17
+2dyof=25
+2dzoom=1270
+2dyan=1936
+2dxan=312
+weight=8oz
+category=cooking_generic
+param=fishing_struct,fishing_struct_lava_eel
+tradeable=no
+
+[lava_eel]
+name=Lava eel
+desc=Strange, it looks cooler now it's been cooked.
+cost=150
+members=yes
+model=model_2427_obj
+recol1s=15855
+recol1d=15616
+recol2s=11628
+recol2d=18785
+2dxof=17
+2dyof=25
+2dzoom=1270
+2dyan=1936
+2dxan=312
+iop1=Eat
+weight=7oz
+category=fish
+tradeable=no
+
 [mort_slimey_eel]
 name=Slimey eel
 desc=A slime covered eel - yuck!
@@ -1035,7 +1044,7 @@ model=obj_3379
 members=yes
 iop1=Eat
 weight=2kg
-category=category_5
+category=meat
 
 [burnt_eel]
 name=Burnt eel
