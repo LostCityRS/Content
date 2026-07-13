@@ -106,6 +106,26 @@ if ($deposit > 0) {
 }
 return(true);
 
+// Do not add cert items using this proc.
+[proc,bank_add](namedobj $namedobj, int $amount, int $mes)(boolean)
+def_int $overflow = inv_itemspace2(bank, $namedobj, $amount, ^max_32bit_int);
+if (sub(^max_32bit_int, $amount) < inv_total(bank, $namedobj)) {
+    if($mes = ^true) mes("You already have a full stack of that item in the bank."); // 2024 osrs
+    return(false);
+}
+if ($overflow >= $amount) {
+    // https://youtu.be/2BgXLZD-xgo?t=28
+    // https://youtu.be/Ep4gaI5ic1s?t=197
+    if($mes = ^true) mes("You don't have enough space in your bank account."); // osrs
+    return(false);
+}
+def_int $deposit = sub($amount, $overflow);
+if ($deposit > 0) {
+    session_log(^log_moderator, "Added <oc_debugname($namedobj)> x<tostring($deposit)> into bank");
+    inv_add(bank, $namedobj, $deposit);
+}
+return(true);
+
 [proc,bank_check_allowed](obj $obj, int $send_mes)(boolean)
 if (oc_param($obj, unbankable) = ^true) {
     if($send_mes = ^true) mes("A magical force prevents you from banking this item!"); // osrs
