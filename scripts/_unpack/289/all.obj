@@ -6,11 +6,13 @@ desc=It's not very good.
 cost=1
 members=yes
 cost=1
+weight=5g
 model=inv_certificate
 2dyof=2
 2dzoom=760
 2dyan=28
 2dxan=552
+tradeable=no
 
 [misc_good_anthem]
 name=Good anthem
@@ -20,11 +22,13 @@ desc=Much better.
 cost=1
 members=yes
 cost=1
+weight=5g
 model=inv_certificate
 2dyof=2
 2dzoom=760
 2dyan=28
 2dxan=552
+tradeable=no
 
 [misc_treaty]
 name=Treaty
@@ -36,12 +40,14 @@ desc=Just needs the King's signature.
 cost=1
 members=yes
 cost=1
+weight=5g
 model=inv_scrollwithseal
 2dxof=1
 2dyof=7
 2dzoom=1040
 2dyan=120
 2dxan=380
+tradeable=no
 
 [misc_giant_nib]
 name=Giant nib
@@ -49,12 +55,14 @@ desc=For making a giant pen.
 cost=1
 members=yes
 cost=1
+weight=35g
 model=quest_misc_inv_giantpen_nib
 2dxof=2
 2dyof=5
 2dzoom=460
 2dyan=2044
 2dxan=424
+tradeable=no
 
 [misc_giant_pen]
 name=Giant pen
@@ -62,12 +70,14 @@ desc=The King should be able to use this.
 cost=1
 members=yes
 cost=1
+weight=35g
 model=quest_misc_inv_giantpen
 2dxof=1
 2dyof=27
 2dzoom=1830
 2dyan=1500
 2dxan=300
+tradeable=no
 
 [iron_sickle]
 name=Iron sickle
@@ -82,9 +92,23 @@ model=quest_naturespirit_inv_silver_sickle
 2dyan=948
 2dxan=604
 iop2=Wield
+wearpos=righthand
 manwear=human_weapons_silver_sickle,0
 womanwear=human_weapons_silver_sickle,6
 members=yes
+category=weapon_slash
+weight=56oz
+param=slashdefence,1
+param=crushdefence,1
+param=magicdefence,1
+param=rangedefence,1
+param=strengthbonus,1
+param=attackrate,5
+param=slashattack_anim,human_sword_slash
+param=stabattack_anim,human_sword_stab
+param=defend_anim,human_sword_def
+param=slash_sound,sickle_slash
+param=stab_sound,sickle_stab
 
 [misc_ghrimbook]
 name=Ghrim's book
@@ -96,6 +120,7 @@ recol3s=29594
 recol3d=15855
 desc=''Managing Thine Kingdom for Noobes'' by A. Ghrim.
 model=inv_book_fancy
+weight=1kg
 iop1=Read
 members=yes
 2dxof=1
@@ -103,6 +128,7 @@ members=yes
 2dzoom=830
 2dyan=116
 2dxan=244
+tradeable=no
 
 [reinit]
 name=Reinit
@@ -122,6 +148,7 @@ model=if_mm_slidepuzzle_slide01
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_02]
 name=Sliding button
@@ -132,6 +159,7 @@ model=if_mm_slidepuzzle_slide02
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_03]
 name=Sliding button
@@ -142,6 +170,7 @@ model=if_mm_slidepuzzle_slide03
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_04]
 name=Sliding button
@@ -152,6 +181,7 @@ model=if_mm_slidepuzzle_slide04
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_05]
 name=Sliding button
@@ -162,6 +192,7 @@ model=if_mm_slidepuzzle_slide05
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_06]
 name=Sliding button
@@ -172,6 +203,7 @@ model=if_mm_slidepuzzle_slide06
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_07]
 name=Sliding button
@@ -182,6 +214,7 @@ model=if_mm_slidepuzzle_slide07
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_08]
 name=Sliding button
@@ -192,6 +225,7 @@ model=if_mm_slidepuzzle_slide08
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_09]
 name=Sliding button
@@ -202,6 +236,7 @@ model=if_mm_slidepuzzle_slide09
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_10]
 name=Sliding button
@@ -212,6 +247,7 @@ model=if_mm_slidepuzzle_slide10
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_11]
 name=Sliding button
@@ -222,6 +258,7 @@ model=if_mm_slidepuzzle_slide11
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_12]
 name=Sliding button
@@ -232,6 +269,7 @@ model=if_mm_slidepuzzle_slide12
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_13]
 name=Sliding button
@@ -242,6 +280,7 @@ model=if_mm_slidepuzzle_slide13
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_14]
 name=Sliding button
@@ -252,6 +291,7 @@ model=if_mm_slidepuzzle_slide14
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_15]
 name=Sliding button
@@ -262,6 +302,7 @@ model=if_mm_slidepuzzle_slide15
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_16]
 name=Sliding button
@@ -272,6 +313,7 @@ model=if_mm_slidepuzzle_slide16
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_17]
 name=Sliding button
@@ -282,6 +324,7 @@ model=if_mm_slidepuzzle_slide17
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_18]
 name=Sliding button
@@ -292,6 +335,7 @@ model=if_mm_slidepuzzle_slide18
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_19]
 name=Sliding button
@@ -302,6 +346,7 @@ model=if_mm_slidepuzzle_slide19
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_20]
 name=Sliding button
@@ -312,6 +357,7 @@ model=if_mm_slidepuzzle_slide20
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_21]
 name=Sliding button
@@ -322,6 +368,7 @@ model=if_mm_slidepuzzle_slide21
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_22]
 name=Sliding button
@@ -332,6 +379,7 @@ model=if_mm_slidepuzzle_slide22
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_23]
 name=Sliding button
@@ -342,6 +390,7 @@ model=if_mm_slidepuzzle_slide23
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_24]
 name=Sliding button
@@ -352,6 +401,7 @@ model=if_mm_slidepuzzle_slide24
 2dxan=520
 iop5=Move
 desc=It's a sliding button of some kind.
+// TODO
 
 [reinitialisation_01_inactive]
 name=Sliding button
@@ -362,6 +412,7 @@ model=if_mm_slidepuzzle_slide01
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_02_inactive]
 name=Sliding button
@@ -372,6 +423,7 @@ model=if_mm_slidepuzzle_slide02
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_03_inactive]
 name=Sliding button
@@ -382,6 +434,7 @@ model=if_mm_slidepuzzle_slide03
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_04_inactive]
 name=Sliding button
@@ -392,6 +445,7 @@ model=if_mm_slidepuzzle_slide04
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_05_inactive]
 name=Sliding button
@@ -402,6 +456,7 @@ model=if_mm_slidepuzzle_slide05
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_06_inactive]
 name=Sliding button
@@ -412,6 +467,7 @@ model=if_mm_slidepuzzle_slide06
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_07_inactive]
 name=Sliding button
@@ -422,6 +478,7 @@ model=if_mm_slidepuzzle_slide07
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_08_inactive]
 name=Sliding button
@@ -432,6 +489,7 @@ model=if_mm_slidepuzzle_slide08
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_09_inactive]
 name=Sliding button
@@ -442,6 +500,7 @@ model=if_mm_slidepuzzle_slide09
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_10_inactive]
 name=Sliding button
@@ -452,6 +511,7 @@ model=if_mm_slidepuzzle_slide10
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_11_inactive]
 name=Sliding button
@@ -462,6 +522,7 @@ model=if_mm_slidepuzzle_slide11
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_12_inactive]
 name=Sliding button
@@ -472,6 +533,7 @@ model=if_mm_slidepuzzle_slide12
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_13_inactive]
 name=Sliding button
@@ -482,6 +544,7 @@ model=if_mm_slidepuzzle_slide13
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_14_inactive]
 name=Sliding button
@@ -492,6 +555,7 @@ model=if_mm_slidepuzzle_slide14
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_15_inactive]
 name=Sliding button
@@ -502,6 +566,7 @@ model=if_mm_slidepuzzle_slide15
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_16_inactive]
 name=Sliding button
@@ -512,6 +577,7 @@ model=if_mm_slidepuzzle_slide16
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_17_inactive]
 name=Sliding button
@@ -522,6 +588,7 @@ model=if_mm_slidepuzzle_slide17
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_18_inactive]
 name=Sliding button
@@ -532,6 +599,7 @@ model=if_mm_slidepuzzle_slide18
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_19_inactive]
 name=Sliding button
@@ -542,6 +610,7 @@ model=if_mm_slidepuzzle_slide19
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_20_inactive]
 name=Sliding button
@@ -552,6 +621,7 @@ model=if_mm_slidepuzzle_slide20
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_21_inactive]
 name=Sliding button
@@ -562,6 +632,7 @@ model=if_mm_slidepuzzle_slide21
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_22_inactive]
 name=Sliding button
@@ -572,6 +643,7 @@ model=if_mm_slidepuzzle_slide22
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_23_inactive]
 name=Sliding button
@@ -582,6 +654,7 @@ model=if_mm_slidepuzzle_slide23
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [reinitialisation_24_inactive]
 name=Sliding button
@@ -592,11 +665,14 @@ model=if_mm_slidepuzzle_slide24
 2dzoom=2180
 2dxan=520
 iop5=Move
+// TODO
 
 [mm_helper]
+dummyitem=inv_only
 
 // todo: "cert_mm_helper"
 [obj_4001]
+dummyitem=inv_only
 
 [mm_reinitialisation_hint]
 name=Spare controls
@@ -604,23 +680,27 @@ recol1s=15855
 recol1d=5250
 desc=It looks like some kind of control panel.
 members=yes
+weight=200g
 model=quest_mm_inv_monkey_control_panel
 2dxof=3
 2dyof=8
 2dzoom=1820
 2dxan=388
 iop1=View
+tradeable=no
 
 [mm_gnome_royal_seal]
 name=Gnome royal seal
 desc=It's the official Royal Gnome Seal, signed by King Narnode Shareem.
 members=yes
+weight=20g
 model=inv_scrollwithseal
 2dxof=1
 2dyof=7
 2dzoom=1040
 2dyan=120
 2dxan=380
+tradeable=no
 
 [mm_narnode_orders]
 name=Narnode's orders
@@ -628,24 +708,28 @@ recol1s=29594
 recol1d=29398
 desc=Unreadable orders handwritten by King Narnode Shareem.
 members=yes
+weight=20g
 model=inv_scroll
 2dxof=1
 2dyof=7
 2dzoom=1040
 2dyan=120
 2dxan=380
+tradeable=no
 
 [mm_monkey_dentures]
 name=Monkey dentures
 desc=Magical monkey talking dentures! What more can we say? Ook!
 members=yes
 cost=500
+weight=200g
 model=quest_mm_inv_monkey_dentures
 2dxof=3
 2dyof=-22
 2dzoom=1250
 2dyan=1864
 2dxan=216
+tradeable=no
 
 [mm_enchanted_gold_bar]
 name=Enchanted bar
@@ -654,6 +738,7 @@ recol1d=12678
 desc=A gold bar invested with a talkative monkey spirit.
 members=yes
 cost=800
+weight=4lb
 model=inv_orebar
 2dxof=1
 2dyof=-8
@@ -661,12 +746,14 @@ model=inv_orebar
 2dyan=1180
 2dxan=196
 op1=Listen
+tradeable=no
 
 [mm_eye_of_gnome]
 name=Eye of gnome
 desc=It's ... the eye of a gnome! Now what an earth could one do with this?
 members=yes
 cost=3
+weight=7g
 model=inv_newtseye
 2dxof=1
 2dyof=-2
@@ -680,6 +767,7 @@ desc=A small sample of monkey magic.
 members=yes
 cost=500
 cost=3
+weight=7g
 model=inv_newtseye
 2dxof=1
 2dyof=-2
@@ -688,10 +776,12 @@ model=inv_newtseye
 2dxan=364
 
 [mm_monkey_nuts]
+// category=category_59
 name=Monkey nuts
 desc=These are monkey nuts. Yummy.
 members=yes
 cost=3
+weight=7g
 model=quest_mm_inv_monkey_nuts
 2dyof=-2
 2dzoom=910
@@ -700,10 +790,12 @@ model=quest_mm_inv_monkey_nuts
 iop1=Eat
 
 [mm_monkey_bar]
+// category=category_59
 name=Monkey bar
 desc=It's a monkey bar. It looks highly nutritious.
 members=yes
 cost=50
+weight=150g
 model=inv_chocolate
 2dxof=1
 2dyof=41
@@ -713,12 +805,14 @@ model=inv_chocolate
 iop1=Eat
 
 [mm_banana_stew]
+// category=category_59
 name=Banana stew
 recol1s=21119
 recol1d=27432
 desc=It's a bowl full of mushy banana.
 members=yes
 cost=300
+weight=250g
 model=inv_bowl-full
 2dzoom=910
 2dyan=1856
@@ -730,6 +824,7 @@ name=Monkey wrench
 desc=For wrenching monkeys I'd guess.
 members=yes
 cost=10
+weight=21lb
 model=inv_newtseye
 2dxof=1
 2dyof=-2
@@ -742,49 +837,60 @@ name=M'amulet mould
 desc=It's an amulet mould shaped like a monkey head.
 members=yes
 cost=10
+weight=7g
 model=quest_mm_inv_monkey_amulet_mould
 2dxof=4
 2dyof=3
 2dzoom=620
 2dyan=96
 2dxan=340
+tradeable=no
 
 [mm_amulet_of_monkey_speak]
 name=M'speak amulet
 desc=It's an Amulet of Monkey Speak. It makes vague chattering noises.
 members=yes
 cost=550
+weight=3lb
 model=quest_mm_inv_monkey_amulet
 2dyof=37
 2dzoom=520
 2dxan=332
+wearpos=front
 manwear=man_necklaces_monkey_amulet,0
 womanwear=woman_necklaces_monkey_amulet,0
 iop2=Wear
+tradeable=no
 
 [mm_amulet_of_monkey_speak_without_string]
 name=M'speak amulet
 desc=It's an unstrung Amulet of Monkey Speak. It makes vague chattering noises.
 members=yes
 cost=500
+weight=3lb
 model=quest_mm_inv_monkey_amulet_unstrung
 2dyof=32
 2dzoom=330
 2dxan=448
+tradeable=no
 
 [mm_monkey_talisman]
 name=Monkey talisman
 desc=A magical talisman in the shape of a monkey head.
 members=yes
 cost=1000
+weight=3oz
 model=quest_mm_inv_monkey_talisman
 2dyof=13
 2dzoom=750
 2dyan=4
 2dxan=456
+wearpos=righthand
 iop2=Hold
+tradeable=no
 
 [mm_monkey_greegree_for_small_ninja_monkey]
+// category=category_95
 name=Monkey greegree
 recol1s=17969
 recol1d=5285
@@ -795,14 +901,19 @@ recol3d=30753
 desc=A magical talisman in the shape of a monkey head. The eyes glow bright red!
 members=yes
 cost=3000
+weight=3oz
 model=quest_mm_inv_monkey_talisman
 2dyof=13
 2dzoom=750
 2dyan=4
 2dxan=456
+wearpos=righthand
 iop2=Hold
+// param=param_295,1
+tradeable=no
 
 [mm_monkey_greegree_for_medium_ninja_monkey]
+// category=category_95
 name=Monkey greegree
 recol1s=17969
 recol1d=5285
@@ -813,14 +924,19 @@ recol3d=30753
 desc=A magical talisman in the shape of a monkey head. The eyes glow bright red!
 members=yes
 cost=6000
+weight=3oz
 model=quest_mm_inv_monkey_talisman
 2dyof=13
 2dzoom=750
 2dyan=4
 2dxan=456
+wearpos=righthand
 iop2=Hold
+// param=param_295,1
+tradeable=no
 
 [mm_monkey_greegree_for_normal_gorilla]
+// category=category_95
 name=Monkey greegree
 recol1s=17969
 recol1d=6342
@@ -831,14 +947,19 @@ recol3d=30753
 desc=A magical talisman in the shape of a monkey head. The eyes glow bright red!
 members=yes
 cost=1000
+weight=3oz
 model=quest_mm_inv_monkey_talisman
 2dyof=13
 2dzoom=750
 2dyan=4
 2dxan=456
+wearpos=righthand
 iop2=Hold
+// param=param_295,1
+tradeable=no
 
 [mm_monkey_greegree_for_bearded_gorilla]
+// category=category_95
 name=Monkey greegree
 recol1s=17969
 recol1d=6342
@@ -849,14 +970,19 @@ recol3d=30753
 desc=A magical talisman in the shape of a monkey head. The eyes glow bright red!
 members=yes
 cost=1500
+weight=3oz
 model=quest_mm_inv_monkey_talisman
 2dyof=13
 2dzoom=750
 2dyan=4
 2dxan=456
+wearpos=righthand
 iop2=Hold
+// param=param_295,1
+tradeable=no
 
 [mm_monkey_greegree_for_ancient_monkey_skull]
+// category=category_95
 name=Monkey greegree
 recol1s=17969
 recol1d=31
@@ -867,14 +993,19 @@ recol3d=30753
 desc=A magical talisman in the shape of a monkey head. The eyes glow bright red!
 members=yes
 cost=10000
+weight=3oz
 model=quest_mm_inv_monkey_talisman
 2dyof=13
 2dzoom=750
 2dyan=4
 2dxan=456
+wearpos=righthand
 iop2=Hold
+// param=param_295,1
+tradeable=no
 
 [mm_monkey_greegree_for_small_zombie_monkey]
+// category=category_95
 name=Monkey greegree
 recol1s=17969
 recol1d=7592
@@ -885,14 +1016,19 @@ recol3d=30753
 desc=A magical talisman in the shape of a monkey head. The eyes glow bright red!
 members=yes
 cost=500
+weight=3oz
 model=quest_mm_inv_monkey_talisman
 2dyof=13
 2dzoom=750
 2dyan=4
 2dxan=456
+wearpos=righthand
 iop2=Hold
+// param=param_295,1
+tradeable=no
 
 [mm_monkey_greegree_for_large_zombie_monkey]
+// category=category_95
 name=Monkey greegree
 recol1s=17969
 recol1d=7592
@@ -903,14 +1039,19 @@ recol3d=30753
 desc=A magical talisman in the shape of a monkey head. The eyes glow bright red!
 members=yes
 cost=2000
+weight=3oz
 model=quest_mm_inv_monkey_talisman
 2dyof=13
 2dzoom=750
 2dyan=4
 2dxan=456
+wearpos=righthand
 iop2=Hold
+// param=param_295,1
+tradeable=no
 
 [mm_monkey_greegree_for_normal_monkey]
+// category=category_95
 name=Monkey greegree
 recol1s=17969
 recol1d=9409
@@ -921,31 +1062,41 @@ recol3d=30753
 desc=A magical talisman in the shape of a monkey head. The eyes glow bright red!
 members=yes
 cost=500
+weight=3oz
 model=quest_mm_inv_monkey_talisman
 2dyof=13
 2dzoom=750
 2dyan=4
 2dxan=456
+wearpos=righthand
 iop2=Hold
+// param=param_295,1
+tradeable=no
 
 [fade_to_black_inv]
 name=Dummy
 model=if_fadetoblack
+wearpos=righthand
 2dzoom=130
 2dxan=512
+dummyitem=inv_only
 
 [mm_monkey_in_backpack]
 name=Monkey
 desc=It's a monkey in your backpack. As you look it pokes you.
 members=yes
+weight=15kg
 model=quest_mm_inv_monkey_backpack
 2dxof=-3
 2dyof=7
 2dzoom=1590
 2dxan=488
 iop1=Poke
+// param=param_59,1
+tradeable=no
 
 [mm_ancient_monkey_skull]
+weight=500g
 name=Monkey skull
 desc=It's a very ancient skull from some kind of ape.
 members=yes
@@ -955,20 +1106,24 @@ model=quest_mm_inv_monkey_skull_relic
 2dzoom=820
 2dyan=136
 2dxan=96
+tradeable=no
 
 [mm_sigil]
 name=10th squad sigil
 desc=It's the official sigil of the 10th squad of the Royal Guard.
 members=yes
+weight=3oz
 model=quest_mm_inv_monkey_medal
 2dxof=1
 2dyof=7
 2dzoom=1040
 2dyan=120
 2dxan=380
+wearpos=front
 manwear=man_necklaces_monkey_medal,0
 womanwear=woman_necklaces_monkey_medal,0
 iop2=Wear
+tradeable=no
 
 [castlewars_saradomin_banner]
 name=Saradomin banner
@@ -980,9 +1135,15 @@ model=game_castlewars_banners_saradomin
 2dyan=44
 2dxan=112
 iop2=Wield
+wearpos=righthand
+wearpos2=lefthand
 manwear=obj_4037_manwear,0
 womanwear=obj_4037_manwear,6
 members=yes
+weight=5lb
+// category=category_42
+// param=param_59,1
+tradeable=no
 
 [castlewars_zamorak_banner]
 name=Zamorak banner
@@ -991,12 +1152,16 @@ model=game_castlewars_banners_zamorak
 iop2=Wield
 manwear=obj_4039_manwear,0
 womanwear=obj_4039_manwear,6
+weight=5lb
+// category=category_42
 2dxof=2
 2dyof=144
 2dzoom=1900
 2dyan=44
 2dxan=112
 members=yes
+// param=param_59,1
+tradeable=no
 
 [castlewars_cloak_saradomin]
 name=Hooded cloak
@@ -1021,7 +1186,11 @@ womanwear=woman_torsoextra_cloak_for_hood2,0
 manhead=chat_male_head_hood2
 womanhead=chat_female_head_hood2
 members=yes
+weight=1g
 team=1
+// category=category_43
+// param=param_59,1
+// param=param_451,Surrender
 
 [castlewars_cloak_zamorak]
 name=Hooded cloak
@@ -1045,8 +1214,12 @@ manwear=man_torsoextra_cloak_for_hood2,0
 womanwear=woman_torsoextra_cloak_for_hood2,0
 manhead=chat_male_head_hood2
 womanhead=chat_female_head_hood2
+weight=1g
 members=yes
 team=2
+// category=category_43
+// param=param_59,1
+// param=param_451,Surrender
 
 [castlewars_catapult_rock]
 name=Rock
@@ -1057,7 +1230,10 @@ model=castlewars_catapult_boulder
 2dzoom=1220
 2dyan=1788
 2dxan=52
+weight=5kg
+// category=category_43
 members=yes
+// param=param_59,1
 
 [castlewars_explosives_potion]
 name=Explosive potion
@@ -1069,7 +1245,10 @@ model=inv_vial
 2dzoom=550
 2dyan=1996
 2dxan=84
+weight=35g
+// category=category_43
 members=yes
+// param=param_59,1
 
 [castlewars_climbing_rope]
 name=Climbing rope
@@ -1082,7 +1261,10 @@ model=ship_pileofrope2
 2dzoom=1240
 2dyan=1976
 2dxan=188
+weight=3lb
+// category=category_43
 members=yes
+// param=param_59,1
 
 [castlewars_bandages]
 name=Bandages
@@ -1092,8 +1274,11 @@ model=game_castlewars_inv_bandages
 2dzoom=1200
 2dyan=1884
 2dxan=436
+weight=1g
 iop1=Heal
+// category=category_43
 members=yes
+// param=param_59,1
 
 [castlewars_toolkit]
 name=Toolbox
@@ -1104,7 +1289,10 @@ model=game_castlewars_inv_toolbox
 2dzoom=1310
 2dyan=1704
 2dxan=136
+weight=1g
+// category=category_43
 members=yes
+// param=param_59,1
 
 [castlewars_barricade]
 name=Barricade
@@ -1114,8 +1302,11 @@ model=game_castlewars_barricade
 2dzoom=2760
 2dyan=1816
 2dxan=104
+weight=5kg
 iop1=Set-up
 members=yes
+// category=category_43
+// param=param_59,1
 
 [castlewars_manual]
 name=Castlewars manual
@@ -1136,6 +1327,8 @@ model=inv_book_fancy
 2dxan=244
 members=yes
 iop1=Read
+weight=18oz
+tradeable=no
 
 [castlewars_no0]
 name=Castlewars no0
@@ -1251,6 +1444,8 @@ cost=1
 2dxan=308
 members=yes
 stackable=yes
+weight=5g
+tradeable=no
 
 [castlewars_sword]
 name=Decorative sword
@@ -1273,9 +1468,13 @@ model=inv_bluritesword
 2dzoom=1530
 2dyan=408
 2dxan=224
+category=category_21
+wearpos=righthand
 manwear=human_weapons_blueritesword,0
 womanwear=human_weapons_blueritesword,6
 iop2=Wield
+weight=56oz
+tradeable=no
 
 [castlewars_armour_body]
 name=Decorative armour
@@ -1293,10 +1492,15 @@ members=yes
 2dzan=52
 2dxan=464
 iop2=Wear
+wearpos=torso
+wearpos2=arms
 manwear=man_torso_platemail,0
 manwear2=man_arms_platemail
 womanwear=woman_torso_platemail,0
 womanwear2=woman_arms_platemail
+weight=19lb
+category=category_7
+tradeable=no
 
 [castlewars_armour_legs]
 name=Decorative armour
@@ -1314,8 +1518,12 @@ model=inv_platelegs
 2dzoom=1740
 2dxan=444
 iop2=Wear
+wearpos=legs
 manwear=man_legs_platemail,0
 womanwear=woman_legs_platemail,0
+weight=20lb
+category=category_7
+tradeable=no
 
 [castlewars_med_helm]
 name=Decorative helm
@@ -1333,10 +1541,15 @@ members=yes
 2dyan=156
 2dxan=108
 iop2=Wear
+wearpos=hat
+wearpos2=head
 manwear=man_head_mediumhelmet,0
 womanwear=woman_head_mediumhelmet,0
 manhead=chat_male_head_mediumhelmet
 womanhead=chat_female_head_mediumhelmet
+category=category_2
+weight=3lb
+tradeable=no
 
 [castlewars_shield]
 name=Decorative shield
@@ -1356,8 +1569,13 @@ members=yes
 2dxan=344
 iop2=Wear
 cost=850
+wearpos=lefthand
 manwear=human_weapons_kiteshield,0
 womanwear=human_weapons_kiteshield,6
+category=category_18
+weight=10lb
+// TODO
+tradeable=no
 
 [damp_tinderbox]
 name=Damp tinderbox
@@ -1373,6 +1591,7 @@ womanwear=model_488_obj_wear,0
 2dyan=1968
 2dxan=196
 members=yes
+// TODO
 
 [glowing_fungus]
 name=Glowing fungus
@@ -1383,9 +1602,12 @@ model=quest_hauntedmine_inv_mushroom
 2dyan=236
 2dzan=2044
 2dxan=208
+weight=2oz
 members=yes
+tradeable=no
 
 [crystalshard_dagger]
+dummyitem=inv_only
 
 [hauntedmine_reward_key]
 name=Crystal-mine key
@@ -1396,7 +1618,9 @@ model=inv_key
 2dzoom=700
 2dyan=20
 2dxan=328
+weight=10g
 members=yes
+tradeable=no
 
 [hauntedmine_lift_key]
 name=Zealot's key
@@ -1409,7 +1633,9 @@ model=inv_key
 2dzoom=700
 2dyan=20
 2dxan=328
+weight=10g
 members=yes
+tradeable=no
 
 [xmas_yoyo]
 name=Yo-yo
@@ -1420,15 +1646,18 @@ iop1=Play
 iop2=Loop
 iop3=Walk
 iop4=Crazy
+weight=10g
 2dxof=7
 2dyof=5
 2dzoom=560
 2dyan=2036
 2dxan=196
+tradeable=no
 
 [xmas_yoyoworn]
 name=Xmas yoyoworn
 model=human_weapons_yo
+wearpos=righthand
 manwear=human_weapons_yo,0
 womanwear=human_weapons_yo,6
 
@@ -1444,9 +1673,16 @@ model=quest_hauntedmine_inv_crystal_shard_necklace
 2dyan=72
 2dxan=172
 iop2=Wear
+wearpos=front
 manwear=man_necklaces_crystal_shard,0
 womanwear=woman_necklaces_crystal_shard,0
+weight=7g
 members=yes
+param=crushdefence,3
+param=magicdefence,3
+param=rangedefence,3
+param=prayerbonus,3
+tradeable=no
 
 [crystalshard_necklace_unstrung]
 name=Salve shard
@@ -1455,7 +1691,9 @@ model=quest_hauntedmine_inv_cyrstal_shard_unstrung
 2dyof=1
 2dzoom=180
 2dyan=2044
+weight=7g
 members=yes
+tradeable=no
 
 [trollromance_toboggon]
 name=Sled
@@ -1464,10 +1702,13 @@ model=quest_trollromance_toboggan
 2dzoom=1960
 2dyan=160
 2dxan=136
+wearpos=righthand
 manwear=human_weapons_toboggan,0
 womanwear=human_weapons_toboggan,0
+weight=18g
 members=yes
 cost=150
+tradeable=no
 
 [trollromance_toboggon_waxed]
 name=Sled
@@ -1483,10 +1724,14 @@ model=quest_trollromance_toboggan
 2dyan=160
 2dxan=136
 iop2=Ride
+wearpos=righthand
+wearpos2=lefthand
 manwear=human_weapons_toboggan,0
 womanwear=human_weapons_toboggan,0
+weight=18g
 members=yes
 cost=175
+tradeable=no
 
 [trollromance_wax]
 name=Wax
@@ -1499,8 +1744,10 @@ womanwear=human_weapons_sledwax,0
 2dzoom=520
 2dyan=1936
 2dxan=176
+weight=25g
 members=yes
 cost=15
+tradeable=no
 
 [trollromance_rare_flower]
 name=Trollweiss
@@ -1521,10 +1768,19 @@ model=inv_flowerbunch
 2dyan=816
 2dxan=612
 iop2=Wield
+wearpos=righthand
 manwear=human_weapons_flowerbunch,0
 womanwear=human_weapons_flowerbunch,6
 members=yes
 cost=5
+// category=category_55
+weight=1oz
+param=stabattack,-100
+param=slashattack,-100
+param=crushattack,-50
+param=strengthbonus,-10
+param=attackrate,4
+tradeable=no
 
 [dragon_platelegs]
 name=Dragon platelegs
@@ -1535,6 +1791,16 @@ model=obj_4087
 2dxan=444
 cost=270000
 iop2=Wear
+wearpos=legs
 manwear=obj_4087_manwear,0
 womanwear=obj_4087_womanwear,0
 members=yes
+category=armour_legs
+weight=20lb
+param=magicattack,-21
+param=rangeattack,-7
+param=stabdefence,68
+param=slashdefence,66
+param=crushdefence,63
+param=magicdefence,-4
+param=rangedefence,65
