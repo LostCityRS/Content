@@ -1016,6 +1016,10 @@
 [command,atan2_deg](int $x, int $y)(int)
 // info: Get the absolute value of a number
 [command,abs](int $num)(int)
+// info: Get number of minutes elapsed since Unix epoch (Jan 1, 1970)
+[command,date_minutes]()(int)
+// info: Get 'runeday': number of days since membership started (Feb 27, 2002)
+[command,date_runeday]()(int)
 
 // DB ops (7500-7599)
 [command,db_find_with_count](dbrow $row, type $key)(int)

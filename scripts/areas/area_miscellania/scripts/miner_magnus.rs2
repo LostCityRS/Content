@@ -1,0 +1,23 @@
+[opnpc1,misc_miner]
+if (%misc_quest = ^misc_complete) {
+    ~chatnpcnoturn("<~man_misc_mesanim>Good day, Your Royal Highness.");
+} else {
+    ~chatnpcnoturn("<~man_misc_mesanim>Hello.");
+}
+@multi2(
+    "Miner Magnus.", magnus_main_talk,
+    "Your approval rating.", misc_quest_approval_rating
+);
+
+[label,magnus_main_talk]
+~chatplayer("<p,neutral>Good day. What are you doing?");
+~chatnpcnoturn("<~man_misc_mesanim>I'm mining coal. It's pretty tough going.");
+~chatplayer("<p,neutral>Good luck with that.");
+if (%misc_quest = ^misc_complete) {
+    ~chatnpcnoturn("<~man_misc_mesanim>Thank you, Your Royal Highness.");
+} else {
+    ~chatnpcnoturn("<~man_misc_mesanim>Thanks.");
+}
+
+[oploc1,misc_dummy_coalrock1]
+~mesbox("Miner Magnus is already mining that.");

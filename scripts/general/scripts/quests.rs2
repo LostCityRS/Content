@@ -218,6 +218,9 @@ if (%desertrescue = ^desertrescue_complete) {
 if (%itwatchtower >= ^itwatchtower_complete) {
     $questpoints = add($questpoints, ^itwatchtower_questpoints); 
 }
+if (%misc_quest >= ^misc_complete) {
+    $questpoints = add($questpoints, ^misc_questpoints); 
+}
 if (%legendsquest = ^legends_complete) {
     $questpoints = add($questpoints, ^legends_questpoints); 
 }
@@ -303,6 +306,7 @@ if (%phoenixgang > ^phoenixgang_not_started & %blackarmgang ! ^blackarmgang_comp
 ~send_quest_progress_colour(questlist:ball, %ballquest, ^ball_complete);
 ~send_quest_progress_colour(questlist:murder, %murderquest, ^murder_complete);
 ~send_quest_progress_colour(questlist:itexam, ~itexam_progress, ^itexam_complete);
+~send_quest_progress_colour(questlist:misc, %misc_quest, ^misc_complete);
 ~send_quest_progress_colour(questlist:hazeelcult, %hazeelcultquest, ^hazeelcult_complete);
 ~send_quest_progress_colour(questlist:hero, %heroquest, ^hero_complete);
 ~send_quest_progress_colour(questlist:itgronigen, %itgronigen, ^itgronigen_complete);

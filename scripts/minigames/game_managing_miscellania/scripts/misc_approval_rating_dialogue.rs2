@@ -1,0 +1,38 @@
+[proc,misc_approval_percentage]()(string)
+return (tostring(divide(multiply(%misc_approval, 100), 127)));
+
+[label,misc_quest_approval_rating]
+~chatplayer("<p,neutral>What do people think of me around here?");
+if (%misc_quest = ^misc_complete) {
+    if (%misc_approval >= ^MISC_APPROVAL_75_PERCENT) {
+        ~chatnpcnoturn("<p,happy>You are universally adored, Your Royal Highness. At the last poll, <~misc_approval_percentage>% of the population supported you.");
+    } else if (%misc_approval >= ^MISC_APPROVAL_50_PERCENT) {
+        ~chatnpcnoturn("<p,happy>You are well regarded, Your Royal Highness. At the last poll, <~misc_approval_percentage>% of the population supported you.");
+    } else if (%misc_approval >= ^MISC_APPROVAL_25_PERCENT) {
+        ~chatnpcnoturn("<p,shifty>Your people are growing dissatisfied with the regime, Your Royal Highness. At the last poll, <~misc_approval_percentage>% of the population supported you.");
+    } else {
+        ~chatnpcnoturn("<p,angry>Your people grow restless, Your Royal Highness. At the last poll, <~misc_approval_percentage>% of the population supported you.");
+    }
+} else {
+    if (%misc_approval >= ^MISC_APPROVAL_75_PERCENT) {
+        ~chatnpcnoturn("<p,happy>You seem remarkably popular for a newcomer to these lands. At the last poll, <~misc_approval_percentage>% of the population liked you.");
+    } else if (%misc_approval >= ^MISC_APPROVAL_50_PERCENT) {
+        ~chatnpcnoturn("<p,happy>You haven't been here for very long, but people are reasonably fond of you. At the last poll, <~misc_approval_percentage>% of the population liked you.");
+    } else if (%misc_approval >= ^MISC_APPROVAL_25_PERCENT) {
+        ~chatnpcnoturn("<p,shifty>You haven't really won the heart of the locals, if you see what I mean. At the last poll, only <~misc_approval_percentage>% of the population liked you.");
+    } else {
+        ~chatnpcnoturn("<p,angry>You've not been making many friends since you arrived here. At the last poll, only <~misc_approval_percentage>% of the population liked you.");
+    }
+}
+
+// man_misc = Managing Miscellania
+[proc,man_misc_mesanim]()(string)
+if (%misc_approval >= ^MISC_APPROVAL_75_PERCENT) {
+    return ("<p,happy>");
+} else if (%misc_approval >= ^MISC_APPROVAL_50_PERCENT) {
+    return ("<p,happy>");
+} else if (%misc_approval >= ^MISC_APPROVAL_25_PERCENT) {
+    return ("<p,shifty>");
+} else {
+    return ("<p,angry>");
+}

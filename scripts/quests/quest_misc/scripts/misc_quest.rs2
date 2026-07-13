@@ -1,0 +1,24 @@
+[opheldu,misc_giant_nib]
+switch_obj (last_useitem) {
+    case logs, oak_logs, willow_logs, maple_logs, yew_logs, magic_logs : 
+        mes("You place the nib on the end of the log to make a crude pen.");
+        inv_del(inv, misc_giant_nib, 1);
+        inv_del(inv, last_useitem, 1);
+        inv_add(inv, misc_giant_pen, 1);
+    case default : ~displaymessage(^dm_default);
+};
+
+// This distributes the emotes to the area and relevant prince/princess detection.
+[proc,misc_quest_handle_emote](seq $anim)
+// Prince Brand Emote Area
+if (inzone(1_39_60_2_9, 1_39_60_6_14, coord) = true | inzone(1_39_60_7_11, 1_39_60_8_14, coord) = true) {
+    if (npc_find(coord, misc_prince_brand, 10, 0) = true) {
+        ~prince_brand_handle_emote($anim);
+    }
+}
+// Princess Astrid Emote Area
+if (inzone(1_39_60_2_26, 1_39_60_6_31, coord) = true | inzone(1_39_60_7_26, 1_39_60_8_29, coord) = true) {
+    if (npc_find(coord, misc_princess_astrid, 10, 0) = true) {
+        ~princess_astrid_handle_emote($anim);
+    }
+}
