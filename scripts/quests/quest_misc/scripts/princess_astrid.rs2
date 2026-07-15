@@ -515,6 +515,8 @@ if (%misc_affection = 3 & %misc_s3_d1 = 1 & %misc_s3_d2 = 1 & %misc_s3_d3 = 1 & 
 ~chatnpc("<p,happy>Oh, my dear, I thought you'd never ask! Of course I'll marry you!");
 ~chatnpc("<p,happy>We'll have to put off the actual ceremony until we can find a priest, but you can tell my father I have agreed to marry you.");
 %misc_affection = 4;
+%misc_acceptedtomarry = 1;
+%misc_finish_gender = 0; // 0 for male
 
 [label,astrid_just_showing_you]
 ~chatplayer("<p,neutral>No, I was just showing you.");
