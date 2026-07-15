@@ -20,7 +20,7 @@ if (%misc_quest = ^misc_complete) {
 }
 
 [oploc1,misc_dummy_mapletree]
-~mesbox("Lumberjack Leif is already chopping that down.");
+mes("Lumberjack Leif is already chopping that down.");
 
 // This is to intercept woodcutting in miscellania
 [proc,leif_intercept_wood](string $fishing_mes, int $exp)(boolean)

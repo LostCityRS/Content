@@ -240,10 +240,15 @@ if (gender = ^gender_male) {
 ~chatplayer("<p,confused>What am I meant to be doing again?");
 ~chatnpc("<p,shifty>Ruling the kingdom, Your Royal Highness.");
 
-[label,howmanagekingdom]
+[label,howmanagekingdom] // https://www.youtube.com/watch?v=8tSrcLl6e3w unfortunately osrs
 ~chatplayer("<p,confused>How do I manage the kingdom?");
-~chatnpc("<p,shifty>Your loyal subjects work hard to collect resources for you. Every day they bring what they have collected to the castle...");
-~chatnpc("<p,shifty>Another thing which affects the amounts of resources collected is your approval rating. The more your subjects love you, the more they work.");
+~chatnpc("<p,shifty>Your loyal subjects work hard to collect resources for|you. Every day they bring what they have collected to|the castle. The resources which they collect are coal|from the rocks to the north, maple logs from the trees");
+~chatnpc("<p,shifty>to the east, herbs from the garden just outside the|castle, and tuna and swordfish fished at the port to the|south. They are paid from the money in the coffers;|each day, one-tenth of the money in the coffers is");
+~chatnpc("<p,shifty>distributed to them. A maximum of 50k is paid to your|subjects, and the coffers can store up to 5 million gp.|Another thing which affects the amounts of resources|collected is your approval rating. The more your");
+~chatnpc("<p,shifty>subjects love you, the more they will be motivated to|work hard.  King Vargas would often go and help out|his subjects in their daily tasks, when he was still able to|do so, and they loved him dearly for it. Finally, you");
+~chatnpc("<p,shifty>can choose how much of their efforts your subjects|devote to each resource; of course, the harder they|work at collecting one, the less time they have to spend|collecting the others.");
+~chatnpc("<p,shifty>Have you got a copy of my book? It explains|everything in more detail.");
+
 
 [label,howfaring]
 ~chatplayer("<p,confused>How is the Kingdom faring?");
