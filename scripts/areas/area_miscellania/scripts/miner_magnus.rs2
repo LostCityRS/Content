@@ -21,3 +21,19 @@ if (%misc_quest = ^misc_complete) {
 
 [oploc1,misc_dummy_coalrock1]
 ~mesbox("Miner Magnus is already mining that.");
+
+// This is to intercept mining in miscellania
+[proc,magnus_intercept_ore](string $fishing_mes, int $exp)(boolean)
+if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
+    if (%misc_approval < 127) { %misc_approval = add(%misc_approval, 1); }
+    if (npc_find(0_39_60_30_53, misc_miner, 2, 0) = true) { 
+        npc_say("Thanks!"); 
+        if (%misc_approval >= 127) {
+            ~chatnpcnoturn("<p,happy> Don't trouble yourself further, Your Highness, you've already done so much!");
+        }
+    }
+    stat_advance(mining, $exp);
+    mes("<substring($fishing_mes, 0, sub(string_length($fishing_mes), 1))> and give it to Miner Magnus.");
+    return (true);
+}
+return (false);

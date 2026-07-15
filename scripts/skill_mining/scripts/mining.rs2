@@ -139,6 +139,7 @@ if (random($chance) = ^true) {
     if(inzone(^crest_perfect_mine_lower_bound, ^crest_perfect_mine_upper_bound, coord) = true) {
         $output = perfect_gold_ore;
     }
+    if (~magnus_intercept_ore("You manage to mine some <db_getfield($data, mining_table:ore_name, 0)>.", db_getfield($data, mining_table:rock_exp, 0)) = true) { return; } // Intercept for Miscellania, you don't get the ore.
     inv_add(inv, $output, 1);
     stat_advance(mining, db_getfield($data, mining_table:rock_exp, 0));
     mes("You manage to mine some <db_getfield($data, mining_table:ore_name, 0)>.");
