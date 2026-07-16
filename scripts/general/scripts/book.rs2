@@ -20,6 +20,7 @@ switch_obj (%open_book) {
     case elemental_workshop_shield_book : @book_flip_page(^book_direction_backward, 0, 1, elemental_shield_book);
     case serum_book : @book_flip_page(^book_direction_backward, 0, 12, serum_book);
     case regicide_alchemy : @book_flip_page(^book_direction_backward, 0, 3, regicide_alchemy);
+    case misc_ghrimbook : @book_flip_page(^book_direction_backward, 0, 5, ghrims_book);
     case horror_diary1 : @book_flip_page(^book_direction_backward, 0, 13, horror_diary1);
     case horror_diary2 : @book_flip_page(^book_direction_backward, 0, 13, horror_diary2);
     case horror_diary3 : @book_flip_page(^book_direction_backward, 0, 10, horror_diary3);
@@ -45,6 +46,7 @@ switch_obj (%open_book) {
     case elemental_workshop_shield_book : @book_flip_page(^book_direction_forward, 0, 1, elemental_shield_book);
     case serum_book : @book_flip_page(^book_direction_forward, 0, 12, serum_book);
     case regicide_alchemy : @book_flip_page(^book_direction_forward, 0, 3, regicide_alchemy);
+    case misc_ghrimbook : @book_flip_page(^book_direction_forward, 0, 5, ghrims_book);
     case horror_diary1 : @book_flip_page(^book_direction_forward, 0, 13, horror_diary1);
     case horror_diary2 : @book_flip_page(^book_direction_forward, 0, 13, horror_diary2);
     case horror_diary3 : @book_flip_page(^book_direction_forward, 0, 10, horror_diary3);

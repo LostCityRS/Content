@@ -247,7 +247,13 @@ if (gender = ^gender_male) {
 ~chatnpc("<p,shifty>distributed to them. A maximum of 50k is paid to your|subjects, and the coffers can store up to 5 million gp.|Another thing which affects the amounts of resources|collected is your approval rating. The more your");
 ~chatnpc("<p,shifty>subjects love you, the more they will be motivated to|work hard.  King Vargas would often go and help out|his subjects in their daily tasks, when he was still able to|do so, and they loved him dearly for it. Finally, you");
 ~chatnpc("<p,shifty>can choose how much of their efforts your subjects|devote to each resource; of course, the harder they|work at collecting one, the less time they have to spend|collecting the others.");
-~chatnpc("<p,shifty>Have you got a copy of my book? It explains|everything in more detail.");
+if (inv_total(inv, misc_ghrimbook) = 0 & inv_total(bank, misc_ghrimbook) = 0) {
+    ~chatnpc("<p,shifty>Have you got a copy of my book? It explains|everything in more detail.");
+    ~chatplayer("<p,neutral>No, I don't...");
+    inv_add(inv, misc_ghrimbook, 1);
+    ~chatnpc("<p,shifty>Here, you can have this one, I have plenty spare.");
+    ~chatplayer("<p,neutral>Thanks!");
+}
 
 
 [label,howfaring]
