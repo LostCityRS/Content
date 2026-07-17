@@ -6,7 +6,7 @@ def_string $text;
 
 if (%troll_love = ^troll_love_not_started) {
     $text = "@dbl@I can start this quest by speaking to @dre@Ug@dbl@ who is in the @dre@Troll|";
-    $text = append($text, "@dre@Stronghold@dbl@.||");
+    $text = append($text, "Stronghold@dbl@.||");
     $text = append($text, "@dbl@Requirements:|");
     if (%death_equiproom < ^death_complete) {
         $text = append($text, "@dbl@Must have completed @dre@Death Plateau|");
