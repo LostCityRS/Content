@@ -6,7 +6,7 @@ if(%troll_quest < ^troll_complete & %troll_quest >= ^troll_started) {
 switch_int(%death_equiproom) {
     case ^death_complete :
         ~chatnpc("<p,happy>Welcome back friend!");
-        // TODO: Troll stronghold
+        @multi3("How goes your fight with the trolls?", denulth_troll, "I thought the White Knights controlled Asgarnia?", denulth_whiteknights, "See you about Denulth!", denulth_seeyou);
     case ^death_not_started : 
         ~chatnpc("<p,happy>Hello citizen, how can I help?");
         @multi3("Do you have any quests for me?", denulth_quests, "What is this place?", denulth_place, "You can't, thanks.", denulth_youcant);
@@ -45,6 +45,7 @@ switch_int(%troll_quest) {
         ~chatplayer("<p,neutral>I haven't found a way to climb up yet.");
         ~chatnpc("<p,sad>Hurry, friend! Who knows what they'll do with Godric?");
 }
+
 
 [label,denulth_moreoptions]
 switch_int(%death_equiproom) {
