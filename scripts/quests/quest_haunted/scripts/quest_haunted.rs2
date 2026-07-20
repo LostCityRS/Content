@@ -333,7 +333,7 @@ if (loc_param(dir) = 1) {
         $distance = -2;
     }
     loc_del(5);
-    loc_add(loc_coord, ernest_doorclosed, 0, loc_shape, 3);
+    loc_add(loc_coord, ernest_doorclosed, 1, loc_shape, 3);
     p_teleport(movecoord(coord, $distance, 0, 0));
 }
 //opens north
