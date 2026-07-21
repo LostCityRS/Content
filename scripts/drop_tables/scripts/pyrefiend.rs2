@@ -1,4 +1,8 @@
-[ai_queue3,_slayer_pyrefiend]
+[ai_queue3,slayer_pyrefiend_1] @pyrefiend_death;
+[ai_queue3,slayer_pyrefiend_2] @pyrefiend_death;
+[ai_queue3,slayer_pyrefiend_3] @pyrefiend_death;
+[ai_queue3,slayer_pyrefiend_4] @pyrefiend_death;
+[label,pyrefiend_death]
 gosub(npc_death);
 if (npc_findhero = ^false) {
     return;
