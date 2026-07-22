@@ -97,8 +97,12 @@ npc_anim(horror_dagannoth_rangeattack, 0);
 %npc_action_delay = add(map_clock, npc_param(attackrate));
 // map_projanim_v2	id=horror_spines_travel (294), starttime=10, endtime=66, angle=25, progress=50, startheight=210, endheight=110
 def_int $duration = ~player_projectile(npc_coord, coord, uid, spotanim_294, 52, 28, 10, 25, 36, 50, 5);
-def_int $damage = randominc($maxhit);
-def_int $damage2 = randominc($maxhit);
+def_int $damage = 0;
+def_int $damage2 = 0;
+if (randominc($attack_roll) > randominc($defence_roll)) {
+    $damage = randominc($maxhit);
+    $damage2 = randominc($maxhit);
+}
 if_close; // close the player interface when taking a hit.
 if (~check_protect_prayer(^ranged_style) = true) { 
     $damage = 0;
