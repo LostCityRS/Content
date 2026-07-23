@@ -9,7 +9,7 @@
 // check level 
 if (stat(fishing) < 76) {
     anim(null, 0);
-    ~mesbox("You need at least 76 Fishing to harpoon these fish.");
+    ~mesbox("You need at least 76 Fishing to Harpoon these fish.");
     return;
 }
 // check if they have fishing equipment
@@ -46,7 +46,7 @@ if (afk_event = ^true & npc_param(is_whirlpool) = ^false) {
 // check level 
 if (stat(fishing) < 76) {
     anim(null, 0);
-    ~mesbox("You need at least 76 Fishing to harpoon these fish.");
+    ~mesbox("You need at least 76 Fishing to Harpoon these fish.");
     return;
 }
 // check if they have fishing equipment

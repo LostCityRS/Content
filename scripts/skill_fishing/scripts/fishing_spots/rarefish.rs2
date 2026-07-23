@@ -85,7 +85,7 @@ p_opnpc(4);
 // check level for tuna
 if (stat(fishing) < 35) {
     anim(null, 0);
-    ~mesbox("You need at least 35 Fishing to harpoon these fish.");
+    ~mesbox("You need at least 35 Fishing to Harpoon these fish.");
     return;
 }
 // check if they have fishing equipment
@@ -123,7 +123,7 @@ if (afk_event = ^true & npc_param(is_whirlpool) = ^false) {
 // check level for tuna
 if (stat(fishing) < 35) {
     anim(null, 0);
-    ~mesbox("You need at least 35 Fishing to harpoon these fish.");
+    ~mesbox("You need at least 35 Fishing to Harpoon these fish.");
     return;
 }
 // check if they have fishing equipment
