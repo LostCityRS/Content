@@ -85,6 +85,7 @@ p_opnpc(4);
 // check level for tuna
 if (stat(fishing) < 35) {
     anim(null, 0);
+    // https://web.archive.org/web/*/http://runescape.salmoneus.net/cities/images/atollfish2.png
     ~mesbox("You need at least 35 Fishing to Harpoon these fish.");
     return;
 }
@@ -123,6 +124,7 @@ if (afk_event = ^true & npc_param(is_whirlpool) = ^false) {
 // check level for tuna
 if (stat(fishing) < 35) {
     anim(null, 0);
+    // https://web.archive.org/web/*/http://runescape.salmoneus.net/cities/images/atollfish2.png
     ~mesbox("You need at least 35 Fishing to Harpoon these fish.");
     return;
 }
