@@ -9,7 +9,6 @@ model=inv_bones
 2dxan=400
 iop1=Bury
 weight=500g
-category=6
 tradeable=no
 param=mm_bones_type,1
 category=bones
@@ -26,7 +25,6 @@ model=inv_bones
 2dxan=400
 iop1=Bury
 weight=500g
-category=6
 tradeable=no
 param=mm_bones_type,2
 category=bones
@@ -42,9 +40,10 @@ model=inv_bones_medium
 2dxan=216
 iop1=Bury
 weight=800g
-category=6
 tradeable=no
 param=mm_bones_type,3
+category=bones
+param=bone_exp,180
 
 [mm_bearded_gorilla_monkey_bones]
 name=Monkey bones
@@ -56,9 +55,10 @@ model=inv_bones_medium
 2dxan=216
 iop1=Bury
 weight=800g
-category=6
 tradeable=no
 param=mm_bones_type,4
+category=bones
+param=bone_exp,200
 
 [mm_normal_monkey_bones]
 name=Monkey bones
@@ -85,9 +85,10 @@ model=inv_bones
 2dxan=400
 iop1=Bury
 weight=500g
-category=6
 tradeable=no
 param=mm_bones_type,6
+category=bones
+param=bone_exp,50
 
 [mm_large_zombie_monkey_bones]
 name=Monkey bones
@@ -99,9 +100,10 @@ model=inv_bones
 2dxan=216
 iop1=Bury
 weight=500g
-category=6
 tradeable=no
 param=mm_bones_type,7
+category=bones
+param=bone_exp,50
 
 [mm_skeleton_bones]
 name=Bones
@@ -115,8 +117,9 @@ model=inv_bones
 2dxan=400
 iop1=Bury
 weight=500g
-category=6
 tradeable=no
+category=bones
+param=bone_exp,30
 
 [reinit]
 name=Reinit
