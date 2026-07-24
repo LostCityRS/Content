@@ -192,7 +192,7 @@ return (true);
 
 
 [proc,is_food_item](obj $slotobj)(boolean)
-if(oc_category($slotobj) = category_5 | oc_category($slotobj) = category_58 | oc_category($slotobj) = category_59 | oc_category($slotobj) = category_86 | $slotobj = rottenapples |
+if(oc_category($slotobj) = meat | oc_category($slotobj) = category_58 | oc_category($slotobj) = category_59 | oc_category($slotobj) = category_86 | $slotobj = rottenapples |
     oc_category($slotobj) = category_120 | oc_category($slotobj) = category_131 | $slotobj = pineapple | $slotobj = kebab | $slotobj = ugthanki_kebab_bad | $slotobj = ugthanki_kebab |
     $slotobj = curry | $slotobj = stew | oc_category($slotobj) = gnome_crunchies | oc_category($slotobj) = gnome_unf_odd_crunchies | oc_category($slotobj) = gnome_batta |
     oc_category($slotobj) = gnome_unf_odd_batta | oc_category($slotobj) = gnome_bowl | oc_category($slotobj) = gnome_unf_odd_bowl |
