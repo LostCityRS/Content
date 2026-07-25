@@ -6,7 +6,7 @@ def_string $text;
 
 if (%troll_love = ^troll_love_not_started) {
     $text = "@dbl@I can start this quest by speaking to @dre@Ug@dbl@ who is in the @dre@Troll|";
-    $text = append($text, "Stronghold@dbl@.||");
+    $text = append($text, "@dre@Stronghold@dbl@.||");
     $text = append($text, "@dbl@Requirements:|");
     if (%death_equiproom < ^death_complete) {
         $text = append($text, "@dbl@Must have completed @dre@Death Plateau|");
@@ -53,8 +53,8 @@ if (%troll_love > ^troll_love_learnt_about_trollweiss) {
 }
 
 if (%troll_love > ^troll_love_bring_dunstan_materials) {
-    $text = append($text, "@str@I got some yew or maple logs, an iron bar and rope and|"); // OSRS shows just 'Yew logs' if that's what you used... Does it show 'Maple logs' if you used those? If so, another varp may be needed?
-    $text = append($text, "@str@gave them to Dunstan who made a sled for me.|");
+    $text = append($text, "@str@I got some yew logs, an iron bar and rope and gave them to|"); // OSRS shows just 'Yew logs' regardless of maple or yew logs being used
+    $text = append($text, "@str@Dunstan who made a sled for me.|");
 } else if (%troll_love = ^troll_love_bring_dunstan_materials) {
     $text = append($text, "@dbl@I need some @dre@yew@dbl@ or @dre@maple logs@dbl@, an @dre@iron bar@dbl@ and @dre@rope@dbl@ for the|");
     $text = append($text, "@dbl@sled.");

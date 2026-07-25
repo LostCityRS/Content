@@ -110,11 +110,21 @@ sound_synth(wax_sled, 0, 0);
 
 [proc,unequip_trollromance_sled]
 if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) {
+    if (inv_freespace(inv) = 0) {
+        inv_delslot(worn, ^wearpos_rhand);
+        obj_add(coord, trollromance_toboggon_waxed, 1, 1000); // TODO: Check if this is correct in OSRS (Del & obj_add)
+        ~update_bas;
+        return;
+    }
     ~unequip(^wearpos_rhand);
     ~update_bas;
 }
 
 [proc,can_ride_sled]()(boolean)
+if (add(%lastcombat, 10) > map_clock) {
+    mes("You can't use that during combat.");
+    return(false);
+}
 if (inzone(^sled_lower_coord, ^sled_upper_coord, coord) = true) {
     ~equip(last_slot);
     ~update_bas;
