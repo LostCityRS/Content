@@ -58,6 +58,7 @@ if (inv_freespace(inv) = 0) {
     return;
 }
 if (%troll_love = ^troll_love_waxed_sled) %troll_love = ^troll_love_picked_trollweiss;
+if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) p_animprotect(^true);
 anim(human_pickuptrollweiss_down, 0);
 p_delay(0);
 anim(human_pickuptrollweiss_up, 0);
