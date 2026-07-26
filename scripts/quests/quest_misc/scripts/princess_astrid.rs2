@@ -1,7 +1,7 @@
 [opnpc1,misc_princess_astrid]
-if (%misc_quest >= 100) {
+if (%misc_quest >= ^misc_complete) {
     @astrid_afterthronequest;
-} else if (%misc_quest >= 10) {
+} else if (%misc_quest >= ^misc_talked_to_king) {
     @astrid_duringthronequest;
 } else {
     @astrid_beforethronequest;
@@ -13,12 +13,12 @@ if (%misc_quest >= 100) {
 
 [label,astrid_duringthronequest]
 if (gender = ^gender_male) {
-    switch_int (%misc_affection) {
-        case 0 : @astrid_throneofmiscellaniamarriagestage0;
-        case 1 : @astrid_throneofmiscellaniamarriagestage1;
-        case 2 : @astrid_throneofmiscellaniamarriagestage2;
-        case 3 : @astrid_throneofmiscellaniamarriagestage3;
-        case 4 : @astrid_throneofmiscellaniamarriagestage4;
+    switch_int (divide(%misc_affection, 10)) {
+        case ^misc_affection_not_started : @astrid_throneofmiscellaniamarriagestage0;
+        case ^misc_affection_s1_base : @astrid_throneofmiscellaniamarriagestage1;
+        case ^misc_affection_s2_base : @astrid_throneofmiscellaniamarriagestage2;
+        case ^misc_affection_s3_base : @astrid_throneofmiscellaniamarriagestage3;
+        case ^misc_affection_complete_base : @astrid_throneofmiscellaniamarriagestage4;
     }
 } else {
     @astrid_beforethronequest;
@@ -33,7 +33,7 @@ if (gender = ^gender_male) {
 ~chatnpc("<p,shifty>You realise, I hope, that I have many suitors.");
 ~chatplayer("<p,neutral>I take it you are not especially fond of any of them?");
 ~chatnpc("<p,neutral>That is true. However, I am willing to give you a chance; if you impress me enough, I will consider accepting to marry you.");
-%misc_affection = 1;
+%misc_affection = ^misc_affection_s1_step0;
 
 [label,astrid_throneofmiscellaniamarriagestage1]
 if (%misc_s1_d1 = 1 & %misc_s1_d2 = 1 & %misc_s1_d3 = 1 & %misc_s1_give = 1 & %misc_s1_emote = 1) {
@@ -66,6 +66,7 @@ if (%misc_s1_d1 = 0) {
 ~chatplayer("<p,happy>Archery is a noble art!");
 ~chatnpc("<p,neutral>I'm so glad you agree!");
 %misc_s1_d1 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,astrid_youshouldlistentodaddy]
 ~chatplayer("<p,neutral>You should listen to your father.");
@@ -95,6 +96,7 @@ if (%misc_s1_d1 = 0) {
 ~chatnpc("<p,neutral>How do you know I wouldn't hit you as well?");
 ~chatplayer("<p,neutral>I have confidence in your skills, Your Royal Highness.");
 %misc_s1_d2 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,astrid_randomset1branch3]
 ~chatplayer("<p,neutral>What do you think of Advisor Ghrim?");
@@ -113,6 +115,7 @@ if (%misc_s1_d1 = 0) {
 ~chatplayer("<p,happy>He's been very helpful.");
 ~chatnpc("<p,happy>Yes, my father made a wise decision when he chose him to be his advisor.");
 %misc_s1_d3 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,astrid_nowonderyouturnout]
 ~chatplayer("<p,laugh>No wonder you turned out like this...");
@@ -126,7 +129,7 @@ if (%misc_s1_d1 = 0) {
 ~chatplayer("<p,neutral>If I may call you Astrid, Your Royal Highness.");
 ~chatnpc("<p,neutral>You may call me 'Princess'.");
 ~chatplayer("<p,neutral>Very well, Princess.");
-%misc_affection = 2;
+%misc_affection = ^misc_affection_s2_step0;
 
 [label,astrid_afterdatingmaterial]
 ~chatnpc("<p,neutral>Good day, <~get_viking_name>.");
@@ -163,6 +166,7 @@ if (%misc_s2_d1 = 0) {
 ~chatplayer("<p,happy>That sounds like a good idea.");
 ~chatnpc("<p,neutral>Thank you.");
 %misc_s2_d1 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,astrid_sillyidea]
 ~chatplayer("<p,laugh>What a silly idea!");
@@ -192,6 +196,7 @@ if (%misc_s2_d1 = 0) {
 ~chatplayer("<p,confused>What happened next?");
 ~chatnpc("<p,neutral>He realised that neither of us have an army.");
 %misc_s2_d2 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,astrid_randomset2branch3]
 ~chatplayer("<p,neutral>So why are you so interested in archery?");
@@ -206,6 +211,7 @@ if (%misc_s2_d1 = 0) {
 ~chatplayer("<p,happy>I'm quite fond of it myself.");
 ~chatnpc("<p,neutral>It's good to know someone who shares my interests.");
 %misc_s2_d3 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,astrid_sticktoknitting]
 ~chatplayer("<p,neutral>You should stick to knitting.");
@@ -219,7 +225,7 @@ if (%misc_s2_d1 = 0) {
 ~chatnpc("<p,happy>I must admit I am growing quite fond of you, <~get_viking_name>.");
 ~chatplayer("<p,confused>My, could it be that I have succeeded where so many before me have failed, and finally melted the heart of the fair Princess?");
 ~chatnpc("<p,happy>Not yet, my dear; let us just say you have made it onto the shortlist.");
-%misc_affection = 3;
+%misc_affection = ^misc_affection_s3_step0;
 
 [label,astrid_almostweddingmaterial]
 ~chatnpc("<p,neutral>Hello, dear.");
@@ -249,6 +255,7 @@ if (%misc_s3_d1 = 0) {
 ~chatplayer("<p,neutral>It's a lovely little country.");
 ~chatnpc("<p,neutral>I'm glad you like it.");
 %misc_s3_d1 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,astrid_itsboring]
 ~chatplayer("<p,happy>It's boring.");
@@ -271,6 +278,7 @@ if (%misc_s3_d1 = 0) {
 ~chatplayer("<p,happy>And what a great bard he makes!");
 ~chatnpc("<p,neutral>Haha! Oh yes, quite the bard, he is.");
 %misc_s3_d2 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,astrid_betterdrains]
 ~chatplayer("<p,neutral>I have heard better drains!");
@@ -301,15 +309,20 @@ if (%misc_s3_d1 = 0) {
 ~chatplayer("<p,neutral>I suppose you don't have much opportunity to.");
 ~chatnpc("<p,happy>Exactly! Perhaps you could take me with you sometime, dear.");
 %misc_s3_d3 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,astrid_throneofmiscellaniamarriagestage4]
 @astrid_afterthronequest;
 
 [label,astrid_afterthronequest]
-if (gender = ^gender_male) {
-    @astrid_engageddialogue;
+if (%misc_finish_gender = ^gender_male) {
+    if (gender = ^gender_male) {
+        @astrid_engageddialogue;
+    } else {
+        @astrid_whyareyoufemale;
+    }
 } else {
-    @astrid_whyareyoufemale;
+    @astrid_beforethronequest;
 }
 
 [label,astrid_engageddialogue]
@@ -324,13 +337,17 @@ if (gender = ^gender_male) {
 // // FOR ITEMS
 
 [opnpcu,misc_princess_astrid]
-if (%misc_affection = 0) {
+if (gender = ^gender_female) {
+    ~chatnpc("<p,neutral>No thank you, Madam.");
+    return;
+}
+if (%misc_affection = ^misc_affection_not_started) {
     ~chatnpc("<p,neutral>No thank you, Sir.");
     return;
 }
 def_obj $item = last_useitem;
 
-if (%misc_affection = 1) {
+if (divide(%misc_affection, 10) = ^misc_affection_s1_base) {
     if ($item = flowers_waterfall_quest_mixed) {
         if (%misc_s1_give = 1) {
             ~chatnpc("<p,neutral>You've already given me some, but thank you.");
@@ -341,7 +358,7 @@ if (%misc_affection = 1) {
     }
 }
 
-if (%misc_affection = 2) {
+if (divide(%misc_affection, 10) = ^misc_affection_s2_base) {
     if ($item = shortbow) {
         if (%misc_s2_give = 1) {
             ~chatnpc("<p,neutral>You've already given me one, but thank you.");
@@ -440,7 +457,7 @@ if (%misc_affection = 2) {
     }
 }
 
-if (%misc_affection = 3 & %misc_s3_d1 = 1 & %misc_s3_d2 = 1 & %misc_s3_d3 = 1 & %misc_s3_emote = 1) {
+if (%misc_affection = ^misc_affection_s3_step4 & %misc_s3_d1 = 1 & %misc_s3_d2 = 1 & %misc_s3_d3 = 1 & %misc_s3_emote = 1) {
     if ($item = gold_ring) {
         ~chatnpc("<p,happy>Is this for me? Really?");
         @multi2("Yes", astrid_item_gold_ring, "No", astrid_just_showing_you);
@@ -504,17 +521,19 @@ if (%misc_affection = 3 & %misc_s3_d1 = 1 & %misc_s3_d2 = 1 & %misc_s3_d3 = 1 & 
 ~chatplayer("<p,neutral>Of course, Your Royal Highness.");
 ~chatnpc("<p,happy>Thank you! They're lovely!");
 %misc_s1_give = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,astrid_bow_after_giving]
 ~chatplayer("<p,neutral>Of course, Princess.");
 ~chatnpc("<p,happy>Thank you! It's lovely!");
 %misc_s2_give = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,astrid_ring_after_giving]
 ~chatplayer("<p,neutral>Princess Astrid, will you marry me?");
 ~chatnpc("<p,happy>Oh, my dear, I thought you'd never ask! Of course I'll marry you!");
 ~chatnpc("<p,happy>We'll have to put off the actual ceremony until we can find a priest, but you can tell my father I have agreed to marry you.");
-%misc_affection = 4;
+%misc_affection = ^misc_affection_complete;
 %misc_acceptedtomarry = 1;
 %misc_finish_gender = 0; // 0 for male
 
@@ -525,7 +544,7 @@ if (%misc_affection = 3 & %misc_s3_d1 = 1 & %misc_s3_d2 = 1 & %misc_s3_d3 = 1 & 
 // // FOR EMOTES
 
 [proc,princess_astrid_handle_emote](seq $anim)
-if (%misc_affection = 0) {
+if (gender = ^gender_female | %misc_affection = ^misc_affection_not_started) {
     switch_seq ($anim) {
         case emote_bow, emote_wave : ~chatnpc("<p,neutral>Hello!");
         case emote_angry, emote_cry : ~chatnpc("<p,confused>What's wrong?");
@@ -535,7 +554,7 @@ if (%misc_affection = 0) {
         case emote_dance : ~chatnpc("<p,neutral>You dance well.");
         case emote_blow_kiss : ~chatnpc("<p,neutral>Sorry, but I'm not interested.");
     }
-} else if (%misc_affection = 1) {
+} else if (divide(%misc_affection, 10) = ^misc_affection_s1_base) {
     switch_seq ($anim) {
         case emote_bow, emote_wave : ~chatnpc("<p,neutral>Hello!");
         case emote_angry, emote_cry : ~chatnpc("<p,confused>What's wrong, Sir?");
@@ -545,11 +564,12 @@ if (%misc_affection = 0) {
         case emote_glass_box, emote_climbing_rope, emote_mime_lean, emote_glass_wall : ~chatnpc("<p,laugh>You are silly!");
         case emote_dance : {
             %misc_s1_emote = 1;
+            %misc_affection = add(%misc_affection, 1); 
             ~chatnpc("<p,neutral>You dance well, Sir.");
         }
         case emote_blow_kiss : ~chatnpc("<p,shock>Let's not get ahead of ourselves now, Sir?");
     }
-} else if (%misc_affection = 2) {
+} else if (divide(%misc_affection, 10) = ^misc_affection_s2_base) {
     switch_seq ($anim) {
         case emote_bow, emote_wave : ~chatnpc("<p,neutral>Hello!");
         case emote_angry, emote_cry : ~chatnpc("<p,confused>What's wrong, <~get_viking_name>?");
@@ -561,7 +581,7 @@ if (%misc_affection = 0) {
         case emote_blow_kiss : ~chatnpc("<p,shock>Let's not get ahead of ourselves now, <~get_viking_name>!");
         case emote_clap : ~chatnpc("<p,neutral>Thank you, <~get_viking_name>.");
     }
-} else if (%misc_affection = 3) {
+} else if (divide(%misc_affection, 10) = ^misc_affection_s3_base) {
     switch_seq ($anim) {
         case emote_bow, emote_wave : ~chatnpc("<p,neutral>Hello!");
         case emote_angry, emote_cry : ~chatnpc("<p,confused>What's wrong, dear?");
@@ -571,8 +591,20 @@ if (%misc_affection = 0) {
         case emote_dance : ~chatnpc("<p,neutral>You dance well, dear.");
         case emote_blow_kiss : {
             %misc_s3_emote = 1;
+            %misc_affection = add(%misc_affection, 1); 
             ~chatnpc("<p,neutral>You flatter me, my dear.");
         }
+        case emote_clap : ~chatnpc("<p,neutral>Thank you, dear.");
+    }
+} else if (divide(%misc_affection, 10) = ^misc_affection_complete_base) {
+    switch_seq ($anim) {
+        case emote_bow, emote_wave : ~chatnpc("<p,neutral>Hello!");
+        case emote_angry, emote_cry : ~chatnpc("<p,confused>What's wrong, dear?");
+        case emote_cheer : ~chatnpc("<p,neutral>Thank you. It's nice to be appreciated.");
+        case emote_beckon : ~chatnpc("<p,neutral>I'm staying right here.");
+        case emote_laugh : ~chatnpc("<p,confused>What's so funny, dear?");
+        case emote_dance : ~chatnpc("<p,neutral>You dance well, dear.");
+        case emote_blow_kiss : ~chatnpc("<p,neutral>You flatter me, my dear.");
         case emote_clap : ~chatnpc("<p,neutral>Thank you, dear.");
     }
 }

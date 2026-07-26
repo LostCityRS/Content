@@ -114,6 +114,7 @@ if ($deposit_amt > 0) {
         %misc_coffers = add(%misc_coffers, $deposit_amt);
         ~mesbox("Added <tostring($deposit_amt)> coins to the coffers."); // http://youtu.be/AHygmc-5hwI
     } else {
+        // Not authentic. Need source.
         ~mesbox("Not enough coins.");
     }
 }
@@ -128,8 +129,11 @@ if(%misc_coffers >= $withdraw_amt) {
         $withdraw_amt = %misc_coffers;
     }
     %misc_coffers = sub(%misc_coffers, $withdraw_amt);
-    inv_add(bank, coins, $withdraw_amt);
+    inv_add(inv, coins, $withdraw_amt);
     ~mesbox("Withdrew <tostring($withdraw_amt)> coins."); // http://youtu.be/AHygmc-5hwI
+} else {
+    // Not authentic. Need source.
+    ~mesbox("Not enough coins.");
 }
 ~open_manage_miscellania_interface;
 

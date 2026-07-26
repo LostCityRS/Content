@@ -71,7 +71,7 @@ if (gender = ^gender_male) {
 ~chatplayer("<p,confused>And you say this is a mere formality, Your Majesty?");
 ~chatnpc("<p,happy>I am sure he won't be able to resist your heroic charms. You can ask Ghrim for advice.");
 
-[label,king_vargas_quest_stage_10]
+[label,king_vargas_quest_stage_10] // https://youtu.be/RSjXfUd2uyo
 ~chatplayer("<p,neutral>Your Majesty.");
 ~chatnpc("<p,neutral>How are you getting on, <~get_viking_name>? Have you talked to Queen Sigrid of Etceteria?");
 ~chatplayer("<p,sad>Not yet, Your Majesty.");
@@ -139,7 +139,7 @@ if (%misc_quest = 80) {
 @king_vargas_ismarried;
 
 [label,king_vargas_ismarried]
-if (%misc_affection >= 4) {
+if (%misc_affection >= ^misc_affection_complete) {
     ~chatplayer("<p,happy> <text_gender("She", "He")> has, Your Majesty.");
     ~chatnpc("<p,happy>Excellent, excellent.");
 } else {
@@ -157,7 +157,7 @@ if (%misc_approval >= ^MISC_APPROVAL_75_PERCENT) {
 @king_vargas_finalcheck;
 
 [label,king_vargas_finalcheck]
-if (%misc_affection >= 4 & %misc_approval >= ^MISC_APPROVAL_75_PERCENT) {
+if (%misc_affection >= ^misc_affection_complete & %misc_approval >= ^MISC_APPROVAL_75_PERCENT) {
     @king_vargas_quest_satisfied;
 }
 // Ends conversation here if not satisfied

@@ -131,7 +131,7 @@ $x = append($x, "@red@QUEST COMPLETE!");
 if (%misc_quest < ^misc_complete) {
     $x = append($x, "|");
 }
-if (%misc_affection >= 4) {
+if (%misc_affection >= ^misc_affection_complete) {
     if (gender = ^gender_male) {
         $x = append($x, "@str@The Princess agreed to marry me.|");
     } else {

@@ -1,5 +1,5 @@
 [opnpc1,misc_prince_brand]
-if (%misc_quest >= 100) {
+if (%misc_quest >= ^misc_complete) {
     @brand_afterthronequest;
 } else if (%misc_quest = 40) {
     @brand_duringthronequeststage40;
@@ -9,7 +9,7 @@ if (%misc_quest >= 100) {
     } else {
         @brand_duringthronequeststage50;
     }
-} else if (%misc_quest >= 10) {
+} else if (%misc_quest >= ^misc_talked_to_king) {
     @brand_duringthronequest;
 } else {
     @brand_beforethronequest;
@@ -44,16 +44,16 @@ inv_add(inv, misc_awful_anthem, 1);
 ~chatnpc("<p,neutral>Don't mention it, <text_gender("Sir", "Madam")>.");
 
 [label,brand_duringthronequest]
-if (gender = ^gender_male) {
-    @brand_beforethronequest;
-} else {
-    switch_int (%misc_affection) {
-        case 0 : @brand_throneofmiscellaniamarriagestage0;
-        case 1 : @brand_throneofmiscellaniamarriagestage1;
-        case 2 : @brand_throneofmiscellaniamarriagestage2;
-        case 3 : @brand_throneofmiscellaniamarriagestage3;
-        case 4 : @brand_throneofmiscellaniamarriagestage4;
+if (gender = ^gender_female) {
+    switch_int (divide(%misc_affection, 10)) {
+        case ^misc_affection_not_started : @brand_throneofmiscellaniamarriagestage0;
+        case ^misc_affection_s1_base : @brand_throneofmiscellaniamarriagestage1;
+        case ^misc_affection_s2_base : @brand_throneofmiscellaniamarriagestage2;
+        case ^misc_affection_s3_base : @brand_throneofmiscellaniamarriagestage3;
+        case ^misc_affection_complete_base : @brand_throneofmiscellaniamarriagestage4;
     }
+} else {
+    @brand_beforethronequest;
 }
 
 [label,brand_throneofmiscellaniamarriagestage0]
@@ -66,7 +66,7 @@ if (gender = ^gender_male) {
 ~chatnpc("<p,confused>Come now, what interest would I have in a crass adventurer like yourself? What would you know of the poetry that flows through my veins like an avalanche through a peaceful mountain village?");
 ~chatplayer("<p,shifty>I think you may find I know good poetry when I see it, Your Royal Highness...");
 ~chatnpc("<p,neutral>This may be the case. I am willing to give you a chance; if you impress me enough, I will consider accepting to marry you.");
-%misc_affection = 1;
+%misc_affection = ^misc_affection_s1_step0;
 
 [label,brand_throneofmiscellaniamarriagestage1]
 if (%misc_s1_d1 = 1 & %misc_s1_d2 = 1 & %misc_s1_d3 = 1 & %misc_s1_give = 1 & %misc_s1_emote = 1) {
@@ -101,6 +101,7 @@ if (%misc_s1_d1 = 0) {
 ~chatplayer("<p,happy>Be still, my heart.");
 ~chatnpc("<p,happy>I'm glad you liked it.");
 %misc_s1_d1 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,brand_sucksatrhyming]
 ~chatplayer("<p,confused>That doesn't even rhyme!");
@@ -123,6 +124,7 @@ if (%misc_s1_d1 = 0) {
 ~chatplayer("<p,neutral>They don't understand your poetry as I do.");
 ~chatnpc("<p,neutral>Mmm, a very good answer, <text_gender("sir", "madam")>.");
 %misc_s1_d2 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,brand_alreadymarried]
 ~chatplayer("<p,neutral>They're all already married.");
@@ -146,6 +148,7 @@ if (%misc_s1_d1 = 0) {
 ~chatplayer("<p,neutral>You will be the greatest bard!");
 ~chatnpc("<p,neutral>I'm so glad you agree!");
 %misc_s1_d3 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,brand_awfulbard]
 ~chatplayer("<p,neutral>You're an awful bard.");
@@ -157,7 +160,7 @@ if (%misc_s1_d1 = 0) {
 ~chatnpc("<p,shock>Oh, but I realise you have not yet told me your name!");
 ~chatplayer("<p,neutral>My name is <~get_viking_name>, Your Highness.");
 ~chatnpc("<p,neutral>Then I shall I call you <~get_viking_name>, Madam, and you shall call me Prince.");
-%misc_affection = 2;
+%misc_affection = ^misc_affection_s2_step0;
 
 [label,brand_afterdatingmaterial]
 ~chatnpc("<p,neutral>Good day, <~get_viking_name>.");
@@ -190,6 +193,7 @@ if (%misc_s2_d1 = 0) {
 ~chatplayer("<p,neutral>A much nobler pursuit, to be sure.");
 ~chatnpc("<p,neutral>I am glad you agree.");
 %misc_s2_d1 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,brand_yousobad]
 ~chatplayer("<p,happy>If only you were any good at them...");
@@ -215,6 +219,7 @@ if (%misc_s2_d1 = 0) {
 ~chatplayer("<p,happy>How inspiring!");
 ~chatnpc("<p,neutral>Thank you! I thought I would compose something for future generations, to tell them my story.");
 %misc_s2_d2 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,brand_earsarebleeding]
 ~chatplayer("<p,neutral>I think my ears are bleeding.");
@@ -237,6 +242,7 @@ if (%misc_s2_d1 = 0) {
 ~chatplayer("<p,happy>How poetic.");
 ~chatnpc("<p,neutral>Why thank you. Sometimes I amaze even myself.");
 %misc_s2_d3 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,brand_mothormage]
 ~chatplayer("<p,confused>Wait, are you the moth or the mage?");
@@ -250,7 +256,7 @@ if (%misc_s2_d1 = 0) {
 ~chatnpc("<p,happy>I must admit I am growing quite fond of you, <~get_viking_name>.");
 ~chatplayer("<p,confused>Could it be, my Prince, that you would consider wedding a crass adventurer such as myself?");
 ~chatnpc("<p,happy>Not yet, my darling; let us just say my heart is a maze of inescapable tunnels, and you are the light at the end of one of them.");
-%misc_affection = 3;
+%misc_affection = ^misc_affection_s3_step0;
 
 [label,brand_almostweddingmaterial]
 ~chatnpc("<p,neutral>Hello, dear.");
@@ -290,6 +296,7 @@ if (%misc_s3_d1 = 0) {
 ~chatplayer("<p,happy>That was lovely. I'm touched!");
 ~chatnpc("<p,happy>I'm glad you liked it, my dear.");
 %misc_s3_d1 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,brand_randomset3branch2]
 ~chatnpc("<p,neutral>Tell me, have you ever composed any poems yourself?");
@@ -303,6 +310,7 @@ if (%misc_s3_d1 = 0) {
 ~chatplayer("<p,laugh>I wouldn't presume to have the skill...");
 ~chatnpc("<p,neutral>You're right, it takes great skill and inspiration to be a great poet such as myself.");
 %misc_s3_d2 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,brand_cantbehard]
 ~chatplayer("<p,neutral>Not really, but it can't be that hard.");
@@ -325,6 +333,7 @@ if (%misc_s3_d1 = 0) {
 ~chatplayer("<p,happy>I'm glad to hear it.");
 ~chatnpc("<p,neutral>Of course, she couldn't understand as well as you do, my dear.");
 %misc_s3_d3 = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,brand_whatartisthat]
 ~chatplayer("<p,neutral>What art is that?");
@@ -338,10 +347,14 @@ if (%misc_s3_d1 = 0) {
 @brand_afterthronequest;
 
 [label,brand_afterthronequest]
-if (gender = ^gender_male) {
-    @brand_whyareyoumale;
+if (%misc_finish_gender = ^gender_female) {
+    if (gender = ^gender_female) {
+        @brand_engageddialogue;
+    } else {
+        @brand_whyareyoumale;
+    }
 } else {
-    @brand_engageddialogue;
+    @brand_beforethronequest;
 }
 
 [label,brand_engageddialogue]
@@ -356,13 +369,17 @@ if (gender = ^gender_male) {
 // // FOR ITEMS
 
 [opnpcu,misc_prince_brand]
-if (%misc_affection = 0) {
+if (gender = ^gender_male) {
+    ~chatnpc("<p,neutral>No thank you, Sir.");
+    return;
+}
+if (%misc_affection = ^misc_affection_not_started) {
     ~chatnpc("<p,neutral>No thank you, Madam.");
     return;
 }
 def_obj $item = last_useitem;
 
-if (%misc_affection = 1) {
+if (divide(%misc_affection, 10) = ^misc_affection_s1_base) {
     if ($item = flowers_waterfall_quest_mixed) {
         if (%misc_s1_give = 1) {
             ~chatnpc("<p,neutral>You've already given me some, but thank you.");
@@ -373,7 +390,7 @@ if (%misc_affection = 1) {
     }
 }
 
-if (%misc_affection = 2) {
+if (divide(%misc_affection, 10) = ^misc_affection_s2_base) {
     if ($item = cake) {
         if (%misc_s2_give = 1) {
             ~chatnpc("<p,neutral>You've already given me one, but thank you.");
@@ -423,7 +440,7 @@ if (%misc_affection = 2) {
         }
     }
 }
-if (%misc_affection = 3 & %misc_s3_d1 = 1 & %misc_s3_d2 = 1 & %misc_s3_d3 = 1 & %misc_s3_emote = 1) {
+if (%misc_affection = ^misc_affection_s3_step4 & %misc_s3_d1 = 1 & %misc_s3_d2 = 1 & %misc_s3_d3 = 1 & %misc_s3_emote = 1) {
     if ($item = gold_ring) {
         ~chatnpc("<p,happy>Is this for me? Really?");
         @multi2("Yes", brand_item_gold_ring, "No", brand_just_showing_you);
@@ -481,17 +498,19 @@ if (%misc_affection = 3 & %misc_s3_d1 = 1 & %misc_s3_d2 = 1 & %misc_s3_d3 = 1 & 
 ~chatplayer("<p,neutral>Of course, Your Royal Highness.");
 ~chatnpc("<p,happy>Thank you! They're lovely!");
 %misc_s1_give = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,brand_cake_after_giving]
 ~chatplayer("<p,neutral>Of course, Prince.");
 ~chatnpc("<p,happy>Thank you! It's lovely!");
 %misc_s2_give = 1;
+%misc_affection = add(%misc_affection, 1); 
 
 [label,brand_ring_after_giving]
 ~chatplayer("<p,neutral>Prince Brand, will you marry me?");
 ~chatnpc("<p,happy>My heart is an open book to you, my darling, and all the pages say yes... \"Yes\"!");
 ~chatnpc("<p,happy>We'll have to put off the actual ceremony until we can find a priest, but you can tell my father I have agreed to marry you.");
-%misc_affection = 4;
+%misc_affection = ^misc_affection_complete;
 %misc_acceptedtomarry = 1;
 %misc_finish_gender = 1; // 1 for female
 
@@ -503,7 +522,7 @@ if (%misc_affection = 3 & %misc_s3_d1 = 1 & %misc_s3_d2 = 1 & %misc_s3_d3 = 1 & 
 // // FOR EMOTES
 
 [proc,prince_brand_handle_emote](seq $anim)
-if (%misc_affection = 0) {
+if (gender = ^gender_male | %misc_affection = ^misc_affection_not_started) {
     switch_seq ($anim) {
         case emote_bow, emote_wave : ~chatnpc("<p,neutral>Hello!");
         case emote_angry, emote_cry : ~chatnpc("<p,confused>What's wrong?");
@@ -513,7 +532,7 @@ if (%misc_affection = 0) {
         case emote_dance : ~chatnpc("<p,neutral>You dance well.");
         case emote_blow_kiss : ~chatnpc("<p,neutral>Sorry, but I'm not interested.");
     }
-} else if (%misc_affection = 1) {
+} else if (divide(%misc_affection, 10) = ^misc_affection_s1_base) {
     switch_seq ($anim) {
         case emote_bow, emote_wave : ~chatnpc("<p,neutral>Hello!");
         case emote_angry, emote_cry : ~chatnpc("<p,confused>What's wrong, Madam?");
@@ -523,11 +542,12 @@ if (%misc_affection = 0) {
         case emote_glass_box, emote_climbing_rope, emote_mime_lean, emote_glass_wall : ~chatnpc("<p,laugh>You are silly!");
         case emote_dance : {
             %misc_s1_emote = 1;
+            %misc_affection = add(%misc_affection, 1); 
             ~chatnpc("<p,neutral>You dance well, Madam.");
         }
         case emote_blow_kiss : ~chatnpc("<p,shock>Let's not get ahead of ourselves now, Madam?");
     }
-} else if (%misc_affection = 2) {
+} else if (divide(%misc_affection, 10) = ^misc_affection_s2_base) {
     switch_seq ($anim) {
         case emote_bow, emote_wave : ~chatnpc("<p,neutral>Hello!");
         case emote_angry, emote_cry : ~chatnpc("<p,confused>What's wrong, <~get_viking_name>?");
@@ -539,7 +559,7 @@ if (%misc_affection = 0) {
         case emote_blow_kiss : ~chatnpc("<p,shock>Let's not get ahead of ourselves now, <~get_viking_name>!");
         case emote_clap : ~chatnpc("<p,neutral>Thank you, <~get_viking_name>.");
     }
-} else if (%misc_affection = 3) {
+} else if (divide(%misc_affection, 10) = ^misc_affection_s3_base) {
     switch_seq ($anim) {
         case emote_bow, emote_wave : ~chatnpc("<p,neutral>Hello!");
         case emote_angry, emote_cry : ~chatnpc("<p,confused>What's wrong, dear?");
@@ -549,8 +569,20 @@ if (%misc_affection = 0) {
         case emote_dance : ~chatnpc("<p,neutral>You dance well, dear.");
         case emote_blow_kiss : {
             %misc_s3_emote = 1;
+            %misc_affection = add(%misc_affection, 1); 
             ~chatnpc("<p,neutral>You flatter me, my dear.");
         }
+        case emote_clap : ~chatnpc("<p,neutral>Thank you, dear.");
+    }
+} else if (%misc_affection = ^misc_affection_complete_base) {
+    switch_seq ($anim) {
+        case emote_bow, emote_wave : ~chatnpc("<p,neutral>Hello!");
+        case emote_angry, emote_cry : ~chatnpc("<p,confused>What's wrong, dear?");
+        case emote_cheer : ~chatnpc("<p,neutral>Thank you. It's nice to be appreciated.");
+        case emote_beckon : ~chatnpc("<p,neutral>I'm staying right here.");
+        case emote_laugh : ~chatnpc("<p,confused>What's so funny, dear?");
+        case emote_dance : ~chatnpc("<p,neutral>You dance well, dear.");
+        case emote_blow_kiss : ~chatnpc("<p,neutral>You flatter me, my dear.");
         case emote_clap : ~chatnpc("<p,neutral>Thank you, dear.");
     }
 }

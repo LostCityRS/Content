@@ -118,7 +118,11 @@ if (inv_total(inv, misc_awful_anthem) >= 1) {
 @generictalk;
 
 [label,generictalk]
-if (%misc_affection < 4) {
+if (%misc_killed = 1) {
+    %misc_killed = 0;
+    ~chatnpc("<p,shifty>I should tell you right away that killing the people of this Kingdom will not make you popular with anyone.");
+}
+if (%misc_affection < ^misc_affection_complete) { // If not completed yet.
     @multi4(
         "What am I meant to be doing again?", whatshouldIdo,
         "How do I make peace with Etceteria?", howtomakepeace,
@@ -146,7 +150,7 @@ if (%misc_affection < 4) {
 ~chatplayer("<p,confused>What am I meant to be doing again?");
 if (%misc_quest < ^misc_king_signed_treaty) {
     ~chatnpc("<p,shifty>Negotiating peace with Etceteria, <text_gender("Sir", "Madam")>.");
-} else if (%misc_affection < 4) {
+} else if (%misc_affection < ^misc_affection_complete) {
     ~chatnpc("<p,shifty>Wooing the fair <text_gender("Princess Astrid", "Prince Brand")>, <text_gender("Sir", "Madam")>.");
 } else {
         ~chatnpc("<p,shifty>Gaining the support of the population, <text_gender("Sir", "Madam")>. Currently, <~misc_approval_percentage>% of the population supports you.");
@@ -175,7 +179,7 @@ switch_int (%misc_quest) {
 [label,howtogaintrust]
 ~chatplayer("<p,confused>How am I supposed to get the <text_gender("princess", "prince")> to marry me?");
 if (gender = ^gender_male) {
-    switch_int (%misc_affection) {
+    switch_int (divide(%misc_affection, 10)) {
         case 0 : ~chatnpc("<p,shifty>I think you may find that talking to her would be a good way to start.");
         case 1 : 
             ~chatnpc("<p,shifty>I have watched the admirers come and go, trying to win her heart, and I can tell you this is no easy task.");
@@ -188,7 +192,7 @@ if (gender = ^gender_male) {
         // case 4 : ~chatnpc("<p,shifty>You are already married to her.");
     }
 } else {
-    switch_int (%misc_affection) {
+    switch_int (divide(%misc_affection, 10)) {
         case 0 : ~chatnpc("<p,shifty>I think you may find that talking to him would be a good way to start.");
         case 1 : ~chatnpc("<p,shifty>You could hardly go wrong with a gift of flowers, and of course talking to him is important. He is also very receptive of praise for his musical performance.");
         case 2 : ~chatnpc("<p,shifty>You seem to have impressed him at least somewhat. He has quite the sweet tooth, and is very fond of cake, if you take my meaning...");
@@ -278,7 +282,7 @@ if (%misc_restotal > 0) {
 
 [label,misc_resource_collected_yes]
 ~chatplayer("<p,neutral>Yes, please.");
-// Calculate if there is enough space in the bank for this shit.
+// Calculate if there is enough space in the bank when this has a UI to transfer to.
 // https://www.youtube.com/watch?v=QU6vixKduHo // May 28, 2012 If there ISNT ENOUGH SPACE
 // https://www.youtube.com/watch?v=PdDDQK201F4
 // ~chatnpc("<p,shifty>I'm afraid you will need X more free spaces in your bank to hold all the items your subjects have collected.");
@@ -287,7 +291,7 @@ if (%misc_restotal > 0) {
 def_string $resource_str = ~manage_misc_resource_generation; // IMPT: THIS LINE DOES THE CALCULATION 
 // ~bank_deposit_all_misc_resources; // Later when misc_resources_collected inv exists
 ~mesbox($resource_str); //Replace this line later when UI exists with ~open_interface(resource_collection);
-~chatnpc("<p,shifty>I shall tell your subjects to deliver your resources to your storage right away, Your Royal Highness.");
+// ~chatnpc("<p,shifty>I shall tell your subjects to deliver your resources to your storage right away, Your Royal Highness.");
 @misc_open_manage_misc_interface;
 
 [label,misc_resource_collected_no]

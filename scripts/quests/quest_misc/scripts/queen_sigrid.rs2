@@ -25,31 +25,47 @@ switch_int (%misc_quest) {
 }
 
 [label,queen_sigrid_quest_stage_0]
-~chatnpc("<p,neutral>Hello.");
-~chatplayer("<p,neutral>Er...Hello, Your Majesty.");
-~chatnpc("<p,neutral>Have you come for a particular reason? I am a busy Queen, you know. I had to attend the opening of a new orphanage this morning.");
-~chatplayer("<p,neutral>Yes, I...");
-~chatnpc("<p,neutral>And this afternoon I shall be receiving the Embassador of Karamja and accompanying him on his week-long tour of Etceteria.");
-~chatplayer("<p,neutral>Er, I...");
-~chatnpc("<p,neutral>Then this evening we shall be putting on a grand ball! All of the kingdom's nobility will be present!");
-~chatplayer("<p,neutral>If I m...");
-~chatnpc("<p,neutral>Oh, who am I kidding...nothing ever happens here. I always wanted to be a princess when I was a girl. If I'd been told it would be like this, I wouldn't have bothered.");
-~chatplayer("<p,angry>Your Majesty!");
-~chatnpc("<p,neutral>Yes? Did you want something?");
-~chatplayer("<p,neutral>...actually, no.");
+if (%misc_know_sigrid = 1) {
+    ~chatnpc("<p,neutral>Hello.");
+    ~chatplayer("<p,neutral>Hello, Your Majesty.");
+    ~chatnpc("<p,neutral>Did you want something?");
+    ~chatplayer("<p,neutral>...actually, no.");
+} else {
+    ~chatnpc("<p,neutral>Hello.");
+    ~chatplayer("<p,neutral>Er...Hello, Your Majesty.");
+    ~chatnpc("<p,neutral>Have you come for a particular reason? I am a busy Queen, you know. I had to attend the opening of a new orphanage this morning.");
+    ~chatplayer("<p,neutral>Yes, I...");
+    ~chatnpc("<p,neutral>And this afternoon I shall be receiving the Embassador of Karamja and accompanying him on his week-long tour of Etceteria.");
+    ~chatplayer("<p,neutral>Er, I...");
+    ~chatnpc("<p,neutral>Then this evening we shall be putting on a grand ball! All of the kingdom's nobility will be present!");
+    ~chatplayer("<p,neutral>If I m...");
+    ~chatnpc("<p,neutral>Oh, who am I kidding...nothing ever happens here. I always wanted to be a princess when I was a girl. If I'd been told it would be like this, I wouldn't have bothered.");
+    ~chatplayer("<p,angry>Your Majesty!");
+    ~chatnpc("<p,neutral>Yes? Did you want something?");
+    %misc_know_sigrid = 1;
+    ~chatplayer("<p,neutral>...actually, no.");
+}
 
 [label,queen_sigrid_quest_stage_10]
-~chatnpc("<p,neutral>Hello.");
-~chatplayer("<p,neutral>Er...Hello, Your Majesty.");
-~chatnpc("<p,neutral>Have you come for a particular reason? I am a busy Queen, you know. I had to attend the opening of a new orphanage this morning.");
-~chatplayer("<p,neutral>Yes, I...");
-~chatnpc("<p,neutral>And this afternoon I shall be receiving the Embassador of Karamja and accompanying him on his week-long tour of Etceteria.");
-~chatplayer("<p,neutral>Er, I...");
-~chatnpc("<p,neutral>Then this evening we shall be putting on a grand ball! All of the kingdom's nobility will be present!");
-~chatplayer("<p,neutral>If I m...");
-~chatnpc("<p,neutral>Oh, who am I kidding...nothing ever happens here. I always wanted to be a princess when I was a girl. If I'd been told it would be like this, I wouldn't have bothered.");
-~chatplayer("<p,angry>Your Majesty!");
-~chatnpc("<p,neutral>Yes? Did you want something?");
+
+if (%misc_know_sigrid = 1) {
+    ~chatnpc("<p,neutral>Hello.");
+    ~chatplayer("<p,neutral>Hello, Your Majesty.");
+    ~chatnpc("<p,neutral>Did you want something?");
+} else {
+    ~chatnpc("<p,neutral>Hello.");
+    ~chatplayer("<p,neutral>Er...Hello, Your Majesty.");
+    ~chatnpc("<p,neutral>Have you come for a particular reason? I am a busy Queen, you know. I had to attend the opening of a new orphanage this morning.");
+    ~chatplayer("<p,neutral>Yes, I...");
+    ~chatnpc("<p,neutral>And this afternoon I shall be receiving the Embassador of Karamja and accompanying him on his week-long tour of Etceteria.");
+    ~chatplayer("<p,neutral>Er, I...");
+    ~chatnpc("<p,neutral>Then this evening we shall be putting on a grand ball! All of the kingdom's nobility will be present!");
+    ~chatplayer("<p,neutral>If I m...");
+    ~chatnpc("<p,neutral>Oh, who am I kidding...nothing ever happens here. I always wanted to be a princess when I was a girl. If I'd been told it would be like this, I wouldn't have bothered.");
+    ~chatplayer("<p,angry>Your Majesty!");
+    ~chatnpc("<p,neutral>Yes? Did you want something?");
+    %misc_know_sigrid = 1;
+}
 ~chatplayer("<p,neutral>I have been sent by King Vargas to negotiate a treaty of peace between your two great nations.");
 ~chatnpc("<p,neutral>Great nations? Don't make me laugh. Still, peace sounds like a nice idea. He will, of course, have to recognise Etceteria officially as a sovereign nation.");
 ~chatplayer("<p,confused>This isn't already the case?");
@@ -156,8 +172,10 @@ inv_add(inv, misc_treaty, 1);
 ~chatnpc("<p,neutral>Good, good.");
 
 [label,queen_sigrid_quest_stage_100]
-~chatplayer("<p,neutral>Your Majesty...");
+// This is derived, and probably lost to time.
+~chatplayer("<p,neutral>Your Majesty.");
 // This is to continue onto Royal Trouble, but it seems out of place when Royal Trouble is not released yet.
+// ~chatplayer("<p,neutral>Your Majesty...");
 // ~chatnpc("<p,neutral>Vargas, you irritating fool. 'Warmongering harpy', indeed!");
 // ~chatplayer("<p,neutral>Sorry?");
 // ~chatnpc("<p,neutral>Oh, I apologise. I was merely thinking out loud.");

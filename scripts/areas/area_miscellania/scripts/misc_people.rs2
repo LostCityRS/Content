@@ -63,6 +63,7 @@ if (%misc_quest = ^misc_complete) {
 [label,misc_people_on_attack]
 if (npc_stat(hitpoints) = 0) {
     if (%misc_approval > 6) { %misc_approval = sub(%misc_approval, 6); } else { %misc_approval = 0; }
+    %misc_killed = 1;
     switch_int(random(6)) {
         case 0 : npc_say("Aargh!");
         case 1 : npc_say("I'm a gooner!");
