@@ -27,7 +27,7 @@ if (%troll_love < ^troll_love_started) {
 }
 
 [label,trollromance_ug_start_trollromance]
-if (%troll_quest < ^troll_complete | stat_base(agility) < 28) { // Check requirements to begin quest (Unsure if Agility is a hard requirement)
+if (%troll_quest < ^troll_complete) {
     ~mesbox("He doesn't look like he feels like talking.");
     return;
 }
