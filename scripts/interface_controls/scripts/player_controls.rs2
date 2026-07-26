@@ -87,6 +87,8 @@ if(testbit(%emote_access, ^macro_mime_lean) = ^false) {
 }
 @controls_emote(emote_mime_lean);
 
+[if_button,controls:com_45] @controls_emote(emote_blow_kiss);
+
 [label,controls_emote](seq $anim)
 if_close;
 if (p_finduid(uid) = false) {
