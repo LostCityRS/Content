@@ -20,6 +20,10 @@ if (inv_total(worn, trollromance_toboggon_waxed) < 1) {
     mes("You need to have a waxed sled equipped!");
     return;
 }
+if (stat_base(agility) < 28) {
+    mes("You need an agility level of at least 28!");
+    return;
+}
 ~trollromance_first_sled_ride;
 
 [oploc1,trollromance_piste_walk_barrier_up] // On OSRS, NIH message when attempting to go back up the snow hill
