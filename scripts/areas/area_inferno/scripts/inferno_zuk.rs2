@@ -50,11 +50,11 @@ if (.npc_find(npc_coord, inferno_zuk_shield, ^inferno_scan_range, ^vis_off) = tr
     def_int $glyph_dir = .%inferno_glyph_dir;
 
     // Zuk holds fire until the glyph has completed its first pass.
-    if (%inferno_zuk_ready = false &
+    if (%inferno_zuk_ready ! 1 &
         ($glyph_x = ^inferno_glyph_west_x | $glyph_x = ^inferno_glyph_east_x)) {
-        %inferno_zuk_ready = true;
+        %inferno_zuk_ready = 1;
     }
-    if (%inferno_zuk_ready = false) {
+    if (%inferno_zuk_ready ! 1) {
         return;
     }
     ~inferno_wave_tick;
@@ -79,7 +79,7 @@ if (.npc_find(npc_coord, inferno_zuk_shield, ^inferno_scan_range, ^vis_off) = tr
 }
 
 // No glyph left — it was killed, so nothing blocks any more.
-if (%inferno_zuk_ready = false) {
+if (%inferno_zuk_ready ! 1) {
     return;
 }
 ~inferno_wave_tick;
@@ -156,23 +156,25 @@ if (%inferno_wave_timer < %inferno_wave_time) {
 // Damage drives the phases, so they are checked where the damage lands rather
 // than on the timer — a single big hit must not skip a threshold.
 [ai_queue2,inferno_zuk]
-~npc_default_damage(last_int);
-if (npc_stat(hitpoints) = 0) {
-    return;
+def_int $damage = last_int;
+// The phases are decided from the health this hit *will* leave, and applied
+// before the damage itself, because ~npc_default_damage returns out of the
+// trigger on its own early exits — anything written after the call never runs.
+def_int $after = max(sub(npc_stat(hitpoints), $damage), 0);
+if ($after > 0) {
+    if (%inferno_jad_spawned ! 1 & $after <= ^inferno_jad_hp) {
+        %inferno_jad_spawned = 1;
+        %inferno_wave_time = add(%inferno_wave_time, ^inferno_wave_jad_delay);
+        .npc_add(^inferno_jad_coord, inferno_jad, ^inferno_npc_duration);
+    } else if (%inferno_healers_spawned ! 1 & $after <= ^inferno_healers_hp) {
+        %inferno_healers_spawned = 1;
+        .npc_add(^inferno_healer_coord1, inferno_mejjak, ^inferno_npc_duration);
+        .npc_add(^inferno_healer_coord2, inferno_mejjak, ^inferno_npc_duration);
+        .npc_add(^inferno_healer_coord3, inferno_mejjak, ^inferno_npc_duration);
+        .npc_add(^inferno_healer_coord4, inferno_mejjak, ^inferno_npc_duration);
+    }
 }
-if (%inferno_jad_spawned = false & npc_stat(hitpoints) <= ^inferno_jad_hp) {
-    %inferno_jad_spawned = true;
-    %inferno_wave_time = add(%inferno_wave_time, ^inferno_wave_jad_delay);
-    .npc_add(^inferno_jad_coord, inferno_jad, ^inferno_npc_duration);
-    return;
-}
-if (%inferno_healers_spawned = false & npc_stat(hitpoints) <= ^inferno_healers_hp) {
-    %inferno_healers_spawned = true;
-    .npc_add(^inferno_healer_coord1, inferno_mejjak, ^inferno_npc_duration);
-    .npc_add(^inferno_healer_coord2, inferno_mejjak, ^inferno_npc_duration);
-    .npc_add(^inferno_healer_coord3, inferno_mejjak, ^inferno_npc_duration);
-    .npc_add(^inferno_healer_coord4, inferno_mejjak, ^inferno_npc_duration);
-}
+~npc_default_damage($damage);
 
 // Zuk taking a heal from a Jal-MejJak. It arrives as a queued amount rather than
 // a direct write because there is no secondary-slot npc_statheal — a healer can
@@ -224,21 +226,8 @@ while (npc_findnext = true) {
         // Routed through the damage queue rather than npc_statsub so it goes
         // past the phase checks exactly as real damage would.
         mes("TzKal-Zuk <tostring(npc_stat(hitpoints))> -> <tostring(max($hp, 0))>");
-        if (%inferno_jad_spawned = true) { mes("jad flag SET"); } else { mes("jad flag clear"); }
-        if (%inferno_zuk_ready = true) { mes("ready SET"); } else { mes("ready clear"); }
         npc_queue(2, sub(npc_stat(hitpoints), max($hp, 0)), 0);
         return;
     }
 }
 mes("No TzKal-Zuk nearby.");
-
-//! Spawn JalTok-Jad at his phase coordinate on its own, to separate "the phase
-//! trigger did not fire" from "the spawn coordinate does not take a size-5 npc".
-[debugproc,zukjad]
-if_close;
-if (p_finduid(uid) = false) {
-    return;
-}
-p_teleport(^inferno_player_coord);
-npc_add(^inferno_jad_coord, inferno_jad, ^inferno_npc_duration);
-mes("Jad spawned.");

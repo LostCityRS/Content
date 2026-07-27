@@ -73,20 +73,18 @@ queue*(playerhit_n_retaliate, calc($duration / 30))(npc_uid);
 // ---- healers ------------------------------------------------------------
 
 [ai_queue2,inferno_jad]
-~npc_default_damage(last_int);
-if (npc_stat(hitpoints) = 0) {
-    return;
+def_int $damage = last_int;
+// Decided before the damage lands, for the same reason as Zuk's: the default
+// damage proc can return out of the whole trigger.
+def_int $after = max(sub(npc_stat(hitpoints), $damage), 0);
+if ($after > 0 & %inferno_jad_healers_spawned ! 1 &
+    $after <= divide(npc_basestat(hitpoints), 2)) {
+    %inferno_jad_healers_spawned = 1;
+    .npc_add(movecoord(npc_coord, 2, 0, 6), inferno_hurkot, ^inferno_npc_duration);
+    .npc_add(movecoord(npc_coord, 4, 0, 6), inferno_hurkot, ^inferno_npc_duration);
+    .npc_add(movecoord(npc_coord, 0, 0, 6), inferno_hurkot, ^inferno_npc_duration);
 }
-if (%inferno_jad_healers_spawned = true) {
-    return;
-}
-if (npc_stat(hitpoints) > divide(npc_basestat(hitpoints), 2)) {
-    return;
-}
-%inferno_jad_healers_spawned = true;
-.npc_add(movecoord(npc_coord, 2, 0, 6), inferno_hurkot, ^inferno_npc_duration);
-.npc_add(movecoord(npc_coord, 4, 0, 6), inferno_hurkot, ^inferno_npc_duration);
-.npc_add(movecoord(npc_coord, 0, 0, 6), inferno_hurkot, ^inferno_npc_duration);
+~npc_default_damage($damage);
 
 // Heals arrive as a queued amount rather than a direct write, because there is no
 // secondary-slot npc_statheal — a healer can only ask its target to heal itself.

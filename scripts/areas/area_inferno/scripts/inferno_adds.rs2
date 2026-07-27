@@ -67,7 +67,7 @@ if (%npc_action_delay > map_clock) {
     return;
 }
 
-if (%inferno_mejjak_angry = false) {
+if (%inferno_mejjak_angry ! 1) {
     if (.npc_find(npc_coord, inferno_zuk, ^inferno_scan_range, ^vis_off) = true) {
         %npc_action_delay = add(map_clock, ^inferno_mejjak_heal_rate);
         npc_facesquare(.npc_coord);
@@ -97,11 +97,13 @@ while (huntnext = true) {
 
 // Being hit is the switch: from here on it fights instead of healing.
 [ai_queue2,inferno_mejjak]
+// Set before the damage is applied — ~npc_default_damage returns out of the
+// trigger on its own early exits, so anything after the call is unreachable.
+%inferno_mejjak_angry = 1;
 ~npc_default_damage(last_int);
-%inferno_mejjak_angry = true;
 
 [ai_queue1,inferno_mejjak]
-%inferno_mejjak_angry = true;
+%inferno_mejjak_angry = 1;
 npc_setmode(none);
 
 [ai_opplayer2,inferno_mejjak]

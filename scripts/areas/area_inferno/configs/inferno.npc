@@ -42,6 +42,17 @@ readyanim=inferno_seq_7567
 walkanim=inferno_seq_7567
 vislevel=hide
 timer=1
+// The glyph's run is the lava shelf in front of Zuk, and every tile of it
+// carries the map's "blocked" floor flag — the arena proper stops at the pit.
+// `blocked` is the moverestrict for an npc that lives on exactly that terrain:
+// it walks only on flagged tiles, and its blockwalk flag stops mattering, so
+// Zuk's own footprint no longer walls it in. With the default `normal` the
+// glyph is issued its walk every tick and cannot take a single step.
+moverestrict=blocked
+// Nothing may steer it but its own timer. The stock wander mode re-queues a
+// waypoint back to the spawn tile one tick in eight, which drags the safespot
+// back to the middle of the row mid-sweep.
+defaultmode=none
 wanderrange=0
 maxrange=0
 huntrange=0

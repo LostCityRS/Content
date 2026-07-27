@@ -3,13 +3,22 @@
 
 // Zuk stands still at the north end of the arena, facing south.
 ^inferno_zuk_coord = 0_35_83_28_52
-// The Ancestral Glyph slides along the row directly in front of him.
-^inferno_glyph_coord = 0_35_83_30_51
-^inferno_glyph_west = 0_35_83_17_51
-^inferno_glyph_east = 0_35_83_43_51
+// The Ancestral Glyph slides along the lava shelf in front of him.
+//
+// A coord is an npc's SOUTH-WEST tile, and the glyph is three by three, so
+// these are three rows south of the row it looks like it occupies. The shelf
+// between the pit's north lip (local z 46) and Zuk's row (local z 52) is only
+// a few tiles deep and the row at local z 51 carries the pillars and the
+// static "Ancestral Glyph" scenery loc; a glyph placed at z 51 has its own
+// footprint standing in them and cannot take a single step in either
+// direction. Local rows 48-50 are the one three-deep band that is clear for
+// the whole run, so the coord is z 48.
+^inferno_glyph_coord = 0_35_83_30_48
+^inferno_glyph_west = 0_35_83_17_48
+^inferno_glyph_east = 0_35_83_43_48
 ^inferno_glyph_west_x = 2257
 ^inferno_glyph_east_x = 2283
-^inferno_glyph_row_z = 5363
+^inferno_glyph_row_z = 5360
 
 // Where ::~zuk drops the player in: close enough that Zuk and the glyph are both
 // on screen, and lined up behind the glyph's starting column so the first shot
