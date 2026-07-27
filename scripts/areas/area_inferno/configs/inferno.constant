@@ -1,0 +1,70 @@
+// TzKal-Zuk arena. OSRS map square 35_83, so world x = 2240 + local x and
+// world z = 5312 + local z; the Kronos coordinates carry over unchanged.
+
+// Zuk stands still at the north end of the arena, facing south.
+^inferno_zuk_coord = 0_35_83_28_52
+// The Ancestral Glyph slides along the row directly in front of him.
+^inferno_glyph_coord = 0_35_83_30_51
+^inferno_glyph_west = 0_35_83_17_51
+^inferno_glyph_east = 0_35_83_43_51
+^inferno_glyph_west_x = 2257
+^inferno_glyph_east_x = 2283
+^inferno_glyph_row_z = 5363
+
+// Where ::~zuk drops the player in: close enough that Zuk and the glyph are both
+// on screen, and lined up behind the glyph's starting column so the first shot
+// is a blocked one.
+^inferno_player_coord = 0_35_83_31_40
+
+// Phase spawns, from TzKalZuk.java / JalTokJad.java.
+^inferno_jad_coord = 0_35_83_30_35
+^inferno_mager_coord = 0_35_83_25_38
+^inferno_ranger_coord = 0_35_83_35_38
+^inferno_healer_coord1 = 0_35_83_40_51
+^inferno_healer_coord2 = 0_35_83_36_51
+^inferno_healer_coord3 = 0_35_83_26_51
+^inferno_healer_coord4 = 0_35_83_22_51
+
+// Zuk fires every 10 ticks and cannot miss; the glyph is the only defence.
+^inferno_zuk_maxhit = 251
+^inferno_zuk_attackrate = 10
+// The glyph waits this many ticks at each end before turning around.
+^inferno_glyph_pause = 4
+
+// Add waves: the first comes 60 ticks after the glyph is ready, the rest no
+// sooner than every 350, and Jad's arrival pushes that out by 175.
+^inferno_wave_first = 60
+^inferno_wave_interval = 350
+^inferno_wave_jad_delay = 175
+// Wave spawning is suspended while Zuk sits in this HP band.
+^inferno_wave_pause_low = 479
+^inferno_wave_pause_high = 599
+
+// Damage-triggered phases.
+^inferno_jad_hp = 480
+^inferno_healers_hp = 240
+^inferno_jad_maxhit = 113
+^inferno_xil_maxhit = 46
+^inferno_zek_maxhit = 70
+^inferno_mejjak_maxhit = 10
+
+// Healing.
+^inferno_mejjak_heal_min = 10
+^inferno_mejjak_heal_max = 25
+^inferno_mejjak_heal_rate = 5
+^inferno_hurkot_heal_rate = 4
+
+// How long a spawned encounter npc lives before the engine reclaims it. Every
+// npc_add needs a positive duration, so this doubles as the safety net that
+// clears the arena if a fight is abandoned.
+^inferno_npc_duration = 5000
+
+// How far the encounter scripts look for their friends. The arena fits inside
+// one square, so a single radius covers every lookup.
+^inferno_scan_range = 40
+
+// Glyph direction, stored in %inferno_glyph_dir. Zero is left meaning "not
+// started yet" so the glyph can initialise itself on its first tick — npc_add
+// gives no handle to seed state through.
+^inferno_dir_west = 1
+^inferno_dir_east = 2

@@ -1,0 +1,244 @@
+// TzKal-Zuk, ported from Kronos' TzKalZuk.java.
+//
+// Zuk never moves and never misses: his shot ignores prayer and defence, and the
+// only thing that stops it is standing behind the Ancestral Glyph as it slides
+// across the arena. Everything else — the ranger/mager waves, the Jad phase and
+// the healer phase — hangs off his HP and his tick timer, so the whole fight is
+// driven from one ai_timer rather than from the normal combat modes.
+
+//! Entry point. `::~zuk` starts the fight at full health; `::~zuk 470` starts it
+//! already damaged, which is how the Jad (<=480) and healer (<=240) phases are
+//! reached without grinding through 1200 hitpoints first.
+[debugproc,zuk](int $hp)
+if_close;
+if (p_finduid(uid) = false) {
+    return;
+}
+~inferno_despawn_all(^inferno_zuk_coord);
+p_teleport(^inferno_player_coord);
+// The glyph first, so Zuk's first tick already finds it.
+npc_add(^inferno_glyph_coord, inferno_zuk_shield, ^inferno_npc_duration);
+npc_add(^inferno_zuk_coord, inferno_zuk, ^inferno_npc_duration);
+// npc_add leaves the npc it made active, so the opening damage can be queued
+// straight onto him. It goes through ai_queue2 so the phase checks see it as
+// ordinary damage.
+if ($hp > 0 & $hp < npc_basestat(hitpoints)) {
+    npc_queue(2, sub(npc_basestat(hitpoints), $hp), 1);
+}
+mes("TzKal-Zuk stirs.");
+
+// Remove every encounter npc around a coord. Used on entry, so a second ::zuk
+// does not stack a fight on top of the last one.
+[proc,inferno_despawn_all](coord $coord)
+npc_findallany($coord, ^inferno_scan_range, ^vis_off);
+while (npc_findnext = true) {
+    if (npc_type = inferno_zuk | npc_type = inferno_zuk_shield | npc_type = inferno_mejjak |
+        npc_type = inferno_jad | npc_type = inferno_hurkot | npc_type = inferno_xil |
+        npc_type = inferno_zek) {
+        npc_del;
+    }
+}
+
+// ---- Zuk's cycle --------------------------------------------------------
+
+[ai_timer,inferno_zuk]
+// Everything that touches the glyph stays inside the branch where the lookup
+// succeeded — the script compiler tracks whether the secondary npc slot is
+// live, and a stored "did I find it" flag is not enough to convince it.
+if (.npc_find(npc_coord, inferno_zuk_shield, ^inferno_scan_range, ^vis_off) = true) {
+    def_int $glyph_x = coordx(.npc_coord);
+    def_int $glyph_dir = .%inferno_glyph_dir;
+
+    // Zuk holds fire until the glyph has completed its first pass.
+    if (%inferno_zuk_ready = false &
+        ($glyph_x = ^inferno_glyph_west_x | $glyph_x = ^inferno_glyph_east_x)) {
+        %inferno_zuk_ready = true;
+    }
+    if (%inferno_zuk_ready = false) {
+        return;
+    }
+    ~inferno_wave_tick;
+    if (%npc_action_delay > map_clock) {
+        return;
+    }
+
+    huntall(npc_coord, ^inferno_scan_range, ^vis_off);
+    while (huntnext = true) {
+        %npc_action_delay = add(map_clock, ^inferno_zuk_attackrate);
+        npc_anim(npc_param(attack_anim), 0);
+        if (~inferno_zuk_safe($glyph_x, $glyph_dir, coordx(coord)) = true) {
+            // Blocked: the shot goes to the glyph and the player takes nothing.
+            def_int $blocked = ~npc_to_npc_projectile(.npc_uid, inferno_zuk_proj, 80, 31, 56, 16, 36, 64, 8);
+            .npc_anim(inferno_shield_defend, $blocked);
+            return;
+        }
+        ~inferno_zuk_shoot;
+        return;
+    }
+    return;
+}
+
+// No glyph left — it was killed, so nothing blocks any more.
+if (%inferno_zuk_ready = false) {
+    return;
+}
+~inferno_wave_tick;
+if (%npc_action_delay > map_clock) {
+    return;
+}
+huntall(npc_coord, ^inferno_scan_range, ^vis_off);
+while (huntnext = true) {
+    %npc_action_delay = add(map_clock, ^inferno_zuk_attackrate);
+    npc_anim(npc_param(attack_anim), 0);
+    ~inferno_zuk_shoot;
+    return;
+}
+
+// The unblocked shot. Ignores prayer and defence — there is no roll to make.
+[proc,inferno_zuk_shoot]
+if_close;
+def_int $duration = ~player_projectile(npc_coord, coord, uid, inferno_zuk_proj, 80, 31, 56, 16, 36, 64, 8);
+anim(%com_defendanim, $duration);
+queue(combat_damage_player, calc($duration / 30), random(calc(^inferno_zuk_maxhit + 1)));
+queue*(playerhit_n_retaliate, calc($duration / 30))(npc_uid);
+~npc_set_attack_vars;
+
+/**
+ * Is the player standing in the glyph's shadow?
+ *
+ * The band is the glyph's own three tiles, widened by where it is heading: a
+ * moving glyph covers more ground behind it than in front, and one parked at
+ * either end covers one extra tile on its outward side. Offsets are Kronos'.
+ */
+[proc,inferno_zuk_safe](int $glyph_x, int $glyph_dir, int $player_x)(boolean)
+def_int $min = $glyph_x;
+def_int $max = calc($glyph_x + 2);
+if ($glyph_x = ^inferno_glyph_west_x) {
+    $max = calc($max + 1);
+} else if ($glyph_x = ^inferno_glyph_east_x) {
+    $min = calc($min - 1);
+} else if ($glyph_dir = ^inferno_dir_west) {
+    $max = calc($max + 2);
+    $min = calc($min - 3);
+} else {
+    $min = calc($min - 2);
+    $max = calc($max + 3);
+}
+if ($player_x >= $min & $player_x <= $max) {
+    return(true);
+}
+return(false);
+
+// ---- add waves ----------------------------------------------------------
+
+// Called once per tick from Zuk's timer. The first wave lands 60 ticks after the
+// glyph is ready; every wave after that is at least 350 apart, and Jad's arrival
+// stretches the gap further. Spawning stops entirely while Zuk sits in the band
+// just above the Jad threshold.
+[proc,inferno_wave_tick]
+if (%inferno_wave_time = 0) {
+    %inferno_wave_time = ^inferno_wave_first;
+}
+if (npc_stat(hitpoints) >= ^inferno_wave_pause_low & npc_stat(hitpoints) <= ^inferno_wave_pause_high) {
+    return;
+}
+%inferno_wave_timer = add(%inferno_wave_timer, 1);
+if (%inferno_wave_timer < %inferno_wave_time) {
+    return;
+}
+%inferno_wave_timer = 0;
+%inferno_wave_time = max(%inferno_wave_time, ^inferno_wave_interval);
+.npc_add(^inferno_mager_coord, inferno_zek, ^inferno_npc_duration);
+.npc_add(^inferno_ranger_coord, inferno_xil, ^inferno_npc_duration);
+
+// ---- phases -------------------------------------------------------------
+
+// Damage drives the phases, so they are checked where the damage lands rather
+// than on the timer — a single big hit must not skip a threshold.
+[ai_queue2,inferno_zuk]
+~npc_default_damage(last_int);
+if (npc_stat(hitpoints) = 0) {
+    return;
+}
+if (%inferno_jad_spawned = false & npc_stat(hitpoints) <= ^inferno_jad_hp) {
+    %inferno_jad_spawned = true;
+    %inferno_wave_time = add(%inferno_wave_time, ^inferno_wave_jad_delay);
+    .npc_add(^inferno_jad_coord, inferno_jad, ^inferno_npc_duration);
+    return;
+}
+if (%inferno_healers_spawned = false & npc_stat(hitpoints) <= ^inferno_healers_hp) {
+    %inferno_healers_spawned = true;
+    .npc_add(^inferno_healer_coord1, inferno_mejjak, ^inferno_npc_duration);
+    .npc_add(^inferno_healer_coord2, inferno_mejjak, ^inferno_npc_duration);
+    .npc_add(^inferno_healer_coord3, inferno_mejjak, ^inferno_npc_duration);
+    .npc_add(^inferno_healer_coord4, inferno_mejjak, ^inferno_npc_duration);
+}
+
+// Zuk taking a heal from a Jal-MejJak. It arrives as a queued amount rather than
+// a direct write because there is no secondary-slot npc_statheal — a healer can
+// only ask its target to heal itself.
+[ai_queue4,inferno_zuk]
+npc_statheal(hitpoints, last_int, 0);
+
+[ai_queue3,inferno_zuk]
+npc_anim(npc_param(death_anim), 0);
+// The fight is over; nothing else in the arena has anything left to do.
+.npc_findallany(npc_coord, ^inferno_scan_range, ^vis_off);
+while (.npc_findnext = true) {
+    if (.npc_type = inferno_zuk_shield | .npc_type = inferno_mejjak | .npc_type = inferno_jad |
+        .npc_type = inferno_hurkot | .npc_type = inferno_xil | .npc_type = inferno_zek) {
+        .npc_del;
+    }
+}
+gosub(npc_default_death);
+
+// ---- neutered defaults --------------------------------------------------
+//
+// Zuk is stationary and fires only from his own timer, so the stock combat modes
+// must not take him over: retaliating would make him chase, and opplayer2 would
+// have him swing a melee attack he does not own.
+
+[ai_queue1,inferno_zuk]
+npc_setmode(none);
+
+[ai_opplayer2,inferno_zuk]
+npc_setmode(none);
+
+[ai_applayer2,inferno_zuk]
+npc_setmode(none);
+
+//! Drive Zuk to a given health so a phase can be reached without a full fight,
+//! and drop the caller into the arena to watch it. ::~zukhp 470 spawns Jad,
+//! ::~zukhp 230 the healers, ::~zukhp 0 kills him. Needs a fight already running.
+[debugproc,zukhp](int $hp)
+if_close;
+if (p_finduid(uid) = false) {
+    return;
+}
+p_teleport(^inferno_player_coord);
+// Searched around the arena rather than around the player, so it works from
+// anywhere — including a session that did not start the fight.
+npc_findallany(^inferno_zuk_coord, ^inferno_scan_range, ^vis_off);
+while (npc_findnext = true) {
+    if (npc_type = inferno_zuk) {
+        // Routed through the damage queue rather than npc_statsub so it goes
+        // past the phase checks exactly as real damage would.
+        mes("TzKal-Zuk <tostring(npc_stat(hitpoints))> -> <tostring(max($hp, 0))>");
+        if (%inferno_jad_spawned = true) { mes("jad flag SET"); } else { mes("jad flag clear"); }
+        if (%inferno_zuk_ready = true) { mes("ready SET"); } else { mes("ready clear"); }
+        npc_queue(2, sub(npc_stat(hitpoints), max($hp, 0)), 0);
+        return;
+    }
+}
+mes("No TzKal-Zuk nearby.");
+
+//! Spawn JalTok-Jad at his phase coordinate on its own, to separate "the phase
+//! trigger did not fire" from "the spawn coordinate does not take a size-5 npc".
+[debugproc,zukjad]
+if_close;
+if (p_finduid(uid) = false) {
+    return;
+}
+p_teleport(^inferno_player_coord);
+npc_add(^inferno_jad_coord, inferno_jad, ^inferno_npc_duration);
+mes("Jad spawned.");

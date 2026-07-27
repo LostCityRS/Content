@@ -1,0 +1,112 @@
+// The wave adds — Jal-Xil (ranger) and Jal-Zek (mager) — and Jal-MejJak, the
+// healers that turn up when Zuk is nearly dead.
+//
+// Unlike Zuk, the adds use the stock hunt/attack modes to close on the player;
+// only the attack itself is scripted, because both fire twin projectiles the
+// default ranged path cannot express.
+
+// ---- Jal-Xil, the ranger ------------------------------------------------
+
+[ai_opplayer2,inferno_xil] npc_setmode(applayer2);
+
+[ai_applayer2,inferno_xil]
+if (%npc_action_delay > map_clock) {
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+%npc_action_delay = add(map_clock, npc_param(attackrate));
+if (npc_range(coord) <= 1 & random(3) = 0) {
+    npc_anim(npc_param(attack_anim), 0);
+    ~inferno_hit_player(0, ^crush_style, ^inferno_xil_maxhit);
+    return;
+}
+// The pair of bolts leave from opposite corners of its 3x3 footprint.
+npc_anim(inferno_xil_range, 0);
+def_int $duration = ~player_projectile(movecoord(npc_coord, 0, 0, 1), coord, uid, inferno_xil_proj, 60, 31, 50, 16, 40, 0, 8);
+def_int $twin = ~player_projectile(movecoord(npc_coord, 2, 0, 1), coord, uid, inferno_xil_proj, 60, 31, 50, 16, 40, 0, 8);
+~inferno_hit_player($duration, ^ranged_style, ^inferno_xil_maxhit);
+
+// ---- Jal-Zek, the mager -------------------------------------------------
+
+[ai_opplayer2,inferno_zek] npc_setmode(applayer2);
+
+[ai_applayer2,inferno_zek]
+if (%npc_action_delay > map_clock) {
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+%npc_action_delay = add(map_clock, npc_param(attackrate));
+if (npc_range(coord) <= 1 & random(3) = 0) {
+    npc_anim(npc_param(attack_anim), 0);
+    ~inferno_hit_player(0, ^crush_style, ^inferno_zek_maxhit);
+    return;
+}
+npc_anim(inferno_zek_magic, 0);
+def_int $duration = ~player_projectile(npc_coord, coord, uid, inferno_zek_proj, 96, 31, 28, 16, 36, 192, 8);
+~inferno_hit_player($duration, ^magic_style, ^inferno_zek_maxhit);
+
+// ---- Jal-MejJak, Zuk's healers -----------------------------------------
+//
+// They heal Zuk on a five-tick cycle and ignore the player until the player hits
+// them; from then on they answer with the lava attack instead of healing.
+
+[ai_timer,inferno_mejjak]
+if (%npc_action_delay > map_clock) {
+    return;
+}
+
+if (%inferno_mejjak_angry = false) {
+    if (.npc_find(npc_coord, inferno_zuk, ^inferno_scan_range, ^vis_off) = true) {
+        %npc_action_delay = add(map_clock, ^inferno_mejjak_heal_rate);
+        npc_facesquare(.npc_coord);
+        def_int $heal_flight = ~npc_to_npc_projectile(.npc_uid, inferno_heal_proj, 15, 80, 0, 16, 50, 32, 0);
+        // npc_statheal clamps at the base level, so an overheal is harmless.
+        .npc_queue(4, add(^inferno_mejjak_heal_min, random(calc(^inferno_mejjak_heal_max - ^inferno_mejjak_heal_min + 1))), calc($heal_flight / 30));
+        return;
+    }
+    // Zuk is gone, so there is nothing to heal.
+    npc_del;
+    return;
+}
+
+huntall(npc_coord, npc_param(attackrange), ^vis_off);
+while (huntnext = true) {
+    %npc_action_delay = add(map_clock, npc_param(attackrate));
+    npc_facesquare(coord);
+    npc_anim(npc_param(attack_anim), 0);
+    // The lava lands on the tile the player is standing on right now — moving off
+    // it before the splash is what avoids the hit.
+    def_coord $splash = coord;
+    def_int $lava = ~coord_projectile(npc_coord, $splash, inferno_heal_proj, 0, 0, 0, 45, 75, 32, 0);
+    spotanim_map(inferno_lava_splash, $splash, 0, $lava);
+    ~inferno_hit_player($lava, ^crush_style, ^inferno_mejjak_maxhit);
+    return;
+}
+
+// Being hit is the switch: from here on it fights instead of healing.
+[ai_queue2,inferno_mejjak]
+~npc_default_damage(last_int);
+%inferno_mejjak_angry = true;
+
+[ai_queue1,inferno_mejjak]
+%inferno_mejjak_angry = true;
+npc_setmode(none);
+
+[ai_opplayer2,inferno_mejjak]
+npc_setmode(none);
+
+[ai_applayer2,inferno_mejjak]
+npc_setmode(none);
+

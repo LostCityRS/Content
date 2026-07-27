@@ -1,0 +1,65 @@
+// The Ancestral Glyph — Zuk's moving safespot.
+//
+// It slides one tile a tick between the two ends of the row in front of Zuk,
+// waits four ticks at each end, and turns around. Zuk reads its position and
+// heading every tick; killing it takes the safespot away for good.
+
+[ai_timer,inferno_zuk_shield]
+// npc_add hands back no reference, so the glyph seeds its own state: direction
+// zero means "never started", which is why the direction constants begin at 1.
+if (%inferno_glyph_dir = 0) {
+    %inferno_glyph_dir = ^inferno_dir_west;
+    npc_walk(^inferno_glyph_west);
+}
+
+def_int $target_x = ^inferno_glyph_west_x;
+if (%inferno_glyph_dir = ^inferno_dir_east) {
+    $target_x = ^inferno_glyph_east_x;
+}
+
+if (coordx(npc_coord) ! $target_x) {
+    %inferno_glyph_stopped = 0;
+    // Re-issue the walk periodically. Anything that clears the npc's queued
+    // movement — being attacked, a failed step — would otherwise strand it
+    // mid-row, and a stranded glyph is a safespot that never moves again.
+    if (%inferno_cooldown <= map_clock) {
+        %inferno_cooldown = add(map_clock, 2);
+        ~inferno_glyph_walk;
+    }
+    return;
+}
+
+%inferno_glyph_stopped = add(%inferno_glyph_stopped, 1);
+if (%inferno_glyph_stopped < ^inferno_glyph_pause) {
+    return;
+}
+%inferno_glyph_stopped = 0;
+if (%inferno_glyph_dir = ^inferno_dir_west) {
+    %inferno_glyph_dir = ^inferno_dir_east;
+} else {
+    %inferno_glyph_dir = ^inferno_dir_west;
+}
+~inferno_glyph_walk;
+
+[proc,inferno_glyph_walk]
+if (%inferno_glyph_dir = ^inferno_dir_east) {
+    npc_walk(^inferno_glyph_east);
+    return;
+}
+npc_walk(^inferno_glyph_west);
+
+// The glyph does not fight back — it only ever walks. Without these the stock
+// combat modes would have it chase whoever hit it, and the safespot would follow
+// the player around instead of sweeping the arena.
+[ai_queue1,inferno_zuk_shield]
+npc_setmode(none);
+
+[ai_opplayer2,inferno_zuk_shield]
+npc_setmode(none);
+
+[ai_applayer2,inferno_zuk_shield]
+npc_setmode(none);
+
+[ai_queue3,inferno_zuk_shield]
+npc_anim(npc_param(death_anim), 0);
+gosub(npc_default_death);

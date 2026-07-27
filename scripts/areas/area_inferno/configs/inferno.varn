@@ -1,0 +1,33 @@
+// Per-npc encounter state. Zuk owns the fight, so most of these live on him;
+// the glyph carries its own movement state because the safespot band is read
+// off it every tick.
+
+// Zuk has not attacked yet — he waits for the glyph to reach an end first.
+[inferno_zuk_ready]
+type=boolean
+
+// Ticks since the last add wave, and how long the current gap is.
+[inferno_wave_timer]
+[inferno_wave_time]
+
+// Set once each phase has fired, so a phase never spawns twice.
+[inferno_jad_spawned]
+type=boolean
+[inferno_healers_spawned]
+type=boolean
+
+// Glyph movement: ^inferno_dir_west / ^inferno_dir_east, and the tick count it
+// has been parked at an end.
+[inferno_glyph_dir]
+[inferno_glyph_stopped]
+
+// A Zuk healer heals until the player hits it, then switches to attacking.
+[inferno_mejjak_angry]
+type=boolean
+
+// Jad spawns its own healers once, at half health.
+[inferno_jad_healers_spawned]
+type=boolean
+
+// Generic per-npc cooldown for the encounter's own timers, in map_clock ticks.
+[inferno_cooldown]

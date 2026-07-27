@@ -1,0 +1,140 @@
+// JalTok-Jad, the ~40% phase, ported from Kronos' JalTokJad.java.
+//
+// Nine-tick cycle: melee if the player is adjacent (a third of the time), and
+// otherwise an even split between the magic tri-projectile and the ranged
+// ground graphic. At half health it calls in three Yt-HurKot to heal it.
+
+[ai_timer,inferno_jad]
+if (%npc_action_delay > map_clock) {
+    return;
+}
+huntall(npc_coord, ^inferno_scan_range, ^vis_off);
+while (huntnext = true) {
+    if (npc_range(coord) > npc_param(attackrange)) {
+        // Out of range: walk toward the player instead of attacking.
+        if (%inferno_cooldown <= map_clock) {
+            %inferno_cooldown = add(map_clock, 2);
+            npc_walk(coord);
+        }
+        return;
+    }
+    %npc_action_delay = add(map_clock, npc_param(attackrate));
+    npc_facesquare(coord);
+
+    if (npc_range(coord) <= 1 & random(3) = 0) {
+        npc_anim(npc_param(attack_anim), 0);
+        ~inferno_hit_player(0, ^crush_style, ^inferno_jad_maxhit);
+        return;
+    }
+    if (random(2) = 0) {
+        ~inferno_jad_magic;
+        return;
+    }
+    ~inferno_jad_range;
+    return;
+}
+
+// Three projectiles chase each other along the same line; the first one's flight
+// time is what the damage is scheduled against.
+[proc,inferno_jad_magic]
+npc_anim(inferno_jad_magic, 0);
+spotanim_npc(inferno_jad_magic_gfx, 0, 60);
+def_int $duration = ~player_projectile(npc_coord, coord, uid, inferno_jad_proj1, 128, 31, 62, 16, 10, 32, 8);
+def_int $trail1 = ~player_projectile(npc_coord, coord, uid, inferno_jad_proj2, 128, 31, 66, 16, 14, 32, 8);
+def_int $trail2 = ~player_projectile(npc_coord, coord, uid, inferno_jad_proj3, 128, 31, 70, 16, 20, 32, 8);
+~inferno_hit_player($duration, ^magic_style, ^inferno_jad_maxhit);
+
+// The ranged attack has no projectile at all — it drops a graphic on the tile the
+// player is standing on and lands two ticks later.
+[proc,inferno_jad_range]
+npc_anim(inferno_jad_range, 0);
+spotanim_map(inferno_jad_range_gfx, coord, 0, 0);
+~inferno_hit_player(60, ^ranged_style, ^inferno_jad_maxhit);
+
+/**
+ * Damage the active player after `$duration` client cycles.
+ *
+ * Shared by Jad, the ranger and the mager. Protection prayers work here (unlike
+ * against Zuk), and the impact graphic is Jad's for every source because that is
+ * what Kronos plays.
+ */
+[proc,inferno_hit_player](int $duration, int $style, int $maxhit)
+if_close;
+def_int $damage = randominc($maxhit);
+if (~check_protect_prayer($style) = true) {
+    $damage = 0;
+}
+anim(%com_defendanim, $duration);
+spotanim_pl(inferno_jad_hit, 0, $duration);
+queue(combat_damage_player, calc($duration / 30), $damage);
+queue*(playerhit_n_retaliate, calc($duration / 30))(npc_uid);
+~npc_set_attack_vars;
+
+// ---- healers ------------------------------------------------------------
+
+[ai_queue2,inferno_jad]
+~npc_default_damage(last_int);
+if (npc_stat(hitpoints) = 0) {
+    return;
+}
+if (%inferno_jad_healers_spawned = true) {
+    return;
+}
+if (npc_stat(hitpoints) > divide(npc_basestat(hitpoints), 2)) {
+    return;
+}
+%inferno_jad_healers_spawned = true;
+.npc_add(movecoord(npc_coord, 2, 0, 6), inferno_hurkot, ^inferno_npc_duration);
+.npc_add(movecoord(npc_coord, 4, 0, 6), inferno_hurkot, ^inferno_npc_duration);
+.npc_add(movecoord(npc_coord, 0, 0, 6), inferno_hurkot, ^inferno_npc_duration);
+
+// Heals arrive as a queued amount rather than a direct write, because there is no
+// secondary-slot npc_statheal — a healer can only ask its target to heal itself.
+[ai_queue4,inferno_jad]
+npc_statheal(hitpoints, last_int, 0);
+
+[ai_queue3,inferno_jad]
+npc_anim(npc_param(death_anim), 0);
+// Jad's healers have nothing left to heal.
+.npc_findallany(npc_coord, ^inferno_scan_range, ^vis_off);
+while (.npc_findnext = true) {
+    if (.npc_type = inferno_hurkot) {
+        .npc_del;
+    }
+}
+gosub(npc_default_death);
+
+// ---- Yt-HurKot ----------------------------------------------------------
+//
+// They ignore the player entirely: walk to Jad, then top it up every four ticks.
+
+[ai_timer,inferno_hurkot]
+if (.npc_find(npc_coord, inferno_jad, ^inferno_scan_range, ^vis_off) = true) {
+    if (npc_range(.npc_coord) > 1) {
+        if (%inferno_cooldown <= map_clock) {
+            %inferno_cooldown = add(map_clock, 2);
+            npc_walk(.npc_coord);
+        }
+        return;
+    }
+    if (%npc_action_delay > map_clock) {
+        return;
+    }
+    %npc_action_delay = add(map_clock, ^inferno_hurkot_heal_rate);
+    npc_facesquare(.npc_coord);
+    npc_anim(inferno_hurkot_heal, 0);
+    .spotanim_npc(inferno_hurkot_heal_gfx, 0, 0);
+    .npc_queue(4, randominc(10), 0);
+    return;
+}
+// Nothing left to heal.
+npc_del;
+
+[ai_queue1,inferno_hurkot]
+npc_setmode(none);
+
+[ai_opplayer2,inferno_hurkot]
+npc_setmode(none);
+
+[ai_applayer2,inferno_hurkot]
+npc_setmode(none);

@@ -1,0 +1,12 @@
+// The ranger and mager waves hunt the player on their own; Zuk, the glyph and
+// both healer types are driven entirely from their ai_timer and never hunt.
+[inferno_add]
+type=player
+check_vis=lineofsight
+check_nottoostrong=off
+check_notcombat=%lastcombat
+check_notcombat_self=%npc_lastcombat
+check_notbusy=off
+check_afk=off
+find_keephunting=on
+find_newmode=applayer2
