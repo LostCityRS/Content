@@ -16,12 +16,12 @@ if (p_finduid(uid) = true) p_teleport(0_43_59_20_60);
 if (p_finduid(uid) = true) p_teleport(1_44_157_12_46);
 
 [oploc1,trollromance_piste_walk_barrier_down] // TODO: Trigger for both the top ride (0_43_59), and the bottom ride (0_43_58)
-if (inv_total(worn, trollromance_toboggon_waxed) < 1) {
-    mes("You need to have a waxed sled equipped!");
-    return;
-}
 if (stat_base(agility) < 28) {
     mes("You need an agility level of at least 28!");
+    return;
+}
+if (inv_total(worn, trollromance_toboggon_waxed) < 1) {
+    mes("You need to have a waxed sled equipped!");
     return;
 }
 ~trollromance_first_sled_ride;
