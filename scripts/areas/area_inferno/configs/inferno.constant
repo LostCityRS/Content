@@ -3,22 +3,26 @@
 
 // Zuk stands still at the north end of the arena, facing south.
 ^inferno_zuk_coord = 0_35_83_28_52
-// The Ancestral Glyph slides along the lava shelf in front of him.
+// The Ancestral Glyph slides along the lava shelf in front of him. Kronos'
+// westShieldPoint/eastShieldPoint are (2257, 5361) and (2283, 5361).
 //
-// A coord is an npc's SOUTH-WEST tile, and the glyph is three by three, so
-// these are three rows south of the row it looks like it occupies. The shelf
-// between the pit's north lip (local z 46) and Zuk's row (local z 52) is only
-// a few tiles deep and the row at local z 51 carries the pillars and the
-// static "Ancestral Glyph" scenery loc; a glyph placed at z 51 has its own
-// footprint standing in them and cannot take a single step in either
-// direction. Local rows 48-50 are the one three-deep band that is clear for
-// the whole run, so the coord is z 48.
-^inferno_glyph_coord = 0_35_83_30_48
-^inferno_glyph_west = 0_35_83_17_48
-^inferno_glyph_east = 0_35_83_43_48
+// A coord is an npc's SOUTH-WEST tile and the glyph is three by three, so
+// 5361 is the *south* row of its footprint, not the row it looks like it sits
+// on. Placing it two rows further north (5363, the row a glance at the arena
+// suggests) puts its own footprint inside the pillars along Zuk's row, and it
+// cannot take a single step in either direction.
+^inferno_glyph_coord = 0_35_83_30_49
+^inferno_glyph_west = 0_35_83_17_49
+^inferno_glyph_east = 0_35_83_43_49
 ^inferno_glyph_west_x = 2257
 ^inferno_glyph_east_x = 2283
-^inferno_glyph_row_z = 5360
+^inferno_glyph_row_z = 5361
+
+// The static "Ancestral Glyph" scenery — the base region's copy of the thing
+// the npc represents. The instance replaces it, so the encounter removes it:
+// it renders a second motionless glyph over the moving one, and its collision
+// is the one obstruction on the glyph's runway.
+^inferno_glyph_loc_coord = 0_35_83_30_51
 
 // Where ::~zuk drops the player in: close enough that Zuk and the glyph are both
 // on screen, and lined up behind the glyph's starting column so the first shot

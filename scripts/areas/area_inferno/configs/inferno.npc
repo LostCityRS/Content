@@ -53,6 +53,12 @@ moverestrict=blocked
 // waypoint back to the spawn tile one tick in eight, which drags the safespot
 // back to the middle of the row mid-sweep.
 defaultmode=none
+// The glyph slides; it does not turn to face where it is going. A walking
+// entity's yaw is driven by its step direction, and the only thing that stops
+// the client turning it is a turn speed of zero — that check short-circuits
+// facing entirely, so the model keeps the orientation it spawned with all the
+// way along the row. (Default is 32.)
+turnspeed=0
 wanderrange=0
 maxrange=0
 huntrange=0

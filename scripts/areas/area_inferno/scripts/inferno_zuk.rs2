@@ -16,6 +16,13 @@ if (p_finduid(uid) = false) {
 }
 ~inferno_despawn_all(^inferno_zuk_coord);
 p_teleport(^inferno_player_coord);
+// The base region carries the glyph as scenery as well as an npc; OSRS builds
+// the fight in an instance where only the npc exists. Left in place it draws a
+// second, motionless glyph on top of the moving one, and its collision sits
+// across the runway, so the npc reaches it and stops.
+if (loc_find(^inferno_glyph_loc_coord, inferno_loc_30338) = true) {
+    loc_del(^inferno_npc_duration);
+}
 // The glyph first, so Zuk's first tick already finds it.
 npc_add(^inferno_glyph_coord, inferno_zuk_shield, ^inferno_npc_duration);
 npc_add(^inferno_zuk_coord, inferno_zuk, ^inferno_npc_duration);
