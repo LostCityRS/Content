@@ -203,7 +203,7 @@ def_int $ResourcePts = %misc_restotal;
 def_int $CurrentSlot = 0;
 
 // Wood[Maple Logs] (InverseCost = 160)
-def_int $wood_qty = calc(160 * $ResourcePts * %misc_points_wood / 2048);
+def_int $wood_qty = calc(100 * $ResourcePts * %misc_points_wood / 2048);
 if ($wood_qty > 0) {
     inv_add(inv, cert_maple_logs, $wood_qty);
     // inv_setslot(misc_resources_collected, $CurrentSlot, maple_logs, $wood_qty);
@@ -212,7 +212,7 @@ if ($wood_qty > 0) {
 }
 
 // Coal (InverseCost = 98)
-def_int $coal_qty = calc(98 * $ResourcePts * %misc_points_mine / 2048);
+def_int $coal_qty = calc(60 * $ResourcePts * %misc_points_mine / 2048);
 if ($coal_qty > 0) {
     inv_add(inv, cert_coal, $coal_qty);
     // inv_setslot(misc_resources_collected, $CurrentSlot, coal, $coal_qty);
@@ -221,7 +221,7 @@ if ($coal_qty > 0) {
 }
 
 // Fish (InverseCost = 158)
-def_int $fish_qty =  calc(158 * $ResourcePts * %misc_points_fish / 2048);
+def_int $fish_qty =  calc(100 * $ResourcePts * %misc_points_fish / 2048);
 if ($fish_qty > 0) {
     if (%misc_cooked = 1) {
         inv_add(inv, cert_tuna, calc($fish_qty / 2));
@@ -256,7 +256,7 @@ def_int $cadantine_count = 0;
 def_int $lantadyme_count = 0;
 def_int $dwarf_weed_count = 0;
 // Herbs (InverseCost = 11) / Flax later at (InverseCost = 224)
-def_int $herb_qty =  calc(11 * $ResourcePts * %misc_points_herb / 2048);
+def_int $herb_qty =  calc(5 * $ResourcePts * %misc_points_herb / 2048);
 def_int $herb_count = $herb_qty;
 while ($herb_count > 0) {
     $rolled_herb, $rolled_qty = ~randomherb();
