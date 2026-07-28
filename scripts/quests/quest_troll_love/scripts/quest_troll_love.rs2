@@ -1,13 +1,9 @@
 /*
 TODO LIST:
-- Re-do first sled cutscene (Missing engine 'run' command?)
-- Implement second sled cutscene
 - Recheck order of events on OSRS when teleporting from Trollweiss Mountain with sled equipped
-- Recheck what happens when you leave Trollweiss Mountain with no inventory space (does sled get deleted rather than unequipped?)
 - Implement Arrg boss fight properly (Hits with both ranged and melee)
 - Implement the 'Quest Complete' quest journal entry
 */
-
 
 [debugproc,trcs] // Teleport to first slope cutscene
 if (p_finduid(uid) = true) p_teleport(0_43_59_20_60);
@@ -17,7 +13,7 @@ if (p_finduid(uid) = true) p_teleport(0_43_58_34_62);
 [debugproc,trarrg] // Teleport to Arrg in Stronghold
 if (p_finduid(uid) = true) p_teleport(1_44_157_12_46);
 
-[oploc1,trollromance_piste_walk_barrier_down] // TODO: Trigger for both the top ride (0_43_59), and the bottom ride (0_43_58)
+[oploc1,trollromance_piste_walk_barrier_down]
 if (stat(agility) < 28) {
     mes("You need an agility level of at least 28!");
     return;
