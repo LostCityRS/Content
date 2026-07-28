@@ -1,3 +1,6 @@
+// Miscellania also includes Etceteria
+
+// Miscellania People
 [opnpc1,misc_man_1] // Ragnar
 @misc_people_default_talk;
 [opnpc1,misc_man_2] // Einar (2nd Floor Throne Room.)
@@ -25,6 +28,25 @@
 [opnpc1,misc_woman_6] // Valgerd
 @misc_people_default_talk;
 
+// Etceteria People
+[opnpc1,misc_etc_man_1] // Arnor
+@etc_people_default_talk;
+[opnpc1,misc_etc_man_2] // Haming
+@etc_people_default_talk;
+[opnpc1,misc_etc_man_3] // Moldof
+@etc_people_default_talk;
+[opnpc1,misc_etc_woman_1] // Helga
+@etc_people_default_talk;
+[opnpc1,misc_etc_woman_2] // Matilda
+@etc_people_default_talk;
+[opnpc1,misc_etc_woman_3] // Ashild
+@etc_people_default_talk;
+[opnpc1,etc_guard1]
+@etc_people_default_talk;
+[opnpc1,etc_guard2]
+@etc_people_default_talk;
+
+// Miscellania Attack
 [opnpc2,misc_man_1]
 @misc_people_on_attack;
 [opnpc2,misc_man_2]
@@ -52,6 +74,24 @@
 [opnpc2,misc_woman_6]
 @misc_people_on_attack;
 
+// Etceteria Attack
+[opnpc2,misc_etc_man_1]
+@etc_people_on_attack;
+[opnpc2,misc_etc_man_2]
+@etc_people_on_attack;
+[opnpc2,misc_etc_man_3]
+@etc_people_on_attack;
+[opnpc2,misc_etc_woman_1]
+@etc_people_on_attack;
+[opnpc2,misc_etc_woman_2]
+@etc_people_on_attack;
+[opnpc2,misc_etc_woman_3]
+@etc_people_on_attack;
+[opnpc2,etc_guard1]
+@etc_people_on_attack;
+[opnpc2,etc_guard2]
+@etc_people_on_attack;
+
 [label,misc_people_default_talk]
 ~chatplayer("<p,neutral>Hello.");
 if (%misc_quest = ^misc_complete) {
@@ -59,6 +99,11 @@ if (%misc_quest = ^misc_complete) {
 } else {
     ~chatnpc("<p,neutral>Good day.");
 }
+
+// Etc people are not affected by misc royalty
+[label,etc_people_default_talk]
+~chatplayer("<p,neutral>Hello.");
+~chatnpc("<p,neutral>Good day.");
 
 [label,misc_people_on_attack]
 if (npc_stat(hitpoints) = 0) {
@@ -79,3 +124,22 @@ if (npc_stat(hitpoints) = 0) {
     }
 }
 @player_combat_start;
+
+[label,etc_people_on_attack]
+if (npc_stat(hitpoints) = 0) {
+    switch_int(random(6)) {
+        case 0 : npc_say("Aargh!");
+        case 1 : npc_say("I'm a gooner!");
+        case 2 : npc_say("It's no use, I'm done for!!");
+        case 3 : npc_say("Uggh!");
+    }
+} else if (~player_in_combat_check = false) {
+    switch_int(random(6)) {
+        case 0 : npc_say("Oi!");
+        case 1 : npc_say("Rahr!");
+        case 2 : npc_say("No!");
+        case 3 : npc_say("Grr!");
+    }
+}
+@player_combat_start;
+

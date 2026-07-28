@@ -234,6 +234,9 @@ desc=The door is closed.
 model=quest_viking_abode_wooden_door
 resizey=105
 op1=Open
+category=door_closed
+param=next_loc_stage,misc_viking_abode_door_low_open
+//
 
 [misc_viking_abode_door_low_open]
 name=Door
@@ -241,6 +244,9 @@ desc=The door is open.
 model=quest_viking_abode_wooden_door
 resizey=105
 op1=Close
+category=door_opened
+param=next_loc_stage,misc_viking_abode_door_low
+//
 
 [misc_viking_abode_longhall_low]
 model=quest_viking_longhall_wall
