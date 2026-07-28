@@ -507,6 +507,8 @@
 [command,wealth_event](int $eventType, string $name, int $count, int $value)
 // info: Toggle the player's run-mode
 [command,p_run](int $state)
+// info: Temporarily set player to run for 1 tick
+[command,p_temprun]
 // info: Check player's membership status
 [command,playermember]()(int)
 // info: set an option for a player

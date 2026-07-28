@@ -11,12 +11,14 @@ TODO LIST:
 
 [debugproc,trcs] // Teleport to first slope cutscene
 if (p_finduid(uid) = true) p_teleport(0_43_59_20_60);
+[debugproc,trcs2] // Teleport to first slope cutscene
+if (p_finduid(uid) = true) p_teleport(0_43_58_34_62);
 
 [debugproc,trarrg] // Teleport to Arrg in Stronghold
 if (p_finduid(uid) = true) p_teleport(1_44_157_12_46);
 
 [oploc1,trollromance_piste_walk_barrier_down] // TODO: Trigger for both the top ride (0_43_59), and the bottom ride (0_43_58)
-if (stat_base(agility) < 28) {
+if (stat(agility) < 28) {
     mes("You need an agility level of at least 28!");
     return;
 }
@@ -24,7 +26,13 @@ if (inv_total(worn, trollromance_toboggon_waxed) < 1) {
     mes("You need to have a waxed sled equipped!");
     return;
 }
-~trollromance_first_sled_ride;
+switch_coord (loc_coord) {
+    case 0_43_59_20_59 : ~trollromance_first_sled_ride;
+    case 0_43_59_21_59 : ~trollromance_first_sled_ride;
+    case 0_43_58_33_59 : ~trollromance_second_sled_ride;
+    case 0_43_58_34_59 : ~trollromance_second_sled_ride;
+    case default : ~displaymessage(^dm_default);
+}
 
 [oploc1,trollromance_piste_walk_barrier_up] // On OSRS, NIH message when attempting to go back up the snow hill
 ~displaymessage(^dm_default);
@@ -111,7 +119,7 @@ sound_synth(wax_sled, 0, 0);
 [proc,unequip_trollromance_sled]
 if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) {
     if (inv_freespace(inv) = 0) {
-        inv_delslot(worn, ^wearpos_rhand);
+        inv_del(worn, trollromance_toboggon_waxed, 1);
         ~update_bas;
         obj_add(coord, trollromance_toboggon_waxed, 1, 199);
         return;
@@ -138,66 +146,134 @@ return(false);
 [opheld2,trollromance_toboggon_waxed]
 ~can_ride_sled;
 
-[proc,trollromance_first_sled_ride] // Does the job, but not quite accurate... TODO: Needs reworked!
+[proc,trollromance_first_sled_ride]
 if_close;
 p_teleport(0_43_59_20_58);
-~bas_set(trollromance_toboggan_ready, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving);
+p_temprun;
 say("Here we go!");
+~bas_set(trollromance_toboggan_ready, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving);
 sound_synth(sled_start, 0, 0);
 p_delay(0);
-p_teleport(0_43_59_18_56);
+p_walk(0_43_59_18_56);
 p_delay(0);
-p_teleport(0_43_59_18_54);
+p_walk(0_43_59_18_54);
 p_delay(0);
-p_teleport(0_43_59_18_52);
+p_walk(0_43_59_18_52);
 p_delay(0);
-p_teleport(0_43_59_17_50);
+p_walk(0_43_59_17_50);
 p_delay(0);
 sound_synth(sled_loop, 5, 0);
-p_teleport(0_43_59_17_48);
+p_walk(0_43_59_17_48);
 p_delay(0);
-p_teleport(0_43_59_17_46);
+p_walk(0_43_59_17_46);
 p_delay(0);
-p_teleport(0_43_59_17_44);
+p_walk(0_43_59_17_44);
 p_delay(0);
-p_teleport(0_43_59_17_42);
-p_delay(0);
-p_teleport(0_43_59_19_40);
-p_delay(0);
-p_teleport(0_43_59_21_38);
-p_delay(0);
+p_walk(0_43_59_17_42);
 cam_moveto(0_43_59_18_46, 300, 20, 50);
 cam_lookat(0_43_59_21_33, 300, 50, 50);
-p_teleport(0_43_59_23_36);
 p_delay(0);
-p_teleport(0_43_59_25_34);
+p_walk(0_43_59_19_40);
 p_delay(0);
-p_teleport(0_43_59_27_32);
+p_walk(0_43_59_21_38);
+p_delay(0);
+p_walk(0_43_59_23_36);
 cam_moveto(0_43_59_35_36, 300, 20, 50);
 cam_lookat(0_43_59_28_31, 300, 50, 50);
 p_delay(0);
-p_teleport(0_43_59_29_30);
+p_walk(0_43_59_25_34);
+p_delay(0);
+p_walk(0_43_59_27_32);
+~bas_set_all(trollromance_toboggan_flying);
 sound_synth(sled_jump, 0, 0);
 p_delay(0);
-p_teleport(0_43_59_31_28);
-~bas_set_all(trollromance_toboggan_flying);
+p_walk(0_43_59_29_30);
 p_delay(0);
-p_teleport(0_43_59_33_26);
+p_walk(0_43_59_31_28);
 p_delay(0);
-p_teleport(0_43_59_34_24);
+p_walk(0_43_59_33_26);
 ~bas_set(trollromance_toboggan_ready, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving);
 sound_synth(sled_stop, 0, 0);
 cam_reset;
-p_delay(1);
-say("That was quite a ride!");
-p_delay(1);
-~update_bas;
+p_delay(0);
+p_walk(0_43_59_34_24);
+p_delay(0);
 p_teleport(0_43_59_38_18);
+say("That was quite a ride!");
+~update_bas;
 facesquare(loc_coord);
 stat_advance(agility, 250);
 
-// TODO: Immplement second slope cutscene
-
+[proc,trollromance_second_sled_ride]
+if_close;
+p_teleport(0_43_58_33_58);
+p_temprun;
+~bas_set(trollromance_toboggan_ready, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving);
+sound_synth(sled_start_longer, 0, 0);
+p_delay(0);
+p_walk(0_43_58_31_56);
+p_delay(0);
+p_walk(0_43_58_29_54);
+p_delay(0);
+p_walk(0_43_58_29_52);
+p_delay(0);
+p_walk(0_43_58_29_50);
+p_delay(0);
+p_walk(0_43_58_29_48);
+p_delay(0);
+p_walk(0_43_58_27_46);
+sound_synth(sled_loop, 10, 0);
+p_delay(0);
+p_walk(0_43_58_25_44);
+p_delay(0);
+p_walk(0_43_58_23_42);
+p_delay(0);
+p_walk(0_43_58_22_40);
+p_delay(0);
+p_walk(0_43_58_20_38);
+p_delay(0);
+p_walk(0_43_58_18_36);
+p_delay(0);
+p_walk(0_43_58_18_34);
+p_delay(0);
+p_walk(0_43_58_18_32);
+p_delay(0);
+p_walk(0_43_58_20_30);
+p_delay(0);
+p_walk(0_43_58_22_28);
+p_delay(0);
+p_walk(0_43_58_24_26);
+p_delay(0);
+p_walk(0_43_58_26_24);
+p_delay(0);
+p_walk(0_43_58_26_22);
+p_delay(0);
+p_walk(0_43_58_28_20);
+cam_moveto(0_43_58_38_11, 300, 20, 50);
+cam_lookat(0_43_58_30_17, 250, 50, 50);
+p_delay(0);
+p_walk(0_43_58_30_18);
+p_delay(0);
+p_walk(0_43_58_32_16);
+p_delay(0);
+p_walk(0_43_58_34_15);
+p_delay(0);
+p_walk(0_43_58_36_13);
+cam_moveto(0_43_58_31_17, 1000, 20, 50);
+cam_lookat(0_43_58_40_9, 150, 50, 50);
+sound_synth(sled_jump, 0, 0);
+p_delay(0);
+p_walk(0_43_58_38_11);
+p_delay(0);
+p_walk(0_43_58_40_9);
+p_delay(0);
+p_teleport(0_43_58_42_7);
+sound_synth(sled_stop, 0, 30);
+facesquare(loc_coord);
+p_delay(0);
+~update_bas;
+cam_reset;
+stat_advance(agility, 250);
 
 [queue,trollromance_quest_complete]
 // https://web.archive.org/web/20060428042217/http://runescape.salmoneus.net/quests/TrollRomance/trollrmcecomplt.png

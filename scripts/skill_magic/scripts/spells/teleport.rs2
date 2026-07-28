@@ -93,8 +93,8 @@ if(inv_total(inv, plaguesample) > 0) { // Biohazard plague sample
 }
 if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) { // Troll Romance sled
     if(inv_freespace(inv) > 0) {
-        ~unequip_trollromance_sled;
         mes("You remove the sled.");
+        ~unequip_trollromance_sled;
     } else {
         inv_del(worn, trollromance_toboggon_waxed, 1);
         ~update_bas;
