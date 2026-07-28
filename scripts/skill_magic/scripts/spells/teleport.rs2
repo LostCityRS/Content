@@ -58,7 +58,11 @@ p_stopaction;
 sound_synth(teleport_all, 1, 0);
 anim(human_castteleport, 0);
 spotanim_pl(teleport_casting, 92, 0);
-p_delay(2);
+p_delay(1);
+if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed & inv_freespace(inv) <= 0) { // Matches OSRS behaviour
+    obj_add(coord, trollromance_toboggon_waxed, 1, 1000);
+}
+p_delay(0);
 ~p_telejump_safe($coord);
 
 [proc,p_telejump_safe](coord $coord)
@@ -91,14 +95,14 @@ if(inv_total(inv, plaguesample) > 0) { // Biohazard plague sample
     inv_del(inv, plaguesample, ^max_32bit_int);
     mes("The plague sample is too delicate...it disintegrates in the crossing.");
 }
-if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) { // Troll Romance sled
+if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) {
     if(inv_freespace(inv) > 0) {
         mes("You remove the sled.");
         ~unequip_trollromance_sled;
     } else {
+        mes("You remove the sled. It drops to the ground as you have no space for it.");
         inv_del(worn, trollromance_toboggon_waxed, 1);
         ~update_bas;
-        mes("You drop the sled.");
     }
 }
 ~clear_peer_trial_items;
