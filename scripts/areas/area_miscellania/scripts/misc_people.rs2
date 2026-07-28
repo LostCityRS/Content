@@ -111,7 +111,7 @@ if (npc_stat(hitpoints) = 0) {
     %misc_killed = 1;
     switch_int(random(6)) {
         case 0 : npc_say("Aargh!");
-        case 1 : npc_say("I'm a gooner!");
+        case 1 : npc_say("I'm a gonner!");
         case 2 : npc_say("It's no use, I'm done for!!");
         case 3 : npc_say("Uggh!");
     }
@@ -129,7 +129,7 @@ if (npc_stat(hitpoints) = 0) {
 if (npc_stat(hitpoints) = 0) {
     switch_int(random(6)) {
         case 0 : npc_say("Aargh!");
-        case 1 : npc_say("I'm a gooner!");
+        case 1 : npc_say("I'm a gonner!");
         case 2 : npc_say("It's no use, I'm done for!!");
         case 3 : npc_say("Uggh!");
     }
