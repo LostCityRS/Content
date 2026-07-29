@@ -21,6 +21,7 @@ if (inv_total(inv, coins) >= 15) {
 if (inv_total(inv, coins) >= 15) {
     inv_del(inv, coins, 15);
     inv_add(inv, flowers_waterfall_quest_mixed, 1);
+    if (%misc_approval < 127) { %misc_approval = add(%misc_approval, 1); }
 }
 
 [label,flower_girl_no_thanks]
