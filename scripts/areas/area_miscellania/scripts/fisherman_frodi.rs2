@@ -24,10 +24,11 @@ if (%misc_quest = ^misc_complete) {
 [proc,frodi_intercept_fish](string $fishing_mes)(boolean)
 if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
     if (%misc_approval < 127) { %misc_approval = add(%misc_approval, 1); }
-    if (npc_find(0_40_60_16_12, misc_fisherman, 2, 0) = true) { 
-        npc_say("Thanks!"); 
+    // Secondary pointer, because if primary, it overrides fishing pointers.
+    if (.npc_find(0_40_60_16_12, misc_fisherman, 2, 0) = true) { 
+        .npc_say("Thanks!"); 
         if (%misc_approval >= 127) {
-            ~chatnpcnoturn("<p,happy> Don't trouble yourself further, Your Highness, you've already done so much!");
+            ~.chatnpcnoturn("<p,happy> Don't trouble yourself further, Your Highness, you've already done so much!");
         }
     }
     mes("<substring($fishing_mes, 0, sub(string_length($fishing_mes), 1))> and give it to Fisherman Frodi.");
