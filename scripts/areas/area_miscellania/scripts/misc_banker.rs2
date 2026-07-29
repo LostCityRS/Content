@@ -1,0 +1,21 @@
+[opnpc1,misc_banker]
+~chatnpc("<p,neutral>Hi there, can I help you with anything?");
+def_int $option = ~p_choice3("Is this a bank?", 1, "Do you get many customers?", 2, "I'd like to access my bank, please.", 3);
+switch_int ($option) {
+    case 1 :
+    ~chatplayer("<p,neutral>Is this a bank?");
+    ~chatnpc("<p,neutral>Why yes, what else would it be?");
+    ~chatnpc("<p,neutral>Anything else?");
+
+    case 2 :
+    ~chatplayer("<p,neutral>Do you get many customers?");
+    ~chatnpc("<p,neutral>We're the only bank on these two islands, so business is pretty good.");
+    ~chatnpc("<p,neutral>Anything else?");
+
+    case 3 :
+    ~chatplayer("<p,neutral>I'd like to access my bank, please.");
+    @openbank;
+}
+
+[opnpc3,misc_banker]
+@openbank;

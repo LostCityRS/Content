@@ -3,6 +3,16 @@
 %open_book = misc_ghrimbook;
 @open_misc_ghrimbook;
 
+[oploc1,misc_bookcase]
+mes("You search the bookcase...");
+p_delay(3);
+if(inv_total(inv, misc_ghrimbook) > 0 ) {
+    mes("You find nothing of interest.");
+    return;
+}
+inv_add(inv, misc_ghrimbook, 1);
+mes("You find a copy of Advisor Ghrim's book."); // Inauthentic, the new one talks about editions, which doesn't exist when it was only one quest.
+
 [label,open_misc_ghrimbook]
 @book_flip_page(0, 0, 5, ghrims_book);
 

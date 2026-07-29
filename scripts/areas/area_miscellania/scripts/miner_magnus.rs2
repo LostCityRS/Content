@@ -22,6 +22,9 @@ if (%misc_quest = ^misc_complete) {
 [oploc1,misc_dummy_coalrock1] // https://www.youtube.com/watch?v=CB18DoDgCbQ
 mes("Miner Magnus is already mining that.");
 
+[oploc2,misc_dummy_coalrock1] 
+@prospect_rock(finish_prospect_normal);
+
 // This is to intercept mining in miscellania
 [proc,magnus_intercept_ore](string $fishing_mes, int $exp)(boolean)
 if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
