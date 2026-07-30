@@ -167,7 +167,18 @@ if (%marketthief_vikingfur = 1) {
 if (%marketthief_vikingfish = 1) {
     longqueue(stolen_from_stall_vikingfish, ^vikingfish_stall_timer, 0, ^discard);
 }
-
+if (%marketthief_miscfish = 1) {
+    longqueue(stolen_from_stall_miscfish, ^miscfish_stall_timer, 0, ^discard);
+}
+if (%marketthief_miscveg = 1) {
+    longqueue(stolen_from_stall_miscveg, ^miscveg_stall_timer, 0, ^discard);
+}
+if (%marketthief_etcfish = 1) {
+    longqueue(stolen_from_stall_etcfish, ^etcfish_stall_timer, 0, ^discard);
+}
+if (%marketthief_etcveg = 1) {
+    longqueue(stolen_from_stall_etcveg, ^etcveg_stall_timer, 0, ^discard);
+}
 
 // these are longqueues in osrs - they affect movement when p_delay'd
 
@@ -197,3 +208,15 @@ if (%marketthief_vikingfish = 1) {
 
 [queue,stolen_from_stall_vikingfish]
 %marketthief_vikingfish = 0;
+
+[queue,stolen_from_stall_miscfish]
+%marketthief_miscfish = 0;
+
+[queue,stolen_from_stall_miscveg]
+%marketthief_miscveg = 0;
+
+[queue,stolen_from_stall_etcfish]
+%marketthief_etcfish = 0;
+
+[queue,stolen_from_stall_etcveg]
+%marketthief_etcveg = 0;

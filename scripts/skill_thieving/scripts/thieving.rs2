@@ -94,7 +94,20 @@ switch_loc (loc_type) {
     case viking_fish_market : 
         longqueue(stolen_from_stall_vikingfish, ^vikingfish_stall_timer, 0, ^discard);
         %marketthief_vikingfish = 1;
+    case misc_fish_market :
+        longqueue(stolen_from_stall_miscfish, ^miscfish_stall_timer, 0, ^discard);
+        %marketthief_miscfish = 1;
+    case misc_veg_market :
+        longqueue(stolen_from_stall_miscveg, ^miscveg_stall_timer, 0, ^discard);
+        %marketthief_miscveg = 1;
+    case etc_fish_market :
+        longqueue(stolen_from_stall_etcfish, ^etcfish_stall_timer, 0, ^discard);
+        %marketthief_etcfish = 1;
+    case etc_veg_market :
+        longqueue(stolen_from_stall_etcveg, ^etcveg_stall_timer, 0, ^discard);
+        %marketthief_etcveg = 1;
 }
+
 ~stealing_check_for_reward($data);
 stat_advance(thieving, $experience);
 // Temp note: dur does not need updated
