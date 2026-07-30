@@ -118,6 +118,9 @@ if (%tutorial > ^newbie_combat_instructor_unequipping_items) {
 }
 ~player_combat_stat; // update combat varps
 ~mm_greegree_transmogrify(inv_getobj(worn, ^wearpos_rhand)); // greegree transmogrify
+if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) {
+    p_animprotect(^true);
+}
 
 [proc,.update_all](obj $previous_weapon)
 // secret sauce
