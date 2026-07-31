@@ -68,9 +68,45 @@ if ($choice = 1) {
 [label,trollromance_arrg_combat]
 p_teleport(map_findsquare(0_45_56_34_27, 1, 2, ^map_findsquare_lineofwalk));
 npc_add(movecoord(coord, -4, 0, 0), trollromance_arrg_attackable, 500);
+npc_facesquare(coord);
 npc_setmode(opplayer2);
 %npc_aggressive_player = uid;
+hint_stop;
 hint_npc;
+if_close;
+
+[ai_opplayer2,trollromance_arrg_attackable]
+if (%npc_action_delay > map_clock) {
+    npc_setmode(opplayer2);
+    return;
+}
+if (~npc_check_notcombat = false) {
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+
+def_int $style = 0; // 0 = ranged, 1 = melee
+
+if (npc_range(coord) <= 1) {
+    $style = random(2);
+}
+
+if ($style = 0) {
+    def_int $maxhit = ~npc_ranged_maxhit;
+
+    npc_anim(troll_rock_throw_lefthand, 0);
+    sound_synth(npc_param(rangeattack_sound), 1, 0);
+    %npc_action_delay = add(map_clock, npc_param(attackrate));
+
+    // map_projanim_v2	id=troll_rock_travel (276), starttime=31, endtime=47, angle=8, progress=128, startheight=146, endheight=146
+    def_int $duration = ~player_projectile(npc_coord, coord, uid, npc_param(proj_travel), 36, 36, 31, 8, 15, 128, 1);
+    ~playerhit_n_ranged(true, randominc($maxhit), $duration, npc_param(attackrate));
+} else {
+    npc_anim(npc_param(attack_anim), 0);
+    ~playerhit_n_melee(true, randominc(~npc_melee_maxhit), npc_param(attackrate));
+}
 
 [ai_queue3,trollromance_arrg_attackable]
 npc_say("Arrg!");
