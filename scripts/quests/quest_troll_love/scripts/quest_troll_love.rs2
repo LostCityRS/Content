@@ -130,6 +130,7 @@ if (add(%lastcombat, 10) > map_clock) {
 }
 if (inzone(^sled_lower_coord, ^sled_upper_coord, coord) = true) {
     ~equip(last_slot);
+    sound_synth(equip_sled, 0, 0);
     ~update_bas;
     p_animprotect(^true);
     return(true);
