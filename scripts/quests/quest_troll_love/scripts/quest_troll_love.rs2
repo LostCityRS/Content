@@ -9,8 +9,14 @@ if (p_finduid(uid) = true) p_teleport(0_43_59_20_60);
 [debugproc,trcs2] // Teleport to first slope cutscene
 if (p_finduid(uid) = true) p_teleport(0_43_58_34_62);
 
-[debugproc,trarrg] // Teleport to Arrg in Stronghold
-if (p_finduid(uid) = true) p_teleport(1_44_157_12_46);
+[debugproc,trarrg] // Teleport to Arrg in Stronghold with Varp set
+if (p_finduid(uid) = false) return;
+%troll_love = ^troll_love_dispose_of_arrg;
+p_teleport(1_44_157_12_46);
+
+[debugproc,trarrg2] // Teleport to Arrg in Stronghold
+if (p_finduid(uid) = false) return;
+p_teleport(1_44_157_12_46);
 
 [oploc1,trollromance_piste_walk_barrier_down]
 if (stat(agility) < 28) {
@@ -155,7 +161,7 @@ p_delay(0);
 p_walk(0_43_59_18_54);
 p_delay(0);
 p_walk(0_43_59_18_52);
-if(random(1) = 0) {
+if(random(250) = 0) {
     cam_moveto(0_43_59_26_39, 300, 20, 50);
     cam_lookat(0_43_59_22_44, 300, 50, 50);
     p_delay(0);
@@ -317,4 +323,4 @@ inv_add(inv, uncut_ruby, 2);
 inv_add(inv, uncut_emerald, 4);
 stat_advance(agility, 80000);
 stat_advance(strength, 40000);
-~send_quest_complete(questlist:troll_love, trollromance_rare_flower, 250, ^troll_love_questpoints, "You have completed the Troll Romance Quest!");
+~send_quest_complete2(questlist:troll_love, trollromance_rare_flower, 250, ^troll_love_questpoints, "You have completed the Troll Romance Quest!", "7 Uncut Gems|8k Agility XP|4k Strength XP");
