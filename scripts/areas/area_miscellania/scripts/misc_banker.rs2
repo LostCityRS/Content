@@ -1,4 +1,8 @@
-[opnpc1,misc_banker]
+[apnpc1,misc_banker]
+if (npc_range(coord) > 2) {
+    p_aprange(2);
+    return;
+}
 ~chatnpc("<p,neutral>Hi there, can I help you with anything?");
 def_int $option = ~p_choice3("Is this a bank?", 1, "Do you get many customers?", 2, "I'd like to access my bank, please.", 3);
 switch_int ($option) {
@@ -17,5 +21,9 @@ switch_int ($option) {
     @openbank;
 }
 
-[opnpc3,misc_banker]
+[apnpc3,misc_banker]
+if (npc_range(coord) > 2) {
+    p_aprange(2);
+    return;
+}
 @openbank;
