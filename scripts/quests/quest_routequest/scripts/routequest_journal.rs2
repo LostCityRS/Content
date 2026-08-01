@@ -16,7 +16,11 @@ if(%routequest = ^routequest_complete) {
 if(%routequest = ^routequest_not_started) {
     $text = "@dbl@I can start this quest by talking to a @dre@stranger@dbl@ in the '@dre@Hair|@dre@ of the Dog Inn@dbl@' located in the town of @dre@Canifis@dbl@ in the land of|@dre@Morytania@dbl@.";
     $text = append($text, "||@dbl@I need to complete the following quest:-"); // not a typo, source 2009 GoingCrazy201 video.
-    $text = append($text, "|@dre@Nature Spirit");
+    if (%druidspirit < ^druidspirit_complete) { // https://youtu.be/pNz0_8VjqPc?si=FNBsiGfffAnyVwu1&t=5
+        $text = append($text, "|@dre@Nature Spirit");
+    } else {
+        $text = append($text, "|@str@Nature Spirit");
+    }
     $text = append($text, "|@dbl@I also need to be able to defeat a level 97 foe.");
 } else {
     $text = "@str@I talked to a stranger called Vanstrom Klause in the 'Hair of|@str@the Dog Inn' located in the town of Canifis.";
