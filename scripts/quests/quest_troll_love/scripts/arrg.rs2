@@ -70,6 +70,7 @@ p_teleport(map_findsquare(0_45_56_34_27, 1, 2, ^map_findsquare_lineofwalk));
 npc_add(movecoord(coord, -4, 0, 0), trollromance_arrg_attackable, 500);
 npc_facesquare(coord);
 npc_setmode(opplayer2);
+%npc_lastcombat = sub(^max_32bit_int, 8);
 %npc_aggressive_player = uid;
 hint_stop;
 hint_npc;
@@ -77,10 +78,10 @@ if_close;
 
 [ai_opplayer2,trollromance_arrg_attackable]
 if (%npc_action_delay > map_clock) {
-    npc_setmode(opplayer2);
     return;
 }
 if (~npc_check_notcombat = false) {
+    npc_setmode(null);
     return;
 }
 if (~npc_check_notcombat_self = false) {
@@ -110,7 +111,6 @@ if ($style = 0) {
 
 [ai_queue3,trollromance_arrg_attackable]
 npc_say("Arrg!");
-gosub(npc_death);
 if(p_finduid(%npc_aggressive_player) = false) return;
 if(%troll_love = ^troll_love_dispose_of_arrg) %troll_love = ^troll_love_defeated_arrg;
-obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+@troll_drop_table;
