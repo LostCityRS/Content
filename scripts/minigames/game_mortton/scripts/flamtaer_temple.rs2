@@ -63,13 +63,6 @@ if(inv_total(inv,flamtaer_hammer) > 0) {
 def_int $low_roll = add(130, divide(multiply(sub(210, 130), $crafting_bonus), 98));
 def_int $high_roll = add(210, divide(multiply(sub(210, 130), $crafting_bonus), 98));
 
-if (stat_random(crafting, $low_roll, $high_roll) = false) {
-    anim(human_pickuptable, 0);
-    p_oploc(3);
-    // TODO: should execution stop here, or should we simply set resource_amount to 0 if this roll fails?
-    return;
-}
-
 if ((inv_total(inv,woodplank) > 0 & inv_total(inv,swamppaste) > 4 & inv_total(inv,limestonebrick) > 0) & %temple_resources < 15000) {
     ~add_temple_resources;
 }
@@ -105,7 +98,11 @@ if(%temple_repaired_p = 100) {
 }
 
 // resource contribution is a random value from 7 to (level+2)/2
-def_int $resource_amount = ~random_range(7,divide(add(add(stat(crafting), $crafting_bonus), 2), 2));
+// if you fail a crafting level roll, you contribute 0 and get 0 xp
+def_int $resource_amount = 0;
+if (stat_random(crafting, $low_roll, $high_roll) = true) {
+    $resource_amount = ~random_range(7,divide(add(add(stat(crafting), $crafting_bonus), 2), 2));
+}
 
 if(gettimer(sanctity_drain) = ^false) {
     settimer(sanctity_drain, 100);
