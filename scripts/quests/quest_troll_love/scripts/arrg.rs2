@@ -89,11 +89,10 @@ if ($style = 0) {
 }
 
 [ai_queue3,trollromance_arrg_attackable]
-npc_say("Arrg!");
 if (npc_findhero = ^true & %npc_aggressive_player = uid)  {
-    if(p_finduid(uid) = false) return;
-    if (%troll_love = ^troll_love_dispose_of_arrg) %troll_love = ^troll_love_defeated_arrg;
+    queue(trollromance_arrg_death, 0, 0);
 }
+npc_say("Arrg!");
 @troll_drop_table;
 
 [proc,trollromance_arrg_ranged_attack]
@@ -125,3 +124,6 @@ if (randominc($attack_roll) > randominc($defence_roll)) {
     return;
 }
 ~playerhit_n_ranged(true, 0, $duration, npc_param(attackrate));
+
+[queue,trollromance_arrg_death]
+if (%troll_love = ^troll_love_dispose_of_arrg) %troll_love = ^troll_love_defeated_arrg;
