@@ -111,6 +111,19 @@ if (p_finduid(uid) = true) {
 }
 ~update_weight_equipment; // replace weight-reducing equipment
 ~update_bas; // update appearance
+// Force the sled 'crab walk' glitch. Must be a better way to do this than checking for the sled in the right hand slot, but this works for now.
+// https://www.youtube.com/watch?v=i9m-APfxg5Y&t=29s
+if ($previous_weapon = trollromance_toboggon_waxed) {
+    readyanim(oc_param(trollromance_toboggon_waxed, ready_baseanim));
+    turnanim(oc_param(trollromance_toboggon_waxed, turnonspot_baseanim));
+    walkanim(oc_param(trollromance_toboggon_waxed, walk_f_baseanim));
+    walkanim_b(oc_param(trollromance_toboggon_waxed, walk_b_baseanim));
+    walkanim_l(oc_param(trollromance_toboggon_waxed, walk_l_baseanim));
+    walkanim_r(oc_param(trollromance_toboggon_waxed, walk_r_baseanim));
+    runanim(oc_param(trollromance_toboggon_waxed, running_baseanim));
+    buildappearance(worn);
+    p_animprotect(^true);
+}
 ~update_bonuses; // update bonuses if
 ~update_weight; // update weight
 if (%tutorial > ^newbie_combat_instructor_unequipping_items) {

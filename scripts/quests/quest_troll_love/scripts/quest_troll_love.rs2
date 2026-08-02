@@ -1,8 +1,3 @@
-/*
-TODO LIST:
-- Implement authentic bug which allows you to die whilst riding the Sled on Trollweiss Mountain, but remain in Sled BAS after respawning, so long as you lost the Sled during death.
-*/
-
 [oploc1,trollromance_piste_walk_barrier_down]
 if (stat(agility) < 28) {
     mes("You need an agility level of at least 28!");
@@ -111,7 +106,9 @@ if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) {
         return;
     }
     ~unequip(^wearpos_rhand);
-    ~update_bas;
+    if (inzone(^sled_lower_coord, ^sled_upper_coord, coord) = false) { // For authentic sled 'crab walk' glitch - https://www.youtube.com/watch?v=i9m-APfxg5Y&t=29s
+        ~update_all(null);
+    }
 }
 
 [proc,can_ride_sled]()(boolean)
