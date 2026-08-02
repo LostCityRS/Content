@@ -86,7 +86,9 @@ if (%troll_love > ^troll_love_dispose_of_arrg) {
     $text = append($text, "@dbl@I have to defeat @dre@Arrg."); // Intentional red period here
 }
 
-if (%troll_love = ^troll_love_defeated_arrg) {
+if (%troll_love > ^troll_love_defeated_arrg) {
+    $text = append($text, "@str@I got my reward and Ug and Aga can live happily ever after.||@red@QUEST COMPLETE!");
+} else if (%troll_love = ^troll_love_defeated_arrg) {
     $text = append($text, "@dbl@I should talk to @dre@Ug@dbl@ to get my reward.");
 }
 
