@@ -322,6 +322,7 @@ session_log(^log_adventure, "Quest complete: Troll Romance");
 inv_add(inv, uncut_diamond, 1);
 inv_add(inv, uncut_ruby, 2);
 inv_add(inv, uncut_emerald, 4);
-stat_advance(agility, 80000);
 stat_advance(strength, 40000);
+stat_advance(agility, 80000);
 ~send_quest_complete2(questlist:troll_love, trollromance_rare_flower, 250, ^troll_love_questpoints, "You have completed the Troll Romance Quest!", "7 Uncut Gems|8k Agility XP|4k Strength XP");
+// Actual values of XP shown in rework, rather than shorthand 'k' - https://youtu.be/z_7d2mBbyho?si=OroieY0gAbZtIrS2&t=475
