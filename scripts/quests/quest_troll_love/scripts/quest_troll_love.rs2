@@ -160,7 +160,7 @@ p_delay(0);
 p_walk(0_43_59_18_54);
 p_delay(0);
 p_walk(0_43_59_18_52);
-if(random(250) = 0) {
+if(random(250) = 0) { // Seems to happen SUPER rarely in OSRS, but it does happen. This is a 1 in 250 chance.
     cam_moveto(0_43_59_26_39, 300, 20, 50);
     cam_lookat(0_43_59_22_44, 300, 50, 50);
     p_delay(0);
