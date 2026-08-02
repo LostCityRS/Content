@@ -10,7 +10,7 @@ if(~troll_spectator_can_attack = false) {
 }
 @player_combat_start_ap;
 
-[ai_queue3,_troll_spectator] @troll_drop_table;
+[ai_queue3,_troll_spectator] ~troll_drop_table;
 
 [proc,troll_spectator_can_attack]()(boolean)
 npc_huntall(coord, 24, 0);

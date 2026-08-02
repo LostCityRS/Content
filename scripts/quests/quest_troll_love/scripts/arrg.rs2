@@ -89,11 +89,11 @@ if ($style = 0) {
 }
 
 [ai_queue3,trollromance_arrg_attackable]
+npc_say("Arrg!");
+~troll_drop_table;
 if (npc_findhero = ^true & %npc_aggressive_player = uid)  {
     queue(trollromance_arrg_death, 0, 0);
 }
-npc_say("Arrg!");
-@troll_drop_table;
 
 [proc,trollromance_arrg_ranged_attack]
 if (%npc_action_delay > map_clock) {
