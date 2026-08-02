@@ -102,7 +102,7 @@ if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) {
     } else {
         mes("You remove the sled. It drops to the ground as you have no space for it.");
         inv_del(worn, trollromance_toboggon_waxed, 1);
-        ~update_bas;
+        ~unequip_trollromance_sled;
     }
 }
 ~clear_peer_trial_items;

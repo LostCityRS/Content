@@ -101,15 +101,13 @@ sound_synth(wax_sled, 0, 0);
 if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) {
     if (inv_freespace(inv) = 0) {
         inv_del(worn, trollromance_toboggon_waxed, 1);
-        ~update_bas;
         obj_add(coord, trollromance_toboggon_waxed, 1, 199);
         return;
     }
     ~unequip(^wearpos_rhand);
-    if (inzone(^sled_lower_coord, ^sled_upper_coord, coord) = false) { // For authentic sled 'crab walk' glitch - https://www.youtube.com/watch?v=i9m-APfxg5Y&t=29s
-        ~update_all(null);
-    }
 }
+~update_bas;
+%wearing_sled = ^false;
 
 [proc,can_ride_sled]()(boolean)
 if (add(%lastcombat, 10) > map_clock) {
@@ -119,7 +117,7 @@ if (add(%lastcombat, 10) > map_clock) {
 if (inzone(^sled_lower_coord, ^sled_upper_coord, coord) = true) {
     ~equip(last_slot);
     sound_synth(equip_sled, 0, 0);
-    ~update_bas;
+    ~update_all(null);
     p_animprotect(^true);
     return(true);
 }

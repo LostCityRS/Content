@@ -105,6 +105,9 @@ if(oc_category($obj) = mm_greegree) {
     sound_synth(oc_param($obj, revert_sound), 0, 0);
     if_settab(magic, ^tab_magic);
 }
+if($obj = trollromance_toboggon_waxed) {
+    %wearing_sled = ^false;
+}
 if($obj = mm_sigil) {
     cleartimer(teleport_mm_sigil);
 }
