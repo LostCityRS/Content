@@ -178,6 +178,7 @@ if (p_finduid(uid) = true) {
                     %horrorquest = ^horror_complete;
                     session_log(^log_adventure, "Quest complete: Horror from the Deep");
                     ~send_quest_complete(questlist:horror, horror_casket, 225, ^horror_questpoints, "You have survived the\\nHorror From The Deep!");
+                case 63 : queue(trollromance_quest_complete, 0, 0);
                 case default : mes("Quest not found.");
             }
         } else if ($choice3 = 1) {
@@ -322,6 +323,7 @@ if (p_finduid(uid) = true) {
                     %viking = 0;
                     %viking_bits = 0;
                 case 62 : %deephorror = 0;
+                case 63 : %troll_love = 0;
                 case default : mes("Quest not found.");
             }
             ~update_questlist;
@@ -442,6 +444,7 @@ queue(viking_quest_complete, 0, 0);
     %horrorquest = ^horror_complete;
     session_log(^log_adventure, "Quest complete: Horror from the Deep");
     ~send_quest_complete(questlist:horror, horror_casket, 225, ^horror_questpoints, "You have survived the\\nHorror From The Deep!");
+queue(trollromance_quest_complete, 0, 0);
 
 ~update_questlist;
 mes("All quests have been completed.");
@@ -563,6 +566,7 @@ return;
 %viking = 0;
 %viking_bits = 0;
 %deephorror = 0;
+%troll_love = 0;
 ~update_questlist;
 mes("All quests have been reset.");
 return;
