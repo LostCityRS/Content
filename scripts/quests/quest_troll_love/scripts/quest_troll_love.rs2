@@ -3,20 +3,6 @@ TODO LIST:
 - Implement authentic bug which allows you to die whilst riding the Sled on Trollweiss Mountain, but remain in Sled BAS after respawning, so long as you lost the Sled during death.
 */
 
-[debugproc,trcs] // Teleport to first slope cutscene
-if (p_finduid(uid) = true) p_teleport(0_43_59_20_60);
-[debugproc,trcs2] // Teleport to first slope cutscene
-if (p_finduid(uid) = true) p_teleport(0_43_58_34_62);
-
-[debugproc,trarrg] // Teleport to Arrg in Stronghold with Varp set
-if (p_finduid(uid) = false) return;
-%troll_love = ^troll_love_dispose_of_arrg;
-p_teleport(1_44_157_12_46);
-
-[debugproc,trarrg2] // Teleport to Arrg in Stronghold
-if (p_finduid(uid) = false) return;
-p_teleport(1_44_157_12_46);
-
 [oploc1,trollromance_piste_walk_barrier_down]
 if (stat(agility) < 28) {
     mes("You need an agility level of at least 28!");
