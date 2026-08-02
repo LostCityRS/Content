@@ -7,9 +7,9 @@ if(%misc_quest = 0) {
     $x = append($x, "@dbl@I can start this quest by talking to @dre@King Vargas@dbl@ in|");
     $x = append($x, "@dre@Miscellania@dbl@. To start this quest I need to have completed:|");
     if(%heroquest < ^hero_complete) {
-        $x = append($x, "@dre@Heroes Quest|");
+        $x = append($x, "@dre@Hero's Quest|");
     } else {
-        $x = append($x, "@str@Heroes Quest|");
+        $x = append($x, "@str@Hero's Quest|");
     }
     if (%viking < ^viking_complete) {
         $x = append($x, "@dre@The Fremennik Trials|");
