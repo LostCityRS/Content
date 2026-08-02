@@ -20,10 +20,10 @@ if (%troll_love < ^troll_love_started) {
     @trollromance_ug_defeated_arrg;
     
 } else if (%troll_love = ^troll_love_complete) {
-    ~chatplayer("<p,scared>How did it go with Aga?");
-    ~chatnpc("<p,scared>I give Trollweiss to Aga and she say it taste very nice. She very happy and we together now.");
-    ~chatplayer("<p,scared>What?! I went through all that trouble to get a snack for a hungry troll?");
-    ~chatnpc("<p,scared>Thank you many for getting Ug together with Aga. We much happy together! I so happy I can't stop crying!");
+    ~chatplayer("<p,neutral>How did it go with Aga?");
+    ~chatnpc("<p,happy>I give Trollweiss to Aga and she say it taste very nice. She very happy and we together now.");
+    ~chatplayer("<p,angry>What?! I went through all that trouble to get a snack for a hungry troll?");
+    ~chatnpc("<p,happy>Thank you many for getting Ug together with Aga. We much happy together! I so happy I can't stop crying!");
 }
 
 [label,trollromance_ug_start_trollromance]
