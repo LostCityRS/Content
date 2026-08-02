@@ -113,7 +113,7 @@ if (p_finduid(uid) = true) {
 ~update_bas; // update appearance
 // Force the sled 'crab walk' glitch. Must be a better way to do this than checking for the sled in the right hand slot, but this works for now.
 // https://www.youtube.com/watch?v=i9m-APfxg5Y&t=29s
-if ($previous_weapon = trollromance_toboggon_waxed) {
+if ($previous_weapon = trollromance_toboggon_waxed & inzone(^sled_lower_coord, ^sled_upper_coord, coord) = false) {
     readyanim(oc_param(trollromance_toboggon_waxed, ready_baseanim));
     turnanim(oc_param(trollromance_toboggon_waxed, turnonspot_baseanim));
     walkanim(oc_param(trollromance_toboggon_waxed, walk_f_baseanim));
