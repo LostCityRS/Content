@@ -53,7 +53,7 @@ if(~death_get_map = ^death_spoken_smithy) {
     ~chatplayer("<p,neutral>Not yet! I just need to speak to Denulth!");
     return;
 }
- if (%troll_love = ^troll_love_waxed_sled) {
+ if (%troll_love >= ^troll_love_waxed_sled) {
     ~chatnpc("<p,happy>Well, if it isn't our very own sledder!|What can I do for you today?");
     if (~obj_gettotal(law_talisman) = 0) {
         @multi5("Can I have another law talisman?", dunstan_lawtali, "Can you put some spikes on my Climbing boots?", dunstan_spikeboots, "Can you make me another sled?", trollromance_dunstan_another_sled, "What do I need for the sled wax again?", trollromance_dunstan_sled_wax, "Nothing, thanks.", dunstan_nothing);
