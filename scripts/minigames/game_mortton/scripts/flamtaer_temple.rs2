@@ -85,8 +85,8 @@ if(%temple_repaired_p = 100) {
     if (.loc_find(^mortton_temple_altar_coord, templefire_altar_nofire_broken) = true) {
         .loc_change(templefire_altar_nofire, 99);
         huntall(^mortton_temple_altar_coord, 3, 0);
-        while(huntnext = true) {
-            mes("The holy fire appears sanctified, it can now be lit!");
+        while(.huntnext = true) {
+            .mes("The holy fire appears sanctified, it can now be lit!");
         }
     }
 }

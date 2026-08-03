@@ -606,6 +606,11 @@ def_int $treasure_value = 0;
 def_int $coin_amount = 0;
 def_int $paste_amount = 0;
 
+// wearing ROW adds 2 to key tier based on osrs drop tables https://oldschool.runescape.wiki/w/Silver_Chest_(red)
+if (inv_total(worn, ring_of_wealth) > 0) {
+    $key_tier = add(2,$key_tier);
+}
+
 switch_int($chest_tier) {
     case ^bronze_shadechest : $paste_amount = ~random_range(5, 10);
                          $treasure_value = ~random_range(400,600);
