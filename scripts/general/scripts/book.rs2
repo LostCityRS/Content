@@ -24,6 +24,7 @@ switch_obj (%open_book) {
     case horror_diary1 : @book_flip_page(^book_direction_backward, 0, 13, horror_diary1);
     case horror_diary2 : @book_flip_page(^book_direction_backward, 0, 13, horror_diary2);
     case horror_diary3 : @book_flip_page(^book_direction_backward, 0, 10, horror_diary3);
+    case castlewars_manual : @book_flip_page(^book_direction_backward, 0, 9, castlewars_manual);
 }
 p_delay(0);
 
@@ -50,6 +51,7 @@ switch_obj (%open_book) {
     case horror_diary1 : @book_flip_page(^book_direction_forward, 0, 13, horror_diary1);
     case horror_diary2 : @book_flip_page(^book_direction_forward, 0, 13, horror_diary2);
     case horror_diary3 : @book_flip_page(^book_direction_forward, 0, 10, horror_diary3);
+    case castlewars_manual : @book_flip_page(^book_direction_forward, 0, 9, castlewars_manual);
 }
 p_delay(0);
 
