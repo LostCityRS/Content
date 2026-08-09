@@ -14,7 +14,14 @@ if(%viking = ^viking_not_started) {
 } else if(%viking = ^viking_complete) {
     // total guess... changes with miscellania
     ~chatplayer("<p,neutral>Hello. Can I get a ride on your ship?");
-    ~chatnpc("<p,happy>Hello again, <~get_viking_name>. I still need to fix this longboat.");
+    ~chatnpc("<p,happy>Hello again, <text_gender("brother", "sister")> <~get_viking_name>. If you're ready to jump aboard, we're all ready to set sail with the tide!");
+    def_int $option = ~p_choice2("Let's go!", 1, "Actually, no.", 2);
+    if($option = 1) {
+        ~chatplayer("<p,neutral>Let's go!");
+        ~set_sail_viking("Miscellania", "You board the longship...", 0_40_60_21_5, misc_shipjourney_to_misc, 6);
+    } else if($option = 2) {
+        ~chatplayer("<p,neutral>Actually, no.");
+    }
 } 
 
 [label,viking_sailor_merchant]
