@@ -36,7 +36,7 @@ if (p_finduid(uid) = true) {
 // You should get exactly 595 Maple Logs.
 [debugproc,misc_set_optimum]
 if (p_finduid(uid) = true) {
-    %varp_360 = calc(date_minutes - ^MISCELLANIA_INTERVAL);
+    %misc_last_update = calc(date_minutes - ^MISCELLANIA_INTERVAL);
     %misc_approval = ^MISC_APPROVAL_100_PERCENT;
     %misc_coffers = 500000;
     ~manage_misc_daily_update;
@@ -46,9 +46,9 @@ if (p_finduid(uid) = true) {
 [debugproc,misc_rewind]
 if (p_finduid(uid) = true) {
     mes("misc_rewind");
-    mes("Previous %varp_360:<tostring(%varp_360)>");
-    %varp_360 = calc(%varp_360 - ^MISCELLANIA_INTERVAL);
-    mes("Rewound %varp_360:<tostring(%varp_360)>");
+    mes("Previous %misc_last_update:<tostring(%misc_last_update)>");
+    %misc_last_update = calc(%misc_last_update - ^MISCELLANIA_INTERVAL);
+    mes("Rewound %misc_last_update:<tostring(%misc_last_update)>");
 }
 
 [debugproc,misc_update]
@@ -69,7 +69,7 @@ if (p_finduid(uid) = true) {
 [proc,misc_printer]
 mes("DEBUG MISCELLANIA");
 mes("Workers: Mine-<tostring(%misc_points_mine)> Wood-<tostring(%misc_points_wood)> Herb-<tostring(%misc_points_herb)> Fish-<tostring(%misc_points_fish)>");
-mes("%currenttime(date_minutes): <tostring(date_minutes)> %misc_last_update(%varp_360): <tostring(%varp_360)>");
+mes("%currenttime(date_minutes): <tostring(date_minutes)> %misc_last_update(%varp_360): <tostring(%misc_last_update)>");
 mes("Approval: <tostring(%misc_approval)> ResourcePts: <tostring(%misc_restotal)> Coffers: <tostring(%misc_coffers)>");
 
 // Only after rfd

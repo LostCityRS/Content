@@ -144,7 +144,7 @@ if(%misc_coffers >= $withdraw_amt) {
 // We store a time in minutes when it last updated, %misc_last_update, first set when first visiting Miscellania
 // Fetch varps and varbits
 def_int $currenttime = date_minutes;
-def_int $misc_last_update = %varp_360; // This is a guess. We will use varp_360 as %misc_last_update.
+def_int $misc_last_update = %misc_last_update; // This is a guess. We will use varp_360 as %misc_last_update.
 def_int $CofferTotal = %misc_coffers;
 def_int $Approval = %misc_approval;
 def_int $ResourcePts = %misc_restotal; // It literally has max 262143 https://chisel.weirdgloop.org/varbs/display?varbit=71
@@ -190,7 +190,7 @@ while (calc($currenttime - $misc_last_update) >= ^MISCELLANIA_INTERVAL) {
 // Save varps and varbits
 %misc_coffers = $CofferTotal;
 %misc_approval = $Approval;
-%varp_360 = $misc_last_update;
+%misc_last_update = $misc_last_update;
 %misc_restotal = $ResourcePts;
 
 
