@@ -18,5 +18,6 @@ if (getqueue(stolen_from_stall_miscveg) > 0) {
 [opnpc3,misc_veg_monger]
 if (getqueue(stolen_from_stall_miscveg) > 0) {
     @stall_owner_alert_guards;
+    return;
 }
 ~openshop_activenpc;
