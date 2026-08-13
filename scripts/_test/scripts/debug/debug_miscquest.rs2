@@ -1,0 +1,80 @@
+[debugproc,misc_tele]
+if (p_finduid(uid) = true) {
+    p_telejump(1_39_60_10_14);
+}
+
+[debugproc,misc_quest_reset]
+if (p_finduid(uid) = true) {
+    %misc_quest = ^misc_not_started;
+    %misc_grantedaudience = 0;
+    %misc_approval = ^MISC_APPROVAL_25_PERCENT;
+    %misc_affection = 0;
+    ~send_quest_progress_colour(questlist:misc, %misc_quest, ^misc_complete);
+    p_telejump(1_39_60_10_14);
+}
+
+[debugproc,misc_quest_finish]
+if (p_finduid(uid) = true) {
+    %misc_quest = ^misc_complete;
+    %misc_grantedaudience = 1;
+    %misc_approval = ^MISC_APPROVAL_100_PERCENT;
+    %misc_affection = 4;
+    ~send_quest_progress_colour(questlist:misc, %misc_quest, ^misc_complete);
+}
+
+
+// This is the test calculation.
+// Place all 10 workers on wood.
+// Run this :::misc_set_optimum which has coffers at 500k, 100% approval and exact 1 days has past
+// Run :::misc_update to trigger the miscellania update
+// Talk to Advisor Ghrim
+// You should get exactly 595 Maple Logs.
+[debugproc,misc_set_optimum]
+if (p_finduid(uid) = true) {
+    %varp_360 = calc(date_minutes - ^MISCELLANIA_INTERVAL);
+    %misc_approval = ^MISC_APPROVAL_100_PERCENT;
+    %misc_coffers = 500000;
+}
+
+
+[debugproc,misc_rewind]
+if (p_finduid(uid) = true) {
+    mes("misc_rewind");
+    mes("Previous %varp_360:<tostring(%varp_360)>");
+    %varp_360 = calc(%varp_360 - ^MISCELLANIA_INTERVAL);
+    mes("Rewound %varp_360:<tostring(%varp_360)>");
+}
+
+[debugproc,misc_update]
+if (p_finduid(uid) = true) {
+    mes("misc_update");
+    mes("BEFORE");
+    ~misc_printer;
+    ~manage_misc_daily_update;
+    mes("AFTER");
+    ~misc_printer;
+}
+
+[debugproc,misc_print]
+if (p_finduid(uid) = true) {
+    ~misc_printer;
+}
+
+[proc,misc_printer]
+mes("DEBUG MISCELLANIA");
+mes("Workers: Mine-<tostring(%misc_points_mine)> Wood-<tostring(%misc_points_wood)> Herb-<tostring(%misc_points_herb)> Fish-<tostring(%misc_points_fish)>");
+mes("%currenttime(date_minutes): <tostring(date_minutes)> %misc_last_update(%varp_360): <tostring(%varp_360)>");
+mes("Approval: <tostring(%misc_approval)> ResourcePts: <tostring(%varbit_71)> Coffers: <tostring(%misc_coffers)>");
+
+[debugproc,bank]
+if (p_finduid(uid) = false) {
+    return;
+}
+@openbank;
+
+[debugproc,misc_view_resources]
+if (p_finduid(uid) = true) {
+    if_openmain(inter_95);
+    if_settext(inter_95:com_60, "Resources Collected");
+    inv_transmit(misc_resources_collected, inter_95:com_62);
+}

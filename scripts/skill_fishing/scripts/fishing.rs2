@@ -51,9 +51,24 @@ if ($fish2 ! null) { // if fish2 isnt null and roll for 2nd fish passes
             inv_del(inv, $bait, 1);
         }
         // give fish and display message
-        inv_add(inv, $fish2, 1);
+        if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
+            // For Throne of Miscellania, you don't get the fish.
+        } else {
+            inv_add(inv, $fish2, 1);
+        }
         stat_advance(fishing, struct_param($struct2, productexp));
-        mes(struct_param($struct2, productmessage));
+        def_string $fishing_mes = struct_param($struct2, productmessage);
+        if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
+            if (%misc_approval < 127) { %misc_approval = add(%misc_approval, 1); }
+            if (npc_find(0_40_60_16_12, misc_fisherman, 2, 0) = true) { 
+                npc_say("Thanks!"); 
+                if (%misc_approval >= 127) {
+                    ~chatnpcnoturn("<p,happy> Don't trouble yourself further, Your Highness, you've already done so much!");
+                }
+            }
+            $fishing_mes = "<substring($fishing_mes, 0, sub(string_length($fishing_mes), 1))> and give it to Fisherman Frodi.";
+        } 
+        mes($fishing_mes);
         return;
     }
 }
@@ -65,9 +80,24 @@ if ($fish1 ! null) { // else if fish1 isnt null and roll for 1st fish passes
             inv_del(inv, $bait, 1);
         }
         // give fish and display message
-        inv_add(inv, $fish1, 1);
+        if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
+            // For Throne of Miscellania, you don't get the fish.
+        } else {
+            inv_add(inv, $fish1, 1);
+        }
         stat_advance(fishing, struct_param($struct1, productexp));
-        mes(struct_param($struct1, productmessage));
+        def_string $fishing_mes = struct_param($struct1, productmessage);
+        if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
+            if (%misc_approval < 127) { %misc_approval = add(%misc_approval, 1); }
+            if (npc_find(0_40_60_16_12, misc_fisherman, 2, 0) = true) { 
+                npc_say("Thanks!"); 
+                if (%misc_approval >= 127) {
+                    ~chatnpcnoturn("<p,happy> Don't trouble yourself further, Your Highness, you've already done so much!");
+                }
+            }
+            $fishing_mes = "<substring($fishing_mes, 0, sub(string_length($fishing_mes), 1))> and give it to Fisherman Frodi.";
+        } 
+        mes($fishing_mes);
         return;
     }
 }

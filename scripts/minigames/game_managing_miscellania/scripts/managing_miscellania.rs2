@@ -1,0 +1,342 @@
+/**
+ * Managing Miscellania is a daily minigame that lets you control Miscellania and Etceteria
+ *
+ * There seems to be 3 updates:
+ * - Throne of Miscellania (Without flax) early 2005
+ * - Throne of Miscellania (With flax) late 2005
+ * - Royal Trouble (With Etceteria) 2006
+ REMEMBER ADDING STEALING FROM STALLS!
+ https://www.youtube.com/watch?v=oO_nbXNN-8o
+ *
+ * === WARNING VERY SENSITIVE CALCULATIONS WITH COINS AND RESOURCES HERE ===
+ */
+[proc,open_manage_miscellania_interface]
+if_openmain(inter_210);
+%if1 = calc(10 - %misc_points_mine - %misc_points_wood - %misc_points_herb - %misc_points_fish);
+%if2 = 0;
+if_settext(inter_210:com_87, tostring(%misc_coffers));
+
+// Mining Up
+[if_button,inter_210:com_11]
+if (%if1 > 0) {
+    %if1 = max(sub(%if1, 1), 0);
+    %misc_points_mine = min(add(%misc_points_mine, 1), 10);
+}
+// Mining Down
+[if_button,inter_210:com_12]
+if (%misc_points_mine > 0) {
+    %misc_points_mine = max(sub(%misc_points_mine, 1), 0);
+    %if1 = min(add(%if1, 1), 10);
+}
+
+// Wood Up
+[if_button,inter_210:com_46]
+if (%if1 > 0) {
+    %if1 = max(sub(%if1, 1), 0);
+    %misc_points_wood = min(add(%misc_points_wood, 1), 10);
+}
+// Wood Down
+[if_button,inter_210:com_47]
+if (%misc_points_wood > 0) {
+    %misc_points_wood = max(sub(%misc_points_wood, 1), 0);
+    %if1 = min(add(%if1, 1), 10);
+}
+
+// Herb Up
+[if_button,inter_210:com_27]
+if (%if1 > 0) {
+    %if1 = max(sub(%if1, 1), 0);
+    %misc_points_herb = min(add(%misc_points_herb, 1), 10);
+}
+// Herb Down
+[if_button,inter_210:com_28]
+if (%misc_points_herb > 0) {
+    %misc_points_herb = max(sub(%misc_points_herb, 1), 0);
+    %if1 = min(add(%if1, 1), 10);
+}
+
+// Fishing Up
+[if_button,inter_210:com_62]
+if (%if1 > 0) {
+    %if1 = max(sub(%if1, 1), 0);
+    %misc_points_fish = min(add(%misc_points_fish, 1), 10);
+}
+// Fishing Down
+[if_button,inter_210:com_63]
+if (%misc_points_fish > 0) {
+    %misc_points_fish = max(sub(%misc_points_fish, 1), 0);
+    %if1 = min(add(%if1, 1), 10);
+}
+// Fishing Cooked
+[if_button,inter_210:com_108]
+%misc_cooked = togglebit(%misc_cooked, 0);
+
+// Help Button
+[if_button,inter_210:com_95]
+%if2 = togglebit(%if2, 0);
+
+// Deposit
+[if_button,inter_210:com_88]
+p_countdialog;
+def_int $requested_deposit = last_int;
+
+// https://www.youtube.com/watch?v=dmiq33o8kD0  ~mesbox("You are carrying X,XXX coins.|Enter an amount to deposit in the coffers.");
+
+def_int $coffer_space = sub(5000000, %misc_coffers);
+// https://www.youtube.com/watch?v=50lZ1wDRPvw ~mesbox("The coffers can only hold 5000000 coins.");
+def_int $deposit_amt = $requested_deposit;
+if ($deposit_amt > $coffer_space) {
+    $deposit_amt = $coffer_space;
+}
+if ($deposit_amt > 0) {
+    def_int $inv_coins = inv_total(inv, coins);
+    def_int $bank_coins = inv_total(bank, coins);
+    def_int $total_available = add($inv_coins, $bank_coins);
+
+    if ($total_available >= $deposit_amt) {
+        def_int $taken_from_inv = 0;
+        def_int $taken_from_bank = 0;
+        if ($inv_coins >= $deposit_amt) {
+            $taken_from_inv = $deposit_amt;
+        } else {
+            $taken_from_inv = $inv_coins;
+        }
+        
+        if ($taken_from_inv > 0) {
+            inv_del(inv, coins, $taken_from_inv);
+        }
+        $taken_from_bank = sub($deposit_amt, $taken_from_inv);
+        if ($taken_from_bank > 0) {
+            inv_del(bank, coins, $taken_from_bank);
+        }
+        %misc_coffers = add(%misc_coffers, $deposit_amt);
+        ~mesbox("Added <tostring($deposit_amt)> coins to the coffers."); // http://youtu.be/AHygmc-5hwI
+    } else {
+        ~mesbox("Not enough coins.");
+    }
+}
+~open_manage_miscellania_interface;
+
+// Withdraw
+[if_button,inter_210:com_89]
+p_countdialog;
+def_int $withdraw_amt = last_int;
+if(%misc_coffers >= $withdraw_amt) {
+    if ($withdraw_amt > %misc_coffers) {
+        $withdraw_amt = %misc_coffers;
+    }
+    %misc_coffers = sub(%misc_coffers, $withdraw_amt);
+    inv_add(bank, coins, $withdraw_amt);
+    ~mesbox("Withdrew <tostring($withdraw_amt)> coins."); // http://youtu.be/AHygmc-5hwI
+}
+~open_manage_miscellania_interface;
+
+
+// Most of these comments are direct from the OSRS Managing Miscellania calculation image.
+// "Daily" Update
+[proc,manage_misc_daily_update]
+// We store a time in minutes when it last updated, %misc_last_update, first set when first visiting Miscellania
+// Fetch varps and varbits
+def_int $currenttime = date_minutes;
+def_int $misc_last_update = %varp_360; // This is a guess. We will use varp_360 as %misc_last_update.
+def_int $CofferTotal = %misc_coffers;
+def_int $Approval = %misc_approval;
+def_int $ResourcePts = %varbit_71; // It literally has max 262143 https://chisel.weirdgloop.org/varbs/display?varbit=71
+
+// We compare it to the current time, but if it has been more than 30 days, we pretend you last updated 30 days ago.
+if (calc($currenttime - $misc_last_update) > calc(^MISCELLANIA_INTERVAL * 30)) {
+    $misc_last_update = calc($currenttime - ^MISCELLANIA_INTERVAL * 30);
+}
+
+// Then for every 1440 minutes in currenttime - %misc_last_update
+while (calc($currenttime - $misc_last_update) >= ^MISCELLANIA_INTERVAL) {
+    // Money in coffer?
+    if ($CofferTotal > 0) {
+        // Yes
+
+        // Calc coffer ReductionAmt = 5 + CofferTotal / 10
+        def_int $ReductionAmt = calc(5 + ($CofferTotal / 10));
+        // The amount withdrawn from the coffers is equivalent to 10% of the balance in the coffer up to a maximum of 50,000 coins, or 75,000 coins after Royal Trouble.
+        // If the max amount of coins is able to be subtracted, a clean 10% will be taken out of the coffers. Otherwise, 10% will be taken out, and then an additional 5 coins.
+        if ($ReductionAmt > 50000) { $ReductionAmt = 50000; }
+        if (calc($CofferTotal - $ReductionAmt) < 0) { $ReductionAmt = $CofferTotal; } // If you have less than 5 coins... makes sure CoffersTotal doesn't go negative.
+        $CofferTotal = calc($CofferTotal - $ReductionAmt);
+        
+        // Calc Worker effectiveness = ReductionAmt x 100/8333
+        def_int $WorkerEffectiveness = calc($ReductionAmt * 100 / 8333);
+        
+        // Update resource pts resourcePts += workerEffectiveness/100 * approvalRating * 127/100
+        $ResourcePts = calc($ResourcePts + (($WorkerEffectiveness / 100) * $Approval)); // Note approval is already in range 0-127
+        
+        // This is capped at 262,143
+        if ($ResourcePts > 262143) {
+            $ResourcePts = 262143;
+        }
+    }
+    
+    // Update Approval rating, decreasing towards 32%, but more slowly with Royal Trouble completed.
+    // Wiki states: 2.5% loss percent with throne of miscellania, 1% with royal trouble.
+    $Approval = calc($Approval * 975 / 1000); // Royal trouble would be 990 / 1000
+    // Repeat until out of 1440 minute chunks - each iteration adding 1440 to %misc_last_update
+    $misc_last_update = calc($misc_last_update + ^MISCELLANIA_INTERVAL);
+}
+
+// Save varps and varbits
+%misc_coffers = $CofferTotal;
+%misc_approval = $Approval;
+%varp_360 = $misc_last_update;
+%varbit_71 = $ResourcePts;
+
+
+// Most of these comments are direct from the OSRS Managing Miscellania calculation image.
+// Resource Generation
+[proc,manage_misc_resource_generation]()(string)
+// Fetch varps and varbits
+def_int $ResourcePts = %varbit_71;
+def_int $CurrentSlot = 0;
+
+// Wood[Maple Logs] (InverseCost = 160)
+def_int $wood_qty = calc(160 * $ResourcePts * %misc_points_wood / 2048);
+if ($wood_qty > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, maple_logs, $wood_qty);
+    $CurrentSlot = add($CurrentSlot, 1);
+    // For 2005, add nest drops. 1 nest per 100.
+}
+
+// Coal (InverseCost = 98)
+def_int $coal_qty = calc(98 * $ResourcePts * %misc_points_mine / 2048);
+if ($coal_qty > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, coal, $coal_qty);
+    $CurrentSlot = add($CurrentSlot, 1);
+    // For 2005, add gems drops. 1 gem for 100 coal, 1 per 200 thereafter
+}
+
+// Fish (InverseCost = 158)
+def_int $fish_qty =  calc(158 * $ResourcePts * %misc_points_fish / 2048);
+if ($fish_qty > 0) {
+    if (%misc_cooked = 1) {
+        inv_setslot(misc_resources_collected, $CurrentSlot, tuna, calc($fish_qty / 2)); // 50% Quantity
+        $CurrentSlot = add($CurrentSlot, 1);
+        inv_setslot(misc_resources_collected, $CurrentSlot, swordfish, calc($fish_qty * 3 / 20)); // 15% Quantity
+        $CurrentSlot = add($CurrentSlot, 1);
+    } else {
+        inv_setslot(misc_resources_collected, $CurrentSlot, raw_tuna, calc($fish_qty / 2)); // 50% Quantity
+        $CurrentSlot = add($CurrentSlot, 1);
+        inv_setslot(misc_resources_collected, $CurrentSlot, raw_swordfish, calc($fish_qty * 3 / 20)); // 15% Quantity
+        $CurrentSlot = add($CurrentSlot, 1);
+    }
+    // For 2005, 1 loot per 100 tuna
+}
+
+// Herb inits
+def_obj $rolled_herb = null;
+def_int $rolled_qty = 0;
+def_int $guam_count = 0;
+def_int $marentill_count = 0;
+def_int $tarromin_count = 0;
+def_int $harralander_count = 0;
+def_int $ranarr_count = 0;
+def_int $irit_count = 0;
+def_int $avantoe_count = 0;
+def_int $kwuarm_count = 0;
+def_int $cadantine_count = 0;
+def_int $lantadyme_count = 0;
+def_int $dwarf_weed_count = 0;
+// Herbs (InverseCost = 11) / Flax later at (InverseCost = 224)
+def_int $herb_qty =  calc(11 * $ResourcePts * %misc_points_herb / 2048);
+def_int $herb_count = $herb_qty;
+while ($herb_count > 0) {
+    $rolled_herb, $rolled_qty = ~randomherb();
+    switch_obj ($rolled_herb) {
+        case unidentified_guam : $guam_count = calc($guam_count + $rolled_qty);
+        case unidentified_marentill : $marentill_count = calc($marentill_count + $rolled_qty);
+        case unidentified_tarromin : $tarromin_count = calc($tarromin_count + $rolled_qty);
+        case unidentified_harralander : $harralander_count = calc($harralander_count + $rolled_qty);
+        case unidentified_ranarr : $ranarr_count = calc($ranarr_count + $rolled_qty);
+        case unidentified_irit : $irit_count = calc($irit_count + $rolled_qty);
+        case unidentified_avantoe : $avantoe_count = calc($avantoe_count + $rolled_qty);
+        case unidentified_kwuarm : $kwuarm_count = calc($kwuarm_count + $rolled_qty);
+        case unidentified_cadantine : $cadantine_count = calc($cadantine_count + $rolled_qty);
+        case unidentified_lantadyme : $lantadyme_count = calc($lantadyme_count + $rolled_qty);
+        case unidentified_dwarf_weed : $dwarf_weed_count = calc($dwarf_weed_count + $rolled_qty);
+    }
+    $herb_count = sub($herb_count, 1);
+}
+// I hate this code so much.
+if ($guam_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_guam, $guam_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($marentill_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_marentill, $marentill_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($tarromin_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_tarromin, $tarromin_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($harralander_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_harralander, $harralander_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($ranarr_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_ranarr, $ranarr_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($irit_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_irit, $irit_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($avantoe_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_avantoe, $avantoe_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($kwuarm_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_kwuarm, $kwuarm_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($cadantine_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_cadantine, $cadantine_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($lantadyme_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_lantadyme, $lantadyme_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+if ($dwarf_weed_count > 0) {
+    inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_dwarf_weed, $dwarf_weed_count);
+    $CurrentSlot = calc($CurrentSlot + 1);
+}
+%varbit_71 = 0;
+
+
+// This will be not needed when the UI for showing resources exists after a certain release(beyond #377 for sure).
+def_string $resourceStr = "";
+if ($wood_qty > 0) {
+    $resourceStr = "<$resourceStr> <tostring($wood_qty)> Maple Logs|";
+}
+if ($coal_qty > 0) {
+    $resourceStr = "<$resourceStr> <tostring($coal_qty)> Coal|";
+}
+if (calc($fish_qty / 2) > 0) {
+    if (%misc_cooked = 1) {
+        $resourceStr = "<$resourceStr> <tostring(calc($fish_qty / 2))> Tuna|";
+    } else {
+        $resourceStr = "<$resourceStr> <tostring(calc($fish_qty / 2))> Raw Tuna|";
+    }
+}
+if (calc($fish_qty * 3 / 20) > 0) {
+    if (%misc_cooked = 1) {
+        $resourceStr = "<$resourceStr> <tostring(calc($fish_qty * 3 / 20))> Swordfish|";
+    } else {
+        $resourceStr = "<$resourceStr> <tostring(calc($fish_qty * 3 / 20))> Raw Swordfish|";
+    }
+}
+if ($herb_qty > 0) {
+    $resourceStr = "<$resourceStr> <tostring($herb_qty)> Herbs|";
+}
+// To offset the empty string
+if (string_length($resourceStr) = 0) {
+    $resourceStr = "No Resources|";
+}
+return (substring($resourceStr, 0, calc(string_length($resourceStr) - 1)));

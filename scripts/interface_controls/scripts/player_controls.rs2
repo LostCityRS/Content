@@ -163,6 +163,7 @@ if (p_finduid(uid) = false) {
 }
 p_stopaction;
 anim($anim, 20);
+~misc_quest_handle_emote($anim);
 
 [label,lockemote_mime_event]
 ~mesbox("This emote can be unlocked during the mime random event.");

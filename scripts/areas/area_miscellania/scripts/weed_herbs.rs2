@@ -1,0 +1,90 @@
+// Like all the resource gathering, weeding herbs is specific for miscellania
+// Weeds did not exist till July 2005, so like the rest of the resources, you get nothing.
+
+[oploc1,misc_heather_normal]@weeding_firstswing(misc_heather_normal_noweeds);
+[oploc3,misc_heather_normal]@weeding_continue(misc_heather_normal_noweeds);
+
+[oploc1,misc_heather_light]@weeding_firstswing(misc_heather_light_noweeds);
+[oploc3,misc_heather_light]@weeding_continue(misc_heather_light_noweeds);
+
+[oploc1,misc_heather_dark]@weeding_firstswing(misc_heather_dark_noweeds);
+[oploc3,misc_heather_dark]@weeding_continue(misc_heather_dark_noweeds);
+// This follows a stripped down version of mining.
+
+[label,weeding_firstswing](loc $loc_transform)//(label $get_ore)
+if (inv_total(worn, iron_sickle) = 0 & inv_total(worn, silver_sickle) = 0 & inv_total(worn, silver_sickle_blessed) = 0) {
+    anim(null, 0);
+    ~mesbox("You need a sickle to weed this herb.");
+    return;
+}
+def_int $weeding_rate = 5; // Inauthentic
+if (%action_delay < map_clock) {
+    %action_delay = calc(map_clock + $weeding_rate);
+    p_oploc(1);
+    return;
+}
+sound_synth(sickle_slash, 0, 0);
+if (inv_total(worn, silver_sickle_blessed) = 0) {
+    anim(misc_herb_weeding_silver_sickle_blessed, 0);
+} else if (inv_total(worn, silver_sickle) = 0) {
+    anim(misc_herb_weeding_silver_sickle, 0);
+} else {
+    anim(misc_herb_weeding_iron_sickle, 0);
+} 
+mes("You swing your sickle at the weeds.");
+if (%action_delay = map_clock) {
+    // jump($get_ore); // Following get_ore_normal
+    def_int $chance = 3; // Inauthentic 66% chance
+    if (random($chance) = ^true) {
+        p_delay(0);
+        def_int $respawn = 50; // 5 minutes
+        loc_change($loc_transform, $respawn);
+        sound_synth(sickle_stab, 0, 0);
+        anim(null, 0);
+        %misc_approval = add(%misc_approval, 1);
+        if (npc_find(0_39_60_29_10, misc_gardener, 2, 0) = true) { npc_say("Thanks!"); }
+        mes("You manage to cut some weeds and give them to Gardener Gunnhild.");
+        return;
+    }
+}
+p_oploc(3);
+
+[label,weeding_continue](loc $loc_transform)//(label $get_ore)
+if (inv_total(worn, iron_sickle) = 0 & inv_total(worn, silver_sickle) = 0 & inv_total(worn, silver_sickle_blessed) = 0) {
+    anim(null, 0);
+    ~mesbox("You need a sickle to weed this herb.");
+    return;
+}
+def_int $weeding_rate = 3; // Inauthentic
+sound_synth(sickle_slash, 0, 0);
+// if roll is due
+if (%action_delay < map_clock) {
+    %action_delay = calc(map_clock + $weeding_rate);
+} else if (%action_delay = map_clock) {
+    if (inv_total(worn, silver_sickle_blessed) = 0) {
+        anim(misc_herb_weeding_silver_sickle_blessed, 0);
+    } else if (inv_total(worn, silver_sickle) = 0) {
+        anim(misc_herb_weeding_silver_sickle, 0);
+    } else {
+        anim(misc_herb_weeding_iron_sickle, 0);
+    } 
+    // jump($get_ore); // Following get_ore_normal
+    def_int $chance = 3; // Inauthentic 66% chance
+    if (random($chance) = ^true) {
+        p_delay(0);
+        def_int $respawn = 50; // 5 minutes
+        loc_change($loc_transform, $respawn);
+        sound_synth(sickle_stab, 0, 0);
+        anim(null, 0);
+        if (%misc_approval < 127) { %misc_approval = add(%misc_approval, 1); }
+        if (npc_find(0_39_60_29_10, misc_gardener, 2, 0) = true) { 
+            npc_say("Thanks!"); 
+            if (%misc_approval >= 127) {
+                ~chatnpcnoturn("<p,happy> Don't trouble yourself further, Your Highness, you've already done so much!");
+            }
+        }
+        mes("You manage to cut some weeds and give them to Gardener Gunnhild.");
+        return;
+    }
+}
+p_oploc(3);

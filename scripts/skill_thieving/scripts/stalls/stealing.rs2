@@ -19,6 +19,12 @@
 [oploc2,silver_stall_stealing] // Silver stall
 @attempt_steal_from_stall(loc_type, loc_coord, loc_angle, loc_shape);
 
+[oploc2,misc_fish_market] // Fish stall
+@attempt_steal_from_stall(loc_type, loc_coord, loc_angle, loc_shape);
+
+[oploc2,misc_veg_market] // Veg stall
+@attempt_steal_from_stall(loc_type, loc_coord, loc_angle, loc_shape);
+
 [label,attempt_steal_from_stall](loc $loc, coord $loc_coord, int $loc_angle, locshape $loc_shape)
 p_arrivedelay;
 

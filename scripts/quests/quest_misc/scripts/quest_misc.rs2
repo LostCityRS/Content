@@ -1,0 +1,84 @@
+[proc,random_nonsense]()(string)
+switch_int (random(14)) {
+    case 0 : return ("Beards? Dangerous, flammable and make you look mad!");
+    case 1 : return ("Care to sign my petition for pet frogs?");
+    case 2 : return ("Cattle prod? Weapon of choice I reckon.");
+    case 3 : return ("Don't threaten me with a dead fish!");
+    case 4 : return ("He is clearly 1 cup short of a full service.");
+    case 5 : return ("I'm a little teapot, short and stout...");
+    case 6 : return ("I'm rubber you're glue.........!");
+    case 7 : return ("Lies!!! It's all lies!!!");
+    case 8 : return ("Look over there! A King Black Dragon!");
+    case 9 : return ("Lumbridge? No, I wouldn't be seen dead there.");
+    case 10 : return ("Nah, that Kalphite was weedier than your garden.");
+    case 11 : return ("Selling ring of poverty 30 mil!");
+    case 12 : return ("Sneaky sneaky stick da chompy.");
+    case 13 : return ("What level do you need to cook cats?");
+}
+
+// Miscellania dating does a randomized multi4, the first 3 are in random order, and the 4th is always nonsense.
+// This is a direction modification of @multi4
+[label,multi4miscrand](string $string1, label $label1, string $string2, label $label2, string $string3, label $label3)
+def_string $nonsense = ~random_nonsense();
+def_int $choice = 0;
+switch_int (random(6)) { // permutate the first 3 choices.
+    case 0 : $choice = ~p_choice4($string1, 1, $string2, 2, $string3, 3, $nonsense, 4);
+    case 1 : $choice = ~p_choice4($string1, 1, $string3, 3, $string2, 2, $nonsense, 4);
+    case 2 : $choice = ~p_choice4($string2, 2, $string1, 1, $string3, 3, $nonsense, 4);
+    case 3 : $choice = ~p_choice4($string2, 2, $string3, 3, $string1, 1, $nonsense, 4);
+    case 4 : $choice = ~p_choice4($string3, 3, $string1, 1, $string2, 2, $nonsense, 4);
+    case 5 : $choice = ~p_choice4($string3, 3, $string2, 2, $string1, 1, $nonsense, 4);
+}
+if ($choice = 1) jump($label1);
+if ($choice = 2) jump($label2);
+if ($choice = 3) jump($label3);
+~chatplayer("<p,happy><$nonsense>"); // Unless otherwise, I'm setting all nonsense strings to happy.
+~chatnpc("<p,confused>...What?");
+
+// THIS FOLLOWING IS TEMP. DELETE AFTER VIKING QUEST FILE IS PORTED
+// [proc,generate_viking_name]
+// %godbook_multi = setbit_range_toint(%godbook_multi, random(16), ^viking_name_lower1, ^viking_name_upper1);
+// %godbook_multi = setbit_range_toint(%godbook_multi, random(16), ^viking_name_lower2, ^viking_name_upper2);
+
+// THIS FOLLOWING IS TEMP. DELETE AFTER VIKING QUEST FILE IS PORTED
+[proc,get_viking_name]()(string)
+def_string $s1 = "Rak";
+def_string $s2 = "lak";
+
+switch_int(1) {
+    case 1 : $s1 = "Bal";
+    case 2 : $s1 = "Bar";
+    case 3 : $s1 = "Dal";
+    case 4 : $s1 = "Dar";
+    case 5 : $s1 = "Den";
+    case 6 : $s1 = "Dok";
+    case 7 : $s1 = "Jar";
+    case 8 : $s1 = "Jik";
+    case 9 : $s1 = "Lar";
+    case 10 : $s1 = "Ral";
+    case 11 : $s1 = "Ril";
+    case 12 : $s1 = "Sig";
+    case 13 : $s1 = "Tal";
+    case 14 : $s1 = "Thor";
+    case 15 : $s1 = "Ton";
+}
+
+switch_int(5) {
+    case 1 : $s2 = "dar";
+    case 2 : $s2 = "dor";
+    case 3 : $s2 = "dur";
+    case 4 : $s2 = "kal";
+    case 5 : $s2 = "kar";
+    case 6 : $s2 = "kir";
+    case 7 : $s2 = "kur";
+    case 8 : $s2 = "lah";
+    case 9 : $s2 = "lim";
+    case 10 : $s2 = "lor";
+    case 11 : $s2 = "rak";
+    case 12 : $s2 = "tin";
+    case 13 : $s2 = "ton";
+    case 14 : $s2 = "tor";
+    case 15 : $s2 = "vald";
+}
+
+return (append($s1, $s2));
