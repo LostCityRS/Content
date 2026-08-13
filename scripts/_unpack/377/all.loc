@@ -1117,6 +1117,7 @@ multivar=ernestdoor_1to2
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
 category=haunted_door
+param=dir,1
 
 [2to3]
 active=yes
@@ -1124,6 +1125,7 @@ multivar=ernestdoor_2to3
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
 category=haunted_door
+param=dir,1
 
 [4to5]
 active=yes
@@ -1131,6 +1133,7 @@ multivar=ernestdoor_4to5
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
 category=haunted_door
+param=dir,1
 
 [5to6]
 active=yes
@@ -1138,6 +1141,7 @@ multivar=ernestdoor_5to6
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
 category=haunted_door
+param=dir,1
 
 [8to9]
 active=yes
@@ -1145,6 +1149,7 @@ multivar=ernestdoor_8to9
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
 category=haunted_door
+param=dir,1
 
 [2to5]
 active=yes
@@ -1152,6 +1157,7 @@ multivar=ernestdoor_2to5
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
 category=haunted_door
+param=dir,0
 
 [3to6]
 active=yes
@@ -1159,6 +1165,7 @@ multivar=ernestdoor_3to6
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
 category=haunted_door
+param=dir,0
 
 [4to7]
 active=yes
@@ -1166,6 +1173,7 @@ multivar=ernestdoor_4to7
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
 category=haunted_door
+param=dir,0
 
 [5to8]
 active=yes
@@ -1173,6 +1181,7 @@ multivar=ernestdoor_5to8
 multiloc=0,ernest_doorclosed
 multiloc=1,ernest_doorajar
 category=haunted_door
+param=dir,0
 
 [levera]
 active=yes
@@ -1180,7 +1189,6 @@ multivar=ernestlever_a
 multiloc=0,levera_up
 multiloc=1,levera_down
 category=haunted_lever
-param=lever_index,0
 
 [leverb]
 active=yes
@@ -1188,7 +1196,6 @@ multivar=ernestlever_b
 multiloc=0,leverb_up
 multiloc=1,leverb_down
 category=haunted_lever
-param=lever_index,1
 
 [leverc]
 active=yes
@@ -1196,7 +1203,6 @@ multivar=ernestlever_c
 multiloc=0,leverc_up
 multiloc=1,leverc_down
 category=haunted_lever
-param=lever_index,2
 
 [leverd]
 active=yes
@@ -1204,7 +1210,6 @@ multivar=ernestlever_d
 multiloc=0,leverd_up
 multiloc=1,leverd_down
 category=haunted_lever
-param=lever_index,3
 
 [levere]
 active=yes
@@ -1212,7 +1217,6 @@ multivar=ernestlever_e
 multiloc=0,levere_up
 multiloc=1,levere_down
 category=haunted_lever
-param=lever_index,4
 
 [leverf]
 active=yes
@@ -1220,7 +1224,6 @@ multivar=ernestlever_f
 multiloc=0,leverf_up
 multiloc=1,leverf_down
 category=haunted_lever
-param=lever_index,5
 
 [hauntedcompostheap]
 name=Compost heap
@@ -76738,7 +76741,6 @@ active=yes
 op1=Pull
 op2=Inspect
 category=haunted_lever
-param=lever_index,0
 
 [levera_down]
 name=Lever A
@@ -76748,7 +76750,6 @@ active=yes
 op1=Pull
 op2=Inspect
 category=haunted_lever
-param=lever_index,0
 
 [leverb_up]
 name=Lever B
@@ -76758,7 +76759,6 @@ active=yes
 op1=Pull
 op2=Inspect
 category=haunted_lever
-param=lever_index,1
 
 [leverb_down]
 name=Lever B
@@ -76768,7 +76768,6 @@ active=yes
 op1=Pull
 op2=Inspect
 category=haunted_lever
-param=lever_index,1
 
 [leverc_up]
 name=Lever C
@@ -76778,7 +76777,6 @@ active=yes
 op1=Pull
 op2=Inspect
 category=haunted_lever
-param=lever_index,2
 
 [leverc_down]
 name=Lever C
@@ -76788,7 +76786,6 @@ active=yes
 op1=Pull
 op2=Inspect
 category=haunted_lever
-param=lever_index,2
 
 [leverd_up]
 name=Lever D
@@ -76798,7 +76795,6 @@ active=yes
 op1=Pull
 op2=Inspect
 category=haunted_lever
-param=lever_index,3
 
 [leverd_down]
 name=Lever D
@@ -76808,7 +76804,6 @@ active=yes
 op1=Pull
 op2=Inspect
 category=haunted_lever
-param=lever_index,2
 
 [levere_up]
 name=Lever E
@@ -76818,7 +76813,6 @@ active=yes
 op1=Pull
 op2=Inspect
 category=haunted_lever
-param=lever_index,3
 
 [levere_down]
 name=Lever E
@@ -76828,7 +76822,6 @@ active=yes
 op1=Pull
 op2=Inspect
 category=haunted_lever
-param=lever_index,3
 
 [leverf_up]
 name=Lever F
@@ -76838,7 +76831,6 @@ active=yes
 op1=Pull
 op2=Inspect
 category=haunted_lever
-param=lever_index,4
 
 [leverf_down]
 name=Lever F
@@ -76848,7 +76840,6 @@ active=yes
 op1=Pull
 op2=Inspect
 category=haunted_lever
-param=lever_index,4
 
 [draynor_manor_fence]
 model=draynor_manor_fence
