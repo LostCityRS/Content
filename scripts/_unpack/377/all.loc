@@ -503,7 +503,7 @@ sharelight=yes
 occlude=yes
 op1=Climb-out
 
-[brimhaven_backdoor_entrance]
+[merlincrate_wall2]
 name=Crate wall
 desc=Surprisingly sturdy looking.
 model=door1
@@ -1109,7 +1109,7 @@ contrast=30
 active=yes
 op1=Open
 category=door_open_and_close
-param=next_loc_stage,desertdoor_inactive
+param=next_loc_stage,loc_1532
 
 [1to2]
 active=yes
@@ -3268,7 +3268,7 @@ length=2
 op1=Open
 blockrange=no
 
-[loc_399]
+[coffin2]
 name=Coffin
 desc=I see dead people.
 model=loc_399
@@ -3552,7 +3552,7 @@ model=bed_bamboo
 length=2
 mirror=yes
 
-[loc_436]
+[rockslide_small]
 name=Rock
 desc=A lump of rock.
 model=loc_436
@@ -3570,7 +3570,7 @@ recol1d=7329
 hillskew=yes
 blockrange=no
 
-[loc_438]
+[rockslide_small2]
 name=Rock
 desc=A lump of rock.
 model=loc_438
@@ -3579,7 +3579,7 @@ recol1d=7329
 hillskew=yes
 blockrange=no
 
-[loc_439]
+[rockslide_small3]
 name=Rock
 desc=A lump of rock.
 model=loc_439
@@ -3588,7 +3588,7 @@ recol1d=7329
 hillskew=yes
 blockrange=no
 
-[loc_440]
+[seaweedrock_large]
 name=Rock
 desc=A big slimy lump of rock.
 model=loc_440
@@ -3597,14 +3597,14 @@ length=2
 mapscene=11
 blockrange=no
 
-[loc_441]
+[seaweedrock_1]
 name=Rock
 desc=A slimy lump of rock.
 model=loc_441
 mapscene=11
 blockrange=no
 
-[loc_442]
+[seaweedrock_2]
 name=Rock
 desc=A slippery looking rock.
 model=loc_442
@@ -3621,7 +3621,7 @@ length=2
 blockrange=no
 active=no
 
-[loc_444]
+[boulder1]
 name=Boulder
 desc=A huge lump of rock.
 model=loc_444
@@ -3630,7 +3630,7 @@ length=2
 mapscene=11
 blockrange=no
 
-[loc_445]
+[boulder2]
 name=Boulder
 desc=A huge lump of rock.
 model=loc_445
@@ -3639,7 +3639,7 @@ length=2
 mapscene=12
 blockrange=no
 
-[loc_446]
+[boulder3]
 name=Stones
 desc=Some small stones.
 model=loc_446
@@ -3647,7 +3647,7 @@ blockwalk=no
 blockrange=no
 raiseobject=no
 
-[loc_447]
+[boulder4]
 name=Stones
 desc=Some small stones.
 model=loc_447
@@ -3659,7 +3659,7 @@ raiseobject=no
 model=loc_448
 blockrange=no
 
-[loc_449]
+[overhang3rock]
 name=Overhanging rock
 desc=A rocky ledge.
 model=loc_449
@@ -3667,7 +3667,7 @@ width=2
 length=4
 
 // todo: name used from 244
-[plainrock1]
+[rocks1]
 name=Rocks
 desc=Stoney!
 model=rock1
@@ -3693,7 +3693,7 @@ category=mining_rock_normal
 param=mining_rock_empty,1
 
 // todo: name used from 244
-[plainrock2]
+[rocks2]
 name=Rocks
 desc=Stoney!
 model=rock2
@@ -3706,7 +3706,7 @@ category=mining_rock_normal
 param=mining_rock_empty,1
 
 // todo: name used from 244
-[plainrock3]
+[rocks3]
 name=Rocks
 desc=Stoney!
 model=rock3
@@ -3736,14 +3736,14 @@ recol1d=15749
 mapscene=12
 blockrange=no
 
-[loc_456]
+[basalt_floor_detail_1]
 model=loc_456
 recol1s=13702
 recol1d=5251
 active=no
 blockrange=no
 
-[loc_457]
+[basalt_floor_detail_2]
 model=loc_457
 recol1s=13702
 recol1d=5251
@@ -3751,7 +3751,7 @@ active=no
 mapscene=21
 blockrange=no
 
-[loc_458]
+[basalt_step_1]
 model=loc_458
 recol1s=13702
 recol1d=5251
@@ -3759,7 +3759,7 @@ active=no
 mapscene=21
 blockrange=no
 
-[loc_459]
+[basalt_step_2]
 model=loc_459
 recol1s=13702
 recol1d=5251
@@ -3767,7 +3767,7 @@ active=no
 mapscene=21
 blockrange=no
 
-[loc_460]
+[basalt_step_3]
 model=loc_460
 recol1s=13702
 recol1d=5251
@@ -3775,7 +3775,7 @@ active=no
 mapscene=21
 blockrange=no
 
-[loc_461]
+[basalt_step_4]
 model=loc_461
 recol1s=13702
 recol1d=5251
@@ -3783,7 +3783,7 @@ active=no
 mapscene=21
 blockrange=no
 
-[loc_462]
+[mossyboulder1]
 name=Mossy rock
 desc=Looks slippery!
 model=loc_462
@@ -3792,14 +3792,14 @@ length=2
 mapscene=12
 blockrange=no
 
-[loc_463]
+[mossyboulder2]
 name=Mossy rock
 desc=Looks slippery!
 model=loc_463
 mapscene=12
 blockrange=no
 
-[loc_464]
+[rockcolumn1]
 name=Column
 desc=Formed over many years of dripping limestone.
 model=loc_464
@@ -3808,7 +3808,7 @@ recol1d=7329
 width=2
 length=2
 
-[loc_465]
+[rockcolumn2]
 name=Column
 desc=Formed over many years of dripping limestone.
 model=loc_465
@@ -3817,7 +3817,7 @@ recol1d=7329
 width=2
 length=2
 
-[loc_466]
+[rockcolumn3]
 name=Column
 desc=Formed over many years of dripping limestone.
 model=loc_466
@@ -3853,7 +3853,7 @@ ambient=20
 contrast=20
 active=no
 
-[loc_471]
+[rockslide1]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_471
@@ -3862,7 +3862,7 @@ length=2
 mapscene=24
 blockrange=no
 
-[loc_472]
+[rockslide2]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_472
@@ -3871,7 +3871,7 @@ length=2
 mapscene=24
 blockrange=no
 
-[loc_473]
+[rockslide3]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_473
@@ -3882,7 +3882,7 @@ blockrange=no
 hillskew=yes
 mapscene=25
 
-[loc_474]
+[rockslide4]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_474
@@ -3891,17 +3891,17 @@ length=2
 shadow=no
 blockrange=no
 
-[loc_475]
+[rockslide5]
 model=loc_475
 hillskew=yes
 blockrange=no
 
-[loc_476]
+[rockslide6]
 model=loc_476
 hillskew=yes
 blockrange=no
 
-[loc_477]
+[mossyboulder1_swamp]
 name=Mossy rock
 desc=Looks slippery!
 model=loc_477
@@ -3912,7 +3912,7 @@ length=2
 mapscene=11
 blockrange=no
 
-[loc_478]
+[mossyboulder2_swamp]
 name=Mossy rock
 desc=Looks slippery!
 model=loc_478
@@ -3921,7 +3921,7 @@ recol1d=4425
 mapscene=12
 blockrange=no
 
-[loc_479]
+[rockslide_grey1]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_471
@@ -3933,7 +3933,7 @@ hillskew=yes
 mapscene=12
 blockrange=no
 
-[loc_480]
+[rockslide_grey2]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_472
@@ -3945,7 +3945,7 @@ hillskew=yes
 mapscene=12
 blockrange=no
 
-[loc_481]
+[rockslide_grey3]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_473
@@ -3959,7 +3959,7 @@ hillskew=yes
 mapscene=12
 blockrange=no
 
-[loc_482]
+[rockslide_grey4]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_474
@@ -3973,7 +3973,7 @@ hillskew=yes
 mapscene=12
 blockrange=no
 
-[loc_483]
+[rockslide_lightgrey1]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_471
@@ -3985,7 +3985,7 @@ hillskew=yes
 mapscene=12
 blockrange=no
 
-[loc_484]
+[rockslide_lightgrey2]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_472
@@ -3997,7 +3997,7 @@ hillskew=yes
 mapscene=12
 blockrange=no
 
-[loc_485]
+[rockslide_lightgrey3]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_473
@@ -4010,7 +4010,7 @@ blockrange=no
 hillskew=yes
 mapscene=12
 
-[loc_486]
+[rockslide_lightgrey4]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_474
@@ -4023,21 +4023,21 @@ blockrange=no
 hillskew=yes
 mapscene=12
 
-[loc_487]
+[rockslide_lightgrey5]
 model=loc_475
 recol1s=12580
 recol1d=15855
 hillskew=yes
 blockrange=no
 
-[loc_488]
+[rockslide_lightgrey6]
 model=loc_476
 recol1s=12580
 recol1d=15855
 hillskew=yes
 blockrange=no
 
-[loc_489]
+[dugupsmallrocks_lightgrey1]
 model=dugupsoil1_upass
 recol1s=13505
 recol1d=15855
@@ -4048,7 +4048,7 @@ recol3d=15855
 hillskew=yes
 blockrange=no
 
-[loc_490]
+[dugupsmallrocks_lightgrey2]
 model=dugupsoil2_upass
 recol1s=13505
 recol1d=15855
@@ -4059,7 +4059,7 @@ recol3d=15855
 hillskew=yes
 blockrange=no
 
-[loc_491]
+[dugupsmallrocks_lightgrey3]
 model=dugupsoil3_upass
 recol1s=13505
 recol1d=15855
@@ -4070,7 +4070,7 @@ recol3d=15855
 hillskew=yes
 blockrange=no
 
-[loc_492]
+[volcano_entrance]
 name=Rocks
 desc=A collection of rocks over what looks like a depression.
 model=loc_492
@@ -4134,35 +4134,35 @@ length=5
 sharelight=yes
 active=no
 
-[loc_498]
+[greatrunestone_decking]
 model=loc_498
 sharelight=yes
 hillskew=yes
 forcedecor=yes
 active=no
 
-[loc_499]
+[greatrunestone_decking_2]
 model=loc_499
 sharelight=yes
 hillskew=yes
 forcedecor=yes
 active=no
 
-[loc_500]
+[greatrunestone_decking_5]
 model=loc_500
 sharelight=yes
 hillskew=yes
 forcedecor=yes
 active=no
 
-[loc_501]
+[greatrunestone_decking_6]
 model=loc_501
 sharelight=yes
 hillskew=yes
 forcedecor=yes
 active=no
 
-[loc_502]
+[greatrunestone_decking_broken]
 model=loc_502
 sharelight=yes
 hillskew=yes
@@ -4197,7 +4197,7 @@ hillskew=yes
 forcedecor=yes
 active=no
 
-[loc_507]
+[rockslide_white1]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_471
@@ -4209,7 +4209,7 @@ hillskew=yes
 mapscene=12
 blockrange=no
 
-[loc_508]
+[rockslide_white2]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_472
@@ -4221,7 +4221,7 @@ hillskew=yes
 mapscene=12
 blockrange=no
 
-[loc_509]
+[rockslide_white3]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_473
@@ -4235,7 +4235,7 @@ hillskew=yes
 mapscene=12
 blockrange=no
 
-[loc_510]
+[rockslide_white4]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_474
@@ -4265,10 +4265,10 @@ recol2s=16417
 recol2d=12614
 blockrange=no
 
-[loc_513]
+[mining_bucket]
 model=loc_513
 
-[loc_514]
+[mining_spade]
 model=loc_514
 
 // todo: name used from 244
@@ -4288,7 +4288,7 @@ model=loc_516
 width=2
 length=2
 
-[loc_517]
+[rockslide_dbrown1]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_471
@@ -4300,7 +4300,7 @@ hillskew=yes
 mapscene=12
 blockrange=no
 
-[loc_518]
+[rockslide_dbrown2]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_472
@@ -4312,7 +4312,7 @@ hillskew=yes
 mapscene=12
 blockrange=no
 
-[loc_519]
+[rockslide_dbrown3]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_473
@@ -4326,7 +4326,7 @@ hillskew=yes
 mapscene=12
 blockrange=no
 
-[loc_520]
+[rockslide_dbrown4]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_474
@@ -4451,7 +4451,7 @@ recol1d=11627
 blockwalk=no
 hillskew=yes
 
-[loc_532]
+[stalagmite_twin_grey]
 name=Stalagmites
 desc=Limestone floor growth.
 model=loc_468
@@ -4468,7 +4468,7 @@ recol1d=11627
 blockwalk=no
 hillskew=yes
 
-[loc_534]
+[stagamite_small_grey]
 name=Stalagmite
 desc=A tooth shaped rock formation protruding from the floor.
 model=loc_534
@@ -4476,11 +4476,11 @@ recol1s=13537
 recol1d=11627
 hillskew=yes
 
-[loc_535]
+[boulder3_gdecor]
 model=loc_535
 forcedecor=yes
 
-[loc_536]
+[boulder4_gdecor]
 model=loc_536
 forcedecor=yes
 
@@ -4504,7 +4504,7 @@ blockwalk=no
 model=loc_540
 blockwalk=no
 
-[loc_541]
+[stagamite_large]
 name=Stalagmite
 desc=A tooth shaped rock formation protruding from the floor.
 model=loc_468
@@ -4512,7 +4512,7 @@ recol1s=13537
 recol1d=7329
 hillskew=yes
 
-[loc_542]
+[stagamite_small]
 name=Stalagmite
 desc=A tooth shaped rock formation protruding from the floor.
 model=loc_534
@@ -4520,7 +4520,7 @@ recol1s=13537
 recol1d=7329
 hillskew=yes
 
-[loc_543]
+[stagatite_large]
 name=Stalactite
 desc=A tooth shaped rock formation protruding from the ceiling.
 model=loc_469
@@ -4557,7 +4557,7 @@ mirror=yes
 length=3
 active=no
 
-[loc_548]
+[rockslide1_upass]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_471
@@ -4569,7 +4569,7 @@ mapscene=12
 hillskew=yes
 blockrange=no
 
-[loc_549]
+[rockslide2_upass]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_472
@@ -4581,7 +4581,7 @@ mapscene=12
 hillskew=yes
 blockrange=no
 
-[loc_550]
+[rockslide3_upass]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_473
@@ -4595,7 +4595,7 @@ hillskew=yes
 mapscene=12
 hillskew=yes
 
-[loc_551]
+[rockslide4_upass]
 name=Rockslide
 desc=A deposit of rocks.
 model=loc_474
@@ -4608,7 +4608,7 @@ blockrange=no
 hillskew=yes
 hillskew=yes
 
-[loc_552]
+[rockslide5_upass]
 model=loc_475
 recol1s=12580
 recol1d=7329
@@ -4616,7 +4616,7 @@ hillskew=yes
 hillskew=yes
 blockwalk=no
 
-[loc_553]
+[rockslide6_upass]
 model=loc_476
 recol1s=12580
 recol1d=7329
@@ -5698,7 +5698,7 @@ length=2
 active=no
 active=no
 
-[loc_721]
+[caveentrance2_gray]
 model=caveentrance
 recol1s=10400
 recol1d=23254
@@ -9482,7 +9482,7 @@ width=2
 length=2
 mapscene=5
 
-[loc_1305]
+[jungletree2big_karamja]
 name=Tree
 desc=A tree found in tropical areas.
 model=jungletree2
@@ -11223,7 +11223,7 @@ blockrange=no
 raiseobject=no
 category=locked_gate
 
-[loc_1591]
+[lockeddoor1]
 name=Door
 desc=The door is closed.
 model=door1
@@ -11288,7 +11288,7 @@ active=yes
 op1=Open
 raiseobject=no
 
-[loc_1598]
+[memberfencegate_l]
 name=Gate
 desc=A wooden gate.
 model=plaguesheep_gatel
@@ -11299,7 +11299,7 @@ raiseobject=no
 category=gate_main_closed
 param=next_loc_stage,loc_1552
 
-[loc_1599]
+[memberfencegate_r]
 name=Gate
 desc=A wooden gate.
 model=plaguesheep_gatel
@@ -11311,7 +11311,7 @@ raiseobject=no
 category=gate_outer_closed
 param=next_loc_stage,loc_1556
 
-[loc_1600]
+[magicguild_door_l]
 name=Magic guild door
 desc=The doors to the Magic Guild.
 model=lefayeunopenabledoorl
@@ -11321,7 +11321,7 @@ category=double_door_open_and_close_left
 param=next_loc_stage,loc_1522
 param=open_sound,null
 
-[loc_1601]
+[magicguild_door_r]
 name=Magic guild door
 desc=The doors to the Magic guild.
 model=lefayeunopenabledoorl
@@ -12115,7 +12115,7 @@ hillskew=yes
 active=no
 forcedecor=yes
 
-[loc_1746]
+[laddertop]
 name=Ladder
 desc=I can climb down this.
 model=ladder2
@@ -12123,7 +12123,7 @@ active=yes
 op1=Climb-down
 mapscene=7
 
-[loc_1747]
+[ladder]
 name=Ladder
 desc=I can climb this.
 model=ladder
@@ -12131,7 +12131,7 @@ active=yes
 op1=Climb-up
 mapscene=7
 
-[loc_1748]
+[laddermiddle]
 name=Ladder
 desc=I can climb this.
 model=ladder
@@ -12171,7 +12171,7 @@ mapscene=7
 forceapproach=north
 
 // todo: name used from 244
-[broken_ladder]
+[ladder_broken]
 name=Ladder
 desc=I can't climb this.
 model=loc_1752
@@ -12567,7 +12567,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
-param=next_loc_stage,poordoor
+param=next_loc_stage,loc_1535
 
 [championdoor]
 name=Door
@@ -12579,7 +12579,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
-param=next_loc_stage,poordoor
+param=next_loc_stage,loc_1535
 
 [cavern1]
 model=cavern1
@@ -12628,7 +12628,7 @@ name=Portal
 desc=A magical border of teleportation.
 model=loc_1812
 sharelight=yes
-anim=monkey_sheep_mount
+anim=seq_491
 
 [loc_1813]
 name=Stone stand
@@ -13940,7 +13940,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
-param=next_loc_stage,poordoor
+param=next_loc_stage,loc_1535
 
 [loc_2026]
 name=Fishing spot
@@ -14477,7 +14477,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 param=macro_gas,macro_copperrock1
 
 // todo: name used from 244
@@ -14493,7 +14493,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock2
+param=next_loc_stage_mining,rocks2
 param=macro_gas,macro_copperrock2
 
 // todo: name used from 244
@@ -14509,7 +14509,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_fast
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 param=macro_gas,macro_ironrock1
 
 // todo: name used from 244
@@ -14525,7 +14525,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_fast
-param=next_loc_stage_mining,plainrock2
+param=next_loc_stage_mining,rocks2
 param=macro_gas,macro_ironrock2
 
 // todo: name used from 244
@@ -14541,7 +14541,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 param=macro_gas,macro_tinrock1
 
 // todo: name used from 244
@@ -14557,7 +14557,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock2
+param=next_loc_stage_mining,rocks2
 param=macro_gas,macro_tinrock2
 
 // todo: name used from 244
@@ -14573,7 +14573,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 param=macro_gas,macro_coalrock1
 
 // todo: name used from 244
@@ -14589,7 +14589,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock2
+param=next_loc_stage_mining,rocks2
 param=macro_gas,macro_coalrock2
 
 // todo: name used from 244
@@ -14605,7 +14605,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 param=macro_gas,macro_goldrock1
 
 // todo: name used from 244
@@ -14621,7 +14621,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock2
+param=next_loc_stage_mining,rocks2
 param=macro_gas,macro_goldrock2
 
 // todo: name used from 244
@@ -14637,7 +14637,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 param=macro_gas,macro_silverrock1
 
 // todo: name used from 244
@@ -14653,7 +14653,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock2
+param=next_loc_stage_mining,rocks2
 param=macro_gas,macro_silverrock2
 
 // todo: name used from 244
@@ -14669,7 +14669,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 param=macro_gas,macro_mithrilrock1
 
 // todo: name used from 244
@@ -14685,7 +14685,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock2
+param=next_loc_stage_mining,rocks2
 param=macro_gas,macro_mithrilrock2
 
 // todo: name used from 244
@@ -14701,7 +14701,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 param=macro_gas,macro_adamantiterock1
 
 // todo: name used from 244
@@ -14717,7 +14717,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock2
+param=next_loc_stage_mining,rocks2
 param=macro_gas,macro_adamantiterock2
 
 // todo: name used from 244
@@ -14733,7 +14733,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 param=macro_gas,macro_runiterock1
 
 // todo: name used from 244
@@ -14749,7 +14749,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock2
+param=next_loc_stage_mining,rocks2
 param=macro_gas,macro_runiterock2
 
 // todo: name used from 244
@@ -14765,7 +14765,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 param=macro_gas,macro_clayrock1
 
 // todo: name used from 244
@@ -14781,7 +14781,7 @@ op3=hidden
 mapscene=12
 blockrange=no
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock2
+param=next_loc_stage_mining,rocks2
 param=macro_gas,macro_clayrock2
 
 // todo: name used from 244
@@ -14801,7 +14801,7 @@ blockrange=no
 ambient=10
 ambient=20
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock2
+param=next_loc_stage_mining,rocks2
 param=macro_gas,macro_bluriterock
 
 // todo: name used from 244
@@ -14816,7 +14816,7 @@ op2=Prospect
 op3=hidden
 mapscene=12
 blockrange=no
-param=next_loc_stage_mining,plainrock2
+param=next_loc_stage_mining,rocks2
 param=macro_gas,macro_gemrock
 
 [loc_2112]
@@ -14825,7 +14825,7 @@ desc=The door is closed.
 model=door
 active=yes
 op1=Open
-param=next_loc_stage,desertdoor_inactive
+param=next_loc_stage,loc_1532
 
 [loc_2113]
 name=Ladder
@@ -14901,7 +14901,7 @@ model=ctratgatea
 op1=Open
 active=yes
 category=double_door_open_and_close_right
-param=next_loc_stage,poshdooropen
+param=next_loc_stage,loc_1541
 
 [cauldrondoor_l]
 name=Prison door
@@ -16294,7 +16294,7 @@ active=yes
 op1=Cross
 
 // todo: name used from 244
-[gnome_balancing_rope]
+[balancing_rope]
 name=Balancing rope
 desc=I can balance on this rope.
 model=shiprope
@@ -16312,7 +16312,7 @@ active=yes
 op1=Climb
 
 // todo: name used from 244
-[gnome_tree_branch_2]
+[climbing_tree]
 name=Tree branch
 desc=I can climb down here.
 model=tk_l
@@ -16320,14 +16320,14 @@ active=yes
 op1=Climb-down
 
 // todo: name used from 244
-[gnome_tree_branch_3]
+[climbing_tree2]
 name=Tree branch
 desc=I can climb down here.
 model=tk_ns
 active=yes
 op1=Climb-down
 
-[loc_2317]
+[climbingcaverocks1]
 name=Pile of rubble
 desc=I can climb up these rocks to another cave.
 model=mudpile
@@ -16336,7 +16336,7 @@ recol1d=15749
 length=2
 op1=Climb-up
 
-[loc_2318]
+[climbingcaverocks2]
 name=Pile of rubble
 desc=I can climb down these rocks to another cave.
 model=loc_492
@@ -16346,7 +16346,7 @@ width=2
 length=2
 op1=Climb-down
 
-[loc_2319]
+[monkeybars_mid]
 name=Monkeybars
 desc=I can traverse these.
 model=loc_2319
@@ -16478,7 +16478,7 @@ ambient=25
 contrast=25
 forcedecor=yes
 
-[loc_2332]
+[zq_logbalance]
 name=A wooden log
 desc=A nearly rotten wooden log that crosses the river.
 model=loc_2291
@@ -16486,7 +16486,7 @@ op1=Cross
 sharelight=yes
 mapscene=13
 
-[loc_2333]
+[zqrockjump1]
 name=Stepping stones
 desc=A rocky outcrop from the running water.
 model=loc_2333
@@ -16494,7 +16494,7 @@ op1=Cross
 active=yes
 category=karamja_stepping_stone
 
-[loc_2334]
+[zqrockjump2]
 name=Stepping stones
 desc=A rocky outcrop from the running water.
 model=loc_2333
@@ -16502,7 +16502,7 @@ op1=Cross
 active=yes
 category=karamja_stepping_stone
 
-[loc_2335]
+[zqrockjump3]
 name=Stepping stones
 desc=A rocky outcrop from the running water.
 model=loc_2333
@@ -16527,7 +16527,7 @@ recol2d=11458
 active=yes
 op1=Open
 category=door_open_and_close
-param=next_loc_stage,poordoor
+param=next_loc_stage,loc_1535
 
 [bkfortressdoor2]
 name=Door
@@ -16540,7 +16540,7 @@ recol2d=11458
 active=yes
 op1=Open
 category=door_open_and_close
-param=next_loc_stage,desertdoor_inactive
+param=next_loc_stage,loc_1532
 
 [bkfortressdoor3]
 name=Sturdy door
@@ -16553,7 +16553,7 @@ recol2d=11458
 active=yes
 op1=Open
 category=door_open_and_close
-param=next_loc_stage,poordoor
+param=next_loc_stage,loc_1535
 
 [inacbkfortressdoor]
 name=Sturdy door
@@ -17494,7 +17494,7 @@ hillskew=yes
 op1=Push
 active=yes
 
-[loc_2511]
+[ranging_ladder_up]
 name=Tower ladder
 desc=This leads to the practice tower.
 model=ladder
@@ -17502,7 +17502,7 @@ active=yes
 op1=Climb-up
 mapscene=7
 
-[loc_2512]
+[ranging_ladder_down]
 name=Tower ladder
 desc=This leads back down to the guild.
 model=ladder2
@@ -17517,7 +17517,7 @@ model=target
 ambient=20
 op1=Fire-at
 
-[loc_2514]
+[ranging_guild_door]
 name=Guild door
 desc=The door to the Ranging Guild.
 model=door
@@ -18184,7 +18184,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
-param=next_loc_stage,poordoor
+param=next_loc_stage,loc_1535
 
 [oraclechestshut]
 name=Chest
@@ -18720,14 +18720,14 @@ op1=Climb-up
 mapscene=7
 
 // todo: name used from 244
-[potters_wheel]
+[potterywheel]
 name=Potter's Wheel
 desc=Used for fashioning clay items.
 model=loc_2642
 forceapproach=east
 
 // todo: name used from 244
-[pottery_oven]
+[potteryoven]
 name=Pottery Oven
 desc=Bake your clay items in here.
 model=loc_2643
@@ -18736,7 +18736,7 @@ forceapproach=east
 op1=Fire
 
 // todo: name used from 244
-[spinning_wheel]
+[spinningwheel]
 name=Spinning wheel
 desc=Used for spinning thread.
 model=loc_2644
@@ -18744,7 +18744,7 @@ forceapproach=south
 op2=Spin
 
 // todo: name used from 244
-[sand_pit]
+[sandpit]
 name=Sand pit
 desc=A tray of sand.
 model=specimen_tray
@@ -18752,7 +18752,7 @@ width=2
 length=2
 
 // todo: name used from 244
-[flax_ground]
+[flax]
 name=Flax
 desc=A plant cultivated for fibres.
 model=loc_2646
@@ -18767,7 +18767,7 @@ desc=The door to the Crafting Guild.
 model=door
 active=yes
 op1=Open
-param=next_loc_stage,desertdoor_inactive
+param=next_loc_stage,loc_1532
 
 [loc_2648]
 model=loc_2648
@@ -19221,7 +19221,7 @@ op1=Mine
 op2=Prospect
 op3=hidden
 category=mining_rock_normal
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 
 [combodoor]
 name=Door
@@ -19316,7 +19316,7 @@ forceapproach=north
 category=hopper_nonfull
 
 // todo: name used from 244
-[hoppercontrol_lumbridge]
+[hopperlevers1]
 name=Hopper controls
 desc=These control the flow of grain from the hopper to the millstones.
 model=milltop3
@@ -19328,7 +19328,7 @@ param=millbase_coord,0_49_51_30_43
 param=hopper_coord,2_49_51_30_43
 
 // todo: name used from 244
-[hoppercontrol_varrock]
+[hopperlevers2]
 name=Hopper controls
 desc=These control the flow of grain from the hopper to the millstones.
 model=milltop3
@@ -19340,7 +19340,7 @@ param=millbase_coord,0_49_53_3_58
 param=hopper_coord,2_49_53_4_58
 
 // todo: name used from 244
-[hoppercontrol_zanaris]
+[hopperlevers3]
 name=Hopper controls
 desc=These control the flow of grain from the hopper to the millstones.
 model=milltop3
@@ -19352,7 +19352,7 @@ param=millbase_coord,0_49_149_37_41
 param=hopper_coord,1_49_149_37_41
 
 // todo: name used from 244
-[hoppercontrol_ardougne]
+[hopperlevers4]
 name=Hopper controls
 desc=These control the flow of grain from the hopper to the millstones.
 model=milltop3
@@ -19369,7 +19369,7 @@ name=Hopper controls
 desc=These control the flow of grain from the hopper to the millstones.
 model=loc_2722
 
-[loc_2723]
+[kebabpole]
 name=Kebab
 desc=A spicy meat kebab is cooking here.
 model=loc_2723
@@ -19404,7 +19404,7 @@ model=minigame_start_icon
 forcedecor=yes
 mapfunction=5
 
-[loc_2739]
+[quest_start_icon]
 model=minigame_start_icon
 forcedecor=yes
 mapfunction=6
@@ -19640,14 +19640,14 @@ name=Anvil
 desc=Used for fashioning metal items.
 model=experimental_anvil
 
-[loc_2784]
+[blacksmithtools]
 name=Blacksmith's tools
 desc=Various implements for working with metal.
 model=loc_2784
 active=yes
 
 // todo: name used from 244
-[furnace_side]
+[furnace2]
 name=Furnace
 desc=A hot place for forging things in.
 model=loc_2785
@@ -20194,7 +20194,7 @@ model=timberwall
 wallwidth=8
 occlude=yes
 
-[loc_2856]
+[carnilleanshutchest]
 name=Chest
 desc=I wonder what's inside?
 model=arena_guard_chest_shut
@@ -20444,7 +20444,7 @@ mirror=yes
 category=border_gate_toll_right
 param=next_loc_stage,loc_1563
 
-[loc_2884]
+[grandtree_laddermiddle]
 name=Ladder
 desc=I can climb this.
 model=ladder
@@ -21016,7 +21016,7 @@ recol4d=14592
 op1=Look
 
 // todo: name used from 244
-[legends_totem_pole_4]
+[lg_totem_pole_legends]
 name=Totem Pole
 desc=A sculpted trunk of wood.
 model=totem_pole
@@ -21355,7 +21355,7 @@ desc=This tree is particularly leafy.
 model=bamboo_tree_base
 mapscene=0
 
-[loc_2977]
+[sand1]
 name=Sand
 desc=A large pile of sand
 model=ahzarhoon_entrance
@@ -21368,7 +21368,7 @@ mapscene=12
 hillskew=yes
 op1=Look
 
-[loc_2978]
+[sand2]
 name=Sand
 desc=A medium pile of sand
 model=ahzarhoon_entrance
@@ -21381,7 +21381,7 @@ blockwalk=no
 hillskew=yes
 op1=Look
 
-[loc_2979]
+[sand3]
 name=Sand
 desc=A small pile of sand
 model=ahzarhoon_entrance
@@ -21719,7 +21719,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
-param=next_loc_stage,poordoor
+param=next_loc_stage,loc_1535
 
 // todo: name used from 244
 [newbiegateclosedl2]
@@ -21751,7 +21751,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
-param=next_loc_stage,poordoor
+param=next_loc_stage,loc_1535
 
 // todo: name used from 244
 [newbie_door3]
@@ -21764,7 +21764,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
-param=next_loc_stage,poordoor
+param=next_loc_stage,loc_1535
 
 // todo: name used from 244
 [newbie_door4]
@@ -21777,7 +21777,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
-param=next_loc_stage,poordoor
+param=next_loc_stage,loc_1535
 
 // todo: name used from 244
 [newbiedoor4l]
@@ -21832,7 +21832,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
-param=next_loc_stage,poordoor
+param=next_loc_stage,loc_1535
 
 // todo: name used from 244
 [newbie_door7]
@@ -21845,7 +21845,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
-param=next_loc_stage,poordoor
+param=next_loc_stage,loc_1535
 
 // todo: name used from 244
 [newbie_door8]
@@ -21858,7 +21858,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
-param=next_loc_stage,poordoor
+param=next_loc_stage,loc_1535
 
 // todo: name used from 244
 [newbie_door9]
@@ -21871,7 +21871,7 @@ recol2s=6342
 recol2d=11458
 active=yes
 op1=Open
-param=next_loc_stage,poordoor
+param=next_loc_stage,loc_1535
 
 // todo: name used from 244
 [newbieladder1]
@@ -25306,7 +25306,7 @@ contrast=15
 active=no
 wallwidth=32
 
-[loc_3431]
+[newbierocks1]
 name=Rocks
 desc=Stoney!
 model=rock1
@@ -25613,7 +25613,7 @@ model=priestperil_coffin_noanim
 length=2
 op1=Open
 
-[loc_3481]
+[cracks_black1]
 model=loc_3481
 recol1s=0
 recol1d=6342
@@ -26163,22 +26163,22 @@ sharelight=yes
 active=no
 resizey=200
 
-[loc_3623]
+[cracks_black2]
 model=loc_3623
 recol1s=0
 recol1d=6342
 
-[loc_3624]
+[cracks_black3]
 model=loc_3624
 recol1s=0
 recol1d=6342
 
-[loc_3625]
+[cracks_black4]
 model=loc_3625
 recol1s=0
 recol1d=6342
 
-[loc_3626]
+[macro_maze_wallhigh]
 name=Wall
 desc=It looks very sturdy.
 model=loc_3626
@@ -26189,7 +26189,7 @@ op1=Open
 model=loc_3627
 sharelight=yes
 
-[macro_maze_both_dir_wall]
+[macro_maze_walllow]
 name=Wall
 desc=It looks very sturdy.
 model=loc_3628
@@ -26197,7 +26197,7 @@ recol1s=9513
 recol1d=15855
 op1=Open
 
-[macro_maze_east_wall]
+[macro_maze_walllow_safe1]
 name=Wall
 desc=It looks very sturdy.
 model=loc_3628
@@ -26205,7 +26205,7 @@ recol1s=9513
 recol1d=15855
 op1=Open
 
-[macro_maze_west_wall]
+[macro_maze_walllow_safe2]
 name=Wall
 desc=It looks very sturdy.
 model=loc_3628
@@ -26213,7 +26213,7 @@ recol1s=9513
 recol1d=15855
 op1=Open
 
-[macro_maze_north_wall]
+[macro_maze_walllow_safe3]
 name=Wall
 desc=It looks very sturdy.
 model=loc_3628
@@ -26221,7 +26221,7 @@ recol1s=9513
 recol1d=15855
 op1=Open
 
-[macro_maze_west2_wall]
+[macor_maze_walllow_safe4]
 name=Wall
 desc=It looks very sturdy.
 model=loc_3628
@@ -26229,12 +26229,12 @@ recol1s=9513
 recol1d=15855
 op1=Open
 
-[macro_maze_opened_wall]
+[macro_maze_wallinactive]
 model=loc_3628
 recol1s=9513
 recol1d=15855
 
-[loc_3634]
+[macro_maze_complete]
 name=Strange shrine
 desc=A shrine of the gods!
 model=loc_3634
@@ -26243,13 +26243,13 @@ length=3
 width=3
 op1=Touch
 
-[loc_3635]
+[macro_maze_chest]
 name=Chest
 desc=I wonder what's inside...
 model=arena_guard_chest_shut
 op1=Open
 
-[loc_3636]
+[macro_maze_chestempty]
 name=Chest
 desc=It looks empty.
 model=arena_guard_chest_open
@@ -26260,41 +26260,41 @@ model=loc_3637
 active=no
 anim=godsorb
 
-[loc_3638]
+[macro_theatrewall]
 model=paintedbrickwall1
 recol1s=26423
 recol1d=2114
 sharelight=yes
 hillskew=yes
 
-[loc_3639]
+[macro_theatre_curtains_right]
 model=loc_3639
 active=no
 sharelight=yes
 
-[loc_3640]
+[macro_theatre_curtains_left]
 model=loc_3639
 active=no
 mirror=yes
 sharelight=yes
 
-[loc_3641]
+[macro_theatre_curtains_side]
 model=loc_3641
 active=no
 sharelight=yes
 
-[loc_3642]
+[macro_theatre_curtains_corner_left]
 model=loc_3642
 active=no
 sharelight=yes
 
-[loc_3643]
+[macro_theatre_curtains_corner_right]
 model=loc_3642
 active=no
 sharelight=yes
 mirror=yes
 
-[loc_3644]
+[macro_spotlight]
 name=Spotlight
 desc=That's really bright!
 model=loc_3644
@@ -26305,13 +26305,13 @@ contrast=40
 blockwalk=no
 blockrange=no
 
-[loc_3645]
+[macro_exitsign]
 model=loc_3645
 active=no
 ambient=80
 contrast=80
 
-[loc_3646]
+[macro_theatre_floor]
 model=pier
 recol1s=9409
 recol1d=7328
@@ -26324,14 +26324,14 @@ resizez=128
 resizex=128
 resizey=48
 
-[loc_3647]
+[macro_theatre_chair]
 model=chair
 recol1s=10401
 recol1d=7298
 blockrange=no
 active=no
 
-[loc_3648]
+[dugupsoil1_macromaze]
 model=dugupsoil1_upass
 recol1s=13505
 recol1d=15855
@@ -26342,7 +26342,7 @@ recol3d=15855
 hillskew=yes
 forcedecor=yes
 
-[loc_3649]
+[dugupsoil2_macromaze]
 model=dugupsoil2_upass
 recol1s=13505
 recol1d=15855
@@ -26364,11 +26364,11 @@ recol3d=15855
 hillskew=yes
 forcedecor=yes
 
-[loc_3651]
+[macro_simplewall_theatre]
 model=loc_3651
 sharelight=yes
 
-[loc_3652]
+[macro_dark_fade]
 model=loc_3652
 
 [death_camp_roof_inner]
@@ -27950,7 +27950,7 @@ active=yes
 op1=Climb-down
 mapscene=7
 
-[loc_3834]
+[mapwall]
 model=clanwars_tournament_table
 hillskew=yes
 
@@ -28761,7 +28761,7 @@ resizey=34
 resizez=64
 active=no
 
-[loc_3941]
+[regicide_old_camp_footprints]
 name=Tracks
 desc=Tracks in the soil.
 model=loc_3941
@@ -29806,7 +29806,7 @@ retex1d=planks
 op1=Squeeze-through
 width=2
 
-[loc_4059]
+[balancing_rope_mid]
 name=Balancing rope
 desc=I can balance on this rope.
 model=shiprope
@@ -30863,7 +30863,7 @@ recol1d=10535
 sharelight=yes
 active=no
 
-[loc_4487]
+[slayertower_door]
 name=Door
 desc=A big wooden door.
 model=loc_4487
@@ -30874,7 +30874,7 @@ resizex=128
 resizey=192
 op1=Open
 
-[loc_4488]
+[slayertower_door_arch]
 model=loc_4488
 hillskew=yes
 resizez=128
@@ -30884,7 +30884,7 @@ op1=Open
 blockwalk=no
 active=no
 
-[loc_4489]
+[slayertower_door_arch_mirror]
 model=loc_4488
 hillskew=yes
 resizez=128
@@ -30895,7 +30895,7 @@ blockwalk=no
 mirror=yes
 active=no
 
-[loc_4490]
+[slayertower_door_mirror]
 name=Door
 desc=A big wooden door.
 model=loc_4487
@@ -30907,7 +30907,7 @@ resizey=192
 mirror=yes
 op1=Open
 
-[loc_4491]
+[slayertower_door_open]
 name=Door
 desc=A big wooden door.
 model=loc_4487
@@ -30918,7 +30918,7 @@ resizex=128
 resizey=192
 op1=Close
 
-[loc_4492]
+[slayertower_door_open_mirror]
 name=Door
 desc=A big wooden door.
 model=loc_4487
@@ -30930,7 +30930,7 @@ resizey=192
 mirror=yes
 op1=Close
 
-[loc_4499]
+[slayer_dungeon_entrance]
 name=Cave Entrance
 desc=Wow - it's a guinea pig! No, hang on, it's a cave.
 model=caveentrance
@@ -30949,7 +30949,7 @@ length=2
 shadow=no
 op1=Enter
 
-[loc_4500]
+[slayer_dungeon_exit]
 name=Tunnel
 desc=This leads back to the cruel world above.
 model=loc_4500
@@ -31042,7 +31042,7 @@ resizez=128
 resizex=128
 resizey=192
 
-[loc_4509]
+[slayertower_crumblywalllow]
 model=loc_4509
 sharelight=yes
 hillskew=yes
@@ -31090,7 +31090,7 @@ resizex=120
 resizey=130
 blockwalk=no
 
-[loc_4514]
+[dugupsoil_slayer_1]
 model=dugupsoil1_upass
 recol1s=13505
 recol1d=4260
@@ -31101,7 +31101,7 @@ recol3d=4260
 hillskew=yes
 active=no
 
-[loc_4515]
+[dugupsoil_slayer_2]
 model=dugupsoil2_upass
 recol1s=13505
 recol1d=4260
@@ -31112,7 +31112,7 @@ recol3d=4260
 hillskew=yes
 active=no
 
-[loc_4516]
+[dugupsoil_slayer_3]
 model=dugupsoil3_upass
 recol1s=13505
 recol1d=4260
@@ -31123,7 +31123,7 @@ recol3d=4260
 hillskew=yes
 active=no
 
-[loc_4517]
+[slayer_torch]
 model=torch
 recol1s=7399
 recol1d=7431
@@ -31139,7 +31139,7 @@ offsetx=0
 offsety=20
 offsetz=0
 
-[loc_4518]
+[slayer_corpse1]
 name=Corpse
 desc=How do you make a skeleton laugh?
 model=corpse
@@ -31148,7 +31148,7 @@ recol1d=12747
 blockrange=no
 blockwalk=no
 
-[loc_4519]
+[slayer_corpse2]
 name=Corpse
 desc=Tickle his funny bone.
 model=corpse2
@@ -31157,7 +31157,7 @@ recol1d=12747
 blockrange=no
 blockwalk=no
 
-[loc_4520]
+[slayer_corpse3]
 name=Corpse
 desc=Clearly has been relaxing too long....
 model=corpse3
@@ -31167,7 +31167,7 @@ width=2
 blockrange=no
 blockwalk=no
 
-[loc_4521]
+[slayer_short_grass_1]
 model=viking_grass1
 recol1s=21140
 recol1d=4554
@@ -31179,7 +31179,7 @@ hillskew=yes
 active=no
 ambient=20
 
-[loc_4522]
+[slayer_short_grass_2]
 model=viking_grass2
 recol1s=21140
 recol1d=4554
@@ -31191,7 +31191,7 @@ hillskew=yes
 active=no
 ambient=20
 
-[loc_4523]
+[slayer_short_grass_3]
 model=viking_grass3
 recol1s=21140
 recol1d=4554
@@ -31203,7 +31203,7 @@ hillskew=yes
 active=no
 ambient=20
 
-[loc_4524]
+[slayer_short_grass_4]
 model=viking_grass4
 recol1s=21140
 recol1d=4554
@@ -31215,7 +31215,7 @@ hillskew=yes
 active=no
 ambient=20
 
-[loc_4525]
+[slayer_short_grass_3_castle_edge]
 model=loc_4525
 recol1s=21140
 recol1d=4554
@@ -31227,7 +31227,7 @@ hillskew=yes
 active=no
 ambient=20
 
-[loc_4526]
+[slayer_short_grass_4_castle_edge]
 model=loc_4526
 recol1s=21140
 recol1d=4554
@@ -31275,7 +31275,7 @@ hillskew=yes
 active=no
 ambient=20
 
-[loc_4530]
+[cave_generic_hole_bk]
 model=loc_4530
 recol1s=21140
 recol1d=4554
@@ -31287,7 +31287,7 @@ hillskew=yes
 active=no
 ambient=20
 
-[loc_4531]
+[cave_generic_hole_bkl]
 model=loc_4531
 recol1s=21140
 recol1d=4554
@@ -31299,7 +31299,7 @@ hillskew=yes
 active=no
 ambient=20
 
-[loc_4532]
+[cave_generic_hole_bkr]
 model=loc_4532
 recol1s=21140
 recol1d=4554
@@ -31324,7 +31324,7 @@ sharelight=yes
 hillskew=yes
 active=no
 
-[loc_4535]
+[cave_generic_hole_l]
 model=cavewall_top5
 recol1s=12580
 recol1d=11592
@@ -31380,7 +31380,7 @@ resizez=128
 resizex=128
 resizey=64
 
-[loc_4540]
+[cave_generic_hole_r]
 model=cavewall_top_higher
 recol1s=12580
 recol1d=11592
@@ -31391,7 +31391,7 @@ resizez=128
 resizex=128
 resizey=64
 
-[loc_4541]
+[slayer_kursk_statue]
 name=Statue
 desc=Did that thing just twitch?
 model=loc_4541
@@ -32883,7 +32883,7 @@ sharelight=yes
 hillskew=yes
 active=no
 
-[barbassault_invisable_nonblocking_wall]
+[loc_4909]
 model=inviswall
 shadow=no
 blockrange=no
@@ -34436,7 +34436,7 @@ recol2d=13671
 hillskew=yes
 sharelight=yes
 
-[loc_5082]
+[dungeon_tree_open]
 name=Dungeon entrance
 desc=An overgrown dungeon entrance.
 model=loc_5082
@@ -34449,7 +34449,7 @@ length=4
 width=4
 op1=Enter
 
-[loc_5083]
+[dungeon_tree_closed]
 name=Dungeon entrance
 desc=A closed overgrown dungeon entrance.
 model=loc_5082
@@ -34463,7 +34463,7 @@ length=4
 width=4
 op1=Enter
 
-[loc_5084]
+[karam_dungeon_exit]
 name=Exit
 desc=The way to go when I get scared.
 model=loc_5084
@@ -34480,7 +34480,7 @@ model=loc_5086
 [loc_5087]
 model=loc_5087
 
-[loc_5088]
+[karam_dungeon_bamboo_logbalance1]
 name=Log balance
 desc=I hope I don't fall off this.
 model=loc_5088
@@ -34488,14 +34488,14 @@ active=yes
 sharelight=yes
 op1=Walk-across
 
-[loc_5089]
+[karam_dungeon_bamboo_logbalance2]
 model=loc_5089
 active=no
 blockwalk=no
 sharelight=yes
 forcedecor=yes
 
-[loc_5090]
+[karam_dungeon_bamboo_logbalance3]
 name=Log balance
 desc=I hope I don't fall off this.
 model=loc_5088
@@ -34602,7 +34602,7 @@ recol6d=12580
 sharelight=yes
 hillskew=yes
 
-[loc_5103]
+[karam_dungeon_vineblocking1]
 name=Vines
 desc=Thick vines blocking your way.
 model=loc_5103
@@ -34611,7 +34611,7 @@ op1=Chop-down
 op3=hidden
 category=dungeon_vines
 
-[loc_5104]
+[karam_dungeon_vineblocking2]
 name=Vines
 desc=Thick vines blocking your way.
 model=loc_5103
@@ -34620,7 +34620,7 @@ op1=Chop-down
 op3=hidden
 category=dungeon_vines
 
-[loc_5105]
+[karam_dungeon_vineblocking3]
 name=Vines
 desc=Thick vines blocking your way.
 model=loc_5103
@@ -34629,7 +34629,7 @@ op1=Chop-down
 op3=hidden
 category=dungeon_vines
 
-[loc_5106]
+[karam_dungeon_vineblocking4]
 name=Vines
 desc=Thick vines blocking your way.
 model=loc_5103
@@ -34638,7 +34638,7 @@ op1=Chop-down
 op3=hidden
 category=dungeon_vines
 
-[loc_5107]
+[karam_dungeon_vineblocking5]
 name=Vines
 desc=Thick vines blocking your way.
 model=loc_5103
@@ -34673,7 +34673,7 @@ recol2d=8352
 sharelight=yes
 hillskew=yes
 
-[loc_5110]
+[karam_dungeon_stone1]
 name=Stepping stone
 desc=I can jump from this stepping stone.
 model=loc_2333
@@ -34681,7 +34681,7 @@ op1=Jump-from
 active=yes
 forcedecor=yes
 
-[loc_5111]
+[karam_dungeon_stone2]
 name=Stepping stone
 desc=I can jump from this stepping stone.
 model=loc_2333
@@ -63287,7 +63287,7 @@ blockrange=no
 ambient=10
 category=mining_rock_normal
 //TODO this is wrong but it doesn't accept loc_2110
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 
 [loc_9711]
 name=Rocks
@@ -63337,7 +63337,7 @@ blockrange=no
 ambient=10
 category=mining_rock_normal
 //TODO this is wrong but it doesn't accept loc_2110
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 
 [loc_9714]
 name=Rocks
@@ -63389,7 +63389,7 @@ blockrange=no
 ambient=10
 category=mining_rock_normal
 //TODO this is wrong but it doesn't accept loc_2110
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 
 [loc_9717]
 name=Rocks
@@ -63441,7 +63441,7 @@ blockrange=no
 ambient=10
 category=mining_rock_normal
 //TODO this is wrong but it doesn't accept loc_2110
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 
 [loc_9720]
 name=Rocks
@@ -63491,7 +63491,7 @@ blockrange=no
 ambient=10
 category=mining_rock_normal
 //TODO this is wrong but it doesn't accept loc_2110
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 
 [loc_9723]
 name=Rocks
@@ -75653,7 +75653,7 @@ blockrange=no
 ambient=10
 category=mining_rock_normal
 //TODO this is wrong but it doesn't accept loc_2110
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 
 [loc_11186]
 name=Rocks
@@ -75705,7 +75705,7 @@ blockrange=no
 ambient=10
 category=mining_rock_normal
 //TODO this is wrong but it doesn't accept loc_2110
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 
 [loc_11189]
 name=Rocks
@@ -82433,7 +82433,7 @@ blockrange=no
 ambient=10
 category=mining_rock_normal
 //TODO this is wrong but it doesn't accept loc_2110
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 
 [loc_11933]
 name=Rocks
@@ -82485,7 +82485,7 @@ blockrange=no
 ambient=10
 category=mining_rock_normal
 //TODO this is wrong but it doesn't accept loc_2110
-param=next_loc_stage_mining,plainrock1
+param=next_loc_stage_mining,rocks1
 
 [loc_11936]
 name=Rocks

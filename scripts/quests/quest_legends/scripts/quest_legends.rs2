@@ -530,7 +530,7 @@ if (stat(mining) < 52) {
 }
 mes("You swing your pick at the rock.");
 anim(oc_param($pickaxe, mining_animation), 0);
-sound_synth(mine_quick, 0, 10);
+sound_synth(mine_quick, 1, 10);
 // todo: real rate?
 if (stat_random(mining, 90, 255) = true) {
     // no delays on any of this
@@ -545,7 +545,7 @@ if (stat_random(mining, 90, 255) = true) {
     if(coordz(coord) < coordz(loc_coord)) {
         $move = 2;
     }
-    loc_change(loc_446, 6);
+    loc_change(boulder3, 6);
     p_teleport(loc_coord);
     p_delay(2);
     p_teleport(movecoord(coord, 0, 0, $move));
@@ -1479,7 +1479,7 @@ if (inv_total(inv, gold_bar) < 2) {
 }
 // play anim and sound
 anim(human_smithing, 0);
-sound_synth(anvil_4, 0, 0);
+sound_synth(anvil_4, 1, 0);
 p_delay(4);
 // https://youtu.be/uF1a9xsV7zo?t=931
 // fail rate doesn't appear to be impacted by having vs not having the sketch, despite OSRS wiki saying otherwise
@@ -1509,7 +1509,7 @@ mes("You drop the bowl on the floor and the water spills out everywhere."); // r
 inv_delslot(inv, last_slot);
 anim(null, 0);
 obj_add(coord, $drop_item, 1, ^lootdrop_duration);
-sound_synth(put_down, 0, 0);
+sound_synth(put_down, 1, 0);
 
 [label,legends_cast_orb_door](dbrow $spell_data)
 def_namedobj $final_obj;
@@ -2073,7 +2073,7 @@ if(%legendsquest < ^legends_replaced_totem) {
 
 // no script for pole_3
 
-[oploc1,legends_totem_pole_4]
+[oploc1,lg_totem_pole_legends]
 ~mesbox("This totem pole is truly awe inspiring. It depicts powerful Karamja jungle animals. It is very well carved and brings a sense of power and spiritual fulfillment to anyone who looks at it.");
 
 [queue,legends_quest_complete]

@@ -24,7 +24,7 @@ p_teleport(0_42_76_33_22);
 
 [oploc1,golem_black_mushrooms]
 anim(human_pickuptable, 0);
-sound_synth(pick, 0, 0);
+sound_synth(pick, 1, 0);
 inv_add(inv, golem_mushroom, 1);
 ~objbox(golem_mushroom, "You pick a mushroom.", 250, 0, ^objbox_height);
 
@@ -92,7 +92,7 @@ if(inv_freespace(inv) < 6) {
 }
 
 %golem_throne_gems = 1;
-sound_synth(pick, 0, 0);
+sound_synth(pick, 1, 0);
 inv_add(inv, ruby, 2);
 inv_add(inv, emerald, 2);
 inv_add(inv, sapphire, 2);

@@ -13,7 +13,7 @@ if (~player_npc_hit_roll(%damagetype) = true) {
     npc_heropoints($damage_capped);
 }
 anim(impale, 0);
-sound_synth(impale, 0, 0);
+sound_synth(impale, 1, 0);
 %action_delay = add(%action_delay, 1);
 spotanim_pl(sp_attack_impale_spotanim, 96, 0);
 ~npc_retaliate(0);

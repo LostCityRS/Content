@@ -253,7 +253,7 @@ spotanim_npc(db_getfield($spell_data, magic_spell_table:spotanim_target, 0), $du
 [proc,pvm_spell_fail](dbrow $spell_data, int $duration)
 // splash
 sound_synth(db_getfield($spell_data, magic_spell_table:sound_cast, 0), 0, 0);
-sound_synth(spellfail, 0, $duration);
+sound_synth(spellfail, 1, $duration);
 spotanim_npc(failedspell_impact, 92, $duration);
 // splashing in osrs causes insta auto retal
 ~npc_retaliate(0);

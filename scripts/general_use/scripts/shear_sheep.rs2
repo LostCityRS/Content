@@ -8,7 +8,7 @@ if(last_useitem ! shears) {
     return;
 }
 anim(human_shearing, 0);
-sound_synth(shear_sheep, 0, 0);
+sound_synth(shear_sheep, 1, 0);
 if(random(4) = 0) { // confirm this chance?
     mes("The sheep manages to get away from you!");
     npc_setmode(playerescape);
@@ -29,7 +29,7 @@ if(last_useitem ! shears) {
     return;
 }
 anim(human_shearing, 0);
-sound_synth(shear_sheep, 0, 0);
+sound_synth(shear_sheep, 1, 0);
 if(random(4) = 0) { // confirm this chance?
     mes("The sheep manages to get away from you!");
     npc_setmode(playerescape);
@@ -49,7 +49,7 @@ if(last_useitem ! shears) {
     return;
 }
 anim(human_shearing, 0);
-sound_synth(shear_sheep, 0, 0);
+sound_synth(shear_sheep, 1, 0);
 if(random(4) = 0) { // confirm this chance?
     mes("The sheep manages to get away from you!");
     npc_setmode(playerescape);
@@ -89,7 +89,7 @@ if(inv_total(inv, shears) < 1) {
 [label,the_thing_shear]
 %the_thing_sheared = 1;
 anim(human_shearing, 0);
-sound_synth(shear_sheep, 0, 0);
+sound_synth(shear_sheep, 1, 0);
 // the thing's anim seems to happen one tick later in OSRS?
 npc_anim(the_thing_shear, 0);
 mes("The... whatever it is... manages to get away from you!");

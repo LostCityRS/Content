@@ -39,7 +39,7 @@ if ($coord = 0_48_49_32_26) {
     mes("unhandled ladder <~coord_tostring($coord)>");
 }
 
-[oploc1,loc_1746]
+[oploc1,laddertop]
 p_arrivedelay;
 switch_coord (loc_coord) {
     case 2_47_54_17_57 : ~climb_ladder(1_47_54_17_58, false); // black knights fortress ladder
@@ -47,7 +47,7 @@ switch_coord (loc_coord) {
 }
 
 // TODO 377 enable after Dwarf Cannon is ported
-[oploc1,loc_1747]
+[oploc1,ladder]
 p_arrivedelay;
 switch_coord (loc_coord) {
     // TODO 377 enable after Dwarf Cannon is ported
@@ -55,15 +55,15 @@ switch_coord (loc_coord) {
     case default : ~climb_ladder(movecoord(coord(), 0, 1, 0), true);
 }
 
-[oploc1,loc_1748]
+[oploc1,laddermiddle]
 p_arrivedelay;
 @ladder_options(movecoord(coord(), 0, 1, 0), movecoord(coord(), 0, -1, 0));
 
-[oploc2,loc_1748]
+[oploc2,laddermiddle]
 p_arrivedelay;
 ~climb_ladder(movecoord(coord(), 0, 1, 0), true);
 
-[oploc3,loc_1748]
+[oploc3,laddermiddle]
 p_arrivedelay;
 ~climb_ladder(movecoord(coord(), 0, -1, 0), true);
 
@@ -129,7 +129,7 @@ p_arrivedelay;
 ~climb_ladder(0_50_52_44_54, true);
 
 // TODO 377 enable after The Grand Tree is ported
-[oploc1,loc_2884]
+[oploc1,grandtree_laddermiddle]
 p_arrivedelay;
 def_int $option = ~p_choice2_header("Climb Up.", 1, "Climb Down.", 2, "Climb up or down the ladder?");
 if_close;
@@ -142,12 +142,12 @@ if ($option = 1) {
     p_telejump(movecoord(coord(), 0, -1, 0));
 }
 
-[oploc2,loc_2884]
+[oploc2,grandtree_laddermiddle]
 ~grandtree_spawn_charlie; // before the arrivedelay
 p_arrivedelay;
 ~climb_ladder(movecoord(coord(), 0, 1, 0), true);
 
-[oploc3,loc_2884]
+[oploc3,grandtree_laddermiddle]
 p_arrivedelay;
 ~climb_ladder(movecoord(coord(), 0, -1, 0), true);
 

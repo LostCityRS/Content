@@ -23,7 +23,7 @@ if (~npc_check_notcombat_self = false) {
 if_close;
 npc_anim(specter_attack, 0);
 spotanim_npc(specter_goo_launch, 500, 0); // 500 is correct
-sound_synth(slayerdoors_close, 0, 0);
+sound_synth(slayerdoors_close, 1, 0);
 %npc_action_delay = add(map_clock, 4);
 def_int $duration = ~player_projectile(npc_coord, coord, uid, specter_goo_travel, 61, 40, 32, 5, 0, 4, 10);
 def_int $maxhit = 8;
@@ -46,5 +46,5 @@ if (~npc_player_hit_roll(^magic_style) = true | inv_total(worn, slayer_nosepeg) 
     queue(combat_damage_player, calc($duration / 30), 0);
 }
 spotanim_pl(specter_goo_impact, 320, $duration);
-sound_synth(goo_hit, 0, $duration);
+sound_synth(goo_hit, 1, $duration);
 queue*(playerhit_n_retaliate, calc($duration / 30))(npc_uid);

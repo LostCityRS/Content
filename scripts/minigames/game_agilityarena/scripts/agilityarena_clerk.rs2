@@ -91,7 +91,7 @@ def_coord $dest;
 loc_add(loc_coord, agilityarena_trap_timedblade2, loc_angle, centrepiece_straight, 5);
 huntall(loc_coord, 4, 0);
 while(huntnext = true) {
-    sound_synth(saw_rise_and_spin, 0, 0);
+    sound_synth(saw_rise_and_spin, 1, 0);
     if(coord = loc_coord | coord = movecoord(loc_coord, $dx, 0, $dz)) {
         if(coord = loc_coord) $dest = movecoord(coord, multiply($dx, -1), 0, multiply($dz, -1));
         else $dest = movecoord(coord, $dx, 0, $dz);

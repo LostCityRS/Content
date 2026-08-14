@@ -215,7 +215,7 @@ if ($pickaxe = null) {
 }
 mes("You attempt to mine your way through...");
 anim(human_mining_mithril_pickaxe, 0); // TODO: fixme, pickaxe anim
-sound_synth(mining_3, 0, 0); // guess
+sound_synth(mining_3, 1, 0); // guess
 ~rcu_loc_face_center;
 p_delay(7);
 
@@ -257,19 +257,19 @@ if ($axe = null) {
     return;
 }
 anim(human_woodcutting_mithril_axe, 0); // TODO: fixme, correct axe anim
-sound_synth(woodchop_quick, 0, 0); // guess
+sound_synth(woodchop_quick, 1, 0); // guess
 p_delay(1);
 
 if (stat_random(woodcutting, 0, 255) = true) {
     anim(human_woodcutting_mithril_axe, 0); // TODO: fixme, correct axe anim
-    sound_synth(woodchop_quick, 0, 0); // guess
+    sound_synth(woodchop_quick, 1, 0); // guess
     cam_moveto(coord, 2500, 0, 0);
     cam_lookat(loc_coord, 0, 10, 10);
     p_delay(1);
 
     %rcu_abyssal_generator = 14;
     anim(human_woodcutting_mithril_axe, 0); // TODO: fixme, correct axe anim
-    sound_synth(woodchop_quick, 0, 0); // guess
+    sound_synth(woodchop_quick, 1, 0); // guess
     p_delay(1);
     
     %rcu_abyssal_generator = 15;
@@ -384,7 +384,7 @@ if (stat_random(firemaking, 0, 255) = true) {
     %rcu_abyssal_generator = 17;
     spotanim_map(firewave_impact, loc_coord, 128, 0);
     p_teleport(loc_param(rcu_outer_enter_coord));
-    sound_synth(boil_burst, 0, 0);
+    sound_synth(boil_burst, 1, 0);
     p_delay(1);
 
     mes("...and manage to burn it down and get past.");

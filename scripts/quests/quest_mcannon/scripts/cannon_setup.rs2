@@ -135,7 +135,7 @@ if (inv_freespace(inv) < 1) {
 %dropcannon = ^cannon_stage_none;
 mes("You pick up the cannon,");
 mes("It's really heavy.");
-sound_synth(pick, 0, 0);
+sound_synth(pick, 1, 0);
 inv_add(inv, twpart1, 1);
 loc_del(1);
 
@@ -177,7 +177,7 @@ if (inv_freespace(inv) < 2) {
 %dropcannon = ^cannon_stage_none;
 mes("You pick up the cannon,");
 mes("It's really heavy.");
-sound_synth(pick, 0, 0);
+sound_synth(pick, 1, 0);
 inv_add(inv, twpart1, 1);
 inv_add(inv, twpart2, 1);
 loc_del(1);
@@ -216,7 +216,7 @@ if (inv_freespace(inv) < 3) {
 %dropcannon = ^cannon_stage_none;
 mes("You pick up the cannon,");
 mes("It's really heavy.");
-sound_synth(pick, 0, 0);
+sound_synth(pick, 1, 0);
 inv_add(inv, twpart1, 1);
 inv_add(inv, twpart2, 1);
 inv_add(inv, twpart3, 1);
@@ -255,7 +255,7 @@ if (inv_freespace(inv) < 4) {
 }
 mes("You pick up the cannon,"); // https://youtu.be/TeQXQDaawO0?t=518
 mes("It's really heavy.");
-sound_synth(pick, 0, 0);
+sound_synth(pick, 1, 0);
 %ownedmcannon = null;
 %dropcannon = ^cannon_stage_none;
 inv_add(inv, twpart1, 1);

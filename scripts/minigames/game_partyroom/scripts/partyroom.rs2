@@ -23,7 +23,7 @@ if (npc_find(coord, partyroom_pete, 16, 0) = true) {
 loc_anim(balloondrop_lever);
 inv_del(inv, coins, $coins);
 anim(human_boxlever, 0);
-sound_synth(lever, 0, 0);
+sound_synth(lever, 1, 0);
 
 [label,partyroom_knights]
 ~mesbox("Nightly Dance costs 500 coins.");

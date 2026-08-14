@@ -81,7 +81,7 @@ if(%seaslugquest >= ^seaslug_spoken_kent & %seaslugquest < ^seaslug_complete) {
 [oploc1,loosepanel]
 mes("You kick the loose panel.");
 anim(human_unarmedkick, 0);
-sound_synth(unarmed_kick, 0, 0);
+sound_synth(unarmed_kick, 1, 0);
 if(%seaslugquest = ^seaslug_kennith_need_escape) {
     p_delay(2);
     mes("The wood is rotten and crumbles away...");

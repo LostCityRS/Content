@@ -20,7 +20,7 @@ if(inv_total(inv, golem_phoenixfeather) = 0 & inv_total(inv, golem_pen) = 0) {
         if (npc_param(attack_sound) ! null) {
             sound_synth(npc_param(attack_sound), 0, 0);
         }
-        sound_synth(stunned, 0, 0);
+        sound_synth(stunned, 1, 0);
         p_delay(0);
         ~damage_self(1);
         npc_setmode(null);
@@ -33,7 +33,7 @@ if(inv_total(inv, golem_phoenixfeather) = 0 & inv_total(inv, golem_pen) = 0) {
     inv_add(inv, golem_phoenixfeather, 1);
     anim(human_pickpocket, 1);
     stat_advance(thieving, 260);
-    sound_synth(pick, 0, 0);
+    sound_synth(pick, 1, 0);
     mes("You grab a tail-feather.");
 } else {
     mes("You already have a phoenix tail-feather.");

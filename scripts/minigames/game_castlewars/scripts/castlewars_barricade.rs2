@@ -23,7 +23,7 @@ if (%castlewars_team = ^castlewars_team_saradomin) {
     npc_add(coord, castlewars_barricade_zamorak, ^max_32bit_int);
 }
 inv_del(inv, castlewars_barricade, 1);
-sound_synth(castlewars_setupbarricade, 0, 0);
+sound_synth(castlewars_setupbarricade, 1, 0);
 
 [opnpcu,_castlewars_barricade]
 switch_obj (last_useitem) {
@@ -55,20 +55,20 @@ switch_obj (last_useitem) {
 }
 
 [label,castlewars_barricade_ignite]
-sound_synth(castlewars_onfire, 0, 0);
+sound_synth(castlewars_onfire, 1, 0);
 npc_changetype_keepall(npc_param(next_npc_type), ^max_32bit_int);
 npc_queue(3, 0, 10);
 
 [label,castlewars_barricade_explode]
 inv_delslot(inv, last_useslot);
 spotanim_map(firewave_impact, npc_coord, 92, 0);
-sound_synth(castlewars_exploding_vial, 0, 0);
+sound_synth(castlewars_exploding_vial, 1, 0);
 ~castlewars_barricade_delete;
 
 [label,castlewars_barricade_extinguish]
 inv_setslot(inv, last_useslot, bucket_empty, 1);
 mes("You put out the fire!");
-sound_synth(castlewars_putout, 0, 0);
+sound_synth(castlewars_putout, 1, 0);
 npc_changetype_keepall(npc_param(next_npc_type), ^max_32bit_int);
 
 [proc,castlewars_barricade_delete]

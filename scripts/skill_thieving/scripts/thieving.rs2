@@ -20,7 +20,7 @@ def_int $experience = db_getfield($data, pickpocket:experience, 0);
 ~pick_pocket_check_for_reward($data);
 anim(human_pickpocket, 0);
 stat_advance(thieving, $experience);
-sound_synth(pick, 0, 0);
+sound_synth(pick, 1, 0);
 mes("You pick the <$pocket>.");
 
 [proc,check_if_success_pick_pocket](dbrow $data)(boolean)
@@ -38,7 +38,7 @@ npc_anim(npc_param(attack_anim), 0);
 if (npc_param(attack_sound) ! null) {
     sound_synth(npc_param(attack_sound), 0, 0);
 }
-sound_synth(stunned, 0, 0);
+sound_synth(stunned, 1, 0);
 p_delay(0);
 // todo Update this when combat is actually coded.
 ~damage_self($damage);
@@ -61,7 +61,7 @@ def_int $experience = db_getfield($data, stealing:experience, 0);
 // osrs is 2x respawn speed, since they removed the scale by playercount
 def_int $respawn_ticks = ~scale_by_playercount(db_getfield($data, stealing:respawn_ticks, 0));
 anim(human_pickuptable, 0);
-sound_synth(pick, 0, 0);
+sound_synth(pick, 1, 0);
 // p_delay here was added with this update: https://oldschool.runescape.wiki/w/Update:Special_Attacks
 p_delay(0); 
 switch_loc (loc_type) {
@@ -101,7 +101,7 @@ if (map_members = ^false) {
 
 mes("You have activated a trap on the chest.");
 anim(human_lockedchest, 0);
-sound_synth(lever, 0, 0);
+sound_synth(lever, 1, 0);
 p_delay(0);
 // https://oldschool.runescape.wiki/w/Chest_(nature_runes) - damage formula.
 def_int $hitpoints = multiply(stat(hitpoints), 12);
@@ -114,10 +114,10 @@ $damage = calc($damage + 3);
 mes("You find a trap on the chest, "); // extra space matches OSRS
 p_delay(1);
 mes("You disable the trap.");
-sound_synth(locked, 0, 0);
+sound_synth(locked, 1, 0);
 p_delay(1);
 mes("You open the chest.");
-sound_synth(chest_open, 0, 0);
+sound_synth(chest_open, 1, 0);
 p_delay(1);
 mes("You find treasure inside!");
 anim(human_openchest, 0);
@@ -129,7 +129,7 @@ loc_change(loc_2574, 4); //opened chest
 p_delay(2);
 if (db_getfieldcount($data, trapped_chest:tele_coord) > 0) {
     mes("Suddenly a second magical trap triggers.");
-    sound_synth(lever, 0, 0);
+    sound_synth(lever, 1, 0);
     p_teleport(db_getfield($data, trapped_chest:tele_coord, 0));
 }
 loc_change(loc_2572, $respawn_ticks); //looted chest
@@ -176,7 +176,7 @@ while ($count >= 0) {
         // https://youtu.be/ZyiWFTAt_1o?t=2
         // extra sound is only from bread? (osrs)
         if ($reward = bread) {
-            sound_synth(pick, 0, 0);
+            sound_synth(pick, 1, 0);
         }
         inv_add(inv, $reward, $reward_count);
         mes("You steal <$reward_message>.");

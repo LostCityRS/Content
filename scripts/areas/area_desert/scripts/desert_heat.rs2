@@ -105,7 +105,7 @@ if(inv_total(inv, water_skin1) > 0) {
 if($drank = true) {
     mes("You take a drink of water.");
     anim(human_eat, 0);
-    sound_synth(liquid, 0, 0);
+    sound_synth(liquid, 1, 0);
     ~calculate_desertheat_timer;
     return;
 }

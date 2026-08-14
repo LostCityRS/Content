@@ -34,7 +34,7 @@ if (stat(crafting) < $level) {
     return;
 }
 anim(db_getfield($data, gem_cutting_table:skill_anim, 0), 0);
-sound_synth(chisel, 0, 0);
+sound_synth(chisel, 1, 0);
 
 inv_del(inv, $uncut_gem, 1);
 

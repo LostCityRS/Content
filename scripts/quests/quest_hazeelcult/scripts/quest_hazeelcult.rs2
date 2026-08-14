@@ -123,10 +123,10 @@ if(%hazeelcultquest = ^hazeelcult_given_armour_or_scroll & %hazeelcult_side = ^h
 }
 ~mesbox("You search the cupboard thoroughly but find nothing of interest.");
 
-[oploc1,loc_2856]
+[oploc1,carnilleanshutchest]
 mes("This chest is locked shut.");
 
-[oplocu,loc_2856]
+[oplocu,carnilleanshutchest]
 if(last_useitem = carnilleanchestkey) {
     mes("You unlock the chest.");
     ~open_chest(carnilleanopenchest);
@@ -145,7 +145,7 @@ if(%hazeelcultquest = ^hazeelcult_finished_side_task & %hazeelcult_side = ^hazee
     %hazeelcultquest = ^hazeelcult_given_armour_or_scroll;
 }
 
-[oploc2,carnilleanopenchest] ~close_chest(loc_2856);
+[oploc2,carnilleanopenchest] ~close_chest(carnilleanshutchest);
 
 [oploc1,carnilleancrate]
 if(inv_total(inv, carnilleanchestkey) > 0) {

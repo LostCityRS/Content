@@ -65,7 +65,7 @@ recol1d=6438
 recol2s=15855
 recol2d=6438
 
-[black_arrow_travel]
+[unlit_arrow_travel]
 model=spot_iron_arrow_travel
 recol1s=14798
 recol1d=3171
@@ -131,7 +131,7 @@ recol1d=6438
 recol2s=15855
 recol2d=6438
 
-[black_arrow_launch]
+[unlit_arrow_launch]
 model=spot_iron_arrow_launch
 anim=arrow_launch
 recol1s=14798
@@ -170,7 +170,7 @@ model=spot_crossbowbolt_travel
 
 [crossbowbolt_launch]
 model=spot_dragon_tknife_travel
-anim=poh_nexus
+anim=crossbowbolt_launch
 
 [rotten_tomato_travel]
 model=spot_rotten_tomato_travel
@@ -305,15 +305,15 @@ anim=firebreath_travel
 model=spot_gnomeball_travel
 anim=vial_travel
 
-[seq_56]
+[attacksword]
 model=obj_bronze_sword_manwear
-anim=chateasterbunny4
+anim=seq_451
 
-[seq_57]
+[portcullisclose]
 model=portcullis_upass_8
 anim=portcullisclose
 
-[blood_vial_travel]
+[portcullisopen]
 model=portcullis_upass_8
 anim=portcullisopen
 
@@ -392,7 +392,7 @@ anim=slayer_dustdevil_dust
 
 [spotanim_74]
 model=spot_rockfall
-anim=human_mining_dragon_pickaxe_pretty_noreachforward
+anim=seq_643
 
 [slayer_cockatrice_zap]
 model=spot_slayer_cockatrice_zap
@@ -1369,35 +1369,35 @@ recol1d=6476
 
 [bronze_javelin_launch]
 model=spot_206
-anim=human_blown_middle_priority
+anim=javelin_launch
 recol1s=15855
 recol1d=8354
 
 [iron_javelin_launch]
 model=spot_206
-anim=human_blown_middle_priority
+anim=javelin_launch
 recol1s=15855
 recol1d=8456
 
 [steel_javelin_launch]
 model=spot_206
-anim=human_blown_middle_priority
+anim=javelin_launch
 
 [mithril_javelin_launch]
 model=spot_206
-anim=human_blown_middle_priority
+anim=javelin_launch
 recol1s=15855
 recol1d=3174
 
 [adamant_javelin_launch]
 model=spot_206
-anim=human_blown_middle_priority
+anim=javelin_launch
 recol1s=15855
 recol1d=6438
 
 [rune_javelin_launch]
 model=spot_206
-anim=human_blown_middle_priority
+anim=javelin_launch
 recol1s=15855
 recol1d=6476
 
@@ -1584,7 +1584,7 @@ anim=chompy_toad_explode
 
 [ogre_bellows_use]
 model=obj_empty_ogre_bellows
-anim=ogre_bellows_use
+anim=human_ogre_bellow
 
 [ogre_arrow_travel]
 model=spot_iron_arrow_travel
@@ -1831,25 +1831,25 @@ anim=troll_zeds
 ambient=50
 contrast=50
 
-[lunar_enchant_dragonstone]
+[spotanim_282]
 model=spot_lunar_enchant_dragonstone
 anim=sp_d_halberd_glow
 ambient=60
 contrast=60
 
-[teleport_rune]
+[spotanim_283]
 model=spot_teleport_rune
 anim=sp_d_halberd_glow
 ambient=60
 contrast=60
 
-[teleport_nardah]
+[spotanim_284]
 model=spot_teleport_nardah
 anim=sp_d_halberd_glow
 ambient=60
 contrast=60
 
-[teleport_cabbage]
+[spotanim_285]
 model=spot_teleport_cabbage
 anim=sp_d_halberd_glow
 ambient=60
@@ -1914,7 +1914,7 @@ model=spot_horror_spines_travel
 recol3s=11626
 recol3d=17961
 
-[acb_specialattack]
+[spotanim_301]
 model=spot_teleport_casting
 anim=teleport
 ambient=100
@@ -1930,7 +1930,7 @@ recol1d=30513
 
 [castlewars_catapult_impact]
 model=spot_castlewars_catapult_impact
-anim=castlewars_rockfall
+anim=castlewars_catapult_impact
 recol4s=13741
 recol4d=11560
 
@@ -1949,7 +1949,7 @@ recol2d=8488
 recol3s=30753
 recol3d=4292
 
-[battlestaff_air_crafting_spotanim]
+[spotanim_306]
 model=spot_sp_attack_puncture_spotanim
 anim=sp_attack_puncture_spotanim
 ambient=50
@@ -1979,58 +1979,58 @@ ambient=30
 model=spot_summon_spell
 anim=summon_spell
 
-[spot_312]
+[spotanim_312]
 model=spot_312
 recol1s=15855
 recol1d=8354
 
-[spot_313]
+[spotanim_313]
 model=spot_312
 recol1s=15855
 recol1d=8456
 
-[spot_314]
+[spotanim_314]
 model=spot_312
 
-[spot_315]
+[spotanim_315]
 model=spot_312
 recol1s=15855
 recol1d=6346
 
-[spot_316]
+[spotanim_316]
 model=spot_312
 recol1s=15855
 recol1d=6438
 
-[spot_317]
+[spotanim_317]
 model=spot_312
 recol1s=15855
 recol1d=6476
 
-[spot_318]
+[spotanim_318]
 model=spot_318
 recol1s=15855
 recol1d=8354
 
-[spot_319]
+[spotanim_319]
 model=spot_318
 recol1s=15855
 recol1d=8456
 
-[spot_320]
+[spotanim_320]
 model=spot_318
 
-[spot_321]
+[spotanim_321]
 model=spot_318
 recol1s=15855
 recol1d=6346
 
-[seq_322]
+[spotanim_322]
 model=spot_318
 recol1s=15855
 recol1d=6438
 
-[seq_323]
+[spotanim_323]
 model=spot_318
 recol1s=15855
 recol1d=6476

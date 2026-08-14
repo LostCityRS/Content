@@ -5,10 +5,10 @@ switch_obj (last_useitem)
     case default : ~displaymessage(^dm_default);
 };
 
-[oplocu,potters_wheel] @use_potters_wheel(last_useitem);
+[oplocu,potterywheel] @use_potters_wheel(last_useitem);
 [oplocu,viking_potterywheel] @use_potters_wheel(last_useitem);
 
-[oplocu,pottery_oven] @use_pottery_oven(last_useitem);
+[oplocu,potteryoven] @use_pottery_oven(last_useitem);
 [oplocu,viking_potteryoven] @use_pottery_oven(last_useitem);
 [oplocu,fai_barbarian_pottery_oven] @use_pottery_oven(last_useitem);
 
@@ -69,7 +69,7 @@ if (stat(crafting) < $level)
     ~objbox($item, "You need a Crafting level of <tostring($level)> to make a <$name>.", 250, 0, divide(^objbox_height, 2));
     return;
 }
-sound_synth(pottery, 0, 0);
+sound_synth(pottery, 1, 0);
 anim(human_potterywheel, 0);
 p_delay(2);
 inv_del(inv, softclay, 1);
@@ -82,7 +82,7 @@ mes("You make the clay into a <substring($name, 8, string_length($name))>.");
 def_obj $last_obj = inv_getobj(inv, $last);
 def_struct $struct = oc_param($last_obj, crafting_pottery_struct);
 mes("You put the <oc_name(struct_param($struct, product))> in the oven.");
-sound_synth(furnace, 0, 0);
+sound_synth(furnace, 1, 0);
 anim(human_furnace, 0);
 
 p_delay(2);
@@ -115,7 +115,7 @@ if (stat_random(crafting, 180, 800) = true) {
 //     %action_delay = calc(map_clock + 5);
 //     // "You put a x in the oven."
 //     mes("You put the <oc_name(struct_param($struct, product))> in the oven.");
-//     sound_synth(furnace, 0, 0);
+//     sound_synth(furnace, 1, 0);
 //     anim(human_furnace, 0); //plays once here and once in weak queue
 //     weakqueue(firing_pottery, 1, $struct);
 // } else {
@@ -127,7 +127,7 @@ if (stat_random(crafting, 180, 800) = true) {
 // mes(tostring(map_clock));
 // %action_delay = calc(map_clock + 5);
 // mes("You put the <oc_name(struct_param($struct, product))> in the oven.");
-// sound_synth(furnace, 0, 0);
+// sound_synth(furnace, 1, 0);
 // anim(human_furnace, 0); //plays once here and once in weak queue
 // weakqueue(firing_pottery, 1, $struct); //idk why its delay of 5 but it works
 

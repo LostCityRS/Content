@@ -30,7 +30,7 @@ mes("You find nothing of interest.");
 
 [oploc1,closet_door]
 mes("The door is locked.");
-sound_synth(locked, 0, 0);
+sound_synth(locked, 1, 0);
 
 [oplocu,closet_door]
 if(last_useitem ! closet_key) {
@@ -42,12 +42,12 @@ if(last_useitem ! closet_key) {
 [label,ernest_open_key_door]
 mes("You unlock the door.");
 mes("You go through the door.");
-sound_synth(locked, 0, 0);
-~open_and_close_door2(desertdoor_inactive, ~check_axis(coord, loc_coord, loc_angle), door_open);
+sound_synth(locked, 1, 0);
+~open_and_close_door2(loc_1532, ~check_axis(coord, loc_coord, loc_angle), door_open);
 
 [oploc1,hauntedfountain]
 anim(human_pickpocket, 0);
-sound_synth(fish_swim, 0, 0);
+sound_synth(fish_swim, 1, 0);
 p_delay(0);
 if(inv_total(inv, pressure_gauge) > 0 | %haunted = ^haunted_complete) {
     ~chatplayer("<p,neutral>It's full of dead fish!");
@@ -104,7 +104,7 @@ p_delay(0);
 facesquare(movecoord(coord, 1, 0, 0));
 mes("The lever opens the secret door!");
 anim(human_leverdown, 0);
-sound_synth(lever, 0, 0);
+sound_synth(lever, 1, 0);
 // Temp note: dur updated
 loc_change(hauntedleverdown, 4);
 p_teleport(movecoord(coord, 0, 0, 1));
@@ -128,7 +128,7 @@ while (loc_findnext = true) {
         // Temp note: dur updated
         loc_change(inviswall, 3);
         loc_add(movecoord(loc_coord, 0, 0, 1), hauntedbookcaseopen, loc_angle, loc_shape, 3);
-        sound_synth(coffin_open, 0, 0);
+        sound_synth(coffin_open, 1, 0);
     }
 }
 p_teleport($dest);
@@ -172,7 +172,7 @@ return ("Unknown");
 mes("The lever is <~haunted_get_pulled_string_for_lever(loc_type)>.");
 
 [proc,change_ernest]
-if(npc_find(coord, ernest_the_chicken, 8, 0) = true) {
+if(npc_find(coord, questchicken, 8, 0) = true) {
     npc_changetype_keepall(ernest, 100);
 }
 
@@ -313,7 +313,7 @@ else if(loc_type = leverf) {
 ~recalculate_ernest_doors();
 
 anim(human_leverdown, 0);
-sound_synth(lever, 0, 0);
+sound_synth(lever, 1, 0);
 
 mes("You pull lever <$name> <$dir>.");
 mes("You hear a clunk.");

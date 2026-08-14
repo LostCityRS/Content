@@ -44,7 +44,7 @@ if(inv_total(inv, trail_clue_medium_riddle001) > 0) {
     if(inv_total(inv, trail_clue_medium_riddle001_key) > 0) {
         p_arrivedelay;
         anim(human_openchest, 0);
-        sound_synth(chest_open, 0, 0);
+        sound_synth(chest_open, 1, 0);
         p_delay(0);
         // Temp note: dur updated
         loc_change(chestopen_inactive, 5);
@@ -63,7 +63,7 @@ if(inv_total(inv, trail_clue_medium_riddle002) > 0) {
     if(inv_total(inv, trail_clue_medium_riddle002_key) > 0) {
         p_arrivedelay;
         anim(human_openchest, 0);
-        sound_synth(cupboard_open, 0, 0);
+        sound_synth(cupboard_open, 1, 0);
         p_delay(0);
         // Temp note: dur updated
         loc_change(drawers1open_inactive, 5);
@@ -82,7 +82,7 @@ if(inv_total(inv, trail_clue_medium_riddle003) > 0) {
     if(inv_total(inv, trail_clue_medium_riddle003_key) > 0) {
         p_arrivedelay;
         anim(human_openchest, 0);
-        sound_synth(cupboard_open, 0, 0);
+        sound_synth(cupboard_open, 1, 0);
         p_delay(0);
         // Temp note: dur updated
         loc_change(drawers1open_inactive, 5);
@@ -101,7 +101,7 @@ if(inv_total(inv, trail_clue_medium_riddle004) > 0) {
     if(inv_total(inv, trail_clue_medium_riddle004_key) > 0) {
         p_arrivedelay;
         anim(human_openchest, 0);
-        sound_synth(cupboard_open, 0, 0);
+        sound_synth(cupboard_open, 1, 0);
         p_delay(0);
         // Temp note: dur updated
         loc_change(drawers2open_inactive, 5);
@@ -120,7 +120,7 @@ if(inv_total(inv, trail_clue_medium_riddle005) > 0) {
     if(inv_total(inv, trail_clue_medium_riddle005_key) > 0) {
         p_arrivedelay;
         anim(human_openchest, 0);
-        sound_synth(chest_open, 0, 0);
+        sound_synth(chest_open, 1, 0);
         p_delay(0);
         // Temp note: dur updated
         loc_change(chestopen_inactive, 5);

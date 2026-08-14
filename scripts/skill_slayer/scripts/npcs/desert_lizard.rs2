@@ -6,7 +6,7 @@ if(last_useitem = slayer_icy_water) {
     inv_del(inv, slayer_icy_water, 1);
     anim(human_chinchompa_attack, 0);
     spotanim_npc(skip_water_splash, 0, 1);
-    sound_synth(slayer_throwbucket, 0, 0);
+    sound_synth(slayer_throwbucket, 1, 0);
     if(npc_stat(hitpoints) > 4) {
         mes("The lizard isn't weak enough to be affected by the icy water.");
     } else {

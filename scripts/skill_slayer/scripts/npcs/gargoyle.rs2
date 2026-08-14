@@ -8,7 +8,7 @@ gosub(npc_default_death);
 [opnpcu,slayer_gargoyle]
 if(last_useitem = slayer_rock_hammer) {
     anim(human_blunt_pound, 0);
-    sound_synth(warhammer_crush, 0, 0);
+    sound_synth(warhammer_crush, 1, 0);
     if(npc_stat(hitpoints) > 8) {
         mes("The gargoyle isn't weak enough to be harmed by the hammer.");
     } else {

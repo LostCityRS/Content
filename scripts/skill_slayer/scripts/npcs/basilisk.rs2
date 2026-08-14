@@ -40,7 +40,7 @@ stat_drain(prayer, 0, 30);
 stat_drain(agility, 0, 30);
 npc_anim(npc_param(attack_anim), 0);
 ~player_projectile(npc_coord, coord, uid, slayer_basilisk_zap, 16, 32, 0, 0, 0, 16, 2); // TODO: recheck this
-sound_synth(basilisk_attack2, 0, 0);
+sound_synth(basilisk_attack2, 1, 0);
 if_close;
 ~npc_set_attack_vars;
 %npc_action_delay = add(map_clock, 4);

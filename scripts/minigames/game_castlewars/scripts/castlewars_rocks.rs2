@@ -30,7 +30,7 @@ if ($pickaxe = null) {
 p_oploc(3); // for some reason you continue collapsing this tunnel (https://youtu.be/0lPiEWFcXTM?t=205) lol, Doesnt match in osrs
 
 def_int $mining_rate = oc_param($pickaxe, mining_rate);
-sound_synth(mine_quick, 0, 0);
+sound_synth(mine_quick, 1, 0);
 if (%action_delay < map_clock) {
     %action_delay = calc(map_clock + $mining_rate);
 } else if (%action_delay = map_clock) {
@@ -86,7 +86,7 @@ if (last_useitem ! castlewars_explosives_potion) {
     return;
 }
 inv_delslot(inv, last_useslot);
-sound_synth(fire_wave_all, 0, 0);
+sound_synth(fire_wave_all, 1, 0);
 spotanim_map(firewave_impact, loc_coord, 92, 0);
 loc_change(castlewars_blocked_tunnel_2, ^max_32bit_int);
 mes("You manage to remove some of the rocks.");
@@ -97,7 +97,7 @@ if (last_useitem ! castlewars_explosives_potion) {
     return;
 }
 inv_delslot(inv, last_useslot);
-sound_synth(fire_wave_all, 0, 0);
+sound_synth(fire_wave_all, 1, 0);
 spotanim_map(firewave_impact, loc_coord, 92, 0);
 loc_change(castlewars_blocked_tunnel_3, ^max_32bit_int);
 ~castlewars_tunnel_set(loc_coord);
@@ -113,7 +113,7 @@ spotanim_map(firewave_impact, loc_coord, 92, 0);
 @castlewars_collapse_tunnel;
 
 [label,castlewars_collapse_tunnel]
-sound_synth(roof_collapse, 0, 0);
+sound_synth(roof_collapse, 1, 0);
 mes("You've collapsed the tunnel!");
 def_coord $rocks_coord = ~closest_enum_coord(loc_coord, castlewars_rocks_coords);
 if (map_blocked($rocks_coord) = true) return;

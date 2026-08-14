@@ -53,7 +53,7 @@ if (afk_event = ^true) {
     return;
 }
 anim(human_furnace, 0);
-sound_synth(furnace, 0, 0);
+sound_synth(furnace, 1, 0);
 
 // display process message
 mes(struct_param($struct, processmessage));
@@ -127,7 +127,7 @@ mes(struct_param($struct, productmessage));
 // if (%action_delay < map_clock) {
 //     %action_delay = calc(map_clock + 3);
 //     anim(human_furnace, 0); // plays here for somereason
-//     sound_synth(furnace, 0, 2);
+//     sound_synth(furnace, 1, 2);
 //     mes(struct_param($struct, processmessage));
 //     weakqueue(smelting_ore, 2, $struct);
 // } else {
@@ -139,7 +139,7 @@ mes(struct_param($struct, productmessage));
 // [weakqueue,start_smelting_ore](struct $struct)
 // %action_delay = calc(map_clock + 3);
 // anim(human_furnace, 0); // plays here for somereason
-// sound_synth(furnace, 0, 2);
+// sound_synth(furnace, 1, 2);
 // mes(struct_param($struct, processmessage));
 // weakqueue(smelting_ore, 4, $struct);
 // //----------------------------

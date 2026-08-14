@@ -274,12 +274,12 @@ if(stat_random(agility, 150, 250) = false) {
 ~forcemove(movecoord(loc_coord, -1, 0, 0));
 
 [oploc1,capt_siad_cell_door]
-sound_synth(locked, 0, 0);
+sound_synth(locked, 1, 0);
 mes("The door seems to be pretty locked.");
 
 [oplocu,capt_siad_cell_door]
 if(last_useitem = thcelldoorkey) {
-    ~open_and_close_door2(poshdooropen, ~check_axis(coord, loc_coord, loc_angle), door_open);
+    ~open_and_close_door2(loc_1541, ~check_axis(coord, loc_coord, loc_angle), door_open);
     return;
 }
 ~displaymessage(^dm_default);
@@ -431,7 +431,7 @@ if(~wearing_slave_robes = true) {
         p_teleport(0_51_47_37_28);
         return;
     }
-    sound_synth(door_open, 0, 0); // this is supposed to play the door open sound twice (bigdoor_open), might be an issue with the rework though
+    sound_synth(door_open, 1, 0); // this is supposed to play the door open sound twice (bigdoor_open), might be an issue with the rework though
     p_teleport(0_51_147_14_18);
     p_delay(0);
     if(loc_find(coord, thttmineexitl) = true) {

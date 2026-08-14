@@ -17,7 +17,7 @@
     say("Come here toady!");
     npc_setmode(playerfaceclose);
     anim(human_chompybird_ogrebellows, 30);
-    sound_synth(ogre_bellows, 0, 30);
+    sound_synth(ogre_bellows, 1, 30);
     spotanim_pl(ogre_bellows_use, 64, 30);
     npc_anim(chompy_toad_inflate, 30);
 }

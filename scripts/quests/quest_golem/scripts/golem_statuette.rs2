@@ -66,12 +66,12 @@ if(%golem_statuettestatusd = 1) {
 @golem_check_statues;
 
 [label,golem_check_statues]
-sound_synth(turn_statue, 0, 0);
+sound_synth(turn_statue, 1, 0);
 if (%golem_statuettestatusa = 1 & %golem_statuettestatusb = 1 & %golem_statuettestatusc = 0 & %golem_statuettestatusd = 2) {
     mes("The door grinds open.");
     if (loc_find(0_42_76_32_48, golem_portal) = true) {
         loc_anim(golem_door_open);
     }
     %golem_a = ^golem_doors_open;
-    sound_synth(golem_demondoor, 0, 0);
+    sound_synth(golem_demondoor, 1, 0);
 }

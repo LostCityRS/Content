@@ -1,4 +1,4 @@
-[openbankdoor_r]
+[loc_1512]
 name=Large door
 desc=A sturdy wooden door.
 model=openbankdoorr
@@ -9,27 +9,27 @@ recol2d=11458
 op1=Open
 raiseobject=no
 category=door_closed
-param=next_loc_stage,bankdoor_l_inactive
+param=next_loc_stage,loc_1515
 
-[bankdoor_l]
+[loc_1513]
 name=Large door
 desc=A sturdy wooden door.
 model=bankdoor_l
 op1=Open
 raiseobject=no
 category=door_closed
-param=next_loc_stage,bankdoor_r_inactive
+param=next_loc_stage,loc_1514
 
-[bankdoor_r_inactive]
+[loc_1514]
 name=Large door
 desc=A sturdy wooden door.
 model=bankdoor_l
 op1=Close
 raiseobject=no
 category=door_opened
-param=next_loc_stage,bankdoor_l
+param=next_loc_stage,loc_1513
 
-[bankdoor_l_inactive]
+[loc_1515]
 name=Large door
 desc=A sturdy wooden door.
 model=openbankdoorr
@@ -40,9 +40,9 @@ recol2d=11458
 op1=Close
 raiseobject=no
 category=door_opened
-param=next_loc_stage,openbankdoor_r
+param=next_loc_stage,loc_1512
 
-[inaccastledoubledoorropen]
+[loc_1530]
 name=Door
 desc=The door is closed.
 model=door
@@ -50,9 +50,9 @@ active=yes
 op1=Open
 raiseobject=no
 category=door_closed
-param=next_loc_stage,desertdoor_animate
+param=next_loc_stage,loc_1531
 
-[desertdoor_animate]
+[loc_1531]
 name=Door
 desc=The door is open.
 model=door
@@ -60,9 +60,9 @@ active=yes
 op1=Close
 raiseobject=no
 category=door_opened
-param=next_loc_stage,inaccastledoubledoorropen
+param=next_loc_stage,loc_1530
 
-[desertdoorclosed]
+[loc_1533]
 name=Door
 desc=A nicely fitted door.
 model=door1
@@ -74,9 +74,9 @@ active=yes
 op1=Open
 raiseobject=no
 category=door_closed
-param=next_loc_stage,desertdooropen
+param=next_loc_stage,loc_1534
 
-[desertdooropen]
+[loc_1534]
 name=Door
 desc=A nicely fitted door.
 model=door1
@@ -88,9 +88,9 @@ active=yes
 op1=Close
 raiseobject=no
 category=door_opened
-param=next_loc_stage,desertdoorclosed
+param=next_loc_stage,loc_1533
 
-[poordooropen]
+[loc_1536]
 name=Door
 desc=An ornately-fashioned door.
 model=door1
@@ -102,9 +102,9 @@ active=yes
 op1=Open
 raiseobject=no
 category=door_closed
-param=next_loc_stage,poordoor_cross
+param=next_loc_stage,loc_1537
 
-[poordoor_cross]
+[loc_1537]
 name=Door
 desc=An elf-fashioned door.
 model=door1
@@ -116,9 +116,9 @@ active=yes
 op1=Close
 raiseobject=no
 category=door_opened
-param=next_loc_stage,poordooropen
+param=next_loc_stage,loc_1536
 
-[inactivepoordoor]
+[loc_1539]
 name=Door
 desc=Solid bars of iron.
 model=ctratgatea
@@ -127,10 +127,10 @@ active=yes
 blockrange=no
 raiseobject=no
 category=door_closed
-param=next_loc_stage,poshdoor
+param=next_loc_stage,loc_1540
 param=open_sound,grate_open
 
-[poshdoor]
+[loc_1540]
 name=Door
 desc=Solid bars of iron.
 model=ctratgatea
@@ -138,7 +138,7 @@ op1=Close
 active=yes
 raiseobject=no
 category=door_opened
-param=next_loc_stage,inactivepoordoor
+param=next_loc_stage,loc_1539
 param=close_sound,grate_close
 
 [farmdoor]

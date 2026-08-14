@@ -1,7 +1,7 @@
 [proc,macro_dwarf_spawn] // greet player
 // no smoke puff: https://youtu.be/R9eKmC7oLy0?t=122
 //TODO: This was changed?
-// sound_synth(dwarf_whistle, 0, 0);
+// sound_synth(dwarf_whistle, 1, 0);
 npc_anim(dwarf_drunkwave, 20);
 npc_say("'Ello der <displayname>! *hic*");
 %npc_macro_event_target = uid;
@@ -26,21 +26,21 @@ if (finduid(%npc_macro_event_target) = true) {
     if (%npc_int = 0) {
         npc_anim(dwarf_drunkangry, 20);
         //TODO: This was changed?
-        // sound_synth(dwarf_whistle, 0, 0);
+        // sound_synth(dwarf_whistle, 1, 0);
         npc_say("Aww comeon, talk to ikle me <displayname>!");
     } else if (%npc_int = 1) {
         npc_anim(dwarf_drunkwave, 20);
         //TODO: This was changed?
-        // sound_synth(dwarf_whistle, 0, 0);
+        // sound_synth(dwarf_whistle, 1, 0);
         npc_say("Oi, are you der <displayname>!");
     } else if (%npc_int = 2) {
         //TODO: This was changed?
-        // sound_synth(dwarf_whistle, 0, 0);
+        // sound_synth(dwarf_whistle, 1, 0);
         npc_say("Dunt ignore your mate, <displayname>!");
     } else if (%npc_int = 3) {
         npc_anim(dwarf_drunkangry, 20);
         //TODO: This was changed?
-        // sound_synth(dwarf_whistle, 0, 0);
+        // sound_synth(dwarf_whistle, 1, 0);
         npc_say("I hates yoo <displayname>!");
     } else if (%npc_int = 4) { // fail
         // todo: figure out the message that goes here

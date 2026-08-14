@@ -42,7 +42,7 @@ if(stat(thieving) < 25) {
 }
 anim(human_pickpocket, 0);
 if(%golem_a > ^golem_finished_b & %golem_retrieved_statuette = 0 & inv_total(inv, golem_statuettekey) = 0) {
-    sound_synth(pick, 0, 0);
+    sound_synth(pick, 1, 0);
     inv_add(inv, golem_statuettekey, 1);
     ~objbox(golem_statuettekey, "You steal a tiny key.", 250, 0, 0);
     return;

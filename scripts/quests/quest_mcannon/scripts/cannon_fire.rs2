@@ -135,7 +135,7 @@ if (random(4) = 0 & %ownedmcannon ! null) { // guess
     def_int $duration = ~coord_projectile(npc_coord, %ownedmcannon, firebreath_travel, 92, 31, 51, 16, -5, 64, 10);
     spotanim_map(fireblast_impact, %ownedmcannon, 124, $duration);
     npc_anim(dragon_firebreath_middle_attack, 0);
-    sound_synth(dragonbreath, 0, 30);
+    sound_synth(dragonbreath, 1, 30);
 
     if (loc_find(%ownedmcannon, dwarf_multicannon1) = true) {
         mes("Your cannon has been destroyed!");

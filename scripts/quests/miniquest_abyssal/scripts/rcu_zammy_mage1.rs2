@@ -45,10 +45,10 @@ if ($choice = 1) {
 npc_say("Veniens! Sallakar! Rinnesset!");
 npc_anim(human_teleport_other_casting, 0);
 spotanim_npc(teleport_other_casting, 0, 0);
-sound_synth(tele_other_cast, 0, 0);
+sound_synth(tele_other_cast, 1, 0);
 p_delay(1);
 anim(human_teleport_other_impact, 0);
 spotanim_pl(teleport_other_impact, 92, 0);
-sound_synth(teleport_all, 0, 0);
+sound_synth(teleport_all, 1, 0);
 p_delay(2);
 @rcu_teleport_to_abyss;

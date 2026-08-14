@@ -15,7 +15,7 @@ inv_add(inv, $mixture, 1);
 // https://youtu.be/S6P-hUzgqPw?t=1
 mes($message);
 anim(human_herbing_vial, 0);
-sound_synth(grind, 0, 0);
+sound_synth(grind, 1, 0);
 stat_advance(herblore, $experience);
 
 /** Grind a herblore ingredient. */
@@ -24,4 +24,4 @@ inv_setslot(inv, $slot, $refined, 1);
 // https://youtu.be/QUWaqEBTrCE?t=107
 mes($message);
 anim(human_herbing_grind, 0);
-sound_synth(grind, 0, 0);
+sound_synth(grind, 1, 0);

@@ -162,7 +162,7 @@ if ($freeze_time > 0) {
 [proc,npc_spell_fail](dbrow $spell_data, int $duration)
 if_close;
 sound_synth(db_getfield($spell_data, magic_spell_table:sound_cast, 0), 0, 0);
-sound_synth(spellfail, 0, $duration);
+sound_synth(spellfail, 1, $duration);
 spotanim_pl(failedspell_impact, 92, $duration);
 // splashing in osrs causes insta auto retal
 queue*(playerhit_n_retaliate, 0)(npc_uid);

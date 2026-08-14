@@ -3494,7 +3494,7 @@ param=death_anim,dwarf_death
 param=attack_sound,warhammer_crush
 param=slayer_category,^slayer_dwarf
 
-[dwarf_mountain2]
+[dwarf_tunnel]
 name=Dwarf
 desc=A short angry guy.
 model1=npc_dwarf_normal
@@ -3966,7 +3966,7 @@ param=attack_sound,terrorbird_attack
 param=defend_sound,terrorbird_hit
 param=death_sound,terrorbird_death
 
-[terrorbird_mounted]
+[terrorbird2]
 name=Mounted terrorbird gnome
 desc=These gnomes know how to get around!
 model1=npc_terrorbird_mounted
@@ -3995,7 +3995,7 @@ param=attack_sound,terrorbird_attack
 param=defend_sound,terrorbird_hit
 param=death_sound,terrorbird_death
 
-[terrorbird_mountedspear]
+[terrorbird3]
 name=Mounted terrorbird gnome
 desc=These gnomes know how to get around!
 model1=npc_terrorbird_mountedspear
@@ -4078,7 +4078,7 @@ param=retreat,9
 huntmode=cowardly
 huntrange=1
 
-[wolfpack_leader_whiter]
+[wolfpack_leader]
 name=Big Wolf
 desc=Must be the pack leader.
 model1=npc_wolf
@@ -4111,7 +4111,7 @@ param=death_drop,wolf_bones
 huntmode=cowardly
 huntrange=2
 
-[pack_wolf_whiter]
+[pack_wolf]
 name=Wolf
 desc=A social killer.
 model1=npc_wolf
@@ -7703,7 +7703,7 @@ param=attack_anim,human_axe_hack
 param=defend_anim,human_axe_def
 param=attack_sound,baxe_slash
 
-[arena_guard5_cutscene]
+[arena_leadguard]
 name=Khazard Guard
 desc=It's one of General Khazard's guards.
 model1=obj_feud_desert_disguise_manwear
@@ -7971,7 +7971,7 @@ head2=idk_man_jaw_long_head
 wanderrange=7
 hitpoints=20
 
-[arena_local]
+[arena_spectator]
 name=Local
 desc=A scruffy looking chap.
 model1=obj_feud_desert_disguise_manwear
@@ -8624,7 +8624,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 head1=obj_pickpocket_guide_farmer
 
-[ernest_the_chicken]
+[questchicken]
 name=Chicken
 desc=A strange chicken.
 model1=rd_chicken_normal_8
@@ -9416,7 +9416,7 @@ multivar=plaguecity_elena_at_home
 multinpc=1,elena2_vis
 param=death_sound,female_death
 
-[Artist1]
+[artist1]
 name=Da Vinci
 desc=He has a colourful personality.
 model1=npc_Artist1
@@ -9449,7 +9449,7 @@ head2=npc_Artist1_head
 head3=npc_Artist1_headi2
 wanderrange=3
 
-[Artist2]
+[artist2]
 name=Da Vinci
 desc=He has a colourful personality.
 model1=npc_Artist1
@@ -10250,7 +10250,7 @@ param=damagetype,^crush_style
 param=defend_sound,female_hit
 param=death_sound,female_death
 
-[king_lathas]
+[kinglathas]
 name=King Lathas
 desc=King Lathas of East Ardougne.
 model1=obj_feud_desert_disguise_manwear
@@ -10798,7 +10798,7 @@ head1=idk_man_hair_long_head
 head2=idk_man_jaw_long_head
 wanderrange=6
 
-[mguild_dwarf1]
+[guilddwarf]
 name=Dwarf
 desc=A dwarf who looks after the mining guild.
 model1=npc_mguild_dwarf1
@@ -19223,7 +19223,7 @@ param=shop_buy_multiplier,400
 param=shop_delta,30
 param=shop_title,oziach
 
-[dragonslayer_giantrat_1_key]
+[dragonslayer_giantrat]
 name=Giant rat
 desc=Overgrown vermin.
 model1=npc_giantrat
@@ -19293,7 +19293,7 @@ param=slayer_category,^slayer_ghost
 huntmode=cowardly
 huntrange=1
 
-[dragonslayer_skeleton_1_key]
+[dragonslayer_skeleton]
 name=Skeleton
 desc=Could do with gaining a few pounds.
 model1=npc_dragonslayer_skeleton
@@ -19471,7 +19471,7 @@ op1=Talk-to
 head1=obj_pickpocket_guide_man
 moverestrict=indoors
 
-[harlow]
+[dr_harlow]
 name=Dr Harlow
 desc=A retired vampire hunter.
 model1=idk_man_hair_medium
@@ -27297,7 +27297,7 @@ head1=obj_leather_cowl_manhead2
 head2=npc_1024_head
 wanderrange=5
 
-[willowthewisp]
+[willothewisp]
 name=Will o' the wisp
 desc=Mysterious swamp lights...
 model1=npc_1043
@@ -29168,7 +29168,7 @@ readyanim=human_staffready
 op2=Attack
 vislevel=108
 
-[prif_city_guard]
+[elf_city_guard]
 name=Elven city guard
 desc=An elven city guard.
 model1=npc_1182
@@ -29411,7 +29411,7 @@ op2=Attack
 vislevel=110
 head1=npc_1200_head
 
-[regicide_arandar_gate_guard]
+[elf_overpass_guard]
 name=Elf warrior
 desc=He looks pretty handy with that bow.
 model1=npc_1182
@@ -29835,7 +29835,7 @@ readyanim=human_ready
 op2=Attack
 vislevel=72
 
-[spider_that_spawns_vampyres]
+[vampire_spider]
 name=Spider
 desc=Nasty little creature.
 model1=npc_spider
@@ -31392,7 +31392,7 @@ op2=Attack
 head1=idk_man_hair_wildspikes_head
 head2=idk_man_jaw_split_head
 
-[viking_brundt_child]
+[viking_brundt]
 name=Brundt the Chieftain
 desc=The Fremennik tribe's chieftain.
 model1=npc_1278
@@ -34085,7 +34085,7 @@ recol6s=21001
 recol6d=12544
 vislevel=hide
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
-readyanim=poh_smash_magic_tablet_spell
+readyanim=misc_human_mining_steel_pickaxe
 op1=Talk-to
 head1=obj_pickpocket_guide_man
 head2=idk_man_jaw_moustache_head
@@ -34164,7 +34164,7 @@ op3=Harpoon
 op4=hidden
 op5=hidden
 
-[npc_1400]
+[misc_seagull]
 name=Gull
 desc=A sea bird.
 model1=spot_biopigeon_launch
@@ -34252,7 +34252,7 @@ op3=Harpoon
 op4=hidden
 op5=hidden
 
-[0_42_42_rarefish]
+[0_42_42_memberfish]
 name=Fishing spot
 desc=I can see fish swimming in the water.
 model1=compofishspot_8
@@ -34291,7 +34291,7 @@ op1=Talk-to
 vislevel=hide
 head1=npc_gnomepilot_head
 
-[mm_cutscene_waydar]
+[mm_waydar_cutscene]
 name=Waydar
 desc=Waydar is some kind of flight officer.
 model1=npc_leprechaun
@@ -34315,7 +34315,7 @@ op1=Talk-to
 vislevel=hide
 head1=npc_gnomepilot_head
 
-[mm_garkor_aa]
+[mm_garkor]
 name=Garkor
 desc=A large and weathered looking Gnome veteran.
 model1=npc_leprechaun
@@ -34347,7 +34347,7 @@ op1=Talk-to
 vislevel=hide
 head1=npc_commander_montai_head
 
-[mm_lumo_aa]
+[mm_lumo]
 name=Lumo
 desc=A seasoned looking Gnome foot soldier.
 model1=npc_gnomeballer
@@ -34382,7 +34382,7 @@ readyanim=midget_ready
 vislevel=hide
 head1=obj_pickpocket_guide_gnome
 
-[mm_bunkdo_aa]
+[mm_bunkdo]
 name=Bunkdo
 desc=A seasoned looking Gnome foot soldier.
 model1=npc_gnomeballer
@@ -34413,7 +34413,7 @@ readyanim=midget_ready
 vislevel=hide
 head1=obj_pickpocket_guide_gnome
 
-[mm_carado_aa]
+[mm_carado]
 name=Carado
 desc=A seasoned looking Gnome foot soldier.
 model1=npc_gnomeballer
@@ -34460,7 +34460,7 @@ op1=Talk-to
 vislevel=hide
 head1=obj_pickpocket_guide_gnome
 
-[mm_karam_aa1]
+[mm_karam]
 name=Karam
 desc=All you see is a glimmer of light and the suggestion of shadow.
 model1=npc_1420
@@ -34483,7 +34483,7 @@ readyanim=m_assassin_ready
 vislevel=hide
 head1=npc_1420_head
 
-[mm_karam_aa2]
+[mm_karam_talker]
 name=Karam
 desc=All you see is a glimmer of light and the suggestion of shadow.
 model1=npc_1420
@@ -34495,7 +34495,7 @@ op1=Talk-to
 vislevel=hide
 head1=npc_1420_head
 
-[mm_bunkwicket_aa]
+[mm_bunkwicket]
 name=Bunkwicket
 desc=This Gnome is busy applying some kind of pasty material to the cave walls.
 model1=npc_leprechaun
@@ -34511,7 +34511,7 @@ op1=Talk-to
 vislevel=hide
 head1=obj_pickpocket_guide_gnome
 
-[mm_waymottin_aa]
+[mm_waymottin]
 name=Waymottin
 desc=This Gnome is busy applying some kind of pasty material to the cave walls.
 model1=npc_leprechaun
@@ -34527,7 +34527,7 @@ op1=Talk-to
 vislevel=hide
 head1=obj_pickpocket_guide_gnome
 
-[mm_zooknock_aa]
+[mm_zooknock]
 name=Zooknock
 desc=A wizened little Gnome dressed in brightly coloured clothes.
 model1=npc_leprechaun
@@ -34583,7 +34583,7 @@ op1=Talk-to
 vislevel=hide
 head1=obj_pickpocket_guide_gnome
 
-[mm_cutscene_caranock]
+[mm_caranock_cutscene]
 name=G.L.O. Caranock
 desc=An official looking Gnome with small beady eyes.
 model1=npc_leprechaun
@@ -35182,7 +35182,7 @@ head1=obj_pickpocket_guide_man
 head2=idk_man_jaw_long_head
 head3=npc_zoo_keeper_head
 
-[mm_cutscene_foreman]
+[mm_foreman_cutscene]
 name=Foreman
 desc=The boss!
 model1=idk_man_hair_long
@@ -35768,7 +35768,7 @@ walkanim=m_monkey_walk
 readyanim=m_monkey_ready
 vislevel=1
 
-[npc_1515]
+[skeleton]
 name=Skeleton
 desc=Could do with gaining a few pounds.
 model1=poh_skeleton_8
@@ -35779,7 +35779,7 @@ resizeh=110
 resizev=40
 vislevel=18
 
-[npc_1517]
+[toms_gnome_troop1]
 name=Gnome
 desc=It's a gnome.
 model1=npc_gnomeballer
@@ -35796,7 +35796,7 @@ readyanim=midget_ready
 vislevel=1
 head1=obj_pickpocket_guide_gnome
 
-[npc_1518]
+[toms_gnome_troop2]
 name=Gnome
 desc=It's a gnome.
 model1=npc_gnomeballer
@@ -35811,7 +35811,7 @@ readyanim=midget_ready
 vislevel=1
 head1=obj_pickpocket_guide_gnome
 
-[npc_1519]
+[toms_gnome_troop3]
 name=Gnome
 desc=It's a gnome.
 model1=npc_gnomeballer
@@ -35826,7 +35826,7 @@ readyanim=midget_ready
 vislevel=1
 head1=obj_pickpocket_guide_gnome
 
-[npc_1520]
+[toms_gnome_troop4]
 name=Gnome
 desc=It's a gnome.
 model1=npc_gnomeballer
@@ -35897,7 +35897,7 @@ walkanim=giantspider_walk
 readyanim=giantspider_ready
 vislevel=1
 
-[npc_1525]
+[toms_jungle_snake]
 name=Weird snake.
 desc=Slightly more spherical than most snakes.
 model1=obj_tomato
@@ -36122,7 +36122,7 @@ readyanim=ghost_ready
 vislevel=hide
 
 // not real name
-[win04_santa]
+[santa_claus]
 name=Santa
 desc=He knows if you've been naughty or nice.
 model1=idk_man_hair_cropped
@@ -36187,7 +36187,7 @@ op1=Talk-to
 head1=obj_castlewars_cloak_saradomin_manhead
 head2=idk_man_jaw_long_head
 
-[route_curpile_fyod_child]
+[route_curpile_fyod]
 name=Curpile Fyod
 desc=A typical, if overly heavy handed, jobs worth guard.
 model1=obj_feud_desert_disguise_manwear
@@ -36460,7 +36460,7 @@ vislevel=hide
 op1=Talk-to
 head1=npc_clivet_hazeel_cultist_head
 
-[route_vanstrom_vampire_misty]
+[route_vanstrom_klause_vamp_misty]
 name=Mist
 desc=A billowing cloud of fine mist...it looks creepy.
 model1=misty_8
@@ -36470,7 +36470,7 @@ walkanim=misty
 readyanim=misty
 alwaysontop=yes
 
-[route_vanstrom_klause]
+[route_vanstrom_klause_normal]
 name=Vanstrom Klause
 desc=A curious fellow.
 model1=npc_macro_shade1
@@ -36491,7 +36491,7 @@ readyanim=human_ready
 op1=Talk-to
 head1=npc_clivet_hazeel_cultist_head
 
-[route_vanstrom_transform]
+[route_vanstrom_klause_vamp_wingsgrow]
 name=Vanstrom Klause
 desc=An evil vampire.
 model1=npc_1580
@@ -36513,7 +36513,7 @@ readyanim=wings_unfold
 op1=Talk-to
 head1=npc_1580_head
 
-[route_vanstrom_vampire]
+[route_vanstrom_klause_vamp]
 name=Vanstrom Klause
 desc=An evil vampire.
 model1=npc_1580
@@ -68708,9 +68708,9 @@ walkanim=roosterwalk
 readyanim=roosterready
 vislevel=1
 multivar=haunted
-multinpc=0,ernest_the_chicken
-multinpc=1,ernest_the_chicken
-multinpc=2,ernest_the_chicken
+multinpc=0,questchicken
+multinpc=1,questchicken
+multinpc=2,questchicken
 
 [draynor_skeleton]
 name=Skeleton

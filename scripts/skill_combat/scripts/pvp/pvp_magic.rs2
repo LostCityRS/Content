@@ -194,8 +194,8 @@ both_heropoints($damage);
 
 [proc,pvp_spell_fail](dbrow $spell_data, int $duration)
 // splash
-sound_synth(spellfail, 0, 0);
-.sound_synth(spellfail, 0, 0);
+sound_synth(spellfail, 1, 0);
+.sound_synth(spellfail, 1, 0);
 // no splash sound?
 .spotanim_pl(failedspell_impact, 92, $duration);
 .queue*(pvp_retaliate, 0)(uid);

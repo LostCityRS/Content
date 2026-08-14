@@ -18,7 +18,7 @@ if (inv_getnum(worn, ^wearpos_quiver) < 2) { // requires two shots
 
 anim(snapshot, 0);
 spotanim_pl(sp_attack_snapshot_spotanim, 96, 0);
-sound_synth(snapshot, 0, 0);
+sound_synth(snapshot, 1, 0);
 def_int $duration = ~npc_projectile(coord, npc_uid, sp_attack_glow_arrow_travel, 40, 36, 20, 15, 3, 11, 3);
 def_int $duration2 = ~npc_projectile(coord, npc_uid, sp_attack_glow_arrow_travel, 40, 36, 50, 15, 3, 11, 3);
 

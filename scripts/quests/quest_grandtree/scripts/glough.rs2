@@ -106,7 +106,7 @@ cam_shake(0, 6, 6, 2); // OSRS shake
 // these two are guessed
 cam_moveto(0_38_154_44_13, 2000, 100, 232);
 cam_lookat(movecoord(coord, -1, 0, -1), 0, 100, 232); 
-npc_add($demon_spawn, grandtree_black_demon, 1000);
+npc_add($demon_spawn, grandtree_blackdemon, 1000);
 npc_setmode(none);
 npc_walk(movecoord(npc_coord, 4, 0, -3));
 p_delay(4);

@@ -58,7 +58,7 @@ def_int $runes_crafted = calc($runes_to_craft - $runes_to_fail);
 
 anim(human_runecraft, 0);
 spotanim_pl(runecrafting, 96, 0);
-sound_synth(bind_runes, 0, 0);
+sound_synth(bind_runes, 1, 0);
 
 inv_del(inv, blankrune_high, $runes_to_craft);
 inv_del(inv, $required_rune, $runes_to_craft);

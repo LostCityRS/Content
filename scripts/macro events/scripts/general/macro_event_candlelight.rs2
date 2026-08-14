@@ -8,7 +8,7 @@
 if (p_finduid(uid) = true) {
     %npc_macro_event_target = uid;
     spotanim_map(smokepuff, npc_coord, 124, 0);
-    sound_synth(smokepuff2, 0, 0);
+    sound_synth(smokepuff2, 1, 0);
     npc_setmode(playerfollow);
     npc_say("I'm sorry to drag you away from your tasks, but I need a little help with something.");
     %macro_event_target_coord = coord;

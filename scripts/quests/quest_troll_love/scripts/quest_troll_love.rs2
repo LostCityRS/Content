@@ -106,7 +106,7 @@ inv_del(inv, trollromance_toboggon, 1);
 inv_del(inv, trollromance_wax, 1);
 inv_add(inv, trollromance_toboggon_waxed, 1);
 inv_add(inv, cake_tin, 1);
-sound_synth(wax_sled, 0, 0);
+sound_synth(wax_sled, 1, 0);
 
 [proc,unequip_trollromance_sled]
 if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) {
@@ -133,7 +133,7 @@ if_close;
 p_teleport(0_43_59_20_58);
 ~bas_set(trollromance_toboggan_ready, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving);
 say("Here we go!");
-sound_synth(sled_start, 0, 0);
+sound_synth(sled_start, 1, 0);
 p_delay(0);
 p_teleport(0_43_59_18_56);
 p_delay(0);
@@ -167,7 +167,7 @@ cam_moveto(0_43_59_35_36, 300, 20, 50);
 cam_lookat(0_43_59_28_31, 300, 50, 50);
 p_delay(0);
 p_teleport(0_43_59_29_30);
-sound_synth(sled_jump, 0, 0);
+sound_synth(sled_jump, 1, 0);
 p_delay(0);
 p_teleport(0_43_59_31_28);
 ~bas_set_all(trollromance_toboggan_flying);
@@ -176,7 +176,7 @@ p_teleport(0_43_59_33_26);
 p_delay(0);
 p_teleport(0_43_59_34_24);
 ~bas_set(trollromance_toboggan_ready, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving, trollromance_toboggan_moving);
-sound_synth(sled_stop, 0, 0);
+sound_synth(sled_stop, 1, 0);
 cam_reset;
 p_delay(1);
 say("That was quite a ride!");

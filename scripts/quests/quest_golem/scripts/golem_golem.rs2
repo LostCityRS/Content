@@ -115,7 +115,7 @@ if(last_useitem = softclay) {
         mes("You can't see a way to put the instructions in the golem's skkull.");
         return;
     }
-    sound_synth(golem_program, 0, 0);
+    sound_synth(golem_program, 1, 0);
     def_string $golem_name = ~get_golem_name;
     def_npc $golem_npc = ~get_golem_state;
     ~chatnpc_specific($golem_name, $golem_npc, "<p,confused>New instructions...|Updating program....");

@@ -15,7 +15,7 @@ mes("Set Priest in Peril to: <tostring($var)>.");
 
 [debugproc,setppm](int $var)
 if (p_finduid(uid) = true)
-%priestperil_mausoleum = $var;
+%priestperilvar = $var;
 mes("Set Priest in Peril to: <tostring($var)>.");
 
 
@@ -26,4 +26,4 @@ mes("Priest in Peril is currently set to: <tostring(%priestperil)>.");
 
 [debugproc,getppm]
 if (p_finduid(uid) = true)
-mes("PIPMausoleum is currently set to: <tostring(%priestperil_mausoleum)>.");
+mes("PIPMausoleum is currently set to: <tostring(%priestperilvar)>.");

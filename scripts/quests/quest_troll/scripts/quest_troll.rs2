@@ -217,14 +217,14 @@ switch_int(loc_angle) {
 [oploc1,eadgar_kitchen_drawers]
 p_arrivedelay;
 anim(human_openchest, 0);
-sound_synth(cupboard_open, 0, 0);
+sound_synth(cupboard_open, 1, 0);
 p_delay(0);
 loc_change(eadgar_kitchen_drawers_open, 300);
 
 [oploc1,eadgar_kitchen_drawers_open]
 p_arrivedelay;
 anim(human_closechest, 0);
-sound_synth(cupboard_close, 0, 0);
+sound_synth(cupboard_close, 1, 0);
 p_delay(0);
 loc_change(eadgar_kitchen_drawers, 300);
 
@@ -247,7 +247,7 @@ if(%troll_quest < ^troll_entered_prison) {
     inv_del(inv, troll_key_prison, 1);
     %troll_quest = ^troll_entered_prison;
 }
-sound_synth(lockeddoor, 0, 0);
+sound_synth(lockeddoor, 1, 0);
 ~open_and_close_door2(troll_stronghold_prison_door_open, ~check_axis(coord, loc_coord, loc_angle), door_open);
 
 [oplocu,troll_stronghold_prison_door_closed]
@@ -282,7 +282,7 @@ if(%cell_1_unlock_timer > map_clock) { // idk if this is the correct way, but ca
     return;
 }
 if(inv_total(inv, troll_key_godric) = 0) {
-    sound_synth(locked, 0, 0);
+    sound_synth(locked, 1, 0);
     mes("You need a key to unlock the door.");
     return;
 }
@@ -303,7 +303,7 @@ if(%cell_2_unlock_timer > map_clock) { // idk if this is the correct way, but ca
     return;
 }
 if(inv_total(inv, troll_key_eadgar) = 0) {
-    sound_synth(locked, 0, 0);
+    sound_synth(locked, 1, 0);
     mes("You need a key to unlock the door.");
     return;
 }
@@ -319,7 +319,7 @@ if(%troll_freed_eadgar = ^true) {
 @troll_free_eadgar;
 
 [label,troll_free_godric]
-sound_synth(locked, 0, 0);
+sound_synth(locked, 1, 0);
 if(%troll_quest < ^troll_freed_godric) %troll_quest = ^troll_freed_godric;
 inv_del(inv, troll_key_godric, 1);
 mes("You unlock the cell door.");
@@ -348,7 +348,7 @@ npc_delay(0);
 npc_del;
 
 [label,troll_free_eadgar]
-sound_synth(locked, 0, 0);
+sound_synth(locked, 1, 0);
 if(%troll_freed_eadgar = ^false) %troll_freed_eadgar = ^true;
 inv_del(inv, troll_key_eadgar, 1);
 mes("You unlock the cell door.");

@@ -100,7 +100,7 @@ weakqueue*(cook_generic, 3)(sub($count, 1), $low, $high, $anim, $succesmessage, 
 
 [label,cook_item](int $low, int $high, seq $anim, string $succesmessage, string $burnmessage, obj $uncooked_item, namedobj $cooked_item, namedobj $burnt_item, namedobj $additional_item, int $experience)
 anim($anim, 0);
-sound_synth(fry, 0, 0);
+sound_synth(fry, 1, 0);
 switch_obj($uncooked_item) {
     case half_baked_batta : $cooked_item = ~gnome_batta;
     case half_baked_bowl : $cooked_item = ~gnome_bowl;

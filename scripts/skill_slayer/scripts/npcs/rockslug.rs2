@@ -10,7 +10,7 @@ if(last_useitem = slayer_bag_of_salt) {
     inv_del(inv, slayer_bag_of_salt, 1);
     anim(slayer_salt_sprinkle, 0);
     spotanim_pl(slayer_salt_sprinkle_spotanim, 92, 0);
-    sound_synth(sprinkle_salt, 0, 0);
+    sound_synth(sprinkle_salt, 1, 0);
     if(npc_stat(hitpoints) > 4) {
         mes("The rockslug isn't weak enough to be affected by the salt.");
     } else {

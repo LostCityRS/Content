@@ -95,7 +95,7 @@ if (last_useitem = grain) {
 def_coord $hopper_coord = loc_param(hopper_coord);
 def_coord $millbase_coord = loc_param(millbase_coord);
 def_loc $hopper = loc_param(next_loc_stage);
-sound_synth(hopperlever, 0, 0);
+sound_synth(hopperlever, 1, 0);
 loc_change(hoppercontrol_inuse, 3);
 anim(human_pickuptable, 0);
 
@@ -106,7 +106,7 @@ if (%hopper_full = ^true) {
     }
 
     mes("You operate the hopper. The grain slides down the chute.");
-    sound_synth(millstones, 0, 0);
+    sound_synth(millstones, 1, 0);
 
     %hopper_full = ^false;
     %millcheck_multi = 1;

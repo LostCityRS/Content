@@ -32,7 +32,7 @@ if (loc_type = castlewars_catapult_saradomin_broken) {
     loc_change(castlewars_catapult_zamorak, 1);
     %castlewars_zamorak_bits = clearbit(%castlewars_zamorak_bits, ^castlewars_catapult_bit);
 }
-sound_synth(castlewars_catapult_repaired, 0, 0);
+sound_synth(castlewars_catapult_repaired, 1, 0);
 mes("You fix the catapult!");
 
 [proc,castlewars_damage_catapult](int $team)
@@ -53,14 +53,14 @@ if (loc_type = castlewars_catapult_saradomin) {
 }
 inv_delslot(inv, last_useslot);
 spotanim_map(firewave_impact, movecoord(loc_coord, 1, 0, 1), 92, 0);
-sound_synth(castlewars_exploding_vial, 0, 0);
+sound_synth(castlewars_exploding_vial, 1, 0);
 
 [proc,castlewars_ignite_catapult](int $team)
 if (%castlewars_team = $team) {
     mes("You don't want to damage your own catapult!");
     return;
 }
-sound_synth(castlewars_onfire, 0, 0);
+sound_synth(castlewars_onfire, 1, 0);
 if ($team = ^castlewars_team_saradomin) {
     loc_change(castlewars_catapult_saradomin_burning, ^max_32bit_int);
     world_delay(10); // 12t
@@ -84,7 +84,7 @@ if (last_useitem ! bucket_water) {
     return;
 }
 inv_setslot(inv, last_useslot, bucket_empty, 1);
-sound_synth(castlewars_putout, 0, 0);
+sound_synth(castlewars_putout, 1, 0);
 if (loc_type = castlewars_catapult_saradomin_burning) loc_change(castlewars_catapult_saradomin, 1);
 else if (loc_type = castlewars_catapult_zamorak_burning) loc_change(castlewars_catapult_zamorak, 1);
 mes("You put out the fire!");
@@ -189,7 +189,7 @@ if (inv_total(inv, castlewars_catapult_rock) < 1) {
 
 inv_del(inv, castlewars_catapult_rock, 1);
 loc_anim(catapult_release_reset);
-sound_synth(castlewars_catapult_fire, 0, 0);
+sound_synth(castlewars_catapult_fire, 1, 0);
 // dist of 17 map_projanim_v2	id=castlewars_catapult_travel (304), starttime=15, endtime=206, angle=25, progress=64, startheight=200, endheight=255
 // dist of 4 map_projanim_v2	id=castlewars_catapult_travel (304), starttime=15, endtime=76, angle=25, progress=64, startheight=200, endheight=255
 def_coord $target_coord = map_findsquare(~castlewars_catapult_fire_coord, 0, 2, ^map_findsquare_none);

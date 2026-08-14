@@ -1,6 +1,6 @@
 [label,open_bank_pin_setting]
 if_openmain(bankpin_settings);
-sound_synth(PIN_pending, 0, 0);
+sound_synth(PIN_pending, 1, 0);
 if_settext(bankpin_settings:com_113, "Customers are reminded that they should NEVER tell anyone their Bank PINs or passwords, nor should they ever enter their PINs on any website form.");
 if_settext(bankpin_settings:com_175, "No PIN set");
 if_settext(bankpin_settings:com_177, "7 Days");
