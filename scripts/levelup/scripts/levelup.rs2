@@ -44,15 +44,12 @@ if ($unlocks_levels ! null) {
 }
 // play the jingle
 def_midi $jingle;
-def_int $jingle_millis;
 if ($has_unlocks = false) {
     $jingle = db_getfield($unlock_row, levelup:levelup_jingle, 0);
-    $jingle_millis = db_getfield($unlock_row, levelup:levelup_jingle_millis, 0);
 } else {
     $jingle = db_getfield($unlock_row, levelup:unlocks_jingle, 0);
-    $jingle_millis = db_getfield($unlock_row, levelup:unlocks_jingle_millis, 0);
 }
-midi_jingle($jingle, $jingle_millis);
+midi_jingle($jingle);
 if($stat = farming) { // special case, idk why they did this...
     // https://storage.googleapis.com/tannerdino/images/40farming.png, seems like they moved it down in later 06?
     // https://storage.googleapis.com/tannerdino/images/50farming.png

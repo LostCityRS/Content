@@ -6,7 +6,8 @@ if_sethide(multi2:com_5, false);
 if_sethide(multi2:com_8, true);
 
 if_openchat(multi2);
-if_setresumebuttons(multi2:com_1, multi2:com_2, null, null, null);
+if_addresumebutton(multi2:com_1);
+if_addresumebutton(multi2:com_2);
 p_pausebutton;
 
 switch_component (last_com) {
@@ -23,7 +24,8 @@ if_sethide(multi2:com_5, true);
 if_sethide(multi2:com_8, false);
 
 if_openchat(multi2);
-if_setresumebuttons(multi2:com_1, multi2:com_2, null, null, null);
+if_addresumebutton(multi2:com_1);
+if_addresumebutton(multi2:com_2);
 p_pausebutton;
 
 switch_component (last_com) {
@@ -40,7 +42,9 @@ if_sethide(multi3:com_6, false);
 if_sethide(multi3:com_9, true);
 
 if_openchat(multi3);
-if_setresumebuttons(multi3:com_1, multi3:com_2, multi3:com_3, null, null);
+if_addresumebutton(multi3:com_1);
+if_addresumebutton(multi3:com_2);
+if_addresumebutton(multi3:com_3);
 p_pausebutton;
 
 switch_component (last_com) {
@@ -59,7 +63,9 @@ if_sethide(multi3:com_6, true);
 if_sethide(multi3:com_9, false);
 
 if_openchat(multi3);
-if_setresumebuttons(multi3:com_1, multi3:com_2, multi3:com_3, null, null);
+if_addresumebutton(multi3:com_1);
+if_addresumebutton(multi3:com_2);
+if_addresumebutton(multi3:com_3);
 p_pausebutton;
 
 switch_component (last_com) {
@@ -78,7 +84,10 @@ if_sethide(multi4:com_7, false);
 if_sethide(multi4:com_8, true);
 
 if_openchat(multi4);
-if_setresumebuttons(multi4:com_1, multi4:com_2, multi4:com_3, multi4:com_4, null);
+if_addresumebutton(multi4:com_1);
+if_addresumebutton(multi4:com_2);
+if_addresumebutton(multi4:com_3);
+if_addresumebutton(multi4:com_4);
 p_pausebutton;
 
 switch_component (last_com) {
@@ -98,7 +107,10 @@ if_sethide(multi4:com_7, true);
 if_sethide(multi4:com_8, false);
 
 if_openchat(multi4);
-if_setresumebuttons(multi4:com_1, multi4:com_2, multi4:com_3, multi4:com_4, null);
+if_addresumebutton(multi4:com_1);
+if_addresumebutton(multi4:com_2);
+if_addresumebutton(multi4:com_3);
+if_addresumebutton(multi4:com_4);
 p_pausebutton;
 
 switch_component (last_com) {
@@ -119,7 +131,11 @@ if_sethide(multi5:com_8, false);
 if_sethide(multi5:com_9, true);
 
 if_openchat(multi5);
-if_setresumebuttons(multi5:com_1, multi5:com_2, multi5:com_3, multi5:com_4, multi5:com_5);
+if_addresumebutton(multi5:com_1);
+if_addresumebutton(multi5:com_2);
+if_addresumebutton(multi5:com_3);
+if_addresumebutton(multi5:com_4);
+if_addresumebutton(multi5:com_5);
 p_pausebutton;
 
 switch_component (last_com) {
@@ -141,7 +157,11 @@ if_sethide(multi5:com_8, true);
 if_sethide(multi5:com_9, false);
 
 if_openchat(multi5);
-if_setresumebuttons(multi5:com_1, multi5:com_2, multi5:com_3, multi5:com_4, multi5:com_5);
+if_addresumebutton(multi5:com_1);
+if_addresumebutton(multi5:com_2);
+if_addresumebutton(multi5:com_3);
+if_addresumebutton(multi5:com_4);
+if_addresumebutton(multi5:com_5);
 p_pausebutton;
 
 switch_component (last_com) {
@@ -589,7 +609,10 @@ if_settext(multiobj2:objtext2, $string2);
 
 if_openchat(multiobj2);
 
-if_setresumebuttons(multiobj2:obj1, multiobj2:obj2, multiobj2:objtext1, multiobj2:objtext2, null);
+if_addresumebutton(multiobj2:obj1);
+if_addresumebutton(multiobj2:obj2);
+if_addresumebutton(multiobj2:objtext1);
+if_addresumebutton(multiobj2:objtext2);
 p_pausebutton;
 
 switch_component (last_com) {
@@ -689,7 +712,10 @@ switch_component (last_com) {
 if_openchat(skillmulti1);
 if_setobject(skillmulti1:com_2, $obj1, 200);
 
-if_setresumebuttons(skillmulti1:com_3, skillmulti1:com_4, skillmulti1:com_5, skillmulti1:com_6, null);
+if_addresumebutton(skillmulti1:com_3);
+if_addresumebutton(skillmulti1:com_4);
+if_addresumebutton(skillmulti1:com_5);
+if_addresumebutton(skillmulti1:com_6);
 p_pausebutton;
 
 switch_component (last_com) {

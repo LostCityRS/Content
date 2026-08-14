@@ -1,7 +1,7 @@
 [label,player_death_castlewars]
 ~player_death;
 mes("Oh dear you are dead!");
-midi_jingle(death2, ^death_jingle_2_millis);
+midi_jingle(death2);
 
 ~combat_clearqueue;
 clearqueue(player_death_default);
@@ -29,7 +29,7 @@ healenergy(10000);
 [label,player_death_castlewars_waitingroom]
 ~player_death;
 mes("Oh dear you are dead!");
-midi_jingle(death2, ^death_jingle_2_millis);
+midi_jingle(death2);
 
 ~combat_clearqueue;
 clearqueue(player_death_default);

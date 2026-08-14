@@ -19,7 +19,7 @@ if (~in_castlewars_waitingroom(coord) = true) {
 }
 
 ~player_death;
-midi_jingle(death2, ^death_jingle_2_millis);
+midi_jingle(death2);
 // https://storage.googleapis.com/tannerdino/images/6543.jpg
 // https://youtu.be/gWmwSYxzUfo
 mes("Oh dear you are dead!");

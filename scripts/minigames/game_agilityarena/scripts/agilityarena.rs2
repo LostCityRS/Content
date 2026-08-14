@@ -76,7 +76,7 @@ if(testbit(%agilityarena_varbit, ^agilityarena_eligible_tickets) = ^false) {
 if(testbit(%agilityarena_varbit, ^agilityarena_first_pillar_tagged) = ^true) {
     %agilityarena_varbit = clearbit(%agilityarena_varbit, ^agilityarena_first_pillar_tagged);
 }
-midi_jingle("agility complete", ^agility_complete_millis);
+midi_jingle("agility complete");
 inv_add(inv, agilityarena_ticket, 1);
 mes("You have received an Agility Arena Ticket!");
 ~objbox(agilityarena_ticket, "You have received an Agility Arena Ticket!", 250, 0, 0);

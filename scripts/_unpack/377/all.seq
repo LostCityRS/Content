@@ -67,7 +67,7 @@ frame22=anim_4641
 frame23=anim_4635
 
 [fish_seq_3]
-stretches=yes
+reachforward=yes
 frame1=anim_3291
 frame2=anim_3298
 frame3=anim_3305
@@ -3372,7 +3372,7 @@ frame8=anim_8695
 delay8=5
 
 [troll_attack]
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_8625
 frame2=anim_8626
@@ -4701,7 +4701,7 @@ frame8=anim_6883
 [human_ddagger_lunge]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 priority=6
-stretches=yes
+reachforward=yes
 frame1=anim_976
 frame2=anim_1261
 frame3=anim_1542
@@ -4831,7 +4831,7 @@ frame11=anim_1553
 [human_sword_stab]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 priority=6
-stretches=yes
+reachforward=yes
 frame1=anim_1149
 frame2=anim_1436
 frame3=anim_1735
@@ -4881,7 +4881,7 @@ frame10=anim_1345
 [human_sword_slash]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 priority=6
-stretches=yes
+reachforward=yes
 frame1=anim_1648
 frame2=anim_1945
 frame3=anim_2247
@@ -4910,7 +4910,7 @@ frame10=anim_2113
 [human_sword_lunge]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 priority=6
-stretches=yes
+reachforward=yes
 frame1=anim_1235
 frame2=anim_1516
 frame3=anim_1811
@@ -19453,7 +19453,7 @@ iframe90=anim_66
 [human_harpoon]
 replaceheldleft=harpoon
 replaceheldright=harpoon
-stretches=yes
+reachforward=yes
 loops=20
 maxloops=4
 preanim_move=delayanim
@@ -19482,7 +19482,7 @@ frame20=anim_831
 [human_lobster]
 replaceheldleft=hide
 replaceheldright=lobster_pot
-stretches=yes
+reachforward=yes
 loops=11
 maxloops=3
 preanim_move=delayanim
@@ -19513,7 +19513,7 @@ delay11=5
 [human_largenet]
 replaceheldleft=big_net
 replaceheldright=big_net
-stretches=yes
+reachforward=yes
 loops=11
 maxloops=3
 preanim_move=delayanim
@@ -19533,7 +19533,7 @@ frame11=anim_1594
 [human_smallnet]
 replaceheldleft=net
 replaceheldright=net
-stretches=yes
+reachforward=yes
 loops=11
 maxloops=3
 preanim_move=delayanim
@@ -19553,7 +19553,7 @@ frame11=anim_1594
 [human_fishing_casting]
 replaceheldright=fishing_rod
 replaceheldleft=fishing_rod
-stretches=yes
+reachforward=yes
 loops=2
 maxloops=8
 preanim_move=delayanim
@@ -19581,7 +19581,7 @@ frame19=anim_1812
 [human_fish_onspot]
 replaceheldright=fishing_rod
 replaceheldleft=fishing_rod
-stretches=yes
+reachforward=yes
 loops=2
 maxloops=8
 preanim_move=delayanim
@@ -19598,7 +19598,7 @@ priority=0
 loops=8
 maxloops=3
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_584
 frame2=anim_876
 frame3=anim_1156
@@ -19619,7 +19619,7 @@ priority=0
 loops=8
 maxloops=8
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_584
 frame2=anim_876
 frame3=anim_1156
@@ -19640,7 +19640,7 @@ priority=0
 loops=8
 maxloops=7
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_584
 frame2=anim_876
 frame3=anim_1156
@@ -19661,7 +19661,7 @@ priority=0
 loops=8
 maxloops=6
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_584
 frame2=anim_876
 frame3=anim_1156
@@ -19682,7 +19682,7 @@ priority=0
 loops=8
 maxloops=4
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_584
 frame2=anim_876
 frame3=anim_1156
@@ -19703,7 +19703,7 @@ priority=0
 loops=8
 maxloops=5
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_584
 frame2=anim_876
 frame3=anim_1156
@@ -23134,7 +23134,7 @@ priority=0
 loops=9
 maxloops=3
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_513
 frame2=anim_811
 frame3=anim_1093
@@ -23940,7 +23940,7 @@ frame4=anim_762
 delay4=11
 
 [human_gnome_tackle]
-stretches=yes
+reachforward=yes
 replaceheldright=hide
 replaceheldleft=hide
 frame1=anim_788
@@ -23975,7 +23975,7 @@ frame12=anim_2037
 frame13=anim_1738
 
 [human_gnome_tackle_fail]
-stretches=yes
+reachforward=yes
 frame1=anim_1831
 frame2=anim_2131
 frame3=anim_2429
@@ -23987,7 +23987,7 @@ frame8=anim_1861
 frame9=anim_2158
 
 [human_gnome_tackle_ready]
-stretches=yes
+reachforward=yes
 loops=1
 frame1=anim_531
 
@@ -24501,7 +24501,7 @@ frame15=anim_1543
 [cattleprod]
 replaceheldleft=hide
 replaceheldright=cattleprod
-stretches=yes
+reachforward=yes
 frame1=anim_597
 frame2=anim_894
 frame3=anim_1174
@@ -25252,7 +25252,7 @@ frame12=anim_590
 delay12=21
 
 [human_transdeath]
-stretches=yes
+reachforward=yes
 priority=10
 replaceheldright=hide
 replaceheldleft=hide
@@ -25294,7 +25294,7 @@ frame2=anim_851
 [human_stumble_back]
 priority=0
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_922
 frame2=anim_1202
 frame3=anim_1486
@@ -25695,7 +25695,7 @@ priority=0
 loops=6
 maxloops=4
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_2020
 frame2=anim_2321
 frame3=anim_599
@@ -25722,7 +25722,7 @@ priority=0
 loops=6
 maxloops=4
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_2020
 frame2=anim_2321
 frame3=anim_599
@@ -25749,7 +25749,7 @@ priority=0
 loops=6
 maxloops=4
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_2020
 frame2=anim_2321
 frame3=anim_599
@@ -25776,7 +25776,7 @@ priority=0
 loops=6
 maxloops=4
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_2020
 frame2=anim_2321
 frame3=anim_599
@@ -25803,7 +25803,7 @@ priority=0
 loops=6
 maxloops=4
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_2020
 frame2=anim_2321
 frame3=anim_599
@@ -25830,7 +25830,7 @@ priority=0
 loops=6
 maxloops=4
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_2020
 frame2=anim_2321
 frame3=anim_599
@@ -25857,7 +25857,7 @@ priority=0
 loops=6
 maxloops=4
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_2020
 frame2=anim_2321
 frame3=anim_599
@@ -26171,7 +26171,7 @@ frame19=anim_1575
 replaceheldleft=hide
 replaceheldright=hide
 postanim_move=abortanim
-stretches=yes
+reachforward=yes
 frame1=anim_2240
 frame2=anim_522
 frame3=anim_821
@@ -26196,7 +26196,7 @@ frame21=anim_2240
 
 [human_fillbucket_sandpit]
 replaceheldright=bucket_empty
-stretches=yes
+reachforward=yes
 frame1=anim_2472
 frame2=anim_760
 frame3=anim_1047
@@ -26216,8 +26216,8 @@ frame15=anim_2472
 [human_cooking]
 replaceheldleft=hide
 replaceheldright=hide
-stretches=yes
-duplicatebehavior=reset
+reachforward=yes
+duplicatebehaviour=reset
 frame1=anim_958
 frame2=anim_1242
 frame3=anim_1522
@@ -26253,7 +26253,7 @@ frame31=anim_958
 [human_smithing]
 replaceheldleft=hide
 replaceheldright=hammer
-stretches=yes
+reachforward=yes
 frame1=anim_1728
 frame2=anim_2028
 frame3=anim_2332
@@ -26674,7 +26674,7 @@ replaceheldleft=hide
 priority=0
 preanim_move=delayanim
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_12484
 frame2=anim_12493
 frame3=anim_12494
@@ -26705,7 +26705,7 @@ replaceheldleft=hide
 priority=0
 preanim_move=delayanim
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_12484
 frame2=anim_12493
 frame3=anim_12494
@@ -26736,7 +26736,7 @@ replaceheldleft=hide
 priority=0
 preanim_move=delayanim
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_12484
 frame2=anim_12493
 frame3=anim_12494
@@ -26767,7 +26767,7 @@ replaceheldleft=hide
 priority=0
 preanim_move=delayanim
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_12484
 frame2=anim_12493
 frame3=anim_12494
@@ -26806,7 +26806,7 @@ frame10=anim_7116
 
 [impale]
 priority=6
-stretches=yes
+reachforward=yes
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 frame1=anim_4604
 frame2=anim_4662
@@ -27275,7 +27275,7 @@ frame1=anim_4005
 delay1=14465
 
 [chompy_attack]
-stretches=yes
+reachforward=yes
 frame1=anim_4012
 frame2=anim_4019
 frame3=anim_4028
@@ -27313,7 +27313,7 @@ frame12=anim_4026
 frame13=anim_4036
 
 [chompy_death]
-stretches=yes
+reachforward=yes
 frame1=anim_4038
 frame2=anim_4050
 frame3=anim_4060
@@ -27433,7 +27433,7 @@ frame9=anim_4075
 delay9=41
 
 [ogre_bellows_use]
-stretches=yes
+reachforward=yes
 frame1=anim_3964
 frame2=anim_3967
 frame3=anim_3970
@@ -27465,7 +27465,7 @@ frame10=anim_3978
 [human_chompybird_ogrebellows]
 replaceheldright=hide
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 priority=10
 frame1=anim_3995
 frame2=anim_3998
@@ -27596,7 +27596,7 @@ frame8=anim_5331
 delay8=6
 
 [elemental_earth_attack]
-stretches=yes
+reachforward=yes
 frame1=anim_5312
 frame2=anim_5317
 frame3=anim_5322
@@ -27616,7 +27616,7 @@ frame6=anim_5318
 frame7=anim_5323
 
 [elemental_earth_death]
-stretches=yes
+reachforward=yes
 frame1=anim_5320
 frame2=anim_5326
 frame3=anim_5332
@@ -27628,7 +27628,7 @@ frame8=anim_5321
 delay8=20000
 
 [elemental_earth_summon]
-stretches=yes
+reachforward=yes
 frame1=anim_7807
 frame2=anim_7809
 frame3=anim_7810
@@ -27943,7 +27943,7 @@ frame11=anim_4263
 
 [cleave]
 priority=6
-stretches=yes
+reachforward=yes
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 frame1=anim_4673
 frame2=anim_4746
@@ -27970,7 +27970,7 @@ frame10=anim_7913
 
 [shatter]
 priority=6
-stretches=yes
+reachforward=yes
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 frame1=anim_4589
 frame2=anim_4614
@@ -28015,7 +28015,7 @@ frame19=anim_7904
 
 [puncture]
 priority=6
-stretches=yes
+reachforward=yes
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 frame1=anim_4670
 frame2=anim_4743
@@ -28058,7 +28058,7 @@ frame18=anim_7880
 
 [shove]
 priority=6
-stretches=yes
+reachforward=yes
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 frame1=anim_4656
 frame2=anim_4681
@@ -28116,7 +28116,7 @@ frame31=anim_6251
 frame32=anim_6253
 
 [claws_punch]
-stretches=yes
+reachforward=yes
 priority=6
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 frame1=anim_4921
@@ -28131,7 +28131,7 @@ frame9=anim_4924
 
 [chainhit]
 priority=6
-stretches=yes
+reachforward=yes
 replaceheldright=hide
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 frame1=anim_4267
@@ -28206,7 +28206,7 @@ frame4=anim_7919
 
 [snapshot]
 priority=6
-stretches=yes
+reachforward=yes
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 frame1=anim_4260
 frame2=anim_4560
@@ -28878,7 +28878,7 @@ frame22=anim_8378
 frame23=anim_8379
 
 [agilityarena_dive_player]
-stretches=yes
+reachforward=yes
 frame1=anim_8357
 frame2=anim_8363
 frame3=anim_8364
@@ -28939,7 +28939,7 @@ frame17=anim_8306
 delay17=20000
 
 [agilityarena_handholds_middle]
-duplicatebehavior=reset
+duplicatebehaviour=reset
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_8311
@@ -29023,7 +29023,7 @@ frame17=anim_8325
 delay17=20000
 
 [agilityarena_handholds_middlereverse]
-duplicatebehavior=reset
+duplicatebehaviour=reset
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_8330
@@ -29524,7 +29524,7 @@ frame8=anim_8711
 delay8=5
 
 [troll_rock_throw]
-stretches=yes
+reachforward=yes
 replaceheldright=hide
 frame1=anim_8660
 frame2=anim_8662
@@ -29567,7 +29567,7 @@ frame8=anim_4910
 frame9=anim_4914
 
 [walk_walkingstick]
-stretches=yes
+reachforward=yes
 frame1=anim_4768
 delay1=6
 frame2=anim_4771
@@ -30082,7 +30082,7 @@ frame25=anim_1421
 frame26=anim_1713
 
 [troll_treetrunk_attack]
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_8673
 frame2=anim_8680
@@ -30324,7 +30324,7 @@ frame31=anim_958
 [human_octopus_pot]
 replaceheldleft=hide
 replaceheldright=tbwt_karambwan_vessel
-stretches=yes
+reachforward=yes
 loops=11
 maxloops=3
 preanim_move=delayanim
@@ -30499,7 +30499,7 @@ frame9=anim_8961
 
 [dragon_halberd_special_attack]
 priority=6
-stretches=yes
+reachforward=yes
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 frame1=anim_9272
 frame2=anim_9280
@@ -30519,7 +30519,7 @@ frame15=anim_9278
 frame16=anim_9279
 
 [sp_d_halberd_glow]
-stretches=yes
+reachforward=yes
 frame1=anim_9228
 frame2=anim_9236
 delay2=3
@@ -30553,7 +30553,7 @@ frame16=anim_9235
 delay16=8
 
 [human_halberdwalk_f]
-stretches=yes
+reachforward=yes
 frame1=anim_9256
 delay1=6
 frame2=anim_9257
@@ -30572,7 +30572,7 @@ frame8=anim_9263
 delay8=6
 
 [human_halberdwalk_b]
-stretches=yes
+reachforward=yes
 frame1=anim_9263
 delay1=6
 frame2=anim_9262
@@ -30591,7 +30591,7 @@ frame8=anim_9256
 delay8=6
 
 [human_halberdwalk_l]
-stretches=yes
+reachforward=yes
 frame1=anim_9264
 delay1=6
 frame2=anim_9265
@@ -30602,7 +30602,7 @@ frame4=anim_9267
 delay4=6
 
 [human_halberdwalk_r]
-stretches=yes
+reachforward=yes
 frame1=anim_9268
 delay1=6
 frame2=anim_9269
@@ -30613,7 +30613,7 @@ frame4=anim_9271
 delay4=6
 
 [human_halberdturnonspot]
-stretches=yes
+reachforward=yes
 frame1=anim_9252
 delay1=11
 frame2=anim_9253
@@ -30624,7 +30624,7 @@ frame4=anim_9255
 delay4=11
 
 [human_halberdrunning]
-stretches=yes
+reachforward=yes
 frame1=anim_9244
 delay1=5
 frame2=anim_9245
@@ -31419,7 +31419,7 @@ frame20=anim_1421
 frame21=anim_1713
 
 [eadgar_troll_axethrow]
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_8632
 frame2=anim_8633
@@ -31508,7 +31508,7 @@ frame9=anim_9544
 [vamp_bite]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 priority=6
-stretches=yes
+reachforward=yes
 frame1=anim_9401
 frame2=anim_9403
 frame3=anim_9404
@@ -31536,7 +31536,7 @@ frame23=anim_9401
 [vamp_claw]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 priority=6
-stretches=yes
+reachforward=yes
 frame1=anim_9411
 frame2=anim_9414
 frame3=anim_9415
@@ -31681,7 +31681,7 @@ frame17=anim_9492
 delay17=20000
 
 [leechattack]
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_9466
 frame2=anim_9471
@@ -32348,7 +32348,7 @@ frame12=anim_9725
 delay12=21
 
 [human_walk_tankard_f]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=viking_tankard_full
 frame1=anim_9804
@@ -32369,7 +32369,7 @@ frame8=anim_9811
 delay8=6
 
 [human_walk_tankard_b]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=viking_tankard_full
 frame1=anim_9811
@@ -32390,7 +32390,7 @@ frame8=anim_9804
 delay8=6
 
 [human_walk_tankard_l]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=viking_tankard_full
 frame1=anim_9778
@@ -32403,7 +32403,7 @@ frame4=anim_9781
 delay4=6
 
 [human_walk_tankard_r]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=viking_tankard_full
 frame1=anim_9782
@@ -32464,7 +32464,7 @@ frame11=anim_9750
 frame12=anim_9743
 
 [viking_drop_to_knee]
-stretches=yes
+reachforward=yes
 frame1=anim_9734
 frame2=anim_9735
 frame3=anim_9736
@@ -32485,7 +32485,7 @@ frame17=anim_9742
 frame18=anim_9742
 
 [viking_drop_to_knee_and_backtoready]
-stretches=yes
+reachforward=yes
 frame1=anim_9742
 frame2=anim_9741
 frame3=anim_9740
@@ -32772,7 +32772,7 @@ replaceheldleft=hide
 replaceheldright=readbook_dummy
 priority=0
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_4892
 frame2=anim_4766
 frame3=anim_4769
@@ -33364,7 +33364,7 @@ frame3=anim_10099
 [misc_fish_onspot]
 replaceheldright=fishing_rod
 replaceheldleft=fishing_rod
-stretches=yes
+reachforward=yes
 loops=2
 preanim_move=delayanim
 postanim_move=abortanim
@@ -33379,7 +33379,7 @@ replaceheldleft=steel_pickaxe
 priority=0
 loops=8
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_584
 delay1=5
 frame2=anim_876
@@ -33411,7 +33411,7 @@ replaceheldright=hide
 priority=0
 loops=6
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_2020
 delay1=5
 frame2=anim_2321
@@ -33429,10 +33429,10 @@ delay6=5
 replaceheldleft=hide
 replaceheldright=iron_sickle
 priority=6
-stretches=yes
+reachforward=yes
 loops=13
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_10109
 frame2=anim_10114
 frame3=anim_10115
@@ -33458,7 +33458,7 @@ priority=6
 loops=13
 maxloops=4
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_10100
 frame2=anim_10101
 frame3=anim_10102
@@ -33473,9 +33473,9 @@ frame9=anim_10108
 replaceheldleft=hide
 replaceheldright=iron_sickle
 priority=6
-stretches=yes
+reachforward=yes
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_10109
 frame2=anim_10114
 frame3=anim_10115
@@ -33512,9 +33512,9 @@ frame31=anim_10113
 replaceheldleft=hide
 replaceheldright=silver_sickle
 priority=6
-stretches=yes
+reachforward=yes
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_10109
 frame2=anim_10114
 frame3=anim_10115
@@ -33551,9 +33551,9 @@ frame31=anim_10113
 replaceheldleft=hide
 replaceheldright=silver_sickle_blessed
 priority=6
-stretches=yes
+reachforward=yes
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_10109
 frame2=anim_10114
 frame3=anim_10115
@@ -34588,13 +34588,13 @@ loops=1
 frame1=anim_1438
 
 [m_human_land]
-stretches=yes
+reachforward=yes
 priority=9
 loops=1
 frame1=anim_8358
 
 [m_human_land_getup]
-stretches=yes
+reachforward=yes
 priority=9
 frame1=anim_8358
 frame2=anim_8359
@@ -34741,7 +34741,7 @@ frame9=anim_8222
 frame10=anim_8214
 
 [human_bannerready]
-stretches=yes
+reachforward=yes
 frame1=anim_10510
 delay1=21
 frame2=anim_10514
@@ -34768,7 +34768,7 @@ frame12=anim_10513
 delay12=21
 
 [human_bannerwalk_f]
-stretches=yes
+reachforward=yes
 frame1=anim_10494
 delay1=6
 frame2=anim_10495
@@ -34787,7 +34787,7 @@ frame8=anim_10501
 delay8=6
 
 [human_bannerwalk_b]
-stretches=yes
+reachforward=yes
 frame1=anim_10501
 delay1=6
 frame2=anim_10500
@@ -34806,7 +34806,7 @@ frame8=anim_10494
 delay8=6
 
 [human_bannerwalk_l]
-stretches=yes
+reachforward=yes
 frame1=anim_10502
 delay1=6
 frame2=anim_10503
@@ -34817,7 +34817,7 @@ frame4=anim_10505
 delay4=6
 
 [human_bannerwalk_r]
-stretches=yes
+reachforward=yes
 frame1=anim_10506
 delay1=6
 frame2=anim_10507
@@ -34828,14 +34828,14 @@ frame4=anim_10509
 delay4=6
 
 [human_bannerturnonspot]
-stretches=yes
+reachforward=yes
 frame1=anim_10490
 frame2=anim_10491
 frame3=anim_10492
 frame4=anim_10493
 
 [human_bannerrunning]
-stretches=yes
+reachforward=yes
 frame1=anim_10482
 delay1=5
 frame2=anim_10483
@@ -35227,7 +35227,7 @@ frame8=anim_10593
 delay8=5
 
 [mining_crane_attack]
-stretches=yes
+reachforward=yes
 frame1=anim_10539
 frame2=anim_10543
 frame3=anim_10544
@@ -35676,7 +35676,7 @@ frame6=anim_10811
 frame7=anim_10807
 
 [trollromance_cry_test]
-stretches=yes
+reachforward=yes
 frame1=anim_10828
 delay1=8
 frame2=anim_10829
@@ -35709,7 +35709,7 @@ frame15=anim_10828
 delay15=8
 
 [altar_death]
-stretches=yes
+reachforward=yes
 frame1=anim_10828
 frame2=anim_10829
 frame3=anim_10830
@@ -35719,14 +35719,14 @@ frame6=anim_10833
 
 [trollromance_cry_loop]
 loops=2
-stretches=yes
+reachforward=yes
 frame1=anim_10832
 delay1=9
 frame2=anim_10833
 delay2=9
 
 [atar_spawn_and_die]
-stretches=yes
+reachforward=yes
 frame1=anim_10832
 frame2=anim_10831
 frame3=anim_10830
@@ -35939,7 +35939,7 @@ frame7=anim_690
 frame8=anim_690
 
 [troll_rock_throw_lefthand]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 frame1=anim_10856
 frame2=anim_10860
@@ -38175,7 +38175,7 @@ frame8=anim_12181
 frame9=anim_12182
 
 [human_jump_hurdle]
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_12144
 frame2=anim_12150
 frame3=anim_12151
@@ -38192,7 +38192,7 @@ frame13=anim_12148
 frame14=anim_12149
 
 [human_jump_stones]
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_2426
 frame2=anim_710
 frame3=anim_997
@@ -39093,7 +39093,7 @@ frame8=anim_31653
 
 [slayer_abyssal_whip_attack]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_12556
 frame2=anim_12563
@@ -39113,7 +39113,7 @@ frame15=anim_12562
 
 [slayer_abyssal_whip_defend]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
-stretches=yes
+reachforward=yes
 frame1=anim_12571
 frame2=anim_12573
 frame3=anim_12574
@@ -39213,7 +39213,7 @@ delay8=4
 
 [slayer_granite_maul_attack]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_12501
 frame2=anim_12504
@@ -39239,7 +39239,7 @@ frame7=anim_12513
 frame8=anim_12512
 
 [slayer_granite_maul_special_attack]
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_12537
 frame2=anim_12540
@@ -40920,7 +40920,7 @@ frame10=anim_13015
 frame11=anim_13016
 
 [mdaughter_tree_climb_combi]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_13025
@@ -40964,7 +40964,7 @@ frame38=anim_13015
 frame39=anim_13016
 
 [mdaughter_pole_vault]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=mdaughter_polevault
 frame1=anim_12995
@@ -40985,7 +40985,7 @@ frame15=anim_12999
 frame16=anim_13000
 
 [mdaughter_place_stone]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_12985
@@ -41001,7 +41001,7 @@ frame10=anim_12986
 frame11=anim_12985
 
 [mdaughter_bury]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_12985
@@ -41078,7 +41078,7 @@ frame7=anim_12973
 frame8=anim_12974
 
 [mdaughter_absail_combi]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_12965
@@ -41587,13 +41587,13 @@ frame1=anim_13320
 frame2=anim_13321
 
 [human_wall_beast_specialattack_start]
-stretches=yes
+reachforward=yes
 frame1=anim_13349
 frame2=anim_13350
 frame3=anim_13351
 
 [human_wall_beast_specialattack_ready]
-stretches=yes
+reachforward=yes
 loops=2
 frame1=anim_13352
 frame2=anim_13353
@@ -42731,7 +42731,7 @@ frame2=anim_13521
 delay2=26
 
 [human_rubber_chicken_walk]
-stretches=yes
+reachforward=yes
 frame1=anim_13573
 delay1=6
 frame2=anim_13574
@@ -42750,7 +42750,7 @@ frame8=anim_13580
 delay8=6
 
 [human_rubber_chicken_running]
-stretches=yes
+reachforward=yes
 frame1=anim_13565
 delay1=5
 frame2=anim_13566
@@ -42769,7 +42769,7 @@ frame8=anim_13572
 delay8=4
 
 [human_rubber_chicken_ready]
-stretches=yes
+reachforward=yes
 frame1=anim_13553
 frame2=anim_13557
 frame3=anim_13558
@@ -42786,7 +42786,7 @@ frame12=anim_13556
 [human_rubber_chicken_attack]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 priority=6
-stretches=yes
+reachforward=yes
 frame1=anim_13538
 frame2=anim_13539
 frame3=anim_13540
@@ -42799,7 +42799,7 @@ frame9=anim_13546
 
 [human_rubber_chicken_block]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
-stretches=yes
+reachforward=yes
 frame1=anim_13547
 frame2=anim_13548
 frame3=anim_13549
@@ -43091,7 +43091,7 @@ frame1=anim_1555
 [dwarfrock_cannon_flying]
 replaceheldleft=hide
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 loops=4
 frame1=anim_13631
 frame2=anim_13632
@@ -43101,7 +43101,7 @@ frame4=anim_13634
 [dwarfrock_cannon_fly_getup]
 replaceheldleft=hide
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 frame1=anim_13617
 frame2=anim_13623
 frame3=anim_13624
@@ -43488,7 +43488,7 @@ frame8=anim_10110
 frame9=anim_10111
 
 [sp_attack_dragon_scimitar]
-stretches=yes
+reachforward=yes
 priority=6
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 frame1=anim_13823
@@ -44423,7 +44423,7 @@ frame3=anim_14666
 frame4=anim_14667
 
 [vampire_rise1]
-stretches=yes
+reachforward=yes
 frame1=anim_14637
 frame2=anim_14648
 frame3=anim_14650
@@ -44437,7 +44437,7 @@ frame10=anim_14638
 frame11=anim_14639
 
 [vampire_rise2]
-stretches=yes
+reachforward=yes
 frame1=anim_14654
 frame2=anim_14655
 frame3=anim_14656
@@ -44454,7 +44454,7 @@ frame13=anim_14647
 frame14=anim_14649
 
 [vampire_rise]
-stretches=yes
+reachforward=yes
 frame1=anim_14637
 frame2=anim_14648
 frame3=anim_14650
@@ -46237,7 +46237,7 @@ frame4=anim_191
 delay4=9
 
 [ic_pit_jump]
-stretches=yes
+reachforward=yes
 frame1=anim_15423
 frame2=anim_15434
 frame3=anim_15445
@@ -46268,7 +46268,7 @@ frame27=anim_15442
 delay27=2
 
 [ic_up_ons]
-stretches=yes
+reachforward=yes
 frame1=anim_15329
 delay1=10
 frame2=anim_15340
@@ -46366,7 +46366,7 @@ frame21=anim_938
 frame22=anim_1220
 
 [ic_flyout]
-stretches=yes
+reachforward=yes
 frame1=anim_15314
 frame2=anim_15315
 frame3=anim_15316
@@ -46576,7 +46576,7 @@ frame15=anim_15305
 [scrape_salt]
 replaceheldleft=bucket_empty
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 frame1=anim_15368
 frame2=anim_15369
 frame3=anim_15370
@@ -47018,7 +47018,7 @@ frame8=anim_15567
 frame9=anim_15568
 
 [tog_player_float_up]
-stretches=yes
+reachforward=yes
 frame1=anim_15569
 delay1=6
 frame2=anim_15575
@@ -47049,7 +47049,7 @@ frame14=anim_15574
 delay14=5
 
 [tog_player_float_down]
-stretches=yes
+reachforward=yes
 frame1=anim_15581
 frame2=anim_15580
 frame3=anim_15579
@@ -47061,7 +47061,7 @@ frame8=anim_15569
 
 [tog_player_float_across]
 loops=8
-stretches=yes
+reachforward=yes
 frame1=anim_15580
 delay1=7
 frame2=anim_15581
@@ -47328,7 +47328,7 @@ replaceheldleft=hide
 replaceheldright=readbook_dummy2
 priority=0
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_4892
 frame2=anim_4766
 frame3=anim_4769
@@ -47381,7 +47381,7 @@ delay12=21
 
 [barrow_guthan_crush]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_15769
 frame2=anim_15772
@@ -47455,7 +47455,7 @@ delay12=21
 
 [barrow_dharok_slash]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_15729
 frame2=anim_15730
@@ -47484,7 +47484,7 @@ frame11=anim_15740
 
 [barrow_torag_crush]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_15860
 frame2=anim_15863
@@ -47648,7 +47648,7 @@ delay8=4
 
 [barrows_quarterstaff_attack]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_15806
 frame2=anim_15810
@@ -47665,7 +47665,7 @@ frame12=anim_15809
 
 [barrows_quarterstaff_defend]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_15818
 frame2=anim_15819
@@ -47683,7 +47683,7 @@ frame13=anim_15818
 
 [barrows_war_spear_stab]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_15899
 frame2=anim_15900
@@ -47703,7 +47703,7 @@ frame15=anim_15899
 
 [barrows_war_spear_slash]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_15885
 frame2=anim_15891
@@ -47722,7 +47722,7 @@ frame14=anim_15890
 
 [barrows_war_spear_crush]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_15871
 frame2=anim_15877
@@ -49381,7 +49381,7 @@ frame6=anim_10450
 delay6=5
 
 [cave_goblin_mining]
-stretches=yes
+reachforward=yes
 frame1=anim_16171
 delay1=5
 frame2=anim_16172
@@ -51947,7 +51947,7 @@ delay14=20000
 
 [roguesden_player_explosion]
 priority=10
-stretches=yes
+reachforward=yes
 frame1=anim_17156
 frame2=anim_17158
 frame3=anim_17159
@@ -52207,7 +52207,7 @@ frame12=anim_17529
 delay12=21
 
 [rd_carry_fox_ready]
-stretches=yes
+reachforward=yes
 frame1=anim_17498
 delay1=21
 frame2=anim_17502
@@ -52234,7 +52234,7 @@ frame12=anim_17501
 delay12=21
 
 [rd_carry_fox_walk]
-stretches=yes
+reachforward=yes
 frame1=anim_17518
 delay1=6
 frame2=anim_17519
@@ -52256,7 +52256,7 @@ delay8=6
 replaceheldright=vial_empty
 replaceheldleft=hide
 priority=6
-stretches=yes
+reachforward=yes
 frame1=anim_17564
 frame2=anim_17574
 frame3=anim_17575
@@ -52335,7 +52335,7 @@ frame32=anim_12001
 [dragon_warhammer_sa_spotanim]
 replaceheldleft=hide
 replaceheldright=magic_carpet
-stretches=yes
+reachforward=yes
 loops=11
 priority=10
 frame1=anim_17643
@@ -52364,7 +52364,7 @@ delay11=3
 [carpet_raise]
 replaceheldleft=hide
 replaceheldright=magic_carpet
-stretches=yes
+reachforward=yes
 frame1=anim_17654
 frame2=anim_17657
 frame3=anim_17658
@@ -52380,7 +52380,7 @@ delay11=22
 
 [carpet_land]
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_17656
 frame2=anim_17655
 frame3=anim_17664
@@ -52396,7 +52396,7 @@ delay11=22
 
 [carpet_bank_right]
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_17632
 frame2=anim_17635
 frame3=anim_17636
@@ -52412,7 +52412,7 @@ frame11=anim_17634
 
 [carpet_bank_left]
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_17621
 frame2=anim_17624
 frame3=anim_17625
@@ -52429,7 +52429,7 @@ frame11=anim_17623
 [carpet_sit_down]
 replaceheldleft=hide
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 frame1=anim_17665
 frame2=anim_17666
 frame3=anim_17667
@@ -52496,7 +52496,7 @@ frame18=anim_17860
 [farming_useloom]
 replaceheldleft=hide
 replaceheldright=hide
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_8973
 frame2=anim_8976
 frame3=anim_8977
@@ -52521,7 +52521,7 @@ frame20=anim_8975
 [farming_trowel_dig]
 replaceheldleft=hide
 replaceheldright=trowel
-stretches=yes
+reachforward=yes
 loops=5
 frame1=anim_17833
 frame2=anim_17834
@@ -52532,7 +52532,7 @@ frame5=anim_17827
 [farming_trowel_digging]
 replaceheldleft=hide
 replaceheldright=gardening_trowel
-stretches=yes
+reachforward=yes
 frame1=anim_17825
 frame2=anim_17828
 frame3=anim_17829
@@ -52567,8 +52567,8 @@ replaceheldright=rake
 loops=8
 maxloops=3
 postanim_move=abortanim
-duplicatebehavior=reset
-stretches=yes
+duplicatebehaviour=reset
+reachforward=yes
 frame1=anim_17800
 delay1=5
 frame2=anim_17801
@@ -52589,7 +52589,7 @@ delay8=5
 [pruning_all]
 loops=16
 maxloops=3
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=secateurs
 frame1=anim_17780
@@ -52612,7 +52612,7 @@ frame16=anim_17787
 [pruning_mid_high]
 loops=11
 maxloops=3
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=secateurs
 frame1=anim_17780
@@ -52630,7 +52630,7 @@ frame11=anim_17787
 [pruning_mid_low]
 loops=11
 maxloops=3
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=secateurs
 frame1=anim_17780
@@ -52648,7 +52648,7 @@ frame11=anim_17787
 [pruning_high]
 loops=6
 maxloops=3
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=secateurs
 frame1=anim_17780
@@ -52661,7 +52661,7 @@ frame6=anim_17796
 [pruning_mid]
 loops=6
 maxloops=3
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=secateurs
 frame1=anim_17782
@@ -52674,7 +52674,7 @@ frame6=anim_17787
 [pruning_low]
 loops=6
 maxloops=3
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=secateurs
 frame1=anim_17796
@@ -52684,7 +52684,7 @@ frame4=anim_17799
 frame5=anim_17782
 
 [picking_high]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_17780
@@ -52701,7 +52701,7 @@ frame11=anim_17789
 frame12=anim_17790
 
 [picking_mid]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_17782
@@ -52718,7 +52718,7 @@ frame11=anim_17789
 frame12=anim_17790
 
 [picking_low]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_17796
@@ -52738,8 +52738,8 @@ frame12=anim_17790
 replaceheldright=bucket_empty
 replaceheldleft=hide
 priority=6
-stretches=yes
-duplicatebehavior=reset
+reachforward=yes
+duplicatebehaviour=reset
 frame1=anim_17765
 frame2=anim_17772
 frame3=anim_17773
@@ -52776,7 +52776,7 @@ frame31=anim_17772
 replaceheldright=keg_dwarven_stout_1
 replaceheldleft=hide
 priority=6
-stretches=yes
+reachforward=yes
 frame1=anim_17708
 frame2=anim_17712
 frame3=anim_17713
@@ -52805,7 +52805,7 @@ frame23=anim_17712
 replaceheldright=beer_glass
 replaceheldleft=hide
 priority=6
-stretches=yes
+reachforward=yes
 frame1=anim_17696
 frame2=anim_17700
 frame3=anim_17701
@@ -52834,7 +52834,7 @@ frame25=anim_17700
 
 [farming_turn_valve]
 priority=6
-stretches=yes
+reachforward=yes
 frame1=anim_17836
 frame2=anim_17839
 frame3=anim_17840
@@ -52860,7 +52860,7 @@ frame20=anim_17839
 replaceheldright=plantpot_empty
 replaceheldleft=hide
 priority=6
-stretches=yes
+reachforward=yes
 frame1=anim_17720
 frame2=anim_17721
 frame3=anim_17722
@@ -52890,7 +52890,7 @@ frame24=anim_17721
 replaceheldright=plant_cure
 replaceheldleft=hide
 priority=6
-stretches=yes
+reachforward=yes
 frame1=anim_17564
 frame2=anim_17574
 frame3=anim_17575
@@ -52977,7 +52977,7 @@ frame20=anim_17686
 frame21=anim_17687
 
 [farming_seed_dibbing]
-stretches=yes
+reachforward=yes
 replaceheldright=dibber
 replaceheldleft=hide
 priority=6
@@ -53015,7 +53015,7 @@ frame31=anim_17818
 frame32=anim_17817
 
 [farming_pick_mushroom]
-stretches=yes
+reachforward=yes
 frame1=anim_17740
 frame2=anim_17745
 frame3=anim_17746
@@ -53042,7 +53042,7 @@ frame23=anim_17746
 frame24=anim_17745
 
 [farming_watering]
-stretches=yes
+reachforward=yes
 replaceheldright=watering_can_8
 replaceheldleft=hide
 priority=6
@@ -53102,7 +53102,7 @@ frame25=anim_17919
 [farming_ingredient_sprinkle]
 replaceheldleft=hide
 priority=6
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_17728
 frame2=anim_17732
 frame3=anim_17733
@@ -53312,7 +53312,7 @@ delay10=2000
 [milkit]
 replaceheldright=bucket_empty
 replaceheldleft=milking_stool
-stretches=yes
+reachforward=yes
 frame1=anim_17991
 frame2=anim_17992
 frame3=anim_17993
@@ -53651,7 +53651,7 @@ frame8=anim_18112
 frame9=anim_18111
 
 [human_toadcannon_ready]
-stretches=yes
+reachforward=yes
 frame1=anim_18063
 delay1=6
 frame2=anim_18064
@@ -53662,7 +53662,7 @@ frame4=anim_18066
 delay4=21
 
 [human_toadcannon_walk_f]
-stretches=yes
+reachforward=yes
 frame1=anim_18079
 delay1=6
 frame2=anim_18080
@@ -53681,7 +53681,7 @@ frame8=anim_18086
 delay8=6
 
 [human_toadcannon_walk_b]
-stretches=yes
+reachforward=yes
 frame1=anim_18086
 delay1=6
 frame2=anim_18085
@@ -53700,7 +53700,7 @@ frame8=anim_18079
 delay8=6
 
 [human_toadcannon_walk_l]
-stretches=yes
+reachforward=yes
 frame1=anim_18087
 delay1=6
 frame2=anim_18088
@@ -53711,7 +53711,7 @@ frame4=anim_18090
 delay4=6
 
 [human_toadcannon_walk_r]
-stretches=yes
+reachforward=yes
 frame1=anim_18091
 delay1=6
 frame2=anim_18092
@@ -53722,7 +53722,7 @@ frame4=anim_18094
 delay4=6
 
 [human_toadcannon_turnonspot]
-stretches=yes
+reachforward=yes
 frame1=anim_18075
 delay1=11
 frame2=anim_18076
@@ -53733,7 +53733,7 @@ frame4=anim_18078
 delay4=11
 
 [human_toadcannon_running]
-stretches=yes
+reachforward=yes
 frame1=anim_18067
 delay1=5
 frame2=anim_18068
@@ -53752,7 +53752,7 @@ frame8=anim_18074
 delay8=4
 
 [human_toadcannon_attack]
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_18037
 frame2=anim_18038
@@ -53764,21 +53764,21 @@ frame7=anim_18043
 frame8=anim_18044
 
 [human_toadcannon_parry]
-stretches=yes
+reachforward=yes
 frame1=anim_18055
 frame2=anim_18056
 frame3=anim_18057
 frame4=anim_18058
 
 [human_toadcannon_prepare]
-stretches=yes
+reachforward=yes
 frame1=anim_18059
 frame2=anim_18060
 frame3=anim_18061
 frame4=anim_18062
 
 [human_toadcannon_fire]
-stretches=yes
+reachforward=yes
 frame1=anim_18045
 frame2=anim_18047
 frame3=anim_18048
@@ -54082,7 +54082,7 @@ delay2=26
 [human_sitting_drunk_ready]
 replaceheldleft=forget_cutscene_chair
 replaceheldright=forget_cutscene_beer
-stretches=yes
+reachforward=yes
 loops=10
 frame1=anim_18221
 delay1=26
@@ -54813,7 +54813,7 @@ frame14=anim_18596
 delay14=5
 
 [tbw_cleanup_player_hack]
-stretches=yes
+reachforward=yes
 loops=12
 maxloops=8
 priority=6
@@ -54833,7 +54833,7 @@ frame11=anim_18620
 frame12=anim_18621
 
 [tbw_cleanup_player_hack_stall]
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_18669
 frame2=anim_18672
@@ -55001,7 +55001,7 @@ delay13=5
 [tbw_cleanup_player_spider_on_stick]
 replaceheldright=village_spider_carcass
 replaceheldleft=tbw_skewer_stick
-stretches=yes
+reachforward=yes
 priority=6
 frame1=anim_18605
 frame2=anim_18610
@@ -55012,7 +55012,7 @@ frame5=anim_18613
 [human_use_insect_repellant]
 replaceheldright=insect_repellent
 priority=6
-stretches=yes
+reachforward=yes
 frame1=anim_1149
 frame2=anim_1436
 frame3=anim_1735
@@ -55756,7 +55756,7 @@ frame8=anim_19082
 
 [blast_furnace_conveyer_ore_fall]
 loops=1
-stretches=yes
+reachforward=yes
 frame1=anim_18904
 frame2=anim_18909
 frame3=anim_18910
@@ -55793,7 +55793,7 @@ frame8=anim_18901
 
 [blast_furnace_conveyer_belt_end]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_18889
 delay1=5
 frame2=anim_18890
@@ -55802,7 +55802,7 @@ frame4=anim_18892
 
 [blast_furnace_conveyer_cogs_end]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_18894
 delay1=3
 frame2=anim_18895
@@ -55882,7 +55882,7 @@ frame4=anim_19092
 
 [temp_gauge_flag_fuel_low_out]
 loops=2
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_19034
 frame2=anim_19044
 delay2=3
@@ -55921,7 +55921,7 @@ delay18=3
 
 [temp_gauge_flag_fuel_low_in]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_19043
 frame2=anim_19042
 delay2=3
@@ -55960,7 +55960,7 @@ delay18=3
 
 [temp_gauge_flag_pipe_broken_out]
 loops=2
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_19052
 frame2=anim_19062
 delay2=3
@@ -55999,7 +55999,7 @@ delay18=3
 
 [temp_gauge_flag_pipe_broken_in]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_19061
 frame2=anim_19060
 delay2=3
@@ -56050,7 +56050,7 @@ frame1=anim_19032
 [human_throw_bucket]
 replaceheldleft=hide
 replaceheldright=bucket_empty
-stretches=yes
+reachforward=yes
 frame1=anim_19101
 frame2=anim_19104
 frame3=anim_19105
@@ -56589,8 +56589,8 @@ frame8=anim_12118
 replaceheldright=supercompost_potion_4
 replaceheldleft=hide
 priority=6
-stretches=yes
-duplicatebehavior=reset
+reachforward=yes
+duplicatebehaviour=reset
 frame1=anim_17765
 frame2=anim_17772
 frame3=anim_17773
@@ -56624,7 +56624,7 @@ frame30=anim_17773
 frame31=anim_17772
 
 [garden_cut_shoot]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=secateurs
 frame1=anim_17780
@@ -56659,7 +56659,7 @@ frame8=anim_19270
 delay8=6
 
 [garden_statue_push]
-stretches=yes
+reachforward=yes
 replaceheldright=hide
 replaceheldleft=hide
 frame1=anim_19221
@@ -56687,7 +56687,7 @@ frame12=anim_19206
 frame13=anim_19205
 
 [garden_statue_push_for_cutscene]
-stretches=yes
+reachforward=yes
 replaceheldright=hide
 replaceheldleft=hide
 loops=8
@@ -56747,7 +56747,7 @@ frame1=anim_1517
 frame2=anim_1812
 
 [garden_picking]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_19199
@@ -56863,7 +56863,7 @@ frame11=anim_19304
 frame12=anim_19305
 
 [agility_shortcut_wall_jumpdown]
-stretches=yes
+reachforward=yes
 frame1=anim_19314
 frame2=anim_19321
 frame3=anim_19322
@@ -56877,7 +56877,7 @@ frame10=anim_19328
 
 [agility_shortcut_wall_jumpdown_static]
 loops=1
-stretches=yes
+reachforward=yes
 frame1=anim_19328
 
 [agility_shortcut_wall_jumpdown2]
@@ -56891,7 +56891,7 @@ frame7=anim_19319
 frame8=anim_19320
 
 [agilty_shortcut_enter_hole]
-stretches=yes
+reachforward=yes
 frame1=anim_19285
 frame2=anim_19290
 frame3=anim_19291
@@ -56911,7 +56911,7 @@ loops=1
 frame1=anim_19289
 
 [agilty_shortcut_exit_hole]
-stretches=yes
+reachforward=yes
 frame1=anim_19275
 frame2=anim_19277
 frame3=anim_19278
@@ -57369,7 +57369,7 @@ frame14=anim_19456
 frame15=anim_19457
 
 [thzarr_ring_chuck]
-stretches=yes
+reachforward=yes
 frame1=anim_19423
 frame2=anim_19428
 frame3=anim_19429
@@ -58341,7 +58341,7 @@ frame16=anim_20135
 delay16=4
 
 [dragon_pickaxe_anim]
-stretches=yes
+reachforward=yes
 priority=6
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 frame1=anim_20144
@@ -59199,7 +59199,7 @@ frame50=anim_20220
 delay50=10000
 
 [human_twocats_got_wood]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_20235
@@ -59219,7 +59219,7 @@ frame14=anim_20239
 frame15=anim_20235
 
 [human_twocats_ignite_wood]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=tinderbox
 frame1=anim_20235
@@ -59936,7 +59936,7 @@ frame16=anim_9379
 frame17=anim_9380
 
 [wanted_human_injured_cutscene]
-stretches=yes
+reachforward=yes
 frame1=anim_9734
 delay1=6
 frame2=anim_9735
@@ -60367,7 +60367,7 @@ frame10=anim_20816
 delay10=7
 
 [player_tickle]
-stretches=yes
+reachforward=yes
 frame1=anim_18030
 frame2=anim_18031
 frame3=anim_18032
@@ -60618,7 +60618,7 @@ frame11=anim_20999
 [vfx_doom_hole_idle_unique]
 replaceheldleft=hide
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 frame1=anim_20972
 frame2=anim_20973
 frame3=anim_20974
@@ -60627,7 +60627,7 @@ frame3=anim_20974
 replaceheldleft=hide
 replaceheldright=hide
 loops=5
-stretches=yes
+reachforward=yes
 frame1=anim_20975
 frame2=anim_20976
 frame3=anim_20977
@@ -60637,7 +60637,7 @@ frame5=anim_20975
 [seq_2757]
 replaceheldleft=hide
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 frame1=anim_20978
 frame2=anim_20979
 frame3=anim_20980
@@ -60645,7 +60645,7 @@ frame3=anim_20980
 [situps_getdown]
 replaceheldleft=hide
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 frame1=anim_20989
 frame2=anim_20990
 frame3=anim_20991
@@ -60656,7 +60656,7 @@ frame5=anim_20993
 replaceheldleft=hide
 replaceheldright=hide
 loops=5
-stretches=yes
+reachforward=yes
 frame1=anim_20993
 frame2=anim_20994
 frame3=anim_20995
@@ -60666,7 +60666,7 @@ frame5=anim_20993
 [situps_getup]
 replaceheldleft=hide
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 frame1=anim_20993
 frame2=anim_20992
 frame3=anim_20991
@@ -60737,7 +60737,7 @@ frame55=anim_20999
 [pushups_5]
 replaceheldleft=hide
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 preanim_move=delayanim
 postanim_move=delaymove
 frame1=anim_20972
@@ -60775,7 +60775,7 @@ frame31=anim_20980
 [situps_5]
 replaceheldleft=hide
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 preanim_move=delayanim
 postanim_move=delaymove
 frame1=anim_20989
@@ -60817,7 +60817,7 @@ frame35=anim_20989
 [run_on_spot]
 replaceheldleft=hide
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 preanim_move=delayanim
 postanim_move=delaymove
 frame1=anim_20981
@@ -61559,7 +61559,7 @@ loops=5
 maxloops=14
 replaceheldright=hide
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 postanim_move=abortanim
 frame1=anim_21198
 frame2=anim_21200
@@ -61577,7 +61577,7 @@ loops=5
 maxloops=26
 replaceheldright=hide
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 postanim_move=abortanim
 frame1=anim_21198
 frame2=anim_21200
@@ -61595,7 +61595,7 @@ loops=5
 maxloops=34
 replaceheldright=hide
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 postanim_move=abortanim
 frame1=anim_21198
 frame2=anim_21200
@@ -62043,7 +62043,7 @@ frame15=anim_2472
 [deal_bowl_fish]
 replaceheldright=fishbowl_net
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_21117
 frame2=anim_21122
 frame3=anim_21123
@@ -62648,7 +62648,7 @@ priority=0
 loops=6
 maxloops=4
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_2020
 frame2=anim_2321
 frame3=anim_599
@@ -63075,7 +63075,7 @@ frame7=anim_21926
 frame8=anim_21927
 
 [dragon_smallaxe_anim]
-stretches=yes
+reachforward=yes
 priority=6
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 frame1=anim_21991
@@ -63417,7 +63417,7 @@ frame23=anim_22088
 frame24=anim_22089
 
 [dark_spec_player]
-stretches=yes
+reachforward=yes
 frame1=anim_22009
 frame2=anim_22020
 frame3=anim_22026
@@ -63890,7 +63890,7 @@ delay12=7
 [elid_climb_rope]
 loops=8
 maxloops=5
-stretches=yes
+reachforward=yes
 replaceheldright=hide
 replaceheldleft=hide
 frame1=anim_22330
@@ -63903,7 +63903,7 @@ frame7=anim_22336
 frame8=anim_22337
 
 [elid_rope_lasso]
-stretches=yes
+reachforward=yes
 replaceheldright=rope
 replaceheldleft=hide
 frame1=anim_22401
@@ -65619,7 +65619,7 @@ frame25=anim_23037
 frame26=anim_23036
 
 [human_ball_attack]
-stretches=yes
+reachforward=yes
 replaceheldright=ball_gnomeball_game
 priority=6
 frame1=anim_23079
@@ -65633,7 +65633,7 @@ frame8=anim_23087
 frame9=anim_23080
 
 [human_ball_kick_attack]
-stretches=yes
+reachforward=yes
 replaceheldright=ball_gnomeball_game
 priority=6
 frame1=anim_23094
@@ -65645,7 +65645,7 @@ frame6=anim_23099
 frame7=anim_23100
 
 [human_ball_defend]
-stretches=yes
+reachforward=yes
 replaceheldright=ball_gnomeball_game
 priority=6
 frame1=anim_23088
@@ -65847,7 +65847,7 @@ frame49=anim_23246
 frame50=anim_23247
 
 [vetion_talk]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_23233
@@ -66556,7 +66556,7 @@ delay32=200
 [human_magictraining_open_cupboard]
 replaceheldright=hide
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_23563
 frame2=anim_23564
 frame3=anim_23565
@@ -67114,7 +67114,7 @@ frame15=anim_23893
 frame16=anim_23894
 
 [agility_pyramid_top_climb]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_23869
@@ -67138,7 +67138,7 @@ frame18=anim_23871
 frame19=anim_23869
 
 [agility_pyramid_tilt_fall]
-stretches=yes
+reachforward=yes
 frame1=anim_23903
 frame2=anim_23905
 frame3=anim_23906
@@ -67159,7 +67159,7 @@ frame17=anim_23912
 frame18=anim_23904
 
 [agility_pyramid_block_push_1]
-stretches=yes
+reachforward=yes
 frame1=anim_23757
 delay1=2
 frame2=anim_23766
@@ -67186,7 +67186,7 @@ frame15=anim_23764
 frame16=anim_23765
 
 [agility_pyramid_block_push_2]
-stretches=yes
+reachforward=yes
 frame1=anim_23757
 delay1=3
 frame2=anim_23766
@@ -67232,7 +67232,7 @@ frame23=anim_23764
 frame24=anim_23765
 
 [agility_pyramid_gap_jump]
-stretches=yes
+reachforward=yes
 frame1=anim_23774
 frame2=anim_23780
 frame3=anim_23781
@@ -67250,7 +67250,7 @@ frame14=anim_23777
 frame15=anim_23779
 
 [agility_pyramid_gap_jump_fall]
-stretches=yes
+reachforward=yes
 loops=1
 frame1=anim_23788
 frame2=anim_23799
@@ -67338,7 +67338,7 @@ frame11=anim_23748
 [human_dwarf_recieve]
 replaceheldright=hide
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_23926
 frame2=anim_23932
 frame3=anim_23933
@@ -67828,7 +67828,7 @@ frame16=anim_24001
 delay16=6
 
 [enakh_fall_hole]
-stretches=yes
+reachforward=yes
 frame1=anim_23961
 frame2=anim_23965
 frame3=anim_23966
@@ -67961,7 +67961,7 @@ frame23=anim_24085
 frame24=anim_24086
 
 [enakh_player_chisel]
-stretches=yes
+reachforward=yes
 replaceheldright=enakh_chisel
 frame1=anim_23940
 frame2=anim_23943
@@ -68000,7 +68000,7 @@ frame34=anim_23943
 frame35=anim_23940
 
 [enakh_player_get_up]
-stretches=yes
+reachforward=yes
 frame1=anim_23973
 frame2=anim_23984
 frame3=anim_23985
@@ -68258,7 +68258,7 @@ frame1=anim_24652
 [vampireslayer_give_beer]
 replaceheldright=hide
 replaceheldleft=beer
-stretches=yes
+reachforward=yes
 frame1=anim_24615
 frame2=anim_24616
 frame3=anim_24617
@@ -68499,7 +68499,7 @@ frame17=anim_24542
 delay17=5
 
 [fever_player_rope_swing_start]
-stretches=yes
+reachforward=yes
 frame1=anim_24452
 frame2=anim_24461
 frame3=anim_24462
@@ -68519,7 +68519,7 @@ frame10=anim_24465
 frame11=anim_24464
 
 [fever_player_rope_swing_land_success]
-stretches=yes
+reachforward=yes
 frame1=anim_24452
 frame2=anim_24461
 frame3=anim_24462
@@ -68539,7 +68539,7 @@ frame16=anim_24459
 frame17=anim_24460
 
 [fever_player_rope_swing_land_fail]
-stretches=yes
+reachforward=yes
 frame1=anim_24452
 frame2=anim_24461
 frame3=anim_24462
@@ -68597,7 +68597,7 @@ frame27=anim_24476
 [fever_load_cannon1_cannister]
 replaceheldleft=fever_cannister_load
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 frame1=anim_24416
 frame2=anim_24424
 frame3=anim_24425
@@ -68611,7 +68611,7 @@ frame9=anim_24431
 [fever_load_cannon1]
 replaceheldleft=fever_cannon_ball
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 frame1=anim_24416
 frame2=anim_24424
 frame3=anim_24425
@@ -68636,7 +68636,7 @@ frame7=anim_24423
 [fever_prod_cannon1]
 replaceheldleft=fever_cannon_prod
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 frame1=anim_24442
 frame2=anim_24444
 frame3=anim_24445
@@ -68716,7 +68716,7 @@ replaceheldleft=hide
 replaceheldright=readbook_dummy
 priority=0
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_24653
 frame2=anim_24654
 frame3=anim_24655
@@ -68734,7 +68734,7 @@ replaceheldleft=hide
 replaceheldright=readbook_dummy
 priority=0
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_24657
 frame2=anim_24656
 frame3=anim_24655
@@ -68752,7 +68752,7 @@ replaceheldleft=hide
 replaceheldright=readbook_dummy2
 priority=0
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_24653
 frame2=anim_24654
 frame3=anim_24655
@@ -68770,7 +68770,7 @@ replaceheldleft=hide
 replaceheldright=readbook_dummy2
 priority=0
 postanim_move=abortanim
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_24657
 frame2=anim_24656
 frame3=anim_24655
@@ -69399,7 +69399,7 @@ frame5=anim_25029
 frame6=anim_25030
 
 [spit_anim]
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_25031
 delay1=5
 frame2=anim_25038
@@ -69422,8 +69422,8 @@ frame18=anim_25037
 frame19=anim_25037
 
 [spit_anim_player]
-stretches=yes
-duplicatebehavior=reset
+reachforward=yes
+duplicatebehaviour=reset
 frame1=anim_25046
 frame2=anim_25054
 frame3=anim_25055
@@ -69445,7 +69445,7 @@ frame18=anim_25054
 frame19=anim_25046
 
 [spit_end_anim_player]
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_25062
 frame2=anim_25070
 frame3=anim_25071
@@ -71750,7 +71750,7 @@ frame10=anim_26010
 frame11=anim_26011
 
 [human_canoeing_carve_rune_axe]
-stretches=yes
+reachforward=yes
 replaceheldleft=rune_axe
 replaceheldright=hide
 frame1=anim_25945
@@ -71779,7 +71779,7 @@ frame23=anim_25960
 frame24=anim_25961
 
 [human_canoeing_carve_adamant_axe]
-stretches=yes
+reachforward=yes
 replaceheldleft=adamant_axe
 replaceheldright=hide
 frame1=anim_25945
@@ -71808,7 +71808,7 @@ frame23=anim_25960
 frame24=anim_25961
 
 [human_canoeing_carve_mithril_axe]
-stretches=yes
+reachforward=yes
 replaceheldleft=mithril_axe
 replaceheldright=hide
 frame1=anim_25945
@@ -71837,7 +71837,7 @@ frame23=anim_25960
 frame24=anim_25961
 
 [human_canoeing_carve_black_axe]
-stretches=yes
+reachforward=yes
 replaceheldleft=black_axe
 replaceheldright=hide
 frame1=anim_25945
@@ -71866,7 +71866,7 @@ frame23=anim_25960
 frame24=anim_25961
 
 [human_canoeing_carve_steel_axe]
-stretches=yes
+reachforward=yes
 replaceheldleft=steel_axe
 replaceheldright=hide
 frame1=anim_25945
@@ -71895,7 +71895,7 @@ frame23=anim_25960
 frame24=anim_25961
 
 [human_canoeing_carve_iron_axe]
-stretches=yes
+reachforward=yes
 replaceheldleft=iron_axe
 replaceheldright=hide
 frame1=anim_25945
@@ -71924,7 +71924,7 @@ frame23=anim_25960
 frame24=anim_25961
 
 [human_canoeing_carve_bronze_axe]
-stretches=yes
+reachforward=yes
 replaceheldleft=bronze_axe
 replaceheldright=hide
 frame1=anim_25945
@@ -71953,7 +71953,7 @@ frame23=anim_25960
 frame24=anim_25961
 
 [human_canoeing_carve_dragon_axe]
-stretches=yes
+reachforward=yes
 replaceheldleft=dragon_axe
 replaceheldright=hide
 frame1=anim_25945
@@ -71982,7 +71982,7 @@ frame23=anim_25960
 frame24=anim_25961
 
 [abyssal_bludgeon_walk]
-stretches=yes
+reachforward=yes
 replaceheldleft=rune_axe
 replaceheldright=hide
 frame1=anim_25929
@@ -72003,7 +72003,7 @@ frame15=anim_25935
 frame16=anim_25936
 
 [abyssal_dagger_hack]
-stretches=yes
+reachforward=yes
 replaceheldleft=adamant_axe
 replaceheldright=hide
 frame1=anim_25929
@@ -72024,7 +72024,7 @@ frame15=anim_25935
 frame16=anim_25936
 
 [abyssal_dagger_block]
-stretches=yes
+reachforward=yes
 replaceheldleft=mithril_axe
 replaceheldright=hide
 frame1=anim_25929
@@ -72045,7 +72045,7 @@ frame15=anim_25935
 frame16=anim_25936
 
 [abyssal_dagger_idle]
-stretches=yes
+reachforward=yes
 replaceheldleft=black_axe
 replaceheldright=hide
 frame1=anim_25929
@@ -72066,7 +72066,7 @@ frame15=anim_25935
 frame16=anim_25936
 
 [abyssal_dagger_lunge]
-stretches=yes
+reachforward=yes
 replaceheldleft=steel_axe
 replaceheldright=hide
 frame1=anim_25929
@@ -72087,7 +72087,7 @@ frame15=anim_25935
 frame16=anim_25936
 
 [abyssal_bludgeon_crush]
-stretches=yes
+reachforward=yes
 replaceheldleft=iron_axe
 replaceheldright=hide
 frame1=anim_25929
@@ -72108,7 +72108,7 @@ frame15=anim_25935
 frame16=anim_25936
 
 [abyssal_bludgeon_special_attack]
-stretches=yes
+reachforward=yes
 replaceheldleft=bronze_axe
 replaceheldright=hide
 frame1=anim_25929
@@ -72129,7 +72129,7 @@ frame15=anim_25935
 frame16=anim_25936
 
 [abyssal_dagger_special]
-stretches=yes
+reachforward=yes
 replaceheldleft=dragon_axe
 replaceheldright=hide
 frame1=anim_25929
@@ -72150,7 +72150,7 @@ frame15=anim_25935
 frame16=anim_25936
 
 [canoeing_pushing_into_water]
-stretches=yes
+reachforward=yes
 frame1=anim_25969
 frame2=anim_25977
 frame3=anim_25978
@@ -72934,7 +72934,7 @@ frame8=anim_26621
 delay8=6
 
 [human_fungicide_pick_zygomite]
-stretches=yes
+reachforward=yes
 replaceheldright=hide
 frame1=anim_26571
 frame2=anim_26577
@@ -72981,7 +72981,7 @@ frame24=anim_26554
 [pruning_all_fairy]
 loops=16
 maxloops=3
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=fairy_enchanted_secateurs
 frame1=anim_17780
@@ -73004,7 +73004,7 @@ frame16=anim_17787
 [pruning_mid_high_fairy]
 loops=11
 maxloops=3
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=fairy_enchanted_secateurs
 frame1=anim_17780
@@ -73022,7 +73022,7 @@ frame11=anim_17787
 [pruning_mid_low_fairy]
 loops=11
 maxloops=3
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=fairy_enchanted_secateurs
 frame1=anim_17780
@@ -73040,7 +73040,7 @@ frame11=anim_17787
 [pruning_high_fairy]
 loops=6
 maxloops=3
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=fairy_enchanted_secateurs
 frame1=anim_17780
@@ -73053,7 +73053,7 @@ frame6=anim_17796
 [pruning_mid_fairy]
 loops=6
 maxloops=3
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=fairy_enchanted_secateurs
 frame1=anim_17782
@@ -73066,7 +73066,7 @@ frame6=anim_17787
 [pruning_low_fairy]
 loops=6
 maxloops=3
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=fairy_enchanted_secateurs
 frame1=anim_17796
@@ -73233,7 +73233,7 @@ frame31=anim_29209
 frame32=anim_29210
 
 [brulee_cooking]
-stretches=yes
+reachforward=yes
 replaceheldright=chickenquest_brulee_mixture_cinamon
 frame1=anim_28061
 frame2=anim_28072
@@ -74325,7 +74325,7 @@ delay1=7
 [100_goblin_fall_from_wall]
 loops=2
 maxloops=20
-stretches=yes
+reachforward=yes
 frame1=anim_28284
 frame2=anim_28295
 frame3=anim_28305
@@ -76144,7 +76144,7 @@ frame23=anim_29302
 frame24=anim_29303
 
 [100_ilm_stepping_stone_jump]
-stretches=yes
+reachforward=yes
 frame1=anim_29468
 frame2=anim_29479
 frame3=anim_29480
@@ -76166,7 +76166,7 @@ frame18=anim_29477
 frame19=anim_29478
 
 [100_ilm_stepping_stone_jump_test]
-stretches=yes
+reachforward=yes
 frame1=anim_29468
 frame2=anim_29468
 frame3=anim_29479
@@ -76207,7 +76207,7 @@ frame37=anim_29478
 frame38=anim_29478
 
 [100_ilm_monkeybar_jump_up]
-stretches=yes
+reachforward=yes
 frame1=anim_29452
 frame2=anim_29460
 frame3=anim_29461
@@ -76301,7 +76301,7 @@ frame14=anim_29405
 frame15=anim_29405
 
 [100_ilm_climb_tree]
-stretches=yes
+reachforward=yes
 frame1=anim_29406
 frame2=anim_29417
 frame3=anim_29421
@@ -76346,7 +76346,7 @@ frame16=anim_29494
 frame17=anim_29495
 
 [100_ilm_stepping_stone_fail]
-stretches=yes
+reachforward=yes
 frame1=anim_29339
 frame2=anim_29344
 frame3=anim_29345
@@ -76402,7 +76402,7 @@ frame6=anim_29357
 delay6=4
 
 [100_ilm_climb_tree_fail]
-stretches=yes
+reachforward=yes
 frame1=anim_29406
 frame2=anim_29417
 frame3=anim_29421
@@ -78326,7 +78326,7 @@ frame33=anim_29744
 delay33=20001
 
 [burgh_human_holding_cast]
-stretches=yes
+reachforward=yes
 frame1=anim_29800
 frame2=anim_29811
 frame3=anim_29817
@@ -78352,7 +78352,7 @@ frame22=anim_29814
 frame23=anim_29815
 
 [burgh_holding_cast_spot]
-stretches=yes
+reachforward=yes
 frame1=anim_29947
 frame2=anim_29958
 frame3=anim_29964
@@ -78718,7 +78718,7 @@ delay6=2001
 [burgh_pot_scoop]
 replaceheldright=pot_empty
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_29855
 frame2=anim_29858
 frame3=anim_29859
@@ -78859,7 +78859,7 @@ frame14=anim_30078
 frame15=anim_30075
 
 [qip_cook_hopper_leaver]
-stretches=yes
+reachforward=yes
 frame1=anim_30102
 frame2=anim_30105
 frame3=anim_30106
@@ -80473,7 +80473,7 @@ frame25=anim_30405
 [human_use_armour_repair_stand]
 replaceheldright=hide
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_26020
 frame2=anim_26028
 frame3=anim_26029
@@ -81051,7 +81051,7 @@ frame8=anim_26429
 loops=9
 replaceheldright=hide
 replaceheldleft=hide
-duplicatebehavior=reset
+duplicatebehaviour=reset
 frame1=anim_30522
 frame2=anim_30524
 frame3=anim_30525
@@ -81077,7 +81077,7 @@ frame21=anim_29286
 [human_light_torch]
 replaceheldright=tinderbox
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_26322
 frame2=anim_26323
 frame3=anim_26324
@@ -81145,7 +81145,7 @@ frame13=anim_26313
 [human_picklock_chest]
 replaceheldright=hide
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_26342
 frame2=anim_26343
 frame3=anim_26344
@@ -81173,7 +81173,7 @@ frame23=anim_26342
 [human_picklock_cagedoor]
 replaceheldright=hide
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_26330
 frame2=anim_26331
 frame3=anim_26332
@@ -81201,7 +81201,7 @@ frame23=anim_26330
 [human_forcelock_cagedoor]
 replaceheldright=hide
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_26297
 frame2=anim_26298
 frame3=anim_26299
@@ -81229,7 +81229,7 @@ frame23=anim_26297
 [human_picklock_cagedoor_inwater]
 replaceheldright=hide
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_26336
 frame2=anim_26337
 frame3=anim_26338
@@ -81257,7 +81257,7 @@ frame23=anim_26336
 [human_forcelock_cagedoor_inwater]
 replaceheldright=hide
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_26303
 frame2=anim_26304
 frame3=anim_26305
@@ -81285,7 +81285,7 @@ frame23=anim_26303
 [human_use_pizzaoven]
 replaceheldright=hide
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_26137
 frame2=anim_26138
 frame3=anim_26139
@@ -81313,7 +81313,7 @@ frame23=anim_26137
 [human_use_toolrack]
 replaceheldright=hide
 replaceheldleft=hide
-stretches=yes
+reachforward=yes
 frame1=anim_26190
 
 [sawmill_saw]
@@ -81369,7 +81369,7 @@ frame13=anim_27934
 
 [human_rub_fairy_house]
 replaceheldright=hide
-stretches=yes
+reachforward=yes
 frame1=anim_26414
 frame2=anim_26415
 frame3=anim_26416
@@ -81995,7 +81995,7 @@ frame17=anim_30907
 
 [templetrek_bog_prodding]
 replaceheldright=templetrek_swamptree_branch
-stretches=yes
+reachforward=yes
 frame1=anim_31000
 frame2=anim_31006
 frame3=anim_31007
@@ -82071,7 +82071,7 @@ frame1=anim_29620
 delay1=11
 
 [templetrek_rope_lasso]
-stretches=yes
+reachforward=yes
 replaceheldright=templetrek_long_vine
 replaceheldleft=hide
 frame1=anim_22401
@@ -82129,7 +82129,7 @@ frame26=anim_30992
 frame27=anim_30990
 
 [human_trek_bridge_repair_axe]
-stretches=yes
+reachforward=yes
 frame1=anim_1728
 frame2=anim_2028
 frame3=anim_2332
@@ -82272,7 +82272,7 @@ frame1=anim_30622
 
 [templetrek_trip_anim_route_all_trip_1]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30622
 frame2=anim_30623
 frame3=anim_30624
@@ -82290,7 +82290,7 @@ frame14=anim_30630
 
 [templetrek_trip_anim_route_1_and_2_trip_2]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30813
 frame2=anim_30820
 frame3=anim_30821
@@ -82314,7 +82314,7 @@ frame20=anim_30819
 
 [templetrek_trip_anim_route_1_and_2_trip_3]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30804
 frame2=anim_30805
 frame3=anim_30806
@@ -82332,7 +82332,7 @@ frame14=anim_30812
 
 [templetrek_trip_anim_route_1_trip_4]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30649
 frame2=anim_30650
 frame3=anim_30651
@@ -82350,7 +82350,7 @@ frame14=anim_30657
 
 [templetrek_trip_anim_route_1_trip_5]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30640
 frame2=anim_30641
 frame3=anim_30642
@@ -82368,7 +82368,7 @@ frame14=anim_30648
 
 [templetrek_trip_anim_route_1_trip_6]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30676
 frame2=anim_30679
 frame3=anim_30680
@@ -82388,7 +82388,7 @@ frame16=anim_30678
 
 [templetrek_trip_anim_route_1_trip_7]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30667
 frame2=anim_30668
 frame3=anim_30669
@@ -82406,7 +82406,7 @@ frame14=anim_30675
 
 [templetrek_trip_anim_route_1_trip_8]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30631
 frame2=anim_30632
 frame3=anim_30633
@@ -82424,7 +82424,7 @@ frame14=anim_30639
 
 [templetrek_trip_anim_route_1_trip_9]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30658
 frame2=anim_30659
 frame3=anim_30660
@@ -82442,7 +82442,7 @@ frame14=anim_30666
 
 [templetrek_trip_anim_route_1_trip_10]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30687
 frame2=anim_30688
 frame3=anim_30689
@@ -82458,7 +82458,7 @@ frame12=anim_30693
 
 [templetrek_trip_anim_route_1_and_2_trip_11]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30795
 frame2=anim_30796
 delay2=5
@@ -82489,7 +82489,7 @@ delay14=5
 
 [templetrek_trip_anim_route_2_trip_4]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30704
 frame2=anim_30705
 frame3=anim_30706
@@ -82503,7 +82503,7 @@ frame10=anim_30708
 
 [templetrek_trip_anim_route_2_trip_5]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30699
 frame2=anim_30700
 frame3=anim_30701
@@ -82517,7 +82517,7 @@ frame10=anim_30703
 
 [templetrek_trip_anim_route_2_trip_6]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30719
 frame2=anim_30720
 frame3=anim_30721
@@ -82531,7 +82531,7 @@ frame10=anim_30723
 
 [templetrek_trip_anim_route_2_trip_7]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30714
 frame2=anim_30715
 frame3=anim_30716
@@ -82545,7 +82545,7 @@ frame10=anim_30718
 
 [templetrek_trip_anim_route_2_trip_8]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30694
 frame2=anim_30695
 frame3=anim_30696
@@ -82559,7 +82559,7 @@ frame10=anim_30698
 
 [templetrek_trip_anim_route_2_trip_9]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30709
 frame2=anim_30710
 frame3=anim_30711
@@ -82573,7 +82573,7 @@ frame10=anim_30713
 
 [templetrek_trip_anim_route_2_trip_10]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30724
 frame2=anim_30725
 frame3=anim_30726
@@ -82586,7 +82586,7 @@ frame9=anim_30728
 
 [templetrek_trip_anim_route_3_trip_2]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30782
 frame2=anim_30787
 frame3=anim_30788
@@ -82607,7 +82607,7 @@ frame17=anim_30786
 
 [templetrek_trip_anim_route_3_trip_3]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30773
 frame2=anim_30774
 frame3=anim_30775
@@ -82625,7 +82625,7 @@ frame14=anim_30781
 
 [templetrek_trip_anim_route_3_trip_4]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30748
 frame2=anim_30749
 frame3=anim_30750
@@ -82639,7 +82639,7 @@ frame10=anim_30752
 
 [templetrek_trip_anim_route_3_trip_5]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30743
 frame2=anim_30744
 frame3=anim_30745
@@ -82653,7 +82653,7 @@ frame10=anim_30747
 
 [templetrek_trip_anim_route_3_trip_6]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30763
 frame2=anim_30764
 frame3=anim_30765
@@ -82667,7 +82667,7 @@ frame10=anim_30767
 
 [templetrek_trip_anim_route_3_trip_7]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30758
 frame2=anim_30759
 frame3=anim_30760
@@ -82681,7 +82681,7 @@ frame10=anim_30762
 
 [templetrek_trip_anim_route_3_trip_8]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30729
 frame2=anim_30730
 frame3=anim_30731
@@ -82695,7 +82695,7 @@ frame10=anim_30733
 
 [templetrek_trip_anim_route_3_trip_9]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30753
 frame2=anim_30754
 frame3=anim_30755
@@ -82709,7 +82709,7 @@ frame10=anim_30757
 
 [templetrek_trip_anim_route_3_trip_10]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30768
 frame2=anim_30769
 frame3=anim_30770
@@ -82723,7 +82723,7 @@ frame10=anim_30772
 
 [templetrek_trip_anim_route_3_trip_11]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30734
 frame2=anim_30735
 delay2=5
@@ -82754,7 +82754,7 @@ delay14=5
 
 [templetrek_exclaimation_mark]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30828
 frame2=anim_30829
 delay2=2
@@ -82775,127 +82775,127 @@ delay9=21
 
 [templetrek_trip_all_start_2]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30630
 
 [templetrek_trip_route_1_and_2_start_3]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30819
 
 [templetrek_trip_route_1_and_2_start_4]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30812
 
 [templetrek_trip_route_1_start_5]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30657
 
 [templetrek_trip_route_1_start_6]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30648
 
 [templetrek_trip_route_1_start_7]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30678
 
 [templetrek_trip_route_1_start_8]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30675
 
 [templetrek_trip_route_1_start_9]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30639
 
 [templetrek_trip_route_1_start_10]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30666
 
 [templetrek_trip_anim_route_1_and_2_start_11]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30795
 
 [templetrek_trip_route_2_start_5]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30708
 
 [templetrek_trip_route_2_start_6]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30703
 
 [templetrek_trip_route_2_start_7]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30723
 
 [templetrek_trip_route_2_start_8]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30718
 
 [templetrek_trip_route_2_start_9]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30698
 
 [templetrek_trip_route_2_start_10]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30713
 
 [templetrek_trip_route_3_start_2]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30786
 
 [templetrek_trip_route_3_start_3]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30781
 
 [templetrek_trip_route_3_start_4]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30752
 
 [templetrek_trip_route_3_start_5]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30747
 
 [templetrek_trip_route_3_start_6]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30767
 
 [templetrek_trip_route_3_start_7]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30762
 
 [templetrek_trip_route_3_start_8]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30733
 
 [templetrek_trip_route_3_start_9]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30757
 
 [templetrek_trip_route_3_start_10]
 loops=1
-duplicatebehavior=0
+duplicatebehaviour=0
 frame1=anim_30772
 
 [seq_3803]
@@ -82976,7 +82976,7 @@ frame59=anim_31472
 frame60=anim_31473
 
 [anger_special_spot1]
-stretches=yes
+reachforward=yes
 frame1=anim_31407
 delay1=240
 frame2=anim_31418
@@ -83022,7 +83022,7 @@ frame41=anim_31442
 frame42=anim_31443
 
 [player_jumphole]
-stretches=yes
+reachforward=yes
 frame1=anim_31508
 frame2=anim_31516
 frame3=anim_31517
@@ -83042,7 +83042,7 @@ frame16=anim_31515
 delay16=2000
 
 [wake_up]
-stretches=yes
+reachforward=yes
 frame1=anim_31524
 frame2=anim_31535
 frame3=anim_31538
@@ -83641,7 +83641,7 @@ frame2=anim_31555
 frame3=anim_31556
 
 [climb_down_soul]
-stretches=yes
+reachforward=yes
 frame1=anim_31481
 frame2=anim_31492
 frame3=anim_31501
@@ -83671,7 +83671,7 @@ frame26=anim_31499
 delay26=20000
 
 [human_play_wwf_amur_leopard]
-stretches=yes
+reachforward=yes
 frame1=anim_31481
 frame2=anim_31492
 frame3=anim_31501
@@ -84272,7 +84272,7 @@ frame28=anim_32059
 delay28=6
 
 [seq_3857]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_31937
@@ -84334,7 +84334,7 @@ frame56=anim_31988
 delay56=200
 
 [seq_3858]
-stretches=yes
+reachforward=yes
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_31937
@@ -84396,7 +84396,7 @@ frame56=anim_31988
 delay56=200
 
 [seq_3859]
-stretches=yes
+reachforward=yes
 frame1=anim_32259
 frame2=anim_32270
 frame3=anim_32281
@@ -87261,7 +87261,7 @@ frame22=anim_33546
 frame23=anim_33545
 
 [swan_pot_open]
-stretches=yes
+reachforward=yes
 frame1=anim_33553
 frame2=anim_33560
 frame3=anim_33561

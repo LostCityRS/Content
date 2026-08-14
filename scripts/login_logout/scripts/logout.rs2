@@ -1,4 +1,4 @@
-[logout,_]()(boolean)
+[logout,_]
 ~set_pk_skull_logout;
 ~set_antifire_logout; // TODO: should be timer
 ~follower_logout;
@@ -6,7 +6,6 @@
 ~macro_event_logout;
 ~castlewars_logout;
 %last_logout = map_clock;
-return (true);
 
 [if_button,logout:try_logout]
 if_close;

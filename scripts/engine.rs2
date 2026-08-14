@@ -326,8 +326,8 @@
 [command,damage](player_uid $uid, int $type, int $amount)
 // info: Hurt the secondary player
 [command,.damage](player_uid $uid, int $type, int $amount)
-// info: internal- set which buttons can re-trigger the suspended script
-[command,if_setresumebuttons](component $component1, component $component2, component $component3, component $component4, component $component5)
+// info: internal- set which buttons can re-trigger a script suspended with p_pausebutton
+[command,if_addresumebutton](component $button)
 // info: Choose a text string based on the player's gender
 [command,text_gender](string $male_text, string $female_text)(string)
 // info: Choose a text string based on the secondary player's gender
@@ -335,9 +335,9 @@
 // info: Play a song
 [command,midi_song](midi $song)
 // info: Play a jingle (advancing levels, completing quests, ...)
-[command,midi_jingle](midi $jingle, int $length)
+[command,midi_jingle](midi $jingle)
 // info: Play a jingle for the secondary player (advancing levels, completing quests, ...)
-[command,.midi_jingle](midi $jingle, int $length)
+[command,.midi_jingle](midi $jingle)
 // info: Change the active_player type of minimap displayed
 [command,minimap_toggle](int $type)
 // info: Change the secondary active_player type of minimap displayed
@@ -496,8 +496,8 @@
 [command,both_heropoints](int $damage)
 // info: Set the player's gender
 [command,setgender](int $gender)
-// info: Set the player's skin
-[command,setskincolour](int $skin_colour)
+// info: Set the player's identity kit color based on slot
+[command,setidkcolour](int $slot, int $colour)
 // info: Requires protected access - allow or deny animations to be played
 [command,p_animprotect](int $toggle)
 // info: Requires protected access - allow or deny animations to be played on the secondary pointer

@@ -158,4 +158,4 @@ if(npc_finduid($uid) = true) {
 [proc,complete_task]
 // https://youtu.be/xq8oz9of6Ck?si=WgGJ5L-rC1sCCh2F&t=66
 mes("You've completed your task; return to a Slayer master.");
-midi_jingle("advance slayer", ^advance_slayer_millis);
+midi_jingle("advance slayer");

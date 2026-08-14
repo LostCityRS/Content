@@ -899,7 +899,7 @@ if($resigned = true) {
 
 if (.%boardgames_closemode = ^boardgames_draw) {
     .if_settext(boardgames_draughts_view:winner, "It's a draw!");
-    .midi_jingle("boardgames draw", ^boardgames_draw_jingle_millis);
+    .midi_jingle("boardgames draw");
     if (.%boardgames_closereason = ^draughts_timeout) {
         .if_settext(boardgames_draughts_view:status1, "Nothing happened for 40 moves.");
     } else {
@@ -909,7 +909,7 @@ if (.%boardgames_closemode = ^boardgames_draw) {
     .if_settext(boardgames_draughts_view:status2, "");
 } else if (.%boardgames_closemode = ^boardgames_win) {
     .if_settext(boardgames_draughts_view:winner, "You Win!");
-    .midi_jingle("boardgames victory", ^boardgames_victory_jingle_millis);
+    .midi_jingle("boardgames victory");
     if (.%boardgames_closereason = ^draughts_normal_end) {
         .if_settext(boardgames_draughts_view:status1, "Player took all pieces!");
     } else {
@@ -923,7 +923,7 @@ if (.%boardgames_closemode = ^boardgames_draw) {
     }
 } else if (.%boardgames_closemode = ^boardgames_loss) {
     .if_settext(boardgames_draughts_view:winner, "You lose!");
-    .midi_jingle("boardgames defeat", ^boardgames_defeat_jingle_millis);
+    .midi_jingle("boardgames defeat");
     if (.%boardgames_closereason = ^draughts_normal_end) {
         .if_settext(boardgames_draughts_view:status1, "Player took all pieces!");
     } else {
@@ -951,7 +951,7 @@ anim(null, 0);
 ~setup_draughts_view($p1_rank, $p2_rank);
 
 if (%boardgames_closemode = ^boardgames_draw) {
-    midi_jingle("boardgames draw", ^boardgames_draw_jingle_millis);
+    midi_jingle("boardgames draw");
     if_settext(boardgames_draughts_view:winner, "It's a draw!");
     if (%boardgames_closereason = ^draughts_timeout) {
         if_settext(boardgames_draughts_view:status1, "Nothing happened for 40 moves.");
@@ -960,7 +960,7 @@ if (%boardgames_closemode = ^boardgames_draw) {
     }
     if_settext(boardgames_draughts_view:status2, "");
 } else if (%boardgames_closemode = ^boardgames_win) {
-    midi_jingle("boardgames victory", ^boardgames_victory_jingle_millis);
+    midi_jingle("boardgames victory");
     if_settext(boardgames_draughts_view:winner, "You win!");
     if (%boardgames_closereason = ^draughts_normal_end) {
         if_settext(boardgames_draughts_view:status1, "Player took all pieces!");
@@ -974,7 +974,7 @@ if (%boardgames_closemode = ^boardgames_draw) {
         if_settext(boardgames_draughts_view:status2, "");
     }
 } else if (%boardgames_closemode = ^boardgames_loss) {
-    midi_jingle("boardgames defeat", ^boardgames_defeat_jingle_millis);
+    midi_jingle("boardgames defeat");
     if_settext(boardgames_draughts_view:winner, "You lose!");
     if (%boardgames_closereason = ^draughts_normal_end) {
         if_settext(boardgames_draughts_view:status1, "Player took all pieces!");
@@ -1116,7 +1116,7 @@ if (%boardgames_viewing = 0) {
     p_teleport(movecoord(^draughts_room_tele_coord, ~random_range(-3, 3), 0, ~random_range(-3, 3)));
     anim(null, 0);
     ~setup_draughts_view_resign($winner_rank, $loser_rank);
-    midi_jingle("boardgames defeat", ^boardgames_defeat_jingle_millis);
+    midi_jingle("boardgames defeat");
     if_settext(boardgames_draughts_view:winner, "You lose!");
     if_settext(boardgames_draughts_view:status1, "Player resigned.");
     
