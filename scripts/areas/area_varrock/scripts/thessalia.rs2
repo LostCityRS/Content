@@ -225,33 +225,33 @@ if (inv_total(inv, coins) < 500) {
 def_int $color = calc(%if3 - 1);
 
 if (%if1 = 1) {
-    setidkit(man_torso_plain, $color);
+    setidkit(man_torso_basic, $color);
 } else if (%if1 = 2) {
-    setidkit(man_torso_light_buttons, $color);
+    setidkit(man_torso_buttons, $color);
 } else if (%if1 = 3) {
     setidkit(man_torso_jacket, $color);
 } else if (%if1 = 4) {
-    setidkit(man_torso_dark_buttons, $color);
+    setidkit(man_torso_buttons2, $color);
 } else if (%if1 = 5) {
-    setidkit(man_torso_stitching, $color);
+    setidkit(man_torso_pattern1, $color);
 } else if (%if1 = 6) {
     setidkit(man_torso_shirt, $color);
 } else if (%if1 = 7) {
-    setidkit(man_torso_two_toned, $color);
+    setidkit(man_torso_elf, $color);
 }
 
 if (%if2 = 1) {
-    setidkit(man_arms_regular, $color);
+    setidkit(man_arms_basic, $color);
 } else if (%if2 = 2) {
-    setidkit(man_arms_musclebound, $color);
+    setidkit(man_arms_buff, $color);
 } else if (%if2 = 3) {
-    setidkit(man_arms_loose_sleeved, $color);
+    setidkit(man_arms_longsleeves, $color);
 } else if (%if2 = 4) {
-    setidkit(man_arms_large_cuffed, $color);
+    setidkit(man_arms_longsleeves2, $color);
 } else if (%if2 = 5) {
-    setidkit(man_arms_thin_sleeved, $color);
+    setidkit(man_arms_longsleeves3, $color);
 } else if (%if2 = 6) {
-    setidkit(man_arms_shoulder_pads, $color);
+    setidkit(man_arms_elf, $color);
 }
 
 @thessalia_finished_makeover;
@@ -334,13 +334,13 @@ if (inv_total(inv, coins) < 500) {
 def_int $color = calc(%if3 - 1);
 
 if (%if1 = 1) {
-    setidkit(man_legs_plain, $color);
+    setidkit(man_legs_basic, $color);
 } else if (%if1 = 2) {
-    setidkit(man_legs_shorts, $color);
+    setidkit(man_legs_basic2, $color);
 } else if (%if1 = 3) {
     setidkit(man_legs_flares, $color);
 } else if (%if1 = 4) {
-    setidkit(man_legs_turn_ups, $color);
+    setidkit(man_legs_turnups, $color);
 }
 
 @thessalia_finished_makeover;
@@ -388,27 +388,27 @@ if (inv_total(inv, coins) < 500) {
 def_int $color = calc(%if3 - 1);
 
 if (%if1 = 1) {
-    setidkit(woman_torso_plain, $color);
+    setidkit(woman_torso_basic, $color);
 } else if (%if1 = 2) {
-    setidkit(woman_torso_crop_top, $color);
+    setidkit(woman_torso_basic2, $color);
 } else if (%if1 = 3) {
-    setidkit(woman_torso_polo_neck, $color);
+    setidkit(woman_torso_basic3, $color);
 } else if (%if1 = 4) {
-    setidkit(woman_torso_simple, $color);
+    setidkit(woman_torso_basic4, $color);
 } else if (%if1 = 5) {
-    setidkit(woman_torso_torn, $color);
+    setidkit(woman_torso_tatty, $color);
 }
 
 if (%if2 = 1) {
-    setidkit(woman_arms_short_sleeves, $color);
+    setidkit(woman_arms_basic, $color);
 } else if (%if2 = 2) {
-    setidkit(woman_arms_bare_arms, $color);
+    setidkit(woman_arms_bare_braceless, $color);
 } else if (%if2 = 3) {
-    setidkit(woman_arms_muscley, $color);
+    setidkit(woman_arms_buff, $color);
 } else if (%if2 = 4) {
-    setidkit(woman_arms_long_sleeved, $color);
+    setidkit(woman_arms_longsleeves, $color);
 } else if (%if2 = 5) {
-    setidkit(woman_arms_large_cuffs, $color);
+    setidkit(woman_arms_longsleeves2, $color);
 }
 
 @thessalia_finished_makeover;
@@ -455,21 +455,21 @@ if (inv_total(inv, coins) < 500) {
 def_int $color = calc(%if3 - 1);
 
 if (%if1 = 1) {
-    setidkit(woman_legs_plain, $color);
+    setidkit(woman_legs_basic, $color);
 } else if (%if1 = 2) {
-    setidkit(woman_legs_shorts, $color);
+    setidkit(woman_legs_basic2, $color);
 } else if (%if1 = 3) {
     setidkit(woman_legs_flares, $color);
 } else if (%if1 = 4) {
-    setidkit(woman_legs_turn_ups, $color);
+    setidkit(woman_legs_longskirt, $color);
 } else if (%if1 = 5) {
-    setidkit(woman_legs_turn_ups_2, $color);
+    setidkit(woman_legs_longskirt_narrow, $color);
 } else if (%if1 = 6) {
-    setidkit(woman_legs_turn_ups_3, $color);
+    setidkit(woman_legs_tatty, $color);
 } else if (%if1 = 7) {
-    setidkit(woman_legs_turn_ups_4, $color);
+    setidkit(woman_legs_turnups, $color);
 } else if (%if1 = 8) {
-    setidkit(woman_legs_turn_ups_5, $color);
+    setidkit(woman_legs_shortskirt, $color);
 }
 
 @thessalia_finished_makeover;
