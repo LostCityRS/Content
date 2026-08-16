@@ -23,17 +23,21 @@ if (%misc_quest = ^misc_complete) {
 mes("Lumberjack Leif is already chopping that down.");
 
 // This is to intercept woodcutting in miscellania
-[proc,leif_intercept_wood](string $fishing_mes, int $exp)(boolean)
+[proc,leif_intercept_wood](string $woodcut_mes, int $exp)(boolean)
 if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
     if (%misc_approval < 127) { %misc_approval = add(%misc_approval, 1); }
     if (npc_find(0_39_60_54_29, misc_lumberjack, 2, 0) = true) { 
         npc_say("Thanks!"); 
         if (%misc_approval >= 127) {
-            ~chatnpcnoturn("<p,happy> Don't trouble yourself further, Your Highness, you've already done so much!");
+            if (%misc_quest = ^misc_complete) {
+                ~chatnpcnoturn("<p,happy> Don't trouble yourself further, Your Highness, you've already done so much!");
+            } else {
+                ~chatnpcnoturn("<p,happy> Don't trouble yourself further, <text_gender("Sir", "Madam")>, you've already done so much!");
+            }
         }
     }
     stat_advance(mining, $exp);
-    mes("<substring($fishing_mes, 0, sub(string_length($fishing_mes), 1))> and give it to Lumberjack Leif.");
+    mes("<substring($woodcut_mes, 0, sub(string_length($woodcut_mes), 1))> and give them to Lumberjack Leif.");
     return (true);
 }
 return (false);

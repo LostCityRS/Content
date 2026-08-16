@@ -495,18 +495,21 @@ if (%misc_affection = ^misc_affection_s3_step4 & %misc_s3_d1 = 1 & %misc_s3_d2 =
 [label,brand_item_ring_of_wealth] inv_del(inv, ring_of_wealth, 1); @brand_ring_after_giving;
 
 [label,brand_flowers_after_giving]
+mes("You give Prince Brand the flowers.");
 ~chatplayer("<p,neutral>Of course, Your Royal Highness.");
 ~chatnpc("<p,happy>Thank you! They're lovely!");
 %misc_s1_give = 1;
 %misc_affection = add(%misc_affection, 1); 
 
 [label,brand_cake_after_giving]
+mes("You give Prince Brand the cake.");
 ~chatplayer("<p,neutral>Of course, Prince.");
 ~chatnpc("<p,happy>Thank you! It's lovely!");
 %misc_s2_give = 1;
 %misc_affection = add(%misc_affection, 1); 
 
 [label,brand_ring_after_giving]
+mes("You give Prince Brand the ring.");
 ~chatplayer("<p,neutral>Prince Brand, will you marry me?");
 ~chatnpc("<p,happy>My heart is an open book to you, my darling, and all the pages say yes... \"Yes\"!");
 ~chatnpc("<p,happy>We'll have to put off the actual ceremony until we can find a priest, but you can tell my father I have agreed to marry you.");

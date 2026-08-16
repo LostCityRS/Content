@@ -518,18 +518,21 @@ if (%misc_affection = ^misc_affection_s3_step4 & %misc_s3_d1 = 1 & %misc_s3_d2 =
 [label,astrid_item_ring_of_wealth] inv_del(inv, ring_of_wealth, 1); @astrid_ring_after_giving;
 
 [label,astrid_flowers_after_giving]
+mes("You give Princess Astrid the flowers.");
 ~chatplayer("<p,neutral>Of course, Your Royal Highness.");
 ~chatnpc("<p,happy>Thank you! They're lovely!");
 %misc_s1_give = 1;
 %misc_affection = add(%misc_affection, 1); 
 
 [label,astrid_bow_after_giving]
+mes("You give Princess Astrid the bow.");
 ~chatplayer("<p,neutral>Of course, Princess.");
 ~chatnpc("<p,happy>Thank you! It's lovely!");
 %misc_s2_give = 1;
 %misc_affection = add(%misc_affection, 1); 
 
 [label,astrid_ring_after_giving]
+mes("You give Princess Astrid the ring.");
 ~chatplayer("<p,neutral>Princess Astrid, will you marry me?");
 ~chatnpc("<p,happy>Oh, my dear, I thought you'd never ask! Of course I'll marry you!");
 ~chatnpc("<p,happy>We'll have to put off the actual ceremony until we can find a priest, but you can tell my father I have agreed to marry you.");

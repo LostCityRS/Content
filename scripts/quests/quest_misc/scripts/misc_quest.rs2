@@ -1,3 +1,9 @@
+[queue,misc_quest_complete]
+%misc_quest = ^misc_complete;
+%misc_coffers = 10000; // Start with 10k in coffers.
+session_log(^log_adventure, "Quest complete: Throne of Miscellania");
+~send_quest_complete(questlist:misc, misc_giant_pen, 250, ^misc_questpoints, "You have completed the\\nThrone of Miscellania Quest!");
+
 [opheldu,misc_giant_nib]
 switch_obj (last_useitem) {
     case logs, oak_logs, willow_logs, maple_logs, yew_logs, magic_logs : 

@@ -94,9 +94,7 @@ if (%misc_quest = 70) {
 }
 
 // Stupid line break that is authentic...
-if (%misc_quest < 100) {
-    $x = append($x, "|");
-}
+$x = append($x, "|");
 
 // Stage 80
 $x = append($x, "@str@I gave the King the treaty.|");
@@ -122,6 +120,7 @@ if (%misc_quest = 90) {
 }
 
 // Stage 100
+$x = ~marriage_sub_quest($x);
 $x = append($x, "@str@I got the support of the population.|");
 $x = append($x, "@red@QUEST COMPLETE!");
 ~quest_journal($n, $x);

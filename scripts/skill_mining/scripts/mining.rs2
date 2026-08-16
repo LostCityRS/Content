@@ -119,9 +119,9 @@ if ($neck ! null & oc_category($neck) = category_557 & map_members = ^true) {
 if (random($chance) = ^true) {
     def_namedobj $gem = ~mining_gem_table;
     if ($gem ! null) {
-        inv_add(inv, $gem, 1);
         db_find(gem_cutting_table:uncut_gem, $gem);
         $data = db_findnext;
+        inv_add(inv, $gem, 1);
         mes("You just found <~add_article(oc_name(db_getfield($data, gem_cutting_table:cut_gem, 0)))>!");
     }
 } else if (stat_random(mining, db_getfield($data, mining_table:rock_successchance, 0)) = true) {

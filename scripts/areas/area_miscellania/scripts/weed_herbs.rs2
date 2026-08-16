@@ -80,7 +80,11 @@ if (%action_delay < map_clock) {
         if (npc_find(0_39_60_29_10, misc_gardener, 2, 0) = true) { 
             npc_say("Thanks!"); 
             if (%misc_approval >= 127) {
-                ~chatnpcnoturn("<p,happy> Don't trouble yourself further, Your Highness, you've already done so much!");
+                if (%misc_quest = ^misc_complete) {
+                    ~chatnpcnoturn("<p,happy> Don't trouble yourself further, Your Highness, you've already done so much!");
+                } else {
+                    ~chatnpcnoturn("<p,happy> Don't trouble yourself further, <text_gender("Sir", "Madam")>, you've already done so much!");
+                }
             }
         }
         mes("You manage to cut some weeds and give them to Gardener Gunnhild.");

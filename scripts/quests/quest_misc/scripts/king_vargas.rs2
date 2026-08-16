@@ -46,6 +46,7 @@ switch_int (%misc_quest) {
 [label,king_vargas_yes_quest]
 if (%misc_quest = 0) {
     %misc_quest = 10;
+    ~send_quest_progress(questlist:misc, %misc_quest, ^misc_complete);
 }
 ~chatplayer("<p,neutral>If I may be so bold, Your Majesty, I think Miscellania would rest in capable hands with me.");
 ~chatnpc("<p,happy>Hahaha! You are bold, <~get_viking_name>, but then I have yet to see a good ruler who was not.");
@@ -172,12 +173,7 @@ if (%misc_affection >= ^misc_affection_complete & %misc_approval >= ^MISC_APPROV
 ~chatnpc_specific("Advisor Ghrim", misc_advisor_ghrim, "<p,neutral>May you bring success and prosperity to Miscellania and to all of its people.");
 ~chatplayer("<p,confused>...is that all?");
 ~chatnpc("<p,neutral>That is all. I wish you luck as Regent. Speak to Ghrim if you require assistance.");
-if (%misc_quest = 90) {
-    %misc_quest = ^misc_complete;
-    %misc_coffers = 10000; // Start with 10k in coffers.
-    session_log(^log_adventure, "Quest complete: Throne of Miscellania");
-    ~send_quest_complete(questlist:misc, misc_giant_pen, 250, ^misc_questpoints, "You have completed the\\nThrone of Miscellania Quest!");
-}
+queue(misc_quest_complete, 0, 0);
 
 [label,king_vargas_quest_stage_100]
 ~chatplayer("<p,neutral>Your Majesty.");
