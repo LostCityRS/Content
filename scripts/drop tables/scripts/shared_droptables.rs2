@@ -123,7 +123,14 @@ if ($random < 3) {
 
 // Name unconfirmed
 [proc,megararetable]()(namedobj, int)
-def_int $random = random(128);
+def_int $random = 0;
+
+if (inv_total(worn, ring_of_wealth) > 0 & map_members = ^true) {
+    $random = random(15);
+} else {
+    $random = random(128);
+}
+
 def_namedobj $drop = null;
 if ($random < 8) { $drop = rune_spear; }
 else if ($random < 12) { $drop = dragonshield_a; }
