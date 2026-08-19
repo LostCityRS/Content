@@ -10,7 +10,7 @@
 %macro_event_target_coord = coord;
 p_teleport(0_31_74_24_28);
 ~macro_events_set_tabs; //Was not originally in mapzone trigger I think. https://www.youtube.com/watch?v=ROQJPpb7Qrc
-~chatnpc("<p,neutral>You need to copy the mime's performance, then you'll be returned to where you were.");
+~chatnpc("<p,neutral>You need to copy the mime's performance,|then you'll be returned to where you were."); // https://i.imgur.com/wkPd7aY.png
 
 // Enter map trigger: 
 [mapzone,0_31_74]
