@@ -1,0 +1,16 @@
+[opnpc1,werewolf_trainer_start]
+if (inv_total(worn, ring_of_charos) = 1 | inv_total(worn, ring_of_charos_unlocked) = 1) {
+    @werewolf_trainer_ask_course;
+} else {
+    @werewolf_trainer_human;
+}
+
+[label,werewolf_trainer_ask_course]
+~chatplayer("<p,confused>How do I use the agility course?");
+~chatnpc("<p,shifty>I'll throw you a stick, which you need to|fetch as quickly as possible, |from the area beyond the pipes.");
+~chatnpc("<p,shifty>Be wary of the deathslide - you must hang by your teeth,|and if your strength is not up to the job you will|fall into a pit of spikes. Also, I would advise not|carrying too much extra weight.");
+~chatnpc("<p,shifty>Bring the stick back to the werewolf waiting at|the end of the death slide to get your agility bonus.");
+~chatnpc("<p,shifty>I will throw your stick as soon as you jump onto the|first stone.");
+
+[label,werewolf_trainer_human]
+~chatnpc("<p,shifty>Grrr - you don't belong in here, human!");
