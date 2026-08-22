@@ -4,10 +4,10 @@ if (stat(hitpoints) = 0) {
 }
 if_close;
 if ($amount > 0) {
-    damage(uid, 1, $amount);
+    damage(uid, ^hitmark_damage, $amount);
     ~human_hit_sound;
 } else {
-    damage(uid, 0, 0);
+    damage(uid, ^hitmark_block, 0);
 }
 
 if (stat(hitpoints) = 0){
@@ -23,7 +23,7 @@ if (stat(hitpoints) = 0){
 [proc,human_hit_sound]
 def_int $rand;
 def_synth $sound;
-if (gender() = 0) {
+if (gender() = ^gender_male) {
         $rand = random(3);
         switch_int($rand) {
             case 0 : $sound = human_hit2;
