@@ -14,6 +14,7 @@ if (%hauntedmine >= ^hauntedmine_started & %hauntedmine < ^hauntedmine_secondary
 [oploc1,hauntedmine_back_entrance1]
 ~crawl_through(0_53_150_13_31);
 ~hauntedmine_fungus_crawl; // osrs
+if (%hauntedmine >= ^hauntedmine_started & %hauntedmine < ^hauntedmine_secondary_entrance) %hauntedmine = ^hauntedmine_secondary_entrance;
 
 [oploc1,hauntedmine_back_entrance1_inside]
 ~crawl_through(0_53_50_37_33);
@@ -22,6 +23,7 @@ if (%hauntedmine >= ^hauntedmine_started & %hauntedmine < ^hauntedmine_secondary
 [oploc1,hauntedmine_back_entrance2]
 ~crawl_through(0_53_150_17_23);
 ~hauntedmine_fungus_crawl; // osrs
+if (%hauntedmine >= ^hauntedmine_started & %hauntedmine < ^hauntedmine_secondary_entrance) %hauntedmine = ^hauntedmine_secondary_entrance;
 
 [oploc1,hauntedmine_back_entrance2_inside]
 ~crawl_through(0_53_50_36_25);
