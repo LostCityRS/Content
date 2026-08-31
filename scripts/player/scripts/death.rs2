@@ -22,6 +22,9 @@ if (~in_castlewars_waitingroom(coord) = true) {
 }
 ~player_death;
 ~music_jingle(death2);
+
+~hauntedmine_fungus_crumble; // comes before oh dear you are dead mes
+
 // https://storage.googleapis.com/tannerdino/images/6543.jpg
 // https://youtu.be/gWmwSYxzUfo
 mes("Oh dear you are dead!");

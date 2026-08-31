@@ -111,6 +111,7 @@ if(inv_total(inv, mm_monkey_in_backpack) > 0) {
     inv_del(inv, mm_monkey_in_backpack, ^max_32bit_int);
     mes("The monkey in your backpack disappears in a puff of smoke!");
 }
+~hauntedmine_fungus_crumble;
 
 [proc,tele_checks]()
 if(inv_total(inv, thanainabarrel) > 0) {
