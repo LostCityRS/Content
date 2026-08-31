@@ -235,3 +235,8 @@ while (map_blocked($random_coord) = true) {
     }
 }
 return($random_coord);
+
+[proc,setcoord_mapsquare](coord $coord, int $mapx, int $mapy, int $mapz)(coord)
+def_int $relx = modulo(coordx($coord), 64);
+def_int $relz = modulo(coordz($coord), 64);
+return(movecoord(0_0_0_0_0, add(multiply($mapx, 64), $relx), $mapy, add(multiply($mapz, 64), $relz)));
