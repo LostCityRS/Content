@@ -9,18 +9,23 @@ if (%hauntedmine >= ^hauntedmine_started & %hauntedmine < ^hauntedmine_secondary
 
 [oploc1,hauntedmine_secondary_entrance_inside]
 ~crawl_through(0_53_50_49_32);
+~hauntedmine_fungus_crawl;
 
 [oploc1,hauntedmine_back_entrance1]
 ~crawl_through(0_53_150_13_31);
+~hauntedmine_fungus_crawl; // osrs
 
 [oploc1,hauntedmine_back_entrance1_inside]
 ~crawl_through(0_53_50_37_33);
+~hauntedmine_fungus_crawl;
 
 [oploc1,hauntedmine_back_entrance2]
 ~crawl_through(0_53_150_17_23);
+~hauntedmine_fungus_crawl; // osrs
 
 [oploc1,hauntedmine_back_entrance2_inside]
 ~crawl_through(0_53_50_36_25);
+~hauntedmine_fungus_crawl;
 
 [proc,crawl_through](coord $tele)
 p_arrivedelay;
@@ -65,3 +70,4 @@ sound_synth(lockeddoor, 0, 0);
 
 [oploc1,hauntedmine_main_entrance_inside]
 p_telejump(0_53_50_62_42);
+~hauntedmine_fungus_stepout;
