@@ -7,9 +7,9 @@ if (%hauntedmine < ^hauntedmine_started) {
 ~chatnpc("<p,quiz>Hello again. I'm afraid I'm rather preoccupied. What|was it you wanted?");
 if (%hauntedmine = ^hauntedmine_started) @multi4("Can you explain the history of these mines again?", zealot_hauntedmine_explain_history, "Is there any other way into the mines?", zealot_hauntedmine_another_way, "How does a lost artefact that was only legendary help?", zealot_hauntedmine_only_legend, "Why was everyone in the mines slaughtered?", zealot_hauntedmine_slaughtered);
 if (%hauntedmine = ^hauntedmine_heardofkey) @multi5("Can you explain the history of these mines again?", zealot_hauntedmine_explain_history, "Where is the second entrance to the mines?", zealot_hauntedmine_second_entrance, "Can I borrow your key?", zealot_hauntedmine_key, "How does a lost artefact that was only legendary help?", zealot_hauntedmine_only_legend, "Why was everyone in the mines slaughtered?", zealot_hauntedmine_slaughtered);
-if (%hauntedmine = ^hauntedmine_secondary_entrance) @multi2("Can you explain the history of these mines again?", zealot_hauntedmine_explain_history, "I've found the second entrance to the mine.", zealot_found_second_entrance);
+if (%hauntedmine = ^hauntedmine_secondary_entrance | %hauntedmine = ^hauntedmine_liftused | %hauntedmine = ^hauntedmine_lightstairsfound) @multi2("Can you explain the history of these mines again?", zealot_hauntedmine_explain_history, "I've found the second entrance to the mine.", zealot_found_second_entrance);
 if (%hauntedmine = ^hauntedmine_liftfound) @multi2("Can you explain the history of these mines again?", zealot_hauntedmine_explain_history, "I've found the second entrance to the mine.", zealot_found_second_entrance_and_lift);
-// if (%hauntedmine = ^hauntedmine_liftused) // todo :(
+if (%hauntedmine = ^hauntedmine_darkstairsfound) @multi2("Can you explain the history of these mines again?", zealot_hauntedmine_explain_history, "I've made it in to the mines.", zealot_made_into_mines);
 
 [label,zealot_sara]
 ~chatplayer("<p,happy>I follow the path of Saradomin. Strength through|wisdom.");
@@ -207,6 +207,11 @@ if (%hauntedmine = ^hauntedmine_not_started) {
 ~chatplayer("<p,happy>Yes, that sounds like the one. May I borrow it?");
 ~chatnpc("<p,neutral>I am afraid my task can be entrusted to nobody else.|Saradomin has asked me alone to do this. I cannot take|the slightest risk of losing this key. The stakes are too|high.");
 @multi2("Please? I'll be very careful with it.", zealot_hauntedmine_key_careful, "I didn't want that key anyway.", zealot_hauntedmine_key_cope);
+
+[label,zealot_made_into_mines]
+~chatplayer("<p,neutral>I've made it in to the mines. Unfortunately some parts|are too dark to navigate.");
+~chatnpc("<p,happy>Ah ye of little faith. Let Saradomin guide you even in|the darkest places. By his light you may reach your|goal.");
+~chatplayer("<p,angry>As much as I respect your fanaticism, that was|spectacularly unhelpful.");
 
 
 [opnpc3,saradominist_zealot]

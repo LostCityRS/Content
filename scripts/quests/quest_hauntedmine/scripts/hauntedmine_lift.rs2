@@ -61,7 +61,7 @@ p_teleport(0_43_70_55_13);
 
 
 [oploc1,hauntedmine_lift_valve]
-if (%hauntedmine = ^hauntedmine_secondary_entrance) %hauntedmine = ^hauntedmine_liftfound;
+if (%hauntedmine = ^hauntedmine_secondary_entrance) %hauntedmine = ^hauntedmine_liftfound; // sets varp even if no key
 if (testbit(%hauntedmine_bits, ^hauntedmine_bits_liftpoweredonce) = ^false) {
     mes("The valve seems to be locked in position. There is a small keyhole in the side.");    
     return;
