@@ -312,3 +312,28 @@ while ($i < inv_size($inv)) {
     $i = add($i, 1);
 }
 return(null);
+
+
+// Replace an object in the inventory, for a certain amount of slots
+[proc,inv_changeitem](inv $inv, obj $old, namedobj $new, int $slots)
+def_int $i = 0;
+while ($i < inv_size($inv)) {
+    if ($slots < 1) return;
+    if (inv_getobj($inv, $i) = $old) {
+        inv_setslot($inv, $i, $new, inv_getnum($inv, $i));
+        $slots = sub($slots, 1);
+    }
+    $i = add($i, 1);
+}
+
+// Replace a certain amount of an object in the inventory
+[proc,inv_changeitem2](inv $inv, obj $old, namedobj $new, int $count)
+def_int $i = 0;
+while ($i < inv_size($inv)) {
+    if ($count < 1) return;
+    if (inv_getobj($inv, $i) = $old) {
+        inv_setslot($inv, $i, $new, inv_getnum($inv, $i));
+        $count = sub($count, inv_getnum($inv, $i));
+    }
+    $i = add($i, 1);
+}
