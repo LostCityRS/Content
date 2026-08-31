@@ -8,6 +8,8 @@ if (%hauntedmine < ^hauntedmine_started) {
 if (%hauntedmine = ^hauntedmine_started) @multi4("Can you explain the history of these mines again?", zealot_hauntedmine_explain_history, "Is there any other way into the mines?", zealot_hauntedmine_another_way, "How does a lost artefact that was only legendary help?", zealot_hauntedmine_only_legend, "Why was everyone in the mines slaughtered?", zealot_hauntedmine_slaughtered);
 if (%hauntedmine = ^hauntedmine_heardofkey) @multi5("Can you explain the history of these mines again?", zealot_hauntedmine_explain_history, "Where is the second entrance to the mines?", zealot_hauntedmine_second_entrance, "Can I borrow your key?", zealot_hauntedmine_key, "How does a lost artefact that was only legendary help?", zealot_hauntedmine_only_legend, "Why was everyone in the mines slaughtered?", zealot_hauntedmine_slaughtered);
 if (%hauntedmine = ^hauntedmine_secondary_entrance) @multi2("Can you explain the history of these mines again?", zealot_hauntedmine_explain_history, "I've found the second entrance to the mine.", zealot_found_second_entrance);
+if (%hauntedmine = ^hauntedmine_liftfound) @multi2("Can you explain the history of these mines again?", zealot_hauntedmine_explain_history, "I've found the second entrance to the mine.", zealot_found_second_entrance_and_lift);
+// if (%hauntedmine = ^hauntedmine_liftused) // todo :(
 
 [label,zealot_sara]
 ~chatplayer("<p,happy>I follow the path of Saradomin. Strength through|wisdom.");
@@ -194,6 +196,15 @@ if (%hauntedmine = 0) %hauntedmine = ^hauntedmine_started;
 [label,zealot_found_second_entrance]
 ~chatplayer("<p,happy>I've found the second entrance to the mine, I've|managed to make it inside.");
 ~chatnpc("<p,sad>You are foolhardy indeed should you venture inside.|The presence of evil is strong within the mines. If you|take the risk I shall pray for your safety, although I|hold little hope for your safe return.");
+
+[label,zealot_found_second_entrance_and_lift]
+~chatplayer("<p,happy>I've found the second entrance to the mine, I've|managed to make it inside.");
+~chatplayer("<p,confused>Unfortunately I need a key to use the lift that goes to|the lower levels.  Can you help?");
+~chatnpc("<p,quiz>Indeed? My own inquiries have led me into possession|of a key. I was informed that this key would apparently|afford entrance to the lower levels. It therefore seems|likely that this is the key which you seek.");
+~chatplayer("<p,happy>Yes, that sounds like the one. May I borrow it?");
+~chatnpc("<p,neutral>I am afraid my task can be entrusted to nobody else.|Saradomin has asked me alone to do this. I cannot take|the slightest risk of losing this key. The stakes are too|high.");
+@multi2("Please? I'll be very careful with it.", zealot_hauntedmine_key_careful, "I didn't want that key anyway.", zealot_hauntedmine_key_cope);
+
 
 [opnpc3,saradominist_zealot]
 if (%hauntedmine >= ^hauntedmine_heardofkey) { 
