@@ -296,6 +296,9 @@ if (%mm_main >= ^mm_complete) {
 if (%routequest >= ^routequest_complete) {
     $questpoints = add($questpoints, ^routequest_questpoints); 
 }
+if (%hauntedmine = ^hauntedmine_complete) { 
+    $questpoints = add($questpoints, ^hauntedmine_questpoints);
+}
 return ($questpoints);
 
 [proc,update_questlist]

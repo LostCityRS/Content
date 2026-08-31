@@ -190,7 +190,10 @@ if (%hauntedmine = ^hauntedmine_started) %hauntedmine = ^hauntedmine_heardofkey;
 ~chatnpc("<p,neutral>Dayth failed and fell during an incursion by|Saradominists, who then made it into the mines and|were able to remove a shard of crystal.");
 ~chatnpc("<p,neutral>Zamorak, furious at his mage, condemned Dayth's soul|indefinitely to an existence of turmoil in the mines.|Dayth's soul is bound to prevent the crystals from ever|being reached again.");
 ~chatnpc("<p,sad>Further, Zamorak's then ruler upon the land ordered|the slaughter of anyone within the mines and that the|mines be sealed.");
-if (%hauntedmine = 0) %hauntedmine = ^hauntedmine_started;
+if (%hauntedmine = ^hauntedmine_not_started) {
+    %hauntedmine = ^hauntedmine_started;
+    ~send_quest_progress(questlist:hauntedmine, %hauntedmine, ^hauntedmine_complete);
+} 
 @multi4("Is there any other way into the mines?", zealot_hauntedmine_another_way, "How does a lost artefact that was only legendary help?", zealot_hauntedmine_only_legend, "Why was everyone in the mines slaughtered?", zealot_hauntedmine_slaughtered, "I must be going now.", zealot_hauntedmine_going_now);
 
 [label,zealot_found_second_entrance]
