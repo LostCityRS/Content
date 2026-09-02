@@ -775,6 +775,7 @@ p_teleport(0_52_152_40_39);
 
 [oploc1,digchestclosed]
 mes("The chest is locked.");
+sound_synth(locked, 1, 0);
 
 [oplocu,digchestclosed]
 if (last_useitem = digchestkey) {

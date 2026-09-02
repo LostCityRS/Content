@@ -27,7 +27,7 @@ if(%misc_quest = 0) {
 
 // Stage 10
 $x = append($x, "@str@I offered to become the new ruler of Miscellania.|");
-if (%misc_quest = 10) {
+if (%misc_quest = ^misc_talked_to_king) {
     $x = append($x, "|@dbl@I need to negotiate peace with @dre@Etceteria@dbl@.|");
     // $x = append($x, "@dbl@I should go talk to @dre@Queen Sigrid@dbl@.|"); // Seems to be later.
     $x = ~marriage_sub_quest($x);
@@ -37,7 +37,7 @@ if (%misc_quest = 10) {
 
 // Stage 20
 $x = append($x, "@str@I talked to Queen Sigrid.|");
-if (%misc_quest = 20) {
+if (%misc_quest = ^misc_talked_to_queen) {
     $x = append($x, "|@dbl@She wants @dre@King Vargas@dbl@ to recognise Etceteria as a|");
     $x = append($x, "@dbl@sovereign nation.|");
     $x = ~marriage_sub_quest($x);
@@ -94,9 +94,7 @@ if (%misc_quest = 70) {
 }
 
 // Stupid line break that is authentic...
-if (%misc_quest < 100) {
-    $x = append($x, "|");
-}
+$x = append($x, "|");
 
 // Stage 80
 $x = append($x, "@str@I gave the King the treaty.|");
@@ -122,6 +120,7 @@ if (%misc_quest = 90) {
 }
 
 // Stage 100
+$x = ~marriage_sub_quest($x);
 $x = append($x, "@str@I got the support of the population.|");
 $x = append($x, "@red@QUEST COMPLETE!");
 ~quest_journal($n, $x);

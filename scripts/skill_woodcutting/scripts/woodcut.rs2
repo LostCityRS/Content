@@ -66,6 +66,16 @@ if ($axe = null) {
     return;
 }
 
+// after axe
+if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
+    if(%misc_quest < ^misc_king_signed_treaty) {
+        if (npc_find(0_39_60_54_29, misc_lumberjack, 2, 0) = true) {
+            ~chatnpc("<p,angry>Hey! This is the Queen's forest. You'll need her approval to make use of it.");
+        }
+        return;
+    }
+}
+
 // https://youtu.be/T3IRz4hZcjc?si=4jBFvTwMwqPXuAxf&t=63
 // sound on first chop
 anim(oc_param($axe, woodcutting_anim), 0);

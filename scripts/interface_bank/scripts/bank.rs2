@@ -138,6 +138,11 @@ if ($obj = macro_cube) {
     return(false);
 }
 
+if($obj = misc_awful_anthem | $obj = misc_good_anthem) {
+    mes("You have more urgent things to do with this anthem!");
+    return(false);
+}
+
 if ($obj = mm_monkey_in_backpack) {
     mes("Sorry, you can't bank the monkey!");
     return(false);

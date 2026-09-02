@@ -180,11 +180,17 @@ hint_npc;
 [ai_timer,mm_carado_final_battle] ~gnome_finalbattle_ophunt;
 [ai_opnpc2,mm_carado_final_battle] ~gnome_finalbattle_melee;
 
-// the final_battle version uses a bow, the standard uses a sword
-// [ai_opnpc2,mm_lumdo] ~gnome_finalbattle_range;
-// [ai_apnpc2,mm_lumdo] ~gnome_finalbattle_range;
-// [ai_apnpc2,mm_waymottin] ~gnome_finalbattle_vial;
-// [ai_apnpc2,mm_bunkwicket] ~gnome_finalbattle_vial;
+// the final_battle version uses a bow, the standard uses a sword (change to ap when moving to final_battle variant)
+[ai_timer,mm_lumdo]
+if(inzone(0_42_143_0_0, 2_42_143_63_63, npc_coord) = false) {
+    return;
+}
+~gnome_finalbattle_ophunt;
+
+[ai_opnpc2,mm_lumdo] ~gnome_finalbattle_melee;
+
+[ai_apnpc2,mm_waymottin] ~gnome_finalbattle_vial;
+[ai_apnpc2,mm_bunkwicket] ~gnome_finalbattle_vial;
 
 [ai_timer,mm_zooknock_final_battle]  ~gnome_finalbattle_aphunt;
 [ai_apnpc2,mm_zooknock_final_battle]
@@ -210,6 +216,7 @@ if(finduid(%npc_aggressive_player) = false) {
 }
 if(inzone(1_42_143_0_0, 1_42_143_63_63, coord) = false) {
     npc_del;
+    return;
 }
 npc_huntall(npc_coord, 5, 0);
 while(.npc_findnext = true) {
@@ -225,6 +232,7 @@ if(finduid(%npc_aggressive_player) = false) {
 }
 if(inzone(1_42_143_0_0, 1_42_143_63_63, coord) = false) {
     npc_del;
+    return;
 }
 npc_huntall(npc_coord, 5, 0);
 while(.npc_findnext = true) {
@@ -237,7 +245,7 @@ while(.npc_findnext = true) {
 if(npc_type = mm_karam_final_battle) npc_anim(m_assassin_attack, 0);
 else npc_anim(midget_attacksword, 0);
 npc_setmode(null);
-.npc_queue(4, 1, 0); // always 1 damage
+.npc_queue(4, random(2), 0); // always 1 damage on osrs, not originally: https://youtu.be/9bwZbgPNaOc?si=gmpIpGkKsQdVfXhJ&t=158
 .npc_anim(demon_block, 20);
 ~.sound_area(black_demon_hit, 20, .npc_coord, 15);
 
@@ -251,15 +259,15 @@ npc_setmode(null);
 // .npc_anim(demon_block, calc($duration / 30));
 // ~.sound_area(black_demon_hit, 20, .npc_coord, 15);
 
-// [proc,gnome_finalbattle_vial]
-// npc_anim(m_mage_attack, 0);
-// def_int $duration = 64;
-// $duration = ~npc_to_npc_projectile(.npc_uid, vial_travel, 25, 50, 25, 16, 0, 64, 5);
-// npc_setmode(null);
-// .spotanim_npc(explodingvial, 200, calc($duration / 30));
-// .npc_queue(4, calc($duration / 30), 1);
-// .npc_anim(demon_block, calc($duration / 30));
-// ~.sound_area(black_demon_hit, calc($duration / 30), .npc_coord, 15);
+[proc,gnome_finalbattle_vial]
+npc_anim(m_mage_attack, 0);
+def_int $duration = 64;
+$duration = ~npc_to_npc_projectile(.npc_uid, vial_travel, 25, 50, 25, 16, 21, 64, 5);
+npc_setmode(null);
+.spotanim_npc(explodingvial, 200, calc($duration / 30));
+.npc_queue(4, random(2), calc($duration / 30));
+.npc_anim(demon_block, calc($duration / 30));
+~.sound_area(black_demon_hit, calc($duration / 30), .npc_coord, 15);
 
 [ai_timer,mm_demon]
 if(finduid(%npc_aggressive_player) = false) {
@@ -379,14 +387,18 @@ if(npc_findhero = ^true) {
 [queue,queue_defeat_jungledemon]
 ~music_jingle("mission over");
 %mm_main = ^mm_defeated_demon;
-// if you are far enough away it wont set the arrow
+// if you are far enough away it wont set the arrow on osrs
+// https://www.youtube.com/watch?v=YJtoktu_3qk, seems to spawn the npc if this fails?
 npc_findallany(coord, 15, 0);
 while(npc_findnext = true) {
-    if(npc_type = mm_garkor_final_battle) {
-        hint_stop;
+    if(npc_type = mm_garkor_final_battle & %npc_aggressive_player = uid) {
         hint_npc;
+        return;
     }
 }
+npc_add(map_findsquare(coord, 1, 5, ^map_findsquare_lineofwalk), mm_garkor_final_battle, add(2000, random(200)));
+hint_npc;
+%npc_aggressive_player = uid;
 
 [ai_queue4,mm_demon]
 // for npc damage from the gnomes, if its killing damage it heals instead
@@ -480,9 +492,16 @@ if(%mm_garkor < ^garkor_finished_mission) {
 ~chatplayer("<p,quiz>How do I leave this place?");
 if(%mm_garkor < ^garkor_finished_mission) %mm_garkor = ^garkor_finished_mission;
 ~chatnpc("<p,neutral>Speak to Zooknock. He will arrange for you to leave.");
-if(npc_find(coord, mm_zooknock_final_battle, 15, 0) = true) {
-    hint_npc;
+npc_findallany(coord, 15, 0);
+while(npc_findnext = true) {
+    if(npc_type = mm_zooknock_final_battle & %npc_aggressive_player = uid) {
+        hint_npc;
+        return;
+    }
 }
+npc_add(map_findsquare(coord, 1, 5, ^map_findsquare_lineofwalk), mm_zooknock_final_battle, add(2000, random(200)));
+%npc_aggressive_player = uid;
+hint_npc;
 
 [opnpc1,mm_zooknock_final_battle]
 if(%mm_main < ^mm_defeated_demon) {

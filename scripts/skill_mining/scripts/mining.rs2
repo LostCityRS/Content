@@ -29,6 +29,15 @@ if ($data = null) {
     ~displaymessage(^dm_default);
     return;
 }
+if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
+    if(%misc_quest = ^misc_not_started) {
+        if (npc_find(0_39_60_30_53, misc_miner, 2, 0) = true) { 
+            ~chatnpc("<p,angry>Hey! These are the King's coal rocks. You'll need his approval to make use of them.");
+        }
+        return;
+    }
+}
+
 if (inv_freespace(inv) < 1) {
     anim(null, 0);
     ~mesbox("Your inventory is too full to hold any more <db_getfield($data, mining_table:ore_name, 0)>.");
@@ -119,9 +128,9 @@ if ($neck ! null & oc_category($neck) = category_557 & map_members = ^true) {
 if (random($chance) = ^true) {
     def_namedobj $gem = ~mining_gem_table;
     if ($gem ! null) {
-        inv_add(inv, $gem, 1);
         db_find(gem_cutting_table:uncut_gem, $gem);
         $data = db_findnext;
+        inv_add(inv, $gem, 1);
         mes("You just found <~add_article(oc_name(db_getfield($data, gem_cutting_table:cut_gem, 0)))>!");
     }
 } else if (stat_random(mining, db_getfield($data, mining_table:rock_successchance, 0)) = true) {

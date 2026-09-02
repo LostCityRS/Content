@@ -141,6 +141,9 @@ if(%misc_coffers >= $withdraw_amt) {
 // Most of these comments are direct from the OSRS Managing Miscellania calculation image.
 // "Daily" Update
 [proc,manage_misc_daily_update]
+if(%misc_quest < ^misc_complete) { // do not tick before the quest is complete
+    return;
+}
 // We store a time in minutes when it last updated, %misc_last_update, first set when first visiting Miscellania
 // Fetch varps and varbits
 def_int $currenttime = date_minutes;
@@ -203,7 +206,7 @@ def_int $ResourcePts = %misc_restotal;
 def_int $CurrentSlot = 0;
 
 // Wood[Maple Logs] (InverseCost = 160)
-def_int $wood_qty = calc(100 * $ResourcePts * %misc_points_wood / 2048);
+def_int $wood_qty = calc(102 * $ResourcePts * %misc_points_wood / 2048);
 if ($wood_qty > 0) {
     inv_add(inv, cert_maple_logs, $wood_qty);
     // inv_setslot(misc_resources_collected, $CurrentSlot, maple_logs, $wood_qty);

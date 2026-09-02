@@ -3,23 +3,24 @@ if (npc_range(coord) > 2) {
     p_aprange(2);
     return;
 }
-~chatnpc("<p,neutral>Hi there, can I help you with anything?");
-def_int $option = ~p_choice3("Is this a bank?", 1, "Do you get many customers?", 2, "I'd like to access my bank, please.", 3);
-switch_int ($option) {
-    case 1 :
-    ~chatplayer("<p,neutral>Is this a bank?");
-    ~chatnpc("<p,neutral>Why yes, what else would it be?");
-    ~chatnpc("<p,neutral>Anything else?");
+~chatnpc("<p,happy>Hi there, can I help you with anything?");
+@multi3("Is this a bank?", misc_banker_q1, "Do you get many customers?", misc_banker_q2, "I'd like to access my bank, please.", misc_banker_bank);
 
-    case 2 :
-    ~chatplayer("<p,neutral>Do you get many customers?");
-    ~chatnpc("<p,neutral>We're the only bank on these two islands, so business is pretty good.");
-    ~chatnpc("<p,neutral>Anything else?");
+[label,misc_banker_q1]
+~chatplayer("<p,quiz>Is this a bank?");
+~chatnpc("<p,quiz>Why yes, what else would it be?");
+~chatnpc("<p,quiz>Anything else?");
+@multi2("Do you get many customers?", misc_banker_q2, "I'd like to access my bank, please.", misc_banker_bank);
 
-    case 3 :
-    ~chatplayer("<p,neutral>I'd like to access my bank, please.");
-    @openbank;
-}
+[label,misc_banker_q2]
+~chatplayer("<p,quiz>Do you get many customers?");
+~chatnpc("<p,happy>We're the only bank on these two islands, so business is pretty good.");
+~chatnpc("<p,quiz>Anything else?");
+@multi2("Is this a bank?", misc_banker_q1, "I'd like to access my bank, please.", misc_banker_bank);
+
+[label,misc_banker_bank]
+~chatplayer("<p,neutral>I'd like to access my bank, please.");
+@openbank;
 
 [apnpc3,misc_banker]
 if (npc_range(coord) > 2) {

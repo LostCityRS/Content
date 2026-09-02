@@ -20,6 +20,11 @@ if(inv_freespace(inv) = 0) {
 } else {
     ~pickup_loc_floor(loc_coord, grain, 20, true);
     mes("You pick some grain.");
+    if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
+        if(npc_find(coord, misc_farmer, 15, 0) = true) {
+            ~chatnpc("<p,angry>Oi! Leave my wheat alone!");
+        }
+    }
 }
 
 // Pickable Onion

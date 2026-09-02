@@ -1168,7 +1168,7 @@ if_openoverlay(null);
 %mm_main = ^mm_complete;
 session_log(^log_adventure, "Quest complete: Monkey Madness");
 queue(mm_complete_dialogue, 0, 0);
-~send_quest_complete(questlist:mm, mm_monkey_in_backpack, 250, ^mm_questpoints, "You have completed the\\nMonkey Madness Quest!");
+~send_quest_complete(questlist:mm, mm_monkey_in_backpack, 250, ^mm_questpoints, "You have completed the\\n'Monkey Madness' Quest!");
 
 [proc,fade_out]
 if_setanim(castlewars_shopside:com_0, null);

@@ -62,6 +62,8 @@ p_arrivedelay;
 def_int $experience = db_getfield($data, stealing:experience, 0);
 // osrs is 2x respawn speed, since they removed the scale by playercount
 def_int $respawn_ticks = ~scale_by_playercount(db_getfield($data, stealing:respawn_ticks, 0));
+def_loc $replacement = db_getfield($data, stealing:replacement, 0);
+if($replacement = null) $replacement = market;
 anim(human_pickuptable, 0);
 sound_synth(pick, 1, 0);
 // p_delay here was added with this update: https://oldschool.runescape.wiki/w/Update:Special_Attacks
@@ -111,8 +113,12 @@ switch_loc (loc_type) {
 ~stealing_check_for_reward($data);
 stat_advance(thieving, $experience);
 // Temp note: dur does not need updated
-if(loc_type = viking_fur_market | loc_type = viking_fish_market) loc_change(viking_market, $respawn_ticks);
-else loc_change(market, $respawn_ticks);
+loc_change($replacement, $respawn_ticks);
+
+// miscellania stalls
+if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
+    if (%misc_approval > 4) { %misc_approval = sub(%misc_approval, 4); } else { %misc_approval = 0; }
+}
 
 [label,activate_trapped_chest]
 p_arrivedelay;

@@ -12,8 +12,9 @@ if (getqueue(stolen_from_stall_miscfish) > 0) {
     }
     return;
 }
-~chatnpc("<p,neutral>Greetings, Sir. Get your fresh fish here!");
-~chatnpc("<p,neutral>I've heard that the Etceterian fish is stored in a cow shed.");
+if(%misc_quest = ^misc_complete) ~chatnpc("<p,neutral>Greetings, Your Royal Highness. Get your fresh fish here!");
+else ~chatnpc("<p,neutral>Greetings, Sir. Get your fresh fish here!");
+~chatnpc("<p,shifty>I've heard that the Etceterian fish is stored in a cow shed.");
 ~openshop_activenpc;
 
 [opnpc3,misc_fish_monger]

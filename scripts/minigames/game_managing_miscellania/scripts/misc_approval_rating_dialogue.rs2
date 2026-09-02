@@ -9,9 +9,9 @@ if (%misc_quest = ^misc_complete) {
     } else if (%misc_approval >= ^MISC_APPROVAL_50_PERCENT) {
         ~chatnpcnoturn("<p,happy>You are well regarded, Your Royal Highness. At the last poll, <~misc_approval_percentage>% of the population supported you.");
     } else if (%misc_approval >= ^MISC_APPROVAL_25_PERCENT) {
-        ~chatnpcnoturn("<p,shifty>Your people are growing dissatisfied with the regime, Your Royal Highness. At the last poll, <~misc_approval_percentage>% of the population supported you.");
+        ~chatnpcnoturn("<~man_misc_mesanim>Your people are growing dissatisfied with the regime, Your Royal Highness. At the last poll, <~misc_approval_percentage>% of the population supported you.");
     } else {
-        ~chatnpcnoturn("<p,angry>Your people grow restless, Your Royal Highness. At the last poll, <~misc_approval_percentage>% of the population supported you.");
+        ~chatnpcnoturn("<~man_misc_mesanim>Your people grow restless, Your Royal Highness. At the last poll, <~misc_approval_percentage>% of the population supported you.");
     }
 } else {
     if (%misc_approval >= ^MISC_APPROVAL_75_PERCENT) {
@@ -19,9 +19,9 @@ if (%misc_quest = ^misc_complete) {
     } else if (%misc_approval >= ^MISC_APPROVAL_50_PERCENT) {
         ~chatnpcnoturn("<p,happy>You haven't been here for very long, but people are reasonably fond of you. At the last poll, <~misc_approval_percentage>% of the population liked you.");
     } else if (%misc_approval >= ^MISC_APPROVAL_25_PERCENT) {
-        ~chatnpcnoturn("<p,shifty>You haven't really won the heart of the locals, if you see what I mean. At the last poll, only <~misc_approval_percentage>% of the population liked you.");
+        ~chatnpcnoturn("<~man_misc_mesanim>You haven't really won the heart of the locals, if you see what I mean. At the last poll, only <~misc_approval_percentage>% of the population liked you.");
     } else {
-        ~chatnpcnoturn("<p,angry>You've not been making many friends since you arrived here. At the last poll, only <~misc_approval_percentage>% of the population liked you.");
+        ~chatnpcnoturn("<~man_misc_mesanim>You've not been making many friends since you arrived here. At the last poll, only <~misc_approval_percentage>% of the population liked you.");
     }
 }
 
@@ -30,9 +30,13 @@ if (%misc_quest = ^misc_complete) {
 if (%misc_approval >= ^MISC_APPROVAL_75_PERCENT) {
     return ("<p,happy>");
 } else if (%misc_approval >= ^MISC_APPROVAL_50_PERCENT) {
-    return ("<p,happy>");
-} else if (%misc_approval >= ^MISC_APPROVAL_25_PERCENT) {
+    return ("<p,confused>");
+} else if (%misc_approval >= ^MISC_APPROVAL_35_PERCENT) {
+    return ("<p,neutral>");
+} else if (%misc_approval > 30) { // not 25% exactly
     return ("<p,shifty>");
+} else if (%misc_approval >= ^MISC_APPROVAL_10_PERCENT) {
+    return ("<p,sad>");
 } else {
     return ("<p,angry>");
 }

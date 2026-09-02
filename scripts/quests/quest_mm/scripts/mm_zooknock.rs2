@@ -381,13 +381,7 @@ if(%mm_garkor < ^garkor_speak_zooknock) {
 [label,mm_sapper_timer]
 // final battle
 if(inzone(0_42_143_0_0, 2_42_143_63_63, npc_coord) = true) {
-    if(finduid(%npc_aggressive_player) = false) {
-        npc_del;
-        return;
-    }
-    if(inzone(1_42_143_0_0, 1_42_143_63_63, coord) = false) {
-        npc_del;
-    }
+    ~gnome_finalbattle_aphunt;
     return;
 }
 npc_facesquare(movecoord(npc_coord, 0, 0, 1));

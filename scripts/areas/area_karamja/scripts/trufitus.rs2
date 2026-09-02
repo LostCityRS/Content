@@ -220,7 +220,7 @@ if(%zombiequeen > ^zombiequeen_not_started) {
         case ^junglepotion_get_rogues_purse, ^junglepotion_found_rogues_purse : @trufitus_give_herb(rogues_purse, unidentified_rogues_purse);
         case ^junglepotion_found_all_herbs : @trufitus_finish_quest;
         case ^junglepotion_complete, ^junglepotion_complete_after_spoken :
-            if (%tbwt_main < ^tbwt_started) {
+            if (%tbwt_main < ^tbwt_timfraku_asked_for_help) {
                 @trufitus_greatest_respects;
             } else {
                 @trufitus_post_quest;

@@ -6,13 +6,17 @@ if (%misc_quest = ^misc_complete) {
 } else {
     ~chatnpcnoturn("<~man_misc_mesanim>Hello.");
 }
-@multi2(
-    "Gardener Gunnhild.", gunnhild_main_talk,
-    "Your approval rating.", misc_quest_approval_rating
-);
+if (%misc_quest >= ^misc_king_signed_treaty) {
+    @multi2(
+        "Gardener Gunnhild.", gunnhild_main_talk,
+        "Your approval rating.", misc_quest_approval_rating
+    );
+} else {
+    @gunnhild_main_talk;
+}
 
 [label,gunnhild_main_talk]
-~chatplayer("<p,neutral>Good day. What are you doing?");
+~chatplayer("<p,happy>Good day. What are you doing?");
 ~chatnpcnoturn("<~man_misc_mesanim>I'm weeding this herb garden. It's hard work! I also sell a few gardening supplies.");
 @multi2(
     "Good luck with that.", gunnhild_good_luck,
@@ -20,7 +24,7 @@ if (%misc_quest = ^misc_complete) {
 );
 
 [label,gunnhild_good_luck]
-~chatplayer("<p,neutral>Good luck with that.");
+~chatplayer("<p,happy>Good luck with that.");
 if (%misc_quest = ^misc_complete) {
     ~chatnpcnoturn("<~man_misc_mesanim>Thank you, Your Royal Highness.");
 } else {
@@ -33,9 +37,10 @@ if (%misc_quest = ^misc_complete) {
 // The conversation is modified so that you can only get an iron sickle before the rake exists in June 2005.
 
 [label,gunnhild_buy_stuff]
-~chatplayer("<p,neutral>What do you have for sale?");
+~chatplayer("<p,quiz>What do you have for sale?");
 // ~chatnpcnoturn("<p,neutral>At the moment I'm selling garden rakes and iron sickles. They're 15gp each, if you'd like one?");
-~chatnpcnoturn("<p,neutral>At the moment I'm selling iron sickles. They're 15gp each, if you'd like one?");
+if(%misc_quest = ^misc_complete) ~chatnpcnoturn("<~man_misc_mesanim>At the moment I'm selling iron sickles. They're 15gp each, if you'd like one?");
+else ~chatnpcnoturn("<~man_misc_mesanim>At the moment I'm selling iron sickles. If you'd like one, Your Royal Highness, they're 15gp each.");
 @multi3(
     // "I'd like a rake, please.", gunnhild_buy_rake,
     "I'd like an iron sickle, please.", gunnhild_buy_sickle,
@@ -52,13 +57,13 @@ if (%misc_quest = ^misc_complete) {
 // }
 
 [label,gunnhild_buy_sickle]
+~chatplayer("<p,neutral>I'd like an iron sickle, please.");
 if (inv_total(inv, coins) >= 15) {
-    ~chatplayer("<p,neutral>I'd like an iron sickle, please.");
     inv_del(inv, coins, 15);
     inv_add(inv, iron_sickle, 1);
     ~chatnpcnoturn("<p,neutral>Thank you! Here you go.");
 } else {
-    ~chatplayer("<p,neutral>I don't have enough money.");
+    ~chatplayer("<p,sad>Oh, I'm sorry, I don't have enough money.");
 }
 
 [label,gunnhild_no_thanks]
@@ -69,6 +74,10 @@ if (inv_total(inv, coins) >= 15) {
 // This is authentic, but before it became a farming patch, this is actually used to cut weeds. // https://runescape.wiki/w/Iron_sickle
 // ~chatnpcnoturn("<~man_misc_mesanim>I can't think of anything just now. But you can buy one if you like!");
 ~chatnpcnoturn("<~man_misc_mesanim>You can use it to cut weeds from the herbs around here."); // Not authentic, guessed.
+@multi2(
+    "I'd like an iron sickle, please.", gunnhild_buy_sickle,
+    "No, thank you.", gunnhild_no_thanks
+);
 
 [oploc1,misc_dummy_heather_normal]
 mes("Gardener Gunnhild is already weeding that herb.");

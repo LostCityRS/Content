@@ -12,7 +12,8 @@ if (getqueue(stolen_from_stall_miscveg) > 0) {
     }
     return;
 }
-~chatnpc("<p,neutral>Welcome, Sir. I sell only the finest and freshest vegetables!");
+if(%misc_quest = ^misc_complete) ~chatnpc("<p,neutral>Welcome, Your Royal Highness. I sell only the finest and freshest vegetables!");
+else ~chatnpc("<p,neutral>Welcome, Sir. I sell only the finest and freshest vegetables!");
 ~openshop_activenpc;
 
 [opnpc3,misc_veg_monger]

@@ -34,7 +34,7 @@ if(%mm_main > ^mm_shown_seal) {
 
         if(%mm_narnode >= ^narnode_received_orders) {
             $text = append($text, "@str@Narnode has given me some handwritten orders.||");
-            if(%mm_daero > 0) $text = append($text, "@str@I have taken the orders to Daero.||");
+            if(%mm_daero > ^daero_found) $text = append($text, "@str@I have taken the orders to Daero.||");
             else $text = append($text, "@dbl@I must take the orders to the new High Tree @dbl@Guardian,|@dre@Daero@dbl@, @dbl@who works on the @dre@Grand Tree@dbl@.||");
         }
     }

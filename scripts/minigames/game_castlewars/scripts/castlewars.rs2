@@ -143,10 +143,12 @@ def_int $count = ~castlewars_saradomin_count;
 // no mes
 
 [proc,castlewars_saradomin_cap]
+%castlewars_caps = add(%castlewars_caps, 1);
 def_int $sara = max(getbit_range(%castlewars_saradomin_bits, ^castlewars_score_startbit, ^castlewars_score_endbit), 0);
 %castlewars_saradomin_bits = setbit_range_toint(%castlewars_saradomin_bits, add($sara, 1), ^castlewars_score_startbit, ^castlewars_score_endbit);
 
 [proc,castlewars_zamorak_cap]
+%castlewars_caps = add(%castlewars_caps, 1);
 def_int $zammy = max(getbit_range(%castlewars_zamorak_bits, ^castlewars_score_startbit, ^castlewars_score_endbit), 0);
 %castlewars_zamorak_bits = setbit_range_toint(%castlewars_zamorak_bits, add($zammy, 1), ^castlewars_score_startbit, ^castlewars_score_endbit);
 

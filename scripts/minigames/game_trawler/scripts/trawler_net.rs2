@@ -1,14 +1,14 @@
-[proc,trawler_net_ripped]()(boolean)
+[proc,trawler_net_ripped]()(int)
 if (loc_find(^trawler_start_net1, trawlernet_top_l) = true) {
-    return(true);
+    return(^true);
 }
 if (loc_find(^trawler_start_net2, trawlernet_top_r) = true) {
-    return(true);
+    return(^true);
 }
-return(false);
+return(^false);
 
 [proc,trawler_rip_net]
-if (~trawler_net_ripped = true) {
+if (~trawler_net_ripped = ^true) {
     return;
 }
 if (loc_find(^trawler_start_net1, trawlernet_l) = true) {

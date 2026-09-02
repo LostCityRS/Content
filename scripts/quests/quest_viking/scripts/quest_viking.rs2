@@ -145,7 +145,7 @@ stat_advance(thieving, 28124);
 %viking = ^viking_complete;
 session_log(^log_adventure, "Quest complete: The Fremennik Trials");
 queue(fremennik_name, 0, 0);
-~send_quest_complete(questlist:viking, viking_helmet, 150, ^viking_questpoints, "You have completed the\\nTrials of the Fremmenik Quest!");
+~send_quest_complete(questlist:viking, viking_helmet, 150, ^viking_questpoints, "You have completed the\\nTrials Of The Fremennik Quest!");
 
 [queue,fremennik_name]
 ~generate_viking_name;

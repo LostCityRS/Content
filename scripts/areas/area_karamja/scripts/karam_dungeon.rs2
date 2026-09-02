@@ -8,6 +8,7 @@
 ~chatplayer("<p,neutral>Ok, here's 875 coins.");
 inv_del(inv, coins, 875);
 %karam_dungeon_varbit = ^true;
+mes("You pay Saniboch 875 coins.");
 ~objbox(coins_5, "You give Saniboch 875 coins.", 250, 0, 0);
 ~chatnpc("<p,happy>Many thanks. You may now pass the door. May your death be a glorious one!");
 

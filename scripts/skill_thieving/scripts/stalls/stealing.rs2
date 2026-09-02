@@ -21,15 +21,9 @@
 
 [oploc2,misc_fish_market] // Fish stall
 @attempt_steal_from_stall(loc_type, loc_coord, loc_angle, loc_shape);
-if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
-    if (%misc_approval > 4) { %misc_approval = sub(%misc_approval, 4); } else { %misc_approval = 0; }
-}
 
 [oploc2,misc_veg_market] // Veg stall
 @attempt_steal_from_stall(loc_type, loc_coord, loc_angle, loc_shape);
-if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
-    if (%misc_approval > 4) { %misc_approval = sub(%misc_approval, 4); } else { %misc_approval = 0; }
-}
 
 [oploc2,etc_fish_market] // Fish stall
 @attempt_steal_from_stall(loc_type, loc_coord, loc_angle, loc_shape);

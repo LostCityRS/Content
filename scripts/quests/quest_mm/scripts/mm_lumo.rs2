@@ -37,7 +37,7 @@ if(%mm_jail_count = 1) {
     inv_add(inv, tbwt_seaweed_in_monkey_corpse, 1);
     ~objbox(tbwt_seaweed_in_monkey_corpse, "Lumo throws you a seaweed stuffed monkey corpse.", 250, 0, 0);
 } else {
-    switch_int(random(20)) {
+    switch_int(random(22)) {
         case 0 :
             ~chatnpc_specific(nc_name(mm_lumo), mm_lumo, "<p,neutral>Bunkdo?");
             ~chatnpc_specific(nc_name(mm_bunkdo), mm_bunkdo, "<p,neutral>Yeah?");
@@ -112,7 +112,17 @@ if(%mm_jail_count = 1) {
             ~chatnpc_specific(nc_name(mm_lumo), mm_lumo, "<p,neutral>Have you noticed how they all look the same?");
             ~chatnpc_specific(nc_name(mm_carado), mm_carado, "<p,neutral>And they all seem to have the same clothes...");
             ~chatnpc_specific(nc_name(mm_bunkdo), mm_bunkdo, "<p,neutral>Spooky.");
-        case default :
+        case 19 :
+            if(inv_total(worn, dragon_sq_shield) > 0) {
+                ~chatnpc_specific(nc_name(mm_lumo), mm_lumo, "<p,neutral>Wow. Somebody with a Dragon Square Shield. I win this game too!");
+                ~chatnpc_specific(nc_name(mm_bunkdo), mm_bunkdo, "<p,neutral>Bah. I hate bingo.");
+            }
+        case 20 :
+            if(gender = ^gender_female) {
+                ~chatnpc_specific(nc_name(mm_lumo), mm_lumo, "<p,neutral><displayname>, <displayname>, he's our man! If he can't do it, nobody can!");
+                ~chatnpc_specific(nc_name(mm_bunkdo), mm_bunkdo, "<p,neutral>Er Lumo, it's a she.");
+            }
+        case 21 :
             ~chatnpc_specific(nc_name(mm_lumo), mm_lumo, "<p,neutral>Look at that Bunkdo, <text_gender("he", "she")> almost looks like <text_gender("he's", "she's")> praying.");
     }
 }

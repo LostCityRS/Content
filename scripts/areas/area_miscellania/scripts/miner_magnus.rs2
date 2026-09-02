@@ -4,19 +4,23 @@ if (%misc_quest = ^misc_complete) {
 } else {
     ~chatnpcnoturn("<~man_misc_mesanim>Hello.");
 }
-@multi2(
-    "Miner Magnus.", magnus_main_talk,
-    "Your approval rating.", misc_quest_approval_rating
-);
+if (%misc_quest >= ^misc_king_signed_treaty) {
+    @multi2(
+        "Miner Magnus.", magnus_main_talk,
+        "Your approval rating.", misc_quest_approval_rating
+    );
+} else {
+    @magnus_main_talk;
+}
 
 [label,magnus_main_talk]
-~chatplayer("<p,neutral>Good day. What are you doing?");
+~chatplayer("<p,happy>Good day. What are you doing?");
 ~chatnpcnoturn("<~man_misc_mesanim>I'm mining coal. It's pretty tough going.");
-~chatplayer("<p,neutral>Good luck with that.");
+~chatplayer("<p,happy>Good luck with that.");
 if (%misc_quest = ^misc_complete) {
     ~chatnpcnoturn("<~man_misc_mesanim>Thank you, Your Royal Highness.");
 } else {
-    ~chatnpcnoturn("<~man_misc_mesanim>Thanks.");
+    ~chatnpcnoturn("<p,happy>Thanks.");
 }
 
 [oploc1,misc_dummy_coalrock1] // https://www.youtube.com/watch?v=CB18DoDgCbQ
@@ -32,11 +36,15 @@ if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
     if (npc_find(0_39_60_30_53, misc_miner, 2, 0) = true) { 
         npc_say("Thanks!"); 
         if (%misc_approval >= 127) {
-            ~chatnpcnoturn("<p,happy> Don't trouble yourself further, Your Highness, you've already done so much!");
+            if (%misc_quest = ^misc_complete) {
+                ~chatnpcnoturn("<p,happy> Don't trouble yourself further, Your Highness, you've already done so much!");
+            } else {
+                ~chatnpcnoturn("<p,happy> Don't trouble yourself further, <text_gender("Sir", "Madam")>, you've already done so much!");
+            }
         }
     }
     stat_advance(mining, $exp);
-    mes("<substring($fishing_mes, 0, sub(string_length($fishing_mes), 1))> and give it to Miner Magnus.");
+    mes("<substring($fishing_mes, 0, sub(string_length($fishing_mes), 1))>, and give it to Miner Magnus.");
     return (true);
 }
 return (false);

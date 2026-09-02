@@ -147,6 +147,9 @@ return(true);
 
 [queue,castlewars_end]
 def_int $team = %castlewars_team;
+def_int $caps = %castlewars_caps;
+def_int $kills = %castlewars_kills;
+def_int $winner = ~castlewars_winning_team;
 if ($team = ^castlewars_team_saradomin) {
     ~castlewars_decrement_saradomin_count;
 } else {
@@ -154,16 +157,15 @@ if ($team = ^castlewars_team_saradomin) {
 }
 ~castlewars_exit_tele;
 
-def_int $winner = ~castlewars_winning_team;
 if ($winner = ^castlewars_team_guthix) {
     inv_add(inv, castlewars_ticket, 2);
-    ~objbox(castlewars_ticket, "It was a draw!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));
+    ~objbox(castlewars_ticket, "It was a draw!|You captured the enemy's standard <tostring($caps)> times.|Enemies killed: <tostring($kills)>.", 250, 0, divide(^objbox_height, 2));
 } else if ($winner = $team) {
     inv_add(inv, castlewars_ticket, 3);
-    ~objbox(castlewars_ticket, "You won!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));
+    ~objbox(castlewars_ticket, "You won!|You captured the enemy's standard <tostring($caps)> times.|Enemies killed: <tostring($kills)>.", 250, 0, divide(^objbox_height, 2));
 } else {
     // no tickets https://oldschool.runescape.wiki/w/Update:Architectural_Alliance
-    ~objbox(castlewars_ticket, "You lost!|You captured the enemy's standard <tostring(%castlewars_caps)> times.|Enemies killed: <tostring(%castlewars_kills)>.", 250, 0, divide(^objbox_height, 2));
+    ~objbox(castlewars_ticket, "You lost!|You captured the enemy's standard <tostring($caps)> times.|Enemies killed: <tostring($kills)>.", 250, 0, divide(^objbox_height, 2));
 }
 
 [proc,castlewars_reset]
