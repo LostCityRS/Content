@@ -1,0 +1,116 @@
+[opnpc1,fourdiamonds_bartender]
+switch_int (%deserttreasure) {
+    case 0, 1, 2, 3, 4 :
+        @bartender_quest_early;
+    case 5 :
+        @bartender_quest_stage_5;
+    case 6 :
+        @bartender_quest_stage_6;
+    case 7, 8, 9, 10, 11, 12, 13, 14 :
+        @bartender_quest_stage_7_plus;
+    case ^deserttreasure_complete :
+        @bartender_quest_complete;
+}
+
+[label,bartender_quest_early]
+~chatnpc("<p,angry>Get out of here. I have nothing to say to the likes of you.");
+
+[label,bartender_quest_stage_5]
+~chatnpc("<p,neutral>If you're not buying anything, I have nothing to say|to you.");
+@multi2(
+    "Ask about Desert Treasure", bartender_ask_treasure_unbought,
+    "Buy a drink", bartender_buy_drink_check
+);
+
+[label,bartender_ask_treasure_unbought]
+~chatplayer("<p,neutral>As I understand it there's some kind of hidden|treasure in these parts...");
+~chatnpc("<p,neutral>Look around <text_gender("pal","lady")>. Does it looks like there's any|treasure near here?");
+~chatnpc("<p,neutral>If I were you I'd get lost before someone takes a|dislike to your face and removes it for you.");
+
+[label,bartender_buy_drink_check]
+if (inv_total(inv, coins) >= 650) {
+    @bartender_has_coins;
+} else {
+    @bartender_no_coins;
+}
+
+[label,bartender_has_coins]
+~chatnpc("<p,neutral>What's that? You wanna buy a beer? It'll cost ya|650 coins.");
+@multi2(
+    "Buy a beer", bartender_confirm_purchase,
+    "Don't buy anything", bartender_cancel_purchase
+);
+
+[label,bartender_confirm_purchase]
+inv_del(inv, coins, 650);
+inv_add(inv, beer, 1);
+if (%deserttreasure = 5) {
+    %deserttreasure = 6;
+}
+~chatnpc("<p,neutral>There you go. Now get out, we don't like your sort|around here.");
+
+[label,bartender_cancel_purchase]
+~chatnpc("<p,neutral>Get out of my bar then! We don't like your sort|round here!");
+
+[label,bartender_no_coins]
+~chatnpc("<p,neutral>You ain't got the 650 coins it costs to buy it, and|I'm glad 'cos I didn't want to serve you anyway.");
+
+
+[label,bartender_quest_stage_6]
+~chatnpc("<p,neutral>You've had your drink, now get out of here. I have|nothing to say to the-");
+~chatplayer("<p,neutral>No, Wait! Look, I'm here on an archaeological|expedition for the Museum of Varrock.");
+~chatplayer("<p,neutral>I am only here looking for artefacts...");
+~chatnpc("<p,neutral>Oh really? Our inheritance is only sand and death.|What do you expect to find out here in this desert|forsaken by the gods?");
+@multi3(
+    "I heard about treasure...", bartender_about_treasure,
+    "I heard about four diamonds...", bartender_about_diamonds,
+    "I heard about a fortress...", bartender_about_fortress
+);
+
+[label,bartender_about_treasure]
+~chatplayer("<p,neutral>As I understand it there's some kind of hidden|treasure in these parts...");
+~chatnpc("<p,neutral>Look around <text_gender("pal","lady")>. Does it looks like there's any|treasure near here?");
+~chatnpc("<p,neutral>If I were you I'd get lost before someone takes a|dislike to your face and removes it for you.");
+
+[label,bartender_about_diamonds]
+~chatplayer("<p,neutral>I heard a rumour about four diamonds or crystals...");
+~chatnpc("<p,neutral>The four diamonds of Azzanadra??? How came you to|know of this?");
+~chatplayer("<p,neutral>You've heard of them then?");
+~chatnpc("<p,neutral>It's just a fairy tale for children. Maybe one of the|village elders might know more, but it's not really|something I care about.");
+~chatnpc("<p,neutral>Now get out of here, your sort isn't welcome in my|bar.");
+if (%deserttreasure = 6) {
+    %deserttreasure = 7;
+}
+
+[label,bartender_about_fortress]
+~chatplayer("<p,neutral>Certain things have led me to believe there may be|some kind of ruined fortress around here...");
+~chatnpc("<p,neutral>Doubt it. What in the world would someone need to|guard against in the middle of this desert?");
+~chatnpc("<p,neutral>A bad attack of sand? I think you're on the wrong|track, mister so-called archaeologist.");
+
+
+[label,bartender_quest_stage_7_plus]
+@bartender_stage_7_bought;
+
+[label,bartender_stage_7_bought]
+~chatnpc("<p,neutral>You've had your drink, now get out of here. I have|nothing to say to the-");
+~chatplayer("<p,neutral>No, Wait! Look, I'm here on an archaeological|expedition for the Museum of Varrock.");
+~chatplayer("<p,neutral>I am only here looking for artefacts...");
+~chatnpc("<p,neutral>Oh really? Our inheritance is only sand and death.|What do you expect to find out here in this desert|forsaken by the gods?");
+@multi4(
+    "I heard about treasure...", bartender_about_treasure,
+    "I heard about four diamonds...", bartender_about_diamonds,
+    "I heard about a fortress...", bartender_about_fortress,
+    "I heard of the Diamonds of Azzanadra.", bartender_about_azzanadra_legend
+);
+
+[label,bartender_about_azzanadra_legend]
+~chatplayer("<p,neutral>Tell me all you know about the Diamonds of Azzanadra.");
+~chatnpc("<p,neutral>Not that I think it's any of your business, but when|I was a child I remember hearing the legend.");
+~chatnpc("<p,neutral>I don't recall it particularly well, other than they|are said to contain an incredible power.");
+~chatnpc("<p,neutral>If you really want to hear more about it you'd be best|off finding someone who cares about the past, and the|history of this area, and stop bothering me.");
+if (%deserttreasure = 7) {
+    %deserttreasure = 8;
+}
+
+[label,bartender_quest_complete]
+~chatnpc("<p,neutral>So you're the <text_gender("fella","lass")> that freed Azzanadra, huh?|Fair play to ya. What will you have?");
