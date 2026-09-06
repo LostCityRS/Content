@@ -528,16 +528,33 @@ if ($option = 1) {
 mes("Unhandled stairs: <lc_debugname(loc_type)> at");
 mes(~coord_tostring($coord)); // split line because its so hard to see the coord
 
+// https://oldschool.runescape.wiki/w/Update:Santa,%20Flax%20and%20Castlewars
+// "To fix this, when going up and down stairs, you can no longer take your own teams flag AWAY from its starting area."
+[label,castlewars_topstair_checksaradomin](coord $dest)
+if (%castlewars_team = ^castlewars_team_saradomin & inv_total(worn, castlewars_saradomin_banner) > 0) {
+    // text from osrs discord, exclamation point unconfirmed
+    mes("Saradomin won't let you take his standard toward the enemy!");
+    return;
+}
+p_teleport($dest);
+
+[label,castlewars_topstair_checkzamorak](coord $dest)
+if (%castlewars_team = ^castlewars_team_zamorak & inv_total(worn, castlewars_zamorak_banner) > 0) {
+    // text from osrs discord, exclamation point unconfirmed
+    mes("Zamorak won't let you take his standard toward the enemy!");
+    return;
+}
+p_teleport($dest);
+
 [oploc1,castlewars_topstair]
 p_arrivedelay;
 switch_coord (loc_coord) {
-    case 2_37_48_62_9 : p_teleport(1_37_48_59_9);
-    case 3_37_48_57_2 : p_teleport(2_37_48_57_5);
-    case 1_37_48_51_8 : p_teleport(0_37_48_51_5);
-    case 0_37_48_51_6 : p_teleport(1_37_48_52_8);
-    case 2_37_48_1_54 : p_teleport(1_37_48_4_54);
-    case 3_37_48_6_61 : p_teleport(2_37_48_6_58);
-    case 1_37_48_12_55 : p_teleport(0_37_48_12_58);
+    case 1_37_48_51_8 : @castlewars_topstair_checksaradomin(0_37_48_51_5);
+    case 2_37_48_62_9 : @castlewars_topstair_checksaradomin(1_37_48_59_9);
+    case 3_37_48_57_2 : @castlewars_topstair_checksaradomin(2_37_48_57_5);
+    case 1_37_48_12_55 : @castlewars_topstair_checkzamorak(0_37_48_12_58);
+    case 2_37_48_1_54 : @castlewars_topstair_checkzamorak(1_37_48_4_54);
+    case 3_37_48_6_61 : @castlewars_topstair_checkzamorak(2_37_48_6_58);
     case default : @unhandled_stairs(loc_coord);
 }
 
@@ -548,18 +565,18 @@ p_arrivedelay;
 [oploc1,castlewars_outsidestairs_saradomin]
 p_arrivedelay;
 switch_coord (loc_coord) {
+    case 0_37_48_51_6 : p_teleport(1_37_48_52_8);
     case 1_37_48_60_9 : p_teleport(2_37_48_62_8);
     case 2_37_48_57_2 : p_teleport(3_37_48_58_2);
-    case 0_37_48_51_6 : p_teleport(1_37_48_52_8);
     case default : @unhandled_stairs(loc_coord);
 }
 
 [oploc1,castlewars_outsidestairs_zamorak]
 p_arrivedelay;
 switch_coord (loc_coord) {
+    case 0_37_48_12_55 : p_teleport(1_37_48_11_55);
     case 1_37_48_1_54 : p_teleport(2_37_48_1_55);
     case 2_37_48_6_59 : p_teleport(3_37_48_5_61);
-    case 0_37_48_12_55 : p_teleport(1_37_48_11_55);
     case default : @unhandled_stairs(loc_coord);
 }
 
@@ -568,9 +585,16 @@ p_arrivedelay;
 switch_coord (loc_coord) {
     case 0_37_48_49_2 :
         if (coordx(coord) < coordx(loc_coord)) {
+            // down
             p_telejump(0_37_48_49_5);
         } else {
-            p_teleport(0_37_48_48_2);
+            // up - todo: confirm whether you can take your own banner up here. adding for now to satisfy "when going **up** and down stairs"
+            if (%castlewars_team = ^castlewars_team_saradomin & inv_total(worn, castlewars_saradomin_banner) > 0) {
+                // text from osrs discord, exclamation point unconfirmed
+                mes("Saradomin won't let you take his standard toward the enemy!");
+                return;
+            }
+            p_telejump(0_37_48_48_2);
         }
     case default : @unhandled_stairs(loc_coord);
 }
@@ -580,9 +604,16 @@ p_arrivedelay;
 switch_coord (loc_coord) {
     case 0_37_48_14_59 :
         if (coordx(coord) > coordx(loc_coord)) {
+            // down
             p_telejump(0_37_48_14_58);
         } else {
-            p_teleport(0_37_48_15_61);
+            // up - todo: confirm whether you can take your own banner up here. adding for now to satisfy "when going **up** and down stairs"
+            if (%castlewars_team = ^castlewars_team_zamorak & inv_total(worn, castlewars_zamorak_banner) > 0) {
+                // text from osrs discord, exclamation point unconfirmed
+                mes("Zamorak won't let you take his standard toward the enemy!");
+                return;
+            }
+            p_telejump(0_37_48_15_61);
         }
     case default : @unhandled_stairs(loc_coord);
 }
