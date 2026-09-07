@@ -1,0 +1,21 @@
+[opnpc1,waa_werewolf_guard]
+~chatplayer("<p,neutral>What's beneath the trapdoor?");
+if (inv_total(worn, ring_of_charos) = 1 | inv_total(worn, ring_of_charos_unlocked) = 1) {
+    @werewolf_guard_has_ring;
+} else {
+    @werewolf_guard_no_ring;
+}
+
+[label,werewolf_guard_no_ring]
+~chatnpc("<p,shifty>That's none of your business, human, and I'll never tell.");
+~chatplayer("<p,neutral>Oh, come on - I'm only curious.");
+~chatnpc("<p,shifty>If it wasn't my duty to stand here and guard our agility course from the likes of you, I would be relieving you of your life right now.");
+~chatplayer("<p,neutral>So it's an agility course, then?");
+~chatnpc("<p,shifty>No ... yes ... oh blast - you didn't hear me say anything, right?");
+~chatplayer("<p,neutral>No problem. Can I come in?");
+~chatnpc("<p,shifty>No, human - it's werewolves only.");
+
+[label,werewolf_guard_has_ring]
+~chatnpc("<p,shifty>It's an agility course designed for lycanthropes like ourselves, my friend.");
+~chatplayer("<p,neutral>Can I come in and use it?");
+~chatnpc("<p,shifty>Certainly. The cavern contains two courses - on the|west side is a level 60 Agility Course, and on the east|side is a level 25 Skullball Course.");

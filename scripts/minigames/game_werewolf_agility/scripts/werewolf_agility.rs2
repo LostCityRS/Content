@@ -1,0 +1,174 @@
+// Similar to [oploc1,trapdoor]
+// 0,55,54,24,8
+// waa_trapdoor
+[oploc1,loc_5131]
+sound_synth(door_open, 0, 0);
+loc_change(loc_5132, 500);
+
+// waa_trapdoor_open
+[oploc1,loc_5132]
+anim(human_pickupfloor, 0);
+p_delay(0);
+p_telejump(0_55_154_29_9);
+
+// waa_trapdoor_open
+[oploc2,loc_5132]
+loc_change(loc_5131, 500);
+
+// waa_ladder_exit
+[oploc1,loc_5130]
+p_arrivedelay;
+~climb_ladder(0_55_54_23_7, true);
+
+// Skullball Start
+[proc,skullball_startcourse]
+if_close;
+hint_stop;
+switch_int(random(4)) {
+    case 0 : npc_add(0_55_154_32_3, waa_skullball, 1000);
+    case 1 : npc_add(0_55_154_34_4, waa_skullball, 1000);
+    case 2 : npc_add(0_55_154_35_4, waa_skullball, 1000);
+    case 3 : npc_add(0_55_154_37_3, waa_skullball, 1000);
+}
+%npc_aggressive_player = uid; // We assign the agressive player to know who owns the skullball.
+~npc_forcewalk(movecoord(npc_coord, 0, 0, 4));
+hint_npc;
+// npc_anim(npc_param(spawn_anim), 0);
+// npc_setmode(null);
+// %npc_action_delay = add(map_clock, $action_delay);
+// %npc_aggressive_player = uid;
+// %npc_lastcombat = add(map_clock, 8);
+
+// Skullball Tap
+[opnpc1,waa_skullball]
+p_arrivedelay;
+anim(kick_skull_ball, 0);
+~npc_forcewalk(movecoord(
+    npc_coord, 
+    sub(coordx(npc_coord), coordx(coord)), 
+    0, 
+    sub(coordz(npc_coord), coordz(coord))
+));
+
+// Skullball Kick
+[opnpc3,waa_skullball]
+~npc_forcewalk(movecoord(
+    npc_coord, 
+    multiply(sub(coordx(npc_coord), coordx(coord)), 4), 
+    0, 
+    multiply(sub(coordz(npc_coord), coordz(coord)), 4)
+));
+
+
+// Skullball Shoot
+[opnpc4,waa_skullball]
+~npc_forcewalk(movecoord(
+    npc_coord, 
+    multiply(sub(coordx(npc_coord), coordx(coord)), 9), 
+    0, 
+    multiply(sub(coordz(npc_coord), coordz(coord)), 9)
+));
+
+
+// Skullball Show Goal
+[opnpc5,waa_skullball]
+
+// mes("That isn't your ball!")
+/**
+if 1w of ball: shoot east
+elif same zcoord as ball: shoot west
+elif any tile 1s of ball: shoot north
+else: shoot south
+**/
+
+// waa_stepping_stone
+[aploc1,loc_5138]
+p_arrivedelay;
+if (coord = 0_55_154_18_17 & loc_coord = 0_55_154_18_19) {
+    if (inv_total(inv, waa_stick) = 0 & npc_find(0_55_154_20_17, werewolf_trainer_start, 1, 0) = true) { 
+        npc_facesquare(movecoord(npc_coord, 0, 0, 1));
+        npc_say("FETCH!!!!!"); 
+        npc_anim(waa_werewolf_stick_throw, 0);
+        ~coord_projectile(0_55_154_20_17, 0_55_154_20_27, waa_stick_travel, 0, 0, 30, 0, 10, 11, 5);
+        def_coord $random_stick_coord = map_findsquare(0_55_154_22_56,0, 2, ^map_findsquare_lineofwalk);
+        obj_add($random_stick_coord, waa_stick, 1, ^lootdrop_duration);
+    }
+    ~agility_exactmove(human_jump_stones, 0, 0, coord, loc_coord, 0, 20, ^exact_north, false);
+} else if (coord = 0_55_154_18_19 & loc_coord = 0_55_154_18_21) {
+    ~agility_exactmove(human_jump_stones, 0, 0, coord, loc_coord, 0, 20, ^exact_north, false);
+} else if (coord = 0_55_154_18_21 & loc_coord = 0_55_154_20_21) {
+    ~agility_exactmove(human_jump_stones, 0, 0, coord, loc_coord, 0, 20, ^exact_east, false);
+} else if (coord = 0_55_154_20_21 & loc_coord = 0_55_154_20_23) {
+    ~agility_exactmove(human_jump_stones, 0, 0, coord, loc_coord, 0, 20, ^exact_north, false);
+} else if (coord = 0_55_154_20_23 & loc_coord = 0_55_154_20_25) {
+    ~agility_exactmove(human_jump_stones, 0, 0, coord, loc_coord, 0, 20, ^exact_north, false);
+} else {
+    p_aprange(2);
+}
+
+// waa_hurdle
+[oploc1,loc_5133] ~waa_jump_hurdle;
+[oploc1,loc_5134] ~waa_jump_hurdle;
+[oploc1,loc_5135] ~waa_jump_hurdle;
+[proc,waa_jump_hurdle]
+p_arrivedelay;
+if (coordz(coord) < coordz(loc_coord) ) {
+    sound_synth(hurdle, 0, 0);
+    ~agility_exactmove(human_jump_hurdle, 0, 0, coord, movecoord(coord, 0, 0, 2), 0, 30, ^exact_north, false);
+} else {
+    // https://youtu.be/mwyd29YHyD8
+    mes("Don't look backwards - keep going forwards!");
+}
+
+// waa_pipe
+[oploc1,loc_5152]
+if (coordz(coord) < coordz(loc_coord) ) {
+    ~agility_exactmove(human_doublepipesqueeze, 30, 3, coord, movecoord(coord, 0, 0, 3), 30, 126, ^exact_north, true);
+    sound_synth(squeeze_in, 0, 0);
+    ~change_merged_loc(movecoord(coord, 0, 0, 1));
+    ~agility_exactmove(human_doublepipesqueeze, 30, 3, coord, movecoord(coord, 0, 0, 3), 30, 126, ^exact_north, true);
+    sound_synth(squeeze_out, 0, 0);
+}
+
+[proc,waa_agility_exactmove](seq $anim, int $anim_delay, int $movement_delay, coord $start_coord, coord $end_coord, int $start_cycle, int $end_cycle, int $direction, boolean $merge_with_loc)
+anim($anim, $anim_delay);
+p_exactmove($start_coord, $end_coord, $start_cycle, $end_cycle, $direction);
+p_delay($movement_delay);
+
+
+
+// waa_skull_slope
+[oploc1,loc_5136]
+~agility_force_move(0, human_climbing, movecoord(coord, -3, 0, 0));
+
+// waa_zip_line 0,55,154,8,54
+// The 2 videos with the old models.
+// 2:47.5 - 2:52.5 = 5s // https://youtu.be/QnQZ0ayGy28
+// 3:21.5 - 3:26.5 = 5s // https://youtu.be/fmzzLy5fXK4
+// Just to compare, slightly newer models, still same timing.
+// 1:16.9 - 1:21.9 = 5s // https://youtu.be/hQ1B_F7OXBs
+[oploc1,loc_5139] ~waa_zip_line;
+[oploc1,loc_5140] ~waa_zip_line;
+[oploc1,loc_5141] ~waa_zip_line;
+[proc,waa_zip_line]
+p_arrivedelay;
+~forcemove(0_55_154_8_54);
+facesquare(movecoord(coord, 0, 0, -1));
+mes("You bravely cling on to the death slide by your teeth...");
+anim(zipline_bite, 0);
+sound_synth(bite, 0, 0);
+p_delay(1);
+say("WAAAAAARRRGGGHHHH!!!!!!");
+sound_synth(deathslide, 0, 0);
+anim(zipline_slide, 0);
+p_exactmove(0_55_154_8_54, 0_55_154_8_17, 0, 225, ^exact_south);
+p_delay(7); // For odd reasons 7*6 = 4200 ms matches videos.
+mes("... and land safely on your feet.");
+// ~waa_agility_exactmove(zipline_slide, 0, 2, 0_55_154_8_54, 0_55_154_8_44, 0, 80, ^exact_south, false);
+// // Failpoint 1
+// ~waa_agility_exactmove(zipline_slide, 0, 2, 0_55_154_8_44, 0_55_154_8_34, 0, 80, ^exact_south, false);
+// // Failpoint 2
+// ~waa_agility_exactmove(zipline_slide, 0, 2, 0_55_154_8_34, 0_55_154_8_24, 0, 80, ^exact_south, false);
+// // Failpoint 3
+// ~waa_agility_exactmove(zipline_slide, 0, 2, 0_55_154_8_24, 0_55_154_8_17, 0, 80, ^exact_south, false);
+anim(null, 0);

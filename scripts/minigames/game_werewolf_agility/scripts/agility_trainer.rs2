@@ -1,0 +1,13 @@
+[opnpc1,werewolf_trainer_stick]
+if (inv_total(inv, waa_stick) >= 1 ) {
+    inv_del(inv, waa_stick, 1);
+    stat_advance(agility, 190);
+    mes("You give the stick to the werewolf.");
+} else {
+    ~chatnpc("<p,shifty>Have you brought the stick yet?");
+    ~chatplayer("<p,confused>What stick?");
+    ~chatnpc("<p,shifty>Come on, get round that course - I need something to chew!");
+}
+
+[opnpcu,werewolf_trainer_stick]
+// No idea if this is also the same.
