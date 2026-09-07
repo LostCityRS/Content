@@ -20,6 +20,7 @@ switch_obj (%open_book) {
     case elemental_workshop_shield_book : @book_flip_page(^book_direction_backward, 0, 1, elemental_shield_book);
     case golem_notes : @book_flip_page(^book_direction_backward, 0, 9, golem_notes);
     case rcu_instruction_book : @book_flip_page(^book_direction_backward, 0, ^abyssal_notes_book_total_pages, rcu_instruction_book);
+    case roving_cadarn_book : @book_flip_page(^book_direction_backward, 0, ^roving_cadarn_lineage_pages, roving_cadarn_lineage);
 }
 p_delay(0);
 
@@ -42,6 +43,7 @@ switch_obj (%open_book) {
     case elemental_workshop_shield_book : @book_flip_page(^book_direction_forward, 0, 1, elemental_shield_book);
     case golem_notes : @book_flip_page(^book_direction_forward, 0, 9, golem_notes);
     case rcu_instruction_book : @book_flip_page(^book_direction_forward, 0, ^abyssal_notes_book_total_pages, rcu_instruction_book);
+    case roving_cadarn_book : @book_flip_page(^book_direction_forward, 0, ^roving_cadarn_lineage_pages, roving_cadarn_lineage);
 }
 p_delay(0);
 
