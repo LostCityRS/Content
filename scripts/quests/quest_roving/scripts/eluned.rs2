@@ -1,0 +1,72 @@
+[opnpc1,roving_female_woodelf]
+switch_int (%roving_elves_quest) {
+    case 2 : @roving_eluned_talk_about_consecration;
+    case 3 : @roving_eluned_seed_fetch;
+    case 4 : @roving_eluned_enchanted_seed;
+    case 5 : @roving_eluned_planted_seed;
+    case default : @roving_eluned_default;
+}
+
+[label,roving_eluned_talk_about_consecration]
+~chatplayer("<p,neutral>Hey there... Islwyn said you may be able to help me. He told me you know how to consecrate ground for an elven burial. I need to reconsecrate Glarial's resting place.");
+~chatnpc("That I do... It is elven tradition to plant a specially enchanted crystal seed at the graves of our ancestors. The seed will create guardians to protect the area.");
+~chatnpc("Unfortunately, the crystal seed must be attuned to the person it's protecting. A new seed won't do, but you should be able to recover the seed from her old tomb.");
+~chatnpc("The tomb's guardian will be protecting the seed, you'll need to defeat him to get it. Once you have it, return here and I will re-enchant it.");
+// TODO: roving_elves_quest likely set to 3 here or after the next chat
+~chatplayer("OK... I'll be back as soon as i have it.");
+
+[label,roving_eluned_seed_fetch]
+~chatplayer("<p,neutral>Hello.");
+~chatnpc("<p,neutral>Hello. Any luck finding the consecration seed?");
+// TODO: what if the seed is banked?
+if (inv_total(inv, roving_old_consecration_seed) > 0) {
+    ~chatplayer("<p,neutral>Yes, I have it here.");
+    // TODO: Can you get multiple? What happens if you have one banked here? Grab 3 for testing, 2 in inv, 1 in bank
+    inv_del(inv, roving_old_consecration_seed, 1);
+    ~objbox(roving_old_consecration_seed, "You hand the crystal seed to Eluned.", 250, 0, 0);
+    // TODO: What happens here if you leave the dialogue? Do you lose the seed?
+    // TODO: roving_elves_quest likely set to 4 here or after the next objbox
+    ~chatnpc("<p,chant>");
+    ~chatplayer("<p,neutral>How odd. I can see her lips moving, but there's no sound.");
+    inv_add(inv, roving_new_consecration_seed, 1);
+    ~objbox(roving_old_consecration_seed, "Eluned hands you an enchanted crystal seed.", 250, 0, 0);
+    ~chatnpc("<p,neutral>Plant this seed in Glarial's new tomb close to her remains and she will rest in peace.");
+    ~chatplayer("<p,neutral>Okay.");
+} else {
+    ~chatplayer("<p,neutral>No, not yet.");
+    ~chatnpc("<p,neutral>Well, bring it here as soon as you find it, then I can re-enchant it.");
+    ~chatplayer("<p,neutral>Okay. I'll see what I can do.");
+}
+
+[label,roving_eluned_enchanted_seed]
+// TODO: What if the seed is banked?
+if (inv_total(inv, roving_old_consecration_seed) > 0) {
+    @roving_eluned_lost_enchanted_seed;
+}
+~chatplayer("<p,neutral>Hello.");
+~chatnpc("<p,neutral>Hey, how's it going? Have you managed to reconsecrate Glarial's resting place?");
+~chatnpc("<p,neutral>I'm sure her family will appreciate your effort. Plant the seed in Glarial's new tomb close to her remains and she will rest in peace.");
+~chatplayer("<p,neutral>Well I'll go finish the job then. See you later.");
+
+[label,roving_eluned_lost_enchanted_seed]
+~chatplayer("<p,neutral>Hello. I lost the crystal seed.");
+~chatnpc("<p,neutral>Not to worry. Now I know the harmonic of Glarial's crystal I can reproduce another one.");
+~chatnpc("<p,chant>");
+~chatplayer("<p,neutral>How odd. I can see her lips moving, but there's no sound.");
+inv_add(inv, roving_new_consecration_seed, 1);
+~objbox(roving_old_consecration_seed, "Eluned hands you an enchanted crystal seed.", 250, 0, 0);
+~chatnpc("<p,neutral>Plant this seed in Glarial's new tomb close to her remains and she will rest in peace.");
+// TODO: Missing player 'Okay.' here maybe?
+
+[label,roving_eluned_planted_seed]
+~chatplayer("<p,neutral>Hello.");
+~chatnpc("<p,neutral>Hey, how's it going? Have you managed to reconsecrate Glarial's resting place?");
+~chatplayer("<p,neutral>Yes, it's done.");
+~chatnpc("<p,neutral>Well done! You should go see Islwyn, but I'd guess he already knows.");
+
+[label,roving_eluned_default]
+~chatplayer("<p,neutral>Hello.");
+~chatnpc("<p,neutral>Hello, excuse my friend. He has bad history with humans.");
+~chatplayer("<p,neutral>No problem.");
+~chatnpc("<p,neutral>Is there anything I can help you with.");
+~chatplayer("<p,neutral>Not right now, thank you.");

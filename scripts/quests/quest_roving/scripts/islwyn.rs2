@@ -1,0 +1,160 @@
+[ai_timer,roving_islwyn]
+@roving_elves_roam;
+
+[opnpc1,roving_islwyn]
+switch_int (%roving_elves_quest) {
+    case 0 : @roving_islwyn_quest_start;
+    case 1 : @roving_islwyn_agreed_to_help;
+    case 2 : @roving_islwyn_help;
+    case 3 : @roving_islwyn_seed_fetch;
+    case 4 : @roving_islwyn_enchanted_seed;
+    case 5 : @roving_islwyn_planted_seed;
+}
+
+[label,roving_islwyn_quest_start]
+~chatplayer("<p,neutral>Hello there.");
+~chatnpc("<p,neutral>Leave me be, I have no time for easterners. Between your lot and them gnomes, all you do is take and destroy. No thought for others.");
+~chatplayer("<p,neutral>...But...");
+~chatnpc("<p,neutral>Save your excuses young one! It was one of your species that disturbed my grandmother's remains. Will she never get the peace she deserves?");
+~chatplayer("<p,neutral>Grandmother?");
+~chatnpc("<p,neutral>Yes! Someone took her ashes from her tomb. If it wasn't for them gnomes she'd have been left in peace. But now I can sense her restlessness.");
+~chatplayer("<p,neutral>Gnomes?");
+~chatnpc("<p,neutral>Yes gnomes! One of those little pests took the key to my grandmother's tomb. He must've given it to the human that desecrated the tomb.");
+~chatplayer("<p,neutral>Was your grandmother's name Glarial?");
+~chatnpc("<p,neutral>Yes... How did you know that?");
+@roving_islwyn_truth_or_lie;
+
+// TODO: Confirm this, need to be careful to not advance roving_elves_quest state
+[label,roving_islwyn_help]
+~chatplayer("<p,neutral>Hello there.");
+~chatnpc("<p,neutral>Tell me again, what do you know of grandmother's remains?");
+@roving_islwyn_help_choice;
+
+[label,roving_islwyn_truth_or_lie]
+def_int $choice = ~p_choice3_header("Tell the truth?", 1, "Lie?", 2, "Leave the old elf be?", 3, "Do you want to;");
+
+if ($choice = 1) {
+    ~chatplayer("<p,neutral>It's a bit of a long tale, but to cut the story short, her remains reside in Baxtorian's home. I thought it's where she'd want to be. It was I that removed your grandmother's ashes.");
+    ~chatnpc("<p,neutral>You've been in grandfather's home? That's where we wanted to leave Glarial's ashes to rest, but we could never work out how to enter...");
+    ~chatnpc("<p,neutral>This is gravely concerning... Her resting place must be consecrated.");
+    // TODO: roving_elves_quest likely set to 1 here
+    @roving_islwyn_help_choice;
+} else if ($choice = 2) {
+    ~chatplayer("<p,neutral>I overheard someone in the pub talking about her, they talked of leaving her remains in the home of a guy called Baxtorian, under a waterfall.");
+    ~chatnpc("<p,neutral>Really... Grandfathers's home? That's where we wanted to leave Glarial's ashes to rest, but we could never work out how to enter...");
+    ~chatnpc("<p,neutral>This is no good... Her resting place must be consecrated.");
+    // TODO: roving_elves_quest likely set to 1 here
+    @roving_islwyn_help_choice;
+} else {
+    ~chatplayer("<p,neutral>Sorry this holds no interest for me, good day.");
+}
+
+[label,roving_islwyn_help_choice]
+def_int $choice = ~p_choice2("Maybe I could help.", 1, "Sounds like you've got a lot to do.", 2);
+
+if ($choice = 1) {
+    ~chatplayer("<p,neutral>Maybe I could help. What needs doing to consecrate her new tomb?");
+    ~chatnpc("<p,neutral>Are you offering to help?!? Maybe not all humans are as bad as I thought.");
+    ~chatnpc("<p,neutral>I don't know the consecration process. You should speak with Eluned... she is wise in the ways of the ritual.");
+    ~chatplayer("<p,neutral>I'll see what I can do.");
+    // TODO: roving_elves_quest likely set to 2 here
+} else {
+    ~chatplayer("<p,neutral>Sounds like you've got a lot to do. I'll leave you to it.");
+}
+
+[label,roving_islwyn_agreed_to_help]
+~chatplayer("<p,neutral>Hello again.");
+~chatnpc("<p,neutral>Good day. Have you spoken to Eluned yet?");
+~chatplayer("<p,neutral>No, not yet.");
+~chatnpc("<p,neutral>She may be able to help with the consecration of grandmother's new resting place.");
+~chatplayer("<p,neutral>Ok... I'll see what she has to say.");
+
+[label,roving_islwyn_seed_fetch]
+~chatplayer("<p,neutral>Hello again.");
+~chatnpc("<p,neutral>Good day. Have you spoken to Eluned yet?");
+
+// TODO: what if the seed is banked?
+if (inv_total(inv, roving_old_consecration_seed) > 0) {
+    ~chatplayer("<p,neutral>Yes, she told me I must retrieve a crystal seed from Glarial's old tomb. Which I have right here.");
+    ~chatnpc("<p,neutral>Good, you should go and show it to her.");
+    ~chatplayer("<p,neutral>OK... Will do.");
+} else {
+    ~chatplayer("<p,neutral>Yes, she told me I must retrieve a crystal seed from Glarial's old tomb.");
+    ~chatnpc("<p,neutral>Well I wish I could help but the east lands are no place for my kind.");
+}
+
+[label,roving_islwyn_enchanted_seed]
+~chatplayer("<p,neutral>Hello.");
+~chatnpc("<p,neutral>Hey, how's it going? Have you managed to reconsecrate Glarial's resting place?");
+~chatnpc("<p,neutral>I'm sure her family will appreciate your effort. Plant the seed in Glarial's new tomb close to her remains and she will rest in peace.");
+~chatplayer("<p,neutral>Well I'll go finish the job then. See you later.");
+
+[label,roving_islwyn_planted_seed]
+~chatplayer("<p,neutral>Hello Islwyn...");
+~chatnpc("<p,neutral>You have returned! Thank you for all you have done. Now both me and my grandmother can rest in peace.");
+~chatplayer("<p,neutral>How did you know that I had consecrated the tomb?");
+~chatnpc("<p,neutral>Her restlessness has finally left me. Here - I should give you something for your effort.");
+~doubleobjbox(roving_crystal_bow_new, roving_crystal_shield_new, "Islwyn shows you a crystal bow and a crystal shield.", 250);
+// TODO: 500 uses was likely changed later when charges were bumped to 2500
+~chatnpc("<p,neutral>Crystal equipment is at its best when new and previously unused. The bow does not require ammunition and reduces in strength the more it's fired. The shield decreases in defensive capabilities the more it's hit. Both the shield and the bow I am carrying only have 500 uses before they revert to seed.");
+~chatplayer("<p,neutral>Revert to seed? What do you mean?");
+~chatnpc("<p,neutral>Ahhh, young one. It was thousands of years before we fully understood that ourselves. All will be explained if we feel you are ready. Now which one of these crystal creations would you like?");
+def_int $choice = ~p_choice2("Shields are for wimps! Give me the bow!", 1, "I don't like running and hiding behind mushrooms. Shield please!", 2);
+
+def_namedobj $choice_obj = null;
+
+if ($choice = 1) {
+    $choice_obj = roving_crystal_shield_200;
+    ~chatplayer("<p,neutral>I don't like running and hiding behind mushrooms. Shield please!");
+} else {
+    $choice_obj = roving_crystal_bow_200;
+    ~chatplayer("<p,neutral>Shields are for wimps! Give me the bow!");
+}
+
+if (inv_freespace(inv) = 0) {
+    ~chatnpc("<p,neutral>Oh, you don't have space to take it. Make some room and talk to me again.");
+    return;
+}
+
+~chatnpc("<p,neutral>All right. If you ever need a replacement I can sell you another.");
+~chatnpc("<p,neutral>Remember, the better the condition of crystal equipment, the more potential it has. Also, crystal equipment with no remaining condition will be destroyed.");
+// TODO: roving_elves_quest likely set to 6 here
+stat_advance(strength, 10000);
+inv_add(inv, $choice_obj, 1);
+~send_quest_complete(questlist:roving_elves, $choice_obj, 250, ^roving_questpoints, "You have completed Roving Elves Quest!", "Used elf equipment|10000 Strength XP");
+
+[label,roving_elves_roam]
+npc_say("It's time to leave.");
+npc_delay(0);
+npc_facesquare(^roving_coord_main_location);
+npc_anim(human_pickupfloor, 0);
+
+if (.npc_find(npc_coord, roving_female_woodelf, 16, 0) = false) {
+    npc_say("Eluned, where are you?");
+    return;
+}
+.npc_say("Yes, let us move on.");
+npc_delay(1);
+npc_del;
+.npc_del;
+
+// permanent spawn location
+if (inzone(0_35_49_0_0, 0_35_49_63_63, npc_coord) = true) {
+    // find the permanent fire to delete it...
+    if (loc_find(^roving_coord_main_location, roving_fire) = false) {
+        return;
+    }
+    loc_del(^roving_roam_ticks);
+    obj_addall(^roving_coord_main_location, ashes, 1, 100);
+
+    // Spawn the elves at the alt location
+    loc_add(0_34_49_30_22, roving_fire, 0, centrepiece_straight, 500);
+    npc_add(0_34_49_30_21, roving_islwyn, ^roving_roam_ticks);
+    npc_add(0_34_49_29_23, roving_female_woodelf, ^roving_roam_ticks);
+}
+
+// alt spawn location
+if (inzone(0_34_49_0_0, 0_34_49_63_63, npc_coord) = true) {
+    // only need to spawn the ashes here as the permanent npcs & fire loc will have respawned by now
+    obj_addall(^roving_coord_alt_location, ashes, 1, 100);
+}
