@@ -1,0 +1,76 @@
+// References:
+// https://www.youtube.com/watch?v=IjslnEm1C6U
+// https://www.youtube.com/watch?v=jYKgit7ZnoI
+// https://www.youtube.com/watch?v=JFMzbOQ7ba4
+// https://www.youtube.com/watch?v=zunL8UIiwHo
+// https://www.youtube.com/watch?v=mRAozDH_1qI
+// https://www.youtube.com/watch?v=onKjBy9Y4DY
+
+[opheld1,roving_new_consecration_seed]
+if (inv_total(inv, spade) = 0) {
+    ~mesbox("You need a spade to be able to plant the seed.");
+    return;
+}
+
+if (inzone(0_40_154_38_34, 0_40_154_52_62, coord) = false) {
+    // https://youtu.be/JFMzbOQ7ba4?t=243
+    mes("This seed may only be planted close to Glarial's remains.");
+    return;
+}
+def_coord $coord = map_findsquare(coord, 1, 1, 0);
+
+mes("You dig a small hole with your spade.");
+facesquare($coord);
+anim(human_dig, 0);
+sound_synth(crystal_tree_planting, 0, 0);
+p_delay(1);
+
+// since we've delayed the player, $coord might be unsafe now, re-check before spawning it.
+if (map_locaddunsafe($coord) = true) return;
+
+mes("You drop the crystal seed in the hole.");
+anim(human_pickupfloor, 0);
+// loc does linger longer than needed - https://youtu.be/onKjBy9Y4DY?t=490
+loc_add($coord, roving_crystal_growth, 3, centrepiece_straight, 20);
+p_delay(0);
+inv_del(inv, roving_new_consecration_seed, 1);
+
+if (%roving_elves_quest = ^roving_enchanted_seed) %roving_elves_quest = ^roving_planted_seed;
+
+loc_anim(roving_crystal_growth_anim);
+
+[label,roving_elves_roam]
+npc_say("It's time to leave.");
+npc_delay(0);
+npc_facesquare(^roving_coord_main_location);
+npc_anim(human_pickupfloor, 0);
+
+if (.npc_find(npc_coord, roving_female_woodelf, 16, 0) = false) {
+    npc_say("Eluned, where are you?");
+    return;
+}
+.npc_say("Yes, let us move on.");
+npc_delay(1);
+npc_del;
+.npc_del;
+
+// permanent spawn location
+if (inzone(0_35_49_0_0, 0_35_49_63_63, npc_coord) = true) {
+    // find the permanent fire to delete it...
+    if (loc_find(^roving_coord_main_location, roving_fire) = false) {
+        return;
+    }
+    loc_del(^roving_roam_ticks);
+    obj_addall(^roving_coord_main_location, ashes, 1, 100);
+
+    // Spawn the elves at the alt location
+    loc_add(0_34_49_30_22, roving_fire, 0, centrepiece_straight, 500);
+    npc_add(0_34_49_30_21, roving_islwyn, ^roving_roam_ticks);
+    npc_add(0_34_49_29_23, roving_female_woodelf, ^roving_roam_ticks);
+}
+
+// alt spawn location
+if (inzone(0_34_49_0_0, 0_34_49_63_63, npc_coord) = true) {
+    // only need to spawn the ashes here as the permanent npcs & fire loc will have respawned by now
+    obj_addall(^roving_coord_alt_location, ashes, 1, 100);
+}

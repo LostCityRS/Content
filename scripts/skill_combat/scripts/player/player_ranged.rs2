@@ -22,14 +22,18 @@ if ($rhand = null) {
 if (%damagestyle = ^style_ranged_rapid) {
     %action_delay = sub(%action_delay, 1);
 }
-// this can be either the quiver or rhand.
-def_obj $ammo = ~player_ranged_check_ammo($rhand);
-if ($ammo = null) {
-    p_stopaction;
-    ~update_all($rhand);
-    return;
-}
 
+// Only check ammo if we're not using a crystal bow
+def_obj $ammo = null;
+if (oc_category($rhand) ! weapon_chargebow) {
+    // this can be either the quiver or rhand.
+    $ammo = ~player_ranged_check_ammo($rhand);
+    if ($ammo = null) {
+        p_stopaction;
+        ~update_all($rhand);
+        return;
+    }
+}
 // check hit, give combat xp
 def_int $damage = 0;
 if (~player_npc_hit_roll(%damagetype) = true) {
@@ -58,10 +62,12 @@ if (~player_npc_hit_roll(%damagetype) = true) {
     npc_heropoints($damage_capped);
 }
 
-def_int $poison_severity = oc_param($ammo, poison_severity);
-if ($damage > 0 & $poison_severity > 0 & random(8) = 0) { // 1/8 chance to poison
-    // poison npc
-    ~npc_poison_start(max(sub($poison_severity, 14), 0)); // lowered by 14 if ranged attack
+if ($ammo ! null) {
+    def_int $poison_severity = oc_param($ammo, poison_severity);
+    if ($damage > 0 & $poison_severity > 0 & random(8) = 0) { // 1/8 chance to poison
+        // poison npc
+        ~npc_poison_start(max(sub($poison_severity, 14), 0)); // lowered by 14 if ranged attack
+    }
 }
 
 p_opnpc(2);
@@ -106,10 +112,15 @@ if (oc_param($ammo, levelrequire) > oc_param($rhand, levelrequire)) { //todo con
 return($ammo);
 
 [proc,player_ranged_use_weapon](obj $rhand, obj $ammo)(int)
-if ($ammo = ogre_arrow) spotanim_pl(oc_param($ammo, proj_launch), 50, 0);
+def_category $weapon_cat = oc_category($rhand);
+
+if ($weapon_cat = weapon_chargebow) spotanim_pl(sp_attack_glow_arrow_launch, 96, 0);
+else if ($ammo = ogre_arrow) spotanim_pl(oc_param($ammo, proj_launch), 50, 0);
 else spotanim_pl(oc_param($ammo, proj_launch), 96, 0);
 def_int $delay = 30;
-switch_category(oc_category($rhand)) {
+switch_category($weapon_cat) {
+    case weapon_chargebow :
+        ~npc_projectile(coord, npc_uid, sp_attack_glow_arrow_travel, 40, 36, 41, 15, 5, 11, 5);
     case weapon_bow, weapon_crossbow : 
         $delay = ~npc_projectile(coord, npc_uid, oc_param($ammo, proj_travel), 40, 36, 41, 15, 5, 11, 5);
         ~ranged_dropammo_npc($ammo, divide($delay, 30));
