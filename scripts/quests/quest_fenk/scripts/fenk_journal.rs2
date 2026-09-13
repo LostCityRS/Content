@@ -1,0 +1,150 @@
+[if_button,questlist:creatureoffenkenstrain]
+def_string $x;
+def_string $n = "Creature of Fenkenstrain";
+
+// My investigations on the Varp 399 staging number (%fenk_quest)
+// %fenk_quest only shows the body on the bed at stage 3. Fixing the midpoint needle/thread stage at that point.
+// %fenk_quest also exchanges fenk and rologarth at stage 8. Setting the end of the quest at that point.
+// Some clues from the reverse engineered script "int script_2193(int arg0)"
+// This was why I made the guess that stage 7 is not used.
+// case 26:
+//     if (standart_config_399 > 6) {
+//         return 2;
+//     }
+//     if (((boolean)standart_config_399) && ((boolean)bitconfig_203)) {
+//         return 0;
+//     }
+//     return 1;
+
+// Stage 0
+// Note this is the signpost part. The quest doesn't start(or turn yellow) until you talk to fenk.
+if(%fenk_read_signpost = 0 & %fenk_quest = ^fenk_not_started) {
+    $x = append($x, "@dbl@I can start this quest by reading the signpost in the|");
+    $x = append($x, "@dbl@centre of @dre@Canifis@dbl@.|");
+    $x = append($x, "@dbl@I must be able to defeat a @dre@level 51 monster@dbl@, and need the|");
+    $x = append($x, "@dbl@following skill levels:|");
+    if (stat_base(crafting) >= 20) {
+        $x = append($x, "@str@Level 20 Crafting|");
+    } else {
+        $x = append($x, "@dre@Level 20 Crafting|");
+    }
+    if (stat_base(thieving) >= 25) {
+        $x = append($x, "@str@Level 25 Thieving|");
+    } else {
+        $x = append($x, "@dre@Level 25 Thieving|");
+    }
+    $x = append($x, "@dbl@I also need to have completed the following quests:|");
+    if (%priestperil >= ^priestperil_complete) {
+        $x = append($x, "@str@Priest in Peril|");
+    } else {
+        $x = append($x, "@dre@Priest in Peril|");
+    }
+    if (%prieststart >= ^priest_complete) {
+        $x = append($x, "@str@The Restless Ghost|");
+    } else {
+        $x = append($x, "@dre@The Restless Ghost|");
+    }
+    ~quest_journal($n, $x);
+    return;
+}
+// zmvgzuA31S0 - if you do not read the signpost, you will not see this even at the end of the quest.
+if(%fenk_read_signpost = 1) {
+    $x = append($x, "@str@I read the signpost in Canifis, which tells of a butler|");
+    $x = append($x, "@str@position that is available at the castle to the northeast.|");
+}
+// zmvgzuA31S0 - if you do not read the signpost, you will not see this.
+if (%fenk_read_signpost = 1 & %fenk_quest = ^fenk_not_started) {
+    $x = append($x, "@dbl@I should go up to the castle and speak to @dre@Dr Fenkenstrain@dbl@|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 1
+$x = append($x, "@str@I spoke to Fenkenstrain, who wanted me to find him some|");
+$x = append($x, "@str@body parts so that he could build a creature.|");
+if (%fenk_quest = ^fenk_passed_interview) {
+    $x = append($x, "|@dbl@I need to find these body parts for @dre@Fenkenstrain@dbl@:|");
+    // I am half sure if they need to be crossed out. I think authentically they are not.
+    if (%fenk_arms = 1) {
+        $x = append($x, "@str@a pair of arms|");
+    } else {
+        $x = append($x, "@dbl@a pair of @dre@arms@dbl@|");
+    }
+    if (%fenk_legs = 1) {
+        $x = append($x, "@str@a pair of legs|");
+    } else {
+        $x = append($x, "@dbl@a pair legs @dre@legs@dbl@|");
+    }
+    if (%fenk_torso = 1) {
+        $x = append($x, "@str@a torso|");
+    } else {
+        $x = append($x, "@dbl@a @dre@torso@dbl@|");
+    }
+    if (%fenk_head = 1) {
+        $x = append($x, "@str@a head|");
+    } else {
+        $x = append($x, "@dbl@a @dre@head@dbl@|");
+    }
+    $x = append($x, "|@dbl@Apparently the soil of @dre@Morytania@dbl@ has a unique quality|");
+    $x = append($x, "@dbl@which preserves the bodies of the dead better than|");
+    $x = append($x, "@dbl@elsewhere, so perhaps I should look at the graves in the|");
+    $x = append($x, "@dbl@local area");
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 2
+$x = append($x, "@str@I gave a torso, some arms and legs, and a head to|");
+$x = append($x, "@str@Fenkenstrain, who then wanted a needle and 5 lots of|");
+$x = append($x, "@str@thread, so that he could sew the bodyparts together and|");
+$x = append($x, "@str@create his creature.|");
+if (%fenk_quest = ^fenk_brough_bodyparts) {
+    $x = append($x, "@dbl@I need to bring @dre@Fenkenstrain@dbl@ a @dre@needle@dbl@ and @dre@5 quantities@dbl@|");
+    $x = append($x, "@dbl@@dre@of thread@dbl@.|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 3
+$x = append($x, "@str@I brought Fenkenstrain a needle and 5 quantities of|");
+$x = append($x, "@str@thread.|");
+if (%fenk_quest = ^fenk_brought_needle_threads) {
+    $x = append($x, "@dbl@@dre@Fenkenstrain@dbl@ has ordered me to repair the lightning|");
+    $x = append($x, "@dbl@conductor.|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 4
+$x = append($x, "@str@I repaired the lightning conductor, and Fenkenstrain|");
+$x = append($x, "@str@brought the Creature to life.|");
+if (%fenk_quest = ^fenk_repaired_lightning_conductor) {
+    $x = append($x, "@dre@Fenkenstrain@dbl@ wants to talk to me.||"); // Disappears
+}
+
+// Stage 5
+if (%fenk_quest = ^fenk_spoke_again) {
+    $x = append($x, "@dbl@The @dre@Creature@dbl@ went on a rampage, and @dre@Fenkenstrain@dbl@ wants|");
+    $x = append($x, "@dbl@me to go up the @dre@Tower@dbl@ to destroy it.|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 6
+$x = append($x, "@str@The Creature went on a rampage, and Fenkenstrain sent|");
+$x = append($x, "@str@me up to the Tower to destroy it.|");
+$x = append($x, "@str@The Creature convinced me to stop Fenkenstrain's|");
+$x = append($x, "@str@experiments once and for all, and has told me the true|");
+$x = append($x, "@str@history of Fenkenstrain's treachery.|");
+if (%fenk_quest = ^fenk_creature_convince) {
+    $x = append($x, "@dbl@I must find a way to stop Fenkenstrain's experiments.|");
+    ~quest_journal($n, $x);
+    return;
+}
+
+// Stage 8 (End)
+$x = append($x, "@str@I stole Fenkenstrain's Ring of Charos, and he released|");
+$x = append($x, "@str@me from his service.|");
+$x = append($x, "@red@QUEST COMPLETE!");
+
+~quest_journal("Creature of Fenkenstrain", $x);

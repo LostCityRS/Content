@@ -1,0 +1,144 @@
+[opnpc1,fenk_gardener_multi_2]
+switch_int(%fenk_quest) {
+    case ^fenk_not_started :
+        ~chatplayer("<p,confused>Who are you?");
+        if(~check_ghostspeak = false) { return; };
+        ~chatnpc("<p,neutral>Oi'm the 'eadless gardener, mate.");
+    case ^fenk_passed_interview, ^fenk_brough_bodyparts :
+        @fenk_gardener_options;
+    case ^fenk_brought_needle_threads, ^fenk_repaired_lightning_conductor, ^fenk_spoke_again, ^fenk_creature_convince :
+        if (inv_total(inv, fenk_shed_key) = 0 & %fenk_unlocked_shed = 0) {
+            @fenk_gardener_without_key_options;
+        } else {
+            @fenk_gardener_already_with_key_options;
+        }
+    case ^fenk_complete :
+        ~chatplayer("<p,confused>How are you?");
+        if(~check_ghostspeak = false) { return; };
+        ~chatnpc("<p,neutral>Same as ever, mate, just getting' on with it regardless.");
+        ~chatplayer("<p,neutral>Good for you...err...mate.");
+}
+
+// Helper proc returns true if no amulet and defaults to unable to speak mode
+[proc,check_ghostspeak]()(boolean)
+if (inv_total(worn, amulet_of_ghostspeak) = 0 & inv_total(worn, amulet_of_ghostspeak_enchanted) = 0) {
+    ~mesbox("The Headless Gardener's neck twitches at you, but the lack of any head prevents him from speaking.");
+    return (false);
+}
+~objbox(amulet_of_ghostspeak, "You feel power emanate from the Amulet of Ghostspeak, and the air around you vibrates with the ghostly voice of the Headless Gardener...", 200, 0, 0);
+return (true);
+
+[label,fenk_gardener_options]
+@multi3(
+    "Tell me about Fenkenstrain.", tell_me_about_fenky, 
+    "What happened to your head?", tell_me_about_your_head, 
+    "What's your name?", tell_me_your_name
+);
+
+[label,fenk_gardener_without_key_options]
+@multi4(
+    "Tell me about Fenkenstrain.", tell_me_about_fenky, 
+    "Do you know where the key to the shed is?", tell_me_where_is_key, 
+    "Do you know where a conductor mould is?", tell_me_how_get_mould, 
+    "What happened to your head?", tell_me_about_your_head
+);
+
+// https://youtu.be/idakVqwlf-U
+[label,fenk_gardener_already_with_key_options]
+@multi3(
+    "Tell me about Fenkenstrain.", tell_me_about_fenky, 
+    "Do you know where a conductor mould is?", tell_me_how_get_mould, 
+    "What happened to your head?", tell_me_about_your_head
+);
+
+[label,tell_me_about_fenky]
+~chatplayer("<p,confused>What can you tell me about Fenkenstrain?");
+if(~check_ghostspeak = false) { return; };
+~chatnpc("<p,neutral>Oi could tell you a few things about old Fenky, yeah.");
+~chatplayer("<p,neutral>Go on.");
+~chatnpc("<p,neutral>Once, this castle were full o' good folk - my friends. Fenky was just the castle doctor, you know, to the lord and the castle folk.");
+~chatnpc("<p,neutral>I don't know what happened to them all, but one by one they all disappeared. When they were gone a while, I went an dug graves for 'em in the forest.");
+~chatnpc("<p,neutral>After a while there weren't no one left, but the lord, Fenkenstrain and meself.");
+~chatnpc("<p,neutral>Old Fenky sent me into the forest to dig 'im a pit - never said what for - then would you believe it, someone chops me 'ead off.");
+~chatplayer("<p,confused>Did you see who did it...before...?");
+~chatnpc("<p,neutral>Before oi kicked the bucket, you mean?");
+~chatplayer("<p,confused>Umm...");
+~chatnpc("<p,neutral>Don't worry yerself. I'm not worried about bein' dead. Worse things could happen, I suppose.");
+~chatnpc("<p,neutral>One thing I do know is, there ain't no lord of the castle anymore, 'cept for old Fenky. Makes ya think a bit, don't it?");
+
+[label,tell_me_about_your_head]
+~chatplayer("<p,confused>What happened to your head?");
+if(~check_ghostspeak = false) { return; };
+~chatnpc("<p,neutral>Oi was in the old 'aunted Forest to the south, diggin' a pit for moi old master, old Fenkenstrain, when would you believe it, someone chops me head off. Awful bad luck weren't it?");
+~chatplayer("<p,neutral>Oh yes, dreadful bad luck.");
+~chatnpc("<p,neutral>So oi thinks to meself, I don't needs any 'ead to be getting on with me gardenin', long as I got me hands and me spade.");
+if (%fenk_quest >= ^fenk_brough_bodyparts) { return; }
+~chatplayer("<p,confused>Would you show me where the place was?");
+if (inv_total(inv, fenk_head_empty) >= 1 | inv_total(inv, fenk_head_full) >= 1) {
+    ~chatnpc("<p,neutral>No mate, you've found my head already, oi think.");
+    return;
+}
+~chatnpc("<p,neutral>Well, oi s'pose oi've got ten minutes to spare.");
+~gardener_follows_you;
+
+[label,tell_me_your_name]
+~chatplayer("<p,confused>What's your name?");
+if(~check_ghostspeak = false) { return; };
+~chatnpc("<p,neutral>Me name? It's been a moivellous long while, mate, since I had any use for such a thing as a name.");
+~chatplayer("<p,confused>Don't worry, I was just trying to make conversation.");
+~chatnpc("<p,neutral>No, no, I can't be havin' that. I'll remember in a minute...");
+~chatplayer("<p,confused>Please, don't worry.");
+~chatnpc("<p,neutral>Lestwit, that's it! Ed Lestwit.");
+
+[label,tell_me_where_is_key]
+~chatplayer("<p,confused>Do you know where the key to the shed is?");
+// if(~check_ghostspeak = false) { return; }; // For authentically odd reasons, this wasn't checked.
+~chatnpc("<p,neutral>Got it right 'ere in my pocket. Here you go.");
+inv_add(inv, fenk_shed_key, 1);
+~objbox(fenk_shed_key, "The headless gardener hands you a rusty key.", 250, 0, 0);
+
+[label,tell_me_how_get_mould]
+~chatplayer("<p,confused>Do you know where I can find a lightning conductor mould?");
+// if(~check_ghostspeak = false) { return; }; // For authentically odd reasons, this wasn't checked.
+~chatnpc("<p,neutral>A conductive mould, you say? Let me see-");
+~chatnpc("<p,neutral>There used to be a bloke 'ere, sort of an 'andyman e was. Did everything round the place - fixed what was broke, swept the chimneys and the like. He would 'ave had a mould, I imagine.");
+~chatplayer("<p,confused>Where is he now?");
+~chatnpc("<p,neutral>E's dead, just like everyone else round 'ere ... 'cept for me.");
+
+
+
+[proc,gardener_follows_you]
+%fenk_gardener_directions = 1; // This varbit will remove the current gardener.
+npc_add(npc_coord, fenk_gardener_multi, 1000);
+npc_setmode(playerfollow);
+
+// Gardener that follows you. I copied the directional stuff from kbd_dragonfire_far
+[opnpc1,fenk_gardener_multi]
+// if ($dx = 0 & $dz = 0) {
+//     mes("Here is the place where I met me' maker.");
+//     return;
+// }
+// if (inzone(...))
+def_int $z = calc(coordz(coord) - coordz(0_56_54_24_35));
+def_int $x = calc(coordx(coord) - coordx(0_56_54_24_35));
+if (calc($z / 2) <= $x & calc($x / 2) <= $z) { // south-west
+    npc_say("Go south-west, mate."); 
+} else if (calc($z / 2) <= multiply($x, -1) & calc($x / 2) >= multiply($z, -1)) { // south-east
+    npc_say("Go south-east, mate."); 
+} else if (calc($x / 2) >= $z & calc($z / 2) >= $x) { // north-east
+    npc_say("Go north-east, mate."); 
+} else if (calc($z / 2) >= multiply($x, -1) & calc($z / 2 * -1) >= $x) { // north-west
+    npc_say("Go north-west, mate."); 
+} else if (calc($x / 2) <= $z & calc($z / 2) >= $x) { // south
+    npc_say("Go south, mate."); 
+}  else if (calc($x / 2) <= $z & calc($x / 2) <= multiply($z, -1)) { // east
+    npc_say("Go east, mate."); 
+} else if (calc($z / 2) <= $x & calc($z / 2 * -1) >= $x) { // north
+    npc_say("Go north, mate."); 
+} else { // west
+    npc_say("Go west, mate."); 
+}
+// npc_say("You need to head off to them Haunted Woods, mate.");
+npc_setmode(playerfollow);
+
+[mapzoneexit, 0_55_55]

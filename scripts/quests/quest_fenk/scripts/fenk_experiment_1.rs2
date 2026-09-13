@@ -1,0 +1,13 @@
+[ai_queue3,fenk_experiment_1]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+// Default drop from config.
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+// Key drop
+if(%fenk_unlocked_cavern = 0 & inv_total(inv, fenk_mausoleum_key) = 0) {
+    obj_add(npc_coord, fenk_mausoleum_key, 1, ^lootdrop_duration);
+}
