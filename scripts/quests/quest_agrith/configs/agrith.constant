@@ -1,0 +1,56 @@
+^agrith_not_started = 0
+^agrith_started = 10
+^agrith_infiltrate = 20
+^agrith_joined = 30
+^agrith_investigating = 40
+^agrith_golem_told = 50
+^agrith_search_kilns = 60
+^agrith_got_book = 70
+^agrith_first_ritual = 80
+^agrith_chase_1 = 90
+^agrith_chase_2 = 100
+^agrith_chase_3 = 110
+^agrith_second_ritual_ready = 120
+^agrith_final_fight = 124
+^agrith_complete = 125
+
+// Incantation word ids (%agrith_incantation_1..5). 0 = unset.
+^agrith_incantation_empty = 0
+^agrith_word_nahudu = 1
+^agrith_word_camerinthum = 2
+^agrith_word_caldar = 3
+^agrith_word_agrith_naar = 4
+^agrith_word_tarren = 5
+
+// Which kiln holds the book (%agrith_kiln, 2 bits → 0-3).
+// Look-in ops are driven by agrith_quest = 60, not this varbit.
+^agrith_kiln_1 = 0
+^agrith_kiln_2 = 1
+^agrith_kiln_3 = 2
+^agrith_kiln_4 = 3
+
+// Golem assistance (%agrith_convinced_golem). 2 bits → 0-3.
+^agrith_golem_not_convinced = 0
+^agrith_golem_reprogrammed = 1
+^agrith_golem_has_sigil = 2
+// Keep old name as alias for "fully recruited".
+^agrith_golem_convinced = 2
+
+// Evil Dave return after first ritual (%agrith_convinced_dave).
+// multinpc: agrith_dave_in_passage=1, agrith_dave_walking=2
+^agrith_dave_not_convinced = 0
+^agrith_dave_in_passage = 1
+^agrith_dave_recruited = 2
+^agrith_dave_walking = 2
+
+// Father Badden / Father Reen at Uzer (%agrith_badden_uzer, %agrith_reen_uzer).
+// multinpc: present=1, walking=2 (walking = recruited / heading to ritual)
+^agrith_uzer_absent = 0
+^agrith_uzer_present = 1
+^agrith_uzer_walking = 2
+^agrith_uzer_recruited = 2
+
+// First ritual: player must be in the throne-room circle area (plane 2 of 42_76).
+^agrith_ritual_centre = 2_42_76_34_36
+^agrith_ritual_zone_sw = 2_42_76_28_30
+^agrith_ritual_zone_ne = 2_42_76_40_42
