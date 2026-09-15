@@ -23,6 +23,15 @@ return (true);
 
 [queue,routequest_complete]
 %routequest = ^routequest_complete;
+// OSRS: completion clears the quest's scratch state. Verified in a RSProx dump.
+// Deliberately does NOT clear %bridgerung1/2/3 (routequestmulti bits 20-22). OSRS zeroes the whole
+// varp in one write and then immediately sets the three rungs back to 1 (dump: routequestmulti
+// 40927224 -> 0, then bridgerung1/2/3 0 -> 1), so the bridge stays repaired after the quest. Leaving
+// the rungs untouched here reaches that same end state. ~resetrungs exists for testing.
+%routequestionscorrect = 0;
+%routequestionsanswered = 0;
+%routequest_myreque_bits = 0;
+%roomnum = 0;
 stat_advance(attack, 6000);
 stat_advance(defence, 6000);
 stat_advance(strength, 6000);
