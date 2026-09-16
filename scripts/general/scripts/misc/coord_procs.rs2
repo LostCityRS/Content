@@ -42,6 +42,20 @@ $y, $cx, $cz, $lx, $lz = ~coord_unpack($coord);
 
 return("x: <tostring($x)> z: <tostring($z)> level: <tostring($y)> jcoord: <tostring($y)>_<tostring($cx)>_<tostring($cz)>_<tostring($lx)>_<tostring($lz)>");
 
+[proc,coord_tostring2](coord $coord)(string)
+def_int $x = coordx($coord);
+def_int $z = coordz($coord);
+
+def_int $y;
+def_int $cx;
+def_int $cz;
+def_int $lx;
+def_int $lz;
+$y, $cx, $cz, $lx, $lz = ~coord_unpack($coord);
+
+return("<tostring($y)>_<tostring($cx)>_<tostring($cz)>_<tostring($lx)>_<tostring($lz)>");
+
+
 // this is a helper proc that uses coord_pair_table in skill_firemaking\configs
 // example usage:
 // if (~inzone_coord_pair_table(bank_zones, coord) = true)
@@ -265,3 +279,35 @@ return(movecoord(0_0_0_0_0, $x, $y, $z));
 [proc,facing_coord](coord $origin, coord $end1, coord $end2, int $direction)(coord)
 if (~coord_direction($origin, $end1) = $direction) return($end1);
 if (~coord_direction($origin, $end2) = $direction) return($end2);
+
+// used for movement based procs
+[proc,movedir_coord](coord $origin, coord $dest)(coord)
+def_int $x = sub(coordx($dest), coordx($origin));
+def_int $z = sub(coordz($dest), coordz($origin));
+
+def_int $dirx = 0;
+def_int $dirz = 0;
+
+if ($x >= 1) $dirx = 1;
+else if ($x <= -1) $dirx = -1;
+
+if ($z >= 1) $dirz = 1;
+else if ($z <= -1) $dirz = -1;
+
+return(movecoord($origin, $dirx, 0, $dirz));
+
+// doesnt include diagonals
+[proc,movedir_coord2](coord $origin, coord $dest)(coord)
+def_int $x = sub(coordx($dest), coordx($origin));
+def_int $z = sub(coordz($dest), coordz($origin));
+
+def_int $dirx = 0;
+def_int $dirz = 0;
+
+if ($x >= 1) $dirx = 1;
+else if ($x <= -1) $dirx = -1;
+else if ($z >= 1) $dirz = 1;
+else if ($z <= -1) $dirz = -1;
+
+return(movecoord($origin, $dirx, 0, $dirz));
+
