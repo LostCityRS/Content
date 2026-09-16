@@ -6,21 +6,52 @@ if (npc_coord ! %npc_start_coord) { // Only attacks if stationary on spawn squar
 }
 @possessed_pickaxe_aggro;
 
-[label,possessed_pickaxe_aggro]
-npc_changetype_keepall(possessed_pickaxe, 1000);
-npc_anim(pickaxe_summon, 0);
-npc_delay(1);
-npc_anim(null, 0);
-npc_setmode(opplayer2);
 
 // Tick 1434	
 // sequence	npc=possessed_pickaxe_stationary (3613), id=pickaxe_summon (1446)
 // Tick 1487	
 // sequence	npc=possessed_pickaxe (3612), id=magicaxe_death (188)
-world_delay(49); // 53 ticks
+[label,possessed_pickaxe_aggro]
+npc_changetype_keepall(possessed_pickaxe, 100);
+npc_anim(pickaxe_summon, 0);
+npc_delay(1);
+npc_anim(null, 0);
+npc_setmode(opplayer2);
+npc_settimer(52);
+
+
+[ai_timer,possessed_pickaxe]
 npc_anim(seq_1448, 0); // osrs uses it's death anim.... But it breaks all proceeding anims.
-npc_changetype_keepall(possessed_pickaxe_stationary, 1000);
+npc_changetype_keepall(possessed_pickaxe_stationary, 100);
 npc_setmode(null);
 
 
+[opnpc1,skeletal_miner_sitting] @skeletal_miner_aggro;
+[ai_applayer2,skeletal_miner_sitting] @skeletal_miner_aggro;
 
+
+// Tick 6845	
+// sequence	npc=skeletal_miner_sitting (3614), id=skeleton_summon (1443)
+// Tick 6898	
+// sequence	npc=skeletal_miner (3615), id=skeleton_sitdown (1444)
+[label,skeletal_miner_aggro]
+npc_changetype_keepall(skeletal_miner, 1000);
+npc_anim(skeleton_summon, 0);
+npc_delay(1);
+npc_anim(null, 0);
+npc_setmode(opplayer2);
+npc_settimer(50);
+
+
+// Bugs:
+// - occasionally the skeles wont even sit down until you attack them again...
+// todo: i cant seem to figure it how to recreate ^
+// - If you run out of the skeles range, it wont hunt again
+[ai_timer,skeletal_miner]
+if (add(%npc_action_delay, 8) < map_clock) { // skeletal miner only resets if its not in combat
+    npc_delay(1);
+    npc_anim(skeleton_sitdown, 0);
+    npc_changetype_keepall(skeletal_miner_sitting, 1000);
+    npc_setmode(null);
+}
+npc_settimer(50);
