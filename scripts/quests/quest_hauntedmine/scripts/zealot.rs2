@@ -1,4 +1,6 @@
 [opnpc1,saradominist_zealot]
+// No starting dialogue if quest complete
+if (%hauntedmine = ^hauntedmine_complete) @multi2("I've done it, I've managed to recreate the salve amulet!", zealot_recreated_amulet, "What powers does the salve amulet have?", zealot_amulet_powers);
 ~chatplayer("<p,neutral>Hello there.");
 if (%hauntedmine < ^hauntedmine_started) {
     ~chatnpc("<p,angry>State thy allegiance stranger.");
@@ -12,7 +14,6 @@ if (%hauntedmine = ^hauntedmine_liftfound) @multi2("Can you explain the history 
 if (%hauntedmine = ^hauntedmine_darkstairsfound) @multi2("Can you explain the history of these mines again?", zealot_hauntedmine_explain_history, "I've made it in to the mines.", zealot_made_into_mines);
 if (%hauntedmine = ^hauntedmine_boss_found) @zealot_found_ghost;
 if (%hauntedmine = ^hauntedmine_boss_defeated | %hauntedmine = ^hauntedmine_rewarddoor_found) @zealot_defeated_ghost;
-if (%hauntedmine = ^hauntedmine_complete) @multi2("I've done it, I've managed to recreate the salve amulet!", zealot_recreated_amulet, "What powers does the salve amulet have?", zealot_amulet_powers);
 
 [label,zealot_sara]
 ~chatplayer("<p,happy>I follow the path of Saradomin. Strength through|wisdom.");
