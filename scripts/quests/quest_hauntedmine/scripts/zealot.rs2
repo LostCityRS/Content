@@ -265,6 +265,11 @@ if (testbit(%hauntedmine_bits, ^hauntedmine_bits_heardaboutkey) = ^false) { // r
 ~chatplayer("<p,happy>Correction, the key that was in your possession.");
 ~chatnpc("<p,shock>My key, where is it? You stole it?");
 ~chatnpc("<p,angry>Return that key to me now!");
+if (inv_total(inv, hauntedmine_lift_key) < 1) {
+    ~chatplayer("<p,neutral>I seem to have misplaced it, sorry.");
+    ~chatnpc("<p,angry>Arrrrrrrgh, you're unbelievable. Get out of my sight.");
+    return;
+}
 @multi2("Actually, maybe I'll just keep hold of it for now.", zealot_keep_key_for_now, "Ok, I've finished with it now anyway.", zealot_return_key_now);
 
 [label,zealot_keep_key_for_now]
@@ -272,11 +277,6 @@ if (testbit(%hauntedmine_bits, ^hauntedmine_bits_heardaboutkey) = ^false) { // r
 ~chatnpc("<p,angry>Meddling fool, there are bigger things at stake here|than you and your petty thieving intellect can|understand.");
 
 [label,zealot_return_key_now]
-if (inv_total(inv, hauntedmine_lift_key) < 1) {
-    ~chatplayer("<p,neutral>I seem to have misplaced it, sorry.");
-    ~chatnpc("<p,angry>Arrrrrrrgh, you're unbelievable. Get out of my sight.");
-    return;
-}
 ~chatplayer("<p,neutral>Ok, I've finished with it now anyway.");
 inv_del(inv, hauntedmine_lift_key, 28);
 %hauntedmine_bits = clearbit(%hauntedmine_bits, ^hauntedmine_bits_heardaboutkey); // for some reason he only malds if u give it back
