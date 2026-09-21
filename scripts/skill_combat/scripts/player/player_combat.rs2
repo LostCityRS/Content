@@ -59,6 +59,9 @@ if(npc_type = tbwt_beast) {
         return (false);
     }
 }
+if (npc_param(undead) = ^true & inv_total(worn, crystalshard_necklace) > 0) {
+    $attack_roll = scale($attack_roll, 7, 6); // todo figure out if they do this lol
+}
 if (randominc($attack_roll) > randominc($defence_roll)) {
     return(true);
 }
