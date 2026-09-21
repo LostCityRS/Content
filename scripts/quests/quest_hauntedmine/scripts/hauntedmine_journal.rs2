@@ -145,7 +145,7 @@ switch_int(%hauntedmine) {
 
         $text = append($text, "@dbl@I used this @dre@key@dbl@ to reach the @dre@legendary crystals@dbl@, now I just|");
         $text = append($text, "@dbl@need to find some way to @dre@make use of them@dbl@.|");
-    case ^hauntedmine_complete :
+    case ^hauntedmine_complete : // osrs but it doesnt align right... todo: find this
         $text = append($text, "@str@I met a fanatic Saradominst just outside the Morytanian|");
         $text = append($text, "@str@mines. He told me that the mines had been sealed, but|");
         $text = append($text, "@str@contained within them crystals of a great power over evil.|");
@@ -172,8 +172,9 @@ switch_int(%hauntedmine) {
 
         $text = append($text, "||@red@QUEST COMPLETE!||");
 
-        $text = append($text, "@dbl@I've created a Salve Amulet, which greatly enhances my ability|");
-        $text = append($text, "@dbl@to fight undead, gained 2 Quest Points and will now be able to|");
-        $text = append($text, "@dbl@enter Tarn's Lair!|");
+        // line breaks are guessed
+        $text = append($text, "@dbl@I've created a Salve Amulet, which greatly enhances my|");
+        $text = append($text, "@dbl@ability to fight undead, gained 2 Quest Points and will|");
+        $text = append($text, "@dbl@now be able to enter Tarn's Lair!|");
 }
 ~quest_journal("Haunted Mine", $text);
