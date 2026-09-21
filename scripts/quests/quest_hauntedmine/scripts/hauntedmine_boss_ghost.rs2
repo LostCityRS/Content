@@ -29,6 +29,7 @@ anim(human_pickuptable, 10);
 
 if (%hauntedmine >= ^hauntedmine_boss_defeated) {
     inv_add(inv, hauntedmine_reward_key, 1);
+    p_delay(0);
     npc_del;
     ~mesbox("You take the key. It doesn't resist anymore.");
     return;
@@ -247,9 +248,9 @@ if (finduid(%npc_attacking_uid) = true) queue(hauntedmine_boss_death, 0, 0);
 ~npc_death;
 
 [queue,hauntedmine_boss_death]
-%hauntedmine = ^hauntedmine_boss_defeated;
+if (%hauntedmine = ^hauntedmine_boss_found) %hauntedmine = ^hauntedmine_boss_defeated;
 // https://web.archive.org/web/20050519094942im_/http://www.runeweb.net/Roth/HauntedMine11.PNG
-~mesbox("As you make the killing strike, the machinery| within the room falls silent.");
+~mesbox("As you make the killing strike, the machinery|within the room falls silent.");
 
 
 // excludes adjacent index's

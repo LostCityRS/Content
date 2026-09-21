@@ -61,13 +61,6 @@ p_arrivedelay;
 p_arrivedelay;
 ~climb_ladder(~setcoord_mapsquare(coord, 42, 0, 70), true);
 
-[oploc1,hauntedmine_rewarddoor_l]
-mes("This door appears to be locked.");
-sound_synth(lockeddoor, 0, 0);
-[oploc1,hauntedmine_rewarddoor_r]
-mes("This door appears to be locked.");
-sound_synth(lockeddoor, 0, 0);
-
 [oploc1,hauntedmine_main_entrance] p_telejump(0_43_71_40_48);
 
 [oploc1,hauntedmine_main_entrance_inside]
