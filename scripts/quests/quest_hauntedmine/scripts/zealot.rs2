@@ -255,7 +255,7 @@ if (testbit(%hauntedmine_bits, ^hauntedmine_bits_heardaboutkey) = ^false) { // r
 @multi3("I found another way down.", zealot_another_way_down, "Correction, the key that was in your possession.", zealot_key_in_possession, "Fine, don't believe me.", zealot_dont_believe_me);
 
 [label,zealot_another_way_down]
-~chatplayer("<p,confused>I, er... found another way down.");
+~chatplayer("<p,neutral>I, er... found another way down.");
 ~chatnpc("<p,angry>Mock me not, this is a serious task I am undertaking. I don't have the time for your halfwitted attempt at humour.");
 
 [label,zealot_dont_believe_me]
@@ -273,7 +273,7 @@ if (testbit(%hauntedmine_bits, ^hauntedmine_bits_heardaboutkey) = ^false) { // r
 
 [label,zealot_return_key_now]
 if (inv_total(inv, hauntedmine_lift_key) < 1) {
-    ~chatplayer("<p,sad>I seem to have misplaced it, sorry.");
+    ~chatplayer("<p,neutral>I seem to have misplaced it, sorry.");
     ~chatnpc("<p,angry>Arrrrrrrgh, you're unbelievable. Get out of my sight.");
     return;
 }
