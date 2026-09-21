@@ -248,7 +248,8 @@ if (finduid(%npc_attacking_uid) = true) queue(hauntedmine_boss_death, 0, 0);
 
 [queue,hauntedmine_boss_death]
 %hauntedmine = ^hauntedmine_boss_defeated;
-~mesbox("As you make the killing strike, the machinery within the room falls|silent.");
+// https://web.archive.org/web/20050519094942im_/http://www.runeweb.net/Roth/HauntedMine11.PNG
+~mesbox("As you make the killing strike, the machinery| within the room falls silent.");
 
 
 // excludes adjacent index's
