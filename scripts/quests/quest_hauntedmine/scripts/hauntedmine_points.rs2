@@ -1,4 +1,17 @@
-[oploc1,hauntedmine_points_info] if_openmain(hauntedmine_controls);
+[oploc1,hauntedmine_points_info]
+if (testbit(%hauntedmine_bits, ^hauntedmine_bits_pointspuzzlestarted) = ^false) { // it randomized it on first lever pull for me, but i assume it also randomizes here too
+    %hauntedmine_bits = setbit(%hauntedmine_bits, ^hauntedmine_bits_pointspuzzlestarted);
+    %hauntedmine_bits = setbit_range_toint(%hauntedmine_bits, random(256), ^hauntedmine_bits_lever_b, ^hauntedmine_bits_lever_k);
+}
+if_setmodel(hauntedmine_controls:com_210, sub(^hauntedmine_track_points_offset, multiply(2, testbit(%hauntedmine_bits, ^hauntedmine_bits_lever_a))));
+if_setmodel(hauntedmine_controls:com_209, sub(^hauntedmine_track_points_offset, multiply(2, testbit(%hauntedmine_bits, ^hauntedmine_bits_lever_b))));
+if_setmodel(hauntedmine_controls:com_211, sub(^hauntedmine_track_points_offset_mirrored, multiply(2, testbit(%hauntedmine_bits, ^hauntedmine_bits_lever_c))));
+if_setmodel(hauntedmine_controls:com_212, sub(^hauntedmine_track_points_offset, multiply(2, testbit(%hauntedmine_bits, ^hauntedmine_bits_lever_d))));
+if_setmodel(hauntedmine_controls:com_213, sub(^hauntedmine_track_points_offset, multiply(2, testbit(%hauntedmine_bits, ^hauntedmine_bits_lever_e))));
+if_setmodel(hauntedmine_controls:com_214, sub(^hauntedmine_track_points_offset_mirrored, multiply(2, testbit(%hauntedmine_bits, ^hauntedmine_bits_lever_i))));
+if_setmodel(hauntedmine_controls:com_215, sub(^hauntedmine_track_points_offset_mirrored, multiply(2, testbit(%hauntedmine_bits, ^hauntedmine_bits_lever_j))));
+if_setmodel(hauntedmine_controls:com_216, sub(^hauntedmine_track_points_offset, multiply(2, testbit(%hauntedmine_bits, ^hauntedmine_bits_lever_k))));
+if_openmain(hauntedmine_controls);
 
 [if_close,hauntedmine_controls] ~hauntedmine_controls_hideall;
 
@@ -124,6 +137,10 @@ if_sethide(hauntedmine_controls:com_260, false);
 [oploc1,hauntedmine_point_lever8] ~hauntedmine_point_lever(8);
 
 [proc,hauntedmine_point_lever](int $bit)
+if (testbit(%hauntedmine_bits, ^hauntedmine_bits_pointspuzzlestarted) = ^false) {
+    %hauntedmine_bits = setbit(%hauntedmine_bits, ^hauntedmine_bits_pointspuzzlestarted);
+    %hauntedmine_bits = setbit_range_toint(%hauntedmine_bits, random(256), ^hauntedmine_bits_lever_b, ^hauntedmine_bits_lever_k);
+}
 anim(human_leverdown, 0);
 sound_synth(lever, 0, 0);
 %hauntedmine_bits = togglebit(%hauntedmine_bits, $bit);
