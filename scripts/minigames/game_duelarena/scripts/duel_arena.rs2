@@ -215,8 +215,7 @@ if ($space_needed > inv_freespace(inv)) {
     if_settext(duel_select_type:status, "You do not have enough space for the items removed.");
     return(false);
 }
-$space_needed = add($space_needed, ~moveallinv_itemspace2(dueloffer, inv));
-$space_needed = add($space_needed, ~both_moveallinv_itemspace2(dueloffer, inv));
+$space_needed = add($space_needed, ~both_moveallinv_itemspace(dueloffer, dueloffer, inv));
 if ($space_needed > inv_freespace(inv)) {
     if_settext(duel_select_type:status, "You do not have enough space for the stake.");
     return(false);
@@ -238,8 +237,7 @@ if ($space_needed > .inv_freespace(inv)) {
     .if_settext(duel_select_type:status, "You do not have enough space for the items removed.");
     return(false);
 }
-$space_needed = add($space_needed, ~.moveallinv_itemspace2(dueloffer, inv));
-$space_needed = add($space_needed, ~.both_moveallinv_itemspace2(dueloffer, inv));
+$space_needed = add($space_needed, ~.both_moveallinv_itemspace(dueloffer, dueloffer, inv));
 if ($space_needed > .inv_freespace(inv)) {
     .if_settext(duel_select_type:status, "You do not have enough space for the stake.");
     return(false);
