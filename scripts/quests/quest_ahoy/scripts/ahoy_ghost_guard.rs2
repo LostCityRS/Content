@@ -1,0 +1,32 @@
+[opnpc1,ahoy_ghost_guard]
+if(~wearing_ghostspeak_amulet = ^false) {
+    ~mesbox("The ghostly guards wail at you incomprehensibly, and though you cannot understand their exact words you understand their meaning - you may not pass the barriers of Port Phasmatys.");
+    return;
+}
+~chatnpc("<p,neutral>All visitors to Port Phasmatys must pay a toll charge of 2 Ectotokens.");
+def_int $op;
+if(inv_total(inv, ectotoken) > 1) $op = ~p_choice3("I would like to enter Port Phasmatys - here's 2 Ectotokens.", 3, "I'm not paying you Ectotokens just to go through a gate.", 4, "Where can I get Ectotokens?", 2);
+else $op = ~p_choice2("I don't have that many Ectotokens.", 1, "Where can I get Ectotokens?", 2);
+
+switch_int($op) {
+    case 1 :
+        ~chatplayer("<p,neutral>I don't have that many Ectotokens.");
+        ~chatnpc("<p,neutral>In that case, you need to go to the Temple and earn some. Talk to the disciples - they will tell you how.");
+    case 2 :
+        ~chatplayer("<p,neutral>Where can I get Ectotokens?");
+        ~chatnpc("<p,neutral>You need to go to the Temple and earn some. Talk to the disciples - they will tell you how.");
+    case 3 :
+        ~chatplayer("<p,neutral>I would like to enter Port Phasmatys - here's 2 Ectotokens.");
+        if_close;
+        inv_del(inv, ectotoken, 2);
+        if(npc_coord = 0_57_54_13_52) {
+            p_teleport(movecoord(npc_coord, -1, 0, 0));
+        } else {
+            p_teleport(movecoord(npc_coord, 1, 0, 0));
+        }
+        p_delay(0);
+        p_teleport(movecoord(coord, 0, 0, -1));
+    case 4 :
+        ~chatplayer("<p,angry>I'm not paying you Ectotokens just to go through a gate.");
+        ~chatnpc("<p,neutral>Sorry - it's Town Policy.");
+}

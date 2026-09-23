@@ -1,0 +1,286 @@
+[opheld1,ectophial]
+def_int $slot = last_slot;
+if (~wilderness_level(coord) > 20) {
+    mes("A mysterious force blocks your teleport spell!");
+    mes("You can't use this teleport after level 20 wilderness.");
+    return;
+}
+if (~pre_tele_checks(coord) = false) {
+    return;
+}
+
+// https://www.youtube.com/watch?v=6LNGbPzn2QI
+def_coord $destination = map_findsquare(0_57_55_11_2, 0, 4, ^map_findsquare_lineofwalk);
+mes("You empty the ectoplasm onto the ground around your feet...");
+inv_setslot(inv, $slot, ectophial_empty, 1);
+~player_teleport_normal($destination);
+mes("...and the world changes around you.");
+
+[oploc1,ahoy_ectofunctus]
+if(inv_totalcat(inv, bonemeal) = 0 & inv_total(inv, bucket_ectoplasm) = 0) {
+    ~mesbox("You don't have any ectoplasm or crushed bones to put into the Ectofuntus.");
+    return;
+}
+@worship_ectofunctus;
+
+[oplocu,ahoy_ectofunctus]
+if(last_useitem = ectophial_empty) {
+    inv_setslot(inv, last_useslot, ectophial, 1);
+    mes("You refill the ectophial from the Ectofuntus.");
+    return;
+}
+if(oc_category(last_useitem) ! bonemeal & last_useitem ! bucket_ectoplasm) {
+    ~mesbox("A Ghost Disciple waves at you angrily, indicating that you cannot put that in the Ectofuntus.");
+    return;
+}
+@worship_ectofunctus; // the bones you use here don't seem to matter, just picks best
+
+[label,worship_ectofunctus]
+if(inv_totalcat(inv, bonemeal) = 0) {
+    ~mesbox("You need a pot of crushed bones to put into the Ectofuntus.");
+    return;
+}
+if(inv_total(inv, bucket_ectoplasm) = 0) {
+    ~mesbox("You need a bucket of ectoplasm to put into the Ectofuntus.");
+    return;
+}
+if(%ahoy_ectotokens_to_collect > 55) { // cap of 65, adds 5 each time
+    // https://youtu.be/dTLr_7HhgXw?si=R75uo5KpfONXgB_f&t=231
+    ~mesbox("There isn't room to put any more in.");
+    return;
+}
+def_namedobj $bones;
+def_int $xp = 0;
+// seems to be a very fixed order? meaning you can have tied xp bonemeals of different types in whichever order within
+// your inventory, and it will always prio this way, meaning it's probably done similarly to this
+// TODO: recheck -> order of monkey bones, order big/jogre, order beast/gorilla, ninja/burnt jogre
+if(inv_total(inv, pot_bonemeal_dragon) > 0) {
+    $bones = pot_bonemeal_dragon;
+    $xp = 2880;
+} else if(inv_total(inv, pot_bonemeal_babydragon) > 0) {
+    $bones = pot_bonemeal_babydragon;
+    $xp = 1200;
+}  else if(inv_total(inv, pot_bonemeal_beast) > 0) {
+    $bones = pot_bonemeal_beast;
+    $xp = 1000;
+} else if(inv_total(inv, pot_bonemeal_bearded_gorilla_monkey) > 0) {
+    $bones = pot_bonemeal_bearded_gorilla_monkey;
+    $xp = 800;
+} else if(inv_total(inv, pot_bonemeal_normal_gorilla_monkey) > 0) {
+    $bones = pot_bonemeal_normal_gorilla_monkey;
+    $xp = 720;
+} else if(inv_total(inv, pot_bonemeal_medium_ninja_monkey) > 0) {
+    $bones = pot_bonemeal_medium_ninja_monkey;
+    $xp = 720;
+} else if(inv_total(inv, pot_bonemeal_small_ninja_monkey) > 0) {
+    $bones = pot_bonemeal_small_ninja_monkey;
+    $xp = 640;
+} else if(inv_total(inv, pot_bonemeal_burnt_jogre) > 0) {
+    $bones = pot_bonemeal_burnt_jogre;
+    $xp = 640;
+} else if(inv_total(inv, pot_bonemeal_jogre) > 0) {
+    $bones = pot_bonemeal_jogre;
+    $xp = 600;
+} else if(inv_total(inv, pot_bonemeal_big) > 0) {
+    $bones = pot_bonemeal_big;
+    $xp = 600;
+} else if(inv_total(inv, pot_bonemeal_bat) > 0) {
+    $bones = pot_bonemeal_bat;
+    $xp = 212;
+} else if(inv_total(inv, pot_bonemeal_normal_monkey) > 0) {
+    $bones = pot_bonemeal_normal_monkey;
+    $xp = 200;
+} else if(inv_total(inv, pot_bonemeal_small_zombie_monkey) > 0) {
+    $bones = pot_bonemeal_small_zombie_monkey;
+    $xp = 200;
+} else if(inv_total(inv, pot_bonemeal_large_zombie_monkey) > 0) {
+    $bones = pot_bonemeal_large_zombie_monkey;
+    $xp = 200;
+} else if(inv_total(inv, pot_bonemeal) > 0) {
+    $bones = pot_bonemeal;
+    $xp = 180;
+} else if(inv_total(inv, pot_bonemeal_burnt) > 0) {
+    $bones = pot_bonemeal_burnt;
+    $xp = 180;
+} else if(inv_total(inv, pot_bonemeal_wolf) > 0) {
+    $bones = pot_bonemeal_wolf;
+    $xp = 180;
+} else if(inv_total(inv, pot_bonemeal_skeleton) > 0) { // unobtainable?
+    $bones = pot_bonemeal_skeleton;
+    $xp = 120;
+}
+if($bones = null) { // shouldnt ever happen...
+    return;
+}
+mes("You put some ectoplasm and bonemeal into the Ectofuntus, and");
+mes("worship it.");
+stat_advance(prayer, $xp);
+anim(ahoy_prayer, 0);
+sound_synth(prayer_boost, 1, 0);
+%ahoy_ectotokens_to_collect = add(%ahoy_ectotokens_to_collect, 5);
+inv_del(inv, bucket_ectoplasm, 1);
+inv_add(inv, bucket_empty, 1);
+inv_del(inv, $bones, 1);
+inv_add(inv, pot_empty, 1);
+
+[oplocu,ahoy_grinder_loader]
+def_int $bones_type = oc_param(last_useitem, ahoy_bones_type);
+if(oc_category(last_useitem) = bones) {
+    if($bones_type = null) {
+        // i don't think this happens generally, but there are some periods where bones 
+        // can exist without a bonemeal, guessing NIH
+        ~displaymessage(^dm_default);
+        return;
+    }
+    if(%ahoy_grinder_status = 2) {
+        mes("You need to empty the grinder's bin before you put more bones in it.");
+        return;
+    }
+    if(%ahoy_grinder_status = 1) {
+        mes("There are already some <lowercase(oc_name(~get_hopper_bones))> in the grinder's hopper.");
+        return;
+    }
+    %ahoy_grinder_status = 1;
+    %ahoy_bones_type = $bones_type;
+    mes("You put some <lowercase(oc_name(~get_hopper_bones))> in the grinder's hopper.");
+    inv_delslot(inv, last_useslot);
+    anim(ahoy_bone_dump, 5);
+    sound_synth(fill_grinder, 1, 5);
+    return;
+}
+~displaymessage(^dm_default);
+
+[proc,get_hopper_bones]()(namedobj)
+switch_int(%ahoy_bones_type) {
+    case 1 : return (bones);
+    case 2 : return (bones_burnt);
+    case 3 : return (bat_bones);
+    case 4 : return (big_bones);
+    case 5 : return (babydragon_bones);
+    case 6 : return (dragon_bones);
+    case 7 : return (wolf_bones);
+    case 8 : return (tbwt_jogre_bones);
+    case 9 : return (tbwt_burnt_jogre_bones);
+    case 10 : return (mm_small_ninja_monkey_bones);
+    case 11 : return (mm_medium_ninja_monkey_bones);
+    case 12 : return (mm_normal_gorilla_monkey_bones);
+    case 13 : return (mm_bearded_gorilla_monkey_bones);
+    case 14 : return (mm_normal_monkey_bones);
+    case 15 : return (mm_small_zombie_monkey_bones);
+    case 16 : return (mm_large_zombie_monkey_bones);
+    case 17 : return (mm_skeleton_bones);
+    case 18 : return (zogre_bones);
+    case 19 : return (zogre_ancestral_bones_fayg);
+    case 20 : return (zogre_ancestral_bones_raurg);
+    case 21 : return (zogre_ancestral_bones_ourg);
+    case 22 : return (tbwt_beast_bones);
+    case 23 : return (dagannoth_king_bones);
+    case 24 : return (wyvern_bones);
+}
+return (bones);
+
+[proc,get_hopper_bones_name]()(string)
+def_namedobj $bones = ~get_hopper_bones;
+if($bones = babydragon_bones) return ("baby dragon bones");
+return (lowercase(oc_name(~get_hopper_bones)));
+
+
+[oploc1,ahoy_grinder_handle]
+mes("You wind the grinder handle.");
+anim(ahoy_bone_grind, 10);
+sound_synth(grinder_grinding, 1, 10);
+p_delay(2);
+if(%ahoy_grinder_status = 1) {
+    %ahoy_grinder_status = 2;
+    mes("Some crushed <~get_hopper_bones_name> pour into the bin.");
+}
+
+[oploc1,ahoy_grinder_chute]
+if(%ahoy_grinder_status = 2) {
+    if(inv_total(inv, pot_empty) = 0) {
+        mes("You need an empty pot to put the crushed <~get_hopper_bones_name> into.");
+        return;
+    }
+    mes("You fill a pot with crushed <~get_hopper_bones_name>.");
+    inv_del(inv, pot_empty, 1);
+    if(oc_param(~get_hopper_bones, next_obj_stage) ! null) inv_add(inv, oc_param(~get_hopper_bones, next_obj_stage), 1);
+    %ahoy_grinder_status = 0;
+    %ahoy_bones_type = 0;
+    anim(ahoy_fillbucket_bonedust, 5);
+    sound_synth(grinder_empty, 1, 5);
+    return;
+}
+if(%ahoy_grinder_status = 1) {
+    mes("You need to wind the handle to grind the <~get_hopper_bones_name>.");
+    return;
+}
+mes("The grinder is already empty.");
+
+[oplocu,ahoy_grinder_chute]
+if(last_useitem = pot_empty) {
+    p_oploc(1);
+    return;
+}
+~displaymessage(^dm_default);
+
+[oploc1,ahoy_cavern_stairs]
+// arrive delay?
+switch_coord (loc_coord) {
+    case 2_57_154_41_31 : p_teleport(3_57_154_44_31);
+    case 1_57_154_24_31 : p_teleport(2_57_154_23_30);
+    case 0_57_154_36_31 : p_teleport(1_57_154_39_31);
+    case default : @unhandled_stairs(loc_coord);
+}
+
+[oploc1,ahoy_cavern_stairs_top]
+switch_coord (loc_coord) {
+    case 3_57_154_41_31 : p_teleport(2_57_154_40_32);
+    case 2_57_154_24_31 : p_teleport(1_57_154_27_32);
+    case 1_57_154_36_31 : p_teleport(0_57_154_35_32);
+    case default : @unhandled_stairs(loc_coord);
+}
+
+[oploc1,ahoy_trapdoor]
+// no arrivedelay on this mes
+mes("The trapdoor opens...");
+p_arrivedelay;
+anim(human_openchest, 0);
+sound_synth(trapdoor_open, 1, 0);
+p_delay(0);
+loc_change(ahoy_trapdoor_open, 500);
+
+[oploc1,ahoy_trapdoor_open]
+mes("You climb down through the trapdoor...");
+p_teleport(3_57_154_21_32);
+
+[oploc2,ahoy_trapdoor_open]
+// no arrivedelay on this mes
+mes("You close the trapdoor.");
+p_arrivedelay;
+anim(human_closechest, 0);
+sound_synth(trapdoor_close, 1, 0);
+p_delay(0);
+loc_change(ahoy_trapdoor, 500);
+
+[oploc1,ahoy_ladder_from_cellar]
+p_arrivedelay;
+~climb_ladder(0_57_54_6_63, true);
+
+[aplocu,_ahoy_gloop]
+def_int $slot = last_useslot;
+if(last_useitem = bucket_empty) {
+    // weakqueued by osrs release, but not in 2006 https://youtu.be/dTLr_7HhgXw?si=EtqutsAvY2BkF_jG&t=194
+    anim(human_pickupfloor, 0); // sequence	id=quest_ahoy_human_filling_bucket (4471) sept 2006
+    p_delay(1);
+    mes("You fill the bucket with ectoplasm.");
+    inv_setslot(inv, $slot, bucket_ectoplasm, 1);
+    sound_synth(fill_ectoplasm, 0, 0);
+    return;
+}
+~displaymessage(^dm_default);
+
+[oploc1,ahoy_tower_stairs_lv1]
+p_teleport(movecoord(coord, 0, 1, 5));
+
+[oploc1,ahoy_tower_stairs_lv1_top]
+p_teleport(movecoord(coord, 0, -1, -5));

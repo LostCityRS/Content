@@ -1,0 +1,33 @@
+[apnpc1,ahoy_ghost_banker]
+if (npc_range(coord) > 2) {
+    p_aprange(2);
+    return;
+}
+if(~wearing_ghostspeak_amulet = ^false) {
+    @ahoy_ghostspeak;
+}
+@talk_to_banker;
+
+[apnpc3,ahoy_ghost_banker]
+if (npc_range(coord) > 2) {
+    p_aprange(2);
+    return;
+}
+@ahoy_quickbank;
+
+[oploc1,ahoy_bankbooth]
+if (npc_find(loc_coord, ahoy_ghost_banker, 2, 0) = true) {
+    if(~wearing_ghostspeak_amulet = ^false) {
+        @ahoy_ghostspeak;
+    }
+    @talk_to_banker;
+}
+@ahoy_quickbank;
+
+[oploc2,ahoy_bankbooth] @ahoy_quickbank;
+
+[label,ahoy_quickbank]
+if(~wearing_ghostspeak_amulet = ^false) {
+    ~mesbox("The ghost banker wails incomprehensibly at you, but seems to understand that you wish to access your bank account. You can still quick-bank, but will have to communicate via a series of hand gestures.");
+}
+@openbank;

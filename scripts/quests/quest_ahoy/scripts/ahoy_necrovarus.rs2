@@ -1,0 +1,18 @@
+[opnpc1,ahoy_necrovarus]
+if(~wearing_ghostspeak_amulet = ^false) {
+    @ahoy_ghostspeak;
+}
+
+switch_int(~p_choice3("What is this place?", 1, "What happened to everyone here?", 2, "How do I get into the town?", 3)) {
+    case 1 : ~chatplayer("<p,quiz>What is this place?");
+    case 2 : ~chatplayer("<p,quiz>What happened to everyone here?");
+    case 3 : ~chatplayer("<p,quiz>How do I get into the town?");
+}
+
+switch_int(random(5)) {
+    case 0 : ~chatnpc("<p,neutral>Speak to me again and I will rend the soul from your flesh.");
+    case 1 : ~chatnpc("<p,neutral>Nobody speaks to me unless I speak to them!!!");
+    case 2 : ~chatnpc("<p,neutral>I do not answer questions, mortal fool!!");
+    case 3 : ~chatnpc("<p,neutral>I will answer questions when you are dead!!");
+    case 4 : ~chatnpc("<p,neutral>You dare to speak to me??? Have you lost your wits????");
+}

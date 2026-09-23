@@ -1,0 +1,20 @@
+[opnpc1,ahoy_ghost_protestor]
+if(~wearing_ghostspeak_amulet = ^false) {
+    @ahoy_ghostspeak;
+}
+
+~chatnpc("<p,neutral>Will you join with me and protest against the evil ban of Necrovarus and his disciples?");
+~chatplayer("<p,neutral>I'm sorry, I don't really think I should get involved.");
+~chatnpc("<p,neutral>Ah, the youth of today - so apathetic to politics.");
+
+[ai_timer,ahoy_ghost_protestor]
+switch_int(random(8)) {
+    case 0 : npc_say("Down with Necrovarus!!");
+    case 1 : npc_say("Rise up my fellow ghosts, and we shall be victorious!!");
+    case 2 : npc_say("Power to the Ghosts!!");
+    case 3 : npc_say("Rise together, Ghosts without a cause!!");
+    case 4 : npc_say("United we conquer - divided we fall!!");
+    case 5 : npc_say("We shall overcome!!");
+    case 6 : npc_say("Let Necrovarus know we want out!!");
+    case 7 : npc_say("Don't stay silent - victory in numbers!!");
+}

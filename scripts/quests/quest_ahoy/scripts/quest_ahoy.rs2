@@ -1,0 +1,159 @@
+[oploc1,ahoy_harbour_door]
+// necrovarus door in the ectofuntus
+if(loc_coord = 1_57_54_8_58) {
+    if(~wearing_ghostspeak_amulet = ^false) {
+        if(npc_find(coord, ahoy_disciple, 10, 0) = true) {
+            ~chatnpc("<p,angry>woooo wooooo woooo");
+            ~mesbox("You get the general impression that this ghost doesn't want you to open the door.");
+        }
+        return;
+    }
+    if(npc_find(coord, ahoy_disciple, 10, 0) = true) {
+        ~chatnpc("<p,neutral>What are you doing going in there?");
+        ~chatplayer("<p,scared>Err, I was just curious...");
+        ~chatnpc("<p,neutral>Inside that room is a coffin, inside which lie the mortal remains of our most glorious master, Necrovarus. None may enter.");
+    }
+    return;
+}
+~open_door(500);
+
+[oploc1,ahoy_town_barrier]
+if(coordz(coord) < coordz(loc_coord)) {
+    ~forcemove(movecoord(coord, 0, 0, 2));
+    return;
+}
+if(npc_find(coord, ahoy_ghost_guard, 1, 0) = true) {
+    p_opnpc(1);
+}
+
+[oploc1,ahoy_ghostship_ladder]
+def_coord $dest = 1_56_55_24_23;
+if(loc_coord = 0_56_55_29_23) $dest = 1_56_55_30_23;
+p_arrivedelay;
+~climb_ladder($dest, true);
+
+[oploc1,ahoy_ghostship_laddertop]
+p_arrivedelay;
+if(loc_coord = 1_56_55_29_23) p_teleport(movecoord(coord, -2, -1, 0));
+else p_teleport(movecoord(coord, 2, -1, 0));
+
+[oploc1,ahoy_skull_captain]
+~mesbox("The pirate captain ignores you and continues to stare lifelessly at nothing, as he has clearly been dead for some time.");
+
+[oploc1,ahoy_chest_closed]
+~open_chest(ahoy_chest_open);
+
+[oploc1,ahoy_chest_open]
+if(loc_coord = 0_56_55_22_44) { // rock island chest, stage check or w/e it needs
+
+}
+mes("You search the chest but find nothing.");
+
+[oploc2,ahoy_chest_open]
+~close_chest(ahoy_chest_closed);
+
+[oploc1,ahoy_chest_locked]
+mes("The chest is locked.");
+
+[oploc1,ahoy_gangplank_shipwreck_on]
+p_arrivedelay; // arrivedelay on both despite no seq
+mes("You cross the gangplank.");
+p_teleport(movecoord(coord, 0, -1, 3));
+
+[oploc1,ahoy_gangplank_shipwreck_off]
+p_arrivedelay;
+mes("You cross the gangplank.");
+p_teleport(movecoord(coord, 0, 1, -3));
+
+[aploc1,ahoy_rock_invisible]
+// recheck this stuff cause I think osrs fixed a lot of jank with it comparing to an old video
+if(distance(coord, loc_coord) > 4) {
+    p_aprange(4);
+    return;
+}
+def_coord $start;
+def_coord $dest;
+def_int $dir;
+
+if(inzone(0_56_55_20_28, 0_56_55_22_31, coord) = true) {
+    // first section
+    $start = 0_56_55_20_30;
+    $dest = 0_56_55_18_30;
+    $dir = ^exact_west;
+} else if(inzone(0_56_55_15_28, 0_56_55_18_33, coord) = true) {
+    // second section
+    if(loc_coord = 0_56_55_20_30 | loc_coord = 0_56_55_18_30) {
+        $start = 0_56_55_18_30;
+        $dest = 0_56_55_20_30;
+        $dir = ^exact_east;
+    } else {
+        $start = 0_56_55_15_32;
+        $dest = 0_56_55_13_32;
+        $dir = ^exact_west;
+    }
+} else if(inzone(0_56_55_10_31, 0_56_55_13_35, coord) = true) {
+    // third section
+    if(loc_coord = 0_56_55_13_32 | loc_coord = 0_56_55_15_32) {
+        $start = 0_56_55_13_32;
+        $dest = 0_56_55_15_32;
+        $dir = ^exact_east;
+    } else {
+        $start = 0_56_55_11_34;
+        $dest = 0_56_55_11_36;
+        $dir = ^exact_north;
+    }
+} else if(inzone(0_56_55_10_36, 0_56_55_14_39, coord) = true) {
+    // fourth section
+    if(loc_coord = 0_56_55_11_34 | loc_coord = 0_56_55_11_36) {
+        $start = 0_56_55_11_36;
+        $dest = 0_56_55_11_34;
+        $dir = ^exact_south;
+    } else {
+        $start = 0_56_55_13_39;
+        $dest = 0_56_55_13_41;
+        $dir = ^exact_north;
+    }
+} else if(inzone(0_56_55_11_41, 0_56_55_15_45, coord) = true) {
+    // fifth section
+    if(loc_coord = 0_56_55_13_39 | loc_coord = 0_56_55_13_41) {
+        $start = 0_56_55_13_41;
+        $dest = 0_56_55_13_39;
+        $dir = ^exact_south;
+    } else {
+        $start = 0_56_55_15_44;
+        $dest = 0_56_55_17_44;
+        $dir = ^exact_east;
+    }
+} else if(inzone(0_56_55_16_42, 0_56_55_22_47, coord) = true) {
+    $start = 0_56_55_17_44;
+    $dest = 0_56_55_15_44;
+    $dir = ^exact_west;
+}
+if(runenergy < 500) {
+    ~mesbox("You don't have enough energy to make that jump.");
+    return;
+}
+
+if(coord ! $start) ~forcewalk2($start);
+
+if(%option_run = ^true) healenergy(-500);
+~agility_exactmove(human_jump_stones, 26, 1, $start, $dest, 47, 59, $dir, false);
+
+if(stat_random(agility, 140, 232) = false) {
+    anim(human_falling_end, 0);
+    sound_synth(fall_land, 0, 0);
+    strongqueue(damage_player, 0, divide(stat(hitpoints), 5));
+    p_delay(1);
+} else {
+    stat_advance(agility, 100);
+}
+
+[label,ahoy_ghostspeak]
+~chatnpc("<p,neutral>Woooo wooo wooooo woooo");
+~mesbox("You cannot understand the ghost.");
+
+[proc,wearing_ghostspeak_amulet]()(boolean)
+if(inv_total(worn, amulet_of_ghostspeak) > 0 | inv_total(worn, amulet_of_ghostspeak_enchanted) > 0) {
+    return (true);
+}
+return (false);
