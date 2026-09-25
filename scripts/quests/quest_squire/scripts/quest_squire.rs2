@@ -84,14 +84,6 @@ if(%squire = ^squire_given_pie) {
         ~chatnpc("<p,sad>Please try and get it quickly... I am scared Sir Vyvin will find out!");
     }
 } else if(%squire = ^squire_looking_blurite) {
-    if(inv_total(bank, faladian_sword) >= 1) {
-        ~chatplayer("<p,neutral>I got a replacement sword made.");
-        ~chatnpc("<p,happy>Thank you! Can I have it?");
-        ~chatplayer("<p,neutral>It's in my bank.");
-        ~chatnpc("<p,angry>Well could you go and get it for me then please? Quickly?");
-        ~chatplayer("<p,neutral>Yeah, okay.");
-        return;
-    }
     if(inv_total(inv, faladian_sword) >= 1 | inv_total(worn, faladian_sword) >= 1) {
         ~chatplayer("<p,happy>I have retrieved your sword for you.");
         if(inv_total(inv, faladian_sword) >= 1) {
@@ -102,6 +94,12 @@ if(%squire = ^squire_given_pie) {
         } else {
             ~chatnpc("<p,confused>So can you un-equip it and hand it over to me now please?");
         }
+    } else if(inv_total(bank, faladian_sword) >= 1) {
+        ~chatplayer("<p,neutral>I got a replacement sword made.");
+        ~chatnpc("<p,happy>Thank you! Can I have it?");
+        ~chatplayer("<p,neutral>It's in my bank.");
+        ~chatnpc("<p,angry>Well could you go and get it for me then please? Quickly?");
+        ~chatplayer("<p,neutral>Yeah, okay.");
     } else {
         ~chatplayer("<p,happy>I've found a dwarf who will make the sword, I've just got to find the materials for it now!");
     }
