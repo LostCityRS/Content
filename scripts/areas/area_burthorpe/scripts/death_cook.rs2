@@ -1,6 +1,6 @@
 [opnpc1,death_cook]
 // confirm mesanims, current are based off osrs + guessed for female
-if(gender() = 0) {
+if(gender() = ^gender_male) {
     ~chatplayer("<p,quiz>What's cooking, good looking?");
     ~chatnpc("<p,neutral>The stew for the servant's main meal.");
     ~chatplayer("<p,confused>Um...er...see you later.");

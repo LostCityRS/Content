@@ -38,7 +38,7 @@ def_synth $sound;
 def_int $rand;
 // not sure if this damage is supposed to be queued or not
 damage(uid, ^hitmark_poison, $damage);
-if (gender() = 0) {
+if (gender() = ^gender_male) {
     $rand = random(3);
     switch_int($rand) {
         case 0 : $sound = human_hit2;
