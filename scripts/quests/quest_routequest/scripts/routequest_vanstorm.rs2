@@ -43,7 +43,7 @@ if(%routequest >= ^routequest_ambush) {
 if(%routequest = ^routequest_not_started) {
     ~chatnpc_specific("Vanstrom Klause", route_vanstrom_klause_sitting, "<p,neutral>Hello there, how goes it stranger?");
     ~chatplayer("<p,quiz>Quite well, thanks for asking. How about you?");
-    if(%druidspirit < ^druid_complete) {
+    if(%druidspirit < ^druidspirit_complete) {
         ~chatnpc_specific("Vanstrom Klause", route_vanstrom_klause_sitting, "<p,neutral>Hmm, well, I am a little concerned about some friends of mine. Nothing for you to worry about though.");
         ~mesbox("You do not meet all of the requirements to start the In Search of the Myreque quest.");
         return;

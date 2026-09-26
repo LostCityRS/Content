@@ -154,7 +154,7 @@ if(%routequest = ^routequest_not_started) {
 
 // FOURTH MULTI-PAGE
 [label,cyreg_interrogate_multi_fourthpage]
-@multi5("One mans vigilante is another mans freedom fighter!", cyreg_myreque_enemy, "Who are the Drakans?", cyreg_drakans, "What kind of a man are you to say that you don't care?", cyreg_persuade4, "Why do you say that this place is forsaken?", cyreg_forsaken, "Ok, thanks.", cyreg_exit);
+@multi5("One mans vigilante is another mans freedom fighter!", cyreg_vigilante, "Who are the Drakans?", cyreg_drakans, "What kind of a man are you to say that you don't care?", cyreg_persuade4, "Why do you say that this place is forsaken?", cyreg_forsaken, "Ok, thanks.", cyreg_exit);
 
 [label,cyreg_vigilante]
 // OSRS
@@ -201,9 +201,12 @@ if($druid_pouches < 5) {
 }
 ~chatplayer("<p,neutral>I have this druid pouch! This turns the Ghasts visible and I can kill them once I can see them.");
 ~chatnpc("<p,neutral>Very well, You can go! But you'll need to bring me some wood planks first, I need three and you need three.");
-// guessed, it's changed in rs3 and osrs both.
+//guess, the wording changed in rs3 and osrs both.
 // rs3 also cares if you actually have nails or hammer, osrs doesn't. rs3 changed the quest around 2013.
-if(inv_total(inv, woodplank) < 3) {
+// 3 for his boat + 3 for the bridge, so you carry 6 before he takes his cut.
+// same as the journal's "6 wooden planks" check and osrs
+// ("you'll need to bring me six wooden planks first")
+if(inv_total(inv, woodplank) < 6) {
     ~chatnpc("<p,neutral>The bridge you cross later is rotten and may need to be mended, so bring tools and steel metal fixers as well, you may find them useful.");
     return;
 }
