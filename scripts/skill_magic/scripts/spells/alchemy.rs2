@@ -87,6 +87,9 @@ switch_obj($item) {
             mes("You do not have enough Fire Runes to cast this spell.");
             return(false);
         }
+    case seasluginv :
+        mes("Ugly parasites have feelings too!");
+        return(false);
     case thanainabarrel :
         mes("You can't do that to the poor girl!");
         return(false);

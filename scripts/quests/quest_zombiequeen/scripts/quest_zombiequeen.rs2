@@ -1333,16 +1333,20 @@ p_delay(1);
 
 [opobj3,fake_coins]
 // copied rsc's linebreaks cause OSRS ones don't fit
-mes("As soon as you touch the coins");
-mes("you hear the grinding sound of bones");
-mes("against stone as you see skeletons and");
-mes("zombies rising up out of the ground.");
-mes("The coins turn to dust in your hands.");
-npc_huntall(coord, 5, 0);
-while (npc_findnext = true) {
-    if(npc_category = undead_one) ~npc_retaliate(0);
+if(obj_coord = 0_45_148_35_31) {
+    mes("As soon as you touch the coins");
+    mes("you hear the grinding sound of bones");
+    mes("against stone as you see skeletons and");
+    mes("zombies rising up out of the ground.");
+    mes("The coins turn to dust in your hands.");
+    npc_huntall(coord, 5, 0);
+    while (npc_findnext = true) {
+        if(npc_category = undead_one) ~npc_retaliate(0);
+    }
+    if(add(%lastcombat, 8) < map_clock) @rash_summon_minions(uid);
+    return;
 }
-if(add(%lastcombat, 8) < map_clock) @rash_summon_minions(uid);
+@pickup_obj;
 
 [oploc1,_zqtombdoor]
 queue(rash_queue, 6, 0); // this is the only interaction that queues it besides entering the area
@@ -1461,7 +1465,7 @@ if(coordz(coord) > 9512) {
         mes("You simply cannot concentrate enough to climb down the rocks.");
         return;
     }
-    mes("You carefully pick your way down the rocks.");
+    mes("You carefully try to pick your way down the rocks.");
     if($failed = true) mes("You fall!");
     // forces walk speed on OSRS, must be p_teleport though since if you're 3 tiles from the dest it will teleport you instead of walking
     p_teleport(0_45_148_48_41);
@@ -1589,7 +1593,7 @@ sound_synth(pick2, 1, 0);
 p_delay(1);
 if(%zombiequeen = ^zombiequeen_unlocked_tombdoor) %zombiequeen = ^zombiequeen_retrieved_corpse;
 %zq_map_mechanisms = clearbit_range(%zq_map_mechanisms, 9, 11);
-~objbox(zqcorpse, "You take the mummified remains of a human female.|You feel certain that these are Rashiliyia's remains.|You|carefully place the remains in your inventory.", 250, 0, 0);
+~objbox(zqcorpse, "You take the mummified remains of a human female.|You feel certain that these are Rashiliyia's remains.|You carefully place the remains in your inventory.", 250, 0, 0);
 
 [opheld5,zqcorpse]
 ~objbox(zqcorpse, "The remains of Rashiliyia look quite delicate. You sense|that a spirit needs to be put to rest.|Are you sure that you want to drop the remains?", 250, 0, 0);
