@@ -20,7 +20,7 @@ if (inv_total(inv, hauntedmine_reward_key) > 0) {
     mes("You already have a key like that.");
     return;
 }
-if (~hauntedmine_boss_find = true) {
+if (%hauntedmine = ^hauntedmine_boss_found & ~hauntedmine_boss_find = true) {
     mes("You should deal with that ghost before trying to take the key again.");
     return;
 }
@@ -48,6 +48,8 @@ cam_reset;
 
 ~chatplayer("<p,confused>What the... ?");
 ~mesbox("You hear a disembodied voice laughing at you....@dre@Poor puny mortal. |@dre@I'm going to have fun with you.");
+
+if (%hauntedmine = ^hauntedmine_lightstairsfound) %hauntedmine = ^hauntedmine_boss_found;
 
 npc_add(0_43_69_36_42, hauntedmine_boss_ghost, 1000); // duration from osrs
 npc_setmode(none);
