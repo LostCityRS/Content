@@ -127,7 +127,7 @@ if (%npc_action_delay > map_clock) {
 }
 
 if_close; // todo confirm
-npc_setmode(playerface);
+if (npc_type = hauntedmine_boss_ghost) npc_setmode(playerface);
 npc_anim(seq_1435, 0); // does this every time
 %npc_action_delay = add(map_clock, 5);
 ~npc_set_attack_vars;
@@ -240,9 +240,8 @@ if (random(3) = 0) $damage = randominc($max); // todo: 1/3 chance to hit ?
 
 strongqueue(hauntedmine_damage_queue, divide($duration, 30), $damage);
 
-
-[ai_queue2,hauntedmine_boss_ghost]
-~npc_default_damage(last_int);
+// no retal
+[ai_queue1,hauntedmine_boss_ghost]
 if (random(^hauntedmine_boss_movechance) = 0 & finduid(%npc_attacking_uid) = true) ~hauntedmine_boss_move(%npc_int, ~hauntedmine_boss_findindex(%npc_int));
 
 [ai_queue3,hauntedmine_boss_ghost]
