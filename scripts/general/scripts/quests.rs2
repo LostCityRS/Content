@@ -378,6 +378,7 @@ if (testbit(%ibanmulti, ^upass_started_bit) = ^true & %upass ! ^upass_complete) 
 ~send_quest_progress_colour(questlist:eadgar, %eadgar_quest, ^eadgar_complete);
 ~send_quest_progress_colour(questlist:mm, %mm_main, ^mm_complete);
 ~send_quest_progress_colour(questlist:routequest, %routequest, ^routequest_complete);
+~send_quest_progress_colour(questlist:hauntedmine, %hauntedmine, ^hauntedmine_complete);
 if_settab(questlist, ^tab_quest_journal);
 
 if (%drunkmonkquest >= ^drunkmonk_spoken_to_omad) {
