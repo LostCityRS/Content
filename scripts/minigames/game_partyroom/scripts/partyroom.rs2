@@ -115,7 +115,7 @@ if($balloons_dropped < 200) {
         }
         $i = calc($i + 1);
     }
-    world_delay(1);
+    world_delay(0); // 1t
     @partyroom_drop_balloons($balloons_dropped);
 }
 

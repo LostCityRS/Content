@@ -59,22 +59,22 @@ if (.finduid(%duel2accept) = true) {
 }
 
 [proc,duel_arena_countdown]
-world_delay(1);
+world_delay(1); // 2t
 if (~in_duel_arena(coord) = false) {
     return;
 }
 say("3");
-world_delay(1);
+world_delay(1); // 2t
 if (~in_duel_arena(coord) = false) {
     return;
 }
 say("2");
-world_delay(1);
+world_delay(1); // 2t
 if (~in_duel_arena(coord) = false) {
     return;
 }
 say("1");
-world_delay(1);
+world_delay(1); // 2t
 if (~in_duel_arena(coord) = false) {
     return;
 }

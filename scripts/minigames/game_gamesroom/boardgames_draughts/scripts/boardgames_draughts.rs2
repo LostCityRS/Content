@@ -324,7 +324,7 @@ def_boolean $king = false;
 def_boolean $move_made = false;
 
 if (%boardgames_draughts_moveagain = 1) {
-    world_delay(0);
+    world_delay(0); // todo: check delay length
     $slot = %boardgames_draughts_lastpiece;
     $piece = inv_getobj(boardgames_boardinv, $slot);
     if ($piece = $my_king) {

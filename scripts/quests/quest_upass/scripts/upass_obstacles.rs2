@@ -184,7 +184,7 @@ if (loc_find(coord, upass_speartrap) = true | loc_find(movecoord(coord, 0, 0, -1
     if(loc_find(movecoord(loc_coord, -1, 0, 0), upass_double_springtrap) = true | loc_find(movecoord(loc_coord, 0, 0, -1), upass_double_springtrap) = true) loc_anim(double_springtrap_release);
     say("Ouch!");
     queue(damage_player, 0, calc(((stat_base(hitpoints) * 8) / 100) + 1));
-    world_delay(1);
+    world_delay(1); // todo: check delay length
     loc_anim(double_springtrap_reset);
 }
 

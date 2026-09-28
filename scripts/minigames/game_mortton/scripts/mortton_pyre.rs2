@@ -202,7 +202,7 @@ stat_advance(firemaking, struct_param($funeral_pyre_struct, pyre_fm_experience))
 stat_advance(prayer,add(oc_param(%mortton_current_shade, pyre_shade_exp),struct_param($funeral_pyre_struct, pyre_shade_exp_bonus)));
 %pyre_loc = 0;
 clearqueue(clear_pyre_loc);
-world_delay(0);
+world_delay(0); // todo: check delay length
 def_coord $pillar_coord = ~get_pyre_pillar_coord(loc_coord, loc_angle);
 npc_add(~get_pyre_coord(loc_coord, loc_angle), shade_heaven, 9);
 npc_facesquare($pillar_coord);

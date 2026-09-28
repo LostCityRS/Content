@@ -76,8 +76,7 @@ def_int $delay = calc(25 + random(25));
 // Temp note: dur does not need updated
 loc_add($fire_coord, bones_in_paste_fire, 1, centrepiece_straight, $delay);
 
-// -2 to match osrs behavior. Potentially this is an engine problem with world_delay being too slow though
-world_delay(add($delay, -2));
+world_delay($delay); // todo: check delay length?
 obj_addall($fire_coord, tbwt_burnt_jogre_bones, 1, 100);
 
 [label,explode_cooked_jogre_bones](obj $bones)

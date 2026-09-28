@@ -911,7 +911,7 @@ while ($i < $gem_count) {
     if(obj_find($rock_coord, $gem) = false) obj_add($rock_coord, $gem, 1, 30);
     $i = calc($i + 1);
 }
-world_delay(1);
+world_delay(1); // todo: check delay length
 $i = 0;
 while($i < 13) {
     switch_int($i) {
@@ -1156,7 +1156,7 @@ if(last_useitem = yommiseeds_germ) {
     mes("It looks as if this Yommi tree needs to be watered.");
     loc_change(yommitree_sapling, 100);
     p_delay(1);
-    world_delay(49); // 51t (something is wrong with world delay lol)
+    world_delay(50); // 51t
     if(loc_find(loc_coord, yommitree_sapling) = true) {
         loc_change(yommitree_saplingdead, 50);
     }
@@ -1178,7 +1178,7 @@ if(last_useitem = goldbowlbless_pure) {
     loc_change(yommitree_adult, 100);
     p_delay(1);
     mes("It looks tall enough now to make a good-sized totem pole.");
-    world_delay(49); // 51t
+    world_delay(50); // 51t
     if(loc_find(loc_coord, yommitree_adult) = true) {
         loc_change(yommitree_adult_dead, 50);
     }
@@ -1201,7 +1201,7 @@ if(oc_category(last_useitem) = weapon_axe) {
     loc_change(yommitree_felled, 100);
     p_delay(1);
     anim(null, 0);
-    world_delay(49); // 51t (something is wrong with world delay lol)
+    world_delay(50); // 51t
     if(loc_find(loc_coord, yommitree_felled) = true) {
         loc_change(yommitree_felled_rotten, 50);
     }
@@ -1223,7 +1223,7 @@ if(oc_category(last_useitem) = weapon_axe) {
     mes("and trim the branches from the Yommi Tree.");
     loc_change(yommitree_trimmed, 100);
     anim(null, 0);
-    world_delay(49); // 51t (something is wrong with world delay lol)
+    world_delay(50); // 51t
     if(loc_find(loc_coord, yommitree_trimmed) = true) {
         loc_change(yommitree_trimmed_rotten, 50);
     }
@@ -1245,7 +1245,7 @@ if(oc_category(last_useitem) = weapon_axe) {
     mes("as you carve a wonderful totem pole from the Yommi tree trunk.");
     loc_change(yommitree_totem, 100);
     anim(null, 0);
-    world_delay(49); // 51t (something is wrong with world delay lol)
+    world_delay(50); // 51t
     if(loc_find(loc_coord, yommitree_totem) = true) {
         loc_change(yommitree_totem_rotten, 50);
     }

@@ -63,14 +63,14 @@ if (%castlewars_team = $team) {
 sound_synth(castlewars_onfire, 0, 0);
 if ($team = ^castlewars_team_saradomin) {
     loc_change(castlewars_catapult_saradomin_burning, ^max_32bit_int);
-    world_delay(10); // 12t
+    world_delay(10); // 11t
     if (loc_type = castlewars_catapult_saradomin_burning) {
         loc_change(castlewars_catapult_saradomin_broken, ^max_32bit_int);
         %castlewars_saradomin_bits = setbit(%castlewars_saradomin_bits, ^castlewars_catapult_bit);
     }
 } else if ($team = ^castlewars_team_zamorak) {
     loc_change(castlewars_catapult_zamorak_burning, ^max_32bit_int);
-    world_delay(10); // 12t
+    world_delay(10); // 11t
     if (loc_type = castlewars_catapult_zamorak_burning) {
         loc_change(castlewars_catapult_zamorak_broken, ^max_32bit_int);
         %castlewars_zamorak_bits = setbit(%castlewars_zamorak_bits, ^castlewars_catapult_bit);
@@ -197,7 +197,7 @@ def_int $duration = ~coord_projectile(movecoord(loc_coord, 1, 0, 1), $target_coo
 spotanim_map(castlewars_catapult_impact, $target_coord, 0, $duration);
 spotanim_map(castlewars_catapult_splash, $target_coord, 0, add($duration, 10));
 
-world_delay(divide($duration, 30)); // seems too slow if -2
+world_delay(divide($duration, 30)); // todo: check delay length
 
 huntall($target_coord, 2, ^vis_lineofsight);
 while (huntnext = true) {

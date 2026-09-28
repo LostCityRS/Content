@@ -67,7 +67,7 @@ switch_namedobj ($ammo) {
     case adamant_arrow : $roll = 8;
 }
 if (random(100) < $roll) {
-    world_delay(calc($delay / 30 - 2));
+    world_delay(calc($delay / 30)); // todo: check delay length
     if (map_blocked(coord) = true) {
         return;
     }
