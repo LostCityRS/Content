@@ -195,7 +195,7 @@ if (~in_castlewars_waitingroom(coord) = true) {
 }
 if (%castlewars_team = ^castlewars_team_saradomin) {
     if_openoverlay(castlewars_status_overlay_saradomin);
-} else {
+} else if (%castlewars_team = ^castlewars_team_zamorak) {
     if_openoverlay(castlewars_status_overlay_zamorak);
 }
 set_player_op("Attack", 2, ^true);
