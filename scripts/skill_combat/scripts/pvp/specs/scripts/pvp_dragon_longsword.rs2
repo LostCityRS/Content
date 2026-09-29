@@ -6,10 +6,7 @@ def_int $maxhit = scale(125, 100, %com_maxhit);
 def_int $attack_roll = ~player_attack_roll_specific(%damagetype); 
 def_int $defence_roll = ~.player_defence_roll_specific(^slash_style); // rolls against slash def 
 if (randominc($attack_roll) > randominc($defence_roll)) {
-    if (~.check_protect_prayer(^melee_style) = true) {
-        $maxhit = scale(6, 10, $maxhit); // reduction of 40%
-    }
-    $damage = min(randominc($maxhit), .stat(hitpoints)); // tick eating existed! https://oldschool.runescape.wiki/w/Update:The_Wintertodt
+    $damage = ~pvp_melee_damage($maxhit);
     ~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
     both_heropoints($damage);
 }
