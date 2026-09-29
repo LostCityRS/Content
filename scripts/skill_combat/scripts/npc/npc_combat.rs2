@@ -102,7 +102,7 @@ if ($drop ! null & npc_findhero = ^true) {
 
 [proc,npc_player_hit_roll](int $damagetype)(boolean)
 def_int $attack_roll = ~npc_attack_roll_specific($damagetype);
-def_int $defence_roll = ~player_defence_roll_specific($damagetype);
+def_int $defence_roll = ~pvm_defence_roll($damagetype);
 //mes("Clock: <tostring(map_clock)>, Player A: <tostring($attack_roll)>, NPC D: <tostring($defence_roll)>, Player Max: <tostring(%com_maxhit)>");
 if (randominc($attack_roll) > randominc($defence_roll)) {
     return(true);

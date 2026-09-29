@@ -58,8 +58,8 @@ if (~pvp_is_attackable = false) {
 }
 def_int $damage = 0;
 def_int $maxhit = scale(110, 100, %com_maxhit);
-def_int $attack_roll = scale($scale, 100, ~player_attack_roll_specific(%damagetype));
-def_int $defence_roll = ~.player_defence_roll_specific(^slash_style);
+def_int $attack_roll = scale($scale, 100, ~pvp_attack_roll(%damagetype));
+def_int $defence_roll = ~.pvp_defence_roll(^slash_style);
 if (randominc($attack_roll) > randominc($defence_roll)) {
     $damage = ~pvp_melee_damage($maxhit);
     ~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));

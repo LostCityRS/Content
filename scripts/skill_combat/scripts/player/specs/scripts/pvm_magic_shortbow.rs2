@@ -35,9 +35,8 @@ if (stat(hitpoints) = 0) { // inferred from dragon dagger
 def_int $damage = 0;
 def_int $combat_stat = ~combat_stat(add(stat(ranged), 10), oc_param($ammo, rangebonus)); // + 10 ranged levels
 def_int $maxhit = ~combat_maxhit($combat_stat);
-def_int $attackroll = scale(10, 7, ~player_attack_roll_specific(%damagetype)); // 43% bonus accuracy
+def_int $attackroll = scale(10, 7, ~pvm_attack_roll(%damagetype)); // 43% bonus accuracy
 def_int $defenceroll = ~npc_defence_roll_specific(^ranged_style);
-if(npc_type = tbwt_beast) $attackroll = 0;
 if (randominc($attackroll) > randominc($defenceroll)) {
     $damage = ~pvm_ranged_damage($maxhit);
     def_int $damage_capped = min($damage, npc_stat(hitpoints));

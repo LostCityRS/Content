@@ -1,0 +1,17 @@
+[proc,pvm_attack_roll](int $damagetype)(int)
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+if(npc_type = tbwt_beast) {
+    // hit will always fail on accuracy roll, this isn't a damage cap
+    if($weapon = null | oc_param($weapon, tbwt_karambwan_poison) = ^false | $damagetype = ^magic_style) {
+        return (0);
+    }
+}
+def_int $attack_roll = ~player_attack_roll_specific($damagetype);
+if (~damagetype_melee($damagetype) = true & npc_param(undead) = ^true & inv_total(worn, crystalshard_necklace) > 0) {
+    $attack_roll = scale($attack_roll, 7, 6);
+}
+return ($attack_roll);
+
+[proc,pvm_defence_roll](int $damagetype)(int)
+def_int $defence_roll = ~player_defence_roll_specific($damagetype);
+return ($defence_roll);
