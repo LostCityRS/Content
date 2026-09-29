@@ -1,5 +1,9 @@
 // add	npc=(index=48696, id=castlewars_barricade_saradomin_render_under (15582), coord=(0_37_48_60_5)), creationcycle=226299, spawnangle=south
 [opheld1,castlewars_barricade]
+if (~in_castlewars_spawnroom(coord) = true) {
+    mes("You can't set up a barricade here - there's no need."); // osrs
+    return;
+}
 if (~area_allow_loc_add(coord) = false | npc_findcat(coord, castlewars_barricade, 0, 0) = true) {
     mes("You can't set up a barricade here");
     return;

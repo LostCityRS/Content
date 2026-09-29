@@ -278,7 +278,10 @@ return(false);
 [proc,castlewars_waitingroom_saradomin_count]()(int) return (map_playercount(0_37_148_0_0, 0_37_148_25_25));
 [proc,castlewars_waitingroom_zamorak_count]()(int) return (map_playercount(0_37_148_40_40, 0_37_148_63_63));
 
-// [proc,in_castlewars_spawnroom]
+[proc,in_castlewars_spawnroom](coord $coord)(boolean)
+if (%castlewars_team = ^castlewars_team_saradomin) return(inzone(1_37_48_55_0, 1_37_48_63_8, $coord));
+if (%castlewars_team = ^castlewars_team_zamorak) return(inzone(1_37_48_0_55, 1_37_48_8_63, $coord));
+return(false);
 
 [proc,castlewars_del_items]
 ~inv_delenum(inv, castlewars_tools);
