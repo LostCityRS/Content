@@ -55,12 +55,12 @@ p_delay(2);
 mes("But you might be able to sneak past them if you try to blend in.");
 
 [proc,player_wearing_armour]()(boolean)
-def_obj $head = inv_getobj(worn, ^wearpos_head);
+def_obj $hat = inv_getobj(worn, ^wearpos_hat);
 def_obj $body = inv_getobj(worn, ^wearpos_torso);
 def_obj $legs = inv_getobj(worn, ^wearpos_legs);
 def_obj $lhand = inv_getobj(worn, ^wearpos_lhand);
 def_obj $hands = inv_getobj(worn, ^wearpos_hands);
-if(($lhand ! null & oc_category($lhand) = armour_shield) | ($hands ! null & oc_category($hands) = armour_hands) | ($head ! null & oc_category($head) = armour_helmet) | ($body ! null & oc_category($body) = armour_body) | ($legs ! null &oc_category($legs) = armour_legs)) {
+if(($lhand ! null & oc_category($lhand) = armour_shield) | ($hands ! null & oc_category($hands) = armour_hands) | ($hat ! null & oc_category($hat) = armour_helmet) | ($body ! null & oc_category($body) = armour_body) | ($legs ! null &oc_category($legs) = armour_legs)) {
     return (true);
 }
 return (false);
