@@ -50,18 +50,8 @@ if (~player_autocast_enabled = true) {
 @player_melee_attack;
 
 [proc,player_npc_hit_roll](int $damagetype)(boolean)
-def_int $attack_roll = ~player_attack_roll_specific($damagetype);
+def_int $attack_roll = ~pvm_attack_roll($damagetype);
 def_int $defence_roll = ~npc_defence_roll_specific($damagetype);
-def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
-if(npc_type = tbwt_beast) {
-    // hit will always fail on accuracy roll, this isn't a damage cap
-    if($weapon = null | oc_param($weapon, tbwt_karambwan_poison) = ^false | $damagetype = ^magic_style) {
-        return (false);
-    }
-}
-if (npc_param(undead) = ^true & inv_total(worn, crystalshard_necklace) > 0) {
-    $attack_roll = scale($attack_roll, 7, 6); // todo figure out if they do this lol
-}
 if (randominc($attack_roll) > randominc($defence_roll)) {
     return(true);
 }

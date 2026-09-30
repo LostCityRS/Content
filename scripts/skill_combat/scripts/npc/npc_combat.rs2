@@ -102,7 +102,7 @@ if ($drop ! null & npc_findhero = ^true) {
 
 [proc,npc_player_hit_roll](int $damagetype)(boolean)
 def_int $attack_roll = ~npc_attack_roll_specific($damagetype);
-def_int $defence_roll = ~player_defence_roll_specific($damagetype);
+def_int $defence_roll = ~pvm_defence_roll($damagetype);
 //mes("Clock: <tostring(map_clock)>, Player A: <tostring($attack_roll)>, NPC D: <tostring($defence_roll)>, Player Max: <tostring(%com_maxhit)>");
 if (randominc($attack_roll) > randominc($defence_roll)) {
     return(true);
@@ -397,42 +397,3 @@ if (map_multiway(npc_coord) = false & nc_param(npc_type, npc_forcemulti) = ^fals
     }
 }
 return(true);
-
-[proc,npc_max_dealt](int $maxhit, int $spell)(int)
-if(npc_type = horror_dagganoth_air) {
-    if($spell = ^wind_strike | $spell = ^wind_bolt | $spell = ^wind_blast | $spell = ^wind_wave) {
-        return ($maxhit);
-    }
-    return (0);
-}
-if(npc_type = horror_dagganoth_water) {
-    if($spell = ^water_strike | $spell = ^water_bolt | $spell = ^water_blast | $spell = ^water_wave) {
-        return ($maxhit);
-    }
-    return (0);
-}
-if(npc_type = horror_dagganoth_earth) {
-    if($spell = ^earth_strike | $spell = ^earth_bolt | $spell = ^earth_blast | $spell = ^earth_wave) {
-        return ($maxhit);
-    }
-    return (0);
-}
-if(npc_type = horror_dagganoth_fire) {
-    if($spell = ^fire_strike | $spell = ^fire_bolt | $spell = ^fire_blast | $spell = ^fire_wave) {
-        return ($maxhit);
-    }
-    return (0);
-}
-if(npc_type = horror_dagganoth_melee) {
-    if ($spell = 0 & (%damagestyle = ^style_melee_accurate | %damagestyle = ^style_melee_aggressive | %damagestyle = ^style_melee_defensive | %damagestyle = ^style_melee_controlled)) {
-        return ($maxhit);
-    }
-    return (0);
-}
-if(npc_type = horror_dagganoth_ranged) {
-    if ($spell = 0 & %damagetype = ^ranged_style) {
-        return ($maxhit);
-    }
-    return (0);
-}
-return (min($maxhit, npc_param(max_dealt)));
