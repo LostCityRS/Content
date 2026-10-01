@@ -46,7 +46,7 @@ minimap_toggle(0);
 // [7938]
 
 [oploc1,harmless_dead_palm_mid]
-if(loc_angle = ^loc_north) { 
+if(loc_angle = ^loc_north) {
     if(coordz(loc_coord) > coordz(coord)) {
         mes("You're already on the bridge.");
         return;
@@ -123,6 +123,12 @@ switch_coord (loc_coord) {
     case default : ~displaymessage(^dm_default);
 }
 
+// timing note, also applies to oploc1,spooky_tree_base_forbridge
+// osrs dump: anim + loc_change + synths on the op tick, busy next tick, then message
+// + varbit + inv delete 2 ticks after. here the message/delete/varbit all happen up
+// front, so it's the same length but lands 2t early.
+// the dump also shows no player movement after a repair, you just walk on yourself.
+// runehq 2005 describes it the same way (walk, break, repair, walk).
 [oploc5,swamp_bridge1]
 switch_coord (loc_coord) {
     case 0_54_53_46_35 : mes("This bridge rung already looks fixed; that's why you're able to stand on it.");
@@ -134,10 +140,10 @@ switch_coord (loc_coord) {
         if(~routequest_try_fix_rung = true) {
             %bridgerung1 = 1;
             anim(human_smithing, 0);
+            ~routequest_hammer_sound;
             p_delay(2);
             ~forcemove(movecoord(coord, 0, 0, 1));
         }
-        mes("This bridge rung already looks fixed; that's why you're able to stand on it.");
     case 0_54_53_46_37 :
         if(%bridgerung2 = ^true) {
             mes("You have already fixed this part of the bridge.");
@@ -146,6 +152,7 @@ switch_coord (loc_coord) {
         if(~routequest_try_fix_rung = true) {
             %bridgerung2 = 1;
             anim(human_smithing, 0);
+            ~routequest_hammer_sound;
             p_delay(2);
             ~forcemove(movecoord(coord, 0, 0, 1));
         }
@@ -157,11 +164,19 @@ switch_coord (loc_coord) {
         if(~routequest_try_fix_rung = true) {
             %bridgerung3 = 1;
             anim(human_smithing, 0);
+            ~routequest_hammer_sound;
             p_delay(2);
             ~forcemove(movecoord(coord, 0, 0, 1));
         }
     case default : ~displaymessage(^dm_default);
 }
+
+// guess: dump plays the same synth 3 times at 0/20/40 alongside the anim.
+// no 377 equivalent for 2101 that i can find, so hammering stands in.
+[proc,routequest_hammer_sound]
+sound_synth(hammering, 0, 0);
+sound_synth(hammering, 0, 20);
+sound_synth(hammering, 0, 40);
 
 [proc,routequest_try_fix_rung]()(boolean)
 if(inv_total(inv, woodplank) = 0) {
@@ -169,9 +184,15 @@ if(inv_total(inv, woodplank) = 0) {
     ~objbox(woodplank, "You'll need a wooden plank in order to repair this.", 200, 0, 0);
     return (false);
 }
-if(inv_total(inv, nails) < 10) {
-    // RS3
-    mes("You need at least 10 steel nails to repair this.");
+// 75 nails per rung, 225 total.
+// tip.it guide (says last updated august 10th 2005), same line in the 2005-11-10,
+// 2006-06-09 and 2007-06-06 captures: "Each part will take a plank and 75 steel
+// nails.", item list says "225 steel nails (make from 15 steel bars), 6 planks".
+// global-rs 2008/03 agrees, and the osrs dump goes 225 -> 150 -> 75 -> 0.
+// only runehq 2005/01 disagrees (3 planks and 30 nails).
+// - https://youtu.be/9FWqA3_PG0c?t=110
+if(inv_total(inv, nails) < 75) {
+    mes("You need at least 75 steel nails to repair this."); //guess on the wording, rs3 phrasing (quest reworked 2013). the 75 is sourced above
     return (false);
 }
 if(inv_total(inv, hammer) = 0) {
@@ -180,7 +201,8 @@ if(inv_total(inv, hammer) = 0) {
     return (false);
 }
 inv_del(inv, woodplank, 1);
-inv_del(inv, nails, 10);
+inv_del(inv, nails, 75);
+//mes("You repair a section of the bridge."); // osrs dump, but not in our revision as this video shows https://youtu.be/9FWqA3_PG0c?t=108
 return (true);
 
 
@@ -196,6 +218,7 @@ switch_coord (loc_coord) {
         if(~routequest_try_fix_rung = true) {
             %bridgerung1 = 1;
             anim(human_smithing, 0);
+            ~routequest_hammer_sound;
             p_delay(1);
             loc_change(swamp_bridge1, 200);
             p_delay(0);
@@ -209,6 +232,7 @@ switch_coord (loc_coord) {
         if(~routequest_try_fix_rung = true) {
             %bridgerung2 = 1;
             anim(human_smithing, 0);
+            ~routequest_hammer_sound;
             p_delay(1);
             loc_change(swamp_bridge1, 200);
             p_delay(0);
@@ -222,6 +246,7 @@ switch_coord (loc_coord) {
         if(~routequest_try_fix_rung = true) {
             %bridgerung3 = 1;
             anim(human_smithing, 0);
+            ~routequest_hammer_sound;
             p_delay(1);
             loc_change(swamp_bridge1, 200);
             p_delay(0);
@@ -247,7 +272,8 @@ if(%routequest < ^routequest_answered_questions) {
 }
 
 [label,route_curpile_multi]
-@multi5("I've come to help the Myreque, I've brought weapons.", route_curpile_help, "I don't have to answer you!", router_curpile_dont_answer, "No reason.", route_curpile_no_reason, "I'm lost, can you show me the way out?", route_curpile_lost, "I have to go.", route_curpile_gottago);
+//https://youtu.be/9FWqA3_PG0c?t=147
+@multi5("I've come to help the Myreque, I've brought weapons.", route_curpile_help, "I don't have to answer to you!", router_curpile_dont_answer, "No reason.", route_curpile_no_reason, "I'm lost, can you show me the way out?", route_curpile_lost, "I have to go.", route_curpile_gottago);
 
 [label,router_curpile_dont_answer]
 ~chatplayer("<p,neutral>I don't have to answer to you!");
@@ -285,7 +311,16 @@ if(~routequest_has_weapons = false) {
 @route_curpile_question;
 
 [proc,route_get_question](int $q)(string)
-// RuneHQ mentions a 7th question existing, but I haven't found evidence of it.
+// only 6 questions, guard asks 3 of them.
+// tip.it (2005, same list in the 2005-11-10, 2006-06-09 and 2007-06-06 captures)
+// lists these six and no more.
+// later guides have extras, left out:
+// runehq 2005/01 adds "What does Myreque mean?" -> "Hidden in Myre"
+// global-rs 2008/03 adds that plus "Who is the mercenary from Asgarnia?" -> "Radigad Ponfit"
+// and "Who is a bit hot headed?" -> "Harold Evans"
+// cyreg's dialogue does cover those answers so they might be real, but nobody
+// recorded the wrong options, so adding them means making up distractors.
+// if the option lists turn up, add them and bump random(6) in route_curpile_question.
 switch_int($q) {
     case 0 : return ("Who is the youngest member of the Myreque?");
     case 1 : return ("Name the only female member of the Myreque.");
@@ -315,7 +350,7 @@ if($q = 0) {
     }
     %routequestionsanswered = calc(%routequestionsanswered + 1);
 } else if($q = 3) {
-    def_int $op = ~p_choice5_header("Sani Piliu", 1, "Harold Evans", 2, "Radigad Ponfit", 3, "Polmafi Ferdygris", 4, "Don't know!", 5, "Who was previously a scholar?");
+    def_int $op = ~p_choice5_header("Sani Piliu", 1, "Harold Evans", 2, "Radigad Ponfit", 3, "Polmafi Ferdygris", 4, "Don't know!", 5, ~route_get_question($q));
     if($op = 4) {
         %routequestionscorrect = calc(%routequestionscorrect + 1);
     }

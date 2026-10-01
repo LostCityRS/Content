@@ -1,7 +1,9 @@
 [if_button,questlist:routequest]
 // Sourced from rs3 and osrs November 2025
-// MISSING:
-// journal for varp value 67
+// Note: no journal entry for varp value 67 (^routequest_gave_weapons). That state is
+// OSRS-only, OSRS splits "handed Veliaf the weapons" from "cutscene starts". Here
+// route_veliaf_hurtz sets ^routequest_enter_cutscene in the same tick it deletes the
+// weapons, so 67 is never observable and needs no journal text.
 def_string $text;
 if(%routequest = ^routequest_complete) {
     $text = "@str@I was set a quest by Vanstrom Klause to deliver weapons @str@to a group called the Myreque. After negotiating with a @str@boatman, fixing a broken rope bridge and answering a @str@guards questions I eventually found the group called the Myreque. ";
