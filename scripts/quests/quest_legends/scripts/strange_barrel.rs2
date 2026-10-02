@@ -142,7 +142,7 @@ switch_int(random(16)) {
     case 11 : npc_add(loc_coord, mossgiant, 500);
     case 12 : npc_add(loc_coord, mugger, 500);
     case 13 : npc_add(loc_coord, scorpion, 500);
-    case 14 : npc_add(loc_coord, skeleton_unarmed, 500);
+    case 14 : npc_add(loc_coord, skeleton_unagressive, 500);
     case default : npc_add(loc_coord, zombie_unarmed, 500);
 }
 ~npc_retaliate(0);

@@ -181,7 +181,7 @@ mes("This door is locked.");
 sound_synth(locked, 0, 0);
 
 [proc,change_ernest]
-if(npc_find(coord, ernest_the_chicken, 8, 0) = true) {
+if(npc_find(coord, questchicken, 8, 0) = true) {
     npc_changetype_keepall(ernest, 100);
 }
 
