@@ -48,3 +48,45 @@ if (~npc_player_hit_roll(^magic_style) = true | inv_total(worn, slayer_nosepeg) 
 spotanim_pl(specter_goo_impact, 320, $duration);
 sound_synth(goo_hit, 1, $duration);
 queue*(playerhit_n_retaliate, calc($duration / 30))(npc_uid);
+
+[ai_queue3,_slayer_aberrant_specter]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+// pre roll
+if (random(512) = 0) {
+    obj_add(npc_coord, mystic_robe_bottom_dark, 1, ^lootdrop_duration);
+    return;
+}
+
+def_int $random = random(128);
+if ($random < 3) {
+    obj_add(npc_coord, steel_axe, 1, ^lootdrop_duration);
+} else if ($random < 4) {
+    obj_add(npc_coord, mithril_kiteshield, 1, ^lootdrop_duration);
+} else if ($random < 5) {
+    obj_add(npc_coord, lava_battlestaff, 1, ^lootdrop_duration);
+} else if ($random < 6) {
+    obj_add(npc_coord, adamant_platelegs, 1, ^lootdrop_duration);
+} else if ($random < 7) {
+    obj_add(npc_coord, rune_full_helm, 1, ^lootdrop_duration);
+} else if ($random < 8) {
+    obj_add(npc_coord, coins, 460, ^lootdrop_duration);
+} else if ($random < 86) {
+    $random = random(26);
+    if ($random < 11)  {
+        obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+    } else if ($random < 22) {
+        obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+        obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+    } else {
+        obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+        obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+        obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+    }
+} else if ($random < 91) {
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+} 
+// todo: seed table

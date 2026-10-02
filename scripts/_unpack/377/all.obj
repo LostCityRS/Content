@@ -48111,6 +48111,25 @@ cost=50000
 wearpos=righthand
 wearpos2=lefthand
 weight=10lb
+category=weapon_blunt
+param=attackrate,7
+param=stabattack,0
+param=slashattack,0
+param=crushattack,81
+param=slashdefence,0
+param=strengthbonus,79
+param=ready_baseanim,slayer_granite_maul_ready
+param=turnonspot_baseanim,slayer_granite_maul_ready
+param=walk_f_baseanim,slayer_granite_maul_walk
+param=walk_b_baseanim,slayer_granite_maul_walk
+param=walk_l_baseanim,slayer_granite_maul_walk
+param=walk_r_baseanim,slayer_granite_maul_walk
+param=running_baseanim,slayer_granite_maul_run
+param=crushattack_anim,slayer_granite_maul_attack
+param=defend_anim,slayer_granite_maul_defend
+param=crush_sound,granite_maul
+param=specwep,^true
+param=sa_energy,500
 
 [cert_granite_maul]
 certlink=granite_maul
@@ -48219,6 +48238,11 @@ count3=slayer_broad_arrows_4,4
 count4=slayer_broad_arrows_5,5
 wearpos=quiver
 weight=16g
+category=arrows
+param=rangebonus,28
+param=levelrequire,50
+param=proj_launch,slayer_broad_arrow_launch
+param=proj_travel,slayer_broad_arrow_travel
 
 [slayer_bag_of_salt]
 name=Bag of salt

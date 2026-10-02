@@ -1,0 +1,45 @@
+[label,pvp_granite_maul_sa]
+if (~sa_enough_energy = false) {
+    // If players attempt to use a special attack with insufficient energy then they'll find that instead 
+    // of a special attack failing and no attack occurring, a regular attack will instead be performed.
+    // - https://oldschool.runescape.wiki/w/Update:PvM_QoL_updates_%26_Wilderness_Rejuvenation_improvements
+    // p_stopaction; // based on the way ive implemented specs, this is necessary to produce the behavior above.
+    return;
+}
+if (~duel_arena_spec_check = false) {
+    return;
+}
+if (%damagetype = ^ranged_style) {
+    if (~duel_arena_ranged_check = false) {
+        return;
+    }
+} else {
+    if (~duel_arena_melee_check = false) {
+        return;
+    }
+}
+%action_delay = add(map_clock, 7);
+p_opplayer(2);
+
+~set_sa_vars(oc_param(inv_getobj(worn, ^wearpos_rhand), sa_energy));
+~set_pk_vars;
+def_int $damage = 0;
+def_int $maxhit = %com_maxhit;
+def_int $damage_capped = 0;
+def_int $attack_roll = ~player_attack_roll_specific(%damagetype);
+def_int $defence_roll = ~.player_defence_roll_specific(^crush_style); 
+if (randominc($attack_roll) > randominc($defence_roll)) {
+    if (~.check_protect_prayer(^melee_style) = true) {
+        $maxhit = scale(6, 10, $maxhit); // reduction of 40%
+    }
+    $damage = min(randominc($maxhit), .stat(hitpoints)); // tick eating existed! https://oldschool.runescape.wiki/w/Update:The_Wintertodt
+    ~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
+    both_heropoints($damage);
+}
+anim(slayer_granite_maul_special_attack, 0);
+sound_synth(quicksmash, 1, 0);
+spotanim_pl(sp_attack_maul_spotanim, 96, 0);
+.anim(.%com_defendanim, 20);
+.sound_synth(cleave, 1, 0);
+.queue*(pvp_retaliate, 0)(uid);
+~.pvp_damage(0, $damage);

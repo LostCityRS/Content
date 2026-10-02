@@ -1,10 +1,6 @@
 [ai_queue3,slayer_gargoyle]
 npc_statheal(hitpoints, 1, 0); // doesn't reset mode in osrs
 
-[ai_queue4,slayer_gargoyle]
-npc_changetype_keepall(slayer_gargoyle_dead, 5);
-gosub(npc_default_death);
-
 [opnpcu,slayer_gargoyle]
 if(last_useitem = slayer_rock_hammer) {
     anim(human_blunt_pound, 0);
@@ -18,3 +14,71 @@ if(last_useitem = slayer_rock_hammer) {
     return;
 }
 ~displaymessage(^dm_default);
+
+[ai_queue4,slayer_gargoyle]
+npc_changetype_keepall(slayer_gargoyle_dead, 5);
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+// sources used: 
+// https://web.archive.org/web/20051129163419/http://runehq.com/RHQMonsterView.php?id=436
+// https://web.archive.org/web/20050407111755/http://www.tip.it/runescape/index.php?rs2monster_id=429
+// https://oldschool.runescape.wiki/w/Gargoyle?oldid=283320
+
+// Tertiary
+~trail_hardcluedrop(128, npc_coord);
+
+// pre roll
+def_int $random = random(512);
+if ($random = 0) {
+    obj_add(npc_coord, mystic_robe_top_dark, 1, ^lootdrop_duration);
+    return;
+} else if($random < 3) {
+    obj_add(npc_coord, granite_maul, 1, ^lootdrop_duration);
+    return;
+}
+
+$random = random(128);
+
+if ($random < 2) {
+    obj_add(npc_coord, steel_2h_sword, 1, ^lootdrop_duration);
+} else if ($random < 5) {
+    obj_add(npc_coord, steel_axe, 1, ^lootdrop_duration);
+} else if ($random < 9) {
+    obj_add(npc_coord, steel_battleaxe, 1, ^lootdrop_duration);
+} else if ($random < 10) { 
+    // old wiki seems to think it was was rarer originally, i assume prob same odds as rbaxe is in current osrs
+    obj_add(npc_coord, rune_full_helm, 1, ^lootdrop_duration);
+} else if ($random < 20) { 
+    obj_add(npc_coord, firerune, 37, ^lootdrop_duration);
+} else if ($random < 26) { 
+    obj_add(npc_coord, firerune, 75, ^lootdrop_duration);
+} else if ($random < 34) { 
+    obj_add(npc_coord, chaosrune, 15, ^lootdrop_duration);
+} else if ($random < 39) { 
+    obj_add(npc_coord, deathrune, 5, ^lootdrop_duration);
+} else if ($random < 62) { 
+    obj_add(npc_coord, coins, 11, ^lootdrop_duration);
+} else if ($random < 82) { 
+    obj_add(npc_coord, coins, 44, ^lootdrop_duration);
+} else if ($random < 88) { 
+    obj_add(npc_coord, coins, 132, ^lootdrop_duration);
+} else if ($random < 91) { 
+    obj_add(npc_coord, coins, 220, ^lootdrop_duration);
+} else if ($random < 92) { 
+    obj_add(npc_coord, coins, 440, ^lootdrop_duration);
+} else if ($random < 98) { 
+    obj_add(npc_coord, steel_bar, 3, ^lootdrop_duration);
+} else if ($random < 100) { 
+    obj_add(npc_coord, mithril_bar, 3, ^lootdrop_duration);
+} else if ($random < 113) { // added gold ore roll odds in here 
+    obj_add(npc_coord, gold_bar, 1, ^lootdrop_duration);
+} else if ($random < 119) { 
+    obj_add(npc_coord, cert_blankrune_high, 35, ^lootdrop_duration);
+} else if ($random < 121) { 
+    obj_add(npc_coord, thread, 10, ^lootdrop_duration);
+} else if ($random < 126) { 
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+}

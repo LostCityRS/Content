@@ -3,7 +3,45 @@ npc_setmode(null); // reset mode and heal 1hp (osrs behaviour)
 npc_statheal(hitpoints, 1, 0);
 
 [ai_queue4,slayer_rockslug]
-gosub(npc_default_death);
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+// pre roll
+if (random(512) = 0) {
+    obj_add(npc_coord, mystic_gloves_light, 1, ^lootdrop_duration);
+    return;
+}
+
+def_int $random = random(128);
+if ($random < 30) {
+    obj_add(npc_coord, earthrune, 5, ^lootdrop_duration);
+} else if ($random < 34) {
+    obj_add(npc_coord, earthrune, 42, ^lootdrop_duration);
+} else if ($random < 38) {
+    obj_add(npc_coord, chaosrune, 2, ^lootdrop_duration);
+} else if ($random < 51) {
+    obj_add(npc_coord, coal, 1, ^lootdrop_duration);
+} else if ($random < 73) {
+    obj_add(npc_coord, iron_ore, 1, ^lootdrop_duration);
+} else if ($random < 75) {
+    obj_add(npc_coord, bronze_bar, 1, ^lootdrop_duration);
+} else if ($random < 78) {
+    obj_add(npc_coord, iron_bar, 1, ^lootdrop_duration);
+} else if ($random < 81) {
+    obj_add(npc_coord, copper_ore, 1, ^lootdrop_duration);
+} else if ($random < 89) {
+    obj_add(npc_coord, tin_ore, 1, ^lootdrop_duration);
+} else if ($random < 90) {
+    obj_add(npc_coord, mithril_ore, 1, ^lootdrop_duration);
+} else if ($random < 103) {
+    obj_add(npc_coord, dwarven_stout, 1, ^lootdrop_duration);
+} else if ($random < 113) {
+    obj_add(npc_coord, hammer, 1, ^lootdrop_duration);
+} else if ($random < 119) {
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+}
 
 [opnpcu,slayer_rockslug]
 if(last_useitem = slayer_bag_of_salt) {

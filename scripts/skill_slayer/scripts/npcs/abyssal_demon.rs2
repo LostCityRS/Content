@@ -21,6 +21,70 @@ if (npc_stat(hitpoints) > 0) {
 // if the npc died from this damage
 npc_queue(3, 0, 0);
 
+[ai_queue3,slayer_abyssal]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+if (random(512) = 0) {
+    obj_add(npc_coord, abyssal_whip, 1, ^lootdrop_duration);
+    return;
+}
+
+def_int $random = random(128);
+if ($random < 4) {
+    obj_add(npc_coord, black_sword, 1, ^lootdrop_duration);
+} else if ($random < 7) {
+    obj_add(npc_coord, steel_battleaxe, 1, ^lootdrop_duration);
+} else if ($random < 9) {
+    obj_add(npc_coord, black_axe, 1, ^lootdrop_duration);
+} else if ($random < 10) {
+    obj_add(npc_coord, mithril_kiteshield, 1, ^lootdrop_duration);
+} else if ($random < 11) {
+    obj_add(npc_coord, rune_chainbody, 1, ^lootdrop_duration);
+} else if ($random < 12) {
+    obj_add(npc_coord, rune_med_helm, 1, ^lootdrop_duration);
+} else if ($random < 20) {
+    obj_add(npc_coord, airrune, 50, ^lootdrop_duration);
+} else if ($random < 27) {
+    obj_add(npc_coord, chaosrune, 10, ^lootdrop_duration);
+} else if ($random < 31) {
+    obj_add(npc_coord, bloodrune, 7, ^lootdrop_duration);
+} else if ($random < 32) {
+    obj_add(npc_coord, lawrune, 3, ^lootdrop_duration);
+} else if ($random < 34) {
+    obj_add(npc_coord, lobster, 1, ^lootdrop_duration);
+} else if ($random < 35) {
+    obj_add(npc_coord, cosmic_talisman, 1, ^lootdrop_duration);
+} else if ($random < 36) {
+    obj_add(npc_coord, chaos_talisman, 1, ^lootdrop_duration);
+} else if ($random < 37) {
+    obj_add(npc_coord, 3dose1defense, 1, ^lootdrop_duration);
+} else if ($random < 39) {
+    obj_add(npc_coord, adamantite_bar, 1, ^lootdrop_duration);
+} else if ($random < 44) {
+    obj_add(npc_coord, cert_blankrune_high, 60, ^lootdrop_duration);
+} else if ($random < 79) {
+    obj_add(npc_coord, coins, 132, ^lootdrop_duration);
+} else if ($random < 88) {
+    obj_add(npc_coord, coins, 220, ^lootdrop_duration);
+} else if ($random < 95) {
+    obj_add(npc_coord, coins, 30, ^lootdrop_duration);
+} else if ($random < 101) {
+    obj_add(npc_coord, coins, 44, ^lootdrop_duration);
+} else if ($random < 102) {
+    obj_add(npc_coord, coins, 460, ^lootdrop_duration);
+} else if ($random < 121) {
+    obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+} else if ($random < 123) {
+    obj_add(npc_coord, ~ultrarare_getitem, ^lootdrop_duration);
+} else {
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+}
+
 [ai_queue5,slayer_abyssal]
 if(finduid(%npc_aggressive_player) = true) {
     spotanim_npc(abyssal_demon_teleport, 0, 0);

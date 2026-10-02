@@ -1,0 +1,47 @@
+[ai_queue3,_slayer_cave_crawler]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+// Default drop from config.
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+def_int $random = random(128);
+
+if ($random < 22) {
+    obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+} else if ($random < 35) {
+    obj_add(npc_coord, vial_water, 1, ^lootdrop_duration);
+} else if ($random < 41) {
+    obj_add(npc_coord, naturerune, add(3, randominc(1)), ^lootdrop_duration);
+} else if ($random < 46) {
+    obj_add(npc_coord, coins, 3, ^lootdrop_duration);
+} else if ($random < 51) {
+    obj_add(npc_coord, firerune, 12, ^lootdrop_duration);
+} else if ($random < 56) {
+    obj_add(npc_coord, white_berries, 1, ^lootdrop_duration);
+} else if ($random < 59) {
+    obj_add(npc_coord, coins, 8, ^lootdrop_duration);
+} else if ($random < 62) {
+    obj_add(npc_coord, coins, 29, ^lootdrop_duration);
+} else if ($random < 64) {
+    obj_add(npc_coord, unicorn_horn_dust, 1, ^lootdrop_duration);
+} else if ($random < 66) {
+    obj_add(npc_coord, earthrune, 9, ^lootdrop_duration);
+} else if ($random < 67) {
+    obj_add(npc_coord, snape_grass, 1, ^lootdrop_duration);
+} else if ($random < 68) {
+    obj_add(npc_coord, red_spiders_eggs, 1, ^lootdrop_duration);
+} else if ($random < 69) {
+    obj_add(npc_coord, limpwurt_root, 1, ^lootdrop_duration);
+} else if ($random < 70) {
+    obj_add(npc_coord, eye_of_newt, 1, ^lootdrop_duration);
+} else if ($random < 71) {
+    obj_add(npc_coord, coins, 10, ^lootdrop_duration);
+} else if ($random < 72) {
+    obj_add(npc_coord, bronze_armoured_boots, 1, ^lootdrop_duration);
+} else if ($random < 73) {
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+}
+// TODO: seed drop table (not when backporting!)

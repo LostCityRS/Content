@@ -9,46 +9,51 @@ if (npc_findhero = ^false) {
 obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
 
 //Tertiary
-~trail_easycluedrop(^trail_easy_droprate, npc_coord);
+~trail_easycluedrop(128, npc_coord);
 
-def_int $dropint = random(512);
-
-if ($dropint < 1) {
+// pre-roll
+if (random(512) = 0) {
     obj_add(npc_coord, mystic_gloves_dark, 1, ^lootdrop_duration);
-} else if ($dropint < 9) {
+    return;
+}
+
+def_int $dropint = random(128);
+
+if ($dropint < 2) {
     obj_add(npc_coord, iron_mace, 1, ^lootdrop_duration);
-} else if ($dropint < 18) {
+} else if ($dropint < 4) {
     obj_add(npc_coord, iron_dagger, 1, ^lootdrop_duration);
-} else if ($dropint < 22) {
+} else if ($dropint < 5) {
     obj_add(npc_coord, iron_kiteshield, 1, ^lootdrop_duration);
-} else if ($dropint < 34) {
+} else if ($dropint < 8) {
     obj_add(npc_coord, airrune, 3, ^lootdrop_duration);
-} else if ($dropint < 46) {
+} else if ($dropint < 11) {
     obj_add(npc_coord, cosmicrune, 2, ^lootdrop_duration);
-} else if ($dropint < 54) {
+} else if ($dropint < 13) {
     obj_add(npc_coord, chaosrune, 3, ^lootdrop_duration);
-} else if ($dropint < 58) {
+} else if ($dropint < 14) {
     obj_add(npc_coord, firerune, 7, ^lootdrop_duration);
-} else if ($dropint < 62) {
+} else if ($dropint < 15) {
     obj_add(npc_coord, chaosrune, 7, ^lootdrop_duration);
-} else if ($dropint < 198) {
+} else if ($dropint < 49) {
     obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
-} else if ($dropint < 226) {
+} else if ($dropint < 71) {
+    // rune ess in 2005
     obj_add(npc_coord, cert_blankrune_high, 13, ^lootdrop_duration);
-} else if ($dropint < 230) {
+} else if ($dropint < 72) {
     obj_add(npc_coord, iron_ore, 1, ^lootdrop_duration);
-} else if ($dropint < 254) {
+} else if ($dropint < 80) {
     obj_add(npc_coord, coins, 26, ^lootdrop_duration);
-} else if ($dropint < 276) {
+} else if ($dropint < 88) {
     obj_add(npc_coord, coins, 35, ^lootdrop_duration);
-} else if ($dropint < 304) {
+} else if ($dropint < 98) {
     obj_add(npc_coord, coins, 13, ^lootdrop_duration);
-} else if ($dropint < 332) {
+} else if ($dropint < 120) {
     obj_add(npc_coord, fishing_bait, 15, ^lootdrop_duration);
-} else if ($dropint < 350) {
+} else if ($dropint < 125) {
     obj_add(npc_coord, fishing_bait, 7, ^lootdrop_duration);
-} else if ($dropint < 354) {
+} else if ($dropint < 126) {
     obj_add(npc_coord, eye_of_newt, 1, ^lootdrop_duration);
-} else if ($dropint < 362) {
+} else if ($dropint < 128) {
     obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
 }

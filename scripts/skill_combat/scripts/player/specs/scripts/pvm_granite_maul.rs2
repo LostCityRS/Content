@@ -1,0 +1,34 @@
+[label,pvm_granite_maul_sa]
+if (npc_stat(hitpoints) = 0) {
+    p_stopaction;
+    return;
+}
+%action_delay = add(map_clock, 7);
+p_opnpc(2);
+~set_sa_vars(oc_param(inv_getobj(worn, ^wearpos_rhand), sa_energy));
+def_int $damage = 0;
+def_int $maxhit = %com_maxhit;
+def_int $damage_capped = 0;
+def_int $attack_roll = ~player_attack_roll_specific(%damagetype);
+def_int $defence_roll = ~npc_defence_roll_specific(^crush_style);
+if (randominc($attack_roll) > randominc($defence_roll)) {
+    if (npc_type = count_draynor & inv_total(inv, garlic) > 0) {
+        $maxhit = add($maxhit, 1);
+    }
+    $damage = randominc(min($maxhit, npc_param(max_dealt)));
+    if(npc_param(slayer_category) = ^slayer_kurask | npc_param(slayer_category) = ^slayer_turoth) {
+        $damage = 0;
+    }
+    $damage_capped = min($damage, npc_stat(hitpoints));
+    ~give_combat_experience(%damagestyle, $damage_capped, %npc_combat_xp_multiplier);
+    npc_heropoints($damage_capped);
+}
+anim(slayer_granite_maul_special_attack, 0);
+sound_synth(quicksmash, 1, 0);
+spotanim_pl(sp_attack_maul_spotanim, 96, 0);
+~npc_retaliate(0);
+npc_queue(2, $damage, 0);
+npc_anim(npc_param(defend_anim), 20); 
+if (npc_param(defend_sound) ! null) {
+    sound_synth(npc_param(defend_sound), 0, 20); // delay npc this tick
+}

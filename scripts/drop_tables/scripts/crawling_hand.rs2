@@ -1,15 +1,4 @@
-[ai_queue3,slayer_crawling_hand_1] @crawling_hand_drop_table;
-[ai_queue3,slayer_crawling_hand_2] @crawling_hand_drop_table;
-[ai_queue3,slayer_crawling_hand_3] @crawling_hand_drop_table;
-[ai_queue3,slayer_crawling_hand_4] @crawling_hand_drop_table;
-[ai_queue3,slayer_crawling_hand_5] @crawling_hand_drop_table;
-[ai_queue3,slayer_crawling_hand_big_1] @crawling_hand_drop_table;
-[ai_queue3,slayer_crawling_hand_big_2] @crawling_hand_drop_table;
-[ai_queue3,slayer_crawling_hand_big_3] @crawling_hand_drop_table;
-[ai_queue3,slayer_crawling_hand_big_4] @crawling_hand_drop_table;
-[ai_queue3,slayer_crawling_hand_big_5] @crawling_hand_drop_table;
-
-[label,crawling_hand_drop_table]
+[ai_queue3,_slayer_crawling_hand]
 gosub(npc_death);
 if (npc_findhero = ^false) {
     return;
@@ -18,7 +7,7 @@ if (npc_findhero = ^false) {
 obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
 
 // Tertiary
-~trail_easycluedrop(^trail_easy_droprate, npc_coord);
+~trail_easycluedrop(128, npc_coord);
 
 def_int $dropint = random(128);
 

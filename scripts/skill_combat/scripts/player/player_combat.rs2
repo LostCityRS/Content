@@ -93,7 +93,9 @@ if (%npc_macro_event_target ! null & %npc_macro_event_target ! uid) {
     return(false);
 }
 if (stat(slayer) < enum(int, int, slayer_req, npc_param(slayer_category))) {
-    mes("You need a higher Slayer level to know how to wound this monster."); // OSRS behaviour
+    // OSRS prevents attacking but this should actually just cap damage to 0 (early OSRS behaviour)
+    // so move this to the damage cap procs that exist in 295 when converting
+    mes("You need a higher Slayer level to know how to wound this monster.");
     return(false);
 }
 return(true);

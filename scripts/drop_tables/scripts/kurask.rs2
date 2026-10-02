@@ -1,0 +1,63 @@
+[ai_queue3,_slayer_kurask]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+// sources used: 
+// https://web.archive.org/web/20051129163355/http://runehq.com/RHQMonsterView.php?id=432
+// https://web.archive.org/web/20050407111755/http://www.tip.it/runescape/index.php?rs2monster_id=429
+// https://oldschool.runescape.wiki/w/Kurask?oldid=304374
+
+// Tertiary
+~trail_hardcluedrop(128, npc_coord);
+
+// pre roll
+if (random(512) = 0) {
+    obj_add(npc_coord, mystic_robe_top_light, 1, ^lootdrop_duration);
+    return;
+}
+
+def_int $random = random(124);
+if ($random < 3) {
+    obj_add(npc_coord, mithril_kiteshield, 1, ^lootdrop_duration);
+} else if ($random < 6) {
+    obj_add(npc_coord, rune_longsword, 1, ^lootdrop_duration);
+} else if ($random < 9) {
+    obj_add(npc_coord, mithril_kiteshield, 1, ^lootdrop_duration);
+} else if ($random < 12) {
+    // listed as mithril axe
+    obj_add(npc_coord, mithril_axe, 1, ^lootdrop_duration);
+} else if ($random < 22) {
+    // old guides all say 5?
+    obj_add(npc_coord, naturerune, 5, ^lootdrop_duration);
+} else if ($random < 29) {
+    obj_add(npc_coord, naturerune, 15, ^lootdrop_duration);
+} else if ($random < 33) {
+    obj_add(npc_coord, naturerune, 30, ^lootdrop_duration);
+} else if ($random < 51) {
+    // specified as 1 only on wiki
+    obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+} else if ($random < 67) {
+    // old guides say 22 - 690, 2015 wiki says 22 - 748
+    obj_add(npc_coord, coins, add(22, randominc(668)), ^lootdrop_duration);
+} else if ($random < 73) {
+    obj_add(npc_coord, cert_flax, 25, ^lootdrop_duration);
+} else if ($random < 79) { // 1 uncerted
+    obj_add(npc_coord, white_berries, 1, ^lootdrop_duration);
+} else if ($random < 84) { 
+    obj_add(npc_coord, plain_pizza, 1, ^lootdrop_duration);
+} else if ($random < 89) {
+    // uncert?
+    obj_add(npc_coord, big_bones, add(2, randominc(2)), ^lootdrop_duration);
+} else if ($random < 93) {
+    obj_add(npc_coord, pineapple, 2, ^lootdrop_duration);
+} else if ($random < 97) {
+    obj_add(npc_coord, banana, add(1, randominc(1)), ^lootdrop_duration);
+} else if ($random < 103) {
+    obj_add(npc_coord, limpwurt_root, 2, ^lootdrop_duration);
+} else if ($random < 109) {
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+}

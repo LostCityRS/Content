@@ -49,7 +49,7 @@ if (~player_npc_hit_roll(%damagetype) = true) {
         }
     }
     if((npc_param(slayer_category) = ^slayer_kurask | npc_param(slayer_category) = ^slayer_turoth) 
-        & oc_category($rhand) ! weapon_bow & inv_total(worn, slayer_broad_arrows) = 0) {
+        & (oc_category($rhand) ! weapon_bow | inv_total(worn, slayer_broad_arrows) = 0)) {
         $maxhit = 0;
     }
     $damage = randominc(min($maxhit, npc_param(max_dealt)));

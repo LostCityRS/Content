@@ -6,6 +6,14 @@ if (~npc_is_attackable() = false) {
 if (~sa_enough_energy = false) {
     return;
 }
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+// maul was rewritten in late 2006 (sept?) to queue the hits to make them "instant"
+// here they just run on the next tick in interactions and bypass action delay
+// shown a lot here: https://www.youtube.com/watch?v=rx_jEFVtrHs
+// and https://youtu.be/XOE4NWuQR5c?si=YPM0yKaTGHaVm9B8
+if($weapon = granite_maul) {
+    @pvm_granite_maul_sa;
+}
 if (%action_delay > map_clock) {
     p_opnpc(2);
     return;
@@ -14,7 +22,6 @@ if (npc_stat(hitpoints) = 0) {
     p_stopaction;
     return;
 }
-def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
 %action_delay = add(map_clock, oc_param($weapon, attackrate));
 p_opnpc(2);
  switch_obj($weapon) {

@@ -6,6 +6,14 @@ if (.%death = ^true) {
 if (stat(hitpoints) = 0) {
     return;
 }
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+// maul was rewritten in late 2006 (sept?) to queue the hits to make them "instant"
+// here they just run on the next tick in interactions and bypass action delay
+// shown a lot here: https://www.youtube.com/watch?v=rx_jEFVtrHs
+// and https://youtu.be/XOE4NWuQR5c?si=YPM0yKaTGHaVm9B8
+if($weapon = granite_maul) {
+    @pvp_granite_maul_sa;
+}
 if (%action_delay > map_clock) {
     p_opplayer(2);
     return;
@@ -29,7 +37,6 @@ if (%damagetype = ^ranged_style) {
         return;
     }
 }
-def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
 // weps like shortbow are always their default attackrate (regardless of style)
 // - https://youtu.be/hAsKD72uJEE?si=BU4yzV9lxb_7uQKg&t=188
 %action_delay = add(map_clock, oc_param($weapon, attackrate));

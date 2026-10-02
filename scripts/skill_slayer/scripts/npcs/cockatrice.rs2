@@ -1,4 +1,64 @@
 [ai_queue1,slayer_cockatrice] gosub(npc_default_retaliate_ap);
+
+[ai_queue3,slayer_cockatrice]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+// pre roll
+if (random(512) = 0) {
+    obj_add(npc_coord, mystic_boots_light, 1, ^lootdrop_duration);
+    return;
+}
+
+def_int $random = random(128);
+if ($random < 21) {
+    obj_add(npc_coord, limpwurt_root, 1, ^lootdrop_duration);
+} else if ($random < 37) {
+    obj_add(npc_coord, coins, 15, ^lootdrop_duration);
+} else if ($random < 49) {
+    obj_add(npc_coord, coins, 28, ^lootdrop_duration);
+} else if ($random < 61) {
+    obj_add(npc_coord, coins, 5, ^lootdrop_duration);
+} else if ($random < 65) {
+    obj_add(npc_coord, coins, 62, ^lootdrop_duration);
+} else if ($random < 68) {
+    obj_add(npc_coord, coins, 42, ^lootdrop_duration);
+} else if ($random < 69) {
+    obj_add(npc_coord, coins, 1, ^lootdrop_duration);
+} else if ($random < 87) { // seed table
+    obj_add(npc_coord, coins, 42, ^lootdrop_duration);
+} else if ($random < 93) {
+    obj_add(npc_coord, naturerune, 2, ^lootdrop_duration);
+} else if ($random < 97) {
+    obj_add(npc_coord, naturerune, 4, ^lootdrop_duration);
+} else if ($random < 100) {
+    obj_add(npc_coord, lawrune, 2, ^lootdrop_duration);
+} else if ($random < 102) {
+    obj_add(npc_coord, waterrune, 2, ^lootdrop_duration);
+} else if ($random < 104) {
+    obj_add(npc_coord, naturerune, 6, ^lootdrop_duration);
+} else if ($random < 106) {
+    obj_add(npc_coord, firerune, 7, ^lootdrop_duration);
+} else if ($random < 116) {
+    obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+} else if ($random < 119) {
+    obj_add(npc_coord, iron_sword, 1, ^lootdrop_duration);
+} else if ($random < 122) {
+    obj_add(npc_coord, steel_dagger, 1, ^lootdrop_duration);
+} else if ($random < 123) {
+    obj_add(npc_coord, iron_armoured_boots, 1, ^lootdrop_duration);
+} else if ($random < 124) {
+    obj_add(npc_coord, steel_longsword, 1, ^lootdrop_duration);
+} else if ($random < 125) {
+    obj_add(npc_coord, iron_javelin, 5, ^lootdrop_duration);
+} else if ($random < 127) {
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+}
+
 [ai_applayer2,slayer_cockatrice]
 if(inv_total(worn, slayer_mirror_shield) < 1) {
     ~cockatrice_gaze;

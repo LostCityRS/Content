@@ -45,7 +45,23 @@ if (%sa_attack = ^false) {
     %sa_attack = ^false;
 }
 
-[if_button,combat_blunt:specbar] @toggle_sa;
+[if_button,combat_blunt:specbar]
+if (~duel_arena_spec_check = false) {
+    return;
+}
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+if($weapon = granite_maul) { // https://www.youtube.com/watch?v=tASWhjUt8wg&t=25s
+    if(%sa_attack = ^false) {
+        if(%action_delay < map_clock) {
+            // the current "warning" message for gmaul is just action delay
+            // so i assume this is the same but just doesnt activate spec
+            mes("You're not fighting anything.");
+            return;
+        }
+    }
+}
+@toggle_sa;
+
 [if_button,combat_axe:specbar]
 // order is guessed (based off OSRS)
 // if (~duel_arena_spec_check = false) { TODO 377: re-enable with duel arena

@@ -67,3 +67,65 @@ queue(damage_player, 0, $damage); // doesn't put you in combat, no retaliate eit
 if (npc_param(poison_severity) > 0 & $damage > 0) {
     queue(poison_player, 0, npc_param(poison_severity));
 }
+
+[ai_queue3,slayer_nechryael]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+obj_add(npc_coord, ashes, 1, ^lootdrop_duration);
+
+// sources used: 
+// https://web.archive.org/web/20051114043436/http://runehq.com/RHQMonsterView.php?id=437
+// https://web.archive.org/web/20050407111755/http://www.tip.it/runescape/index.php?rs2monster_id=429
+// https://oldschool.runescape.wiki/w/Gargoyle?oldid=283320
+
+// Tertiary
+~trail_hardcluedrop(128, npc_coord);
+
+def_int $random = random(116);
+
+if ($random < 2) {
+    obj_add(npc_coord, steel_2h_sword, 1, ^lootdrop_duration);
+} else if ($random < 5) {
+    obj_add(npc_coord, steel_axe, 1, ^lootdrop_duration);
+} else if ($random < 9) {
+    obj_add(npc_coord, steel_battleaxe, 1, ^lootdrop_duration);
+} else if ($random < 12) {
+    obj_add(npc_coord, rune_full_helm, 1, ^lootdrop_duration);
+} else if ($random < 16) { 
+    obj_add(npc_coord, adamant_platelegs, 1, ^lootdrop_duration);
+} else if ($random < 20) { // same odds as r2h is in osrs?
+    obj_add(npc_coord, mithril_kiteshield, 1, ^lootdrop_duration);
+} else if ($random < 22) { // same odds as addy kite
+    obj_add(npc_coord, rune_2h_sword, 1, ^lootdrop_duration);
+}  else if ($random < 23) {
+    obj_add(npc_coord, rune_armoured_boots, 1, ^lootdrop_duration);
+} else if ($random < 31) { 
+    obj_add(npc_coord, deathrune, 5, ^lootdrop_duration);
+} else if ($random < 37) { 
+    obj_add(npc_coord, deathrune, 10, ^lootdrop_duration);
+} else if ($random < 42) { 
+    obj_add(npc_coord, chaosrune, 37, ^lootdrop_duration);
+} else if ($random < 62) { 
+    obj_add(npc_coord, coins, 11, ^lootdrop_duration);
+} else if ($random < 82) { 
+    obj_add(npc_coord, coins, 44, ^lootdrop_duration);
+} else if ($random < 88) { 
+    obj_add(npc_coord, coins, 132, ^lootdrop_duration);
+} else if ($random < 91) { 
+    obj_add(npc_coord, coins, 220, ^lootdrop_duration);
+} else if ($random < 92) { 
+    obj_add(npc_coord, coins, 440, ^lootdrop_duration);
+} else if ($random < 100) { 
+    obj_add(npc_coord, thread, 10, ^lootdrop_duration);
+} else if ($random < 103) { 
+    obj_add(npc_coord, tuna, 1, ^lootdrop_duration);
+} else if ($random < 106) { 
+    obj_add(npc_coord, gold_bar, 1, ^lootdrop_duration);
+} else if ($random < 107) { 
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+} else { // seed table
+    obj_add(npc_coord, coins, 11, ^lootdrop_duration);
+}

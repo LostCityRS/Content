@@ -9,21 +9,21 @@ switch_npc(npc_type) {
 
 [proc,generate_slayer_task](dbrow $master)
 def_int $i = 0;
-def_int $total = db_getfield($master, slayer_task_table:total, 0);
 def_int $weight;
 def_int $slayer_target;
 def_int $slayer_count;
 def_int $min;
 def_int $max;
 def_dbrow $task_data;
-def_int $rand = random($total);
+// original system for task assignment:
+// "Slayer assignments used to run down a list in a pre-defined arbitrary order, so the chance of each task depended unpredictably on what else was in the list"
+// this seems to imply it does a seperate roll on each task in the list, meaning tasks towards the end of the list will be very rare
 while($i < db_getfieldcount($master, slayer_task_table:task)) {
     $task_data = db_getfield($master, slayer_task_table:task, $i);
     $weight = db_getfield($task_data, slayer_master_task:weight, 0);
     $min = db_getfield($task_data, slayer_master_task:min_amount, 0);
     $max = db_getfield($task_data, slayer_master_task:max_amount, 0);
-    $total = sub($total, $weight);
-    if($rand >= $total) {
+    if(random($weight) = 0) {
         $slayer_target = db_getfield($task_data, slayer_master_task:task, 0);
         if(~validate_slayer_target($slayer_target) = true) {
             %slayer_target = $slayer_target;
@@ -31,13 +31,10 @@ while($i < db_getfieldcount($master, slayer_task_table:task)) {
             return;
         }
     }
-    // failsafe but should prob just leave a no-req task at the end of the table since they're static anyways
-    if($total <= 0) {
-        ~generate_slayer_task($master);
-        return;
-    }
     $i = add($i, 1);
 }
+// if no task was assigned
+~generate_slayer_task($master);
 
 [proc,validate_slayer_target](int $target)(boolean)
 if (stat_base(slayer) < enum(int, int, slayer_req, $target)) { // slayer req check
@@ -109,53 +106,43 @@ if(npc_findhero = ^true) {
     if(.finduid(%npc_aggressive_player) = true & uid ! .uid) {
         if(%slayer_target = $key) {
             if_close;
-            queue*(progress_task_split, 0)(npc_uid);
+            queue*(progress_task, 0)(npc_uid, 2);
         }
         if(.%slayer_target = $key) {
             .if_close;
-            .queue*(progress_task_split, 0)(npc_uid);
+            .queue*(progress_task, 0)(npc_uid, 2);
         }
     } else if(%slayer_target = $key) {
         if_close;
-        queue*(progress_task, 0)(npc_uid);
+        queue*(progress_task, 0)(npc_uid, 1);
     }
 } else if(finduid(%npc_aggressive_player) = true) {
     if(.npc_findhero = ^true & uid ! .uid) {
         if(%slayer_target = $key) {
             if_close;
-            queue*(progress_task_split, 0)(npc_uid);
+            queue*(progress_task, 0)(npc_uid, 2);
         }
         if(.%slayer_target = $key) {
             .if_close;
-            .queue*(progress_task_split, 0)(npc_uid);
+            .queue*(progress_task, 0)(npc_uid, 2);
         }
     } else if(%slayer_target = $key) {
         if_close;
-        queue*(progress_task, 0)(npc_uid);
+        queue*(progress_task, 0)(npc_uid, 1);
     }
 }
 
-[queue,progress_task](npc_uid $uid)
+[queue,progress_task](npc_uid $uid, int $xp_divisor)
 if(%slayer_count <= 0) {
     return;
 }
 if(npc_finduid($uid) = true) {
     %slayer_count = sub(%slayer_count, 1);
-    stat_advance(slayer, calc(10 * npc_basestat(hitpoints)));
-    if(%slayer_count = 0) ~complete_task;
-}
-
-[queue,progress_task_split](npc_uid $uid)
-if(%slayer_count <= 0) {
-    return;
-}
-if(npc_finduid($uid) = true) {
-    %slayer_count = sub(%slayer_count, 1);
-    stat_advance(slayer, calc(10 * (npc_basestat(hitpoints) / 2)));
+    stat_advance(slayer, divide(multiply(scale(%npc_combat_xp_multiplier, 1000, npc_basestat(hitpoints)), 10), $xp_divisor));
     if(%slayer_count = 0) ~complete_task;
 }
 
 [proc,complete_task]
 // https://youtu.be/xq8oz9of6Ck?si=WgGJ5L-rC1sCCh2F&t=66
-mes("You've completed your task; return to a Slayer master.");
+mes("You've completed your task, return to a Slayer Master.");
 midi_jingle("advance slayer");

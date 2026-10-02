@@ -6,3 +6,62 @@
 
 [ai_queue1,_slayer_infernalmage] 
 gosub(npc_default_retaliate_ap);
+
+[ai_queue3,_slayer_infernalmage]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+def_int $random;
+
+if (random(1024) < 5) {
+    $random = random(5);
+    if ($random = 0) obj_add(npc_coord, lava_battlestaff, 1, ^lootdrop_duration);
+    else if ($random < 3) obj_add(npc_coord, mystic_boots_dark, 1, ^lootdrop_duration);
+    else obj_add(npc_coord, mystic_hat_dark, 1, ^lootdrop_duration);
+} else {
+    $random = random(128);
+    if ($random < 21) {
+        obj_add(npc_coord, coins, 1, ^lootdrop_duration);
+    } else if ($random < 39) {
+        obj_add(npc_coord, deathrune, 7, ^lootdrop_duration);
+    } else if ($random < 55) {
+        obj_add(npc_coord, coins, 2, ^lootdrop_duration);
+    } else if ($random < 71) { // nothing
+    } else if ($random < 80) {
+        obj_add(npc_coord, coins, 4, ^lootdrop_duration);
+    } else if ($random < 88) {
+        obj_add(npc_coord, plainstaff, 1, ^lootdrop_duration);
+    } else if ($random < 94) {
+        obj_add(npc_coord, earthrune, 10, ^lootdrop_duration);
+    } else if ($random < 100) {
+        obj_add(npc_coord, firerune, 10, ^lootdrop_duration);
+    } else if ($random < 104) {
+        obj_add(npc_coord, earthrune, 36, ^lootdrop_duration);
+    } else if ($random < 107) {
+        obj_add(npc_coord, coins, 29, ^lootdrop_duration);
+    } else if ($random < 110) {
+        obj_add(npc_coord, airrune, 10, ^lootdrop_duration);
+    } else if ($random < 113) {
+        obj_add(npc_coord, waterrune, 10, ^lootdrop_duration);
+    } else if ($random < 115) {
+        obj_add(npc_coord, mindrune, 18, ^lootdrop_duration);
+    } else if ($random < 117) {
+        obj_add(npc_coord, bodyrune, 18, ^lootdrop_duration);
+    } else if ($random < 119) {
+        obj_add(npc_coord, bloodrune, 4, ^lootdrop_duration);
+    } else if ($random < 121) {
+        obj_add(npc_coord, airrune, 18, ^lootdrop_duration);
+    } else if ($random < 123) {
+        obj_add(npc_coord, waterrune, 18, ^lootdrop_duration);
+    } else if ($random < 125) {
+        obj_add(npc_coord, earthrune, 18, ^lootdrop_duration);
+    } else if ($random < 127) {
+        obj_add(npc_coord, firerune, 18, ^lootdrop_duration);
+    } else if ($random < 128) {
+        obj_add(npc_coord, staff_of_fire, 1, ^lootdrop_duration);
+    }
+}
