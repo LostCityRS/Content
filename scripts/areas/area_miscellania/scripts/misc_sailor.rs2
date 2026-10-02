@@ -7,10 +7,13 @@ if ($choice = 2) {
     ~chatnpc("<p,neutral>Okay. Suit yourself.");
     return;
 }
-~chatplayer("<p,quiz>Let's go!");
+~chatplayer("<p,happy>Let's go!");
+~misc_longship_sail(^from_miscellania_tele_coord, "The ship arrives at Rellekka.");
+
+[proc,misc_longship_sail](coord $dest, string $mes)
 if_openmain(misc_shipjourney);
-if_setanim(misc_shipjourney:com_6, misc_shipjourney_to_rellekka);
-~music_jingle("sailing journey");
+if_setanim(misc_shipjourney:com_6, misc_shipjourney_to_misc);
+~music_jingle("quick sail");
 mes("You board the longship...");
 // hide all tabs except friends list and ignore list
 if_settab(null, 0);
@@ -24,7 +27,8 @@ if_settab(null, 10);
 if_settab(null, 11);
 if_settab(null, 12);
 if_settab(null, 13);
-p_telejump(^from_miscellania_tele_coord);
+p_telejump($dest);
 p_delay(6);
+~initalltabs;
 if_close;
-~mesbox("The ship arrives at Rellekka.");
+~mesbox($mes);

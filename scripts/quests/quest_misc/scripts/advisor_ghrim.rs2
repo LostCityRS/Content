@@ -5,65 +5,32 @@ if(npc_getmode ! playerfaceclose & npc_getmode ! playerface) npc_facesquare(1_39
 // IMPORTANT/IMPORTANT/IMPORTANT : manage_misc_resource_generation CALCS RESOURCES 
 
 [opnpc1,misc_advisor_ghrim]
-switch_int (%misc_quest) {
-    case 0 :
-        @advisor_ghrim_quest_stage_0;
-    case 10 :
-        @advisor_ghrim_quest_stage_10;
-    case 20 :
-        @advisor_ghrim_quest_stage_20;
-    case 30 :
-        @advisor_ghrim_quest_stage_30;
-    case 40 :
-        @advisor_ghrim_quest_stage_40;
-    case 50 :
-        @advisor_ghrim_quest_stage_50;
-    case 60 :
-        @advisor_ghrim_quest_stage_60;
-    case 70 :
-        @advisor_ghrim_quest_stage_70;
-    case 80 :
-        @advisor_ghrim_quest_stage_80;
-    case 90 :
-        @advisor_ghrim_quest_stage_90;
-    case 100 :
-        @advisor_ghrim_quest_stage_100;
+~manage_misc_daily_update;
+if(%misc_quest < ^misc_complete) {
+    @advisor_ghrim_quest;
+} else {
+    @advisor_ghrim_postquest;
 }
 
 [queue,misc_update_anthems]
 inv_del(inv, misc_awful_anthem, inv_total(inv, misc_awful_anthem));
 inv_add(inv, misc_good_anthem, 1);
 
-[label,advisor_ghrim_quest_stage_0]
+[label,advisor_ghrim_quest]
 ~chatnpc("<p,shifty>Greetings, <text_gender("Sir", "Madam")>.");
 if (%misc_killed = 1) {
     %misc_killed = 0;
     ~chatnpc("<p,shifty>I should tell you right away that killing the people of this Kingdom will not make you popular with anyone.");
 }
-~chatnpc("<p,shifty>The King needs someone to take over the rule of the Kingdom. If I were you, I should consider the position.");
 
-[label,advisor_ghrim_quest_stage_10]
-~chatnpc("<p,shifty>Greetings, <text_gender("Sir", "Madam")>.");
-@generictalk;
-
-[label,advisor_ghrim_quest_stage_20]
-~chatnpc("<p,shifty>Greetings, <text_gender("Sir", "Madam")>.");
-@generictalk;
-
-[label,advisor_ghrim_quest_stage_30]
-~chatnpc("<p,shifty>Greetings, <text_gender("Sir", "Madam")>.");
-@generictalk;
-
-[label,advisor_ghrim_quest_stage_40]
-~chatnpc("<p,shifty>Greetings, <text_gender("Sir", "Madam")>.");
-@generictalk;
-
-[label,advisor_ghrim_quest_stage_50]
-~chatnpc("<p,shifty>Greetings, <text_gender("Sir", "Madam")>.");
-if (inv_total(inv, misc_awful_anthem) >= 1) {
+if (%misc_quest = 0) {
+    ~chatnpc("<p,shifty>The King needs someone to take over the rule of the Kingdom. If I were you, I should consider the position.");
+} else if (%misc_quest = 50 & inv_total(inv, misc_awful_anthem) > 0) {
     @awfulanthem;
+} else if (%misc_quest = 60 & inv_total(inv, misc_good_anthem) = 0) {
+    @lostanthem;
 } else {
-    @generictalk;
+    @advisor_ghrim_midquest;
 }
 
 [label,awfulanthem]
@@ -76,20 +43,12 @@ if (%misc_quest = 50) {
 }
 queue(misc_update_anthems, 0, 0);
 ~chatnpc("<p,shifty>There you go, <text_gender("Sir", "Madam")>. Are there any other matters in which I may be of assistance?");
-@generictalk;
-
-[label,advisor_ghrim_quest_stage_60]
-~chatnpc("<p,shifty>Greetings, <text_gender("Sir", "Madam")>.");
-if (inv_total(inv, misc_good_anthem) >= 1) {
-    @generictalk;
-} else {
-    @lostanthem;
-}
+@advisor_ghrim_midquest;
 
 [label,lostanthem]
 ~chatplayer("<p,sad>I lost the corrected anthem you gave me.");
 ~chatnpc("<p,shifty>Do you have another copy of the prince's anthem for me to correct?");
-if (inv_total(inv, misc_awful_anthem) >= 1) {
+if (inv_total(inv, misc_awful_anthem) > 0) {
     @replaceawfulanthem;
 } else {
     @noreplacement;
@@ -100,30 +59,14 @@ if (inv_total(inv, misc_awful_anthem) >= 1) {
 ~chatnpc("<p,shifty>Hmm, yes...allow me to make a few adjustments.");
 queue(misc_update_anthems, 0, 0);
 ~chatnpc("<p,shifty>There you go, <text_gender("Sir", "Madam")>. Are there any other matters in which I may be of assistance?");
-@generictalk;
+@advisor_ghrim_midquest;
 
 [label,noreplacement]
 ~chatplayer("<p,sad>I'm afraid I don't have one.");
 ~chatnpc("<p,shifty>If you bring me another, I can correct it. Are there any other matters in which I may be of assistance?");
-@generictalk;
+@advisor_ghrim_midquest;
 
-[label,advisor_ghrim_quest_stage_70]
-~chatnpc("<p,shifty>Greetings, <text_gender("Sir", "Madam")>.");
-@generictalk;
-
-[label,advisor_ghrim_quest_stage_80]
-~chatnpc("<p,shifty>Greetings, <text_gender("Sir", "Madam")>.");
-@generictalk;
-
-[label,advisor_ghrim_quest_stage_90]
-~chatnpc("<p,shifty>Greetings, <text_gender("Sir", "Madam")>.");
-@generictalk;
-
-[label,generictalk]
-if (%misc_killed = 1) {
-    %misc_killed = 0;
-    ~chatnpc("<p,shifty>I should tell you right away that killing the people of this Kingdom will not make you popular with anyone.");
-}
+[label,advisor_ghrim_midquest]
 if (%misc_affection < ^misc_affection_complete & %misc_quest = ^misc_king_signed_treaty) { // If not completed yet.
     @multi4(
         "What am I meant to be doing again?", whatshouldIdo,
@@ -152,7 +95,6 @@ if (%misc_affection < ^misc_affection_complete & %misc_quest = ^misc_king_signed
     );
 }
 
-// https://www.youtube.com/watch?v=i8MgNuRnHvI More to do
 
 [label,gainsupport]
 ~chatplayer("<p,confused>How do I gain the support of the population?");
@@ -250,8 +192,12 @@ if (gender = ^gender_male) {
 ~chatnpc("<p,shifty>Queen Sigrid is quite envious of King Vargas, since he has the larger kingdom.");
 ~chatnpc("<p,shifty>The King and she have never seen eye-to-eye, but I think if you approach her you may find her quite reasonable."); 
 
-[label,advisor_ghrim_quest_stage_100]
+[label,advisor_ghrim_postquest]
 ~chatnpc("<p,shifty>Greetings, Your Royal Highness.");
+if (%misc_killed = 1) {
+    %misc_killed = 0;
+    ~chatnpc("<p,shifty>Your Royal Highness, I should tell you right away that killing the people of this Kingdom will not make you popular with anyone.");
+}
 @multi3(
     "How is the Kingdom faring?", howfaring,
     "How do I manage the kingdom?", howmanagekingdom,

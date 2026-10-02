@@ -117,6 +117,7 @@ loc_change($replacement, $respawn_ticks);
 
 // miscellania stalls
 if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
+    ~manage_misc_daily_update;
     if (%misc_approval > 4) { %misc_approval = sub(%misc_approval, 4); } else { %misc_approval = 0; }
 }
 

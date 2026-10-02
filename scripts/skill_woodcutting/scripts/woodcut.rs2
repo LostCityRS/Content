@@ -69,6 +69,7 @@ if ($axe = null) {
 // after axe
 if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
     if($product = maple_logs) {
+        ~manage_misc_daily_update;
         if(%misc_quest < ^misc_king_signed_treaty) {
             if (npc_find(0_39_60_54_29, misc_lumberjack, 2, 0) = true) {
                 ~chatnpc("<p,angry>Hey! This is the Queen's forest. You'll need her approval to make use of it.");

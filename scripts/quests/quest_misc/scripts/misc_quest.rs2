@@ -1,6 +1,7 @@
 [queue,misc_quest_complete]
 %misc_quest = ^misc_complete;
 %misc_coffers = 10000; // Start with 10k in coffers.
+%misc_last_update = date_minutes; // supposedly set here as well? (https://oldschool.runescape.wiki/w/Update:DMM_Tweaks,_Upcoming_Launcher_Changes_%26_more!)
 session_log(^log_adventure, "Quest complete: Throne of Miscellania");
 ~send_quest_complete(questlist:misc, misc_giant_pen, 250, ^misc_questpoints, "You have completed the\\nThrone of Miscellania Quest!");
 

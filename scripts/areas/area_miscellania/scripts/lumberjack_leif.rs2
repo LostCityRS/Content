@@ -1,19 +1,10 @@
 [opnpc1,misc_lumberjack]
+~manage_misc_daily_update;
 if (%misc_quest = ^misc_complete) {
     ~chatnpcnoturn("<~man_misc_mesanim>Good day, Your Royal Highness.");
 } else {
     ~chatnpcnoturn("<~man_misc_mesanim>Hello.");
 }
-if (%misc_quest >= ^misc_king_signed_treaty) {
-    @multi2(
-        "Lumberjack Leif.", leif_main_talk,
-        "Your approval rating.", misc_quest_approval_rating
-    );
-} else {
-    @leif_main_talk;
-}
-
-[label,leif_main_talk]
 ~chatplayer("<p,happy>Good day. What are you doing?");
 ~chatnpcnoturn("<~man_misc_mesanim>I'm cutting down maple trees for their wood. It's a living.");
 ~chatplayer("<p,happy>Good luck with that.");

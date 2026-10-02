@@ -1,18 +1,10 @@
 [opnpc1,misc_fisherman]
+~manage_misc_daily_update;
 if (%misc_quest = ^misc_complete) {
     ~chatnpcnoturn("<~man_misc_mesanim>Good day, Your Royal Highness.");
 } else {
     ~chatnpcnoturn("<~man_misc_mesanim>Hello.");
 }
-if (%misc_quest >= ^misc_king_signed_treaty) {
-    @multi2(
-        "Fisherman Frodi.", frodi_main_talk,
-        "Your approval rating.", misc_quest_approval_rating
-    );
-} else {
-    @frodi_main_talk;
-}
-[label,frodi_main_talk]
 if (%misc_quest = ^misc_complete) {
     ~chatplayer("<p,neutral>Good day. What are you doing?");
     ~chatnpcnoturn("<~man_misc_mesanim>You know very well what I'm doing, Your Royal Highness.");

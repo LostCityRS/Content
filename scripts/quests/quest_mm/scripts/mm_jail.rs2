@@ -46,7 +46,7 @@ if(inv_total(worn, mm_amulet_of_monkey_speak) = 0) {
 %mm_player_is_unconscious = ^true;
 ~fade_out;
 p_delay(3);
-p_teleport(movecoord(0_43_43_18_41, randominc(6), 0, randominc(1)));
+p_telejump(movecoord(0_43_43_18_41, randominc(6), 0, randominc(1)));
 walktrigger(wake_up);
 clearqueue(aa_archer_knockout);
 clearqueue(aa_guard_knockout);

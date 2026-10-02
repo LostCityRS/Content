@@ -32,6 +32,7 @@ if (~check_fish_equipment(lobster_pot) = false) {
 
 // miscellania
 if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
+    ~manage_misc_daily_update;
     if(%misc_quest = ^misc_not_started) {
         if (.npc_find(0_40_60_16_12, misc_fisherman, 2, 0) = true) {
             ~.chatnpc("<p,angry>Hey! This is the King's fishing spot. You'll need his approval to make use of it.");
@@ -136,6 +137,7 @@ if (~check_fish_equipment(harpoon) = false) {
 }
 // miscellania
 if (inzone(^miscellania_lower_bound, ^miscellania_upper_bound, coord) = true) {
+    ~manage_misc_daily_update;
     if(%misc_quest = ^misc_not_started) {
         if (.npc_find(0_40_60_16_12, misc_fisherman, 2, 0) = true) {
             ~.chatnpc("<p,angry>Hey! This is the King's fishing spot. You'll need his approval to make use of it.");

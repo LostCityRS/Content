@@ -71,7 +71,7 @@ anim(human_death, 0);
 p_delay(2);
 ~fade_out;
 p_delay(3);
-p_teleport(movecoord(0_43_43_18_41, randominc(6), 0, randominc(1)));
+p_telejump(movecoord(0_43_43_18_41, randominc(6), 0, randominc(1)));
 walktrigger(wake_up);
 ~combat_clearqueue;
 clearqueue(aa_archer_knockout);

@@ -11,6 +11,7 @@
 [oploc3,misc_heather_dark] @weeding_continue(misc_heather_dark_noweeds);
 
 [label,weeding_firstswing](loc $loc_transform)
+~manage_misc_daily_update;
 if(stat(herblore) < 35) {
     ~mesbox("You need to be level 35 Herblore to do that."); // 35 herb req according to old guides, message is guessed
     return;
