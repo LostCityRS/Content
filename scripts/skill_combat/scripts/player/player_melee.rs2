@@ -22,7 +22,7 @@ if (~player_npc_hit_roll(%damagetype) = true) {
     if (npc_type = count_draynor & inv_total(inv, garlic) > 0) {
         $maxhit = add($maxhit, 1);
     }
-    if (npc_param(demonbane_vulnerable) = true & inv_total(worn, silverlight) > 0) {
+    if (npc_param(demonbane_vulnerable) = true & (inv_total(worn, silverlight) > 0 | inv_total(worn, agrith_silverlight_dyed) > 0 | inv_total(worn, darklight) > 0)) {
         $maxhit = scale(160, 100, %com_maxhit);
     }
     if((npc_param(slayer_category) = ^slayer_kurask | npc_param(slayer_category) = ^slayer_turoth) & inv_total(worn, slayer_leafbladed_spear) = 0) {
