@@ -112,6 +112,7 @@ if ($deposit_amt > 0) {
             inv_del(bank, coins, $taken_from_bank);
         }
         %misc_coffers = add(%misc_coffers, $deposit_amt);
+        wealth_event(^wealth_kingdom_deposited_coffer, oc_debugname(coins), $deposit_amt, $deposit_amt);
         ~mesbox("Added <tostring($deposit_amt)> coins to the coffers."); // http://youtu.be/AHygmc-5hwI
     } else {
         // Not authentic. Need source.
@@ -130,6 +131,7 @@ if(%misc_coffers >= $withdraw_amt) {
     }
     %misc_coffers = sub(%misc_coffers, $withdraw_amt);
     inv_add(inv, coins, $withdraw_amt);
+    wealth_event(^wealth_kingdom_withdrew_coffer, oc_debugname(coins), $withdraw_amt, $withdraw_amt);
     ~mesbox("Withdrew <tostring($withdraw_amt)> coins."); // http://youtu.be/AHygmc-5hwI
 } else {
     // Not authentic. Need source.
@@ -148,9 +150,9 @@ if(%misc_quest < ^misc_complete) { // do not tick before the quest is complete
 // Fetch varps and varbits
 def_int $currenttime = date_minutes;
 def_int $misc_last_update = %misc_last_update; // This is a guess. We will use varp_360 as %misc_last_update.
-def_int $CofferTotal = %misc_coffers;
-def_int $Approval = %misc_approval;
-def_int $ResourcePts = %misc_restotal; // It literally has max 262143 https://chisel.weirdgloop.org/varbs/display?varbit=71
+def_int $coffer_total = %misc_coffers;
+def_int $approval = %misc_approval;
+def_int $resource_pts = %misc_restotal; // It literally has max 262143 https://chisel.weirdgloop.org/varbs/display?varbit=71
 
 // We compare it to the current time, but if it has been more than 30 days, we pretend you last updated 30 days ago.
 if (calc($currenttime - $misc_last_update) > calc(^MISCELLANIA_INTERVAL * 30)) {
@@ -160,41 +162,41 @@ if (calc($currenttime - $misc_last_update) > calc(^MISCELLANIA_INTERVAL * 30)) {
 // Then for every 1440 minutes in currenttime - %misc_last_update
 while (calc($currenttime - $misc_last_update) >= ^MISCELLANIA_INTERVAL) {
     // Money in coffer?
-    if ($CofferTotal > 0) {
+    if ($coffer_total > 0) {
         // Yes
 
         // Calc coffer ReductionAmt = 5 + CofferTotal / 10
-        def_int $ReductionAmt = calc(5 + ($CofferTotal / 10));
+        def_int $reduction_amt = calc(5 + ($coffer_total / 10));
         // The amount withdrawn from the coffers is equivalent to 10% of the balance in the coffer up to a maximum of 50,000 coins, or 75,000 coins after Royal Trouble.
         // If the max amount of coins is able to be subtracted, a clean 10% will be taken out of the coffers. Otherwise, 10% will be taken out, and then an additional 5 coins.
-        if ($ReductionAmt > 50000) { $ReductionAmt = 50000; }
-        if (calc($CofferTotal - $ReductionAmt) < 0) { $ReductionAmt = $CofferTotal; } // If you have less than 5 coins... makes sure CoffersTotal doesn't go negative.
-        $CofferTotal = calc($CofferTotal - $ReductionAmt);
+        if ($reduction_amt > 50000) { $reduction_amt = 50000; }
+        if (calc($coffer_total - $reduction_amt) < 0) { $reduction_amt = $coffer_total; } // If you have less than 5 coins... makes sure CoffersTotal doesn't go negative.
+        $coffer_total = calc($coffer_total - $reduction_amt);
         
         // Calc Worker effectiveness = ReductionAmt x 100/8333
-        def_int $WorkerEffectiveness = calc($ReductionAmt * 100 / 8333);
+        def_int $worker_effectiveness = calc($reduction_amt * 100 / 8333);
         
         // Update resource pts resourcePts += workerEffectiveness/100 * approvalRating * 127/100
-        $ResourcePts = calc($ResourcePts + (($WorkerEffectiveness / 100) * $Approval)); // Note approval is already in range 0-127
+        $resource_pts = calc($resource_pts + (($worker_effectiveness / 100) * $approval)); // Note approval is already in range 0-127
         
         // This is capped at 262,143
-        if ($ResourcePts > 262143) {
-            $ResourcePts = 262143;
+        if ($resource_pts > 262143) {
+            $resource_pts = 262143;
         }
     }
     
     // Update Approval rating, decreasing towards 32%, but more slowly with Royal Trouble completed.
     // Wiki states: 2.5% loss percent with throne of miscellania, 1% with royal trouble.
-    $Approval = calc($Approval * 975 / 1000); // Royal trouble would be 990 / 1000
+    $approval = calc($approval * 975 / 1000); // Royal trouble would be 990 / 1000
     // Repeat until out of 1440 minute chunks - each iteration adding 1440 to %misc_last_update
     $misc_last_update = calc($misc_last_update + ^MISCELLANIA_INTERVAL);
 }
 
 // Save varps and varbits
-%misc_coffers = $CofferTotal;
-%misc_approval = $Approval;
+%misc_coffers = $coffer_total;
+%misc_approval = $approval;
 %misc_last_update = $misc_last_update;
-%misc_restotal = $ResourcePts;
+%misc_restotal = $resource_pts;
 
 
 // Most of these comments are direct from the OSRS Managing Miscellania calculation image.
@@ -202,40 +204,49 @@ while (calc($currenttime - $misc_last_update) >= ^MISCELLANIA_INTERVAL) {
 // Currently we are creating noted versions and dumping in the user's inventory.
 [proc,manage_misc_resource_generation]()(string)
 // Fetch varps and varbits
-def_int $ResourcePts = %misc_restotal;
-def_int $CurrentSlot = 0;
+def_int $resource_pts = %misc_restotal;
+def_int $current_slot = 0;
 
 // Wood[Maple Logs] (InverseCost = 160)
-def_int $wood_qty = calc(102 * $ResourcePts * %misc_points_wood / 2048);
+def_int $wood_qty = calc(102 * $resource_pts * %misc_points_wood / 2048);
 if ($wood_qty > 0) {
     inv_add(inv, cert_maple_logs, $wood_qty);
+    wealth_event(^wealth_kingdom_collect, oc_debugname(cert_maple_logs), $wood_qty, calc($wood_qty * oc_cost(cert_maple_logs)));
     // inv_setslot(misc_resources_collected, $CurrentSlot, maple_logs, $wood_qty);
     // $CurrentSlot = add($CurrentSlot, 1);
     // For 2005, add nest drops. 1 nest per 100.
 }
 
 // Coal (InverseCost = 98)
-def_int $coal_qty = calc(60 * $ResourcePts * %misc_points_mine / 2048);
+def_int $coal_qty = calc(60 * $resource_pts * %misc_points_mine / 2048);
 if ($coal_qty > 0) {
     inv_add(inv, cert_coal, $coal_qty);
+    wealth_event(^wealth_kingdom_collect, oc_debugname(cert_coal), $coal_qty, calc($coal_qty * oc_cost(cert_coal)));
     // inv_setslot(misc_resources_collected, $CurrentSlot, coal, $coal_qty);
     // $CurrentSlot = add($CurrentSlot, 1);
     // For 2005, add gems drops. 1 gem for 100 coal, 1 per 200 thereafter
 }
 
 // Fish (InverseCost = 158)
-def_int $fish_qty =  calc(100 * $ResourcePts * %misc_points_fish / 2048);
+def_int $fish_qty =  calc(100 * $resource_pts * %misc_points_fish / 2048);
 if ($fish_qty > 0) {
+    def_int $tuna_qty = calc($fish_qty / 2);
+    def_int $swordfish_qty = calc($fish_qty * 3 / 20);
+
     if (%misc_cooked = 1) {
-        inv_add(inv, cert_tuna, calc($fish_qty / 2));
-        inv_add(inv, cert_swordfish, calc($fish_qty * 3 / 20));
+        inv_add(inv, cert_tuna, $tuna_qty);
+        inv_add(inv, cert_swordfish, $swordfish_qty);
+        wealth_event(^wealth_kingdom_collect, oc_debugname(cert_tuna), $tuna_qty, calc($wood_qty * oc_cost(cert_tuna)));
+        wealth_event(^wealth_kingdom_collect, oc_debugname(cert_swordfish), $swordfish_qty, calc($swordfish_qty * oc_cost(cert_swordfish)));
         // inv_setslot(misc_resources_collected, $CurrentSlot, tuna, calc($fish_qty / 2)); // 50% Quantity
         // $CurrentSlot = add($CurrentSlot, 1);
         // inv_setslot(misc_resources_collected, $CurrentSlot, swordfish, calc($fish_qty * 3 / 20)); // 15% Quantity
         // $CurrentSlot = add($CurrentSlot, 1);
     } else {
-        inv_add(inv, cert_raw_tuna, calc($fish_qty / 2));
-        inv_add(inv, cert_raw_swordfish, calc($fish_qty * 3 / 20));
+        inv_add(inv, cert_raw_tuna, $tuna_qty);
+        inv_add(inv, cert_raw_swordfish, $swordfish_qty);
+        wealth_event(^wealth_kingdom_collect, oc_debugname(cert_raw_tuna), $tuna_qty, calc($wood_qty * oc_cost(cert_raw_tuna)));
+        wealth_event(^wealth_kingdom_collect, oc_debugname(cert_raw_swordfish), $swordfish_qty, calc($swordfish_qty * oc_cost(cert_raw_swordfish)));
         // inv_setslot(misc_resources_collected, $CurrentSlot, raw_tuna, calc($fish_qty / 2)); // 50% Quantity
         // $CurrentSlot = add($CurrentSlot, 1);
         // inv_setslot(misc_resources_collected, $CurrentSlot, raw_swordfish, calc($fish_qty * 3 / 20)); // 15% Quantity
@@ -259,7 +270,7 @@ def_int $cadantine_count = 0;
 def_int $lantadyme_count = 0;
 def_int $dwarf_weed_count = 0;
 // Herbs (InverseCost = 11) / Flax later at (InverseCost = 224)
-def_int $herb_qty =  calc(5 * $ResourcePts * %misc_points_herb / 2048);
+def_int $herb_qty =  calc(5 * $resource_pts * %misc_points_herb / 2048);
 def_int $herb_count = $herb_qty;
 while ($herb_count > 0) {
     $rolled_herb, $rolled_qty = ~randomherb();
@@ -280,56 +291,67 @@ while ($herb_count > 0) {
 }
 if ($guam_count > 0) {
     inv_add(inv, cert_guam_leaf, $guam_count);
+    wealth_event(^wealth_kingdom_collect, oc_debugname(cert_guam_leaf), $guam_count, calc($guam_count * oc_cost(cert_guam_leaf)));
     // inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_guam, $guam_count);
     // $CurrentSlot = calc($CurrentSlot + 1);
 }
 if ($marentill_count > 0) {
     inv_add(inv, cert_marentill, $marentill_count);
+    wealth_event(^wealth_kingdom_collect, oc_debugname(cert_marentill), $marentill_count, calc($marentill_count * oc_cost(cert_marentill)));
     // inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_marentill, $marentill_count);
     // $CurrentSlot = calc($CurrentSlot + 1);
 }
 if ($tarromin_count > 0) {
     inv_add(inv, cert_tarromin, $tarromin_count);
+    wealth_event(^wealth_kingdom_collect, oc_debugname(cert_tarromin), $tarromin_count, calc($tarromin_count * oc_cost(cert_tarromin)));
     // inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_tarromin, $tarromin_count);
     // $CurrentSlot = calc($CurrentSlot + 1);
 }
 if ($harralander_count > 0) {
     inv_add(inv, cert_harralander, $harralander_count);
+    wealth_event(^wealth_kingdom_collect, oc_debugname(cert_harralander), $harralander_count, calc($harralander_count * oc_cost(cert_harralander)));
     // inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_harralander, $harralander_count);
     // $CurrentSlot = calc($CurrentSlot + 1);
 }
 if ($ranarr_count > 0) {
     inv_add(inv, cert_ranarr_weed, $ranarr_count);
+    wealth_event(^wealth_kingdom_collect, oc_debugname(cert_ranarr_weed), $ranarr_count, calc($ranarr_count * oc_cost(cert_ranarr_weed)));
     // inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_ranarr, $ranarr_count);
     // $CurrentSlot = calc($CurrentSlot + 1);
 }
 if ($irit_count > 0) {
     inv_add(inv, cert_irit_leaf, $irit_count);
+    wealth_event(^wealth_kingdom_collect, oc_debugname(cert_irit_leaf), $irit_count, calc($irit_count * oc_cost(cert_irit_leaf)));
     // inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_irit, $irit_count);
     // $CurrentSlot = calc($CurrentSlot + 1);
 }
 if ($avantoe_count > 0) {
     inv_add(inv, cert_avantoe, $avantoe_count);
+    wealth_event(^wealth_kingdom_collect, oc_debugname(cert_avantoe), $avantoe_count, calc($avantoe_count * oc_cost(cert_avantoe)));
     // inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_avantoe, $avantoe_count);
     // $CurrentSlot = calc($CurrentSlot + 1);
 }
 if ($kwuarm_count > 0) {
     inv_add(inv, cert_kwuarm, $kwuarm_count);
+    wealth_event(^wealth_kingdom_collect, oc_debugname(cert_kwuarm), $kwuarm_count, calc($kwuarm_count * oc_cost(cert_kwuarm)));
     // inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_kwuarm, $kwuarm_count);
     // $CurrentSlot = calc($CurrentSlot + 1);
 }
 if ($cadantine_count > 0) {
     inv_add(inv, cert_cadantine, $cadantine_count);
+    wealth_event(^wealth_kingdom_collect, oc_debugname(cert_cadantine), $cadantine_count, calc($cadantine_count * oc_cost(cert_cadantine)));
     // inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_cadantine, $cadantine_count);
     // $CurrentSlot = calc($CurrentSlot + 1);
 }
 if ($lantadyme_count > 0) {
     inv_add(inv, cert_lantadyme, $lantadyme_count);
+    wealth_event(^wealth_kingdom_collect, oc_debugname(cert_lantadyme), $lantadyme_count, calc($lantadyme_count * oc_cost(cert_lantadyme)));
     // inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_lantadyme, $lantadyme_count);
     // $CurrentSlot = calc($CurrentSlot + 1);
 }
 if ($dwarf_weed_count > 0) {
     inv_add(inv, cert_dwarf_weed, $dwarf_weed_count);
+    wealth_event(^wealth_kingdom_collect, oc_debugname(cert_dwarf_weed), $dwarf_weed_count, calc($dwarf_weed_count * oc_cost(cert_dwarf_weed)));
     // inv_setslot(misc_resources_collected, $CurrentSlot, unidentified_dwarf_weed, $dwarf_weed_count);
     // $CurrentSlot = calc($CurrentSlot + 1);
 }
@@ -338,32 +360,32 @@ if ($dwarf_weed_count > 0) {
 %misc_restotal = 0;
 
 // This will be not needed when the UI for showing resources exists after a certain release(beyond #377 for sure).
-def_string $resourceStr = "";
+def_string $resource_str = "";
 if ($wood_qty > 0) {
-    $resourceStr = "<$resourceStr> <tostring($wood_qty)> Maple Logs|";
+    $resource_str = "<$resource_str> <tostring($wood_qty)> Maple Logs|";
 }
 if ($coal_qty > 0) {
-    $resourceStr = "<$resourceStr> <tostring($coal_qty)> Coal|";
+    $resource_str = "<$resource_str> <tostring($coal_qty)> Coal|";
 }
 if (calc($fish_qty / 2) > 0) {
     if (%misc_cooked = 1) {
-        $resourceStr = "<$resourceStr> <tostring(calc($fish_qty / 2))> Tuna|";
+        $resource_str = "<$resource_str> <tostring(calc($fish_qty / 2))> Tuna|";
     } else {
-        $resourceStr = "<$resourceStr> <tostring(calc($fish_qty / 2))> Raw Tuna|";
+        $resource_str = "<$resource_str> <tostring(calc($fish_qty / 2))> Raw Tuna|";
     }
 }
 if (calc($fish_qty * 3 / 20) > 0) {
     if (%misc_cooked = 1) {
-        $resourceStr = "<$resourceStr> <tostring(calc($fish_qty * 3 / 20))> Swordfish|";
+        $resource_str = "<$resource_str> <tostring(calc($fish_qty * 3 / 20))> Swordfish|";
     } else {
-        $resourceStr = "<$resourceStr> <tostring(calc($fish_qty * 3 / 20))> Raw Swordfish|";
+        $resource_str = "<$resource_str> <tostring(calc($fish_qty * 3 / 20))> Raw Swordfish|";
     }
 }
 if ($herb_qty > 0) {
-    $resourceStr = "<$resourceStr> <tostring($herb_qty)> Herbs|";
+    $resource_str = "<$resource_str> <tostring($herb_qty)> Herbs|";
 }
 // To offset the empty string
-if (string_length($resourceStr) = 0) {
-    $resourceStr = "No Resources|";
+if (string_length($resource_str) = 0) {
+    $resource_str = "No Resources|";
 }
-return (substring($resourceStr, 0, calc(string_length($resourceStr) - 1)));
+return (substring($resource_str, 0, calc(string_length($resource_str) - 1)));
