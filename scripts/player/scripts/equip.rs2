@@ -91,24 +91,40 @@ if (p_finduid(uid) = true) {
         mes("You don't have enough free space to do that.");
         return;
     }
-    if($obj = elemental_shield) {
-        sound_synth(shield_appear, 1, 0);
-    }
-    if (oc_param($obj, specwep) = ^true) {
-        %sa_attack = ^false;
-    }
     inv_moveitem(worn, inv, $obj, sub($count, $overflow));
-    ~update_all($obj);
-    ~on_unequip($obj);
+    ~unequip_effect($obj, ^true);
 }
 
-// Called whenever an obj is removed from the 'worn' inv, intented to be used as a central hook point for
-// handling unequipping effects
-[proc,on_unequip](obj $obj)
+[proc,unequip_effect](obj $obj, int $update_all)
+if($obj = elemental_shield & inv_getobj(worn, ^wearpos_lhand) = null) {
+    sound_synth(shield_appear, 1, 0);
+}
+if (oc_param($obj, specwep) = ^true) {
+    %sa_attack = ^false;
+}
+// if(oc_category($obj) = mm_greegree) {
+//     p_transmogrify(null);
+//     cleartimer(mm_greegree_timer);
+//     p_animprotect(^false);
+//     spotanim_pl(windwave_impact, 124, 0);
+//     sound_synth(oc_param($obj, revert_sound), 0, 0);
+//     if_settab(magic, ^tab_magic);
+// }
+if($obj = trollromance_toboggon_waxed) {
+    %wearing_sled = ^false;
+}
+// if($obj = mm_sigil) {
+//     cleartimer(teleport_mm_sigil);
+// }
 if ($obj = castlewars_saradomin_banner | $obj = castlewars_zamorak_banner) {
     ~castlewars_flag_drop(inv, $obj);
 }
+if($obj = ahoy_bedsheet | $obj = ahoy_bedsheetgreen) {
+    p_transmogrify(null);
+    p_animprotect(^false);
+}
 ~runecraft_unset_no_tally($obj);
+if($update_all = ^true) ~update_all($obj);
 
 // used for duel arena, no weapon/no armour
 [proc,try_unequip](int $slot)
@@ -396,7 +412,7 @@ if (inv_getobj(inv, $inv_slot) ! null) {
     inv_movefromslot(inv, inv, $inv_slot); // moves item to the first available slot in the inv...
 }
 ~unequip_conflicts($equip_obj);
-~on_unequip($previous_equip);
+if($previous_equip ! null) ~unequip_effect($previous_equip, ^false);
 
 return(true);
 
@@ -439,6 +455,8 @@ while ($i < inv_size(worn)) {
         }
         if ($worn_obj ! $equip_obj) { // skip the obj we just equipped
             inv_moveitem(worn, inv, $worn_obj, $worn_num);
+            // run unequip effects on the conflicted obj
+            ~unequip_effect($worn_obj, ^false);
         }
     }
     $i = add($i, 1);
@@ -474,3 +492,31 @@ if (($wearpos1 ! null & ($wearpos1 = $worn_wearpos1 | $wearpos1 = $worn_wearpos2
     return(true);
 }
 return(false);
+
+
+[proc,update_transmogrify]
+if(inv_getobj(worn, ^wearpos_hat) ! null) {
+    if(inv_getobj(worn, ^wearpos_hat) = ahoy_bedsheet) {
+        p_transmogrify(ahoy_ghost_disguise);
+        readyanim(ahoy_ghost_disguise_ready);
+        turnanim(null);
+        walkanim(ahoy_ghost_disguise_walk);
+        walkanim_b(ahoy_ghost_disguise_walk);
+        walkanim_l(ahoy_ghost_disguise_walk);
+        walkanim_r(ahoy_ghost_disguise_walk);
+        runanim(null);
+        buildappearance(worn);
+        p_animprotect(^true);
+    } else if(inv_getobj(worn, ^wearpos_hat) = ahoy_bedsheetgreen) {
+        p_transmogrify(ahoy_ghost_disguise_green);
+        readyanim(ahoy_ghost_disguise_ready);
+        turnanim(null);
+        walkanim(ahoy_ghost_disguise_walk);
+        walkanim_b(ahoy_ghost_disguise_walk);
+        walkanim_l(ahoy_ghost_disguise_walk);
+        walkanim_r(ahoy_ghost_disguise_walk);
+        runanim(null);
+        buildappearance(worn);
+        p_animprotect(^true);
+    }
+}

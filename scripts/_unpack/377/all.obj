@@ -33301,6 +33301,8 @@ iop1=Bury
 weight=500g
 category=bones
 param=bone_exp,45
+param=ahoy_bones_type,7
+param=next_obj_stage,pot_bonemeal_wolf
 
 [cert_wolf_bones]
 certlink=wolf_bones
@@ -36047,6 +36049,8 @@ iop1=Bury
 weight=1500g
 category=bones
 param=bone_exp,250
+param=ahoy_bones_type,22
+param=next_obj_stage,pot_bonemeal_beast
 
 [cert_tbwt_beast_bones]
 certlink=tbwt_beast_bones
@@ -36064,6 +36068,8 @@ iop1=Bury
 weight=800g
 category=bones
 param=bone_exp,150
+param=ahoy_bones_type,8
+param=next_obj_stage,pot_bonemeal_jogre
 
 [cert_tbwt_jogre_bones]
 certlink=tbwt_jogre_bones
@@ -36083,6 +36089,8 @@ iop1=Bury
 weight=800g
 category=bones
 param=bone_exp,160
+param=ahoy_bones_type,9
+param=next_obj_stage,pot_bonemeal_burnt_jogre
 
 [tbwt_burnt_jogre_bones_in_raw_karambwanji_paste]
 name=Pasty jogre bones
@@ -36789,6 +36797,8 @@ model=obj_sheepbonesa
 iop1=Bury
 weight=500g
 category=bones
+param=ahoy_bones_type,10
+param=next_obj_stage,pot_bonemeal_small_ninja_monkey
 
 [mm_medium_ninja_monkey_bones]
 name=Monkey bones
@@ -36802,6 +36812,8 @@ model=obj_sheepbonesa
 iop1=Bury
 weight=500g
 category=bones
+param=ahoy_bones_type,11
+param=next_obj_stage,pot_bonemeal_medium_ninja_monkey
 
 [mm_normal_gorilla_monkey_bones]
 name=Monkey bones
@@ -36814,6 +36826,8 @@ model=obj_big_bones
 iop1=Bury
 weight=800g
 category=bones
+param=ahoy_bones_type,12
+param=next_obj_stage,pot_bonemeal_normal_gorilla_monkey
 
 [mm_bearded_gorilla_monkey_bones]
 name=Monkey bones
@@ -36826,6 +36840,8 @@ model=obj_big_bones
 iop1=Bury
 weight=800g
 category=bones
+param=ahoy_bones_type,13
+param=next_obj_stage,pot_bonemeal_bearded_gorilla_monkey
 
 [mm_normal_monkey_bones]
 name=Monkey bones
@@ -36838,6 +36854,8 @@ model=obj_sheepbonesa
 iop1=Bury
 weight=500g
 category=bones
+param=ahoy_bones_type,14
+param=next_obj_stage,pot_bonemeal_normal_monkey
 
 [cert_mm_normal_monkey_bones]
 certlink=mm_normal_monkey_bones
@@ -36855,6 +36873,8 @@ model=obj_sheepbonesa
 iop1=Bury
 weight=500g
 category=bones
+param=ahoy_bones_type,15
+param=next_obj_stage,pot_bonemeal_small_ninja_monkey
 
 [mm_large_zombie_monkey_bones]
 name=Monkey bones
@@ -36867,6 +36887,8 @@ model=obj_sheepbonesa
 iop1=Bury
 weight=500g
 category=bones
+param=ahoy_bones_type,16
+param=next_obj_stage,pot_bonemeal_large_zombie_monkey
 
 [mm_skeleton_bones]
 name=Bones
@@ -36881,6 +36903,8 @@ model=obj_sheepbonesa
 iop1=Bury
 weight=500g
 category=bones
+param=ahoy_bones_type,17
+param=next_obj_stage,pot_bonemeal_skeleton
 
 [tbwt_cleaning_cloth]
 name=Cleaning cloth
@@ -49650,6 +49674,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_bat]
 name=Bonemeal
@@ -49665,6 +49690,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_big]
 name=Bonemeal
@@ -49680,6 +49706,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_burnt]
 name=Bonemeal
@@ -49695,6 +49722,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_burnt_jogre]
 name=Bonemeal
@@ -49710,6 +49738,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_babydragon]
 name=Bonemeal
@@ -49725,6 +49754,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_dragon]
 name=Bonemeal
@@ -49740,6 +49770,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_wolf]
 name=Bonemeal
@@ -49755,6 +49786,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_small_ninja_monkey]
 name=Bonemeal
@@ -49770,6 +49802,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_medium_ninja_monkey]
 name=Bonemeal
@@ -49785,6 +49818,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_normal_gorilla_monkey]
 name=Bonemeal
@@ -49800,6 +49834,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_bearded_gorilla_monkey]
 name=Bonemeal
@@ -49815,6 +49850,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_normal_monkey]
 name=Bonemeal
@@ -49830,6 +49866,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_small_zombie_monkey]
 name=Bonemeal
@@ -49845,6 +49882,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_large_zombie_monkey]
 name=Bonemeal
@@ -49860,6 +49898,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_skeleton]
 name=Bonemeal
@@ -49875,6 +49914,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [pot_bonemeal_jogre]
 name=Bonemeal
@@ -49890,6 +49930,7 @@ model=obj_pot_flour
 members=yes
 iop2=Empty
 weight=1500g
+category=bonemeal
 
 [ahoy_bone_key]
 name=Bone key
@@ -56332,6 +56373,8 @@ iop1=Bury
 members=yes
 weight=800g
 category=bones
+param=ahoy_bones_type,18
+param=next_obj_stage,pot_bonemeal_zogre
 
 [cert_zogre_bones]
 certlink=zogre_bones
@@ -56620,6 +56663,8 @@ iop1=Bury
 members=yes
 weight=800g
 category=bones
+param=ahoy_bones_type,19
+param=next_obj_stage,pot_bonemeal_ancestral_fayg
 
 [cert_zogre_ancestral_bones_fayg]
 certlink=zogre_ancestral_bones_fayg
@@ -56640,6 +56685,8 @@ iop1=Bury
 members=yes
 weight=800g
 category=bones
+param=ahoy_bones_type,20
+param=next_obj_stage,pot_bonemeal_ancestral_raurg
 
 [cert_zogre_ancestral_bones_raurg]
 certlink=zogre_ancestral_bones_raurg
@@ -56660,6 +56707,8 @@ iop1=Bury
 members=yes
 weight=800g
 category=bones
+param=ahoy_bones_type,21
+param=next_obj_stage,pot_bonemeal_ancestral_ourg
 
 [cert_zogre_ancestral_bones_ourg]
 certlink=zogre_ancestral_bones_ourg
@@ -79634,6 +79683,8 @@ iop1=Bury
 members=yes
 weight=1500g
 category=bones
+param=ahoy_bones_type,23
+param=next_obj_stage,pot_bonemeal_dagannoth
 
 [cert_dagannoth_king_bones]
 certlink=dagannoth_king_bones
@@ -80838,6 +80889,8 @@ iop1=Bury
 members=yes
 weight=500g
 category=bones
+param=ahoy_bones_type,24
+param=next_obj_stage,pot_bonemeal_wyvern
 
 [cert_granite_legs]
 certlink=granite_legs

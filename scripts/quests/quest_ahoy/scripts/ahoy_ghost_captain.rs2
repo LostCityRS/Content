@@ -1,0 +1,59 @@
+[opnpc1,ahoy_ghost_captain_1]
+def_int $op;
+// dragontooth island
+if(inzone(0_59_55_0_0, 0_59_55_63_63, npc_coord) = true) {
+    $op = ~p_choice2("Can you take me back to Phasmatys, now?", 1, "There isn't much on this island, is there?", 2);
+    if($op = 1) {
+        ~chatplayer("<p,quiz>Can you take me back to Phasmatys, now?"); // bored in osrs
+        if(~wearing_ghostspeak_amulet = ^false) {
+            ~mesbox("The ghost sailor wails at you incomprehensibly, and points at the boat, nodding his ghostly head.");
+        } else {
+            ~chatnpc("<p,neutral>Yes, climb in.");
+        }
+        if_close;
+        if_openmain(ahoy_blackout);
+        if_settext(ahoy_blackout:com_1, "");
+        p_delay(2);
+        if_settext(ahoy_blackout:com_1, "After a long boat trip you return to Port Phasmatys...");
+        p_delay(2);
+        if_close;
+        p_teleport(0_57_54_54_31);
+    } else if ($op = 2) {
+        ~chatplayer("<p,quiz>There isn't much on this island, is there?");
+        if(~wearing_ghostspeak_amulet = ^false) {
+            ~chatnpc("<p,neutral>Woooo wooo wooooo woooo.");
+        } else {
+            ~chatnpc("<p,neutral>Beautiful isn't it?");
+            ~chatplayer("<p,neutral>But it cost me a lot of ectotokens to get here!");
+            ~chatnpc("<p,neutral>Worth every token, if you ask me.");
+        }
+    }
+    return;
+}
+if(~wearing_ghostspeak_amulet = ^false) {
+    ~chatnpc("<p,neutral>Woooo wooo wooooo woooo.");
+    return;
+}
+~chatplayer("<p,neutral>Where do you sail to, in such a small boat?");
+~chatnpc("<p,neutral>Would you like to visit Dragontooth Island? It is a most pleasant island in the sea between Morytania and the lands of the east.");
+~chatplayer("<p,neutral>How much does it cost?");
+~chatnpc("<p,neutral>It'll cost you 25 ectotokens for the return trip.");
+
+if(inv_total(inv, ectotoken) > 1) $op = ~p_choice2("I have the ectotokens here - please take me to Dragontooth Island.", 1, "No thanks, not at the moment.", 2);
+else $op = 2;
+
+switch_int($op) {
+    case 1 :
+        ~chatplayer("<p,neutral>I have the ectotokens here - please take me to Dragontooth Island.");
+        inv_del(inv, ectotoken, 25);
+        if_close;
+        if_openmain(ahoy_blackout);
+        if_settext(ahoy_blackout:com_1, "");
+        p_delay(2);
+        if_settext(ahoy_blackout:com_1, "After a long boat trip you arrive at Dragontooth Island...");
+        p_delay(2);
+        if_close;
+        p_teleport(0_59_55_16_39);
+    case 2 :
+        ~chatplayer("<p,neutral>No thanks, not at the moment.");
+}

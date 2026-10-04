@@ -1,0 +1,80 @@
+[opnpc1,ahoy_disciple]
+if(~wearing_ghostspeak_amulet = ^false) {
+    @ahoy_ghostspeak;
+}
+
+if(coordz(npc_coord) > 0) {
+    ~chatplayer("<p,quiz>How do I use the bone grinder?");
+    ~chatnpc("<p,neutral>Put bones of any type into the machine's hopper, and then turn the handle to grind them. You will need a pot to empty the machine of ground up bones.");
+    return;
+}
+
+def_int $rewarded_tokens = 0;
+if(%ahoy_ectotokens_to_collect > 0) {
+    ~chatplayer("<p,quiz>Can I have the tokens I have earned?");
+    if(inv_itemspace(inv, ectotoken, %ahoy_ectotokens_to_collect, inv_size(inv)) = false) {
+        ~chatnpc("<p,neutral>I have <tostring(%ahoy_ectotokens_to_collect)> ectotokens waiting for you mortal, but you do not have room in your inventory for them.");
+        return;
+    }
+    $rewarded_tokens = %ahoy_ectotokens_to_collect;
+    %ahoy_ectotokens_to_collect = 0;
+    inv_add(inv, ectotoken, $rewarded_tokens);
+    ~chatnpc("<p,neutral>Certainly, mortal. Here's <tostring($rewarded_tokens)> ectotokens.");
+    return;
+}
+
+~chatplayer("<p,quiz>What is this strange fountain?");
+~chatnpc("<p,neutral>This is the Ectofuntus, the most marvellous creation of Necrovarus, our glorious leader.");
+@multi5("What is the Ectofuntus for?", disciple_ectofor, 
+        "Where do I get ectoplasm from?", disciple_where, 
+        "How do I grind bones?", disciple_howbones, 
+        "How do I receive Ectotokens?", disciple_howtoken, 
+        "Thanks for your time.", disciple_end);
+
+
+[label,disciple_ectofor]
+~chatplayer("<p,quiz>What is the Ectofuntus for?");
+~chatnpc("<p,neutral>It provides the power to keep us ghosts from passing over into the next plane of existence.");
+~chatplayer("<p,quiz>And how does it work?");
+~chatnpc("<p,neutral>You have to pour a bucket of ectoplasm into the fountain, a pot of ground bones, and then worship at the Ectofuntus. A unit of unholy power will then be created.");
+~chatplayer("<p,quiz>Can you do it yourself?");
+~chatnpc("<p,neutral>No, we must rely upon the living, as the worship of the undead no longer holds any inherent power.");
+~chatplayer("<p,quiz>Why would people waste their time helping you out?");
+~chatnpc("<p,neutral>For every unit of power produced we will give you five Ectotokens. These tokens can be used in Port Phasmatys to purchase various services, not least of which includes access through the main toll gates.");
+@multi5("What is the Ectofuntus for?", disciple_ectofor, 
+        "Where do I get ectoplasm from?", disciple_where, 
+        "How do I grind bones?", disciple_howbones, 
+        "How do I receive Ectotokens?", disciple_howtoken, 
+        "Thanks for your time.", disciple_end);
+
+[label,disciple_where]
+~chatplayer("<p,quiz>Where do I get ectoplasm from?");
+~chatnpc("<p,neutral>Necrovarus sensed the power bubbling beneath our feet, and we delved long and deep beneath Port Phasmatys, until we found a pool of natural ectoplasm. You may find it by using the trapdoor over there.");
+@multi5("What is the Ectofuntus for?", disciple_ectofor, 
+        "Where do I get ectoplasm from?", disciple_where, 
+        "How do I grind bones?", disciple_howbones, 
+        "How do I receive Ectotokens?", disciple_howtoken, 
+        "Thanks for your time.", disciple_end);
+
+[label,disciple_howbones]
+~chatplayer("<p,quiz>How do I grind bones?");
+~chatnpc("<p,neutral>There is a bone grinding machine upstairs. Put bones of any type into the machine's hopper, and then turn the handle to grind them. You will need a pot to empty the machine of ground up bones.");
+@multi5("What is the Ectofuntus for?", disciple_ectofor, 
+        "Where do I get ectoplasm from?", disciple_where, 
+        "How do I grind bones?", disciple_howbones, 
+        "How do I receive Ectotokens?", disciple_howtoken, 
+        "Thanks for your time.", disciple_end);
+
+[label,disciple_howtoken]
+~chatplayer("<p,quiz>How do I receive Ectotokens?");
+~chatnpc("<p,quiz>We disciples keep track of how many units of power have been produced. Just talk to us once you have generated some and we will reimburse you with the correct amount of Ectotokens.");
+~chatplayer("<p,quiz>How do I generate units of power?");
+~chatnpc("<p,neutral>You have to pour a bucket of ectoplasm into the fountain and then worship at the Ectofuntus with a pot of ground bones. This will create a unit of unholy power.");
+@multi5("What is the Ectofuntus for?", disciple_ectofor, 
+        "Where do I get ectoplasm from?", disciple_where, 
+        "How do I grind bones?", disciple_howbones, 
+        "How do I receive Ectotokens?", disciple_howtoken, 
+        "Thanks for your time.", disciple_end);
+
+[label,disciple_end]
+~chatplayer("<p,neutral>Thanks for your time.");

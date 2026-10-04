@@ -1,0 +1,9 @@
+[opnpc1,ahoy_ghost_sailor]
+if(~wearing_ghostspeak_amulet = ^false) {
+    ~chatnpc("<p,neutral>Woooo wooo wooooo woooo.");
+    return;
+}
+~chatplayer("<p,quiz>Hi there. Why do you still bother having ships here? I mean - you're dead, what use are they to you?");
+~chatnpc("<p,neutral>We keep ships because we still need trade in Phasmatys. Every trader that comes to Phasmatys is made to worship the Ectofuntus, so that the Ectopower doesn't run out.");
+~chatplayer("<p,neutral>So, without traders to worship in the Temple you're history, right?");
+~chatnpc("<p,neutral>Aye, matey.");
