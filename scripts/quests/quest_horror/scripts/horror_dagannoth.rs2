@@ -89,7 +89,7 @@ if (~npc_check_notcombat_self = false) {
 }
 
 def_int $attack_roll = ~npc_ranged_attack_roll;
-def_int $defence_roll = ~player_defence_roll_specific(^ranged_style); // TODO: confirm if this rolls against ranged def (prob does...)
+def_int $defence_roll = ~pvm_defence_roll(^ranged_style); // TODO: confirm if this rolls against ranged def (prob does...)
 
 npc_anim(horror_dagannoth_rangeattack, 0);
 ~.sound_area(dagganoth_spines, 0, npc_coord, 10);

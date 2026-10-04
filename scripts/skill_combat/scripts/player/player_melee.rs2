@@ -18,17 +18,7 @@ if (npc_stat(hitpoints) = 0) {
 // check hit, give combat xp
 def_int $damage = 0;
 if (~player_npc_hit_roll(%damagetype) = true) {
-    def_int $maxhit = %com_maxhit;
-    if (npc_type = count_draynor & inv_total(inv, garlic) > 0) {
-        $maxhit = add($maxhit, 1);
-    }
-    if (npc_param(demonbane_vulnerable) = true & inv_total(worn, silverlight) > 0) {
-        $maxhit = scale(160, 100, %com_maxhit);
-    }
-    if (npc_param(undead) = ^true & inv_total(worn, crystalshard_necklace) > 0) {
-        $maxhit = scale($maxhit, 7, 6); // seems like damage bonus... todo: figure this out
-    }
-    $damage = randominc(~npc_max_dealt($maxhit, 0));
+    $damage = ~pvm_melee_damage(%com_maxhit);
     def_int $damage_capped = min($damage, npc_stat(hitpoints));
     ~give_combat_experience(%damagestyle, $damage_capped, %npc_combat_xp_multiplier);
     npc_heropoints($damage_capped);
