@@ -177,6 +177,10 @@ if(%routequest < ^routequest_introduced_veliaf) {
         ~chatnpc("<p,happy>Sure, go ahead, I'll answer as best as I can.");
         @sani_multi;
     }
+} else {
+    // only reachable if ~route_attempt_enter_cutscene bailed (all 4 rooms full)
+    // after veliaf already set ^routequest_enter_cutscene. same as radigad/polmafi/ivan
+    mes("This person isn't able to talk to you at this time.");
 }
 [label,sani_multi]
 // RS3
@@ -227,6 +231,9 @@ if(%routequest < ^routequest_introduced_veliaf) {
         ~chatnpc("<p,happy>Sure, go ahead. I'll answer as best I can.");
         @harold_multi;
     }
+} else {
+    // see route_sani_piliu above
+    mes("This person isn't able to talk to you at this time.");
 }
 [label,harold_multi]
 // RS3 texts
