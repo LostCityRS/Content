@@ -1,0 +1,89 @@
+[opnpc1,roving_female_woodelf]
+switch_int (%roving_elves_quest) {
+    case 0 : @roving_eluned_pre_quest;
+    case ^roving_grandmothers_remains : @roving_eluned_apologise;
+    case ^roving_agreed_to_help : @roving_eluned_talk_about_consecration;
+    case ^roving_seed_fetch : @roving_eluned_seed_fetch;
+    case ^roving_enchanted_seed : @roving_eluned_enchanted_seed;
+    case ^roving_planted_seed : @roving_eluned_planted_seed;
+    case ^roving_complete : @roving_eluned_post_quest;
+}
+
+[label,roving_eluned_pre_quest]
+~chatplayer("<p,neutral>Good day.");
+~chatnpc("<p,neutral>Hello there, It's a lovely day for a walk in the woods. So what can I help you with?");
+~chatplayer("<p,neutral>I'm just looking around.");
+
+[label,roving_eluned_apologise]
+~chatplayer("<p,neutral>Hello.");
+~chatnpc("<p,neutral>Hello, excuse my friend. He has bad history with humans.");
+~chatplayer("<p,neutral>No problem.");
+~chatnpc("<p,neutral>Is there anything I can help you with.");
+~chatplayer("<p,neutral>Not right now, thank you.");
+
+[label,roving_eluned_talk_about_consecration]
+~chatplayer("<p,neutral>Hey there... Islwyn said you may be able to help me. He told me you know how to consecrate ground for an elven burial. I need to reconsecrate Glarial's resting place.");
+~chatnpc("<p,neutral>That I do... It is elven tradition to plant a specially enchanted crystal seed at the graves of our ancestors. The seed will create guardians to protect the area.");
+~chatnpc("<p,neutral>Unfortunately, the crystal seed must be attuned to the person it's protecting. A new seed won't do, but you should be able to recover the seed from her old tomb.");
+if (%roving_elves_quest = ^roving_agreed_to_help) %roving_elves_quest = ^roving_seed_fetch;
+~chatnpc("<p,neutral>The tomb's guardian will be protecting the seed, you'll need to defeat him to get it. Once you have it, return here and I will re-enchant it.");
+~chatplayer("<p,neutral>OK... I'll be back as soon as i have it.");
+
+[label,roving_eluned_seed_fetch]
+~chatplayer("<p,neutral>Hello.");
+~chatnpc("<p,neutral>Hello. Any luck finding the consecration seed?");
+
+if (inv_total(inv, roving_old_consecration_seed) > 0) {
+    ~chatplayer("<p,neutral>Yes, I have it here.");
+    // OSRS doesn't delete it right away but in old videos it does, you could probably get scammed if you exit out of the dialogue...
+    // https://youtu.be/mRAozDH_1qI?t=325
+    inv_del(inv, roving_old_consecration_seed, ^max_32bit_int);
+    inv_del(bank, roving_old_consecration_seed, ^max_32bit_int);
+    if (%roving_elves_quest = ^roving_seed_fetch) %roving_elves_quest = ^roving_enchanted_seed; // rs3 updates the varbit here, if you exit the dialogue you can just talk to eluned again and you'll get the 'seed missing' dialogue
+    ~objbox(roving_old_consecration_seed, "You hand the crystal seed to Eluned.", 250, 0, 0);
+    ~chatnpc("<p,chant>");
+    ~chatplayer("<p,neutral>How odd. I can see her lips moving, but there's no sound.");
+    inv_add(inv, roving_new_consecration_seed, 1);
+    ~objbox(roving_old_consecration_seed, "Eluned hands you an enchanted crystal seed.", 250, 0, 0);
+    ~chatnpc("<p,neutral>Plant this seed in Glarial's new tomb close to her remains and she will rest in peace.");
+    ~chatplayer("<p,neutral>OK.");
+} else {
+    if (inv_total(bank, roving_old_consecration_seed) > 0) {
+        ~chatplayer("<p,neutral>Yes, but I left it in my bank.");
+        ~chatnpc("<p,neutral>Well bring it to me as soon as you can, then I can re- enchant it.");
+        return;   
+    }
+    ~chatplayer("<p,neutral>No, not yet.");
+    ~chatnpc("<p,neutral>Well, bring it here as soon as you find it, then I can re-enchant it."); // correct typo from osrs, i believe this dialogue was unchanged with the lore tweaks
+    ~chatplayer("<p,neutral>Okay. I'll see what I can do.");
+}
+
+[label,roving_eluned_enchanted_seed]
+if (inv_total(inv, roving_old_consecration_seed) = 0 & inv_total(bank, roving_old_consecration_seed) = 0) {
+    @roving_eluned_lost_enchanted_seed;
+}
+~chatplayer("<p,neutral>Hello.");
+~chatnpc("<p,neutral>Hey, how's it going? Have you managed to reconsecrate Glarial's resting place?");
+~chatnpc("<p,neutral>I'm sure her family will appreciate your effort. Plant the seed in Glarial's new tomb close to her remains and she will rest in peace.");
+~chatplayer("<p,neutral>Well I'll go finish the job then. See you later.");
+
+[label,roving_eluned_lost_enchanted_seed]
+~chatplayer("<p,neutral>Hello. I lost the crystal seed.");
+~chatnpc("<p,neutral>Not to worry. Now I know the harmonic of Glarial's crystal I can reproduce another one.");
+~chatnpc("<p,chant>");
+~chatplayer("<p,neutral>How odd. I can see her lips moving, but there's no sound.");
+inv_add(inv, roving_new_consecration_seed, 1);
+~objbox(roving_old_consecration_seed, "Eluned hands you an enchanted crystal seed.", 250, 0, 0);
+~chatnpc("<p,neutral>Plant this seed in Glarial's new tomb close to her remains and she will rest in peace.");
+~chatplayer("<p,neutral>OK.");
+
+[label,roving_eluned_planted_seed]
+~chatplayer("<p,neutral>Hello.");
+~chatnpc("<p,neutral>Hey... how's it going? Have you managed to reconsecrate Glarial's resting place?");
+~chatplayer("<p,neutral>Yes, it's done.");
+~chatnpc("<p,neutral>Well done... You should go see Islwyn, but I'd guess he already knows.");
+
+[label,roving_eluned_post_quest]
+~chatplayer("<p,neutral>Hi there.");
+~chatnpc("<p,neutral>Hi! I hear you finished consecrating Glarial's tomb. Well done.");
+~chatplayer("<p,neutral>It was a worthy deed.");

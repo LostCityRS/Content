@@ -28,7 +28,7 @@ switch_category(oc_category($weapon)) {
     case weapon_spear : return(weapon_spear_table);
     case weapon_spiked : return(weapon_spiked_table);
     case weapon_stab : return(weapon_stab_table);
-    case weapon_bow : return(weapon_bow_table);
+    case weapon_bow, weapon_chargebow : return(weapon_bow_table);
     case weapon_crossbow : return(weapon_crossbow_table);
     case weapon_thrown : return(weapon_thrown_table);
     case weapon_javelin : return(weapon_thrown_table);

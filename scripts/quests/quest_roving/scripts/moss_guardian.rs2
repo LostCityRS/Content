@@ -1,0 +1,48 @@
+[ai_queue3,roving_mossgiant]
+gosub(npc_death);
+if (npc_findhero = ^false) return;
+
+if (%roving_elves_bits = ^roving_seed_fetch & inv_total(inv, roving_old_consecration_seed) = 0) {
+    obj_add(npc_coord, roving_old_consecration_seed, 1, ^lootdrop_duration);
+}
+
+[ai_opplayer2,roving_mossgiant]
+// inlined npc_default_attack
+if (%death = ^true) {
+    npc_setmode(null);
+    return;
+}
+if (%npc_action_delay > map_clock) return;
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) { // Doesnt change mode! Keeps trying!
+    return;
+}
+anim(%com_defendanim, 0);
+npc_anim(npc_param(attack_anim), 0);
+
+if (npc_param(attack_sound) ! null) {
+    sound_synth(npc_param(attack_sound), 0, 0);
+}
+
+// inlined npc_meleeattack
+def_int $attack_roll = ~npc_melee_attack_roll;
+def_int $defence_roll = ~player_defence_roll_specific(npc_param(damagetype));
+def_int $maxhit = ~npc_melee_maxhit;
+
+spotanim_pl(roving_mossgiant_impact, 92, 0);
+
+// https://reldo.runescape.wiki/i/98683
+if (randominc($attack_roll) > randominc($defence_roll)) {
+    ~playerhit_n_melee(randominc($maxhit), npc_param(attackrate));
+    return;
+} 
+$defence_roll = ~player_defence_roll_specific(^magic_style);
+
+if (~npc_melee_attack_roll_typeless > randominc($defence_roll)) {
+    ~playerhit_n_melee(randominc($maxhit), npc_param(attackrate));
+    return;
+}
+~playerhit_n_melee(0, npc_param(attackrate));

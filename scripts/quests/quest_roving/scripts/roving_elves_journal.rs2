@@ -1,0 +1,76 @@
+[if_button,questlist:roving_elves]
+def_string $text;
+
+// https://www.youtube.com/watch?v=bElmcRdE3Yo&t=147s
+switch_int (%roving_elves_quest) {
+    case default : // used https://www.youtube.com/watch?v=onKjBy9Y4DY vs later revision: https://youtu.be/bElmcRdE3Yo?t=3
+        $text = append($text, "@dbl@I can start this quest by talking to @dre@Islwyn@dbl@ found in @dre@Isafdar.||");
+        $text = append($text, "@dbl@Minimum requirements:|");
+        $text = append($text, "@dre@I must have completed Regicide|");
+        $text = append($text, "@dre@I must have completed the Waterfall quest|");
+        $text = append($text, "@dre@I must be able to kill a level 74 moss giant unarmed|");
+
+        // i think there's some roving_elves_bits fuckery going on here, osrs rsprox is unreliable, rs3 and osrs have a varbit roving_entered_waterfall_to_plant_seed which is bit 4 of roving_elves_bits
+        // https://youtu.be/onKjBy9Y4DY?t=61
+        // I have found a recently used fire pit in Isafdar. I wonder
+        // who made it, maybe I should look for them.
+    case ^roving_grandmothers_remains : 
+        $text = append($text, "@str@I have met an elf called Islwyn, the grandson of Baxtorian and Glarial.||");
+        $text = append($text, "@dre@Islwyn@dbl@ asked me about his grandmother's remains, which I had emptied into the chalice of eternity.||");
+        // likely a roving_elves_bits
+        $text = append($text, "When he was told where his grandmother's remains were, he told me that elven tombs need consecration.");
+    case ^roving_agreed_to_help : // https://www.youtube.com/watch?v=bElmcRdE3Yo&t=147s
+        $text = append($text, "@str@I have met an elf called Islwyn, the grandson of Baxtorian and Glarial.||");
+        $text = append($text, "@str@Islwyn asked me about his grandmother's remains, which I had emptied into the chalice of eternity.||");
+        $text = append($text, "@str@When he was told where his grandmother's remains were, he told me that elven tombs need consecration.||");
+        $text = append($text, "@dbl@When I offered to help he said I should talk with @dre@Eluned@dbl@, she will tell me how elven consecration is done.");
+    case ^roving_seed_fetch : // https://youtu.be/onKjBy9Y4DY?t=206 https://youtu.be/5Q5qFgHd-M8?t=19
+        $text = append($text, "@str@I have met an elf called Islwyn, the grandson of Baxtorian and Glarial.||");
+        $text = append($text, "@str@Islwyn asked me about his grandmother's remains, which I had emptied into the chalice of eternity.||");
+        $text = append($text, "@str@When he was told where his grandmother's remains were, he told me that elven tombs need consecration.||");
+        $text = append($text, "@str@When I offered to help he said I should talk with Eluned, she will tell me how elven consecration is done.||");
+
+        if (inv_total(inv, roving_old_consecration_seed) > 0) {
+            $text = append($text, "@str@Eluned told me that I must acquire the old consecration seed from the guardian spirit in Glarial's old tomb.||");
+            $text = append($text, "Once I have the old seed I will need to return to Eluned, who will re-enchant it for me.||");
+            $text = append($text, "Having defeated the guardian spirit I found the old consecration seed.");
+        } else {
+            $text = append($text, "@dre@Eluned@dbl@ told me that I must acquire the @dre@old consecration seed@dbl@ from the @dre@guardian spirit@dbl@ in Glarial's old tomb.||");
+            $text = append($text, "Once I have the old seed I will need to return to Eluned, who will re-enchant it for me.||");
+        }
+    case ^roving_enchanted_seed : // https://youtu.be/5Q5qFgHd-M8?t=160 https://youtu.be/kOznXR1PbY0?t=155
+        $text = append($text, "@str@I have met an elf called Islwyn, the grandson of Baxtorian and Glarial.||");
+        $text = append($text, "@str@Islwyn asked me about his grandmother's remains, which I had emptied into the chalice of eternity.||");
+        $text = append($text, "@str@When he was told where his grandmother's remains were, he told me that elven tombs need consecration.||");
+        $text = append($text, "@str@When I offered to help he said I should talk with Eluned, she will tell me how elven consecration is done.||");
+        $text = append($text, "@str@Eluned told me that I must acquire the old consecration seed from the guardian spirit in Glarial's old tomb.||");
+        $text = append($text, "@str@Once I have the old seed I will need to return to Eluned, who will re-enchant it for me.||");
+        $text = append($text, "@str@Having defeated the guardian spirit I found the old consecration seed.||");
+        $text = append($text, "@str@I have given the seed to Eluned, who put new life into it by singing at it.||");
+        $text = append($text, "@dbl@I have now been told I must plant the @dre@consecration seed@dbl@ in @dre@Glarial's new resting place.");
+    case ^roving_planted_seed : // https://www.youtube.com/watch?v=zunL8UIiwHo&t=20s
+        $text = append($text, "@str@I have met an elf called Islwyn, the grandson of Baxtorian and Glarial.||");
+        $text = append($text, "@str@Islwyn asked me about his grandmother's remains, which I had emptied into the chalice of eternity.||");
+        $text = append($text, "@str@When he was told where his grandmother's remains were, he told me that elven tombs need consecration.||");
+        $text = append($text, "@str@When I offered to help he said I should talk with Eluned, she will tell me how elven consecration is done.||");
+        $text = append($text, "@str@Eluned told me that I must acquire the old consecration seed from the guardian spirit in Glarial's old tomb.||");
+        $text = append($text, "@str@Once I have the old seed I will need to return to Eluned, who will re-enchant it for me.||");
+        $text = append($text, "@str@Having defeated the guardian spirit I found the old consecration seed.||");
+        $text = append($text, "@str@I have given the seed to Eluned, who put new life into it by singing at it.||");
+        $text = append($text, "@str@I have now been told I must plant the consecration seed in Glarial's new resting place.||");
+        $text = append($text, "@dbl@Planting the seed gave a surprising result as it grew into a small crystal tree. I guess I should go tell @dre@Islwyn@dbl@ the good news.");
+    case ^roving_complete :
+        $text = append($text, "@str@I have met an elf called Islwyn, the grandson of Baxtorian and Glarial.||");
+        $text = append($text, "@str@Islwyn asked me about his grandmother's remains, which I had emptied into the chalice of eternity.||");
+        $text = append($text, "@str@When he was told where his grandmother's remains were, he told me that elven tombs need consecration.||");
+        $text = append($text, "@str@When I offered to help he said I should talk with Eluned, she will tell me how elven consecration is done.||");
+        $text = append($text, "@str@Eluned told me that I must acquire the old consecration seed from the guardian spirit in Glarial's old tomb.||");
+        $text = append($text, "@str@Once I have the old seed I will need to return to Eluned, who will re-enchant it for me.||");
+        $text = append($text, "@str@Having defeated the guardian spirit I found the old consecration seed.||");
+        $text = append($text, "@str@I have given the seed to Eluned, who put new life into it by singing at it.||");
+        $text = append($text, "@str@I have now been told I must plant the consecration seed in Glarial's new resting place.||");
+        $text = append($text, "@str@Planting the seed gave a surprising result as it grew into a small crystal tree. I guess I should go tell Islwyn the good news.||");
+        $text = append($text, "@str@Islwyn was so happy to hear about the consecration that he gave me a gift and said I can come back and get a new elf bow or shield any time.||");
+        $text = append($text, "@red@QUEST COMPLETE!");
+}
+~quest_journal("Roving Elves", $text);
