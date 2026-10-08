@@ -1,0 +1,63 @@
+[label,archaeological_expert_desert_treasure]
+switch_int (%deserttreasure) {
+    case 1 :
+        @terry_quest_stage_1;
+    case 2 :
+        @terry_quest_stage_2;
+    case 3 :
+        @terry_quest_stage_3;
+    case 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 :
+        @terry_quest_stage_4_plus;
+    case default :
+        @archaeological_expert_quest_complete;
+}
+
+[label,terry_quest_stage_4_plus]
+~chatnpc("<p,neutral>Hello again.|Was that translation any use to Asgarnia?");
+~chatplayer("<p,neutral>I think it was, thanks!");
+
+[label,terry_quest_stage_3]
+if (inv_total(inv, four_diamonds_translation_primer) >= 1) {
+    @terry_stage_3_has_translation;
+} else {
+    @terry_stage_3_lost_translation;
+}
+
+[label,terry_stage_3_has_translation]
+~chatnpc("<p,neutral>Hello again.|Was that translation any use to Asgarnia?");
+~chatplayer("<p,shifty>I, uh, kind of didn't take it to him yet...");
+~chatnpc("<p,confused>Whyever not?|You're the strangest delivery <text_gender("boy","girl")> I've ever met!");
+
+[label,terry_stage_3_lost_translation]
+~chatplayer("<p,neutral>I lost that translation you gave me...");
+~chatnpc("<p,neutral>Oh, no matter, I mostly remember what it said anyway!|Here you go!");
+inv_add(inv, four_diamonds_translation_primer, 1);
+
+[label,terry_quest_stage_2]
+inv_add(inv, four_diamonds_translation_primer, 1);
+~chatnpc("<p,neutral>There you go, that book contains the sum of my|translating ability. If you would be so kind as to take|that back to Asgarnia, I think it will reassure him that|he is on the");
+~chatnpc("<p,neutral>right track for a find of great archaeological importance!");
+~chatplayer("<p,neutral>Wow! You write really quickly don't you?");
+~chatnpc("<p,neutral>What can I say? It's a skill I picked up through my|many years of taking field notes!");
+if (%deserttreasure = 2) {
+    %deserttreasure = 3;
+}
+
+[label,terry_quest_stage_1]
+~chatplayer("<p,neutral>Hello, are you Terry Balando?");
+~chatnpc("<p,neutral>That's right, who wants to know...?");
+~chatnpc("<p,neutral>Ah yes, I recognise you! You're the fellow who found that|strange artefact about Zaros for the museum, aren't you?|What can I do for you now?");
+~chatplayer("<p,neutral>That's right. I was in the desert down by the|Bedabin Camp, and I found an archaeologist who asked|me to deliver this to you.");
+~chatnpc("<p,neutral>You spoke to the legendary Asgarnia Smith???|Quickly, let me see what he had to give you! He is|always at the forefront of archaeological breakthroughs!");
+inv_del(inv, four_diamonds_etchings, 1);
+~chatplayer("<p,neutral>So what does the inscription say? Anything interesting?");
+~chatnpc("<p,neutral>This... this is fascinating! These cuneiforms seem to|predate even the settlement we are excavating here...|Yes, yes, this is most interesting indeed!");
+~chatplayer("<p,neutral>Can you translate it for me?");
+~chatnpc("<p,neutral>Well, I am not familiar with this particular language, but|the similarities inherent in the pictographs seem to show|a prevalent trend towards a syllabary consistent with|the phonemes we have discovered in this excavation!");
+~chatplayer("<p,neutral>Um... So, can you translate it for me or not?");
+~chatnpc("<p,neutral>Well, unfortunately this is the only example of this|particular language I have ever seen, but I might be|able to make a rough translation, of sorts...");
+~chatnpc("<p,neutral>It might be slightly obscure on the finer details, but it|should be good enough to understand the rough meaning|of what was originally written. Please, just wait a|moment, I will write up what I can");
+~chatnpc("<p,neutral>translate into a journal for you. Then you can take it|back to Asgarnia, I think he will be extremely|interested in the translation!");
+if (%deserttreasure = 1) {
+    %deserttreasure = 2;
+}
