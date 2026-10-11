@@ -231,6 +231,9 @@ if (testbit(%elemental_workshop_bits, ^elemental_workshop_complete) = ^true) {
 if (%priestperil >= ^priestperil_complete) {
     $questpoints = add($questpoints, ^priestperil_questpoints); 
 }
+if (%fenk_quest = ^fenk_complete) {
+    $questpoints = add($questpoints, ^fenk_questpoints);
+}
 if (%druidspirit = ^druidspirit_complete) {
     $questpoints = add($questpoints, ^druidspirit_questpoints); 
 }
@@ -313,10 +316,17 @@ if (testbit(%ibanmulti, ^upass_started_bit) = ^true & %upass ! ^upass_complete) 
 ~send_quest_progress_colour(questlist:legends, %legendsquest, ^legends_complete);
 ~send_quest_progress_colour(questlist:elemental_workshop, %elemental_workshop_bits, sub(pow(2, ^elemental_workshop_complete), 1));
 ~send_quest_progress_colour(questlist:priestperil, %priestperil, ^priestperil_complete);
-~send_quest_progress_colour(questlist:druidspirit, %druidspirit, ^druidspirit_complete);
-~send_quest_progress_colour(questlist:death, %death_equiproom, ^death_complete);
 ~send_quest_progress_colour(questlist:troll, %troll_quest, ^troll_complete);
 ~send_quest_progress_colour(questlist:troll_love, %troll_love, ^troll_love_complete);
+if (%fenk_quest > 6) { // exactly like "int script_2193(int arg0)"
+    ~send_quest_progress_colour(questlist:creatureoffenkenstrain, %fenk_quest, ^fenk_complete);
+} else if (%fenk_quest = 0 & %fenk_read_signpost = 0) {
+    ~send_quest_progress_colour(questlist:creatureoffenkenstrain, 0, ^fenk_complete);
+} else {
+    ~send_quest_progress_colour(questlist:creatureoffenkenstrain, 1, ^fenk_complete);
+}
+~send_quest_progress_colour(questlist:druidspirit, %druidspirit, ^druidspirit_complete);
+~send_quest_progress_colour(questlist:death, %death_equiproom, ^death_complete);
 ~send_quest_progress_colour(questlist:golem, %golem_a, ^golem_complete);
 ~send_quest_progress_colour(questlist:troll, %troll_quest, ^troll_complete);
 if_settab(questlist, ^tab_quest_journal);

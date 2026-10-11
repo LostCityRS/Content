@@ -1,0 +1,577 @@
+// Organized according to first stage needed to interact.
+
+// TODO
+
+// ! Stage 0
+
+// Signpost
+[oploc1,fenk_signpost]
+if (%fenk_quest = ^fenk_not_started) {
+    ~mesbox("The signpost has a note pinned onto it. The note says:|'---- Braindead Butler Wanted ----|Gravedigging skills essential - Hunchback advantageous|See Dr Fenkenstrain at the castle NE of Canifis'");
+     %fenk_read_signpost = ^fenk_have_read_signpost;
+     ~update_questlist;
+} else if(%fenk_quest < ^fenk_complete) { // youtu.be/CVq0ooYzxJY // youtu.be/7SeX7jEzLwY
+    ~mesbox("The signpost has a note pinned onto it. The note says:|'---- Braindead Butler Position Filled ----|****No Further Applicants Please****'");
+} else {
+    ~mesbox("The signpost has a note pinned onto it. The note says:|'AAARRGGGHHHHH!!!!!'");
+}
+
+// Bridge 
+[oploc1,fenk_bridgebroken]
+mes("[oploc1,fenk_bridgebroken] - Not Implemented");
+[oploc1,fenk_bridgesurface]
+mes("[oploc1,fenk_bridgesurface] - Not Implemented");
+// Supposed to be a zoomed out camera view of a broken bridge but I don't know the exact camera angle.
+// https://www.youtube.com/watch?v=iuh-RrRo3vY
+
+// Clock
+[oploc1,fenk_clock]
+if(inv_total(inv, fenk_letter) >= 1) {
+    mes("You wind the old clock.");
+} else {
+    inv_add(inv, fenk_letter, 1);
+    ~objbox(fenk_letter, "As you wind the old clock a letter falls out. Judging by the thick covering of dust it must have been here for some time.", 250, 0, 0);
+}
+
+// Purely information clock letter
+[opheld1,fenk_letter]
+mes("You read the letter.");
+// This might not be the right scroll, but I have no idea which one it is.
+if_settext(inter_276:com_3, "Rologarric,");
+if_settext(inter_276:com_5, "I am writing to you, my brother, to ask for");
+if_settext(inter_276:com_6, "your aid, and to forgive me on behalf of all the");
+if_settext(inter_276:com_7, "poor souls that I have sacrificed to save my own");
+if_settext(inter_276:com_8, "neck. I have no doubt that my own soul lies");
+if_settext(inter_276:com_9, "forfeit, but I would wish to see you once again");
+if_settext(inter_276:com_10, "before I am cast into the eternal fire. You well");
+if_settext(inter_276:com_11, "know the history of our noble ancestors, who");
+if_settext(inter_276:com_12, "have stood against the wave of darkness covering");
+if_settext(inter_276:com_13, "all of Morytania, protecting the inhabitants of this");
+if_settext(inter_276:com_14, "castle by sheer force of personality. I, however,");
+if_settext(inter_276:com_15, "stand lacking in their all too dominating shadow.");
+if_settext(inter_276:com_16, "I have been weak, my brother, letting Him rule");
+if_settext(inter_276:com_17, "in my stead.");
+if_settext(inter_276:com_18, "");
+if_settext(inter_276:com_19, "You know of whom I speak but dare not name -");
+if_settext(inter_276:com_20, "my 'doctor' of many years, the very same");
+if_settext(inter_276:com_21, "creature you sought to escape ten years ago.");
+if_settext(inter_276:com_22, "He advised me that the power in the South was");
+if_settext(inter_276:com_23, "rising, and soon our ancestral home would");
+if_settext(inter_276:com_24, "fall to the growing evil. He advised me to send a");
+if_settext(inter_276:com_25, "gift of tribute to the vampires, to satisfy their");
+if_settext(inter_276:com_26, "hunger for at least a while. I regret to say that");
+if_settext(inter_276:com_27, "I acceded to this request. I ordered a young");
+if_settext(inter_276:com_28, "girl out into the forest to pick mushrooms,");
+if_settext(inter_276:com_29, "knowing that I was sending her to her death, or");
+if_settext(inter_276:com_30, "worse, her undeath.");
+if_settext(inter_276:com_31, "");
+if_settext(inter_276:com_32, "Of course, soon after my advisor told me that ");
+if_settext(inter_276:com_33, "the vampires were again restive, and to send");
+if_settext(inter_276:com_34, "another 'gift' And of course, this I did, to");
+if_settext(inter_276:com_35, "ensure the safety of everyone in the castle.");
+if_settext(inter_276:com_36, "");
+if_settext(inter_276:com_37, "But a vampire's hunger can never be sated.");
+if_settext(inter_276:com_38, "Every innocent soul I have sent into the Forest");
+if_settext(inter_276:com_39, "to their doom both strengthens their power and");
+if_settext(inter_276:com_40, "increases their hunger.");
+if_settext(inter_276:com_41, "");
+if_settext(inter_276:com_42, "He knows this. I look into his eyes and see");
+if_settext(inter_276:com_43, "amusement. In his eyes I see the truth - that he");
+if_settext(inter_276:com_44, "must have struck a deal with them some time");
+if_settext(inter_276:com_45, "ago. He sold my people to them in exchange");
+if_settext(inter_276:com_46, "for... this castle.");
+if_settext(inter_276:com_47, "");
+if_settext(inter_276:com_48, "I have sent them all to their doom, and now I");
+if_settext(inter_276:com_49, "fear my own.");
+if_settext(inter_276:com_50, "");
+if_settext(inter_276:com_51, "Your brother,");
+if_settext(inter_276:com_52, "");
+if_settext(inter_276:com_53, "Rologarth,");
+if_settext(inter_276:com_54, "");
+if_settext(inter_276:com_55, "15th Lord of the North Coast");
+if_settext(inter_276:com_56, "");
+if_settext(inter_276:com_57, "");
+if_settext(inter_276:com_58, "");
+if_settext(inter_276:com_59, "");
+if_settext(inter_276:com_60, "");
+if_settext(inter_276:com_61, "");
+if_settext(inter_276:com_62, "");
+if_settext(inter_276:com_63, "");
+if_settext(inter_276:com_64, "");
+if_settext(inter_276:com_65, "");
+if_settext(inter_276:com_66, "");
+if_settext(inter_276:com_67, "");
+if_settext(inter_276:com_68, "");
+if_settext(inter_276:com_69, "");
+if_settext(inter_276:com_70, "");
+if_settext(inter_276:com_71, "");
+if_settext(inter_276:com_72, "");
+if_settext(inter_276:com_73, "");
+if_settext(inter_276:com_74, "");
+if_settext(inter_276:com_75, "");
+if_settext(inter_276:com_76, "");
+if_settext(inter_276:com_77, "");
+if_settext(inter_276:com_78, "");
+if_settext(inter_276:com_79, "");
+if_settext(inter_276:com_80, "");
+if_settext(inter_276:com_81, "");
+if_settext(inter_276:com_82, "");
+if_settext(inter_276:com_83, "");
+if_settext(inter_276:com_84, "");
+if_settext(inter_276:com_85, "");
+if_settext(inter_276:com_86, "");
+if_settext(inter_276:com_87, "");
+if_settext(inter_276:com_88, "");
+if_settext(inter_276:com_89, "");
+if_settext(inter_276:com_90, "");
+if_settext(inter_276:com_91, "");
+if_settext(inter_276:com_92, "");
+if_settext(inter_276:com_93, "");
+if_settext(inter_276:com_94, "");
+if_settext(inter_276:com_95, "");
+if_settext(inter_276:com_96, "");
+if_settext(inter_276:com_97, "");
+if_settext(inter_276:com_98, "");
+if_settext(inter_276:com_99, "");
+if_settext(inter_276:com_100, "");
+if_settext(inter_276:com_101, "");
+if_settext(inter_276:com_102, "");
+if_settext(inter_276:com_103, "");
+if_settext(inter_276:com_104, "");
+if_openmain(inter_276);
+
+// ! Stage 1
+
+// Bookcases - for star amulet
+[oploc1,fenk_bookcase]
+if (loc_coord = 1_55_55_22_38) {
+    @multi4_header(
+        "1001 Ways To Eat Fried Gizzards", fenk_book1,
+        "Practical Gardening For The Headless", fenk_book2,
+        "Human Taxidermy for Nincompoops", fenk_book3,
+        "The Joy of Gravedigging", fenk_star_book_west,
+        "Which book would you like to read?"
+    );
+} else if (loc_coord = 1_55_55_35_38) {
+    @multi4_header(
+        "Men are from Morytania, Women are from Lumbridge", fenk_book4,
+        "Chimney Sweeping on a Budget", fenk_book5,
+        "Handy Maggot Avoidance Techniques", fenk_star_book_east,
+        "My Family and Other Zombies", fenk_book6,
+        "Which book would you like to read?"
+    );
+}
+
+[label,fenk_star_book_east]
+~objbox(fenk_journal, "As you pull the book a hidden latch springs into place, and the bookcase swings open, revealing a secret compartment.", 250, 0, 0);
+if(inv_total(inv, fenk_obsidian_amulet) >= 1) {
+    ~mesbox("The secret compartment is empty.");
+} else {
+    inv_add(inv, fenk_obsidian_amulet, 1);
+    ~objbox(fenk_obsidian_amulet, "You find a obsidian amulet in the secret compartment.", 250, 0, 0);
+}
+
+[label,fenk_star_book_west]
+// This book is a mesbox instead of an objbox as I assume by accident: https://www.youtube.com/watch?v=CVq0ooYzxJY
+~mesbox("As you pull the book a hidden latch springs into place, and the bookcase swings open, revealing a secret compartment.");
+if(inv_total(inv, fenk_marble_amulet) >= 1) {
+    ~mesbox("The secret compartment is empty.");
+} else {
+    inv_add(inv, fenk_marble_amulet, 1);
+    ~objbox(fenk_marble_amulet, "You find a marble amulet in the secret compartment.", 250, 0, 0);
+}
+
+[label,fenk_book1]
+~objbox(fenk_journal, "This book leaves you contemplating vegetarianism.", 250, 0, 0);
+
+[label,fenk_book2]
+~objbox(fenk_journal, "This book has some very enlightening points to make, but you are at a loss to know how anyone without a head could possibly read it.", 250, 0, 0);
+
+[label,fenk_book3]
+~objbox(fenk_journal, "This book seems to have been read hundreds of times, and has scribbles and formulae on every page. One such scribble says None good enough - have to lock them in the caverns...", 250, 0, 0);
+
+[label,fenk_book4]
+~objbox(fenk_journal, "You discover some fascinating insights into the mind of the <text_gender("female", "male")> kind.", 250, 0, 0);
+
+[label,fenk_book5]
+@book_flip_page(0, 0, 0, chimney_sweeping_book);
+
+[label,fenk_book6]
+~objbox(fenk_journal, "The book is appallingly dull.", 250, 0, 0);
+
+[proc,chimney_sweeping_book]
+switch_int (%book_page) {
+    case 0 : ~book("Chimney Sweeping on a Budget", "Page 26|that sometimes a sweep|may find themselves|brushless and without the|funds to purchase the|one tool that is most|essential to their trade.|What is a chimney sweep|without his or her brush?|In this kind of situation|any normal long-handled|brush might be a suitable|replacement, although|when attaching extensions|to the handle make sure|to use something sturdy|like wire, otherwise a|sweep may find|themselves losing their|brush and livelyhood to|the forces of gravity");
+}
+
+// Join amulet together
+[opheldu,fenk_marble_amulet]
+if(last_useitem = fenk_obsidian_amulet) {
+    inv_del(inv, fenk_marble_amulet, 1);
+    inv_del(inv, fenk_obsidian_amulet, 1);
+    inv_add(inv, fenk_star_amulet, 1);
+    ~objbox(fenk_star_amulet, "The marble and obsidian amulets snap together tightly to form a six-pointed amulet.", 250, 0, 0);
+}
+
+[oplocu,fenk_coffin]
+if (last_useitem = fenk_star_amulet) {
+    inv_delslot(inv, last_useslot);
+    %fenk_coffin = 1;
+    ~objbox(fenk_star_amulet, "The star amulet fits exactly into the depression on the coffin lid.", 250, 0, 0);
+    return;
+}
+~displaymessage(^dm_default);
+
+// Coffin Push - to access the expeirments area and the three graves on the island.
+[oploc1,fenk_coffin]
+if (loc_coord = 0_55_55_58_7 & %fenk_coffin = 1) {
+    loc_anim(fenk_capstone_moves);
+    p_delay(2);
+    p_teleport(0_55_155_57_7);
+    return;
+}
+if (loc_coord = 0_54_55_49_51) {
+    loc_anim(fenk_capstone_moves);
+    p_delay(2);
+    p_teleport(0_54_155_48_49);
+    return;
+}
+mes("The coffin is incredibly heavy, and does not budge.");
+
+// Coffin Examine - Specifically for the star amulet.
+[oploc2,fenk_coffin]
+if (loc_coord = 0_55_55_58_7) {
+    if (%fenk_coffin = 1) {
+        // https://www.youtube.com/watch?v=CVq0ooYzxJY
+        mes("The memorial stone holds a star amulet in place on its lid.");
+    } else {
+        mes("You find a depression in the memorial stone in the shape of a six-pointed star.");
+    }
+    return;
+}
+mes("You find nothing remarkable about the memorial stone.");
+
+// Experiment Attack - limit after getting the key or unlocking the cavern.
+[opnpc2,fenk_experiment_1]
+if(%fenk_unlocked_cavern = 1 | inv_total(inv, fenk_mausoleum_key) >= 1) {
+    ~mesbox("You don't have the heart to kill the poor creature again.");
+    return;
+}
+@player_combat_start;
+
+// Experiments Gate - fences off the back area until you kill an experiment with a key
+[oploc1,fenk_mausoleum_door]
+if(inv_total(inv, fenk_mausoleum_key) >= 1) {
+    inv_del(inv, fenk_mausoleum_key, 1);
+    %fenk_unlocked_cavern = 1;
+}
+if (%fenk_unlocked_cavern = 1) {
+    // You remove a key, but even if you didn't have the key, you could still walk through.
+    // https://www.youtube.com/watch?v=GdQtnkgbMPY
+    ~open_and_close_door(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), false);
+} else {
+    // https://www.youtube.com/watch?v=zmvgzuA31S0
+    mes("The door is locked.");
+}
+
+
+// Read grave - for wooden looking poor graves in center of forest
+[oploc1,fenk_grave_poor]
+mes("The grave says:"); // s57ElnRNhmU
+switch_coord (loc_coord) {
+    case 0_56_54_35_13 : mes("  'Here lies Anton Hayes - REST IN PEACE'");
+    case 0_55_54_22_30 : mes("  'Here lies Callum Elding - REST IN PEACE'");
+    case 0_56_54_1_41 : mes("  'Here lies Domin O'Raleigh - REST IN PEACE'");
+    case 0_56_54_24_35 : mes("  'Here lies Ed Lestwit - REST IN PEACE'");
+    case 0_56_54_4_16 : mes("  'Here lies Elena Frey - REST IN PEACE'");
+    case 0_56_54_9_53 : mes("  'Here lies Eryn Treforest - REST IN PEACE'");
+    case 0_56_54_10_35 : mes("  'Here lies Isla Skye - REST IN PEACE'");
+    case 0_56_54_12_23 : mes("  'Here lies Jayna Harrow - REST IN PEACE'");
+    case 0_56_54_20_10 : mes("  'Here lies Jayne Corbo - REST IN PEACE'");
+    case 0_56_54_24_10 : mes("  'Here lies Kandik Kludge - REST IN PEACE'");
+    case 0_56_54_32_22 : mes("  'Here lies Korvic Frey - REST IN PEACE'");
+    case 0_56_54_35_13 : mes("  'Here lies Marabella Kludge - REST IN PEACE'");
+    case 0_56_54_42_39 : mes("  'Here lies Marcus Harrow - REST IN PEACE'");
+    case 0_56_54_45_27 : mes("  'Here lies Petrik Corbo - REST IN PEACE'");
+    case 0_56_54_47_20 : mes("  'Here lies Serra Alcanthric - REST IN PEACE'");
+    case 0_56_54_47_44 : mes("  'Here lies Toran Alcanthric - REST IN PEACE'");
+    // case 0_55_55_52_7 : mes("  'Here lies Unknown - REST IN PEACE'");
+    // case 0_55_55_56_6 : mes("  'Here lies Unknown - REST IN PEACE'");
+    case 0_56_54_55_14 : mes("  'Here lies Lady Rolobrae - REST IN PEACE'");
+    case 0_56_54_50_47 : mes("  'Here lies Lord Rologarth - REST IN PEACE'");
+    case default : mes("  'Here lies Unknown - REST IN PEACE'");
+}
+
+// Dig grave - for wooden looking poor graves in center of forest, one contains the empty head
+[oploc2,fenk_grave_poor]
+if (inv_total(inv, spade) = 0) {
+    ~displaymessage(^dm_farming_spade);
+    return;
+}
+mes("You start digging...");
+anim(human_dig_long, 0);
+p_delay(2);
+switch_coord (loc_coord) {
+    case 0_56_54_24_35 : 
+        if (inv_total(inv, fenk_head_empty) = 0 & inv_total(inv, fenk_head_full) = 0) {
+            inv_add(inv, fenk_head_empty, 1);
+            ~objbox(fenk_head_empty, "...and you unearth a decapitated head.", 250, 0, 0);
+        } else {
+            mes("...but the grave is empty.");
+        }
+    case default : 
+        mes("...but the grave is empty.");
+}
+anim(null, 0); // stop digging animation
+
+// 3 graves in mausoleum island (after going through experiments)
+[oploc1,fenk_grave]
+mes("The grave says:"); // s57ElnRNhmU
+switch_coord (loc_coord) {
+    case 0_54_55_46_56 : mes("  'Here lies Rolomere, 14th Lord of the North Coast - REST IN PEACE'");
+    case 0_54_55_48_57 : mes("  'Here lies Rolovanne, 13th Lord of the North Coast - REST IN PEACE'");
+    case 0_54_55_50_56 : mes("  'Here lies Rologray, 12th Lord of the North Coast - REST IN PEACE'");
+    case default : mes("  'Here lies Unknown - REST IN PEACE'");
+}
+
+// Dig grave - for nice looking rich graves in mausoleum island (torso, arms, legs)
+[oploc2,fenk_grave]
+if (inv_total(inv, spade) = 0) {
+    ~displaymessage(^dm_farming_spade);
+    return;
+}
+mes("You start digging...");
+anim(human_dig_long, 0);
+p_delay(2);
+switch_coord (loc_coord) {
+    case 0_54_55_46_56 : 
+        if (inv_total(inv, fenk_torso) = 0) {
+            inv_add(inv, fenk_torso, 1);
+            ~objbox(fenk_torso, "...and you unearth a torso.", 250, 0, 0);
+        } else {
+            mes("...but the grave is empty.");
+        }
+    case 0_54_55_48_57 : 
+        if (inv_total(inv, fenk_arms) = 0) {
+            inv_add(inv, fenk_arms, 1);
+            ~objbox(fenk_arms, "...and you unearth a pair of arms.", 250, 0, 0);
+        } else {
+            mes("...but the grave is empty.");
+        }
+    case 0_54_55_50_56 : 
+        if (inv_total(inv, fenk_legs) = 0) {
+            inv_add(inv, fenk_legs, 1);
+            ~objbox(fenk_legs, "...and you unearth a pair of legs.", 250, 0, 0);
+        } else {
+            mes("...but the grave is empty.");
+        }
+    case default : 
+        mes("...but the grave is empty.");
+}
+anim(null, 0); // stop digging animation
+
+// Stuff empty head with brain.
+[opheldu,fenk_brain]
+if(last_useitem = fenk_head_empty) {
+    inv_del(inv, fenk_brain, 1);
+    inv_del(inv, fenk_head_empty, 1);
+    inv_add(inv, fenk_head_full, 1);
+    ~objbox(fenk_head_full, "You squeeze the pickled brain into the decapitated head.", 250, 0, 0);
+}
+
+// ! Stage 3
+
+// Fenk Cane Pile
+[oploc1,fenk_canepile]
+inv_add(inv, fenk_cane, 1);
+mes("You take a garden cane from the pile."); 
+
+// Fenk Shed Door
+[oploc1,fenk_shed_door]
+if (%fenk_unlocked_shed = 1) {
+    ~open_and_close_door(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), false);
+} else {
+    if(inv_total(inv, fenk_shed_key) >= 1) {
+        inv_del(inv, fenk_shed_key, 1);
+        %fenk_unlocked_shed = 1;
+        ~open_and_close_door(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), false);
+        return;
+    }
+    mes("The door is locked.");
+}
+
+[oploc1,fenk_broomcupboard]
+p_arrivedelay;
+anim(human_openchest,0);
+sound_synth(cupboard_open, 0, 0);
+p_delay(0);
+loc_change(fenk_broomcupboard_open, 300);
+
+[oploc3,fenk_broomcupboard_open]
+p_arrivedelay;
+anim(human_closechest, 0);
+sound_synth(cupboard_close, 0, 0);
+p_delay(0);
+loc_change(fenk_broomcupboard, 300);
+
+[oploc2,fenk_broomcupboard_open]
+if(inv_total(inv, fenk_brush0) = 0) {
+    inv_add(inv, fenk_brush0, 1);
+    ~objbox(fenk_brush0, "You find a garden brush in the cupboard.", 250, 0, 0);
+} else {
+    ~mesbox("The cupboard is empty.");
+}
+
+
+// Stuff empty head with brain.
+[opheldu,fenk_brush0]
+if(last_useitem = fenk_cane) {
+    inv_del(inv, fenk_brush0, 1);
+    inv_del(inv, fenk_cane, 1);
+    inv_add(inv, fenk_brush1, 1);
+    mes("You attach the cane to the brush.");
+}
+[opheldu,fenk_brush1]
+if(last_useitem = fenk_cane) {
+    inv_del(inv, fenk_brush1, 1);
+    inv_del(inv, fenk_cane, 1);
+    inv_add(inv, fenk_brush2, 1);
+    mes("You attach the cane to the brush.");
+}
+
+[opheldu,fenk_brush2]
+if(last_useitem = fenk_cane) {
+    inv_del(inv, fenk_brush2, 1);
+    inv_del(inv, fenk_cane, 1);
+    inv_add(inv, fenk_brush3, 1);
+    mes("You attach the cane to the brush.");
+}
+
+[opheldu,fenk_brush3]
+if(last_useitem = fenk_cane) {
+    mes("The brush is too long to attach any more canes.");
+}
+
+// Yes the animation authentically happens on the wall if you clean out the left or right column. Its dumb, I know.
+[oplocu,fenk_fireplace_left] ~extended_brush;
+[oplocu,fenk_fireplace] ~extended_brush;
+[oplocu,fenk_fireplace_right] ~extended_brush;
+[proc,extended_brush]()
+if(last_useitem = fenk_brush3) {
+    p_arrivedelay;
+    anim(fenk_human_poke, 0);
+    sound_synth(brushing, 0, 0);
+    p_delay(3);
+    mes("You give the chimney a jolly good clean out.");
+    if(inv_total(inv, fenk_lightning_mould) = 0 & loc_coord = 1_55_55_24_35) {
+        inv_add(inv, fenk_lightning_mould, 1);
+        ~objbox(fenk_lightning_mould, "A lightning conductor mould falls down out of the chimney.", 250, 0, 0);
+    }
+}
+
+[oploc1,fenk_conductor_broken]
+if (%fenk_quest >= ^fenk_repaired_lightning_conductor) {
+    mes("The lightning conductor is now beyond repair."); // https://youtu.be/idakVqwlf-U
+    return;
+}
+if (%fenk_quest = ^fenk_brought_needle_threads & inv_total(inv, fenk_conductor) = 1) {
+    inv_del(inv, fenk_conductor, 1);
+    loc_change(fenk_conductor_repaired, 3);
+    loc_anim(fenk_lightning);
+    ~mesbox("You repair the lightning conductor not one moment too soon - a tremendous bold of lightning melts the new lightning conductor, and power blazes throughtout the castle, if only briefly.");
+    mes("At some point the lightning conductor has broken, rendering it useless.");
+    %fenk_conductor_repaired = 1;
+    %fenk_quest = ^fenk_repaired_lightning_conductor;
+    return;
+}
+mes("You need to repair it with a conductor.");
+
+
+// Fenk Door - Unfortunately a double door on the second floor shares the same with the ground floor.
+[oploc1,fenk_door]
+if (coordy(loc_coord) = 1) {
+    if (%fenk_quest >= ^fenk_brought_needle_threads) {
+        ~open_and_close_double_door2(~check_axis(coord, loc_coord, loc_angle), ^left, door_open);
+        // no idea why the mirrored door doesn't open with it.
+    } else {
+        mes("The door to the lightning conductor is locked."); // s57ElnRNhmU
+    }
+} else {
+    ~open_double_doors_left(500, door_right_closed, loc_param(open_sound));
+}
+
+[oploc1,fenk_door_mirror]
+if (coordy(loc_coord) = 1) {
+    if (%fenk_quest >= ^fenk_brought_needle_threads) {
+        ~open_and_close_double_door2(~check_axis(coord, loc_coord, loc_angle), ^right, door_open);
+        // no idea why the mirrored door doesn't open with it.
+    } else {
+        mes("The door to the lightning conductor is locked."); // s57ElnRNhmU
+    }
+} else {
+    ~open_double_doors_right(500, door_left_closed, loc_param(open_sound));
+}
+
+[oploc1,fenk_door_open]
+~close_double_doors_left(500, door_right_opened, loc_param(close_sound));
+
+[oploc1,fenk_door_open_mirror]
+~close_double_doors_right(500, door_left_opened, loc_param(close_sound));
+
+
+
+// Tower Door
+[oploc1,fenk_tower_door]
+// You can click on the door and go through if you have the key
+if (%fenk_unlocked_tower = 1) {
+    ~open_and_close_door(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), false);
+} else {
+    if(inv_total(inv, fenk_tower_key) >= 1) {
+        inv_del(inv, fenk_tower_key, 1);
+        %fenk_unlocked_tower = 1;
+        ~open_and_close_door(loc_param(next_loc_stage), ~check_axis(coord, loc_coord, loc_angle), false);
+        return;
+    }
+    mes("The door is locked."); // s57ElnRNhmU
+}
+
+
+[opnpcu,fenk_fenkenstrain]
+
+[opobj3,fenk_brain]
+if (distance(0_54_54_36_18, obj_coord) = 0 & npc_find(coord, werewolfinnkeeper, 20, 0) = true) {
+    if (%fenk_quest = ^fenk_not_started) {
+        ~chatnpc("<p,angry>Hey! Don't touch that.");
+    } else {
+        if (inv_total(inv, fenk_brain) = 0) {
+            ~chatnpc("<p,neutral>You're interested in our speciality, I see. Would you like to buy some?");
+            ~chatplayer("<p,neutral>What exactly is in the jar?");
+            @buy_pickled_brain;
+        } else {
+            ~chatnpc("<p,angry>You can leave that alone, my friend. I've already sold you one of your own - eat that. I can't afford to give away freebies in this business!");
+        }
+    }
+} else {
+    @pickup_obj;
+}
+
+[label,buy_pickled_brain]
+~chatnpc("<p,neutral>Pickled brain, my friend. Only 50 gold to you.");
+~chatplayer("<p,neutral>Err... pickled brain from what animal?");
+~chatnpc("<p,neutral>Animal? Don't be disgusting, man! No, this a human brain - only the best for my customers.");
+if(inv_total(inv, coins) < 50) {
+    ~chatplayer("<p,neutral>That sounds very nice, but I'm afraid I don't have enough gold at the moment.");
+} else {
+    @multi2("Yes.", ill_buy_one, "No.", im_not_hungry);
+}
+
+[label,ill_buy_one]
+~chatplayer("<p,neutral>Player: I'll buy one, please.");
+if(inv_total(inv, coins) >= 50) {
+    inv_del(inv, coins, 50);
+    inv_add(inv, fenk_brain, 1);
+    ~chatnpc("<p,neutral>A very wise choice, <text_gender("sir", "miss")>. Don't eat it all at once, savour every morsel - that's my advice to you.");
+}
+
+[label,im_not_hungry]
+~chatplayer("<p,neutral>I'm afraid I'm not really hungry at the moment.");
