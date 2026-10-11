@@ -1,0 +1,33 @@
+[opnpc1,werewolf_trainer_1]
+if (inv_total(worn, ring_of_charos) = 1 | inv_total(worn, ring_of_charos_unlocked) = 1) {
+    @skullball_trainer_skullballinprogress;
+    // if (%skullball_instance = 1) {
+    //     @skullball_trainer_skullballinprogress;
+    // } else {
+    //     @skullball_trainer_noskullball;
+    // }
+} else {
+    @skullball_trainer_ishuman;
+}
+
+[label,skullball_trainer_ishuman]
+~chatnpc("<p,shifty>Grrr - you don't belong in here, human!");
+
+[label,skullball_trainer_noskullball]
+~chatplayer("<p,confused>What is this place?");
+~chatnpc("<p,neutral>This is the Skullball Course");
+~chatnpc("<p,neutral>Go talk to the boss at the beginning of the course if you'd like a go.");
+
+[label,skullball_trainer_skullballinprogress]
+~chatplayer("<p,confused>How many goals have I got left?");
+// if (%skullball_currentgoal = 10) {
+//     @finalgoal;
+// } else {
+//     @xgoals;
+// }
+
+[label,xgoals]
+~chatnpc("<p,neutral>You have [10 - %skullball_currentgoal] goals left to complete.");
+
+[label,finalgoal]
+~chatnpc("<p,neutral>You have the final goal left to complete.");
