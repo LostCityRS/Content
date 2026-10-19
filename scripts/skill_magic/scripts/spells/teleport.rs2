@@ -86,6 +86,15 @@ if (inv_getobj(worn, ^wearpos_rhand) = trollromance_toboggon_waxed) { // Troll R
     }
 }
 
+if (inv_getobj(worn, ^wearpos_hat) = ahoy_bedsheet | inv_getobj(worn, ^wearpos_hat) = ahoy_bedsheetgreen) {
+    if(inv_freespace(inv) > 0) {
+        ~unequip(^wearpos_hat);
+        ~update_bas;
+    } else {
+        inv_delslot(worn, ^wearpos_hat);
+    }
+}
+
 [proc,pre_tele_checks](coord $coord)(boolean)
 if(inv_total(inv, thanainabarrel) > 0) {
     ~chatnpc_specific("Ana (in a Barrel)", anabarrel, "<p,idle>@dbl@-- You can't teleport while holding the barrel, it's just @dbl@too difficult to concentrate. --");

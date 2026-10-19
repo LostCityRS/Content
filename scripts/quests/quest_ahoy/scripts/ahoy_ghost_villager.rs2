@@ -1,0 +1,17 @@
+[opnpc1,ahoy_ghost_villager]
+if(~wearing_ghostspeak_amulet = ^false) {
+    @ahoy_ghostspeak;
+}
+
+if (inv_getobj(worn, ^wearpos_hat) = ahoy_bedsheet | inv_getobj(worn, ^wearpos_hat) = ahoy_bedsheetgreen) {
+    ~chatplayer("<p,neutral>Wooo wooo woooooooo");
+    ~chatnpc("<p,neutral>Why are you wearing that sheet, mortal? Cold or something?");
+}
+
+switch_int(random(5)) { 
+    case 0 : ~chatnpc("<p,neutral>What do you want, mortal?");
+    case 1 : ~chatnpc("<p,neutral>We do not talk to the warm-bloods.");
+    case 2 : ~chatnpc("<p,neutral>Why did we have to listen to that maniacal priest?");
+    case 3 : ~chatnpc("<p,neutral>This cold wind blows right through you, doesn't it?");
+    case 4 : ~chatnpc("<p,neutral>Worship the Ectofuntus all you want, but don't bother us, human.");
+}

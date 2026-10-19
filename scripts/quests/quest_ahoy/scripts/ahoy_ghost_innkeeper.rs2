@@ -1,0 +1,54 @@
+[opnpc1,ahoy_ghost_innkeeper]
+~chatplayer("<p,neutral>Hello there!");
+~chatnpc("<p,neutral>Greetings, traveller. Welcome to 'The Green Ghost' Tavern. What can I do you for?");
+switch_int(~p_choice5("Can I buy a beer?", 1, "Can I hear some gossip?", 2, "What happened to the folk of this town?", 3, "Do you have any jobs I can do?", 4, "Nothing, thanks.", 5)) {
+    case 1 :
+        ~chatplayer("<p,quiz>Can I buy a beer?");
+        ~chatnpc("<p,neutral>Sorry, but our pumps dried up over half a century ago. We of this village do not have much of a thirst these days.");
+    case 2 :
+        ~chatplayer("<p,quiz>Can I hear some gossip?");
+        ~chatnpc("<p,neutral>I suppose, as long as you keep it to yourself...");
+        ~chatnpc("<p,neutral>You see Gravingas out there in the marketplace? He speaks for the silent majority of Port Phasmatys, for those of us who would prefer to pass over into the next world.");
+        if(%ahoy_questvar = ^ahoy_not_started) {
+            ~chatnpc("<p,neutral>But old Gravingas is far too obvious in his methods. Now Velorina, she's a ghost of a different colour altogether. If you feel like helping our cause at all, go speak to Velorina.");
+        }
+    case 3 :
+        ~chatplayer("<p,quiz>What happened to the folk of this town?");
+        ~chatnpc("<p,neutral>That's a long story, my friend, but you look like you have the time...");
+        ~chatnpc("<p,neutral>Do you know why ghosts exist?");
+        ~chatplayer("<p,neutral>A ghost is a soul left in limbo, unable to pass over to the next world; they might have something left to do in this world that torments them, or they might just have died in a state of confusion.");
+        ~chatnpc("<p,neutral>Yes, that is normally the case. But here in Port Phasmatys, we of this town once chose freely to become ghosts!");
+        ~chatplayer("<p,shock>Why on earth would you do such a thing?");
+        ~chatnpc("<p,neutral>It is a long story. Many years ago, this was a thriving port, a trading centre to the eastern lands of RuneScape. We became rich on the profits made from the traders that came across the eastern seas.");
+        ~chatnpc("<p,neutral>We were very happy...|until Lord Drakan noticed us.");
+        ~chatnpc("<p,neutral>He sent unholy creatures to demand that a blood-tithe be paid to the Lord Vampire, as is required from all in the domain of Morytania. We had no choice but to agree to his demands.");
+        ~chatnpc("<p,neutral>As the years went by, our numbers dwindled and many spoke of abandoning the town for safer lands.|Then, Necrovarus came to us.");
+        ~chatnpc("<p,neutral>He came from the eastern lands, but of more than that, little is known. Some say he was once a mage, some say a priest. Either way, he was in possession of knowledge totally unknown to even the most learned among us.");
+        ~chatnpc("<p,neutral>Necrovarus told us that he had been brought by a vision he'd had of an underground source of power. He inspired us to delve beneath the town, promising us the power to repel the vampires.");
+        ~chatnpc("<p,neutral>Deep underneath Phasmatys, we found a pool of green slime that Necrovarus called ectoplasm. He showed us how to build the Ectofuntus, which would turn the ectoplasm into the power he had promised us.");
+        ~chatnpc("<p,neutral>Indeed, this Ectopower did repel the vampires; they would not enter Phasmatys once the Ectofuntus began working. But little did we know that we had exchanged one evil for yet another - Ectopower.");
+        ~chatnpc("<p,neutral>Little by little, we began to lose any desire for food or water, and our desire for the Ectopower grew until it dominated our thoughts entirely. Our bodies shrivelled and, one by one, we died.");
+        ~chatnpc("<p,neutral>The Ectofuntus and the power it emanates keeps us here as ghosts - some, like myself, content to remain in this world; some becoming tortured souls who we do not allow to pass our gates.");
+        ~chatnpc("<p,neutral>We would be able to pass over into the next world but Necrovarus has used his power to create a psychic barrier, preventing us.");
+        ~chatnpc("<p,neutral>We must remain here for all eternity, even unto the very end of the world.");
+    case 4 :
+        ~chatplayer("<p,neutral>Do you have any jobs I can do?");
+        if (inv_total(inv, ahoy_bedsheet) = 0) {
+            ~chatnpc("<p,neutral>Yes, actually, I do. We have a very famous Master Bowman named Robin staying with us at the moment. Could you take him some clean bed linen for me?");
+            switch_int(~p_choice2("Yes, I'd be delighted.", 1, "No, I didn't mean a job like that.", 2)) {
+                case 1 :
+                    ~chatplayer("<p,happy>Yes, I'd be delighted.");
+                    inv_add(inv, ahoy_bedsheet, 1);
+                    ~chatnpc("<p,neutral>Oh, thank you. Be careful with that Robin, though - he's far too full of himself, that one.");
+                case 2 :
+                    ~chatplayer("<p,neutral>No, I didn't mean a job like that.");
+            }
+        } else {
+            ~chatnpc("<p,neutral>Well, you could take that bedsheet through to Robin like I asked.");
+        }
+    case 5 :
+        ~chatplayer("<p,neutral>Nothing, thanks.");
+}
+
+[opheld2,ahoy_bedsheet]
+~equip(last_slot);

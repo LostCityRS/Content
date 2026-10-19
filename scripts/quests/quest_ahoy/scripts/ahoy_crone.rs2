@@ -1,0 +1,7 @@
+[opnpc1,ahoy_crone]
+~chatplayer("<p,quiz>Hello, old woman.");
+
+def_int $rand = random(3);
+if($rand = 0) ~chatnpc("<p,neutral>I lived here when this was all just fields, you know.");
+else if($rand = 1) ~chatnpc("<p,neutral>When 100 years old you reach, look like a prune you will.");
+else ~chatnpc("<p,neutral>I'm over 100 years old, you know.");

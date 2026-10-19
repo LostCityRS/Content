@@ -10,6 +10,8 @@ iop1=Bury
 weight=500g
 category=bones
 param=bone_exp,45
+param=ahoy_bones_type,1
+param=next_obj_stage,pot_bonemeal
 
 [bones_burnt]
 name=Burnt bones
@@ -25,6 +27,8 @@ iop1=Bury
 weight=500g
 category=bones
 param=bone_exp,45
+param=ahoy_bones_type,2
+param=next_obj_stage,pot_bonemeal_burnt
 
 [bat_bones]
 name=Bat bones
@@ -41,6 +45,8 @@ category=bones
 param=bone_exp,45
 param=grindable_ingredient_refined,ground_bat_bones
 param=grindable_ingredient_message,You grind the bones to a powder.
+param=ahoy_bones_type,3
+param=next_obj_stage,pot_bonemeal_bat
 
 [big_bones]
 name=Big bones
@@ -54,6 +60,8 @@ weight=800g
 category=bones
 respawnrate=50
 param=bone_exp,150
+param=ahoy_bones_type,4
+param=next_obj_stage,pot_bonemeal_big
 
 [babydragon_bones]
 name=Babydragon bones
@@ -67,6 +75,8 @@ iop1=Bury
 weight=800g
 category=bones
 param=bone_exp,300
+param=ahoy_bones_type,5
+param=next_obj_stage,pot_bonemeal_babydragon
 
 [dragon_bones]
 name=Dragon bones
@@ -80,4 +90,5 @@ members=yes
 weight=1500g
 category=bones
 param=bone_exp,720
-
+param=ahoy_bones_type,6
+param=next_obj_stage,pot_bonemeal_dragon
