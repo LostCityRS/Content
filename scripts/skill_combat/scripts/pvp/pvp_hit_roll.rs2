@@ -1,0 +1,11 @@
+[proc,pvp_attack_roll](int $damagetype)(int)
+def_int $attack_roll = ~player_attack_roll_specific($damagetype);
+return($attack_roll);
+
+[proc,pvp_defence_roll](int $damagetype)(int)
+def_int $defence_roll = ~player_defence_roll_specific($damagetype);
+return($defence_roll);
+
+[proc,.pvp_defence_roll](int $damagetype)(int)
+def_int $defence_roll = ~.player_defence_roll_specific($damagetype);
+return ($defence_roll);

@@ -179,11 +179,7 @@ if ($maxhit = null) {
     return;
 }
 
-if (~.check_protect_prayer(^magic_style) = true) {
-    $maxhit = scale(6, 10, $maxhit); // reduction of 40%
-}
-def_int $damage = randominc($maxhit); // tick eating existed! https://oldschool.runescape.wiki/w/Update:The_Wintertodt
-$damage = min($damage, .stat(hitpoints));
+def_int $damage = ~pvp_magic_damage(~magic_spell($spell_data), $maxhit);
 ~.pvp_damage(calc($duration / 30 + 1), $damage); // delayed an extra tick: https://youtu.be/eEdE0mvglM4?t=62
 // didnt have a flinch anim until sept 20 2006: https://oldschool.runescape.wiki/w/Update:Slug_Menace
 ~give_combat_experience_pvp($damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
@@ -240,12 +236,10 @@ if (~player_autocast_enabled = true & db_getfield($spell_data, magic_spell_table
 return($duration);
 
 [proc,magic_spell_maxhit](dbrow $spell_data)(int)
-def_int $maxhit = db_getfield($spell_data, magic_spell_table:maxhit, 0);
-def_int $spell = db_getfield($spell_data, magic_spell_table:spell, 0);
-if (inv_total(worn, gauntlets_of_chaos) > 0 & $spell >= ^wind_bolt & $spell <= ^fire_bolt) {
-    $maxhit = add($maxhit, 3);
-}
-return($maxhit);
+return(db_getfield($spell_data, magic_spell_table:maxhit, 0));
+
+[proc,magic_spell](dbrow $spell_data)(int)
+return(db_getfield($spell_data, magic_spell_table:spell, 0));
 
 // https://youtu.be/1A_AITzasxE?t=431
 [queue,pvp_freeze_player](int $duration)

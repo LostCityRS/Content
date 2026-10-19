@@ -96,7 +96,7 @@ sound_synth(npc_param(attack_sound), 1, 0);
 ~npc_set_attack_vars;
 
 def_int $attack_roll = ~npc_melee_attack_roll;
-def_int $defence_roll = ~player_defence_roll_specific(npc_param(damagetype));
+def_int $defence_roll = ~pvm_defence_roll(npc_param(damagetype));
 def_int $maxhit = ~npc_melee_maxhit;
 
 // npc_say("Clock: <tostring(map_clock)>, NPC A: <tostring($attack_roll)>, Player D: <tostring($defence_roll)>, NPC Max: <tostring($maxhit)>");

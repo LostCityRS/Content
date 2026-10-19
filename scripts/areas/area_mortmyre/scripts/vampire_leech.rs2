@@ -20,7 +20,7 @@ if (npc_param(attack_sound) ! null) {
 
 [proc,leech_meleeattack]
 def_int $attack_roll = ~npc_melee_attack_roll;
-def_int $defence_roll = ~player_defence_roll_specific(npc_param(damagetype));
+def_int $defence_roll = ~pvm_defence_roll(npc_param(damagetype));
 def_int $maxhit = ~npc_melee_maxhit;
 
 def_int $damage = 0;

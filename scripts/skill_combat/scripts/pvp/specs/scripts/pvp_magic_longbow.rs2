@@ -19,10 +19,7 @@ def_int $duration = ~player_projectile(coord, .coord, .uid, sp_attack_glow_arrow
 
 def_int $combat_stat = ~combat_stat(add(stat(ranged), 10), oc_param($ammo, rangebonus)); // + 10 ranged levels
 def_int $maxhit = ~combat_maxhit($combat_stat);
-if (~.check_protect_prayer(^ranged_style) = true) {
-    $maxhit = scale(6, 10, $maxhit); // reduction of 40%
-}
-def_int $damage = min(randominc($maxhit), .stat(hitpoints));
+def_int $damage = ~pvp_ranged_damage($maxhit);
 ~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
 both_heropoints($damage);
 

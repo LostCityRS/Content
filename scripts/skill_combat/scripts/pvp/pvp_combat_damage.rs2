@@ -1,0 +1,25 @@
+[proc,pvp_melee_damage](int $maxhit)(int)
+if (~.check_protect_prayer(^melee_style) = true) {
+    $maxhit = scale(6, 10, $maxhit); // reduction of 40%
+}
+return(min(randominc($maxhit), .stat(hitpoints))); // tick eating existed! https://oldschool.runescape.wiki/w/Update:The_Wintertodt
+
+
+
+[proc,pvp_ranged_damage](int $maxhit)(int)
+if (~.check_protect_prayer(^ranged_style) = true) {
+    $maxhit = scale(6, 10, $maxhit); // reduction of 40%
+}
+return(min(randominc($maxhit), .stat(hitpoints))); // tick eating existed! https://oldschool.runescape.wiki/w/Update:The_Wintertodt
+
+
+
+[proc,pvp_magic_damage](int $spell, int $maxhit)(int)
+if (inv_total(worn, gauntlets_of_chaos) > 0 & $spell >= ^wind_bolt & $spell <= ^fire_bolt) {
+    $maxhit = add($maxhit, 3);
+}
+if (~.check_protect_prayer(^magic_style) = true) {
+    $maxhit = scale(6, 10, $maxhit); // reduction of 40%
+}
+
+return(min(randominc($maxhit), .stat(hitpoints))); // tick eating existed! https://oldschool.runescape.wiki/w/Update:The_Wintertodt
