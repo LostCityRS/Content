@@ -109,6 +109,11 @@ if ($obj = castlewars_saradomin_banner | $obj = castlewars_zamorak_banner) {
     ~castlewars_flag_drop(inv, $obj);
 }
 ~runecraft_unset_no_tally($obj);
+//Stub ready for implementation
+// After killing Agrith-Naar, removing Darklight lets you choose the combat XP reward.
+//if ($obj = darklight & %agrith_quest = ^agrith_final_fight) {
+//    queue(agrith_darklight_reward, 0, 0);
+//}
 
 // used for duel arena, no weapon/no armour
 [proc,try_unequip](int $slot)
