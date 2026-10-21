@@ -2,7 +2,7 @@
 def_int $progress = ~itexam_progress;
 
 if ($progress = ^itexam_complete) {
-    @archaeological_expert_quest_complete;
+    @archaeological_expert_desert_treasure; // Previously archaeological_expert_quest_complete
 } else if ($progress < ^itexam_mineshaft_permit) {
     ~chatplayer("<p,happy>Hello. Who are you?");
     ~chatnpc("<p,happy>Good day to you. My name is Terry Balando; I am an expert on digsite finds.");
