@@ -246,6 +246,9 @@ if (%troll_love = ^troll_love_complete) {
 if (%golem_a = ^golem_complete) {
     $questpoints = add($questpoints, ^golem_questpoints);
 }
+if (%roving_elves_quest = ^roving_complete) {
+    $questpoints = add ($questpoints, ^roving_questpoints);
+}
 return ($questpoints);
 
 [proc,update_questlist]
@@ -319,6 +322,7 @@ if (testbit(%ibanmulti, ^upass_started_bit) = ^true & %upass ! ^upass_complete) 
 ~send_quest_progress_colour(questlist:troll_love, %troll_love, ^troll_love_complete);
 ~send_quest_progress_colour(questlist:golem, %golem_a, ^golem_complete);
 ~send_quest_progress_colour(questlist:troll, %troll_quest, ^troll_complete);
+~send_quest_progress_colour(questlist:roving_elves, %roving_elves_quest, ^roving_complete);
 if_settab(questlist, ^tab_quest_journal);
 
 if (%drunkmonkquest >= ^drunkmonk_spoken_to_omad) {
