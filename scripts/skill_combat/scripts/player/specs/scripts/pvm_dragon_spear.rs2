@@ -36,21 +36,33 @@ switch_int ($dir) {
         $end_coord = movecoord($target_coord, -1, 0, -1);
         if (lineofwalk($target_coord, $end_coord) = false) {
             $end_coord = movecoord($target_coord, -1, 0, 0);
+            if (lineofwalk($target_coord, $end_coord) = false) {
+                $end_coord = movecoord($target_coord, -1, 0, 1);
+            }
         }
     case ^exact_east : 
         $end_coord = movecoord($target_coord, 1, 0, 1);
         if (lineofwalk($target_coord, $end_coord) = false) {
             $end_coord = movecoord($target_coord, 1, 0, 0);
+            if (lineofwalk($target_coord, $end_coord) = false) {
+                $end_coord = movecoord($target_coord, 1, 0, -1);
+            }
         }
     case ^exact_north : 
         $end_coord = movecoord($target_coord, -1, 0, 1);
         if (lineofwalk($target_coord, $end_coord) = false) {
             $end_coord = movecoord($target_coord, 0, 0, 1);
+            if (lineofwalk($target_coord, $end_coord) = false) {
+                $end_coord = movecoord($target_coord, 1, 0, 1);
+            }
         }
     case ^exact_south : 
         $end_coord = movecoord($target_coord, 1, 0, -1);
         if (lineofwalk($target_coord, $end_coord) = false) {
             $end_coord = movecoord($target_coord, 0, 0, -1);
+            if (lineofwalk($target_coord, $end_coord) = false) {
+                $end_coord = movecoord($target_coord, -1, 0, -1);
+            }
         }
 }
 if (lineofwalk($target_coord, $end_coord) = true) {
