@@ -1,6 +1,9 @@
 [oplocu,fountain_of_heroes]
 if (last_useitem = amulet_of_glory | last_useitem = amulet_of_glory_1 | last_useitem = amulet_of_glory_2 | last_useitem = amulet_of_glory_3) {
     def_int $slot = last_useslot;
+    if (inv_getobj(inv, $slot) ! last_useitem) {
+        return;
+    }
     mes("You dip the amulet in the fountain...");
     anim(human_pickupfloor, 0);
     inv_setslot(inv, $slot, amulet_of_glory_4, 1); // setslot in osrs
