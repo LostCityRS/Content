@@ -189,3 +189,8 @@ if ($shield ! null & oc_param($shield, defend_sound) ! human_hit & (map_members 
 } 
 return(human_block_1);
 
+[proc,damagetype_melee](int $damagetype)(boolean)
+if ($damagetype = ^stab_style | $damagetype = ^slash_style | $damagetype =  ^crush_style) {
+    return (true);
+}
+return(false);

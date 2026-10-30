@@ -108,7 +108,7 @@ if (~npc_check_notcombat_self = false) {
     return;
 }
 def_int $attack_roll = ~npc_ranged_attack_roll;
-def_int $defence_roll = ~player_defence_roll_specific(npc_param(damagetype));
+def_int $defence_roll = ~pvm_defence_roll(npc_param(damagetype));
 def_int $maxhit = ~npc_ranged_maxhit;
 
 npc_anim(troll_rock_throw_lefthand, 0);

@@ -1,0 +1,99 @@
+[proc,pvm_melee_damage](int $maxhit)(int)
+if(npc_type = horror_dagganoth_air | npc_type = horror_dagganoth_water | npc_type = horror_dagganoth_earth | npc_type = horror_dagganoth_fire | npc_type = horror_dagganoth_ranged) {
+    return (0);
+}
+if (npc_type = count_draynor & inv_total(inv, garlic) > 0) {
+    $maxhit = add($maxhit, 1);
+}
+if (npc_param(demonbane_vulnerable) = true & inv_total(worn, silverlight) > 0) {
+    $maxhit = scale(160, 100, $maxhit);
+}
+if (npc_param(undead) = ^true & inv_total(worn, crystalshard_necklace) > 0) {
+    $maxhit = scale($maxhit, 7, 6); // seems like damage bonus... todo: figure this out
+}
+
+$maxhit = min($maxhit, npc_param(max_dealt));
+
+return (randominc($maxhit));
+
+
+
+[proc,pvm_ranged_damage](int $maxhit)(int)
+if(npc_type = horror_dagganoth_air | npc_type = horror_dagganoth_water | npc_type = horror_dagganoth_earth | npc_type = horror_dagganoth_fire | npc_type = horror_dagganoth_melee) {
+    return (0);
+}
+
+if (npc_type = count_draynor & inv_total(inv, garlic) > 0) {
+    $maxhit = add($maxhit, 1);
+}
+if (inv_total(worn, holy_water) > 0) {
+    if(npc_param(demonbane_vulnerable) = true) {
+        $maxhit = scale(160, 100, %com_maxhit);
+        if(npc_type = nezikchened) {
+            $maxhit = add($maxhit, 5);
+        }
+        if (npc_stat(defence) >= npc_basestat(defence)) npc_statsub(defence, 0, 5);
+    } else {
+        $maxhit = 0;
+    }
+}
+
+$maxhit = min($maxhit, npc_param(max_dealt));
+
+return(randominc($maxhit));
+
+
+
+[proc,pvm_magic_damage](int $spell, int $maxhit)(int)
+if (inv_total(worn, gauntlets_of_chaos) > 0 & $spell >= ^wind_bolt & $spell <= ^fire_bolt) {
+    $maxhit = add($maxhit, 3);
+}
+
+if (npc_type = count_draynor & inv_total(inv, garlic) > 0) {
+    $maxhit = add($maxhit, 1);
+}
+
+if(npc_type = horror_dagganoth_air) {
+    if($spell = ^wind_strike | $spell = ^wind_bolt | $spell = ^wind_blast | $spell = ^wind_wave) {
+        return ($maxhit);
+    }
+    return (0);
+}
+if(npc_type = horror_dagganoth_water) {
+    if($spell = ^water_strike | $spell = ^water_bolt | $spell = ^water_blast | $spell = ^water_wave) {
+        return ($maxhit);
+    }
+    return (0);
+}
+if(npc_type = horror_dagganoth_earth) {
+    if($spell = ^earth_strike | $spell = ^earth_bolt | $spell = ^earth_blast | $spell = ^earth_wave) {
+        return ($maxhit);
+    }
+    return (0);
+}
+if(npc_type = horror_dagganoth_fire) {
+    if($spell = ^fire_strike | $spell = ^fire_bolt | $spell = ^fire_blast | $spell = ^fire_wave) {
+        return ($maxhit);
+    }
+    return (0);
+}
+if(npc_type = horror_dagganoth_melee | npc_type = horror_dagganoth_ranged) {
+    return (0);
+}
+
+$maxhit = min($maxhit, npc_param(max_dealt));
+def_int $damage = randominc($maxhit);
+
+if(npc_type = salarin_the_twisted) {
+    // strike spells are the only way to damage salarin the twisted, the damage is fixed 9-12
+    switch_int ($spell) {
+        case ^wind_strike : $damage = 9;
+        case ^water_strike : $damage = 10;
+        case ^earth_strike : $damage = 11;
+        case ^fire_strike : $damage = 12;
+    }
+}
+else if (npc_type = chronozon) {
+    ~chronozon_spell($spell);
+}
+return($damage);

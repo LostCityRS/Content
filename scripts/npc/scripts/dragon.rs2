@@ -104,7 +104,7 @@ sound_synth(dragonbreath, 1, 30);
 %npc_action_delay = add(map_clock, 4);
 
 def_int $attack_roll = ~npc_magic_attack_roll;
-def_int $defence_roll = ~player_defence_roll_specific(npc_param(damagetype));
+def_int $defence_roll = ~pvm_defence_roll(npc_param(damagetype));
 
 // damage player
 def_int $maxhit = 30;

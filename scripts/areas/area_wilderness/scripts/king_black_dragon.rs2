@@ -157,7 +157,7 @@ spotanim_pl(fireblast_impact, 124, $duration); // https://web.archive.org/web/20
 def_int $damage = 0;
 
 def_int $attack_roll = ~npc_magic_attack_roll;
-def_int $defence_roll = ~player_defence_roll_specific(^magic_style);
+def_int $defence_roll = ~pvm_defence_roll(^magic_style);
 if (randominc($attack_roll) > randominc($defence_roll)) {
     $damage = randominc(~kbd_fiery_breath_maxhit);
     if (%prayer12 = ^false & inv_total(worn, antidragonbreathshield) < 1) {
@@ -182,7 +182,7 @@ sound_synth(dragonbreath, 1, 30);
 def_int $damage = 0;
 
 def_int $attack_roll = ~npc_magic_attack_roll;
-def_int $defence_roll = ~player_defence_roll_specific(^magic_style);
+def_int $defence_roll = ~pvm_defence_roll(^magic_style);
 if (randominc($attack_roll) > randominc($defence_roll)) {
     $damage = randominc(~kbd_fiery_breath_maxhit);
     if (%prayer12 = ^false & inv_total(worn, antidragonbreathshield) < 1) {
@@ -207,7 +207,7 @@ sound_synth(toxicbreath, 1, 30);
 def_int $damage = 0;
 
 def_int $attack_roll = ~npc_magic_attack_roll;
-def_int $defence_roll = ~player_defence_roll_specific(^magic_style);
+def_int $defence_roll = ~pvm_defence_roll(^magic_style);
 if (randominc($attack_roll) > randominc($defence_roll)) {
     $damage = randominc(~kbd_special_breath_maxhit);
     def_int $random = random(2); // 50% chance upon successful hit to inflict a unique effect (osrs)
@@ -238,7 +238,7 @@ spotanim_pl(nezik_flamestrike, 0, 60);
 def_int $damage = 0;
 
 def_int $attack_roll = ~npc_magic_attack_roll;
-def_int $defence_roll = ~player_defence_roll_specific(^magic_style);
+def_int $defence_roll = ~pvm_defence_roll(^magic_style);
 if (randominc($attack_roll) > randominc($defence_roll)) {
     $damage = randominc(~kbd_special_breath_maxhit);
     def_int $random = random(2); // 50% chance upon successful hit to inflict a unique effect (osrs)
@@ -284,7 +284,7 @@ sound_synth(kingicebreath, 1, 30);
 def_int $damage = 0;
 
 def_int $attack_roll = ~npc_magic_attack_roll;
-def_int $defence_roll = ~player_defence_roll_specific(^magic_style);
+def_int $defence_roll = ~pvm_defence_roll(^magic_style);
 if (randominc($attack_roll) > randominc($defence_roll)) {
     $damage = randominc(~kbd_special_breath_maxhit);
     def_int $random = random(2); // 50% chance upon successful hit to inflict a unique effect (osrs)
