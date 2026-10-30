@@ -62,7 +62,6 @@ def_coord $vanstrom_coord = movecoord($roomcoords, 0, 0, -1);
 npc_add($veliaf_coord, route_veliaf_hurtz, 1000);
 npc_add($sani_coord, route_sani_piliu, 1000);
 %npc_attacking_uid = uid;
-def_npc_uid $sani_uid = npc_uid;
 
 npc_add($harold_coord, route_harold_evans, 1000);
 %npc_attacking_uid = uid;
@@ -73,7 +72,7 @@ npc_add(movecoord($roomcoords, 5, 0, -3), route_radigad_ponfit, 1000);
 // https://web.archive.org/web/20060912145604im_/http://www.runeweb.net/Roth/Myreque_Quest/10.PNG
 // this 2005 guide shows the dialogue in the cutscene without "click here to continue", but by 2007 this is changed
 // meaning the cutscene was probably reworked at some point in 2006-2007 (maybe darkness of hallowvale)
-// the delays and timing here are guessed, cam packets likely need an extra check
+//guess, the delays and timing here; cam packets likely need an extra check
 ~chatnc_cutscene(nc_name(route_veliaf_hurtz), route_veliaf_hurtz, "<p,angry>Hey, what's that mist coming in through the door!|! TEAM WE HAVE A VAMPIRE IN THE ROOM !");
 p_delay(3);
 mes("You see a shifting mist enter the room!");
