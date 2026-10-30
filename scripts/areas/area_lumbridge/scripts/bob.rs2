@@ -34,6 +34,9 @@ if (oc_param($item, to_be_fixed_by_bob) = ^true) {
     
     def_int $option = ~p_choice2("Yes, please.", 1, "No, thank you.", 2);
     if ($option = 1) {
+        if (inv_getobj(inv, $slot) ! $item) {
+            return;
+        }
         if ($cost = 0) {
             inv_delslot(inv, $slot);
             inv_add(inv, oc_param($item, fixed), 1);
