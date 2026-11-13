@@ -50,8 +50,12 @@ switch_obj(last_useitem) {
 }
 
 [label,curator_stamp_letter]
+// Currently follows RSC dialog https://youtu.be/smHxkoYy7xE?t=51
+// At some point before 2008 (pre-HD), part of this dialog is updated to reference the player's name
+// and participation in the Shield of Arrav https://youtu.be/nFufoHQmT5E?t=123 (2008) / https://youtu.be/S6dfobWJESA?t=130 (OSRS)
+// and Romeo and Juliet quests https://youtu.be/t8qI8c0UJCE?t=155 - maybe when Dig Site was reworked?
 ~chatplayer("<p,happy>I have been given this letter by an examiner at the Dig Site. Can you stamp this for me?");
-~chatnpc("<p,confused>What we have here? A letter of recommendation indeed...");
+~chatnpc("<p,confused>What have we here? A letter of recommendation indeed...");
 ~chatnpc("<p,happy>Normally I wouldn't do this...|But in this instance I don't see why not.");
 // osrs sets varbit 2552 (varp 135, bit 9) to 1 signifying we've already stamped once, if we bring another letter to stamp the curator will instead say
 // player: I have another letter here; could you stamp it for me again?
