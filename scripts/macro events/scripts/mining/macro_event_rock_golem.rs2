@@ -49,7 +49,7 @@ def_int $delay = ~player_projectile(npc_coord, coord, uid, dwarf_stone_throw_lau
 sound_synth(golem_attack, 1, 120);
 
 def_int $attack_roll = ~npc_ranged_attack_roll;
-def_int $defence_roll = ~player_defence_roll_specific(^ranged_style);
+def_int $defence_roll = ~pvm_defence_roll(^ranged_style);
 
 def_int $maxhit = ~combat_maxhit(npc_stat(ranged));
 def_int $damage = 0;

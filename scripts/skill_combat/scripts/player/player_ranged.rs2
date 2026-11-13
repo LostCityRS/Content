@@ -33,22 +33,7 @@ if ($ammo = null) {
 // check hit, give combat xp
 def_int $damage = 0;
 if (~player_npc_hit_roll(%damagetype) = true) {
-    def_int $maxhit = %com_maxhit;
-    if (npc_type = count_draynor & inv_total(inv, garlic) > 0) {
-        $maxhit = add($maxhit, 1);
-    }
-    if (inv_total(worn, holy_water) > 0) {
-        if(npc_param(demonbane_vulnerable) = true) {
-            $maxhit = scale(160, 100, %com_maxhit);
-            if(npc_type = nezikchened) {
-                $maxhit = add($maxhit, 5);
-            }
-            if (npc_stat(defence) >= npc_basestat(defence)) npc_statsub(defence, 0, 5);
-        } else {
-            $maxhit = 0;
-        }
-    }
-    $damage = randominc(~npc_max_dealt($maxhit, 0));
+    $damage = ~pvm_ranged_damage(%com_maxhit);
     def_int $damage_capped = min($damage, npc_stat(hitpoints));
     ~give_combat_experience(%damagestyle, $damage_capped, %npc_combat_xp_multiplier);
     npc_heropoints($damage_capped);

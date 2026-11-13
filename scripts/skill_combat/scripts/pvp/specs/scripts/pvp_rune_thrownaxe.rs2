@@ -86,10 +86,7 @@ def_int $maxhit = ~combat_maxhit($combat_stat);
 $duration = ~player_projectile($start, .coord, .uid, sp_attack_chainhit_travel_spotanim, 40, 36, $duration, 15, 0, 11, 5);
 def_boolean $hit = ~pvp_hit_roll(%damagetype);
 if ($hit = true) {
-    if (~.check_protect_prayer(^ranged_style) = true) {
-        $maxhit = scale(6, 10, $maxhit); // reduction of 40%
-    }
-    $damage = min(randominc($maxhit), .stat(hitpoints));
+    $damage = ~pvp_ranged_damage($maxhit);
     ~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
     both_heropoints($damage);
 }

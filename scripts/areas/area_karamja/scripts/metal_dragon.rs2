@@ -72,7 +72,7 @@ queue*(playerhit_n_retaliate, calc($duration / 30))(npc_uid);
 
 [proc,metal_dragon_breath_maxhit]()(int)
 def_int $attack_roll = ~npc_magic_attack_roll;
-def_int $defence_roll = ~player_defence_roll_specific(npc_param(damagetype));
+def_int $defence_roll = ~pvm_defence_roll(npc_param(damagetype));
 def_int $maxhit = 30;
 if (inv_total(worn, antidragonbreathshield) > 0) {
     $maxhit = 5;
