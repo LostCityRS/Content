@@ -1,0 +1,16 @@
+// WHAT poll_cast ANSWERS. These ARE the engine's VoteResult (src/engine/poll/PollBook.ts) and the
+// correspondence is the contract between the two files - a number here that drifts from the enum
+// there means the clerk cheerfully tells somebody their vote went in when it did not.
+//
+// ^poll_unavailable is -1 rather than 4 because it is not a result the database gave: it is the
+// database not answering at all, which the op decides before it ever gets that far.
+^poll_cast = 0
+^poll_already = 1
+^poll_closed = 2
+^poll_badoption = 3
+^poll_unavailable = -1
+
+// The widest menu content has is ~p_choice5, so five is the most options a poll can be ASKED with
+// in game. tools/server/poll.ts refuses to post more than this for that reason - a sixth option
+// would be invisible here while being perfectly votable on the website, which is the worst of both.
+^poll_max_options = 5

@@ -1231,3 +1231,27 @@
 [command,vote_claim]()(int)
 [command,vote_owed]()(int)
 [command,vote_take](int $count)(int)
+
+// POLLS (custom, 2026-11-15) - see Engine-TS src/engine/poll/. A question the owner puts up with
+// tools/server/poll.ts, answered once per account, in game here or on the website.
+//
+// THE POLL ID GOES BACK IN ON EVERY CALL. poll_open hands it over once and the dialogue carries it,
+// so a poll that closes mid-conversation cannot have the question come from one poll and the
+// options from another - the cast is refused against the id the player was actually shown.
+//
+// NOTHING HERE CAN THROW. A poll database that will not open answers 0 options and an empty
+// question, because a poll is an npc asking a question and must never break a dialogue. poll_cast
+// is the exception that reports it, as ^poll_unavailable, so the clerk can say the vote did not go
+// in rather than claiming it did.
+//
+// ONE VOTE PER ACCOUNT IS NOT CHECKED IN SCRIPT. poll_cast's insert is refused by the database's
+// own primary key, because the website writes the same table and a check followed by a write is a
+// race against another process.
+[command,poll_open]()(int)
+[command,poll_question](int $poll)(string)
+[command,poll_optioncount](int $poll)(int)
+[command,poll_option](int $poll, int $idx)(string)
+[command,poll_voted](int $poll)(int)
+[command,poll_cast](int $poll, int $idx)(int)
+[command,poll_votes](int $poll, int $idx)(int)
+[command,poll_total](int $poll)(int)

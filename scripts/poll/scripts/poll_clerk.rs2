@@ -1,0 +1,90 @@
+// THE POLL, ASKED BY THE VOTE CLERK. She already says "I keep the ledger of who has voted", which
+// is what a poll is, so she gets this rather than a new npc - no new model, no new spawn, and the
+// player already knows where she stands.
+//
+// IT COMES BEFORE HER MENU, NOT IN IT. Two reasons. Her [opnpc1] menu is already a full
+// ~p_choice4, so there is no fifth slot; and a poll is open for a few days and then gone for good,
+// which is not something to bury under "Let's see the rewards, then." A player who does not want
+// to vote says so once and is not asked again until the next poll.
+//
+// EVERY PATH RETURNS. This proc is called in the middle of the clerk's own dialogue, so falling
+// out of the bottom of it has to leave her exactly where she was - the vote conversation finishes
+// and the reward conversation carries on.
+
+[proc,poll_offer]
+def_int $poll = poll_open;
+if ($poll = 0) {
+    return;
+}
+
+// Looked at rather than spent, which is the same split vote_owed makes against vote_take: she can
+// tell somebody what they chose without that counting as anything.
+def_int $mine = poll_voted($poll);
+if ($mine > 0) {
+    def_string $chose = poll_option($poll, $mine);
+    ~chatnpc("<p,neutral>The poll's still open, and you've had your say. You chose <$chose>.");
+    ~chatnpc("<p,neutral>The counts go up on the website when it closes.");
+    return;
+}
+
+~chatnpc("<p,quiz>There's a poll open, if you want your say in it.");
+if (~p_choice2("Yes, what's the question?", 1, "Not now.", 2) ! 1) {
+    ~chatplayer("<p,neutral>Not now.");
+    ~chatnpc("<p,neutral>It'll keep. Ask me again while it's open.");
+    return;
+}
+~chatplayer("<p,quiz>Yes, what's the question?");
+~mesbox(poll_question($poll));
+~poll_ask($poll);
+
+// THE MENU IS BUILT BY ARITY, because ~p_choiceN is a fixed number of arguments and a poll's
+// options are not. Two through five, which is every poll the tool will post; see ^poll_max_options.
+[proc,poll_ask](int $poll)
+def_int $count = poll_optioncount($poll);
+def_int $pick = 0;
+
+if ($count = 2) {
+    $pick = ~p_choice2(poll_option($poll, 1), 1, poll_option($poll, 2), 2);
+}
+if ($count = 3) {
+    $pick = ~p_choice3(poll_option($poll, 1), 1, poll_option($poll, 2), 2, poll_option($poll, 3), 3);
+}
+if ($count = 4) {
+    $pick = ~p_choice4(poll_option($poll, 1), 1, poll_option($poll, 2), 2, poll_option($poll, 3), 3, poll_option($poll, 4), 4);
+}
+if ($count >= 5) {
+    $pick = ~p_choice5(poll_option($poll, 1), 1, poll_option($poll, 2), 2, poll_option($poll, 3), 3, poll_option($poll, 4), 4, poll_option($poll, 5), 5);
+}
+
+// Nought means the poll had fewer than two options or more than this dialogue can show. Neither
+// should reach a player - PollBook refuses to create a poll with one option and the tool refuses
+// more than five - so this is the case that should be impossible, said out loud rather than
+// leaving somebody staring at a clerk who has stopped talking.
+if ($pick = 0) {
+    ~chatnpc("<p,neutral>I can't put that one to you here. You can answer it on the website.");
+    return;
+}
+
+~poll_record($poll, $pick);
+
+[proc,poll_record](int $poll, int $pick)
+def_int $result = poll_cast($poll, $pick);
+
+if ($result = ^poll_cast) {
+    ~chatnpc("<p,happy>Noted, and marked down. One answer each, so that's yours in.");
+    return;
+}
+if ($result = ^poll_already) {
+    // Reachable without anybody doing anything strange: the website writes the same table, so a
+    // player can have voted there in another window since this conversation began.
+    ~chatnpc("<p,neutral>You're already in the ledger for this one, so I've left it as it was.");
+    return;
+}
+if ($result = ^poll_closed) {
+    ~chatnpc("<p,neutral>That one closed while we were talking. Nothing was counted, I'm afraid.");
+    return;
+}
+
+// ^poll_badoption and ^poll_unavailable both land here. The difference matters to whoever reads the
+// log and not at all to the player, whose vote did not go in either way.
+~chatnpc("<p,sad>My ledger won't take it just now, so your answer isn't counted. Try me again shortly.");

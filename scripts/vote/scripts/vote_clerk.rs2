@@ -12,6 +12,11 @@
 // came. ~vote_deliver is the ledger; ~vote_collect_pending is what the clerk is already holding.
 ~vote_deliver;
 ~vote_collect_pending;
+// custom (2026-11-15) - the poll, if one is open. Before the reward menu rather than inside it:
+// her ~p_choice4 below has no fifth slot, and a poll is open for days and then gone, which is not
+// something to bury under a shop option. ~poll_offer returns on every path, including the one
+// where the player says no, so the ledger conversation carries on underneath it exactly as before.
+~poll_offer;
 if (%vote_points = 0) {
     ~chatnpc("<p,neutral>You have no vote points. Redeem a vote ticket and come back.");
 } else {
