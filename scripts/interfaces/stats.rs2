@@ -80,10 +80,10 @@
 [if_button,stats:com_266]
 ~open_farming_guide;
 
-// Construction (stat 21, added 2026-09-10). The stat exists and levels, but there is no
-// Player-owned house yet, so there is nothing for a guide to list.
+// Construction (stat 21, added 2026-09-10). The note here used to say there was no house yet and
+// so nothing for a guide to list; there are now sixteen room types and 351 buildable pieces.
 [if_button,stats:construction_button]
-mes("Construction arrives with the player-owned house. There's no skill guide for it yet.");
+~open_construction_guide;
 
 // Hunter (stat 22, added 2026-09-22). Butterfly netting is in; the guide lists its four species.
 [if_button,stats:hunter_button]

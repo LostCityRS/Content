@@ -156,6 +156,10 @@
 ^poh_furn_slots = 256
 ^poh_furn_items = 351
 
+// How many level bands the skill guide pages into (poh_guide_lo/hi in the enum). One
+// more button than this is used, for the Rooms page, and the interface has thirteen.
+^poh_guide_bands = 11
+
 // The bit layout of one packed piece. 30 bits, so it fits an int with room to spare.
 ^poh_furn_bit_rx = 0
 ^poh_furn_bit_rz = 3

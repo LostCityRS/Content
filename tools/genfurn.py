@@ -30,7 +30,50 @@ compile or will not work):
   - the labels inside a family are distinct, because a menu with two identical rows is a coin toss
 """
 
-import json, os, re, sys
+import collections, json, os, re, sys
+
+# HOW MANY ROWS THE SKILL GUIDE'S LIST HOLDS, and so how many pieces one of its pages can show.
+# skill_guide.if has lvl1..lvl40 / name1..name40 and ~skillguide_row's switch stops at 40, so 40 is
+# a hard ceiling rather than a preference; the bands are packed to 36 to leave room for a family
+# gaining a tier without having to re-band.
+GUIDE_PAGE = 36
+# Buttons available for bands. The interface has btn1..btn13 and the guide spends one of them on
+# its Rooms page, so twelve is the real limit.
+GUIDE_BANDS_MAX = 12
+
+
+def guide_bands(items):
+    """Contiguous level bands covering 1..99, each holding at most GUIDE_PAGE pieces.
+
+    The Construction guide cannot be paged by room the way OSRS pages it: there are sixteen rooms
+    and only thirteen buttons, and the chapel alone has 45 pieces against a 40-row list. So it is
+    paged by level, which is what the interface's own Level/Advancement columns are for, and the
+    boundaries are computed from the spec rather than written down - add a family and the bands
+    move by themselves instead of silently overflowing a page.
+    """
+    counts = collections.Counter(i['level'] for i in items)
+    bands, start = [], 1
+    while start <= 99:
+        end, n = start, 0
+        while end <= 99 and n + counts[end] <= GUIDE_PAGE:
+            n += counts[end]
+            end += 1
+        if end == start:
+            # One level holds more pieces than a page. Nothing in the spec does this today; if
+            # something ever does, the band is emitted anyway and the battery check below fails
+            # loudly rather than the guide dropping rows on the floor.
+            end = start + 1
+        bands.append((start, end - 1))
+        start = end
+    # The last band owns everything up to 99 so a piece added above it still has a page.
+    bands[-1] = (bands[-1][0], 99)
+    assert len(bands) <= GUIDE_BANDS_MAX, (
+        '%d level bands needed but only %d buttons are free - the guide has outgrown the interface'
+        % (len(bands), GUIDE_BANDS_MAX))
+    for lo, hi in bands:
+        n = sum(counts[l] for l in range(lo, hi + 1))
+        assert n <= 40, 'level band %d-%d holds %d pieces, past the 40-row list' % (lo, hi, n)
+    return bands
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SPEC = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'furnspec.json')
@@ -401,6 +444,52 @@ def emit_enum(fams, items, path):
           default='null')
     table('poh_fam_name', 'string', [(n, f['label']) for n, f in enumerate(fams, 1)],
           ['// What the Furniture creation window calls each hotspot family, for its title bar.'])
+
+    def guide_room(room):
+        parts = [p.strip() for p in room.split(',') if p.strip()]
+        if len(parts) != 1:
+            return 'Several rooms'
+        return parts[0][:1].upper() + parts[0][1:]
+
+    table('poh_fam_room', 'string',
+          [(n, guide_room(f['room'])) for n, f in enumerate(fams, 1)],
+          ['// Which room a family\'s hotspots are in, for the skill guide to put after a piece\'s name',
+           '// ("Oak bed (Bedroom)"). The spec\'s own room field, which until now only the docs read.',
+           '// The five families whose hotspots appear in more than one room say "Several rooms"',
+           '// rather than listing them: a rug space is in five, and the name column is 280px.'])
+
+    bands = guide_bands(items)
+    table('poh_guide_lo', 'int', [(n, lo) for n, (lo, _) in enumerate(bands, 1)],
+          ['// The skill guide\'s level bands - see guide_bands() in tools/genfurn.py for why the',
+           '// Construction guide is paged by level and not by room. Band n covers poh_guide_lo(n)',
+           '// to poh_guide_hi(n) inclusive, and the bands are contiguous from 1 to 99. Only the',
+           '// button labels read these; what a page actually draws is the slice below.'])
+    table('poh_guide_hi', 'int', [(n, hi) for n, (_, hi) in enumerate(bands, 1)])
+
+    # EVERY PIECE IN LEVEL ORDER, so a guide page is a slice and not a search. The obvious way to
+    # draw band 80-99 is to walk levels 80..99 and, for each, walk all 351 pieces looking for it -
+    # 7,000 iterations for one page, which is the shape of thing that killed the room window
+    # (claude/poh-menu-opcount.md). Sorting here instead makes a page cost one pass over its own
+    # rows, at most GUIDE_PAGE of them. Ties are broken by piece number so the order is stable.
+    order = sorted(items, key=lambda i: (i['level'], i['n']))
+    table('poh_guide_order', 'int', [(n, i['n']) for n, i in enumerate(order, 1)],
+          ['// The pieces in level order: poh_guide_order(n) is the nth piece by level. The skill',
+           '// guide walks a slice of this and reads the piece tables through it.'])
+    at = {}
+    for n, i in enumerate(order, 1):
+        at.setdefault(i['level'], n)
+    firsts, lasts = [], []
+    pos = 1
+    for bn, (lo, hi) in enumerate(bands, 1):
+        count = sum(1 for i in order if lo <= i['level'] <= hi)
+        firsts.append((bn, pos))
+        lasts.append((bn, pos + count - 1))
+        pos += count
+    assert pos - 1 == len(items), 'the bands do not cover every piece'
+    table('poh_guide_first', 'int', firsts,
+          ['// Where each band starts and ends inside poh_guide_order. A band with no pieces would',
+           '// have last < first, which the guide reads as an empty page rather than as an error.'])
+    table('poh_guide_last', 'int', lasts)
     # A family's pieces are consecutive because this generator writes them family by family, which is
     # what lets ~poh_furn_nth be two lookups instead of a walk down all %d rows. Asserted here as well
     # as in poh_battery.py check 51: if the spec ever interleaves families, the window would list the
@@ -556,6 +645,10 @@ def emit_constant(fams, items, slots, path='scripts/skill_construction/configs/c
              '// How many pieces one house can hold, and how many buildable things there are.',
              '^poh_furn_slots = %d' % slots,
              '^poh_furn_items = %d' % len(items),
+             '',
+             '// How many level bands the skill guide pages into (poh_guide_lo/hi in the enum). One',
+             '// more button than this is used, for the Rooms page, and the interface has thirteen.',
+             '^poh_guide_bands = %d' % len(guide_bands(items)),
              '',
              '// The bit layout of one packed piece. %d bits, so it fits an int with room to spare.'
              % sum(w for _, w in BITS)]

@@ -1,0 +1,80 @@
+// Construction skill guide, shown on the original RS2 skill guide interface
+// (see content/scripts/interfaces/skill_guide.rs2 for the generic driver).
+//
+// WHY THIS ONE IS PAGED BY LEVEL AND NOT BY ROOM. Every other categorised guide here pages by the
+// thing the skill is about - Smithing by metal, Crafting by material - and OSRS pages Construction
+// by room. That does not fit: the house has sixteen room types and the interface has thirteen
+// buttons, and the chapel alone holds 45 pieces against a 40-row list, so even after merging rooms
+// to fit the buttons a page would overflow. Level bands do fit, they are what the interface's own
+// Level / Advancement columns are for, and they answer the question a guide is opened to ask -
+// "I am 37, what can I build now?" - more directly than a room tab does. Where a piece goes is
+// kept, in brackets after its name.
+//
+// NOTHING HERE IS A LIST. The bands, the level order and the slice each band draws are all
+// generated into poh_furniture.enum by tools/genfurn.py from tools/furnspec.json, so a family
+// gaining a tier re-bands the guide instead of silently pushing a page past 40 rows. The only
+// numbers written down here are the two the interface imposes: one button for the Rooms page, and
+// the rest for the bands.
+
+[proc,open_construction_guide]
+%skillguide_page = 1;
+~construction_guide_render;
+
+[proc,construction_guide_render]
+~skillguide_begin(^guide_construction, "Construction");
+// One button for Rooms plus one per band. Past six buttons the panel stack puts btn1 at the top,
+// so the Rooms page is btn1 and band n is btn(n + 1) - see the note in skill_guide.rs2.
+~skillguide_panels(calc(^poh_guide_bands + 1));
+~skillguide_button(1, "Rooms");
+def_int $band = 1;
+while ($band <= ^poh_guide_bands) {
+    ~skillguide_button(calc($band + 1),
+        "<tostring(enum(int, int, poh_guide_lo, $band))>-<tostring(enum(int, int, poh_guide_hi, $band))>");
+    $band = calc($band + 1);
+}
+def_int $lvl = stat(construction);
+if (%skillguide_page >= 2 & %skillguide_page <= calc(^poh_guide_bands + 1)) {
+    ~construction_guide_band($lvl, calc(%skillguide_page - 1));
+} else {
+    ~construction_guide_rooms($lvl);
+}
+~skillguide_show;
+
+// The sixteen room types, in level order. poh_room_level is keyed by room type and the types are
+// not in level order, so this walks levels on the outside - sixteen rooms by ninety-nine levels is
+// small enough to do the plain way, which the furniture pages are not (see poh_guide_order).
+[proc,construction_guide_rooms](int $lvl)
+def_int $row = 1;
+def_int $at = 1;
+while ($at <= 99) {
+    def_int $room = 1;
+    while ($room <= ^poh_room_count) {
+        if (enum(int, int, poh_room_level, $room) = $at) {
+            ~skillguide_row($row, $lvl, $at, coins,
+                "<enum(int, string, poh_room_name, $room)> - <enum(int, string, poh_room_cost_text, $room)> coins");
+            $row = calc($row + 1);
+        }
+        $room = calc($room + 1);
+    }
+    $at = calc($at + 1);
+}
+
+// One band's worth of furniture. poh_guide_order holds every piece in level order and
+// poh_guide_first/last say which slice of it this band owns, so a page costs one pass over its own
+// rows rather than a search through all 351 pieces per level.
+//
+// The icon is the piece's first material - planks for most of it, a bagged plant for a tree, iron
+// bars for the exit portal - which is more use on a guide than a picture of the finished thing
+// would be, and is the only obj a piece has: furniture are locs, and the icon column is an inv.
+[proc,construction_guide_band](int $lvl, int $band)
+def_int $at = enum(int, int, poh_guide_first, $band);
+def_int $end = enum(int, int, poh_guide_last, $band);
+def_int $row = 1;
+while ($at <= $end) {
+    def_int $item = enum(int, int, poh_guide_order, $at);
+    ~skillguide_row($row, $lvl, enum(int, int, poh_furn_level, $item),
+        enum(int, namedobj, poh_furn_mat1, $item),
+        "<enum(int, string, poh_furn_name, $item)> (<enum(int, string, poh_fam_room, enum(int, int, poh_furn_fam, $item))>)");
+    $row = calc($row + 1);
+    $at = calc($at + 1);
+}
