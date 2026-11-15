@@ -1,6 +1,6 @@
-// The fairy ring network: twenty-nine codes, and a ring on the ground for every one of them.
+// The fairy ring network: thirty codes, and a ring on the ground for every one of them.
 //
-// WHY TWENTY-NINE AND NOT FIFTY-FIVE. RuneScape has 55 working codes. A code is only worth having
+// WHY THIRTY AND NOT FIFTY-FIVE. RuneScape has 55 working codes. A code is only worth having
 // if there is a ring at the other end, and thirty of RuneScape's lead to Varlamore, Great
 // Kourend, Kebos, the Isle of Souls, Zul-Andra, Grimstone, Yu'biusk and the Abyss: content from
 // 2015 to 2025 with no ground on a 2006 map. Three were added in November 2025.
@@ -48,15 +48,20 @@
 //   DLR  Tirannwn is here under the Regicide quest's own prefix - regicide_tree_fallen,
 //        regicide_red_mushroom_fade, regicide_corpse - and nothing in it says isafdar. A first
 //        guess of (2200, 3060) landed on High Priestess Zul-Harcinqa instead, which is Zul-Andra.
-//   DLS  WAS BUILT AND THEN TAKEN OUT, by choice rather than by error. It was findable: In
-//        Search of the Myreque is this server's "route" quest, so a search for /myreque/ finds
-//        nothing, but freedomfighterentrance sits beside hollowtree_entrance at (3509, 3447),
-//        which IS The Hollows, and Veliaf Hurtz stands at (3505, 9838) in the cave below. The
-//        reason it is gone is that these rings are gated on Fairytale Part I alone, so the ring
-//        let a player who had never met the Myreque walk into their hideout. RuneScape gates DLS
-//        on In Search of the Myreque instead, which this world has no varp to check here. If that
-//        gate ever exists, 55_fairy_mushroom_ring is still in the cache and (3500, 9810) is a
-//        probed, boundary-safe spot two tiles from the hideout door.
+//   DLS  TAKEN OUT ONCE, AND BACK ON ITS OWN TERMS. It was findable: In Search of the Myreque
+//        is this server's "route" quest, so a search for /myreque/ finds nothing, but
+//        freedomfighterentrance sits beside hollowtree_entrance at (3509, 3447), which IS The
+//        Hollows, and Veliaf Hurtz stands at (3505, 9838) in the cave below. It was then removed,
+//        because these rings are gated on Fairytale Part I alone and the ring let a player who
+//        had never met the Myreque walk into their hideout. The note left here said: if the gate
+//        RuneScape uses ever exists, 55_fairy_mushroom_ring is still in the cache and
+//        (3500, 9810) is a probed, boundary-safe spot two tiles from the hideout door.
+//
+//        It exists now. %routequest carries the quest's progress and ^route_complete is 8, so
+//        this one code is gated on finishing In Search of the Myreque, the way RuneScape gates
+//        it - and it is the only code in the network with a gate of its own. A player without
+//        the quest gets the same "hums and settles" line as any unused code, which says nothing
+//        about there being somewhere on the other end.
 //
 // AIR AND BIP STAY UNBUILT, and the reason is worth keeping so nobody repeats the search. Both
 // are empty islands with no landmark to find, so they were looked for geometrically instead - and
@@ -75,7 +80,7 @@
 //
 // So there is one encoding: the code IS the six bits, dial1 + dial2 * 4 + dial3 * 16, read
 // straight out of the varp. Each dial is 0-3 in the order the dial turns (A D C B / I L K J /
-// P S R Q - see fairy_rings.enum). 64 possible codes, 29 of them real; the rest are a ring that
+// P S R Q - see fairy_rings.enum). 64 possible codes, 30 of them real; the rest are a ring that
 // hums and does nothing, which is what RuneScape does with an unused code too. AIP is 0, so a
 // player who has never touched the dial opens it on a code that goes nowhere.
 
@@ -108,6 +113,7 @@
 ^fairy_code_dks = 25  // the polar hunter area
 ^fairy_code_dlq = 53  // north of Nardah
 ^fairy_code_dlr = 37  // Isafdar, in Tirannwn
+^fairy_code_dls = 21  // the Myreque's cave, gated on In Search of the Myreque
 
 // Where each code puts you: the centre tile of the ring at the far end.
 ^fairy_to_mudskipper    = 0_46_48_51_41    // 2995, 3113
@@ -139,6 +145,7 @@
 ^fairy_to_tzhaar        = 0_38_80_8_26     // 2440, 5146
 ^fairy_to_fisherking    = 0_41_73_5_5      // 2629, 4677
 ^fairy_to_isafdar       = 0_34_48_24_48    // 2200, 3120
+^fairy_to_myreque       = 0_54_153_44_18   // 3500, 9810
 
 // The Lumbridge Swamp shed, which the Zanaris ring by Fairy Nuff has always stepped out to. Kept
 // as a second option on that one ring rather than replaced by the dial - it is a route players

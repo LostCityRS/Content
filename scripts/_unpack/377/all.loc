@@ -92083,20 +92083,35 @@ active=no
 blockwalk=no
 blockrange=no
 
+// ACTIVATED, like 53 and the rest. 377 shipped the unused rings as loc_9158 with
+// minigame_start_icon edges, and giving one a name and a click without also giving it the ring's
+// models is how Edgeville ended up with a fairy ring that teleported correctly and could not be
+// seen. tools/sim/fairyrings.ts compares every ring's three models against the Zanaris hub for
+// exactly that reason, and it is what caught this one.
 [55_fairy_mushroom_ring]
-model=loc_9158
-active=no
+name=Fairy ring
+desc=Better not eat them!
+model=fairy_mushroom_ring3
+active=yes
+op1=Use
+op2=Zanaris
+ambient=20
+hillskew=yes
 blockwalk=no
 blockrange=no
 
 [55_fairy_mushroom_ring_edge]
-model=minigame_start_icon
+model=fairy_mushroom_ring_edge
+ambient=20
+hillskew=yes
 active=no
 blockwalk=no
 blockrange=no
 
 [55_fairy_mushroom_ring_corner]
-model=minigame_start_icon
+model=fairy_mushroom_ring_corner
+ambient=20
+hillskew=yes
 active=no
 blockwalk=no
 blockrange=no

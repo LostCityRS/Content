@@ -58,6 +58,7 @@
 [oploc1,50_fairy_mushroom_ring] @fairy_ring_use;
 [oploc1,52_fairy_mushroom_ring] @fairy_ring_use;
 [oploc1,53_fairy_mushroom_ring] @fairy_ring_use;
+[oploc1,55_fairy_mushroom_ring] @fairy_ring_use;
 
 // THE WAY BACK, without dialling it. RuneScape puts a "Zanaris" option on every ring except the
 // ones already in Zanaris, because BKS is the one code every player dials a hundred times and
@@ -96,6 +97,7 @@
 [oploc2,50_fairy_mushroom_ring] @fairy_ring_zanaris;
 [oploc2,52_fairy_mushroom_ring] @fairy_ring_zanaris;
 [oploc2,53_fairy_mushroom_ring] @fairy_ring_zanaris;
+[oploc2,55_fairy_mushroom_ring] @fairy_ring_zanaris;
 
 [oploc1,fairy_mushroom_ring]
 p_walk(loc_coord);
@@ -228,13 +230,29 @@ switch_int($code) {
     case ^fairy_code_dks : @fairy_ring_travel(^fairy_to_polar);
     case ^fairy_code_dlq : @fairy_ring_travel(^fairy_to_nardah);
     case ^fairy_code_dlr : @fairy_ring_travel(^fairy_to_isafdar);
+    case ^fairy_code_dls : @fairy_ring_myreque;
     case default :
-        // 35 of the 64 codes land here. Most are real RuneScape codes whose destination is
+        // 34 of the 64 codes land here. Most are real RuneScape codes whose destination is
         // 2015-2025 content with no ground on a 2006 map; three more (DJP, AJS, CKP) are places
         // this map genuinely lacks - see fairy_rings.constant. Saying "nothing happens" is honest
         // about that in a way "invalid code" would not be.
         mes("The ring hums for a moment, and settles. Nothing happens.");
 }
+
+// THE ONE CODE WITH A GATE OF ITS OWN. Every other ring is gated on Fairytale Part I and nothing
+// else, which is why this one was taken out again after it was first built: it dropped a player
+// who had never met the Myreque into their hideout. %routequest is In Search of the Myreque's
+// progress varp and now makes the gate RuneScape uses possible - see the DLS note in
+// fairy_rings.constant.
+//
+// The refusal is the SAME LINE an unused code gets. A player without the quest should not be able
+// to learn from the ring that there is anywhere on the other end of DLS.
+[label,fairy_ring_myreque]
+if (%routequest < ^route_complete) {
+    mes("The ring hums for a moment, and settles. Nothing happens.");
+    return;
+}
+@fairy_ring_travel(^fairy_to_myreque);
 
 // THE DELAYS ARE THE ANIMATION, and without them there is none. anim() only says what the client
 // should play NEXT; the vanish, the jump and the appear all in one tick means the only anim that
