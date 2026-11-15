@@ -8,7 +8,8 @@
 ^routequest_answered_questions = 55
 ^routequest_entered_underground = 60
 ^routequest_introduced_veliaf = 65
-// vvv - possibly osrs-only state?
+// osrs-only state: OSRS splits "gave Veliaf the weapons" from "cutscene begins".
+// RS2 does both in one tick, so 67 is unreachable here. Intentionally not defined.
 //^routequest_gave_weapons = 67
 ^routequest_enter_cutscene = 70
 // osrs also uses 71-79 that get all pushed in same tick as 80 after cutscene.
