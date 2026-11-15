@@ -1,0 +1,66 @@
+// ::wipebank (2026-11-15) - empty the whole bank in one go.
+//
+// Asked for because clearing out a bank meant withdrawing and dropping a few hundred items by
+// hand, four right-clicks at a time. There is no "empty bank" button in the real game and there
+// should not be one; this is a staff command.
+//
+// WHY NOT ::~clearinv bank, WHICH ALREADY EXISTS. Two reasons, and both of them matter:
+//
+//   1. It is a [debugproc,], and debugprocs are owner-only on a live world - ClientCheatHandler
+//      only dispatches the debugproc character inside its "staffModLevel >= 5, or 4 off
+//      production" block. An administrator on live cannot run one at all.
+//   2. inv_clear on its own leaves the eight tab counts behind. A tab is not a tag on an item, it
+//      is a COUNT of a contiguous range of the one 1410-slot list (see bank_tabs.rs2), so
+//      %banktab_c1..c8 would go on claiming items that are no longer there. ~banktab_validate
+//      clamps that back on the next open, so it is not corruption - but a wipe should leave the
+//      filing in the state it describes rather than relying on the next open to repair it.
+//
+// THE COMMAND ITSELF IS THE ENGINE'S: ClientCheatHandler, in the staffModLevel >= 3 block next
+// to ::bank, so administrator and up. The engine closes any modal first (the bank window itself,
+// most likely, which is where somebody looking at the clutter types this), takes canAccess, and
+// then runs this with protect=true. Protected access is not optional: the bank inv is protect=yes
+// - bank.inv sets no protect=no and InvType defaults to protected - and inv_clear on it throws
+// "$inv requires protected access" without it, which drops the connection.
+//
+// $confirmed is 1 when it was typed as "::wipebank confirm", which skips the Yes/No box. That is
+// for the repeat case: wiping, refilling and wiping again while testing something is the reason
+// the command exists, and a dialog three times a minute is the thing being avoided.
+[proc,bank_wipe](int $confirmed)
+def_int $items = sub(inv_size(bank), inv_freespace(bank));
+if ($items = 0) {
+    mes("Your bank is already empty.");
+    return;
+}
+// A BANK PIN STILL COUNTS FOR SOMETHING. ::bank deliberately goes through [label,openbank] rather
+// than the proc behind it so that a PIN is asked for instead of sidestepped, and a command that
+// deletes the lot has to answer the same question - otherwise somebody sitting at a logged-in
+// staff account who cannot open the bank could still empty it. %bankpin_verified has no
+// scope=perm, so it is per login session, which is the same window ::bank is judged in.
+if (~bankpin_has_pin = true & %bankpin_verified ! 1) {
+    mes("Open your bank and enter your bank PIN first.");
+    return;
+}
+if ($confirmed ! 1) {
+    // The engine has closed the bank window by the time this runs, so the chatbox is free for the
+    // confirm - a main modal would sit over it.
+    if (~p_choice2_header("Yes, delete all of it.", 1, "No, leave it alone.", 2, "Permanently delete all <tostring($items)> items in your bank?") ! 1) {
+        mes("Your bank has been left alone.");
+        return;
+    }
+}
+inv_clear(bank);
+// Every numbered tab is now empty, because the list is. ~banktab_setcount rather than the varps
+// directly, so the switch in bank_tabs.rs2 stays the only place that knows which varp is which
+// tab.
+def_int $tab = 1;
+while ($tab <= ^bank_tabs) {
+    ~banktab_setcount($tab, 0);
+    $tab = add($tab, 1);
+}
+// The tab being LOOKED AT. It is temp, so it would come right on its own at the next login, but
+// the next bank open is sooner than that and ~banktab_show reads it.
+%banktab = ^bank_tab_all;
+// The engine already logs "Ran cheat ::wipebank" for anybody at rank 2 or above; this is the line
+// that says how much went, which is the part worth having afterwards.
+session_log(^log_moderator, "::wipebank - deleted <tostring($items)> items from own bank");
+mes("Your bank has been wiped: <tostring($items)> items deleted.");
