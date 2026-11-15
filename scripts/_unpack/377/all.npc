@@ -14717,7 +14717,12 @@ op3=Trade
 head1=obj_bluewizhat_manhead
 category=shop_keeper
 param=owned_shop,cheapringshop
-param=shop_sell_multiplier,500
+// 750 AND NOT 500. Grum's goldshop stocks ruby_ring and BUYS at 700, so at 500 a player bought
+// a 2,025gp ring here for ~1,012 and sold it to Grum for ~1,417 - about 405gp a ring, both
+// shops restocking. Raised on this side rather than Grum's because cheapringshop stocks
+// ruby_ring and nothing else, so one item moves instead of Grum's whole jewellery line, and at
+// 750 against Grum's 1000 this is still much the cheaper counter.
+param=shop_sell_multiplier,750
 param=shop_buy_multiplier,300
 param=shop_delta,10
 param=shop_title,irksol
@@ -52517,6 +52522,13 @@ head2=npc_1847_head
 // instead of from an op the client was never told to draw.
 param=owned_shop,blandebir_shop
 param=shop_title,Blandebir's Brewing Supplies
+// SET EXPLICITLY, because the defaults these were left to are on the old scale. brewers.rs2
+// says "ale yeast costs 25, so 100 is Blandebir's 25 coins" - 100 was par when that was
+// written, and ~calc_shop_value now ends in scale($int5, 1000, $base_cost), so par is 1000 and
+// 100 is a tenth. He was selling 25gp yeast for 2gp, which Noterazzo's allstock counter bought
+// back at 15gp. 1000 is the 25 coins the comment always intended.
+param=shop_sell_multiplier,1000
+param=shop_buy_multiplier,400
 
 [metarialus]
 name=Metarialus
@@ -52548,7 +52560,14 @@ head1=npc_1686_head
 param=owned_shop,metarialus_shop
 param=shop_title,Metarialus' Brewing Supplies
 param=shop_currency,ectotoken
-param=shop_sell_multiplier,20
+// 200 AND NOT 20, for the reason the comment above gives: twenty PER CENT of 25 is the five
+// tokens Old School charges. Per cent was the scale when this was written; the scale now is
+// per mille, so twenty per cent is 200. At 20 it floored to 100 (~calc_shop_value's
+// max(100, ...)) and charged two tokens instead of five.
+param=shop_sell_multiplier,200
+// Explicit rather than left to a default that is also on the old scale. Must stay at or below
+// the sell multiplier or the shop buys back dearer than it sells, which is a loop of one shop.
+param=shop_buy_multiplier,100
 
 [elstan]
 name=Elstan
@@ -55533,7 +55552,11 @@ multinpc=5,tbwt_tiadeche
 // quests/quest_tbwt/configs/tbwt_karambwan_stall.inv.
 category=shop_keeper
 param=owned_shop,tbwt_karambwan_stall
-param=shop_sell_multiplier,550
+// 650 AND NOT 550. Noterazzo's taxfree is allstock=yes and pays 600 for anything, so at 550
+// both the vessel and the raw karambwan were worth buying here to sell there. Raised on this
+// side to leave taxfree's deliberately generous rates alone - cheap to buy from and good to
+// sell to is that shop's whole character.
+param=shop_sell_multiplier,650
 param=shop_buy_multiplier,450
 param=shop_delta,10
 param=shop_title,Tiadeche's Karambwan Stall
