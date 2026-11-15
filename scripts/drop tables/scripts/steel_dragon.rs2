@@ -116,4 +116,15 @@ if (npc_findhero = ^true) {
         obj_add(npc_coord, curry, 2, ^lootdrop_duration);
         return();
     }
+    // https://web.archive.org/web/20070821002024/http://www.tip.it/runescape/?rs2monster_id=387
+    if ($dropint < 116)
+    {
+        obj_add(npc_coord, ~ultrarare_getitem, ^lootdrop_duration);
+        return();
+    }
+    if ($dropint < 120)
+    {
+        obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+        return();
+    }
 }
