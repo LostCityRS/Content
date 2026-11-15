@@ -40,10 +40,10 @@ def_int $lvl = stat(herblore);
 ~skillguide_row(33, $lvl, 76, 3dose1magic, "Magic potion");
 ~skillguide_row(34, $lvl, 78, torstolvial, "Torstol potion (unf)");
 ~skillguide_row(35, $lvl, 78, 3dosepotionofzamorak, "Zamorak brew");
-~skillguide_row(36, $lvl, 81, 3dosepotionofsaradomin, "Saradomin brew");
 // The antidote line, which is worth naming here because its ingredients are nothing like the rest
 // of the skill's: a vial of coconut milk instead of water, and Zulrah's scales instead of a herb.
-~skillguide_row(37, $lvl, 79, antidote++4, "Antidote++");
+~skillguide_row(36, $lvl, 79, antidote++4, "Antidote++");
+~skillguide_row(37, $lvl, 81, 3dosepotionofsaradomin, "Saradomin brew");
 ~skillguide_row(38, $lvl, 87, antivenom4, "Anti-venom");
 ~skillguide_row(39, $lvl, 94, antivenom+4, "Anti-venom+");
 ~skillguide_show;

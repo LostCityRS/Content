@@ -15,9 +15,14 @@ def_int $lvl = stat(woodcutting);
 ~skillguide_row(10, $lvl, 31, adamant_axe, "Adamant axe");
 ~skillguide_row(11, $lvl, 35, teak_logs, "Teak logs");
 ~skillguide_row(12, $lvl, 41, rune_axe, "Rune axe");
-~skillguide_row(13, $lvl, 61, dragon_axe, "Dragon axe");
+// THE LADDER ACCEPTS TEN AXES AND THIS LISTED EIGHT. ~woodcutting_axe_checker returns the gilded
+// and third-age axes as readily as the rest, so a player holding one was using a tool the guide
+// said nothing about. Their levels are the levelrequire on the items themselves, not a guess.
+~skillguide_row(13, $lvl, 41, gilded_axe, "Gilded axe");
 ~skillguide_row(14, $lvl, 45, maple_logs, "Maple logs");
 ~skillguide_row(15, $lvl, 50, mahogany_logs, "Mahogany logs");
 ~skillguide_row(16, $lvl, 60, yew_logs, "Yew logs");
-~skillguide_row(17, $lvl, 75, magic_logs, "Magic logs");
+~skillguide_row(17, $lvl, 61, dragon_axe, "Dragon axe");
+~skillguide_row(18, $lvl, 61, third_age_axe, "3rd Age axe");
+~skillguide_row(19, $lvl, 75, magic_logs, "Magic logs");
 ~skillguide_show;

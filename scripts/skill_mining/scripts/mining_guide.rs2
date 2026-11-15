@@ -19,7 +19,13 @@ def_int $lvl = stat(mining);
 ~skillguide_row(14, $lvl, 40, gold_ore, "Gold ore");
 ~skillguide_row(15, $lvl, 40, uncut_sapphire, "Gem rock");
 ~skillguide_row(16, $lvl, 41, rune_pickaxe, "Rune pickaxe");
-~skillguide_row(17, $lvl, 55, mithril_ore, "Mithril ore");
-~skillguide_row(18, $lvl, 70, adamantite_ore, "Adamantite ore");
-~skillguide_row(19, $lvl, 85, runite_ore, "Runite ore");
+// THE LADDER ACCEPTS NINE PICKAXES AND THIS LISTED SIX. ~pickaxe_checker returns the dragon,
+// gilded and third-age pickaxes too - the dragon one has been mineable the whole time and was
+// never on the guide. Levels are the levelrequire on the items themselves.
+~skillguide_row(17, $lvl, 41, gilded_pickaxe, "Gilded pickaxe");
+~skillguide_row(18, $lvl, 55, mithril_ore, "Mithril ore");
+~skillguide_row(19, $lvl, 61, dragon_pickaxe, "Dragon pickaxe");
+~skillguide_row(20, $lvl, 61, third_age_pickaxe, "3rd Age pickaxe");
+~skillguide_row(21, $lvl, 70, adamantite_ore, "Adamantite ore");
+~skillguide_row(22, $lvl, 85, runite_ore, "Runite ore");
 ~skillguide_show;
