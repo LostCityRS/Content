@@ -1,14 +1,14 @@
-// THE POLL, ASKED BY THE VOTE CLERK. She already says "I keep the ledger of who has voted", which
-// is what a poll is, so she gets this rather than a new npc - no new model, no new spawn, and the
-// player already knows where she stands.
+// THE POLL, ASKED BY THE VOTE CLERK. He already says "I keep the ledger of who has voted", which
+// is what a poll is, so he gets this rather than a new npc - no new model, no new spawn, and the
+// player already knows where he stands.
 //
-// IT COMES BEFORE HER MENU, NOT IN IT. Two reasons. Her [opnpc1] menu is already a full
+// IT COMES BEFORE HIS MENU, NOT IN IT. Two reasons. His [opnpc1] menu is already a full
 // ~p_choice4, so there is no fifth slot; and a poll is open for a few days and then gone for good,
 // which is not something to bury under "Let's see the rewards, then." A player who does not want
 // to vote says so once and is not asked again until the next poll.
 //
 // EVERY PATH RETURNS. This proc is called in the middle of the clerk's own dialogue, so falling
-// out of the bottom of it has to leave her exactly where she was - the vote conversation finishes
+// out of the bottom of it has to leave him exactly where he was - the vote conversation finishes
 // and the reward conversation carries on.
 
 [proc,poll_offer]
@@ -17,7 +17,7 @@ if ($poll = 0) {
     return;
 }
 
-// Looked at rather than spent, which is the same split vote_owed makes against vote_take: she can
+// Looked at rather than spent, which is the same split vote_owed makes against vote_take: he can
 // tell somebody what they chose without that counting as anything.
 def_int $mine = poll_voted($poll);
 if ($mine > 0) {
