@@ -161,6 +161,78 @@ chown_dev() {
     fi
 }
 
+# EVERY STEP OF THIS SCRIPT RUNS AS ROOT AND THE SERVER DOES NOT - see the umask comment at the
+# pull. This is the backstop: before the restart, look at the live checkouts as the user the
+# service actually runs as, and fix anything it cannot read. It reports what it fixed rather than
+# doing it quietly, because a file arriving root-only means something upstream set a umask this
+# script did not expect, and that is worth seeing.
+#
+# It is paranoia with a precedent: the alternative to finding this here is finding it from a world
+# that will not come back up, with players waiting.
+#
+# Only the paths the running server reads. $ENGINE itself is not one of them on purpose: .env sits
+# there at 0600 and must stay that way, and data/players belongs to the service already. .git is
+# pruned - the server never reads it, and a deploy touches hundreds of objects in there.
+fix_service_reads() {
+    local user path bad errs count
+    local paths=()
+    user=$(systemctl show -p User --value "$LIVE_SERVICE" 2>/dev/null || true)
+    if [ -z "$user" ] || [ "$user" = root ] || ! id "$user" >/dev/null 2>&1; then
+        return 0
+    fi
+    for path in "$ENGINE/src" "$ENGINE/tools" "$ENGINE/node_modules" "$ENGINE/data/pack" \
+                "$ENGINE/package.json" "$ENGINE/package-lock.json" "$CONTENT"; do
+        if [ -e "$path" ]; then paths+=("$path"); fi
+    done
+    if [ ${#paths[@]} -eq 0 ]; then return 0; fi
+
+    errs=$(mktemp)
+    bad=$(service_unreadable "$user" "$errs")
+
+    # AN EMPTY LIST IS NOT THE SAME AS NOTHING WRONG. find that cannot stat its own arguments -
+    # a directory above these the service user cannot traverse - prints nothing and complains on
+    # stderr, which thrown away reads exactly like a clean sweep. That is the failure this whole
+    # function exists to catch, so the quiet version of it is not allowed either. Errors WITH a
+    # list are expected: an unreadable directory is reported and then refuses to be descended.
+    if [ -z "$bad" ] && [ -s "$errs" ]; then
+        printf '  \033[1;33mcould not examine the checkouts as %s:\033[0m\n' "$user"
+        sed 's/^/    /' "$errs"; rm -f "$errs"
+        die "cannot tell whether $user can read the checkouts, so this will not restart into them. Usually a directory above $ROOT that $user cannot enter (needs o+x). The live world is untouched and still running on old code."
+    fi
+    if [ -z "$bad" ]; then rm -f "$errs"; return 0; fi
+    rm -f "$errs"
+
+    count=$(printf '%s\n' "$bad" | wc -l)
+    printf '  \033[1;33m%s cannot read %s path(s) this deploy left behind - fixing:\033[0m\n' "$user" "$count"
+    printf '%s\n' "$bad" | head -10 | sed 's/^/    /'
+    if [ "$count" -gt 10 ]; then printf '    ... and %s more\n' "$((count - 10))"; fi
+
+    # -R because an unreadable DIRECTORY hides its contents from the sweep above: whatever is inside
+    # it was never listed and would be left behind by a plain chmod. The second sweep is what proves
+    # the subtree came out readable. a+rX adds the search bit to directories and to files that were
+    # already executable, and makes nothing else executable.
+    printf '%s\n' "$bad" | tr '\n' '\0' | xargs -0 -r chmod -R a+rX
+
+    errs=$(mktemp)
+    bad=$(service_unreadable "$user" "$errs")
+    if [ -n "$bad" ] || [ -s "$errs" ]; then
+        printf '%s\n' "$bad" | head -10 | sed 's/^/    /'
+        sed 's/^/    /' "$errs"; rm -f "$errs"
+        die "$user still cannot read the above after chmod - the live world is untouched and still running on old code. Check who owns them and whether the directories above them can be entered; do not restart until this reads clean."
+    fi
+    rm -f "$errs"
+    printf '  fixed - %s can read the checkouts\n' "$user"
+}
+
+# The sweep both passes of fix_service_reads use. $1 is the user to look as, $2 a file for whatever
+# went wrong; the paths to sweep are its caller's $paths, which bash's scoping makes visible here.
+# Unreadable paths go to stdout, errors to $2 - the caller needs them apart to tell an empty sweep
+# from one that never ran. .git is pruned: the server never reads it, and a deploy touches hundreds
+# of objects in there.
+service_unreadable() {
+    runuser -u "$1" -- find "${paths[@]}" -xdev -name .git -prune -o \! -readable -print 2>"$2" || true
+}
+
 # SYSTEMD BEATS THE .env, and that is not obvious from either file. The engine reads its
 # configuration with plain dotenv (Engine-TS src/util/Environment.ts, `import 'dotenv/config'`),
 # and dotenv does NOT overwrite a variable that is already in the environment. The dev unit is a
@@ -500,8 +572,23 @@ if [ -n "$DEV" ]; then
 fi
 
 LOCK_BEFORE=$(git -C "$ENGINE" rev-parse HEAD:package-lock.json 2>/dev/null || echo none)
-git -C "$ENGINE"  pull origin "$ENGINE_BRANCH"
-git -C "$CONTENT" pull origin "$CONTENT_BRANCH"
+
+# THE SERVER DOES NOT RUN AS ROOT AND THIS SCRIPT DOES, so a file created here with root's umask
+# can be one the service user cannot read. git applies that umask to files it ADDS and leaves the
+# mode of a file that already exists alone - which is why a restrictive umask here is invisible
+# for months and then breaks the one deploy that brings a new module in.
+#
+# Found 2026-11-15, on launch weekend. The engine's new src/engine/poll/*.ts and tools/server/poll.ts
+# arrived as 0600 root:root, and everything running as the service user died on the import - the
+# server at startup, and tools/server/account.ts when it was run to clear a stuck login. Nothing
+# announced it: the deploy itself does every step as root, so the deploy worked.
+#
+# Scoped to the steps whose output the server reads - the pulls, npm ci and the build - and
+# deliberately NOT set for the whole script. The save backup above and db.sqlite below hold player
+# data and password hashes, and both are better off with root's own umask than with this one.
+# fix_service_reads below is the check that this did its job.
+(umask 022; git -C "$ENGINE"  pull origin "$ENGINE_BRANCH")
+(umask 022; git -C "$CONTENT" pull origin "$CONTENT_BRANCH")
 
 # (dev) an engine from before staff-only worlds ignores NODE_MIN_STAFF_LEVEL - and with
 # NODE_PRODUCTION=false it would hand every player who logs in the developer commands
@@ -515,7 +602,7 @@ fi
 LOCK_AFTER=$(git -C "$ENGINE" rev-parse HEAD:package-lock.json)
 if [ "$LOCK_BEFORE" != "$LOCK_AFTER" ] || [ ! -d "$ENGINE/node_modules" ]; then
     say "Engine dependencies changed - installing"
-    (cd "$ENGINE" && npm ci)
+    (cd "$ENGINE" && umask 022 && npm ci)
 fi
 
 # The engine running here must exist on GitHub. It has not, twice - commits applied by
@@ -600,7 +687,7 @@ fi
 # that is not a compile error says what to do about itself. Build.ts reads the packed cache back
 # through the engine's own reader, and two builds against one checkout leave chains running through
 # each other's blocks - which last time was found days later, from a client stuck at 30%.
-npm run build \
+(umask 022; npm run build) \
     || die "the build failed - the live world is untouched and still running on old code. If it says the cache cannot be read back, delete $ENGINE/data/pack and deploy again."
 
 # ---------------------------------------------------------------- database migrations
@@ -639,6 +726,10 @@ CHECKPOINT_DISABLE=1 npm run sqlite:migrate \
 
 say "Browser client"
 webclient_jar "$ENGINE"
+
+# ------------------------------------------------- 4b. readable by the user the server runs as
+say "Checking the server can read what was just built"
+fix_service_reads
 
 # ---------------------------------------------------------------- the website
 #
