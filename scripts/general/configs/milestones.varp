@@ -21,3 +21,20 @@ protect=no
 [milestone_welcomed]
 scope=perm
 protect=no
+
+// 1 once a staff command has written this account's stats - ::setstat, ::advancestat or ::minme.
+// From then on nothing this account does is announced as a milestone.
+//
+// WHY THE WHOLE ACCOUNT AND NOT THE ONE SKILL. The moment any level is set by hand, the total
+// level, the combat level and the max cape are all fabricated too - they are sums of that skill.
+// A per-skill flag would have to suppress those three for the whole account anyway, so the only
+// thing it would buy is announcing a 99 in a skill that was not the one that was set, on an
+// account that has already shown it will set them.
+//
+// AND WHY IT IS PERMANENT. The announcement says a player got somewhere. A cheated base does not
+// stop being cheated because experience was earned on top of it later. The engine says so once, in
+// the chatbox, when it first sets this - a staff member who set a stat to test something and wants
+// their own milestones back can clear it with ::setvar milestone_cheated 0.
+[milestone_cheated]
+scope=perm
+protect=no

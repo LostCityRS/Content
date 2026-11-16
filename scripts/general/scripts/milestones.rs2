@@ -31,6 +31,15 @@
 //
 // All XP rates are treated alike. A 10x account reaches 99 sooner, and the broadcast carries that
 // player's XP badge (~broadcast_name) so everybody can see which it was.
+//
+// NOTHING SET BY A STAFF COMMAND IS ANNOUNCED. ::setstat, ::advancestat and ::minme mark the
+// account (%milestone_cheated, general/configs/milestones.varp explains why that is the whole
+// account and why it is permanent), and every entry point below asks ~milestone_muted first.
+//
+// THE GUARD IS AT THE ENTRY POINTS AND NOT AT ~broadcast_milestone_news, which would be the one
+// place to put it, because milestone_first() is called BEFORE the broadcast: a staff member who
+// ::advancestat'd to 99 would have claimed "first to 99 Fishing" for ever and nobody would have
+// seen a line saying so. Silently burning the claim is worse than the announcement was.
 
 // ---------------------------------------------------------------------------- thresholds
 // Total-level milestones, in order. ~milestone_total walks these, so adding one is a line here.
@@ -44,8 +53,19 @@ switch_int ($n) {
 return(0);
 
 // ---------------------------------------------------------------------------- the hooks
+// Has this account had its stats written by a staff command? Asked by every entry point below,
+// before anything is claimed or announced.
+[proc,milestone_muted]()(boolean)
+if (%milestone_cheated ! 0) {
+    return(true);
+}
+return(false);
+
 // Every level-up, from [label,levelup] in levelup/scripts/levelup.rs2.
 [proc,milestone_levelup](stat $stat)
+if (~milestone_muted = true) {
+    return;
+}
 if (stat_base($stat) = 99) {
     ~milestone_99($stat);
 }
@@ -112,6 +132,9 @@ if (milestone_first("combat:126") = true) {
 // else. ~count_questpoints and ~max_questpoints are the quest list's own, which is what keeps this
 // true as quests are added rather than counting to a number written down here.
 [proc,milestone_quests]
+if (~milestone_muted = true) {
+    return;
+}
 if (~count_questpoints < ~max_questpoints) {
     return;
 }
@@ -132,6 +155,9 @@ if (milestone_first("quests:all") = true) {
 //
 // Marked on the account, so it is one line per player ever - not one per login.
 [proc,milestone_welcome]
+if (~milestone_muted = true) {
+    return;
+}
 if (%milestone_welcomed ! 0) {
     return;
 }
@@ -167,6 +193,9 @@ return($total);
 // $tier is 0-3 for 50m/100m/150m/200m. The engine sends only the HIGHEST tier a single gain
 // crosses, so nothing can fire four lines at once.
 [proc,milestone_xp](stat $stat, int $tier)
+if (~milestone_muted = true) {
+    return;
+}
 def_string $skill = enum(stat, string, stat_names, $stat);
 def_string $amount = "";
 switch_int ($tier) {
@@ -203,6 +232,9 @@ if (milestone_first("xp:<$amount>:<$skill>") = true) {
 // collection log!" reward line (the spec's `complete` row) is untouched and still pays once to
 // anybody who was past it, including on opening the log.
 [proc,milestone_collection](namedobj $item)
+if (~milestone_muted = true) {
+    return;
+}
 // The pages. No db_find inside this loop - it is walking a db_listall and a find would replace the
 // list underneath it, which is the same rule ~collection_log_rewards is written to; everything
 // called from in here reads fields only.
