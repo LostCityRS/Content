@@ -166,6 +166,11 @@ if (p_finduid(uid) = true) {
         mes("Drop test cancelled.");
         return;
     }
+    // These npcs are spawned and really killed, so the drops run the real death scripts and really
+    // go into the collection log. The pages they fill were not hunted for - the mark is set here
+    // rather than per kill so cancelling a run does not leave the account unmarked halfway
+    // through. general/scripts/milestones.rs2.
+    ~milestone_mark_cheated;
     if ($count > ^debug_droptest_max) {
         $count = ^debug_droptest_max;
         mes("Capped at <tostring(^debug_droptest_max)> kills.");

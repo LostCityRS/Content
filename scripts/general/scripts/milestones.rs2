@@ -52,8 +52,38 @@ switch_int ($n) {
 }
 return(0);
 
+// ---------------------------------------------------------------------------- the mark
+// Mark this account as one a staff command gave its progress to. The engine's own
+// Player.markMilestonesCheated does the same thing for ::setstat, ::advancestat and ::minme; this
+// is for the doors that are in content, which the engine cannot see:
+//
+//   ~sl                  levelup/scripts/levelup.rs2        250k Farming, for testing level-ups
+//   ~hunter              skill_hunter/scripts/hunter_debug.rs2
+//   ~debug_quest_set     _test/scripts/cheats/cheat_quests.rs2   every quest debugproc goes
+//                                                          through it - that is why the call is
+//                                                          there and not in each of the six
+//   ~droptest            _test/scripts/cheats/cheat_combat.rs2
+//
+// THE XP ONES CANNOT BE CAUGHT IN THE ENGINE. They hand out experience with stat_advance, which is
+// the same op every fishing spot and every log in the game uses - addXp sees an ordinary gain and
+// there is nothing in it to tell them apart. The only place that knows is the debugproc itself.
+//
+// ~debug_quest_set never announces anything by itself (~milestone_quests hangs off
+// ~send_quest_complete, which it does not call). It is here for what it leaves behind: setting the
+// last few quests by hand puts ~count_questpoints at the maximum, so the next quest finished
+// properly announces "completed every quest" for a list that was mostly typed in.
+//
+// ~droptest spawns npcs and really kills them, so its drops run the real death scripts and really
+// go into the collection log. The pages it fills were not hunted for.
+[proc,milestone_mark_cheated]
+if (%milestone_cheated ! 0) {
+    return;
+}
+%milestone_cheated = 1;
+mes("Your progress was set by a command, so your milestones are no longer announced.");
+
 // ---------------------------------------------------------------------------- the hooks
-// Has this account had its stats written by a staff command? Asked by every entry point below,
+// Has this account had its progress written by a staff command? Asked by every entry point below,
 // before anything is claimed or announced.
 [proc,milestone_muted]()(boolean)
 if (%milestone_cheated ! 0) {

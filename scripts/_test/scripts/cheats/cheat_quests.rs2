@@ -119,6 +119,10 @@ if (p_finduid(uid) = true) {
 // The varp assignment cannot live in here - RS2 has no way to write a varp named by a variable -
 // so each debugproc sets its own and this handles the journal and the message.
 [proc,debug_quest_set](component $journal, int $stage, int $complete, string $name)
+// A quest set by hand is not one completed. This announces nothing by itself, but it moves
+// ~count_questpoints, and the next quest finished properly would announce "completed every quest"
+// for a list that was mostly typed in - general/scripts/milestones.rs2.
+~milestone_mark_cheated;
 ~send_quest_progress($journal, $stage, $complete);
 mes("<$name> set to stage <tostring($stage)>.");
 

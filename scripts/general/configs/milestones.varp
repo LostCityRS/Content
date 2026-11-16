@@ -22,14 +22,17 @@ protect=no
 scope=perm
 protect=no
 
-// 1 once a staff command has written this account's stats - ::setstat, ::advancestat or ::minme.
-// From then on nothing this account does is announced as a milestone.
+// 1 once a staff command has given this account progress it did not earn - ::setstat,
+// ::advancestat and ::minme in the engine, and ~sl, ~hunter, ~droptest and every quest debugproc
+// in content (general/scripts/milestones.rs2 lists them and says why the content ones cannot be
+// caught in the engine). From then on nothing this account does is announced as a milestone.
 //
 // WHY THE WHOLE ACCOUNT AND NOT THE ONE SKILL. The moment any level is set by hand, the total
 // level, the combat level and the max cape are all fabricated too - they are sums of that skill.
 // A per-skill flag would have to suppress those three for the whole account anyway, so the only
 // thing it would buy is announcing a 99 in a skill that was not the one that was set, on an
-// account that has already shown it will set them.
+// account that has already shown it will set them. And a per-skill flag has nothing to say at all
+// about the quest list or the collection log, which the content doors reach.
 //
 // AND WHY IT IS PERMANENT. The announcement says a player got somewhere. A cheated base does not
 // stop being cheated because experience was earned on top of it later. The engine says so once, in

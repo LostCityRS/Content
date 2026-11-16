@@ -86,4 +86,7 @@ if ($has_unlocks = false) {
 jump(~levelup_unlocks($stat));
 
 [debugproc,sl]
+// 250k Farming is not earned, and stat_advance cannot be told apart from a real one in the
+// engine - general/scripts/milestones.rs2 has why the mark has to be set here.
+~milestone_mark_cheated;
 stat_advance(farming, 250000);

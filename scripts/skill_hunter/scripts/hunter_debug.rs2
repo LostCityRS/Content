@@ -21,7 +21,9 @@ if ($grant <= 0) {
     $grant = ^hunter_debug_xp;
 }
 // Straight to the stat rather than through ~hunter_xp: this is a test grant, not a skilling
-// action, and it should not roll for a Guild hunter piece.
+// action, and it should not roll for a Guild hunter piece. It is not earned either, and the
+// engine cannot tell this stat_advance from a real one - general/scripts/milestones.rs2.
+~milestone_mark_cheated;
 stat_advance(hunter, $grant);
 mes("Hunter is now <tostring(stat(hunter))>. Use the net on a butterfly.");
 
