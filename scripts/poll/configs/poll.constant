@@ -8,9 +8,28 @@
 ^poll_already = 1
 ^poll_closed = 2
 ^poll_badoption = 3
+^poll_notyet = 4
 ^poll_unavailable = -1
 
 // The widest menu content has is ~p_choice5, so five is the most options a poll can be ASKED with
 // in game. tools/server/poll.ts refuses to post more than this for that reason - a sixth option
 // would be invisible here while being perfectly votable on the website, which is the worst of both.
 ^poll_max_options = 5
+
+// HOW LONG AN ACCOUNT MUST HAVE PLAYED BEFORE IT MAY VOTE, in minutes. Two hours.
+//
+// WHY TIME AND NOT IDENTITY. The worry is a poll being decided by accounts made that morning, and
+// on a small player base that is a real worry. An account here is free and instant - there is no
+// email on it - so one vote per account is no barrier at all; and keying votes on a linked Discord
+// account only raises the price to one throwaway email, which is ten minutes' work. Hours cannot be
+// bought that way. Old School gates its own polls the same way, on total level and hours played.
+//
+// It also costs nobody their vote: no Discord account, no launcher, the same in the browser client,
+// and every real player passes it in an evening.
+//
+// MIRRORED IN TWO OTHER PLACES - POLL_MIN_MINUTES in the engine (src/engine/poll/PollService.ts)
+// and MIN_MINUTES on the website (src/lib/polls.ts). Three programs ask the question and none of
+// them can call the others. Raise it in all three, or the clerk and the website will disagree about
+// who may vote. The clerk reads the engine's copy through poll_minminutes rather than this one, so
+// this exists for anything content-side that wants the number without an op.
+^poll_min_minutes = 120

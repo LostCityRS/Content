@@ -1255,3 +1255,8 @@
 [command,poll_cast](int $poll, int $idx)(int)
 [command,poll_votes](int $poll, int $idx)(int)
 [command,poll_total](int $poll)(int)
+// The playtime gate (2026-11-16). poll_cast refuses below the threshold with ^poll_notyet; these two
+// are so the clerk can say how much longer rather than only that it is not enough, and so the number
+// lives in one place rather than being spelled out in a sentence that then drifts from the check.
+[command,poll_minutes]()(int)
+[command,poll_minminutes]()(int)

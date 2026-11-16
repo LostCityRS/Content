@@ -27,6 +27,21 @@ if ($mine > 0) {
     return;
 }
 
+// THE GATE IS CHECKED BEFORE THE QUESTION IS ASKED, not after the answer is given. Walking
+// somebody through a menu and then refusing their choice is the rudest possible order to do this
+// in, and they would reasonably read it as a bug. ~poll_record still handles ^poll_notyet as a
+// safety net in case the two ever disagree.
+def_int $played = poll_minutes;
+def_int $need = poll_minminutes;
+if ($played < $need) {
+    def_int $short = calc($need - $played);
+    ~chatnpc("<p,neutral>There's a poll open, but the ledger only takes answers from accounts with a couple of hours on them.");
+    ~chatnpc("<p,neutral>Another <~pluralise($short, "minute")> of play and you can have your say.");
+    // Said plainly, because the alternative is somebody deciding they have been singled out.
+    ~chatnpc("<p,neutral>It's nothing personal - it stops a poll being settled by accounts made this morning.");
+    return;
+}
+
 ~chatnpc("<p,quiz>There's a poll open, if you want your say in it.");
 if (~p_choice2("Yes, what's the question?", 1, "Not now.", 2) ! 1) {
     ~chatplayer("<p,neutral>Not now.");
@@ -82,6 +97,12 @@ if ($result = ^poll_already) {
 }
 if ($result = ^poll_closed) {
     ~chatnpc("<p,neutral>That one closed while we were talking. Nothing was counted, I'm afraid.");
+    return;
+}
+// Should be unreachable - ~poll_offer checks the clock before asking - so if it is ever seen, the
+// two copies of the threshold have drifted apart.
+if ($result = ^poll_notyet) {
+    ~chatnpc("<p,neutral>The ledger won't take an answer from this account yet. Give it a couple of hours of play.");
     return;
 }
 
