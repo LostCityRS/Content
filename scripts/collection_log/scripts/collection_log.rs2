@@ -71,6 +71,10 @@ if ($new = true) {
     %collection_log_latest = $item;
     %collection_log_latest_minute = world_minute;
     ~collection_log_rewards;
+    // A page finished, or the whole log. Here rather than in ~collection_log_rewards because this
+    // is the only place that knows the item is NEW - see ~milestone_collection
+    // (general/scripts/milestones.rs2) for why that is what makes the announcement fire once.
+    ~milestone_collection($item);
 }
 
 // Has this account ever obtained $obj? The log is keyed by item and kept forever, so this is the
@@ -122,6 +126,20 @@ while ($i < $total) {
     $i = add($i, 1);
 }
 return($got);
+
+// Does this page list $item? The page's grid is a namedobj LIST, so this is a walk of it - the
+// same walk ~collection_log_entry_obtained does, asking a different question. ~milestone_collection
+// uses it to skip every page the item just logged does not appear on.
+[proc,collection_log_entry_has](dbrow $entry, namedobj $item)(boolean)
+def_int $total = db_getfieldcount($entry, collection_log_entry:items);
+def_int $i = 0;
+while ($i < $total) {
+    if (db_getfield($entry, collection_log_entry:items, $i) = $item) {
+        return(true);
+    }
+    $i = add($i, 1);
+}
+return(false);
 
 // How many distinct items of the whole log have been obtained - the X of "Collection Log - X/Y".
 // Counted from the list rather than as used slots, so an item dropped from the log later stops

@@ -17,6 +17,13 @@
 //   max cape          all 23 capes. Falls out of the 99 above - no extra pass over the stats.
 //   every quest       all of them, by quest points, from ~send_quest_complete.
 //   combat 126        the ceiling, announced once.
+//   50m/100m/150m/    the only milestones ABOVE 99 this build can have. 99 is 13 million
+//   200m XP           experience, so these are the four rungs of the long tail after it, and 200m
+//                     is the engine's own cap - there is no more experience to earn in that skill.
+//                     Rare enough that an account that reaches one has played for months.
+//   collection log    a page completed, and the whole log. The log is the one record of what a
+//                     player has actually hunted down, and page completion was previously worth a
+//                     single private line.
 //   SERVER FIRSTS     "first to 99 Fishing" fires 23 times in this world's entire life, and the
 //                     same for the other milestones above. They are the cheapest prestige there
 //                     is: the engine's milestone_first settles the claim in the database, so two
@@ -143,3 +150,92 @@ while ($i <= enum_getoutputcount(stats)) {
     $i = add($i, 1);
 }
 return($total);
+
+// ---------------------------------------------------------------------------- experience tiers
+// 50m, 100m, 150m and 200m experience in ONE skill, from the engine (Player.addXp).
+//
+// WHY THE ENGINE AND NOT A HOOK HERE. Every other milestone in this file hangs off a level-up, and
+// a skill at 99 never changes level again - [advancestat] and [changestat] both fire on a level
+// change, so past 99 there is no content-side hook left to hang anything on. The alternative was a
+// softtimer walking all 23 skills every minute for every player on the world, forever, to catch
+// four events in an account's lifetime. addXp already has the number in its hand.
+//
+// The thresholds live in the engine beside the cap rather than in a constant here: experience is
+// stored x10 (200m is addXp's 2,000,000,000 clamp), and a content copy would have to repeat the x10
+// and could drift from the cap it is supposed to name.
+//
+// $tier is 0-3 for 50m/100m/150m/200m. The engine sends only the HIGHEST tier a single gain
+// crosses, so nothing can fire four lines at once.
+[proc,milestone_xp](stat $stat, int $tier)
+def_string $skill = enum(stat, string, stat_names, $stat);
+def_string $amount = "";
+switch_int ($tier) {
+    case 0 : $amount = "50m";
+    case 1 : $amount = "100m";
+    case 2 : $amount = "150m";
+    case 3 : $amount = "200m";
+    case default : return;
+}
+// "200m Woodcutting XP" and not "200 million Woodcutting experience" because of the chatbox: a
+// broadcast is wrapped at 456 pixels (Player.wrappedMessageGame), and the spelled-out version runs
+// to 575 with a long name and a long skill - it would arrive as two lines, the second one starting
+// mid-sentence. Every shipped broadcast in this build fits on one line and these do too; the test
+// in tools/sim/milestones.ts measures every one of them so that stays true.
+if (milestone_first("xp:<$amount>:<$skill>") = true) {
+    ~broadcast_milestone_news("[Server first!]", "is the first to earn @dre@<$amount> <$skill> XP@bla@.");
+} else {
+    ~broadcast_milestone_news("[Milestone]", "has earned @dre@<$amount> <$skill> XP@bla@.");
+}
+
+// ---------------------------------------------------------------------------- collection log
+// A COLLECTION LOG PAGE COMPLETED, and the whole log. From ~collection_log_add
+// (collection_log/scripts/collection_log.rs2), the moment an item is logged for the FIRST time.
+//
+// WHY THAT CALL SITE IS THE WHOLE GUARD. A page goes from incomplete to complete on exactly one
+// item, ever, and ~collection_log_add only reaches here when the item was not already in the log.
+// So there is no mark varp and no reward bit: the transition is the guard. That matters, because
+// the reward table cannot carry these at all - its paid-flags are bits of one varp, 32 of them for
+// the whole system (tools/gencollectionlog.py refuses a 33rd), and there are 36 pages.
+//
+// IT ANNOUNCES NOTHING RETROACTIVELY, which is the behaviour we want. A player who was already
+// complete when a page was added never logs a new item on it, so the test never fires for them -
+// and a page finished last month is not news. The private "You have completed the entire
+// collection log!" reward line (the spec's `complete` row) is untouched and still pays once to
+// anybody who was past it, including on opening the log.
+[proc,milestone_collection](namedobj $item)
+// The pages. No db_find inside this loop - it is walking a db_listall and a find would replace the
+// list underneath it, which is the same rule ~collection_log_rewards is written to; everything
+// called from in here reads fields only.
+def_int $rows = db_listall_with_count(collection_log_entry);
+def_int $i = 0;
+while ($i < $rows) {
+    def_dbrow $entry = db_findbyindex($i);
+    def_int $total = db_getfieldcount($entry, collection_log_entry:items);
+    if ($total >= ^milestone_clog_page_min) {
+        if (~collection_log_entry_has($entry, $item) = true) {
+            if (~collection_log_entry_obtained($entry) = $total) {
+                def_string $page = db_getfield($entry, collection_log_entry:name, 0);
+                // "filled", and the same verb under both labels, for the 456-pixel line: a page
+                // name is up to 22 characters ("Medium Treasure Trails") and "is the first to
+                // complete the ... collection log" wraps for 27 of the 31 pages. The label already
+                // says which of the two this is, so the sentence does not have to.
+                if (milestone_first("clog:<$page>") = true) {
+                    ~broadcast_milestone_news("[Server first!]", "filled the @dre@<$page>@bla@ collection log.");
+                } else {
+                    ~broadcast_milestone_news("[Milestone]", "filled the @dre@<$page>@bla@ collection log.");
+                }
+            }
+        }
+    }
+    $i = add($i, 1);
+}
+// And the log itself. Counted from the item list rather than from used slots, the same way the
+// window's own "X/Y" is, so an item that leaves the log stops counting instead of leaving this
+// permanently true.
+if (~collection_log_obtained_total = enum_getoutputcount(collection_log_items)) {
+    if (milestone_first("clog:all") = true) {
+        ~broadcast_milestone_news("[Server first!]", "completed the @dre@entire collection log@bla@!");
+    } else {
+        ~broadcast_milestone_news("[Milestone]", "completed the @dre@entire collection log@bla@!");
+    }
+}

@@ -1,0 +1,8 @@
+// Thresholds for the milestone announcements (general/scripts/milestones.rs2).
+
+// The smallest collection log page that is worth announcing. Four pages hold a single item each
+// (Brimhaven Agility Arena, Pyramid Plunder, Giants, Fountain of Rune) and every one of those
+// items is already broadcast as a rare drop the instant it falls - "completed the Giants
+// collection log" on the back of "received Hill giant club" is the same news twice. Three is the
+// first size where finishing a page is a collection rather than a drop.
+^milestone_clog_page_min = 3
