@@ -1,0 +1,12 @@
+// TEMP, with no scope line, so it resets on logout. A suppression that survived a relog would be
+// the worst kind of bug to find: rare drops silently not announcing, for one account, for ever.
+//
+// protect=no because the read sits in ~broadcast_news, which runs from a monster's death script -
+// npc context after npc_findhero, where there is an active player but no PROTECTED access. That is
+// the same reason the collection log's invs and varps carry it.
+
+// 1 while this player's broadcasts are being thrown away. Set by ::~droptest, which spawns npcs
+// and really kills them: a hundred fabricated King Black Dragon kills would otherwise send a
+// hundred real "[Rare drop!]" lines to everybody on the world. general/scripts/broadcast.rs2.
+[broadcast_suppressed]
+protect=no

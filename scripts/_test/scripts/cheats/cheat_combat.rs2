@@ -162,7 +162,7 @@ if (p_finduid(uid) = true) {
         return;
     }
     if ($count <= 0) {
-        %debug_droptest_left = 0;
+        ~debug_droptest_end;
         mes("Drop test cancelled.");
         return;
     }
@@ -177,6 +177,10 @@ if (p_finduid(uid) = true) {
     }
     %debug_droptest_npc = $npc;
     %debug_droptest_left = $count;
+    // These kills are real kills, so their drop tables call ~broadcast_drop like any other. A
+    // hundred of them would be a hundred "[Rare drop!]" lines to everybody on the world for drops
+    // nobody got - general/scripts/broadcast.rs2 throws them away while this is set.
+    %broadcast_suppressed = 1;
     mes("Drop test: <tostring($count)> x <nc_name($npc)>. ::~droptest <nc_debugname($npc)> 0 to stop.");
     queue(debug_droptest, 1, 0);
 }
@@ -186,13 +190,13 @@ if (p_finduid(uid) = true) {
 
 [proc,debug_droptest_tick]
 if (%debug_droptest_left <= 0) {
-    %debug_droptest_left = 0;
+    ~debug_droptest_end;
     mes("Drop test finished.");
     return;
 }
 def_npc $type = %debug_droptest_npc;
 if ($type = null) {
-    %debug_droptest_left = 0;
+    ~debug_droptest_end;
     return;
 }
 %debug_droptest_left = sub(%debug_droptest_left, 1);
@@ -206,7 +210,7 @@ if (npc_stat(hitpoints) > 0) {
 } else {
     // A genuinely hitpoint-less npc - npc_damage can never take it to 0, so its death hook would
     // never run. Say so once and stop rather than spinning for the full count.
-    %debug_droptest_left = 0;
+    ~debug_droptest_end;
     mes("<npc_name> has no hitpoints - it has no death drop to test.");
     npc_del;
     return;
@@ -214,5 +218,27 @@ if (npc_stat(hitpoints) > 0) {
 if (%debug_droptest_left > 0) {
     queue(debug_droptest, ^debug_droptest_delay, 0);
 } else {
+    ~debug_droptest_end;
     mes("Drop test finished.");
 }
+
+// END OF A RUN, from every way one can end. The counter is zeroed here and the broadcast gate is
+// lifted on a DELAY, which is the whole reason this is a proc rather than two lines repeated:
+//
+// ~debug_kill_active does npc_damage and then npc_queue(3, 0, 0), so the npc's death script - and
+// its drop, and its ~broadcast_drop - runs on a later cycle, after this proc has returned. Lifting
+// the gate here and now would let the LAST kill of every run broadcast, which is exactly the case
+// a test of a one-kill run would have found and a test of a hundred-kill run would not.
+//
+// The same reasoning rules out gating on %debug_droptest_left itself: the tick decrements it
+// before the kill, so it is already 0 while the last drop is still in flight.
+[proc,debug_droptest_end]
+%debug_droptest_left = 0;
+queue(debug_droptest_unquiet, ^debug_droptest_quiet_tail, 0);
+
+[queue,debug_droptest_unquiet]
+// A run started while this was pending owns the gate now and will queue its own lift.
+if (%debug_droptest_left > 0) {
+    return;
+}
+%broadcast_suppressed = 0;

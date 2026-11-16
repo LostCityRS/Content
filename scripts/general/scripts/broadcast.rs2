@@ -67,7 +67,22 @@ switch_int (~xprate_current) {
 return("<$icons>@dbl@<displayname>@bla@");
 
 // The one shape every announcement shares: a shadowed gold label, then who, then what happened.
+//
+// NOTHING GOES OUT WHILE %broadcast_suppressed IS SET. That is ::~droptest, which spawns npcs and
+// really kills them - the drops run the real death scripts, so without this a dev asking "how
+// often does the King Black Dragon drop a dragon pickaxe" over a hundred kills sent a hundred real
+// "[Rare drop!]" lines to everybody on the world, each one naming a drop nobody got.
+//
+// THE GATE IS HERE AND NOT IN ~broadcast_drop so a broadcast added later is covered without
+// anybody remembering this existed. It deliberately does not cover ~yell or ~broadcast_staff: they
+// go through broadcast_mes directly, and a staff member running a drop test should still be able
+// to talk to the world. Milestones have their own answer - a drop test marks the account
+// (general/scripts/milestones.rs2), which is permanent, because the collection log pages those
+// kills fill are real.
 [proc,broadcast_news](string $label, string $what)
+if (%broadcast_suppressed ! 0) {
+    return;
+}
 broadcast_mes("@sh1@@or1@<$label>@sh0@@bla@ <~broadcast_name> <$what>");
 
 // A milestone - a 99, a total level, a max cape, a server first. Same shape as the news above, but

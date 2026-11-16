@@ -20,3 +20,9 @@
 ^debug_droptest_lifetime = 50
 // How many npcs ::~npcinfo will print before it stops and counts the rest.
 ^debug_npcinfo_max = 10
+
+// How long after a drop test ends before broadcasts are let out again. The last kill's death
+// script runs a cycle or two after the run's own bookkeeping finishes (npc_queue, not inline), so
+// the gate has to outlive it - see ~debug_droptest_end. Comfortably longer than the gap between
+// kills, which is ^debug_droptest_delay.
+^debug_droptest_quiet_tail = 10
