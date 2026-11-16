@@ -1,0 +1,145 @@
+// MILESTONE ANNOUNCEMENTS: the lines that tell the world somebody got somewhere.
+//
+// The server already announces things that FALL to a player - rare drops, pets, the Fire cape, the
+// Amulet of eternal glory. This is the other half: the things a player works towards. Every line
+// here goes out through ~broadcast_milestone_news (general/scripts/broadcast.rs2), which is the
+// only kind of broadcast a player can turn off, with ::milestones.
+//
+// WHAT IS ANNOUNCED, and why these and not every level:
+//
+//   every 99          at most 23 per account, ever. The XP curve is the reason the obvious
+//                     "every 25 levels" is not here: level 25 is minutes of play and 99 is 13
+//                     million experience, so a 25/50/75 ladder is 92 lines per account, almost all
+//                     of them for the least impressive half of the climb, and the noise would land
+//                     hardest on a new world full of new accounts.
+//   total level       1000, 1500, 2000 and 2277. Breadth rather than one skill, and about four
+//                     lines per account across its whole life.
+//   max cape          all 23 capes. Falls out of the 99 above - no extra pass over the stats.
+//   every quest       all of them, by quest points, from ~send_quest_complete.
+//   combat 126        the ceiling, announced once.
+//   SERVER FIRSTS     "first to 99 Fishing" fires 23 times in this world's entire life, and the
+//                     same for the other milestones above. They are the cheapest prestige there
+//                     is: the engine's milestone_first settles the claim in the database, so two
+//                     players levelling on the same tick cannot both be told they were first.
+//
+// All XP rates are treated alike. A 10x account reaches 99 sooner, and the broadcast carries that
+// player's XP badge (~broadcast_name) so everybody can see which it was.
+
+// ---------------------------------------------------------------------------- thresholds
+// Total-level milestones, in order. ~milestone_total walks these, so adding one is a line here.
+[proc,milestone_total_steps](int $n)(int)
+switch_int ($n) {
+    case 1 : return(1000);
+    case 2 : return(1500);
+    case 3 : return(2000);
+    case 4 : return(2277);
+}
+return(0);
+
+// ---------------------------------------------------------------------------- the hooks
+// Every level-up, from [label,levelup] in levelup/scripts/levelup.rs2.
+[proc,milestone_levelup](stat $stat)
+if (stat_base($stat) = 99) {
+    ~milestone_99($stat);
+}
+~milestone_total;
+~milestone_combat;
+
+// A 99, and the max cape when it is the last one.
+//
+// EXACTLY 99 AND NOT 99-OR-MORE: stat_base stops at 99 and never falls, so this level-up is the
+// only one that will ever see it become 99. That is what keeps the 99 and the max cape from
+// needing a mark varp of their own, unlike total level and combat.
+[proc,milestone_99](stat $stat)
+def_string $skill = enum(stat, string, stat_names, $stat);
+if (milestone_first("99:<$skill>") = true) {
+    ~broadcast_milestone_news("[Server first!]", "is the first to reach level @dre@99 <$skill>@bla@.");
+} else {
+    ~broadcast_milestone_news("[Milestone]", "has reached level @dre@99 <$skill>@bla@.");
+}
+
+// The max cape is every caped skill at 99. ~skillcape_count_99s and ~skillcape_stats are the
+// skillcape shop's own counters, so a skill gaining or losing a cape moves both together.
+if (~skillcape_count_99s = ~skillcape_stats) {
+    if (milestone_first("maxcape") = true) {
+        ~broadcast_milestone_news("[Server first!]", "is the first to master every skill. @dre@Max cape@bla@!");
+    } else {
+        ~broadcast_milestone_news("[Milestone]", "has mastered every skill. @dre@Max cape@bla@!");
+    }
+}
+
+// Total level. Marked rather than compared exactly, because one advance can carry a player past a
+// threshold without ever standing on it.
+[proc,milestone_total]
+def_int $total = ~milestone_total_level;
+def_int $n = 1;
+while (~milestone_total_steps($n) > 0) {
+    def_int $step = ~milestone_total_steps($n);
+    if ($total >= $step & %milestone_total_mark < $step) {
+        %milestone_total_mark = $step;
+        if (milestone_first("total:<tostring($step)>") = true) {
+            ~broadcast_milestone_news("[Server first!]", "is the first to reach @dre@<tostring($step)> total level@bla@.");
+        } else {
+            ~broadcast_milestone_news("[Milestone]", "has reached @dre@<tostring($step)> total level@bla@.");
+        }
+    }
+    $n = add($n, 1);
+}
+
+// Combat 126, the ceiling. Marked for the same reason as the total.
+[proc,milestone_combat]
+if (%milestone_combat_mark ! 0) {
+    return;
+}
+if (~player_combat_level < 126) {
+    return;
+}
+%milestone_combat_mark = 1;
+if (milestone_first("combat:126") = true) {
+    ~broadcast_milestone_news("[Server first!]", "is the first to reach @dre@combat level 126@bla@.");
+} else {
+    ~broadcast_milestone_news("[Milestone]", "has reached @dre@combat level 126@bla@.");
+}
+
+// Every quest, from ~send_quest_complete - so it is asked once per quest completed and nowhere
+// else. ~count_questpoints and ~max_questpoints are the quest list's own, which is what keeps this
+// true as quests are added rather than counting to a number written down here.
+[proc,milestone_quests]
+if (~count_questpoints < ~max_questpoints) {
+    return;
+}
+if (milestone_first("quests:all") = true) {
+    ~broadcast_milestone_news("[Server first!]", "is the first to complete @dre@every quest@bla@.");
+} else {
+    ~broadcast_milestone_news("[Milestone]", "has completed @dre@every quest@bla@.");
+}
+
+// A NEW PLAYER, announced on the first login AFTER THE TUTORIAL rather than on the first login at
+// all. Two reasons, and the second is the important one:
+//
+//   * "has arrived" is true of somebody who finished the tutorial and is standing in Lumbridge. It
+//     is not true of an account that was created and never left the island.
+//   * an announcement on account creation can be farmed. Anybody can make accounts, and a line to
+//     every player on the world per account is a spam channel. The tutorial is half an hour of
+//     work, which is not a wall but is enough that nobody does it a hundred times for a joke.
+//
+// Marked on the account, so it is one line per player ever - not one per login.
+[proc,milestone_welcome]
+if (%milestone_welcomed ! 0) {
+    return;
+}
+if (%tutorial < ^tutorial_complete) {
+    return;
+}
+%milestone_welcomed = 1;
+~broadcast_milestone_news("[New player]", "has arrived on Death Plateau. Say hello!");
+
+// The sum of every skill's base level. There was no total-level proc before this.
+[proc,milestone_total_level]()(int)
+def_int $total = 0;
+def_int $i = 1;
+while ($i <= enum_getoutputcount(stats)) {
+    $total = add($total, stat_base(enum(int, stat, stats, $i)));
+    $i = add($i, 1);
+}
+return($total);

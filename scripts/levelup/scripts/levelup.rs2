@@ -26,6 +26,10 @@
 
 [label,levelup](stat $stat)
 ~skillcape_levelup($stat); // a second 99 trims every skill cape (skillcapes/scripts/skillcape_shop.rs2)
+// A 99, a total-level step, the max cape, combat 126 (general/scripts/milestones.rs2). Before the
+// db_find below, which returns early for a skill with no unlock row - a 99 in one of those would
+// otherwise never be announced.
+~milestone_levelup($stat);
 db_find(levelup:stat, $stat);
 def_dbrow $unlock_row = db_findnext;
 if ($unlock_row = null) {

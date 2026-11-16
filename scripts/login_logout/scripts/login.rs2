@@ -1,5 +1,8 @@
 [login,_]
 mes("Welcome to Death Plateau.");
+// Announce a player who has just finished the tutorial, once per account
+// (general/scripts/milestones.rs2).
+~milestone_welcome;
 cam_reset;
 
 %musicplay = 1; // set to auto on login

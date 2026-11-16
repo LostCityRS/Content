@@ -1,0 +1,23 @@
+// What this account has already announced, so a milestone is announced once and not once per
+// level-up afterwards. See general/scripts/milestones.rs2.
+//
+// A 99 and a max cape need no mark: stat_base never falls, so "this level-up took the skill to
+// exactly 99" and "this 99 was the twenty-third" are each true on exactly one level-up. Total
+// level and combat level are different - both can rise by more than one in a single advance, so
+// asking "is it exactly 2000" would miss the player who went from 1999 to 2001. These hold the
+// highest threshold already announced and the test is "past it and not yet marked".
+
+// The highest total-level milestone announced: 0, then 1000, 1500, 2000, 2277.
+[milestone_total_mark]
+scope=perm
+protect=no
+
+// 1 once combat level 126 has been announced.
+[milestone_combat_mark]
+scope=perm
+protect=no
+
+// 1 once this account has been announced as a new arrival.
+[milestone_welcomed]
+scope=perm
+protect=no

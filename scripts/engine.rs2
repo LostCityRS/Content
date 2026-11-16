@@ -82,6 +82,14 @@
 [command,map_multiway](coord $coord)(boolean)
 // info: Sends a game message to every online player's chatbox (custom, Corey 2026-09-04)
 [command,broadcast_mes](string $message)
+// info: As broadcast_mes, but not sent to players who have hidden milestone announcements with
+// info: ::milestones (custom, 2026-11-16). The opt-out is a varp on each RECEIVER, so the filter
+// info: has to be the engine's - a script runs as one player and cannot walk the player list.
+[command,broadcast_milestone](string $message)
+// info: Claim a server first under $key, e.g. "99:fishing" (custom, 2026-11-16). True only for the
+// info: account that got there first, and only once ever - so it is safe to call from a level-up
+// info: that can fire again. The key is content's to choose; see engine MilestoneStore.ts.
+[command,milestone_first](string $key)(boolean)
 // info: Minutes elapsed since 1 Jan 2025 UTC (custom, Corey 2026-09-05). Unlike map_clock this is
 // real time and survives a restart, which is what lets farming crops keep growing while offline.
 [command,world_minute]()(int)

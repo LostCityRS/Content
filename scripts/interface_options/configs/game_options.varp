@@ -58,3 +58,11 @@ protect=no
 [option_levelup]
 scope=perm
 protect=no
+
+// MILESTONE ANNOUNCEMENTS: 0 shown, 1 hidden. Flipped by ::milestones, which is a command and not
+// a button because options.if has no room left - the note beside levelup_popup in that file does
+// the arithmetic. scope=perm so it survives logout; not transmitted, because nothing in the client
+// reads it - the server decides who a broadcast reaches (engine World.broadcastMilestone).
+[option_milestones]
+scope=perm
+protect=no

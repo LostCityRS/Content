@@ -15,6 +15,9 @@ if ($progress = 0) {
 }
 
 [proc,send_quest_complete](component $component, namedobj $obj, int $objscale, int $questpoints, string $questmessage, string $rewardtext)
+// The last quest is a milestone (general/scripts/milestones.rs2). Asked here because this is the
+// one place every quest passes through on completion.
+~milestone_quests;
 // Random quest complete jingle.
 def_int $random = random(128);
 if ($random < 32) {       // The least common music that plays when completing a quest.

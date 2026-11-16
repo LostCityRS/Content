@@ -70,6 +70,14 @@ return("<$icons>@dbl@<displayname>@bla@");
 [proc,broadcast_news](string $label, string $what)
 broadcast_mes("@sh1@@or1@<$label>@sh0@@bla@ <~broadcast_name> <$what>");
 
+// A milestone - a 99, a total level, a max cape, a server first. Same shape as the news above, but
+// sent with broadcast_milestone rather than broadcast_mes: these are the one kind of announcement a
+// player can turn off (::milestones), and the opt-out is a varp on each RECEIVER, which only the
+// engine can read for every player on the world. The label colour is the difference a player sees -
+// gold is the rare drops and the pets, green is somebody's own achievement.
+[proc,broadcast_milestone_news](string $label, string $what)
+broadcast_milestone("@sh1@@gre@<$label>@sh0@@bla@ <~broadcast_name> <$what>");
+
 // A rare drop. The item is in dark red so it reads as the point of the line.
 [proc,broadcast_drop](obj $drop)
 ~broadcast_news("Rare drop!", "received @dre@<oc_name($drop)>@bla@.");
