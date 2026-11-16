@@ -17,7 +17,8 @@
 # developer commands) and NODE_MIN_STAFF_LEVEL=3: administrators and up get in, everyone else is told
 # "This world is full". A dev deploy never touches the live world, and a live deploy never touches dev.
 # Its ports are live's plus one: game 43595, web/cache 8889 (and management 8899, loopback only) - the
-# launcher's "Dev world" button connects to those, or to the dev world's own playit.gg tunnels.
+# launcher's "Dev world" button connects to those, or to the relay on those same ports
+# (216.128.157.152:43595 and :8889 - playit.gg was dropped on 3 November 2026).
 #
 #   ./deploy.sh --dev-setup                one time: the dev checkouts, dev .env and systemd unit.
 #                                          Creates only what is missing, so it is safe to run again.
