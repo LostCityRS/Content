@@ -324,7 +324,23 @@ mes("You place the kitten on the floor.");
 p_delay(0);
 npc_say("Mew!");
 p_delay(0);
-npc_walk(%fluffs_crate);
+// THE CRATE IS ONLY KNOWN ONCE THE CAT HAS HAD ITS SARDINE. %fluffs_crate is written in exactly
+// one place - the seasoned_sardine branch above, which rolls one of six crates - so for anybody
+// holding a kitten before that it is null, and npc_walk(null) does not fail quietly: it throws
+// inside the engine, "An input for a Coord was out of range. Input was -1.", and the rest of this
+// trigger never runs. The nightly fuzzing bots hit it four times in one run on 2026-11-17.
+//
+// Searching the right crate is how the quest hands the kitten over, so a player on the normal
+// route always has the varp by now. A kitten that arrived any other way - spawned by staff, or
+// held across a quest reset - did not, and a held obj that crashes the script when you drop it
+// is worth a line of guard whether or not a player can reach it.
+//
+// Nothing about the quest changes: where the varp is set this walks exactly as before, and where
+// it is not the kitten simply stays where it was put. npc_del four ticks below is what ends it
+// either way, so it still mews and still runs off.
+if (%fluffs_crate ! null) {
+    npc_walk(%fluffs_crate);
+}
 p_delay(4);
 npc_del;
 ~mesbox("The kitten has run off!");
