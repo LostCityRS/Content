@@ -1,10 +1,27 @@
+// GRANDPA JACK of Hemenster, the Fishing Contest's old man - and the only place near the contest
+// to buy a fishing rod.
+//
+// HE SELLS ONE IN CONVERSATION, NOT FROM A SHOP, which is why his npc config has op1=Talk-to and
+// no Trade (377 all.npc) and why that is correct rather than something missing. Five coins for his
+// "competition winning" rod, which is an ordinary fishing_rod with nothing special about it.
+//
+// IT IS NOT GATED ON THE QUEST. The rod is for sale whether or not the contest is on, the way the
+// wiki has it - and it matters most to somebody who has just been turned away from the contest
+// pond by "You need a fishing rod to catch these fish" (quest_fishingcompo/hemenster_fishing.rs2),
+// with Port Sarim and Catherby the nearest other sellers.
+//
+// WHAT HE SAYS WHEN HE SELLS IT is reconstructed, not transcribed: the mechanics below are the
+// wiki's (five coins, refuses if you are already carrying a rod, refuses if your pack is full, and
+// "You hand over the money and receive a fishing rod." on success), but his own lines are written
+// to this file's voice rather than copied from a transcript. If an authentic transcript turns up,
+// the lines are the part to correct; the conditions are already right.
 [opnpc1,grandpa_jack]
 def_string $gender = text_gender("man", "lady");
 ~chatnpc("<p,happy>Hello young <$gender>!|Come to visit old Grandpa Jack?|I can tell ye stories for sure.|I used to be the best fisherman these parts have seen!");
 def_int $option;
 switch_int (%fishingcompo) {
-    case ^fishingcompo_started,^fishingcompo_in_comp,^fishingcompo_garlic_comp : $option = ~p_choice3("Tell me a story then.", 1, "Are you entering the fishing competition?", 3, "Sorry, I don't have time now.", 2);
-    case default : $option = ~p_choice2("Tell me a story then.", 1, "Sorry, I don't have time now.", 2);
+    case ^fishingcompo_started,^fishingcompo_in_comp,^fishingcompo_garlic_comp : $option = ~p_choice4("Tell me a story then.", 1, "Are you entering the fishing competition?", 3, "Can I buy your fishing rod?", 4, "Sorry, I don't have time now.", 2);
+    case default : $option = ~p_choice3("Tell me a story then.", 1, "Can I buy your fishing rod?", 4, "Sorry, I don't have time now.", 2);
 }
 if($option = 1) {
     ~chatplayer("<p,neutral>Tell me a story then.");
@@ -32,4 +49,37 @@ if($option = 1) {
     } else if($option = 2) {
         ~chatplayer("<p,confused>That's less competition for me then.");
     }
+} else if($option = 4) {
+    ~grandpa_jack_rod;
 }
+
+// HIS ROD, five coins. The checks are in the order he would notice them: a rod already in hand
+// first, because that is the one he refuses outright rather than waits on.
+[proc,grandpa_jack_rod]
+~chatplayer("<p,quiz>Can I buy your fishing rod?");
+if (inv_total(inv, fishing_rod) > 0) {
+    ~chatnpc("<p,laugh>Ye've got a rod in yer hands already!|What would ye want with another?");
+    return;
+}
+~chatnpc("<p,happy>Aye, that I will.|5 gold is a fair price for a rod|which has won the Fishing competition before.");
+if (inv_total(inv, coins) < 5) {
+    ~chatnpc("<p,neutral>Ye don't have the five gold on ye though.|Come back when ye do.");
+    return;
+}
+// inv_add would drop the overflow at the player's feet on a full pack, which is a rod they paid
+// for lying on the ground - so the space is checked before the coins are taken, not after.
+//
+// AND PAYING CAN MAKE THE ROOM. Coins are one stacked slot, so somebody with a full pack and
+// exactly five of them has a free slot the moment they hand them over - a plain inv_freespace
+// test refuses that player for want of a space the sale itself creates.
+def_int $space = inv_freespace(inv);
+if (inv_total(inv, coins) = 5) {
+    $space = add($space, 1);
+}
+if ($space < 1) {
+    ~chatnpc("<p,neutral>Ye've no room to carry it, young un.|Come back later.");
+    return;
+}
+inv_del(inv, coins, 5);
+inv_add(inv, fishing_rod, 1);
+mes("You hand over the money and receive a fishing rod.");
