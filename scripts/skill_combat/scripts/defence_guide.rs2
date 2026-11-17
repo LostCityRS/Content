@@ -2,6 +2,20 @@
 // (see content/scripts/interfaces/skill_guide.rs2 for the generic driver).
 // Metal armour tiers collapsed to one platebody row each; barrows sets to the body
 // piece, since helm and legs carry the identical requirement.
+//
+// AND THAT INCLUDES TRIMS. This listed "Black armour (trimmed)" and "Adamant armour
+// (trimmed)" as rows of their own, directly under the plain tier and at the same level
+// - reported by a player as wrong (tracker issue 22). A trim is a Treasure Trails
+// reward with the identical requirement (levelrequire/scripts/tier10.rs2 and tier30.rs2
+// put each pair on the same level), so the row told nobody anything the row above it had
+// not. It was not a policy either: the cache holds seven trim/gold platebody variants
+// and this listed two, leaving out both gold versions and all three rune ones, while no
+// other skill guide in the build lists a trim at all.
+//
+// tools/sim/defguide.ts in the engine repo holds the rule rather than the row count: no
+// row may show a trimmed or gold variant of an item the guide already lists. Bronze and
+// Iron are both level 1 and both stay - they are different armour, which is the
+// distinction a row count cannot make.
 [proc,open_defence_guide]
 ~skillguide_begin(^guide_defence, "Defence");
 def_int $lvl = stat(defence);
@@ -10,36 +24,34 @@ def_int $lvl = stat(defence);
 ~skillguide_row(3, $lvl, 1, elemental_shield, "Elemental shield");
 ~skillguide_row(4, $lvl, 5, steel_platebody, "Steel armour");
 ~skillguide_row(5, $lvl, 10, black_platebody, "Black armour");
-~skillguide_row(6, $lvl, 10, black_platebody_trim, "Black armour (trimmed)");
-~skillguide_row(7, $lvl, 10, hardleather_body, "Hardleather body");
-~skillguide_row(8, $lvl, 20, mithril_platebody, "Mithril armour");
-~skillguide_row(9, $lvl, 20, studded_body, "Studded body");
-~skillguide_row(10, $lvl, 20, mystic_robe_top, "Mystic robes");
-~skillguide_row(11, $lvl, 20, enchanted_robetop, "Enchanted robes");
-~skillguide_row(12, $lvl, 25, magictraining_infinitytop, "Infinity robes");
-~skillguide_row(13, $lvl, 30, adamant_platebody, "Adamant armour");
-~skillguide_row(14, $lvl, 30, adamant_platebody_trim, "Adamant armour (trimmed)");
-~skillguide_row(15, $lvl, 30, adamant_shield_h1, "Adamant heraldic kites");
-~skillguide_row(16, $lvl, 30, snakeskin_body, "Snakeskin armour");
-~skillguide_row(17, $lvl, 40, rune_platebody, "Rune platebody (quest)");
-~skillguide_row(18, $lvl, 40, rune_platelegs, "Rune armour");
-~skillguide_row(19, $lvl, 40, rune_shield_h1, "Rune heraldic kites");
-~skillguide_row(20, $lvl, 40, rune_platebody_zamorak, "Rune god platebodies");
-~skillguide_row(21, $lvl, 40, dragonhide_body, "Green d'hide body");
-~skillguide_row(22, $lvl, 40, splitbark_body, "Splitbark armour");
-~skillguide_row(23, $lvl, 40, blue_dragonhide_body, "Blue d'hide body");
-~skillguide_row(24, $lvl, 40, red_dragonhide_body, "Red d'hide body");
-~skillguide_row(25, $lvl, 40, black_dragonhide_body, "Black d'hide body");
-~skillguide_row(26, $lvl, 45, viking_helmet_crush, "Fremennik helms (quest)");
-~skillguide_row(27, $lvl, 60, dragon_med_helm, "Dragon med helm");
-~skillguide_row(28, $lvl, 60, dragon_chainbody, "Dragon chainbody");
-~skillguide_row(29, $lvl, 60, dragon_platelegs, "Dragon platelegs");
-~skillguide_row(30, $lvl, 60, dragon_plateskirt, "Dragon plateskirt");
-~skillguide_row(31, $lvl, 60, dragon_sq_shield, "Dragon sq shield (quest)");
-~skillguide_row(32, $lvl, 70, barrows_torag_body, "Torag's platebody");
-~skillguide_row(33, $lvl, 70, barrows_dharok_body, "Dharok's platebody");
-~skillguide_row(34, $lvl, 70, barrows_guthan_body, "Guthan's platebody");
-~skillguide_row(35, $lvl, 70, barrows_verac_body, "Verac's brassard");
-~skillguide_row(36, $lvl, 70, barrows_karil_body, "Karil's leathertop");
-~skillguide_row(37, $lvl, 70, barrows_ahrim_body, "Ahrim's robetop");
+~skillguide_row(6, $lvl, 10, hardleather_body, "Hardleather body");
+~skillguide_row(7, $lvl, 20, mithril_platebody, "Mithril armour");
+~skillguide_row(8, $lvl, 20, studded_body, "Studded body");
+~skillguide_row(9, $lvl, 20, mystic_robe_top, "Mystic robes");
+~skillguide_row(10, $lvl, 20, enchanted_robetop, "Enchanted robes");
+~skillguide_row(11, $lvl, 25, magictraining_infinitytop, "Infinity robes");
+~skillguide_row(12, $lvl, 30, adamant_platebody, "Adamant armour");
+~skillguide_row(13, $lvl, 30, adamant_shield_h1, "Adamant heraldic kites");
+~skillguide_row(14, $lvl, 30, snakeskin_body, "Snakeskin armour");
+~skillguide_row(15, $lvl, 40, rune_platebody, "Rune platebody (quest)");
+~skillguide_row(16, $lvl, 40, rune_platelegs, "Rune armour");
+~skillguide_row(17, $lvl, 40, rune_shield_h1, "Rune heraldic kites");
+~skillguide_row(18, $lvl, 40, rune_platebody_zamorak, "Rune god platebodies");
+~skillguide_row(19, $lvl, 40, dragonhide_body, "Green d'hide body");
+~skillguide_row(20, $lvl, 40, splitbark_body, "Splitbark armour");
+~skillguide_row(21, $lvl, 40, blue_dragonhide_body, "Blue d'hide body");
+~skillguide_row(22, $lvl, 40, red_dragonhide_body, "Red d'hide body");
+~skillguide_row(23, $lvl, 40, black_dragonhide_body, "Black d'hide body");
+~skillguide_row(24, $lvl, 45, viking_helmet_crush, "Fremennik helms (quest)");
+~skillguide_row(25, $lvl, 60, dragon_med_helm, "Dragon med helm");
+~skillguide_row(26, $lvl, 60, dragon_chainbody, "Dragon chainbody");
+~skillguide_row(27, $lvl, 60, dragon_platelegs, "Dragon platelegs");
+~skillguide_row(28, $lvl, 60, dragon_plateskirt, "Dragon plateskirt");
+~skillguide_row(29, $lvl, 60, dragon_sq_shield, "Dragon sq shield (quest)");
+~skillguide_row(30, $lvl, 70, barrows_torag_body, "Torag's platebody");
+~skillguide_row(31, $lvl, 70, barrows_dharok_body, "Dharok's platebody");
+~skillguide_row(32, $lvl, 70, barrows_guthan_body, "Guthan's platebody");
+~skillguide_row(33, $lvl, 70, barrows_verac_body, "Verac's brassard");
+~skillguide_row(34, $lvl, 70, barrows_karil_body, "Karil's leathertop");
+~skillguide_row(35, $lvl, 70, barrows_ahrim_body, "Ahrim's robetop");
 ~skillguide_show;
