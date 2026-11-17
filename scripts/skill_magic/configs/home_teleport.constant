@@ -1,0 +1,11 @@
+// HOW LONG BETWEEN CASTS OF HOME TELEPORT, in real minutes. The wait is counted in date_minutes
+// rather than ticks, so it runs while the player is logged out too - see home_teleport.varp.
+//
+// 15 since 2026-11-17, 30 before that (Old School's own figure, which this build started from).
+//
+// THE THREE SPELLBOOK TOOLTIPS SAY THIS NUMBER AND CANNOT READ IT. "Teleports you to Lumbridge
+// without runes, once every 15 minutes" is text baked into magic.if, ancient_magic.if and
+// lunar_magic.if, which are packed into the client's cache - an interface cannot call a script, so
+// there is no way to build that line from this constant. Changing the wait means changing all
+// three by hand, and tools/sim/hometele.ts fails if they and this ever disagree.
+^home_teleport_wait = 15

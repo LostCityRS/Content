@@ -1,6 +1,6 @@
 // HOME TELEPORT, the first spell in all three of 474's books. No runes; it can only be cast once
-// every thirty real minutes (%home_teleport_last, in date_minutes, so the wait runs while you are
-// logged out too).
+// every ^home_teleport_wait real minutes - fifteen (%home_teleport_last, in date_minutes, so the
+// wait runs while you are logged out too). skill_magic/configs/home_teleport.constant.
 //
 // WHERE IT GOES IS THE BOOK'S, not the spell's, which is why the destination is an argument rather
 // than a line at the bottom. The normal book goes to Lumbridge and the Ancient Magicks to
@@ -11,7 +11,7 @@
 // BOTH WENT TO EDGEVILLE FOR A WHILE (ce2abdace, September) and that is what this undoes. The
 // reason it made sense then was that Edgeville is where a player wants to arrive - bank, altar,
 // furnace, and the Wilderness ditch - and the reason it does not any more is ::home, which already
-// puts them there and has no thirty-minute wait. Two ways to the same square is one of them wasted;
+// puts them there and has no wait at all. Two ways to the same square is one of them wasted;
 // one to Lumbridge and one to Edgeville is two destinations.
 //
 // LUNAR GOES TO LUNAR ISLE, which is Old School's own destination for it ("next to the bank on
@@ -73,7 +73,7 @@ if (~wilderness_level(coord) > 20) {
 if (~pre_tele_checks(coord) = false) {
     return;
 }
-def_int $wait = calc(%home_teleport_last + 30 - date_minutes);
+def_int $wait = calc(%home_teleport_last + ^home_teleport_wait - date_minutes);
 if (%home_teleport_last > 0 & $wait > 0) {
     if ($wait = 1) {
         mes("You need to wait another minute to cast this spell.");
