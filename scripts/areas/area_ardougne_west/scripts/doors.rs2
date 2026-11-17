@@ -29,21 +29,38 @@ mes("You pull on the large wooden doors...");
 if(%biohazard = ^biohazard_complete) {
     def_coord $loc_coord = loc_coord;
     mes("...You open them and walk through.");
+    // SWING EACH LEAF, do not swap the halves and do not reach for the _open locs.
+    //
+    // What was here swapped the two halves with each other. Read against the map it does move
+    // something - each piece jumps 96 units to the opposite face of its own tile - but it stays
+    // square across the gateway, so the gate still reads as shut and the player slides through a
+    // closed-looking gate (tracker issue 20).
+    //
+    // ardougnedoor_l_open and ardougnedoor_r_open look like the answer and are a trap. The MODEL
+    // they name is not in this content: models/loc holds one Ardougne door, ardougnedoor_l_open_1,
+    // and model.pack lists one. The packer falls back to a shape-suffix search, lands back on that
+    // same shut model and registers it under shape 0 - while these four are placed at shape 10
+    // (maps/m39_51.jm2). LocType.method565 returns null for a shape that is not in the list, so
+    // using those locs here draws NOTHING: four gate-shaped holes in the wall for five ticks.
+    //
+    // So the leaf is turned instead. A quarter turn about the tile centre takes it from spanning
+    // the tile north-south, filling the gateway, to spanning it east-west, clear of it - the same
+    // trick ~open_and_close_door2 plays on wall doors, which is all the cache gives us to work
+    // with. The direction is not a guess: the opening spans z 3299..3300, so the south leaf turns
+    // south and the north leaf turns north, away from where the two meet. Reading the model's own
+    // vertices, that is angle 3 for the pair at local z 35 and angle 1 for the pair at local z 36,
+    // whichever half and whichever map angle each tile started from.
     if(loc_find(0_39_51_62_36, ardougnedoor_r) = true) {
-        // Temp note: dur updated
-        loc_add(loc_coord, ardougnedoor_l, 2, loc_shape, 5);
+        loc_add(loc_coord, ardougnedoor_r, 1, loc_shape, 5);
     }
     if(loc_find(0_39_51_61_36, ardougnedoor_l) = true) {
-        // Temp note: dur updated
-        loc_add(loc_coord, ardougnedoor_r, 0, loc_shape, 5);
+        loc_add(loc_coord, ardougnedoor_l, 1, loc_shape, 5);
     }
     if(loc_find(0_39_51_62_35, ardougnedoor_l) = true) {
-        // Temp note: dur updated
-        loc_add(loc_coord, ardougnedoor_r, 2, loc_shape, 5);
+        loc_add(loc_coord, ardougnedoor_l, 3, loc_shape, 5);
     }
     if(loc_find(0_39_51_61_35, ardougnedoor_r) = true) {
-        // Temp note: dur updated
-        loc_add(loc_coord, ardougnedoor_l, 0, loc_shape, 5);
+        loc_add(loc_coord, ardougnedoor_r, 3, loc_shape, 5);
     }
     sound_synth(coffin_open, 1, 0);
     if(coordx(coord) < coordx(loc_coord)) {

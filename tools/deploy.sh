@@ -39,7 +39,8 @@
 # keeps it (so what is done on dev stays on dev) unless --resync-saves is given.
 #
 #   systemctl status deathplateau-dev      journalctl -u deathplateau-dev -f
-#   systemctl stop deathplateau-dev        (an idle dev world still holds most of a GB of RAM)
+#   systemctl stop deathplateau-dev        (an idle dev world still holds most of a GB of RAM,
+#                                          though a live deploy now stops it over the build itself)
 set -euo pipefail
 
 # This script is tracked in the content repo, and it pulls that repo while running.
@@ -684,6 +685,38 @@ if [ -n "$DEV" ]; then
     say "Deployed the dev world. Tailing its log - Ctrl-C to stop (the server keeps running)."
     exec journalctl -u "$SERVICE" -f
 fi
+# ---------------------------------------------------------------- the dev world stands aside
+# A LIVE BUILD AND AN IDLE DEV WORLD DO NOT FIT IN 4GB. 16 November 2026: the live world and the
+# website held about 1.2GB, the dev world a further 1GB doing nothing at all, and Build.ts peaks
+# near 1.6GB. memory.current reached 4,277,342,208 against a memory.max of 4,294,967,296, with
+# 1,806,409 throttle events and NOT ONE oom kill - so nothing died, nothing was logged, and the
+# container simply lost the ability to start a process. `pct enter` hung. Two deploys froze at the
+# build, and the second one left the packs cleared with the world unable to restart.
+#
+# The header of this script has said to stop the dev world by hand since the dev world existed. A
+# sentence in a comment is not a mechanism, and the evening you most need it is the evening you
+# were in the middle of something on dev.
+#
+# ONLY IF IT IS RUNNING, so this is a no-op on a server that has no dev world or has it stopped.
+# STARTED AGAIN WHETHER OR NOT THE BUILD WORKS, including when `die` ends the script: a live deploy
+# that silently leaves somebody's dev world off is its own small surprise, found hours later.
+DEV_WAS_UP=
+restore_dev() {
+    [ -n "$DEV_WAS_UP" ] || return 0
+    DEV_WAS_UP=
+    say "Starting $DEV_SERVICE again"
+    systemctl start "$DEV_SERVICE" \
+        || printf '  could not start %s - start it by hand when you want it\n' "$DEV_SERVICE" >&2
+}
+if systemctl is-active --quiet "$DEV_SERVICE"; then
+    DEV_WAS_UP=1
+    say "Stopping $DEV_SERVICE for the build - it is started again at the end"
+    systemctl stop "$DEV_SERVICE" || true
+fi
+# The live path below never execs, so this trap survives to the end of it. (The --dev path does
+# exec, which would discard it - but it returned long before this line.)
+trap restore_dev EXIT
+
 # set -euo pipefail stops the deploy here on a failure already; this is so the one build failure
 # that is not a compile error says what to do about itself. Build.ts reads the packed cache back
 # through the engine's own reader, and two builds against one checkout leave chains running through
@@ -775,6 +808,9 @@ else
     say "Restarting $SERVICE"
     systemctl restart "$SERVICE"
 fi
+
+# Live is up on the new build; dev can have its gigabyte back.
+restore_dev
 
 say "Deployed. Tailing the log - Ctrl-C to stop (the server keeps running)."
 journalctl -u "$SERVICE" -f
