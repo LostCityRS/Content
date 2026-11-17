@@ -2,9 +2,14 @@
 ~chatplayer("<p,happy>Hello.");
 ~chatnpc("<p,happy>Can I help you?");
 def_int $total = calc(inv_total(inv, cow_hide) + inv_total(inv, dragonhide_green) + inv_total(inv, dragonhide_blue) + inv_total(inv, dragonhide_red) + inv_total(inv, dragonhide_black));
+// ALL THREE WHEN THERE ARE HIDES TO TAN. @multi2 is a jump and never comes back, so carrying a
+// single cowhide used to take "What do you do here?" off the menu entirely - the tanning worked,
+// but the only way to hear what she does was to put your hides in the bank first. The other two
+// tanners do not do this: Ellis returns from his decline and falls through to his own second
+// menu, and Sbott offers "Why are you so expensive?" alongside "Yes please".
 if($total > 0) {
-    @multi2("I'd like you to tan something for me.", tan_leather_choices, "No thanks.", leatherworker_no);
-} 
+    @multi3("I'd like you to tan something for me.", tan_leather_choices, "What do you do here?", leatherworker_whatdo, "No thanks.", leatherworker_no);
+}
 @multi2("What do you do here?", leatherworker_whatdo, "No thanks.", leatherworker_no);
 
 [label,leatherworker_whatdo]
