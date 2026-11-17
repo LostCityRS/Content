@@ -483,6 +483,58 @@ webclient_jar() {
     fi
 }
 
+# ------------------------------------------------------- the browser client that is not a jar
+# engine/public/teavm/ is the SECOND browser client: our own client compiled to JavaScript, served
+# at /teavm/ beside the CheerpJ page at /rs2.cgi. It is what a phone should be handed - 0.35MB
+# gzipped and seconds to a title screen, against the half hour CheerpJ takes there - and like the
+# jar above, nothing updates it by itself. It is built from DeathPlateau/ts-client/teavm, whose
+# dist/ is committed, so this is a fetch and not a build.
+#
+# NEVER FATAL, for the jar's reasons: a world still serving last week's client is better than a
+# deploy abandoned over GitHub. Each file is replaced only when it differs and only after it has
+# arrived whole, so a failed fetch cannot leave a page pointing at a client that is not there.
+#
+# A SIZE FLOOR RATHER THAN A PK CHECK. These are JavaScript and HTML and have no magic number, but
+# a GitHub error page arrives with a 200 on it and weighs a couple of kilobytes, which none of
+# these do.
+#
+# MUSIC.SF3 IS DELIBERATELY NOT FETCHED. The soundfont is megabytes and which one to serve is the
+# operator's choice, so it is installed once by hand and left alone - ts-client/teavm/DEPLOY.md.
+webclient_teavm() {
+    local dir=$1 f tmp floor changed=0 failed=0
+    local url=https://raw.githubusercontent.com/coreysho/DeathPlateau/main/ts-client/teavm/dist
+    mkdir -p "$dir/public/teavm"
+    for f in client.js index.html spessasynth_lib.js spessasynth_processor.min.js; do
+        case $f in
+            client.js) floor=500000 ;;
+            index.html) floor=1000 ;;
+            *) floor=50000 ;;
+        esac
+        tmp=$(mktemp "$dir/public/teavm/.$f.XXXXXX")
+        if curl -fsSL --max-time 120 -o "$tmp" "$url/$f" && [ "$(stat -c %s "$tmp")" -ge "$floor" ]; then
+            if cmp -s "$tmp" "$dir/public/teavm/$f"; then
+                rm -f "$tmp"
+            else
+                mv -f "$tmp" "$dir/public/teavm/$f"
+                chmod 644 "$dir/public/teavm/$f"
+                changed=$((changed + 1))
+            fi
+        else
+            rm -f "$tmp"
+            failed=$((failed + 1))
+        fi
+    done
+    if [ "$failed" -gt 0 ]; then
+        printf '  \033[1;33m%s of 4 files could not be fetched - keeping what is already there\033[0m\n' "$failed"
+    elif [ "$changed" -gt 0 ]; then
+        printf '  updated %s of 4 files (client.js is %s bytes)\n' "$changed" "$(stat -c %s "$dir/public/teavm/client.js")"
+    else
+        printf '  already the latest build\n'
+    fi
+    [ -f "$dir/public/teavm/music.sf3" ] ||
+        printf '  no music.sf3 here, so it plays no music - ts-client/teavm/DEPLOY.md says how\n'
+}
+
 # ---------------------------------------------------------------- 1. save backup
 # Save format v8 is ONE WAY: once the new engine writes a save, the old engine refuses
 # it ("Unsupported save version"). Backing up is not optional and must happen before
@@ -676,6 +728,9 @@ if [ -n "$DEV" ]; then
     say "Browser client"
     webclient_jar "$ENGINE"
 
+    say "Compiled browser client"
+    webclient_teavm "$ENGINE"
+
     sync_dev_key
     chown_dev
 
@@ -760,6 +815,9 @@ CHECKPOINT_DISABLE=1 npm run sqlite:migrate \
 
 say "Browser client"
 webclient_jar "$ENGINE"
+
+say "Compiled browser client"
+webclient_teavm "$ENGINE"
 
 # ------------------------------------------------- 4b. readable by the user the server runs as
 say "Checking the server can read what was just built"
