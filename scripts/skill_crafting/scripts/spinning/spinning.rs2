@@ -127,23 +127,59 @@ if (afk_event = ^true) {
     return;
 }
 
-// One loc_anim before the loop rather than one per item: the active loc reference is not worth
-// relying on after a p_delay, and the player animation carries the rest.
+// One loc_anim before the chain rather than one per item: the active loc reference is not worth
+// relying on once the repeat is a queue, and the player animation carries the rest.
 loc_anim(spinningwheel);
 
-def_int $made = 0;
-while ($made < $count & inv_total(inv, $ingredient) > 0) {
-    anim(human_spinningwheel, 0);
-    sound_synth(spinning, 1, 0);
-    p_delay(3);
-    if (inv_total(inv, $ingredient) < 1) {
-        $made = $count;
-    } else {
-        inv_del(inv, $ingredient, 1);
-        inv_add(inv, struct_param($struct, product), 1);
-        mes(struct_param($struct, processmessage));
-        stat_advance(crafting, struct_param($struct, productexp));
-        $made = add($made, 1);
-    }
+// THE REPEAT IS A QUEUE, NOT p_delay, and spinning was the last place in the build that had not
+// caught up with that. skill_fletching/scripts/bows.rs2 states the rule in capitals and gives one
+// of the two reasons: p_delay sets player.delayed, and while it is set MoveClickHandler and
+// OpLocHandler drop the player's input, so a batch paced that way cannot be stopped.
+//
+// The other reason is tracker issue 23. Player.addXp ENQUEUES the [advancestat,crafting] script
+// instead of running it inline, and a delayed player's queue does not drain - so every level
+// earned during a p_delay batch waited for the batch to end, and then [label,levelup] read
+// stat_base() as it finally ran, which is the level the batch FINISHED on. Spinning 27 flax from
+// level 10 with 1180 xp earned 11 and 12 and announced "Your crafting level is now 12." twice.
+//
+// One item now and the next on a weakqueue is how cooking (skill_cooking/scripts/cooking.rs2) and
+// strung bows carry theirs. Four ticks, not three: p_delay(3) set delayedUntil to tick + 1 + 3, so
+// four is the cadence this wheel already span at.
+if ($count <= 1) {
+    ~spin_one($product);
+    return;
 }
-anim(null, 0);
+weakqueue*(spin_more, 4)(sub($count, 1), $product);
+~spin_one($product);
+
+[queue,spin_more](int $count, obj $product)
+if ($count < 1) {
+    return;
+}
+def_namedobj $ingredient = ~spinning_ingredient($product);
+if ($ingredient = null) {
+    return;
+}
+if (inv_total(inv, $ingredient) < 1) {
+    return;
+}
+weakqueue*(spin_more, 4)(sub($count, 1), $product);
+~spin_one($product);
+
+// Deliberately silent when the last one is spun: the loop this replaced printed nothing either,
+// and cooking's "You don't have any more..." line has a video behind it that this does not.
+[proc,spin_one](obj $product)
+def_namedobj $ingredient = ~spinning_ingredient($product);
+if ($ingredient = null) {
+    return;
+}
+if (inv_total(inv, $ingredient) < 1) {
+    return;
+}
+def_struct $struct = oc_param($ingredient, crafting_spinning_struct);
+anim(human_spinningwheel, 0);
+sound_synth(spinning, 1, 0);
+inv_del(inv, $ingredient, 1);
+inv_add(inv, struct_param($struct, product), 1);
+mes(struct_param($struct, processmessage));
+stat_advance(crafting, struct_param($struct, productexp));
