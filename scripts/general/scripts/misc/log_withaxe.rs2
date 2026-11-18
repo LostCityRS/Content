@@ -1,0 +1,21 @@
+// THE AXE IN THE LOG, WHICH NOBODY COULD TAKE (tracker issue 26).
+//
+// log_withaxe has carried op1=Take-axe since the 377 cache and nothing was ever behind it, so
+// every click answered "Nothing interesting happens." - the engine's own words for an op with no
+// trigger, which is exactly what the report quoted. Its pair, log_withoutaxe, has no ops at all
+// and existed for nothing to change into.
+//
+// THREE PLACEMENTS, all on level 0: 3232,3296 (the Lumbridge chicken farm, where this was
+// reported), 3186,3277 (outside Fred the Farmer's) and 3315,2771. The handler is here rather than
+// under an area because the op belongs to the loc wherever it stands.
+//
+// FIFTY TICKS, which is the thirty seconds the axe is documented to take coming back.
+// https://oldschool.runescape.wiki/w/Logs_(bronze_axe)
+[oploc1,log_withaxe]
+if (inv_freespace(inv) = 0) {
+    mes("You don't have enough room in your inventory.");
+    return;
+}
+loc_change(log_withoutaxe, 50);
+inv_add(inv, bronze_axe, 1);
+mes("You take the axe.");

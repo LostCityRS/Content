@@ -4435,6 +4435,8 @@ recol6d=5184
 active=yes
 op1=Open
 raiseobject=no
+category=door_closed
+param=next_loc_stage,wild_door_open
 
 [wild_door_open]
 name=Door
@@ -4455,6 +4457,8 @@ recol6d=5184
 active=yes
 op1=Close
 raiseobject=no
+category=door_opened
+param=next_loc_stage,wild_door
 
 [wild_doubledoor_l]
 name=Door

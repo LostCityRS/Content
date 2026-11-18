@@ -99,6 +99,28 @@ mes("You're assigned to kill <lowercase(~slayer_taskname)>; only <tostring(%slay
 [opheld4,slayer_helm_i] @slayer_helm_split(black_mask_i);
 [opheld4,slayer_helm] @slayer_helm_split(black_mask);
 
+// THE GRAVEDIGGERS, which are an ornament kit rather than one of the generated colours - so they
+// belong here and NOT in slayer_helm_colours.rs2, which tools/genslayerhelm.py writes from
+// slayerhelmspec.json and would overwrite. Both items declare iop4=Disassemble and nothing
+// answered it (DeathPlateau-Bugs#27); gravedigger_kit.obj already records that their Check "was
+// missed", and this was the same miss still open.
+//
+// THE KIT COMES BACK, which is why this is not two more lines beside the two above. The split
+// those use deletes the helmet and returns the five parts, and on a Gravedigger that destroys an
+// ornament kit the player paid for, silently. @slayer_helm_split_coloured is the shape that is
+// already right: it hands back a sixth thing beside the parts - the kbd_head slot on the black,
+// green and red helmets, and here the kit itself - and asks for five free spaces instead of four,
+// with the message to match.
+//
+// The mask on each line is that item's own ornament_from put through the two triggers above:
+// slayer_helm -> black_mask, slayer_helm_i -> black_mask_i.
+//
+// Revert (iop5, minigames/game_trail/scripts/ornament_kit.rs2) is the other direction and is
+// untouched: it takes the kit off and leaves a whole slayer helmet, where this takes the helmet
+// apart. Both are wanted and gravedigger_kit.obj's own comment says so.
+[opheld4,slayer_helm_gravedigger] @slayer_helm_split_coloured(black_mask, gravedigger_kit);
+[opheld4,slayer_helm_gravedigger_i] @slayer_helm_split_coloured(black_mask_i, gravedigger_kit);
+
 [label,slayer_helm_split](namedobj $mask)
 if (inv_freespace(inv) < 4) {
     mes("You need four free inventory spaces to disassemble your slayer helmet.");

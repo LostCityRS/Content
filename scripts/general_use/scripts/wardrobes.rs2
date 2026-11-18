@@ -1,4 +1,34 @@
-[oploc1,spookywardrobe]
+// THE SAME WARDROBE TWICE, AND ONLY ONE OF THEM ANSWERED.
+//
+// The cache carries two complete families of this furniture, identical in ops and drawn from the
+// same model: spookywardrobe/_open/_open_skeleton (locs 388-390) and draynor_wardrobe/_open/
+// _open_skeleton (5622-5624), the second a recoloured copy. Only the first was ever wired, so the
+// 30 placed draynor wardrobes - 3016,3256 and 3016,3261 among them - offered "Open" and did
+// nothing, and the open and skeleton states they would have changed into were unreachable with
+// their own Search and Close going spare. Five dead options across the three locs.
+//
+// Found by filtering tools/sim/opsweep-baseline.txt down to dead options on locs that are PLACED,
+// which is the readable part of it: DeathPlateau-Bugs#27.
+//
+// The bodies are shared and the two loc_change targets are the only thing that differs, so they
+// are passed in rather than written twice - the same shape cupboards.rs2 gets from
+// loc_param(cupboard_other), which these locs do not carry.
+[oploc1,spookywardrobe]                 @wardrobe_open(spookywardrobe_open, spookywardrobe_open_skeleton);
+[oploc1,draynor_wardrobe]               @wardrobe_open(draynor_wardrobe_open, draynor_wardrobe_open_skeleton);
+
+[oploc2,spookywardrobe_open]            @wardrobe_search;
+[oploc2,draynor_wardrobe_open]          @wardrobe_search;
+
+[oploc3,spookywardrobe_open]            @wardrobe_close(spookywardrobe);
+[oploc3,draynor_wardrobe_open]          @wardrobe_close(draynor_wardrobe);
+
+[oploc2,spookywardrobe_open_skeleton]   @wardrobe_skeleton;
+[oploc2,draynor_wardrobe_open_skeleton] @wardrobe_skeleton;
+
+[oploc3,spookywardrobe_open_skeleton]   @wardrobe_close(spookywardrobe);
+[oploc3,draynor_wardrobe_open_skeleton] @wardrobe_close(draynor_wardrobe);
+
+[label,wardrobe_open](loc $open, loc $skeleton)
 p_arrivedelay;
 anim(human_openbigcupboard, 0);
 p_delay(0);
@@ -7,13 +37,13 @@ p_delay(0);
 // 1/21 of spooky wardrobe, https://archive.is/FPJBA
 if (random(21) = 0) {
     // Temp note: dur does not need updated
-    loc_change(spookywardrobe_open_skeleton, 500);
+    loc_change($skeleton, 500);
 } else {
     // Temp note: dur does not need updated
-    loc_change(spookywardrobe_open, 500);
+    loc_change($open, 500);
 }
 
-[oploc2,spookywardrobe_open]
+[label,wardrobe_search]
 p_arrivedelay;
 if (random(^findsomethingnice_chance) = 0 & ~in_tutorial_island(coord) = false) { // complete guess
     mes("You search the wardrobe..."); // guess
@@ -23,22 +53,14 @@ if (random(^findsomethingnice_chance) = 0 & ~in_tutorial_island(coord) = false) 
 }
 mes("The wardrobe is empty.");
 
-[oploc3,spookywardrobe_open]
-p_arrivedelay;
-anim(human_closechest, 0);
-p_delay(0);
-// todo - Sound
-// Temp note: dur does not need updated
-loc_change(spookywardrobe, 500);
-
-[oploc2,spookywardrobe_open_skeleton]
+[label,wardrobe_skeleton]
 p_arrivedelay;
 mes("Eek! There's a skeleton in there.");
 
-[oploc3,spookywardrobe_open_skeleton]
+[label,wardrobe_close](loc $closed)
 p_arrivedelay;
 anim(human_closechest, 0);
 p_delay(0);
 // todo - Sound
 // Temp note: dur does not need updated
-loc_change(spookywardrobe, 500);
+loc_change($closed, 500);
