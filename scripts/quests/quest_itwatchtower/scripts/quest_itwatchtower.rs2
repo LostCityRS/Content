@@ -533,7 +533,10 @@ if(~watchtower_has_all_crystals = true & %itwatchtower = ^itwatchtower_found_all
     inv_del(inv, powering_crystal4, ^max_32bit_int);
     inv_del(bank, powering_crystal4, ^max_32bit_int);
     p_delay(3);
-    stat_advance(magic, 153000);
+    // 15,250 Magic XP, which is what the reward scroll advertises and what the wiki publishes
+    // (https://oldschool.runescape.wiki/w/Watchtower). stat_advance takes TENTHS of a point, so
+    // that is 152500; this read 153000 and paid 15,300, fifty experience over.
+    stat_advance(magic, 152500);
     inv_add(inv, coins, 5000);
     inv_add(inv, watchtowerspell, 1);
     queue(itwatchtower_quest_complete, 0, 0);
