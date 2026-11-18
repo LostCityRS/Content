@@ -1,0 +1,25 @@
+// WHAT AN AFFLICTED VILLAGER SAYS, which is not words.
+//
+// Eleven "words" and nothing else. A phrase is one to six of them picked at random with
+// replacement, so "nots nots nots nots nots nots" is a legal thing to be told and the Old School
+// transcript lists it as one of its own examples. The apostrophes are the cache's, not a typo:
+// knows'is, wot's and mee's are meant to look like slurred English heard through a disease.
+//
+// Taken verbatim from oldschool.runescape.wiki/w/Transcript:Afflicted. Order is the transcript's
+// order, so the two can be diffed by eye; ^mortton_babble_count in quest_mortton.constant has to
+// match the number of rows here and the sim checks that it does.
+[mortton_babble]
+inputtype=int
+outputtype=string
+default=
+val=0,ughugh
+val=1,knows'is
+val=2,nots
+val=3,pirsl
+val=4,wot's
+val=5,zurgle
+val=6,gurghl
+val=7,mee's
+val=8,seysyi
+val=9,sfriess
+val=10,says
