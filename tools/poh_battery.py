@@ -668,8 +668,16 @@ SAWNPC = blocks(read('scripts/skill_construction/configs/sawmill.npc'))
 check(sorted(OBJCFG) == ['bolt_of_cloth', 'cert_bolt_of_cloth', 'mahogany_plank', 'oak_plank',
                          'plank', 'saw', 'teak_plank'],
       'construction.obj defines %s' % sorted(OBJCFG))
-check((OBJCFG.get('bolt_of_cloth', {}).get('cost') or [''])[0] == str(const('sawmill_cost_cloth')),
-      'and the bolt of cloth is priced at what the sawmill charges for it')
+# THE COUNTER IS A SHOP NOW (construction_supplies.inv), so there is no ^sawmill_cost_cloth left to
+# price the cloth against: the shop works off each obj's own cost, 130% to buy and 50% to sell. What
+# still has to hold is that the cost is THERE. A stocked obj with no cost is one the shop hands over
+# for nothing, and that is the whole reason the hammer stayed in dialogue when the saw and the cloth
+# moved onto the counter - see ^sawmill_cost_hammer in construction.constant.
+SAWSHOP = blocks(read('scripts/skill_construction/configs/construction_supplies.inv'))
+COUNTER = [vs[0].split(',')[0] for k, vs in SAWSHOP.get('construction_supplies', {}).items()
+           if re.match(r'^stock\d+$', k)]
+check(sorted(COUNTER) == ['bolt_of_cloth', 'nails', 'nails_bronze', 'nails_iron', 'saw'],
+      'Construction Supplies stocks the OSRS five: %s' % sorted(COUNTER))
 for n in OBJCFG:
     check(n in OBJS, '%s is in obj.pack' % n)
     for v in (OBJCFG[n].get('model') or []):
@@ -711,8 +719,14 @@ for name, c in (('plank', 'sawmill_fee_plank'), ('oak_plank', 'sawmill_fee_oak')
     check(fee is not None and fee > 0, '^%s is %s' % (c, fee))
     if cost:
         check(int(cost[0]) == fee, '%s: the fee (%s) is the item\'s own cache cost (%s)' % (name, fee, cost[0]))
-for c in ('sawmill_cost_saw', 'sawmill_cost_hammer'):
-    check((const(c) or 0) > 0, '^%s is set' % c)
+# THE HAMMER IS THE ONLY ONE LEFT. The saw and the bolt of cloth are shop stock and are priced off
+# their own cost, so a ^sawmill_cost_* for either would be a second price that could disagree with
+# the counter's. Their absence is asserted, not just un-asserted: putting one back is how the
+# operator ends up selling the same saw twice at two prices.
+check((const('sawmill_cost_hammer') or 0) > 0,
+      '^sawmill_cost_hammer is %s' % const('sawmill_cost_hammer'))
+for c in ('sawmill_cost_saw', 'sawmill_cost_cloth'):
+    check(const(c) is None, '^%s is gone, because the counter prices that off the obj' % c)
 # every log and plank the script names resolves, and the pairing is log -> its own plank
 pairs = re.findall(r'~sawmill_cut\((\w+), (\w+), \^(\w+)\)', sw)
 check(len(pairs) == 4, 'four log/plank pairs, got %d' % len(pairs))
@@ -1935,6 +1949,16 @@ SWIKI = {'limestonebrick': 26, 'poh_marble_block': 325000, 'gold_leaf': 130000,
 ALLOBJ = dict(OBJCFG)
 ALLOBJ.update(blocks(read('scripts/skill_construction/configs/poh_formal_mats.obj')))
 ALLOBJ.update(blocks(read('scripts/_unpack/377/all.obj')))
+
+# EVERY LINE CONSTRUCTION SUPPLIES STOCKS CARRIES A COST, checked here rather than up in group 26
+# because this is where the lookup covering all.obj exists - three of its five lines are 377 objs.
+# A shop prices off the obj's own cost, so a stocked obj with no cost is one the counter gives away.
+# That is not hypothetical: the hammer has no cost in the cache, and it is the reason the hammer
+# stayed in the operator's dialogue at ^sawmill_cost_hammer when the saw and the cloth moved onto
+# the counter. Putting it on the shelf would hand out free hammers and trip this.
+for _n in COUNTER:
+    check(int((ALLOBJ.get(_n, {}).get('cost') or ['0'])[0]) > 0,
+          'Construction Supplies: %s carries a cost for the counter to price it off' % _n)
 bad = []
 for k, want in SWIKI.items():
     cost = int((ALLOBJ.get(k, {}).get('cost') or ['0'])[0])
@@ -2816,8 +2840,10 @@ check(_empty == 3, 'three of the nineteen are empty models - beam and pedestal t
 # the cloth exists, is sold, and is what the rings are actually built out of
 check('bolt_of_cloth' in {l.split('=', 1)[1] for l in read('pack/obj.pack').split('\n') if '=' in l},
       'bolt_of_cloth is in obj.pack')
-check('~sawmill_sell(bolt_of_cloth, ^sawmill_cost_cloth);' in read('scripts/skill_construction/scripts/sawmill.rs2'),
-      'and the sawmill operator sells it')
+# Off his counter, not out of his dialogue - COUNTER is group 26's reading of
+# construction_supplies.inv. What this check is for is unchanged: the rings are built out of cloth,
+# so cloth has to be buyable somewhere.
+check('bolt_of_cloth' in COUNTER, 'and the sawmill operator sells it off his counter')
 _mats = {p['loc']: p['mats'] for p in _fam['pieces']}
 check(sum(1 for m in _mats.values() if any(x[0] == 'bolt_of_cloth' for x in m)) == 3,
       'three of the four ring types are built out of it')
@@ -3355,7 +3381,6 @@ MADE = {
     'oak_plank':      'skill_construction/scripts/sawmill.rs2',
     'teak_plank':     'skill_construction/scripts/sawmill.rs2',
     'mahogany_plank': 'skill_construction/scripts/sawmill.rs2',
-    'bolt_of_cloth':  'skill_construction/scripts/sawmill.rs2',
     'molten_glass':   'skill_crafting/scripts/glass/glass.rs2',
     'softclay':       'skill_crafting/scripts/pottery/pottery.rs2',
     'steel_bar':      'skill_smithing/scripts/smelting/smelting.rs2',
@@ -3378,9 +3403,11 @@ _notmade = [(m, f) for m, f in MADE.items()
 check(not _notmade, 'and every "made" one is really named by the script that makes it: %s'
       % (_notmade or 'all %d' % len([m for m in MADE if m in _mats])))
 _bought = [m for m in _mats if m in _stocked]
-# 30, not 29: the basic plank is woodplank, which a shop stocks, where the import's `plank` was
-# bought nowhere. The number moved because the material set was corrected, not because a shop did.
-check(len(_bought) == 30, '%d of them come off a shop shelf' % len(_bought))
+# 31, not 30: the bolt of cloth comes off Construction Supplies' shelf now rather than out of the
+# sawmill operator's dialogue, so it left the MADE table above and joined this count. Before that it
+# was 30 and not 29 because the basic plank is woodplank, which a shop stocks, where the import's
+# `plank` was bought nowhere. Both moves are the material set being corrected, not a shop changing.
+check(len(_bought) == 31, '%d of them come off a shop shelf' % len(_bought))
 # ...and the six that started this are among them
 _flowers = ['poh_bag_flower', 'poh_bag_daffodils', 'poh_bag_bluebells',
             'poh_bag_sunflower', 'poh_bag_marigolds', 'poh_bag_roses']
