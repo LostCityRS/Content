@@ -215,3 +215,16 @@
 ^enakh_req_mining = 45
 ^enakh_req_magic = 43
 ^enakh_req_prayer = 45
+
+// ---------------------------------------------------------------------------------- the camels
+// Which camel a shared menu is standing in front of. The opener, the three rude remarks and the
+// dung question are identical for all of them (scripts/camels.rs2) and only the conversation the
+// amulet unlocks differs, so the npc is passed as one of these rather than duplicated six ways.
+^camel_al = 0
+^camel_elly = 1
+^camel_ollie = 2
+^camel_cam = 3
+^camel_alice = 4
+^camel_neferti = 5
+// Three things to say and three ways to be answered for saying them, picked independently.
+^camel_remarks = 3
