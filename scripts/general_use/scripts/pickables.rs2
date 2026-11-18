@@ -31,6 +31,26 @@ if(inv_freespace(inv) = 0) {
 [oploc2,wheat_smallest]
 @pick_wheat;
 
+// wheat_tall was the one of the four that never got wired up. It is the same name, the same model
+// and the same op2=Pick as its three siblings - only drawn taller - and there are 37 of them, the
+// nearest one tile from a working stalk in the Lumbridge field the grain for Cook's Assistant
+// comes from. Found by tools/sim/placeddead.ts, not by a report.
+[oploc2,wheat_tall]
+@pick_wheat;
+
+// AND THE FIFTH, which is not in the 377 cache at all. loc474_22300 is a rev-474 import declared
+// in areas/area_harmony/configs/harmony_map.loc - name=Wheat, op2=Pick, 64 of them on Harmony
+// Island, the Great Brain Robbery's island, and no script answered any of them either. It is a
+// different model from the four above, being an OSRS-era loc, but it is the same name and the same
+// option, and grain is what every other Wheat in the game hands over.
+//
+// Missed on the first pass over this file, which fixed wheat_tall and stopped there. Found by
+// grouping every loc by (name, ops) and asking which families have some members answered and some
+// not - the same query that turned up the Draynor wardrobes and the fortress doors.
+// DeathPlateau-Bugs#27.
+[oploc2,loc474_22300]
+@pick_wheat;
+
 // Pickable Onion
 [oploc2,onion]
 p_arrivedelay;
