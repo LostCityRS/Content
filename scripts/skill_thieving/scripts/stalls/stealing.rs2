@@ -104,6 +104,10 @@ while (npc_findnext = true) {
         return(true);
     }
 }
+// Nobody in the guard list saw it. Both of these used to run off the end without returning: a
+// (boolean) proc that returns nothing leaves the caller comparing whatever was on the stack, and
+// it only read as false by luck.
+return(false);
 
 [proc,stealing_check_for_owner](dbrow $data)(boolean)
 def_npc $owner = db_getfield($data, stealing:owner, 0);
@@ -112,10 +116,28 @@ def_npc $owner = db_getfield($data, stealing:owner, 0);
 if ($owner = null) {
     return(false);
 }
-if (npc_find(coord, $owner, 5, 0) = true & lineofsight(npc_coord, coord) = true) {
+if (npc_find(coord, $owner, 5, 0) = false) {
+    return(false);
+}
+// STANDING UNDER HIM. A stall owner cannot see somebody inside his own square, which is the
+// safespot Old School players use at the Ardougne bakery - the wiki's thieving guide says to
+// "stand under the baker" in as many words - and an npc does not block a player, so the tile is
+// there to be stood on.
+//
+// WITHOUT THIS THERE WAS NO TILE AT ALL. lineofsight from a tile to itself is trivially true, so
+// the owner saw a player standing on him exactly as well as one standing in the open; and he saw
+// every other tile within five of the stall too. Measured across all six owned stalls, a player
+// could not steal from any of them while the owner was home - the only thing that ever let a
+// steal through was the owner wandering out of range, which is why the baker, who wanders two
+// tiles, felt worse than the silk merchant, who does not move at all.
+if (npc_coord = coord) {
+    return(false);
+}
+if (lineofsight(npc_coord, coord) = true) {
     npc_say("Hey! Get your hands off there!");
     return(true);
 }
+return(false);
 
 [label,stall_owner_alert_guards]
 npc_say("You're the one who stole something from me!");

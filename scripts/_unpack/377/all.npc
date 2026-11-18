@@ -14893,7 +14893,10 @@ param=shop_sell_multiplier,1000
 param=shop_buy_multiplier,800
 param=shop_delta,20
 param=shop_title,Ardougne Baker's Stall.
-wanderrange=2
+// STANDS STILL, like the silk, gem and silver merchants beside him. He wandered two tiles, and
+// the tile a player wants - his own, the one Old School's guides call "under the baker" - moved
+// with him. skill_thieving/scripts/stalls/stealing.rs2 has the rest of it.
+wanderrange=0
 
 [spice_merchant]
 name=Spice seller
