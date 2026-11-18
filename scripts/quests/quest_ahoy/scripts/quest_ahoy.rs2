@@ -14,9 +14,19 @@
 // Necrovarus, the Ectofuntus, the wreck and the crone are all outside them, so the quest crosses
 // this gate a dozen times. The amulet of ghostspeak gets you through free; without it the ghosts
 // charge, which is what ahoy_ghost_guard is standing there for.
+//
+// AND AFTER THE QUEST IT IS FREE, which was missing: "After completion of the Ghosts Ahoy quest,
+// entry to the town is free, and players can pass without needing ecto-tokens"
+// (oldschool.runescape.wiki/w/Ghost_guard). The ghost guards say so in as many words, and this is
+// the same check they make - a player who has freed the town was still being charged to walk into
+// it. The wording of the line is ours, like the two below it; the rule is the wiki's.
 [oploc1,ahoy_town_barrier]
 def_coord $wall = loc_coord;
 p_arrivedelay;
+if (%ahoy_questvar >= ^ahoy_complete) {
+    mes("The barrier lets you through. You have done this town a service it has not forgotten.");
+    @ahoy_step_through($wall);
+}
 if (inv_total(worn, amulet_of_ghostspeak) > 0) {
     mes("The barrier thins where the amulet touches it.");
     @ahoy_step_through($wall);

@@ -122,3 +122,8 @@
 ^hm_boss_landing = 0_42_69_36_34
 ^hm_lift_top = 0_43_70_55_16            // 2807,4496, beside the valve
 ^hm_reward_door = 0_43_69_21_34
+
+// How long a woken pickaxe stays awake with nothing to fight before it lies back down, in ticks.
+// 50 is the rock crabs' figure (area_relleka/scripts/rock_crabs.rs2) and the behaviour is the same
+// behaviour, so the number is shared rather than picked afresh.
+^hauntedmine_pickaxe_rest = 50

@@ -1,0 +1,40 @@
+// THE GHOST GUARDS STAND AT THEIR GATES, which they were not doing.
+//
+// Four of them, two to a barrier, and the config declared no wanderrange - so they took the
+// engine's default of five and drifted. Measured: a north-gate guard spawned at 3658,3508 was
+// found five tiles west at 3653,3508, which is past the corner of the wall it is supposed to be
+// guarding.
+//
+// That is cosmetic on its own and not cosmetic once they take a toll. phasmatys_townsfolk.rs2 pays
+// the toll and then hands the player to ~ahoy_step_through, the barrier's own crossing code, which
+// moves them two tiles across the wall FROM WHERE THEY ARE STANDING - and p_teleport does not check
+// collision. A guard five tiles off its post means a player standing next to that guard, nowhere
+// near the gate, being stepped two tiles into whatever is there. Pinning the guards is what makes
+// the toll safe to take, so this file and that script go together.
+//
+// Same field and same reason as wom_bed_inactive's wanderrange=0 in all.npc, and the same reason
+// king_bolren stands still where he answered the bell.
+//
+// Moved out of _unpack/377/all.npc rather than edited in place, because redeclaring a config is a
+// duplicate-config error - the convention area_lostcity/configs/zanaris_gate.loc set. Everything
+// below is the cache's own, byte for byte, with one line added.
+
+[ahoy_ghost_guard]
+name=Ghost Guard
+desc=This ghost guards the gates of Port Phasmatys.
+model1=npc_1686
+model2=npc_1684i2
+model3=npc_1684i3
+model4=npc_1684i4
+recol1s=14861
+recol1d=15950
+walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
+readyanim=human_ready
+resizev=112
+resizeh=112
+ambient=35
+contrast=35
+op1=Talk-To
+vislevel=hide
+head1=npc_1686_head
+wanderrange=0

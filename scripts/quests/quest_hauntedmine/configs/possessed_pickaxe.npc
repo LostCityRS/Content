@@ -1,0 +1,76 @@
+// THE TWO HALVES OF THE HAUNTED MINE'S BAIT, with the stats the cache never gave them.
+//
+// possessed_pickaxe_stationary is what lies on the floor and possessed_pickaxe is what it becomes.
+// scripts/possessed_pickaxe.rs2 does the becoming; this file is what makes it worth doing.
+//
+// WHY THEY ARE HERE AND NOT IN all.npc. Two things were missing and both are config, not script:
+//
+//   1. THE AWAKE FORM HAD NO STATS AT ALL. Not one of hitpoints, attack, strength or defence, so
+//      Npc.changeType copied the engine's 1/1/1/1/1/1 defaults across and a level 50 monster died
+//      to the first hit. The sim found it: "it has the stats of what it became: 1 (want 40)". The
+//      figures below are the wiki's own for the Haunted Mine version
+//      (oldschool.runescape.wiki/w/Possessed_pickaxe): 40 hitpoints, 40 attack, 55 strength, 40
+//      defence, max hit 6, stab, speed 4, and defence bonuses of 15/10/5/5.
+//
+//   2. NEITHER OF THEM STAYED PUT. Both declared no wanderrange and took the engine's default of
+//      five - so a pickaxe lying on the floor crawled around it, and the awake form had no timer=
+//      for the lie-down clock to survive on. Npc.resetDefaults writes timerInterval back to the
+//      TYPE's field the moment an npc loses its target, which is exactly when a woken pickaxe
+//      should be counting down to lying back down, so npc_settimer in script is not enough on its
+//      own. Same field, same reason and the same number as horror_rockcrab's timer=50 in
+//      area_relleka/configs/rock_crabs.npc, and the same trap the Ivan Strom escort hit.
+//
+// Moved out of _unpack/377/all.npc rather than edited in place, because redeclaring a config is a
+// duplicate-config error - the convention area_lostcity/configs/zanaris_gate.loc set. Everything
+// not commented below is the cache's own, byte for byte.
+//
+// NO huntmode, DELIBERATELY. The Possessed pickaxe page says they animate when a player walks past,
+// and the rock crabs show exactly how that is wired - but the Abandoned Mine page is more specific:
+// "A player taking the corridor containing the 'Y' on the map will always be attacked by a possessed
+// pickaxe. The other corridor is safe as long as the player does not try to pick up a pickaxe
+// there." One cache type covers all fifteen, so a huntmode here would make the safe corridor unsafe.
+// The click is the one wake the cache can express for some of them and not others.
+
+[possessed_pickaxe_stationary]
+name=Bronze pickaxe
+desc=Useful for hitting rocks.
+model1=spot_pickaxe_summon_spotanim
+op1=Take
+walkanim=magicaxe_walk
+readyanim=pickaxe_beforesummon
+vislevel=hide
+minimap=no
+// A pickaxe lying on the floor does not go for a walk.
+wanderrange=0
+
+[possessed_pickaxe]
+name=Possessed Pickaxe
+desc=How does it move of its own accord?
+model1=spot_pickaxe_summon_spotanim
+walkanim=magicaxe_walk
+readyanim=magicaxe_ready
+op2=Attack
+vislevel=50
+
+param=attack_anim,magicaxe_attack
+param=death_anim,magicaxe_death
+param=defend_anim,magicaxe_block
+
+// The wiki's figures, stated rather than derived.
+hitpoints=40
+attack=40
+strength=55
+defence=40
+magic=1
+ranged=1
+param=max_hit,6
+param=damagetype,^stab_style
+param=attackrate,4
+// The bare attackrange CONFIG field as well as the param, for the reason rock_crabs.npc records:
+// the engine gates approach on NpcType.attackrange and the param is read by content only.
+attackrange=1
+param=attackrange,1
+respawnrate=30
+// The lie-down clock. [ai_timer,possessed_pickaxe] does the lying down and gates itself on
+// %npc_lastcombat, so this firing during a fight costs one comparison.
+timer=50
