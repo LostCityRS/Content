@@ -1,0 +1,28 @@
+// CONSTRUCTION SUPPLIES, the sawmill operator's counter in the timber yard north-east of Varrock.
+//
+// The stock is the OSRS shop's, item for item: a saw, a bolt of cloth, and bronze, iron and steel
+// nails, a thousand of each. Nothing else - no hammer, which OSRS does not stock here either and
+// which this build cannot stock anyway, because the hammer obj carries no cost and a shop prices
+// everything off that; it would be given away. The sawmill still sells one in dialogue.
+//
+// WHY THIS SHOP EXISTS AT ALL. Steel nails had no source in the game but a smithing anvil at level
+// 34, and Dragon Slayer asks for thirty of them to plank the Lady Lumbridge. A player under 34
+// Smithing could not finish the quest without another player, on a world with no Grand Exchange.
+//
+// THE SAW RESTOCKS IN TEN TICKS and everything else in a hundred. That is the wiki's own split -
+// it calls the saw the fastest-restocking item in the shop at about six seconds, against a minute
+// or so for the rest.
+//
+// allstock=no: it buys back its own five lines and nothing else, so a bronze dagger cannot be
+// turned into coins at a timber yard.
+[construction_supplies]
+scope=shared
+size=8
+restock=yes
+stackall=yes
+allstock=no
+stock1=saw,1000,10
+stock2=bolt_of_cloth,1000,100
+stock3=nails_bronze,1000,100
+stock4=nails_iron,1000,100
+stock5=nails,1000,100

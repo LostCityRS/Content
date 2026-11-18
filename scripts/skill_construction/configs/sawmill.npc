@@ -4,9 +4,14 @@
 // He stands in the timber yard north-east of Varrock, where 377 already has the fenced enclosure,
 // the stacked wood and the timber walls - the place is there, it just never had anyone in it.
 //
-// OSRS gives him Talk-to / Buy-plank / Trade. Trade is left off rather than shipped dead
-// (claude/dead-op-audit.md): there is no shop inv behind it, so the saw and the hammer are sold
-// through the dialogue instead.
+// OSRS gives him Talk-to / Buy-plank / Trade, and all three are here now. Trade used to be left
+// off rather than shipped dead (claude/dead-op-audit.md) because there was no shop inv behind it;
+// construction_supplies.inv is that inv, and it is the OSRS stock item for item.
+//
+// 1300 and 500 are the shop's documented 130% to buy and 50% to sell back, and shop_delta 0 is the
+// "no price drift" the wiki gives it - the price is the same on the thousandth nail as the first.
+// Those multipliers are not guesses: the saw's cost of 10 gives the wiki's 13, and bronze, iron and
+// steel nails at 2, 4 and 3 give its 2, 5 and 3.
 
 [sawmill_operator]
 // OSRS npc 3101
@@ -29,3 +34,9 @@ vislevel=hide
 wanderrange=3
 maxrange=5
 op3=Buy-plank
+op4=Trade
+param=owned_shop,construction_supplies
+param=shop_title,Construction Supplies
+param=shop_sell_multiplier,1300
+param=shop_buy_multiplier,500
+param=shop_delta,0

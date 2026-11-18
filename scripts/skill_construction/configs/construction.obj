@@ -121,7 +121,14 @@ recol1d=25372
 2dyof=-15
 2dzoom=1360
 2dxan=368
-cost=650
+// 500 AND NOT 650, WHICH WAS THE SHOP PRICE WRITTEN IN AS THE VALUE. Construction Supplies sells
+// at 130% and buys back at 50%, and the wiki gives this bolt as 650 to buy and 250 to sell - which
+// is 500 x 1.3 and 500 / 2. Both figures agree on the same value, and the saw and all three nails
+// come out exactly right from their own costs under the same multipliers.
+//
+// Nothing else in the build reads this: the sawmill was the only place a bolt of cloth could be
+// bought and there is no furniture that takes one, so the only thing that moves is its alchemy.
+cost=500
 members=yes
 weight=12oz
 

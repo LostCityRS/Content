@@ -8,8 +8,9 @@
 // out rather than refusing the lot. That is OSRS's behaviour and it is the kind one: a player with
 // 27 logs and enough for 19 planks gets 19 planks, not a "you can't afford that".
 //
-// The saw and the hammer are sold in the dialogue instead of through a shop, because there is no
-// shop inv behind his Trade op yet - see the note in sawmill.npc.
+// His counter is a real shop now (construction_supplies.inv, OSRS stock and OSRS prices), reached
+// from Trade or from the dialogue. The hammer is the one thing still sold by hand: OSRS does not
+// stock it here, and the hammer obj carries no cost, so a shop would hand it over for nothing.
 
 [opnpc1,sawmill_operator]
 ~chatnpc("<p,happy>Want some planks cut? Bring me logs and I'll saw them for you.");
@@ -27,6 +28,9 @@ if ($option = 1) {
 
 [opnpc3,sawmill_operator]
 ~sawmill_buy_planks;
+
+[opnpc4,sawmill_operator]
+~openshop_activenpc;
 
 // =========================================================================== planks
 
@@ -71,15 +75,18 @@ if ($cut < $have) {
 // Cloth is here rather than in a shop of its own because OSRS sells it at the sawmill too, and
 // this operator already trades out of his dialogue - there is still no inv behind his Trade op.
 // It is bought one at a time like the tools; a combat ring wants four to six of them.
+// THE COUNTER, AND THE ONE THING THAT IS NOT ON IT. The saw and the cloth used to be sold here by
+// hand, at ^sawmill_cost_saw and ^sawmill_cost_cloth; they are shop stock now, and a saw sold at
+// two prices is a saw sold at the wrong one. The hand-rolled sale was also charging 100 coins for
+// a saw the shop gives for 13.
 [proc,sawmill_buy_tool]
-~chatnpc("<p,happy>A saw's <tostring(^sawmill_cost_saw)> coins, a hammer's <tostring(^sawmill_cost_hammer)>, cloth's <tostring(^sawmill_cost_cloth)> a bolt.");
-def_int $pick = ~p_choice4("A saw, please.", 1, "A hammer, please.", 2, "A bolt of cloth, please.", 3, "Nothing, thanks.", 4);
+~chatnpc("<p,happy>Saws, cloth and nails are on the counter.|A hammer's <tostring(^sawmill_cost_hammer)> coins if you want one of those as well.");
+def_int $pick = ~p_choice3("Let me see the counter.", 1, "A hammer, please.", 2, "Nothing, thanks.", 3);
 if ($pick = 1) {
-    ~sawmill_sell(saw, ^sawmill_cost_saw);
+    ~chatplayer("<p,neutral>Let me see the counter.");
+    ~openshop_activenpc;
 } else if ($pick = 2) {
     ~sawmill_sell(hammer, ^sawmill_cost_hammer);
-} else if ($pick = 3) {
-    ~sawmill_sell(bolt_of_cloth, ^sawmill_cost_cloth);
 } else {
     ~chatplayer("<p,neutral>Nothing, thanks.");
 }
