@@ -228,7 +228,10 @@ if (last_useitem ! plank) {
 
 [label,mdaughter_stone_hop](loc $planked)
 p_arrivedelay;
-if (inv_total(inv, plank) = 0) {
+// woodplank, NOT plank: `plank` is the dead duplicate obj that ~sawmill_old_planks_login
+// converts away on every login, so asking for it is asking for something the server takes
+// off the player. Same fix as quest_tgbr/scripts/tgbr_doctor.rs2.
+if (inv_total(inv, woodplank) = 0) {
     mes("The stones are too far apart to step between. A plank laid across them would do it.");
     return;
 }

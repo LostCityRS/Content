@@ -114,6 +114,12 @@ def parse_scripts():
                 scripts.setdefault(key, cur)
                 # a duplicate name keeps the first; the packer forbids real duplicates anyway
                 cur = scripts[key]
+                # A SCRIPT CAN BE ITS OWN BODY. "[opheld1,looting_bag] ~storage_swap(looting_bag_open,
+                # ...)" is a header and a statement on one line, and this file is full of them -
+                # dropping the remainder made every item produced that way look unreachable.
+                rest = stripped[m.end():].strip()
+                if rest:
+                    cur.body.append(rest)
                 continue
             if cur is not None:
                 cur.body.append(stripped)
@@ -127,6 +133,31 @@ def main():
     objs = load_objs()
     scripts = parse_scripts()
 
+    # GROUND SPAWNS. Each map's "==== OBJ ====" section places objs by NUMERIC id, so they are
+    # resolved through pack/obj.pack. These are the respawning items lying on the floor - the
+    # Restless Ghost's skull among them - and nothing in any script puts them there.
+    byid = {}
+    packfile = ROOT / "pack" / "obj.pack"
+    if packfile.exists():
+        for line in packfile.read_text(encoding="utf-8", errors="replace").split("\n"):
+            if "=" in line:
+                i, nm = line.split("=", 1)
+                if i.strip().isdigit():
+                    byid[int(i)] = nm.strip()
+    spawned = set()
+    for f in ROOT.joinpath("maps").glob("*.jm2"):
+        insec = False
+        for line in f.read_text(encoding="utf-8", errors="replace").split("\n"):
+            if line.startswith("===="):
+                insec = line.strip() == "==== OBJ ===="
+                continue
+            if insec and ":" in line:
+                bits = line.split(":", 1)[1].split()
+                if bits and bits[0].isdigit():
+                    nm = byid.get(int(bits[0]))
+                    if nm:
+                        spawned.add(nm)
+
     # tables: an item named in an enum or a dbrow is produced by whatever reads that table
     tables = set()
     for suf in ("*.enum", "*.dbrow"):
@@ -139,7 +170,8 @@ def main():
     # expression - every monster's death drop goes through it - and the answer is written down in
     # the npc configs, so it can simply be read.
     paramvals = collections.defaultdict(set)
-    for suf, folder in (("*.npc", "scripts"), ("*.obj", "scripts"), ("*.loc", "scripts")):
+    for suf, folder in (("*.npc", "scripts"), ("*.obj", "scripts"), ("*.loc", "scripts"),
+                        ("*.struct", "scripts")):
         for f in ROOT.joinpath(folder).rglob(suf):
             for pname, pval in re.findall(r"^param=(\w+),(" + NAME + r")", f.read_text(encoding="utf-8", errors="replace"), re.M):
                 if pval in objs:
@@ -190,12 +222,17 @@ def main():
             if len(parts) >= 3:
                 return {o for o in enum_values.get(parts[2].strip(), set())}
             return set()
-        # a param lookup: the values are in the configs
-        m = re.match(r"^(?:npc_param|oc_param|loc_param)\s*\(", expr)
+        # A PARAM LOOKUP. Two shapes, and the two-argument one is the important one:
+        # npc_param(death_drop) names the param alone, while oc_param($ingredient, next_obj_stage)
+        # names the OBJ first and the param second - which is how every potion dose, kebab bowl and
+        # poisoned weapon is made. Reading inner[0] for both made the second form look up a param
+        # called "$ingredient", find nothing, and report dozens of perfectly reachable items.
+        m = re.match(r"^(?:npc_param|oc_param|loc_param|struct_param)\s*\(", expr)
         if m:
             inner = split_args(balanced(expr, m.end() - 1)[0] or "")
             if inner:
-                return set(paramvals.get(inner[0].strip(), set()))
+                pname = inner[1].strip() if len(inner) > 1 else inner[0].strip()
+                return set(paramvals.get(pname, set()))
             return set()
         # a proc's return value: whatever that proc returns
         m = re.match(r"^~(" + NAME + r")\s*\(?", expr)
@@ -282,7 +319,7 @@ def main():
             if st and cur in shops:
                 sold.add(st.group(1))
 
-    reachable = produced | sold | tables
+    reachable = produced | sold | tables | spawned
 
     # ------------------------------------------------------------ what content asks for
     gated = collections.Counter(); where = {}
@@ -302,7 +339,8 @@ def main():
         return 0
 
     stuck = sorted((i for i in gated if i not in reachable and i != "coins"), key=lambda i: -gated[i])
-    print(f"{len(objs)} objs | {len(shops)} shops selling {len(sold)} | {len(produced)} produced | {len(reachable)} reachable")
+    print(f"{len(objs)} objs | {len(shops)} shops selling {len(sold)} | {len(produced)} produced | "
+          f"{len(spawned)} on the ground | {len(reachable)} reachable")
     print(f"{len(gated)} items content gates on | {len(stuck)} with no route\n")
     for i in stuck:
         print(f"  {i:34} gated in {gated[i]:2}   {where[i].replace(str(ROOT) + '/scripts/', '')}")

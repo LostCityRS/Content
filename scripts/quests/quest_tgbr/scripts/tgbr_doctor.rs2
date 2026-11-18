@@ -117,7 +117,12 @@ if (stat(crafting) < ^tgbr_req_crafting) {
     mes("You need level <tostring(^tgbr_req_crafting)> Crafting to carve anything this fiddly.");
     return;
 }
-while (inv_total(inv, plank) > 0 & inv_total(inv, fur) > 0) {
+// woodplank, NOT plank. There are two plank objs and `plank` is the dead one: the sawmill cuts
+// woodplank, and ~sawmill_old_planks_login converts any `plank` a player is holding - in the
+// inventory and in the bank - into woodplank on every login. This quest was still asking for the
+// one the server takes away, so the wooden cats and the crate's false bottom could not be made at
+// all. The migration that fixed the sawmill and the bank in September missed the quest.
+while (inv_total(inv, woodplank) > 0 & inv_total(inv, fur) > 0) {
     if (inv_freespace(inv) < 1 & inv_total(inv, wooden_cat) < 1) {
         mes("You have no room for another cat.");
         return;
@@ -125,7 +130,7 @@ while (inv_total(inv, plank) > 0 & inv_total(inv, fur) > 0) {
     anim(human_poh_build, 0);
     sound_synth(saw_hit, 1, 0);
     p_delay(3);
-    inv_del(inv, plank, 1);
+    inv_del(inv, woodplank, 1);
     inv_del(inv, fur, 1);
     inv_add(inv, wooden_cat, 1);
     stat_advance(crafting, 150);
@@ -135,7 +140,7 @@ while (inv_total(inv, plank) > 0 & inv_total(inv, fur) > 0) {
         return;
     }
 }
-if (inv_total(inv, plank) < 1) {
+if (inv_total(inv, woodplank) < 1) {
     mes("You need a plank for each cat.");
     return;
 }
@@ -170,13 +175,13 @@ stat_advance(construction, 3000);
 if (~tgbr_crate_tools = false) {
     return;
 }
-if (inv_total(inv, plank) < ^tgbr_crate_planks) {
+if (inv_total(inv, woodplank) < ^tgbr_crate_planks) {
     mes("You need <tostring(^tgbr_crate_planks)> planks for the false bottom.");
     return;
 }
 p_arrivedelay;
 ~tgbr_crate_hammer;
-inv_del(inv, plank, ^tgbr_crate_planks);
+inv_del(inv, woodplank, ^tgbr_crate_planks);
 inv_del(inv, nails, ^tgbr_crate_nails);
 %tgbr_crate = ^tgbr_crate_bottomed;
 stat_advance(construction, 5000);

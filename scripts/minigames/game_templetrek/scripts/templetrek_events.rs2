@@ -236,7 +236,10 @@ if (%trek_route = ^trek_route_none) {
     return;
 }
 def_boolean $planks = false;
-if (inv_total(inv, plank) > 0 & inv_total(inv, hammer) > 0) {
+// woodplank, NOT plank: `plank` is the dead duplicate obj that ~sawmill_old_planks_login
+// converts away on every login, so asking for it is asking for something the server takes
+// off the player. Same fix as quest_tgbr/scripts/tgbr_doctor.rs2.
+if (inv_total(inv, woodplank) > 0 & inv_total(inv, hammer) > 0) {
     $planks = true;
 }
 if ($planks = false & (inv_total(inv, logs) = 0 | ~woodcutting_axe_checker(false) = null)) {
@@ -247,7 +250,7 @@ mes("You lay another length across and make it fast.");
 anim(human_axe_chop, 0);
 p_delay(3);
 if ($planks = true) {
-    inv_del(inv, plank, 1);
+    inv_del(inv, woodplank, 1);
 } else {
     inv_del(inv, logs, 1);
 }
