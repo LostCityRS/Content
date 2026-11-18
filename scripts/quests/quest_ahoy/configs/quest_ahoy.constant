@@ -113,3 +113,33 @@
 ^ahoy_island_dock = 0_59_55_16_40 // 3792,3560 the same captain, Dragontooth Island
 ^ahoy_island_sw = 0_59_55_0_0
 ^ahoy_island_ne = 0_59_55_63_63
+
+// THE TWO BARRIERS, BY COORD, so the ghost guards can step a player who paid them through the gate
+// they are actually standing at. Read off the map data rather than guessed: loc 5259 sits at
+// m57_54 local 4,29 (3652,3485, angle 2) and local 11,52 (3659,3508, angle 3), which is the pair
+// the header of quest_ahoy.rs2 already names. loc_find is an exact-coord test, so naming them here
+// means there is no search to get wrong.
+^ahoy_barrier_south = 0_57_54_4_29
+^ahoy_barrier_north = 0_57_54_11_52
+// Which gate a guard belongs to, decided by latitude. The two are 23 tiles apart, so the halfway
+// line is nowhere near either of them and a guard that wanders a few tiles cannot change its mind.
+^ahoy_barrier_divide_z = 3496
+
+// AND THE TILE ON EITHER SIDE OF EACH GATE, because a guard cannot step a player through by
+// measuring from the player: the guards stand in the gap in the wall, on the barrier's own line,
+// where neither "east of it" nor "west of it" is true. Measured rather than reasoned about, with a
+// walkability flood and Velorina for a landmark - she lives inside, at 3678,3509:
+//
+//   south gate   barrier 1x2 at 3652,3485 (angle 2), wall running north-south, so crossing changes
+//                x. 3653,3485 reaches Velorina and 3651,3485 does not, so east is the town.
+//   north gate   barrier 1x2 at 3659,3508 (angle 3), wall running east-west, so crossing changes
+//                z. 3659,3507 reaches Velorina and 3659,3509 does not, so south is the town.
+//
+// All four are walkable, and all four guard posts are on the OUTSIDE - which is what settles the
+// tie: a player standing in the gap beside a guard is outside, and paying takes them in.
+^ahoy_barrier_south_x = 3652
+^ahoy_barrier_north_z = 3508
+^ahoy_gate_south_in = 0_57_54_5_29
+^ahoy_gate_south_out = 0_57_54_3_29
+^ahoy_gate_north_in = 0_57_54_11_51
+^ahoy_gate_north_out = 0_57_54_11_53

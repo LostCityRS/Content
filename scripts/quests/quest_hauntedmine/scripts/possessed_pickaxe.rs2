@@ -1,0 +1,80 @@
+// THE PICKAXES ON THE MINE FLOOR ARE NOT PICKAXES.
+//
+// Fifteen of them lie in the Haunted Mine - eight on one level (m42_69, around 2713,4435) and seven
+// on another (m43_71, around 2769,4591) - each one an npc named "Bronze pickaxe", drawn as a
+// pickaxe lying on the ground, hidden from the minimap, with one option on it: Take. Nothing in the
+// content answered that option, so the only thing fifteen of them did was say "Nothing interesting
+// happens." The whole point of them is that they are bait.
+//
+//   "Several iron pickaxes litter the floor of this level. If the player attempts to pick them up,
+//    they turn into possessed pickaxes and attack."
+//     - oldschool.runescape.wiki/w/Abandoned_Mine
+//
+// Both halves were already in the cache and wired to nothing: possessed_pickaxe_stationary is the
+// bait (vislevel=hide, minimap=no, readyanim=pickaxe_beforesummon) and possessed_pickaxe is what it
+// becomes (level 50, op2=Attack, the magicaxe_* attack set). They even share a model, which is why
+// the rise reads as one object standing up rather than a swap.
+//
+// THE SHAPE IS RELLEKKA'S ROCK CRABS, deliberately: see area_relleka/scripts/rock_crabs.rs2 and the
+// header of its npc config. Two lessons taken from it rather than relearned -
+//
+//   npc_changetype, NOT npc_changetype_keepall. keepall passes reset=false and Npc.changeType only
+//   copies the new type's stats when reset is true, so a pickaxe woken with keepall would keep the
+//   bait form's stats - and the bait declares none, which means the engine's 1/1/1/1 defaults. A
+//   level 50 monster with 1 hitpoint, dead to the first hit.
+//
+//   %npc_action_delay, so the first swing waits for the rise instead of landing while the thing is
+//   still lying on the floor.
+//
+// WHAT WAKES IT IS THE CLICK, and only the click. The wiki's own account of how to mine in there
+// turns on that: "They will not reanimate unless clicked on", which is what lets a player animate
+// them, run off, and come back to a quiet floor.
+//
+// The Possessed pickaxe page does say they animate when a player walks past, and the rock crabs
+// show exactly how that is wired - huntmode=aggressive_melee and the reveal on [ai_opplayer2]. It
+// is deliberately not done here, and the reason is in configs/possessed_pickaxe.npc: the Abandoned
+// Mine page says one corridor always attacks and "the other corridor is safe as long as the player
+// does not try to pick up a pickaxe there", and one cache type covers all fifteen. A huntmode would
+// make the safe corridor unsafe.
+[opnpc1,possessed_pickaxe_stationary]
+npc_changetype(possessed_pickaxe, ^max_32bit_int);
+npc_anim(pickaxe_summon, 0);
+%npc_action_delay = add(map_clock, 4);
+// It goes for whoever picked it up. The crabs do not need this line because their hunt has already
+// set the interaction by the time the reveal runs; this one is woken by a hand, so it is pointed at
+// the hand.
+npc_setmode(opplayer2);
+// The lie-down clock. Armed here rather than in the npc config because a pickaxe that is woken and
+// immediately walked away from never loses a target, so Npc.resetDefaults never reads the type's
+// own timer= field - the same reason rock_crabs.rs2 arms it in script.
+npc_settimer(^hauntedmine_pickaxe_rest);
+
+// Left alone long enough, it lies back down: "wait for the yellow dots to disappear. The pickaxes
+// will then be on the ground and unanimated." %npc_lastcombat is stamped by every hit given or
+// taken, so this one check covers both "still fighting" and "just finished", and the bait form is
+// off the minimap again the moment the type changes.
+//
+// No animation going down, because the cache has none: pickaxe_summon is the rise and there is no
+// matching fall, so the bait form's own readyanim is the whole of it.
+[ai_timer,possessed_pickaxe]
+if (add(%npc_lastcombat, ^hauntedmine_pickaxe_rest) > map_clock) {
+    return;
+}
+npc_changetype(possessed_pickaxe_stationary, ^max_32bit_int);
+npc_settimer(0);
+// npc_setmode(null) and not changetype alone: only this calls Npc.resetDefaults, which re-reads
+// huntmode, huntrange and timer off the type the npc has just become.
+npc_setmode(null);
+
+// Kill one and it leaves the pickaxe it was pretending to be. The Haunted Mine drop is a flat
+// 100%: "Iron pickaxe, 1, Always" - oldschool.runescape.wiki/w/Possessed_pickaxe. Iron and not
+// bronze despite the bait's name, which is the wiki's own pairing and reads as the thing having
+// been lying about what it was.
+//
+// No default drop line: possessed_pickaxe declares no death_drop param, and a pickaxe has no bones.
+[ai_queue3,possessed_pickaxe]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, iron_pickaxe, 1, ^lootdrop_duration);

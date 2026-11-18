@@ -420,7 +420,6 @@ data=npc,poh_skeleton
 data=npc,poh_steel_dragon
 data=npc,poh_tok_xil
 data=npc,poh_troll
-data=npc,possessed_pickaxe
 data=npc,rag_vulture
 data=npc,rag_vulture_flying
 data=npc,renegade_knight
@@ -11469,6 +11468,12 @@ data=bonus,unidentified_kwuarm,1,1,24414,0
 data=bonus,unidentified_cadantine,1,1,19531,0
 data=bonus,unidentified_dwarf_weed,1,1,14648,0
 data=bonus,unidentified_lantadyme,1,1,14648,0
+
+[npc_drops_possessed_pickaxe]
+table=npc_drops
+// [ai_queue3,possessed_pickaxe]
+data=npc,possessed_pickaxe
+data=drop,iron_pickaxe,Iron pickaxe,1,Always
 
 [npc_drops_priestperilevilmonk3]
 table=npc_drops

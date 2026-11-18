@@ -1,0 +1,112 @@
+// PORT PHASMATYS, THE PEOPLE WHO ARE NOT PART OF THE QUEST.
+//
+// Eight ghost sailors on the docks and four ghost guards on the two gates, all twelve offering
+// Talk-To - the cache's capitalised spelling, which is why the engine's own Talk-to rule is a
+// case-insensitive one - and nothing in the content answering any of them. They are the only npcs
+// in the town a player meets before Velorina and they said nothing at all.
+//
+// Verbatim from oldschool.runescape.wiki/w/Transcript:Ghost_sailor and Transcript:Ghost_guard.
+//
+// ~ahoy_can_hear is quest_ahoy.rs2's own helper and holds the one rule that matters here: a ghost
+// is unintelligible without an amulet of ghostspeak. The sailor still answers - with the wail the
+// transcript records, in his own chatbox - and the guards do not, because their answer is a refusal
+// and the player is told what it means rather than what it says.
+//
+// NOT Morytania legs 2. The transcript offers them as an alternative to the amulet throughout;
+// they are a 2015 reward for a diary this build has no trace of, so the amulet is the whole rule.
+
+// ------------------------------------------------------------------------------- the ghost sailors
+
+[opnpc1,ahoy_ghost_sailor]
+if (~ahoy_can_hear = false) {
+    ~chatnpc("<p,neutral>Woooo wooo wooooo woooo");
+    return;
+}
+~chatplayer("<p,quiz>Hi there. Why do you still bother having ships here? I mean - you're dead, what use are they to you?");
+~chatnpc("<p,neutral>We keep ships because we still need trade in Phasmatys. Every trader that comes to Phasmatys is made to worship the Ectofuntus, so that the Ectopower doesn't run out.");
+~chatplayer("<p,quiz>So, without traders to worship in the Temple you're history, right?");
+~chatnpc("<p,sad>Aye, matey.");
+
+// -------------------------------------------------------------------------------- the ghost guards
+
+[opnpc1,ahoy_ghost_guard]
+if (~ahoy_can_hear = false) {
+    ~mesbox("The ghostly guards wail at you incomprehensibly, and though you cannot understand their exact words you understand their meaning - you may not pass the barriers of Port Phasmatys.");
+    return;
+}
+// The town is open to anyone who finished the quest, and the guard says why. This is the same rule
+// the barrier itself now follows - see the note on it in quest_ahoy.rs2.
+if (%ahoy_questvar >= ^ahoy_complete) {
+    ~chatnpc("<p,neutral>All visitors to Port Phasmatys must pay a toll charge of 2 Ectotokens. However, you have done the ghosts of our town a service that surpasses all value, so you may pass without charge.");
+    @ahoy_guard_gate;
+}
+~chatnpc("<p,neutral>All visitors to Port Phasmatys must pay a toll charge of 2 Ectotokens.");
+switch_int (~p_choice3("I would like to enter Port Phasmatys - here's 2 Ectotokens.", 1, "I'm not paying you Ectotokens just to go through a gate.", 2, "Where can I get Ectotokens?", 3)) {
+    case 1 :
+        ~chatplayer("<p,neutral>I would like to enter Port Phasmatys - here's 2 Ectotokens.");
+        // The transcript offers this option whether or not the player has them, so it is offered
+        // here too - and the refusal is the barrier's own existing wording rather than a new line,
+        // because the two are the same refusal said by different things.
+        if (inv_total(inv, ectotoken) < ^ahoy_barrier_toll) {
+            ~mesbox("The barrier will not let you through. The ghosts take ecto-tokens, or an amulet of ghostspeak if you have one - a great many of them would rather you simply went away.");
+            return;
+        }
+        inv_del(inv, ectotoken, ^ahoy_barrier_toll);
+        @ahoy_guard_gate;
+    case 2 :
+        ~chatplayer("<p,angry>I'm not paying you Ectotokens just to go through a gate.");
+        ~chatnpc("<p,neutral>Sorry - it's Town Policy.");
+    case 3 :
+        ~chatplayer("<p,quiz>Where can I get Ectotokens?");
+        ~chatnpc("<p,neutral>You need to go to the Temple and earn some. Talk to the disciples - they will tell you how.");
+}
+
+// THE GATE THIS GUARD IS STANDING AT, and then through it.
+//
+// The transcript ends the paid conversation and then has the player go through the gate, which is
+// the only reason the toll is worth taking here at all: a toll that does not move anybody is worse
+// than no toll.
+//
+// WHICH barrier is decided by the GUARD's latitude and not the player's. The guard is a static
+// spawn beside its own gate - 3652,3484 and 3652,3487 on the south, 3658,3508 and 3661,3508 on the
+// north - while the player can be anywhere within talking distance, and the two gates are 23 tiles
+// apart. loc_find is an exact-coord test against the two coords in quest_ahoy.constant, so nothing
+// is searched; a missing barrier ends the script with the toll unpaid rather than teleporting
+// anybody into a wall.
+//
+// AND THE DESTINATION IS MEASURED FROM THE BARRIER, NOT FROM THE PLAYER, which is the bug this was
+// written with first. ~ahoy_step_through - the barrier's own crossing, and the obvious thing to
+// reuse - moves the player two tiles along the wall's axis away from the wall, which is right for
+// somebody who clicked the barrier and therefore stands either side of it. A guard does not stand
+// either side of it. All four stand IN the gap, on the barrier's own line, where "east of it" and
+// "west of it" are both false - so paying the south guard pushed the player two tiles west, further
+// out of town, and the sim caught it. The four tiles either side of the two gates are named in
+// quest_ahoy.constant with the flood that found them.
+//
+// The guards being pinned (configs/ahoy_guards.npc, wanderrange=0) is what keeps that honest: they
+// declared none and took the engine's default of five, and a guard five tiles off its post is a
+// guard taking a toll for a gate nobody is standing at.
+[label,ahoy_guard_gate]
+if (coordz(npc_coord) < ^ahoy_barrier_divide_z) {
+    // The south gate: the wall runs north-south and the town is east of it.
+    if (loc_find(^ahoy_barrier_south, ahoy_town_barrier) = false) {
+        return;
+    }
+    if_close;
+    if (coordx(coord) > ^ahoy_barrier_south_x) {
+        p_teleport(^ahoy_gate_south_out);
+        return;
+    }
+    p_teleport(^ahoy_gate_south_in);
+    return;
+}
+// The north gate: the wall runs east-west and the town is south of it.
+if (loc_find(^ahoy_barrier_north, ahoy_town_barrier) = false) {
+    return;
+}
+if_close;
+if (coordz(coord) < ^ahoy_barrier_north_z) {
+    p_teleport(^ahoy_gate_north_out);
+    return;
+}
+p_teleport(^ahoy_gate_north_in);

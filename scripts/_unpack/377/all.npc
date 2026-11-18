@@ -37541,29 +37541,6 @@ vislevel=hide
 head1=obj_leather_cowl_manhead2
 head2=idk_man_jaw_short_head
 
-[possessed_pickaxe]
-name=Possessed Pickaxe
-desc=How does it move of its own accord?
-model1=spot_pickaxe_summon_spotanim
-walkanim=magicaxe_walk
-readyanim=magicaxe_ready
-op2=Attack
-vislevel=50
-
-param=attack_anim,magicaxe_attack
-param=death_anim,magicaxe_death
-param=defend_anim,magicaxe_block
-
-[possessed_pickaxe_stationary]
-name=Bronze pickaxe
-desc=Useful for hitting rocks.
-model1=spot_pickaxe_summon_spotanim
-op1=Take
-walkanim=magicaxe_walk
-readyanim=pickaxe_beforesummon
-vislevel=hide
-minimap=no
-
 [skeletal_miner_sitting]
 name=Corpse
 desc=Well at least he doesn't have to worry about getting black lung.
@@ -39689,25 +39666,6 @@ resizev=112
 resizeh=112
 ambient=40
 contrast=40
-op1=Talk-To
-vislevel=hide
-head1=npc_1686_head
-
-[ahoy_ghost_guard]
-name=Ghost Guard
-desc=This ghost guards the gates of Port Phasmatys.
-model1=npc_1686
-model2=npc_1684i2
-model3=npc_1684i3
-model4=npc_1684i4
-recol1s=14861
-recol1d=15950
-walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
-readyanim=human_ready
-resizev=112
-resizeh=112
-ambient=35
-contrast=35
 op1=Talk-To
 vislevel=hide
 head1=npc_1686_head
