@@ -1265,18 +1265,24 @@ model=death_boxes3
 retex1s=wood2
 retex1d=elfwood
 
+// Rellekka's two crates carried name=Crate and op1=Search and no category, so
+// [oploc1,_empty_crate] never saw the click and all 36 of them answered "Nothing interesting
+// happens." viking_crate_2 is even drawn from crate3, which is one of the wired ones.
+// DeathPlateau-Bugs#27.
 [viking_crate]
 name=Crate
 desc=A wooden crate for storage.
 model=merlincrate_empty
 op1=Search
 blockrange=no
+category=empty_crate
 
 [viking_crate_2]
 name=Crate
 desc=An old crate for storage.
 model=crate3
 op1=Search
+category=empty_crate
 
 [viking_steps_side]
 model=viking_steps_side
