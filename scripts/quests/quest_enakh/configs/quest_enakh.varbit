@@ -1,0 +1,18 @@
+// WHETHER LAZIM HAS BEEN PAID TO MAKE THE CAMULET UNLIMITED.
+//
+// The cache has a varbit for the amulet's CHARGES (enakh_camulet_charge, bits 29-31 of
+// enakh_quest_expositbits, holding 0-7 for a 0-4 range) and none for the upgrade that removes the
+// need to count them, so this is the one bit the quest needed adding.
+//
+// Bit 28, immediately below the charge field it belongs with. enakh_quest takes bits 0-6 and
+// nothing in the cache claims 7-28, so there is no client-side reader to collide with - the same
+// check area_barrows/configs/barrows.varbit records for its own three bits.
+//
+// WHY IT MATTERS MORE HERE THAN IN OLD SCHOOL. There, a spent Camulet is recharged with a bucket of
+// Ugthanki dung and Lazim's million is a convenience. There is no ugthanki dung obj in this cache at
+// all - the whole mechanic is My Arm's Big Adventure (2007) - so this upgrade is the ONLY way the
+// amulet's teleport keeps working past its fourth use.
+[enakh_camulet_unlimited]
+basevar=enakh_quest_expositbits
+startbit=28
+endbit=28

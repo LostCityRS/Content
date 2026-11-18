@@ -159,12 +159,31 @@
 // =========================================================================== places
 // Surface, m49_45 (mapsquare origin 3136,2880), all plane 0.
 ^enakh_statue_site = 0_49_45_53_45      // 3189,2925  the statue shell
+// Where Lazim stands DURING the quest: on the surface, beside the statue he is building.
 ^enakh_lazim_site = 0_49_45_55_46       // 3191,2926
 ^enakh_pickaxe_rock = 0_49_45_37_38     // 3173,2918  enakh_mining_stone, op1 is Take-axe
 ^enakh_boulder_n = 0_49_45_12_57        // 3148,2937
 ^enakh_boulder_e = 0_49_45_58_45        // 3194,2925
 ^enakh_boulder_s = 0_49_45_53_8         // 3189,2888
 ^enakh_boulder_w = 0_49_45_10_28        // 3146,2908
+
+// WHERE THE CAMULET'S RUB PUTS YOU, which is not the same place and used to be.
+//
+// It teleported to ^enakh_lazim_site, the surface quarry - and the Camulet's own page gives two
+// destinations, with that one as the SECOND: "Inside Enakhra's Temple" at 3105,9315 by default, and
+// "Enakhra's Temple entrance" at 3191,2924 only "after the hard Desert Diary is completed". That
+// diary is 2015 content and has no trace in this build, so the default was the one missing and the
+// unlockable one was the only one wired.
+//
+// It matters because of what the amulet is for after the quest: "To get to Lazim after completing
+// the quest, teleport to him with the camulet." He is the only source of a replacement amulet and
+// the only way to stop counting charges, and from the surface entrance that teleport does not
+// reach him - it drops you outside and leaves you to walk down.
+//
+// Plane 2 and the three tiles south of him, measured rather than taken from the page: the altar
+// Lazim multinpc stands at 3105,9318 on plane 2, and 3105,9315 is walkable and connected to it on
+// plane 2 and on no other.
+^enakh_camulet_teleport = 2_48_145_33_35 // 3105,9315, plane 2 - inside the temple, beside Lazim
 
 // Temple, m48_145 (mapsquare origin 3072,9280). Three planes.
 //
@@ -228,3 +247,7 @@
 ^camel_neferti = 5
 // Three things to say and three ways to be answered for saying them, picked independently.
 ^camel_remarks = 3
+
+// What Lazim charges to give the Camulet unlimited teleport charges. One million, and he gives
+// three reasons for it: he is a Zamorakian mage, he wants the money, and he hates you.
+^enakh_camulet_upgrade_cost = 1000000

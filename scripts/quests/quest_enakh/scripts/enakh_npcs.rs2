@@ -29,11 +29,79 @@ switch_int (%enakh_quest) {
         ~chatnpc("<p,sad>I laid three thousand bricks for her. Three thousand.");
     case default :
         if (%enakh_quest >= ^enakh_complete) {
-            ~chatnpc("<p,neutral>I am going back to Nardah. There is a man there who wants a fountain and nobody in Nardah has ever once tried to eat me.");
-            return;
+            @enakh_lazim_after;
         }
         ~chatnpc("<p,neutral>Get on with it.");
 }
+
+// =========================================================== Lazim, after the quest is finished
+// He is the only way back to the amulet once it is gone and the only way to stop counting its
+// charges, which is what the three states of this conversation are for. Verbatim from
+// oldschool.runescape.wiki/w/Transcript:Lazim, standard dialogue.
+//
+// He is at the altar on the temple's top floor from completion onwards (%enakh_where_is_lazim is
+// set to ^enakh_lazim_at_altar by @enakh_finish), and the way back to him is the amulet's own Rub -
+// "To get to Lazim after completing the quest, teleport to him with the camulet". A player who has
+// lost it or spent it is therefore walking, which is the whole reason the first branch exists.
+//
+// He used to say one line here about going back to Nardah to build a fountain. It was a good line
+// and it is not his: nothing in the transcript has him leave, and leaving is the one thing he must
+// not do while he is holding a spare Camulet.
+[label,enakh_lazim_after]
+~chatnpc("<p,angry>How are you and your defective brain doing nowadays, adventurer?");
+// ------------------------------------------------------------------- 1. the amulet is gone
+// ~obj_gettotal is inventory, bank AND worn (general/scripts/misc/inv_procs.rs2), so this is "you
+// genuinely do not have one anywhere" rather than "you did not bring it".
+if (~obj_gettotal(camulet) = 0) {
+    ~chatplayer("<p,sad>I've lost the amulet that Akthanakos gave me.");
+    ~chatnpc("<p,angry>You really are an idiot, aren't you? You dropped it in here when you left. Try not to lose it next time.");
+    // The same free-space fallback @enakh_finish uses for the same item, rather than a refusal of
+    // its own: a replacement that cannot be handed over is the dead end this branch exists to fix.
+    if (inv_freespace(inv) > 0) {
+        inv_add(inv, camulet, 1);
+    } else {
+        obj_add(coord, camulet, 1, ^lootdrop_duration);
+    }
+    ~objbox(camulet, "Lazim returns the Camulet to you.", 250, 0, divide(^objbox_height, 2));
+    return;
+}
+~chatplayer("<p,angry>Hey! That's not very nice.");
+~chatnpc("<p,angry>I'm not very nice. If you want to see who ruined all of my plans, adventurer, just look in a mirror.");
+~chatplayer("<p,neutral>Suit yourself. At least I got a nice amulet for my trouble.");
+// --------------------------------------------------------------- 2. already paid, so he gloats
+if (%enakh_camulet_unlimited = 1) {
+    ~chatnpc("<p,angry>And don't forget who gave it unlimited charges for you!");
+    return;
+}
+// ------------------------------------------------------------------------- 3. the sales pitch
+~chatnpc("<p,neutral>About that amulet - I might be able to improve it for you, for a fee. Have you got it with you?");
+~chatplayer("<p,neutral>Yes, I've got it here.");
+~objbox(camulet, "Lazim examines the Camulet.", 250, 0, divide(^objbox_height, 2));
+~chatnpc("<p,neutral>Yes, it's what I thought. This amulet will run out of charges all the time, if you keep using it. For one million coins I can give it unlimited charges.");
+if (~p_choice2("Why do you need so much money for it?", 1, "Maybe another time.", 2) = 2) {
+    ~chatplayer("<p,neutral>Maybe another time.");
+    return;
+}
+~chatplayer("<p,quiz>Why do you need so much money for it?");
+~chatnpc("<p,angry>Three reasons. Firstly, I'm a Zamorakian mage - we're not big on charity work. Secondly, I want the money. Finally, in case you need reminding, I hate you.");
+// The offer to pay is only made to somebody who can, which is the transcript's own shape: the
+// "Okay, here's one million coins" option sits inside its "If the player has at least 1 million
+// coins" condition, and the player says so themselves when they cannot.
+if (inv_total(inv, coins) < ^enakh_camulet_upgrade_cost) {
+    ~chatplayer("<p,sad>Right. Well, I haven't got that kind of money on me.");
+    return;
+}
+if (~p_choice2("Okay, here's one million coins.", 1, "I'm not interested.", 2) = 2) {
+    ~chatplayer("<p,neutral>I'm not interested.");
+    ~chatnpc("<p,angry>Your loss.");
+    return;
+}
+~chatplayer("<p,neutral>Okay, here's one million coins.");
+// Spent and granted in one block with nothing pausing between them, for the reason
+// quest_mortton's serum records: three ticks of script is enough for a player to click away.
+inv_del(inv, coins, ^enakh_camulet_upgrade_cost);
+%enakh_camulet_unlimited = 1;
+~objbox(camulet, "Lazim takes your money and augments the enchantment on the Camulet.", 250, 0, divide(^objbox_height, 2));
 
 [label,enakh_lazim_start]
 ~chatnpc("<p,neutral>You look like you can lift things.");
@@ -294,6 +362,13 @@ if (inv_freespace(inv) > 0) {
 [label,wearop2_camulet] @camulet_rub;
 
 [label,camulet_check]
+// Paid-for and unlimited, so there is nothing to count. The wording is ours - Old School documents
+// the upgrade and not what Check-charge says afterwards - and it is the same sentence as the line
+// below it with the number taken out.
+if (%enakh_camulet_unlimited = 1) {
+    mes("Your camulet has unlimited charges.");
+    return;
+}
 if (%enakh_camulet_charge = 0) {
     mes("Your camulet has no charges left.");
     return;
@@ -301,6 +376,15 @@ if (%enakh_camulet_charge = 0) {
 mes("Your camulet has <tostring(%enakh_camulet_charge)> charges left.");
 
 [label,camulet_rub]
+// An upgraded amulet costs nothing to rub and says nothing about charges afterwards, which is the
+// whole of what the million buys.
+if (%enakh_camulet_unlimited = 1) {
+    if_close;
+    mes("You rub the amulet.");
+    p_delay(2);
+    p_teleport(^enakh_camulet_teleport);
+    return;
+}
 if (%enakh_camulet_charge = 0) {
     ~mesbox("You rub the amulet. It brays at you, flatly, and nothing else happens.");
     return;
@@ -309,5 +393,5 @@ if (%enakh_camulet_charge = 0) {
 if_close;
 mes("You rub the amulet.");
 p_delay(2);
-p_teleport(^enakh_lazim_site);
+p_teleport(^enakh_camulet_teleport);
 mes("Your camulet has <tostring(%enakh_camulet_charge)> charges left.");
