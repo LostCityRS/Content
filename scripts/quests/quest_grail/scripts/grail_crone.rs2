@@ -1,9 +1,14 @@
-// THE CRONE IS NOT PLACED ANYWHERE. Everything below - the six heads, the Fisher King, the
-// whistle, the searching, the realm - is written and reachable by nothing: grail_crone appears in
-// no jm2 NPC section, so ^grail_spoken_crone (stage 4) is a stage no player can reach and this
-// whole file is dead dialogue. The Fisher King himself says "I have sent clues to help you get
-// here, such as the fisherman, and the crone", so she is meant to be in the realm; the
-// walkthrough has no step that needs her, which is why the quest still completes without her.
+// THE CRONE IS NOT PLACED ANYWHERE, BUT SHE IS NOT UNREACHABLE. She appears in no jm2 NPC section
+// - npc 217 has 0 spawns in any map square - so there is nowhere in the world to walk up to her.
+// Everything below still runs, because high_priest_of_entrana.rs2:12 npc_adds her beside him and
+// then jumps into @grail_crone, so her whole conversation, and the ^grail_spoken_crone (stage 4)
+// it writes below, happen off HIS click. See the paragraph lower down, which has always said so.
+// This header used to open "stage 4 is a stage no player can reach and this whole file is dead
+// dialogue", which is wrong on both counts and was believed on its way to writing the quest
+// helper's leg for stage 4 - tools/sim/quest_grail_run.ts now asserts it. The Fisher King himself
+// says "I have sent clues to help you get here, such as the fisherman, and the crone", so she is
+// meant to stand in the realm rather than on Entrana; the walkthrough has no step that needs her,
+// which is why the quest completes either way.
 // Open ground for her, if she is ever placed: 2803,4719, which is m43_73 local (51,47) on plane 0,
 // north of the realm entrance at 2806,4715. What is missing is her npc id - ids in this build are
 // not the block order of all.npc, so it has to come from NpcType at runtime.
