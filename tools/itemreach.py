@@ -122,8 +122,31 @@ def parse_scripts():
                     cur.body.append(rest)
                 continue
             if cur is not None:
-                cur.body.append(stripped)
+                # A STATEMENT CAN SPAN LINES. barrows_chest.rs2 has
+                #     ~barrows_reward_add(barrows_teleport,
+                #                         ~barrows_between(^low, ^high));
+                # and reading a line at a time means the opening paren never finds its partner, so
+                # the call is skipped and the item it hands over looks unobtainable. A line whose
+                # parens are still open takes the next one with it.
+                if cur.body and _open_parens(cur.body[-1]) > 0:
+                    cur.body[-1] += " " + stripped
+                else:
+                    cur.body.append(stripped)
     return scripts
+
+
+def _open_parens(text):
+    depth, instr = 0, False
+    for ch in text:
+        if instr:
+            instr = ch != '"'
+        elif ch == '"':
+            instr = True
+        elif ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth -= 1
+    return depth
 
 # ---------------------------------------------------------------- what makes an item
 # op name -> index of the argument that names the item
@@ -202,7 +225,15 @@ def main():
                     a = split_args(args)
                     if len(a) > idx:
                         sites.append((key, a[idx]))
-            am = assignre.match(line)
+            # AN ASSIGNMENT CAN FOLLOW A CASE LABEL. "case fenk_brush0 : $longer = fenk_brush1;" is
+            # a statement with a label in front of it, and anchoring on the start of the line missed
+            # every one of them. The label is stripped and the rest read as normal.
+            #
+            # The anchor itself has to stay, because '=' is both assignment and equality in this
+            # language: "if ($a = plantpot_supercompost)" is a comparison, and matching $var = expr
+            # anywhere on a line would read it as the item being produced.
+            stmt = re.sub(r"^case\s+[^:]+:\s*", "", line)
+            am = assignre.match(stmt)
             if am:
                 assigns[key][am.group(1)].append(am.group(2).strip())
 
