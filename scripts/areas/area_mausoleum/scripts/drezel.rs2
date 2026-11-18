@@ -33,9 +33,9 @@ if (%priestperil = ^priestperil_meet_in_mausoleum) {
 }
 
 [opnpcu,priestperiltrappedmonk2]
-if(last_useitem = blankrune) {
+if(last_useitem = blankrune | last_useitem = blankrune_high) {
     @drezel_give_blankrunes;
-} else if(last_useitem = cert_blankrune) {
+} else if(last_useitem = cert_blankrune | last_useitem = cert_blankrune_high) {
     @drezel_blankrune_cert;
 }
 ~displaymessage(^dm_default);
@@ -61,11 +61,11 @@ if(last_useitem = blankrune) {
     ~chatnpc("<p,neutral>Well I have no knowledge of these ores other than speculation and gossip, but if the things I hear are true around fifty should be sufficient for the task.");
 
 [label,priestperil_drezel_begin_bring_essence]
-if (inv_total(inv, blankrune) > 0) {
+if (inv_total(inv, blankrune) > 0 | inv_total(inv, blankrune_high) > 0) {
     ~chatplayer("<p,happy>I brought you some Rune Essence.");
     ~chatnpc("<p,neutral>Quickly, give it to me!");
     @drezel_give_blankrunes;
-} else if (inv_total(inv, cert_blankrune) > 0) { 
+} else if (inv_total(inv, cert_blankrune) > 0 | inv_total(inv, cert_blankrune_high) > 0) { 
     @drezel_blankrune_cert;
 } else { 
     ~chatplayer("<p,quiz>What am I supposed to do again?");
@@ -73,11 +73,11 @@ if (inv_total(inv, blankrune) > 0) {
 }
 
 [label,priestperil_drezel_bring_more_essence]
-if (inv_total(inv, blankrune) > 0) {
+if (inv_total(inv, blankrune) > 0 | inv_total(inv, blankrune_high) > 0) {
     ~chatplayer("<p,happy>I brought you some more essences.");
     ~chatnpc("<p,neutral>Quickly, give them to me!");
     @drezel_give_blankrunes;
-} else if (inv_total(inv, cert_blankrune) > 0) { 
+} else if (inv_total(inv, cert_blankrune) > 0 | inv_total(inv, cert_blankrune_high) > 0) { 
     @drezel_blankrune_cert;
 } else { 
     ~chatplayer("<p,quiz>How many more essences do I need to bring you?");
@@ -93,22 +93,38 @@ if(%priestperil < ^priestperil_begin_bring_essence | %priestperil >= ^priestperi
 ~chatplayer("<p,happy>I brought you some Rune Essence.");
 ~chatnpc("<p,confused>You have brought me notes saying 'I promise to pay the bearer on demand the listed number of Rune Essence.' How is that supposed to help me?");
 
+// EITHER ESSENCE, AND A MIX OF THE TWO. Old School takes "50 unnoted rune essence or pure
+// essence" and says "all 50 essence do not have to be of the same type":
+// oldschool.runescape.wiki/w/Priest_in_Peril
+//
+// This took blankrune and nothing else, while skill_mining's get_ore_essence hands PURE essence
+// to anybody with Mining 30 or better on a members world. Priest in Peril has no mining
+// requirement, so the players it blocked were the ones most likely to be doing it - and it gates
+// Morytania and everything behind it. DeathPlateau-Bugs#29.
 [label,drezel_give_blankrunes]
-if(inv_total(inv, blankrune) <= 0 | %priestperil < ^priestperil_begin_bring_essence | %priestperil >= ^priestperil_end_bring_essence) {
+def_int $essence_have = add(inv_total(inv, blankrune), inv_total(inv, blankrune_high));
+if($essence_have <= 0 | %priestperil < ^priestperil_begin_bring_essence | %priestperil >= ^priestperil_end_bring_essence) {
     ~displaymessage(^dm_default);
     return; 
 }
 
 if_close;
 def_int $essence_needed = calc(60 - %priestperil);
-def_int $essence_have = inv_total(inv, blankrune);
 def_int $essence_to_give = min($essence_needed, $essence_have);
+// Kept, because the loop counts its own copy down to zero - which is why the singular line
+// below could never print, however few you handed over.
+def_int $essence_given = $essence_to_give;
 while($essence_to_give > 0) {
-    inv_del(inv, blankrune, 1);
+    // Rune essence first, being the cheaper of the two, so a mixed bag spends the right one.
+    if(inv_total(inv, blankrune) > 0) {
+        inv_del(inv, blankrune, 1);
+    } else {
+        inv_del(inv, blankrune_high, 1);
+    }
     %priestperil = add(%priestperil, 1);
     $essence_to_give = sub($essence_to_give, 1);
 }
-if($essence_to_give = 1) {
+if($essence_given = 1) {
     mes("You give the priest your blank rune.");
 } else {
     mes("You give the priest your blank runes.");
