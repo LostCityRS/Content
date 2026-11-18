@@ -131,6 +131,7 @@ data=op,Armour,skill_guide_magic_armour
 [skill_guide_magic_spells]
 table=skill_guides
 data=name,Magic - Spells
+data=advancement,Able to ????: try to find the source
 data=unlock,-1,"To view the available spells, select the\nspellbook icon on the side interface.\nYou can see what each spell does by\nmoving your mouse over its icon."
 
 // note: derived from 2007 clientscript
@@ -138,6 +139,7 @@ data=unlock,-1,"To view the available spells, select the\nspellbook icon on the 
 [skill_guide_magic_armour]
 table=skill_guides
 data=name,Magic - Armour
+data=advancement,Able to ????: try to find the source
 data=inv,skill_guide_magic_armour
 data=unlock,20,Members: Wizard boots.
 data=unlock,40,Members: Splitbark helm\n     (with defence 40).
@@ -157,6 +159,7 @@ data=op,Prayer,skill_guide_prayer_prayer
 [skill_guide_prayer_prayer]
 table=skill_guides
 data=name,Prayer
+data=advancement,Able to ????: try to find the source
 // skill_guide_prayer: inv 275 (does this mean no prayer guide, or could they be text-only with no inv?)
 data=unlock,-1,"To view the available prayers, select\nthe Prayer icon on the side interface.\nYou can see what each Prayer does by\nmoving your mouse over its icon."
 
@@ -189,8 +192,8 @@ data=unlock,52,Wilderness course.
 [skill_guide_herblore]
 table=skill_guide_ops
 data=lookup,herblore
-data=op,Herbs,skill_guide_herblore_herbs
 data=op,Potions,skill_guide_herblore_potions
+data=op,Herbs,skill_guide_herblore_herbs
 
 [skill_guide_herblore_herbs]
 table=skill_guides
@@ -219,6 +222,7 @@ data=unlock,75,Torstol.
 [skill_guide_herblore_potions]
 table=skill_guides
 data=name,Herblore - Potions
+data=advancement,Able to ????: try to find the source
 data=inv,skill_guide_herblore_potions
 data=unlock,-1,You must complete the Druidic Ritual\nquest before you can use Herblore.
 data=unlock,3,Attack potion\nGuam leaf & Eye of newt.
@@ -250,8 +254,8 @@ data=unlock,78,Zamorak potion\nTorstol & Jangerberries.
 [skill_guide_thieving]
 table=skill_guide_ops
 data=lookup,thieving
-data=op,Stalls,skill_guide_thieving_stalls
 data=op,Pickpocket,skill_guide_thieving_pickpocket
+data=op,Stalls,skill_guide_thieving_stalls
 // skill_guide_thieving_chests: inv 274
 // skill_guide_thieving_other: inv 415
 
@@ -259,6 +263,7 @@ data=op,Pickpocket,skill_guide_thieving_pickpocket
 [skill_guide_thieving_stalls]
 table=skill_guides
 data=name,Thieving - Stalls
+data=advancement,Able to ????: try to find the source
 data=inv,skill_guide_thieving_stalls
 data=unlock,2,Vegetable stall.
 data=unlock,5,Cake stall.
@@ -278,6 +283,7 @@ data=unlock,75,Gems stall.
 [skill_guide_thieving_pickpocket]
 table=skill_guides
 data=name,Thieving - Pickpocket
+data=advancement,Able to ????: try to find the source
 data=inv,skill_guide_thieving_pickpocket
 data=unlock,1,Man.
 data=unlock,10,Farmer.
@@ -308,6 +314,7 @@ data=op,Staffs,skill_guide_crafting_staffs
 [skill_guide_crafting_spinning]
 table=skill_guides
 data=name,Crafting - Spinning
+data=advancement,Able to ????: try to find the source
 data=inv,skill_guide_crafting_spinning
 data=unlock,1,Wool.
 data=unlock,10,Members: Flax into bow strings.
@@ -316,6 +323,7 @@ data=unlock,10,Members: Flax into bow strings.
 [skill_guide_crafting_pottery]
 table=skill_guides
 data=name,Crafting - Pottery
+data=advancement,Able to ????: try to find the source
 data=inv,skill_guide_crafting_pottery
 data=unlock,1,Pot.
 data=unlock,7,Pie dish.
@@ -325,6 +333,7 @@ data=unlock,8,Bowl.
 [skill_guide_crafting_glass]
 table=skill_guides
 data=name,Crafting - Glass
+data=advancement,Able to ????: try to find the source
 data=inv,skill_guide_crafting_glass
 data=unlock,1,Members: Beer glass.
 data=unlock,33,Members: Vial.
@@ -334,6 +343,7 @@ data=unlock,46,Members: Glass orb.
 [skill_guide_crafting_jewellery]
 table=skill_guides
 data=name,Crafting - Jewellery
+data=advancement,Able to ????: try to find the source
 data=inv,skill_guide_crafting_jewellery
 data=unlock,1,Members: Cut opal.
 data=unlock,5,Gold ring.
@@ -368,6 +378,7 @@ data=unlock,80,Members: Dragonstone amulet.
 [skill_guide_crafting_staffs]
 table=skill_guides
 data=name,Crafting - Staffs
+data=advancement,Able to ????: try to find the source
 data=inv,skill_guide_crafting_staffs
 data=unlock,54,Members: Water battlestaff.
 data=unlock,58,Members: Earth battlestaff.
@@ -378,6 +389,7 @@ data=unlock,66,Members: Air battlestaff.
 [skill_guide_crafting_armour]
 table=skill_guides
 data=name,Crafting - Armour
+data=advancement,Able to make:
 data=inv,skill_guide_crafting_armour
 data=unlock,1,Leather gloves.
 data=unlock,7,Leather boots.
@@ -415,6 +427,7 @@ data=op,Runes,skill_guide_runecrafting_runecrafting
 [skill_guide_runecrafting_runecrafting]
 table=skill_guides
 data=name,Runecrafting
+data=advancement,Able to ????: try to find the source
 data=inv,skill_guide_runecrafting
 data=unlock,1,Air runes.
 data=unlock,2,Mind runes.
@@ -918,6 +931,7 @@ data=op,Darts,skill_guide_fletching_darts
 [skill_guide_fletching_bows]
 table=skill_guides
 data=name,Fletching - Bows
+data=advancement,Able to fletch:
 data=inv,skill_guide_fletching_bows
 data=unlock,5,Shortbows.
 data=unlock,10,Longbows.
@@ -948,6 +962,7 @@ data=unlock,75,Rune arrows.
 [skill_guide_fletching_darts]
 table=skill_guides
 data=name,Fletching - Darts
+data=advancement,Able to ????: try to find the source
 data=inv,skill_guide_fletching_darts
 data=unlock,1,Bronze darts.
 data=unlock,22,Iron darts.
@@ -960,6 +975,7 @@ data=unlock,81,Rune darts.
 [skill_guide_fletching_bolts]
 table=skill_guides
 data=name,Fletching - Bolts
+data=advancement,Able to ????: try to find the source
 data=inv,skill_guide_fletching_bolts
 data=unlock,11,Opal-tipped bolts.
 data=unlock,41,Pearl-tipped bolts.
