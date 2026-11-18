@@ -7,6 +7,11 @@
 [queue,priestperil_complete]
 %priestperil = ^priestperil_complete;
 inv_add(inv, dagger_wolfbane, 1);
-stat_advance(prayer, 1406);
+// 1,406 Prayer XP, per the wiki. stat_advance takes TENTHS of a point throughout this
+// codebase (Player.addXp stores tenths and the client divides by 10), so the reward is 14060.
+// It read 1406 and paid 140.6 XP, which at the 10x rate came out to exactly the 1406 the scroll
+// advertises - so the shortfall looked like the multiplier being skipped rather than the amount
+// being a tenth of itself.
+stat_advance(prayer, 14060);
 session_log(^log_adventure, "Quest complete: Priest in Peril");
-~send_quest_complete(questlist:priestperil, dagger_wolfbane, 250, ^priestperil_questpoints, "You have completed the\\nPriest In Peril Quest!", "1406 Prayer XP|Wolfbane dagger|Route to Canifis");
+~send_quest_complete(questlist:priestperil, dagger_wolfbane, 250, ^priestperil_questpoints, "You have completed the\\nPriest In Peril Quest!", "1,406 Prayer XP|Wolfbane dagger|Route to Canifis");
