@@ -264,10 +264,20 @@ p_teleport(0_39_54_15_7);
 [oploc1,waterfall_ledge_door_right]
 @waterfall_ledge_door;
 
+// AND A FINISHED QUEST IS ITS OWN KEY. Old School opened the Waterfall Dungeon to anybody who
+// has completed Waterfall Quest on 16 March 2017, amulet or not:
+// oldschool.runescape.wiki/w/Waterfall_Dungeon. Before that - and here, until now - the door
+// flooded a finished player who was not carrying the amulet, took 8 hitpoints off them and washed
+// them up at ^waterfall_fail_coord on the far side of the river. Reported from exactly that tile.
+// The amulet is reobtainable from the chest in Glarial's tomb, so it was never a dead end; it was
+// a trip back across the river for nothing. DeathPlateau-Bugs#28.
+//
+// The stage write below is deliberately left keyed on ^waterfall_entered_glarial_tomb, so going
+// back in afterwards does not touch a finished quest's progress.
 [label,waterfall_ledge_door] // basing this off RS3, seems like RS3 mechanics for this havn't changed
 mes("The door begins to open.");
 p_delay(2);
-if(inv_total(worn, glarials_amulet_waterfall_quest) > 0 | inv_total(inv, glarials_amulet_waterfall_quest) > 0) {
+if(%waterfall_quest >= ^waterfall_complete | inv_total(worn, glarials_amulet_waterfall_quest) > 0 | inv_total(inv, glarials_amulet_waterfall_quest) > 0) {
     mes("You walk through the door.");
     if(%waterfall_quest = ^waterfall_entered_glarial_tomb) {
         %waterfall_quest = ^waterfall_entered_waterfall;
