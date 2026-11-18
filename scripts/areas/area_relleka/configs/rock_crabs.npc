@@ -47,12 +47,16 @@ strength=1
 defence=1
 magic=1
 ranged=1
-// The published max hit is 3, and Old School states a monster's max hit outright where this engine
-// derives it from strength (~npc_melee_maxhit -> ~combat_maxhit). With strength 1 the derivation
-// gives 1, so the gap is carried on the strength BONUS, which touches nothing but the max hit: 96 is
-// the exact value at which ((1 + 9) * (96 + 64) + 320) / 640 lands on 3. Same trick the raw cache
-// itself uses on the ice wolves (param=strengthbonus,8).
-param=strengthbonus,96
+// THE PUBLISHED MAX HIT IS 1, not 3. This carried a strengthbonus of 96 to force the derivation up
+// to 3 - "the published max hit is 3" is what the note here used to say, and it was simply wrong:
+// the OSRS wiki gives the Rock Crab a max hit of 1, which is the whole reason a level 13 monster
+// with 50 hitpoints is safe to train on unattended. Players reported being hit for 3.
+//
+// It is stated outright now rather than derived. ~npc_melee_maxhit takes param=max_hit ahead of the
+// strength calculation (default -1 means "derive it"), which is the mechanism the old note wished
+// for while working around its absence; the Dagannoth Kings already use it. The strength bonus is
+// gone with it: it existed only to bend the derivation and touches nothing else.
+param=max_hit,1
 param=damagetype,^crush_style
 param=attackrate,4
 // The bare attackrange CONFIG field, not just the param: the engine gates approach on
@@ -133,7 +137,8 @@ strength=1
 defence=1
 magic=1
 ranged=1
-param=strengthbonus,96
+// As the full-size crab above: the published max hit is 1, stated rather than derived.
+param=max_hit,1
 param=damagetype,^crush_style
 param=attackrate,4
 attackrange=1
