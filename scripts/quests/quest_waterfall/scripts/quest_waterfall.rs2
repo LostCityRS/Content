@@ -250,7 +250,21 @@ p_delay(1);
 mes("and let your self down on to the ledge.");
 p_teleport(0_39_54_15_7);
 
-[oploc1,waterfall_ledge_door] // basing this off RS3, seems like RS3 mechanics for this havn't changed
+// THE DOORWAY IS THREE LOCS WIDE AND ONLY THE MIDDLE ONE ANSWERED. waterfall_ledge_door sits at
+// 2511,3464 with waterfall_ledge_door_left at 2510 and waterfall_ledge_door_right at 2512, and all
+// three carry op1="Open". Only the centre had a trigger, so clicking either side panel answered
+// "Nothing interesting happens." on the one door the quest has to go through. Found with
+// tools/sim/placeddead.ts, not reported.
+[oploc1,waterfall_ledge_door]
+@waterfall_ledge_door;
+
+[oploc1,waterfall_ledge_door_left]
+@waterfall_ledge_door;
+
+[oploc1,waterfall_ledge_door_right]
+@waterfall_ledge_door;
+
+[label,waterfall_ledge_door] // basing this off RS3, seems like RS3 mechanics for this havn't changed
 mes("The door begins to open.");
 p_delay(2);
 if(inv_total(worn, glarials_amulet_waterfall_quest) > 0 | inv_total(inv, glarials_amulet_waterfall_quest) > 0) {
