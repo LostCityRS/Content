@@ -1,0 +1,104 @@
+// THE SHEEP IS A POET AND THE COW IS A CRITIC.
+//
+// Five sheep and three cows in the field west of the Zanaris wheat, all eight offering Talk-to with
+// nothing behind it. In Zanaris the animals talk, and what they do with it is bicker: the sheep
+// recites one of four poems and the cow heckles two of them, which is the whole joke and needs both
+// halves to land.
+//
+// Verbatim from oldschool.runescape.wiki/w/Transcript:Sheep_(Zanaris) and Transcript:Cow, Zanaris
+// section. The transcript marks "The humans an aficionado!" {{sic}} - it is missing an apostrophe
+// and an 's' in the real game too - and the second poem is a mangled Jabberwocky, deliberately:
+// "slithey toathes", "gimbol", "borrowgroves" are the game's spellings, not mine, and the cow's
+// first heckle is about exactly that.
+
+// ------------------------------------------------------------------------------------- the sheep
+
+[opnpc1,fairy_sheep]
+~chatnpc("<p,happy>Hello, I've just finished composing my latest poem. Would you like to hear it?");
+if (~p_choice2("Yes, please.", 1, "No thanks.", 2) = 2) {
+    ~chatplayer("<p,neutral>No thanks.");
+    ~chatnpc("<p,angry>Huh, the cow's right. You humans have absolutely no understanding of art!");
+    return;
+}
+~chatplayer("<p,happy>Yes, please.");
+~chatnpc("<p,happy>Excellent! The humans an aficionado! Make yourself comfortable and I'll begin...");
+switch_int(random(4)) {
+    case 0 :
+        ~chatnpc("<p,happy>Twinkle, twinkle little egg|Wouldn't you like to grow some legs?|And run around, on grass so green|arguing with the milk and cream.");
+    case 1 :
+        ~chatnpc("<p,happy>T'was brillig and the slithey toathes|Did gyre and gimbol in the wabe|All mimsy were the borrowgroves|And the mome raths outgrabe.");
+        // "Sometimes this conversation will be followed by", and the transcript gives no other
+        // condition - so a coin flip, and no proximity test. I wrote one first, and it was dead
+        // code: the nearest cow to the nearest sheep in this map's spawns is twenty-one tiles, so
+        // `.npc_find(coord, fairy_cow, 16, 0)` was false every time and the gag never fired. It is
+        // a scripted joke in the sheep's own dialogue, not a thing one npc overhears another say.
+        //
+        // The cow's lines go through ~chatnpc_specific, which only borrows a name and a chathead
+        // and leaves the ACTIVE npc alone. Anything here that reaches for npc_find instead - to
+        // make the cow turn, say - must use the dotted .npc_find: the undotted one rebinds the
+        // active npc, and the sheep's last four lines would come out of the cow.
+        if (random(2) = 0) {
+            ~zanaris_cow_says("<p,angry>That's not even your poem, you idiotic, animated ball of wool!");
+            ~chatnpc("<p,angry>How now foolish cow? Do you read poetry, instead of pulling a plow?");
+            ~zanaris_cow_says("<p,sad>I'm not talking to you any more, you're nasty.");
+            ~chatnpc("<p,laugh>Oh no! Cow's not talking to me!");
+            ~chatnpc("<p,laugh>Do I look like I care?");
+        }
+    case 2 :
+        ~chatnpc("<p,happy>I wish I was a cow|My life would be so simple|I could lie around just eating grass|And wonder if I was a pimple.");
+        if (random(2) = 0) {
+            ~zanaris_cow_says("<p,laugh>Hahaha, I don't think!");
+            ~chatnpc("<p,sad>Well I thought it was funny.");
+        }
+    case 3 :
+        ~chatnpc("<p,happy>How goes it, blade of grass?|I'm glad you're not any thinner|You should invite your friends around|So I can have my dinner!");
+}
+
+// A sheared sheep will not perform, which is the sheep's own line and not a fallback.
+[opnpc1,fairy_sheepsheered]
+~chatnpc("<p,angry>You give me a hair-cut and then expect me to talk to you? I think not!");
+
+// Shearing, the same shape as general_use/scripts/shear_sheep.rs2 and for the same reasons - see
+// the note at the top of that file about where the baa comes from. One difference, and the wiki
+// states it outright: "there is a 25% chance to fail when shearing these sheep", where an ordinary
+// sheep's chance is the same random(4) but undocumented. So the number is confirmed here and a
+// guess there.
+[opnpcu,fairy_sheep]
+if (last_useitem ! shears) {
+    ~displaymessage(^dm_default);
+    return;
+}
+anim(human_shearing, 0);
+sound_synth(shear_sheep, 1, 0);
+if (random(4) = 0) {
+    mes("The sheep manages to get away from you!");
+    npc_setmode(playerescape);
+    return;
+}
+npc_setmode(playerfaceclose);
+p_delay(0);
+npc_setmode(null);
+p_delay(0);
+npc_changetype_keepall(fairy_sheepsheered, 100);
+inv_add(inv, wool, 1);
+mes("You get some wool.");
+
+[opnpcu,fairy_sheepsheered]
+if (last_useitem = shears) {
+    mes("This sheep has already been shorn.");
+    return;
+}
+~displaymessage(^dm_default);
+
+// --------------------------------------------------------------------------------------- the cow
+
+// The cow's whole act is refusing to admit it can talk, out loud, at length. The second line is a
+// message box rather than its chat: the player is being told what they are watching.
+[opnpc1,fairy_cow]
+~chatnpc("<p,bored>Hmm, interesting, there appears to be a human trying to talk to me. Is it aware that cows can't talk I wonder? Maybe if I just ignore it, it might go away.");
+~mesbox("The cow is studiously ignoring you.");
+
+// The heckle, said by a cow that is not the npc being talked to. nc_name rather than "Cow" so the
+// label follows the config if it is ever renamed.
+[proc,zanaris_cow_says](string $line)
+~chatnpc_specific(nc_name(fairy_cow), fairy_cow, $line);

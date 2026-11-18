@@ -170,3 +170,44 @@ if ($visible_bit = -1) {
     return;
 }
 ~mesbox("They come back. Not all the way, and not for long, but far enough to hold a conversation.");
+
+// ================================================================ the afflicted, before the serum
+// Four npc types, twenty-nine of them standing in the town, and Talk-to on every one of them. They
+// had [opnpcu] for the serum (above) and no [opnpc1] at all, so the whole village answered the
+// engine's fallback - until recently "Nothing interesting happens.", now "Afflicted is not
+// interested in talking." Neither is what the game said.
+//
+// What it said is gibberish: one to six "words" picked at random, with replacement, from the
+// eleven in configs/mortton_babble.enum, and then a line in blue telling the player what they just
+// failed to understand. Old School still does it and the transcript lists
+// "nots nots nots nots nots nots" among its own examples, which is the giveaway that the words are
+// drawn independently rather than shuffled.
+//
+// WHY THIS IS NOT A CURE. A dose of serum on any of these four works and always did (the [opnpcu]
+// rows above), and only Razmire and Ulsquire have anything to say afterwards. The villagers never
+// get dialogue, before the serum or after it - gibberish IS their dialogue, and it is the clue the
+// quest opens with: a town of people who cannot tell you what happened to them.
+[opnpc1,mort_afflicted_man] @mortton_afflicted_talk;
+[opnpc1,mort_afflicted_woman] @mortton_afflicted_talk;
+[opnpc1,mort_afflicted_man2] @mortton_afflicted_talk;
+[opnpc1,mort_afflicted_woman2] @mortton_afflicted_talk;
+
+[label,mortton_afflicted_talk]
+~chatnpc("<p,confused><~mortton_babble>");
+// @blu@ because the transcript records this line as blue on the message box's white, and @blu@ is
+// the 377 font's own tag for 0x0000ff - PixFont.evaluateTag in the client. The ~ ~ are the game's.
+~mesbox("@blu@~ This person doesn't make any sense at all. ~");
+
+// A phrase, built a word at a time. random() is exclusive, so random(^mortton_babble_max_words)
+// gives 0-5 and the + 1 makes it the documented 1-6; a six-word phrase is as likely as a one-word
+// one, which is what "1-6 of the following words" means and what the examples show.
+[proc,mortton_babble]()(string)
+def_int $words = calc(random(^mortton_babble_max_words) + 1);
+def_string $phrase = enum(int, string, mortton_babble, random(^mortton_babble_count));
+def_int $said = 1;
+while ($said < $words) {
+    $phrase = append($phrase, " ");
+    $phrase = append($phrase, enum(int, string, mortton_babble, random(^mortton_babble_count)));
+    $said = calc($said + 1);
+}
+return($phrase);

@@ -1,0 +1,125 @@
+// THE TRADING TAX ON THE ZANARIS MARKET GATE, and the four Gate Keepers who collect it.
+//
+// The market is the walled compound in the south-east of Zanaris that holds Irksol, Jukat's dragon
+// sword stall and the rest of the stalls. Two magic doors lead into it and four Gate Keepers -
+// mindslayers, and all brothers - stand two to a door. Every one of them offered Talk-to with
+// nothing behind it, and the doors opened for free.
+//
+// They did not open for free in 2006. The doors (cache ids 12045-12048) and the Gate Keepers both
+// arrived on 27 February 2006 with A Fairy Tale Part I, and the npc is still called "Gate Keeper"
+// here - it was renamed to "Gatekeeper" on 5 December 2006 - so this build sits inside the window
+// where the tax was one cut diamond. Dialogue verbatim from
+// oldschool.runescape.wiki/w/Transcript:Gatekeeper.
+//
+// WHICH SIDE IS WHICH, measured rather than assumed. A walkability flood with both gates shut
+// splits Zanaris in two and the two halves never touch: 3,313 tiles holding the fairy ring, the
+// wheat field and the bank, and a 1,069-tile compound holding Irksol. The compound is SOUTH of the
+// south gate (two doors at z 4434, angle 3 - a wall on the south edge of their own tiles) and EAST
+// of the east gate (two doors at x 2469, angle 2 - a wall on the east edge of their own tiles). So
+// in both gates the door's own tile is on the OUTSIDE, which is what ~zanaris_market_gate_inside
+// leans on. Leaving is free; nobody pays to get out of a market.
+//
+// This is a deliberate re-gating of content that was opened on purpose. The doors had no category
+// and no script at all and the market was unreachable - "zanaris - cant enter area to buy dragon
+// long and dds" - so configs/zanaris_gate.loc handed them to the double-door framework. That fixed
+// the wrong half: the gate was painted shut, and the fix painted it open. A diamond is the right
+// answer. If it ever needs to be free again, delete the two [oploc1] triggers below and the
+// category handlers in doors/scripts/doubledoors.rs2 take the doors straight back.
+//
+// THERE IS A SECOND DIAMOND TAX IN THIS REPOSITORY AND IT IS DEAD. doorman.rs2 answers
+// [oploc1,zanarismarketdoor] with the same conversation in its RuneScape Classic wording, and
+// zanarismarketdoor (loc 2411) is placed on no map square in this build - the coords it hunts the
+// Door man at, 0_50_149_35_22, are x 3235 z 9558, nowhere near Zanaris. It is the older door and
+// the older npc, kept rather than deleted. The live gate is the one below. If the two ever
+// disagree, this is the one a player can reach.
+//
+// NOT IMPLEMENTED, and noted so the next reader does not think it was missed: the transcript's
+// "Sorry, we cannot allow you to bring those sacks into the market for security reasons." There is
+// no evidence for when that rule arrived and sack_empty is an ordinary 377 obj with no quest
+// attached, so refusing entry over one would be inventing a restriction.
+
+[oploc1,fairy_mushroom_gate_door_l]
+if (~zanaris_market_gate_let_through = false) {
+    return;
+}
+~open_double_doors_left(500, door_right_closed, loc_param(open_sound));
+
+[oploc1,fairy_mushroom_gate_door_r]
+if (~zanaris_market_gate_let_through = false) {
+    return;
+}
+~open_double_doors_right(500, door_left_closed, loc_param(open_sound));
+
+[proc,zanaris_market_gate_let_through]()(boolean)
+if (~zanaris_market_gate_inside = true) {
+    return(true);
+}
+~zanaris_gatekeeper_says("<p,neutral>You may not pass through this door without paying the trading tax.");
+~chatplayer("<p,quiz>So how much is the tax?");
+~zanaris_gatekeeper_says("<p,neutral>The cost is one diamond.");
+switch_int(~p_choice4("Okay...", 1, "A diamond? Are you crazy?", 2, "I haven't brought my diamonds with me.", 3, "What do you do with all the diamonds you get?", 4)) {
+    case 1 :
+        ~chatplayer("<p,neutral>Okay...");
+        if (inv_total(inv, diamond) < 1) {
+            ~chatplayer("<p,sad>...but...");
+            ~chatplayer("<p,sad>I haven't brought my diamonds with me.");
+            ~zanaris_gatekeeper_says("<p,neutral>No tax, no entry.");
+            return(false);
+        }
+        inv_del(inv, diamond, 1);
+        if_close;
+        // "doorman", not "Gate Keeper". The line is the game's own and it has said doorman since
+        // the old man had the job - which is what the Gate Keeper's own Talk-to is about.
+        mes("You give the doorman a diamond.");
+        return(true);
+    case 2 :
+        ~chatplayer("<p,confused>A diamond?|Are you crazy?");
+        ~zanaris_gatekeeper_says("<p,neutral>Not at all. Those are the rules.");
+    case 3 :
+        ~chatplayer("<p,sad>I haven't brought my diamonds with me.");
+        ~zanaris_gatekeeper_says("<p,neutral>No tax, no entry.");
+    case 4 :
+        ~chatplayer("<p,quiz>What do you do with all the diamonds you get?");
+        ~zanaris_gatekeeper_says("<p,happy>Ever heard of fairylights? Well how do you think we make 'em? First we collect a pile of gems and then we get a spider to spin 'em into a long web, we light the jewels by imbuing each one with a little bit of magic.");
+        ~chatplayer("<p,shock>So you're telling me fairylights are made out of gems?");
+        ~zanaris_gatekeeper_says("<p,happy>That's right, how else could we make 'em twinkle so beautifully?");
+}
+return(false);
+
+// Is the player already in the market, i.e. on the far side of the wall from the door's own tile?
+// The wall sits on the loc tile's loc_angle edge, so the tile across that edge is the inside one.
+// Written for all four angles rather than only the two these gates use, because a loc that is
+// rotated in the map data later should not silently start charging players on the way out.
+[proc,zanaris_market_gate_inside]()(boolean)
+switch_int(loc_angle) {
+    case ^loc_south :
+        if (coordz(coord) < coordz(loc_coord)) {
+            return(true);
+        }
+    case ^loc_north :
+        if (coordz(coord) > coordz(loc_coord)) {
+            return(true);
+        }
+    case ^loc_east :
+        if (coordx(coord) > coordx(loc_coord)) {
+            return(true);
+        }
+    case ^loc_west :
+        if (coordx(coord) < coordx(loc_coord)) {
+            return(true);
+        }
+}
+return(false);
+
+// The Gate Keeper's own Talk-to, which is about the job rather than the tax: he has inherited it
+// from the old man who used to stand here, and is pleased not to look like him.
+[opnpc1,fairy_mindslayer]
+~chatplayer("<p,quiz>What happened to the old man who used to be the doorman?");
+~chatnpc("<p,neutral>You mean my father? He went into retirement, I've taken over the family business instead.");
+~chatplayer("<p,shock>Your father! But you don't look anything like him!");
+~chatnpc("<p,happy>No, fortunately for me I inherited my good looks from my mother.");
+
+// Said by a Gate Keeper when the player clicked a door rather than the npc, so there is no active
+// npc to speak as. nc_name rather than a literal, because this build still spells it "Gate Keeper".
+[proc,zanaris_gatekeeper_says](string $line)
+~chatnpc_specific(nc_name(fairy_mindslayer), fairy_mindslayer, $line);

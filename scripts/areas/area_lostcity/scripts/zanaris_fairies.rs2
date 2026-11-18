@@ -1,0 +1,43 @@
+// THE FORTY-TWO FAIRIES OF ZANARIS, who are not working very hard.
+//
+// Forty-two of them stand in the city and every one offered Talk-to with nothing behind it, which
+// is the single largest unanswered Talk-to in the game. They are not quest npcs and they are not
+// shopkeepers: each one says one thing, at random, and the thing is a joke about fairy bureaucracy.
+// A co-ordinator sends them to paint leaves in towns they have never heard of, one has been made
+// Winter Fairy without being told what that is, and two of them are looking for people by name.
+//
+// Verbatim from oldschool.runescape.wiki/w/Transcript:Fairy, standard dialogue, in its order. Seven
+// of them, drawn fresh on every click - two are two-handers with a player line in the middle, which
+// is why this is a switch over seven branches and not an enum of seven strings.
+//
+// "loosing your teeth" is the game's spelling and the wiki marks it {{sic}}. Left alone.
+//
+// NOT THE FAIRY RESISTANCE HIDEOUT SET. The transcript carries two more banks of seven for fairies
+// standing in the hideout before and after Fairytale II - orcs in Zanaris, the Godfather's coup -
+// and they are the same npc id in a different room. There is no hideout in this build to stand in
+// yet, so wiring them would be writing dialogue for a place that does not exist. When it does, the
+// branch goes here, on the room rather than on the npc.
+[opnpc1,fairy]
+switch_int(random(7)) {
+    case 0 :
+        ~chatnpc("<p,quiz>Have you got any idea where Burthorpe is? The co-ordinator says I need to go there and paint all the leaves yellow, but I've never heard of that place!");
+    case 1 :
+        ~chatnpc("<p,worried>Be careful when you pick mushrooms near the strange ruins to the south. Some of them will try to eat you!");
+    case 2 :
+        ~chatnpc("<p,quiz>Err, hello. Do you have any idea what a Winter Fairy actually does?");
+        ~chatplayer("<p,neutral>No, no idea at all.");
+        ~chatnpc("<p,sad>Oh, pity. Neither do I, but I'm supposed to be one this week.");
+    case 3 :
+        ~chatnpc("<p,worried>Sorry, I can't talk I'm looking for Sarah-Jane!");
+    case 4 :
+        ~chatnpc("<p,quiz>Is your name Freddie, and are you loosing your teeth?");
+        ~chatplayer("<p,neutral>Err, no. I'm afraid not.");
+        ~chatnpc("<p,sad>Oh, right.");
+        ~chatnpc("<p,quiz>You don't have any idea where I can find him do you?");
+        ~chatplayer("<p,neutral>No, I don't know that either.");
+        ~chatnpc("<p,sad>Oh, ok then. If you do find out please let me know. The co-ordinator has sent me to find him.");
+    case 5 :
+        ~chatnpc("<p,happy>I'm afraid I can't stop to chat. I've just been told to get ready to go to Etceteria for some reason or other!");
+    case 6 :
+        ~chatnpc("<p,worried>Picking mushrooms near the forge will probably end quite badly for you.");
+}
