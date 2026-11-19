@@ -176,9 +176,9 @@ if (~count_questpoints < ~max_questpoints) {
     return;
 }
 if (milestone_first("quests:all") = true) {
-    ~broadcast_milestone_news("[Server first!]", "is the first to complete @dre@every quest@bla@.", null, "");
+    ~broadcast_milestone_news("[Server first!]", "is the first to complete @dre@every quest@bla@.", quest_point_cape, "");
 } else {
-    ~broadcast_milestone_news("[Milestone]", "has completed @dre@every quest@bla@.", null, "");
+    ~broadcast_milestone_news("[Milestone]", "has completed @dre@every quest@bla@.", quest_point_cape, "");
 }
 
 // A NEW PLAYER, announced on the first login AFTER THE TUTORIAL rather than on the first login at
