@@ -73,7 +73,7 @@ if ($eternal > 0) {
     // Worth a broadcast: it is the rarest thing the Wilderness hands out that is not a boss drop,
     // and ~broadcast_news is what the Infernal cape and the Fire cape use.
     ~mesbox("One of the amulets comes out of the water glowing. It does not|look like it will ever stop.");
-    ~broadcast_news("Amulet of eternal glory!", "pulled an @dre@Amulet of eternal glory@bla@ out of the Fountain of Rune.");
+    ~broadcast_news("Amulet of eternal glory!", "pulled an @dre@Amulet of eternal glory@bla@ out of the Fountain of Rune.", amulet_of_eternal_glory);
     ~collection_log_add(amulet_of_eternal_glory, $eternal);
 }
 
