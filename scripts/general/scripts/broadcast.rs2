@@ -79,30 +79,36 @@ return("<$icons>@dbl@<displayname>@bla@");
 // to talk to the world. Milestones have their own answer - a drop test marks the account
 // (general/scripts/milestones.rs2), which is permanent, because the collection log pages those
 // kills fill are real.
-[proc,broadcast_news](string $label, string $what)
+// $icon is the item the news is about, for the Discord card - null where there is not one. It
+// changes nothing in game.
+[proc,broadcast_news](string $label, string $what, obj $icon)
 if (%broadcast_suppressed ! 0) {
     return;
 }
-broadcast_mes("@sh1@@or1@<$label>@sh0@@bla@ <~broadcast_name> <$what>");
+broadcast_news("@sh1@@or1@<$label>@sh0@@bla@ <~broadcast_name> <$what>", $icon, "");
 
 // A milestone - a 99, a total level, a max cape, a server first. Same shape as the news above, but
 // sent with broadcast_milestone rather than broadcast_mes: these are the one kind of announcement a
 // player can turn off (::milestones), and the opt-out is a varp on each RECEIVER, which only the
 // engine can read for every player on the world. The label colour is the difference a player sees -
 // gold is the rare drops and the pets, green is somebody's own achievement.
-[proc,broadcast_milestone_news](string $label, string $what)
-broadcast_milestone("@sh1@@gre@<$label>@sh0@@bla@ <~broadcast_name> <$what>");
+// $icon and $skill are for the Discord card and change nothing in game: the item this is about
+// (null for none) and the skill it is about ("" for none). A 99 has a skill, a max cape has an
+// item, and a total level has neither - the card is drawn without a picture rather than with an
+// empty box.
+[proc,broadcast_milestone_news](string $label, string $what, obj $icon, string $skill)
+broadcast_milestone("@sh1@@gre@<$label>@sh0@@bla@ <~broadcast_name> <$what>", $icon, $skill);
 
 // A rare drop. The item is in dark red so it reads as the point of the line.
 [proc,broadcast_drop](obj $drop)
-~broadcast_news("Rare drop!", "received @dre@<oc_name($drop)>@bla@.");
+~broadcast_news("Rare drop!", "received @dre@<oc_name($drop)>@bla@.", $drop);
 // Every broadcast rare is one the collection log wants, and this is the one place they all pass -
 // see collection_log/scripts/collection_log.rs2. Anything the log does not list is ignored there.
 ~collection_log_add($drop, 1);
 
 // A pet. Every pet announces itself the same way whether it came from a boss, a skill or a cave.
 [proc,broadcast_pet](obj $pet)
-~broadcast_news("Pet!", "has a funny feeling like they're being followed: @dre@<oc_name($pet)>@bla@.");
+~broadcast_news("Pet!", "has a funny feeling like they're being followed: @dre@<oc_name($pet)>@bla@.", $pet);
 // And every pet, boss or skilling, for the log's All Pets page.
 ~collection_log_add($pet, 1);
 

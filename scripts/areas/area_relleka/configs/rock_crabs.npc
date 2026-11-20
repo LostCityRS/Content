@@ -88,6 +88,16 @@ huntrange=5
 // so it can still chase a player properly while the fight is on.
 wanderrange=0
 maxrange=8
+// THE RESPAWN. 50 ticks / 30 seconds, which is what the wiki publishes
+// (https://oldschool.runescape.wiki/w/Rock_Crab). NpcType.respawnrate defaults to 100 - a full
+// minute - and no crab here declared one, so every kill took twice as long to come back as it
+// should; reported as "about double" (DeathPlateau-Bugs#31) and measured at 98 ticks in the sim.
+//
+// ON THE AWAKE FORM, not the "Rocks" form below it. npc_del reads the respawnrate off the npc's
+// CURRENT type (NpcOps.ts, ScriptOpcode.NPC_DEL), and a crab is always the awake form by the time
+// anything can kill it - the dormant form has no Attack op at all. The npc comes back as its base
+// type either way (Npc.resetEntity sets type = baseType), so the rock is what respawns.
+respawnrate=50
 // The revert clock. timer is re-read from the type whenever the npc loses its target
 // (Npc.resetDefaults), which is exactly when a crab should start counting down to hiding again;
 // [ai_timer,horror_rockcrab] in scripts/rock_crabs.rs2 does the hiding.
@@ -158,6 +168,8 @@ huntmode=aggressive_melee
 huntrange=5
 wanderrange=0
 maxrange=8
+// 30 seconds, as the full-size crab above.
+respawnrate=50
 timer=50
 
 [horror_rockcrab_small_inactive]

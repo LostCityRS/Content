@@ -110,18 +110,18 @@ if (stat_base($stat) = 99) {
 [proc,milestone_99](stat $stat)
 def_string $skill = enum(stat, string, stat_names, $stat);
 if (milestone_first("99:<$skill>") = true) {
-    ~broadcast_milestone_news("[Server first!]", "is the first to reach level @dre@99 <$skill>@bla@.");
+    ~broadcast_milestone_news("[Server first!]", "is the first to reach level @dre@99 <$skill>@bla@.", null, $skill);
 } else {
-    ~broadcast_milestone_news("[Milestone]", "has reached level @dre@99 <$skill>@bla@.");
+    ~broadcast_milestone_news("[Milestone]", "has reached level @dre@99 <$skill>@bla@.", null, $skill);
 }
 
 // The max cape is every caped skill at 99. ~skillcape_count_99s and ~skillcape_stats are the
 // skillcape shop's own counters, so a skill gaining or losing a cape moves both together.
 if (~skillcape_count_99s = ~skillcape_stats) {
     if (milestone_first("maxcape") = true) {
-        ~broadcast_milestone_news("[Server first!]", "is the first to master every skill. @dre@Max cape@bla@!");
+        ~broadcast_milestone_news("[Server first!]", "is the first to master every skill. @dre@Max cape@bla@!", max_cape, "");
     } else {
-        ~broadcast_milestone_news("[Milestone]", "has mastered every skill. @dre@Max cape@bla@!");
+        ~broadcast_milestone_news("[Milestone]", "has mastered every skill. @dre@Max cape@bla@!", max_cape, "");
     }
 }
 
@@ -134,10 +134,17 @@ while (~milestone_total_steps($n) > 0) {
     def_int $step = ~milestone_total_steps($n);
     if ($total >= $step & %milestone_total_mark < $step) {
         %milestone_total_mark = $step;
+        // 2277 IS THE ONE WITH A PICTURE. The Discord card wants an item and a total level is not
+        // one, so the lower steps go without - but 2277 is every skill at 99, which is exactly
+        // what a max cape is, and the two milestones fire together anyway.
+        def_obj $icon = null;
+        if ($step = 2277) {
+            $icon = max_cape;
+        }
         if (milestone_first("total:<tostring($step)>") = true) {
-            ~broadcast_milestone_news("[Server first!]", "is the first to reach @dre@<tostring($step)> total level@bla@.");
+            ~broadcast_milestone_news("[Server first!]", "is the first to reach @dre@<tostring($step)> total level@bla@.", $icon, "");
         } else {
-            ~broadcast_milestone_news("[Milestone]", "has reached @dre@<tostring($step)> total level@bla@.");
+            ~broadcast_milestone_news("[Milestone]", "has reached @dre@<tostring($step)> total level@bla@.", $icon, "");
         }
     }
     $n = add($n, 1);
@@ -153,9 +160,9 @@ if (~player_combat_level < 126) {
 }
 %milestone_combat_mark = 1;
 if (milestone_first("combat:126") = true) {
-    ~broadcast_milestone_news("[Server first!]", "is the first to reach @dre@combat level 126@bla@.");
+    ~broadcast_milestone_news("[Server first!]", "is the first to reach @dre@combat level 126@bla@.", null, "");
 } else {
-    ~broadcast_milestone_news("[Milestone]", "has reached @dre@combat level 126@bla@.");
+    ~broadcast_milestone_news("[Milestone]", "has reached @dre@combat level 126@bla@.", null, "");
 }
 
 // Every quest, from ~send_quest_complete - so it is asked once per quest completed and nowhere
@@ -169,9 +176,9 @@ if (~count_questpoints < ~max_questpoints) {
     return;
 }
 if (milestone_first("quests:all") = true) {
-    ~broadcast_milestone_news("[Server first!]", "is the first to complete @dre@every quest@bla@.");
+    ~broadcast_milestone_news("[Server first!]", "is the first to complete @dre@every quest@bla@.", quest_point_cape, "");
 } else {
-    ~broadcast_milestone_news("[Milestone]", "has completed @dre@every quest@bla@.");
+    ~broadcast_milestone_news("[Milestone]", "has completed @dre@every quest@bla@.", quest_point_cape, "");
 }
 
 // A NEW PLAYER, announced on the first login AFTER THE TUTORIAL rather than on the first login at
@@ -195,7 +202,10 @@ if (%tutorial < ^tutorial_complete) {
     return;
 }
 %milestone_welcomed = 1;
-~broadcast_milestone_news("[New player]", "has arrived on Death Plateau. Say hello!");
+// NO DISCORD CARD FOR THIS ONE - BroadcastFeed drops [New player] by label, on the owner's
+// call: a welcome belongs in the game where the person can be welcomed, and a channel full of
+// them is a channel nobody reads. The line in game is unchanged.
+~broadcast_milestone_news("[New player]", "has arrived on Death Plateau. Say hello!", null, "");
 
 // The sum of every skill's base level. There was no total-level proc before this.
 [proc,milestone_total_level]()(int)
@@ -241,9 +251,9 @@ switch_int ($tier) {
 // mid-sentence. Every shipped broadcast in this build fits on one line and these do too; the test
 // in tools/sim/milestones.ts measures every one of them so that stays true.
 if (milestone_first("xp:<$amount>:<$skill>") = true) {
-    ~broadcast_milestone_news("[Server first!]", "is the first to earn @dre@<$amount> <$skill> XP@bla@.");
+    ~broadcast_milestone_news("[Server first!]", "is the first to earn @dre@<$amount> <$skill> XP@bla@.", null, $skill);
 } else {
-    ~broadcast_milestone_news("[Milestone]", "has earned @dre@<$amount> <$skill> XP@bla@.");
+    ~broadcast_milestone_news("[Milestone]", "has earned @dre@<$amount> <$skill> XP@bla@.", null, $skill);
 }
 
 // ---------------------------------------------------------------------------- collection log
@@ -282,9 +292,9 @@ while ($i < $rows) {
                 // complete the ... collection log" wraps for 27 of the 31 pages. The label already
                 // says which of the two this is, so the sentence does not have to.
                 if (milestone_first("clog:<$page>") = true) {
-                    ~broadcast_milestone_news("[Server first!]", "filled the @dre@<$page>@bla@ collection log.");
+                    ~broadcast_milestone_news("[Server first!]", "filled the @dre@<$page>@bla@ collection log.", null, "");
                 } else {
-                    ~broadcast_milestone_news("[Milestone]", "filled the @dre@<$page>@bla@ collection log.");
+                    ~broadcast_milestone_news("[Milestone]", "filled the @dre@<$page>@bla@ collection log.", null, "");
                 }
             }
         }
@@ -296,8 +306,8 @@ while ($i < $rows) {
 // permanently true.
 if (~collection_log_obtained_total = enum_getoutputcount(collection_log_items)) {
     if (milestone_first("clog:all") = true) {
-        ~broadcast_milestone_news("[Server first!]", "completed the @dre@entire collection log@bla@!");
+        ~broadcast_milestone_news("[Server first!]", "completed the @dre@entire collection log@bla@!", null, "");
     } else {
-        ~broadcast_milestone_news("[Milestone]", "completed the @dre@entire collection log@bla@!");
+        ~broadcast_milestone_news("[Milestone]", "completed the @dre@entire collection log@bla@!", null, "");
     }
 }

@@ -47,7 +47,7 @@ mes("You are awarded <tostring(^fightcave_tokkul_jad)> Tokkul, and TzHaar-Mej-Ja
 // would turn the news into a Jad ticker. So a shortcut kill pays the cape and rolls the pet -
 // which is the whole point of the shortcut - and keeps quiet about it.
 if (%fightcave_jad_only = ^false) {
-    ~broadcast_news("Fire cape!", "defeated TzTok-Jad and claimed a @dre@Fire cape@bla@.");
+    ~broadcast_news("Fire cape!", "defeated TzTok-Jad and claimed a @dre@Fire cape@bla@.", tzhaar_cape_fire);
 }
 
 // Pack first, bank second. Nothing here may fall on the floor: the instance is deleted moments

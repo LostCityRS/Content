@@ -50,12 +50,24 @@ switch_component ($component) {
     // so left alone deliberately rather than changed on a hunch. If the Observatory reward screen
     // ever comes up wrong too, the fix is the same shape: give it a real reward obj and delete
     // its case.
-    case questlist:seaslug, questlist:itwatchtower ://Seaslug & Watchtower: Updates QP before quest scroll is queued
-        if_settext(questscroll:com_3, $questmessage);
-        if_settext(questscroll:com_9, tostring($questpoints));
-        if_settext(questscroll:com_10, "Quest points.");
-        if_setobject(questscroll:com_4, $obj, $objscale);
-        if_openmain(questscroll);
+    // Sea Slug and Watchtower used to have a case here, on `questscroll`, and it was the same
+    // malformed-interface bug as Gertrude's Cat above. questscroll is 297 with com_0..com_7 at
+    // 298-305, contiguous and real - but the case wrote com_9 and com_10, and those names are
+    // bolted onto 4444 and 6158, nowhere near the scroll: 4444 sits between levelup_ranged and
+    // options_ld, 6158 between options_ld:com_2 and questscroll_itgronigen:com_4. So the quest
+    // point count and the word "Quest points." were written into unrelated interfaces.
+    //
+    // AND NEITHER QUEST EVER SHOWED ITS REWARDS. The case never wrote $rewardtext at all, so the
+    // reward lines both quests pass in - "7,175 Fishing XP|Fishing Platform Access|Some Oyster
+    // Pearls" and "15,250 Magic XP|5,000 Coins|Watchtower Teleport Spell" - existed only as a dead
+    // argument. Nobody has seen either one.
+    //
+    // The case is gone rather than repaired, so both go through inter_238 with the other 107
+    // quests. Its stated reason was "updates QP before quest scroll is queued", and the default
+    // branch's ~update_questpoints does that first thing: both quests are counted by
+    // ~count_questpoints (lines 199 and 285) and both set their own varp to complete before they
+    // get here, so the recount already includes them. The hand-written `%qp = add(%qp, ...)` each
+    // caller did is removed with this, because that add is what made the recount a no-op.
     case default ://All other quests
         ~update_questpoints;
         // THE SCROLL ALREADY SAYS HOW MANY QUEST POINTS, on com_9 below, out of the number it was

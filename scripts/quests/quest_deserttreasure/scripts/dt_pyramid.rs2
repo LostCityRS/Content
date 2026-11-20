@@ -256,7 +256,19 @@ if (%deserttreasure = ^dt_azzanadra_freed) {
 session_log(^log_adventure, "Quest complete: Desert Treasure");
 %deserttreasure = ^deserttreasure_complete;
 ~set_spellbook(^spellbook_ancient);
-stat_advance(magic, 2000000);
+// 20,000 Magic XP, which is what the scroll below has always advertised and what the wiki
+// publishes. stat_advance takes TENTHS of a point, so 20,000 XP is 200000 - this read 2000000 and
+// paid 200,000, ten times the reward, to EVERY player.
+//
+// NOT A RATE PROBLEM, and the rate is why it went unnoticed: the multiplier lives in Player.addXp
+// and is applied to whatever this number is, so a tenfold number is multiplied again on top. A
+// player on Realism - who chose authentic rates - was handed 200,000; on 5x, a million; on 10x,
+// two million. Measured at all three before changing it.
+//
+// Same mistake as Priest in Peril had (DeathPlateau-Bugs#30), inverted: that one was written at a
+// tenth of its reward and so looked like the multiplier being skipped, this one at ten times and
+// so looked like the multiplier working.
+stat_advance(magic, 200000);
 ~send_quest_complete(questlist:deserttreasure, staff_of_zaros, 250, ^deserttreasure_questpoints, "You have completed\\nDesert Treasure!", "Ancient Magicks|20,000 Magic XP|The Ring of Visibility|Access to the Smoke and Shadow Dungeons|The Ancient Staff, from Eblis");
 
 // ================================================================================ the exit portal

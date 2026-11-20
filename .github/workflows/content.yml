@@ -287,6 +287,10 @@ jobs:
         # gates the placeholder Release option on. It was never in this matrix.
         - banktab_sim.py
         - certcheck.py
+        # Every quest's reward scroll against what the quest actually pays. stat_advance takes
+        # tenths of a point and a reward line is a string a human typed, so nothing tied the two
+        # together: three quests were found paying a tenth, ten times and fifty over. Content only.
+        - questxp_battery.py
         # A quest may not record a step later than it spends the player's things: p_delay hands
         # the script back to the engine, and a player who clicks away in between keeps the loss
         # and not the progress. One of those cost a player the Feud.

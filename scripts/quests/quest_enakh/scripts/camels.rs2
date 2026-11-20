@@ -1,0 +1,299 @@
+// THE CAMULET'S WHOLE POINT: the camels talk back.
+//
+// "When equipped, its wearer can speak to certain camels found in Al Kharid and throughout the
+// Kharidian desert." - oldschool.runescape.wiki/w/Camulet. The amulet itself was already finished
+// in enakh_npcs.rs2 - granted on completion, Check-charge and Rub both held and worn, charges in
+// enakh_camulet_charge - and the thing it exists for was missing: thirty-two camels offering
+// Talk-to with nothing behind it, twenty-seven of them Ugthanki in the desert.
+//
+// All five named camels and the Camulet arrived on the same day, 23 January 2006, with Enakhra's
+// Lament, which is why they live in this quest's folder rather than in an area script.
+//
+// WITHOUT THE AMULET A CAMEL IS STILL WORTH CLICKING, and that is the half most likely to be
+// mistaken for unfinished work. The player mutters one of three unpleasant things about the animal
+// - not to it, about it - and the animal, which can hear perfectly well, stamps, glares or spits.
+// That is the joke the amulet pays off: the camel understood you the first time.
+//
+// Verbatim from Transcript:Al_the_Camel, Transcript:Elly_the_Camel, Transcript:Ollie_the_Camel,
+// Transcript:Cam_the_Camel, Transcript:Alice_the_Camel, Transcript:Neferti_the_Camel and
+// Transcript:Ugthanki. "Guthix' gold complexion" and "cactuses" are the game's own.
+//
+// WHAT IS DELIBERATELY NOT HERE, so the next reader does not take it for an oversight:
+//
+//   THE DUNG. The dung question is asked and answered, but it never produces dung, because there
+//   is no ugthanki dung obj in this cache - the whole dung mechanic is My Arm's Big Adventure
+//   (2007), and so is the Camulet's recharge, which is a bucket of it. The answer used is the
+//   transcript's own "recently provided" branch, which is a real line said for a real reason: the
+//   camel has nothing to give right now. Nothing is invented and nothing is promised.
+//
+//   ALICE AS HERSELF. alice_the_camel is the second half of [alice_the_camel_multinpc], whose
+//   multivarbit is 1353 desert_alkharid_alis_visible - Ali Morrisane's traders, who are not in this
+//   build at all (there is no ali_morrisane npc in the cache). Until something sets that bit she is
+//   the mute [camel] at 3285,3199 and her handler below is unreachable. It is written anyway: it
+//   costs six lines and it is right the day the bit is set, which is exactly the shape the cache is
+//   asking for.
+//
+//   [camel] ITSELF. The six plain camels in the desert, and Alice's disguise, declare no ops at
+//   all - there is no Talk-to on them for any script to answer.
+
+// =========================================================================== the shared opener
+
+[proc,camulet_worn]()(boolean)
+if (inv_total(worn, camulet) > 0) {
+    return(true);
+}
+return(false);
+
+[opnpc1,al_the_camel] @camel_menu(^camel_al);
+[opnpc1,elly_the_camel] @camel_menu(^camel_elly);
+[opnpc1,ollie_the_camel] @camel_menu(^camel_ollie);
+[opnpc1,cam_the_camel] @camel_menu(^camel_cam);
+[opnpc1,alice_the_camel] @camel_menu(^camel_alice);
+// NEFERTI IS APPROACHED, NOT REACHED. She stands in a paddock in Sophanem with no gate: "Neferti
+// can be spoken to using a Camulet, although the player does not need to be standing next to her,
+// as there is no way into the pasture." An [opnpc1] needs operable distance and would walk a player
+// into the fence forever, so hers is an ap trigger at the default range and deliberately has no
+// p_aprange tightening on it.
+[apnpc1,neferti_the_camel] @camel_menu(^camel_neferti);
+
+[label,camel_menu](int $who)
+switch_int (~p_choice3("Ask the camel about its dung.", 1, "Say something unpleasant.", 2, "Neither - I'm a polite person.", 3)) {
+    case 1 : @camel_dung;
+    case 2 : @camel_unpleasant($who);
+}
+// "Neither - I'm a polite person." is the whole of the third option: the player says nothing and
+// walks off, which is why the transcript gives it no lines.
+
+[label,camel_dung]
+~chatplayer("<p,quiz>I'm sorry to bother you, but could you spare me a little dung?");
+if (~camulet_worn = false) {
+    ~mesbox("The camel didn't seem to appreciate that question.");
+    return;
+}
+~chatnpc("<p,quiz>Are you serious?");
+~chatplayer("<p,happy>Oh yes. If you'd be so kind...");
+~mesbox("The camel ponders for a moment...");
+~chatnpc("<p,sad>I'm sorry, but I can't really help you right now. Perhaps you should ask me again later, or try a different camel.");
+~chatplayer("<p,neutral>Fair enough.");
+
+[label,camel_unpleasant](int $who)
+~camel_remark;
+if (~camulet_worn = false) {
+    @camel_takes_offence;
+}
+switch_int ($who) {
+    case ^camel_al : @camel_al_talk;
+    case ^camel_elly : @camel_elly_talk;
+    case ^camel_ollie : @camel_ollie_talk;
+    case ^camel_cam : @camel_cam_talk;
+    case ^camel_alice : @camel_alice_talk;
+    case ^camel_neferti : @camel_neferti_talk;
+}
+
+// Said about the camel rather than to it, which is why the player says it whether or not the amulet
+// is on. <p,shifty> for all three: this is muttering.
+[proc,camel_remark]
+switch_int (random(^camel_remarks)) {
+    case 0 : ~chatplayer("<p,shifty>If I go near that camel, it'll probably bite my hand off.");
+    case 1 : ~chatplayer("<p,shifty>Mmm... looks like that camel would make a nice kebab.");
+    case 2 : ~chatplayer("<p,shifty>I wonder if that camel has fleas...");
+}
+
+// And the camel heard every word.
+[label,camel_takes_offence]
+switch_int (random(^camel_remarks)) {
+    case 0 : mes("The camel tries to stamp on your foot, but you pull it back quickly.");
+    case 1 : mes("The camel turns its head and glares at you.");
+    case 2 : mes("The camel spits at you, and you jump back hurriedly.");
+}
+
+// ================================================================================== Al, the poet
+// "A camel who has the soul of a poet." He loves Elly, who loves Ollie, who loves the gnome glider.
+//
+// Two states, and the cache has had the bits for both all along: al_camel_exposit (varbit 1351) is
+// whether he has told you about Elly, and al_camel_advicegiven (1352) is whether the conversation
+// about what Elly thinks of his poems has happened. Neither was read or written by anything.
+
+[label,camel_al_talk]
+if (%al_camel_exposit = 0) {
+    @camel_al_first;
+}
+~chatnpc("<p,happy>Oh, it's you again. Have you come back to listen to my poems?");
+if (~p_choice2("I'd love to!", 1, "No, thank you.", 2) = 2) {
+    ~chatplayer("<p,neutral>No, thank you.");
+    ~chatnpc("<p,sad>Ah, well. I shall return to writing poems to Elly's beauty.");
+    return;
+}
+~chatplayer("<p,happy>I'd love to!");
+~chatnpc("<p,happy>That's so kind of you. Which one would you like to hear?");
+~chatnpc("<p,happy>'Shall I compare thee to a desert's day' is my finest yet, but I've also composed others.");
+if (~p_choice2("Listen to 'Shall I compare thee to a desert's day'.", 1, "Listen to 'This Is Just To Say'.", 2) = 2) {
+    @camel_al_nibbled;
+}
+@camel_al_sonnet;
+
+// The first time, he gets four lines in before the player can stop him.
+[label,camel_al_first]
+~chatnpc("<p,quiz>Sorry, were you saying something to me?");
+~chatplayer("<p,shifty>No, er, nothing important.");
+~chatnpc("<p,sad>Never mind, it is unimportant when I have such important matters weighing on my soul.");
+~chatplayer("<p,quiz>How important can a camel's problems be?");
+~chatnpc("<p,happy>Well, you see, there is a camel called Elly. A beautiful, wondrous camel, with hide like spun gold and teeth that shine like an oasis.");
+~chatplayer("<p,neutral>...I see.");
+~chatnpc("<p,happy>I've written many poems describing her beauty. Would you like to hear one?");
+~chatplayer("<p,neutral>It's all right, I'm...");
+~chatnpc("<p,happy>Shall I compare thee to a desert's day? Thou art drier and more rough-skinned.");
+~chatnpc("<p,happy>Rough sandstorms shake the cactuses away And summer's heat defers to autumn wind.");
+~chatplayer("<p,bored>Look, I don't really have the time to...");
+~chatnpc("<p,happy>Sometimes too hot the eye of heaven shines, With Guthix' gold complexion often dimmed;");
+~chatnpc("<p,happy>And every fair from fair sometime declines, By chance or desert's changing course untrimmed...");
+~chatplayer("<p,angry>Please, stop.");
+~chatnpc("<p,sad>But I've only got six lines left!");
+~chatplayer("<p,angry>That's six too many. If I really want to hear your poetry, I'll tell you, okay?");
+~chatnpc("<p,sad>Very well. Come back and talk to me if you want to hear more.");
+%al_camel_exposit = 1;
+
+[label,camel_al_sonnet]
+~chatnpc("<p,happy>That's my favourite poem. Ahem...");
+~chatnpc("<p,happy>Shall I compare thee to a desert's day? Thou art drier and more rough-skinned.");
+~chatnpc("<p,happy>Rough sandstorms shake the cactuses away And summer's heat defers to autumn wind.");
+~chatnpc("<p,happy>Sometimes too hot the eye of heaven shines, With Guthix' gold complexion often dimmed;");
+~chatnpc("<p,happy>And every fair from fair sometime declines, By chance or desert's changing course untrimmed...");
+~chatnpc("<p,happy>But thine eternal desert shall not fade Nor lose possession of that sand thou owest;");
+~chatnpc("<p,happy>Nor Zamorak brag thou art in his shades, When in eternal lines to sand thou growest,");
+~chatnpc("<p,happy>So long as camels breathe or eyes can see, So long lives this, and this gives life to thee.");
+~chatnpc("<p,sad>Ah, Elly, how beautiful you are.");
+@camel_al_elly;
+
+[label,camel_al_nibbled]
+~chatnpc("<p,sad>I wrote this poem when I went to the oasis to nibble at a tree, then discovered I'd left nothing for Elly to nibble. I was distraught.");
+~chatnpc("<p,happy>This Is Just To Say");
+~chatnpc("<p,happy>I have nibbled the cacti that were by the oasis,");
+~chatnpc("<p,happy>and which you were probably saving for lunch.");
+~chatnpc("<p,happy>Forgive me, they were delicious, so crunchy and so cold.");
+~chatnpc("<p,sad>I wonder if she's forgiven me for eating her snack.");
+@camel_al_elly;
+
+// Asked once, after the first poem he is allowed to finish, and never again.
+[label,camel_al_elly]
+if (%al_camel_advicegiven = 1) {
+    return;
+}
+~chatplayer("<p,quiz>What does Elly think of your poems?");
+~chatnpc("<p,sad>She's never heard them.");
+~chatplayer("<p,quiz>Why not?");
+~chatnpc("<p,sad>I suspect she loves another - Ollie, another camel who roams with her to the north.");
+~chatnpc("<p,sad>So I shall stay here and compose poems for her.");
+%al_camel_advicegiven = 1;
+if (~p_choice2("Why not tell her how you feel?", 1, "Well, best of luck with that.", 2) = 1) {
+    ~chatplayer("<p,quiz>Why not tell her how you feel?");
+    ~chatnpc("<p,sad>She seems happy enough as she is, and I have my poems to comfort me.");
+}
+~chatplayer("<p,neutral>Well, best of luck with that.");
+~chatnpc("<p,happy>If you want to hear my poems once more, please come back again.");
+
+// ============================================================== Elly, who cannot say it either
+// "A camel whose love is unrequited." She is Al's beloved and she is in love with Ollie.
+
+[label,camel_elly_talk]
+~chatnpc("<p,quiz>Did you say something?");
+~chatplayer("<p,shifty>No, er, nothing important.");
+~chatnpc("<p,happy>Well, it's nice to have someone to talk to.");
+~chatnpc("<p,sad>Ollie is so remote, and I can't get up the courage to talk to him...");
+~chatplayer("<p,quiz>Who's Ollie?");
+~chatnpc("<p,happy>He's the camel wandering around near that glider.");
+~chatnpc("<p,happy>Isn't he so strong-looking and handsome?");
+~chatplayer("<p,confused>Er... he just looks like any other camel to me.");
+~chatnpc("<p,angry>How can you not see how wonderful he is?");
+~chatnpc("<p,happy>Why, he can cross the Kharidian Desert in three bounds, and he's so strong that he could haul the brick for the Emir's Arena in only a day!");
+~chatplayer("<p,neutral>You're a camel, I'm not. Maybe you can see these things better.");
+~chatnpc("<p,bored>For someone who understands camel speech, you're not good at these things.");
+
+// ================================================================= Ollie, who only wants to fly
+
+[label,camel_ollie_talk]
+~chatnpc("<p,quiz>What did you say?");
+~chatplayer("<p,shifty>Er, nothing important.");
+~chatnpc("<p,happy>Ah, a human. Do you know anything about flying?");
+~chatplayer("<p,quiz>Flying?");
+~chatnpc("<p,happy>Yes, flying. It's a wonderful thing. I've seen this glider fly, and it's so elegant and fast.");
+~chatnpc("<p,happy>If I could fly, I wouldn't want to do anything else! I'd just fly around all day, swooping and soaring.");
+
+// ====================================================================== Cam, who is far too hot
+
+[label,camel_cam_talk]
+~chatnpc("<p,quiz>What was that?");
+~chatplayer("<p,shifty>Nothing important.");
+~chatnpc("<p,bored>The weather's really hot, don't you think?");
+~chatplayer("<p,quiz>Not hot for camels, surely?");
+~chatnpc("<p,angry>Are you joking? It's burning hot out here! Sitting by the oasis is the only way to stay cool.");
+~chatplayer("<p,quiz>I thought camels carried their own water in their humps.");
+~chatnpc("<p,sad>It's never enough. And it's always far too hot to go anywhere in the desert.");
+~chatnpc("<p,sad>Sometimes I wish I could go travelling in cooler places, like all those adventurers I see passing through here.");
+~chatplayer("<p,neutral>Well, adventuring's thirsty work as well.");
+~chatnpc("<p,sad>Oh, that's a pity.");
+~chatnpc("<p,neutral>In that case, I'll just stay by this nice cool oasis.");
+
+// ====================================================== Alice, who hauls boxes for the Ali boys
+
+[label,camel_alice_talk]
+~chatnpc("<p,quiz>What did you say?");
+~chatplayer("<p,shifty>Nothing, nothing.");
+~chatnpc("<p,angry>Well, don't interrupt me, I've got work to do.");
+~chatplayer("<p,quiz>Really? What sort of work?");
+~chatnpc("<p,happy>I'm participating in the construction of a shopping and sales extravaganza!");
+~chatplayer("<p,confused>...What?");
+~chatnpc("<p,bored>My masters have me hauling boxes around. There's not much to do at the moment, though.");
+~chatplayer("<p,quiz>Are your masters those men called Ali?");
+~chatnpc("<p,neutral>Yes, that's them. They're traders working for Ali Morrisane.");
+~chatplayer("<p,quiz>So, what's it like working for your masters?");
+~chatnpc("<p,neutral>It's hard work sometimes, but it could be worse.");
+~chatnpc("<p,shock>I heard about a pair of camels back in Pollnivneach who were poisoned!");
+~chatnpc("<p,shock>They say someone put spicy sauce in their food.");
+~chatplayer("<p,sad>Really? That's very cruel of whoever did it.");
+~chatnpc("<p,angry>I sincerely hope whoever did it was punished. Do they have no compassion for camels?");
+
+// ============================================================ Neferti, who wants to see the world
+
+[label,camel_neferti_talk]
+~chatnpc("<p,quiz>What was that?");
+~chatplayer("<p,shifty>Er, nothing important.");
+~chatnpc("<p,shock>Wait, you're a human, aren't you? Have you come from outside this town?");
+~chatplayer("<p,neutral>Yes, I have.");
+~chatnpc("<p,happy>Oh, how wonderful! Does that mean I can finally leave this place and see the world outside?");
+~chatplayer("<p,quiz>Wouldn't your master have to take you?");
+~chatnpc("<p,sad>The plagues mean that my master isn't allowed to leave. It's so boring here, and I'd like to travel.");
+~chatnpc("<p,happy>Travelling's what camels do best, you know.");
+~chatnpc("<p,quiz>I don't suppose you could take me with you, could you?");
+~chatplayer("<p,quiz>How do I know you're not ill as well?");
+~chatnpc("<p,happy>Well, I haven't turned funny colours yet, so I'm probably not. Will you take me with you?");
+~chatplayer("<p,sad>I don't really have space for a camel, sorry.");
+~chatnpc("<p,sad>Oh well. Come back some time, and bring me news of the rest of the world.");
+
+// =================================================================== the Ugthanki, who are rude
+// Twenty-seven of them south of the Shantay Pass, and the only camels in the game you can fight.
+// No menu: the transcript gives them the remark and the answer and nothing else, which fits - there
+// is no point asking a vicious attacking camel for a favour.
+//
+// AND TALK-TO IS THE WAY OUT OF A FIGHT, which is a mechanic and not flavour: "Players who are in
+// combat with an Ugthanki can use the Talk-to option if they wish to exit combat; this will make
+// the Ugthanki lose aggression on the player. This can also be used to fight the Ugthanki without
+// it being able to retaliate."
+//
+// npc_setmode(none) is the whole of it, and the cache's own hunt does the rest. [cowardly] declares
+// check_notcombat=%lastcombat, so once the interaction is cleared the hunt will not take the same
+// player back while their combat clock is still warm - which is exactly the stated behaviour, and
+// the reason this needs no timer of its own. Being HIT still provokes it, through
+// [ai_queue1,_] -> ~npc_default_retaliate, so "without it being able to retaliate" means talking to
+// it between swings, which is what the wiki is describing.
+[opnpc1,ugthanki]
+npc_setmode(none);
+~camel_remark;
+if (~camulet_worn = false) {
+    @camel_takes_offence;
+}
+switch_int (random(^camel_remarks)) {
+    case 0 : ~chatnpc("<p,angry>Come over here, I'll bite your leg off!");
+    case 1 : ~chatnpc("<p,angry>Prepare to die, you two-legged combat wrangler!");
+    case 2 : ~chatnpc("<p,angry>Your mother was a jackal, and your father smelt of cactuses!");
+}

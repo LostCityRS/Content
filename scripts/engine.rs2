@@ -85,7 +85,13 @@
 // info: As broadcast_mes, but not sent to players who have hidden milestone announcements with
 // info: ::milestones (custom, 2026-11-16). The opt-out is a varp on each RECEIVER, so the filter
 // info: has to be the engine's - a script runs as one player and cannot walk the player list.
-[command,broadcast_milestone](string $message)
+// info: $icon is the item it is about (null for none) and $skill the skill it is about ("" for
+// info: none). Both are for the Discord card the feed draws; neither changes the line in game.
+[command,broadcast_milestone](string $message, obj $icon, string $skill)
+// info: As broadcast_mes, and ALSO a card in the Discord feed (custom, 2026-11-19). News only: a
+// info: rare drop, a pet, a cape. It is a separate op from broadcast_mes so that yells and staff
+// info: announcements, which share that one, cannot reach a public channel by sharing this one.
+[command,broadcast_news](string $message, obj $icon, string $skill)
 // info: Claim a server first under $key, e.g. "99:fishing" (custom, 2026-11-16). True only for the
 // info: account that got there first, and only once ever - so it is safe to call from a level-up
 // info: that can fire again. The key is content's to choose; see engine MilestoneStore.ts.
