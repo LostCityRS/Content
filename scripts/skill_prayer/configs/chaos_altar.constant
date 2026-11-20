@@ -16,3 +16,7 @@
 // has to implement the re-roll: a bone that survives is still in the pack and the loop offers it
 // again, which IS the re-roll.
 ^chaos_altar_save_chance = 2
+
+// How long one offering takes, in ticks, measured against map_clock rather than held with p_delay.
+// Two, which is the cadence the old p_delay loop ran at.
+^chaos_altar_offer_ticks = 2

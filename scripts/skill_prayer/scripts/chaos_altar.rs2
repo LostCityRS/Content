@@ -19,30 +19,80 @@ if (oc_category(last_useitem) ! bones) {
     ~displaymessage(^dm_default);
     return;
 }
-@chaos_altar_offer(last_useitem);
-
-// One kind of bone at a time, for as long as you are holding one. p_delay carries the repeat and
-// yields with it, so walking away or clicking something else ends it on the next pass - the same
-// shape the fletching and glassblowing loops use, and there is no state to unwind.
-[label,chaos_altar_offer](obj $bone)
-def_int $exp = oc_param($bone, bone_exp);
-if ($exp <= 0) {
+if (oc_param(last_useitem, bone_exp) <= 0) {
     ~displaymessage(^dm_default);
     return;
 }
-while (inv_total(inv, $bone) > 0) {
-    anim(human_pray, 0);
-    sound_synth(bones_down, 1, 0);
-    // THE EXPERIENCE IS PAID EITHER WAY, as it is when Zealot's robes save a buried bone
-    // (bury_bone.rs2) - the saving is a bonus on top, not a refund of the offering.
-    ~prayer_xp(calc($exp * ^chaos_altar_xp_num / ^chaos_altar_xp_den));
-    if (random(^chaos_altar_save_chance) = 0) {
-        mes("The gods are pleased with your offering, and return the bones to you.");
-    } else {
-        inv_del(inv, $bone, 1);
-        mes("You offer the bones to Zamorak.");
-    }
-    if (inv_total(inv, $bone) > 0) {
-        p_delay(2);
-    }
+@chaos_altar_offer;
+
+// The repeat. p_oploc(3) below re-queues through this, and nothing else reaches it: the altar
+// declares no op3 and the right-click menu has no entry for it.
+[oploc3,chaosaltar]
+if (loc_coord ! ^chaos_altar_coord) {
+    return;
 }
+@chaos_altar_offer;
+
+// ONE OFFERING PER CALL, PACED BY map_clock, AND NEVER p_delay. This was a `while` loop with a
+// p_delay(2) in it, and its comment claimed the delay yielded so that walking away or clicking
+// something else would end it. p_delay does not yield that way: it sets player.delayed, and both
+// MoveClickHandler and OpLocHandler THROW AWAY the player's input while that is set. So the loop
+// ran to the bottom of the pack with every click and every step discarded, which is what was
+// reported - "cant be stopped until invo is empty" (DeathPlateau-Bugs#39).
+//
+// This is the chaos altar, so the lockout is not merely annoying: it is the single most PKed
+// training spot in the game, and a player part way through a pack could not eat, pray, or run.
+//
+// The shape is farming's rake (skill_farming/scripts/farming_useitem.rs2), which carries the same
+// warning in its own comment, and ordinary woodcutting uses the same map_clock idiom. The script
+// returns every pass, so the player is never delayed and their next click wins.
+[label,chaos_altar_offer]
+def_obj $bone = ~chaos_altar_next_bone;
+if ($bone = null) {
+    anim(null, 0);
+    return;
+}
+if (%action_delay > map_clock) {
+    p_oploc(3);
+    return;
+}
+%action_delay = calc(map_clock + ^chaos_altar_offer_ticks);
+anim(human_pray, 0);
+sound_synth(bones_down, 1, 0);
+// THE EXPERIENCE IS PAID EITHER WAY, as it is when Zealot's robes save a buried bone
+// (bury_bone.rs2) - the saving is a bonus on top, not a refund of the offering.
+~prayer_xp(calc(oc_param($bone, bone_exp) * ^chaos_altar_xp_num / ^chaos_altar_xp_den));
+if (random(^chaos_altar_save_chance) = 0) {
+    mes("The gods are pleased with your offering, and return the bones to you.");
+} else {
+    inv_del(inv, $bone, 1);
+    mes("You offer the bones to Zamorak.");
+}
+if (~chaos_altar_next_bone ! null) {
+    p_oploc(3);
+    return;
+}
+anim(null, 0);
+
+// The next bone to offer: the first one in the pack, in slot order.
+//
+// IT IS NOT THE BONE THAT WAS CLICKED, and that is a change. The old loop offered only the type
+// handed to it, because it had last_useitem to hold on to; op3 has no useitem, so a repeat has to
+// either carry the type in a varp or read the pack. Reading the pack is what Old School does -
+// the altar consumes bones in inventory order - and it means a mixed pack is worked through
+// rather than stopping when one kind runs out. Flagged on the pull request as the one behaviour
+// change here.
+[proc,chaos_altar_next_bone]()(obj)
+def_int $slot = 0;
+while ($slot < inv_size(inv)) {
+    def_obj $candidate = inv_getobj(inv, $slot);
+    if ($candidate ! null) {
+        if (oc_category($candidate) = bones) {
+            if (oc_param($candidate, bone_exp) > 0) {
+                return($candidate);
+            }
+        }
+    }
+    $slot = add($slot, 1);
+}
+return(null);
