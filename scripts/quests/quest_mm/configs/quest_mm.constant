@@ -95,6 +95,19 @@
 // outside, with the lockpick, the cell door and the whole of wiki steps 13-14 bypassed. Measured
 // with tools/sim/walkgraph.ts 2758 2792 2784 2810 0, which puts 2771,2794 in a 21-tile region with
 // NO ROUTE to anywhere and 2779,2794 in the big one.
+// PICKING THE CELL LOCK. A lockpick is NOT required - it only shortens the job, which is the
+// mechanic the quest actually has - so these are a chance, not a gate. Shaped on Pyramid Plunder's
+// door (game_plunder/scripts/plunder.rs2), which is the one place in the build that already does
+// "bare hands work, a lockpick improves the odds", and calibrated to the same numbers so the two
+// agree: stat_random(thieving, low, 256) is low/256 at Thieving 1 and certain at 99.
+//
+//   bare handed   80  -> about 32% a try at Thieving 1, rising with the level
+//   with a pick  120  -> about 47% a try at Thieving 1
+//
+// Monkey Madness asks for no Thieving level, so the base has to be something a level 1 thief gets
+// through in a few tries rather than a wall. The door can be tried again as often as you like.
+^mm_jail_pick_low = 80
+^mm_jail_lockpick_bonus = 40
 ^mm_jail_cell = 0_43_43_19_42    // 2771,2794  inside the one cell with a lock worth picking
 ^mm_jail_outside = 0_43_43_19_44 // 2771,2796  the other side of that door, which is inside Marim
 
