@@ -336,16 +336,30 @@ p_telejump(^mm_jail_cell);
 %mm_player_is_unconscious = ^false;
 ~mesbox("You wake up on a stone floor behind a bamboo door, with your things beside you and a headache that suggests the monkeys of Marim have done this before.");
 
+// A LOCKPICK IS NOT REQUIRED, and this used to refuse outright without one: "it is not going to
+// open for fingers". That is wrong about the quest - the lock can be picked bare handed and a
+// lockpick only improves the odds - and on this build it was worse than wrong, because no shop
+// sells a lockpick. The only sources are pickpocketing a Rogue at Thieving 32 and looting an
+// impling, so a player arrested below that was shut in a cell with no way through the door and
+// nothing in the quest telling them a Thieving level was coming. Reported by a player who asked
+// whether it was meant to work that way (DeathPlateau-Bugs#38); it was not.
+//
+// The roll is Pyramid Plunder's, numbers and all - see ^mm_jail_pick_low in quest_mm.constant.
 [oploc1,mm_jail_door]
 p_arrivedelay;
-if (inv_total(inv, lockpick) = 0) {
-    ~mesbox("The lock is bamboo and brass, and it is not going to open for fingers. A lockpick would do it.");
+def_int $low = ^mm_jail_pick_low;
+if (inv_total(inv, lockpick) > 0) {
+    $low = add($low, ^mm_jail_lockpick_bonus);
+}
+mes("You pick at the bamboo and brass...");
+anim(human_pickpocket, 0);
+p_delay(2);
+if (stat_random(thieving, $low, 256) = false) {
+    mes("...and the lock will not give. A lockpick would make shorter work of it.");
     return;
 }
-mes("You work the lockpick into the bamboo.");
-p_delay(3);
 sound_synth(door_open, 1, 0);
-mes("The lock gives.");
+mes("...and the lock gives.");
 p_delay(1);
 p_teleport(^mm_jail_outside);
 ~mesbox("You are inside the walls of Marim, which is further than the gate was ever going to get you.");
