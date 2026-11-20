@@ -91,6 +91,11 @@ if (findhero = true) {
     session_log(^log_moderator, "Player died");
 }
 p_teleport(map_findsquare(0_50_50_21_18, 0, 2, ^map_findsquare_lineofwalk));
+// AFTER the respawn teleport, not inside the two lose_items procs: what will not fit is dropped,
+// and dropped at the player's feet here rather than back at the body, where they would have two
+// minutes to run to it. A no-op on every path that lifted nothing (dev world, staff, the duel
+// arena's early return) - the inv is empty.
+~death_return_untradeables;
 buildappearance(worn);
 ~prayer_deactivate_all;
 ~follower_death;
@@ -176,6 +181,14 @@ while ($i < $size) {
 // dragon took the hat, and a dragon has no use for Death tokens.
 def_int $ruined = calc(~undertaker_outfit_destroy(inv) + ~undertaker_outfit_destroy(worn));
 
+// AFTER the god capes and the Undertaker's outfit, so neither can be carried out of here by this,
+// and BEFORE the drop, so what it lifts never reaches the floor.
+inv_clear(deathkeep_untradeable);
+if (~wilderness_level(coord) = 0) {
+    ~death_keep_untradeables(inv);
+    ~death_keep_untradeables(worn);
+}
+
 inv_dropall(inv, coord, ^lootdrop_duration);
 inv_dropall(worn, coord, ^lootdrop_duration);
 inv_dropall(looting_bag_store, coord, ^lootdrop_duration); // looting bag contents are always lost - storage_items.rs2
@@ -215,6 +228,16 @@ if($protecting_item = true) {
 // the three an unskulled player keeps (param=destroy_death on every piece already bars it from that
 // calculation, and from Protect Item); before, so it is gone by the time anything drops.
 ~undertaker_outfit_pay(.uid, calc(~undertaker_outfit_destroy(inv) + ~undertaker_outfit_destroy(worn)));
+
+// Untradeables survive a death outside the Wilderness here too. This path only ever runs in the
+// Wilderness today - the Duel Arena returns before it and Castle Wars, Pest Control and the Fight
+// Cave are safe - so the guard changes nothing now and is right if player killing ever opens
+// anywhere else. player_death_lose_items above has the rest of it.
+inv_clear(deathkeep_untradeable);
+if (~wilderness_level(coord) = 0) {
+    ~death_keep_untradeables(inv);
+    ~death_keep_untradeables(worn);
+}
 
 def_int $i = 0;
 def_int $size = inv_size(inv);
@@ -371,3 +394,46 @@ if (.finduid($killer) = false) {
 }
 .mes("The Undertaker will take the deceased's effects off your hands.");
 .obj_add(coord, death_token, $owed, ^lootdrop_duration);
+
+// UNTRADEABLES ARE NOT LOST OUTSIDE THE WILDERNESS (Corey, 2026-11-19). Everything that cannot be
+// traded is lifted out of the inventory and the worn slots before the drop and handed back after,
+// so a fire cape, a quest item or a clue scroll survives a death to a monster.
+//
+// WHAT IS STILL LOST, because each is a deliberate rule with its own message and its own way back:
+//   * god capes, which the god reclaims as they touch the ground and which are bought again at the
+//     Mage Arena;
+//   * the contents of a looting bag, which are always lost;
+//   * the Undertaker's outfit, but only in the Wilderness, where it is ruined for tokens.
+// The Wilderness is untouched: death there costs what it always has.
+//
+// THE EXCEPTION IS TESTED BY CATEGORY AND NOT BY param=destroy_death. That param reads like
+// "destroyed on death" and is not: the only thing that consults it is the three-priciest
+// calculation, where it means "can never be one of the items you keep". Nothing outside the
+// Wilderness ever destroyed an obj for carrying it - the god capes are deleted by the loops in the
+// two death paths, and the Undertaker's outfit by ~undertaker_outfit_destroy, which returns at once
+// unless you are in the Wilderness. So testing the param here would have gone on dropping the
+// Undertaker's outfit and Ana's barrel on a floor nobody else can pick them up from, which is the
+// loss this change exists to stop. armour_godcape is what actually gets a cape destroyed, so
+// armour_godcape is what is excluded - and it has to be excluded here rather than left to the loops
+// because the pvp path deletes its capes INSIDE its drop loop, below this, rather than before it.
+[proc,death_keep_untradeables](inv $from)
+def_int $i = 0;
+def_int $size = inv_size($from);
+while ($i < $size) {
+    def_obj $obj = inv_getobj($from, $i);
+    if ($obj ! null) {
+        if (oc_tradeable(oc_uncert($obj)) = false & oc_category($obj) ! armour_godcape) {
+            inv_moveitem($from, deathkeep_untradeable, $obj, inv_getnum($from, $i));
+        }
+    }
+    $i = add($i, 1);
+}
+
+// Hand them back, AFTER the three kept items so those take the slots first if the pack cannot hold
+// everything. A player can be carrying 42 things - 28 in the pack and 14 worn - and respawns with
+// 28 slots, so the overflow is real even if it takes some doing; it is dropped rather than deleted,
+// and dropped at their feet after the respawn teleport rather than back at the body, which is why
+// the call sits where it does in [queue,player_death_default] and not at the end of either proc.
+[proc,death_return_untradeables]
+~moveallinv(deathkeep_untradeable, inv);
+inv_dropall(deathkeep_untradeable, coord, ^lootdrop_duration);

@@ -14,3 +14,15 @@ runweight=yes
 size=28
 protect=no
 runweight=yes
+
+// WHERE UNTRADEABLES SIT WHILE THE REST OF YOUR KIT IS DROPPED. Death empties the inventory and the
+// worn slots with inv_dropall, so anything that is to survive has to be lifted out first and handed
+// back after - which is exactly what deathkeep does for the three priciest items. This is the same
+// trick for a different rule, and it needs its own inv because deathkeep is four slots.
+//
+// 42 = 28 inventory + 14 worn, the most a player can be carrying, so the lift itself can never be
+// the thing that loses an item. What the inventory cannot hold on the way back is a separate
+// question and player/scripts/death.rs2 answers it.
+[deathkeep_untradeable]
+size=42
+protect=no

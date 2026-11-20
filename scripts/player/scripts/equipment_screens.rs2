@@ -58,6 +58,13 @@ while ($i < $keep) {
     ~deathpreview_take_priciest;
     $i = calc($i + 1);
 }
+// UNTRADEABLES ARE NOT LOST OUTSIDE THE WILDERNESS (death.rs2), so they do not belong in the lost
+// column. Taken out of it rather than moved into the kept one: that grid is four slots wide and is
+// the three-priciest rule's own, and a fire cape sitting in it would read as one of the three.
+// The panel on the right says what happened to them.
+if (~wilderness_level(coord) = 0) {
+    ~deathpreview_drop_untradeables;
+}
 ~deathpreview_compact;
 
 if ($skulled = true) {
@@ -76,6 +83,9 @@ if ($protecting = true) {
     $info = append($info, "\\n\\nProtect Item is on, so\\nyou keep one more item.");
 } else {
     $info = append($info, "\\n\\nThe Protect Item prayer\\nkeeps one more item.");
+}
+if (~wilderness_level(coord) = 0) {
+    $info = append($info, "\\n\\nItems that cannot be\\ntraded are not lost\\noutside the Wilderness.");
 }
 if_settext(items_kept:info, $info);
 if_settext(items_kept:info2, "");
@@ -131,3 +141,19 @@ inv_clear(deathpreview_lose);
 // npc/scripts/follower.rs2, beside the keep-up it is the manual half of.
 [if_button,wornitems:call_follower] ~call_follower;
 
+// The lost column's half of death.rs2's ~death_keep_untradeables, over the copy, and the same two
+// tests: not tradeable, and not a god cape. A cape is the exception there and has to be the
+// exception here too, or the screen would stop warning about the one item it matters most for - a
+// cape IS lost, and reclaimed at the Mage Arena rather than carried home.
+[proc,deathpreview_drop_untradeables]
+def_int $i = 0;
+def_int $size = inv_size(deathpreview_lose);
+while ($i < $size) {
+    def_obj $obj = inv_getobj(deathpreview_lose, $i);
+    if ($obj ! null) {
+        if (oc_tradeable(oc_uncert($obj)) = false & oc_category($obj) ! armour_godcape) {
+            inv_delslot(deathpreview_lose, $i);
+        }
+    }
+    $i = calc($i + 1);
+}
