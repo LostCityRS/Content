@@ -99,6 +99,20 @@ if (%macro_pete_wants = 0) {
     mes("You should see what the lever says first.");
     return;
 }
+// A KEY NEEDS A SLOT, and it is checked here rather than where the key is handed over. inv_add
+// does not refuse a full backpack - it drops the overflow at the player's feet, silently, on a
+// 200-tick despawn (engine: InvOps.ts, ScriptOpcode.INV_ADD) - so popping the right balloon with
+// 28 items put the key on the floor with no word about it while %macro_pete_keys counted it
+// anyway. Reported as the reward landing on the ground (DeathPlateau-Bugs#36).
+//
+// BEFORE THE POP, not after: npc_del below has already taken the balloon by the time the key is
+// added, so refusing at that point would cost the player the balloon as well as the key - and
+// there are only four of them. The key is not stackable, so a free slot is needed every time
+// and "full" is the whole test.
+if (inv_freespace(inv) = 0) {
+    mes("You have no room for a key. Make some space first.");
+    return;
+}
 // You burst it under your foot, which is what human_stamp is for. It was the pickpocket animation
 // before, which is a reach rather than a stamp.
 anim(human_stamp, 0);
