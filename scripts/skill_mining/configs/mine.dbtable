@@ -5,6 +5,14 @@ column=rock_output,namedobj
 column=rock_level,int
 column=rock_exp,int
 column=rock_successchance,int,int
+// TICKS, and a tick is 0.6 SECONDS. Every value in this column used to be the wiki's figure
+// divided by 0.3 instead, so every rock in the game took twice as long to come back as it should:
+// coal 30s became 100 ticks rather than 50, mithril 120s became 400 rather than 200, adamantite
+// 240s became 800, runite 720s became 2400, silver and gold 60s became 200 each. The three fastest
+// rocks were rounded up on top of that - clay 1.2s to 6 ticks, copper and tin 2.4s to 10, iron
+// 5.4s to 20. Reported on iron, which a player timed at close to double (DeathPlateau-Bugs#33).
+//
+// So: seconds / 0.6, and write the wiki's own figure beside it.
 column=rock_respawnrate,int
 // The Rock golem's base chance for this rock - see configs/skill_pets.constant for the
 // mechanic. 0 where OSRS gives no pet for the rock (rune essence, and the two quest rocks).
