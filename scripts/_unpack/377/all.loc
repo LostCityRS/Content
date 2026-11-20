@@ -3370,6 +3370,15 @@ width=2
 op1=Pray-at
 blockrange=no
 category=prayer_altar
+// A HIDDEN op3, which is what carries the bone-offering repeat. p_oploc(3) returns without
+// doing anything when the loc has no op at that index (PlayerOps.ts, P_OPLOC:
+// `if (!locType.op || !locType.op[type]) return;`), so skill_prayer/scripts/chaos_altar.rs2
+// could re-queue itself only if one exists. `tree` carries the same hidden op3 for
+// woodcutting's repeat, which is the precedent.
+//
+// Hidden rather than named: no client draws it and no packet can send it, so the only way
+// in is p_oploc from script. Added for DeathPlateau-Bugs#39.
+op3=hidden
 
 [trappedchaosaltar]
 name=Chaos altar
