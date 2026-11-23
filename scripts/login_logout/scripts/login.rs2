@@ -94,6 +94,21 @@ queue(macro_event_login, 0, 0);
 ~ferment_wines_login;
 ~thieving_stall_timers_login;
 ~stat_boost_login; // f2p boost reset
+// A NEW ACCOUNT STARTS WITH A FULL SPECIAL BAR, as one does in Old School. sa_energy is a perm
+// varp and the format has no default=, so without this a brand-new character's bar reads 0 and
+// every special attack in the game is refused with "You don't have enough power left" until about
+// five minutes of regen has run - ~sa_login only starts the timer, it does not fill anything.
+//
+// KEYED ON %tutorial, NOT ON THE BAR BEING EMPTY, and that is the whole care of it. The bar is
+// perm, so "fill it if it is 0" would hand a free special to anyone who spent theirs and logged
+// out and in again - which in the Wilderness is worth a great deal and is exactly the sort of
+// thing that gets found. %tutorial only ever counts up, from 0 to ^tutorial_complete, so 0 means
+// this character has not yet taken its first step and cannot have spent anything.
+//
+// Before ~sa_login rather than after, so a filled bar never starts a regen timer it does not need.
+if (%tutorial = 0 & %sa_energy = 0) {
+    %sa_energy = ^sa_max_energy;
+}
 ~sa_login; // start timer if low sa energy
 
 if(inzone(movecoord(^grandtree_jail_coord, 0, 0, -2), movecoord(^grandtree_jail_coord, 3, 0, 2), coord) = true) {
