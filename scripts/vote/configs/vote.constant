@@ -71,12 +71,20 @@
 //   100  Varrock armour 4        a permanent 10% on every ore and every ore's xp
 //    90  Ardougne cloak 4        the best stab cape in the game, +6 prayer, and two teleports
 //    80  Falador shield 4        adamant kiteshield defence, +5 prayer, two Prayer restores a day
-//    80  Morytania legs 4        rune-platelegs defence and the Ectofuntus run halved
+//    80  Wilderness sword 4      a teleport into deep Wilderness, and webs that always cut
 //    60  Karamja gloves 4        the gem mine and a Slayer master, both otherwise a long trip
-//    60  Wilderness sword 4      a teleport into deep Wilderness, and webs that always cut
+//    60  Morytania legs 4        rune-platelegs defence and the Ectofuntus run halved
 //    50  Desert amulet 4         two teleports, no stats worth wearing it for
 //    40  Fremennik sea boots 4   one teleport, and boots nobody is choosing over climbing boots
 //    40  Kandarin headgear 4     one teleport, and a helm nobody is choosing over a rune full helm
+//
+// THE SWORD AND THE LEGS WERE THE WRONG WAY ROUND (Corey, 23 November, "swap the sword and legs
+// prices") - the sword was 60 and the legs 80. The sword's teleport is the Fountain of Rune, which
+// is the hardest useful place on this map to reach any other way, and webs that always cut is a
+// fix for crossing the whole Wilderness rather than one convenience. The legs' Ectofuntus half
+// halves a chore almost nobody does on this build, and Burgh de Rott can be walked to; the
+// rune-platelegs defence is on untradeable legs nobody picks for the stat. Scale-neutral: the set
+// still comes to 600, only the order changed.
 //
 // The whole set is 600 points, which is a long way past any one item - the point of a reward shop
 // is that you choose. Each price is one number, used nowhere else; the obj's cost= in
@@ -87,9 +95,9 @@
 ^vote_price_fremennik_sea_boots = 40
 ^vote_price_kandarin_headgear = 40
 ^vote_price_karamja_gloves = 60
-^vote_price_morytania_legs = 80
+^vote_price_morytania_legs = 60
 ^vote_price_varrock_armour = 100
-^vote_price_wilderness_sword = 60
+^vote_price_wilderness_sword = 80
 
 // ============================================================================ claiming (27 October)
 // What vote_claim answers with. It cannot answer the real question - "did you vote?" - because that
