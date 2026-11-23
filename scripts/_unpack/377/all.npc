@@ -19446,6 +19446,24 @@ huntmode=cowardly
 huntrange=1
 
 [dragonslayer_skeleton]
+// ITS COMBAT ANIMATIONS ARE THE HUMAN DEFAULTS, and that is not an oversight
+// (DeathPlateau-Bugs#68, "melzars maze skeletons animations are bugged").
+//
+// This npc is built on npc_dragonslayer_skeleton, whose vertices are labelled with transform
+// groups 1,2,4,5,8,29,31..49 - the HUMAN rig. The skeleton_* animations were authored for
+// poh_skeleton_8, which is labelled 1-23, and nineteen npcs use that model and those animations
+// quite happily.
+//
+// It carried param=attack_anim,skeleton_attack / defend_anim,skeleton_block /
+// death_anim,skeleton_death, which is an animation from one rig played on a model from another.
+// Rendered frame by frame with tools/pose377.py - the tool that exists for exactly this question -
+// skeleton_attack on this mesh detaches the skull, rotates the ribcage ninety degrees, flattens
+// both arms into planks and leaves it standing on one leg. The same five frames on poh_skeleton_8
+// are a clean swing. human_unarmedpunch on THIS mesh is an intact skeleton.
+//
+// So the three lines are gone and the npc_combat.param defaults apply: human_unarmedpunch,
+// human_unarmed_def, human_death - which is what its readyanim and walkanim already were, and why
+// it looked right standing still and broke the moment it swung.
 name=Skeleton
 desc=Could do with gaining a few pounds.
 model1=npc_dragonslayer_skeleton
@@ -19483,9 +19501,6 @@ param=crushdefence,-2
 param=magicdefence,1
 param=rangedefence,4
 param=damagetype,^slash_style
-param=attack_anim,skeleton_attack
-param=defend_anim,skeleton_block
-param=death_anim,skeleton_death
 param=attack_sound,skeleton_attack
 param=defend_sound,skelly_hit
 param=death_sound,skeleton_death
@@ -61104,6 +61119,24 @@ huntrange=1
 category=giantrat
 
 [dragonslayer_skeleton_2]
+// ITS COMBAT ANIMATIONS ARE THE HUMAN DEFAULTS, and that is not an oversight
+// (DeathPlateau-Bugs#68, "melzars maze skeletons animations are bugged").
+//
+// This npc is built on npc_dragonslayer_skeleton, whose vertices are labelled with transform
+// groups 1,2,4,5,8,29,31..49 - the HUMAN rig. The skeleton_* animations were authored for
+// poh_skeleton_8, which is labelled 1-23, and nineteen npcs use that model and those animations
+// quite happily.
+//
+// It carried param=attack_anim,skeleton_attack / defend_anim,skeleton_block /
+// death_anim,skeleton_death, which is an animation from one rig played on a model from another.
+// Rendered frame by frame with tools/pose377.py - the tool that exists for exactly this question -
+// skeleton_attack on this mesh detaches the skull, rotates the ribcage ninety degrees, flattens
+// both arms into planks and leaves it standing on one leg. The same five frames on poh_skeleton_8
+// are a clean swing. human_unarmedpunch on THIS mesh is an intact skeleton.
+//
+// So the three lines are gone and the npc_combat.param defaults apply: human_unarmedpunch,
+// human_unarmed_def, human_death - which is what its readyanim and walkanim already were, and why
+// it looked right standing still and broke the moment it swung.
 name=Skeleton
 desc=Could do with gaining a few pounds.
 model1=npc_dragonslayer_skeleton
@@ -61141,9 +61174,6 @@ param=crushdefence,-2
 param=magicdefence,1
 param=rangedefence,4
 param=damagetype,^slash_style
-param=attack_anim,skeleton_attack
-param=defend_anim,skeleton_block
-param=death_anim,skeleton_death
 param=attack_sound,skeleton_attack
 param=defend_sound,skelly_hit
 param=death_sound,skeleton_death
@@ -61152,6 +61182,24 @@ huntmode=cowardly
 huntrange=1
 
 [dragonslayer_skeleton_3]
+// ITS COMBAT ANIMATIONS ARE THE HUMAN DEFAULTS, and that is not an oversight
+// (DeathPlateau-Bugs#68, "melzars maze skeletons animations are bugged").
+//
+// This npc is built on npc_dragonslayer_skeleton, whose vertices are labelled with transform
+// groups 1,2,4,5,8,29,31..49 - the HUMAN rig. The skeleton_* animations were authored for
+// poh_skeleton_8, which is labelled 1-23, and nineteen npcs use that model and those animations
+// quite happily.
+//
+// It carried param=attack_anim,skeleton_attack / defend_anim,skeleton_block /
+// death_anim,skeleton_death, which is an animation from one rig played on a model from another.
+// Rendered frame by frame with tools/pose377.py - the tool that exists for exactly this question -
+// skeleton_attack on this mesh detaches the skull, rotates the ribcage ninety degrees, flattens
+// both arms into planks and leaves it standing on one leg. The same five frames on poh_skeleton_8
+// are a clean swing. human_unarmedpunch on THIS mesh is an intact skeleton.
+//
+// So the three lines are gone and the npc_combat.param defaults apply: human_unarmedpunch,
+// human_unarmed_def, human_death - which is what its readyanim and walkanim already were, and why
+// it looked right standing still and broke the moment it swung.
 name=Skeleton
 desc=Could do with gaining a few pounds.
 model1=npc_dragonslayer_skeleton
@@ -61189,9 +61237,6 @@ param=crushdefence,-2
 param=magicdefence,1
 param=rangedefence,4
 param=damagetype,^slash_style
-param=attack_anim,skeleton_attack
-param=defend_anim,skeleton_block
-param=death_anim,skeleton_death
 param=attack_sound,skeleton_attack
 param=defend_sound,skelly_hit
 param=death_sound,skeleton_death
@@ -74664,6 +74709,24 @@ multinpc=1,questchicken
 multinpc=2,questchicken
 
 [draynor_skeleton]
+// ITS COMBAT ANIMATIONS ARE THE HUMAN DEFAULTS, and that is not an oversight
+// (DeathPlateau-Bugs#68, "melzars maze skeletons animations are bugged").
+//
+// This npc is built on npc_dragonslayer_skeleton, whose vertices are labelled with transform
+// groups 1,2,4,5,8,29,31..49 - the HUMAN rig. The skeleton_* animations were authored for
+// poh_skeleton_8, which is labelled 1-23, and nineteen npcs use that model and those animations
+// quite happily.
+//
+// It carried param=attack_anim,skeleton_attack / defend_anim,skeleton_block /
+// death_anim,skeleton_death, which is an animation from one rig played on a model from another.
+// Rendered frame by frame with tools/pose377.py - the tool that exists for exactly this question -
+// skeleton_attack on this mesh detaches the skull, rotates the ribcage ninety degrees, flattens
+// both arms into planks and leaves it standing on one leg. The same five frames on poh_skeleton_8
+// are a clean swing. human_unarmedpunch on THIS mesh is an intact skeleton.
+//
+// So the three lines are gone and the npc_combat.param defaults apply: human_unarmedpunch,
+// human_unarmed_def, human_death - which is what its readyanim and walkanim already were, and why
+// it looked right standing still and broke the moment it swung.
 name=Skeleton
 desc=Could do with gaining a few pounds.
 model1=npc_dragonslayer_skeleton
@@ -74698,9 +74761,6 @@ param=crushdefence,-2
 param=magicdefence,1
 param=rangedefence,4
 param=damagetype,^slash_style
-param=attack_anim,skeleton_attack
-param=defend_anim,skeleton_block
-param=death_anim,skeleton_death
 param=attack_sound,skeleton_attack
 param=defend_sound,skelly_hit
 param=death_sound,skeleton_death
