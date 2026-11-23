@@ -1,0 +1,150 @@
+// The Warriors' Guild cyclopes' drop tables - oldschool.runescape.wiki/w/Cyclops
+//
+// WHY THIS FILE EXISTS AT LAST. wguild_npcs.npc has named it from the beginning, and nothing was
+// ever here: the death handler in wguild.rs2 called ~cyclops_loot instead, which is the 377
+// cache's own `cyclops` table - a different monster, in a different place, on a different
+// continent. That table pays beer, three iron arrows, an iron kiteshield and a spread of nine
+// rune types. Old School's guild cyclopes pay black knives by the handful, steel and mithril and
+// adamant weapons, a lobster in the basement, and nothing at all 9 times in 100. Every cyclops in
+// the guild has been dropping another monster's loot since the guild was built.
+//
+// ONE ROLL OF A HUNDRED, and that is not a simplification of the wiki's percentages - it is what
+// they are. The top floor's slices sum to 91 and the basement's to exactly 100, so a single
+// random(100) reproduces the published rates with nothing normalised, and the thresholds below are
+// the wiki's own numerators added up in the wiki's own order. The top floor's missing 9 is the
+// nothing-but-bones case and is left as the fall-through rather than written as a branch.
+//
+// NOT HERE, because it is handled already and belongs where it is:
+//   big bones      param=death_drop on every cyclops, added by the caller before this runs.
+//   the defenders  wguild.rs2, which owns %wguild_target and the leave-and-re-enter rule. Its
+//                  1/50 and dragon 1/100 already match the wiki's 2/100 and 1/100 - checked, not
+//                  assumed - so neither is touched.
+//
+// LEFT OUT RATHER THAN GUESSED AT. Long bone (1/400), Curved bone (1/5012.5) and Cyclops bone are
+// on both of the wiki's tertiary lists and none of the three objs is in this cache: the first two
+// are Rag and Bone Man II's and the third is Rag and Bone Man III's. A drop needs an obj to be,
+// so they are absent here and named here, which is better than a silent gap.
+//
+// TWO NAMES MAPPED. The wiki's "Steel shortsword" and "Black shortsword" are steel_sword and
+// black_sword in this cache, which has no shortsword obj of any metal - the plain one-handed sword
+// is the item those rows mean.
+
+// ------------------------------------------------------------- the top floor, levels 56 and 76
+// 219,150 sampled kills behind these rates.
+[proc,wguild_cyclops_loot_top]
+def_int $roll = random(100);
+// Weapons and armour, 44 in 100.
+if ($roll < 16) {
+    obj_add(npc_coord, black_knife, calc(random(10) + 4), ^lootdrop_duration);
+} else if ($roll < 18) {
+    obj_add(npc_coord, steel_chainbody, 1, ^lootdrop_duration);
+} else if ($roll < 20) {
+    obj_add(npc_coord, iron_2h_sword, 1, ^lootdrop_duration);
+} else if ($roll < 22) {
+    obj_add(npc_coord, iron_chainbody, 1, ^lootdrop_duration);
+} else if ($roll < 24) {
+    obj_add(npc_coord, steel_dagger, 1, ^lootdrop_duration);
+} else if ($roll < 26) {
+    obj_add(npc_coord, steel_mace, 1, ^lootdrop_duration);
+} else if ($roll < 28) {
+    obj_add(npc_coord, steel_sword, 1, ^lootdrop_duration);
+} else if ($roll < 30) {
+    obj_add(npc_coord, steel_battleaxe, 1, ^lootdrop_duration);
+} else if ($roll < 32) {
+    obj_add(npc_coord, steel_2h_sword, 1, ^lootdrop_duration);
+} else if ($roll < 34) {
+    obj_add(npc_coord, steel_longsword, 1, ^lootdrop_duration);
+} else if ($roll < 36) {
+    obj_add(npc_coord, steel_med_helm, 1, ^lootdrop_duration);
+} else if ($roll < 37) {
+    obj_add(npc_coord, black_2h_sword, 1, ^lootdrop_duration);
+} else if ($roll < 38) {
+    obj_add(npc_coord, mithril_dagger, 1, ^lootdrop_duration);
+} else if ($roll < 39) {
+    obj_add(npc_coord, mithril_longsword, 1, ^lootdrop_duration);
+} else if ($roll < 40) {
+    obj_add(npc_coord, adamant_mace, 1, ^lootdrop_duration);
+} else if ($roll < 41) {
+    obj_add(npc_coord, black_sword, 1, ^lootdrop_duration);
+} else if ($roll < 42) {
+    obj_add(npc_coord, black_longsword, 1, ^lootdrop_duration);
+} else if ($roll < 43) {
+    obj_add(npc_coord, black_dagger, 1, ^lootdrop_duration);
+} else if ($roll < 44) {
+    obj_add(npc_coord, adamant_2h_sword, 1, ^lootdrop_duration);
+// Coins, 41 in 100.
+} else if ($roll < 75) {
+    obj_add(npc_coord, coins, calc(random(100) + 3), ^lootdrop_duration);
+} else if ($roll < 85) {
+    obj_add(npc_coord, coins, calc(random(200) + 5), ^lootdrop_duration);
+// The shared tables. The level handed to the seed table only steers which seeds come out of this
+// build's own table; the 1 in 100 gate above it is the wiki's.
+} else if ($roll < 88) {
+    obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+} else if ($roll < 89) {
+    obj_add(npc_coord, ~roll_general_seed_table(56), ^lootdrop_duration);
+} else if ($roll < 91) {
+    // The GEM table, which is what the top floor rolls - not the whole rare drop table. On the
+    // surface ~randomjewel's talisman slot gives a nature talisman, which is the row the wiki
+    // lists here.
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+}
+// Tertiary, rolled on its own.
+~trail_hardcluedrop(512, npc_coord);
+
+// --------------------------------------------------------------- the basement, level 106
+// 94,000 sampled kills behind these rates. A different table from the floor above, not the same
+// one at a different level: the basement pays rune helms and a lobster and the top floor does not.
+[proc,wguild_cyclops_loot_basement]
+def_int $roll = random(100);
+// Weapons and armour, 65 in 100.
+if ($roll < 4) {
+    obj_add(npc_coord, adamant_2h_sword, 1, ^lootdrop_duration);
+} else if ($roll < 10) {
+    obj_add(npc_coord, mithril_dart, 12, ^lootdrop_duration);
+} else if ($roll < 15) {
+    obj_add(npc_coord, adamant_dagger, 1, ^lootdrop_duration);
+} else if ($roll < 20) {
+    obj_add(npc_coord, black_full_helm, 1, ^lootdrop_duration);
+} else if ($roll < 25) {
+    obj_add(npc_coord, black_mace, 1, ^lootdrop_duration);
+} else if ($roll < 30) {
+    obj_add(npc_coord, mithril_scimitar, 1, ^lootdrop_duration);
+} else if ($roll < 35) {
+    obj_add(npc_coord, mithril_kiteshield, 1, ^lootdrop_duration);
+} else if ($roll < 40) {
+    obj_add(npc_coord, steel_platebody, 1, ^lootdrop_duration);
+} else if ($roll < 47) {
+    obj_add(npc_coord, steel_chainbody, 1, ^lootdrop_duration);
+} else if ($roll < 51) {
+    obj_add(npc_coord, black_knife, 22, ^lootdrop_duration);
+} else if ($roll < 55) {
+    obj_add(npc_coord, mithril_platelegs, 1, ^lootdrop_duration);
+} else if ($roll < 60) {
+    obj_add(npc_coord, black_dagger, 1, ^lootdrop_duration);
+} else if ($roll < 63) {
+    obj_add(npc_coord, rune_med_helm, 1, ^lootdrop_duration);
+} else if ($roll < 64) {
+    obj_add(npc_coord, adamant_sq_shield, 1, ^lootdrop_duration);
+} else if ($roll < 65) {
+    obj_add(npc_coord, rune_full_helm, 1, ^lootdrop_duration);
+// Coins, 19 in 100. The first row is a flat 96, not a range - the wiki's own figure.
+} else if ($roll < 76) {
+    obj_add(npc_coord, coins, 96, ^lootdrop_duration);
+} else if ($roll < 84) {
+    obj_add(npc_coord, coins, calc(random(100) + 350), ^lootdrop_duration);
+} else if ($roll < 88) {
+    obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+} else if ($roll < 91) {
+    obj_add(npc_coord, ~roll_general_seed_table(106), ^lootdrop_duration);
+} else if ($roll < 98) {
+    obj_add(npc_coord, lobster, 1, ^lootdrop_duration);
+} else if ($roll < 100) {
+    // The WHOLE rare drop table down here, which the wiki marks chaostalisman=yes.
+    // ~ultrarare_getitem chains into ~randomjewel, and ~randomjewel's talisman slot reads the
+    // caller's own z: below 6400 it is a nature talisman, above it a chaos one. The basement sits
+    // at z 9960-10004, so the chaos talisman falls out of it without a special case here.
+    obj_add(npc_coord, ~ultrarare_getitem, ^lootdrop_duration);
+}
+// Tertiary. The basement's hard clue is twice as likely as the floor above's.
+~trail_hardcluedrop(256, npc_coord);
