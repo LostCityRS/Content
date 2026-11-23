@@ -19,9 +19,21 @@ if (string_length($message) > 0) {
 // inv space check doesnt seem to have consistent behavior so its not included in this proc.
 [proc,check_fish_equipment](namedobj $fish_equipment)(boolean)
 def_struct $struct = oc_param($fish_equipment, fish_equipment_struct);
-// check if they have fishing equipment. A barb-tail harpoon (Hunter: barb-tailed kebbits) fishes
-// anything a harpoon does, as in OSRS; ~fish_harpoon_held is the one place that knows it.
-if (inv_total(inv, $fish_equipment) < 1 & ($fish_equipment ! harpoon | inv_total(inv, barbtail_harpoon) < 1)) {
+// THREE THINGS FISH A HARPOON SPOT, and ~fish_harpoon_usable is the one place that knows them:
+// the harpoon itself, a barb-tail harpoon (Hunter: barb-tailed kebbits), and a dragon harpoon.
+if ($fish_equipment = harpoon) {
+    if (~fish_harpoon_usable = null) {
+        anim(null, 0);
+        // THE LEVEL, NOT THE TOOL, when a dragon harpoon is the only harpoon they have: telling
+        // somebody holding one that they need a harpoon sends them off to buy a second harpoon.
+        if (inv_total(inv, dragon_harpoon) > 0 | inv_total(worn, dragon_harpoon) > 0) {
+            ~mesbox("You need a Fishing level of <tostring(^dragon_harpoon_fishing_level)> to use a dragon harpoon.");
+        } else {
+            ~mesbox(struct_param($struct, fish_equipment_failmessage));
+        }
+        return(false);
+    }
+} else if (inv_total(inv, $fish_equipment) < 1) {
     anim(null, 0);
     ~mesbox(struct_param($struct, fish_equipment_failmessage));
     return(false);
@@ -44,9 +56,17 @@ if (npc_param(is_whirlpool) = ^true) {
     return;
 }
 
+// "The harpoon gives the player a 20% increased catch rate compared to the regular harpoon."
+// Every harpoon spot in the build passes `harpoon` through here - sharks, tuna and swordfish, sea
+// turtles and manta rays - so this is the only place the bonus has to be applied.
+def_boolean $dragon = false;
+if ($equipment = harpoon & ~fish_harpoon_usable = dragon_harpoon) {
+    $dragon = true;
+}
+
 if ($fish2 ! null) { // if fish2 isnt null and roll for 2nd fish passes
     def_struct $struct2 = oc_param($fish2, fishing_struct);
-    if (stat_random(fishing, struct_param($struct2, success_low), struct_param($struct2, success_high)) = true) {
+    if (~fish_catch_roll($struct2, $dragon) = true) {
         if ($bait ! null) {
             // delete bait
             inv_del(inv, $bait, 1);
@@ -64,7 +84,7 @@ if ($fish2 ! null) { // if fish2 isnt null and roll for 2nd fish passes
 }
 if ($fish1 ! null) { // else if fish1 isnt null and roll for 1st fish passes
     def_struct $struct1 = oc_param($fish1, fishing_struct);
-    if (stat_random(fishing, struct_param($struct1, success_low), struct_param($struct1, success_high)) = true) {
+    if (~fish_catch_roll($struct1, $dragon) = true) {
         if ($bait ! null) {
             // delete bait
             inv_del(inv, $bait, 1);
@@ -111,10 +131,62 @@ if ($fish1 ! null) { // else if fish1 isnt null and roll for 1st fish passes
     }
 }
 
-// Which harpoon the player is actually carrying - the plain one first, else a barb-tail harpoon -
-// for the two things that TAKE the harpoon away: a whirlpool, and dropping it in the lava.
+// Which harpoon the player is actually carrying - the plain one first, else a barb-tail harpoon,
+// else a dragon harpoon out of the pack - for the two things that TAKE the harpoon away: a
+// whirlpool, and dropping it in the lava.
+//
+// A WIELDED DRAGON HARPOON IS NOT LISTED, and the omission is the behaviour. Both callers delete
+// out of the pack (`inv_del(inv, ...)`), so a harpoon in the weapon slot is already beyond their
+// reach, and a dragon harpoon is the only harpoon that can be in the weapon slot. Fishing with it
+// wielded therefore survives the whirlpool, which is where anyone who owns one will keep it.
+// Writing an exemption for the pack case as well would be inventing a rule; this is only the one
+// that already applies.
 [proc,fish_harpoon_held](namedobj $equipment)(namedobj)
-if ($equipment = harpoon & inv_total(inv, harpoon) < 1 & inv_total(inv, barbtail_harpoon) > 0) {
-    return(barbtail_harpoon);
+if ($equipment = harpoon & inv_total(inv, harpoon) < 1) {
+    if (inv_total(inv, barbtail_harpoon) > 0) {
+        return(barbtail_harpoon);
+    }
+    if (inv_total(inv, dragon_harpoon) > 0) {
+        return(dragon_harpoon);
+    }
 }
 return($equipment);
+
+// WHICH HARPOON THE PLAYER MAY FISH WITH, best first, or null for none at all.
+//
+// The dragon harpoon is looked for in the worn inventory as well as the pack because it is the
+// only harpoon that can be equipped, and in Old School fishing with it equipped is the normal way
+// to carry it. Nothing else here can be worn, so nothing else needs the second look.
+//
+// Sixty-one Fishing is Old School's requirement to use it, read off the player's current level
+// rather than their base, as tool requirements are.
+[proc,fish_harpoon_usable]()(namedobj)
+if (inv_total(inv, dragon_harpoon) > 0 | inv_total(worn, dragon_harpoon) > 0) {
+    if (stat(fishing) >= ^dragon_harpoon_fishing_level) {
+        return(dragon_harpoon);
+    }
+}
+if (inv_total(inv, harpoon) > 0) {
+    return(harpoon);
+}
+if (inv_total(inv, barbtail_harpoon) > 0) {
+    return(barbtail_harpoon);
+}
+return(null);
+
+// ONE CATCH ROLL, with the dragon harpoon's twenty per cent folded into the engine's own formula
+// rather than bolted on beside it.
+//
+// stat_random(stat, low, high) interpolates low and high by the player's level into a single
+// number out of 256, and succeeds when a roll of 256 comes in under it. So scaling BOTH ends by
+// 6/5 scales that number, and with it the catch chance, by the same 20%. A second roll on failure
+// would not: it would be worth 20% of what was left rather than 20% more, and it would drift with
+// the level in a way the wiki's flat figure does not.
+[proc,fish_catch_roll](struct $struct, boolean $dragon)(boolean)
+def_int $low = struct_param($struct, success_low);
+def_int $high = struct_param($struct, success_high);
+if ($dragon = true) {
+    $low = calc($low * 6 / 5);
+    $high = calc($high * 6 / 5);
+}
+return(stat_random(fishing, $low, $high));

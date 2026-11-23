@@ -91,3 +91,7 @@
 // coloured whips, ornament godswords, trimmed/gold/god skirts and hides, heraldic rune.
 // The generic [opheld2,_] equip checks no stats, so every wearable needs its own line.
 [opheld2,dragon_plateskirt_g] @levelrequire_defence_caps(60, last_slot);
+
+// The dragon harpoon is the dragon axe over again: 60 Attack to wield it, which is this line,
+// and 61 Fishing to fish with it, which is separate and lives in skill_fishing/scripts/fishing.rs2.
+[opheld2,dragon_harpoon] @levelrequire_attack(60, last_slot);

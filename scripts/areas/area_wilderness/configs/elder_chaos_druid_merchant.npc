@@ -1,0 +1,27 @@
+// The Elder Chaos druid who exchanges banknotes for bones, outside the Chaos Temple in level 38
+// Wilderness. https://oldschool.runescape.wiki/w/Elder_Chaos_druid_(NPC)
+//
+// A SECOND NPC WITH THE SAME NAME, which is how Old School has it: elder_chaos_druid is the
+// combat-level-129 mage with op2=Attack, and this one only talks. Same robes, so he reads as one
+// of them standing at the door rather than as a shopkeeper who wandered into the Wilderness.
+//
+// vislevel=hide because he has no combat level to show, and wanderrange=0 because a merchant who
+// strays is a merchant the altar's customers cannot find - a spawn with no wander range has
+// usually already moved by the time anyone looks.
+[elder_chaos_druid_merchant]
+name=Elder Chaos druid
+desc=A follower of Zamorak.
+model1=npc_elder_chaos_druid_1
+model2=npc_elder_chaos_druid_2
+model3=npc_elder_chaos_druid_3
+model4=npc_elder_chaos_druid_4
+model5=npc_elder_chaos_druid_5
+model6=npc_elder_chaos_druid_6
+model7=npc_elder_chaos_druid_7
+head1=obj_elder_chaos_hood_manhead
+head2=idk_man_jaw_goatee_head
+readyanim=human_ready
+walkanim=human_walk_f
+op1=Talk-to
+vislevel=hide
+wanderrange=0

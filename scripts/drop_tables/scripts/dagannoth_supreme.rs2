@@ -10,6 +10,13 @@
 //  - dragon pickaxe: NOT a Dagannoth King drop in OSRS. It was here at 1/128 and has been moved to
 //    the bosses the wiki's Dragon pickaxe page actually lists and this build actually has - the
 //    Kalphite Queen, the Chaos Elemental and the King Black Dragon.
+//
+// ONE DROP HERE IS NOT OLD SCHOOL'S, and it is deliberate: the dragon harpoon, at 1/128. Old
+// School drops it from wyrms (1/2,000 on a Slayer task) and originally from the Chambers of Xeric,
+// neither of which this build has, and it is the obvious companion to the dragon axe this king
+// already drops at the same rate. It is noted, as the axe is. Its slot was taken OUT OF THE GEM
+// BAND - 24 slots now rather than 25 - so that no existing rate in this table moved.
+//
 // Note: this is the poisonous king (see dagcave_ranged_boss's poison_severity param) - matches wiki.
 
 [ai_queue3,dagcave_ranged_boss]
@@ -60,6 +67,9 @@ if ($random < 10) { // osrs (25-50 mithril knives)
     obj_add(npc_coord, cert_yew_logs, ~random_range(50, 150), ^lootdrop_duration);
 } else if ($random < 75) { // osrs (5 raw shark)
     obj_add(npc_coord, shark, 5, ^lootdrop_duration);
+} else if ($random < 76) { // NOT an osrs drop - see the note at the top of this file
+    obj_add(npc_coord, cert_dragon_harpoon, 1, ^lootdrop_duration);
+    ~collection_log_add(cert_dragon_harpoon, 1);
 } else if ($random < 100) { // gem table access, same rate band style as kbd
     obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
 } else { // rare/ultra-rare table access
