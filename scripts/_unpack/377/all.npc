@@ -23576,6 +23576,10 @@ head2=idk_man_jaw_pointy_head
 head3=npc_doctor_orbon_head
 category=bank_teller
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [magearena_runeshop]
 name=Lundail
 desc=He sells rune stones.
@@ -33784,6 +33788,10 @@ category=bank_teller
 // FIXED 2026-09-08 (combat-stat audit): op2=Attack and no combat stats at all - unkillable.
 // Stat block copied verbatim from [man]: Arnor 1 <- Man 2.
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [misc_etc_man_1]
 name=Arnor
 desc=A subject of Etceteria.
@@ -39705,6 +39713,25 @@ op3=Bank
 head1=npc_1686_head
 category=bank_teller
 
+// A TELLER STANDS AT ITS COUNTER. These three lines are [banker1]'s, in
+// interface_bank/configs/banker.npc, which is what the 62 ordinary city tellers carry - and 79 of
+// the build's 98 tellers in all. Twelve had NO movement config, so they took the engine default
+// and wandered up to five tiles, walking away from the booth while a player stood at it.
+//
+// AND IT UNDID THE FACING FIX at those banks. PathingEntity rewrites an npc's facing on every step
+// it takes, so the booth-facing set at spawn (interface_bank/scripts/banker_face.rs2,
+// DeathPlateau-Bugs#75) survived a few ticks and was then lost to a wander. That is how this was
+// found: the sim for #75 reported four tellers facing the wrong way, and they were not - they had
+// simply taken a step.
+//
+// NOTHING IN THE BUILD WANTS THEM TO MOVE, and that was checked rather than assumed before pinning
+// npcs belonging to nine areas' quests and minigames. Eleven of the twelve are referenced by no
+// script at all; the twelfth, magearena_banker, is referenced twice - [opnpc1] in
+// area_mage_arena/scripts/gundai.rs2 and [opnpcu] in interface_bank/scripts/platinum_token.rs2 -
+// and neither is about where it stands. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [ahoy_ghost_sailor]
 name=Ghost Sailor
 desc=A ghost sailor.
@@ -48991,6 +49018,10 @@ op3=Bank
 head1=npc_2093_head
 category=bank_teller
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [dwarf_city_banker2]
 name=Banker
 desc=A rather serious old fella.
@@ -49018,6 +49049,10 @@ op3=Bank
 head1=npc_upassdwarf3_head
 category=bank_teller
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [dwarf_city_librarian]
 name=Librarian
 desc=He takes care of the library and its many books.
@@ -51525,6 +51560,10 @@ head1=obj_leather_cowl_manhead2
 head2=npc_councillor_halgrive_head
 category=bank_teller
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [roguesden_trap_floor_spinningblades_0]
 name=Spin Blades
 desc=I don't think I want to get too close to that!
@@ -53521,6 +53560,10 @@ category=bank_teller
 // category, and every working banker in the game is served by [apnpc1,_bank_teller] /
 // [apnpc3,_bank_teller] in interface_bank/scripts/banker.rs2 via category=bank_teller.
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [mourning_elf_bankerf]
 name=Banker
 desc=She can look after my money.
@@ -53556,6 +53599,10 @@ category=bank_teller
 // them, so clicking Trade did nothing. category=shop_keeper + param=owned_shop is what
 // shop/scripts/shop.rs2's generic [opnpc3,_shop_keeper] binds against. Same defect as Jossik.
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [mourning_bow_seller]
 name=Dalldav
 desc=Buys and sells bows.
@@ -58519,6 +58566,10 @@ resizev=140
 head1=npc_2591_head
 category=bank_teller
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [tzhaar_merchant_equipment]
 name=TzHaar-Hur-Tel
 desc=Wonder what it's making.
@@ -68061,6 +68112,10 @@ head2=npc_3031_head
 head3=npc_1688_head
 category=bank_teller
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [elid_ranging_target]
 name=Target
 desc=Needs to be shot with a ranged weapon.
@@ -71630,6 +71685,10 @@ category=bank_teller
 // category, and every working banker in the game is served by [apnpc1,_bank_teller] /
 // [apnpc3,_bank_teller] in interface_bank/scripts/banker.rs2 via category=bank_teller.
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [fever_banker_02]
 name=Banker
 desc=He can look after my money.
@@ -71657,6 +71716,10 @@ head1=obj_pickpocket_guide_man
 head2=npc_pirate2_head
 category=bank_teller
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [chaoselemental]
 name=Chaos Elemental
 desc=pUre A cHaOs of crEatuRe!
