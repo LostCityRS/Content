@@ -412,10 +412,34 @@ def emit_enum(fams, items, path):
           ['// How many planks a piece costs, or 0 for the garden, whose materials are not planks.',
            '// What is actually spent is poh_furn_mat1/mat2 below; this is kept because the plank',
            '// families\' own rule is worth being able to read back.'])
-    table('poh_furn_xp', 'int', [(i['n'], i['xp']) for i in items],
-          ['// The Construction experience for building one. For a plank family this is planks x the',
-           '// per-plank value; for the garden it is OSRS\'s own number for that piece. One table either',
-           '// way, so the click does not have to know which kind of family it is in.'])
+    table('poh_furn_xp', 'int', [(i['n'], i['xp'] * 10) for i in items],
+          ['// The Construction experience for building one, IN TENTHS OF A POINT, which is what',
+           '// stat_advance takes. These were OSRS\'s whole numbers until now - 87 for a wooden chair',
+           '// rather than 870 - so every piece in the house paid a tenth of its experience, and a',
+           '// player on 10x received exactly the 1x amount and reported the multiplier as broken',
+           '// (DeathPlateau-Bugs#66, #63). The rate was never the problem.',
+           '//',
+           '// So: the wiki number x 10, done here rather than in the source tables so that every',
+           '// row stays readable as the number its wiki page gives. For a plank family that number',
+           '// is planks x the per-plank value; for the garden it is OSRS\'s own for that piece. One',
+           '// table either way, so the click does not have to know which kind of family it is in.'])
+    # WHICH PIECES ALSO PAY FARMING. A garden piece built from a bagged plant, tree or flower pays
+    # its Construction experience AGAIN in Farming: the wiki says both in one breath for each of
+    # them - bagged plant 1 is "31 experience to both Construction and Farming", bagged plant 3 is
+    # 100 to both, bagged nice tree 44 to both. The garden paid Construction only (#65).
+    #
+    # DERIVED FROM need, NOT A LIST KEPT BY HAND, so it cannot drift from what the garden actually
+    # plants: a new bagged piece is flagged by adding it, and nothing else.
+    #
+    # A FLAG RATHER THAN A SECOND COLUMN OF NUMBERS, because the two amounts are the same one and a
+    # copy would be a second place for it to go wrong. The caller reads poh_furn_xp once, pays twice.
+    table('poh_furn_garden', 'int',
+          [(i['n'], 1) for i in items if 'bagged' in i['need'].lower()],
+          ['// 1 for a piece planted from a bagged plant, tree or flower, which pays its Construction',
+           '// experience again in Farming; absent (0) for everything else. Three of these are verified',
+           '// against their own wiki pages - bagged plant 1, bagged plant 3 and bagged nice tree, so',
+           '// one plant, one tall plant and one tree - and the rest follow the rule those three state.'],
+          default=0)
     table('poh_furn_mat1', 'namedobj', [(i['n'], i['mats'][0][0]) for i in items],
           ['// WHAT A PIECE COSTS. Two materials are enough for everything the game asks for: planks for',
            '// the inside of a house, a bagged plant for a tree, and the two-material centrepieces',
@@ -951,7 +975,16 @@ def emit_rs2_tail(fams, items, byfam):
           '~poh_furn_show($item, $spot, $angle, 0);',
           # Through ~construction_xp, not stat_advance, so the carpenter's outfit pays its bonus
           # and a piece of it can turn up - the same funnel the other six skilling outfits ride on.
-          '~construction_xp(enum(int, int, poh_furn_xp, $item));',
+          #
+          # Read ONCE into $cxp, because the garden pays the same number a second time in Farming
+          # and two reads would be two places for it to drift. Farming gets the base amount, not
+          # $cxp plus the carpenter's bonus, because that outfit is a Construction outfit.
+          'def_int $cxp = enum(int, int, poh_furn_xp, $item);',
+          '~construction_xp($cxp);',
+          '// A garden piece pays the same again in Farming - OSRS gives both for a bagged plant.',
+          'if (enum(int, int, poh_furn_garden, $item) = 1) {',
+          '    stat_advance(farming, $cxp);',
+          '}',
           'if ($useflat = 1) {',
           '    mes("You assemble the <enum(int, string, poh_furn_name, $item)> from its flatpack.");',
           '} else {',

@@ -3651,8 +3651,14 @@ check(not _direct, 'nothing outside a quest awards these skills directly: %s'
 # the construction one is the newest and the whole reason the carpenter's outfit works
 check('~construction_xp(' in read('scripts/skill_construction/scripts/poh_furniture.rs2'),
       'building furniture goes through ~construction_xp')
-check("'~construction_xp(enum(int, int, poh_furn_xp, $item));'," in read('tools/genfurn.py'),
+_gf = read('tools/genfurn.py')
+check("'def_int $cxp = enum(int, int, poh_furn_xp, $item);'," in _gf
+      and "'~construction_xp($cxp);'," in _gf,
       '...and genfurn.py is what writes it, so a regenerate keeps it')
+# The Farming half rides the same emission, so it is pinned in the same place for the same reason.
+check("'    stat_advance(farming, $cxp);'," in _gf
+      and "'if (enum(int, int, poh_furn_garden, $item) = 1) {'," in _gf,
+      '...including the garden\'s Farming experience, so that survives a regenerate too')
 
 # a piece you already own is never given again - in the pack, worn OR banked
 for _proc in ('outfit_missing', 'outfit_roll'):
@@ -4973,6 +4979,53 @@ for _npc, _bones, _body in (('mm_religious_trapdoor_guard', 'mm_bearded_gorilla_
           '%s drops %s' % (_npc, _bones))
     check(re.search(r'^model\d*=%s' % _body, _blk, re.M),
           '...and wears the %s body those bones came off, which is why they are its drop' % _body)
+
+print()
+print('70. construction experience is in TENTHS, and the garden pays Farming too')
+# WHY A MULTIPLE OF TEN IS THE TEST. stat_advance takes tenths of a point, and poh_furn_xp held
+# OSRS's whole numbers - 87 for a wooden chair, not 870 - so every piece in the house paid a tenth
+# of its experience. A player on 10x therefore received exactly the 1x amount and reported the
+# multiplier as broken (#66, #63); the rate was never the problem, and measuring it showed 87.0 XP
+# where 870 was due. Every row is now wiki number x 10, so every row ends in a zero - and because
+# OSRS's own construction numbers mostly do NOT (58, 87, 116, 31, 44, 122, 141), a slip back to
+# whole points fails here on the next run rather than quietly paying a tenth.
+_fx = {i: int(v) for i, v in ftab['poh_furn_xp'].items()}
+_notenths = sorted((i, v) for i, v in _fx.items() if v % 10)
+check(not _notenths,
+      'every one of the %d experience numbers is in tenths: %s' % (len(_fx), _notenths[:4] or 'all end in 0'))
+
+# THE THREE WITH THEIR OWN WIKI PAGES, pinned by value. These are the rows a unit slip would move,
+# and unlike the multiple-of-ten rule above they say what the right number actually is.
+for _i, _want, _what in ((257, 310, 'bagged plant 1, 31 XP'), (244, 440, 'bagged nice tree, 44 XP'),
+                         (259, 1000, 'bagged plant 3, 100 XP')):
+    check(_fx.get(_i) == _want,
+          '%s -> %d tenths (is %s)' % (_what, _want, _fx.get(_i)))
+
+# THE GARDEN FLAG IS DERIVED, NOT TYPED. Farming experience is due on exactly the pieces that are
+# built out of a bagged plant, tree or flower, so the flag has to agree with poh_furn_need rather
+# than with a list someone kept by hand - that is the list that would drift the first time the
+# garden gained a piece.
+_bagged = {i for i, v in ftab['poh_furn_need'].items() if 'bagged' in v.lower()}
+_flagged = {i for i, v in ftab.get('poh_furn_garden', {}).items() if int(v) == 1}
+check(_flagged == _bagged,
+      'poh_furn_garden flags exactly the %d pieces poh_furn_need asks a bagged item for%s'
+      % (len(_bagged), '' if _flagged == _bagged else ': +%s -%s' % (sorted(_flagged - _bagged)[:3], sorted(_bagged - _flagged)[:3])))
+_gblk = FURN.split('[poh_furn_garden]', 1)[1].split('\n[', 1)[0] if '[poh_furn_garden]' in FURN else ''
+check('default=0' in _gblk,
+      '...and defaults to 0, so a piece nobody flagged pays no Farming rather than enum 0')
+
+# AND THE BUILD SITE PAYS BOTH, off one read of the table. Two reads would be two places for the
+# number to drift apart; the Farming side is the BASE amount, not the carpenter's-outfit total,
+# because that outfit is a Construction outfit.
+_fb = read('scripts/skill_construction/scripts/poh_furniture.rs2')
+check('def_int $cxp = enum(int, int, poh_furn_xp, $item);' in _fb,
+      'the build reads poh_furn_xp once, into $cxp')
+check('~construction_xp($cxp);' in _fb, '...pays it as Construction experience')
+check('if (enum(int, int, poh_furn_garden, $item) = 1) {' in _fb
+      and 'stat_advance(farming, $cxp);' in _fb,
+      '...and a garden piece pays the same number again in Farming')
+check(_fb.count('~construction_xp(') == 1,
+      'one build site, so there is nowhere else for a piece to be paid differently')
 
 print()
 print('ALL PASS' if fails == 0 else '%d FAILED' % fails)
