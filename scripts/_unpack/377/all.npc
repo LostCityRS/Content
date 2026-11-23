@@ -36347,6 +36347,27 @@ huntrange=8
 param=attack_anim,m_monkey_attack_bow
 param=defend_anim,m_monkey_block_bow
 
+// FIXED 2026-11-23 (DeathPlateau-Bugs#37, #43): aimed and never shot.
+// attackrange was 0, and the AP trigger is gated on inApproachDistance(attackrange, target), so
+// there was no distance at which this npc was allowed to act - and moverestrict=nomove means it
+// cannot close the gap either. 8 to match its own huntrange, as death_troll_thrower1 has.
+// category, because huntmode=mm_aggressive_ranged sets APPLAYER2 mode and the trigger for that
+// mode is per category: with none, the mode was set and nothing ever ran. The shot is in
+// quests/quest_mm/scripts/mm_archer.rs2.
+//
+// AND THE RANGED LEVEL, which this npc did not have. The wiki gives Monkey Archer att 80, str 80,
+// def 80, hp 50 and RANGE 110, with every offensive bonus at 0 - and the dump had mapped that 110
+// into param=rangeattack, which this engine reads as the equipment attack BONUS
+// (npc_combat_ranged.rs2 takes the level from npc_stat(ranged) and the bonus from that param). So
+// it had a 110 bonus on a ranged level of nothing: near-zero damage and far too accurate, both at
+// once. The level goes where the level goes and the bonus goes back to the wiki's 0.
+// max_hit is the wiki's published 20, which ~npc_ranged_maxhit prefers over its own derivation.
+ranged=110
+param=rangeattack,0
+param=max_hit,20
+attackrange=8
+category=mm_archer
+
 [mm_ravine_archer]
 name=Monkey Archer
 desc=A bow wielding ninja monkey. It looks particularly dangerous.
@@ -36381,6 +36402,27 @@ huntrange=8
 param=attack_anim,m_monkey_attack_bow
 param=defend_anim,m_monkey_block_bow
 
+// FIXED 2026-11-23 (DeathPlateau-Bugs#37, #43): aimed and never shot.
+// attackrange was 0, and the AP trigger is gated on inApproachDistance(attackrange, target), so
+// there was no distance at which this npc was allowed to act - and moverestrict=nomove means it
+// cannot close the gap either. 8 to match its own huntrange, as death_troll_thrower1 has.
+// category, because huntmode=mm_aggressive_ranged sets APPLAYER2 mode and the trigger for that
+// mode is per category: with none, the mode was set and nothing ever ran. The shot is in
+// quests/quest_mm/scripts/mm_archer.rs2.
+//
+// AND THE RANGED LEVEL, which this npc did not have. The wiki gives Monkey Archer att 80, str 80,
+// def 80, hp 50 and RANGE 110, with every offensive bonus at 0 - and the dump had mapped that 110
+// into param=rangeattack, which this engine reads as the equipment attack BONUS
+// (npc_combat_ranged.rs2 takes the level from npc_stat(ranged) and the bonus from that param). So
+// it had a 110 bonus on a ranged level of nothing: near-zero damage and far too accurate, both at
+// once. The level goes where the level goes and the bonus goes back to the wiki's 0.
+// max_hit is the wiki's published 20, which ~npc_ranged_maxhit prefers over its own derivation.
+ranged=110
+param=rangeattack,0
+param=max_hit,20
+attackrange=8
+category=mm_archer
+
 [mm_posted_archer]
 name=Monkey Archer
 desc=A bow wielding ninja monkey.
@@ -36414,6 +36456,27 @@ huntmode=mm_aggressive_ranged
 huntrange=8
 param=attack_anim,m_monkey_attack_bow
 param=defend_anim,m_monkey_block_bow
+
+// FIXED 2026-11-23 (DeathPlateau-Bugs#37, #43): aimed and never shot.
+// attackrange was 0, and the AP trigger is gated on inApproachDistance(attackrange, target), so
+// there was no distance at which this npc was allowed to act - and moverestrict=nomove means it
+// cannot close the gap either. 8 to match its own huntrange, as death_troll_thrower1 has.
+// category, because huntmode=mm_aggressive_ranged sets APPLAYER2 mode and the trigger for that
+// mode is per category: with none, the mode was set and nothing ever ran. The shot is in
+// quests/quest_mm/scripts/mm_archer.rs2.
+//
+// AND THE RANGED LEVEL, which this npc did not have. The wiki gives Monkey Archer att 80, str 80,
+// def 80, hp 50 and RANGE 110, with every offensive bonus at 0 - and the dump had mapped that 110
+// into param=rangeattack, which this engine reads as the equipment attack BONUS
+// (npc_combat_ranged.rs2 takes the level from npc_stat(ranged) and the bonus from that param). So
+// it had a 110 bonus on a ranged level of nothing: near-zero damage and far too accurate, both at
+// once. The level goes where the level goes and the bonus goes back to the wiki's 0.
+// max_hit is the wiki's published 20, which ~npc_ranged_maxhit prefers over its own derivation.
+ranged=110
+param=rangeattack,0
+param=max_hit,20
+attackrange=8
+category=mm_archer
 
 [mm_religious_guard]
 name=Monkey Guard
