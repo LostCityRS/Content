@@ -108,6 +108,15 @@
 // through in a few tries rather than a wall. The door can be tried again as often as you like.
 ^mm_jail_pick_low = 80
 ^mm_jail_lockpick_bonus = 40
+// A GUARD IN THE PASSAGE when you let yourself out. The prison has never had one: mm_monkey_guard
+// has no static spawn anywhere in the build and exists only as a captor the gate ambush adds, so
+// the lock could be picked and walked away from with nothing in the way (DeathPlateau-Bugs#41).
+//
+// 2, which is the coin toss ~mm_monkey_captured already uses for its second guard on the wiki's
+// "one or two of these may appear". The wiki gives no probability for the patrol being outside your
+// door, and a single roll is this build's stand-in for timing a patrol it has no route for - so
+// this is the one number here that is a choice rather than a reading. One line to tune.
+^mm_jail_guard_chance = 2
 ^mm_jail_cell = 0_43_43_19_42    // 2771,2794  inside the one cell with a lock worth picking
 ^mm_jail_outside = 0_43_43_19_44 // 2771,2796  the other side of that door, which is inside Marim
 

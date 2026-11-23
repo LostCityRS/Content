@@ -362,6 +362,35 @@ sound_synth(door_open, 1, 0);
 mes("...and the lock gives.");
 p_delay(1);
 p_teleport(^mm_jail_outside);
+
+// AND SOMETIMES A GUARD IS STANDING THERE. Wiki steps 13-14 are a lock picked against a patrol,
+// and this build had the lock and not the patrol: mm_monkey_guard has no static spawn anywhere, so
+// the prison held five archers who cannot reach the corridor and nothing else
+// (DeathPlateau-Bugs#41). Corey's call (option A, 23 November): reuse the ambush rather than place
+// a guard on a coordinate the cache does not give, or write a patrol route.
+//
+// ~mm_captor_add is the gate's own mechanism - it finds a walkable square within three tiles, adds
+// the guard for ^mm_captor_lifetime and sets it on the player - and [ai_opplayer2,_mm_captor]
+// already owns everything after that: Karam killing it, the greegree ending it, and the arrest
+// through [queue,mm_arrested] into @mm_jail_knockout, which is the same knockout the gate uses. So
+// "caught on patrol" costs no new map data and no second arrest path.
+//
+// NOT IF YOU ARE A MONKEY. The captor would be added and then vanish on its first swing, because
+// ai_opplayer2 checks the greegree - correct, but a guard that appears in order to disappear is
+// worse than no guard. mm.hunt's check_invparam cannot do it for us here: ~mm_captor_add sets
+// opplayer2 by hand and never goes through the hunt.
+//
+// AND THE SAME COOLDOWN THE VILLAGE USES, so picking the lock, being knocked back in and picking it
+// again is one guard rather than a queue of them. %mm_guards_cooldown is only spent when a guard
+// actually appears; a failed roll leaves the next escape its own chance.
+if (~mm_is_monkey = false & %mm_guards_cooldown <= map_clock & random(^mm_jail_guard_chance) = 0) {
+    %mm_guards_cooldown = add(map_clock, ^mm_captor_cooldown);
+    ~mm_captor_add(mm_monkey_guard);
+    // A LINE, NOT A MODAL, and then nothing else: mm_capture.rs2 records why - a box to close
+    // while a level-149 monkey walks up to you, and a modal holds the queued arrest.
+    mes("A guard is in the passage outside, and it has seen you.");
+    return;
+}
 ~mesbox("You are inside the walls of Marim, which is further than the gate was ever going to get you.");
 
 [oploc1,mm_jail_door_unpickable]
