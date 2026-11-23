@@ -1,0 +1,84 @@
+// The Elder Chaos druid outside the Chaos Temple, who exchanges bone banknotes for bones.
+// https://oldschool.runescape.wiki/w/Elder_Chaos_druid_(NPC) - and the dialogue below is the
+// transcript, https://oldschool.runescape.wiki/w/Transcript:Elder_Chaos_druid_(NPC)
+//
+// He is there for the altar inside (skill_prayer/scripts/chaos_altar.rs2): 3.5x experience with a
+// half chance of keeping the bone, which is worth carrying hundreds of bones for, and hundreds of
+// bones do not fit in a pack. Fifty coins a bone is what Old School charges.
+//
+// WHAT HE WILL TAKE IS THE ALTAR'S OWN TEST, not a list of bones kept in step by hand: "I only
+// exchange items that can be offered as a sacrifice to The Dark Lord's altar" is literally what he
+// says, so this asks the same two questions chaos_altar.rs2 asks - category bones, and a bone_exp
+// param above zero. A bone the altar will take, he will unnote; one it will not, he will not.
+
+[opnpc1,elder_chaos_druid_merchant]
+~chatnpc("<p,neutral>Hello, and welcome to The Dark Lord's temple. Zamorak will reward those who offer the bones of the vanquished on his altar.");
+~chatnpc("<p,neutral>I can exchange banknotes for bones, should you require such a service.");
+~chatnpc("<p,neutral>My services, however, are not free. I charge <tostring(^elder_chaos_unnote_fee)> coins per banknote.");
+def_int $choice = ~p_choice3("Yes please.", 1, "Who are you?", 2, "No thanks.", 3);
+while ($choice ! 0) {
+    if ($choice = 1) {
+        // No player line here, and that is the transcript: he answers the option directly.
+        ~chatnpc("<p,neutral>Hand me the banknotes you wish me to exchange.");
+        return;
+    } else if ($choice = 2) {
+        ~chatplayer("<p,quiz>Who are you?");
+        ~chatnpc("<p,neutral>That is not important. I am here to facilitate your offerings to The Dark Lord. Would you like any bone banknotes exchanged?");
+        $choice = ~p_choice2("Yes please.", 1, "No thanks.", 3);
+    } else {
+        ~chatplayer("<p,neutral>No thanks.");
+        return;
+    }
+}
+
+// HANDING HIM THE NOTES. The checks are in Old School's order, each with its own line, because a
+// player who is told the wrong one goes away thinking the service is broken.
+[opnpcu,elder_chaos_druid_merchant]
+def_obj $note = last_useitem;
+def_obj $bone = oc_uncert($note);
+// oc_uncert answers the obj itself unless the obj is a banknote, so this is the whole test.
+if ($bone = $note) {
+    ~chatnpc("<p,neutral>I exchange banknotes for real items. That's not a banknote.");
+    return;
+}
+if (oc_category($bone) ! bones | oc_param($bone, bone_exp) <= 0) {
+    ~chatnpc("<p,neutral>I only exchange items that can be offered as a sacrifice to The Dark Lord's altar.");
+    return;
+}
+if (inv_total(inv, coins) < ^elder_chaos_unnote_fee) {
+    ~chatnpc("<p,neutral>I charge <tostring(^elder_chaos_unnote_fee)> coins for exchanging each banknote.");
+    return;
+}
+
+// ONE BONE AT A TIME, AND THE LOOP IS THE SPACE CHECK.
+//
+// Doing the whole stack in one call means working out how many bones fit, and the answer is not
+// inv_freespace: the note's slot comes free when the last note leaves it, and the coins' slot
+// comes free if the fee empties it, so the arithmetic depends on its own result. Getting it wrong
+// is not a cosmetic bug either - inv_moveitem_uncert drops whatever will not fit AT THE PLAYER'S
+// FEET, and this is level 38 Wilderness.
+//
+// So each pass asks for one slot, which is the truth: a bone off a stack of notes needs a free
+// slot, except for the last note, whose own slot it inherits. Twenty-eight passes at most, and no
+// ticks pass in any of them.
+def_int $done = 0;
+def_int $wanted = min(inv_total(inv, $note), calc(inv_total(inv, coins) / ^elder_chaos_unnote_fee));
+def_boolean $noroom = false;
+while ($done < $wanted & $noroom = false) {
+    if (inv_freespace(inv) < 1 & inv_total(inv, $note) > 1) {
+        // nothing more will fit, and no slot is about to come free
+        $noroom = true;
+    } else {
+        inv_del(inv, coins, ^elder_chaos_unnote_fee);
+        inv_moveitem_uncert(inv, inv, $note, 1);
+        $done = add($done, 1);
+    }
+}
+if ($done < 1) {
+    ~chatnpc("<p,neutral>Your inventory is too full.");
+    return;
+}
+// Old School says nothing on success and the bones simply appear. The leprechaun in this build
+// says what he took (skill_farming/scripts/leprechaun.rs2) and a part-exchange is otherwise silent
+// about why it stopped, so the count is reported the same way.
+mes("The druid exchanges <tostring($done)> x <oc_name($bone)> for you.");
