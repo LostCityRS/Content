@@ -1,4 +1,4 @@
-// The iron spit, and the one thing it is for.
+// The iron spit, and the two things it is for.
 //
 // The spit is smithed from an iron bar at 17 Smithing and then, before this, did nothing at all -
 // the playtest report's "iron spit - nothing interesting happens". Its use is cooking: thread raw
@@ -15,11 +15,33 @@
 // food, and only over a fire - a range has nowhere to rest a spit. Eating the roast needs nothing
 // new: the opheld audit already gave it a handler and a 7-hitpoint heal, and the Hitpoints guide
 // has listed it all along. The food simply could not be reached.
+//
+// THE CHOMPY IS THE SAME DEAD END, reported separately (DeathPlateau-Bugs#77) and found the same
+// way. spit_skewered_chompy has been in the 377 cache all along with a model, a name and obj id
+// 7230 - the id Old School itself uses for it - and nothing in the build reached it, so the only
+// route the wiki documents for cooking a chompy did not exist. Old School: use an iron spit on a
+// raw chompy, then the skewered chompy on a FIRE, Cooking 30, for a cooked chompy or a ruined one.
+// https://oldschool.runescape.wiki/w/Skewered_chompy
+//
+// ONE PAIR, EITHER WAY ROUND, and that is already handled: raw_chompy has an [opheldu,raw_chompy]
+// of its own for the chompy seasonings, and "use a on b" reaches only one of the two triggers. Its
+// case list does not include the spit, so it falls to ~displaymessage(^dm_default) - which is the
+// one place a script says "these two do not go together" and hands the click to the other half
+// (misc/scripts/displaymessage.rs2). So the case below answers both directions.
+//
+// IT IS NOT A RECIPE FOR DISASTER STEP HERE. Our Freeing Skrach Uglogwee wants a cooked JUBBLY on
+// the platter, which is the dish Old School hands over too, and the journal says so at every stage
+// - the skewered chompy is Old School's way onto the boat back from Karamja, and ours is a boat the
+// player hollows out with an axe. This fixes the dead end, not a blocked quest.
 [opheldu,spit_iron]
 switch_obj(last_useitem) {
     case raw_rabbit :
         inv_del(inv, raw_rabbit, 1);
         inv_add(inv, spit_skewered_rabbit_meat, 1);
         mes("You skewer the rabbit on the iron spit.");
+    case raw_chompy :
+        inv_del(inv, raw_chompy, 1);
+        inv_add(inv, spit_skewered_chompy, 1);
+        mes("You skewer the chompy on the iron spit.");
     case default : ~displaymessage(^dm_default);
 }
