@@ -33,16 +33,23 @@
 // Grace's recolour kits are priced the same way.
 //
 // 200 POINTS FOR EXPLORER'S RING 4 (Corey, 23 November): "it's the best item by far because of the
-// teleports to everywhere." It was 50, which was set when it was the only thing on the shelf and
-// priced off how long a habit took to earn it - a couple of tickets a day on a 12-hour cooldown,
-// so three or four weeks. That was the wrong question. What the ring is worth is not how long it
-// takes to earn, it is that it moves you anywhere: the cabbage-patch teleport plus the farm
-// teleport, unlimited, on a ring slot nobody was using. Nothing else in the shop changes a day's
-// play that much, so nothing else should cost less than it by a nose.
+// teleports to everywhere." It was 50, set when the ring was the only thing on the shelf. What the
+// ring is worth is not how long it takes to earn, it is that it moves you anywhere: the
+// cabbage-patch teleport plus the farm teleport, unlimited, on a ring slot nobody was using.
+// Nothing else in the shop changes a day's play that much, so nothing else should cost less than
+// it by a nose. 200 is four times the old number and twice the dearest diary piece.
 //
-// 200 is four times the old number and twice the dearest diary piece, which puts it at roughly
-// three to four MONTHS of voting rather than weeks. Change this one number to move the price;
-// nothing else refers to 200, and the sim reads it off the obj rather than repeating it.
+// WHAT THAT IS IN DAYS DEPENDS ON LIVE CONFIG THIS FILE CANNOT SEE, and an earlier version of this
+// comment guessed at it and was wrong by a factor of ten - it said "a couple of tickets a day",
+// and the server pays 10 tickets per 12-hour window (Corey, 23 November). The rate is per-site, in
+// data/vote/sites.json on the server: `tickets` and `cooldownHours` per entry, validated by
+// engine/src/engine/vote/VoteSites.ts, and it is not in either repository. At 10 a window that is
+// 20 points a day if a player takes both windows every day, so 200 is ten days - or twenty at one
+// window a day, which is what most people actually do. Weeks, not months.
+//
+// So price the shelf by what an item DOES, which this file can see, and leave the calendar to
+// whoever sets the ticket rate. Change this one number to move the price; nothing else refers to
+// 200, and the sim reads it off the obj rather than repeating it.
 ^vote_price_explorers_ring = 200
 
 // ============================================================================ the elite diary set
@@ -58,7 +65,8 @@
 // was 50, ranked by how much the item changes a day's play rather than by its stats. The ring has
 // since gone to 200 and the band has NOT been rescaled with it, so the nine are now cheap relative
 // to the ring by design rather than by arithmetic - whether they are priced right against each
-// other is a separate question, and an open one:
+// other is a separate question, and an open one. The whole set is 600, which at 10 tickets a
+// 12-hour window is about a month of voting both windows and two at one a day:
 //
 //   100  Varrock armour 4        a permanent 10% on every ore and every ore's xp
 //    90  Ardougne cloak 4        the best stab cape in the game, +6 prayer, and two teleports
