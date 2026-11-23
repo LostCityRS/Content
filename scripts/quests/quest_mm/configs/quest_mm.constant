@@ -251,6 +251,49 @@
 ^mm_zoo_cage_min = 0_40_51_40_10
 ^mm_zoo_cage_max = 0_40_51_47_19
 
+// --- Where a greegree works ---
+// Reported from play as "you can use a greegree outside of ape atoll", from 2600,3258 - sixteen
+// tiles south of the zoo's monkey cage. Nothing checked where you were: the hold option equipped
+// the thing and transformed you anywhere on the map.
+//
+// OSRS wiki (Greegree, Karamjan monkey greegree): "their use is limited to the island of Ape Atoll,
+// as Zooknock cannot use his magic over long distances" - EXCEPT the Ardougne Zoo, which is the one
+// place off the island where a greegree works, and the wiki says so in those words. That exception
+// is not optional here: ~mm_monkey_minder and ~mm_zoo_monkey_talk in mm_stage3.rs2 both gate on
+// ~mm_is_monkey, so the Awowogei step of this quest cannot be finished without it.
+//
+// THE ISLAND IS ALL FOUR OF ITS MAP SQUARES AND EVERY LEVEL OF THEM. x2688-2815 by z2688-2815 is
+// Ape Atoll and open sea and nothing else, so the squares are the island; levels 0-3 because the
+// walkways, the ravine and the agility course are up there. inzone compares level between the two
+// corners, which is why the max corner is level 3.
+^mm_atoll_min = 0_42_42_0_0             // 2688,2688
+^mm_atoll_max = 3_43_43_63_63           // 2815,2815
+// And the dungeon under it, which is the same x at z+6400 - see the [zone,0_42_142_*] traps in
+// mm_dungeon.rs2. Zooknock himself is down here at 2804,9146, so a greegree that stopped working
+// at the ladder would strand the player in front of the man who carved it.
+^mm_atoll_dungeon_min = 0_42_142_0_0    // 2688,9088
+^mm_atoll_dungeon_max = 3_43_143_63_63  // 2815,9215
+// THE ZOO IS THE MONKEY PEN AND ITS APPROACH, NOT THE WHOLE ZOO, and that is a narrower rule than
+// Old School's on purpose. The 377 cache has no fence or railing loc anywhere in the zoo - probed
+// for one - so there is nothing in the map to read the zoo's real boundary off, and a rectangle
+// drawn around the camels and the aviary as well would be a number I made up. This one is read off
+// the only things in the zoo a greegree does anything with: the monkey cage (^mm_zoo_cage_min/_max,
+// 2600-2607 by 3274-3283), the three mm_monkey_minder at 2598,3280 / 2600,3273 / 2607,3282, the
+// seven mm_zoo_monkey inside it, and the fairy ring at 2596,3277 (^fairy_to_ardougnezoo) that
+// players arrive by - plus a few tiles to walk up to a minder in.
+//
+// It is NOT drawn to exclude the tile the bug was reported from. 2600,3258 is eleven tiles south of
+// the nearest edge; a rectangle that only just missed it would be a rectangle fitted to the report.
+// Widening this to the whole zoo is these two lines and nothing else.
+//
+// Level 0 only: anything above ground inside this rectangle is an Ardougne building, not the zoo.
+// How often the watch looks, in ticks. Two, as ^falconry_interval - the other timer in the build
+// that takes something off you for leaving somewhere.
+^mm_greegree_watch_interval = 2
+
+^mm_zoo_min = 0_40_51_35_5              // 2595,3269
+^mm_zoo_max = 0_40_51_52_24             // 2612,3288
+
 // --- The final battle (m37_154) ---
 // mm_wallcrack_final_battle_room is placed at m37_154 (47,51) and nowhere else, and the room around
 // it is real terrain - o42/o22 with only the REMOVE_ROOFS and NOT_LOW_DETAIL flags, no blocking -

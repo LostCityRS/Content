@@ -222,11 +222,75 @@ p_transmogrify($form);
 // was one greegree and wrong the moment there were eight.
 ~mm_monkey_bas($form);
 p_animprotect(^true);
+softtimer(mm_greegree_watch, ^mm_greegree_watch_interval);
 
 [proc,mm_become_human]
 p_transmogrify(null);
 ~update_bas;
 p_animprotect(^false);
+clearsofttimer(mm_greegree_watch);
+
+// ---------------------------------------------------------------------------------------------------
+// WHERE A GREEGREE WORKS
+// ---------------------------------------------------------------------------------------------------
+// Ape Atoll, the dungeon under it, and the Ardougne Zoo - see the "Where a greegree works" block in
+// configs/quest_mm.constant for the three rectangles and why the zoo is one of them. Reported from
+// play as "you can use a greegree outside of ape atoll" (DeathPlateau-Bugs#49).
+[proc,mm_greegree_zone](coord $at)(boolean)
+if (inzone(^mm_atoll_min, ^mm_atoll_max, $at) = true) {
+    return(true);
+}
+if (inzone(^mm_atoll_dungeon_min, ^mm_atoll_dungeon_max, $at) = true) {
+    return(true);
+}
+if (inzone(^mm_zoo_min, ^mm_zoo_max, $at) = true) {
+    return(true);
+}
+return(false);
+
+// A SOFTTIMER AND NOT A ZONE TRIGGER, which was the first attempt and does not hold. [mapzoneexit]
+// is keyed on the 64x64 map square you LEFT, and the zoo rectangle is a corner of square 40_51:
+// walking from the monkey pen to the rest of north Ardougne never leaves the square, so nothing
+// would fire. The island does fill its four squares, but a teleport out of the dungeon, an
+// instanced move and a p_teleport from a script are all easier to get right with a tick check than
+// with a list of zones.
+//
+// Shaped on Matthias's falcon (skill_hunter/scripts/hunter_falconry.rs2), which is the same
+// problem - leave the enclosure and the glove comes off - down to the queue below, and like it
+// this runs only while there is something to watch: ~mm_become_monkey starts the timer and
+// ~mm_become_human stops it.
+[softtimer,mm_greegree_watch] queue(mm_greegree_watch_tick, 0, 0);
+
+// A QUEUE AND NOT THE SOFT TIMER ITSELF. ~unequip opens with `if (p_finduid(uid) = true)` because
+// taking something off needs protected access to the player, and a soft timer does not have it:
+// World.processTimers runs a SOFT timer unprotected on purpose, so that it can tick while the
+// player is busy. The first version of this called ~unequip straight from the timer, which printed
+// the "you are yourself again" line every time while silently leaving the greegree on - the sim
+// caught it as a message with no unequip behind it. A queue waits for the player the way the rest
+// of the engine does.
+[queue,mm_greegree_watch_tick]
+if (~mm_is_monkey = false) {
+    // The greegree went by some path that did not come through ~mm_become_human.
+    clearsofttimer(mm_greegree_watch);
+    return;
+}
+if (~mm_greegree_zone(coord) = true) {
+    return;
+}
+// NOTHING IS DESTROYED TO MAKE ROOM. Old School drops the greegree on the floor when your pack is
+// full as you leave, and the wiki warns players about losing one that way; this waits instead. A
+// full pack leaves you a monkey until a slot opens, which the next tick notices - and calling
+// ~unequip regardless would print "You don't have enough free space to do that." over and over for
+// as long as you stood there. It is a loophole and a deliberate one.
+if (inv_freespace(inv) < 1) {
+    return;
+}
+// Through ~unequip, so it goes back in the pack the ordinary way and ~on_unequip calls
+// ~mm_greegree_removed for us - which is what ends the transformation and stops this timer.
+~unequip(^wearpos_rhand);
+// mes and not ~mesbox: this is not a click the player made, and a pause-for-click in the middle of
+// a teleport is not something to inflict on them.
+mes("Whatever Zooknock did to the greegree does not reach this far. It goes limp in your hand, and you are yourself again.");
 
 // iop2=Hold is the cache's own option and is what the client shows, so opheld2 is the real trigger.
 // A category trigger beats the [opheld2,_] global wear, which is why this has to do the equip itself.
@@ -236,6 +300,14 @@ p_animprotect(^false);
 if (%mm_main < ^mm_has_greegree) {
     // Not obtainable before that point in the quest; this only guards a spawned or admin-given one.
     mes("Nothing happens. Whatever this is, it is not for you yet.");
+    return;
+}
+// AND NOT ANYWHERE ON THE MAP. Checked before ~equip rather than after, so a refusal does not
+// leave the greegree wielded and the player still a human - which is a worn mm_transmog_npc the
+// island's hunts would read as a monkey (configs/mm.hunt).
+if (~mm_greegree_zone(coord) = false) {
+    mes("Nothing happens.");
+    ~mesbox("Zooknock's magic does not carry this far. The greegree is a piece of carved wood anywhere but Ape Atoll and the monkey pen in Ardougne.");
     return;
 }
 ~equip(last_slot);
@@ -258,6 +330,16 @@ mes("You lower the greegree.");
 [proc,mm_greegree_login]
 def_npc $form = ~mm_greegree_form;
 if ($form = null) {
+    return;
+}
+// AND NOT IF YOU LOGGED OUT SOMEWHERE A GREEGREE DOES NOT WORK - which is where every account that
+// played before the zone check existed is standing. Transforming them here and letting the timer
+// undo it a tick later would be a flicker on every login; taking it off is what they would get by
+// walking one tile.
+if (~mm_greegree_zone(coord) = false) {
+    if (inv_freespace(inv) > 0) {
+        ~unequip(^wearpos_rhand);
+    }
     return;
 }
 ~mm_become_monkey($form);
