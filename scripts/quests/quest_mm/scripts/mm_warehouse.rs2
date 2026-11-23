@@ -18,6 +18,26 @@
 // makes the room feel searched rather than scripted, and because nine crates that hand out a free
 // tinderbox every few minutes is a vending machine, not a warehouse.
 
+// =========================================================================== the way in
+// THE DOORWAY INTO THE WAREHOUSE, which had op1=Open and no trigger (DeathPlateau-Bugs#44). A click
+// on it answered "Nothing interesting happens." and the player concluded it was what stood between
+// them and the M'amulet mould.
+//
+// IT WAS NOT. Checked before changing anything: the doorway's own tile is standable, every tile
+// around it is connected, and tools/sim's reachLoc says both quest crates can be reached from
+// outside without it ever opening. The mould was obtainable all along - the crates gate on
+// %mm_main < ^mm_met_garkor and say so in flavour text, which is the far likelier thing to have
+// stopped them. So this fixes a doorway that does nothing when clicked, not an unobtainable item,
+// and the comment on the issue says as much.
+//
+// mm_bamboo_door_secure_inactive is what it opens into: same model, same recolours, active=no, and
+// placed NOWHERE on the map - an open state that was built and never wired up. Clicking the doorway
+// now uses it.
+[oploc1,mm_bamboo_door_secure]
+p_arrivedelay;
+sound_synth(door_open, 1, 0);
+loc_change(mm_bamboo_door_secure_inactive, ^mm_warehouse_door_open_ticks);
+
 // =========================================================================== the dentures
 [oploc1,mm_denture_crate]
 p_arrivedelay;

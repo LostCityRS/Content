@@ -76,6 +76,10 @@
 ^mm_warehouse_cave = 0_43_143_17_13     // 2769,9165  straight down from mm_crate_over_hole
 ^mm_warehouse_rope_west = 0_43_43_12_13 // 2764,2765  the top of the western warehouse's rope
 ^mm_warehouse_rope_east = 0_43_43_46_17 // 2798,2769  and the eastern one's
+// How long the warehouse doorway stays open for. Long enough to walk in and back out without
+// standing in it, short enough that the room is not left permanently gaping - the same order as the
+// 500 ticks ~open_door gives an ordinary door (doors/scripts/doors.rs2).
+^mm_warehouse_door_open_ticks = 500
 
 // --- The hangar panel (wiki step 9) ---
 // bunker_controlpanal is placed at 2586,4507, the south-east corner of the hangar, which is where
