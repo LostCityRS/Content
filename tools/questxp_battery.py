@@ -73,11 +73,22 @@ HALF_POINTS = {
 
 print('1. every advertised XP number is ten times itself in tenths, somewhere the quest can reach')
 seen = 0
+# TWO CALL SHAPES, and the second one cost nine reward lists their check. Recipe for Disaster is a
+# single quest-list entry with ten sub-quests, so it CANNOT call ~send_quest_complete - that proc's
+# last act is to paint the entry green and print "Quest complete!", which the first sub-quest
+# finished would do for the whole quest - and it has its own ~hundred_subquest_scroll instead.
+# Reading only the standard call left all nine of its reward lists unexamined, and every one of
+# them was paying a tenth of what it printed: stat_advance(cooking, 1000) under a scroll promising
+# 1,000 Cooking XP (#70, reported on the goblin generals, true of all nine).
+#
+# So the shapes are listed rather than assumed. A quest that needs a third one has to add it here,
+# which is the point: a scroll this sweep cannot read is a reward nobody is checking.
+SCROLLS = ('send_quest_complete', 'hundred_subquest_scroll')
 for f in sorted(RS2):
-    if '~send_quest_complete' not in SRC[f]:
+    if not any('~%s' % _s in SRC[f] for _s in SCROLLS):
         continue
     base = os.path.basename(f)
-    for call in re.finditer(r'~send_quest_complete\((.*?)\);', SRC[f], re.S):
+    for call in re.finditer(r'~(?:%s)\((.*?)\);' % '|'.join(SCROLLS), SRC[f], re.S):
         args = call.group(1)
         txts = re.findall(r'"((?:[^"\\]|\\.)*)"', args)
         if not txts:

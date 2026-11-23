@@ -238,7 +238,8 @@
           "obj": "fenk_conductor",
           "mould": "fenk_lightning_mould",
           "struct": null,
-          "inv": "silvercast_lightning"
+          "inv": "silvercast_lightning",
+          "handler": "fenk_cast_conductor"
         },
         {
           "key": "tiara",
@@ -266,11 +267,13 @@
           "obj": "agrith_sigil",
           "mould": "agrith_sigil_mould",
           "struct": null,
-          "inv": "silvercast_agrith"
+          "inv": "silvercast_agrith",
+          "handler": "agrith_cast_sigil"
         }
       ],
       "_products_why": "THE SEVEN PRODUCTS ARE JAGEX'S OWN, not a reading of the panel's labels. scripts/_unpack/727/all.inv carries silvercast_holysymbol, silvercast_unholysymbol, silvercast_sickle, silvercast_lightning, silvercast_tiara, silvercast_agrith and silvercast_commandrod - seven single-slot inventories, one per slot of this panel, each stocking the product it shows - and all seven already have ids in pack/inv.pack. Nothing in this fork had ever used one. They name the three products the panel's own English does not: the lightning rod is fenk_conductor, the demonic sigil is agrith_sigil and the silvthrill rod is burgh_rod_command1. AN EARLIER DRAFT OF THIS ROUND SAID THOSE THREE HAD NO OBJ IN THIS BUILD AND WOULD STAY DEAD. That was a negative from a hand-guessed name: it searched for lightning_rod, silvthrill_rod and demonic_sigil_mould, none of which is what any of them is called. All six objs and both extra moulds are in pack/obj.pack.",
       "_wired_why": "Four of the seven are wired. The other three are quest steps - Creature of Fenkenstrain, In Aid of the Myreque and Shadow of the Storm - with no Crafting level and no Crafting experience anywhere to copy, and inventing either would be writing a number from nowhere. Their moulds are packed but nothing in this build hands one out, so their slots stay on the you-need-the-mould side by themselves. No code makes that happen and none should.",
+      "_lightning_and_sigil_why": "BOTH THE LIGHTNING ROD AND THE SIGIL ARE LIVE TOO, and saying otherwise was the bug. These two slots were pinned to the need-a-mould side unconditionally on the grounds that their quests were not in this build - and both are. Creature of Fenkenstrain hands out fenk_lightning_mould and Shadow of the Storm hands out agrith_sigil_mould, each carrying its recipe on the mould's own [opheldu]. So a player holding the mould opened this panel and was told they needed one (DeathPlateau-Bugs#67). A handler is all either needed, exactly as the silvthrill rod does it: the window has no number to charge for a quest step, and with a handler it does not need one, because the quest owns the level and the experience. The sigil still refuses at a furnace - it is cast in Uzer's four-hundred-year-old kiln, which is not a furnace at all - but it now refuses with the quest's own line pointing at that kiln, which is a great deal more use than being told to find a mould that is already in the bag.",
       "_silvthrill_why": "THE ROD IS LIVE NOW. In Aid of the Myreque hands out its mould - burgh_rod_clay, the impression taken off Ivandis's coffin lid - so the slot flips to the make state like the other four. Its button goes to [label,myreque2_cast_rod] in the quest rather than silver_casting_go, because the rod is the one product on this panel that takes more than a silver bar: silver and mithril and a sapphire, which is what the inscription on the tomb says."
     },
     {

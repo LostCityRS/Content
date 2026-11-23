@@ -232,15 +232,15 @@ if (inv_freespace(inv) < 2) {
     return;
 }
 inv_del(inv, twocats_present, 1);
-inv_add(inv, twocats_rewardlamp, 1);
+// TWO of them, 2,500 experience each, which is what Old School gives: "Two antique lamps worth
+// 2,500 experience each in skills of your choice over 30". This handed over one.
+inv_add(inv, twocats_rewardlamp, 2);
 inv_add(inv, twocats_mouse_toy, 1);
 ~mesbox("Inside the present is an antique lamp and, wrapped separately and rather more carefully, a toy mouse.");
 
 // Same interface the genie lamp and Recipe for Disaster's lamp use. ~xplamp_consume decides which
 // lamp to take out of the inventory, so this only has to open it.
-[opheld1,twocats_rewardlamp]
-%xplamp = ^xplamp_none;
-if_openmain(xplamp);
+// The lamps' [opheld1] is in general/scripts/xplamp/xplamp.rs2, with the other three lamps.
 
 [opheld3,twocats_amuletofcatspeak]
 ~mesbox("The amulet is sealed shut. It purrs when you hold it to your ear, which is either Neite's blessing or a very good imitation of one.");

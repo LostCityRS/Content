@@ -20,7 +20,7 @@ return($count);
 // The quest tab's Quick actions: what the mode means, in a message box.
 [proc,gamemode_explain]
 def_int $rate = ~xprate_current;
-def_int $percent = ~droprate_boost_percent;
+def_int $percent = ~droprate_boost_percent_mode;
 def_string $drops = "and normal drop rates";
 if ($percent > 0) {
     $drops = "and <tostring($percent)>% better drop rates from every monster's own drop table";

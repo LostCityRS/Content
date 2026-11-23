@@ -296,6 +296,20 @@ for p in prods:
                   'nothing hands out %s, or what does owns a recipe for it - on the mould\'s '
                   '[opheldu] or on this window\'s button for the slot' % p['mould'], 'yes')
 
+            # AND THE WINDOW MAY NOT LIE ABOUT A MOULD THE PLAYER IS HOLDING. The check above is
+            # satisfied by a recipe existing ANYWHERE, which is how this panel spent months telling
+            # a player with the conductor mould in their bag that they needed one: both quest slots
+            # were pinned to the need side with if_sethide(make_X, true) regardless of inventory,
+            # on the grounds that their quests were not in the build. Both were
+            # (DeathPlateau-Bugs#67).
+            #
+            # So: if something hands the mould out, this slot has to READ it. A slot nobody can
+            # ever reach is honest only while its mould is unobtainable.
+            if _given:
+                check('if (inv_total(inv, %s) > 0) {' % p['mould'] in sv,
+                      '...and because %s is obtainable, the %s slot flips on holding it rather '
+                      'than claiming you need one' % (p['mould'], p['key']), 'yes')
+
 
 # ---------------------------------------------------------------- 6
 group('6. the churn, and the three panels being the three inputs')

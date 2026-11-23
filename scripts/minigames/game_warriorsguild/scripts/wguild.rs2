@@ -140,7 +140,13 @@ if (npc_findhero = ^false) {
     return;
 }
 obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
-~cyclops_loot;
+// The guild's own tables, in wguild_cyclops.rs2. NOT ~cyclops_loot, which is the 377
+// cache's unrelated `cyclops` and is what these paid out until now.
+if ($basement = true) {
+    ~wguild_cyclops_loot_basement;
+} else {
+    ~wguild_cyclops_loot_top;
+}
 if (%wguild_target = ^wguild_target_none) {
     return;
 }

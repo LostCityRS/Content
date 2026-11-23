@@ -132,7 +132,19 @@ if (%hundred_main_quest_var < ^hundred_in_progress) {
 //
 // OLD SCHOOL PAYS PER SUB-QUEST rather than banking it all for the finale, and the finale's own
 // 20,000 lamp is already handed over by hundred_culinaromancer.rs2. Figures are the wiki's
-// per-sub-quest reward lists, cross-checked against its Quest experience rewards table:
+// per-sub-quest reward lists, cross-checked against its Quest experience rewards table.
+//
+// IN TENTHS BELOW, which they were not until now. stat_advance takes tenths of a point, and
+// these were written as the wiki's whole numbers - stat_advance(cooking, 1000) against a scroll
+// that promises 1,000 Cooking XP, so every sub-quest paid a tenth of what it advertised. A
+// player on 10x received exactly the 1x figure and reported the rate as broken
+// (DeathPlateau-Bugs#70, on the goblin generals; it was true of all nine).
+//
+// questxp_battery.py did not see any of this: it reads ~send_quest_complete calls, and these
+// nine go through ~hundred_subquest_scroll instead. It covers both shapes now.
+//
+// The list below stays in the wiki's own numbers, which is what the scrolls print; the grants
+// are those x 10:
 //
 //     Another Cook's Quest   quest point only, and the chest
 //     Mountain Dwarf         1,000 Cooking, 1,000 Slayer
@@ -158,47 +170,47 @@ switch_int ($bit) {
         ~hundred_subquest_scroll("You have completed\\nAnother Cook's Quest!",
             "1 Quest Point|The Culinaromancer's Chest");
     case ^hundred_bit_dwarf :
-        stat_advance(cooking, 1000);
-        stat_advance(slayer, 1000);
+        stat_advance(cooking, 10000);
+        stat_advance(slayer, 10000);
         ~hundred_subquest_scroll("You have freed\\nthe Mountain Dwarf!",
             "1 Quest Point|1,000 Cooking XP|1,000 Slayer XP|More of the Chest");
     case ^hundred_bit_goblins :
-        stat_advance(cooking, 1000);
-        stat_advance(farming, 1000);
-        stat_advance(crafting, 1000);
+        stat_advance(cooking, 10000);
+        stat_advance(farming, 10000);
+        stat_advance(crafting, 10000);
         ~hundred_subquest_scroll("You have freed\\nthe Goblin generals!",
             "1 Quest Point|1,000 Cooking XP|1,000 Farming XP|1,000 Crafting XP|More of the Chest");
     case ^hundred_bit_pirate :
-        stat_advance(cooking, 1000);
-        stat_advance(crafting, 1000);
-        stat_advance(fishing, 1000);
-        stat_advance(smithing, 1000);
+        stat_advance(cooking, 10000);
+        stat_advance(crafting, 10000);
+        stat_advance(fishing, 10000);
+        stat_advance(smithing, 10000);
         ~hundred_subquest_scroll("You have freed\\nPirate Pete!",
             "1 Quest Point|1,000 Cooking XP|1,000 Crafting XP|1,000 Fishing XP|1,000 Smithing XP");
     case ^hundred_bit_guide :
-        stat_advance(cooking, 2500);
-        stat_advance(magic, 2500);
+        stat_advance(cooking, 25000);
+        stat_advance(magic, 25000);
         ~hundred_subquest_scroll("You have freed\\nthe Lumbridge Guide!",
             "1 Quest Point|2,500 Cooking XP|2,500 Magic XP|More of the Chest");
     case ^hundred_bit_dave :
-        stat_advance(cooking, 7000);
+        stat_advance(cooking, 70000);
         ~hundred_subquest_scroll("You have freed\\nEvil Dave!",
             "1 Quest Point|7,000 Cooking XP|More of the Chest");
     case ^hundred_bit_ogre :
-        stat_advance(woodcutting, 1500);
-        stat_advance(cooking, 1500);
-        stat_advance(crafting, 1500);
-        stat_advance(ranged, 1500);
+        stat_advance(woodcutting, 15000);
+        stat_advance(cooking, 15000);
+        stat_advance(crafting, 15000);
+        stat_advance(ranged, 15000);
         ~hundred_subquest_scroll("You have freed\\nSkrach Uglogwee!",
             "1 Quest Point|1,500 Woodcutting XP|1,500 Cooking XP|1,500 Crafting XP|1,500 Ranged XP");
     case ^hundred_bit_varze :
-        stat_advance(cooking, 4000);
-        stat_advance(hitpoints, 4000);
+        stat_advance(cooking, 40000);
+        stat_advance(hitpoints, 40000);
         ~hundred_subquest_scroll("You have freed\\nSir Amik Varze!",
             "1 Quest Point|4,000 Cooking XP|4,000 Hitpoints XP|More of the Chest");
     case ^hundred_bit_monkey :
-        stat_advance(cooking, 10000);
-        stat_advance(agility, 10000);
+        stat_advance(cooking, 100000);
+        stat_advance(agility, 100000);
         ~hundred_subquest_scroll("You have freed\\nKing Awowogei!",
             "1 Quest Point|10,000 Cooking XP|10,000 Agility XP|More of the Chest");
 }

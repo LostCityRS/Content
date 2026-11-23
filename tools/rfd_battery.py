@@ -26,7 +26,16 @@ def check(ok, what):
     print(('  ok   ' if ok else '  FAIL ') + what)
     if not ok: fails += 1
 
-# name -> the experience that sub-quest hands over, by skill
+# name -> the experience that sub-quest hands over, by skill, IN THE WIKI'S OWN NUMBERS.
+# stat_advance takes TENTHS of a point, so these are compared against ten times themselves -
+# kept in the published figures here because that is what the reward scrolls print and what a
+# reader can check against a wiki page. The quest shipped these as whole numbers against
+# scrolls promising ten times as much, so every sub-quest paid a tenth of what it advertised
+# and a player on 10x got exactly the 1x figure (DeathPlateau-Bugs#70).
+#
+# THIS BATTERY COULD NOT HAVE CAUGHT THAT, because it was never wired into
+# .github/workflows/content.yml - written for RFD's rewards, and not run once. It is in the
+# workflow now.
 REWARDS = {
     'cook':    {},
     'dwarf':   {'cooking': 1000, 'slayer': 1000},
@@ -58,9 +67,10 @@ check(set(shipped) == set(REWARDS),
       'every sub-quest but the finale has a reward case: %s'
       % (sorted(set(REWARDS) ^ set(shipped)) or '%d of %d' % (len(shipped), len(REWARDS))))
 for name in sorted(REWARDS):
-    check(shipped.get(name) == REWARDS[name],
+    want = {k: v * 10 for k, v in REWARDS[name].items()}   # tenths, which is what stat_advance takes
+    check(shipped.get(name) == want,
           '  %-8s pays %s' % (name, REWARDS[name] or 'a quest point and nothing else')
-          + ('' if shipped.get(name) == REWARDS[name] else ' - ships %s' % shipped.get(name)))
+          + ('' if shipped.get(name) == want else ' - wanted %s in tenths, ships %s' % (want, shipped.get(name))))
 
 # ---- THE FINALE MUST NOT BE IN THERE. hundred_culinaromancer.rs2 sets that bit and then opens
 # its own ~send_quest_complete; a case here would put a second scroll on top of it.
@@ -88,6 +98,52 @@ check('if_setcolour' not in SCROLL and 'send_quest_complete' not in SCROLL,
       "the sub-quest scroll does not recolour the quest list or call ~send_quest_complete: "
       'Recipe for Disaster is ONE list entry with ten steps, and either would paint it green '
       'on the first sub-quest')
+
+print()
+print('A step the player cannot guess has to be named somewhere they will read it')
+# THE BUG. Freeing the Lumbridge Guide needs a cake of guidance, and the only thing in the build
+# that makes one is Wizard Traiborn. The journal said "a cake tin and a range will do the rest",
+# the plinth turned a plain cake away with "he needs something with more direction in it", and
+# Traiborn's name appeared NOWHERE a player could read it - not in the journal, not in the
+# inspect text, not in the refusal. The enchantment was added after the journal was written and
+# the journal was never told. So the quest asked for an item and withheld the one instruction
+# needed to make it (DeathPlateau-Bugs#62).
+GUIDE = read('scripts/quests/quest_100/scripts/hundred_guide.rs2')
+
+# Player-visible text only: strip whole-line comments, so a name that lives in a code comment -
+# which is where Traiborn's only mention used to be - does not count as having told anybody.
+_visible = '\n'.join(l for l in GUIDE.split('\n') if not l.lstrip().startswith('//'))
+
+check('hundred_cake_of_guidance' in _visible and 'inv_add(inv, hundred_cake_of_guidance' in _visible,
+      'the cake of guidance is made in this file and nowhere else')
+check('Traiborn' in _visible,
+      'and Traiborn, the only one who makes it, is named in text a player can read')
+
+# THE MOMENT OF CONFUSION, which is where the hint has to be. A player who followed the journal
+# arrives here holding exactly the wrong cake; this branch knew that and would not say what a
+# right one was.
+_a, _b = 'if (last_useitem = cake) {', 'if (last_useitem ! hundred_cake_of_guidance)'
+_plain = _a in GUIDE and _b in GUIDE and GUIDE.index(_a) < GUIDE.index(_b)
+check(_plain, 'the plinth still turns a plain cake away before the real one')
+_branch = GUIDE.split('if (last_useitem = cake) {', 1)[1].split('}', 1)[0] if 'if (last_useitem = cake) {' in GUIDE else ''
+check('Traiborn' in _branch,
+      '...and that refusal now says who can fix it, instead of only that it is wrong')
+
+# AND THE JOURNAL ANSWERS THE QUESTION IN FRONT OF THE PLAYER rather than one fixed block. RFD's
+# journal appends every sub-quest still open, so a long entry for each runs the page off the
+# bottom - which is why this is three states and not five more lines.
+# STOP AT THE NEXT PROC. This slice ran to end of file, and Traiborn's own two procs sit BELOW
+# the journal in this file - so it swallowed them, and the checks below passed on his name and
+# on an inv_total that belonged to his chat rather than to the journal. A mutation that blanked
+# the journal's plain-cake branch was not caught until this was narrowed.
+_journal = GUIDE.split('[proc,hundred_guide_journal]', 1)[1]
+_journal = re.split(r'\n\[(?:proc|label|op|if_)', _journal)[0]
+check('inv_total(inv, hundred_cake_of_guidance)' in _journal,
+      'the journal knows when the cake is already made, and says to go and use it')
+check('inv_total(inv, cake)' in _journal,
+      '...and when a plain cake is in the bag, which is the state that dead-ended')
+check(_journal.count('Traiborn') >= 2,
+      '...and names Traiborn in both of the states that need him')
 
 print()
 print('ALL PASS' if fails == 0 else '%d FAILED' % fails)

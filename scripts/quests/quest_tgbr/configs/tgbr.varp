@@ -32,9 +32,17 @@ scope=temp
 scope=temp
 type=boolean
 
-// Set while the blessed lamp is the item in the experience-lamp interface, so
-// general/scripts/xplamp/xplamp.rs2 can tell Old School's flat 5,000 from the genie lamp's
-// level-scaled award. temp: that interface is modal and the choice does not outlive it.
-[xplamp_blessed]
+// WHICH lamp is the item in the experience-lamp interface - see ^xplamp_lamp_* in
+// general/configs/xplamp.constant. Four objs share that interface and none of them pays the same
+// award, so a boolean "is it the blessed one" could not carry the answer; this is that boolean
+// widened in place rather than replaced, so no varp id moves.
+//
+// It lives here, under The Great Brain Robbery, because its boolean ancestor did. The interface it
+// serves is general, and so is what it now holds.
+//
+// temp, and that is NOT the same as cleared when the window closes - which is what the old comment
+// here assumed and what let a stale flag turn the next lamp blessed. Every one of the four
+// [opheld1] triggers sets it, and the award resets it, so nothing is inherited either way.
+[xplamp_kind]
 scope=temp
-type=boolean
+type=int

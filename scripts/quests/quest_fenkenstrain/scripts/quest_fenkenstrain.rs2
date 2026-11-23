@@ -376,6 +376,20 @@ if (last_useitem ! fenk_lightning_mould) {
 @fenk_cast_conductor;
 
 [label,fenk_cast_conductor]
+// CLOSE THE WINDOW FIRST. This is reached two ways now - the mould used on a silver bar, and the
+// furnace's Silver Casting panel, whose Lightning Rod slot calls straight in here - and the panel
+// would otherwise sit on top of every message below it. A close with nothing open costs nothing,
+// which is how myreque2_cast_rod handles the same two routes.
+// AND THE MOULD HAS TO BE IN THE BAG. The two older routes here both guaranteed it - the mould
+// used on a bar, or a bar used on the mould - because the mould WAS the item clicked. The Silver
+// Casting panel's slot is a third route that guarantees nothing: the slot is hidden without the
+// mould, and a hidden slot is not a refused click. Checked the way myreque2_cast_rod checks it,
+// for the same reason.
+if (inv_total(inv, fenk_lightning_mould) < 1) {
+    ~mesbox("You require a mould to make that.");
+    return;
+}
+if_close;
 if (stat(crafting) < 20) {
     mes("You need a Crafting level of 20 to cast this.");
     return;

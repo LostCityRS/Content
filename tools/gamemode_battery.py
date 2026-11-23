@@ -529,11 +529,33 @@ check(all(x in g for x in ('~trail_easycluedrop(1, $at)', '~trail_mediumcluedrop
       "a clue goes through its tier's own proc, one clue at a time")
 check('collection_log_item_index' in g and '~broadcast_drop($obj)' in g,
       'a collection log item is announced and logged, as the tables do their rares')
+# TWO PROCS: the one the ROLL reads, which honours %droprate_override, and the one the DISPLAYS
+# read, which is the account's mode and nothing else. The split is the whole point - an override
+# must not appear on the pages that tell a player what their mode gives - so each is asserted for
+# what only it is allowed to do. '[proc,droprate_boost_percent]' matches the first only: the
+# closing bracket keeps it from catching _mode.
 rolls = DROPRS.split('[proc,droprate_boost_percent]', 1)[1].split('\n[', 1)[0]
-check('^droprate_boost_realism' in rolls.split('return(')[-1],
+modes = DROPRS.split('[proc,droprate_boost_percent_mode]', 1)[1].split('\n[', 1)[0]
+check('%droprate_override' in rolls and 'return(~droprate_boost_percent_mode)' in code(rolls),
+      'the roll reads the override, and falls back to the mode when there is none')
+check('%droprate_override' not in modes,
+      '...and the mode knows nothing about it, so a display cannot leak one')
+check('^droprate_boost_realism' in modes.split('return(')[-1],
       'realism is the DEFAULT branch, so ^xprate_unset (0) gets the boost too')
-check('^xprate_10x' in rolls and '^xprate_5x' in rolls,
+check('^xprate_10x' in modes and '^xprate_5x' in modes,
       'and it compares against the same rate constants the engine multiplies by')
+
+# WHICH PROC EACH DISPLAY READS, which is the half no behavioural test can see: the two return
+# the same number on every account without an override - that is every account but one - so a
+# display reading the roll's looks correct everywhere except the single account anybody would
+# ever check it with. Engine-TS tools/sim/droprateoverride.ts asserts this from its side too;
+# it is cheap, and this is the repo the scripts live in.
+for _path, _who in (('scripts/questtab/scripts/questtab.rs2', "the quest tab's stats page"),
+                    ('scripts/drop_tables/scripts/npc_drops.rs2', "the drop table viewer's subtitle"),
+                    ('scripts/gamemodes/scripts/gamemode_info.rs2', 'the game mode explanation')):
+    _calls = [l for l in code(read(_path)).split('\n') if '~droprate_boost_percent' in l]
+    check(bool(_calls) and all('~droprate_boost_percent_mode' in l for l in _calls),
+          _who + " reads the mode's boost, never the roll's")
 
 # the data: the bonus column, and nothing in it that the rare table owns
 check('column=bonus,namedobj,int,int,int,int,LIST' in DBTABLE, 'npc_drops has its bonus column')

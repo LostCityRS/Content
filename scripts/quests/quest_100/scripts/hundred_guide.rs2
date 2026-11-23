@@ -23,6 +23,10 @@ if (last_useitem = uncooked_cake) {
 // cake of guidance, which is what the wiki says protects the Guide.
 if (last_useitem = cake) {
     ~chatplayer("<p,neutral>It is only a cake. He needs something with more direction in it.");
+    // AND SAY WHERE THAT COMES FROM. This branch knew the cake was wrong and would not say what
+    // a right one was, which is the whole of #62: the player bakes what the journal asked for,
+    // is turned away here, and has nothing left to try.
+    ~mesbox("Wizard Traiborn, upstairs in the Wizards' Tower, enchants things for a living. He might give a cake some direction.");
     return;
 }
 if (last_useitem ! hundred_cake_of_guidance) {
@@ -155,9 +159,32 @@ switch_int (%100guide_prog) {
         $x = append($x, "@dbl@I should @dre@inspect the Lumbridge Guide@dbl@ and see what he was|");
         $x = append($x, "@dbl@eating.");
     case default :
+        // WHAT THE PLAYER IS HOLDING, because "a cake tin and a range will do the rest" was a lie
+        // and the plinth is where they found out: a plain cake is refused there with "he needs
+        // something with more direction in it", and not one line anywhere in this quest named
+        // Wizard Traiborn. The enchantment was added after this journal was written and the
+        // journal was never told (DeathPlateau-Bugs#62).
+        //
+        // Three states rather than one longer entry, because the RFD journal appends every
+        // sub-quest that is still open and a fixed block for each would run the page off the
+        // bottom. This way it is the same length and answers the question actually in front of
+        // the player.
+        if (inv_total(inv, hundred_cake_of_guidance) > 0) {
+            $x = append($x, "@dbl@I have the @dre@cake of guidance@dbl@. I should put it on the plate|");
+            $x = append($x, "@dbl@in front of the @dre@Lumbridge Guide@dbl@.");
+            return($x);
+        }
+        if (inv_total(inv, cake) > 0) {
+            $x = append($x, "@dbl@A plain @dre@cake@dbl@ is not enough - it needs some direction in it.|");
+            $x = append($x, "@dbl@@dre@Wizard Traiborn@dbl@, upstairs in the @dre@Wizards' Tower@dbl@, will|");
+            $x = append($x, "@dbl@enchant one into a @dre@cake of guidance@dbl@.");
+            return($x);
+        }
         $x = append($x, "@dbl@The Lumbridge Guide was eating a plain @dre@cake@dbl@. The @dre@Cook@dbl@ has|");
         $x = append($x, "@dbl@flour, @dre@Gee@dbl@ has eggs and @dre@Donie@dbl@ has milk - all three are in|");
-        $x = append($x, "@dbl@@dre@Lumbridge@dbl@. A @dre@cake tin@dbl@ and a @dre@range@dbl@ will do the rest.|");
+        $x = append($x, "@dbl@@dre@Lumbridge@dbl@. A @dre@cake tin@dbl@ and a @dre@range@dbl@ will bake it.|");
+        $x = append($x, "|@dbl@Then @dre@Wizard Traiborn@dbl@ in the @dre@Wizards' Tower@dbl@ must make it a|");
+        $x = append($x, "@dbl@@dre@cake of guidance@dbl@ - a plain one will not wake him.|");
         $x = append($x, "|@dbl@The Cook says there is a spare tin upstairs in the @dre@Chefs' Guild|");
         $x = append($x, "@dbl@west of Varrock@dbl@ - 32 Cooking and a chef's hat to get in.");
 }

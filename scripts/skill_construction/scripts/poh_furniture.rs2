@@ -1807,7 +1807,12 @@ if ($useflat = 1) {
 }
 ~poh_furn_set($slot, ~poh_furn_pack($rx, $rz, $lx, $lz, $angle, $item));
 ~poh_furn_show($item, $spot, $angle, 0);
-~construction_xp(enum(int, int, poh_furn_xp, $item));
+def_int $cxp = enum(int, int, poh_furn_xp, $item);
+~construction_xp($cxp);
+// A garden piece pays the same again in Farming - OSRS gives both for a bagged plant.
+if (enum(int, int, poh_furn_garden, $item) = 1) {
+    stat_advance(farming, $cxp);
+}
 if ($useflat = 1) {
     mes("You assemble the <enum(int, string, poh_furn_name, $item)> from its flatpack.");
 } else {

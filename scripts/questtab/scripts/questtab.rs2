@@ -129,7 +129,7 @@ def_int $rate = ~xprate_current;
 ~questtab_value(questtab_pstats:mode, ~xprate_name($rate));
 ~questtab_value(questtab_pstats:rate, "x<tostring($rate)>");
 // the drop-rate boost that goes with the mode (gamemodes/scripts/droprate.rs2): "+25%" or "Normal"
-~questtab_value(questtab_pstats:drops, ~droprate_boost_value(~droprate_boost_percent));
+~questtab_value(questtab_pstats:drops, ~droprate_boost_value(~droprate_boost_percent_mode));
 ~questtab_value(questtab_pstats:playtime, ~questtab_duration(%player_playtime));
 def_int $days = divide(sub(world_minute, %player_first_seen), 1440);
 if (%player_first_seen = 0) {
