@@ -90,7 +90,37 @@ if ($weapon = dragon_axe) {
 
 [if_button,combat_crossbow:specbar] @toggle_sa;
 [if_button,combat_bow:specbar] @toggle_sa;
-[if_button,combat_stabsword:specbar] @toggle_sa;
+// The stab tab, which the dragon harpoon shares with the daggers. Fishstabber is a visible +3
+// Fishing and lands no hit, so like Lumber Up, Rock Knocker, Excalibur and the two staves it runs
+// here on the click instead of being armed for the next attack.
+//
+// THE CHECKS ARE INSIDE THE BRANCH, not above it as they are on the axe and pickaxe tabs, and the
+// difference matters: those two tabs hold nothing but immediate specials, while this one also
+// holds the dragon dagger, whose special IS an attack and has to be ARMED by @toggle_sa. Putting
+// ~sa_enough_energy first would stop a dagger being armed at low energy, which is a change to the
+// dagger and no part of adding a harpoon.
+[if_button,combat_stabsword:specbar]
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+if ($weapon = dragon_harpoon) {
+    // Fishstabber (OSRS): +3 Fishing, for the whole bar.
+    if (~duel_arena_spec_check = false) {
+        return;
+    }
+    if (~sa_enough_energy = false) {
+        return;
+    }
+    if (p_finduid(uid) = true) { // as the others: settings-shaped, so it does not queue
+        ~set_sa_vars(oc_param($weapon, sa_energy));
+        say("Here fishy fishies!");
+        // ITS OWN THRUST, not human_harpoon. That animation carries replaceheldleft/right=harpoon,
+        // so playing it would swap the dragon harpoon out for a plain one for as long as it ran.
+        // human_sword_stab is the animation this harpoon already attacks with.
+        anim(human_sword_stab, 0);
+        ~skilling_spec_boost(fishing);
+    }
+    return;
+}
+@toggle_sa;
 
 [if_button,combat_hacksword:specbar] 
 if (~duel_arena_spec_check = false) {
