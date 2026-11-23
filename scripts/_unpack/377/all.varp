@@ -216,6 +216,14 @@ type=boolean
 transmit=yes
 
 [lastcastspell]
+// SAVED, because the autocast setting lives in it (DeathPlateau-Bugs#50, "autocast doesnt persist
+// after logout"). A varp with no scope line is scope=temp - VarPlayerType defaults to SCOPE_TEMP -
+// so this and everything in its bits was thrown away at logout.
+//
+// Its only two varbits are the autocast pair and nothing else: autocast_set is bit 0 and
+// autocast_spell is bits 1-31 (all.varbit). So perm saves exactly the autocast state, which is
+// what a player expects to still be set when they log back in, and nothing besides.
+scope=perm
 transmit=yes
 
 [trawler]
