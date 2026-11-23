@@ -90,13 +90,30 @@ if (npc_type = zulrah | npc_type = zulrah_magma | npc_type = zulrah_tanzanite) {
 }
 return(npc_coord);
 
-// The boost for this player's mode, in percent. %xp_rate holds the RATE, not a mode index, so this
-// compares against the same three constants the engine multiplies by.
+// THE BOOST THE ROLL USES, in percent, and the one place that reads the override.
+//
+// %droprate_override is set per account from outside the running server (gamemode.varp says how) and
+// is 0 for everybody who has not had it set, which is everybody - so this is the mode's own rate for
+// every normal account and nothing about the modes has changed.
+//
+// IT IS DELIBERATELY NOT WHAT THE QUEST TAB SHOWS. ~droprate_boost_percent_mode is, so an account
+// carrying an override still reads as its mode on the Player Statistics page. Two procs rather than
+// a flag on one, because a display that has to remember to ask for the other answer is a display
+// that will one day forget.
+[proc,droprate_boost_percent]()(int)
+if (%droprate_override > 0) {
+    return(%droprate_override);
+}
+return(~droprate_boost_percent_mode);
+
+// The boost for this player's MODE, in percent - what the modes themselves give, overrides ignored.
+// %xp_rate holds the RATE, not a mode index, so this compares against the same three constants the
+// engine multiplies by.
 //
 // Realism is the DEFAULT branch on purpose: ^xprate_unset is 0, the engine already reads that as 1x,
 // and a character who has never been asked should get the compensation that goes with the slow rate
 // rather than silently getting neither.
-[proc,droprate_boost_percent]()(int)
+[proc,droprate_boost_percent_mode]()(int)
 if (%xp_rate = ^xprate_10x) {
     return(^droprate_boost_10x);
 }

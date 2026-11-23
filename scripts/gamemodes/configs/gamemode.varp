@@ -20,3 +20,22 @@ scope=perm
 // pushed as text by ~xplock_restore at login rather than driven from a varp.
 [xp_locked]
 scope=perm
+
+// An override for this account's drop-rate boost, as a PERCENT, or 0 for "use whatever the
+// account's XP rate gives". ~droprate_boost_percent reads it; nothing in game writes it.
+//
+// WHY A VARP AND NOT A CONSTANT OR A NAME CHECK. A boost that belongs to one account has to be
+// stored on that account: a constant in here would apply to everybody, and a username compared in
+// script would put a name in the content repo and need a content deploy to change. This is set
+// from outside the running server with
+//
+//   npx tsx tools/server/account.ts set <user> save.vars.droprate_override 50
+//
+// which needs the account logged out, writes a .sav.bak first, and leaves no trace in game.
+//
+// scope=perm because it is the account's until it is set back to 0. NOT transmitted: the client
+// has no use for it, and a number the client holds is a number that can be read out of the client.
+// The quest tab deliberately shows ~droprate_boost_percent_mode, the rate the account's MODE gives,
+// so a boost set here does not appear on the Player Statistics page.
+[droprate_override]
+scope=perm

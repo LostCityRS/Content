@@ -81,7 +81,7 @@ if_openmain(npc_drops);
 // but the rare drop table's share and the always-drops is raised by the same percentage.
 [proc,npc_drops_subtitle](npc $npc)(string)
 def_string $line = "Combat level <tostring(nc_vislevel($npc))>";
-def_int $percent = ~droprate_boost_percent;
+def_int $percent = ~droprate_boost_percent_mode;
 if ($percent > 0) {
     $line = append($line, ". Your game mode: drop rates +<tostring($percent)>%");
 }
