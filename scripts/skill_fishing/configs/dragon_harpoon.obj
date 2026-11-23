@@ -1,0 +1,60 @@
+// The dragon harpoon. https://oldschool.runescape.wiki/w/Dragon_harpoon
+//
+// Models, icon angles, examine, weight and value were imported from a modern OSRS cache by
+// tools/models/importosrs.py (obj 21028) and RE-ENCODED into the 317-family format; the
+// wearpos/2d* lines come from the cache and are not to be hand-edited. Everything below the
+// models is written here: the importer cannot know a build's combat params or categories.
+//
+// WEAPON_STAB, because Old School gives the harpoon the dagger's four styles - Stab, Lunge, Slash
+// and Block - and that is the class those belong to here.
+//
+// THE ANIMATIONS AND SOUNDS ARE NOT OPTIONAL, which this config learned the hard way: the plain
+// daggers in the 377 cache name the category and nothing else, so it was first written that way,
+// and rs2check's rule 19 refused it. A weapon_stab is swung as stab AND slash, and a style with no
+// *_sound param hands sound_synth a null, which errors and ENDS THE SESSION; a missing animation
+// is milder - the player swings nothing. So the generic one-handed set is named explicitly. A
+// harpoon has no 377 animation of its own, and a sword's thrust is the closest thing to one.
+//
+// 61 Fishing to fish with it is NOT a param: it is checked in skill_fishing/scripts/fishing.rs2,
+// because it gates the fishing use rather than the wield. levelrequire is the 60 Attack to wield.
+//
+// NO SPECIAL ATTACK. Old School's is Fishstabber, a visible +3 Fishing boost for 100% energy, and
+// it has no home here: skill_combat/scripts/player/player_special_attack.rs2 refuses before it
+// reads the weapon unless there is an attackable npc in front of you (`~npc_is_attackable`), so a
+// special that does nothing to a target cannot be reached. The dragon axe's identical +3
+// Woodcutting special is absent for the same reason.
+[dragon_harpoon]
+name=Dragon harpoon
+desc=A very powerful harpoon.
+model=obj_dragon_harpoon
+manwear=obj_dragon_harpoon_manwear,0
+womanwear=obj_dragon_harpoon_womanwear,6
+wearpos=righthand
+2dzoom=1347
+2dxan=600
+2dyan=54
+2dzan=1953
+2dxof=2
+2dyof=2
+weight=2267g
+cost=55000
+members=yes
+iop2=Wield
+category=weapon_stab
+param=stabattack,38
+param=slashattack,32
+param=slashdefence,1
+param=strengthbonus,42
+param=levelrequire,60
+param=attackrate,5
+param=stabattack_anim,human_sword_stab
+param=slashattack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=stab_sound,stabsword_stab
+param=slash_sound,stabsword_slash
+// Everything a harpoon can fish, and the "wrong spot" message when it is used on a net spot.
+param=fish_equipment_struct,fish_equipment_harpoon
+
+[cert_dragon_harpoon]
+certlink=dragon_harpoon
+certtemplate=template_for_cert
