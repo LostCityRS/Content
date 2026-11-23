@@ -11,6 +11,10 @@ if(inv_freespace(trail_puzzleinv) > 1) {
 // the catch at the bottom of it calls logout(): opening a puzzle box threw the player out
 // of the game. tools/invtransmit.py checks every transmit in the tree for the same thing.
 inv_transmit(trail_puzzleinv, trail_puzzle:com_2);
+// AND NEVER THE ANSWER. %trail_puzzle_hint is temp, so it cannot survive a logout, but it can
+// survive closing the window with the hint up - and the next box opened would show a solved
+// picture of a board that had just been shuffled.
+%trail_puzzle_hint = ^false;
 if_openmain(trail_puzzle);
 
 [proc,init_trail_puzzle]
@@ -151,6 +155,15 @@ return (false);
 // without the second one a player who happened to be at that stage would solve the panel by
 // finishing a clue puzzle in Varrock.
 [opheld5,_trail_puzzle_piece]
+// NOT WHILE THE ANSWER IS ON SCREEN. This moves pieces by their slot in trail_puzzleinv, and the
+// Hint shows a different board through the same component - so a click here would move a piece of
+// the player's board chosen by its position in the solved one. Put their board back and move
+// nothing, which is more forgiving than ignoring the click and leaving them wondering.
+if (%trail_puzzle_hint = ^true) {
+    %trail_puzzle_hint = ^false;
+    inv_transmit(trail_puzzleinv, trail_puzzle:com_2);
+    return;
+}
 def_int $slot = last_slot;
 def_int $open_slot = -1;
     
@@ -190,3 +203,57 @@ if (%mm_main = ^mm_in_hangar & %mm_hangar_puzzle_complete = ^false
         ~mesbox("The last square slides home. Somewhere above you a great many bolts come undone at once, and the hangar doors start to move.");
     }
 }
+
+// ------------------------------------------------------------------ the Hint button
+//
+// com_3 IS THE HINT BUTTON and has never had a trigger - on the clue boxes or on Monkey Madness's
+// hangar panel, which opens this same interface. Clicking it answered "no if_button trigger for
+// trail_puzzle:com_3" and did nothing, which is what a player reported from the hangar
+// (DeathPlateau-Bugs#35). Two independent sources in the repo name com_3 as Hint: the comment in
+// [label,trail_open_puzzle] above, and the client's own Component.java, which records that the
+// content once transmitted the PIECES to com_3 by mistake and logged players out for it.
+//
+// WHAT IT SHOWS, on Corey's call (option B, 23 November): the completed picture, in the grid
+// itself. The cache has no solved-picture panel to open - trail_puzzle is com_0..com_9 and none of
+// them is one - so the Hint swaps the grid's inventory for a board that is filled in order and
+// never shuffled, and swaps it back. A TOGGLE rather than a timer: a hint that vanishes after
+// three seconds is worse than no hint, and the player closing the window is handled on open.
+[if_button,trail_puzzle:com_3]
+if (%trail_puzzle_hint = ^true) {
+    %trail_puzzle_hint = ^false;
+    inv_transmit(trail_puzzleinv, trail_puzzle:com_2);
+    return;
+}
+%trail_puzzle_hint = ^true;
+~trail_puzzle_fill_hint;
+inv_transmit(trail_puzzlehint, trail_puzzle:com_2);
+
+// Filled every time rather than once, because the alternative is a second board whose contents
+// depend on whether anybody has opened a puzzle this session. 24 pieces in slots 0-23 and slot 24
+// left empty, which is the order [proc,init_trail_puzzle] builds before it shuffles - that proc
+// cannot be reused here because it writes into the live board.
+[proc,trail_puzzle_fill_hint]
+inv_setslot(trail_puzzlehint, 0, trail_slidingpuzzleb01, 1);
+inv_setslot(trail_puzzlehint, 1, trail_slidingpuzzleb02, 1);
+inv_setslot(trail_puzzlehint, 2, trail_slidingpuzzleb03, 1);
+inv_setslot(trail_puzzlehint, 3, trail_slidingpuzzleb04, 1);
+inv_setslot(trail_puzzlehint, 4, trail_slidingpuzzleb05, 1);
+inv_setslot(trail_puzzlehint, 5, trail_slidingpuzzleb06, 1);
+inv_setslot(trail_puzzlehint, 6, trail_slidingpuzzleb07, 1);
+inv_setslot(trail_puzzlehint, 7, trail_slidingpuzzleb08, 1);
+inv_setslot(trail_puzzlehint, 8, trail_slidingpuzzleb09, 1);
+inv_setslot(trail_puzzlehint, 9, trail_slidingpuzzleb10, 1);
+inv_setslot(trail_puzzlehint, 10, trail_slidingpuzzleb11, 1);
+inv_setslot(trail_puzzlehint, 11, trail_slidingpuzzleb12, 1);
+inv_setslot(trail_puzzlehint, 12, trail_slidingpuzzleb13, 1);
+inv_setslot(trail_puzzlehint, 13, trail_slidingpuzzleb14, 1);
+inv_setslot(trail_puzzlehint, 14, trail_slidingpuzzleb15, 1);
+inv_setslot(trail_puzzlehint, 15, trail_slidingpuzzleb16, 1);
+inv_setslot(trail_puzzlehint, 16, trail_slidingpuzzleb17, 1);
+inv_setslot(trail_puzzlehint, 17, trail_slidingpuzzleb18, 1);
+inv_setslot(trail_puzzlehint, 18, trail_slidingpuzzleb19, 1);
+inv_setslot(trail_puzzlehint, 19, trail_slidingpuzzleb20, 1);
+inv_setslot(trail_puzzlehint, 20, trail_slidingpuzzleb21, 1);
+inv_setslot(trail_puzzlehint, 21, trail_slidingpuzzleb22, 1);
+inv_setslot(trail_puzzlehint, 22, trail_slidingpuzzleb23, 1);
+inv_setslot(trail_puzzlehint, 23, trail_slidingpuzzleb24, 1);

@@ -12,3 +12,14 @@
 // here once, at login, by ~trail_login.
 [trail_progress]
 scope=perm
+
+// Set while the puzzle box's Hint button is showing the solved picture instead of the player's
+// board. The grid component is shared between the two, and [opheld5,_trail_puzzle_piece] moves
+// pieces by their SLOT in trail_puzzleinv - so a click while the answer is on screen would move a
+// piece the player cannot see. This is what the piece handler checks before it moves anything.
+//
+// temp: it must not outlive the window, and a player who logs out mid-hint comes back to their
+// own board rather than to the answer.
+[trail_puzzle_hint]
+scope=temp
+type=boolean
