@@ -35463,6 +35463,13 @@ op1=Talk-to
 vislevel=hide
 head1=npc_commander_montai_head
 
+// THE GNOMES' OWN ANIMATION. [label,mm_squad_swing] in quests/quest_mm/scripts/mm_stage3.rs2 played
+// human_sword_slash on all three of them and human_castwave on Zooknock - human animations on a
+// gnome rig, which is what "the gnomes att anim wrong" was reported about
+// (DeathPlateau-Bugs#47). The cache's gnome set is midget_*, and these three walk on midget_walk
+// already. Read from the param rather than named in the script, as [king_black_dragon] does, so
+// the mesh and its animation stay together in one place.
+param=attack_anim,midget_attacksword
 [mm_lumo]
 name=Lumo
 desc=A seasoned looking Gnome foot soldier.
@@ -35599,6 +35606,8 @@ readyanim=m_assassin_ready
 vislevel=hide
 head1=npc_1420_head
 
+// The same, and the same reason: see [mm_garkor_final_battle] above.
+param=attack_anim,midget_attacksword
 [mm_karam_talker]
 name=Karam
 desc=All you see is a glimmer of light and the suggestion of shadow.
@@ -35683,6 +35692,10 @@ op1=Talk-to
 vislevel=hide
 head1=npc_1425_head
 
+// The same, and the same reason: see [mm_garkor_final_battle] above. Zooknock is the squad's
+// mage and midget_chanting is the gnome cast - [leela] in this file already uses it as a
+// magicattack_anim.
+param=attack_anim,midget_chanting
 [mm_caranock]
 name=G.L.O. Caranock
 desc=An official looking Gnome with small beady eyes.

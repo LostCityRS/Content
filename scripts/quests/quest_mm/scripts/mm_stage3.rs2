@@ -812,14 +812,21 @@ if (npc_findexact(^mm_squad_spawn_3, mm_zooknock_final_battle) = true) {
 
 // Garkor and Karam swing; Zooknock throws something. One label, because the only difference between
 // the three of them is the animation.
-[ai_queue4,mm_garkor_final_battle] @mm_squad_swing(human_sword_slash);
-[ai_queue4,mm_karam_final_battle] @mm_squad_swing(human_sword_slash);
-[ai_queue4,mm_zooknock_final_battle] @mm_squad_swing(human_castwave);
+//
+// AND THE ANIMATION IS THE NPC'S OWN NOW. These three lines used to name human_sword_slash twice
+// and human_castwave once - human animations on a gnome rig, reported from play as "the gnomes att
+// anim wrong" (DeathPlateau-Bugs#47). The 377 cache's gnome set is midget_*, and all three of them
+// already WALK on midget_walk. Each type carries param=attack_anim now (_unpack/377/all.npc), the
+// same way [king_black_dragon] was fixed, so the mesh and its animation live in one place and this
+// label does not have to know which of them is the mage.
+[ai_queue4,mm_garkor_final_battle] @mm_squad_swing;
+[ai_queue4,mm_karam_final_battle] @mm_squad_swing;
+[ai_queue4,mm_zooknock_final_battle] @mm_squad_swing;
 
-[label,mm_squad_swing](seq $anim)
+[label,mm_squad_swing]
 // Self first, then the demon: npc_find moves the active npc, so everything addressed to the squad
 // member has to happen before the search.
-npc_anim($anim, 0);
+npc_anim(npc_param(attack_anim), 0);
 npc_queue(4, 0, 5);
 if (npc_find(npc_coord, mm_demon, 12, 0) = false) {
     return;
@@ -829,6 +836,79 @@ if (npc_stat(hitpoints) <= ^mm_squad_damage_floor) {
     return;
 }
 npc_damage(^hitmark_damage, calc(random(6) + 1));
+
+// ---------------------------------------------------------------------------------------------------
+// WHAT THE DEMON THROWS
+// ---------------------------------------------------------------------------------------------------
+// Reported as "jungle demon only attacks with melee and not both mage and melee"
+// (DeathPlateau-Bugs#48). It had no [ai_*] triggers of its own at all, so it fell through to
+// skill_combat's wildcards - [ai_opplayer2,_] npc_default_attack -> ~npc_meleeattack - which is a
+// plain melee monster and nothing else.
+//
+// OSRS wiki, Jungle Demon: it "alternates between all four wave spells for its magic attacks", its
+// melee is halberd-shaped, and BOTH styles hit up to 32. Its Nightmare Zone page adds that the quest
+// variant "will attack with melee and magic when in melee range", which is why melee is a coin flip
+// up close rather than the only thing it does there.
+//
+// A TRIGGER FOR THIS NPC REPLACES THE WILDCARD, so the retaliate has to be named too or the demon
+// stops fighting back the moment it is given an attack. Same wiring as the Dagannoth Kings
+// (areas/area_waterbirth/scripts/dagannoth_kings.rs2) and Ket-Zek, and the ap variant because the
+// demon now has an attackrange.
+[ai_queue1,mm_demon] ~npc_default_retaliate_ap;
+[ai_applayer2,mm_demon] ~mm_demon_attack;
+[ai_opplayer2,mm_demon] ~mm_demon_attack;
+
+[proc,mm_demon_attack]
+// Up close it is half melee, half magic; at range there is only the one choice. npc_canreach is the
+// same question Jad and Ket-Zek ask (game_fightcave/scripts/fightcave_monsters.rs2).
+//
+// ~npc_default_attack AND NOT ~npc_meleeattack. The bare one is the roll and the hit and nothing
+// else: no attack_anim, no attack_sound, no defend anim on the player, and - the part that mattered
+// - none of the %npc_action_delay or notcombat guards. Calling it directly gave a demon that hit 264
+// times in 600 ticks, every other tick, in total silence. ~npc_default_attack is the wildcard this
+// npc used to reach and it does all five things.
+if (npc_canreach = true & random(2) = 0) {
+    ~npc_default_attack;
+    return;
+}
+~mm_demon_wave_attack;
+
+// THROUGH THE SPELL TABLE, not through raw rolls. The Dagannoth Kings' spine and the King Black
+// Dragon's breath go the other way round because they are not player-castable and have no dbrow;
+// the four waves are both, so this gets their projectiles, their splashes and their sounds for
+// free - which is also what makes four different spells visibly four different spells.
+//
+// WITH THE MAX HIT FORCED TO 32. Fire wave's own row maxes at 20 and the wiki gives the demon 32
+// for magic as well as melee - and 32 is what its melee already derives to from strength 170 and
+// +50, so forcing the number here keeps the two styles level rather than making magic the safe one
+// to stand in. Same call as killerwatt and the infernal mage.
+[proc,mm_demon_wave_attack]
+// THE GUARDS BEFORE THE COUNTER, not after. ~npc_cast_spell_with_forced_max_hit does its own
+// checking and bails quietly on the attack delay, but %mm_demon_wave had already been advanced by
+// then - so the wheel turned on every tick the demon did nothing and the four waves came out in no
+// order at all. Three casts in 600 ticks came out "fire, fire, wind". Same guards as
+// [proc,fightcave_magic], and the counter now moves only when a spell is actually thrown.
+if (%npc_action_delay > map_clock) {
+    npc_setmode(applayer2);
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+def_int $spell = ^wind_wave;
+if (%mm_demon_wave = 1) {
+    $spell = ^water_wave;
+} else if (%mm_demon_wave = 2) {
+    $spell = ^earth_wave;
+} else if (%mm_demon_wave = 3) {
+    $spell = ^fire_wave;
+}
+%mm_demon_wave = modulo(add(%mm_demon_wave, 1), 4);
+~npc_cast_spell_with_forced_max_hit($spell, npc_param(attackrate), ^mm_demon_magic_maxhit);
 
 // The demon's death. Handed off through a PLAYER QUEUE rather than written from the death hook
 // directly: npc_findhero grants active_player but not p_active_player, and %mm_main is protected.

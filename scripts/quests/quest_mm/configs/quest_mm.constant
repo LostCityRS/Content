@@ -326,6 +326,11 @@
 // The squad will not take the last of the demon off you - see [label,mm_squad_swing].
 ^mm_squad_damage_floor = 30
 
+// The Jungle Demon's magic max hit. The wiki gives 32 for BOTH its styles, and 32 is what its melee
+// already derives to from strength 170 and +50 - but fire wave's own dbrow maxes at 20, so without
+// this the magic attack would be the safe one to stand in front of.
+^mm_demon_magic_maxhit = 32
+
 ^mm_reward_xp_high = 350000
 ^mm_reward_xp_low = 200000
 ^mm_reward_coins = 10000
