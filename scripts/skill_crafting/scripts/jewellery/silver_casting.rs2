@@ -16,8 +16,12 @@
 // and the tiara, all driven off crafting_jewelry_struct. The silvthrill rod is the fifth and
 // is not jewellery - it is the step In Aid of the Myreque owns, silver and mithril and a
 // sapphire together - so its slot flips on the mould that quest hands out, and its
-// button goes to the quest. The lightning rod and the demonic sigil belong to quests this
-// build does not have yet, and their slots stay on the need-a-mould side by themselves.
+// button goes to the quest. The lightning rod and the demonic sigil work the same way:
+// Creature of Fenkenstrain and Shadow of the Storm are both in this build and both hand out
+// their mould, so both slots flip on it and both buttons go to the quest that owns the
+// recipe. They used to be pinned to the need-a-mould side on the grounds that their quests
+// were missing - which stopped being true, and told a player holding the mould to go and
+// find one.
 
 // There is NO [oplocu,_smithing_furnace] here on purpose: smelting.rs2 already owns that
 // trigger and a duplicate is a hard build error. Its silver_bar case calls this proc.
@@ -46,11 +50,14 @@ if (inv_total(inv, sickle_mould) > 0) {
     if_sethide(silver_casting:make_silver_sickle, true);
     if_sethide(silver_casting:need_silver_sickle, false);
 }
-// lightning_rod: a quest step with no Crafting level or experience to copy, so it stays
-// on the need side by itself. Whatever hands its mould out carries the recipe
-// too, on that mould's own [opheldu] - this window is not where it happens.
-if_sethide(silver_casting:make_lightning_rod, true);
-if_sethide(silver_casting:need_lightning_rod, false);
+if (inv_total(inv, fenk_lightning_mould) > 0) {
+    inv_transmit(silvercast_lightning, silver_casting:slot_lightning_rod);
+    if_sethide(silver_casting:make_lightning_rod, false);
+    if_sethide(silver_casting:need_lightning_rod, true);
+} else {
+    if_sethide(silver_casting:make_lightning_rod, true);
+    if_sethide(silver_casting:need_lightning_rod, false);
+}
 if (inv_total(inv, tiara_mould) > 0) {
     inv_transmit(silvercast_tiara, silver_casting:slot_tiara);
     if_sethide(silver_casting:make_tiara, false);
@@ -67,11 +74,14 @@ if (inv_total(inv, burgh_rod_clay) > 0) {
     if_sethide(silver_casting:make_silvthrill_rod, true);
     if_sethide(silver_casting:need_silvthrill_rod, false);
 }
-// demonic_sigil: a quest step with no Crafting level or experience to copy, so it stays
-// on the need side by itself. Whatever hands its mould out carries the recipe
-// too, on that mould's own [opheldu] - this window is not where it happens.
-if_sethide(silver_casting:make_demonic_sigil, true);
-if_sethide(silver_casting:need_demonic_sigil, false);
+if (inv_total(inv, agrith_sigil_mould) > 0) {
+    inv_transmit(silvercast_agrith, silver_casting:slot_demonic_sigil);
+    if_sethide(silver_casting:make_demonic_sigil, false);
+    if_sethide(silver_casting:need_demonic_sigil, true);
+} else {
+    if_sethide(silver_casting:make_demonic_sigil, true);
+    if_sethide(silver_casting:need_demonic_sigil, false);
+}
 if_openmain(silver_casting);
 
 [inv_button1,silver_casting:slot_holy_symbol]
@@ -119,6 +129,11 @@ if (p_finduid(uid) = true) {
     @silver_casting_go(silver_sickle, sickle_mould, 10);
 }
 
+[inv_button1,silver_casting:slot_lightning_rod]
+if (p_finduid(uid) = true) {
+    @fenk_cast_conductor;
+}
+
 [inv_button1,silver_casting:slot_tiara]
 if (p_finduid(uid) = true) {
     @silver_casting_go(tiara, tiara_mould, 1);
@@ -137,6 +152,11 @@ if (p_finduid(uid) = true) {
 [inv_button1,silver_casting:slot_silvthrill_rod]
 if (p_finduid(uid) = true) {
     @myreque2_cast_rod;
+}
+
+[inv_button1,silver_casting:slot_demonic_sigil]
+if (p_finduid(uid) = true) {
+    @agrith_cast_sigil;
 }
 
 [label,silver_casting_go](namedobj $product, namedobj $mould, int $count)

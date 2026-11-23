@@ -219,6 +219,14 @@ if (last_useitem ! silver_bar) {
 // The mould used on the bar lands on [opheldu,silver_bar] (Creature of Fenkenstrain), which hands
 // it on here.
 [label,agrith_cast_sigil]
+// THE MOULD, FIRST. Both of the older routes into this label had the mould as the clicked item,
+// so none of them could arrive without it; the Silver Casting panel's slot can, because hiding a
+// slot is not the same as refusing its button. Without this, lighting the kiln would spend a
+// silver bar and then the kiln would hand out a sigil for a mould nobody had.
+if (inv_total(inv, agrith_sigil_mould) < 1) {
+    ~mesbox("You require a mould to make that.");
+    return;
+}
 if (%agrith_quest ! ^agrith_mould) {
     ~mesbox("There is nowhere out here hot enough, and no reason yet.");
     return;
