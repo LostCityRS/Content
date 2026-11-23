@@ -115,7 +115,11 @@ model=obj_seed_box
 2dxof=3
 2dyof=-49
 weight=1000g
-cost=10
+// COST IS THE VOTE CLERK'S PRICE, not a gp value: one shop, one multiplier at 1000 per mille, so
+// an obj's cost IS what it costs in points (vote/configs/vote.constant has the reasoning, and the
+// diary rewards in general/configs/diary_rewards.obj are priced the same way). It was 10 - the
+// cache's own value - which would have put a seed box on the shelf for ten points.
+cost=^vote_price_seed_box
 members=yes
 tradeable=no
 iop1=Fill
@@ -124,6 +128,7 @@ iop3=Check
 iop4=Open
 iop5=Destroy
 // Storage: storage_items/scripts/storage_items.rs2 (6 kinds of seed).
+// Sold by the vote clerk (vote/configs/vote.inv): nothing else in the game produces one.
 
 [looting_bag]
 name=Looting bag

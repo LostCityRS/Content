@@ -104,6 +104,20 @@
 ^vote_price_varrock_armour = 100
 ^vote_price_wilderness_sword = 80
 
+// ============================================================================ the seed box (23 November)
+// THE FIRST THING ON THIS SHELF THAT IS NOT A DIARY REWARD, and it is here for the same reason
+// they are: tools/obtainable.py found that nothing in the game gives one. The box has had its fill,
+// empty and check handlers in storage_items/scripts/storage_items.rs2 since it was imported - all
+// the code to USE one, and no code to produce one. In Old School it is a Tithe Farm reward, and
+// there is no Tithe Farm here.
+//
+// 40 POINTS, WHICH IS THE FLOOR OF THE BAND and not below it. It is worth less to most players
+// than anything else on the shelf: it helps one skill, on one kind of trip, and only for somebody
+// carrying several sorts of seed at once. But to that player it is used on every run, which is
+// more than can be said for the two teleports at 40 - so it matches the floor rather than setting
+// a new one underneath it. Nothing else refers to this number.
+^vote_price_seed_box = 40
+
 // ============================================================================ claiming (27 October)
 // What vote_claim answers with. It cannot answer the real question - "did you vote?" - because that
 // is a web request to somebody else's server and a script may not wait for one. So it says what it
