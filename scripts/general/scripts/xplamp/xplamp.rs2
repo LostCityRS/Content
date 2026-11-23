@@ -1,6 +1,17 @@
+// FOUR LAMPS, ONE INTERFACE, FOUR DIFFERENT AWARDS. They are all here together on purpose: the
+// bug this shape replaces was two of them living in other files and not setting the kind at all,
+// so whichever kind the last lamp left behind was the one they paid.
+//
+//   genie            the skill's own level x 10, any skill          (random event)
+//   blessed          flat 5,000, skill at level 30                  (The Great Brain Robbery)
+//   antique (RFD)    flat 20,000, skill at level 50                 (Recipe for Disaster)
+//   antique (cats)   flat 2,500, skill at level 30                  (A Tail of Two Cats, x2)
+//
+// Adding a fifth means a kind, a row in xplamp.constant and a branch in ~xplamp_confirm. Leaving
+// any of the three out is what this comment exists to prevent.
 [opheld1,macro_genilamp]
 %xplamp = ^xplamp_none;
-%xplamp_blessed = ^false;
+%xplamp_kind = ^xplamp_lamp_genie;
 if_openmain(xplamp);
 
 // The Great Brain Robbery's blessed lamp is NOT a genie lamp. Old School's grants a flat 5,000
@@ -8,7 +19,22 @@ if_openmain(xplamp);
 // skill's own level, so the two cannot share a payout - only the interface.
 [opheld1,tgbr_blessed_lamp]
 %xplamp = ^xplamp_none;
-%xplamp_blessed = ^true;
+%xplamp_kind = ^xplamp_lamp_blessed;
+if_openmain(xplamp);
+
+// Recipe for Disaster's antique lamp. Its [opheld1] used to sit in general_use's generated
+// item_ops file, where it opened this interface without saying which lamp it was - so the finale's
+// 20,000 paid out as a genie lamp's level x 10, which is 990 experience at level 99.
+[opheld1,hundred_rewardlamp]
+%xplamp = ^xplamp_none;
+%xplamp_kind = ^xplamp_lamp_rfd;
+if_openmain(xplamp);
+
+// A Tail of Two Cats' antique lamps, two of them, 2,500 each. Same story as the one above: its
+// trigger was in the quest's own file and named no kind.
+[opheld1,twocats_rewardlamp]
+%xplamp = ^xplamp_none;
+%xplamp_kind = ^xplamp_lamp_twocats;
 if_openmain(xplamp);
 
 [if_button,xplamp:attack] @xplamp_select(attack);
@@ -124,42 +150,59 @@ if (map_members = ^false & ~stat_members($stat) = ^true) {
     return;
 }
 
-if (%xplamp_blessed = ^true & stat_base($stat) < ^tgbr_lamp_level) {
-    mes("The blessed lamp will only answer for a skill you are already level <tostring(^tgbr_lamp_level)> in.");
+// THE LEVEL READ BEFORE ANYTHING IS GRANTED, because the genie lamp's award is the skill's own
+// level and granting it first would pay out against the level the grant itself produced.
+def_int $base = stat_base($stat);
+def_int $kind = %xplamp_kind;
+def_int $need = 0;
+def_int $xp = multiply($base, 100); // the genie lamp: level x 10, in tenths
+if ($kind = ^xplamp_lamp_blessed) {
+    $need = ^tgbr_lamp_level;
+    $xp = ^tgbr_lamp_xp;
+} else if ($kind = ^xplamp_lamp_rfd) {
+    $need = ^xplamp_rfd_level;
+    $xp = ^xplamp_rfd_xp;
+} else if ($kind = ^xplamp_lamp_twocats) {
+    $need = ^xplamp_twocats_level;
+    $xp = ^xplamp_twocats_xp;
+}
+
+if ($need > 0 & $base < $need) {
+    mes("The lamp will only answer for a skill you are already level <tostring($need)> in.");
     return;
 }
 if_close;
-~xplamp_consume;
+~xplamp_consume($kind);
 %xplamp = ^xplamp_none;
-
-if (%xplamp_blessed = ^true) {
-    %xplamp_blessed = ^false;
-    stat_advance($stat, ^tgbr_lamp_xp);
-    sound_synth(found_gem, 1, 0);
-    ~mesbox("The lamp goes out.|You have been awarded 5,000 <enum(stat, string, stat_names, $stat)> experience!");
-    return;
-}
-def_int $base_level = stat_base($stat);
-stat_advance($stat, multiply($base_level, 100)); // stat level * 10
+%xplamp_kind = ^xplamp_lamp_genie;
+stat_advance($stat, $xp);
 sound_synth(found_gem, 1, 0);
 
-~mesbox("Your wish has been granted!|You have been awarded <tostring(multiply($base_level, 10))> <enum(stat, string, stat_names, $stat)> experience!");
+if ($kind = ^xplamp_lamp_genie) {
+    ~mesbox("Your wish has been granted!|You have been awarded <tostring(multiply($base, 10))> <enum(stat, string, stat_names, $stat)> experience!");
+} else if ($kind = ^xplamp_lamp_blessed) {
+    ~mesbox("The lamp goes out.|You have been awarded 5,000 <enum(stat, string, stat_names, $stat)> experience!");
+} else if ($kind = ^xplamp_lamp_rfd) {
+    ~mesbox("The lamp goes out.|You have been awarded 20,000 <enum(stat, string, stat_names, $stat)> experience!");
+} else {
+    ~mesbox("The lamp goes out.|You have been awarded 2,500 <enum(stat, string, stat_names, $stat)> experience!");
+}
 
-// This interface used to hardcode inv_del(inv, macro_genilamp, 1), which is why Recipe for Disaster's
-// hundred_rewardlamp could not use it. Only one lamp can be in flight at a time - the interface is
-// modal - so removing whichever one the player is actually carrying is enough. A player holding both
-// and rubbing the RFD one loses the genie lamp instead; the two grant identical experience, so the
-// only visible difference is which icon leaves the inventory.
-[proc,xplamp_consume]
-if (inv_total(inv, tgbr_blessed_lamp) > 0) {
+// TAKE THE LAMP THAT WAS RUBBED. This used to scan the inventory in a fixed order and delete the
+// first lamp it found, which was defended on the grounds that "the two grant identical experience,
+// so the only visible difference is which icon leaves the inventory". They do not grant identical
+// experience - 20,000 against 5,000 against 2,500 - so a player holding two lamps and rubbing the
+// better one would have lost the other and been paid for it.
+[proc,xplamp_consume](int $kind)
+if ($kind = ^xplamp_lamp_blessed) {
     inv_del(inv, tgbr_blessed_lamp, 1);
     return;
 }
-if (inv_total(inv, hundred_rewardlamp) > 0) {
+if ($kind = ^xplamp_lamp_rfd) {
     inv_del(inv, hundred_rewardlamp, 1);
     return;
 }
-if (inv_total(inv, twocats_rewardlamp) > 0) {
+if ($kind = ^xplamp_lamp_twocats) {
     inv_del(inv, twocats_rewardlamp, 1);
     return;
 }

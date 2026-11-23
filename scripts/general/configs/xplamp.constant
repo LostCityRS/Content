@@ -22,3 +22,30 @@
 ^xplamp_farming = 21
 ^xplamp_construction = 22
 ^xplamp_hunter = 23
+
+// WHICH LAMP IS IN THE INTERFACE. Four objs share it and they do NOT share a payout, so the
+// interface has to remember which one was rubbed. It used to hold a single boolean - "is this the
+// blessed lamp" - and that was wrong twice over: a boolean cannot tell four lamps apart, and
+// nothing ever cleared it. Rub The Great Brain Robbery's lamp, close the window without choosing,
+// then rub a different lamp, and the flag was still set: the second lamp paid the blessed award and
+// demanded the blessed lamp's level. Measured, not supposed.
+^xplamp_lamp_genie = 0
+^xplamp_lamp_blessed = 1
+^xplamp_lamp_rfd = 2
+^xplamp_lamp_twocats = 3
+
+// WHAT EACH ONE PAYS, in tenths of a point, which is what stat_advance takes.
+//
+// The genie lamp has no row here because its award is not a number: it is the skill's own level
+// x 10, read before the grant lands.
+//
+// The blessed lamp keeps its figures in quest_tgbr's own constants (^tgbr_lamp_xp = 50000,
+// ^tgbr_lamp_level = 30) and is read from there rather than copied.
+//
+// LEVEL GATES ARE "AT LEAST", following the blessed lamp that was here first. The wiki says "over
+// level 50" on the lamp's own page and "at least level 50" on the list page; the two readings
+// differ by exactly one level and the list page agrees with the convention already in the build.
+^xplamp_rfd_xp = 200000       // Recipe for Disaster's antique lamp: 20,000
+^xplamp_rfd_level = 50
+^xplamp_twocats_xp = 25000    // A Tail of Two Cats' antique lamps: 2,500 each
+^xplamp_twocats_level = 30
