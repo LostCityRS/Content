@@ -291,6 +291,11 @@ jobs:
         # tenths of a point and a reward line is a string a human typed, so nothing tied the two
         # together: three quests were found paying a tenth, ten times and fifty over. Content only.
         - questxp_battery.py
+        # Recipe for Disaster's ten sub-quest rewards against Old School's figures, and the one
+        # instruction the quest used to withhold: the cake of guidance can only be made by Wizard
+        # Traiborn, whose name appeared nowhere a player could read it. Written in November and
+        # never listed here, so it did not catch the sub-quests paying a tenth. Content only.
+        - rfd_battery.py
         # A quest may not record a step later than it spends the player's things: p_delay hands
         # the script back to the engine, and a player who clicks away in between keeps the loss
         # and not the progress. One of those cost a player the Feud.
