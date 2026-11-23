@@ -18,11 +18,16 @@
 // 61 Fishing to fish with it is NOT a param: it is checked in skill_fishing/scripts/fishing.rs2,
 // because it gates the fishing use rather than the wield. levelrequire is the 60 Attack to wield.
 //
-// NO SPECIAL ATTACK. Old School's is Fishstabber, a visible +3 Fishing boost for 100% energy, and
-// it has no home here: skill_combat/scripts/player/player_special_attack.rs2 refuses before it
-// reads the weapon unless there is an attackable npc in front of you (`~npc_is_attackable`), so a
-// special that does nothing to a target cannot be reached. The dragon axe's identical +3
-// Woodcutting special is absent for the same reason.
+// THE SPECIAL ATTACK IS FISHSTABBER, a visible +3 Fishing for the whole bar, and it is handled on
+// the spec bar's own click in skill_combat/scripts/player/specwep.rs2 rather than through
+// player_special_attack - which is right, because that script refuses before it reads the weapon
+// unless there is an attackable npc in front of you (`~npc_is_attackable`), and this special has
+// no target. The dragon axe's Lumber Up and the dragon pickaxe's Rock Knocker are the same shape
+// and the same two lines, which is what specwep.rs2's ~skilling_spec_boost exists for.
+//
+// specwep is what makes the stab tab draw a bar at all, and sa_energy is what a use costs:
+// ^sa_max_energy is 1000, so 1000 is Old School's "consumes 100% of the player's special attack
+// energy".
 [dragon_harpoon]
 name=Dragon harpoon
 desc=A very powerful harpoon.
@@ -54,6 +59,8 @@ param=stab_sound,stabsword_stab
 param=slash_sound,stabsword_slash
 // Everything a harpoon can fish, and the "wrong spot" message when it is used on a net spot.
 param=fish_equipment_struct,fish_equipment_harpoon
+param=specwep,^true
+param=sa_energy,1000
 
 [cert_dragon_harpoon]
 certlink=dragon_harpoon
