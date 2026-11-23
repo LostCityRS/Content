@@ -32,12 +32,18 @@
 // ~adjusted_item_cost_buying is oc_cost($obj) scaled by the shopkeeper's per-mille multiplier.
 // Grace's recolour kits are priced the same way.
 //
-// 50 POINTS FOR EXPLORER'S RING 4, and the arithmetic behind it: one ticket is one point, and a
-// voter on a 12-hour cooldown is realistically bringing in a couple of tickets a day, so 50 is
-// somewhere around three or four weeks of voting. That is meant to feel like the reward for a habit
-// rather than a purchase - the ring is a full-diary item everywhere else, and the diary does not
-// exist here to gate it. Change this one number to move the price; nothing else refers to 50.
-^vote_price_explorers_ring = 50
+// 200 POINTS FOR EXPLORER'S RING 4 (Corey, 23 November): "it's the best item by far because of the
+// teleports to everywhere." It was 50, which was set when it was the only thing on the shelf and
+// priced off how long a habit took to earn it - a couple of tickets a day on a 12-hour cooldown,
+// so three or four weeks. That was the wrong question. What the ring is worth is not how long it
+// takes to earn, it is that it moves you anywhere: the cabbage-patch teleport plus the farm
+// teleport, unlimited, on a ring slot nobody was using. Nothing else in the shop changes a day's
+// play that much, so nothing else should cost less than it by a nose.
+//
+// 200 is four times the old number and twice the dearest diary piece, which puts it at roughly
+// three to four MONTHS of voting rather than weeks. Change this one number to move the price;
+// nothing else refers to 200, and the sim reads it off the obj rather than repeating it.
+^vote_price_explorers_ring = 200
 
 // ============================================================================ the elite diary set
 // (13 October, Corey: "for the diary items, those will all go in the vote shop - only the ones
@@ -48,9 +54,11 @@
 // hands them out in Old School is not implemented here. Which nine and what each one does is in
 // general/configs/diary_rewards.constant; these are only the prices.
 //
-// HOW THEY ARE PRICED. Explorer's ring 4 set the scale at 50 points, which is somewhere around
-// three or four weeks of voting, and these sit in a 40-100 band around it by how much the item
-// changes a day's play rather than by its stats:
+// HOW THEY ARE PRICED. These nine were set in a 40-100 band around Explorer's ring 4 while the ring
+// was 50, ranked by how much the item changes a day's play rather than by its stats. The ring has
+// since gone to 200 and the band has NOT been rescaled with it, so the nine are now cheap relative
+// to the ring by design rather than by arithmetic - whether they are priced right against each
+// other is a separate question, and an open one:
 //
 //   100  Varrock armour 4        a permanent 10% on every ore and every ore's xp
 //    90  Ardougne cloak 4        the best stab cape in the game, +6 prayer, and two teleports
