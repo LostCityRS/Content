@@ -40,5 +40,5 @@ session_log(^log_adventure, "Fishing stopped: no cast for <tostring($since)> tic
 // to be that fishing is being dropped, the fix belongs where the dropping happens, not in a notice
 // that it happened.
 if (staffmodlevel > 0) {
-    mes("<col=8f0000>[fishing] stopped after <tostring($since)> ticks with <tostring($space)> free slots.</col>");
+    mes("@dre@[fishing] stopped after <tostring($since)> ticks with <tostring($space)> free slots.");
 }
