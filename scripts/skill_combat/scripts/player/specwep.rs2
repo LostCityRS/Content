@@ -112,21 +112,36 @@ if ($weapon = dragon_harpoon) {
     if (p_finduid(uid) = true) { // as the others: settings-shaped, so it does not queue
         ~set_sa_vars(oc_param($weapon, sa_energy));
         say("Here fishy fishies!");
-        // THE TOOL-SPECIAL FLOURISH, WHICH IS NOT THE PICKAXE'S despite the name on it. Old School
-        // registers this one animation under NINE seq ids - 334, 3410, 7138, 7267, 8329, 8330,
-        // 8781, 11821 and 11822 - all byte-identical, every one of them frames 53-63 of group
-        // 10975 at six cycles a frame. That is one flourish per tool that has a boosting special:
-        // the dragon, infernal and crystal axes, pickaxes and harpoons. 7138 is the pickaxe's and
-        // is the one this build happened to import, so the name says dpick; the frames are the
-        // harpoon's too, exactly, and importing its own id would add a second identical copy.
+        // NO ANIMATION, ON PURPOSE AND FOR NOW. Fishstabber's own animation is not in this build
+        // and two attempts to supply one were both wrong in play, so rather than guess a third
+        // time this plays none: the forced speech and the boost, and nothing that looks like
+        // something else. Everything known about finding the real one is written down here so the
+        // next attempt starts where this one stopped.
         //
-        // IT WAS human_sword_stab AND THAT WAS WRONG, reported from play. That is the animation
-        // this harpoon ALREADY ATTACKS WITH (param=stabattack_anim), so Fishstabber looked like an
-        // ordinary hit - the same defect tools/sim/specanims.ts was written for when the dragon
-        // warhammer's Smash played the hammer's own swing.
+        //   IT WAS human_sword_stab FIRST, which is the animation this harpoon ALREADY ATTACKS
+        //   WITH (param=stabattack_anim) - so the special looked like an ordinary poke. That is
+        //   the exact defect tools/sim/specanims.ts exists for; the tool specials were simply not
+        //   in the table it checks, and they are now.
         //
-        // No spotanim, which matches the pickaxe's branch above; the axe's swoosh is its own.
-        anim(osrs_dpick_spec, 0);
+        //   THEN IT WAS osrs_dpick_spec, on the reasoning that Old School registers ONE tool
+        //   flourish under nine byte-identical seq ids (334, 3410, 7138, 7267, 8329, 8330, 8781,
+        //   11821, 11822 - all frames 53-63 of group 10975, six cycles a frame) and the harpoon
+        //   must be among them. It is not: the wiki's own captures settle it, because Rock
+        //   Knocker is a hunched downward swing and Fishstabber is upright with the arms spread.
+        //   Those nine are the axe and pickaxe family.
+        //
+        //   WHY IT CANNOT SIMPLY BE LOOKED UP: nothing in the OSRS cache links an item to its
+        //   special attack - that mapping is server-side - and the wiki publishes the animation
+        //   as a gif without an id. 7138 being known for the pickaxe is a note from an earlier
+        //   session, not something the cache will tell you.
+        //
+        //   HOW TO FIND IT: tools/models/PlayerRender poses from loose .anim files, so it can
+        //   draw animations this fork IMPORTED but none of the 377 originals, whose frames are
+        //   packed (sanctuary has 0 of its 11 frames on disk). So convert candidate OSRS seqs
+        //   into a scratch directory with animconvosrs.convert_seqs - no pack entries, nothing
+        //   touched in the tree - render each with obj_dragon_harpoon_manwear in the weapon slot,
+        //   and compare against the wiki's Fishstabber.gif. --dump gives posed face coordinates,
+        //   so "arms spread" is measurable as the model's X-extent rather than judged by eye.
         ~skilling_spec_boost(fishing);
     }
     return;
