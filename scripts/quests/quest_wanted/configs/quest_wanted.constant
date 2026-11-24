@@ -138,7 +138,17 @@
 // the four fixed stops
 ^wanted_solus_1 = 0_54_54_31_29     // 3487,3485  Canifis
 ^wanted_solus_2 = 0_49_52_54_31     // 3190,3359  Champions' Guild, inside
-^wanted_solus_3 = 0_49_149_33_38    // 3169,9574  Lumbridge Swamp Caves - the decoy is here too
+^wanted_solus_3 = 0_51_150_49_29    // 3313,9629  Dorgesh-Kaan mine, beside Nardok - decoy here too
+// MOVED 2026-11-24, from 3169,9574 in the Lumbridge Swamp Caves. The clue for this place is
+// "A spear, and it is made of BONE. Nobody sells those. Somebody down a hole carved it." - one of
+// the three Old School fixes - and it pointed at cave goblins, while the stop itself sat among
+// cave bugs and frogs two cave systems away. A player followed it to where the bone weapon shop
+// should be and found nothing, because this build had the weapons and nobody selling them.
+// Nardok now stands here (areas/area_lumbridge/configs/nardok.npc) and the stop stands beside him,
+// so the clue describes the place it sends you to.
+//
+// IT COSTS NO ACCESS. The mine is behind The Lost Tribe, and Wanted! already requires The Lost
+// Tribe to start - so every player who can read this clue can already walk to it.
 ^wanted_solus_4 = 0_45_75_12_11     // 2892,4811  Rune essence mine
 // the pool
 ^wanted_solus_5 = 0_53_55_41_24     // 3433,3544  Slayer Tower, north of Canifis

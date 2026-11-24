@@ -1,0 +1,35 @@
+// NARDOK, who sells the bone weapons the quest keeps talking about (custom, 2026-11-24).
+//
+// WHY HE EXISTS AT ALL. Wanted!'s third clue is "A spear, and it is made of BONE. Nobody sells
+// those. Somebody down a hole carved it." - one of the three clues Old School fixes, so the spear
+// itself is authentic. A player read it, went looking for the bone weapon shop he knew from Old
+// School, and found nothing: this build had the weapons and no one to buy them from. The clue was
+// pointing at a place the game did not have.
+//
+// AND HE IS PERIOD-CORRECT, which is why he is a shop and not a reworded clue. Nardok's Bone
+// Weapons opened on 21 June 2006, inside this build's era, in the Dorgesh-Kaan mine, behind The
+// Lost Tribe. Every one of those three facts already holds here: the mine is built and populated,
+// The Lost Tribe is playable, and Wanted! REQUIRES The Lost Tribe - so nobody can reach this clue
+// without already being able to reach him.
+//
+// NOT IN THE 377 CACHE, so he is authored from nothing the way [cave_goblin_guard1] beside him is,
+// on the plain cave goblin's mesh and recolours. He takes no Attack option: he is a shopkeeper in
+// a city of his own people, and the miners either side of him are the ones who fight.
+[nardok]
+name=Nardok
+desc=He sells weapons carved from bone.
+model1=npc_1822
+model2=npc_1822i2
+model3=npc_1822i3
+model4=npc_1822i4
+recol1s=6337
+recol1d=7361
+recol2s=4289
+recol2d=5313
+readyanim=cave_goblin_ready
+walkanim=cave_goblin_walk
+op1=Talk-to
+op3=Trade
+head1=npc_1822_head
+vislevel=hide
+wanderrange=0

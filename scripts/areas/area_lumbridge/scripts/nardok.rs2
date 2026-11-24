@@ -1,0 +1,38 @@
+// NARDOK'S BONE WEAPONS, in the Dorgesh-Kaan mine. See configs/nardok.npc for why he exists.
+//
+// THE GATE IS THE QUEST, not the shop. Old School puts this counter behind The Lost Tribe, and the
+// reason is fiction rather than balance: a goblin who has just watched his people be found by the
+// surface does not trade with a stranger who has not met them. A player who has not done it gets
+// told so by Nardok himself rather than by a shop that refuses to open, because "nothing happens
+// when I click Trade" is indistinguishable from a broken npc.
+//
+// `<` and not `!=` against ^lost_tribe_complete, the lesson from wanted_tiffy.rs2: a quest varp can
+// sit ABOVE its completion value once post-quest content writes to it, and != would refuse exactly
+// the players who had done the most.
+
+[opnpc1,nardok]
+if (%lost_tribe_quest < ^lost_tribe_complete) {
+    ~chatnpc("<p,angry>You are not one of us, and you are not with Mistag. I have nothing for you.");
+    return;
+}
+~chatnpc("<p,happy>You are the one from above who spoke for us. Bone or nothing, friend - what will you have?");
+def_int $option = ~p_choice2("Let me see what you have.", 1, "Nothing today.", 2);
+if ($option = 1) {
+    ~chatplayer("<p,neutral>Let me see what you have.");
+    ~openshop_nardok;
+} else if ($option = 2) {
+    ~chatplayer("<p,neutral>Nothing today.");
+}
+
+[opnpc3,nardok]
+if (%lost_tribe_quest < ^lost_tribe_complete) {
+    ~chatnpc("<p,angry>You are not one of us, and you are not with Mistag. I have nothing for you.");
+    return;
+}
+~openshop_nardok;
+
+// 600 is what the shop PAYS as a percentage of the item's own cost - 60%, so 360 for a spear and
+// 1200 for a dagger, which is Old School's pair exactly. The objs already carry 600 and 2000, so
+// no price is written down twice.
+[proc,openshop_nardok]
+~openshop(nardok_shop, 600, 1000, 20, "Nardok's Bone Weapons");

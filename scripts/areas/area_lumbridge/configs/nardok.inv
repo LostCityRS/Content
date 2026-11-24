@@ -1,0 +1,16 @@
+// NARDOK'S COUNTER. Old School's own figures: ten bone spears and five bone daggers, restocking
+// every 12 seconds, which is 20 ticks.
+//
+// TWO ROWS AND NOT FOUR. This build also has a bone club and bone bolts, and he sells neither -
+// the club is a drop and the bolts come from elsewhere, exactly as in Old School. A shop that
+// stocks everything sharing a word in its name is how a drop stops being worth getting.
+//
+// allstock=no, so an empty counter cannot be used to turn any old item into coins. The prices come
+// from the objs themselves - 600 and 2000, which already match - so nothing is priced twice here.
+[nardok_shop]
+scope=shared
+size=2
+restock=yes
+allstock=no
+stock1=cave_goblin_bone_spear,10,20
+stock2=bone_dagger,5,20
