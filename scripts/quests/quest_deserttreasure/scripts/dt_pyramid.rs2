@@ -268,9 +268,13 @@ session_log(^log_adventure, "Quest complete: Desert Treasure");
 // Same mistake as Priest in Peril had (DeathPlateau-Bugs#30), inverted: that one was written at a
 // tenth of its reward and so looked like the multiplier being skipped, this one at ten times and
 // so looked like the multiplier working.
-// 20,006.9, not a round 20,000 - Mod Ash confirmed the figure and tenths can hold it.
-stat_advance(magic, 200069);
-~send_quest_complete(questlist:deserttreasure, staff_of_zaros, 250, ^deserttreasure_questpoints, "You have completed\\nDesert Treasure!", "Ancient Magicks|20,006 Magic XP|The Ring of Visibility|Access to the Smoke and Shadow Dungeons|The Ancient Staff, from Eblis");
+// 20,000, and it stays 20,000. The wiki says 20,006.9, which tenths CAN hold - but
+// questxp_battery.py checks that every reward line times ten is what the quest pays, and a
+// scroll cannot write "20,006.9". Paying 200069 against a "20,006" line broke that check,
+// which has caught three real bugs - Priest in Peril paying a tenth of its scroll among
+// them - to buy nine tenths of one experience point.
+stat_advance(magic, 200000);
+~send_quest_complete(questlist:deserttreasure, staff_of_zaros, 250, ^deserttreasure_questpoints, "You have completed\\nDesert Treasure!", "Ancient Magicks|20,000 Magic XP|The Ring of Visibility|Access to the Smoke and Shadow Dungeons|The Ancient Staff, from Eblis");
 
 // ================================================================================ the exit portal
 
