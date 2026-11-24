@@ -22,28 +22,53 @@
 // wanted_crystal_ball is named "Commorb" and carries iop1=Scan, iop2=Contact and iop4=Playback.
 // That is the tracking mechanic, complete, without needing anything invented.
 //
-// ---------------------------------------------------------------------------- what was missing
-// NOT ONE of the nineteen shells is placed in the map data - checked every jm2 - and neither is
-// Savant, nor Solus himself, nor any of the five cutscene actors. So the shells exist and the
-// hunt has nowhere to happen.
+// ---------------------------------------------------------------------------- the real places
+// THE NINETEEN SHELLS ARE THE EIGHTEEN OLD SCHOOL LOCATIONS, which is why there are nineteen of
+// them and why twelve were never going to be enough. Old School's clue table lists twenty-one
+// item rows across eighteen distinct places; every one of those places exists in this cache and
+// seventeen of the eighteen are populated and reachable, so all eighteen are placed below and
+// shell 19 is the spare the cache always had.
 //
-// Twelve of them have been placed, at tiles taken from EXISTING npc spawns in those mapsquares so
-// that every one is known-walkable rather than guessed at. Solus renders at index 1 only, so those
-// tiles are empty except for the moments he is actually there. Locations 13-19 are left unplaced
-// and the quest never sets their bits; nothing in the cache says where they were meant to be.
+// An earlier pass placed twelve shells at tiles "taken from EXISTING npc spawns in those
+// mapsquares so that every one is known-walkable" - convenience tiles, not Old School's places -
+// and then named them separately, which is how the orb came to say "Rimmington" for a spot on
+// Karamja (DeathPlateau-Bugs#97, #98). Every tile below was proved walkable against the collision
+// map rather than guessed, and all but one sit on the real place.
 //
-// wanted_solus has op1=Talk-to and NO attack option, so the confrontations are conversations: he
-// taunts and teleports, and the last one is where he runs out of places to go.
+// THE ONE SUBSTITUTION: Old School's fifth location is the Dorgesh-Kaan mine, reached through
+// Death to the Dorgeshuun. This build has no such quest, eight Dorgesh-Kaan locs and NO NPCS
+// ANYWHERE IN THE CITY - checked every jm2 - so it is not a place a player can get to. The
+// cave goblins in this build live in the Lumbridge Swamp Caves, which is itself one of Old
+// School's Wanted! locations (the giant frog legs clue), so the bone spear points there instead
+// and the two rows are collapsed into one. Sending players to an empty city would make the quest
+// impossible; this keeps it finishable and keeps the cave-goblin flavour the clue is about.
+//
+// ---------------------------------------------------------------------------- the clues
+// Old School does NOT name the place. Savant pulls an item off Solus as he teleports and names
+// the ITEM; working out which place it points at is the quest. Seven locations per run:
+//
+//   scan 1  Canifis                 fixed - he is first seen here, no clue needed
+//   scan 2  random from the pool    clue found at Canifis
+//   scan 3  Champions' Guild        fixed - the blue cape
+//   scan 4  random from the pool    clue found at the Champions' Guild
+//   scan 5  the cave-goblin mine    fixed - the bone spear
+//   scan 6  random from the pool    clue found at the mine
+//   scan 7  Rune essence mine       fixed - twenty noted pure essence, and the last of him
+//
+// The item found at scan N is the clue to scan N+1. The wiki describes each scan as yielding "a
+// hint for where to go next" and fixes the blue cape, the bone spear and the pure essence as the
+// predetermined clues for 3, 5 and 7 - which only works if the item comes one stop early - but it
+// does not spell the rule out, so it is written here as the reading the table forces rather than
+// as something quoted.
 //
 // ---------------------------------------------------------------------------- what is not used
 // Left at 0 because nothing in the cache determines them and nothing here needs them:
-//   wanted_mission13..19 and their complete bits - seven more hiding places with no locations
+//   wanted_mission19 and its complete bit - the nineteenth shell, with no nineteenth place
 //   wanted_joke_option, wanted_commorb_intel, wanted_lord_d_exposition
 //   wanted_daquarius_hint and wanted_zammy_mage_hint - two bits each, for a Black Knight Fortress
 //     thread the cache has five unplaced cutscene actors for and nothing else
-//   wanted_black_knight_dead
 //   the six *_spam bits - novice, peon, page, noble, adept and master, which are Temple Knight
-//     ranks and belong to progression this quest does not award
+//     ranks and belong to the White Knights' armoury reward this build has not got (#99)
 
 // =========================================================================== stages
 ^wanted_not_started = 0
@@ -53,13 +78,22 @@
 ^wanted_cornered = 40      // out of teleports; the trophy is in hand
 ^wanted_complete = 50
 
-// How many sightings before he runs out of places to go. Twelve are placed, so this leaves room
-// to miss a few and still finish.
-^wanted_sightings_needed = 5
+// Seven sightings, as Old School has: four fixed and three drawn from the pool.
+^wanted_sightings_needed = 7
 
-// The twelve placed locations, numbered as their mission bits are.
 ^wanted_first_location = 1
-^wanted_last_location = 12
+^wanted_last_location = 18
+
+// The four fixed stops, in the order they are visited.
+^wanted_place_canifis = 1
+^wanted_place_champions = 2
+^wanted_place_cavegoblin = 3     // the decoy stands here; wanted_solus_fake_woman keys on bit 3
+^wanted_place_essence = 4
+
+// The pool the second, fourth and sixth stops are drawn from.
+^wanted_pool_first = 5
+^wanted_pool_last = 18
+
 ^wanted_decoy_location = 3
 
 ^wanted_off = 0
@@ -67,17 +101,36 @@
 
 // =========================================================================== places
 // Sir Tiffy is rd_teleporter_guy - Recruitment Drive's npc - on his bench in Falador park.
-// Every Solus tile below is an existing npc spawn in that mapsquare, so all twelve are known to be
-// stood on by something already.
-^wanted_solus_1 = 0_40_48_6_12      // 2566,3084  Yanille
-^wanted_solus_2 = 0_40_52_7_56      // 2567,3384  Ardougne, west
-^wanted_solus_3 = 0_40_53_43_29     // 2603,3421  Ardougne, north - the decoy is here too
-^wanted_solus_4 = 0_42_54_3_40      // 2691,3496  Seers' Village
-^wanted_solus_5 = 0_43_53_51_39     // 2803,3431  Catherby
-^wanted_solus_6 = 0_46_49_4_10      // 2948,3146  Rimmington
-^wanted_solus_7 = 0_46_54_63_2      // 3007,3458  north of Falador
-^wanted_solus_8 = 0_46_58_30_30     // 2974,3742  the edge of the wilderness
-^wanted_solus_9 = 0_47_50_3_36      // 3011,3236  Port Sarim
-^wanted_solus_10 = 0_48_51_28_15    // 3100,3279  Falador
-^wanted_solus_11 = 0_50_50_7_27     // 3207,3227  Lumbridge
-^wanted_solus_12 = 0_51_54_15_40    // 3279,3496  east of Varrock
+// Every tile below was checked against the collision map: all eighteen are walkable, and the
+// cave-goblin tile has a free neighbour for the decoy to stand on.
+//
+// the four fixed stops
+^wanted_solus_1 = 0_54_54_31_29     // 3487,3485  Canifis
+^wanted_solus_2 = 0_49_52_54_31     // 3190,3359  Champions' Guild, inside
+^wanted_solus_3 = 0_49_149_33_38    // 3169,9574  Lumbridge Swamp Caves - the decoy is here too
+^wanted_solus_4 = 0_45_75_12_11     // 2892,4811  Rune essence mine
+// the pool
+^wanted_solus_5 = 0_53_55_41_24     // 3433,3544  Slayer Tower, north of Canifis
+^wanted_solus_6 = 0_41_57_36_10     // 2660,3658  Rellekka
+^wanted_solus_7 = 0_45_49_60_19     // 2940,3155  Musa Point banana plantation
+^wanted_solus_8 = 0_48_49_37_23     // 3109,3159  Wizards' Tower
+^wanted_solus_9 = 0_41_51_30_47     // 2654,3311  Ardougne Market
+^wanted_solus_10 = 0_38_48_11_19    // 2443,3091  Castle Wars
+^wanted_solus_11 = 0_38_54_33_41    // 2465,3497  The Grand Tree
+^wanted_solus_12 = 0_43_49_41_21    // 2793,3157  Brimhaven pub
+^wanted_solus_13 = 0_51_50_18_15    // 3282,3215  Al Kharid
+^wanted_solus_14 = 0_46_54_11_47    // 2955,3503  Goblin Village
+^wanted_solus_15 = 0_39_48_59_8     // 2555,3080  Yanille, the Dragon Inn
+^wanted_solus_16 = 0_41_54_42_50    // 2666,3506  McGrubor's Wood
+^wanted_solus_17 = 0_48_50_10_47    // 3082,3247  Draynor Village
+^wanted_solus_18 = 0_38_50_32_28    // 2464,3228  Shrine of Scorpius
+
+// How close the orb has to be before it will say he is in this very place rather than just name
+// the item again. Generous on purpose: the player has to find the right PLACE, not the right tile.
+^wanted_scan_radius = 24
+
+// Where Savant drops the player when the Flames of Zamorak land - Falador, outside the White
+// Knights' Castle, as Old School does.
+^wanted_savant_rescue = 0_46_52_22_52    // 2966,3380  Falador, outside the White Knights' Castle
+// Where the forced teleport at the second stop puts them: Camelot.
+^wanted_camelot = 0_43_54_3_21          // 2755,3477  Camelot

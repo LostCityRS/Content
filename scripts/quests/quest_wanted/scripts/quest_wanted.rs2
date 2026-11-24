@@ -2,11 +2,30 @@
 //
 // wanted_crystal_ball is named "Commorb" and carries iop1=Scan, iop2=Contact and iop4=Playback.
 // Those three ops are the whole tracking mechanic and none of it had to be invented.
+//
+// THE CLUE IS AN ITEM, NOT A PLACE NAME. Old School's Savant pulls something off Solus as he
+// teleports out and names the object; working out which of eighteen places it points at is the
+// quest. This used to name the town outright - and for seven of the twelve places it named the
+// wrong one, which is DeathPlateau-Bugs#97 and #98. The orb now reports what he dropped, and
+// confirms the place only once the player is standing in it.
+//
+// Seven stops, four of them fixed, as Old School has them:
+//
+//   1 Canifis            fixed    he is first seen here
+//   2 pool               random   clue found at Canifis
+//   3 Champions' Guild   fixed    the blue cape
+//   4 pool               random   clue found at the Champions' Guild
+//   5 cave-goblin mine   fixed    the bone spear, and the decoy is here
+//   6 pool               random   clue found at the mine
+//   7 Rune essence mine  fixed    twenty noted pure essence, and the last of him
+//
+// The item found at stop N is the clue to stop N+1, so the clue is a property of the PLACE and
+// the three fixed clues fall out of the table rather than being special-cased.
 
 // =========================================================================== Scan
-// A scan clears wherever Solus was and sets a new mission bit. Each [wanted_solusN] shell declares
-// multinpc=1 and nothing else, so the bit IS his position: set it and he is there, clear it and he
-// is nowhere.
+// A scan reads whatever the orb is holding. It does not choose a destination - the destination is
+// already set, and the player's job is to work out from the clue where it is. Standing in the
+// right place is what the scan confirms.
 [opheld1,wanted_crystal_ball]
 if (%wanted_main < ^wanted_briefed) {
     ~mesbox("The orb lights up and stays blank. Savant has not put anything into it yet.");
@@ -16,24 +35,19 @@ if (%wanted_main >= ^wanted_cornered) {
     ~mesbox("The orb has nothing left to find. Sir Tiffy is the one waiting now.");
     return;
 }
-if (~wanted_current_location > 0) {
-    ~mesbox("The orb still has a fix on him. <~wanted_place_name(~wanted_current_location)>, and he has not moved since you last looked.");
+def_int $place = ~wanted_current_location;
+if ($place = 0) {
+    ~mesbox("The orb finds nothing. He has run out of places to be, which means he is standing still somewhere and waiting for you.");
     return;
 }
 if_close;
 mes("You turn the orb over and it starts to warm up.");
 p_delay(3);
-def_int $place = ~wanted_pick_location;
-if ($place = 0) {
-    ~mesbox("The orb finds nothing. He has run out of places to be, which means he is standing still somewhere and waiting for you.");
+if (~wanted_near_place($place) = true) {
+    ~mesbox("The orb goes shrill in your hand. He is here - not far off, and not moving.");
     return;
 }
-~wanted_set_location($place, ^wanted_on);
-if (%wanted_main = ^wanted_briefed) {
-    %wanted_main = ^wanted_hunting;
-    ~send_quest_progress(questlist:wanted, %wanted_main, ^wanted_complete);
-}
-~mesbox("The orb settles on a direction. <~wanted_place_name($place)>.");
+~mesbox("Savant's voice, thin and patient. <~wanted_clue_line($place)>");
 
 // =========================================================================== Contact
 [opheld2,wanted_crystal_ball]
@@ -44,9 +58,13 @@ if (%wanted_main >= ^wanted_cornered) {
 if (%wanted_main = ^wanted_recruited) {
     @wanted_briefing;
 }
-~chatnpc_specific("Savant", wanted_savant, "<p,neutral>Scan when you are ready to move. He cannot hold a teleport and a conversation at the same time, which is the only edge we have.");
+def_int $place = ~wanted_current_location;
+if ($place > 0) {
+    ~chatnpc_specific("Savant", wanted_savant, "<p,neutral><~wanted_clue_line($place)>");
+}
+~chatnpc_specific("Savant", wanted_savant, "<p,neutral>He cannot hold a teleport and a conversation at the same time. That is the only edge we have, so go and make him talk.");
 if (~wanted_sightings >= 1) {
-    ~chatnpc_specific("Savant", wanted_savant, "<p,neutral>You have had <tostring(~wanted_sightings)> sightings out of the <tostring(^wanted_sightings_needed)> I need. Every one of them costs him a jump.");
+    ~chatnpc_specific("Savant", wanted_savant, "<p,neutral>That is <tostring(~wanted_sightings)> of the <tostring(^wanted_sightings_needed)> jumps I need out of him.");
 }
 
 [label,wanted_briefing]
@@ -54,10 +72,16 @@ if (~wanted_sightings >= 1) {
 ~chatplayer("<p,quiz>What am I looking for?");
 ~chatnpc_specific("Savant", wanted_savant, "<p,sad>Solus Dellagar. He killed a town. Not a person, a town, and then he went somewhere and we have been looking ever since.");
 ~chatnpc_specific("Savant", wanted_savant, "<p,neutral>He teleports constantly and he is better at it than anyone alive. We cannot catch him. What we CAN do is make him spend the energy.");
-~chatnpc_specific("Savant", wanted_savant, "<p,neutral>Scan. Go where the orb says. Talk to him. He will jump rather than fight you, and every jump costs him. Do it <tostring(^wanted_sightings_needed)> times and he will not be able to jump again.");
+~chatnpc_specific("Savant", wanted_savant, "<p,neutral>Here is how it works. Every time he jumps I can pull something off him - a hat, a cloak, whatever he was carrying. I cannot tell you where he went. I can tell you what he left.");
+~chatnpc_specific("Savant", wanted_savant, "<p,neutral>You work out where a thing like that comes from, you go there, and you scan. Do it <tostring(^wanted_sightings_needed)> times and he will not be able to jump again.");
 %wanted_contacted_savant = ^wanted_on;
 %wanted_main = ^wanted_briefed;
 ~send_quest_progress(questlist:wanted, %wanted_main, ^wanted_complete);
+// The first stop is Canifis in Old School and it is not a deduction - he is simply seen there.
+~wanted_set_location(^wanted_place_canifis, ^wanted_on);
+%wanted_main = ^wanted_hunting;
+~send_quest_progress(questlist:wanted, %wanted_main, ^wanted_complete);
+~chatnpc_specific("Savant", wanted_savant, "<p,happy>And you are in luck. He has been SEEN, this morning, in Canifis - over in Morytania. Start there. After that you are working from what he drops.");
 
 // =========================================================================== Playback
 [opheld4,wanted_crystal_ball]
@@ -65,16 +89,21 @@ if (%wanted_contacted_savant = ^wanted_off) {
     ~mesbox("There is nothing recorded on it yet.");
     return;
 }
-~mesbox("SOLUS DELLAGAR | Warrior mage. Responsible for the destruction of an entire settlement. | Teleports on sight and will not stand and fight. | Make him spend the energy. Talk to him wherever the orb finds him and he will jump rather than answer.");
+def_int $place = ~wanted_current_location;
+if ($place = 0) {
+    ~mesbox("SOLUS DELLAGAR | Warrior mage. Responsible for the destruction of an entire settlement. | Teleports on sight and will not stand and fight. | The orb is holding nothing further.");
+    return;
+}
+~mesbox("SOLUS DELLAGAR | Warrior mage. Responsible for the destruction of an entire settlement. | Teleports on sight and will not stand and fight. | LAST RECOVERED: <oc_name(~wanted_clue_item($place))>. <tostring(~wanted_sightings)> of <tostring(^wanted_sightings_needed)> jumps spent.");
 
 // =========================================================================== Solus
-// wanted_solus carries op1=Talk-to and no attack option at all, so every confrontation is a
-// conversation. He jumps rather than answer, which is the quest.
+// wanted_solus carries op1=Talk-to and no attack option at all, so every confrontation up to the
+// last is a conversation. He jumps rather than answer, which is the quest.
 //
-// What the map places is the SHELL - wanted_solus1..12 - and an npc's op trigger is looked up on
+// What the map places is the SHELL - wanted_solus1..18 - and an npc's op trigger is looked up on
 // the placed type, not on what its multinpc renders as (Player.getOpTrigger reads target.type).
-// [opnpc1,wanted_solus] alone was a dead click on every one of the twelve: the client showed
-// Talk-to, OpNpcHandler accepted it off the resolved type, and nothing answered.
+// [opnpc1,wanted_solus] alone was a dead click on every one of them: the client showed Talk-to,
+// OpNpcHandler accepted it off the resolved type, and nothing answered.
 [opnpc1,wanted_solus] @wanted_solus_talk;
 [opnpc1,wanted_solus1] @wanted_solus_talk;
 [opnpc1,wanted_solus2] @wanted_solus_talk;
@@ -88,6 +117,12 @@ if (%wanted_contacted_savant = ^wanted_off) {
 [opnpc1,wanted_solus10] @wanted_solus_talk;
 [opnpc1,wanted_solus11] @wanted_solus_talk;
 [opnpc1,wanted_solus12] @wanted_solus_talk;
+[opnpc1,wanted_solus13] @wanted_solus_talk;
+[opnpc1,wanted_solus14] @wanted_solus_talk;
+[opnpc1,wanted_solus15] @wanted_solus_talk;
+[opnpc1,wanted_solus16] @wanted_solus_talk;
+[opnpc1,wanted_solus17] @wanted_solus_talk;
+[opnpc1,wanted_solus18] @wanted_solus_talk;
 
 [label,wanted_solus_talk]
 if (%wanted_main >= ^wanted_cornered) {
@@ -99,24 +134,107 @@ if ($place = 0) {
     ~chatnpc("<p,angry>You are not even supposed to be able to see me.");
     return;
 }
-if (~wanted_sightings < sub(^wanted_sightings_needed, 1)) {
-    @wanted_taunt($place);
+// Which stop of the seven this is. The sightings already banked plus the one being had now.
+def_int $stop = calc(~wanted_sightings + 1);
+if ($stop >= ^wanted_sightings_needed) {
+    @wanted_final($place);
 }
-@wanted_final($place);
+@wanted_chase($place, $stop);
 
-[label,wanted_taunt](int $place)
-switch_int (random(3)) {
-    case 0 : ~chatnpc("<p,angry>An initiate. They sent an INITIATE.");
-    case 1 : ~chatnpc("<p,laugh>Do you know how many of you there have been? Neither do I. That is the point.");
-    case 2 : ~chatnpc("<p,angry>Go back and tell the old man on the bench that I am not interested.");
-}
+// Every stop but the last: he says something, something happens, and he goes. The set pieces are
+// Old School's, at the stops Old School puts them.
+[label,wanted_chase](int $place, int $stop)
+~wanted_taunt($stop);
 if_close;
+switch_int ($stop) {
+    case 2 : ~wanted_piece_camelot;
+    case 3 : ~wanted_piece_smoke;
+    case 4 : ~wanted_piece_flames;
+    case 5 : ~wanted_piece_punch;
+    case default : ~wanted_piece_plain;
+}
+@wanted_depart($place);
+
+[proc,wanted_piece_plain]
 mes("He is gone before you have finished drawing breath.");
 p_delay(2);
+
+// Stop 2: he does not leave, he SENDS you - Old School drops the player in Camelot.
+[proc,wanted_piece_camelot]
+mes("He does not run. He reaches past you, takes hold of something behind your ribs, and pulls.");
+p_delay(3);
+spotanim_pl(wanted_teleport, 92, 0);
+p_delay(2);
+p_telejump(^wanted_camelot);
+p_delay(2);
+~mesbox("You are standing on wet grass a very long way from where you were. Camelot, by the look of it. He did not even raise his voice.");
+
+// Stop 3, the Champions' Guild: Smoke Barrage. It disorients and does no damage and no poison.
+[proc,wanted_piece_smoke]
+mes("He brings his hands together and the room fills with smoke that is not smoke.");
+p_delay(2);
+spotanim_pl(smoke_barrage_impact, 0, 0);
+p_delay(4);
+mes("When it clears you are facing the wrong way and he is not there.");
+p_delay(2);
+~mesbox("Your head rings. Nothing hurts, which is somehow worse - he was not trying.");
+
+// Stop 4: the Flames of Zamorak, typeless, a share of whatever health you are carrying. It cannot
+// kill: Savant pulls the player out to Falador. The wiki's own figures are about nine tenths of
+// current hitpoints (96 at 99, 111 at 121), so that is the share used here, floored to leave one.
+[proc,wanted_piece_flames]
+mes("This time he does not reach for a teleport. He reaches for you.");
+p_delay(2);
+spotanim_pl(zamorak_flame, 0, 0);
+def_int $hp = stat(hitpoints);
+def_int $hit = calc($hp * 9 / 10);
+$hit = min($hit, calc($hp - 1));
+$hit = max($hit, 0);
+if ($hit > 0) {
+    stat_sub(hitpoints, $hit, 0);
+}
+p_delay(3);
+mes("Something goes through you that your prayers have no opinion about.");
+p_delay(3);
+p_telejump(^wanted_savant_rescue);
+~chatnpc_specific("Savant", wanted_savant, "<p,sad>I have you. Falador. Do not argue with me, you were about four seconds from a grave.");
+~chatnpc_specific("Savant", wanted_savant, "<p,neutral>He has gone again, and he left something. Scan when you can stand up.");
+
+// Stop 5, the cave-goblin mine: the woman is Solus. He hits you once and strolls off.
+[proc,wanted_piece_punch]
+mes("She stops crying the instant you are close enough.");
+p_delay(3);
+~mesbox("The hostage straightens up, puts a fist into your stomach without any particular hurry, and walks away backwards.");
+def_int $hp = stat(hitpoints);
+def_int $hit = min(8, calc($hp - 1));
+$hit = max($hit, 0);
+if ($hit > 0) {
+    stat_sub(hitpoints, $hit, 0);
+}
+p_delay(3);
+
+[proc,wanted_taunt](int $stop)
+switch_int ($stop) {
+    case 1 : ~chatnpc("<p,angry>An initiate. They sent an INITIATE.");
+    case 3 : ~chatnpc("<p,laugh>In the guild. Of course in the guild. You people have no imagination at all.");
+    case 4 : ~chatnpc("<p,angry>No. No, I am finished running from children.");
+    case 6 : ~chatnpc("<p,angry>Go back and tell the old man on the bench that I am not interested.");
+    case default : ~chatnpc("<p,laugh>Do you know how many of you there have been? Neither do I. That is the point.");
+}
+
+// He leaves, the place is struck off, and the orb picks up whatever he dropped on the way out -
+// which is the clue to wherever he has gone.
+[label,wanted_depart](int $place)
 ~wanted_set_location($place, ^wanted_off);
 ~wanted_mark_done($place);
 stat_advance(magic, 500);
-~mesbox("That is one more jump he has had to pay for. <tostring(~wanted_sightings)> of <tostring(^wanted_sightings_needed)>.");
+def_int $next = ~wanted_next_place(calc(~wanted_sightings + 1));
+if ($next = 0) {
+    ~mesbox("That is the last of his room to move in. <tostring(~wanted_sightings)> of <tostring(^wanted_sightings_needed)>.");
+    return;
+}
+~wanted_set_location($next, ^wanted_on);
+~mesbox("That is one more jump he has had to pay for - <tostring(~wanted_sightings)> of <tostring(^wanted_sightings_needed)>. Savant has something of his. Scan the orb.");
 
 [label,wanted_final](int $place)
 ~chatnpc("<p,angry>Again. You again.");
@@ -139,18 +257,26 @@ if (inv_freespace(inv) > 0) {
 }
 ~mesbox("His hat is the only part of him still worth carrying. Sir Tiffy will want it.");
 
-// The decoy at location 3. She is a plain Woman with op1=Talk-to, keyed on the same mission bit as
-// Solus, so she is only ever there when he is.
+// The decoy at the cave-goblin mine. The cache keys her on the same mission bit as Solus, so she
+// is only ever there when he is - and in Old School she IS him, which is why talking to her runs
+// the same encounter rather than a flavour line.
 [opnpc1,wanted_solus_fake_woman]
-~chatplayer("<p,quiz>Have you seen a man in a purple hat?");
-~chatnpc("<p,confused>There are a lot of men here. Most of them have hats.");
-~chatnpc("<p,neutral>There was one over there a moment ago who looked like he was about to be sick. Or leave. One of the two.");
-
+if (~wanted_current_location ! ^wanted_place_cavegoblin) {
+    ~chatnpc("<p,confused>Do I know you?");
+    return;
+}
+if (calc(~wanted_sightings + 1) ! 5) {
+    ~chatnpc("<p,sad>Please - please, he left me here. Don't go.");
+    return;
+}
+~chatnpc("<p,sad>Oh thank the gods. He had me down here for DAYS. Please, help me up.");
+~chatplayer("<p,quiz>Where did he go?");
+@wanted_chase(^wanted_place_cavegoblin, 5);
 // =========================================================================== bookkeeping
-// wanted_set_location and wanted_mark_done are PROCS. They were labels reached with @, and a jump
-// never comes back: a Scan set the bit and stopped before the stage moved on to hunting, and every
-// sighting took Solus away and stopped before marking the place done - so the sightings never
-// counted, the same places came round again, and he could never be cornered.
+// wanted_set_location and wanted_mark_done are PROCS. They were labels reached with @, and a
+// jump never comes back: a Scan set the bit and stopped before the stage moved on to hunting,
+// and every sighting took Solus away and stopped before marking the place done - so the
+// sightings never counted, the same places came round again, and he could never be cornered.
 [proc,wanted_current_location]()(int)
 def_int $i = ^wanted_first_location;
 while ($i <= ^wanted_last_location) {
@@ -161,11 +287,24 @@ while ($i <= ^wanted_last_location) {
 }
 return(0);
 
-// A scan never sends the player somewhere they have already been, so the hunt cannot loop.
-[proc,wanted_pick_location]()(int)
+// Which stop comes next. Four of the seven are fixed; the rest are drawn from the pool, and a
+// place is never used twice in a run, so the hunt cannot loop or send you back.
+[proc,wanted_next_place](int $stop)(int)
+switch_int ($stop) {
+    case 1 : return(^wanted_place_canifis);
+    case 3 : return(^wanted_place_champions);
+    case 5 : return(^wanted_place_cavegoblin);
+    case 7 : return(^wanted_place_essence);
+}
+if ($stop > ^wanted_sightings_needed) {
+    return(0);
+}
+return(~wanted_pick_pool);
+
+[proc,wanted_pick_pool]()(int)
 def_int $free = 0;
-def_int $i = ^wanted_first_location;
-while ($i <= ^wanted_last_location) {
+def_int $i = ^wanted_pool_first;
+while ($i <= ^wanted_pool_last) {
     if (~wanted_location_done($i) = false) {
         $free = calc($free + 1);
     }
@@ -175,8 +314,8 @@ if ($free = 0) {
     return(0);
 }
 def_int $pick = calc(random($free) + 1);
-$i = ^wanted_first_location;
-while ($i <= ^wanted_last_location) {
+$i = ^wanted_pool_first;
+while ($i <= ^wanted_pool_last) {
     if (~wanted_location_done($i) = false) {
         $pick = calc($pick - 1);
         if ($pick = 0) {
@@ -198,6 +337,18 @@ while ($i <= ^wanted_last_location) {
 }
 return($n);
 
+// Is the player standing in the place the orb is pointing at? The radius is deliberately wide:
+// the deduction is the puzzle, not pixel-hunting the tile he spawned on.
+[proc,wanted_near_place](int $i)(boolean)
+def_coord $at = ~wanted_place_coord($i);
+if (abs(calc(coordx($at) - coordx(coord))) > ^wanted_scan_radius) {
+    return(false);
+}
+if (abs(calc(coordz($at) - coordz(coord))) > ^wanted_scan_radius) {
+    return(false);
+}
+return(true);
+
 [proc,wanted_location_on](int $i)(boolean)
 switch_int ($i) {
     case 1 : if (%wanted_mission1 = ^wanted_on) { return(true); }
@@ -212,6 +363,12 @@ switch_int ($i) {
     case 10 : if (%wanted_mission10 = ^wanted_on) { return(true); }
     case 11 : if (%wanted_mission11 = ^wanted_on) { return(true); }
     case 12 : if (%wanted_mission12 = ^wanted_on) { return(true); }
+    case 13 : if (%wanted_mission13 = ^wanted_on) { return(true); }
+    case 14 : if (%wanted_mission14 = ^wanted_on) { return(true); }
+    case 15 : if (%wanted_mission15 = ^wanted_on) { return(true); }
+    case 16 : if (%wanted_mission16 = ^wanted_on) { return(true); }
+    case 17 : if (%wanted_mission17 = ^wanted_on) { return(true); }
+    case 18 : if (%wanted_mission18 = ^wanted_on) { return(true); }
 }
 return(false);
 
@@ -229,6 +386,12 @@ switch_int ($i) {
     case 10 : if (%wanted_mission10complete = ^wanted_on) { return(true); }
     case 11 : if (%wanted_mission11complete = ^wanted_on) { return(true); }
     case 12 : if (%wanted_mission12complete = ^wanted_on) { return(true); }
+    case 13 : if (%wanted_mission13complete = ^wanted_on) { return(true); }
+    case 14 : if (%wanted_mission14complete = ^wanted_on) { return(true); }
+    case 15 : if (%wanted_mission15complete = ^wanted_on) { return(true); }
+    case 16 : if (%wanted_mission16complete = ^wanted_on) { return(true); }
+    case 17 : if (%wanted_mission17complete = ^wanted_on) { return(true); }
+    case 18 : if (%wanted_mission18complete = ^wanted_on) { return(true); }
 }
 return(false);
 
@@ -246,7 +409,14 @@ switch_int ($i) {
     case 10 : %wanted_mission10 = $value;
     case 11 : %wanted_mission11 = $value;
     case 12 : %wanted_mission12 = $value;
+    case 13 : %wanted_mission13 = $value;
+    case 14 : %wanted_mission14 = $value;
+    case 15 : %wanted_mission15 = $value;
+    case 16 : %wanted_mission16 = $value;
+    case 17 : %wanted_mission17 = $value;
+    case 18 : %wanted_mission18 = $value;
 }
+
 
 [proc,wanted_mark_done](int $i)
 switch_int ($i) {
@@ -262,44 +432,86 @@ switch_int ($i) {
     case 10 : %wanted_mission10complete = ^wanted_on;
     case 11 : %wanted_mission11complete = ^wanted_on;
     case 12 : %wanted_mission12complete = ^wanted_on;
+    case 13 : %wanted_mission13complete = ^wanted_on;
+    case 14 : %wanted_mission14complete = ^wanted_on;
+    case 15 : %wanted_mission15complete = ^wanted_on;
+    case 16 : %wanted_mission16complete = ^wanted_on;
+    case 17 : %wanted_mission17complete = ^wanted_on;
+    case 18 : %wanted_mission18complete = ^wanted_on;
 }
 
-// WHAT THE ORB SAYS HAS TO BE WHERE HE IS, and for seven of the twelve it was not. Two reports,
-// DeathPlateau-Bugs#97 and #98 - "commorb doesnt work" and "can't find solus based off the clues" -
-// and they are the same bug: the orb named a town and Solus was somewhere else entirely.
-//
-// The worst two sent the player to the wrong landmass and the wrong town:
-//
-//   shell 6  is 2948,3146, which is Musa Point on KARAMJA - Luthas and Zambo are nine tiles away
-//            and the Rimmington label is seventy-six. The orb said "Rimmington".
-//   shell 10 is 3100,3279, which is DRAYNOR VILLAGE - Morgan is ten tiles away and the Draynor
-//            label twenty. The orb said "Falador", which is a hundred and seventy tiles off.
-//
-// EVERY NAME BELOW IS NOW CHECKED TWO WAYS rather than written from memory: against the nearest
-// label in maps/labels.txt, which is the word the player reads on their own world map, and against
-// the npcs standing within twenty-five tiles, which is what they will actually see when they get
-// there. Roachey and a banker put shell 3 at the Fishing Guild; Nulodion and the Black Guard put
-// shell 7 at the Dwarven Mine; Ankou and the Forgotten Cemetery label put shell 8 in the
-// Wilderness, which the name now says out loud because it is a player-killing area.
-//
-// The five that were already right - Yanille, Seers' Village, Catherby, Port Sarim, Lumbridge - are
-// unchanged. Three of the twelve spawns (Yanille, Musa Point, Draynor Village) are genuine Old
-// School Solus locations, which suggests the tiles were drawn from the real list and these names
-// were written separately and drifted. The shape of the hunt itself is a bigger question and is on
-// DeathPlateau-Bugs#98 rather than changed here.
-[proc,wanted_place_name](int $i)(string)
+
+[proc,wanted_place_coord](int $i)(coord)
 switch_int ($i) {
-    case 1 : return("Yanille");
-    case 2 : return("the moss giants north of Ardougne");
-    case 3 : return("just north of the Fishing Guild");
-    case 4 : return("Seers' Village");
-    case 5 : return("Catherby");
-    case 6 : return("the banana plantation at Musa Point, on Karamja");
-    case 7 : return("the Dwarven Mine, north of Falador");
-    case 8 : return("the Forgotten Cemetery, out in the Wilderness");
-    case 9 : return("Port Sarim");
-    case 10 : return("Draynor Village");
-    case 11 : return("Lumbridge");
-    case 12 : return("the Lumber Yard, north-east of Varrock");
+    case 1 : return(^wanted_solus_1);
+    case 2 : return(^wanted_solus_2);
+    case 3 : return(^wanted_solus_3);
+    case 4 : return(^wanted_solus_4);
+    case 5 : return(^wanted_solus_5);
+    case 6 : return(^wanted_solus_6);
+    case 7 : return(^wanted_solus_7);
+    case 8 : return(^wanted_solus_8);
+    case 9 : return(^wanted_solus_9);
+    case 10 : return(^wanted_solus_10);
+    case 11 : return(^wanted_solus_11);
+    case 12 : return(^wanted_solus_12);
+    case 13 : return(^wanted_solus_13);
+    case 14 : return(^wanted_solus_14);
+    case 15 : return(^wanted_solus_15);
+    case 16 : return(^wanted_solus_16);
+    case 17 : return(^wanted_solus_17);
+    case 18 : return(^wanted_solus_18);
 }
-return("nowhere the orb can name");
+return(^wanted_solus_1);
+
+// What Solus dropped on his way out of each place. This is the clue, and because it hangs off
+// the PLACE rather than off the stop number, the three clues Old School fixes - the blue cape,
+// the bone spear and the twenty noted essence - come out of the table on their own.
+[proc,wanted_clue_item](int $i)(namedobj)
+switch_int ($i) {
+    case 2 : return(blue_cape);
+    case 3 : return(cave_goblin_bone_spear);
+    case 4 : return(blankrune_high);
+    case 5 : return(slayer_earmuffs);
+    case 6 : return(viking_cloak_purple);
+    case 7 : return(banana);
+    case 8 : return(bluewizhat);
+    case 9 : return(fur);
+    case 10 : return(castlewars_ticket);
+    case 11 : return(gnome_hat_cream);
+    case 12 : return(eye_patch);
+    case 13 : return(feud_karidian_fakebeard);
+    case 14 : return(goblin_armour);
+    case 15 : return(greenmans_ale);
+    case 16 : return(red_vine_worm);
+    case 17 : return(horsey_grey);
+    case 18 : return(blessedsnake);
+}
+return(null);
+
+// The sentence Savant actually says. It names the thing and stops - working out the place from it
+// is the quest. There is deliberately NO place-name table any more: ~wanted_place_name existed to
+// be read out before the player got there, which is what #97 and #98 were, and every caller it had
+// is now reading a clue instead. The places are pinned by tools/sim/wantedosrs.ts, which proves
+// each tile against a landmark standing on it rather than against a list of names.
+[proc,wanted_clue_line](int $i)(string)
+switch_int ($i) {
+    case 2 : return("He dropped something. A cape. Plain blue wool, good cloth, and the trim is guild work.");
+    case 3 : return("He dropped something. A spear, and it is made of BONE. Nobody sells those. Somebody down a hole carved it.");
+    case 4 : return("He dropped something. Essence. Twenty lots of it, unmarked, still noted from the bank.");
+    case 5 : return("He dropped something. A pair of earmuffs. Heavy ones. The sort you wear when the thing in the room screams.");
+    case 6 : return("He dropped something. A cloak, purple, and the weave is Fremennik. That is a long way north.");
+    case 7 : return("He dropped something. A banana. Fresh. It was on a tree this morning.");
+    case 8 : return("He dropped something. A wizard's hat, blue, and the lining is scorched. Somebody practises indoors.");
+    case 9 : return("He dropped something. Fur. Bear, badly cured, the kind they sell off a trestle table.");
+    case 10 : return("He dropped something. A ticket. It is for a game, and it has not been torn.");
+    case 11 : return("He dropped something. A hat. Cream, and it is far too small for a man - that is gnome tailoring.");
+    case 12 : return("He dropped something. An eye patch. For the right eye. There is rum on it.");
+    case 13 : return("He dropped something. A false beard. Theatrical glue. Somebody sells these out of a stall in the desert.");
+    case 14 : return("He dropped something. Mail. Goblin-sized, goblin-smithed, and it smells like it.");
+    case 15 : return("He dropped something. Ale. Greenman's, and they only keep that on tap in one inn I know of.");
+    case 16 : return("He dropped something. A worm. Red, and it only comes out of the bark in one wood in Kandarin.");
+    case 17 : return("He dropped something. A toy. A little wooden horse, grey, with the paint still on it.");
+    case 18 : return("He dropped something. An unholy symbol, and the stone is grave stone. Somebody has been standing in a cemetery.");
+}
+return("He dropped nothing I can read.");

@@ -17,15 +17,17 @@ switch_int (%wanted_main) {
         $text = "@str@Savant says Solus teleports the moment anyone gets close,|";
         $text = append($text, "@str@and that every jump costs him. We cannot catch him - we can|");
         $text = append($text, "@str@make him run out.|");
-        $text = append($text, "@dbl@@dre@Scan@dbl@ with the commorb, go where it points, and @dre@talk|");
-        $text = append($text, "@dbl@to him. Do it @dre@<tostring(^wanted_sightings_needed)>@dbl@ times");
+        $text = append($text, "@dbl@Every time he jumps, Savant can pull something off him. I have|");
+        $text = append($text, "@dbl@to work out where a thing like that comes from, go there, and|");
+        $text = append($text, "@dbl@@dre@Scan@dbl@. Do it @dre@<tostring(^wanted_sightings_needed)>@dbl@ times");
 
     case ^wanted_hunting :
         $text = "@str@Every time I find him he jumps rather than answer, and|";
         $text = append($text, "@str@every jump costs him.|");
         $text = append($text, "@dbl@@dre@<tostring(~wanted_sightings)>@dbl@ of @dre@<tostring(^wanted_sightings_needed)>@dbl@ sightings so far|");
         if (~wanted_current_location > 0) {
-            $text = append($text, "|@dbl@The orb has him in @dre@<~wanted_place_name(~wanted_current_location)>");
+            $text = append($text, "|@dbl@He left behind a @dre@<oc_name(~wanted_clue_item(~wanted_current_location))>|");
+            $text = append($text, "@dbl@I need to work out where that points");
         } else {
             $text = append($text, "|@dbl@I should @dre@Scan@dbl@ again");
         }
