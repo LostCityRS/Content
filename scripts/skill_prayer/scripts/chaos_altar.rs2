@@ -62,8 +62,18 @@ sound_synth(bones_down, 1, 0);
 // THE EXPERIENCE IS PAID EITHER WAY, as it is when Zealot's robes save a buried bone
 // (bury_bone.rs2) - the saving is a bonus on top, not a refund of the offering.
 ~prayer_xp(calc(oc_param($bone, bone_exp) * ^chaos_altar_xp_num / ^chaos_altar_xp_den));
+// TWO ROLLS, IN THIS ORDER, and the order is the published one. Zealot's robes were not consulted
+// here at all, so the set did nothing at the altar it is most used at (DeathPlateau-Bugs#95). The
+// wiki is explicit about how the two stack, quoting Mod Ash: "If you FAIL that 50% roll, you get a
+// roll for the robes to save the bones" - which is 52.5% with the full set, not 55%, because the
+// robes only see the bones the altar has already decided to take.
 if (random(^chaos_altar_save_chance) = 0) {
     mes("The gods are pleased with your offering, and return the bones to you.");
+} else if (~zealots_saves = true) {
+    // Same wording as burying, which is the only other place this set speaks (bury_bone.rs2). The
+    // wiki records the effect and no message for it, so the message is ours and is kept identical
+    // rather than invented twice.
+    mes("Your robes preserve the bones.");
 } else {
     inv_del(inv, $bone, 1);
     mes("You offer the bones to Zamorak.");

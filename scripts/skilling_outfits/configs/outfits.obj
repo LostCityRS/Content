@@ -796,9 +796,17 @@ members=yes
 tradeable=no
 iop2=Wear
 category=armour_helmet
-// Skilling outfits carry no combat bonuses and no equip
-// requirement in OSRS - they are earned, not gated.
-// No experience bonus in OSRS: its own effect is in outfit_effects.rs2.
+// THE ONE SKILLING OUTFIT THAT DOES CARRY A BONUS, and the blanket note that used to
+// sit here said otherwise: "Skilling outfits carry no combat bonuses". True of the other
+// nine, not true of this one, and a player who put the set on saw nothing
+// (DeathPlateau-Bugs#95). Prayer +1 helm, +7 top, +6 bottom, +1 boots, +15 for the set,
+// off each piece's own infobox and its 30 June 2021 changelog line ("The zealot's helm now
+// provides a prayer bonus of +1"). Every other bonus on all four is zero, which is why
+// this is the only param here.
+// No equip requirement in OSRS - the set is earned, not gated. The 80 Firemaking the wiki
+// mentions is to OBTAIN it, and is not a requirement to wear.
+// No experience bonus: its own effect is ~zealots_saves in outfit_effects.rs2.
+param=prayerbonus,1
 
 [zealots_top]
 name=Zealot's robe top
@@ -820,9 +828,17 @@ members=yes
 tradeable=no
 iop2=Wear
 category=armour_body
-// Skilling outfits carry no combat bonuses and no equip
-// requirement in OSRS - they are earned, not gated.
-// No experience bonus in OSRS: its own effect is in outfit_effects.rs2.
+// THE ONE SKILLING OUTFIT THAT DOES CARRY A BONUS, and the blanket note that used to
+// sit here said otherwise: "Skilling outfits carry no combat bonuses". True of the other
+// nine, not true of this one, and a player who put the set on saw nothing
+// (DeathPlateau-Bugs#95). Prayer +1 helm, +7 top, +6 bottom, +1 boots, +15 for the set,
+// off each piece's own infobox and its 30 June 2021 changelog line ("The zealot's helm now
+// provides a prayer bonus of +1"). Every other bonus on all four is zero, which is why
+// this is the only param here.
+// No equip requirement in OSRS - the set is earned, not gated. The 80 Firemaking the wiki
+// mentions is to OBTAIN it, and is not a requirement to wear.
+// No experience bonus: its own effect is ~zealots_saves in outfit_effects.rs2.
+param=prayerbonus,7
 
 [zealots_bottom]
 name=Zealot's robe bottom
@@ -842,9 +858,17 @@ members=yes
 tradeable=no
 iop2=Wear
 category=armour_legs
-// Skilling outfits carry no combat bonuses and no equip
-// requirement in OSRS - they are earned, not gated.
-// No experience bonus in OSRS: its own effect is in outfit_effects.rs2.
+// THE ONE SKILLING OUTFIT THAT DOES CARRY A BONUS, and the blanket note that used to
+// sit here said otherwise: "Skilling outfits carry no combat bonuses". True of the other
+// nine, not true of this one, and a player who put the set on saw nothing
+// (DeathPlateau-Bugs#95). Prayer +1 helm, +7 top, +6 bottom, +1 boots, +15 for the set,
+// off each piece's own infobox and its 30 June 2021 changelog line ("The zealot's helm now
+// provides a prayer bonus of +1"). Every other bonus on all four is zero, which is why
+// this is the only param here.
+// No equip requirement in OSRS - the set is earned, not gated. The 80 Firemaking the wiki
+// mentions is to OBTAIN it, and is not a requirement to wear.
+// No experience bonus: its own effect is ~zealots_saves in outfit_effects.rs2.
+param=prayerbonus,6
 
 [zealots_boots]
 name=Zealot's boots
@@ -866,9 +890,17 @@ members=yes
 tradeable=no
 iop2=Wear
 category=armour_feet
-// Skilling outfits carry no combat bonuses and no equip
-// requirement in OSRS - they are earned, not gated.
-// No experience bonus in OSRS: its own effect is in outfit_effects.rs2.
+// THE ONE SKILLING OUTFIT THAT DOES CARRY A BONUS, and the blanket note that used to
+// sit here said otherwise: "Skilling outfits carry no combat bonuses". True of the other
+// nine, not true of this one, and a player who put the set on saw nothing
+// (DeathPlateau-Bugs#95). Prayer +1 helm, +7 top, +6 bottom, +1 boots, +15 for the set,
+// off each piece's own infobox and its 30 June 2021 changelog line ("The zealot's helm now
+// provides a prayer bonus of +1"). Every other bonus on all four is zero, which is why
+// this is the only param here.
+// No equip requirement in OSRS - the set is earned, not gated. The 80 Firemaking the wiki
+// mentions is to OBTAIN it, and is not a requirement to wear.
+// No experience bonus: its own effect is ~zealots_saves in outfit_effects.rs2.
+param=prayerbonus,1
 
 [eye_hat]
 name=Hat of the Eye
