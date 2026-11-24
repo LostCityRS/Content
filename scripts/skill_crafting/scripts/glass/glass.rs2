@@ -158,20 +158,44 @@ if (inv_total(inv, molten_glass) < 1) {
 // for a chooser with no count on it and wrong for a panel that has four. Make X with a big number
 // is how you do the whole lot now.
 //
-// p_delay is what carries the repeat, the same way smelting spaces its bars out. It yields, so
-// the player can walk away or click something else and the loop ends on its own the next time
-// round - there is no state to clean up and nothing to interrupt explicitly.
-def_int $made = 0;
-while ($made < $count & inv_total(inv, molten_glass) > 0) {
-    inv_del(inv, molten_glass, 1);
-    inv_add(inv, $glass_item, 1);
-    anim(human_glassblowing, 0);
-    mes("You make <$name>.");
-    stat_advance(crafting, struct_param($struct, productexp));
-    $made = add($made, 1);
-    // The last one needs no wait after it, and waiting would hold the player still for
-    // nothing - which reads as the action not having finished.
-    if ($made < $count & inv_total(inv, molten_glass) > 0) {
-        p_delay(2);
-    }
+// AND THE REPEAT IS A WEAK QUEUE, NOT A p_delay LOOP. The comment that used to sit here said
+// "p_delay is what carries the repeat, the same way smelting spaces its bars out. It yields, so
+// the player can walk away or click something else and the loop ends on its own." That is not
+// true and never was. p_delay sets player.delayed, and MoveClickHandler and its fifteen siblings
+// THROW AWAY a click made while that is set rather than deferring it - so a Make X of twenty-six
+// pieces held the player for the whole run with every step discarded. The same belief, written
+// down as a feature, was behind DeathPlateau-Bugs#39 at the chaos altar and
+// DeathPlateau-Bugs#85 at the furnace.
+weakqueue*(glass_craft_run, 0)($glass_item, $count);
+
+// One piece per pass, re-queueing itself, and the player is never held - the shape cook_generic
+// (skill_cooking/scripts/cooking.rs2) and smelt_window_run
+// (skill_smithing/scripts/smelting/smelt_window.rs2) use.
+//
+// The 3 is the old cadence exactly: p_delay(2) set delayedUntil to this tick + 3, so a piece
+// every three ticks is what the loop already did. Stopping is the queue's own doing - a move
+// click reaches Player.clearPendingAction, which closes the modal, and closeModal empties the
+// weak queue - which is why there is nothing to interrupt explicitly and no state to unwind.
+//
+// Queueing comes FIRST for the same reason it does in water_sources.rs2: the next pass has to be
+// booked before this one does its work, so that running out of glass mid-pass still leaves the
+// pack check below as the thing that ends the run.
+[queue,glass_craft_run](namedobj $glass_item, int $count)
+if ($count < 1) {
+    return;
 }
+if (inv_total(inv, molten_glass) < 1) {
+    return;
+}
+def_struct $struct = oc_param($glass_item, crafting_glass_struct);
+if (stat(crafting) < struct_param($struct, levelrequire)) {
+    return;
+}
+if ($count > 1 & inv_total(inv, molten_glass) > 1) {
+    weakqueue*(glass_craft_run, 3)($glass_item, sub($count, 1));
+}
+inv_del(inv, molten_glass, 1);
+inv_add(inv, $glass_item, 1);
+anim(human_glassblowing, 0);
+mes("You make <struct_param($struct, productmessage)>.");
+stat_advance(crafting, struct_param($struct, productexp));

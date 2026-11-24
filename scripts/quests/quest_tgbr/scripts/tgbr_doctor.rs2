@@ -122,29 +122,40 @@ if (stat(crafting) < ^tgbr_req_crafting) {
 // inventory and in the bank - into woodplank on every login. This quest was still asking for the
 // one the server takes away, so the wooden cats and the crate's false bottom could not be made at
 // all. The migration that fixed the sawmill and the bank in September missed the quest.
-while (inv_total(inv, woodplank) > 0 & inv_total(inv, fur) > 0) {
-    if (inv_freespace(inv) < 1 & inv_total(inv, wooden_cat) < 1) {
-        mes("You have no room for another cat.");
-        return;
-    }
-    anim(human_poh_build, 0);
-    sound_synth(saw_hit, 1, 0);
-    p_delay(3);
-    inv_del(inv, woodplank, 1);
-    inv_del(inv, fur, 1);
-    inv_add(inv, wooden_cat, 1);
-    stat_advance(crafting, 150);
-    mes("You carve a plank and a piece of fur into something that is nearly a cat.");
-    if (inv_total(inv, wooden_cat) >= ^tgbr_cats_wanted) {
-        mes("That should be enough cats.");
-        return;
-    }
-}
+// A WEAK QUEUE AND NOT A p_delay LOOP. This was a `while` with a p_delay(3) in it, which held the
+// player for the whole run - p_delay sets player.delayed and MoveClickHandler throws away a click
+// made while that is set - so carving a pack of planks could not be stopped. Same fault as
+// DeathPlateau-Bugs#39 and DeathPlateau-Bugs#85. The 4 is the old cadence exactly: p_delay(3) set
+// delayedUntil to this tick + 4.
+weakqueue(tgbr_cat_run, 0, 0);
+
+// One cat per pass. Every message the loop used to print on its way out is printed here instead,
+// by whichever check ends the run, so the player is told the same thing at the same moment.
+[queue,tgbr_cat_run]
 if (inv_total(inv, woodplank) < 1) {
     mes("You need a plank for each cat.");
     return;
 }
-mes("You need a piece of fur for each cat.");
+if (inv_total(inv, fur) < 1) {
+    mes("You need a piece of fur for each cat.");
+    return;
+}
+if (inv_freespace(inv) < 1 & inv_total(inv, wooden_cat) < 1) {
+    mes("You have no room for another cat.");
+    return;
+}
+anim(human_poh_build, 0);
+sound_synth(saw_hit, 1, 0);
+inv_del(inv, woodplank, 1);
+inv_del(inv, fur, 1);
+inv_add(inv, wooden_cat, 1);
+stat_advance(crafting, 150);
+mes("You carve a plank and a piece of fur into something that is nearly a cat.");
+if (inv_total(inv, wooden_cat) >= ^tgbr_cats_wanted) {
+    mes("That should be enough cats.");
+    return;
+}
+weakqueue(tgbr_cat_run, 4, 0);
 
 // =========================================================================== the crate
 [oploc1,tgbr_multi_crate]

@@ -142,19 +142,36 @@ mes("You bind the spell into the clay.");
 return(true);
 
 // Make 1, 5, 10 or X. The window's quantity buttons write %poh_tab_qty and hand it here; the
-// loop stops at the first tablet it cannot make, so running out of clay says so once and not
+// run stops at the first tablet it cannot make, so running out of clay says so once and not
 // ten times. Bounded by ^poh_tab_qty_max, an inventory's worth: a tablet needs a soft clay and
 // clay does not stack, so no more than that can be carried to the lectern anyway.
+//
+// A WEAK QUEUE AND NOT A p_delay LOOP. This was a `while` with a p_delay(2) in it, which held
+// the player for the whole run: p_delay sets player.delayed, and MoveClickHandler and its
+// fifteen siblings THROW AWAY a click made while that is set rather than deferring it, so a
+// Make 10 at the lectern could not be stopped. Same fault as DeathPlateau-Bugs#39 at the
+// chaos altar and DeathPlateau-Bugs#85 at the furnace.
+//
+// The 3 below is the old cadence exactly - p_delay(2) set delayedUntil to this tick + 3 - and
+// the queue is what makes it stoppable, because a move click reaches
+// Player.clearPendingAction, which closes the modal, and closeModal empties the weak queue.
 [proc,poh_tab_make_n](int $tab, int $count)
-def_int $i = 0;
-while ($i < $count & $i < ^poh_tab_qty_max) {
-    $i = calc($i + 1);
-    if (~poh_tab_make($tab) = false) {
-        return;
-    }
-    if ($i < $count) {
-        p_delay(2);
-    }
+if ($count < 1) {
+    return;
+}
+weakqueue*(poh_tab_run, 0)($tab, min($count, ^poh_tab_qty_max));
+
+// One tablet per pass. ~poh_tab_make carries every check and every refusal message and
+// returns false when it would not make one, so this needs no checks of its own.
+[queue,poh_tab_run](int $tab, int $count)
+if ($count < 1) {
+    return;
+}
+if (~poh_tab_make($tab) = false) {
+    return;
+}
+if ($count > 1) {
+    weakqueue*(poh_tab_run, 3)($tab, sub($count, 1));
 }
 
 // The animation OSRS plays when a tablet is broken (seq 4069) and the graphic that goes with

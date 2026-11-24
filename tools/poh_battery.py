@@ -1719,12 +1719,17 @@ check(draw.count('@gre@') == len(QSTEPS) + 1,
       'exactly one of the %d can be green at a time' % len(btns))
 TAGS = set(re.findall(r'@(\w{3})@', draw))
 check(TAGS <= KNOWN, 'the quantity tints are tags PixFont.evaluateTag knows: %s' % sorted(TAGS))
-# the making loop: bounded, and it stops at the first refusal rather than repeating the message
+# the making run: bounded, stops at the first refusal rather than repeating the message, and does
+# not hold the player. It was a `while` with a p_delay(2) in it until DeathPlateau-Bugs#85 - the
+# claims are the same, the shape they are read from is a weak queue now.
 mk = TABRS.split('[proc,poh_tab_make_n]')[1].split('\n[')[0]
-check('while ($i < $count & $i < ^poh_tab_qty_max) {' in mk,
+run = TABRS.split('[queue,poh_tab_run]')[1].split('\n[')[0]
+check('weakqueue*(poh_tab_run, 0)($tab, min($count, ^poh_tab_qty_max));' in mk,
       'the make loop is bounded by both the count and ^poh_tab_qty_max')
-check('if (~poh_tab_make($tab) = false) {' in mk and 'return;' in mk,
+check('if (~poh_tab_make($tab) = false) {' in run and 'return;' in run,
       'it stops at the first tablet it cannot make')
+check('p_delay' not in mk and 'p_delay' not in run,
+      'and it never holds the player, so a Make 10 can be walked away from')
 check('[proc,poh_tab_make](int $tab)(boolean)' in TABRS,
       '~poh_tab_make answers whether it made one')
 check('while (true)' not in TABRS and 'def_string' not in TABRS,

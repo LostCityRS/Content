@@ -180,8 +180,17 @@ MUTS = [
   '        ~poh_tab_make_n($pick, %poh_tab_qty);\n        if_close;',
   '45 the window closes before the tablets are made, so the animation is visible'),
  ('scripts/skill_construction/scripts/poh_tablets.rs2',
-  'while ($i < $count & $i < ^poh_tab_qty_max) {', 'while ($i < $count) {',
+  'weakqueue*(poh_tab_run, 0)($tab, min($count, ^poh_tab_qty_max));',
+  'weakqueue*(poh_tab_run, 0)($tab, $count);',
   '45 the make loop is bounded by both the count and ^poh_tab_qty_max'),
+ # THE HOLD, which is what DeathPlateau-Bugs#85 was: p_delay back in the run makes it a batch the
+ # player cannot walk away from. On the generated file and not on tools/gentablets.py, for the
+ # reason tools/poh_mutate_spec.py's header gives - a mutation to a generator trips "the generator
+ # still produces what is checked in" before the check under test can fire.
+ ('scripts/skill_construction/scripts/poh_tablets.rs2',
+  'if (~poh_tab_make($tab) = false) {\n    return;\n}',
+  'if (~poh_tab_make($tab) = false) {\n    return;\n}\np_delay(2);',
+  '45 and it never holds the player, so a Make 10 can be walked away from'),
  ('scripts/skill_construction/configs/construction.varp',
   '[poh_tab_qty]', '[poh_tab_qty]\nscope=perm',
   '45 %poh_tab_qty is temp - it is a setting, not part of the saved house'),
