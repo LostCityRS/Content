@@ -67,7 +67,7 @@ if (afk_event = ^true) {
     ~macro_event_general_spawn(~macro_event_set_random);
     return;
 }
-~smelt_bar($struct, $bar);
+~smelt_bar($struct, $bar, true);
 //----------------------------
 
 //************* WEAKQUEUES DIDNT EXIST UNTIL SEPT 2004 *************
@@ -158,15 +158,27 @@ if (afk_event = ^true) {
 // own Smelt window can do exactly what using an ore on the furnace does. Two paths that each
 // carried their own copy of the animation, the delay, the ore deletion, the iron-bar failure
 // roll and the goldsmith-gauntlet multiplier would be two paths that drift; smelt_window.rs2
-// calls this and nothing else. smelting_battery asserts there is no second copy.
-[proc,smelt_bar](struct $struct, namedobj $bar)
+// calls this and nothing else. windows_battery asserts there is no second copy.
+//
+// $hold IS THE ONE THING THE TWO PATHS DO NOT SHARE, and it is a pacing decision, not part of
+// the act. Using one ore on the furnace is one click for one bar, so that path pays for itself
+// with p_delay below. The Smelt window's batch is paced by its own weak queue instead and must
+// NOT be held - see the comment on it in smelt_window.rs2 and DeathPlateau-Bugs#85.
+[proc,smelt_bar](struct $struct, namedobj $bar, boolean $hold)
 anim(human_furnace, 0);
 sound_synth(furnace, 1, 0);
 
 // display process message
 mes(struct_param($struct, processmessage));
 
-p_delay(3);
+// ONLY WHEN THE CALLER ASKED TO BE HELD. p_delay does not merely pace a script: it sets
+// player.delayed, and MoveClickHandler and its fifteen siblings THROW AWAY a click made while
+// that is set rather than deferring it. One click for one bar can afford that. A batch cannot:
+// a hold on every bar, against a queue that comes back for the next one just as the hold ends,
+// leaves no tick in the whole run for the player's own click to land in.
+if ($hold = true) {
+    p_delay(3);
+}
 
 // delete main ore
 inv_del(inv, struct_param($struct, ingredient), struct_param($struct, bar_count));

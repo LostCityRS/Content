@@ -203,6 +203,19 @@ weakqueue*(smelt_window_run, 0)($bar, $count);
 
 // One bar per pass, re-queueing itself - the cook_generic shape. ~smelt_bar does the
 // checks, so a run that outlives the ore or the coal stops with the struct's own message.
+//
+// AND THE PLAYER IS NEVER HELD WHILE IT RUNS, which is why ~smelt_bar is called with
+// false. p_delay sets player.delayed, and MoveClickHandler throws away a move click while
+// that is set rather than deferring it; a hold on every bar against this queue coming back
+// 4 ticks later left no tick for the step to land in, so one press of Smelt X worked to the
+// bottom of the pack with everything the player tried to do discarded - reported as "you
+// wont stop until out of ores in inventory" (DeathPlateau-Bugs#85), word for word the shape
+// of the chaos altar before DeathPlateau-Bugs#39.
+//
+// The 4 below is the whole pacing now, and the cadence is unchanged: the old p_delay(3) ran
+// out on the same tick this queue entry came due. cook_generic has no p_delay either.
+// Stopping is the weak queue's own doing - a move click reaches clearPendingAction, which
+// closes the modal, and closeModal clears the weak queue.
 [queue,smelt_window_run](namedobj $bar, int $count)
 if ($count < 1) {
     return;
@@ -222,4 +235,4 @@ if (struct_param($struct, ingredient_secondary) ! null
     return;
 }
 weakqueue*(smelt_window_run, 4)($bar, sub($count, 1));
-~smelt_bar($struct, $bar);
+~smelt_bar($struct, $bar, false);

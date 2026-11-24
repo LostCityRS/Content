@@ -169,6 +169,16 @@ for line in ('anim(human_furnace', '~smithing_xp(', 'inv_add(inv, $bar', 'struct
           'smelt_window.rs2 does not do %r itself' % line, 'yes')
 check(nocomment(sw).count('~smelt_bar(') == 1, 'it calls ~smelt_bar once and does the rest through it', 1)
 check(nocomment(sm).count('~smelt_bar(') == 1, 'and so does the use-an-ore-on-the-furnace path', 1)
+# THE ONE ARGUMENT THE TWO PATHS DISAGREE ON, and the whole of DeathPlateau-Bugs#85. ~smelt_bar's
+# p_delay sets player.delayed, and MoveClickHandler throws away a move click while that is set, so
+# a batch that held the player for every bar could not be stopped. One click for one bar can afford
+# the hold; the window's queue paces itself and must not ask for it. tools/sim/smeltstop.ts measures
+# the consequence against the running engine - this is here so that flipping the argument back is
+# caught by the content's own checks before it reaches a sim.
+check('~smelt_bar($struct, $bar, false);' in nocomment(sw),
+      'and the window asks NOT to be held, so the run can be stopped', 'false')
+check('~smelt_bar($struct, $bar, true);' in nocomment(sm),
+      'while one ore on the furnace still pays its own delay', 'true')
 
 
 # ---------------------------------------------------------------- 4

@@ -30,12 +30,21 @@ MUTS = [
     ('scripts/skill_smithing/configs/smelting/smelting.struct', '[smelting_runite_bar]',
      '[smelting_runite_bar_x]',
      'every column has a smelting_struct block'),
-    ('scripts/skill_smithing/scripts/smelting/smelting.rs2', '~smelt_bar($struct, $bar);',
+    ('scripts/skill_smithing/scripts/smelting/smelting.rs2', '~smelt_bar($struct, $bar, true);',
      '~displaymessage(^dm_default);',
      'and so does the use-an-ore-on-the-furnace path'),
-    ('tools/genwindows.py', "'~smelt_bar($struct, $bar);',",
+    ('tools/genwindows.py', "'~smelt_bar($struct, $bar, false);',",
      "'anim(human_furnace, 0);',",
      "smelt_window.rs2 does not do 'anim(human_furnace' itself"),
+    # The hold, in both directions. Flipping either argument is the regression DeathPlateau-Bugs#85
+    # was: the window holding the player for every bar is a run that cannot be stopped, and the ore
+    # path not holding is one bar per click as fast as a player can click.
+    ('tools/genwindows.py', "'~smelt_bar($struct, $bar, false);',",
+     "'~smelt_bar($struct, $bar, true);',",
+     'and the window asks NOT to be held, so the run can be stopped'),
+    ('scripts/skill_smithing/scripts/smelting/smelting.rs2', '~smelt_bar($struct, $bar, true);',
+     '~smelt_bar($struct, $bar, false);',
+     'while one ore on the furnace still pays its own delay'),
     ('scripts/areas/area_alkharid/configs/tanner.constant', '^werewolftanner_soft_leather_cost = 2',
      '^werewolftanner_soft_leather_cost = 1',
      'Canifis charges more for every hide'),
