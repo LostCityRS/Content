@@ -12,16 +12,31 @@
 
 // a label so npcs with their own Talk-to (skill cape sellers) can fall through to it
 [label,shop_keeper_talk]
+if (~shop_keeper_asks = false) {
+    return;
+}
+~openshop_activenpc;
+
+// THE QUESTION, SPLIT FROM THE OPENING, so that a shopkeeper whose till is chosen by SCRIPT rather
+// than by its owned_shop param can ask the same thing and then open its own. Fortunato in Draynor
+// is the only one of the 175 shopkeepers in this category like that - he has three tills (free,
+// members, and members once Rag and Bone Man has started) - and the category Talk-to above used to
+// reach him, find no param, and transmit inv -1, which logs the player out. See
+// DeathPlateau-Bugs#94 and area_draynor/scripts/fortunato.rs2.
+//
+// The five existing @shop_keeper_talk callers are unaffected: the label still asks and still opens
+// the active npc's own till, in that order, with the same words.
+[proc,shop_keeper_asks]()(boolean)
 ~chatnpc("<p,happy>Can I help you at all?");
 def_int $choice = ~p_choice2("Yes please. What are you selling?", 1, "No thanks.", 2);
 if ($choice = 2) {
     ~chatplayer("<p,neutral>No thanks.");
     ~chatnpc("<p,neutral>Well, come back if you change your mind.");
-    return;
+    return(false);
 }
 ~chatplayer("<p,quiz>Yes please. What are you selling?");
 ~chatnpc("<p,happy>Take a look at my wares.");
-~openshop_activenpc;
+return(true);
 
 // COINS, and not a sixth argument: all 38 callers of this are coin shops, and a shop that trades
 // in anything else is opened by its own shopkeeper below, where the param says what.
@@ -62,6 +77,16 @@ if_openmain_side(shop_template, shop_template_side);
 // predates the vote shop keeps paying out of inv without being edited.
 %shop_wallet = npc_param(shop_wallet);
 %shop = npc_param(owned_shop);
+// A SHOPKEEPER WITH NO TILL USED TO LOG THE PLAYER OUT. owned_shop defaults to null, inv_transmit
+// is handed -1, and ScriptRunner's error path calls self.logout() under NODE_PRODUCTION - so a
+// missing param on one npc is a disconnect rather than a message (DeathPlateau-Bugs#94). Every
+// shopkeeper in the category has the param today and a sweep says so, but this is one line against
+// the next one added without it, and "Nothing interesting happens." is what the rest of the game
+// says when an option has nothing behind it.
+if (%shop = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
 %shop_buy = npc_param(shop_buy_multiplier);
 %shop_sell = npc_param(shop_sell_multiplier);
 %shop_haggle = npc_param(shop_delta);

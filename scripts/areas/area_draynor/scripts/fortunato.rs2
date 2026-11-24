@@ -1,3 +1,18 @@
+// HIS TALK-TO HAS TO BE HIS OWN, and this is the whole of DeathPlateau-Bugs#94. He carries
+// category=shop_keeper, so shop/scripts/shop.rs2's [opnpc1,_shop_keeper] answered his Talk-to,
+// asked "Can I help you at all?", and then called ~openshop_activenpc - which reads the till off
+// npc_param(owned_shop). He is the only shopkeeper in the category WITHOUT that param, because his
+// till is picked by the script below rather than configured, so it read null, inv_transmit was
+// handed -1, and the script error logged the player out.
+//
+// Same question, his own three tills. getByTrigger resolves type before category, so declaring
+// [opnpc1] here takes his Talk-to off the generic one for good.
+[opnpc1,rag_wine_merchant]
+if (~shop_keeper_asks = false) {
+    return;
+}
+~openshop_fortunato;
+
 [opnpc3,rag_wine_merchant]
 ~openshop_fortunato;
 
