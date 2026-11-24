@@ -188,7 +188,12 @@ check('inv_del(inv, rune_pouch, 1);' in up and 'inv_add(inv, divine_rune_pouch, 
 check('stat_advance' not in up, 'and gives no experience, as OSRS gives none')
 check('case rune_pouch : @rune_pouch_upgrade;' in LEATHER,
       'it hangs off the needle\'s own [opheldu,needle] switch')
-check(LEATHER.count('[opheldu,needle]') == 1,
+# DECLARATIONS, NOT MENTIONS. This counted the string anywhere in the file, and then the Xerician
+# robes round added a comment saying "[opheldu,needle] can only be declared once and this file owns
+# it" - so the sentence explaining the rule broke the check that enforces it. A trigger is declared
+# at the start of a line; a comment that names one never is. Fifth time a check in this project has
+# been caught by its own prose.
+check(len(re.findall(r'^\[opheldu,needle\]', LEATHER, re.M)) == 1,
       '...which is still declared once - a second would not compile')
 check('[opheldu,rune_pouch]' in POUCH and 'last_useitem = needle' in POUCH,
       'and the pouch answers the other direction too')

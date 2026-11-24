@@ -1113,11 +1113,13 @@ data=bonus,poisonivy_bush_seed,1,1,531,0
 [npc_drops_bearded_dark_wizard]
 table=npc_drops
 // [ai_queue3,bearded_dark_wizard]
+// assumed false: db_getfieldcount()
 data=npc,bearded_dark_wizard
 data=drop,bones,Bones,1,Always
 data=drop,coins,Coins,1,1/7.53
 data=drop,coins,Coins,2,1/8
 data=drop,coins,Coins,4,1/14.22
+data=drop,xerician_fabric,Xerician fabric,1,1/16
 data=drop,naturerune,Nature rune,4,1/18.29
 data=drop,chaosrune,Chaos rune,4,1/21.33
 data=drop,earthrune,Earth rune,36,1/32
@@ -1146,6 +1148,7 @@ data=drop,lawrune,Law rune,3,1/128
 data=bonus,coins,1,1,1328125,0
 data=bonus,coins,2,2,1250000,0
 data=bonus,coins,4,4,703125,0
+data=bonus,xerician_fabric,1,1,625000,0
 data=bonus,naturerune,4,4,546875,0
 data=bonus,chaosrune,4,4,468750,0
 data=bonus,earthrune,36,36,312500,0
@@ -18691,6 +18694,7 @@ data=drop,mappart2,Map part,1,Always
 [npc_drops_young_dark_wizard]
 table=npc_drops
 // [ai_queue3,young_dark_wizard]
+// assumed false: db_getfieldcount()
 data=npc,young_dark_wizard
 data=drop,bones,Bones,1,Always
 data=drop,coins,Coins,1,1/7.53
@@ -18701,6 +18705,7 @@ data=drop,naturerune,Nature rune,4,1/18.29
 data=drop,chaosrune,Chaos rune,5,1/21.33
 data=drop,earthrune,Earth rune,36,1/32
 data=drop,blackwizhat,Wizard hat,1,1/32
+data=drop,xerician_fabric,Xerician fabric,1,1/32
 data=drop,airrune,Air rune,10,1/42.67
 data=drop,black_robe,Black robe,1,1/42.67
 data=drop,bodyrune,Body rune,10,1/42.67
@@ -18729,6 +18734,7 @@ data=bonus,naturerune,4,4,546875,0
 data=bonus,chaosrune,5,5,468750,0
 data=bonus,earthrune,36,36,312500,0
 data=bonus,blackwizhat,1,1,312500,0
+data=bonus,xerician_fabric,1,1,312500,0
 data=bonus,airrune,10,10,234375,0
 data=bonus,black_robe,1,1,234375,0
 data=bonus,bodyrune,10,10,234375,0
