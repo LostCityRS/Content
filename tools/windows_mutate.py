@@ -75,9 +75,20 @@ MUTS = [
     ('scripts/skill_smithing/scripts/smelting/smelting.rs2', 'case silver_bar : ~silver_casting_open;',
      'case silver_bar : @craft_silver;',
      'the old cascade is no longer what a silver bar reaches'),
+    # RETARGETED (2026-11-24, DeathPlateau-Bugs#89). This row used to swap the condition for
+    # `if p['obj']:`, and it was reported as "a mutation no check catches". It was worse than that:
+    # every one of the seven products has an obj AND has a struct or a handler, so BOTH forms of
+    # the condition are true for all seven and the generated silver_casting.rs2 came out
+    # byte-identical. No check could have caught it, because nothing changed. Proven by applying
+    # the mutation to a clean tree and diffing the generated file.
+    #
+    # Dropping the handler half does change the output: the three products whose recipe a quest
+    # owns - lightning_rod, silvthrill_rod, demonic_sigil - lose their transmit and fall into the
+    # else branch. The old disjunction check stayed green for that too, so windows_battery.py now
+    # carries the correspondence this row expects.
     ('tools/genwindows.py', "        if p['struct'] or p.get('handler'):\n            b += ['if (inv_total(inv, %s) > 0) {' % p['mould'],",
-     "        if p['obj']:\n            b += ['if (inv_total(inv, %s) > 0) {' % p['mould'],",
-     'lightning_rod is either never transmitted or has the quest button that owns its click'),
+     "        if p['struct']:\n            b += ['if (inv_total(inv, %s) > 0) {' % p['mould'],",
+     "lightning_rod's slot is filled in exactly when a struct or a quest owns its recipe"),
     ('tools/adoptspec.json', '"pot_of_cream": 460',
      '"pot_of_cream": 470',
      'every route from milk to cheese pays the same, and milk -> cream -> cheese does'),

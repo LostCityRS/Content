@@ -273,6 +273,31 @@ for p in prods:
     for side in ('make', 'need'):
         check('if_sethide(silver_casting:%s_%s,' % (side, p['key']) in sv,
               'the %s layer for %s is driven' % (side, p['key']), 'yes')
+# WHICH SLOTS GET FILLED IN, and the one thing no check here was holding. tools/genwindows.py
+# decides it with `if p['struct'] or p.get('handler')`: a product whose recipe is owned either by a
+# crafting struct or by a quest gets the LIVE slot - its mould is transmitted and the make/need
+# layers flip on whether the player holds it - and anything else stays on the need side for good.
+#
+# NOTHING PINNED THAT CORRESPONDENCE, which is DeathPlateau-Bugs#89. The check below is a
+# disjunction - "never transmitted OR has the quest button" - and lightning_rod satisfies it through
+# its button whichever side of the condition it lands on. So the half of the test that reads
+# `p.get('handler')` could be dropped and every check in this file stayed green.
+#
+# This one fails the moment a product's slot disagrees with the reason it has one, in either
+# direction: a live slot for a product nothing owns a recipe for, or a dead slot for one that does.
+#
+# IT IS ALSO RIGHT FOR A SHAPE THE DATA DOES NOT CURRENTLY HAVE. All seven products have a struct
+# or a handler today, so the generator's else branch is unreachable and the old mutation row aimed
+# at that condition could not change a single byte of the output - which is why no check caught it
+# and why the row has been retargeted rather than re-pointed at a new check. A product added later
+# with neither wants no transmit, and this asks for exactly that without being touched.
+for p in prods:
+    live = 'inv_transmit(%s,' % p['inv'] in sv
+    owned = bool(p['struct']) or bool(p.get('handler'))
+    check(live == owned,
+          "%s's slot is filled in exactly when a struct or a quest owns its recipe" % p['key'],
+          'yes')
+
 for p in prods:
     if not p['struct']:
         # A WINDOW SLOT WITH NO CRAFTING STRUCT HAS TWO HONEST SHAPES, not one. It can stay dark -
