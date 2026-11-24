@@ -51,6 +51,7 @@ return(true);
 
 // proc for fish rolls
 [proc,fish_roll](namedobj $fish1, namedobj $fish2, namedobj $equipment, namedobj $bait)
+~fishing_watchdog_arm; // skill_fishing/scripts/fishing_watchdog.rs2
 if (npc_param(is_whirlpool) = ^true) {
     ~macro_whirlpool_attempt_take_equipment($equipment);
     return;
@@ -101,6 +102,7 @@ if ($fish1 ! null) { // else if fish1 isnt null and roll for 1st fish passes
 }
 
 [proc,fish_roll_loc](namedobj $fish1, namedobj $fish2, namedobj $bait)
+~fishing_watchdog_arm; // skill_fishing/scripts/fishing_watchdog.rs2
 if ($fish2 ! null) { // if fish2 isnt null and roll for 2nd fish passes
     def_struct $struct2 = oc_param($fish2, fishing_struct);
     if (stat_random(fishing, struct_param($struct2, success_low), struct_param($struct2, success_high)) = true) {

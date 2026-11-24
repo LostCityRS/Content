@@ -1,0 +1,6 @@
+// HOW LONG WITHOUT A CAST COUNTS AS STOPPED. The slowest cadence in fishing is the harpoon's six
+// ticks (skill_fishing/scripts/fishing_spots, and engine/tools/sim/fishingrates.ts holds all of
+// them), so ten ticks is comfortably past a cast that was merely due and not late. Re-arming a
+// timer resets its clock in this engine, so a cast every six ticks means this never fires while
+// fishing is actually running - it can only fire once fishing has stopped.
+^fishing_watchdog_ticks = 10

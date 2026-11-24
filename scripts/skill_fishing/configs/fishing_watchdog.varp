@@ -1,0 +1,6 @@
+// WHEN THE LAST CAST HAPPENED, for fishing_watchdog.rs2. Temp and unprotected: it is a diagnostic
+// clock, it means nothing across a login, and nothing but the watchdog reads it.
+[fishing_last_cast]
+type=int
+scope=temp
+protect=no

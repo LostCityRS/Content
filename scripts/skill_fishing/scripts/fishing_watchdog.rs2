@@ -1,0 +1,44 @@
+// DID FISHING STOP, OR WAS IT ALWAYS THIS SLOW? (Corey, 2026-11-24: 27 tuna in 20-30 minutes, where
+// the measured cadence and the wiki's own catch rates both say about 14, and other players reporting
+// the same for other fish.)
+//
+// Every rate in fishing has been checked against the wiki and every cadence measured - that is what
+// engine/tools/sim/fishingrates.ts holds - so the arithmetic says the build is right and the players
+// say it is slow. The one thing neither the sim nor the rates can see is fishing STOPPING partway
+// through a trip, because the loop is p_opnpc re-queuing itself every tick and anything that clears
+// the player's interaction ends it with no message at all. The player keeps standing there.
+//
+// So this watches for the stop instead of the rate. Every cast re-arms a ten-tick timer; re-arming
+// resets the clock, so while casts keep landing every five or six ticks the timer never fires. It
+// can only fire once fishing has stopped, and then it writes down what the state was at that moment.
+//
+// WHAT IT CANNOT TELL YOU, said plainly: a player who clicked away, walked off or filled their pack
+// looks exactly like a player whose interaction was dropped from under them. That is the limit of
+// watching from the content side, and it is why the engine logs the other half - Player.ts's
+// validateTarget now names every silently dropped interaction. Correlate the two by time: a
+// "fishing stopped" here with free space, next to an "interaction dropped silently" there, is the
+// bug. A "fishing stopped" with no free space is just a full pack.
+// A SOFT TIMER, NOT A NORMAL ONE. A normal timer only runs while the player canAccess(), and a
+// filled pack ends fishing with ~mesbox("You can't carry any more fish.") - a modal, which blocks
+// normal timers - so the watchdog went blind in exactly the case it most needs to tell apart from a
+// silent stop. A soft timer runs either way (Player.processTimers).
+[proc,fishing_watchdog_arm]
+%fishing_last_cast = map_clock;
+softtimer(fishing_watchdog, ^fishing_watchdog_ticks);
+
+[softtimer,fishing_watchdog]
+def_int $since = calc(map_clock - %fishing_last_cast);
+if ($since < ^fishing_watchdog_ticks) {
+    return;
+}
+clearsofttimer(fishing_watchdog);
+%fishing_last_cast = 0;
+def_int $space = inv_freespace(inv);
+session_log(^log_adventure, "Fishing stopped: no cast for <tostring($since)> ticks, <tostring($space)> free slots");
+// STAFF ONLY, and deliberately not a player-facing message. Making it one would be a change to how
+// the game reads rather than a way to find out why it reads that way - and if the answer turns out
+// to be that fishing is being dropped, the fix belongs where the dropping happens, not in a notice
+// that it happened.
+if (staffmodlevel > 0) {
+    mes("<col=8f0000>[fishing] stopped after <tostring($since)> ticks with <tostring($space)> free slots.</col>");
+}

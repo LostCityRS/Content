@@ -130,6 +130,7 @@ if (%action_delay < map_clock) {
 p_opnpc(4);
 
 [proc,fish_roll_big_net]
+~fishing_watchdog_arm; // skill_fishing/scripts/fishing_watchdog.rs2
 if (npc_param(is_whirlpool) = ^true) {
     ~macro_whirlpool_attempt_take_equipment(big_net);
     return;
