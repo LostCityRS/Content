@@ -50489,6 +50489,12 @@ members=yes
 2dyan=84
 2dxan=156
 weight=50g
+// UNTRADEABLE (2026-11-24), which it is in Old School: the Porcelain cup infobox says no, and it
+// covers the empty cup and both filled versions. It matters here because the old crone now replaces
+// a lost cup for free (quests/quest_ahoy/scripts/quest_ahoy.rs2, [proc,ahoy_give_cup]) - and a free
+// replacement for a TRADEABLE item is a faucet, since giving yours away makes you eligible for
+// another and no container check can see a cup you handed to somebody else.
+tradeable=no
 
 [chinacup_of_nettletea]
 name=Cup of tea
@@ -50506,6 +50512,9 @@ model=obj_chinacup_of_nettletea
 members=yes
 weight=150g
 param=next_obj_stage,chinacup_empty
+// UNTRADEABLE (2026-11-24), for the reason written on [chinacup_empty] above - the crone replaces
+// a lost cup, so the cup cannot be tradeable.
+tradeable=no
 
 [chinacup_of_nettletea_milky]
 name=Cup of tea
@@ -50523,6 +50532,9 @@ model=obj_chinacup_of_nettletea
 members=yes
 weight=150g
 param=next_obj_stage,chinacup_empty
+// UNTRADEABLE (2026-11-24), for the reason written on [chinacup_empty] above - the crone replaces
+// a lost cup, so the cup cannot be tradeable.
+tradeable=no
 
 [ahoy_robes_of_necrovarus]
 name=Mystical robes

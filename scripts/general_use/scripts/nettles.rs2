@@ -56,12 +56,74 @@ if (last_useitem ! bucket_milk) {
 ~mesbox("The nettles need boiling before anything goes in with them.");
 
 [opheldu,bowl_nettletea]
+if (last_useitem = bucket_milk) {
+    inv_del(inv, bowl_nettletea, 1);
+    inv_add(inv, bowl_nettletea_milky, 1);
+    mes("You add milk to the nettle tea.");
+    return;
+}
+@nettles_pour(bowl_nettletea, chinacup_of_nettletea, cup_of_nettletea);
+
+[opheldu,bowl_nettletea_milky]
+if (last_useitem = bucket_milk) {
+    // Already milky. Saying so is better than "Nothing interesting happens" on a click that is
+    // only redundant.
+    mes("There is already milk in that.");
+    return;
+}
+@nettles_pour(bowl_nettletea_milky, chinacup_of_nettletea_milky, cup_of_nettletea_milky);
+
+// ---------------------------------------------------------------- pouring it into a cup
+// THE HALF THAT WAS STILL MISSING, and the one Ghosts Ahoy needs. The crone takes nettle tea in her
+// own porcelain cup and nothing else, and nothing in the world could put tea into a cup: all four
+// cup objs - chinacup_of_nettletea, cup_of_nettletea and their milky versions - sat in the cache
+// with an op3=Empty stub that poured them AWAY (general_use/scripts/containers_generated.rs2) and
+// no way to fill one. So the quest was a hard block at the crone, and DeathPlateau-Bugs#92 is a
+// player walking into it.
+//
+// The bowl comes back empty, which is what that same Empty option does with it. Two objs in and two
+// out, so this never needs a free slot.
+//
+// BOTH DIRECTIONS WORK off one trigger. Cup-on-bowl and bowl-on-cup reach the same script, because
+// only the bowl half declares a trigger and OpHeldUHandler looks up both halves of the pair. The
+// bucket of milk is the one exception - cakes.rs2 declares [opheldu,bucket_milk] - and it declines
+// through ~displaymessage, which hands that click back over to the bowl.
+[label,nettles_pour](namedobj $bowl, namedobj $china, namedobj $plain)
+if (last_useitem = chinacup_empty) {
+    inv_del(inv, chinacup_empty, 1);
+    @nettles_poured($bowl, $china);
+}
+if (last_useitem = cup_empty) {
+    inv_del(inv, cup_empty, 1);
+    @nettles_poured($bowl, $plain);
+}
+~displaymessage(^dm_default);
+
+[label,nettles_poured](namedobj $bowl, namedobj $full)
+inv_del(inv, $bowl, 1);
+inv_add(inv, $full, 1);
+inv_add(inv, bowl_empty, 1);
+mes("You pour the tea into the cup.");
+
+// MILK AFTER THE POUR, because the wiki's own order is tea, cup, then milk: "Speak to the Old crone
+// again where she will refuse the tea again due to no milk being added. Add the bucket of milk to
+// the cup of tea." Milk before the pour already worked, through [opheldu,bowl_nettletea] above, and
+// both orders end at the same obj.
+//
+// The bucket is NOT consumed, which is what the bowl above has always done with it. Whether a
+// bucket of milk should survive being poured into a drink is a question about the game and not
+// about this report; it is on DeathPlateau-Bugs#92 rather than changed here, so that the two milk
+// paths at least agree with each other.
+[opheldu,chinacup_of_nettletea] @nettles_milk(chinacup_of_nettletea, chinacup_of_nettletea_milky);
+[opheldu,cup_of_nettletea] @nettles_milk(cup_of_nettletea, cup_of_nettletea_milky);
+
+[label,nettles_milk](namedobj $tea, namedobj $milky)
 if (last_useitem ! bucket_milk) {
     ~displaymessage(^dm_default);
     return;
 }
-inv_del(inv, bowl_nettletea, 1);
-inv_add(inv, bowl_nettletea_milky, 1);
+inv_del(inv, $tea, 1);
+inv_add(inv, $milky, 1);
 mes("You add milk to the nettle tea.");
 
 // ---------------------------------------------------------------- drinking it

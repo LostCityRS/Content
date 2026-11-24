@@ -147,7 +147,7 @@ switch_int (~p_choice2("What's wrong with this town?", 1, "I'm passing through."
 ~chatnpc("<p,neutral>Nobody knows. She has been there longer than this town has been dead, and she knew Necrovarus when he was breathing.");
 %ahoy_questvar = ^ahoy_crone_named;
 ~send_quest_progress(questlist:ahoy, %ahoy_questvar, ^ahoy_complete);
-~chatnpc("<p,worried>Take her nettle tea. In a china cup, with milk in it. She will not say a word over anything else.");
+~chatnpc("<p,worried>Take her nettle tea. In her own porcelain cup, with milk in it - she keeps the cup, so ask her for it. She will not say a word over anything else.");
 
 [label,ahoy_finish]
 ~chatplayer("<p,happy>He has let you go.");
@@ -234,7 +234,7 @@ inv_del(inv, ahoy_robes_of_necrovarus, 1);
 
 // =========================================================================== the old crone
 // East of the slayer tower, alive, and the only person who knew Necrovarus before he died. She wants
-// nettle tea in a china cup with milk in it, exactly as the wiki says, and she is the quest's hinge:
+// nettle tea in her own porcelain cup with milk in it, exactly as the wiki says, and she is the hinge:
 // she names the Book of Haricanto on the way out and tells you what the robes are for on the way
 // back. The bedsheet has nothing to do with her - that was invented, and it belongs to the innkeeper.
 [opnpc1,ahoy_crone]
@@ -263,24 +263,55 @@ def_obj $tea = ~ahoy_tea_held;
 if ($tea = chinacup_of_nettletea_milky) {
     @ahoy_crone_tea;
 }
+// SHE ASKS BEFORE SHE REFUSES, and this order matters more than it looks. Every refusal below
+// returns, so with them first a player who had made the tea BEFORE ever speaking to her never
+// reached the asking dialogue - and the asking dialogue is what sets ^ahoy_tea_asked, which is
+// what lets her part with the cup. Turning up well prepared meant being refused forever: the same
+// dead end as the one being fixed here, reached from the other side. Caught by
+// tools/sim/quest_ahoy_run.ts, which walks up to her carrying the bowl of tea; the unit checks in
+// tools/sim/ahoytea.ts missed it, because they set that varbit by hand instead of earning it.
+if (%ahoy_subquest_nettletea < ^ahoy_tea_asked) {
+    @ahoy_crone_ask;
+}
+// THE CUP COMES FROM HER, and that was the step nothing in this repo performed: "she will exclaim
+// that she only drinks from her special cup. She will give you a porcelain cup to pour the nettle
+// tea into." (oldschool.runescape.wiki/w/Ghosts_Ahoy). No script produced a chinacup_empty and no
+// shop sells one, so a player who made exactly what she asked for had nothing to put it in and the
+// quest stopped dead here - see DeathPlateau-Bugs#92. Reached on a later talk, this is also how a
+// lost cup comes back.
+if (~ahoy_give_cup = true) {
+    return;
+}
+// HER CUP, NO MILK: the wiki's SECOND refusal, and a different complaint from the first. Worth its
+// own line, because "that is the wrong thing" to a player holding the right thing reads as a bug.
+if ($tea = chinacup_of_nettletea) {
+    ~chatnpc("<p,angry>That is my cup, yes. There is no milk in it.");
+    return;
+}
 if ($tea ! null) {
     // She gets the drink right or she gets nothing, which is the wiki's own fuss about the cup.
-    ~chatnpc("<p,angry>That is nettle tea in the wrong thing. A china cup. With milk in it.");
+    ~chatnpc("<p,angry>That is nettle tea in the wrong thing. My cup. With milk in it.");
     return;
 }
 if (%ahoy_subquest_nettletea = ^ahoy_tea_asked) {
-    ~chatnpc("<p,angry>Nettles, boiled. A china cup. A drop of milk. It is not a difficult order.");
+    ~chatnpc("<p,angry>Nettles, boiled. My own cup. A drop of milk. It is not a difficult order.");
     return;
 }
+[label,ahoy_crone_ask]
 ~chatplayer("<p,quiz>Velorina sent me. It's about Necrovarus.");
 ~chatnpc("<p,angry>Is it. And you have come all this way to stand in my doorway and say his name at me.");
 ~chatplayer("<p,quiz>Will you help?");
-~chatnpc("<p,neutral>I have not had a cup of tea made properly since before that man died. Nettle tea. A china cup, and milk in it.");
+~chatnpc("<p,neutral>I have not had a cup of tea made properly since before that man died. Nettle tea, in my own porcelain cup, and milk in it.");
 %ahoy_subquest_nettletea = ^ahoy_tea_asked;
 ~chatnpc("<p,angry>Then we will talk about Necrovarus and not before.");
+// AND THE CUP COMES WITH THE ASKING, in the same conversation. There is then no talk in which she
+// has named the cup and not produced it, which is the gap a player falls into.
+if (~ahoy_give_cup = true) {
+    return;
+}
 
 [label,ahoy_crone_tea]
-~chatplayer("<p,happy>Nettle tea. China cup. Milk.");
+~chatplayer("<p,happy>Nettle tea. Your cup. Milk.");
 inv_del(inv, chinacup_of_nettletea_milky, 1);
 %ahoy_subquest_nettletea = ^ahoy_tea_done;
 // AND THE QUEST WITH IT. What she says next is four ticks and six lines away; a player who
@@ -1065,6 +1096,38 @@ if (%ahoy_questvar >= ^ahoy_crone_told & %ahoy_questvar < ^ahoy_translated) {
 ~ecto_collect_tokens;
 
 // =========================================================================== shared
+// HER CUP, handed over once and replaced if it is lost.
+//
+// WHEN: as soon as she has asked for the tea, which is one talk earlier than Old School, where she
+// waits until the tea is actually made. That difference is deliberate. She names the cup in the
+// breath that asks for the tea, and a player who goes off to find one will not find one, because
+// no shop sells a porcelain cup and no other script in the game produces one. Holding it back until
+// the tea exists sends them looking for an item that cannot be got.
+//
+// REPLACED IF LOST, for the ~ahoy_replace_ectophial reason further up this file: a quest that can
+// be made permanently uncompletable by dropping a 2-coin cup is worse than one that hands out a
+// second cup. The bank is checked as well, because a cup in your bank is not a lost cup, and the
+// cup is untradeable (all.obj, 2026-11-24) so a replacement cannot be turned into a faucet by
+// giving yours away.
+[proc,ahoy_give_cup]()(boolean)
+if (%ahoy_subquest_nettletea ! ^ahoy_tea_asked) {
+    // She has not asked yet. The asking dialogue below is what this talk is for.
+    return(false);
+}
+if (inv_total(inv, chinacup_empty) > 0 | inv_total(bank, chinacup_empty) > 0
+    | inv_total(inv, chinacup_of_nettletea) > 0 | inv_total(bank, chinacup_of_nettletea) > 0
+    | inv_total(inv, chinacup_of_nettletea_milky) > 0 | inv_total(bank, chinacup_of_nettletea_milky) > 0) {
+    return(false);
+}
+if (inv_freespace(inv) = 0) {
+    ~chatnpc("<p,angry>I have the cup right here and you are carrying half the world. Come back with a hand free.");
+    return(true);
+}
+inv_add(inv, chinacup_empty, 1);
+~chatnpc("<p,neutral>And not out of a bowl. I drink out of my own cup and nothing else. Here - mind it.");
+~objbox(chinacup_empty, "The old crone hands you a porcelain cup.", 250, 0, divide(^objbox_height, 2));
+return(true);
+
 [proc,ahoy_tea_held]()(obj)
 if (inv_total(inv, chinacup_of_nettletea_milky) > 0) { return(chinacup_of_nettletea_milky); }
 if (inv_total(inv, chinacup_of_nettletea) > 0) { return(chinacup_of_nettletea); }
