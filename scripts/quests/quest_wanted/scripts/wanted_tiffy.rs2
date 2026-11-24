@@ -72,9 +72,26 @@ p_delay(4);
 inv_del(inv, wanted_solus_trophy, 1);
 @wanted_finish;
 
+// THE REWARD IS SLAYER, AND IT IS ONE SKILL. This paid 18,000 Magic and 5,000 Hitpoints, and the
+// quest pays neither: "1 Quest point, 5,000 Slayer experience, Access to the White Knights'
+// armoury" and nothing else (oldschool.runescape.wiki/w/Wanted!). A player noticed -
+// DeathPlateau-Bugs#99.
+//
+// The 5,000 was the right NUMBER against the wrong SKILL, which is how this probably happened, and
+// the 18,000 Magic has no source anywhere. Removing experience a player may already have banked is
+// not something to do quietly, so it is said plainly on the issue.
+//
+// THE THIRD REWARD IS NOT PROMISED HERE, because this build has not got it. Old School's list ends
+// with access to the White Knights' armoury, and [opnpc1,sir_vyvin] in areas/area_falador answers
+// "Do you have anything to trade?" with "No, I'm sorry." - there is no armoury, and behind it in Old
+// School sits a reputation system raised by killing Black Knights. Writing it on the completion
+// scroll would be telling the player they have unlocked a shop that does not exist, so the scroll
+// lists what they actually got. The missing reward is on DeathPlateau-Bugs#99 for Corey.
+//
+// Experience is in tenths here, as everywhere else in this repo - Fight Arena's
+// stat_advance(attack, 121750) is Old School's own 12,175 - so 5,000 Slayer is 50000.
 [label,wanted_finish]
 %wanted_main = ^wanted_complete;
-stat_advance(magic, 180000);
-stat_advance(hitpoints, 50000);
+stat_advance(slayer, 50000);
 session_log(^log_adventure, "Quest complete: Wanted!");
-~send_quest_complete(questlist:wanted, wanted_solus_trophy, 200, ^wanted_questpoints, "You have completed\\nWanted!", "1 Quest Point|18,000 Magic XP|5,000 Hitpoints XP|The Temple Knights want you");
+~send_quest_complete(questlist:wanted, wanted_solus_trophy, 200, ^wanted_questpoints, "You have completed\\nWanted!", "1 Quest Point|5,000 Slayer XP");
