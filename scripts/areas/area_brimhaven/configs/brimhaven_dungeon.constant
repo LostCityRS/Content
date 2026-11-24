@@ -6,7 +6,23 @@
 // the player who reported this was standing on when they filed it (DeathPlateau-Bugs#91).
 
 // Just inside, one tile east of karam_dungeon_exit, so the way back out is under your feet.
-^brimhaven_dungeon_inside = 0_42_149_27_28
+// 2713,9564 AND NOT 2715,9564, which is two tiles further east and NOT IN THE DUNGEON.
+//
+// The room behind the entrance is 191 tiles, bounded x 2691-2713, z 9555-9573, and its
+// easternmost tile is 2713,9564. karam_dungeon_exit - the way back out - sits at 2714,9564, on
+// the room's edge. 2715,9564 is one tile PAST the exit, outside the room, in a 39,191-tile
+// region spanning x 2432-2879, z 9408-9677: the unallocated space between this dungeon's rooms.
+//
+// A player landing there could walk, because an unallocated tile carries no blocking flag, and
+// could reach nothing, because there is nothing there - reported as "brimhaven dungeon drops you
+// into a spot you cant walk" (DeathPlateau-Bugs#102).
+//
+// TWO CHECKS OF MINE PASSED ON THAT TILE. isMapBlocked said it was not blocked, which is true of
+// empty space as well as of open floor, and "beside the way out" allowed two tiles of slack, so
+// standing on the wrong SIDE of the exit counted as beside it. tools/sim/brimhaven.ts now asks
+// the question that matters instead: the landing has to sit in a bounded room, and the way out
+// has to be reachable from it on foot.
+^brimhaven_dungeon_inside = 0_42_149_25_28      // 2713,9564  the room tile beside the exit
 
 // South of the entrance, on its forceapproach side.
 ^brimhaven_dungeon_outside = 0_42_49_56_16
