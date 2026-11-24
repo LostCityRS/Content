@@ -1,0 +1,62 @@
+// THE MONKEY ARCHERS ON APE ATOLL'S WALLS AND WALKWAYS, AND WHY THEY NEVER LOOSED AN ARROW.
+//
+// Three npcs - mm_monkey_archer, mm_posted_archer and mm_ravine_archer - had everything except a
+// way to act. They carry huntmode=mm_aggressive_ranged and huntrange=8, so the hunt found the
+// player and set them to APPLAYER2 mode; that mode had no trigger on them, because they carried no
+// category at all, so the mode was set and nothing ever ran. A player could stand under the bamboo
+// gate and watch three archers aim at them forever (DeathPlateau-Bugs#37, #43 - reported twice).
+//
+// TWO THINGS WERE MISSING AND ONLY ONE OF THEM IS THIS FILE. The other is attackrange: the AP
+// trigger is gated on inApproachDistance(type.attackrange, target), and theirs was 0 - no distance
+// at which they are allowed to act - while moverestrict=nomove means they cannot close the gap
+// either. That is one line each in the npc config, set to 8 to match their huntrange, exactly as
+// death_troll_thrower1 does it.
+//
+// THE SHAPE IS death_troll_thrower.rs2's, which is this repo's one worked example of a ranged npc:
+// a queue1 for retaliation, an opplayer2 that hands over to applayer2, and the shot itself in
+// applayer2. Nothing here is novel; the archers were the only ranged npcs in the build without it.
+//
+// THE ARROW'S FLIGHT IS THE BUILD'S OWN. ~player_projectile wants a start and end height, a delay,
+// an angle, a length, an offset and a step, and I did not have the cache's map_projanim_v2 row for
+// iron_arrow_travel to read them off. What the build does have is pvp_ranged.rs2, which fires the
+// SAME spotanim - oc_param(ammo, proj_travel) is iron_arrow_travel for an iron arrow - with
+// 40, 36, 41, 15, 5, 11, 5. So an archer's arrow flies the way every bow shot in this build already
+// flies, which is a reuse rather than a guess. It is not certified against Old School's own row for
+// an npc-fired arrow; if that row turns up, these seven numbers are the only thing to change.
+//
+// Corey's call, 23 November: reuse the build's arrow rather than wait for the row.
+
+[ai_queue1,_mm_archer] ~npc_default_retaliate_ap;
+[ai_opplayer2,_mm_archer] npc_setmode(applayer2);
+
+[ai_applayer2,_mm_archer]
+// NOT YET, BUT STILL AIMING. Re-setting the mode is what keeps the npc on the target through the
+// ticks between shots; returning without it drops the interaction and the archer goes idle.
+if (%npc_action_delay > map_clock) {
+    npc_setmode(applayer2);
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+
+def_int $maxhit = ~npc_ranged_maxhit;
+
+npc_anim(npc_param(attack_anim), 0);
+sound_synth(npc_param(rangeattack_sound), 1, 0);
+spotanim_npc(npc_param(proj_launch), npc_param(proj_height), 0);
+
+%npc_action_delay = add(map_clock, npc_param(attackrate));
+// The build's own arrow, from pvp_ranged.rs2 - see the note at the top of this file.
+def_int $duration = ~player_projectile(npc_coord, coord, uid, npc_param(proj_travel), 40, 36, 41, 15, 5, 11, 5);
+
+// Ranged bypasses defence here and checks prayer instead, as the thrower troll does.
+if (~check_protect_prayer(^ranged_style) = false) {
+    ~playerhit_n_ranged(randominc($maxhit), $duration, npc_param(attackrate));
+    return;
+}
+~playerhit_n_ranged(0, $duration, npc_param(attackrate));

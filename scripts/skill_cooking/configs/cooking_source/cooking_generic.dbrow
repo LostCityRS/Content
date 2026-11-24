@@ -602,6 +602,26 @@ data=successchance,88,432
 data=cantcookmessage_range,You need an open fire to roast the rabbit on the spit.
 data=successmessage,You roast the rabbit over the fire.
 
+// Raw chompy threaded onto the same iron spit (DeathPlateau-Bugs#77). Old School: Cooking 30,
+// 100 xp, a fire and not a range - the same reason the rabbit cannot use one, there is nowhere on
+// a range to rest a spit. Cooked is the Big Chompy Bird Hunting quest's own cooked_chompy and burnt
+// is its ruined_chompy, which are the two names the wiki gives, so this adds a route to food that
+// already exists rather than a second cooked chompy beside it.
+//
+// THE BURN CURVE IS TUNA'S, and that is not a guess at a neighbour: tuna unlocks at the same level
+// 30 for the same 100 xp, so it is the one row in the table with both of this one's numbers.
+// https://oldschool.runescape.wiki/w/Skewered_chompy
+[cooking_generic_skewered_chompy]
+table=cooking_generic
+data=uncooked,spit_skewered_chompy
+data=cooked,cooked_chompy
+data=burnt,ruined_chompy
+data=levelrequired,30
+data=experience,1000
+data=successchance,58,372
+data=cantcookmessage_range,You need an open fire to roast the chompy on the spit.
+data=successmessage,You roast the chompy over the fire.
+
 // MALTING BARLEY, which is the first step of every ale in the game and had nowhere to happen.
 // A handful of barley roasted on a range comes out as barley malt: no level, no experience, and
 // it cannot be done over a fire - a cooking range is the only thing that will do it. It never

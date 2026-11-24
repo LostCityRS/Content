@@ -240,6 +240,21 @@ param=strengthbonus,5
 param=ornament_kit,rune_defender_ornament_kit
 param=ornament_into,rune_defender_t
 
+// THE FIGHTER TORSO, which the Undertaker sells for Death tokens
+// (areas/area_wilderness/configs/death_token_shop.inv). It lives in this file because it was
+// imported alongside the defenders; nothing about it is Warriors' Guild content.
+//
+// Old School gives it for 375 Honour points in Barbarian Assault, and Barbarian Assault is not in
+// this build - five roles and a four-player minimum would be dead content at this population. Corey
+// put it on the Undertaker's shelf instead (23 November).
+//
+// COST IS THE TOKEN PRICE, as it is for everything on that shelf - one shop, one multiplier at
+// 1000 per mille, so the obj's cost IS what it costs in tokens. It was 20000, the item's Old School
+// gp value, which would have asked twenty thousand tokens for it. 500 puts it level with the whip
+// kits and the ancient fabric, the dearest things the Undertaker sells, and five times the Scroll
+// of imbuing that the shelf's own comment benchmarks at "about four tasks at level 1". Nothing else
+// reads this cost: the torso is tradeable=no, so no shop will buy it and no price here becomes a
+// market price.
 [fighter_torso]
 name=Fighter torso
 desc=A sturdy torso from Barbarian Assault.
@@ -256,7 +271,7 @@ iop2=Wear
 iop5=Destroy
 wearpos=torso
 wearpos2=arms
-cost=20000
+cost=500
 members=yes
 tradeable=no
 weight=4kg

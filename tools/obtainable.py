@@ -303,14 +303,26 @@ def main():
                     given[m.group(1)].add(fn)
 
     # ---- the ground
+    #
+    # THIS RULE NEVER FIRED ONCE until 23 November 2026, and it is the one that most needed to.
+    # read() keeps each file's own newlines, every .jm2 is CRLF, and `l.strip('= ')` strips only '='
+    # and ' ' - so "==== OBJ ====\r" became "OBJ ====\r", never equalled 'OBJ', and the section was
+    # skipped in every map in the game. 258 objs have a ground spawn and the audit called all of
+    # them sourceless.
+    #
+    # It cost a wrong answer out loud: the Golem quest's letter was reported as unobtainable and
+    # the quest as possibly unfinishable, when the letter lies in the sand at Uzer (m54_48.jm2,
+    # local 23,20 - which is exactly where tools/sim/quest_golem_run.ts picks it up). Strip the
+    # line, not just the padding.
     mapdir = os.path.join(ROOT, 'maps')
     for fn in sorted(os.listdir(mapdir)):
         if not fn.endswith('.jm2'):
             continue
         sec = None
         for l in read('maps/' + fn).split('\n'):
+            l = l.strip()
             if l.startswith('===='):
-                sec = l.strip('= '); continue
+                sec = l.strip('= ').strip(); continue
             if sec != 'OBJ' or ':' not in l:
                 continue
             for p in l.split(':', 1)[1].split():

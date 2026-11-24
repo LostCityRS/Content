@@ -1,0 +1,12 @@
+// THE SOLVED PICTURE, for the puzzle box's Hint button.
+//
+// A second 25-slot board, filled in order and never shuffled, so the Hint can transmit a completed
+// puzzle to the same grid component the live board uses and then transmit the live one back. The
+// cache ships no solved-picture panel - trail_puzzle is 6976 with com_0..com_9 and nothing that
+// looks like one - so showing the answer in the grid itself is the only way to show it at all.
+//
+// Same shape as trail_puzzleinv (scripts/_unpack/727/all.inv): 25 slots, temp, dummy.
+[trail_puzzlehint]
+size=25
+scope=temp
+dummyinv=yes

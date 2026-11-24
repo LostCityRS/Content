@@ -53,9 +53,33 @@
 // row (areas/area_wilderness/configs/whip_colours.obj, generated). Nine of the seventeen are the
 // whip kits, and they are the first thing on this shelf that is not his own outfit - the ninth,
 // Gravedigger, is black with bone links and is the whip that matches the helmet.
+// TWENTY ROWS AS OF 23 NOVEMBER: the nineteen below plus the FIGHTER TORSO, at Corey's word.
+//
+// IT BREAKS THE STATUS-NOT-POWER RULE ABOVE, and this note is here so that is on the record rather
+// than discovered later. The torso is not a cosmetic: it is +4 strength with rune-platebody
+// defences, the body a melee account wears until it has a Bandos chestplate, and the shelf's rule
+// is "nothing that changes a combat number, nothing that can be pointed at another player". It
+// fails that, and it also fails two of the three tests that let the Scroll of imbuing stay - it is
+// not already a drop, and it is not slayer content. Only "untradeable" holds.
+//
+// The reason it is here anyway is that Barbarian Assault, which sells it for 375 Honour points in
+// Old School, is not in this build and would be dead content at this population; the alternative
+// was leaving an imported item with no source at all, which is how it has sat since it was built.
+// The judgement that a Wilderness currency is the right place for it is Corey's, not this file's.
+//
+// WHAT IT DOES TO THE WILDERNESS, for whoever reads this next: tokens are earned past the signs,
+// so this makes a melee upgrade a reward for Wilderness play, which is a loop - the better your
+// torso the better your tokens. If that turns out badly the fix is one line, this row, and the
+// torso goes back to having no source until something better exists.
+//
+// It carries NO pvp_token_bounty and NO destroy_death, which is deliberate and is the same as every
+// other non-outfit row here (the whip kits, the royal seed pod, the ancient fabric, the scroll).
+// Those two params are the Undertaker's OUTFIT contract - a cosmetic with a stake behind it - and
+// giving them to a 500-token armour would mean losing it outright to any Wilderness death, which
+// nobody asked for.
 [death_token_shop]
 scope=shared
-size=19
+size=20
 restock=yes
 stackall=yes
 allstock=no
@@ -78,3 +102,4 @@ stock16=whip_kit_bone,1000,1
 stock17=whip_kit_gravedigger,1000,1
 stock18=royal_seed_pod,1000,1
 stock19=ancient_fabric,1000,1
+stock20=fighter_torso,1000,1

@@ -107,6 +107,24 @@ if (npc_canreach = false) {
 npc_sethuntmode(cowardly);
 
 
+// THE BREATH ANIMATION COMES FROM THE CONFIG NOW, and that is the whole of DeathPlateau-Bugs#56
+// ("kbds animation is bugged").
+//
+// There are TWO king black dragon models in this build. npc_king_dragon is the 377-native one -
+// black_dragon still uses it - and npc_king_dragon_1..5 is the OSRS import, which is what
+// king_dragon wears today. The dragon_firebreath_* seqs this script used to name were authored
+// against the 377 mesh. Posed on it with tools/pose377.py they are a clean rear-and-breathe; posed
+// on the OSRS mesh the npc actually wears, the tail and legs stretch into flat spikes and the back
+// half collapses. The npc was re-modelled and the animations in this file were never told.
+//
+// npc_param(attack_anim) is osrs_seq_91, which npc/configs/dragons.npc already declares beside the
+// matching osrs_seq_89/90/92, and which poses correctly on that mesh. Reading the param rather than
+// naming a seq is the point: the next re-model only has to change the config, and this file cannot
+// drift away from it again.
+//
+// WHAT THIS COSTS: the four calls below used to name a middle / left / right / all-heads variant,
+// and the OSRS import has one attack animation, so all three heads now move together. That is a
+// real loss against a visibly broken animation, and it is the trade this fix makes.
 [proc,kbd_random_attack]
 // 1/3 chance to do melee/fire/special
 def_int $random_attack = random(3);
@@ -147,7 +165,7 @@ if (calc($z / 2) <= $x & calc($x / 2) <= $z) { // south-west
 }
 def_int $duration = ~player_projectile($projectile_coord, coord, uid, firebreath_travel, 92, 31, 51, 16, -5, 64, 10);
 
-npc_anim(dragon_firebreath_middle_attack, 0);
+npc_anim(npc_param(attack_anim), 0);
 sound_synth(dragonbreath, 1, 30);
 spotanim_pl(fireblast_impact, 124, $duration); // https://web.archive.org/web/20040928200427/http://rsblacknights.com/modules/gallery/images/KingBlackDragon/kb3.JPG
 %npc_action_delay = add(map_clock, 5);
@@ -173,7 +191,7 @@ queue*(playerhit_n_retaliate, calc($duration / 30))(npc_uid);
 [proc,kbd_dragonfire_close]
 if_close;
 spotanim_npc(triple_firebreath_attack, 92, 0);
-npc_anim(dragon_firebreath_all_attack, 0);
+npc_anim(npc_param(attack_anim), 0);
 sound_synth(dragonbreath, 1, 30);
 %npc_action_delay = add(map_clock, 5);
 
@@ -197,7 +215,7 @@ queue*(playerhit_n_retaliate, 0)(npc_uid);
 [proc,kbd_toxic_breath]
 if_close;
 spotanim_npc(acidbreath_attack, 92, 0);
-npc_anim(dragon_firebreath_right_attack, 0);
+npc_anim(npc_param(attack_anim), 0);
 
 sound_synth(toxicbreath, 1, 30);
 %npc_action_delay = add(map_clock, 5);
@@ -228,7 +246,7 @@ queue*(playerhit_n_retaliate, 0)(npc_uid);
 [proc,kbd_shocking_breath]
 if_close;
 // spotanim_npc(portal, 92, 0);
-npc_anim(dragon_firebreath_middle_attack, 0);
+npc_anim(npc_param(attack_anim), 0);
 sound_synth(lightningbreath, 1, 30);
 spotanim_pl(nezik_flamestrike, 0, 60);
 %npc_action_delay = add(map_clock, 5);
@@ -273,7 +291,7 @@ queue*(playerhit_n_retaliate, 0)(npc_uid);
 if_close;
 
 spotanim_npc(icebreath_attack, 92, 0);
-npc_anim(dragon_firebreath_left_attack, 0);
+npc_anim(npc_param(attack_anim), 0);
 
 sound_synth(kingicebreath, 1, 30);
 %npc_action_delay = add(map_clock, 5);

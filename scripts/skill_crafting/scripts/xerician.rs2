@@ -1,0 +1,133 @@
+// SEWING THE XERICIAN ROBES. https://oldschool.runescape.wiki/w/Xerician_fabric
+//
+// A needle and some thread on a scrap of Xerician fabric: a hat for 3 cloths at 14 Crafting, a robe
+// for 4 at 17, a top for 5 at 22. The numbers are Old School's and live in configs/xerician.constant
+// along with the cloth's drop rates.
+//
+// WHY THIS EXISTS. The three robes were imported and had no source of any kind - a level gate in
+// levelrequire/scripts/tier20.rs2 was the only line in the repo that mentioned them, which is how
+// tools/obtainable.py found them. Crafting them is what Old School does, so it is what this does.
+//
+// BOTH DIRECTIONS OF THE CLICK. A player may use the needle on the cloth or the cloth on the
+// needle, and opheldu fires on whichever half was clicked - so the cloth's own trigger is here and
+// the needle's case is added to the switch in leather/leather.rs2, which already owns
+// [opheldu,needle] and cannot be declared twice.
+[opheldu,xerician_fabric]
+if (last_useitem = needle) {
+    @craft_xerician;
+}
+~displaymessage(^dm_default);
+
+// THE PANEL, which is ~skillmulti3 - the same "make" interface spinning uses. All three pieces are
+// always offered, whatever the player's level or how much cloth they have: Old School offers them
+// too and refuses afterwards, and a panel that hides a row is a panel that cannot tell you WHY the
+// thing you wanted is not there.
+[label,craft_xerician]
+if (inv_total(inv, needle) < 1 | inv_total(inv, xerician_fabric) < 1) {
+    ~displaymessage(^dm_default);
+    return;
+}
+def_namedobj $product;
+def_int $count;
+$product, $count = ~skillmulti3(xerician_hat, xerician_robe, xerician_top);
+if ($product = null | $count < 1) {
+    return;
+}
+@craft_xerician_batch($product, $count);
+
+// The recipe, keyed on the product - one cloth, three things to make of it, so the data hangs off
+// what you are making rather than off what you are making it from. (Spinning does the opposite for
+// the opposite reason: four ingredients, one product each.)
+[proc,xerician_recipe](namedobj $product)(int, int, int)
+switch_obj ($product) {
+    case xerician_hat : return(^xerician_hat_level, ^xerician_hat_fabric, ^xerician_hat_xp);
+    case xerician_robe : return(^xerician_robe_level, ^xerician_robe_fabric, ^xerician_robe_xp);
+    case xerician_top : return(^xerician_top_level, ^xerician_top_fabric, ^xerician_top_xp);
+}
+return(0, 0, 0);
+
+[label,craft_xerician_batch](namedobj $product, int $count)
+def_int $level;
+def_int $fabric;
+def_int $xp;
+$level, $fabric, $xp = ~xerician_recipe($product);
+if ($level = 0) {
+    ~displaymessage(^dm_default);
+    return;
+}
+if (map_members = ^false) {
+    mes(^mes_members_feature);
+    return;
+}
+if (stat(crafting) < $level) {
+    ~mesbox("You need a Crafting level of <tostring($level)> to make <lowercase(oc_name($product))>.");
+    return;
+}
+if (inv_total(inv, xerician_fabric) < $fabric) {
+    // The count is named because three, four and five are easy to be one short of.
+    ~mesbox("You need <tostring($fabric)> pieces of Xerician fabric to make <lowercase(oc_name($product))>.");
+    return;
+}
+if ($count <= 1) {
+    ~sew_xerician($product);
+    return;
+}
+// A QUEUE, NEVER p_delay, which is the rule the whole skill works to and spinning.rs2 states in
+// capitals: p_delay sets player.delayed, and while that is set the engine throws the player's
+// clicks away - so a batch paced with it cannot be stopped - and a delayed player's queue does not
+// drain, so every level earned mid-batch is announced at the end with the wrong number.
+// Four ticks is the cadence spinning and strung bows use.
+weakqueue*(sew_xerician_more, 4)(sub($count, 1), $product);
+~sew_xerician($product);
+
+[queue,sew_xerician_more](int $count, namedobj $product)
+if ($count < 1) {
+    return;
+}
+~sew_xerician($product);
+if ($count > 1) {
+    weakqueue*(sew_xerician_more, 4)(sub($count, 1), $product);
+}
+
+// ONE PIECE. Every check is repeated here rather than trusted from the caller, because the batch
+// above runs over several ticks and a player can bank, drop or trade away the cloth between two of
+// them - and because the queue re-entering is the one path that does not pass through the panel.
+[proc,sew_xerician](namedobj $product)
+def_int $level;
+def_int $fabric;
+def_int $xp;
+$level, $fabric, $xp = ~xerician_recipe($product);
+if ($level = 0 | stat(crafting) < $level) {
+    return;
+}
+if (inv_total(inv, needle) < 1) {
+    return;
+}
+if (inv_total(inv, thread) < 1) {
+    ~objbox(thread, "You need some thread to sew the fabric together.", 250, 0, divide(^objbox_height, 2));
+    return;
+}
+if (inv_total(inv, xerician_fabric) < $fabric) {
+    return;
+}
+// NO SPACE IS A STOP, not a dropped robe: inv_add with no room puts the item on the floor, and a
+// batch that quietly paves the bank with robes is worse than one that stops.
+if (inv_freespace(inv) < 1 & inv_total(inv, xerician_fabric) > $fabric) {
+    mes("You don't have enough inventory space.");
+    return;
+}
+anim(human_leather_crafting, 0);
+inv_del(inv, xerician_fabric, $fabric);
+// A REEL OF THREAD LASTS FIVE SEWINGS, which is this build's rule for a needle and thread rather
+// than a decision taken here: leather/leather.rs2 counts %thread_used the same way and prints the
+// same line. Sharing the counter is the point - the robes are sewn with the same reel the chaps
+// are, so five pieces of anything is a reel.
+%thread_used = calc(%thread_used + 1);
+if (%thread_used > 4) {
+    inv_del(inv, thread, 1);
+    mes("You use up one of your reels of Thread.");
+    %thread_used = 0;
+}
+inv_add(inv, $product, 1);
+mes("You sew the fabric into <lowercase(oc_name($product))>.");
+stat_advance(crafting, $xp);

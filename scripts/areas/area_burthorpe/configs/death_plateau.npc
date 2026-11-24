@@ -44,6 +44,26 @@ param=defend_sound,troll_champion_hit
 param=defend_sound,troll_champion_death
 huntrange=1
 param=death_drop,big_bones
+// WHY THESE FOUR HAD NO DROPS. A drop table attaches by npc CATEGORY - [ai_queue3,_<category>] -
+// and the four NAMED Death Plateau trolls carried no category at all, so no handler could ever
+// reach them and the only thing that landed was their own param=death_drop. Every GENERIC troll in
+// this same file is categorised: the throwers are troll_thrower and the seven melee trolls are
+// mountain_troll. Reported by a player who killed Rock twelve times and got bones twelve times
+// (DeathPlateau-Bugs#32).
+//
+// WHICH TABLE, on Corey's call (23 November): the existing ones, rather than writing new tables
+// from the modern wiki - its drops for these four are well post-2006 and the tables already here
+// are 2006-shaped.
+//
+//   Rock (111) and Stick (104)      -> troll_general, the Troll Stronghold generals' table:
+//                                      steel and mithril platebodies, warhammers, a granite
+//                                      shield, runes, herbs, coins. Its one quest branch - the
+//                                      prison key - is gated on npc_type = troll_general/2/3, so
+//                                      these two share the loot and cannot drop that key.
+//   Pee Hat (91) and Kraka (91)     -> mountain_troll, which is what the generic 69s in this file
+//                                      already use. Same idea: its Godric and Eadgar key branches
+//                                      are gated on the prison guards' own npc_type.
+category=troll_general
 
 [death_troll_leuitanant]
 name=Stick
@@ -88,6 +108,7 @@ param=defend_sound,troll_champion_hit
 param=defend_sound,troll_champion_death
 huntrange=1
 param=death_drop,big_bones
+category=troll_general
 
 param=death_sound,troll_death
 [death_troll_guard1]
@@ -135,6 +156,7 @@ param=defend_sound,troll_champion_hit
 param=defend_sound,troll_champion_death
 huntrange=1
 param=death_drop,big_bones
+category=mountain_troll
 
 [death_troll_guard2]
 name=Kraka
@@ -180,6 +202,7 @@ param=defend_sound,troll_champion_hit
 param=defend_sound,troll_champion_death
 huntrange=1
 param=death_drop,big_bones
+category=mountain_troll
 
 [death_troll_cook1]
 name=Dung

@@ -1,0 +1,12 @@
+// The Jungle Demon's own state (quests/quest_mm/scripts/mm_stage3.rs2).
+
+// AN NPC VAR AND NOT A PLAYER VARP, for the reason area_zulrah/configs/zulrah.varn gives: the
+// trigger that drives the fight is [ai_applayer2], which has the target player UNPROTECTED, and a
+// protected player varp cannot be written from there. One demon per fight, npc_add'ed for it and
+// gone afterwards, so its own var is already per-fight - and Npc.resetEntity zeroes every varn.
+
+// Which of the four wave spells it throws next, 0..3. The wiki says it "alternates between all four
+// wave spells", so this counts rather than rolls: random(4) would repeat and skip, and a player
+// watching four different splashes come round in order is the thing being described.
+[mm_demon_wave]
+type=int

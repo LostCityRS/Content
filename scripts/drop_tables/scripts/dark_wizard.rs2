@@ -70,6 +70,26 @@ if ($random < 4) {
     obj_add(npc_coord, fire_talisman, 1, ^lootdrop_duration);
 }
 
+// XERICIAN FABRIC, which this table had the room for: the chain above stops at 112, so slots
+// 112-127 were dead and no existing rate moves to make space. A separate `if` rather than another
+// arm of the chain, for that reason - the bands are disjoint, so a kill still drops one thing.
+//
+// TWICE AS OFTEN PAST THE WILDERNESS LINE. The same npc stands on both sides of it - three of the
+// five bearded spawns are at the circle west of Edgeville and two are south-east of Varrock - so
+// the only place the difference can live is here, keyed on where the wizard died. The reasoning,
+// and what a full set costs, is in skill_crafting/configs/xerician.constant.
+if ($random >= sub(128, ~xerician_fabric_slots(^xerician_fabric_slots_bearded_wild, ^xerician_fabric_slots_bearded))) {
+    obj_add(npc_coord, xerician_fabric, 1, ^lootdrop_duration);
+}
+
+// How many of the top slots the cloth takes for this kill: the Wilderness figure north of the line
+// and the ordinary one anywhere else. Shared by both wizards, which are the only two callers.
+[proc,xerician_fabric_slots](int $wild, int $tame)(int)
+if (~wilderness_level(npc_coord) > 0) {
+    return($wild);
+}
+return($tame);
+
 [ai_queue3,young_dark_wizard] // Level 7
 gosub(npc_death);
 if (npc_findhero = ^false) {
@@ -140,4 +160,11 @@ if ($random < 8) {
     obj_add(npc_coord, water_talisman, 1, ^lootdrop_duration);
 } else if ($random < 112) {
     obj_add(npc_coord, fire_talisman, 1, ^lootdrop_duration);
+}
+
+// And the cloth at half the bearded wizard's rate, in this table's own dead slots. A level-7 wizard
+// is well under the tier the robes are for, so it is here to make the Wilderness circle worth
+// clearing rather than to be farmed on its own - five of the sixteen young spawns are up there.
+if ($random >= sub(128, ~xerician_fabric_slots(^xerician_fabric_slots_young_wild, ^xerician_fabric_slots_young))) {
+    obj_add(npc_coord, xerician_fabric, 1, ^lootdrop_duration);
 }

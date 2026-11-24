@@ -150,15 +150,19 @@ stock10=willow_longbow,2,200
 stock11=maple_shortbow,1,100
 stock12=maple_longbow,1,100
 stock13=crossbow,2,400
-// the 2006 gem-tipped bolts (skill_combat/configs/ranged/crossbows.obj), to enchant
-stock14=jade_bolts,300,60
-stock15=topaz_bolts,300,60
-stock16=sapphire_bolts,250,70
-stock17=emerald_bolts,250,70
-stock18=ruby_bolts,200,90
-stock19=diamond_bolts,200,90
-stock20=dragon_bolts,150,120
-stock21=onyx_bolts,100,150
+// THE EIGHT GEM-TIPPED BOLTS THAT USED TO BE HERE ARE GONE (DeathPlateau-Bugs#51, reported as
+// "lowe at varrock sells bolts it shouldn't"). They were a deliberate stopgap, put here with the
+// metal ones at the Ranging Guild and labelled "sold here until they can be smithed and fletched" -
+// and that condition has since been met. skill_fletching/configs/crossbows/crossbows.dbrow now has
+// a tip row and a bolt row for each of the eight (jade 26, topaz 48, sapphire 56, emerald 58, ruby
+// 63, diamond 65, dragon 71, onyx 73), the Fletching guide lists them, and Smithing makes the
+// unfinished bolts they attach to. So the shop rows outlived their reason and a player noticed.
+//
+// Old School's Lowe sells no gem-tipped bolts of any kind, and jade bolts are not even tradeable
+// there. https://oldschool.runescape.wiki/w/Lowe%27s_Archery_Emporium
+//
+// The bronze bolts and the crossbow above STAY: the wiki's own stock table has Bronze bolts 1,500
+// and Crossbow 2, so the one thing the report named by name was the one thing that was correct.
 
 [clotheshop]
 // https://classic.runescape.wiki/w/The_Clothes_Shop
@@ -1358,8 +1362,18 @@ stock24=longbow,20,50
 stock25=oak_longbow,20,60
 stock26=zogre_bow,0,2000
 stock27=willow_longbow,20,70
-// the 2006 crossbows and their metal bolts (skill_combat/configs/ranged/crossbows.obj) - sold here
-// until they can be smithed and fletched; the gem-tipped bolts are at Lowe's
+// The 2006 crossbows and their metal bolts (skill_combat/configs/ranged/crossbows.obj), put here
+// "until they can be smithed and fletched".
+//
+// THAT CONDITION HAS BEEN MET and these rows have not been revisited. Smithing makes every
+// *_bolts_unf (bronze 3, blurite 8, iron 18, steel 33, mithril 53) and Fletching feathers them and
+// cuts every gem tip, so the stopgap is now the only reason any of this is buyable. Its twin at
+// Lowe's - eight gem-tipped bolts, which Old School's Lowe does not sell at all - was removed when
+// a player noticed it (DeathPlateau-Bugs#51).
+//
+// THIS BLOCK IS LEFT ALONE ON PURPOSE. Taking it out changes where every crossbow in the game comes
+// from, which is an economy decision rather than a bug fix, and the Ranging Guild is not what was
+// reported. It is filed for a decision; see the issue.
 stock28=bronze_crossbow,10,100
 stock29=blurite_crossbow,8,150
 stock30=iron_crossbow,8,150

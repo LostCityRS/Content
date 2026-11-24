@@ -455,6 +455,24 @@ param=magicdefence,50
 param=damagetype,^slash_style
 param=death_drop,ashes
 
+// AND IT CASTS. Reported as "jungle demon only attacks with melee and not both mage and melee"
+// (DeathPlateau-Bugs#48), and the OSRS wiki's Jungle Demon page is explicit: it "alternates between
+// all four wave spells for its magic attacks", and both styles hit up to 32. It had no attackrange
+// at all, so it could only ever reach [ai_opplayer2] standing next to you, and no magicattack_anim,
+// so a cast would have fallen back to the SPELL's animation - a player's cast on a demon rig, which
+// is the same mistake as the skeletons in DeathPlateau-Bugs#68.
+//
+// Both numbers are [koldemon]'s, above in this file: Kolodion's demon form is the same
+// npc_greater_demon mesh at the same size=3, fighting with melee and magic, and it already carries
+// attackrange=5 and demon_casting. So these are read off an npc the cache itself configured for
+// this rather than guessed, and demon_casting is the greater demon's own cast - it exists in the
+// 377 seqs and [koldemon] is its only other user.
+//
+// The AI that chooses between them is [proc,mm_demon_attack] in
+// quests/quest_mm/scripts/mm_stage3.rs2, beside the rest of the final battle.
+attackrange=5
+param=magicattack_anim,demon_casting
+
 param=attack_sound,demon_attack
 param=death_sound,demon_death
 param=defend_sound,demon_hit

@@ -19446,6 +19446,24 @@ huntmode=cowardly
 huntrange=1
 
 [dragonslayer_skeleton]
+// ITS COMBAT ANIMATIONS ARE THE HUMAN DEFAULTS, and that is not an oversight
+// (DeathPlateau-Bugs#68, "melzars maze skeletons animations are bugged").
+//
+// This npc is built on npc_dragonslayer_skeleton, whose vertices are labelled with transform
+// groups 1,2,4,5,8,29,31..49 - the HUMAN rig. The skeleton_* animations were authored for
+// poh_skeleton_8, which is labelled 1-23, and nineteen npcs use that model and those animations
+// quite happily.
+//
+// It carried param=attack_anim,skeleton_attack / defend_anim,skeleton_block /
+// death_anim,skeleton_death, which is an animation from one rig played on a model from another.
+// Rendered frame by frame with tools/pose377.py - the tool that exists for exactly this question -
+// skeleton_attack on this mesh detaches the skull, rotates the ribcage ninety degrees, flattens
+// both arms into planks and leaves it standing on one leg. The same five frames on poh_skeleton_8
+// are a clean swing. human_unarmedpunch on THIS mesh is an intact skeleton.
+//
+// So the three lines are gone and the npc_combat.param defaults apply: human_unarmedpunch,
+// human_unarmed_def, human_death - which is what its readyanim and walkanim already were, and why
+// it looked right standing still and broke the moment it swung.
 name=Skeleton
 desc=Could do with gaining a few pounds.
 model1=npc_dragonslayer_skeleton
@@ -19483,9 +19501,6 @@ param=crushdefence,-2
 param=magicdefence,1
 param=rangedefence,4
 param=damagetype,^slash_style
-param=attack_anim,skeleton_attack
-param=defend_anim,skeleton_block
-param=death_anim,skeleton_death
 param=attack_sound,skeleton_attack
 param=defend_sound,skelly_hit
 param=death_sound,skeleton_death
@@ -23561,6 +23576,10 @@ head2=idk_man_jaw_pointy_head
 head3=npc_doctor_orbon_head
 category=bank_teller
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [magearena_runeshop]
 name=Lundail
 desc=He sells rune stones.
@@ -33769,6 +33788,10 @@ category=bank_teller
 // FIXED 2026-09-08 (combat-stat audit): op2=Attack and no combat stats at all - unkillable.
 // Stat block copied verbatim from [man]: Arnor 1 <- Man 2.
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [misc_etc_man_1]
 name=Arnor
 desc=A subject of Etceteria.
@@ -35448,6 +35471,13 @@ op1=Talk-to
 vislevel=hide
 head1=npc_commander_montai_head
 
+// THE GNOMES' OWN ANIMATION. [label,mm_squad_swing] in quests/quest_mm/scripts/mm_stage3.rs2 played
+// human_sword_slash on all three of them and human_castwave on Zooknock - human animations on a
+// gnome rig, which is what "the gnomes att anim wrong" was reported about
+// (DeathPlateau-Bugs#47). The cache's gnome set is midget_*, and these three walk on midget_walk
+// already. Read from the param rather than named in the script, as [king_black_dragon] does, so
+// the mesh and its animation stay together in one place.
+param=attack_anim,midget_attacksword
 [mm_lumo]
 name=Lumo
 desc=A seasoned looking Gnome foot soldier.
@@ -35584,6 +35614,8 @@ readyanim=m_assassin_ready
 vislevel=hide
 head1=npc_1420_head
 
+// The same, and the same reason: see [mm_garkor_final_battle] above.
+param=attack_anim,midget_attacksword
 [mm_karam_talker]
 name=Karam
 desc=All you see is a glimmer of light and the suggestion of shadow.
@@ -35668,6 +35700,10 @@ op1=Talk-to
 vislevel=hide
 head1=npc_1425_head
 
+// The same, and the same reason: see [mm_garkor_final_battle] above. Zooknock is the squad's
+// mage and midget_chanting is the gnome cast - [leela] in this file already uses it as a
+// magicattack_anim.
+param=attack_anim,midget_chanting
 [mm_caranock]
 name=G.L.O. Caranock
 desc=An official looking Gnome with small beady eyes.
@@ -36347,6 +36383,27 @@ huntrange=8
 param=attack_anim,m_monkey_attack_bow
 param=defend_anim,m_monkey_block_bow
 
+// FIXED 2026-11-23 (DeathPlateau-Bugs#37, #43): aimed and never shot.
+// attackrange was 0, and the AP trigger is gated on inApproachDistance(attackrange, target), so
+// there was no distance at which this npc was allowed to act - and moverestrict=nomove means it
+// cannot close the gap either. 8 to match its own huntrange, as death_troll_thrower1 has.
+// category, because huntmode=mm_aggressive_ranged sets APPLAYER2 mode and the trigger for that
+// mode is per category: with none, the mode was set and nothing ever ran. The shot is in
+// quests/quest_mm/scripts/mm_archer.rs2.
+//
+// AND THE RANGED LEVEL, which this npc did not have. The wiki gives Monkey Archer att 80, str 80,
+// def 80, hp 50 and RANGE 110, with every offensive bonus at 0 - and the dump had mapped that 110
+// into param=rangeattack, which this engine reads as the equipment attack BONUS
+// (npc_combat_ranged.rs2 takes the level from npc_stat(ranged) and the bonus from that param). So
+// it had a 110 bonus on a ranged level of nothing: near-zero damage and far too accurate, both at
+// once. The level goes where the level goes and the bonus goes back to the wiki's 0.
+// max_hit is the wiki's published 20, which ~npc_ranged_maxhit prefers over its own derivation.
+ranged=110
+param=rangeattack,0
+param=max_hit,20
+attackrange=8
+category=mm_archer
+
 [mm_ravine_archer]
 name=Monkey Archer
 desc=A bow wielding ninja monkey. It looks particularly dangerous.
@@ -36381,6 +36438,27 @@ huntrange=8
 param=attack_anim,m_monkey_attack_bow
 param=defend_anim,m_monkey_block_bow
 
+// FIXED 2026-11-23 (DeathPlateau-Bugs#37, #43): aimed and never shot.
+// attackrange was 0, and the AP trigger is gated on inApproachDistance(attackrange, target), so
+// there was no distance at which this npc was allowed to act - and moverestrict=nomove means it
+// cannot close the gap either. 8 to match its own huntrange, as death_troll_thrower1 has.
+// category, because huntmode=mm_aggressive_ranged sets APPLAYER2 mode and the trigger for that
+// mode is per category: with none, the mode was set and nothing ever ran. The shot is in
+// quests/quest_mm/scripts/mm_archer.rs2.
+//
+// AND THE RANGED LEVEL, which this npc did not have. The wiki gives Monkey Archer att 80, str 80,
+// def 80, hp 50 and RANGE 110, with every offensive bonus at 0 - and the dump had mapped that 110
+// into param=rangeattack, which this engine reads as the equipment attack BONUS
+// (npc_combat_ranged.rs2 takes the level from npc_stat(ranged) and the bonus from that param). So
+// it had a 110 bonus on a ranged level of nothing: near-zero damage and far too accurate, both at
+// once. The level goes where the level goes and the bonus goes back to the wiki's 0.
+// max_hit is the wiki's published 20, which ~npc_ranged_maxhit prefers over its own derivation.
+ranged=110
+param=rangeattack,0
+param=max_hit,20
+attackrange=8
+category=mm_archer
+
 [mm_posted_archer]
 name=Monkey Archer
 desc=A bow wielding ninja monkey.
@@ -36414,6 +36492,27 @@ huntmode=mm_aggressive_ranged
 huntrange=8
 param=attack_anim,m_monkey_attack_bow
 param=defend_anim,m_monkey_block_bow
+
+// FIXED 2026-11-23 (DeathPlateau-Bugs#37, #43): aimed and never shot.
+// attackrange was 0, and the AP trigger is gated on inApproachDistance(attackrange, target), so
+// there was no distance at which this npc was allowed to act - and moverestrict=nomove means it
+// cannot close the gap either. 8 to match its own huntrange, as death_troll_thrower1 has.
+// category, because huntmode=mm_aggressive_ranged sets APPLAYER2 mode and the trigger for that
+// mode is per category: with none, the mode was set and nothing ever ran. The shot is in
+// quests/quest_mm/scripts/mm_archer.rs2.
+//
+// AND THE RANGED LEVEL, which this npc did not have. The wiki gives Monkey Archer att 80, str 80,
+// def 80, hp 50 and RANGE 110, with every offensive bonus at 0 - and the dump had mapped that 110
+// into param=rangeattack, which this engine reads as the equipment attack BONUS
+// (npc_combat_ranged.rs2 takes the level from npc_stat(ranged) and the bonus from that param). So
+// it had a 110 bonus on a ranged level of nothing: near-zero damage and far too accurate, both at
+// once. The level goes where the level goes and the bonus goes back to the wiki's 0.
+// max_hit is the wiki's published 20, which ~npc_ranged_maxhit prefers over its own derivation.
+ranged=110
+param=rangeattack,0
+param=max_hit,20
+attackrange=8
+category=mm_archer
 
 [mm_religious_guard]
 name=Monkey Guard
@@ -36558,7 +36657,8 @@ param=damagetype,^crush_style
 // applies (attackrate 4, respawnrate 100, the generic human attack/defend/death anims).
 param=attack_anim,m_zombie_attack
 param=death_anim,m_monkey_death
-huntmode=aggressive_melee
+// The greegree has to stop this one too - see configs/mm.hunt in quests/quest_mm.
+huntmode=mm_aggressive_melee
 huntrange=5
 
 [mm_zombie_monkey_large_guard]
@@ -36593,7 +36693,8 @@ param=damagetype,^crush_style
 // applies (attackrate 4, respawnrate 100, the generic human attack/defend/death anims).
 param=attack_anim,m_zombie_attack
 param=death_anim,m_monkey_death
-huntmode=aggressive_melee
+// The greegree has to stop this one too - see configs/mm.hunt in quests/quest_mm.
+huntmode=mm_aggressive_melee
 huntrange=5
 
 [mm_zombie_monkey_small]
@@ -36622,7 +36723,8 @@ param=damagetype,^crush_style
 
 param=attack_anim,m_zombie_attack
 param=death_anim,m_monkey_death
-huntmode=aggressive_melee
+// The greegree has to stop this one too - see configs/mm.hunt in quests/quest_mm.
+huntmode=mm_aggressive_melee
 huntrange=5
 
 [mm_bonzara]
@@ -36716,7 +36818,8 @@ param=attack_sound,skeleton_attack
 param=death_anim,skeleton_death
 param=death_sound,skeleton_death
 param=defend_anim,skeleton_block
-huntmode=aggressive_melee
+// The greegree has to stop this one too - see configs/mm.hunt in quests/quest_mm.
+huntmode=mm_aggressive_melee
 huntrange=5
 
 [mm_warehouse_spider]
@@ -36830,7 +36933,8 @@ param=defend_anim,scorpion_parry
 
 param=attack_anim,scorpion_attack
 param=death_anim,scorpion_death
-huntmode=aggressive_melee
+// The greegree has to stop this one too - see configs/mm.hunt in quests/quest_mm.
+huntmode=mm_aggressive_melee
 huntrange=4
 
 [mm_jungle_spider]
@@ -36852,7 +36956,8 @@ param=death_drop,null
 param=attack_anim,giantspider_attack
 param=death_anim,giantspider_death
 param=defend_anim,giantspider_block
-huntmode=aggressive_melee
+// The greegree has to stop this one too - see configs/mm.hunt in quests/quest_mm.
+huntmode=mm_aggressive_melee
 huntrange=4
 
 [mm_jungle_snake]
@@ -36874,7 +36979,8 @@ param=death_anim,snake_death
 param=death_sound,snake_death
 param=defend_anim,snake_block
 param=defend_sound,snake_hit
-huntmode=aggressive_melee
+// The greegree has to stop this one too - see configs/mm.hunt in quests/quest_mm.
+huntmode=mm_aggressive_melee
 huntrange=4
 
 [mm_transmogrification_small_ninja_monkey]
@@ -39607,6 +39713,25 @@ op3=Bank
 head1=npc_1686_head
 category=bank_teller
 
+// A TELLER STANDS AT ITS COUNTER. These three lines are [banker1]'s, in
+// interface_bank/configs/banker.npc, which is what the 62 ordinary city tellers carry - and 79 of
+// the build's 98 tellers in all. Twelve had NO movement config, so they took the engine default
+// and wandered up to five tiles, walking away from the booth while a player stood at it.
+//
+// AND IT UNDID THE FACING FIX at those banks. PathingEntity rewrites an npc's facing on every step
+// it takes, so the booth-facing set at spawn (interface_bank/scripts/banker_face.rs2,
+// DeathPlateau-Bugs#75) survived a few ticks and was then lost to a wander. That is how this was
+// found: the sim for #75 reported four tellers facing the wrong way, and they were not - they had
+// simply taken a step.
+//
+// NOTHING IN THE BUILD WANTS THEM TO MOVE, and that was checked rather than assumed before pinning
+// npcs belonging to nine areas' quests and minigames. Eleven of the twelve are referenced by no
+// script at all; the twelfth, magearena_banker, is referenced twice - [opnpc1] in
+// area_mage_arena/scripts/gundai.rs2 and [opnpcu] in interface_bank/scripts/platinum_token.rs2 -
+// and neither is about where it stands. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [ahoy_ghost_sailor]
 name=Ghost Sailor
 desc=A ghost sailor.
@@ -48893,6 +49018,10 @@ op3=Bank
 head1=npc_2093_head
 category=bank_teller
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [dwarf_city_banker2]
 name=Banker
 desc=A rather serious old fella.
@@ -48920,6 +49049,10 @@ op3=Bank
 head1=npc_upassdwarf3_head
 category=bank_teller
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [dwarf_city_librarian]
 name=Librarian
 desc=He takes care of the library and its many books.
@@ -51427,6 +51560,10 @@ head1=obj_leather_cowl_manhead2
 head2=npc_councillor_halgrive_head
 category=bank_teller
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [roguesden_trap_floor_spinningblades_0]
 name=Spin Blades
 desc=I don't think I want to get too close to that!
@@ -53423,6 +53560,10 @@ category=bank_teller
 // category, and every working banker in the game is served by [apnpc1,_bank_teller] /
 // [apnpc3,_bank_teller] in interface_bank/scripts/banker.rs2 via category=bank_teller.
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [mourning_elf_bankerf]
 name=Banker
 desc=She can look after my money.
@@ -53458,6 +53599,10 @@ category=bank_teller
 // them, so clicking Trade did nothing. category=shop_keeper + param=owned_shop is what
 // shop/scripts/shop.rs2's generic [opnpc3,_shop_keeper] binds against. Same defect as Jossik.
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [mourning_bow_seller]
 name=Dalldav
 desc=Buys and sells bows.
@@ -58421,6 +58566,10 @@ resizev=140
 head1=npc_2591_head
 category=bank_teller
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [tzhaar_merchant_equipment]
 name=TzHaar-Hur-Tel
 desc=Wonder what it's making.
@@ -61041,6 +61190,24 @@ huntrange=1
 category=giantrat
 
 [dragonslayer_skeleton_2]
+// ITS COMBAT ANIMATIONS ARE THE HUMAN DEFAULTS, and that is not an oversight
+// (DeathPlateau-Bugs#68, "melzars maze skeletons animations are bugged").
+//
+// This npc is built on npc_dragonslayer_skeleton, whose vertices are labelled with transform
+// groups 1,2,4,5,8,29,31..49 - the HUMAN rig. The skeleton_* animations were authored for
+// poh_skeleton_8, which is labelled 1-23, and nineteen npcs use that model and those animations
+// quite happily.
+//
+// It carried param=attack_anim,skeleton_attack / defend_anim,skeleton_block /
+// death_anim,skeleton_death, which is an animation from one rig played on a model from another.
+// Rendered frame by frame with tools/pose377.py - the tool that exists for exactly this question -
+// skeleton_attack on this mesh detaches the skull, rotates the ribcage ninety degrees, flattens
+// both arms into planks and leaves it standing on one leg. The same five frames on poh_skeleton_8
+// are a clean swing. human_unarmedpunch on THIS mesh is an intact skeleton.
+//
+// So the three lines are gone and the npc_combat.param defaults apply: human_unarmedpunch,
+// human_unarmed_def, human_death - which is what its readyanim and walkanim already were, and why
+// it looked right standing still and broke the moment it swung.
 name=Skeleton
 desc=Could do with gaining a few pounds.
 model1=npc_dragonslayer_skeleton
@@ -61078,9 +61245,6 @@ param=crushdefence,-2
 param=magicdefence,1
 param=rangedefence,4
 param=damagetype,^slash_style
-param=attack_anim,skeleton_attack
-param=defend_anim,skeleton_block
-param=death_anim,skeleton_death
 param=attack_sound,skeleton_attack
 param=defend_sound,skelly_hit
 param=death_sound,skeleton_death
@@ -61089,6 +61253,24 @@ huntmode=cowardly
 huntrange=1
 
 [dragonslayer_skeleton_3]
+// ITS COMBAT ANIMATIONS ARE THE HUMAN DEFAULTS, and that is not an oversight
+// (DeathPlateau-Bugs#68, "melzars maze skeletons animations are bugged").
+//
+// This npc is built on npc_dragonslayer_skeleton, whose vertices are labelled with transform
+// groups 1,2,4,5,8,29,31..49 - the HUMAN rig. The skeleton_* animations were authored for
+// poh_skeleton_8, which is labelled 1-23, and nineteen npcs use that model and those animations
+// quite happily.
+//
+// It carried param=attack_anim,skeleton_attack / defend_anim,skeleton_block /
+// death_anim,skeleton_death, which is an animation from one rig played on a model from another.
+// Rendered frame by frame with tools/pose377.py - the tool that exists for exactly this question -
+// skeleton_attack on this mesh detaches the skull, rotates the ribcage ninety degrees, flattens
+// both arms into planks and leaves it standing on one leg. The same five frames on poh_skeleton_8
+// are a clean swing. human_unarmedpunch on THIS mesh is an intact skeleton.
+//
+// So the three lines are gone and the npc_combat.param defaults apply: human_unarmedpunch,
+// human_unarmed_def, human_death - which is what its readyanim and walkanim already were, and why
+// it looked right standing still and broke the moment it swung.
 name=Skeleton
 desc=Could do with gaining a few pounds.
 model1=npc_dragonslayer_skeleton
@@ -61126,9 +61308,6 @@ param=crushdefence,-2
 param=magicdefence,1
 param=rangedefence,4
 param=damagetype,^slash_style
-param=attack_anim,skeleton_attack
-param=defend_anim,skeleton_block
-param=death_anim,skeleton_death
 param=attack_sound,skeleton_attack
 param=defend_sound,skelly_hit
 param=death_sound,skeleton_death
@@ -67933,6 +68112,10 @@ head2=npc_3031_head
 head3=npc_1688_head
 category=bank_teller
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [elid_ranging_target]
 name=Target
 desc=Needs to be shot with a ranged weapon.
@@ -71502,6 +71685,10 @@ category=bank_teller
 // category, and every working banker in the game is served by [apnpc1,_bank_teller] /
 // [apnpc3,_bank_teller] in interface_bank/scripts/banker.rs2 via category=bank_teller.
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [fever_banker_02]
 name=Banker
 desc=He can look after my money.
@@ -71529,6 +71716,10 @@ head1=obj_pickpocket_guide_man
 head2=npc_pirate2_head
 category=bank_teller
 
+// A teller stands at its counter - see [ahoy_ghost_banker] above. DeathPlateau-Bugs#80.
+wanderrange=0
+maxrange=2
+moverestrict=nomove
 [chaoselemental]
 name=Chaos Elemental
 desc=pUre A cHaOs of crEatuRe!
@@ -74601,6 +74792,24 @@ multinpc=1,questchicken
 multinpc=2,questchicken
 
 [draynor_skeleton]
+// ITS COMBAT ANIMATIONS ARE THE HUMAN DEFAULTS, and that is not an oversight
+// (DeathPlateau-Bugs#68, "melzars maze skeletons animations are bugged").
+//
+// This npc is built on npc_dragonslayer_skeleton, whose vertices are labelled with transform
+// groups 1,2,4,5,8,29,31..49 - the HUMAN rig. The skeleton_* animations were authored for
+// poh_skeleton_8, which is labelled 1-23, and nineteen npcs use that model and those animations
+// quite happily.
+//
+// It carried param=attack_anim,skeleton_attack / defend_anim,skeleton_block /
+// death_anim,skeleton_death, which is an animation from one rig played on a model from another.
+// Rendered frame by frame with tools/pose377.py - the tool that exists for exactly this question -
+// skeleton_attack on this mesh detaches the skull, rotates the ribcage ninety degrees, flattens
+// both arms into planks and leaves it standing on one leg. The same five frames on poh_skeleton_8
+// are a clean swing. human_unarmedpunch on THIS mesh is an intact skeleton.
+//
+// So the three lines are gone and the npc_combat.param defaults apply: human_unarmedpunch,
+// human_unarmed_def, human_death - which is what its readyanim and walkanim already were, and why
+// it looked right standing still and broke the moment it swung.
 name=Skeleton
 desc=Could do with gaining a few pounds.
 model1=npc_dragonslayer_skeleton
@@ -74635,9 +74844,6 @@ param=crushdefence,-2
 param=magicdefence,1
 param=rangedefence,4
 param=damagetype,^slash_style
-param=attack_anim,skeleton_attack
-param=defend_anim,skeleton_block
-param=death_anim,skeleton_death
 param=attack_sound,skeleton_attack
 param=defend_sound,skelly_hit
 param=death_sound,skeleton_death

@@ -15,6 +15,25 @@
 // Worn, not inv: carrying a greegree in your pack is not wearing a monkey's face, and the quest
 // makes you wield it.
 //
+// SEVEN OF THE ISLAND'S HOSTILES WERE LEFT ON THE SHARED HUNT and so ignored the greegree
+// entirely. Reported from play as "other monsters besides monkey attack you when in greegree
+// form", from 2739,2726 - a jungle snake one tile away and spiders four. The three jungle natives
+// on the surface (mm_jungle_snake, mm_jungle_spider, mm_jungle_scorpion) and the four undead under
+// it (mm_skeleton, mm_zombie_monkey_small, mm_zombie_monkey_large, mm_zombie_monkey_large_guard)
+// carried huntmode=aggressive_melee while the other fourteen mm_* hostiles carried the pair
+// below.
+//
+// [aggressive_melee] in _unpack/377/all.hunt is this file's [mm_aggressive_melee] line for line
+// WITH THE check_invparam LINE REMOVED - same type, vis, nottoostrong, both notcombat guards,
+// notbusy, keephunting and newmode. So the move adds the greegree guard and changes nothing else,
+// which is why it is a huntmode swap and not a new hunt. It could not be fixed by editing the
+// shared one: 134 npc types use it, almost none of them on Ape Atoll.
+//
+// OSRS wiki, Ape Atoll and Skeleton (Ape Atoll): in monkey form every monster on the island turns
+// non-aggressive, and the undead are explicitly "aggressive to all players who are not using a
+// greegree". The level-5 birds are the island's own exception and mm_jungle_bird_green already has
+// no huntmode at all.
+//
 // check_nottoostrong is off, like the cache's own aggressive pair: Ape Atoll does not care how
 // high your combat level is, which is the island's reputation and the reason the quest tells you
 // to bring the greegree rather than a weapon.

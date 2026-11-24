@@ -1,0 +1,36 @@
+// The Warriors' Guild cyclopes' aggression, and the only reason it is a hunt of its own.
+//
+// Reported as "cyclops in warriors guild arent aggressive" (DeathPlateau-Bugs#55). They WERE
+// aggressive - driven by hand, eight of eight attacked a player standing beside them, on both
+// floors - but two things about how they hunted were wrong, and both are here.
+//
+// 1. huntrange was 3 on the npcs, which means you have to get within three tiles of a two-tile
+//    npc before it notices you. In a room the size of the guild's cyclops floor, with six of them
+//    spread across it, crossing the middle untouched reads as "they ignore me". The npcs now ask
+//    for 5, which is what most aggressive npcs in this build use.
+//
+// 2. check_nottoostrong was off, inherited from [aggressive_melee] in the 377 cache dump. Off
+//    means they attack you REGARDLESS of your combat level. Old School stops a monster aggroing
+//    once you are more than double its level, and the engine's outside_wilderness is exactly that
+//    rule (Npc.ts: player.combatLevel > type.vislevel * 2, skipped inside the Wilderness).
+//
+// WHY A NEW HUNT RATHER THAN AN EDIT. [aggressive_melee] is a 377 cache entry shared by 48+ npcs
+// across the build. Turning check_nottoostrong on there would change the aggression of every one
+// of them on the strength of one report about cyclopes. This is shaped on it - same visibility,
+// same combat guards, same find_newmode - with the one field changed, the way gwd.hunt is.
+//
+// WHAT THIS MEANS AT THE GUILD, said plainly because it is the opposite direction to the report:
+// the six top-floor cyclopes are levels 56 and 76, so the 56s stop aggroing players above combat
+// 112 and the 76s above 152. The basement six are level 106, so they aggro everybody. A maxed
+// player on the top floor will now be ignored by half the room - which is what Old School does,
+// and is why this was a decision rather than a fix.
+
+[wguild_aggressive_cyclops]
+type=player
+check_vis=lineofsight
+check_nottoostrong=outside_wilderness
+check_notcombat=%lastcombat
+check_notcombat_self=%npc_lastcombat
+check_notbusy=off
+find_keephunting=off
+find_newmode=opplayer2

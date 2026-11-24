@@ -21,6 +21,16 @@ if (npc_stat(hitpoints) = 0) {
 def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
 %action_delay = add(map_clock, oc_param($weapon, attackrate));
 p_opnpc(2);
+// THE ORNAMENTED VERSIONS ARE LISTED BESIDE THEIR PLAIN ONES (DeathPlateau-Bugs#54, reported as
+// "using orn kit on weps that has specs").
+//
+// An ornament kit turns an item into a DIFFERENT obj - dragon_scimitar becomes dragon_scimitar_or -
+// and the ornamented obj correctly keeps param=specwep and param=sa_energy, so the special bar
+// lights up and the click spends the energy. This switch is what decides what actually happens, and
+// it named only the plain ids, so the five kitted spec weapons drained the bar and did nothing.
+//
+// Only five of the build's 26 ornament pairs are spec weapons, and all five were affected: the
+// dragon scimitar and the four godswords. The other kits are armour and cosmetics.
  switch_obj($weapon) {
     case dragon_dagger, dragon_dagger_p, dragon_dagger_p+, dragon_dagger_p++ : @pvm_dragon_dagger_sa;
     case dragon_longsword : @pvm_dragon_longsword_sa;
@@ -42,14 +52,14 @@ p_opnpc(2);
     case dorgeshuun_crossbow : @pvm_dorgeshuun_crossbow_sa;
     case abyssal_bludgeon : @pvm_abyssal_bludgeon_sa;
     case rune_claws : @pvm_rune_claws_sa;
-    case dragon_scimitar : @pvm_dragon_scimitar_sa;
+    case dragon_scimitar, dragon_scimitar_or : @pvm_dragon_scimitar_sa;
     case zamorakian_spear : @pvm_zamorakian_spear_sa;
     case dragon_halberd : @pvm_dragon_halberd_sa;
     case dragon_2h_sword : @pvm_dragon_2h_sword_sa;
-    case armadyl_godsword : @pvm_armadyl_godsword_sa;
-    case bandos_godsword : @pvm_bandos_godsword_sa;
-    case saradomin_godsword : @pvm_saradomin_godsword_sa;
-    case zamorak_godsword : @pvm_zamorak_godsword_sa;
+    case armadyl_godsword, armadyl_godsword_or : @pvm_armadyl_godsword_sa;
+    case bandos_godsword, bandos_godsword_or : @pvm_bandos_godsword_sa;
+    case saradomin_godsword, saradomin_godsword_or : @pvm_saradomin_godsword_sa;
+    case zamorak_godsword, zamorak_godsword_or : @pvm_zamorak_godsword_sa;
     case saradomin_sword : @pvm_saradomin_sword_sa;
     case toxic_blowpipe, toxic_blowpipe_empty : @pvm_blowpipe_sa; // toxic_blowpipe/scripts/blowpipe_combat.rs2
 }

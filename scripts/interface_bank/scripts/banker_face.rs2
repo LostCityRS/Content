@@ -1,0 +1,79 @@
+// WHICH WAY A BANK TELLER STANDS.
+//
+// Reported on the Varrock east bank (DeathPlateau-Bugs#75), and it was true of nearly every bank in
+// the game. The four tellers there stand at z=3418 with their booths at z=3419 - directly north of
+// each one - and the engine's spawn default leaves an npc facing SOUTH, so all four stood with
+// their backs to the counter and to the player using it. The reporter was at 3253,3420, the player
+// side of the booth, looking at the back of a banker's head.
+//
+// THERE IS NO PER-SPAWN FACING TO SET. Static npc spawns in the .jm2 map data carry a coordinate
+// and an id and nothing else (GameMap.loadNpcs), so there is no direction byte to correct. The
+// only facing mechanism is npc/configs/npc_spawn.param's spawn_face, and that is a param on the
+// npc TYPE - banker1 and banker2 alone account for 67 spawns across every bank in the world, so
+// one value would face them all the same way and be wrong nearly everywhere.
+//
+// SO THE FACING IS DERIVED INSTEAD OF WRITTEN DOWN, and the map already knows the answer: a teller
+// stands at a booth, so it should face its booth. Measured across all 98 bank_teller spawns before
+// this was written:
+//
+//   exactly one booth adjacent   69
+//   no booth adjacent            29   <- left exactly as they were
+//   more than one booth          0    <- so the rule is never ambiguous
+//
+// Of the 69, only 11 should face south. The other 58 were facing the wrong way, at every bank with
+// a counter that does not happen to run east-west with the players to the south.
+//
+// BY THE BOOTH'S PLAYER-FACING NAME, not by a list of loc types. There are twenty-odd bank booth
+// locs - bankbooth, elid_bankbooth, lumbridge_bankbooth, lunar_bankbooth, dwarf_keldagrim_bankbooth,
+// fever_bankbooth, pest_bankbooth, the Burgh multilocs, loc_11758 - and they share no category. A
+// list here would be a list to forget the next booth from. The claim being made is "a teller faces
+// the thing a player calls a bank booth", so the name a player reads is the right key, and it picks
+// up a booth added later without being told.
+[ai_spawn,_bank_teller]
+// The wildcard [ai_spawn,_] does not run for an npc that has a trigger of its own - the engine
+// picks the most specific and runs only that - so the defaults have to be asked for by name or
+// every teller loses its xp multiplier and its start coord. See npc/scripts/ai_spawn.rs2.
+~npc_spawn_defaults;
+~bank_teller_face_booth;
+
+// Face the one adjacent booth. North first and then clockwise; the order only decides which way a
+// teller with two booths beside it would turn, and there is no such teller.
+//
+// A TELLER WITH NO BOOTH IS LEFT ALONE. Twenty-nine of them stand behind the row, in a doorway, or
+// at a chest, and guessing a direction for those would be inventing an answer the map does not
+// have. They keep the south they have always had.
+[proc,bank_teller_face_booth]
+def_coord $north = movecoord(npc_coord, 0, 0, 1);
+def_coord $east = movecoord(npc_coord, 1, 0, 0);
+def_coord $south = movecoord(npc_coord, 0, 0, -1);
+def_coord $west = movecoord(npc_coord, -1, 0, 0);
+if (~bank_booth_at($north) = true) {
+    npc_facesquare($north);
+    return;
+}
+if (~bank_booth_at($east) = true) {
+    npc_facesquare($east);
+    return;
+}
+if (~bank_booth_at($south) = true) {
+    npc_facesquare($south);
+    return;
+}
+if (~bank_booth_at($west) = true) {
+    npc_facesquare($west);
+}
+
+// Is there a bank booth on exactly this tile?
+//
+// loc_findallzone WALKS THE ZONE THE COORD IS IN, and the coord asked about is the NEIGHBOUR rather
+// than the teller - a teller on the last tile of a zone has its booth in the next one, and scanning
+// the teller's own zone would miss it. The loc_coord test is what narrows the zone back down to the
+// single tile.
+[proc,bank_booth_at](coord $at)(boolean)
+loc_findallzone($at);
+while (loc_findnext = true) {
+    if (loc_coord = $at & compare(loc_name, "Bank booth") = 0) {
+        return(true);
+    }
+}
+return(false);

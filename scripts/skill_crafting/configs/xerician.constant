@@ -1,0 +1,44 @@
+// THE XERICIAN ROBES, and every number behind them. https://oldschool.runescape.wiki/w/Xerician_fabric
+//
+// The three robes were imported with no way to get them at all - tools/obtainable.py found them
+// with a level gate for their only mention in the whole repo - so this is the recipe Old School
+// makes them with, and a source for the cloth it needs.
+//
+// LEVELS, CLOTH AND EXPERIENCE ARE OLD SCHOOL'S, unchanged. Experience is in tenths, as all xp
+// constants here are: 66, 88 and 110 points.
+^xerician_hat_level = 14
+^xerician_hat_fabric = 3
+^xerician_hat_xp = 660
+^xerician_robe_level = 17
+^xerician_robe_fabric = 4
+^xerician_robe_xp = 880
+^xerician_top_level = 22
+^xerician_top_fabric = 5
+^xerician_top_xp = 1100
+
+// WHERE THE CLOTH COMES FROM, and why it is not what Old School does. There it drops from
+// lizardmen, which are Kebos content and not in this build. The dark wizards are the nearest thing
+// this build has and a better fit than the obvious alternative:
+//
+//   THE TIER MATCHES. The robes want 14-22 Crafting to make and 20 Magic / 10 Defence to wear, and
+//   bearded_dark_wizard is level 20. Its table is ALREADY the starter-mage table - a black wizard
+//   hat, a plain staff and a black robe - so the cloth belongs on it.
+//
+//   NOT THE WILDERNESS ALONE, which was the first idea and is the wrong risk curve: it would ask a
+//   level-20 mage to earn their STARTER robes in deep Wilderness, where the people who care about
+//   the drop are not the people who own the zone. Instead the same wizards drop it either side of
+//   the line and the Wilderness ones drop it twice as often, which is the pull without the gate.
+//
+// THE RATES ARE IN SLOTS OF 128, and they cost nothing: both dark wizard tables stop at 112, so
+// slots 112-127 were dead in each. The cloth goes there and NO existing rate moved.
+//
+//   16/128 = 1 in 8    a bearded wizard in the Wilderness
+//    8/128 = 1 in 16   a bearded wizard anywhere else, and a young one in the Wilderness
+//    4/128 = 1 in 32   a young wizard anywhere else
+//
+// A full set is twelve cloths, so about ninety-six bearded kills at the Wilderness circle - a
+// starter set's worth of work, and the circle west of Edgeville has three bearded and five young.
+^xerician_fabric_slots_bearded_wild = 16
+^xerician_fabric_slots_bearded = 8
+^xerician_fabric_slots_young_wild = 8
+^xerician_fabric_slots_young = 4
