@@ -264,19 +264,42 @@ switch_int ($i) {
     case 12 : %wanted_mission12complete = ^wanted_on;
 }
 
+// WHAT THE ORB SAYS HAS TO BE WHERE HE IS, and for seven of the twelve it was not. Two reports,
+// DeathPlateau-Bugs#97 and #98 - "commorb doesnt work" and "can't find solus based off the clues" -
+// and they are the same bug: the orb named a town and Solus was somewhere else entirely.
+//
+// The worst two sent the player to the wrong landmass and the wrong town:
+//
+//   shell 6  is 2948,3146, which is Musa Point on KARAMJA - Luthas and Zambo are nine tiles away
+//            and the Rimmington label is seventy-six. The orb said "Rimmington".
+//   shell 10 is 3100,3279, which is DRAYNOR VILLAGE - Morgan is ten tiles away and the Draynor
+//            label twenty. The orb said "Falador", which is a hundred and seventy tiles off.
+//
+// EVERY NAME BELOW IS NOW CHECKED TWO WAYS rather than written from memory: against the nearest
+// label in maps/labels.txt, which is the word the player reads on their own world map, and against
+// the npcs standing within twenty-five tiles, which is what they will actually see when they get
+// there. Roachey and a banker put shell 3 at the Fishing Guild; Nulodion and the Black Guard put
+// shell 7 at the Dwarven Mine; Ankou and the Forgotten Cemetery label put shell 8 in the
+// Wilderness, which the name now says out loud because it is a player-killing area.
+//
+// The five that were already right - Yanille, Seers' Village, Catherby, Port Sarim, Lumbridge - are
+// unchanged. Three of the twelve spawns (Yanille, Musa Point, Draynor Village) are genuine Old
+// School Solus locations, which suggests the tiles were drawn from the real list and these names
+// were written separately and drifted. The shape of the hunt itself is a bigger question and is on
+// DeathPlateau-Bugs#98 rather than changed here.
 [proc,wanted_place_name](int $i)(string)
 switch_int ($i) {
     case 1 : return("Yanille");
-    case 2 : return("west Ardougne");
-    case 3 : return("north Ardougne");
+    case 2 : return("the moss giants north of Ardougne");
+    case 3 : return("just north of the Fishing Guild");
     case 4 : return("Seers' Village");
     case 5 : return("Catherby");
-    case 6 : return("Rimmington");
-    case 7 : return("the road north of Falador");
-    case 8 : return("the edge of the wilderness");
+    case 6 : return("the banana plantation at Musa Point, on Karamja");
+    case 7 : return("the Dwarven Mine, north of Falador");
+    case 8 : return("the Forgotten Cemetery, out in the Wilderness");
     case 9 : return("Port Sarim");
-    case 10 : return("Falador");
+    case 10 : return("Draynor Village");
     case 11 : return("Lumbridge");
-    case 12 : return("the road east of Varrock");
+    case 12 : return("the Lumber Yard, north-east of Varrock");
 }
 return("nowhere the orb can name");
