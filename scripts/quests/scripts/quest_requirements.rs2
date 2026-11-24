@@ -1,0 +1,109 @@
+// THE REQUIREMENTS BLOCK A QUEST JOURNAL SHOWS BEFORE THE QUEST IS STARTED.
+//
+// Read out of quest_requirement.dbrow, which is generated from the OSRS wiki by
+// tools/genquestreq.py. One source for every quest, so the journal cannot drift from what the
+// quest actually asks for.
+//
+// COLOURED THE WAY THE QUEST LIST IS. A requirement already met is green, one still missing is
+// red - the same red and green the quest list uses for a quest not started and a quest finished,
+// so a player reading the journal is reading a colour they already know the meaning of. A
+// requirement nothing here can check (an access, an item, a fight) is drawn in the journal's
+// ordinary blue, because colouring it either way would be a claim this cannot make.
+
+// SHOWN ONLY WHEN SOMETHING IS MISSING. There is no "has this quest been started" flag to read -
+// ~quest_journal is handed a name and a block of text and nothing else - and there does not need
+// to be one. A player who has started a quest has already met its requirements, so the test "is
+// any checkable requirement unmet" is the same answer with none of the plumbing, and it tells the
+// player the one thing they actually want to know: what is stopping them.
+//
+// Only the CHECKABLE ones decide that. The prose lines are never met as far as this can tell, so
+// letting them vote would print the block on every quest for ever.
+[proc,quest_requirements_text](string $quest_name)(string)
+db_find(quest_requirement:name, $quest_name);
+def_dbrow $row = db_findnext;
+if ($row = null) {
+    return("");
+}
+
+def_string $out = "";
+def_int $any = 0;
+def_int $unmet = 0;
+
+// --- quest points
+def_int $need_qp = db_getfield($row, quest_requirement:questpoints, 0);
+if ($need_qp > 0) {
+    $any = 1;
+    if (~questpoints_met($need_qp) = false) {
+        $unmet = add($unmet, 1);
+    }
+    $out = append($out, "|<~quest_req_colour(~questpoints_met($need_qp))>");
+    $out = append($out, "<tostring($need_qp)> Quest Points");
+}
+
+// --- skills
+def_int $skills = db_getfieldcount($row, quest_requirement:skills);
+def_int $i = 0;
+while ($i < $skills) {
+    def_stat $stat;
+    def_int $level;
+    $stat, $level = db_getfield($row, quest_requirement:skills, $i);
+    $any = 1;
+    if (~stat_req_met($stat, $level) = false) {
+        $unmet = add($unmet, 1);
+    }
+    $out = append($out, "|<~quest_req_colour(~stat_req_met($stat, $level))>");
+    $out = append($out, "Level <tostring($level)> <enum(stat, string, stat_names, $stat)>");
+    $i = add($i, 1);
+}
+
+// --- other quests. The name is carried beside the component for exactly this line.
+def_int $quests = db_getfieldcount($row, quest_requirement:quests);
+$i = 0;
+while ($i < $quests) {
+    def_component $other;
+    def_string $name;
+    $other, $name = db_getfield($row, quest_requirement:quests, $i);
+    $any = 1;
+    if (~quest_component_complete($other) = false) {
+        $unmet = add($unmet, 1);
+    }
+    $out = append($out, "|<~quest_req_colour(~quest_component_complete($other))>");
+    $out = append($out, "<$name>");
+    $i = add($i, 1);
+}
+
+// --- everything the wiki states in prose. Never coloured: there is nothing to check it against.
+def_int $other_count = db_getfieldcount($row, quest_requirement:other);
+$i = 0;
+while ($i < $other_count) {
+    $any = 1;
+    $out = append($out, "|@dbl@<db_getfield($row, quest_requirement:other, $i)>");
+    $i = add($i, 1);
+}
+
+if ($any = 0 | $unmet = 0) {
+    return("");
+}
+return(append("||@dbl@To start this quest I still need:", $out));
+
+// Green when it is met, red when it is not - the quest list's own two colours.
+[proc,quest_req_colour](boolean $met)(string)
+if ($met = true) {
+    return("@gre@");
+}
+return("@red@");
+
+[proc,stat_req_met](stat $stat, int $level)(boolean)
+// stat_base, not stat: a requirement is about the level you have trained to, and a player who has
+// been drained below it has still met it. The start gates in the quest scripts read it the same
+// way.
+if (stat_base($stat) >= $level) {
+    return(true);
+}
+return(false);
+
+[proc,questpoints_met](int $need)(boolean)
+if (%qp >= $need) {
+    return(true);
+}
+return(false);

@@ -1,4 +1,14 @@
 [proc,quest_journal](string $quest_name, string $journal_text)
+// WHAT THE QUEST STILL WANTS BEFORE IT WILL START, appended to whatever the quest wrote. Until
+// now a player who could not start a quest found that out from one line of dialogue at the quest
+// giver and nowhere else - the journal, which is where you go to ask what a quest needs, did not
+// say. The requirements come from quest_requirement.dbrow, which is generated from the wiki, so
+// this is one block of code for all hundred and nine rather than a paragraph written by hand in
+// each of them and left behind when the quest changes.
+//
+// It returns an empty string once every checkable requirement is met, which is why none of this
+// proc's three hundred call sites had to learn whether its quest had been started.
+$journal_text = append($journal_text, ~quest_requirements_text($quest_name));
 split_init($journal_text, 420, 99, q8_full);
 if_settext(questjournal:com_3, "@dre@<$quest_name>");
 if_settext(questjournal:com_4, split_get(0, 0));
