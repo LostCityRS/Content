@@ -112,10 +112,21 @@ if ($weapon = dragon_harpoon) {
     if (p_finduid(uid) = true) { // as the others: settings-shaped, so it does not queue
         ~set_sa_vars(oc_param($weapon, sa_energy));
         say("Here fishy fishies!");
-        // ITS OWN THRUST, not human_harpoon. That animation carries replaceheldleft/right=harpoon,
-        // so playing it would swap the dragon harpoon out for a plain one for as long as it ran.
-        // human_sword_stab is the animation this harpoon already attacks with.
-        anim(human_sword_stab, 0);
+        // THE TOOL-SPECIAL FLOURISH, WHICH IS NOT THE PICKAXE'S despite the name on it. Old School
+        // registers this one animation under NINE seq ids - 334, 3410, 7138, 7267, 8329, 8330,
+        // 8781, 11821 and 11822 - all byte-identical, every one of them frames 53-63 of group
+        // 10975 at six cycles a frame. That is one flourish per tool that has a boosting special:
+        // the dragon, infernal and crystal axes, pickaxes and harpoons. 7138 is the pickaxe's and
+        // is the one this build happened to import, so the name says dpick; the frames are the
+        // harpoon's too, exactly, and importing its own id would add a second identical copy.
+        //
+        // IT WAS human_sword_stab AND THAT WAS WRONG, reported from play. That is the animation
+        // this harpoon ALREADY ATTACKS WITH (param=stabattack_anim), so Fishstabber looked like an
+        // ordinary hit - the same defect tools/sim/specanims.ts was written for when the dragon
+        // warhammer's Smash played the hammer's own swing.
+        //
+        // No spotanim, which matches the pickaxe's branch above; the axe's swoosh is its own.
+        anim(osrs_dpick_spec, 0);
         ~skilling_spec_boost(fishing);
     }
     return;
