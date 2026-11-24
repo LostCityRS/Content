@@ -127,6 +127,8 @@ jobs:
               pack/vars.pack
 
     - name: Pack
+      # id, because the two `if: always()` ratchets below are guarded on this step's outcome.
+      id: pack
       working-directory: engine
       env:
         # Off for the same reason deploy.sh turns it off: it checks the output against original
@@ -168,6 +170,7 @@ jobs:
     # to move the baselines to this repository (they describe content, after all) rather than to
     # stop running the checks.
     - name: A login key for the ratchets
+      id: loginkey
       working-directory: engine
       run: bun x tsx tools/server/rsa.ts
 
@@ -185,10 +188,22 @@ jobs:
         fi
         bun x tsx tools/sim/opsweep.ts --check
 
-    # if: always() so a red opsweep does not hide a red orphans - they are independent lists and a
+    # always() SO A RED OPSWEEP DOES NOT HIDE A RED ORPHANS - they are independent lists and a
     # push can add to both.
+    #
+    # AND GUARDED ON THE BUILD, because always() on its own meant "run even when the job never got
+    # here". A red rs2check stops the job's normal steps, so neither bun install nor Pack ran -
+    # and these two booted the engine anyway, failing with "bun: command not found" and then, once
+    # bun was installed earlier, with "Cannot find package 'kleur'". One real failure came out as
+    # three red steps, two of them about a toolchain that was never set up rather than about the
+    # content. The exit-127 went into writing twice as a PATH problem in CI, which it never was.
+    #
+    # Both of these call H.boot(), so a built pack and a login key are not optional for them: with
+    # no build there is no check to run and nothing for always() to protect. The guard keeps the
+    # property that matters - once the build is green, each ratchet reports independently, and a
+    # red opsweep still cannot hide a red orphans. DeathPlateau-Bugs#100.
     - name: No trigger is written against an option that does not exist
-      if: always()
+      if: always() && steps.pack.outcome == 'success' && steps.loginkey.outcome == 'success'
       working-directory: engine
       env:
         BUILD_SRC_DIR: ../content
@@ -209,7 +224,7 @@ jobs:
     # its own highlight script naming the varp value that means "I am chosen"; this compares that
     # against what the handler stores.
     - name: No radio button stores a value its own highlight script disagrees with
-      if: always()
+      if: always() && steps.pack.outcome == 'success' && steps.loginkey.outcome == 'success'
       working-directory: engine
       env:
         BUILD_SRC_DIR: ../content
