@@ -168,16 +168,28 @@ while($i < $amount) {
     $i = calc($i + 1);
 }
 wealth_event(^wealth_shop_buy, oc_debugname($obj), $i, $total_cost);
-// THE UNDERTAKER'S SHELF IS A COLLECTION LOG SOURCE. An item is logged where it is DROPPED OR
-// HANDED OUT - a drop table, a casket, a chest, a shop that pays in tickets - and picking one up
-// does not log it, so a generic shop purchase logs nothing. His stock is the one case in this build
-// where buying IS the only way an item exists: the outfit, the cape and the Gravedigger kit have no
-// other source at all. The Agility Arena and Castle Wars ticket traders do the same thing from
-// their own exchange scripts; the Undertaker uses the ordinary shop, so the line lives here.
+// TWO SHELVES ARE COLLECTION LOG SOURCES. An item is logged where it is DROPPED OR HANDED OUT - a
+// drop table, a casket, a chest, a shop that pays in tickets - and picking one up does not log it,
+// so a generic shop purchase logs nothing. These two are the cases in this build where buying IS
+// the only way an item exists, which is the rule the log's own pages are written to:
 //
-// Named rather than inferred from shop_currency: Grace and the TzHaar traders also take something
-// other than coins, and neither of their stocks belongs in the log.
-if (%shop = death_token_shop & $i > 0) {
+//   the Undertaker  the outfit, the cape and the Gravedigger kit have no other source at all, and
+//                   nor do the whip kits, the ancient fabric or the fighter torso.
+//   the Vote clerk  the ten elite diary rewards and the seed box. There is no achievement diary
+//                   here to hand the first ten out and no Tithe Farm for the eleventh.
+//
+// THE VOTE CLERK WAS MISSING AND HIS PAGE COULD NOT FILL (23 November). The log has had a Vote Shop
+// page since the clerk was built, and this test named only the Undertaker - so every one of those
+// ten slots was unfillable, and nothing said so: ~collection_log_add returns quietly for an item
+// the log does not list, and the log lists these, so the silence came from the call never happening
+// at all. Found while adding the seed box to the page, which did not record either.
+//
+// The Agility Arena and Castle Wars ticket traders do the same thing from their own exchange
+// scripts; these two use the ordinary shop, so the line lives here.
+//
+// NAMED SHELVES rather than inferred from shop_currency: Grace and the TzHaar traders also take
+// something other than coins, and neither of their stocks belongs in the log.
+if ((%shop = death_token_shop | %shop = vote_shop) & $i > 0) {
     ~collection_log_add($obj, 1);
 }
 
