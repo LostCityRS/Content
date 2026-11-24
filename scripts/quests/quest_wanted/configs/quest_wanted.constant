@@ -123,6 +123,10 @@
 
 ^wanted_decoy_location = 3
 
+// How long a summoned npc lives. Both the sixth stop's Black Knight and the last stop's Solus are
+// npc_added rather than placed, because neither belongs on the map when nobody is fighting it.
+^wanted_summon_ticks = 200
+
 ^wanted_off = 0
 ^wanted_on = 1
 

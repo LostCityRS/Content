@@ -62405,6 +62405,22 @@ alwaysontop=yes
 head1=idk_woman_hair_medium_head
 head2=npc_woman2_head
 
+// 2026-11-24: COMBAT STATS, which it had none of - op2=Attack and vislevel=32 and nothing to
+// fight with. Old School documents this one separately from the ordinary Black Knight, as
+// "Black Knight (Wanted!)" at combat level 32, and every stat on that page is identical to the
+// level-33 one: 42 hitpoints, Attack/Strength/Defence 25, max hit 4, 5-tick slash, attack +18,
+// strength +16, defences 73/76/70 melee, -11 magic, 72 ranged.
+//
+// So this is THIS BUILD'S OWN [black_knight] combat block, copied field for field, keeping the
+// vislevel=32 the cache already carried. Not one number here is invented or chosen - our Black
+// Knight already agreed with the wiki on all of it. respawnrate is left off because this one is
+// summoned by npc_add, which carries its own lifetime.
+//
+// huntmode/huntrange are the one addition on top of that copy, and they are not from the page:
+// the ordinary [black_knight] stands and waits, which is right for one guarding a fortress, but
+// this one is conjured mid-chase to set on the player, and a summoned attacker that ignores you
+// is not a fight. huntrange 5 is what 39 of the 52 aggressive_melee npcs in this cache use.
+// DeathPlateau-Bugs#98.
 [wanted_summoned_black_knight]
 name=Black Knight
 desc=A dark-hearted knight.
@@ -62430,6 +62446,27 @@ readyanim=human_ready
 alwaysontop=yes
 op2=Attack
 vislevel=32
+wanderrange=10
+maxrange=12
+hitpoints=42
+attack=25
+strength=25
+defence=25
+param=attackrate,5
+param=attackbonus,18
+param=strengthbonus,16
+param=stabdefence,73
+param=slashdefence,76
+param=crushdefence,70
+param=magicdefence,-11
+param=rangedefence,72
+param=damagetype,^slash_style
+param=attack_anim,human_sword_slash
+param=defend_anim,human_sword_def
+param=attack_sound,hacksword_slash
+param=defend_sound,steel
+huntmode=aggressive_melee
+huntrange=5
 
 [wanted_black_knight_attackable_base_config]
 name=Black Knight
@@ -62487,6 +62524,40 @@ op2=Attack
 head1=npc_ranging_guild_poison_salesman_head
 head2=idk_man_jaw_pointy_head
 
+// 2026-11-24: COMBAT STATS, which it had none of - op2=Attack and nothing behind it, so the
+// quest's last stop could only ever be a conversation. DeathPlateau-Bugs#98.
+//
+// FROM HIS OWN OLD SCHOOL PAGE, not from the quest page's summary. The quest page says only "no
+// specific Combat level, 40 Hitpoints and only ... a weak, but fairly rapid melee attack"; the
+// npc page gives the rest: 40 hitpoints, Attack/Strength/Defence 25, Magic and Ranged 1, max hit
+// 4, attack speed 3 TICKS - which is the "fairly rapid", against the Black Knight's 5 - strength
+// bonus +16, melee defence +5/+5/+5 and magic defence +72. vislevel=hide, already in the cache,
+// is his "no combat level".
+//
+// That defence profile is the whole character of the fight and is worth not smoothing out: +5
+// against every melee style and +72 against magic. He is a mage, soft to a sword and hard to a
+// spell.
+//
+// THREE THINGS HERE ARE NOT ON THAT PAGE, and they are the only ones:
+//
+//   attackbonus 18   his attack-bonus field is a blank edit placeholder. 18 is what this build's
+//                    own [black_knight] carries, and his Attack level is 25 exactly as the
+//                    Knight's is - a blank wiki field is one nobody has filled in, not a zero,
+//                    and at 0 an aggressive npc with max hit 4 would barely land a blow.
+//   rangedefence     also blank, and deliberately LEFT OFF rather than guessed. Copying the
+//                    Knight's 72 would contradict the +5 melee above it; absent reads as 0,
+//                    which is the shape his page does show.
+//   damagetype       the page says "Melee" and never stab, slash or crush. He fights with a
+//                    staff (readyanim=human_staffready), and every staff-armed npc in this cache
+//                    uses ^crush_style with human_staff_pummel / human_staff_block / staff_hit -
+//                    mourner2 is the pattern - so his melee is crush by this build's own usage.
+//
+// Magic and Ranged are left off because they are 1, which is the default, and [black_knight]
+// omits them for the same reason.
+//
+// huntmode/huntrange are not stat fields and are not from the page either: he is cornered with
+// nowhere to teleport to and Old School has him fight, so he opens on sight. huntrange 5 is the
+// cache's own common value for aggressive_melee.
 [wanted_solus_attackable]
 name=Solus Dellagar
 desc=A powerful warrior mage.
@@ -62522,6 +62593,23 @@ alwaysontop=yes
 head1=obj_pickpocket_guide_farmer
 head2=npc_2747_head
 head3=idk_man_jaw_long_head
+hitpoints=40
+attack=25
+strength=25
+defence=25
+param=attackrate,3
+param=attackbonus,18
+param=strengthbonus,16
+param=stabdefence,5
+param=slashdefence,5
+param=crushdefence,5
+param=magicdefence,72
+param=damagetype,^crush_style
+param=attack_anim,human_staff_pummel
+param=defend_anim,human_staff_block
+param=attack_sound,staff_hit
+huntmode=aggressive_melee
+huntrange=5
 
 [grandtree_spawnedguard]
 name=Gnome guard

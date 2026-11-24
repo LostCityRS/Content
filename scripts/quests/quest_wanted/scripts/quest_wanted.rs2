@@ -37,6 +37,15 @@ if (%wanted_main >= ^wanted_cornered) {
 }
 def_int $place = ~wanted_current_location;
 if ($place = 0) {
+    // HE HAS TO BE FINDABLE AGAIN, or fleeing the last fight ends the quest. The Solus you fight
+    // is npc_added and lives ^wanted_summon_ticks, so a player who ran, died, or simply waited
+    // too long would come back to an orb with nothing in it and no way to the hat. Scanning puts
+    // him back where he was cornered, which is the one place he cannot leave.
+    if (~wanted_sightings >= ^wanted_sightings_needed) {
+        ~wanted_set_location(^wanted_place_essence, ^wanted_on);
+        ~mesbox("He has not moved. He cannot - there is nowhere left for him to go, and he knows it. The orb still has him at the essence mine.");
+        return;
+    }
     ~mesbox("The orb finds nothing. He has run out of places to be, which means he is standing still somewhere and waiting for you.");
     return;
 }
@@ -164,6 +173,7 @@ switch_int ($stop) {
     case 3 : ~wanted_piece_smoke;
     case 4 : ~wanted_piece_flames;
     case 5 : ~wanted_piece_punch;
+    case 6 : ~wanted_piece_knight;
     case default : ~wanted_piece_plain;
 }
 @wanted_depart($place);
@@ -226,6 +236,17 @@ if ($hit > 0) {
 }
 p_delay(3);
 
+// Stop 6: he does not fight you himself, he leaves something that will. Old School summons a
+// level 32 Black Knight here and says you need not kill it - you can walk away - so nothing
+// depends on the fight and the knight is simply aggressive and real.
+[proc,wanted_piece_knight]
+mes("He says something short in a language you do not have, and does not wait to watch.");
+p_delay(2);
+spotanim_pl(wanted_teleport, 92, 0);
+npc_add(movecoord(coord, 1, 0, 0), wanted_summoned_black_knight, ^wanted_summon_ticks);
+p_delay(1);
+~mesbox("A Black Knight steps out of nothing at all and comes straight for you. You do not have to beat him - you only have to leave.");
+
 [proc,wanted_taunt](int $stop)
 switch_int ($stop) {
     case 1 : ~chatnpc("<p,angry>An initiate. They sent an INITIATE.");
@@ -249,6 +270,15 @@ if ($next = 0) {
 ~wanted_set_location($next, ^wanted_on);
 ~mesbox("That is one more jump he has had to pay for - <tostring(~wanted_sightings)> of <tostring(^wanted_sightings_needed)>. Savant has something of his. Scan the orb.");
 
+// THE LAST STOP IS A FIGHT, and it used to be a paragraph. wanted_solus_attackable has carried
+// op2=Attack since the cache was built and had no combat stats at all behind it, so the quest
+// could only ever narrate the ending; it has them now - 40 hitpoints, a 3-tick melee, and the
+// defence of a man who expected to be shot at rather than stabbed.
+//
+// NOT THE INSTANCE. Old School stages this in an instance with fifteen Temple Knight rangers that
+// Solus kills with Ice Barrage before you get your turn. That cutscene is a separate job and is
+// still on DeathPlateau-Bugs#98; what is here is the fight itself, at the right place, against
+// the right man with the right numbers.
 [label,wanted_final](int $place)
 ~chatnpc("<p,angry>Again. You again.");
 ~chatplayer("<p,neutral>You look tired.");
@@ -256,10 +286,33 @@ if ($next = 0) {
 if_close;
 mes("He reaches for the teleport and it does not come. He tries again and it still does not come.");
 p_delay(4);
-mes("What happens next takes rather less time than he expects.");
+mes("Then he stops reaching, and looks at you properly for the first time.");
 p_delay(3);
 ~wanted_set_location($place, ^wanted_off);
 ~wanted_mark_done($place);
+npc_add(movecoord(coord, 1, 0, 0), wanted_solus_attackable, ^wanted_summon_ticks);
+~mesbox("He is not going anywhere this time.");
+
+// His death, through the queue every other boss in this build uses: ai_queue3 is the npc's own
+// death script, and the player-side half runs as a queue so the award happens to the player who
+// actually killed him. Shilo Village's Nazastarool is the pattern.
+[ai_queue3,wanted_solus_attackable]
+gosub(npc_death);
+// HIS BONES STILL FALL. Giving an npc its own [ai_queue3] takes it off [ai_queue3,_], which is
+// where ~npc_default_death drops npc_param(death_drop) - and that param defaults to bones, so
+// adding this trigger silently took away the one thing he used to leave behind. tools/gennpcdrops.py
+// catches it: he dropped out of the drop viewer entirely. These four lines are npc_default_death's
+// own, in its own order, so his death leaves exactly what it left before.
+def_namedobj $drop = npc_param(death_drop);
+if ($drop ! null & npc_findhero = ^true) {
+    obj_add(npc_coord, $drop, 1, ^lootdrop_duration);
+}
+if (finduid(%npc_aggressive_player) = true) {
+    if_close;
+    queue(wanted_solus_beaten, 0, 0);
+}
+
+[queue,wanted_solus_beaten]
 %wanted_main = ^wanted_cornered;
 ~send_quest_progress(questlist:wanted, %wanted_main, ^wanted_complete);
 stat_advance(magic, 5000);
@@ -268,7 +321,7 @@ if (inv_freespace(inv) > 0) {
 } else {
     obj_add(coord, wanted_solus_trophy, 1, ^lootdrop_duration);
 }
-~mesbox("His hat is the only part of him still worth carrying. Sir Tiffy will want it.");
+~mesbox("His hat is the only part of him still worth carrying. Sir Amik Varze will want it.");
 
 // The decoy at the cave-goblin mine. The cache keys her on the same mission bit as Solus, so she
 // is only ever there when he is - and in Old School she IS him, which is why talking to her runs
