@@ -15,6 +15,10 @@ switch_obj (last_useitem)
     case rune_pouch : @rune_pouch_upgrade;   // storage_items/scripts/rune_pouch.rs2
     case hard_leather : @craft_leather(hardleather_body);
     case dragon_leather, dragon_leather_blue, dragon_leather_red, dragon_leather_black : @craft_dhide_interface(last_useslot);
+    // The Xerician robes are sewn with the same needle and the same reels of thread - the recipe is
+    // in skill_crafting/scripts/xerician.rs2, and its case has to live HERE because [opheldu,needle]
+    // can only be declared once and this file owns it.
+    case xerician_fabric : @craft_xerician;
     case default : ~displaymessage(^dm_default);
 };
 

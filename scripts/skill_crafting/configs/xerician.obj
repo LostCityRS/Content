@@ -1,0 +1,22 @@
+// Imported from a modern OSRS cache by tools/models/importosrs.py.
+// Models are RE-ENCODED from OSRS model format into the 317-family format
+// (tools/models/osrs2ob2.py); every one is round-trip verified before writing.
+// wearpos/wearpos2/wearpos3 come from the cache - do not hand-edit them.
+
+[xerician_fabric]
+name=Xerician fabric
+desc=An old scrap of cloth, containing remnants of Xeric's forgotten magicks.
+model=obj_xerician_fabric
+2dzoom=1095
+2dxan=257
+2dyan=1808
+2dxof=9
+2dyof=-15
+weight=60g
+cost=3
+members=yes
+// TODO by hand: category, param= combat bonuses, equip requirement
+// Dropped by the dark wizards (drop_tables/scripts/dark_wizard.rs2) and sewn into the three robes
+// with a needle and thread (skill_crafting/scripts/xerician.rs2). Every number is in
+// configs/xerician.constant. Tradeable, as it is in Old School: the cloth is the tradeable half of
+// this set and the robes themselves are not.
