@@ -70,6 +70,33 @@
 //   the six *_spam bits - novice, peon, page, noble, adept and master, which are Temple Knight
 //     ranks and belong to the White Knights' armoury reward this build has not got (#99)
 
+// =========================================================================== requirements
+// Old School's requirements box, verbatim: "32 Quest points [required to start]", then
+// "Completion of the following quests:" Recruitment Drive, The Lost Tribe, Priest in Peril and
+// Enter the Abyss, then "The ability to defeat a level 32 Black Knight".
+//
+// NONE OF IT WAS CHECKED except Recruitment Drive, which only got looked at because Sir Tiffy is
+// Recruitment Drive's own npc and this quest hooks in behind his trigger. Anybody who had finished
+// that one quest could start and finish Wanted!.
+//
+// The page marks only the quest points "[required to start]" and does not say which of the four
+// quests gate the start rather than the finish. They are all enforced at the start here, because
+// that is what every other quest in this repo does - Ghosts Ahoy, Swan Song, Making History - and
+// because a quest you can begin and then not finish is worse than one you cannot begin.
+//
+// The Black Knight is not a gate. It is a fight, and Old School lists it as an ability rather than
+// a requirement; the stop it belongs to is still waiting on stats the wiki does not give.
+^wanted_req_questpoints = 32
+
+// THE COMMORB IS BOUGHT, NOT GIVEN. "Sir Tiffy offers you a communication device for 10,000 coins,
+// or he can make one if you bring the supplies. Give Sir Tiffy the money or the supplies (a law
+// rune, an enchanted gem and molten glass)." This handed one over free.
+//
+// A LOST ONE IS A LOAN, NOT A SECOND SALE: "If you lose your Commorb after acquiring one, Sir
+// Tiffy Cashien will lend you his." The page gives no price for that, so neither does this - and
+// without it, losing the orb mid-hunt was a dead end with no way back.
+^wanted_commorb_cost = 10000
+
 // =========================================================================== stages
 ^wanted_not_started = 0
 ^wanted_recruited = 10     // Tiffy has handed over the commorb

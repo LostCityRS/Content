@@ -5,6 +5,16 @@
 // spoken, which left him with no other conversation at all from the moment the quest passed Aris
 // until he was freed: Black Knights' Fortress could not be started, continued or finished, and
 // Recruitment Drive hangs off the end of that. Now he is asked which it is.
+// WANTED! ASKS TOO, for the reason the comment above gives. Old School's ending for that quest is
+// Sir Amik taking Solus's hat, and he is the only npc who can; but he is also the start of Black
+// Knights' Fortress and the middle of Recipe for Disaster, so this offers the topic rather than
+// seizing the conversation. "Something else" falls straight through to whatever he would have said.
+if (~wanted_amik_wants = true) {
+    if (~p_choice2("I've come about Solus Dellagar.", 1, "Something else, Sir Amik.", 2) = 1) {
+        ~chatplayer("<p,neutral>I've come about Solus Dellagar.");
+        @wanted_amik;
+    }
+}
 if (~hundred_amik_available = true) {
     def_int $topic = ~p_choice2("I seek an audience, Sir Amik.", 1, "This is going to sound strange. What do you drink?", 2);
     if ($topic = 2) {

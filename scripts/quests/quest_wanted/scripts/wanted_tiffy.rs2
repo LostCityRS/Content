@@ -11,6 +11,10 @@ if (%rd_main ! ^recruitmentdrive_complete) {
 switch_int (%wanted_main) {
     case ^wanted_not_started : return(true);
     case ^wanted_recruited : return(true);
+    // He is wanted DURING the hunt now, because a lost commorb used to be a dead end: nothing
+    // else in the game hands one out, and Old School has him lend you his.
+    case ^wanted_briefed : return(true);
+    case ^wanted_hunting : return(true);
     case ^wanted_cornered : return(true);
 }
 return(false);
@@ -19,11 +23,43 @@ return(false);
 switch_int (%wanted_main) {
     case ^wanted_not_started : @wanted_tiffy_start;
     case ^wanted_recruited : @wanted_tiffy_waiting;
-    case ^wanted_cornered : @wanted_tiffy_finish;
+    case ^wanted_briefed : @wanted_tiffy_waiting;
+    case ^wanted_hunting : @wanted_tiffy_waiting;
+    case ^wanted_cornered : @wanted_tiffy_done;
 }
 
+// THE REQUIREMENTS, which were not checked. Old School wants 32 quest points, The Lost Tribe,
+// Priest in Peril and Enter the Abyss on top of Recruitment Drive - and Recruitment Drive was the
+// only one being looked at, and only because Tiffy is its npc. Each refusal says which thing is
+// missing, because "he has nothing to say to you" is indistinguishable from a broken quest.
+//
+// EACH TEST IS "<", NOT "!=", and that is not style. ^priestperil_complete is 60 and
+// ^priestperil_access_holy_barrier is 61, so a player who finished Priest in Peril and then
+// earned barrier access sits ABOVE the completion value - and != would have refused precisely
+// the players who had done the most. The rest use < for the same reason, against the day a
+// post-quest stage is added above them.
 [label,wanted_tiffy_start]
 ~chatplayer("<p,happy>Hello Sir Tiffy.");
+if (%qp < ^wanted_req_questpoints) {
+    ~chatnpc("<p,neutral>Ah. You are an initiate, and I am glad of it, but this one wants somebody with a history.");
+    ~mesbox("You need <tostring(^wanted_req_questpoints)> quest points to start Wanted!. You have <tostring(%qp)>.");
+    return;
+}
+if (%lost_tribe_quest < ^lost_tribe_complete) {
+    ~chatnpc("<p,neutral>Not yet. There is a business under Lumbridge with the goblins that you have not seen the end of, and you will want to have seen it.");
+    ~mesbox("You need to have completed The Lost Tribe to start this quest.");
+    return;
+}
+if (%priestperil < ^priestperil_complete) {
+    ~chatnpc("<p,neutral>Not yet. You have never been east of the Salve, and where this ends you will have been.");
+    ~mesbox("You need to have completed Priest in Peril to start this quest.");
+    return;
+}
+if (%abyssal_miniquest < ^miniquest_abyssal_complete) {
+    ~chatnpc("<p,neutral>Not yet. You have not been shown the Abyss, and the man we are after ends up somewhere very like it.");
+    ~mesbox("You need to have completed Enter the Abyss to start this quest.");
+    return;
+}
 ~chatnpc("<p,happy>Ah, our newest initiate! Do sit down. Mind the pigeons.");
 ~chatnpc("<p,neutral>Now. You passed the tests, which means you are clever, which means I am going to use you for something unpleasant.");
 switch_int (~p_choice2("Go on.", 1, "I'd rather sit with the pigeons.", 2)) {
@@ -37,61 +73,77 @@ switch_int (~p_choice2("Go on.", 1, "I'd rather sit with the pigeons.", 2)) {
 ~chatnpc("<p,sad>There is a man called Solus Dellagar. Some years ago he destroyed a town. The whole of it, at once, on his own.");
 ~chatnpc("<p,neutral>We have not been able to find him since, because he teleports the instant anyone gets close and he is better at it than anybody in the order.");
 ~chatplayer("<p,quiz>So how do I find him?");
-if (inv_freespace(inv) = 0) {
-    ~chatnpc("<p,neutral>With this. Which you cannot carry, because your hands are full. Do come back.");
+~chatnpc("<p,neutral>With a commorb. I have one spare and the order is not a charity, so it is ten thousand coins - or bring me the parts and I shall put one together.");
+if (~wanted_buy_commorb = false) {
     return;
 }
-inv_add(inv, wanted_crystal_ball, 1);
 %wanted_main = ^wanted_recruited;
 ~send_quest_progress(questlist:wanted, %wanted_main, ^wanted_complete);
-~chatnpc("<p,happy>A commorb. Scan with it to find him, contact with it to reach Savant, and playback if you forget what I have just said, which you will.");
+~chatnpc("<p,happy>Scan with it to find him, contact with it to reach Savant, and playback if you forget what I have just said, which you will.");
 ~chatnpc("<p,neutral>Contact Savant first. She does the thinking and I do the bench.");
 
-[label,wanted_tiffy_waiting]
-~chatnpc("<p,neutral>Contact Savant on the orb. She will tell you what I cannot be bothered to.");
+// Bought for ten thousand, or made from a law rune, an enchanted gem and molten glass - Old
+// School's two prices, and it used to be free. Returns whether the orb actually changed hands.
+[proc,wanted_buy_commorb]()(boolean)
+switch_int (~p_choice3("I'll pay the <tostring(^wanted_commorb_cost)> coins.", 1, "I've brought the parts.", 2, "That is a lot of money.", 3)) {
+    case 3 :
+        ~chatplayer("<p,neutral>That is a lot of money.");
+        ~chatnpc("<p,laugh>It is a lot of orb, dear boy.");
+        return(false);
+    case 1 :
+        ~chatplayer("<p,neutral>I'll pay the <tostring(^wanted_commorb_cost)> coins.");
+        if (inv_total(inv, coins) < ^wanted_commorb_cost) {
+            ~chatnpc("<p,neutral>You will want to count that again.");
+            return(false);
+        }
+        if (inv_freespace(inv) = 0) {
+            ~chatnpc("<p,neutral>And where would you put it? Your hands are full. Do come back.");
+            return(false);
+        }
+        inv_del(inv, coins, ^wanted_commorb_cost);
+        inv_add(inv, wanted_crystal_ball, 1);
+        return(true);
+    case 2 :
+        ~chatplayer("<p,neutral>I've brought the parts.");
+        if (inv_total(inv, lawrune) < 1 | inv_total(inv, slayer_gem) < 1 | inv_total(inv, molten_glass) < 1) {
+            ~chatnpc("<p,neutral>A law rune, an enchanted gem and a piece of molten glass. You are short.");
+            return(false);
+        }
+        inv_del(inv, lawrune, 1);
+        inv_del(inv, slayer_gem, 1);
+        inv_del(inv, molten_glass, 1);
+        inv_add(inv, wanted_crystal_ball, 1);
+        return(true);
+}
+return(false);
 
-[label,wanted_tiffy_finish]
-// The hat is the only one there will ever be - Solus is gone - so a hat that was dropped or lost
-// on death would have left the quest one conversation from the end for good. Banked, he waits for
-// it; gone, Savant's log is proof enough.
-if (inv_total(inv, wanted_solus_trophy) = 0) {
-    if (inv_total(bank, wanted_solus_trophy) > 0) {
-        ~chatnpc("<p,neutral>You have done it and you have not brought me the hat. Bring me the hat.");
+[label,wanted_tiffy_waiting]
+// A LOST COMMORB WAS A DEAD END. Nothing else in the game gives one out, so an orb dropped or
+// lost on death left the quest unfinishable for good. Old School: "If you lose your Commorb after
+// acquiring one, Sir Tiffy Cashien will lend you his." A loan, with no second ten thousand.
+if (inv_total(inv, wanted_crystal_ball) = 0 & inv_total(bank, wanted_crystal_ball) = 0) {
+    ~chatplayer("<p,sad>I've lost the commorb.");
+    if (inv_freespace(inv) = 0) {
+        ~chatnpc("<p,neutral>Then take mine - except that your hands are full. Do come back.");
         return;
     }
-    ~chatplayer("<p,sad>It's done. I've lost the hat, though.");
-    ~chatnpc("<p,sad>Savant logged it the moment it happened, so I suppose I shall have to take her word for it. A pity. I did want the hat.");
-    @wanted_finish;
+    ~chatnpc("<p,neutral>Of course you have. Take mine, and do not make a habit of it. I am not charging you twice.");
+    inv_add(inv, wanted_crystal_ball, 1);
+    return;
 }
-~chatplayer("<p,neutral>It's done.");
-if_close;
-mes("Tiffy turns the hat over twice and does not say anything for a while.");
-p_delay(4);
-~chatnpc("<p,sad>Eleven years. Eleven years and a hat.");
-~chatnpc("<p,happy>You will forgive me if I do not make a speech. Consider yourself properly one of us.");
-inv_del(inv, wanted_solus_trophy, 1);
-@wanted_finish;
+~chatnpc("<p,neutral>Contact Savant on the orb. She will tell you what I cannot be bothered to.");
 
-// THE REWARD IS SLAYER, AND IT IS ONE SKILL. This paid 18,000 Magic and 5,000 Hitpoints, and the
-// quest pays neither: "1 Quest point, 5,000 Slayer experience, Access to the White Knights'
-// armoury" and nothing else (oldschool.runescape.wiki/w/Wanted!). A player noticed -
-// DeathPlateau-Bugs#99.
-//
-// The 5,000 was the right NUMBER against the wrong SKILL, which is how this probably happened, and
-// the 18,000 Magic has no source anywhere. Removing experience a player may already have banked is
-// not something to do quietly, so it is said plainly on the issue.
-//
-// THE THIRD REWARD IS NOT PROMISED HERE, because this build has not got it. Old School's list ends
-// with access to the White Knights' armoury, and [opnpc1,sir_vyvin] in areas/area_falador answers
-// "Do you have anything to trade?" with "No, I'm sorry." - there is no armoury, and behind it in Old
-// School sits a reputation system raised by killing Black Knights. Writing it on the completion
-// scroll would be telling the player they have unlocked a shop that does not exist, so the scroll
-// lists what they actually got. The missing reward is on DeathPlateau-Bugs#99 for Corey.
-//
-// Experience is in tenths here, as everywhere else in this repo - Fight Arena's
-// stat_advance(attack, 121750) is Old School's own 12,175 - so 5,000 Slayer is 50000.
-[label,wanted_finish]
-%wanted_main = ^wanted_complete;
-stat_advance(slayer, 50000);
-session_log(^log_adventure, "Quest complete: Wanted!");
-~send_quest_complete(questlist:wanted, wanted_solus_trophy, 200, ^wanted_questpoints, "You have completed\\nWanted!", "1 Quest Point|5,000 Slayer XP");
+// TIFFY DOES NOT FINISH THIS QUEST. Old School's ending is "Return to Falador. Talk to Sir Amik
+// Varze in the White Knights' Castle, and hand over the hat" - the page gives Tiffy no part in it
+// at all after the briefing. He used to take the hat and award the quest himself. He now says
+// where to take it, because sending the player back to an npc with nothing to say would be its
+// own bug.
+[label,wanted_tiffy_done]
+if (inv_total(inv, wanted_crystal_ball) > 0 | inv_total(bank, wanted_crystal_ball) > 0) {
+    ~chatplayer("<p,neutral>It's done. Solus is finished.");
+} else {
+    ~chatplayer("<p,neutral>It's done. I've lost your orb, mind.");
+    ~chatnpc("<p,laugh>Keep it. Wherever it is.");
+}
+~chatnpc("<p,happy>I know. Savant logged it before you had got your breath back.");
+~chatnpc("<p,neutral>Do not bring the hat to me, dear boy - take it to Sir Amik Varze, in the castle. He has been waiting eleven years for it and I have only been sitting here.");

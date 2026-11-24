@@ -5,7 +5,9 @@ switch_int (%wanted_main) {
     case ^wanted_not_started :
         $text = "@dbl@I can start this quest by speaking to @dre@Sir Tiffy Cashien|";
         $text = append($text, "@dbl@on his bench in @dre@Falador Park|");
-        $text = append($text, "@dbl@I will need to have completed @dre@Recruitment Drive");
+        $text = append($text, "@dbl@I will need @dre@<tostring(^wanted_req_questpoints)> quest points@dbl@, and to have|");
+        $text = append($text, "@dbl@completed @dre@Recruitment Drive@dbl@, @dre@The Lost Tribe@dbl@,|");
+        $text = append($text, "@dbl@@dre@Priest in Peril@dbl@ and @dre@Enter the Abyss");
 
     case ^wanted_recruited :
         $text = "@str@Solus Dellagar destroyed an entire town on his own and the|";
@@ -34,7 +36,8 @@ switch_int (%wanted_main) {
 
     case ^wanted_cornered :
         $text = "@str@He reached for the teleport and it did not come.|";
-        $text = append($text, "@dbl@I should take @dre@Solus's hat@dbl@ to @dre@Sir Tiffy");
+        $text = append($text, "@dbl@I should take @dre@Solus's hat@dbl@ to @dre@Sir Amik Varze|");
+        $text = append($text, "@dbl@in the @dre@White Knights' Castle@dbl@ at Falador");
 
     case ^wanted_complete :
         $text = "@str@Solus Dellagar killed a town and then spent eleven years|";

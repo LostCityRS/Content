@@ -1,0 +1,63 @@
+// Wanted! - Sir Amik Varze, who is the one who takes the hat.
+//
+// Old School: "Return to Falador. Talk to Sir Amik Varze in the White Knights' Castle, and hand
+// over the hat." Sir Tiffy hands out the commorb and the briefing and then has no part in the
+// ending; this quest used to give him the whole of it.
+//
+// [opnpc1,sir_amik_varze] already exists in areas/area_falador and a trigger may only be declared
+// once, so this hooks in the way Recipe for Disaster does there - by being asked for, rather than
+// by running first and swallowing his other conversations. That mistake is written up in the
+// comment at the top of his own script and is worth not repeating.
+
+[proc,wanted_amik_wants]()(boolean)
+if (%wanted_main = ^wanted_cornered) {
+    return(true);
+}
+return(false);
+
+[label,wanted_amik]
+// The hat is the only one there will ever be - Solus is gone - so a hat dropped or lost on death
+// would leave the quest one conversation from the end for good. Banked, he waits for it; gone,
+// Savant can issue another, which is Old School's own answer: "If you lose Solus's hat, contact
+// Savant for another one."
+if (inv_total(inv, wanted_solus_trophy) = 0) {
+    if (inv_total(bank, wanted_solus_trophy) > 0) {
+        ~chatnpc("<p,neutral>Then you have left it in a bank. Fetch it. I have waited eleven years; I can wait the afternoon.");
+        return;
+    }
+    ~chatplayer("<p,sad>It's done. I've lost the hat, though.");
+    ~chatnpc("<p,neutral>Then contact your handler on that orb and have her send another. I am not closing this on a story.");
+    return;
+}
+~chatplayer("<p,neutral>It's done. Solus Dellagar is finished.");
+if_close;
+mes("Sir Amik turns the hat over twice and does not say anything for a while.");
+p_delay(4);
+~chatnpc("<p,sad>Eleven years. Eleven years and a hat.");
+~chatnpc("<p,happy>You will forgive me if I do not make a speech. Consider yourself properly one of us.");
+inv_del(inv, wanted_solus_trophy, 1);
+@wanted_finish;
+
+// THE REWARD IS SLAYER, AND IT IS ONE SKILL. This paid 18,000 Magic and 5,000 Hitpoints, and the
+// quest pays neither: "1 Quest point, 5,000 Slayer experience, Access to the White Knights'
+// armoury" and nothing else (oldschool.runescape.wiki/w/Wanted!). A player noticed -
+// DeathPlateau-Bugs#99.
+//
+// The 5,000 was the right NUMBER against the wrong SKILL, which is how this probably happened, and
+// the 18,000 Magic has no source anywhere. Removing experience a player may already have banked is
+// not something to do quietly, so it is said plainly on the issue.
+//
+// THE THIRD REWARD IS NOT PROMISED HERE, because this build has not got it. Old School's list ends
+// with access to the White Knights' armoury, and [opnpc1,sir_vyvin] in areas/area_falador answers
+// "Do you have anything to trade?" with "No, I'm sorry." - there is no armoury, and behind it in Old
+// School sits a reputation system raised by killing Black Knights. Writing it on the completion
+// scroll would be telling the player they have unlocked a shop that does not exist, so the scroll
+// lists what they actually got. The missing reward is on DeathPlateau-Bugs#99 for Corey.
+//
+// Experience is in tenths here, as everywhere else in this repo - Fight Arena's
+// stat_advance(attack, 121750) is Old School's own 12,175 - so 5,000 Slayer is 50000.
+[label,wanted_finish]
+%wanted_main = ^wanted_complete;
+stat_advance(slayer, 50000);
+session_log(^log_adventure, "Quest complete: Wanted!");
+~send_quest_complete(questlist:wanted, wanted_solus_trophy, 200, ^wanted_questpoints, "You have completed\\nWanted!", "1 Quest Point|5,000 Slayer XP");

@@ -52,7 +52,20 @@ if (~wanted_near_place($place) = true) {
 // =========================================================================== Contact
 [opheld2,wanted_crystal_ball]
 if (%wanted_main >= ^wanted_cornered) {
-    ~chatnpc_specific("Savant", wanted_savant, "<p,happy>You got him. I have logged it. Sir Tiffy will want the hat.");
+    // SHE CAN ISSUE ANOTHER HAT, which is Old School's own answer to losing it: "If you lose
+    // Solus's hat, contact Savant for another one. You will lose Solus's hat if your inventory is
+    // full at the end of the fight." Without this, a full inventory at the kill ended the quest.
+    if (inv_total(inv, wanted_solus_trophy) = 0 & inv_total(bank, wanted_solus_trophy) = 0) {
+        ~chatnpc_specific("Savant", wanted_savant, "<p,neutral>You have lost the hat. I logged the kill, so I can sign out a replacement - but Sir Amik will want to hold the thing itself.");
+        if (inv_freespace(inv) = 0) {
+            ~chatnpc_specific("Savant", wanted_savant, "<p,neutral>Your hands are full. Put something down and ask me again.");
+            return;
+        }
+        inv_add(inv, wanted_solus_trophy, 1);
+        ~objbox(wanted_solus_trophy, "Savant signs out another of Solus's hats from the evidence room.", 250, 0, divide(^objbox_height, 2));
+        return;
+    }
+    ~chatnpc_specific("Savant", wanted_savant, "<p,happy>You got him. I have logged it. Take the hat to Sir Amik Varze, in the castle at Falador - not to Sir Tiffy, whatever he tells you.");
     return;
 }
 if (%wanted_main = ^wanted_recruited) {
