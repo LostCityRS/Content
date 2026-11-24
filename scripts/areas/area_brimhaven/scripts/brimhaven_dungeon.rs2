@@ -1,0 +1,163 @@
+// The Brimhaven dungeon: the door in, the way out, and the vines in between.
+//
+// ALL OF THIS WAS SILENCE. The cache draws "Enter" on the overgrown entrance south of Brimhaven,
+// "Leave" on the hole at the far end, and "Chop-down" on five sets of vines, and NOTHING in this
+// repo answered any of them - the same shape the furnace's Smelt option had before
+// DeathPlateau-Bugs#85: the cache is ahead of the content and the symptom is no error, no message
+// and no log line. tools/sim/opsweep-baseline.txt carried every one of them as a dead option, so
+// it was known in aggregate and never as "Brimhaven dungeon cannot be entered". A player walked
+// into it and reported exactly that (DeathPlateau-Bugs#91).
+//
+// The dungeon behind the door was already finished: twenty-seven kinds of npc placed and
+// spawning - wild dogs, moss giants, poison spiders, chaos druids, giant skeletons, fire giants,
+// baby reds and red dragons - the map cut, the exit placed, and drop rows for them in
+// npc_drops.dbrow. Only the door was missing.
+//
+// NO CHARGE ON THE DOOR, and that is a decision rather than an oversight. In Old School, Saniboch
+// stands outside and takes 875 coins every time. THERE IS NO `saniboch` NPC IN THE 377 CACHE - I
+// checked all.npc - so there is nobody to take it, and inventing a toll on a door that never
+// charged one is a change to how the game plays rather than a fix to a dead option. Left open,
+// and the question is on DeathPlateau-Bugs#91 for Corey: one line here adds the 875 if he wants
+// the sink.
+
+[oploc1,dungeon_tree_closed]
+// p_telejump and not p_teleport: this is a door, so the screen should not fade the way a spell
+// does. The same op on the way out does the same.
+p_telejump(^brimhaven_dungeon_inside);
+sound_synth(door_open, 1, 0);
+mes("You squeeze through the overgrown entrance.");
+
+[oploc1,karam_dungeon_exit]
+p_telejump(^brimhaven_dungeon_outside);
+sound_synth(door_open, 1, 0);
+mes("You climb out of the dungeon.");
+
+// THE VINES, on the category and not on the five names. All five carry category=dungeon_vines and
+// they differ in nothing else, so one trigger covers them and a sixth vine placed later needs no
+// edit here.
+//
+// An axe and 10 Woodcutting is the only published requirement on them, and a blessed axe does not
+// count in Old School - but this cache has no blessed axe, so there is nothing to exclude.
+//
+// NO EXPERIENCE IS PAID, because no figure for these is published anywhere I can reach and a made
+// up number is worse than none: web.archive.org, which the era guides this repo cites all live on,
+// cannot be reached from the build container. If a figure turns up, this is the one line to add.
+[oploc1,_dungeon_vines]
+@brimhaven_chop_vine;
+
+// The repeat, through the hidden op3 every one of these vines already carries. p_oploc(3) returns
+// without doing anything when a loc has no op at that index, so a chop could only re-queue itself
+// because the cache put one there - the same slot the chaos altar had to be given by hand
+// (DeathPlateau-Bugs#39), and here it was waiting.
+[oploc3,_dungeon_vines]
+@brimhaven_chop_vine;
+
+// ONE SWING PER CALL, PACED BY map_clock, AND NEVER p_delay. This is the shape ordinary
+// woodcutting and farming's rake use, and the reason is DeathPlateau-Bugs#85: p_delay sets
+// player.delayed, and MoveClickHandler throws away a click made while that is set rather than
+// deferring it, so a chop paced with p_delay could not be walked away from. The script returns
+// every pass, so the player is never held and their next click wins.
+[label,brimhaven_chop_vine]
+// ~woodcutting_best_axe AND NOT ~woodcutting_axe_checker. The checker prints "You need an axe to
+// chop down this tree." before it ever looks at its own $print_mes flag, and these are vines.
+// woodcut.rs2's comment on best_axe names this exact case: "Chopping something that is not a tree
+// (the Abyss's tendrils) says its own thing when there is none."
+def_namedobj $axe = ~woodcutting_best_axe;
+if ($axe = null) {
+    mes("You need an axe to cut through these vines.");
+    return;
+}
+if (stat(woodcutting) < ^brimhaven_vine_woodcutting) {
+    mes("You need a Woodcutting level of <tostring(^brimhaven_vine_woodcutting)> to cut these vines.");
+    return;
+}
+if (%action_delay > map_clock) {
+    p_oploc(3);
+    return;
+}
+%action_delay = calc(map_clock + ^brimhaven_vine_chop_ticks);
+anim(struct_param(oc_param($axe, woodcutting_struct), skill_anim), 0);
+sound_synth(woodchop_4, 1, 0);
+// A 1 in 3 swing gets through, which is the cadence of chopping anything else in this cache
+// rather than a published rate - the vines have no row in woodcutting_trees to read one from.
+if (random(3) ! 0) {
+    p_oploc(3);
+    return;
+}
+anim(null, 0);
+mes("You hack through the vines.");
+loc_del(^brimhaven_vine_regrow);
+
+// ============================================================================ the stepping stones
+//
+// TWO ONE-TILE PLUGS IN A NORTH-SOUTH CHANNEL. Each stone's own tile is blocked (active=1), the
+// tiles north and south of it are open, and east and west are wall - so crossing one is a hop of
+// TWO tiles in z, over the stone, and not a step onto it. That is measured: isMapBlocked says
+// 2649,9561 and 2647,9558 are both blocked with open ground either side in z only.
+//
+// AGILITY 12 GOING SOUTH, FREE GOING NORTH. "[They] require level 12 Agility to be traversed from
+// the north, but have no requirements when approached from the south." North is the way out - the
+// dungeon's exit is at z=9564, above both stones - so the free direction is the one that cannot
+// leave anybody stranded, which is the rule the vines follow too (they can be cut by hand only
+// when heading for the exit).
+//
+// They carry no category between them, unlike the vines, so both names are declared here and both
+// jump to the one label.
+//
+// NO EXPERIENCE, for the reason the vines pay none: no figure for these is published anywhere
+// reachable, and a made up number is worse than none. The surface Karamja stones pay 30, but they
+// are a different obstacle over water with a drowning sequence, and borrowing their number would
+// be inventing with extra steps.
+
+[oploc1,karam_dungeon_stone1]
+@brimhaven_stone_jump;
+
+[oploc1,karam_dungeon_stone2]
+@brimhaven_stone_jump;
+
+[label,brimhaven_stone_jump]
+if (coord = loc_coord) {
+    mes("You can't do that from here.");
+    return;
+}
+// DIRECTLY ABOVE OR BELOW IT, AND ADJACENT. The hop is along z, so a player standing diagonally
+// or two tiles off would be thrown somewhere the channel does not go.
+if (coordx(coord) ! coordx(loc_coord)) {
+    mes("You need to stand in line with the stone to cross.");
+    return;
+}
+def_int $dz = -1;
+def_int $dir = ^exact_south;
+if (coordz(coord) < coordz(loc_coord)) {
+    $dz = 1;
+    $dir = ^exact_north;
+}
+if (coordz(coord) ! calc(coordz(loc_coord) + $dz * -1)) {
+    mes("You need to be next to the stone to cross.");
+    return;
+}
+// The level is asked for in one direction only: $dz of -1 is a player on the north side heading
+// south, which is deeper in.
+if ($dz = -1 & stat(agility) < ^brimhaven_stone_agility) {
+    mes("You need an Agility level of <tostring(^brimhaven_stone_agility)> to cross from this side.");
+    return;
+}
+def_coord $dest = movecoord(coord, 0, 0, calc($dz * 2));
+mes("You step onto the stone.");
+sound_synth(jump_no_land, 1, 20);
+~agility_exactmove(human_steppingstonejump, 20, 2, coord, $dest, 48, 60, $dir, false);
+// THE ROLL IS SOUTHBOUND ONLY, and that is not a detail. A level 1 player coming up from the
+// south is the player the free direction exists FOR - the one who got down here and has to get
+// out - and rolling against their Agility would have them failing this stone over and over with
+// no level they could reach to stop it. "No requirements when approached from the south" has to
+// mean no requirements, not a cheaper requirement. So northbound always lands.
+if ($dz = -1 & stat_random(agility, ^brimhaven_stone_roll_low, ^brimhaven_stone_roll_high) = false) {
+    // SLIPPED, BUT NOT ACROSS. A fail leaves the player where they started rather than on the far
+    // side, which is what makes a fail cost something: the alternative - damage and a free
+    // crossing - is no obstacle at all.
+    p_telejump(movecoord($dest, 0, 0, calc($dz * -2)));
+    mes("You slip and bang your leg on the rock.");
+    ~damage_self(calc(random(^brimhaven_stone_fail_damage) + 1));
+    return;
+}
+mes("You cross the stepping stone.");

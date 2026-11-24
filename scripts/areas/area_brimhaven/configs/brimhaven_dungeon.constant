@@ -1,0 +1,39 @@
+// The Brimhaven dungeon's two ends, and what the vines cost.
+//
+// Both coordinates are tiles a player can actually stand on, checked against isMapBlocked rather
+// than read off a wiki map: the entrance loc is 4x4 with forceapproach=south and fills
+// 2743-2746 / 3153-3156, so the only side to arrive on is the south, and 2744,3152 is the tile
+// the player who reported this was standing on when they filed it (DeathPlateau-Bugs#91).
+
+// Just inside, one tile east of karam_dungeon_exit, so the way back out is under your feet.
+^brimhaven_dungeon_inside = 0_42_149_27_28
+
+// South of the entrance, on its forceapproach side.
+^brimhaven_dungeon_outside = 0_42_49_56_16
+
+// AN AXE AND TEN WOODCUTTING, which is the only documented requirement on these vines: "A player
+// will also need an axe to cut the vines blocking the path (requiring level 10 Woodcutting)."
+// No experience figure is published for them, so none is paid - see the note in the script.
+^brimhaven_vine_woodcutting = 10
+
+// How long a chopped vine stays down, in ticks. Nothing publishes this either; one minute is long
+// enough to walk the stretch it blocks and short enough that the dungeon does not stay open behind
+// you forever.
+^brimhaven_vine_regrow = 100
+
+// The cadence of one chop, in ticks, matching ordinary woodcutting's.
+^brimhaven_vine_chop_ticks = 4
+
+// THE STEPPING STONES, and the one direction that asks for a level. "[They] require level 12
+// Agility to be traversed from the north, but have no requirements when approached from the
+// south." North is the way out - the dungeon exit sits at z=9564, above both stones - so the free
+// direction is the one that cannot trap anybody, which is the same rule the vines follow.
+^brimhaven_stone_agility = 12
+
+// Failing is "quite rare" and costs "a low amount of damage", and neither is published as a
+// number. The roll is stat_random against Agility, like every other obstacle in this cache, with
+// a band chosen to make a fail rare at the level the stones ask for rather than measured from
+// anything. The damage is small and flat for the same reason.
+^brimhaven_stone_roll_low = 190
+^brimhaven_stone_roll_high = 255
+^brimhaven_stone_fail_damage = 3
