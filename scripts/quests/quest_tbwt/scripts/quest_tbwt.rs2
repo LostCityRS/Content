@@ -163,7 +163,16 @@ mes("You cast out your net...");
 sound_synth(net, 1, 0);
 
 p_delay(4);
-if (stat_random(fishing, 60, 95) = false) {
+// 100 AND 250, THE WIKI'S OWN PAIR (Raw karambwanji, "Karambwanji + shrimp fishing chance").
+// This was 60/95, which is 23.8% at the level 5 it needs and only 37.5% at 99 - against the
+// wiki's 41.4% and 98.0%, so nearly three times too slow at the top. It matters more than a bait
+// fish sounds: karambwanji is the ONLY bait a karambwan will take, so this rate is the real cost
+// of every karambwan caught, and 20 of them are wanted per Tai Bwo Wannai Trio hand-in.
+//
+// The numbers are off Raw karambwanji and not off Karambwanji - that page's first success chart is
+// the COOKING one, 200/400, and reading it by mistake would have made this three times too fast
+// instead.
+if (stat_random(fishing, 100, 250) = false) {
     mes("You fail to catch anything.");
     return;
 }
