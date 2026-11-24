@@ -33,9 +33,16 @@ if (%dragonquest < ^dragon_complete) {
     ~chatnpc("<p,angry>I'm not sellin' ye anything till you've slayed that dragon!");
     return;
 }
-if (%dragonquest = ^dragon_complete) {
-    @oziach_dragon_complete;
-}
+// AND THEN THE TILL, WITH NOTHING IN FRONT OF IT. There was an
+// `if (%dragonquest = ^dragon_complete) { @oziach_dragon_complete; }` here, and @ is a jump and
+// not a call - so for every player who had finished the quest, which is the only player allowed
+// to buy from him at all, Trade replayed "I have slain the dragon!" / "Well done!" and the line
+// below was never reached. The shop was still gettable, through a choice inside that
+// conversation, which is why it read as the shop being wrong rather than missing
+// (DeathPlateau-Bugs#88).
+//
+// The conversation is not gone: it is what [opnpc1,oziach] - Talk-to - does when the quest is
+// complete, which is where a conversation belongs. Trade is the click whose whole job is the till.
 ~openshop_activenpc;
 
 // rsc and osrs
