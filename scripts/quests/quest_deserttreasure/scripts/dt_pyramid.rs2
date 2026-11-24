@@ -268,8 +268,9 @@ session_log(^log_adventure, "Quest complete: Desert Treasure");
 // Same mistake as Priest in Peril had (DeathPlateau-Bugs#30), inverted: that one was written at a
 // tenth of its reward and so looked like the multiplier being skipped, this one at ten times and
 // so looked like the multiplier working.
-stat_advance(magic, 200000);
-~send_quest_complete(questlist:deserttreasure, staff_of_zaros, 250, ^deserttreasure_questpoints, "You have completed\\nDesert Treasure!", "Ancient Magicks|20,000 Magic XP|The Ring of Visibility|Access to the Smoke and Shadow Dungeons|The Ancient Staff, from Eblis");
+// 20,006.9, not a round 20,000 - Mod Ash confirmed the figure and tenths can hold it.
+stat_advance(magic, 200069);
+~send_quest_complete(questlist:deserttreasure, staff_of_zaros, 250, ^deserttreasure_questpoints, "You have completed\\nDesert Treasure!", "Ancient Magicks|20,006 Magic XP|The Ring of Visibility|Access to the Smoke and Shadow Dungeons|The Ancient Staff, from Eblis");
 
 // ================================================================================ the exit portal
 

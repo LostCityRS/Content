@@ -402,7 +402,21 @@ inv_del(inv, favour_weather_report, 1);
 
 [label,osf_finish]
 %onesmallfavour = ^osf_complete;
-stat_advance(crafting, 100000);
-stat_advance(smithing, 100000);
+// TWO LAMPS, NOT TWO SKILLS CHOSEN FOR THEM. The reward is two antique lamps worth 10,000 each in
+// any skill the player already has level 30 in; this paid fixed Crafting and Smithing instead, and
+// thosf_reward_lamp sat in the cache unused with nothing that could rub it.
+//
+// Handed over rather than banked: a full inventory would otherwise swallow the whole reward, so
+// the lamps go to the floor under the player if there is no room, which is where every other
+// quest in this build puts a reward it cannot fit.
+def_int $lamps = 2;
+while ($lamps > 0) {
+    if (inv_freespace(inv) > 0) {
+        inv_add(inv, thosf_reward_lamp, 1);
+    } else {
+        obj_add(coord, thosf_reward_lamp, 1, 200);
+    }
+    $lamps = sub($lamps, 1);
+}
 session_log(^log_adventure, "Quest complete: One Small Favour");
-~send_quest_complete(questlist:onesmallfavour, favour_weather_report, 200, ^osf_questpoints, "You have completed\\nOne Small Favour!", "2 Quest Points|10,000 Crafting XP|10,000 Smithing XP|The glider flies again");
+~send_quest_complete(questlist:onesmallfavour, favour_weather_report, 200, ^osf_questpoints, "You have completed\\nOne Small Favour!", "2 Quest Points|Two antique lamps|The glider flies again");

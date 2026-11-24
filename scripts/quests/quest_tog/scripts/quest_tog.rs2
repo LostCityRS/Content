@@ -300,6 +300,8 @@ switch_int (%tog_juna_bowl) {
 return(^tog_met_juna);
 
 [label,tog_finish]
-stat_advance(prayer, 20000);
+// 1,000 CRAFTING, not 2,000 Prayer. Juna pays for the bowl you cut from her own rock; the
+// Prayer experience was invented and the quest advertised it on the scroll as well.
+stat_advance(crafting, 10000);
 session_log(^log_adventure, "Quest complete: Tears of Guthix");
-~send_quest_complete(questlist:tog, tog_bowl, 200, ^tog_questpoints, "You have completed\\nTears of Guthix!", "1 Quest Point|2,000 Prayer XP|A story told|The right to come back");
+~send_quest_complete(questlist:tog, tog_bowl, 200, ^tog_questpoints, "You have completed\\nTears of Guthix!", "1 Quest Point|1,000 Crafting XP|A story told|The right to come back");

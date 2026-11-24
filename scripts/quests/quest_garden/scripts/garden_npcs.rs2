@@ -114,15 +114,16 @@ p_delay(4);
 // The tree fruits once the garden is finished, which is the only thing the last four states of
 // [garden_white_tree_patch] are for.
 %garden_white_tree_varbit = ^garden_tree_fruit_4;
+// Farming only. The 5,000 Construction was invented here: Garden of Tranquillity is a 2005 quest
+// and Construction did not exist until 2006, so it was never one of its rewards.
 stat_advance(farming, 50000);
-stat_advance(construction, 50000);
 session_log(^log_adventure, "Quest complete: Garden of Tranquillity");
 if (inv_freespace(inv) > 0) {
     inv_add(inv, garden_pie, 1);
 } else {
     obj_add(coord, garden_pie, 1, ^lootdrop_duration);
 }
-~send_quest_complete(questlist:garden, garden_pie, 200, ^garden_questpoints, "You have completed\\nGarden of Tranquillity!", "2 Quest Points|5,000 Farming XP|5,000 Construction XP|A garden pie");
+~send_quest_complete(questlist:garden, garden_pie, 200, ^garden_questpoints, "You have completed\\nGarden of Tranquillity!", "2 Quest Points|5,000 Farming XP|A garden pie");
 
 // =========================================================================== the gardeners
 // One shape for all six: they want a small thing done, and then they hand over their seeds. Each

@@ -84,8 +84,11 @@
 ^mourning_crystal_delay = 3
 
 // --- Rewards ---
-// 2 quest points and 25,000 Ranged XP. stat_advance takes tenths.
-^mourning_reward_xp = 250000
+// 2 quest points, 40,000 Thieving XP and 25,000 Hitpoints XP. stat_advance takes tenths.
+// This used to be a single ^mourning_reward_xp of 250000 paid into RANGED, which is not a reward
+// this quest has ever given.
+^mourning_reward_thieving = 400000
+^mourning_reward_hitpoints = 250000
 
 // ===================================================================================================
 // SECOND HALF - stages 5 to 20

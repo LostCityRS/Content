@@ -125,5 +125,8 @@ if (npc_find(movecoord(coord, 0, 0, 2), kennith, 5, 0) = true) {
 }
 
 [queue,seaslug_quest_complete]
+// The scroll has always promised 7,175 Fishing XP and the quest has never paid it. The
+// reward screen said the words and nothing was added to the skill.
+stat_advance(fishing, 71750);
 session_log(^log_adventure, "Quest complete: Sea Slug");
 ~send_quest_complete(questlist:seaslug, seasluginv, 250, ^seaslug_questpoints, "You have completed the\\nSea Slug Quest!", "7,175 Fishing XP|Fishing Platform Access|Some Oyster Pearls");

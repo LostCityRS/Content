@@ -279,8 +279,10 @@ if_close;
 mes("Bob walks out of the house without looking back at it, which is the most cat-like thing he has done all week.");
 p_delay(3);
 %twocats_quest = ^twocats_complete;
-stat_advance(farming, 25000);
-stat_advance(cooking, 25000);
+// THE LAMPS ARE THE REWARD. twocats_rewardlamp already hands over two antique lamps worth
+// 2,500 each in any skill at level 30 - and this paid 2,500 Farming and 2,500 Cooking on top
+// of them, so the quest gave away twice what it should and fixed half of it to two skills
+// the player never chose.
 session_log(^log_adventure, "Quest complete: A Tail of Two Cats");
 // The amulet(e) is the headline reward and ~send_quest_complete only draws it on the scroll - it
 // does not add anything - so it is handed over first, before the modal reward interface opens.
@@ -290,7 +292,7 @@ if (inv_freespace(inv) > 0) {
 } else {
     obj_add(coord, twocats_amuletofcatspeak, 1, ^lootdrop_duration);
 }
-~send_quest_complete(questlist:twocats, twocats_amuletofcatspeak, 200, ^twocats_questpoints, "You have completed\\nA Tail of Two Cats!", "2 Quest Points|2,500 Farming XP|2,500 Cooking XP|An antique lamp|The enchanted catspeak amulet");
+~send_quest_complete(questlist:twocats, twocats_amuletofcatspeak, 200, ^twocats_questpoints, "You have completed\\nA Tail of Two Cats!", "2 Quest Points|Two antique lamps|The enchanted catspeak amulet");
 
 // =========================================================================== Reldo
 // Reldo's own [opnpc1,reldo] is in areas/area_varrock/scripts/reldo.rs2 and its option list is

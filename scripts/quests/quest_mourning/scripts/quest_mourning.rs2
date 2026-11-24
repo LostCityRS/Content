@@ -156,9 +156,13 @@ queue(mourning_quest_complete, 0, 0);
 
 [queue,mourning_quest_complete]
 %mourning_quest = ^mourning_complete;
-stat_advance(ranged, ^mourning_reward_xp);
+// THIEVING AND HITPOINTS, NOT RANGED. The quest paid 25,000 Ranged, which is not one of its
+// rewards and never has been - you spend it picking locks and being shot at, not shooting. It is
+// 40,000 Thieving and 25,000 Hitpoints.
+stat_advance(thieving, ^mourning_reward_thieving);
+stat_advance(hitpoints, ^mourning_reward_hitpoints);
 session_log(^log_adventure, "Quest complete: Mourning's End Part I");
-~send_quest_complete(questlist:mourning, mourning_excavation_key, 250, ^mourning_questpoints, "You have completed\\nMourning's End Part I!", "25,000 Ranged XP|The key to the Mourner excavation|The truth about the plague");
+~send_quest_complete(questlist:mourning, mourning_excavation_key, 250, ^mourning_questpoints, "You have completed\\nMourning's End Part I!", "40,000 Thieving XP|25,000 Hitpoints XP|The key to the Mourner excavation|The truth about the plague");
 
 // The crystal is handed over here rather than at the moment the quest starts, so that a player who
 // loses or drops it is never stranded outside Lletya with no way back in.

@@ -92,10 +92,13 @@ p_delay(5);
 // 110 is the only value where dwarfrock_dondakan_noaxe renders, and the only one where the gold
 // boatman exists at all. One write does both.
 %dwarfrock_quest = ^dwarfrock_complete;
+// Three skills, 5,000 each. The Defence was missing: Dondakan's reward has always been Mining,
+// Smithing AND Defence, and the scroll named only two of them, so nothing read as wrong.
 stat_advance(mining, 50000);
 stat_advance(smithing, 50000);
+stat_advance(defence, 50000);
 session_log(^log_adventure, "Quest complete: Between a Rock...");
-~send_quest_complete(questlist:dwarfrock, dwarf_goldrock_helmet, 200, ^dwarfrock_questpoints, "You have completed\\nBetween a Rock...!", "1 Quest Point|5,000 Mining XP|5,000 Smithing XP|The gold rock is open");
+~send_quest_complete(questlist:dwarfrock, dwarf_goldrock_helmet, 200, ^dwarfrock_questpoints, "You have completed\\nBetween a Rock...!", "2 Quest Points|5,000 Mining XP|5,000 Smithing XP|5,000 Defence XP|The gold rock is open");
 
 // =========================================================================== Rolad
 [opnpc1,dwarfrock_rolad]

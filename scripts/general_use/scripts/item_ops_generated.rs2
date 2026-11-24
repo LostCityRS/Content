@@ -53,7 +53,9 @@
 // hardcoded seven signatures whatever the petition actually had on it.
 [opheld1,favour_airtight_pot] mes("I'd better not open this. It's meant to stay airtight.");
 [opheld1,favour_key_ring] ~mesbox("Nothing interesting happens.");
-[opheld1,thosf_reward_lamp] ~mesbox("Nothing interesting happens.");
+// [opheld1,thosf_reward_lamp] moved to general/scripts/xplamp/xplamp.rs2. One Small Favour's
+// antique lamp answered "Nothing interesting happens" because the quest paid fixed Crafting and
+// Smithing experience instead of handing out the two lamps it is supposed to.
 // [opheld3,mdaughter_daughter_corpse] moved to quests/quest_mdaughter/scripts/quest_mdaughter.rs2,
 // which needs the same trigger to actually bury her. Its out-of-range branch keeps this wording.
 [opheld3,rubber_chicken] ~mesbox("Nothing interesting happens.");

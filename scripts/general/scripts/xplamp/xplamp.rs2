@@ -37,6 +37,15 @@ if_openmain(xplamp);
 %xplamp_kind = ^xplamp_lamp_twocats;
 if_openmain(xplamp);
 
+// One Small Favour's antique lamps, two of them, 10,000 each. thosf_reward_lamp has been in
+// the cache since the quest was imported and nothing rubbed it: the quest paid fixed Crafting
+// and Smithing instead, so the one reward the player was supposed to choose was chosen for
+// them and the lamp sat unused.
+[opheld1,thosf_reward_lamp]
+%xplamp = ^xplamp_none;
+%xplamp_kind = ^xplamp_lamp_osf;
+if_openmain(xplamp);
+
 [if_button,xplamp:attack] @xplamp_select(attack);
 [if_button,xplamp:strength] @xplamp_select(strength);
 [if_button,xplamp:ranged] @xplamp_select(ranged);
@@ -165,6 +174,9 @@ if ($kind = ^xplamp_lamp_blessed) {
 } else if ($kind = ^xplamp_lamp_twocats) {
     $need = ^xplamp_twocats_level;
     $xp = ^xplamp_twocats_xp;
+} else if ($kind = ^xplamp_lamp_osf) {
+    $need = ^xplamp_osf_level;
+    $xp = ^xplamp_osf_xp;
 }
 
 if ($need > 0 & $base < $need) {
@@ -184,6 +196,8 @@ if ($kind = ^xplamp_lamp_genie) {
     ~mesbox("The lamp goes out.|You have been awarded 5,000 <enum(stat, string, stat_names, $stat)> experience!");
 } else if ($kind = ^xplamp_lamp_rfd) {
     ~mesbox("The lamp goes out.|You have been awarded 20,000 <enum(stat, string, stat_names, $stat)> experience!");
+} else if ($kind = ^xplamp_lamp_osf) {
+    ~mesbox("The lamp goes out.|You have been awarded 10,000 <enum(stat, string, stat_names, $stat)> experience!");
 } else {
     ~mesbox("The lamp goes out.|You have been awarded 2,500 <enum(stat, string, stat_names, $stat)> experience!");
 }
@@ -204,6 +218,10 @@ if ($kind = ^xplamp_lamp_rfd) {
 }
 if ($kind = ^xplamp_lamp_twocats) {
     inv_del(inv, twocats_rewardlamp, 1);
+    return;
+}
+if ($kind = ^xplamp_lamp_osf) {
+    inv_del(inv, thosf_reward_lamp, 1);
     return;
 }
 inv_del(inv, macro_genilamp, 1);

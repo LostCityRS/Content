@@ -19,3 +19,6 @@ pack/animset.pack
 # python bytecode from tools/
 __pycache__/
 *.pyc
+
+# questaudit.py caches raw wikitext here so a re-run does not hammer the wiki.
+.wikicache/
